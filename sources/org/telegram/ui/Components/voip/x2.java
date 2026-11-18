@@ -14,7 +14,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import j$.util.Objects;
 import org.telegram.messenger.pc;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.Components.bb0;
 public final class x2 extends FrameLayout {
     public final bb0 E;
@@ -185,10 +185,10 @@ public final class x2 extends FrameLayout {
             }
             this.M = i7;
             this.N = i10;
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             int i12 = point.x - i7;
             int i13 = i12 * i12;
-            int i14 = ((point.y + org.telegram.messenger.g0.f24115m) + org.telegram.messenger.g0.f24116n) - i10;
+            int i14 = ((point.y + org.telegram.messenger.g0.f24112m) + org.telegram.messenger.g0.f24113n) - i10;
             int i15 = i14 * i14;
             double sqrt = Math.sqrt(i13 + i15);
             int i16 = i7 * i7;
@@ -199,7 +199,7 @@ public final class x2 extends FrameLayout {
             this.U.f41021e = true;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, (float) max);
             ofFloat.addUpdateListener(new v2(this, 1));
-            ofFloat.addListener(new x9(this, 20));
+            ofFloat.addListener(new y9(this, 20));
             if (z10) {
                 j3 = 400;
             } else {

@@ -37,7 +37,7 @@ public abstract class on0 extends org.telegram.ui.ActionBar.h1 {
         TLRPC.User c22;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) list.get(i7);
         if (!xeVar.f38145y) {
-            if (tL_sendAsPeer.premium_required && !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q()) {
+            if (tL_sendAsPeer.premium_required && !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q()) {
                 try {
                     view.performHapticFeedback(3, 2);
                 } catch (Exception unused) {

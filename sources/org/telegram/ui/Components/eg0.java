@@ -33,7 +33,7 @@ public final class eg0 extends up {
             return;
         }
         ag0 ag0Var = cg0Var.f33993c;
-        if (ag0Var.getImageReceiver().f22652n0 != null) {
+        if (ag0Var.getImageReceiver().f22649n0 != null) {
             Drawable t6 = ag0Var.getImageReceiver().t();
             if (t6 instanceof b6) {
                 ((b6) t6).w(ag0Var);
@@ -110,7 +110,7 @@ public final class eg0 extends up {
         if (uoVar == null) {
             size = 0;
         } else {
-            size = uoVar.f27201b.size();
+            size = uoVar.f27199b.size();
         }
         int j3 = (j() * 2) + Math.max(size, size2);
         for (int i10 = 0; i10 < j3; i10++) {

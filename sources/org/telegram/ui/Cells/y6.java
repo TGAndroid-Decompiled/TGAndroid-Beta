@@ -1,67 +1,66 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-public final class y6 extends View {
-    public int f32467a;
-    public final int f32468b;
-    public boolean f32469c;
-    public boolean d;
-
-    public y6(Context context) {
-        this(context, (c0) null);
-    }
-
-    private int getBackgroundResId() {
-        boolean z10 = this.f32469c;
-        if (z10 && this.d) {
-            return 2131231229;
-        }
-        if (z10) {
-            return 2131231230;
-        }
-        if (this.d) {
-            return 2131231231;
-        }
-        return 2131232790;
-    }
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.n10;
+import org.telegram.ui.Components.dz0;
+import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.p41;
+public abstract class y6 extends LinearLayout {
+    public TextView f32470a;
+    public k80 f32471b;
+    public TextView f32472c;
+    public TextView d;
+    public int f32473e;
+    public int f32474f;
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f32467a), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
-    public void setSize(int i7) {
-        this.f32467a = i7;
-    }
-
-    public y6(Context context, Object obj) {
-        this(context, (c0) null);
-    }
-
-    public y6(Context context, c0 c0Var) {
-        super(context);
-        this.f32469c = true;
-        this.d = true;
-        this.f32467a = 12;
-        int i7 = this.f32468b;
+    public void setType(int i7) {
+        int i10 = this.f32474f;
+        TextView textView = this.f32472c;
+        k80 k80Var = this.f32471b;
+        TextView textView2 = this.f32470a;
+        TextView textView3 = this.d;
+        this.f32473e = i7;
         if (i7 == 0) {
-            setBackground(null);
-        } else {
-            setBackgroundColor(i7);
-        }
-    }
-
-    public y6(Context context, int i7, int i10) {
-        super(context);
-        this.f32469c = true;
-        this.d = true;
-        this.f32468b = i7;
-        this.f32467a = 12;
-        if (i7 == 0) {
-            setBackground(null);
-        } else {
-            setBackgroundColor(i7);
+            textView2.setText(gd.a0(null, null, 2131752145, n10.h(new StringBuilder("+"), mp.u1(i10).c2(Long.valueOf(j10.i(i10).f24789n)).phone, pf.b.c())));
+            String M0 = gd.M0(2131752144, null);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
+            int indexOf = M0.indexOf("**");
+            int lastIndexOf = M0.lastIndexOf("**");
+            if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
+                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
+                try {
+                    spannableStringBuilder.setSpan(new p41(gd.M0(2131752143, null), (dz0) null), indexOf, lastIndexOf - 2, 33);
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                }
+            }
+            k80Var.setText(spannableStringBuilder);
+            textView.setText(gd.M0(2131752141, null));
+            textView3.setVisibility(0);
+            textView3.setText(gd.M0(2131752142, null));
+        } else if (i7 == 1) {
+            textView2.setText(gd.M0(2131742545, null));
+            k80Var.setText(gd.M0(2131742544, null));
+            textView.setText(gd.M0(2131742542, null));
+            textView3.setVisibility(0);
+            textView3.setText(gd.M0(2131742543, null));
+        } else if (i7 == 2) {
+            textView2.setText(gd.M0(2131749351, null));
+            k80Var.setText(gd.M0(2131749352, null));
+            textView.setText(gd.M0(2131749353, null));
+            textView3.setVisibility(8);
         }
     }
 }

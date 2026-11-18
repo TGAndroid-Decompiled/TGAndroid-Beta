@@ -3,7 +3,7 @@ package rg;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Cells.z7;
+import org.telegram.ui.Cells.a8;
 import org.telegram.ui.Components.ck0;
 public abstract class d extends ck0 {
     public boolean f56592f3;
@@ -20,9 +20,9 @@ public abstract class d extends ck0 {
                 if (rectF.intersects(x10, y10, childAt.getWidth() + x10, childAt.getHeight() + y10)) {
                     canvas.save();
                     canvas.translate(x10, y10);
-                    z7 z7Var = (z7) ((c) childAt);
-                    if (z7Var.M) {
-                        z7Var.b(canvas, this);
+                    a8 a8Var = (a8) ((c) childAt);
+                    if (a8Var.M) {
+                        a8Var.b(canvas, this);
                     }
                     canvas.restore();
                 }
@@ -38,9 +38,9 @@ public abstract class d extends ck0 {
                 c cVar = (c) getChildAt(i7);
                 canvas.save();
                 canvas.translate(cVar.getX(), cVar.getY());
-                z7 z7Var = (z7) cVar;
-                if (z7Var.M) {
-                    z7Var.b(canvas, this);
+                a8 a8Var = (a8) cVar;
+                if (a8Var.M) {
+                    a8Var.b(canvas, this);
                 }
                 canvas.restore();
             }

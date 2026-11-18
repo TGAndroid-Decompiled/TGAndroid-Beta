@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class dw0 extends org.telegram.ui.Cells.z7 {
+public final class dw0 extends org.telegram.ui.Cells.a8 {
     public final ew0 P;
 
     public dw0(ew0 ew0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var) {

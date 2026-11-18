@@ -14,7 +14,7 @@ import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import p4.r0;
 public final class t implements q {
     public static final r0 d = new r0(23);
@@ -25,12 +25,12 @@ public final class t implements q {
     public t(UUID uuid) {
         UUID uuid2;
         uuid.getClass();
-        la.e("Use C.CLEARKEY_UUID instead", !e2.l.f10494c.equals(uuid));
+        la.e("Use C.CLEARKEY_UUID instead", !e2.l.f10491c.equals(uuid));
         this.f55773a = uuid;
         MediaDrm mediaDrm = new MediaDrm((Build.VERSION.SDK_INT >= 27 || !uuid.equals(e2.l.d)) ? uuid : uuid2);
         this.f55774b = mediaDrm;
         this.f55775c = 1;
-        if (e2.l.f10495e.equals(uuid) && "ASUS_Z00AD".equals(Build.MODEL)) {
+        if (e2.l.f10492e.equals(uuid) && "ASUS_Z00AD".equals(Build.MODEL)) {
             mediaDrm.setPropertyString("securityLevel", "L3");
         }
     }
@@ -103,7 +103,7 @@ public final class t implements q {
         int i7 = Build.VERSION.SDK_INT;
         UUID uuid2 = this.f55773a;
         if (i7 >= 31) {
-            boolean equals2 = uuid2.equals(e2.l.f10495e);
+            boolean equals2 = uuid2.equals(e2.l.f10492e);
             MediaDrm mediaDrm = this.f55774b;
             if (equals2) {
                 String propertyString = mediaDrm.getPropertyString("version");
@@ -123,7 +123,7 @@ public final class t implements q {
         try {
             try {
                 if (i7 < 27 && Objects.equals(uuid2, e2.l.d)) {
-                    uuid = e2.l.f10494c;
+                    uuid = e2.l.f10491c;
                 } else {
                     uuid = uuid2;
                 }
@@ -155,14 +155,14 @@ public final class t implements q {
     }
 
     @Override
-    public final void a(final b5 b5Var) {
+    public final void a(final c5 c5Var) {
         this.f55774b.setOnEventListener(new MediaDrm.OnEventListener() {
             @Override
             public final void onEvent(MediaDrm mediaDrm, byte[] bArr, int i7, int i10, byte[] bArr2) {
                 t tVar = t.this;
-                b5 b5Var2 = b5Var;
+                c5 c5Var2 = c5Var;
                 tVar.getClass();
-                android.support.v4.media.session.q qVar = ((e) b5Var2.f30431a).N;
+                android.support.v4.media.session.q qVar = ((e) c5Var2.f30477a).N;
                 qVar.getClass();
                 qVar.obtainMessage(i7, bArr).sendToTarget();
             }
@@ -185,7 +185,7 @@ public final class t implements q {
         int i7 = Build.VERSION.SDK_INT;
         UUID uuid = this.f55773a;
         if (i7 < 27 && Objects.equals(uuid, e2.l.d)) {
-            uuid = e2.l.f10494c;
+            uuid = e2.l.f10491c;
         }
         return new r(uuid, bArr);
     }

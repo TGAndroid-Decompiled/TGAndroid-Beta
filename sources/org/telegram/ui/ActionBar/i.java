@@ -10,15 +10,15 @@ import android.transition.TransitionValues;
 import android.view.View;
 import android.view.ViewGroup;
 public final class i extends ChangeBounds {
-    public final int f29005a;
+    public final int f29003a;
 
     public i(int i7) {
-        this.f29005a = i7;
+        this.f29003a = i7;
     }
 
     @Override
     public final void captureEndValues(TransitionValues transitionValues) {
-        switch (this.f29005a) {
+        switch (this.f29003a) {
             case 0:
                 super.captureEndValues(transitionValues);
                 View view = transitionValues.view;
@@ -47,7 +47,7 @@ public final class i extends ChangeBounds {
 
     @Override
     public final void captureStartValues(TransitionValues transitionValues) {
-        switch (this.f29005a) {
+        switch (this.f29003a) {
             case 0:
                 super.captureStartValues(transitionValues);
                 View view = transitionValues.view;
@@ -76,7 +76,7 @@ public final class i extends ChangeBounds {
 
     @Override
     public final Animator createAnimator(ViewGroup viewGroup, final TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f29005a) {
+        switch (this.f29003a) {
             case 0:
                 if (transitionValues != null && (transitionValues.view instanceof n5)) {
                     AnimatorSet animatorSet = new AnimatorSet();

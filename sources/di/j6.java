@@ -11,23 +11,23 @@ import org.telegram.ui.Components.qd0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.q30;
 public final class j6 extends AnimatorListenerAdapter {
-    public final int f9082a;
-    public final float f9083b;
-    public final Runnable f9084c;
+    public final int f9079a;
+    public final float f9080b;
+    public final Runnable f9081c;
     public final Object d;
 
     public j6(Object obj, float f10, Runnable runnable, int i7) {
-        this.f9082a = i7;
+        this.f9079a = i7;
         this.d = obj;
-        this.f9083b = f10;
-        this.f9084c = runnable;
+        this.f9080b = f10;
+        this.f9081c = runnable;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f9082a;
-        Runnable runnable = this.f9084c;
-        float f10 = this.f9083b;
+        int i7 = this.f9079a;
+        Runnable runnable = this.f9081c;
+        float f10 = this.f9080b;
         Object obj = this.d;
         switch (i7) {
             case 0:
@@ -41,9 +41,9 @@ public final class j6 extends AnimatorListenerAdapter {
                 return;
             case 1:
                 fi.m1 m1Var = (fi.m1) obj;
-                m1Var.f12260n = f10;
+                m1Var.f12257n = f10;
                 m1Var.invalidate();
-                if (animator == m1Var.f12261r && runnable != null) {
+                if (animator == m1Var.f12258r && runnable != null) {
                     runnable.run();
                     return;
                 }
@@ -62,8 +62,8 @@ public final class j6 extends AnimatorListenerAdapter {
                 taVar.M = null;
                 taVar.J = f10;
                 taVar.j();
-                taVar.f15476r.invalidate();
-                taVar.f15464n.invalidate();
+                taVar.f15473r.invalidate();
+                taVar.f15461n.invalidate();
                 runnable.run();
                 taVar.Q.e();
                 ks.e().k(99, 512);
@@ -74,13 +74,13 @@ public final class j6 extends AnimatorListenerAdapter {
                     runnable2.run();
                     taVar.R = null;
                 }
-                taVar.f15476r.invalidate();
-                taVar.f15451i0.invalidate();
+                taVar.f15473r.invalidate();
+                taVar.f15448i0.invalidate();
                 return;
             case 4:
                 q30 q30Var = (q30) obj;
                 q30Var.h = f10;
-                q30Var.f51074a.invalidate();
+                q30Var.f50995a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -96,7 +96,7 @@ public final class j6 extends AnimatorListenerAdapter {
                 photoViewer.f43204e6 = p22;
                 photoViewer.f43166a6 = p22;
                 photoViewer.f43208f0.invalidate();
-                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21896a;
+                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21893a;
                 float p23 = photoViewer.p2(false);
                 cropAreaView.f32892o0 = 0.0f;
                 cropAreaView.f32893p0 = p23;
@@ -112,17 +112,17 @@ public final class j6 extends AnimatorListenerAdapter {
                         fVar.setRotated(false);
                     }
                     if (qd0Var.f38763b.m(f10)) {
-                        org.telegram.ui.ActionBar.u6.s(photoViewer.f43181c1, org.telegram.ui.ActionBar.n6.f29645qg, photoViewer.f43358w2, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(photoViewer.f43181c1, org.telegram.ui.ActionBar.n6.f29643qg, photoViewer.f43358w2, PorterDuff.Mode.MULTIPLY);
                     } else {
                         photoViewer.f43181c1.setColorFilter((ColorFilter) null);
                     }
                 }
-                we weVar = photoViewer.X4.f50282c;
+                we weVar = photoViewer.X4.f50266c;
                 if (weVar != null) {
-                    weVar.f27677b = 0.0f;
-                    weVar.f27676a = 0.0f;
-                    weVar.f27680f = 1.0f;
-                    weVar.f27679e = 1.0f;
+                    weVar.f27675b = 0.0f;
+                    weVar.f27674a = 0.0f;
+                    weVar.f27678f = 1.0f;
+                    weVar.f27677e = 1.0f;
                 }
                 if (runnable != null) {
                     runnable.run();

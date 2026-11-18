@@ -9,12 +9,12 @@ public final class j5 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     public float U;
     public float V;
     public final mc W;
-    public boolean f14812a0;
+    public boolean f14809a0;
 
     public j5(l5 l5Var, Context context) {
-        super(context, l5Var.f14924q1);
+        super(context, l5Var.f14921q1);
         this.W = new mc(this);
-        this.f14812a0 = true;
+        this.f14809a0 = true;
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class j5 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         if (action == 0) {
             this.U = motionEvent.getX();
             this.V = motionEvent.getY();
-            mcVar.c(this.f14812a0);
+            mcVar.c(this.f14809a0);
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             mcVar.c(false);
         }

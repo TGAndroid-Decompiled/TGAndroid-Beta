@@ -28,7 +28,7 @@ public final class f0 extends LinearLayout {
         super(context);
         this.f57837r = g0Var;
         setOrientation(0);
-        int i7 = n6.f29488i6;
+        int i7 = n6.f29486i6;
         u uVar = g0Var.A1;
         setBackground(n6.h0(n6.w0(i7, uVar), 2, -1));
         y61 y61Var = new y61(this, context);

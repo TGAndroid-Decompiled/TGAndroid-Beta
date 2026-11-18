@@ -25,15 +25,15 @@ public final class s2 extends ImageReceiver {
         switch (this.K1) {
             case 2:
                 super.L0(iArr);
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.L1;
-                int[] iArr2 = q1Var.T0;
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.L1;
+                int[] iArr2 = r1Var.T0;
                 iArr2[0] = iArr[0];
                 iArr2[1] = iArr[1];
                 int L = org.telegram.messenger.g0.L(6.0f);
                 iArr2[3] = L;
                 iArr2[2] = L;
-                org.telegram.ui.Cells.w1 w1Var = q1Var.f31583x2;
-                if (w1Var != null && (fVar = w1Var.f32241m) != null) {
+                org.telegram.ui.Cells.x1 x1Var = r1Var.f31633x2;
+                if (x1Var != null && (fVar = x1Var.f32294m) != null) {
                     fVar.f57437b.L0(iArr2);
                     return;
                 }
@@ -50,7 +50,7 @@ public final class s2 extends ImageReceiver {
         Object obj = this.L1;
         switch (i7) {
             case 3:
-                View view = ((en) obj).f47304b;
+                View view = ((en) obj).f47260b;
                 if (view != null) {
                     view.invalidate();
                     return;

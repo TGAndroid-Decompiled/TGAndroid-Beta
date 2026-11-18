@@ -115,7 +115,7 @@ public final class qp extends yu0 {
                 }
                 Paint paint2 = (Paint) this.h;
                 if (paint2 == null) {
-                    paint2 = org.telegram.ui.ActionBar.n6.f29374c2;
+                    paint2 = org.telegram.ui.ActionBar.n6.f29372c2;
                 }
                 if (paint.getStrokeWidth() != org.telegram.messenger.g0.L(0.8f)) {
                     paint.setStrokeWidth(org.telegram.messenger.g0.L(0.8f));

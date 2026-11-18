@@ -21,7 +21,7 @@ public final class rg0 extends LinearLayout {
         sb0 sb0Var = ug0Var.I;
         sb0 sb0Var2 = ug0Var.H;
         this.f39141a = true;
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         if (point.x > point.y) {
             i11 = 3;
         } else {

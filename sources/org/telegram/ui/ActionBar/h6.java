@@ -24,14 +24,14 @@ import org.telegram.messenger.mz;
 import org.telegram.ui.Components.bb0;
 import org.telegram.ui.Components.p9;
 public final class h6 implements fs {
-    public static h6 f29002c;
-    public int f29003a;
-    public HashMap f29004b;
+    public static h6 f29000c;
+    public int f29001a;
+    public HashMap f29002b;
 
     public static void a(boolean z10) {
         String str;
         ArrayList arrayList;
-        if (f29002c != null && !z10) {
+        if (f29000c != null && !z10) {
             return;
         }
         ArrayList arrayList2 = null;
@@ -54,11 +54,11 @@ public final class h6 implements fs {
                 str = "Blue";
             }
             m6 m6Var = (m6) n6.H.get(str);
-            if (m6Var != null && (arrayList = m6Var.f29254c0) != null && !arrayList.isEmpty()) {
-                int size = m6Var.f29254c0.size();
+            if (m6Var != null && (arrayList = m6Var.f29252c0) != null && !arrayList.isEmpty()) {
+                int size = m6Var.f29252c0.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    k6 k6Var = (k6) m6Var.f29254c0.get(i10);
-                    if (k6Var.f29170a != n6.f29572n && !TextUtils.isEmpty(k6Var.f29182o)) {
+                    k6 k6Var = (k6) m6Var.f29252c0.get(i10);
+                    if (k6Var.f29168a != n6.f29570n && !TextUtils.isEmpty(k6Var.f29180o)) {
                         if (arrayList2 == null) {
                             arrayList2 = new ArrayList();
                         }
@@ -68,11 +68,11 @@ public final class h6 implements fs {
             }
         }
         ?? obj = new Object();
-        obj.f29003a = j10.f24773t0;
+        obj.f29001a = j10.f24770t0;
         if (arrayList2 != null) {
-            Utilities.f22782e.c(new a2(6, obj, arrayList2));
+            Utilities.f22779e.c(new a2(6, obj, arrayList2));
         }
-        f29002c = obj;
+        f29000c = obj;
     }
 
     public static Bitmap b(Bitmap bitmap, boolean z10, File file, k6 k6Var) {
@@ -88,12 +88,12 @@ public final class h6 implements fs {
             if (e10 == null) {
                 return null;
             }
-            m6 m6Var = k6Var.f29171b;
+            m6 m6Var = k6Var.f29169b;
             SparseIntArray T0 = n6.T0(null, m6Var.d, null);
             n6.H(T0, m6Var);
-            int i12 = k6Var.f29172c;
-            int i13 = (int) k6Var.f29177j;
-            long j3 = k6Var.f29178k;
+            int i12 = k6Var.f29170c;
+            int i13 = (int) k6Var.f29175j;
+            long j3 = k6Var.f29176k;
             int i14 = (int) j3;
             if (i14 == 0 && j3 == 0) {
                 if (i13 != 0) {
@@ -106,12 +106,12 @@ public final class h6 implements fs {
             } else {
                 i12 = 0;
             }
-            long j10 = k6Var.f29179l;
+            long j10 = k6Var.f29177l;
             int i16 = (int) j10;
             if (i16 == 0 && j10 == 0 && (i11 = T0.get(n6.Ge)) != 0) {
                 i16 = n6.C(m6Var, i12, i11);
             }
-            long j11 = k6Var.f29180m;
+            long j11 = k6Var.f29178m;
             int i17 = (int) j11;
             if (i17 == 0 && j11 == 0 && (i10 = T0.get(n6.He)) != 0) {
                 i17 = n6.C(m6Var, i12, i10);
@@ -122,7 +122,7 @@ public final class h6 implements fs {
             if (i16 != 0) {
                 V0 = bb0.g(i13, i14, i16, i17);
             } else if (i14 != 0) {
-                Drawable p9Var = new p9(p9.d(k6Var.f29181n), new int[]{i13, i14});
+                Drawable p9Var = new p9(p9.d(k6Var.f29179n), new int[]{i13, i14});
                 V0 = org.telegram.messenger.g0.V0(org.telegram.messenger.g0.w0(i13, i14), false);
                 drawable = p9Var;
             } else {
@@ -130,7 +130,7 @@ public final class h6 implements fs {
                 V0 = org.telegram.messenger.g0.V0(i13, false);
             }
             if (bitmap == null) {
-                Point point = org.telegram.messenger.g0.f24121q;
+                Point point = org.telegram.messenger.g0.f24118q;
                 int min = Math.min(point.x, point.y);
                 int max = Math.max(point.x, point.y);
                 if (z10) {
@@ -150,7 +150,7 @@ public final class h6 implements fs {
                     drawable.draw(canvas);
                     Paint paint = new Paint(2);
                     paint.setColorFilter(new PorterDuffColorFilter(V0, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(k6Var.f29183p) * 255.0f));
+                    paint.setAlpha((int) (Math.abs(k6Var.f29181p) * 255.0f));
                     canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
                     createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(e10));
                     return bitmap2;
@@ -172,12 +172,12 @@ public final class h6 implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        HashMap hashMap = this.f29004b;
+        HashMap hashMap = this.f29002b;
         if (hashMap != null) {
             if (i7 == ks.Y1) {
                 g6 g6Var = (g6) hashMap.remove((String) objArr[0]);
                 if (g6Var != null) {
-                    Utilities.f22782e.c(new a2(7, this, g6Var));
+                    Utilities.f22779e.c(new a2(7, this, g6Var));
                 }
             } else if (i7 == ks.Z1 && hashMap.remove((String) objArr[0]) != null) {
                 org.telegram.messenger.g0.g3(new di.p6((Object) this, (Object) null, false, 13));

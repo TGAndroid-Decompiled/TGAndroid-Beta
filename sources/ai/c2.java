@@ -122,7 +122,7 @@ public final class c2 {
         this.f1146f.removeCallbacksAndMessages(null);
         w wVar = this.A;
         if (wVar != null) {
-            wVar.f1578l = true;
+            wVar.f1579l = true;
         }
         d();
         y yVar = this.v;
@@ -171,7 +171,7 @@ public final class c2 {
         this.f1146f.removeCallbacksAndMessages(null);
         w wVar = this.A;
         if (wVar != null) {
-            wVar.f1578l = true;
+            wVar.f1579l = true;
         }
         d();
         y yVar = this.v;
@@ -210,8 +210,8 @@ public final class c2 {
             }
             return;
         }
-        wVar.f1581o = new o1(this, 4);
-        wVar.f1577k = true;
+        wVar.f1582o = new o1(this, 4);
+        wVar.f1578k = true;
     }
 
     public final boolean h(String str) {
@@ -232,7 +232,7 @@ public final class c2 {
             }
             if (!arrayList.isEmpty()) {
                 if (str != null && !"other".equals(str)) {
-                    HashMap hashMap = u0.f1549a;
+                    HashMap hashMap = u0.f1550a;
                     int size2 = arrayList.size();
                     int i10 = 0;
                     while (true) {
@@ -282,7 +282,7 @@ public final class c2 {
                 this.C++;
                 w wVar = this.A;
                 if (wVar != null) {
-                    wVar.f1578l = true;
+                    wVar.f1579l = true;
                     this.A = null;
                 }
                 this.f1146f.removeCallbacks(this.P);
@@ -545,7 +545,7 @@ public final class c2 {
             z zVar = this.J;
             if (zVar != null) {
                 this.f1164u = zVar;
-                zVar.f1632g = new u1(this, 0);
+                zVar.f1633g = new u1(this, 0);
                 this.f1167y = DictationAsr.P(u0.c(this.f1137a, this.f1141c), true);
                 return;
             }
@@ -557,25 +557,25 @@ public final class c2 {
                 u1 u1Var = new u1(this, 1);
                 try {
                     audioRecord = new AudioRecord(6, 16000, 16, 2, Math.max(AudioRecord.getMinBufferSize(16000, 16, 2), 12800));
-                    zVar2.f1630e = audioRecord;
+                    zVar2.f1631e = audioRecord;
                 } catch (Exception e10) {
                     Log.e("Dictation", "audio capture", e10);
-                    AudioRecord audioRecord2 = zVar2.f1630e;
+                    AudioRecord audioRecord2 = zVar2.f1631e;
                     if (audioRecord2 != null) {
                         audioRecord2.release();
                     }
-                    zVar2.f1630e = null;
+                    zVar2.f1631e = null;
                 }
                 if (audioRecord.getState() != 1) {
-                    zVar2.f1630e.release();
-                    zVar2.f1630e = null;
+                    zVar2.f1631e.release();
+                    zVar2.f1631e = null;
                     Log.d("Dictation", "own audio capture unavailable → the recogniser's microphone");
                     this.f1164u = null;
                     return;
                 }
-                zVar2.f1630e.startRecording();
+                zVar2.f1631e.startRecording();
                 Thread thread = new Thread(new a1.e(11, zVar2, u1Var), "DictationAudio");
-                zVar2.f1631f = thread;
+                zVar2.f1632f = thread;
                 thread.start();
             }
         }
@@ -593,7 +593,7 @@ public final class c2 {
         final int i7 = this.C + 1;
         this.C = i7;
         this.f1167y = a0Var;
-        DictationAsr.Y((t) a0Var.f1704b, new u() {
+        DictationAsr.Y((t) a0Var.f1705b, new u() {
             @Override
             public final void a(boolean z10) {
                 c2 c2Var = c2.this;
@@ -606,7 +606,7 @@ public final class c2 {
                     }
                     w wVar = c2Var.A;
                     if (wVar != null) {
-                        wVar.f1578l = true;
+                        wVar.f1579l = true;
                     }
                     w wVar2 = new w(c2Var.f1164u, a0Var2, new r1(c2Var, i10, a0Var2, 0));
                     c2Var.A = wVar2;
@@ -642,12 +642,12 @@ public final class c2 {
             Object obj = arrayList.get(i10);
             i10++;
             z1 z1Var = (z1) obj;
-            int i11 = z1Var.f1636a;
-            int i12 = z1Var.f1636a;
-            String str2 = z1Var.f1637b;
+            int i11 = z1Var.f1637a;
+            int i12 = z1Var.f1637a;
+            String str2 = z1Var.f1638b;
             if (i11 >= i7 && str.startsWith(str2, i11)) {
                 sb2.append((CharSequence) str, i7, i12);
-                sb2.append(z1Var.f1638c);
+                sb2.append(z1Var.f1639c);
                 i7 = str2.length() + i12;
             }
         }
@@ -1084,7 +1084,7 @@ public final class c2 {
                 this.v = yVar;
                 this.f1165w = i13;
                 if (yVar != null) {
-                    intent.putExtra("android.speech.extra.AUDIO_SOURCE", yVar.f1615a);
+                    intent.putExtra("android.speech.extra.AUDIO_SOURCE", yVar.f1616a);
                     intent.putExtra("android.speech.extra.AUDIO_SOURCE_CHANNEL_COUNT", 1);
                     intent.putExtra("android.speech.extra.AUDIO_SOURCE_ENCODING", 2);
                     intent.putExtra("android.speech.extra.AUDIO_SOURCE_SAMPLING_RATE", 16000);

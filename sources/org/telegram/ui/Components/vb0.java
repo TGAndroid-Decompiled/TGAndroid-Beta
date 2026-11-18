@@ -16,7 +16,7 @@ public final class vb0 extends xb0 {
         iVar.setSingleLine(true);
         iVar.setInputType(1);
         iVar.setTypeface(Typeface.DEFAULT);
-        org.telegram.ui.ActionBar.u6.l(iVar, 30, org.telegram.ui.ActionBar.n6.f29543l6, null);
+        org.telegram.ui.ActionBar.u6.l(iVar, 30, org.telegram.ui.ActionBar.n6.f29541l6, null);
         iVar.setCursorWidth(1.5f);
         iVar.setPadding(org.telegram.messenger.g0.L(15.0f), 0, org.telegram.messenger.g0.L(15.0f), 0);
         e(iVar);

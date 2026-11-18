@@ -14,13 +14,13 @@ public final class lj implements rj {
     public final String run() {
         switch (this.f37132a) {
             case 0:
-                ArrayList arrayList = this.f37133b.f23843e;
+                ArrayList arrayList = this.f37133b.f23840e;
                 if (arrayList.isEmpty()) {
                     return "";
                 }
                 return pf.b.c().b((String) arrayList.get(0));
             default:
-                ArrayList arrayList2 = this.f37133b.f23843e;
+                ArrayList arrayList2 = this.f37133b.f23840e;
                 if (arrayList2.isEmpty()) {
                     return "";
                 }

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.g0;
-import org.telegram.ui.Cells.r5;
+import org.telegram.ui.Cells.s5;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.hm;
 import org.telegram.ui.Components.oa0;
@@ -17,20 +17,20 @@ import org.telegram.ui.Components.z40;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.bn;
 public final class a extends ViewOutlineProvider {
-    public final int f11614a;
-    public final Object f11615b;
+    public final int f11611a;
+    public final Object f11612b;
 
     public a(Object obj, int i7) {
-        this.f11614a = i7;
-        this.f11615b = obj;
+        this.f11611a = i7;
+        this.f11612b = obj;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
         float f10;
-        int i7 = this.f11614a;
+        int i7 = this.f11611a;
         float f11 = 0.0f;
-        Object obj = this.f11615b;
+        Object obj = this.f11612b;
         switch (i7) {
             case 0:
                 ((g) obj).getOutline(outline);
@@ -59,7 +59,7 @@ public final class a extends ViewOutlineProvider {
                 } else {
                     f10 = 0.0f;
                 }
-                int min = (int) Math.min((siVar.f30192b.getTranslationY() + ((f12 - f10) + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY(), view.getMeasuredHeight());
+                int min = (int) Math.min((siVar.f30190b.getTranslationY() + ((f12 - f10) + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY(), view.getMeasuredHeight());
                 if (chatAttachAlertPhotoLayout.f32771c0) {
                     min = view.getMeasuredHeight();
                 } else if (chatAttachAlertPhotoLayout.f32775e0) {
@@ -84,9 +84,9 @@ public final class a extends ViewOutlineProvider {
                     return;
                 }
             case 3:
-                r5 r5Var = (r5) view;
-                if (r5Var.getTag() != null) {
-                    int intValue = ((Integer) r5Var.getTag()).intValue();
+                s5 s5Var = (s5) view;
+                if (s5Var.getTag() != null) {
+                    int intValue = ((Integer) s5Var.getTag()).intValue();
                     hm hmVar = (hm) obj;
                     ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = hmVar.f35930w;
                     if (hmVar.d && chatAttachAlertPhotoLayout2.U0 == chatAttachAlertPhotoLayout2.V0 && !chatAttachAlertPhotoLayout2.P0) {

@@ -30,7 +30,7 @@ public final class b6 extends h6 {
     @Override
     public final fj f(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f12048i;
+            ArrayList arrayList = this.f12045i;
             if (i7 < arrayList.size()) {
                 return (fj) arrayList.get(i7);
             }
@@ -51,7 +51,7 @@ public final class b6 extends h6 {
 
     @Override
     public final int i() {
-        return this.f12048i.size();
+        return this.f12045i.size();
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class b6 extends h6 {
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
         TLObject tLObject = null;
-        int i10 = this.f12044c;
+        int i10 = this.f12041c;
         if (!isEmpty) {
             TLObject h22 = mp.u1(i10).h2(str2);
             if (h22 == null) {

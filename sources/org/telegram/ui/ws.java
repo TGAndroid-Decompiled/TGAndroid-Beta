@@ -31,8 +31,8 @@ public final class ws extends org.telegram.ui.Components.sa {
         this.X1 = hashSet2;
         arrayList.addAll(hashSet);
         hashSet2.addAll(hashSet);
-        Q(org.telegram.ui.ActionBar.n6.f29469h5);
-        this.f30224s = false;
+        Q(org.telegram.ui.ActionBar.n6.f29467h5);
+        this.f30222s = false;
         FrameLayout frameLayout = new FrameLayout(activity);
         this.T1 = frameLayout;
         LinearLayout f10 = org.telegram.messenger.f3.f(activity, 1);
@@ -43,23 +43,23 @@ public final class ws extends org.telegram.ui.Components.sa {
         frameLayout.addView(imageView, c8.ma.d(24, 24.0f, 53, 0.0f, 14.0f, 14.0f, 0.0f));
         c8.ra.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final ws f52618b;
+            public final ws f52603b;
 
             {
-                this.f52618b = this;
+                this.f52603b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f52618b.dismiss();
+                        this.f52603b.dismiss();
                         return;
                     case 1:
-                        this.f52618b.e1(false);
+                        this.f52603b.e1(false);
                         return;
                     default:
-                        this.f52618b.e1(true);
+                        this.f52603b.e1(true);
                         return;
                 }
             }
@@ -91,7 +91,7 @@ public final class ws extends org.telegram.ui.Components.sa {
             z41Var.O(false);
         }
         v4.k kVar = new v4.k();
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.lr.h);
         kVar.n(350L);
@@ -99,7 +99,7 @@ public final class ws extends org.telegram.ui.Components.sa {
         this.f39534o1.setOnItemClickListener(new zr(this, 1));
         FrameLayout frameLayout3 = new FrameLayout(activity);
         LinearLayout f11 = org.telegram.messenger.f3.f(activity, 0);
-        f11.setPadding(org.telegram.messenger.g0.L(14.0f) + this.f30227u0, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + this.f30227u0, org.telegram.messenger.g0.L(14.0f));
+        f11.setPadding(org.telegram.messenger.g0.L(14.0f) + this.f30225u0, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + this.f30225u0, org.telegram.messenger.g0.L(14.0f));
         frameLayout3.addView(f11, c8.ma.e(-1, -2, 87));
         hi.d dVar = new hi.d(activity, this.J0, true);
         this.U1 = dVar;
@@ -110,23 +110,23 @@ public final class ws extends org.telegram.ui.Components.sa {
         dVar.i(spannableStringBuilder, false, true);
         f11.addView(dVar, c8.ma.q(-1, 48, 1.0f, 119, 0, 0, 6, 0));
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final ws f52618b;
+            public final ws f52603b;
 
             {
-                this.f52618b = this;
+                this.f52603b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f52618b.dismiss();
+                        this.f52603b.dismiss();
                         return;
                     case 1:
-                        this.f52618b.e1(false);
+                        this.f52603b.e1(false);
                         return;
                     default:
-                        this.f52618b.e1(true);
+                        this.f52603b.e1(true);
                         return;
                 }
             }
@@ -140,36 +140,36 @@ public final class ws extends org.telegram.ui.Components.sa {
         dVar2.i(spannableStringBuilder2, false, true);
         f11.addView(dVar2, c8.ma.q(-1, 48, 1.0f, 119, 6, 0, 0, 0));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final ws f52618b;
+            public final ws f52603b;
 
             {
-                this.f52618b = this;
+                this.f52603b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f52618b.dismiss();
+                        this.f52603b.dismiss();
                         return;
                     case 1:
-                        this.f52618b.e1(false);
+                        this.f52603b.e1(false);
                         return;
                     default:
-                        this.f52618b.e1(true);
+                        this.f52603b.e1(true);
                         return;
                 }
             }
         });
-        this.f30192b.addView(frameLayout3, c8.ma.e(-1, -2, 87));
+        this.f30190b.addView(frameLayout3, c8.ma.e(-1, -2, 87));
         org.telegram.ui.Components.ck0 ck0Var = this.f39534o1;
-        int i11 = this.f30227u0;
+        int i11 = this.f30225u0;
         ck0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(76.0f));
     }
 
     @Override
     public final org.telegram.ui.Components.bk0 M0(org.telegram.ui.Components.ck0 ck0Var) {
-        org.telegram.ui.Components.z41 z41Var = new org.telegram.ui.Components.z41(ck0Var, getContext(), this.f30189a, 0, true, new a5(this, 10), this.J0);
+        org.telegram.ui.Components.z41 z41Var = new org.telegram.ui.Components.z41(ck0Var, getContext(), this.f30187a, 0, true, new a5(this, 10), this.J0);
         this.Z1 = z41Var;
         return z41Var;
     }
@@ -195,7 +195,7 @@ public final class ws extends org.telegram.ui.Components.sa {
         HashSet hashSet = new HashSet();
         hashSet.addAll(this.X1);
         TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-        createconferencecall.random_id = Utilities.f22780b.nextInt();
-        ConnectionsManager.getInstance(this.f30189a).sendRequest(createconferencecall, new di.j3(this, dVar2, z10, hashSet, 7));
+        createconferencecall.random_id = Utilities.f22777b.nextInt();
+        ConnectionsManager.getInstance(this.f30187a).sendRequest(createconferencecall, new di.j3(this, dVar2, z10, hashSet, 7));
     }
 }

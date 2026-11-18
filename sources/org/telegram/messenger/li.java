@@ -12,30 +12,30 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class li implements Runnable {
-    public final int f25383a;
-    public final long f25384b;
-    public final int f25385c;
+    public final int f25381a;
+    public final long f25382b;
+    public final int f25383c;
     public final long d;
-    public final int f25386e;
-    public final ch.p0 f25387f;
+    public final int f25384e;
+    public final ch.p0 f25385f;
     public final int h;
-    public final int f25388n;
-    public final int f25389r;
-    public final int f25390s;
-    public final ri f25391w;
+    public final int f25386n;
+    public final int f25387r;
+    public final int f25388s;
+    public final ri f25389w;
 
     public li(ri riVar, int i7, long j3, int i10, long j10, int i11, ch.p0 p0Var, int i12, int i13, int i14, boolean z10, int i15) {
-        this.f25391w = riVar;
-        this.f25383a = i7;
-        this.f25384b = j3;
-        this.f25385c = i10;
+        this.f25389w = riVar;
+        this.f25381a = i7;
+        this.f25382b = j3;
+        this.f25383c = i10;
         this.d = j10;
-        this.f25386e = i11;
-        this.f25387f = p0Var;
+        this.f25384e = i11;
+        this.f25385f = p0Var;
         this.h = i12;
-        this.f25388n = i13;
-        this.f25389r = i14;
-        this.f25390s = i15;
+        this.f25386n = i13;
+        this.f25387r = i14;
+        this.f25388s = i15;
     }
 
     @Override
@@ -107,10 +107,10 @@ public final class li implements Runnable {
         SQLitePreparedStatement executeFast;
         int i33;
         li liVar = this;
-        int i34 = liVar.f25383a;
-        int i35 = liVar.f25388n;
-        long j16 = liVar.f25384b;
-        ri riVar2 = liVar.f25391w;
+        int i34 = liVar.f25381a;
+        int i35 = liVar.f25386n;
+        long j16 = liVar.f25382b;
+        ri riVar2 = liVar.f25389w;
         long e10 = riVar2.getUserConfig().e();
         TLRPC.TL_messages_messages tL_messages_messages4 = new TLRPC.TL_messages_messages();
         boolean z14 = false;
@@ -123,12 +123,12 @@ public final class li implements Runnable {
                 R = riVar2.getMessagesStorage().R();
                 C = n5.C(j16);
                 tL_messages_messages2 = tL_messages_messages4;
-                p0Var = liVar.f25387f;
+                p0Var = liVar.f25385f;
                 j11 = e10;
                 i17 = liVar.h;
-                i18 = liVar.f25385c;
+                i18 = liVar.f25383c;
                 j12 = liVar.d;
-                i19 = liVar.f25386e;
+                i19 = liVar.f25384e;
             } catch (Exception e11) {
                 e = e11;
                 tL_messages_messages = tL_messages_messages4;
@@ -212,10 +212,10 @@ public final class li implements Runnable {
                         queryFinalized5.dispose();
                     }
                     if (p0Var != null) {
-                        if (!TextUtils.isEmpty(p0Var.f5478f)) {
-                            j15 = p0Var.f5478f.hashCode();
+                        if (!TextUtils.isEmpty(p0Var.f5475f)) {
+                            j15 = p0Var.f5475f.hashCode();
                         } else {
-                            j15 = p0Var.f5479g;
+                            j15 = p0Var.f5476g;
                         }
                         str3 = "INNER JOIN tag_message_id t ON m.mid = t.mid";
                         str4 = "t.tag = " + j15 + " AND";
@@ -456,7 +456,7 @@ public final class li implements Runnable {
                             j14 = j11;
                             TLdeserialize.readAttachPath(byteBufferValue, j14);
                             byteBufferValue.reuse();
-                            TLdeserialize.f28426id = queryFinalized.intValue(1);
+                            TLdeserialize.f28424id = queryFinalized.intValue(1);
                             TLdeserialize.dialog_id = j16;
                             if (n5.C(j16)) {
                                 TLdeserialize.random_id = queryFinalized.longValue(2);
@@ -481,23 +481,23 @@ public final class li implements Runnable {
                                         tL_messages_messages.users.clear();
                                         a8.f(e);
                                         g0.g3(new l7(liVar, liVar, i35, 11));
-                                        int i41 = liVar.f25388n;
-                                        int i42 = liVar.f25390s;
-                                        j10 = liVar.f25384b;
-                                        int i43 = liVar.f25383a;
+                                        int i41 = liVar.f25386n;
+                                        int i42 = liVar.f25388s;
+                                        j10 = liVar.f25382b;
+                                        int i43 = liVar.f25381a;
                                         i10 = i41;
                                         i7 = i42;
                                         i15 = i43;
                                         i14 = liVar.h;
-                                        i13 = liVar.f25385c;
-                                        i12 = liVar.f25386e;
+                                        i13 = liVar.f25383c;
+                                        i12 = liVar.f25384e;
                                         j3 = liVar.d;
-                                        i11 = liVar.f25389r;
+                                        i11 = liVar.f25387r;
                                         riVar.x1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z14, i7);
                                     } catch (Throwable th3) {
                                         th = th3;
                                         g0.g3(new l7(liVar, liVar, i35, 11));
-                                        riVar.x1(tL_messages_messages, liVar.f25384b, liVar.f25383a, liVar.h, liVar.f25385c, liVar.f25386e, liVar.d, liVar.f25389r, liVar.f25388n, false, liVar.f25390s);
+                                        riVar.x1(tL_messages_messages, liVar.f25382b, liVar.f25381a, liVar.h, liVar.f25383c, liVar.f25384e, liVar.d, liVar.f25387r, liVar.f25386n, false, liVar.f25388s);
                                         throw th;
                                     }
                                 } catch (Throwable th4) {
@@ -507,7 +507,7 @@ public final class li implements Runnable {
                                     riVar = riVar2;
                                     i35 = i35;
                                     g0.g3(new l7(liVar, liVar, i35, 11));
-                                    riVar.x1(tL_messages_messages, liVar.f25384b, liVar.f25383a, liVar.h, liVar.f25385c, liVar.f25386e, liVar.d, liVar.f25389r, liVar.f25388n, false, liVar.f25390s);
+                                    riVar.x1(tL_messages_messages, liVar.f25382b, liVar.f25381a, liVar.h, liVar.f25383c, liVar.f25384e, liVar.d, liVar.f25387r, liVar.f25386n, false, liVar.f25388s);
                                     throw th;
                                 }
                             } else {
@@ -539,18 +539,18 @@ public final class li implements Runnable {
                         tL_messages_messages.users.clear();
                         a8.f(e);
                         g0.g3(new l7(liVar, liVar, i35, 11));
-                        int i412 = liVar.f25388n;
-                        int i422 = liVar.f25390s;
-                        j10 = liVar.f25384b;
-                        int i432 = liVar.f25383a;
+                        int i412 = liVar.f25386n;
+                        int i422 = liVar.f25388s;
+                        j10 = liVar.f25382b;
+                        int i432 = liVar.f25381a;
                         i10 = i412;
                         i7 = i422;
                         i15 = i432;
                         i14 = liVar.h;
-                        i13 = liVar.f25385c;
-                        i12 = liVar.f25386e;
+                        i13 = liVar.f25383c;
+                        i12 = liVar.f25384e;
                         j3 = liVar.d;
-                        i11 = liVar.f25389r;
+                        i11 = liVar.f25387r;
                         riVar.x1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z14, i7);
                     } catch (Throwable th5) {
                         th = th5;
@@ -560,7 +560,7 @@ public final class li implements Runnable {
                         riVar = riVar2;
                         i35 = i35;
                         g0.g3(new l7(liVar, liVar, i35, 11));
-                        riVar.x1(tL_messages_messages, liVar.f25384b, liVar.f25383a, liVar.h, liVar.f25385c, liVar.f25386e, liVar.d, liVar.f25389r, liVar.f25388n, false, liVar.f25390s);
+                        riVar.x1(tL_messages_messages, liVar.f25382b, liVar.f25381a, liVar.h, liVar.f25383c, liVar.f25384e, liVar.d, liVar.f25387r, liVar.f25386n, false, liVar.f25388s);
                         throw th;
                     }
                 }
@@ -602,7 +602,7 @@ public final class li implements Runnable {
                                     TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue2, byteBufferValue2.readInt32(false), false);
                                     TLdeserialize2.readAttachPath(byteBufferValue2, j18);
                                     byteBufferValue2.reuse();
-                                    TLdeserialize2.f28426id = intValue2;
+                                    TLdeserialize2.f28424id = intValue2;
                                     long j19 = j13;
                                     TLdeserialize2.dialog_id = j19;
                                     arrayList9.add(TLdeserialize2);
@@ -638,18 +638,18 @@ public final class li implements Runnable {
                     z14 = z11;
                 }
                 g0.g3(new l7(this, this, i35, 11));
-                int i45 = this.f25388n;
-                int i46 = this.f25390s;
-                j10 = this.f25384b;
-                int i47 = this.f25383a;
+                int i45 = this.f25386n;
+                int i46 = this.f25388s;
+                j10 = this.f25382b;
+                int i47 = this.f25381a;
                 i10 = i45;
                 i7 = i46;
                 i14 = this.h;
-                i13 = this.f25385c;
+                i13 = this.f25383c;
                 tL_messages_messages = tL_messages_messages3;
-                i12 = this.f25386e;
+                i12 = this.f25384e;
                 j3 = this.d;
-                i11 = this.f25389r;
+                i11 = this.f25387r;
                 riVar = riVar2;
                 i15 = i47;
             } catch (Exception e14) {
@@ -663,18 +663,18 @@ public final class li implements Runnable {
                 tL_messages_messages.users.clear();
                 a8.f(e);
                 g0.g3(new l7(liVar, liVar, i35, 11));
-                int i4122 = liVar.f25388n;
-                int i4222 = liVar.f25390s;
-                j10 = liVar.f25384b;
-                int i4322 = liVar.f25383a;
+                int i4122 = liVar.f25386n;
+                int i4222 = liVar.f25388s;
+                j10 = liVar.f25382b;
+                int i4322 = liVar.f25381a;
                 i10 = i4122;
                 i7 = i4222;
                 i15 = i4322;
                 i14 = liVar.h;
-                i13 = liVar.f25385c;
-                i12 = liVar.f25386e;
+                i13 = liVar.f25383c;
+                i12 = liVar.f25384e;
                 j3 = liVar.d;
-                i11 = liVar.f25389r;
+                i11 = liVar.f25387r;
                 riVar.x1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z14, i7);
             } catch (Throwable th6) {
                 th = th6;
@@ -683,7 +683,7 @@ public final class li implements Runnable {
                 i35 = i35;
                 tL_messages_messages = tL_messages_messages2;
                 g0.g3(new l7(liVar, liVar, i35, 11));
-                riVar.x1(tL_messages_messages, liVar.f25384b, liVar.f25383a, liVar.h, liVar.f25385c, liVar.f25386e, liVar.d, liVar.f25389r, liVar.f25388n, false, liVar.f25390s);
+                riVar.x1(tL_messages_messages, liVar.f25382b, liVar.f25381a, liVar.h, liVar.f25383c, liVar.f25384e, liVar.d, liVar.f25387r, liVar.f25386n, false, liVar.f25388s);
                 throw th;
             }
         } catch (Exception e15) {

@@ -37,7 +37,7 @@ public final class uy0 extends org.telegram.ui.Components.sa {
         paint.setColor(org.telegram.ui.ActionBar.n6.w0(i16, i6Var));
         LinearLayout linearLayout = new LinearLayout(context);
         this.T1 = linearLayout;
-        linearLayout.setPadding(org.telegram.messenger.g0.L(6.0f) + this.f30227u0, 0, org.telegram.messenger.g0.L(6.0f) + this.f30227u0, 0);
+        linearLayout.setPadding(org.telegram.messenger.g0.L(6.0f) + this.f30225u0, 0, org.telegram.messenger.g0.L(6.0f) + this.f30225u0, 0);
         linearLayout.setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(getContext());
@@ -55,14 +55,14 @@ public final class uy0 extends org.telegram.ui.Components.sa {
             imageView2.setImageDrawable(context.getDrawable(2131231244));
             imageView2.setContentDescription(org.telegram.messenger.gd.M0(2131754839, null));
             imageView2.setScaleType(scaleType);
-            org.telegram.ui.ActionBar.u6.s(imageView2, org.telegram.ui.ActionBar.n6.f29654r5, null, PorterDuff.Mode.SRC_ATOP);
-            int i17 = org.telegram.ui.ActionBar.n6.f29488i6;
+            org.telegram.ui.ActionBar.u6.s(imageView2, org.telegram.ui.ActionBar.n6.f29652r5, null, PorterDuff.Mode.SRC_ATOP);
+            int i17 = org.telegram.ui.ActionBar.n6.f29486i6;
             org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.x0(null, i17, false), 1, -1);
             org.telegram.ui.ActionBar.q6 M2 = org.telegram.ui.ActionBar.u6.M(i17);
             imageView2.setBackground(h02);
             org.telegram.ui.ActionBar.u6.j(imageView2, h02, null, M2, null);
             i6Var2 = i6Var;
-            imageView2.setOnClickListener(new bi.n6(this, x10Var, i6Var, imageView2, 16));
+            imageView2.setOnClickListener(new bi.m6(this, x10Var, i6Var, imageView2, 16));
             frameLayout.addView(imageView2, c8.ma.d(24, 24.0f, 53, 12.0f, 14.0f, 14.0f, 12.0f));
         } else {
             i6Var2 = i6Var;
@@ -92,7 +92,7 @@ public final class uy0 extends org.telegram.ui.Components.sa {
         } else {
             i10 = 2131745848;
         }
-        linearLayout.addView(new hh0(this, context, 2131231861, M0, org.telegram.messenger.gd.M0(i10, null)), c8.ma.q(-1, -2, 0.0f, 0, 0, 20, 0, 0));
+        linearLayout.addView(new ih0(this, context, 2131231861, M0, org.telegram.messenger.gd.M0(i10, null)), c8.ma.q(-1, -2, 0.0f, 0, 0, 20, 0, 0));
         if (z10) {
             i11 = 2131745841;
         } else {
@@ -104,25 +104,25 @@ public final class uy0 extends org.telegram.ui.Components.sa {
         } else {
             i12 = 2131745844;
         }
-        linearLayout.addView(new hh0(this, context, 2131231815, M02, org.telegram.messenger.gd.M0(i12, null)), c8.ma.q(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        linearLayout.addView(new ih0(this, context, 2131231815, M02, org.telegram.messenger.gd.M0(i12, null)), c8.ma.q(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         if (z10) {
             i13 = 2131745839;
         } else {
             i13 = 2131745840;
         }
-        String a02 = org.telegram.messenger.gd.a0(null, null, i13, Integer.valueOf(org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).C4));
+        String a02 = org.telegram.messenger.gd.a0(null, null, i13, Integer.valueOf(org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).C4));
         int i19 = org.telegram.ui.ActionBar.n6.Xc;
-        linearLayout.addView(new hh0(this, context, 2131231808, org.telegram.messenger.gd.M0(2131745838, null), org.telegram.messenger.g0.R2(a02, i19, 0, new Runnable(this) {
-            public final uy0 f52381b;
+        linearLayout.addView(new ih0(this, context, 2131231808, org.telegram.messenger.gd.M0(2131745838, null), org.telegram.messenger.g0.R2(a02, i19, 0, new Runnable(this) {
+            public final uy0 f52376b;
 
             {
-                this.f52381b = this;
+                this.f52376b = this;
             }
 
             @Override
             public final void run() {
                 int i20 = r2;
-                uy0 uy0Var = this.f52381b;
+                uy0 uy0Var = this.f52376b;
                 switch (i20) {
                     case 0:
                         uy0Var.getClass();
@@ -141,7 +141,7 @@ public final class uy0 extends org.telegram.ui.Components.sa {
             }
         }, null)), c8.ma.q(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29397d7, view, i6Var2);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29395d7, view, i6Var2);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -165,16 +165,16 @@ public final class uy0 extends org.telegram.ui.Components.sa {
         }
         SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(i15, null));
         SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(org.telegram.messenger.gd.M0(2131745835, null), i19, 0, new Runnable(this) {
-            public final uy0 f52381b;
+            public final uy0 f52376b;
 
             {
-                this.f52381b = this;
+                this.f52376b = this;
             }
 
             @Override
             public final void run() {
                 int i20 = r2;
-                uy0 uy0Var = this.f52381b;
+                uy0 uy0Var = this.f52376b;
                 switch (i20) {
                     case 0:
                         uy0Var.getClass();
@@ -247,7 +247,7 @@ public final class uy0 extends org.telegram.ui.Components.sa {
 
     @Override
     public final org.telegram.ui.Components.bk0 M0(org.telegram.ui.Components.ck0 ck0Var) {
-        org.telegram.ui.Components.z41 z41Var = new org.telegram.ui.Components.z41(ck0Var, getContext(), this.f30189a, 0, true, new a5(this, 21), this.J0);
+        org.telegram.ui.Components.z41 z41Var = new org.telegram.ui.Components.z41(ck0Var, getContext(), this.f30187a, 0, true, new a5(this, 21), this.J0);
         this.W1 = z41Var;
         return z41Var;
     }

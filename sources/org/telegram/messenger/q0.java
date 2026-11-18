@@ -5,18 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import org.telegram.tgnet.ConnectionsManager;
 public final class q0 extends BroadcastReceiver {
-    public final int f26329a;
+    public final int f26327a;
 
     public q0(int i7) {
-        this.f26329a = i7;
+        this.f26327a = i7;
     }
 
     @Override
     public final void onReceive(Context context, Intent intent) {
-        switch (this.f26329a) {
+        switch (this.f26327a) {
             case 0:
                 try {
-                    t0.f26916c = t0.f26917e.getActiveNetworkInfo();
+                    t0.f26914c = t0.f26915e.getActiveNetworkInfo();
                 } catch (Throwable unused) {
                 }
                 boolean p10 = t0.p();
@@ -30,25 +30,25 @@ public final class q0 extends BroadcastReceiver {
                 return;
             case 2:
                 if ("android.media.AUDIO_BECOMING_NOISY".equals(intent.getAction())) {
-                    MediaController.B().R(MediaController.B().f22743v0, true);
+                    MediaController.B().R(MediaController.B().f22740v0, true);
                     return;
                 }
                 return;
             default:
                 if (intent.getAction().equals("android.intent.action.SCREEN_OFF")) {
-                    if (s2.f26723a) {
+                    if (s2.f26721a) {
                         a8.b("screen off");
                     }
-                    ConnectionsManager.getInstance(j10.f24773t0).setAppPaused(true, true);
-                    t0.f26922w = false;
+                    ConnectionsManager.getInstance(j10.f24770t0).setAppPaused(true, true);
+                    t0.f26920w = false;
                 } else if (intent.getAction().equals("android.intent.action.SCREEN_ON")) {
-                    if (s2.f26723a) {
+                    if (s2.f26721a) {
                         a8.b("screen on");
                     }
-                    ConnectionsManager.getInstance(j10.f24773t0).setAppPaused(false, true);
-                    t0.f26922w = true;
+                    ConnectionsManager.getInstance(j10.f24770t0).setAppPaused(false, true);
+                    t0.f26920w = true;
                 }
-                ks.e().k(289, new Object[0]);
+                ks.e().k(290, new Object[0]);
                 return;
         }
     }

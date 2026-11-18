@@ -35,7 +35,7 @@ public final class r01 implements ValueAnimator.AnimatorUpdateListener {
                 f61Var.setAlpha(floatValue);
                 f61Var.setTranslationY((1.0f - floatValue) * (-org.telegram.messenger.g0.L(8.0f)));
                 f11Var2.c(floatValue);
-                int L = org.telegram.messenger.g0.L(100.0f) + org.telegram.messenger.g0.f24115m + ((int) (org.telegram.messenger.g0.L(36.0f) * floatValue));
+                int L = org.telegram.messenger.g0.L(100.0f) + org.telegram.messenger.g0.f24112m + ((int) (org.telegram.messenger.g0.L(36.0f) * floatValue));
                 ((FrameLayout.LayoutParams) f11Var2.f34895r.getLayoutParams()).topMargin = L;
                 View view = f11Var2.F;
                 if (view != null) {

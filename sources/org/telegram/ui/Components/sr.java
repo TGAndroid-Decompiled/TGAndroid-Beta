@@ -31,7 +31,7 @@ public final class sr implements Runnable {
             default:
                 Context context2 = yrVar.getContext();
                 org.telegram.ui.ActionBar.i6 i6Var = yrVar.J0;
-                int i10 = yrVar.f30189a;
+                int i10 = yrVar.f30187a;
                 long j3 = yrVar.f42607m2;
                 ArrayList<Long> arrayList = yrVar.f42608n2.joined_chat_ids;
                 tr trVar = new tr(yrVar, 5);
@@ -41,7 +41,7 @@ public final class sr implements Runnable {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context2, i6Var);
                 Object obj = null;
                 String M0 = org.telegram.messenger.gd.M0(2131751948, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(arrayList.size(), "CommunityBanWillRemoveFromChats", org.telegram.messenger.n5.s(i10, j3)));
                 alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747638, null), null);
@@ -61,7 +61,7 @@ public final class sr implements Runnable {
                     } else {
                         org.telegram.ui.ActionBar.u1 u1Var2 = u1Var;
                         di.d1 d1Var = new di.d1(context2, i6Var, z11);
-                        ((TextView) d1Var.f8645b).setText(org.telegram.messenger.n5.m(O0));
+                        ((TextView) d1Var.f8642b).setText(org.telegram.messenger.n5.m(O0));
                         TextView textView = (TextView) d1Var.d;
                         if (P0 != null) {
                             context = context2;
@@ -73,7 +73,7 @@ public final class sr implements Runnable {
                             charSequence = null;
                         }
                         textView.setText(charSequence);
-                        ((q9) d1Var.f8646c).f(O0, new b9(O0));
+                        ((q9) d1Var.f8643c).f(O0, new b9(O0));
                         d1Var.setBackground(org.telegram.ui.ActionBar.n6.N0(z10));
                         d1Var.setOnClickListener(new di.d3(u1VarArr, trVar, longValue, 3));
                         g10.addView(d1Var, c8.ma.o(-1, -2));

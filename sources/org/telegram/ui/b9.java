@@ -18,9 +18,9 @@ public final class b9 extends org.telegram.ui.Components.yo0 {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) hVar.n(0)).f28409id;
-            if (j3 != 0 && j3 != org.telegram.messenger.j10.i(this.f30189a).e()) {
-                a02 = org.telegram.messenger.gd.a0(null, null, 2131748992, org.telegram.messenger.mp.u1(this.f30189a).D1(j3, true));
+            long j3 = ((TLRPC.Dialog) hVar.n(0)).f28407id;
+            if (j3 != 0 && j3 != org.telegram.messenger.j10.i(this.f30187a).e()) {
+                a02 = org.telegram.messenger.gd.a0(null, null, 2131748992, org.telegram.messenger.mp.u1(this.f30187a).D1(j3, true));
             } else {
                 a02 = org.telegram.messenger.gd.M0(2131748993, null);
             }

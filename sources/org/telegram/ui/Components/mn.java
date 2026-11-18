@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.ActionMode;
 import android.view.Menu;
 import java.util.ArrayList;
-public final class mn extends org.telegram.ui.Cells.a6 {
+public final class mn extends org.telegram.ui.Cells.b6 {
     public final int G;
     public final org.telegram.ui.l4 H;
 
@@ -16,7 +16,7 @@ public final class mn extends org.telegram.ui.Cells.a6 {
 
     @Override
     public final void h(bi.u uVar, ActionMode actionMode) {
-        rn rnVar = (rn) this.H.f49426e;
+        rn rnVar = (rn) this.H.f49432e;
         if (!rnVar.f39231n && this.G == 11 && uVar.isFocused() && uVar.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
@@ -27,22 +27,22 @@ public final class mn extends org.telegram.ui.Cells.a6 {
 
     @Override
     public final void j(boolean z10) {
-        rn.R((rn) this.H.f49426e, this, z10);
+        rn.R((rn) this.H.f49432e, this, z10);
     }
 
     @Override
-    public final void k(org.telegram.ui.Cells.a6 a6Var) {
-        rn.S((rn) this.H.f49426e, a6Var);
+    public final void k(org.telegram.ui.Cells.b6 b6Var) {
+        rn.S((rn) this.H.f49432e, b6Var);
     }
 
     @Override
     public final void l(bi.u uVar) {
-        ((rn) this.H.f49426e).f36766b.i1(uVar, true);
+        ((rn) this.H.f49432e).f36766b.i1(uVar, true);
     }
 
     @Override
     public final boolean m(ArrayList arrayList) {
-        rn rnVar = (rn) this.H.f49426e;
+        rn rnVar = (rn) this.H.f49432e;
         if (arrayList.isEmpty()) {
             return false;
         }

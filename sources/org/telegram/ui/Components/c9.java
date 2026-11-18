@@ -5,7 +5,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c9 {
     public b9 f33925a;
-    public org.telegram.ui.Cells.e4 f33926b;
+    public org.telegram.ui.Cells.f4 f33926b;
     public long f33927c;
     public long d;
     public ImageReceiver f33928e;

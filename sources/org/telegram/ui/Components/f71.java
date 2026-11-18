@@ -86,11 +86,11 @@ public class f71 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
         this.M = -1;
         this.N = -1;
         this.O = -1;
-        this.Q = org.telegram.ui.ActionBar.n6.f29780xi;
-        this.R = org.telegram.ui.ActionBar.n6.f29761wi;
-        this.S = org.telegram.ui.ActionBar.n6.f29742vi;
-        this.T = org.telegram.ui.ActionBar.n6.f29799yi;
-        this.U = org.telegram.ui.ActionBar.n6.f29676s8;
+        this.Q = org.telegram.ui.ActionBar.n6.f29778xi;
+        this.R = org.telegram.ui.ActionBar.n6.f29759wi;
+        this.S = org.telegram.ui.ActionBar.n6.f29740vi;
+        this.T = org.telegram.ui.ActionBar.n6.f29797yi;
+        this.U = org.telegram.ui.ActionBar.n6.f29674s8;
         this.f34993b0 = lr.h;
         this.f34995c0 = new SparseIntArray(5);
         this.f34996d0 = new SparseIntArray(5);
@@ -537,7 +537,7 @@ public class f71 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
         if (this.f35008n0 && this.f35010p0 == null) {
             b71 b71Var = new b71(this);
             this.f35010p0 = b71Var;
-            b71Var.f59151m = false;
+            b71Var.f59152m = false;
             b71Var.C = false;
             b71Var.o(lr.h);
             this.f35010p0.n(350L);

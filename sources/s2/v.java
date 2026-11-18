@@ -8,8 +8,8 @@ public final class v {
 
     public v(e2.u uVar, String str, String str2) {
         e2.t a10 = uVar.a();
-        a10.f10702a = null;
-        a10.f10710k = null;
+        a10.f10699a = null;
+        a10.f10707k = null;
         this.f56902a = new e2.u(a10);
         this.f56903b = str;
         this.f56904c = str2;

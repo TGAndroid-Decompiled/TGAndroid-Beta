@@ -20,9 +20,9 @@ public abstract class l20 extends org.telegram.ui.ActionBar.x2 {
         } else {
             textView = null;
         }
-        g30Var.f30192b.getMeasuredWidth();
+        g30Var.f30190b.getMeasuredWidth();
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
-        float measuredWidth2 = (g30Var.f30192b.getMeasuredWidth() / 2) - measuredWidth;
+        float measuredWidth2 = (g30Var.f30190b.getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
             measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * g30Var.f36987q1;
         }

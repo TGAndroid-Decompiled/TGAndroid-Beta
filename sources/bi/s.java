@@ -14,7 +14,7 @@ public final class s extends hi.d {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.m0) {
             case 0:
-                if (!this.f14342e0) {
+                if (!this.f14339e0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);

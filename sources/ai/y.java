@@ -2,39 +2,39 @@ package ai;
 
 import android.os.ParcelFileDescriptor;
 public final class y {
-    public final ParcelFileDescriptor f1615a;
-    public final ParcelFileDescriptor f1616b;
-    public final Thread f1617c;
+    public final ParcelFileDescriptor f1616a;
+    public final ParcelFileDescriptor f1617b;
+    public final Thread f1618c;
     public volatile int d;
-    public volatile boolean f1618e;
-    public final int f1619f;
-    public final int f1620g;
+    public volatile boolean f1619e;
+    public final int f1620f;
+    public final int f1621g;
     public final int h;
-    public long f1621i;
-    public final z f1622j;
+    public long f1622i;
+    public final z f1623j;
 
     public y(z zVar, int i7, int i10, int i11) {
-        this.f1622j = zVar;
+        this.f1623j = zVar;
         ParcelFileDescriptor[] createPipe = ParcelFileDescriptor.createPipe();
-        this.f1615a = createPipe[0];
-        this.f1616b = createPipe[1];
+        this.f1616a = createPipe[0];
+        this.f1617b = createPipe[1];
         this.d = i7;
-        this.f1619f = i7;
-        this.f1620g = i10;
+        this.f1620f = i7;
+        this.f1621g = i10;
         this.h = i11;
         Thread thread = new Thread(new a3.f(this, 6), "DictationFeed");
-        this.f1617c = thread;
+        this.f1618c = thread;
         thread.start();
     }
 
     public final void a() {
-        this.f1618e = true;
-        synchronized (this.f1622j.f1627a) {
-            this.f1622j.f1627a.notifyAll();
+        this.f1619e = true;
+        synchronized (this.f1623j.f1628a) {
+            this.f1623j.f1628a.notifyAll();
         }
-        this.f1617c.interrupt();
+        this.f1618c.interrupt();
         try {
-            this.f1615a.close();
+            this.f1616a.close();
         } catch (Exception unused) {
         }
     }

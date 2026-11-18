@@ -44,7 +44,7 @@ public final class ee0 extends FrameLayout {
     public final void a(org.telegram.messenger.ef efVar, f61 f61Var, org.telegram.ui.ActionBar.i6 i6Var) {
         int i7;
         hi.d dVar = this.f34682b;
-        dVar.f14334a = i6Var;
+        dVar.f14331a = i6Var;
         dVar.F = false;
         dVar.updateColors();
         int i10 = efVar.F;
@@ -65,15 +65,15 @@ public final class ee0 extends FrameLayout {
         long U = f61Var.U();
         l2.f0 f0Var = f61Var.d;
         f0Var.F1();
-        this.f34681a.o(false, path, U, f0Var.f19317b0);
+        this.f34681a.o(false, path, U, f0Var.f19314b0);
         long U2 = f61Var.U();
         float max = 2.8f / ((float) Math.max(60L, U2));
         float max2 = (1.0f - max) * (((float) this.f34684e) / ((float) Math.max(1L, f61Var.U())));
         hi.db dbVar = this.f34681a;
         dbVar.setVideoLeft(max2);
         dbVar.setVideoRight(max2 + max);
-        dbVar.f14449a1 = 0L;
-        dbVar.f14452b1 = U2;
+        dbVar.f14446a1 = 0L;
+        dbVar.f14449b1 = U2;
         hi.ya yaVar = dbVar.h;
         if (yaVar != null) {
             hi.ya.a(yaVar, true);

@@ -200,12 +200,12 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
         paint.setStrokeWidth(org.telegram.messenger.g0.N(1.6f));
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        int i7 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29394d6;
         ChatActivityEnterView chatActivityEnterView = this.Q0;
         if (org.telegram.messenger.g0.B(chatActivityEnterView.C0(i7)) < 0.5f) {
             C0 = this.f38420s.getColor();
         } else {
-            C0 = chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29424eg);
+            C0 = chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29422eg);
         }
         paint.setColor(C0);
         paint.setAlpha((int) (Color.alpha(C0) * f10));
@@ -253,7 +253,7 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
         int i10;
         int i11;
         float f15;
-        int i12 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i12 = org.telegram.ui.ActionBar.n6.f29394d6;
         ChatActivityEnterView chatActivityEnterView = this.Q0;
         if (org.telegram.messenger.g0.B(chatActivityEnterView.C0(i12)) < 0.5f) {
             z10 = true;
@@ -277,7 +277,7 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
         Paint paint = this.F0;
         paint.setColor(-16777216);
         ji.m mVar = chatActivityEnterView.f32656p1;
-        if (mVar != null && (((i11 = mVar.f17966c) == 2 || i11 == 3) && !mVar.J)) {
+        if (mVar != null && (((i11 = mVar.f17963c) == 2 || i11 == 3) && !mVar.J)) {
             float N = org.telegram.messenger.g0.N(1.2f);
             if (z10) {
                 f15 = 0.36f;
@@ -356,13 +356,13 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
     public final void f() {
         hi.m3 m3Var = this.f38396a;
         if (m3Var != null) {
-            m3Var.f15014r0 = new ng(this, m3Var, 1);
+            m3Var.f15011r0 = new ng(this, m3Var, 1);
             m3Var.f(true);
             this.f38396a = null;
         }
         hi.m3 m3Var2 = this.f38398b;
         if (m3Var2 != null) {
-            m3Var2.f15014r0 = new ng(this, m3Var2, 2);
+            m3Var2.f15011r0 = new ng(this, m3Var2, 2);
             m3Var2.f(true);
             this.f38398b = null;
         }
@@ -416,7 +416,7 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
         }
         addView(this.f38398b, c8.ma.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
         hi.m3 m3Var5 = this.f38398b;
-        m3Var5.f15014r0 = new ng(this, m3Var5, 0);
+        m3Var5.f15011r0 = new ng(this, m3Var5, 0);
         m3Var5.x();
     }
 
@@ -564,7 +564,7 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
                         if (org.telegram.messenger.mp.g1().getBoolean("trimvoicehint", true)) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), chatActivityEnterView.K4);
                             String M0 = org.telegram.messenger.gd.M0(2131746153, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                             u1Var.S = M0;
                             u1Var.U = org.telegram.messenger.gd.M0(2131746154, null);
                             alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747638, null), new b0(mgVar, 18));
@@ -587,7 +587,7 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
                 org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(chatActivityEnterView.R);
                 long j10 = chatActivityEnterView.E3;
                 org.telegram.ui.bn bnVar = chatActivityEnterView.D3;
-                if (bnVar != null && bnVar.f46236x4) {
+                if (bnVar != null && bnVar.f46227x4) {
                     j3 = bnVar.d();
                 } else {
                     j3 = 0;
@@ -688,7 +688,7 @@ public final class pg extends FrameLayout implements org.telegram.ui.ActionBar.c
             }
             ChatActivityEnterView chatActivityEnterView = this.Q0;
             mVar.e(chatActivityEnterView.C0(i7), chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.Uf), -1);
-            textPaint.setColor(chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29461gg));
+            textPaint.setColor(chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29459gg));
             ShapeDrawable shapeDrawable = this.f38400c;
             if (shapeDrawable != null) {
                 org.telegram.ui.ActionBar.n6.C1(chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.hg), shapeDrawable);

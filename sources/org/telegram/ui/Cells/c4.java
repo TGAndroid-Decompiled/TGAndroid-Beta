@@ -1,67 +1,76 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-public final class c4 extends org.telegram.ui.ActionBar.n5 {
-    public float N0;
-    public final int O0;
-    public final f4 P0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.o31;
+import org.telegram.ui.zu0;
+public final class c4 extends RadialProgressView {
+    public final int O = 0;
+    public final Paint P;
+    public final Object Q;
 
-    public c4(f4 f4Var, Context context, int i7) {
-        super(context);
-        this.P0 = f4Var;
-        this.O0 = i7;
+    public c4(g4 g4Var, Context context) {
+        super(context, null);
+        this.Q = g4Var;
+        Paint paint = new Paint(1);
+        this.P = paint;
+        paint.setColor(1426063360);
     }
 
     @Override
-    public final float getAlpha() {
-        return this.N0;
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        this.N0 = f10;
-        f4 f4Var = this.P0;
-        if (this.O0 == 4) {
-            float fullAlpha = f4Var.d[4].getFullAlpha();
-            if (f4Var.c()) {
-                float f11 = f4Var.f30601f0;
-                if (f11 > 0.0f) {
-                    super.setAlpha(1.0f - f11);
-                    return;
+    public final void onDraw(Canvas canvas) {
+        switch (this.O) {
+            case 0:
+                g4 g4Var = (g4) this.Q;
+                org.telegram.ui.Components.q9 q9Var = g4Var.f30652b;
+                if (q9Var.getImageReceiver().L() && q9Var.getAlpha() > 0.0f) {
+                    int alpha = (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22641i1 * 85.0f);
+                    Paint paint = this.P;
+                    paint.setAlpha(alpha);
+                    canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
                 }
-            }
-            if (fullAlpha > 0.0f) {
-                super.setAlpha(Math.max(f10, fullAlpha));
+                g4Var.f30667y.setProgressColor(i0.a.o(-1, (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22641i1 * 255.0f)));
+                super.onDraw(canvas);
                 return;
-            } else {
-                super.setAlpha(f10);
+            case 1:
+                ProfileActivity profileActivity = (ProfileActivity) this.Q;
+                zu0 zu0Var = profileActivity.f43547f0;
+                if (zu0Var != null && zu0Var.getImageReceiver().L()) {
+                    Paint paint2 = this.P;
+                    paint2.setAlpha((int) (profileActivity.f43547f0.getImageReceiver().f22641i1 * 85.0f));
+                    canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint2);
+                }
+                super.onDraw(canvas);
                 return;
-            }
-        }
-        super.setAlpha((1.0f - f4Var.d[4].getFullAlpha()) * f10);
-    }
-
-    @Override
-    public final void setFullAlpha(float f10) {
-        super.setFullAlpha(f10);
-        int i7 = 0;
-        while (true) {
-            org.telegram.ui.ActionBar.n5[] n5VarArr = this.P0.d;
-            if (i7 < n5VarArr.length) {
-                org.telegram.ui.ActionBar.n5 n5Var = n5VarArr[i7];
-                n5Var.setAlpha(n5Var.getAlpha());
-                i7++;
-            } else {
+            default:
+                o31 o31Var = (o31) this.Q;
+                org.telegram.ui.Components.q9 q9Var2 = o31Var.H;
+                if (q9Var2 != null && q9Var2.getImageReceiver().L()) {
+                    Paint paint3 = this.P;
+                    paint3.setAlpha((int) (o31Var.H.getImageReceiver().f22641i1 * 85.0f));
+                    canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint3);
+                }
+                super.onDraw(canvas);
                 return;
-            }
         }
     }
 
-    @Override
-    public final void setTranslationY(float f10) {
-        if (this.O0 == 4 && getFullAlpha() > 0.0f) {
-            f10 = 0.0f;
-        }
-        super.setTranslationY(f10);
+    public c4(o31 o31Var, Context context) {
+        super(context, null);
+        this.Q = o31Var;
+        Paint paint = new Paint(1);
+        this.P = paint;
+        paint.setColor(1426063360);
+    }
+
+    public c4(ProfileActivity profileActivity, Context context) {
+        super(context, null);
+        this.Q = profileActivity;
+        Paint paint = new Paint(1);
+        this.P = paint;
+        paint.setColor(1426063360);
     }
 }

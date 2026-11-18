@@ -125,12 +125,12 @@ public final class q8 {
         }
         h3 h3Var = new h3(this, 5);
         fi.s2 s2Var = this.f44830c;
-        s2Var.f22642h1 = h3Var;
-        this.d.f22642h1 = h3Var;
+        s2Var.f22639h1 = h3Var;
+        this.d.f22639h1 = h3Var;
         s2Var.d = h2Var.getCurrentAccount();
         this.d.d = h2Var.getCurrentAccount();
         fi.s2 s2Var2 = this.f44830c;
-        s2Var2.f22669v0 = false;
+        s2Var2.f22666v0 = false;
         s2Var2.W(1);
         this.f44830c.q0(fc.b(nftitem.gift.getDocument()), "120_120_nolimit", null, null, nftitem.gift, 1);
         if (r8Var.isAttachedToWindow()) {

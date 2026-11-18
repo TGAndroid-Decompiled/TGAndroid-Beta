@@ -8,9 +8,9 @@ import android.graphics.RectF;
 import android.view.View;
 import java.util.HashSet;
 public final class nt extends View implements org.telegram.ui.ActionBar.c6 {
-    public Path f50320a;
-    public Paint f50321b;
-    public boolean f50322c;
+    public Path f50304a;
+    public Paint f50305b;
+    public boolean f50306c;
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
@@ -21,19 +21,19 @@ public final class nt extends View implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawPath(this.f50320a, this.f50321b);
+        canvas.drawPath(this.f50304a, this.f50305b);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(13.0f), 1073741824));
-        setTop(this.f50322c);
+        setTop(this.f50306c);
     }
 
     public void setTop(boolean z10) {
-        Path path = this.f50320a;
+        Path path = this.f50304a;
         path.rewind();
-        this.f50322c = z10;
+        this.f50306c = z10;
         if (z10) {
             float L = org.telegram.messenger.g0.L(14.0f);
             RectF rectF = org.telegram.messenger.g0.P;
@@ -50,7 +50,7 @@ public final class nt extends View implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void updateColors() {
         try {
-            this.f50321b.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+            this.f50305b.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

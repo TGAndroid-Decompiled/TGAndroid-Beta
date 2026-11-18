@@ -30,9 +30,9 @@ public final class ii0 implements Runnable {
                 PasscodeActivity passcodeActivity3 = new PasscodeActivity(0);
                 PasscodeActivity passcodeActivity4 = this.f48738b;
                 passcodeActivity4.presentFragment(passcodeActivity3, true);
-                k90 k90Var = passcodeActivity4.V;
-                if (k90Var != null) {
-                    org.telegram.messenger.g0.g3(k90Var);
+                l90 l90Var = passcodeActivity4.V;
+                if (l90Var != null) {
+                    org.telegram.messenger.g0.g3(l90Var);
                     passcodeActivity4.V = null;
                     return;
                 }
@@ -50,7 +50,7 @@ public final class ii0 implements Runnable {
             case 4:
                 PasscodeActivity passcodeActivity6 = this.f48738b;
                 if (passcodeActivity6.s0()) {
-                    for (er erVar : passcodeActivity6.f43143n.f46283f) {
+                    for (er erVar : passcodeActivity6.f43143n.f46274f) {
                         erVar.A(0.0f);
                     }
                     return;

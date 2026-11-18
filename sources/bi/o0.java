@@ -28,7 +28,7 @@ public final class o0 extends di.z5 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f10124b) {
+        if (view == this.f10121b) {
             return true;
         }
         return super.drawChild(canvas, view, j3);

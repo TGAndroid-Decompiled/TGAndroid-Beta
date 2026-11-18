@@ -44,11 +44,11 @@ public final class bf implements View.OnTouchListener {
                 return false;
             default:
                 org.telegram.ui.cn0 cn0Var = (org.telegram.ui.cn0) this.f33678c;
-                if (motionEvent.getActionMasked() == 0 && (h1Var2 = cn0Var.f46575n0) != null && h1Var2.isShowing()) {
+                if (motionEvent.getActionMasked() == 0 && (h1Var2 = cn0Var.f46555n0) != null && h1Var2.isShowing()) {
                     Rect rect3 = this.f33677b;
                     view.getHitRect(rect3);
                     if (!rect3.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        cn0Var.f46575n0.d(true);
+                        cn0Var.f46555n0.d(true);
                         return false;
                     }
                     return false;

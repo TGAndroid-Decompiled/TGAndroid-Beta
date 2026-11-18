@@ -2,7 +2,7 @@ package fi;
 
 import android.content.Context;
 import org.telegram.ui.LaunchActivity;
-public final class u4 extends org.telegram.ui.Cells.m6 {
+public final class u4 extends org.telegram.ui.Cells.n6 {
     public final w4 M;
 
     public u4(int i7, Context context, b bVar, w4 w4Var) {
@@ -18,6 +18,6 @@ public final class u4 extends org.telegram.ui.Cells.m6 {
         }
         f9 createOverlayStoryViewer = Q.createOverlayStoryViewer();
         createOverlayStoryViewer.getClass();
-        createOverlayStoryViewer.J(getContext(), j3, y6.a(this.M.d.f11734r));
+        createOverlayStoryViewer.J(getContext(), j3, y6.a(this.M.d.f11731r));
     }
 }

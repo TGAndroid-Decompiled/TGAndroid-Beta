@@ -5,31 +5,31 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 public final class t2 extends FrameLayout {
-    public final int f12578a;
-    public final z3 f12579b;
+    public final int f12575a;
+    public final z3 f12576b;
 
     public t2(z3 z3Var, Context context, int i7) {
         super(context);
-        this.f12578a = i7;
-        this.f12579b = z3Var;
+        this.f12575a = i7;
+        this.f12576b = z3Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int x10;
-        switch (this.f12578a) {
+        switch (this.f12575a) {
             case 0:
-                z3 z3Var = this.f12579b;
-                if (z3Var.f12861p2.getVisibility() == 0 && z3Var.f12861p2.getLayoutParams().width != (x10 = (int) (((z3Var.f12844k2.getX() + z3Var.f12844k2.getMeasuredWidth()) - z3Var.f12861p2.getX()) + org.telegram.messenger.g0.L(10.0f)))) {
-                    z3Var.f12861p2.getLayoutParams().width = x10;
-                    z3Var.f12861p2.invalidate();
-                    z3Var.f12861p2.requestLayout();
+                z3 z3Var = this.f12576b;
+                if (z3Var.f12858p2.getVisibility() == 0 && z3Var.f12858p2.getLayoutParams().width != (x10 = (int) (((z3Var.f12841k2.getX() + z3Var.f12841k2.getMeasuredWidth()) - z3Var.f12858p2.getX()) + org.telegram.messenger.g0.L(10.0f)))) {
+                    z3Var.f12858p2.getLayoutParams().width = x10;
+                    z3Var.f12858p2.invalidate();
+                    z3Var.f12858p2.requestLayout();
                 }
                 super.dispatchDraw(canvas);
                 return;
             case 1:
                 super.dispatchDraw(canvas);
-                z3 z3Var2 = this.f12579b;
+                z3 z3Var2 = this.f12576b;
                 if (z3Var2.n1 && z3Var2.B0 != null) {
                     canvas.save();
                     float f10 = 0.0f;
@@ -49,7 +49,7 @@ public final class t2 extends FrameLayout {
                 return;
             default:
                 super.dispatchDraw(canvas);
-                z3 z3Var3 = this.f12579b;
+                z3 z3Var3 = this.f12576b;
                 if (z3Var3.n1 && z3Var3.A0 != null) {
                     canvas.save();
                     float f11 = 0.0f;
@@ -72,14 +72,14 @@ public final class t2 extends FrameLayout {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f12578a) {
+        switch (this.f12575a) {
             case 1:
-                if (drawable != this.f12579b.B0 && !super.verifyDrawable(drawable)) {
+                if (drawable != this.f12576b.B0 && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
             case 2:
-                if (drawable != this.f12579b.A0 && !super.verifyDrawable(drawable)) {
+                if (drawable != this.f12576b.A0 && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;

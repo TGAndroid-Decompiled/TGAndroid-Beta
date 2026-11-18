@@ -5,34 +5,34 @@ import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class r2 implements TextView.OnEditorActionListener {
-    public final int f20199a;
-    public final Object f20200b;
+    public final int f20196a;
+    public final Object f20197b;
 
     public r2(Object obj, int i7) {
-        this.f20199a = i7;
-        this.f20200b = obj;
+        this.f20196a = i7;
+        this.f20197b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f20199a) {
+        switch (this.f20196a) {
             case 0:
-                ((SearchView) this.f20200b).p();
+                ((SearchView) this.f20197b).p();
                 return true;
             case 1:
                 if (i7 == 6) {
-                    ((org.telegram.ui.Cells.f) this.f20200b).run();
+                    ((org.telegram.ui.Cells.f) this.f20197b).run();
                     return true;
                 }
                 return false;
             case 2:
                 if (i7 == 6) {
-                    ((Runnable) this.f20200b).run();
+                    ((Runnable) this.f20197b).run();
                     return true;
                 }
                 return false;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f20200b;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f20197b;
                 if (i7 == 4) {
                     chatActivityEnterView.r1();
                     return true;

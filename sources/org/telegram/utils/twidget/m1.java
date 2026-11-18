@@ -4,10 +4,10 @@ import android.content.Context;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.j00;
 public final class m1 implements j00 {
-    public final Context f54838a;
+    public final Context f54839a;
 
     public m1(Context context) {
-        this.f54838a = context;
+        this.f54839a = context;
     }
 
     @Override
@@ -22,6 +22,6 @@ public final class m1 implements j00 {
 
     @Override
     public final void b() {
-        Utilities.f22782e.c(new j0(this.f54838a, 4));
+        Utilities.f22779e.c(new j0(this.f54839a, 4));
     }
 }

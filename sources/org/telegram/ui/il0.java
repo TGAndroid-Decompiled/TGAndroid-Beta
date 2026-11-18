@@ -46,7 +46,7 @@ public final class il0 extends FrameLayout {
             hVar.a(1.0f);
             gVar2.f56323m = hVar;
             this.f48752c = gVar2;
-            gVar2.b(new ab0(this, 1));
+            gVar2.b(new bb0(this, 1));
             this.f48752c.a(new m9(this, 1));
             this.f48752c.h();
             return;
@@ -69,7 +69,7 @@ public final class il0 extends FrameLayout {
         int themedColor = ml0Var.getThemedColor(org.telegram.ui.ActionBar.n6.Vi);
         Paint paint = this.f48750a;
         paint.setColor(themedColor);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             L = getWidth() - org.telegram.messenger.g0.L(28.0f);
         } else {
             L = org.telegram.messenger.g0.L(28.0f);

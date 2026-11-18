@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class fz extends org.telegram.ui.Cells.h3 {
+public final class fz extends org.telegram.ui.Cells.i3 {
     @Override
     public final int a() {
         return 25;

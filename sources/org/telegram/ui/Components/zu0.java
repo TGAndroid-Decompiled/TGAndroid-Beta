@@ -14,7 +14,7 @@ public final class zu0 extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 1) {
+        if (f1Var.f59127f == 1) {
             return true;
         }
         return false;
@@ -54,10 +54,10 @@ public final class zu0 extends bk0 {
         iv0 iv0Var;
         ev0[] ev0VarArr;
         boolean z10 = true;
-        if (f1Var.f59126f == 1 && (ev0VarArr = (iv0Var = this.d).f36212g3) != null) {
+        if (f1Var.f59127f == 1 && (ev0VarArr = (iv0Var = this.d).f36212g3) != null) {
             int i10 = i7 - 1;
             ev0 ev0Var = ev0VarArr[i10];
-            final dv0 dv0Var = (dv0) f1Var.f59122a;
+            final dv0 dv0Var = (dv0) f1Var.f59123a;
             if (iv0Var.f36225u3 != i10) {
                 z10 = false;
             }
@@ -79,7 +79,7 @@ public final class zu0 extends bk0 {
             final boolean D1 = dv0Var.I.D1();
             dv0Var.f34519x = false;
             dv0Var.E = 1.0f;
-            o5.g(org.telegram.messenger.j10.f24773t0).b(ev0Var.f34810c, new l5() {
+            o5.g(org.telegram.messenger.j10.f24770t0).b(ev0Var.f34810c, new l5() {
                 @Override
                 public final void a(TLRPC.Document document) {
                     dv0 dv0Var2 = dv0.this;
@@ -114,8 +114,8 @@ public final class zu0 extends bk0 {
     @Override
     public final void y(v4.f1 f1Var) {
         boolean z10 = true;
-        if (f1Var.f59126f == 1) {
-            dv0 dv0Var = (dv0) f1Var.f59122a;
+        if (f1Var.f59127f == 1) {
+            dv0 dv0Var = (dv0) f1Var.f59123a;
             if (this.d.f36225u3 != f1Var.b() - 1) {
                 z10 = false;
             }

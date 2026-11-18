@@ -28,7 +28,7 @@ public final class xu0 {
         if (chat != null && chat.verified) {
             Drawable drawable = this.f42196b;
             if (drawable == null) {
-                drawable = new mq(org.telegram.ui.ActionBar.n6.f29429f1, org.telegram.ui.ActionBar.n6.f29483i1);
+                drawable = new mq(org.telegram.ui.ActionBar.n6.f29427f1, org.telegram.ui.ActionBar.n6.f29481i1);
             }
             this.f42196b = drawable;
             m5Var.g(drawable, z10);
@@ -41,7 +41,7 @@ public final class xu0 {
         } else if (user != null && user.verified) {
             Drawable drawable2 = this.f42196b;
             if (drawable2 == null) {
-                drawable2 = new mq(org.telegram.ui.ActionBar.n6.f29429f1, org.telegram.ui.ActionBar.n6.f29483i1);
+                drawable2 = new mq(org.telegram.ui.ActionBar.n6.f29427f1, org.telegram.ui.ActionBar.n6.f29481i1);
             }
             this.f42196b = drawable2;
             m5Var.g(drawable2, z10);
@@ -52,7 +52,7 @@ public final class xu0 {
             m5Var.k(Integer.valueOf(i7));
             return m5Var;
         } else if (user != null && user.premium) {
-            m5Var.g((Drawable) ia.e.d().f16203f, z10);
+            m5Var.g((Drawable) ia.e.d().f16200f, z10);
             m5Var.k(Integer.valueOf(i7));
             return m5Var;
         } else {

@@ -17,7 +17,7 @@ public final class e60 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 j60 j60Var = ((i60) this.f34621b).f36066e;
                 j60Var.f36356f2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                j60Var.f30192b.invalidate();
+                j60Var.f30190b.invalidate();
                 return;
             case 1:
                 y60 y60Var = (y60) this.f34621b;

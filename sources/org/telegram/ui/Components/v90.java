@@ -17,7 +17,7 @@ public final class v90 extends Drawable {
     public float f40555j;
     public float f40556k;
     public long f40557l;
-    public org.telegram.ui.Cells.q1 f40558m;
+    public org.telegram.ui.Cells.r1 f40558m;
 
     public final void a() {
         int i7;

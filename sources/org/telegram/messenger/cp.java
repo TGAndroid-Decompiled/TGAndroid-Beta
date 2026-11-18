@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class cp {
-    public final int f23399a;
-    public final int f23400b;
-    public final ArrayList f23401c = new ArrayList();
+    public final int f23396a;
+    public final int f23397b;
+    public final ArrayList f23398c = new ArrayList();
     public final a0.h d = new a0.h();
 
     public cp(int i7, int i10) {
-        this.f23399a = i7;
-        this.f23400b = i10;
+        this.f23396a = i7;
+        this.f23397b = i10;
     }
 
     public static org.telegram.messenger.cp b(int r19, java.lang.String r20) {
@@ -24,16 +24,16 @@ public final class cp {
             for (int i10 = 0; i10 < tL_help_peerColors.colors.size(); i10++) {
                 bp b10 = bp.b(tL_help_peerColors.colors.get(i10));
                 if (b10 != null) {
-                    if (b10.f23116c < 7 && i7 == 0) {
+                    if (b10.f23113c < 7 && i7 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    b10.f23115b = z10;
+                    b10.f23112b = z10;
                     if (!b10.d) {
-                        cpVar.f23401c.add(b10);
+                        cpVar.f23398c.add(b10);
                     }
-                    cpVar.d.k(b10, b10.f23116c);
+                    cpVar.d.k(b10, b10.f23113c);
                 }
             }
             return cpVar;
@@ -47,7 +47,7 @@ public final class cp {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f23401c;
+            ArrayList arrayList = this.f23398c;
             if (i10 < arrayList.size()) {
                 bp bpVar = (bp) arrayList.get(i10);
                 if (!bpVar.d && i7 >= bpVar.l(z10)) {
@@ -68,7 +68,7 @@ public final class cp {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f23401c;
+            ArrayList arrayList = this.f23398c;
             if (i7 < arrayList.size()) {
                 bp bpVar = (bp) arrayList.get(i7);
                 if (!bpVar.d) {
@@ -85,11 +85,11 @@ public final class cp {
         int i7 = 0;
         int e10 = e(false);
         while (true) {
-            ArrayList arrayList = this.f23401c;
+            ArrayList arrayList = this.f23398c;
             if (i7 < arrayList.size()) {
                 bp bpVar = (bp) arrayList.get(i7);
                 if (!bpVar.d) {
-                    e10 = Math.min(e10, bpVar.f23117e);
+                    e10 = Math.min(e10, bpVar.f23114e);
                 }
                 i7++;
             } else {
@@ -104,19 +104,19 @@ public final class cp {
         int i7 = 0;
         boolean z11 = false;
         while (true) {
-            arrayList = this.f23401c;
+            arrayList = this.f23398c;
             if (i7 >= arrayList.size()) {
                 break;
             }
-            if (((bp) arrayList.get(i7)).f23117e > 0) {
+            if (((bp) arrayList.get(i7)).f23114e > 0) {
                 z10 = false;
             }
-            if (((bp) arrayList.get(i7)).f23116c < 7) {
+            if (((bp) arrayList.get(i7)).f23113c < 7) {
                 z11 = true;
             }
             i7++;
         }
-        int i10 = this.f23399a;
+        int i10 = this.f23396a;
         if (i10 == 1 && !z10) {
             int size = arrayList.size();
             int i11 = 0;
@@ -124,7 +124,7 @@ public final class cp {
                 if (i11 < size) {
                     Object obj = arrayList.get(i11);
                     i11++;
-                    if (((bp) obj).f23118f > 0) {
+                    if (((bp) obj).f23115f > 0) {
                         z10 = false;
                         break;
                     }
@@ -142,7 +142,7 @@ public final class cp {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder();
-        int i7 = this.f23400b;
+        int i7 = this.f23397b;
         if (i7 != 0) {
             sb2.append("@");
             sb2.append(i7);
@@ -150,26 +150,26 @@ public final class cp {
         }
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f23401c;
+            ArrayList arrayList = this.f23398c;
             if (i10 < arrayList.size()) {
                 bp bpVar = (bp) arrayList.get(i10);
                 if (i10 > 0) {
                     sb2.append(";");
                 }
                 int[] iArr = bpVar.h;
-                int[] iArr2 = bpVar.f23119g;
+                int[] iArr2 = bpVar.f23116g;
                 sb2.append("#");
                 if (bpVar.d) {
                     sb2.append("H");
                 }
-                if (bpVar.f23117e != 0 || bpVar.f23118f != 0) {
+                if (bpVar.f23114e != 0 || bpVar.f23115f != 0) {
                     sb2.append("[");
-                    sb2.append(bpVar.f23117e);
+                    sb2.append(bpVar.f23114e);
                     sb2.append(",");
-                    sb2.append(bpVar.f23118f);
+                    sb2.append(bpVar.f23115f);
                     sb2.append("]");
                 }
-                sb2.append(bpVar.f23116c);
+                sb2.append(bpVar.f23113c);
                 sb2.append("{");
                 sb2.append(iArr2[0]);
                 if (iArr2[1] != iArr2[0]) {

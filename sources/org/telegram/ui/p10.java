@@ -6,11 +6,11 @@ import android.widget.Button;
 import java.util.ArrayList;
 import org.telegram.messenger.voip.VoIPService;
 public final class p10 extends org.telegram.ui.Components.ph0 {
-    public final f40 f50703r;
+    public final f40 f50659r;
 
     public p10(f40 f40Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f50703r = f40Var;
+        this.f50659r = f40Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class p10 extends org.telegram.ui.Components.ph0 {
         boolean z10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName(Button.class.getName());
-        f40 f40Var = this.f50703r;
+        f40 f40Var = this.f50659r;
         int i7 = f40Var.E3;
         if (i7 != 0 && i7 != 1) {
             z10 = false;
@@ -33,8 +33,8 @@ public final class p10 extends org.telegram.ui.Components.ph0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        f40 f40Var = this.f50703r;
-        v00 v00Var = f40Var.f47544x4;
+        f40 f40Var = this.f50659r;
+        v00 v00Var = f40Var.f47500x4;
         ArrayList arrayList = f40Var.Y3;
         if (f40Var.v1()) {
             return super.onTouchEvent(motionEvent);
@@ -47,12 +47,12 @@ public final class p10 extends org.telegram.ui.Components.ph0 {
                 org.telegram.messenger.g0.r(v00Var);
                 f40Var.Q3 = false;
             } else if (f40Var.R3) {
-                org.telegram.messenger.g0.r(f40Var.f47539w4);
+                org.telegram.messenger.g0.r(f40Var.f47495w4);
                 f40Var.S1(0, true);
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().setMicMute(true, true, false);
                     try {
-                        f40Var.f47536w1.performHapticFeedback(3, 2);
+                        f40Var.f47492w1.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }

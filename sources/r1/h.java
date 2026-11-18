@@ -96,8 +96,8 @@ public final class h {
             cos = (((Math.cos(d33 * d14) * d28 * d33) + sin2) * pow4) + d31;
         }
         i iVar = this.f56332j;
-        iVar.f30801a = (float) (sin + this.f56331i);
-        iVar.f30802b = (float) cos;
+        iVar.f30773a = (float) (sin + this.f56331i);
+        iVar.f30774b = (float) cos;
         return iVar;
     }
 

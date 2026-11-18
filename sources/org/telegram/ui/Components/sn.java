@@ -85,6 +85,6 @@ public final class sn extends ki {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f36766b.f30192b.invalidate();
+        this.f36766b.f30190b.invalidate();
     }
 }

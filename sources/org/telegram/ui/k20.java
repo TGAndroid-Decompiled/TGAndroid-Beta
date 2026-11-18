@@ -31,7 +31,7 @@ public final class k20 extends org.telegram.ui.Components.wt {
             emojiView.f39407x0 = false;
             emojiView.f39413y2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(this.W.f30192b.getPaddingBottom());
+            emojiView.setBottomInset(this.W.f30190b.getPaddingBottom());
         }
     }
 
@@ -66,6 +66,6 @@ public final class k20 extends org.telegram.ui.Components.wt {
 
     @Override
     public final void y() {
-        this.W.f30192b.requestApplyInsets();
+        this.W.f30190b.requestApplyInsets();
     }
 }

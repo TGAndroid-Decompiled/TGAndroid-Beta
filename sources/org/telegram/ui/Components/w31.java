@@ -15,7 +15,7 @@ public final class w31 extends rl0 {
     public final void a(String str) {
         jg.c2 c2Var = this.f41558f.f35722w;
         jg.a2 a2Var = c2Var.T;
-        int i7 = c2Var.f17422c;
+        int i7 = c2Var.f17419c;
         if (c2Var.O != 0) {
             ConnectionsManager.getInstance(i7).cancelRequest(c2Var.O, true);
             c2Var.O = 0;
@@ -29,7 +29,7 @@ public final class w31 extends rl0 {
             c2Var.G.clear();
             c2Var.J.clear();
             c2Var.F.clear();
-            c2Var.f17423e.b(false);
+            c2Var.f17420e.b(false);
             c2Var.f();
         } else {
             c2Var.S = str.toLowerCase();

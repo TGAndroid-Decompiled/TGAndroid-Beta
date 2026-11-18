@@ -23,42 +23,45 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bn;
+import org.telegram.ui.m60;
 public final class q3 implements Runnable {
-    public final int f3988a;
-    public final int f3989b;
-    public final long f3990c;
+    public final int f3964a;
+    public final int f3965b;
+    public final long f3966c;
     public final Object d;
-    public final Object f3991e;
+    public final Object f3967e;
 
     public q3(int i7, int i10, long j3, Object obj, Object obj2) {
-        this.f3988a = i10;
+        this.f3964a = i10;
         this.d = obj;
-        this.f3991e = obj2;
-        this.f3989b = i7;
-        this.f3990c = j3;
+        this.f3967e = obj2;
+        this.f3965b = i7;
+        this.f3966c = j3;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f3988a;
+        int i7 = this.f3964a;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         boolean z10 = false;
-        long j3 = this.f3990c;
-        int i10 = this.f3989b;
-        Object obj = this.f3991e;
+        long j3 = this.f3966c;
+        int i10 = this.f3965b;
+        Object obj = this.f3967e;
         Object obj2 = this.d;
         switch (i7) {
             case 0:
                 ((boolean[]) obj2)[0] = true;
-                f4.i(j3, 60000L);
-                f4.f3608b.put(f4.a(i10, j3), Long.valueOf(SystemClock.elapsedRealtime() + 600000));
-                gc Q = f4.g().Q(2131623990, 36, gd.a0(null, null, 2131749570, (String) obj));
+                e4.f3544b.add(Long.valueOf(j3));
+                e4.j(j3, 60000L);
+                e4.d.put(e4.a(i10, j3), Long.valueOf(SystemClock.elapsedRealtime() + 600000));
+                e4.c();
+                gc Q = e4.h().Q(2131623990, 36, gd.a0(null, null, 2131749570, (String) obj));
                 Q.f35471t = true;
                 Q.j();
                 return;
             case 1:
                 ArrayList arrayList = (ArrayList) obj;
-                SQLiteDatabase sQLiteDatabase = ((tr) obj2).f27056b;
+                SQLiteDatabase sQLiteDatabase = ((tr) obj2).f27054b;
                 try {
                     try {
                         sQLiteDatabase.executeFast("DELETE FROM star_gifts2").stepThis().dispose();
@@ -67,7 +70,7 @@ public final class q3 implements Runnable {
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i11);
                                 sQLitePreparedStatement.requery();
-                                sQLitePreparedStatement.bindLong(1, starGift.f28634id);
+                                sQLitePreparedStatement.bindLong(1, starGift.f28632id);
                                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
                                 starGift.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
@@ -170,14 +173,14 @@ public final class q3 implements Runnable {
                 org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) obj2;
                 l2Var.getClass();
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
-                long j10 = this.f3990c;
+                long j10 = this.f3966c;
                 tonconnectgetpending.session_id = Long.valueOf(j10);
-                l2Var.f44483f.sendRequestTyped(tonconnectgetpending, new d3.b(1), new org.telegram.ui.Wallet.w1(l2Var, (t3) obj, j10, this.f3989b, 0));
+                l2Var.f44483f.sendRequestTyped(tonconnectgetpending, new d3.b(1), new org.telegram.ui.Wallet.w1(l2Var, (m60) obj, j10, this.f3965b, 0));
                 return;
             default:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (Context) obj2, (org.telegram.ui.ActionBar.i6) obj);
                 String M0 = gd.M0(2131742834, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = org.telegram.messenger.g0.V2(gd.V(null, null, 2131742832, org.telegram.ui.Wallet.u0.D(i10).r(j3, true)));
                 org.telegram.messenger.f3.m(null, 2131742824, alertDialog$Builder, null);
@@ -186,18 +189,18 @@ public final class q3 implements Runnable {
     }
 
     public q3(Object obj, long j3, int i7, Serializable serializable, int i10) {
-        this.f3988a = i10;
+        this.f3964a = i10;
         this.d = obj;
-        this.f3990c = j3;
-        this.f3989b = i7;
-        this.f3991e = serializable;
+        this.f3966c = j3;
+        this.f3965b = i7;
+        this.f3967e = serializable;
     }
 
-    public q3(org.telegram.ui.Wallet.l2 l2Var, long j3, t3 t3Var, int i7) {
-        this.f3988a = 7;
+    public q3(org.telegram.ui.Wallet.l2 l2Var, long j3, m60 m60Var, int i7) {
+        this.f3964a = 7;
         this.d = l2Var;
-        this.f3990c = j3;
-        this.f3991e = t3Var;
-        this.f3989b = i7;
+        this.f3966c = j3;
+        this.f3967e = m60Var;
+        this.f3965b = i7;
     }
 }

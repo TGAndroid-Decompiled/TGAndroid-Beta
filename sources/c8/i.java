@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class i extends e implements List, RandomAccess {
-    public static final g f4821b = new g(m.f4875e, 0);
+    public static final g f4818b = new g(m.f4872e, 0);
 
     public static m m(int i7, Object[] objArr) {
         if (i7 == 0) {
-            return m.f4875e;
+            return m.f4872e;
         }
         return new m(i7, objArr);
     }
@@ -115,7 +115,7 @@ public abstract class i extends e implements List, RandomAccess {
             return this;
         }
         if (i11 == 0) {
-            return m.f4875e;
+            return m.f4872e;
         }
         return new h(this, i7, i11);
     }
@@ -143,7 +143,7 @@ public abstract class i extends e implements List, RandomAccess {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f4821b;
+                return f4818b;
             }
             return new g(this, i7);
         }

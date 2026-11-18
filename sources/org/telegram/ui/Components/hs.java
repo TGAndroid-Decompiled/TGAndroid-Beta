@@ -27,7 +27,7 @@ public final class hs {
             if (!z10) {
                 gs gsVar = new gs(this, 0);
                 org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(i7);
-                a02.f27054a.c(new k7(this, a02, gsVar, 9));
+                a02.f27052a.c(new k7(this, a02, gsVar, 9));
                 return;
             }
             TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();

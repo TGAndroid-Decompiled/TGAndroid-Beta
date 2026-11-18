@@ -42,7 +42,7 @@ public final class jq0 extends uy {
         vt0Var.f41433a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
-            if (w10 != null && (i10 = w10.f28430w) != 0 && (i11 = w10.h) != 0) {
+            if (w10 != null && (i10 = w10.f28428w) != 0 && (i11 = w10.h) != 0) {
                 vt0Var.f41433a = i10;
                 vt0Var.f41434b = i11;
             }
@@ -50,7 +50,7 @@ public final class jq0 extends uy {
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    vt0Var.f41433a = documentAttribute.f28412w;
+                    vt0Var.f41433a = documentAttribute.f28410w;
                     vt0Var.f41434b = documentAttribute.h;
                     break;
                 }
@@ -90,6 +90,6 @@ public final class jq0 extends uy {
             }
             return;
         }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.p7.a(1) * 2);
+        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.q7.a(1) * 2);
     }
 }

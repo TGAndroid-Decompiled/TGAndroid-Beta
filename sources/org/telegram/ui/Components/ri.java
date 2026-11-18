@@ -17,21 +17,21 @@ public final class ri extends View {
     public ri(ViewGroup viewGroup, int i7) {
         super(viewGroup.getContext());
         this.f39153c = new ArrayList();
-        this.f39154e = new org.telegram.ui.hf0(this, 0);
+        this.f39154e = new org.telegram.ui.if0(this, 0);
         this.d = viewGroup;
         this.f39152b = i7;
     }
 
     public void a() {
-        org.telegram.ui.hf0 hf0Var = (org.telegram.ui.hf0) this.f39154e;
+        org.telegram.ui.if0 if0Var = (org.telegram.ui.if0) this.f39154e;
         ArrayList arrayList = (ArrayList) this.f39153c;
         boolean isEmpty = arrayList.isEmpty();
         int i7 = this.f39152b;
         if (isEmpty && getVisibility() != 8) {
-            org.telegram.messenger.ks.f(i7).f25243e.remove(hf0Var);
-            org.telegram.messenger.ks.f(i7).d(hf0Var);
+            org.telegram.messenger.ks.f(i7).f25241e.remove(if0Var);
+            org.telegram.messenger.ks.f(i7).d(if0Var);
         } else if (!arrayList.isEmpty() && getVisibility() != 0) {
-            org.telegram.messenger.ks.f(i7).f25243e.remove(hf0Var);
+            org.telegram.messenger.ks.f(i7).f25241e.remove(if0Var);
             setVisibility(0);
         }
     }
@@ -107,7 +107,7 @@ public final class ri extends View {
                 ArrayList arrayList = (ArrayList) this.f39153c;
                 if (!arrayList.isEmpty()) {
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        ((org.telegram.ui.if0) arrayList.get(i10)).a(canvas);
+                        ((org.telegram.ui.jf0) arrayList.get(i10)).a(canvas);
                     }
                     return;
                 }
@@ -146,7 +146,7 @@ public final class ri extends View {
         switch (this.f39151a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                int i13 = org.telegram.messenger.g0.f24115m;
+                int i13 = org.telegram.messenger.g0.f24112m;
                 bg.d0 d0Var = (bg.d0) this.d;
                 d0Var.c(org.telegram.messenger.g0.L(12.0f) + i13, 0);
                 d0Var.setBounds(0, 0, i7, org.telegram.messenger.g0.L(52.0f) + i13);
@@ -174,7 +174,7 @@ public final class ri extends View {
         this.f39152b = i7;
         Drawable g10 = i5.c.g(context, 2131232491);
         this.f39153c = g10;
-        org.telegram.ui.ActionBar.u6.x(this, g10, org.telegram.ui.ActionBar.n6.f29597o7, null, PorterDuff.Mode.SRC_IN);
+        org.telegram.ui.ActionBar.u6.x(this, g10, org.telegram.ui.ActionBar.n6.f29595o7, null, PorterDuff.Mode.SRC_IN);
     }
 
     public ri(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {

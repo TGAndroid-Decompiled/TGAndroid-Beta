@@ -1,138 +1,49 @@
 package bi;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import di.pb;
-import org.telegram.messenger.q10;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.z41;
-import org.telegram.ui.s00;
-public final class e8 extends z41 {
-    public final int Q;
-    public final Object R;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+public final class e8 implements fs {
+    public final int f3552a;
+    public final di.o8 f3553b;
+    public final u7 f3554c;
+    public y7 d;
+    public boolean f3555e;
 
-    public e8(KeyEvent.Callback callback, ck0 ck0Var, Context context, int i7, q10 q10Var, org.telegram.ui.ActionBar.i6 i6Var, int i10) {
-        super(ck0Var, context, i7, 0, false, q10Var, i6Var);
-        this.Q = i10;
-        this.R = callback;
+    public e8(int i7, long j3) {
+        this.f3552a = i7;
+        di.o8 o8Var = new di.o8(i7, 0L, false);
+        this.f3553b = o8Var;
+        o8Var.f9471p = j3;
+        u7 u7Var = new u7(i7, j3, new ai.g0(this, 4));
+        u7Var.f4107x = true;
+        this.f3554c = u7Var;
+    }
+
+    public final void a() {
+        if (this.f3555e) {
+            return;
+        }
+        ks.f(this.f3552a).c(this, ks.I3);
+        this.f3553b.a();
+        this.f3554c.l(false);
+        this.f3555e = true;
+    }
+
+    public final void b() {
+        if (!this.f3555e) {
+            return;
+        }
+        ks.f(this.f3552a).n(this, ks.I3);
+        this.f3553b.f();
+        this.f3554c.i();
+        this.f3555e = false;
     }
 
     @Override
-    public void t(v4.f1 f1Var, int i7) {
-        fi.m0 m0Var;
-        fi.r0 r0Var;
-        switch (this.Q) {
-            case 2:
-                super.t(f1Var, i7);
-                fi.a2 a2Var = (fi.a2) this.R;
-                if (a2Var.E) {
-                    View view = f1Var.f59122a;
-                    if ((view instanceof fi.m0) && (r0Var = (m0Var = (fi.m0) view).L) != null && r0Var.f12486a == a2Var.f12575y) {
-                        m0Var.a();
-                        a2Var.E = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.t(f1Var, i7);
-                return;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        y7 y7Var;
+        if (i7 == ks.I3 && objArr[1] == this.f3553b && (y7Var = this.d) != null) {
+            y7Var.run();
         }
-    }
-
-    @Override
-    public v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.ActionBar.i6 i6Var;
-        org.telegram.ui.ActionBar.i6 i6Var2;
-        org.telegram.ui.ActionBar.i6 i6Var3;
-        switch (this.Q) {
-            case 0:
-                g8 g8Var = (g8) this.R;
-                if (i7 == 0) {
-                    return new v4.f1(new org.telegram.ui.Cells.n4(g8Var.getContext(), org.telegram.ui.ActionBar.n6.L6, 13, 12, 4, false, false, g8Var.J0));
-                }
-                if (i7 == 42) {
-                    return new v4.f1(new org.telegram.ui.Cells.n4(g8Var.getContext(), org.telegram.ui.ActionBar.n6.L6, 13, 12, 4, false, true, g8Var.J0));
-                }
-                return super.x(viewGroup, i7);
-            case 1:
-                pb pbVar = (pb) this.R;
-                if (i7 == 42) {
-                    Activity parentActivity = pbVar.getParentActivity();
-                    int i10 = org.telegram.ui.ActionBar.n6.L6;
-                    i6Var = ((org.telegram.ui.ActionBar.h2) pbVar).resourceProvider;
-                    org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(parentActivity, i10, 21, 0, false, i6Var);
-                    n4Var.setHeight(25);
-                    return new v4.f1(n4Var);
-                }
-                return super.x(viewGroup, i7);
-            case 2:
-            default:
-                return super.x(viewGroup, i7);
-            case 3:
-                ii.t tVar = (ii.t) this.R;
-                if (i7 == 42) {
-                    Activity parentActivity2 = tVar.getParentActivity();
-                    int i11 = org.telegram.ui.ActionBar.n6.L6;
-                    i6Var2 = ((org.telegram.ui.ActionBar.h2) tVar).resourceProvider;
-                    org.telegram.ui.Cells.n4 n4Var2 = new org.telegram.ui.Cells.n4(parentActivity2, i11, 21, 0, false, i6Var2);
-                    n4Var2.setHeight(25);
-                    return new v4.f1(n4Var2);
-                }
-                return super.x(viewGroup, i7);
-            case 4:
-                ki.k kVar = (ki.k) this.R;
-                if (i7 == 42) {
-                    Activity parentActivity3 = kVar.getParentActivity();
-                    int i12 = org.telegram.ui.ActionBar.n6.L6;
-                    i6Var3 = ((org.telegram.ui.ActionBar.h2) kVar).resourceProvider;
-                    org.telegram.ui.Cells.n4 n4Var3 = new org.telegram.ui.Cells.n4(parentActivity3, i12, 21, 0, false, i6Var3);
-                    n4Var3.setHeight(25);
-                    return new v4.f1(n4Var3);
-                }
-                return super.x(viewGroup, i7);
-            case 5:
-                ki.i3 i3Var = (ki.i3) this.R;
-                if (i7 == 42) {
-                    org.telegram.ui.Cells.n4 n4Var4 = new org.telegram.ui.Cells.n4(i3Var.getParentActivity(), org.telegram.ui.ActionBar.n6.L6, 21, 0, false, ki.i3.H0(i3Var));
-                    n4Var4.setHeight(25);
-                    return new v4.f1(n4Var4);
-                }
-                return super.x(viewGroup, i7);
-        }
-    }
-
-    @Override
-    public void y(v4.f1 f1Var) {
-        fi.m0 m0Var;
-        fi.r0 r0Var;
-        switch (this.Q) {
-            case 2:
-                super.y(f1Var);
-                fi.a2 a2Var = (fi.a2) this.R;
-                if (a2Var.E) {
-                    View view = f1Var.f59122a;
-                    if ((view instanceof fi.m0) && (r0Var = (m0Var = (fi.m0) view).L) != null && r0Var.f12486a == a2Var.f12575y) {
-                        m0Var.a();
-                        a2Var.E = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.y(f1Var);
-                return;
-        }
-    }
-
-    public e8(s00 s00Var, ck0 ck0Var, Activity activity, int i7, int i10, q10 q10Var, org.telegram.ui.ActionBar.i6 i6Var, int i11) {
-        super(ck0Var, activity, i7, i10, true, q10Var, i6Var);
-        this.Q = i11;
-        this.R = s00Var;
     }
 }

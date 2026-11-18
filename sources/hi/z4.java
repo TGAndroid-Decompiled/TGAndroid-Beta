@@ -27,22 +27,22 @@ public final class z4 extends j2 {
                     i7++;
                 }
             }
-            int i11 = mp.u1(this.f30189a).f25752r5;
-            org.telegram.ui.ActionBar.n2 n2Var = this.f30195c;
-            if (i7 >= i11 && !j10.i(this.f30189a).q()) {
-                String G = gd.G(mp.u1(this.f30189a).s5, "StoryPremiumWidgets2", new Object[0]);
+            int i11 = mp.u1(this.f30187a).f25750r5;
+            org.telegram.ui.ActionBar.n2 n2Var = this.f30193c;
+            if (i7 >= i11 && !j10.i(this.f30187a).q()) {
+                String G = gd.G(mp.u1(this.f30187a).s5, "StoryPremiumWidgets2", new Object[0]);
                 try {
                     n2Var.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
                 new lc(n2Var, this.J0).I(2131624217, gd.M0(2131749007, null), org.telegram.messenger.g0.R2(G, org.telegram.ui.ActionBar.n6.Xc, 0, new k(this, 4), this.J0)).k(true);
                 return false;
-            } else if (i7 >= mp.u1(this.f30189a).s5) {
+            } else if (i7 >= mp.u1(this.f30187a).s5) {
                 try {
                     n2Var.performHapticFeedback(3);
                 } catch (Exception unused2) {
                 }
-                new lc(n2Var, this.J0).I(2131623982, gd.M0(2131748786, "LimitReached"), gd.G(mp.u1(this.f30189a).s5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
+                new lc(n2Var, this.J0).I(2131623982, gd.M0(2131748786, "LimitReached"), gd.G(mp.u1(this.f30187a).s5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
                 return false;
             }
         }
@@ -77,19 +77,19 @@ public final class z4 extends j2 {
 
     @Override
     public final boolean L0(Runnable runnable) {
-        ta taVar = ((v9) this.E1).f15617k2;
-        Activity activity = taVar.f15427b;
+        ta taVar = ((v9) this.E1).f15614k2;
+        Activity activity = taVar.f15424b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    taVar.f15507z2 = (ai.w0) runnable;
+                    taVar.f15504z2 = (ai.w0) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                taVar.f15507z2 = (ai.w0) runnable;
+                taVar.f15504z2 = (ai.w0) runnable;
                 return false;
             } else {
                 return true;

@@ -7,7 +7,7 @@ public final class h8 {
     public float f35804f;
     public boolean f35805g;
     public final Paint h;
-    public org.telegram.ui.Cells.q1 f35806i;
+    public org.telegram.ui.Cells.r1 f35806i;
     public int f35813p;
     public int f35814q;
     public float f35815r;
@@ -163,8 +163,8 @@ public final class h8 {
         b(canvas, f10, f11);
     }
 
-    public final void d(org.telegram.ui.Cells.q1 q1Var) {
-        this.f35806i = q1Var;
+    public final void d(org.telegram.ui.Cells.r1 r1Var) {
+        this.f35806i = r1Var;
     }
 
     public final void e(boolean z10, float[] fArr) {

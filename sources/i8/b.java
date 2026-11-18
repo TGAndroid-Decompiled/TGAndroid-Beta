@@ -2,7 +2,7 @@ package i8;
 
 import android.os.Build;
 public abstract class b {
-    public static final int f16172a;
+    public static final int f16169a;
 
     static {
         int i7;
@@ -11,6 +11,6 @@ public abstract class b {
         } else {
             i7 = 0;
         }
-        f16172a = i7;
+        f16169a = i7;
     }
 }

@@ -32,7 +32,7 @@ import org.telegram.ui.Cells.y;
 import org.telegram.ui.Components.ck0;
 import org.telegram.ui.Components.mq;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cd0;
+import org.telegram.ui.dd0;
 import org.telegram.ui.y61;
 public final class i extends FrameLayout implements fs {
     public ck0 E;
@@ -65,7 +65,7 @@ public final class i extends FrameLayout implements fs {
         String str;
         ArrayList arrayList = new ArrayList();
         arrayList.add(new a("Theme"));
-        arrayList.add(new a("Draw action bar shadow", new cd0(20)));
+        arrayList.add(new a("Draw action bar shadow", new dd0(20)));
         arrayList.add(new a("Show blur settings", new d(this, 0)));
         arrayList.add(new a(gd.M0(2131751636, null)));
         if (bz.J0) {
@@ -79,7 +79,7 @@ public final class i extends FrameLayout implements fs {
         } else {
             str = "Switch to dark theme";
         }
-        arrayList.add(new a(str, new cd0(21)));
+        arrayList.add(new a(str, new dd0(21)));
         arrayList.add(new a(gd.M0(2131751602, null), new d(this, 2)));
         return arrayList;
     }
@@ -185,15 +185,15 @@ public final class i extends FrameLayout implements fs {
         mqVar.f37611f = L2;
         this.f55617b = mqVar;
         Drawable drawable = getResources().getDrawable(2131232568);
-        u6.x(this, drawable, n6.f29469h5, null, mode);
+        u6.x(this, drawable, n6.f29467h5, null, mode);
         this.f55625x.setBackground(drawable);
-        u6.U(this.f55626y, n6.f29504j5, null);
+        u6.U(this.f55626y, n6.f29502j5, null);
         invalidate();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25171p4) {
+        if (i7 == ks.f25175q4) {
             d();
             this.E.getAdapter().f();
         }
@@ -242,7 +242,7 @@ public final class i extends FrameLayout implements fs {
         hVar2.a(0.75f);
         gVar2.f56323m = hVar2;
         this.d = gVar2;
-        ks.e().c(this, ks.f25171p4);
+        ks.e().c(this, ks.f25175q4);
     }
 
     @Override
@@ -269,7 +269,7 @@ public final class i extends FrameLayout implements fs {
         super.onDetachedFromWindow();
         this.f55618c.d();
         this.d.d();
-        ks.e().n(this, ks.f25171p4);
+        ks.e().n(this, ks.f25175q4);
     }
 
     @Override

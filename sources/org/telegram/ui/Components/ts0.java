@@ -149,21 +149,21 @@ public final class ts0 extends ij0 {
         SparseArray[] sparseArrayArr = gt0Var.f35577c1;
         vs0 vs0Var = gt0Var.f35636w1[this.d];
         ArrayList arrayList = vs0Var.f41412a;
-        int i10 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        int i10 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         boolean z12 = false;
         if (i10 != 7) {
-            if (i10 == 10 && (view instanceof org.telegram.ui.Cells.g7)) {
-                org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
+            if (i10 == 10 && (view instanceof org.telegram.ui.Cells.h7)) {
+                org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
                 org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) arrayList.get(i7 - vs0Var.f41422m);
                 if (i7 != arrayList.size() - 1) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                g7Var.f(fjVar, z11);
+                h7Var.f(fjVar, z11);
                 if (gt0Var.F1) {
-                    if (org.telegram.messenger.fj.B0(fjVar.f23968k) == j3) {
+                    if (org.telegram.messenger.fj.B0(fjVar.f23965k) == j3) {
                         c11 = 0;
                     } else {
                         c11 = 1;
@@ -171,23 +171,23 @@ public final class ts0 extends ij0 {
                     if (sparseArrayArr[c11].indexOfKey(fjVar.e1()) >= 0) {
                         z12 = true;
                     }
-                    g7Var.e(z12, !gt0Var.f35583e1);
+                    h7Var.e(z12, !gt0Var.f35583e1);
                     return;
                 }
-                g7Var.e(false, !gt0Var.f35583e1);
+                h7Var.e(false, !gt0Var.f35583e1);
             }
-        } else if (!(view instanceof org.telegram.ui.Cells.h7)) {
+        } else if (!(view instanceof org.telegram.ui.Cells.i7)) {
         } else {
-            org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
+            org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view;
             org.telegram.messenger.fj fjVar2 = (org.telegram.messenger.fj) arrayList.get(i7 - vs0Var.f41422m);
             if (i7 != arrayList.size() - 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            h7Var.c(fjVar2, z10);
+            i7Var.c(fjVar2, z10);
             if (gt0Var.F1) {
-                if (org.telegram.messenger.fj.B0(fjVar2.f23968k) == j3) {
+                if (org.telegram.messenger.fj.B0(fjVar2.f23965k) == j3) {
                     c10 = 0;
                 } else {
                     c10 = 1;
@@ -195,10 +195,10 @@ public final class ts0 extends ij0 {
                 if (sparseArrayArr[c10].indexOfKey(fjVar2.e1()) >= 0) {
                     z12 = true;
                 }
-                h7Var.b(z12, !gt0Var.f35583e1);
+                i7Var.b(z12, !gt0Var.f35583e1);
                 return;
             }
-            h7Var.b(false, !gt0Var.f35583e1);
+            i7Var.b(false, !gt0Var.f35583e1);
         }
     }
 
@@ -227,11 +227,11 @@ public final class ts0 extends ij0 {
                     } else {
                         view2 = new cs0(this, context, i6Var, 1);
                     }
-                    org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view2;
-                    g7Var.setGlobalGradientView(wzVar);
+                    org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view2;
+                    h7Var.setGlobalGradientView(wzVar);
                     view = view2;
                     if (i10 == 4) {
-                        gt0Var.K0.add(g7Var);
+                        gt0Var.K0.add(h7Var);
                         view = view2;
                     }
                 } else {
@@ -252,9 +252,9 @@ public final class ts0 extends ij0 {
                 view = wzVar2;
             }
         } else {
-            org.telegram.ui.Cells.h7 h7Var = new org.telegram.ui.Cells.h7(0, context, i6Var);
-            h7Var.setGlobalGradientView(wzVar);
-            view = h7Var;
+            org.telegram.ui.Cells.i7 i7Var = new org.telegram.ui.Cells.i7(0, context, i6Var);
+            i7Var.setGlobalGradientView(wzVar);
+            view = i7Var;
         }
         return i5.c.q(view, view, -1, -2);
     }

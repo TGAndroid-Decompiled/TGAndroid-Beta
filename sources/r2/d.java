@@ -15,7 +15,7 @@ public final class d extends y2.f {
     @Override
     public final void a() {
         try {
-            this.f60686r.open(this.f60681b);
+            this.f60687r.open(this.f60682b);
             int i7 = 0;
             int i10 = 0;
             while (i7 != -1 && !this.f56345w) {
@@ -23,7 +23,7 @@ public final class d extends y2.f {
                 if (bArr.length < i10 + 16384) {
                     this.f56344s = Arrays.copyOf(bArr, bArr.length + 16384);
                 }
-                i7 = this.f60686r.read(this.f56344s, i10, 16384);
+                i7 = this.f60687r.read(this.f56344s, i10, 16384);
                 if (i7 != -1) {
                     i10 += i7;
                 }
@@ -31,9 +31,9 @@ public final class d extends y2.f {
             if (!this.f56345w) {
                 this.f56346x = Arrays.copyOf(this.f56344s, i10);
             }
-            s0.a(this.f60686r);
+            s0.a(this.f60687r);
         } catch (Throwable th2) {
-            s0.a(this.f60686r);
+            s0.a(this.f60687r);
             throw th2;
         }
     }

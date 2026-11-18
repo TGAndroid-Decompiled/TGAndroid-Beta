@@ -7,34 +7,34 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class sn implements RequestDelegate {
-    public final int f26831a;
-    public final c1 f26832b;
-    public final Object f26833c;
+    public final int f26829a;
+    public final c1 f26830b;
+    public final Object f26831c;
     public final Object d;
-    public final Object f26834e;
-    public final Object f26835f;
-    public final TLObject f26836g;
+    public final Object f26832e;
+    public final Object f26833f;
+    public final TLObject f26834g;
 
     public sn(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i7) {
-        this.f26831a = i7;
-        this.f26832b = c1Var;
-        this.f26833c = obj;
+        this.f26829a = i7;
+        this.f26830b = c1Var;
+        this.f26831c = obj;
         this.d = obj2;
-        this.f26834e = obj3;
-        this.f26835f = obj4;
-        this.f26836g = tLObject;
+        this.f26832e = obj3;
+        this.f26833f = obj4;
+        this.f26834g = tLObject;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f26831a) {
+        switch (this.f26829a) {
             case 0:
-                mp mpVar = (mp) this.f26832b;
-                Context context = (Context) this.f26833c;
+                mp mpVar = (mp) this.f26830b;
+                Context context = (Context) this.f26831c;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.d;
-                lr lrVar = (lr) this.f26834e;
-                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f26835f;
-                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) this.f26836g;
+                lr lrVar = (lr) this.f26832e;
+                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f26833f;
+                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) this.f26834g;
                 mpVar.getClass();
                 if (tL_error == null) {
                     if (context != null) {
@@ -47,12 +47,12 @@ public final class sn implements RequestDelegate {
                 g0.g3(new wm(mpVar, lrVar, context, u1Var, tL_error, h2Var, tL_channels_convertToGigagroup, 1));
                 return;
             default:
-                final z00 z00Var = (z00) this.f26832b;
-                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f26833c;
+                final z00 z00Var = (z00) this.f26830b;
+                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f26831c;
                 final String str = (String) this.d;
-                final x00 x00Var = (x00) this.f26834e;
-                final bi.y3 y3Var = (bi.y3) this.f26835f;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f26836g;
+                final x00 x00Var = (x00) this.f26832e;
+                final bi.y3 y3Var = (bi.y3) this.f26833f;
+                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f26834g;
                 z00Var.getClass();
                 if (tLObject instanceof TLRPC.TL_messages_translateResult) {
                     ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
@@ -67,7 +67,7 @@ public final class sn implements RequestDelegate {
                                         TL_stories.StoryItem storyItem2 = storyItem;
                                         storyItem2.translatedLng = str;
                                         storyItem2.translatedText = null;
-                                        z00Var2.getMessagesController().R1().f12393k.h(storyItem2.dialogId, storyItem2);
+                                        z00Var2.getMessagesController().R1().f12390k.h(storyItem2.dialogId, storyItem2);
                                         z00Var2.K.remove(x00Var);
                                         y3Var.run();
                                         return;
@@ -77,7 +77,7 @@ public final class sn implements RequestDelegate {
                                         TL_stories.StoryItem storyItem3 = storyItem;
                                         storyItem3.translatedLng = str;
                                         storyItem3.translatedText = null;
-                                        z00Var3.getMessagesController().R1().f12393k.h(storyItem3.dialogId, storyItem3);
+                                        z00Var3.getMessagesController().R1().f12390k.h(storyItem3.dialogId, storyItem3);
                                         z00Var3.K.remove(x00Var);
                                         y3Var.run();
                                         return;
@@ -100,7 +100,7 @@ public final class sn implements RequestDelegate {
                                 TL_stories.StoryItem storyItem2 = storyItem;
                                 storyItem2.translatedLng = str;
                                 storyItem2.translatedText = null;
-                                z00Var2.getMessagesController().R1().f12393k.h(storyItem2.dialogId, storyItem2);
+                                z00Var2.getMessagesController().R1().f12390k.h(storyItem2.dialogId, storyItem2);
                                 z00Var2.K.remove(x00Var);
                                 y3Var.run();
                                 return;
@@ -110,7 +110,7 @@ public final class sn implements RequestDelegate {
                                 TL_stories.StoryItem storyItem3 = storyItem;
                                 storyItem3.translatedLng = str;
                                 storyItem3.translatedText = null;
-                                z00Var3.getMessagesController().R1().f12393k.h(storyItem3.dialogId, storyItem3);
+                                z00Var3.getMessagesController().R1().f12390k.h(storyItem3.dialogId, storyItem3);
                                 z00Var3.K.remove(x00Var);
                                 y3Var.run();
                                 return;

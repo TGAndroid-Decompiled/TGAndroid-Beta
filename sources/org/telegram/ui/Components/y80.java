@@ -62,7 +62,7 @@ public final class y80 extends c8.f1 {
             textstrike.text = y(eVar);
             w(textstrike);
         } else if (eVar instanceof zc.d) {
-            w(b90.c(((zc.d) eVar).f61809g));
+            w(b90.c(((zc.d) eVar).f61810g));
         } else {
             v(eVar);
         }
@@ -86,7 +86,7 @@ public final class y80 extends c8.f1 {
             if (!this.f42410c.texts.isEmpty()) {
                 w(b90.n("\n"));
             }
-            w(b90.c(((zc.a) nVar).f61804g));
+            w(b90.c(((zc.a) nVar).f61805g));
             w(b90.n("\n"));
             return;
         }
@@ -131,7 +131,7 @@ public final class y80 extends c8.f1 {
 
     @Override
     public final void o(kf.s sVar) {
-        w(b90.n(sVar.f18240g));
+        w(b90.n(sVar.f18237g));
     }
 
     @Override

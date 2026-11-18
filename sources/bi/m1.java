@@ -3,15 +3,15 @@ package bi;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLRPC;
 public final class m1 implements RequestDelegate {
-    public final int f3869a;
-    public final Object f3870b;
-    public final Object f3871c;
+    public final int f3840a;
+    public final Object f3841b;
+    public final Object f3842c;
     public final Object d;
 
     public m1(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3869a = i7;
-        this.f3870b = obj;
-        this.f3871c = obj2;
+        this.f3840a = i7;
+        this.f3841b = obj;
+        this.f3842c = obj2;
         this.d = obj3;
     }
 
@@ -21,9 +21,9 @@ public final class m1 implements RequestDelegate {
     }
 
     public m1(boolean[] zArr, org.telegram.ui.web.o oVar, TLRPC.UserFull userFull) {
-        this.f3869a = 14;
-        this.f3870b = zArr;
+        this.f3840a = 14;
+        this.f3841b = zArr;
         this.d = oVar;
-        this.f3871c = userFull;
+        this.f3842c = userFull;
     }
 }

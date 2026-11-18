@@ -8,18 +8,18 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.a8;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Cells.z8;
+import org.telegram.ui.Cells.a9;
 import org.telegram.ui.Components.mq;
-public final class d0 extends z8 {
+public final class d0 extends a9 {
     public Drawable E;
     public int F;
     public boolean G;
-    public final i6 f61230x;
-    public ColorDrawable f61231y;
+    public final i6 f61231x;
+    public ColorDrawable f61232y;
 
     public d0(Context context, i6 i6Var) {
         super(context, i6Var);
-        this.f61230x = i6Var;
+        this.f61231x = i6Var;
     }
 
     public void setBackground(boolean z10) {
@@ -30,11 +30,11 @@ public final class d0 extends z8 {
         } else {
             i7 = 2131231229;
         }
-        int i10 = n6.f29360b7;
-        i6 i6Var = this.f61230x;
+        int i10 = n6.f29358b7;
+        i6 i6Var = this.f61231x;
         Drawable X0 = n6.X0(context, i7, n6.w0(i10, i6Var));
-        ColorDrawable colorDrawable = new ColorDrawable(n6.w0(n6.f29339a7, i6Var));
-        this.f61231y = colorDrawable;
+        ColorDrawable colorDrawable = new ColorDrawable(n6.w0(n6.f29337a7, i6Var));
+        this.f61232y = colorDrawable;
         this.E = X0;
         mq mqVar = new mq(colorDrawable, X0, 0, 0);
         mqVar.f37616x = true;
@@ -45,13 +45,13 @@ public final class d0 extends z8 {
     public final void updateColors() {
         super.updateColors();
         try {
-            ColorDrawable colorDrawable = this.f61231y;
-            i6 i6Var = this.f61230x;
+            ColorDrawable colorDrawable = this.f61232y;
+            i6 i6Var = this.f61231x;
             if (colorDrawable != null) {
-                colorDrawable.setColor(n6.w0(n6.f29339a7, i6Var));
+                colorDrawable.setColor(n6.w0(n6.f29337a7, i6Var));
             }
             if (this.E != null) {
-                int w02 = n6.w0(n6.f29360b7, i6Var);
+                int w02 = n6.w0(n6.f29358b7, i6Var);
                 if (w02 != this.F || !this.G) {
                     this.F = w02;
                     this.G = true;

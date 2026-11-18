@@ -22,20 +22,20 @@ import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.ks;
 import org.telegram.ui.Components.z41;
 public final class ca implements Runnable {
-    public final int f8622a;
-    public final boolean f8623b;
-    public final int f8624c;
+    public final int f8619a;
+    public final boolean f8620b;
+    public final int f8621c;
     public final Object d;
-    public final Object f8625e;
-    public final Object f8626f;
+    public final Object f8622e;
+    public final Object f8623f;
 
     public ca(mp mpVar, TLRPC.Chat chat, boolean z10, int i7, q0.a aVar) {
-        this.f8622a = 1;
+        this.f8619a = 1;
         this.d = mpVar;
-        this.f8625e = chat;
-        this.f8623b = z10;
-        this.f8624c = i7;
-        this.f8626f = aVar;
+        this.f8622e = chat;
+        this.f8620b = z10;
+        this.f8621c = i7;
+        this.f8623f = aVar;
     }
 
     @Override
@@ -43,21 +43,21 @@ public final class ca implements Runnable {
         String str;
         TLRPC.Document document;
         RectF rectF;
-        switch (this.f8622a) {
+        switch (this.f8619a) {
             case 0:
                 String str2 = (String) this.d;
-                ImageReceiver imageReceiver = (ImageReceiver) this.f8625e;
-                boolean[] zArr = (boolean[]) this.f8626f;
-                boolean z10 = this.f8623b;
-                int i7 = this.f8624c;
+                ImageReceiver imageReceiver = (ImageReceiver) this.f8622e;
+                boolean[] zArr = (boolean[]) this.f8623f;
+                boolean z10 = this.f8620b;
+                int i7 = this.f8621c;
                 if (z10) {
-                    str = j10.i(i7).f24781d0;
+                    str = j10.i(i7).f24778d0;
                     if (str == null) {
                         ri.d0(i7).E();
                         return;
                     }
                 } else {
-                    str = j10.i(i7).f24780c0;
+                    str = j10.i(i7).f24777c0;
                     if (str == null) {
                         ri.d0(i7).B();
                         return;
@@ -77,7 +77,7 @@ public final class ca implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i11 = 0; i11 < tL_messages_stickerSet.documents.size(); i11++) {
                                     document = tL_messages_stickerSet.documents.get(i11);
-                                    if (document == null || document.f28411id != longValue) {
+                                    if (document == null || document.f28409id != longValue) {
                                     }
                                 }
                             } else {
@@ -94,9 +94,9 @@ public final class ca implements Runnable {
                 }
                 boolean z11 = true;
                 if (document != null) {
-                    imageReceiver.f22669v0 = true;
-                    imageReceiver.f22642h1 = new d6.i(zArr, 14);
-                    lz f10 = org.telegram.messenger.u5.f(document, org.telegram.ui.ActionBar.n6.f29339a7, 0.3f, null);
+                    imageReceiver.f22666v0 = true;
+                    imageReceiver.f22639h1 = new d6.i(zArr, 14);
+                    lz f10 = org.telegram.messenger.u5.f(document, org.telegram.ui.ActionBar.n6.f29337a7, 0.3f, null);
                     TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 160, true, null, true);
                     imageReceiver.W(0);
                     imageReceiver.r0(org.telegram.messenger.fc.b(document), "160_160_nr", org.telegram.messenger.fc.c(w10, document), "160_160", f10, document.size, "tgs", tL_messages_stickerSet, 1);
@@ -110,28 +110,28 @@ public final class ca implements Runnable {
                 return;
             case 1:
                 mp mpVar = (mp) this.d;
-                TLRPC.Chat chat = (TLRPC.Chat) this.f8625e;
-                final q0.a aVar = (q0.a) this.f8626f;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f8622e;
+                final q0.a aVar = (q0.a) this.f8623f;
                 LongSparseIntArray longSparseIntArray = mpVar.C0;
                 a0.h hVar = mpVar.B0;
-                ArrayList arrayList = (ArrayList) hVar.f(chat.f28405id);
+                ArrayList arrayList = (ArrayList) hVar.f(chat.f28403id);
                 a0.h hVar2 = mpVar.D0;
-                ArrayList arrayList2 = (ArrayList) hVar2.f(chat.f28405id);
-                boolean z12 = this.f8623b;
-                int i12 = this.f8624c;
+                ArrayList arrayList2 = (ArrayList) hVar2.f(chat.f28403id);
+                boolean z12 = this.f8620b;
+                int i12 = this.f8621c;
                 if (z12) {
                     if (arrayList != null) {
                         arrayList.remove(Integer.valueOf(i12));
                     }
                     if (arrayList == null || arrayList.isEmpty()) {
-                        hVar.e(chat.f28405id);
+                        hVar.e(chat.f28403id);
                     }
                     if (chat.megagroup) {
                         if (arrayList2 != null) {
                             arrayList2.remove(Integer.valueOf(i12));
                         }
                         if (arrayList2 == null || arrayList2.isEmpty()) {
-                            hVar2.e(chat.f28405id);
+                            hVar2.e(chat.f28403id);
                             return;
                         }
                         return;
@@ -140,12 +140,12 @@ public final class ca implements Runnable {
                 }
                 if (arrayList == null) {
                     arrayList = new ArrayList();
-                    hVar.k(arrayList, chat.f28405id);
+                    hVar.k(arrayList, chat.f28403id);
                 }
                 if (!arrayList.contains(Integer.valueOf(i12))) {
                     arrayList.add(Integer.valueOf(i12));
                 }
-                if (mpVar.A0.indexOfKey(chat.f28405id) < 0) {
+                if (mpVar.A0.indexOfKey(chat.f28403id) < 0) {
                     if (aVar != null) {
                         org.telegram.messenger.g0.g3(new Runnable() {
                             @Override
@@ -161,7 +161,7 @@ public final class ca implements Runnable {
                             }
                         });
                     }
-                    mpVar.L0(chat.f28405id, 3, 0L, null);
+                    mpVar.L0(chat.f28403id, 3, 0L, null);
                 } else if (aVar != null) {
                     org.telegram.messenger.g0.g3(new Runnable() {
                         @Override
@@ -180,13 +180,13 @@ public final class ca implements Runnable {
                 if (chat.megagroup && !chat.monoforum) {
                     if (arrayList2 == null) {
                         arrayList2 = new ArrayList();
-                        hVar2.k(arrayList2, chat.f28405id);
+                        hVar2.k(arrayList2, chat.f28403id);
                     }
                     if (!arrayList2.contains(Integer.valueOf(i12))) {
                         arrayList2.add(Integer.valueOf(i12));
                     }
-                    if (longSparseIntArray.indexOfKey(chat.f28405id) < 0) {
-                        longSparseIntArray.put(chat.f28405id, 0);
+                    if (longSparseIntArray.indexOfKey(chat.f28403id) < 0) {
+                        longSparseIntArray.put(chat.f28403id, 0);
                         return;
                     }
                     return;
@@ -194,16 +194,16 @@ public final class ca implements Runnable {
                 return;
             case 2:
                 zy zyVar = (zy) this.d;
-                TLObject tLObject = (TLObject) this.f8625e;
-                ly lyVar = (ly) this.f8626f;
+                TLObject tLObject = (TLObject) this.f8622e;
+                ly lyVar = (ly) this.f8623f;
                 zyVar.getClass();
                 if (tLObject instanceof TLRPC.TL_messageMediaDocument) {
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) tLObject;
                     TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
                     tL_inputMediaUploadedPhoto.live_photo = true;
-                    tL_inputMediaUploadedPhoto.file = lyVar.f25464j;
-                    tL_inputMediaUploadedPhoto.spoiler = this.f8623b;
-                    int i13 = this.f8624c;
+                    tL_inputMediaUploadedPhoto.file = lyVar.f25462j;
+                    tL_inputMediaUploadedPhoto.spoiler = this.f8620b;
+                    int i13 = this.f8621c;
                     if (i13 != 0) {
                         tL_inputMediaUploadedPhoto.ttl_seconds = i13;
                         tL_inputMediaUploadedPhoto.flags |= 2;
@@ -211,10 +211,10 @@ public final class ca implements Runnable {
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                     tL_inputMediaUploadedPhoto.video = tL_inputDocument;
                     TLRPC.Document document2 = tL_messageMediaDocument.document;
-                    tL_inputDocument.f28417id = document2.f28411id;
+                    tL_inputDocument.f28415id = document2.f28409id;
                     tL_inputDocument.access_hash = document2.access_hash;
                     tL_inputDocument.file_reference = document2.file_reference;
-                    TLObject tLObject2 = lyVar.f25459c;
+                    TLObject tLObject2 = lyVar.f25457c;
                     if (tLObject2 instanceof TLRPC.TL_messages_sendMedia) {
                         ((TLRPC.TL_messages_sendMedia) tLObject2).media = tL_inputMediaUploadedPhoto;
                     } else if (tLObject2 instanceof TL_ephemeral.TL_sendMessage) {
@@ -224,20 +224,20 @@ public final class ca implements Runnable {
                     } else {
                         ((TLRPC.TL_messages_editMessage) tLObject2).media = tL_inputMediaUploadedPhoto;
                     }
-                    zyVar.N(tLObject2, lyVar.f25467m, lyVar.f25461f, lyVar, lyVar.K, null, lyVar.H);
+                    zyVar.N(tLObject2, lyVar.f25465m, lyVar.f25459f, lyVar, lyVar.K, null, lyVar.H);
                     return;
                 }
                 lyVar.c();
                 return;
             case 3:
                 is isVar = (is) this.d;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f8625e;
-                TLObject tLObject3 = (TLObject) this.f8626f;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f8622e;
+                TLObject tLObject3 = (TLObject) this.f8623f;
                 ArrayList arrayList3 = isVar.W;
                 int i14 = isVar.Q;
-                if (this.f8624c == isVar.f36187g0 && TextUtils.equals(tL_messages_searchGlobal.f28518q, isVar.f36188h0)) {
+                if (this.f8621c == isVar.f36187g0 && TextUtils.equals(tL_messages_searchGlobal.f28516q, isVar.f36188h0)) {
                     isVar.f36183c0 = false;
-                    if (!this.f8623b) {
+                    if (!this.f8620b) {
                         arrayList3.clear();
                     }
                     if (tLObject3 instanceof TLRPC.messages_Messages) {
@@ -265,13 +265,13 @@ public final class ca implements Runnable {
                 return;
             case 4:
                 ks ksVar = (ks) this.d;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = (TLRPC.TL_messages_searchGlobal) this.f8625e;
-                TLObject tLObject4 = (TLObject) this.f8626f;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = (TLRPC.TL_messages_searchGlobal) this.f8622e;
+                TLObject tLObject4 = (TLObject) this.f8623f;
                 ArrayList arrayList5 = ksVar.S;
                 int i16 = ksVar.Q;
-                if (this.f8624c == ksVar.f36870d0 && TextUtils.equals(tL_messages_searchGlobal2.f28518q, ksVar.f36871e0)) {
+                if (this.f8621c == ksVar.f36870d0 && TextUtils.equals(tL_messages_searchGlobal2.f28516q, ksVar.f36871e0)) {
                     ksVar.Z = false;
-                    if (!this.f8623b) {
+                    if (!this.f8620b) {
                         arrayList5.clear();
                     }
                     if (tLObject4 instanceof TLRPC.messages_Messages) {
@@ -299,12 +299,12 @@ public final class ca implements Runnable {
                 return;
             case 5:
                 p4.m0 m0Var = (p4.m0) this.d;
-                q4.r rVar = (q4.r) this.f8625e;
-                p4.l0 l0Var = (p4.l0) this.f8626f;
+                q4.r rVar = (q4.r) this.f8622e;
+                p4.l0 l0Var = (p4.l0) this.f8623f;
                 p4.d0 d0Var = m0Var.h;
                 if (!d0Var.j()) {
                     boolean isActive = ((q4.l) m0Var.f55332n.f55826b).f55808a.isActive();
-                    int i18 = this.f8624c;
+                    int i18 = this.f8621c;
                     if (!isActive) {
                         StringBuilder m10 = i5.c.m(i18, "Ignore incoming player command before initialization. command=", ", pid=");
                         m10.append(rVar.f55828a.f55830b);
@@ -327,7 +327,7 @@ public final class ca implements Runnable {
                     } catch (RemoteException e10) {
                         h2.a.m("MediaSessionLegacyStub", "Exception in " + m0, e10);
                     }
-                    if (this.f8623b) {
+                    if (this.f8620b) {
                         new SparseBooleanArray().append(i18, true);
                         d0Var.p(m0);
                         return;
@@ -337,15 +337,15 @@ public final class ca implements Runnable {
                 return;
             default:
                 sg.i0 i0Var = (sg.i0) this.d;
-                sg.j0 j0Var = (sg.j0) this.f8625e;
-                Runnable runnable = (Runnable) this.f8626f;
-                boolean z13 = this.f8623b;
+                sg.j0 j0Var = (sg.j0) this.f8622e;
+                Runnable runnable = (Runnable) this.f8623f;
+                boolean z13 = this.f8620b;
                 if (z13) {
                     rectF = i0Var.h;
                 } else {
                     rectF = null;
                 }
-                i0Var.d(j0Var, this.f8624c, rectF);
+                i0Var.d(j0Var, this.f8621c, rectF);
                 if (z13) {
                     i0Var.h = null;
                 }
@@ -358,47 +358,47 @@ public final class ca implements Runnable {
     }
 
     public ca(zy zyVar, TLObject tLObject, ly lyVar, boolean z10, int i7) {
-        this.f8622a = 2;
+        this.f8619a = 2;
         this.d = zyVar;
-        this.f8625e = tLObject;
-        this.f8626f = lyVar;
-        this.f8623b = z10;
-        this.f8624c = i7;
+        this.f8622e = tLObject;
+        this.f8623f = lyVar;
+        this.f8620b = z10;
+        this.f8621c = i7;
     }
 
     public ca(z41 z41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i10) {
-        this.f8622a = i10;
+        this.f8619a = i10;
         this.d = z41Var;
-        this.f8624c = i7;
-        this.f8625e = tL_messages_searchGlobal;
-        this.f8623b = z10;
-        this.f8626f = tLObject;
+        this.f8621c = i7;
+        this.f8622e = tL_messages_searchGlobal;
+        this.f8620b = z10;
+        this.f8623f = tLObject;
     }
 
     public ca(p4.m0 m0Var, int i7, q4.r rVar, p4.l0 l0Var, boolean z10) {
-        this.f8622a = 5;
+        this.f8619a = 5;
         this.d = m0Var;
-        this.f8624c = i7;
-        this.f8625e = rVar;
-        this.f8626f = l0Var;
-        this.f8623b = z10;
+        this.f8621c = i7;
+        this.f8622e = rVar;
+        this.f8623f = l0Var;
+        this.f8620b = z10;
     }
 
     public ca(sg.i0 i0Var, sg.j0 j0Var, int i7, boolean z10, Runnable runnable) {
-        this.f8622a = 6;
+        this.f8619a = 6;
         this.d = i0Var;
-        this.f8625e = j0Var;
-        this.f8624c = i7;
-        this.f8623b = z10;
-        this.f8626f = runnable;
+        this.f8622e = j0Var;
+        this.f8621c = i7;
+        this.f8620b = z10;
+        this.f8623f = runnable;
     }
 
     public ca(boolean z10, int i7, String str, ImageReceiver imageReceiver, boolean[] zArr) {
-        this.f8622a = 0;
-        this.f8623b = z10;
-        this.f8624c = i7;
+        this.f8619a = 0;
+        this.f8620b = z10;
+        this.f8621c = i7;
         this.d = str;
-        this.f8625e = imageReceiver;
-        this.f8626f = zArr;
+        this.f8622e = imageReceiver;
+        this.f8623f = zArr;
     }
 }

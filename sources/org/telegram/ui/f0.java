@@ -2,28 +2,28 @@ package org.telegram.ui;
 
 import android.net.Uri;
 public final class f0 implements org.telegram.messenger.p10 {
-    public final g4 f47405a;
-    public final String f47406b;
-    public final boolean[] f47407c;
+    public final g4 f47361a;
+    public final String f47362b;
+    public final boolean[] f47363c;
     public final vf.b d;
 
     public f0(g4 g4Var, String str, boolean[] zArr, vf.b bVar) {
-        this.f47405a = g4Var;
-        this.f47406b = str;
-        this.f47407c = zArr;
+        this.f47361a = g4Var;
+        this.f47362b = str;
+        this.f47363c = zArr;
         this.d = bVar;
     }
 
     @Override
     public final Object run() {
-        String str = this.f47406b;
-        if (!vf.c.g(Uri.parse(str), false, this.f47407c)) {
+        String str = this.f47362b;
+        if (!vf.c.g(Uri.parse(str), false, this.f47363c)) {
             return Boolean.FALSE;
         }
-        g4 g4Var = this.f47405a;
+        g4 g4Var = this.f47361a;
         vf.b bVar = this.d;
         if (bVar != null) {
-            bVar.f59375c = new oi.s2(21, g4Var, bVar);
+            bVar.f59376c = new oi.s2(21, g4Var, bVar);
         } else {
             t3 t3Var = g4Var.L;
             if (t3Var != null) {

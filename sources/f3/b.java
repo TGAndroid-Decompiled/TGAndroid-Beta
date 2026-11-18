@@ -10,31 +10,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 public abstract class b {
-    public static final int[] f11101a = {96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350};
-    public static final int[] f11102b = {0, 1, 2, 3, 4, 5, 6, 8, -1, -1, -1, 7, 8, -1, 8, -1};
-    public static final int[] f11103c = {1, 2, 3, 6};
+    public static final int[] f11098a = {96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350};
+    public static final int[] f11099b = {0, 1, 2, 3, 4, 5, 6, 8, -1, -1, -1, 7, 8, -1, 8, -1};
+    public static final int[] f11100c = {1, 2, 3, 6};
     public static final int[] d = {48000, 44100, 32000};
-    public static final int[] f11104e = {24000, 22050, 16000};
-    public static final int[] f11105f = {2, 1, 2, 3, 3, 4, 4, 5};
-    public static final int[] f11106g = {32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640};
+    public static final int[] f11101e = {24000, 22050, 16000};
+    public static final int[] f11102f = {2, 1, 2, 3, 3, 4, 4, 5};
+    public static final int[] f11103g = {32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640};
     public static final int[] h = {69, 87, 104, 121, 139, 174, 208, 243, 278, 348, 417, 487, 557, 696, 835, 975, 1114, 1253, 1393};
-    public static final int[] f11107i = {2002, 2000, 1920, 1601, 1600, 1001, 1000, 960, 800, 800, 480, 400, 400, 2048};
-    public static final int[] f11108j = {1, 2, 2, 2, 2, 3, 3, 4, 4, 5, 6, 6, 6, 7, 8, 8};
-    public static final int[] f11109k = {-1, 8000, 16000, 32000, -1, -1, 11025, 22050, 44100, -1, -1, 12000, 24000, 48000, -1, -1};
-    public static final int[] f11110l = {64, 112, 128, 192, 224, 256, 384, 448, 512, 640, 768, 896, 1024, 1152, 1280, 1536, 1920, 2048, 2304, 2560, 2688, 2816, 2823, 2944, 3072, 3840, 4096, 6144, 7680};
-    public static final int[] f11111m = {8000, 16000, 32000, 64000, 128000, 22050, 44100, 88200, 176400, 352800, 12000, 24000, 48000, 96000, 192000, 384000};
-    public static final int[] f11112n = {5, 8, 10, 12};
-    public static final int[] f11113o = {6, 9, 12, 15};
-    public static final int[] f11114p = {2, 4, 6, 8};
-    public static final int[] f11115q = {9, 11, 13, 16};
-    public static final int[] f11116r = {5, 8, 10, 12};
-    public static final String[] f11117s = {"audio/mpeg-L1", "audio/mpeg-L2", "audio/mpeg"};
-    public static final int[] f11118t = {44100, 48000, 32000};
-    public static final int[] f11119u = {32000, 64000, 96000, 128000, 160000, 192000, 224000, 256000, 288000, 320000, 352000, 384000, 416000, 448000};
+    public static final int[] f11104i = {2002, 2000, 1920, 1601, 1600, 1001, 1000, 960, 800, 800, 480, 400, 400, 2048};
+    public static final int[] f11105j = {1, 2, 2, 2, 2, 3, 3, 4, 4, 5, 6, 6, 6, 7, 8, 8};
+    public static final int[] f11106k = {-1, 8000, 16000, 32000, -1, -1, 11025, 22050, 44100, -1, -1, 12000, 24000, 48000, -1, -1};
+    public static final int[] f11107l = {64, 112, 128, 192, 224, 256, 384, 448, 512, 640, 768, 896, 1024, 1152, 1280, 1536, 1920, 2048, 2304, 2560, 2688, 2816, 2823, 2944, 3072, 3840, 4096, 6144, 7680};
+    public static final int[] f11108m = {8000, 16000, 32000, 64000, 128000, 22050, 44100, 88200, 176400, 352800, 12000, 24000, 48000, 96000, 192000, 384000};
+    public static final int[] f11109n = {5, 8, 10, 12};
+    public static final int[] f11110o = {6, 9, 12, 15};
+    public static final int[] f11111p = {2, 4, 6, 8};
+    public static final int[] f11112q = {9, 11, 13, 16};
+    public static final int[] f11113r = {5, 8, 10, 12};
+    public static final String[] f11114s = {"audio/mpeg-L1", "audio/mpeg-L2", "audio/mpeg"};
+    public static final int[] f11115t = {44100, 48000, 32000};
+    public static final int[] f11116u = {32000, 64000, 96000, 128000, 160000, 192000, 224000, 256000, 288000, 320000, 352000, 384000, 416000, 448000};
     public static final int[] v = {32000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000, 176000, 192000, 224000, 256000};
-    public static final int[] f11120w = {32000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000, 384000};
-    public static final int[] f11121x = {32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000};
-    public static final int[] f11122y = {8000, 16000, 24000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000};
+    public static final int[] f11117w = {32000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000, 384000};
+    public static final int[] f11118x = {32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000};
+    public static final int[] f11119y = {8000, 16000, 24000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 144000, 160000};
 
     public static boolean a(h2.x xVar, u uVar, int i7, s sVar) {
         boolean z10;
@@ -60,27 +60,27 @@ public abstract class b {
             z11 = false;
         }
         if (i12 <= 7) {
-            if (i12 != uVar.f11208g - 1) {
+            if (i12 != uVar.f11205g - 1) {
                 return false;
             }
-        } else if (i12 > 10 || uVar.f11208g != 2) {
+        } else if (i12 > 10 || uVar.f11205g != 2) {
             return false;
         }
-        if ((i13 != 0 && i13 != uVar.f11209i) || z11) {
+        if ((i13 != 0 && i13 != uVar.f11206i) || z11) {
             return false;
         }
         try {
             long I = xVar.I();
             if (!z10) {
-                I *= uVar.f11204b;
+                I *= uVar.f11201b;
             }
-            long j10 = uVar.f11210j;
+            long j10 = uVar.f11207j;
             if (j10 != 0 && I > j10) {
                 return false;
             }
-            sVar.f11199a = I;
+            sVar.f11196a = I;
             int s5 = s(i10, xVar);
-            long j11 = uVar.f11210j;
+            long j11 = uVar.f11207j;
             if (j11 != 0 && I + s5 < j11) {
                 z12 = false;
             } else {
@@ -89,13 +89,13 @@ public abstract class b {
             if (s5 == -1) {
                 return false;
             }
-            if ((!z12 && s5 < uVar.f11203a) || s5 > uVar.f11204b) {
+            if ((!z12 && s5 < uVar.f11200a) || s5 > uVar.f11201b) {
                 return false;
             }
-            int i14 = uVar.f11206e;
+            int i14 = uVar.f11203e;
             if (i11 != 0) {
                 if (i11 <= 11) {
-                    if (i11 != uVar.f11207f) {
+                    if (i11 != uVar.f11204f) {
                         return false;
                     }
                 } else if (i11 == 12) {
@@ -115,14 +115,14 @@ public abstract class b {
                 }
             }
             int A = xVar.A();
-            int i15 = xVar.f13837b;
-            byte[] bArr = xVar.f13836a;
+            int i15 = xVar.f13834b;
+            byte[] bArr = xVar.f13833a;
             int i16 = i15 - 1;
             int i17 = 0;
-            for (int i18 = xVar.f13837b; i18 < i16; i18++) {
-                i17 = l0.f13795l[i17 ^ (bArr[i18] & 255)];
+            for (int i18 = xVar.f13834b; i18 < i16; i18++) {
+                i17 = l0.f13792l[i17 ^ (bArr[i18] & 255)];
             }
-            String str = l0.f13786a;
+            String str = l0.f13783a;
             if (A != i17) {
                 return false;
             }
@@ -182,7 +182,7 @@ public abstract class b {
                         break;
                     }
                 }
-                int i13 = xVar.f13837b + i12;
+                int i13 = xVar.f13834b + i12;
                 if (i12 != -1 && i12 <= xVar.a()) {
                     if (i7 == 4 && i12 >= 8) {
                         int A3 = xVar.A();
@@ -213,7 +213,7 @@ public abstract class b {
                     }
                 } else {
                     h2.a.l("CeaUtil", "Skipping remainder of malformed SEI NAL unit.");
-                    i13 = xVar.f13838c;
+                    i13 = xVar.f13835c;
                 }
                 xVar.N(i13);
             } else {
@@ -228,7 +228,7 @@ public abstract class b {
         if ((A & 64) != 0) {
             xVar.O(1);
             int i7 = (A & 31) * 3;
-            int i10 = xVar.f13837b;
+            int i10 = xVar.f13834b;
             for (i0 i0Var : i0VarArr) {
                 xVar.N(i10);
                 i0Var.b(i7, xVar);
@@ -250,7 +250,7 @@ public abstract class b {
             if (i12 == 44100) {
                 return ((i10 % 2) + h[i11]) * 2;
             }
-            int i13 = f11106g[i11];
+            int i13 = f11103g[i11];
             if (i12 == 32000) {
                 return i13 * 6;
             }
@@ -261,7 +261,7 @@ public abstract class b {
 
     public static void f(int i7, h2.x xVar) {
         xVar.K(7);
-        byte[] bArr = xVar.f13836a;
+        byte[] bArr = xVar.f13833a;
         bArr[0] = -84;
         bArr[1] = 64;
         bArr[2] = -1;
@@ -285,7 +285,7 @@ public abstract class b {
         if ((i7 & (-2097152)) != -2097152 || (i10 = (i7 >>> 19) & 3) == 1 || (i11 = (i7 >>> 17) & 3) == 0 || (i12 = (i7 >>> 12) & 15) == 0 || i12 == 15 || (i13 = (i7 >>> 10) & 3) == 3) {
             return -1;
         }
-        int i16 = f11118t[i13];
+        int i16 = f11115t[i13];
         if (i10 == 2) {
             i16 /= 2;
         } else if (i10 == 0) {
@@ -294,7 +294,7 @@ public abstract class b {
         int i17 = (i7 >>> 9) & 1;
         if (i11 == 3) {
             if (i10 == 3) {
-                i15 = f11119u[i12 - 1];
+                i15 = f11116u[i12 - 1];
             } else {
                 i15 = v[i12 - 1];
             }
@@ -302,12 +302,12 @@ public abstract class b {
         }
         if (i10 == 3) {
             if (i11 == 2) {
-                i14 = f11120w[i12 - 1];
+                i14 = f11117w[i12 - 1];
             } else {
-                i14 = f11121x[i12 - 1];
+                i14 = f11118x[i12 - 1];
             }
         } else {
-            i14 = f11122y[i12 - 1];
+            i14 = f11119y[i12 - 1];
         }
         int i18 = 144;
         if (i10 == 3) {
@@ -399,20 +399,20 @@ public abstract class b {
                     int min = Math.min(8 - fVar.d, 14);
                     int i11 = fVar.d;
                     int i12 = (8 - i11) - min;
-                    byte[] bArr2 = (byte[]) fVar.f7836b;
-                    int i13 = fVar.f7837c;
+                    byte[] bArr2 = (byte[]) fVar.f7833b;
+                    int i13 = fVar.f7834c;
                     byte b13 = (byte) (((65280 >> i11) | ((1 << i12) - 1)) & bArr2[i13]);
                     bArr2[i13] = b13;
                     int i14 = 14 - min;
                     bArr2[i13] = (byte) (b13 | ((j3 >>> i14) << i12));
                     int i15 = i13 + 1;
                     while (i14 > 8) {
-                        ((byte[]) fVar.f7836b)[i15] = (byte) (j3 >>> (i14 - 8));
+                        ((byte[]) fVar.f7833b)[i15] = (byte) (j3 >>> (i14 - 8));
                         i14 -= 8;
                         i15++;
                     }
                     int i16 = 8 - i14;
-                    byte[] bArr3 = (byte[]) fVar.f7836b;
+                    byte[] bArr3 = (byte[]) fVar.f7833b;
                     byte b14 = (byte) (bArr3[i15] & ((1 << i16) - 1));
                     bArr3[i15] = b14;
                     bArr3[i15] = (byte) (((j3 & ((1 << i14) - 1)) << i16) | b14);
@@ -434,7 +434,7 @@ public abstract class b {
             }
             throw t0.a(null, "AAC header insufficient data");
         } else if (j3 < 13) {
-            return f11101a[j3];
+            return f11098a[j3];
         } else {
             throw t0.a(null, "AAC header wrong Sampling Frequency Index");
         }
@@ -512,12 +512,12 @@ public abstract class b {
                 throw new UnsupportedOperationException();
             }
         }
-        int i11 = f11102b[j10];
+        int i11 = f11099b[j10];
         if (i11 != -1) {
             ?? obj = new Object();
-            obj.f11097b = l10;
-            obj.f11098c = i11;
-            obj.f11096a = i7;
+            obj.f11094b = l10;
+            obj.f11095c = i11;
+            obj.f11093a = i7;
             return obj;
         }
         throw t0.a(null, null);
@@ -534,8 +534,8 @@ public abstract class b {
         }
         if (fVar.i()) {
             int j10 = fVar.j(3);
-            if (cVar.f11124b == -1 && j3 >= 0 && j3 <= 15 && (j10 == 0 || j10 == 1)) {
-                cVar.f11124b = j3;
+            if (cVar.f11121b == -1 && j3 >= 0 && j3 <= 15 && (j10 == 0 || j10 == 1)) {
+                cVar.f11121b = j3;
             }
             if (fVar.i()) {
                 v(fVar);
@@ -559,7 +559,7 @@ public abstract class b {
                     if (!fVar.i()) {
                         fVar.L(4);
                     }
-                    cVar.f11125c = fVar.j(6) + 1;
+                    cVar.f11122c = fVar.j(6) + 1;
                 }
                 fVar.L(4);
             }
@@ -588,7 +588,7 @@ public abstract class b {
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < list.size(); i7++) {
             String str = (String) list.get(i7);
-            String str2 = l0.f13786a;
+            String str2 = l0.f13783a;
             String[] split = str.split("=", 2);
             if (split.length != 2) {
                 h2.a.l("VorbisUtil", "Failed to parse Vorbis comment: ".concat(str));
@@ -638,7 +638,7 @@ public abstract class b {
     public static wf.b t(h2.x xVar) {
         xVar.O(1);
         int D = xVar.D();
-        long j3 = xVar.f13837b + D;
+        long j3 = xVar.f13834b + D;
         int i7 = D / 18;
         long[] jArr = new long[i7];
         long[] jArr2 = new long[i7];
@@ -658,7 +658,7 @@ public abstract class b {
             xVar.O(2);
             i10++;
         }
-        xVar.O((int) (j3 - xVar.f13837b));
+        xVar.O((int) (j3 - xVar.f13834b));
         return new wf.b(16, jArr, jArr2);
     }
 

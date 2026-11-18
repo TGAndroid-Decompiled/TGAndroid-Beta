@@ -29,7 +29,7 @@ public final class d2 extends LinearLayout {
         }
         c2 c2Var = new c2(getContext(), this.f40823n, i7);
         c2Var.f40799a = str2;
-        int L = org.telegram.messenger.g0.f24121q.x - org.telegram.messenger.g0.L(120.0f);
+        int L = org.telegram.messenger.g0.f24118q.x - org.telegram.messenger.g0.L(120.0f);
         TextView textView = c2Var.f40801c;
         StaticLayout c10 = wu0.c(str, textView.getPaint(), L, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, L, 10, true);
         if (c10 != null) {

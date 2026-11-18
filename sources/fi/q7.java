@@ -3,34 +3,34 @@ package fi;
 import android.widget.FrameLayout;
 import org.telegram.ui.y61;
 public final class q7 implements r1.d {
-    public final int f12472a;
-    public final FrameLayout f12473b;
+    public final int f12469a;
+    public final FrameLayout f12470b;
 
     public q7(int i7, FrameLayout frameLayout) {
-        this.f12472a = i7;
-        this.f12473b = frameLayout;
+        this.f12469a = i7;
+        this.f12470b = frameLayout;
     }
 
     @Override
     public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f12472a) {
+        switch (this.f12469a) {
             case 0:
-                x7 x7Var = (x7) this.f12473b;
-                x7Var.f12742e0 = f10;
-                x7Var.f12744g0 = f11;
+                x7 x7Var = (x7) this.f12470b;
+                x7Var.f12739e0 = f10;
+                x7Var.f12741g0 = f11;
                 return;
             case 1:
-                hi.l5 l5Var = (hi.l5) this.f12473b;
+                hi.l5 l5Var = (hi.l5) this.f12470b;
                 float f12 = f10 / 1000.0f;
-                l5Var.f14902d1 = f12;
+                l5Var.f14899d1 = f12;
                 tg.j1 j1Var = l5Var.W0;
                 j1Var.setAlpha(f12);
                 j1Var.invalidate();
                 l5Var.E0.invalidate();
-                l5Var.V0.getTypefaceCell().setAlpha(1.0f - l5Var.f14902d1);
+                l5Var.V0.getTypefaceCell().setAlpha(1.0f - l5Var.f14899d1);
                 return;
             case 2:
-                pg.i iVar = (pg.i) this.f12473b;
+                pg.i iVar = (pg.i) this.f12470b;
                 float f13 = f10 / 1000.0f;
                 y61 y61Var = iVar.f55616a;
                 y61Var.setPivotX(org.telegram.messenger.g0.L(28.0f));
@@ -41,7 +41,7 @@ public final class q7 implements r1.d {
                 iVar.invalidate();
                 return;
             default:
-                tg.g0 g0Var = (tg.g0) this.f12473b;
+                tg.g0 g0Var = (tg.g0) this.f12470b;
                 float f14 = f10 / 1000.0f;
                 g0Var.n1 = f14;
                 tg.j1 j1Var2 = g0Var.f57855f1;

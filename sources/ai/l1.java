@@ -163,7 +163,7 @@ public final class l1 {
         }
         int[] iArr2 = this.G;
         bitmap.getPixels(iArr2, 0, width, 0, 0, width, height);
-        int max = Math.max(1, Math.round(org.telegram.messenger.g0.f24120p * 0.8f));
+        int max = Math.max(1, Math.round(org.telegram.messenger.g0.f24117p * 0.8f));
         int i10 = 0;
         for (int i11 = 0; i11 < height; i11 += max) {
             for (int i12 = 0; i12 < width; i12 += max) {

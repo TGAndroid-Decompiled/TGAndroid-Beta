@@ -4,38 +4,38 @@ import e2.t0;
 import java.util.Collections;
 import java.util.List;
 public final class x {
-    public final List f11217a;
-    public final int f11218b;
-    public final int f11219c;
+    public final List f11214a;
+    public final int f11215b;
+    public final int f11216c;
     public final int d;
-    public final int f11220e;
-    public final int f11221f;
-    public final int f11222g;
+    public final int f11217e;
+    public final int f11218f;
+    public final int f11219g;
     public final int h;
-    public final int f11223i;
-    public final int f11224j;
-    public final int f11225k;
-    public final float f11226l;
-    public final int f11227m;
-    public final String f11228n;
-    public final xi.e f11229o;
+    public final int f11220i;
+    public final int f11221j;
+    public final int f11222k;
+    public final float f11223l;
+    public final int f11224m;
+    public final String f11225n;
+    public final xi.e f11226o;
 
     public x(List list, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, float f10, int i19, String str, xi.e eVar) {
-        this.f11217a = list;
-        this.f11218b = i7;
-        this.f11219c = i10;
+        this.f11214a = list;
+        this.f11215b = i7;
+        this.f11216c = i10;
         this.d = i11;
-        this.f11220e = i12;
-        this.f11221f = i13;
-        this.f11222g = i14;
+        this.f11217e = i12;
+        this.f11218f = i13;
+        this.f11219g = i14;
         this.h = i15;
-        this.f11223i = i16;
-        this.f11224j = i17;
-        this.f11225k = i18;
-        this.f11226l = f10;
-        this.f11227m = i19;
-        this.f11228n = str;
-        this.f11229o = eVar;
+        this.f11220i = i16;
+        this.f11221j = i17;
+        this.f11222k = i18;
+        this.f11223l = f10;
+        this.f11224m = i19;
+        this.f11225n = str;
+        this.f11226o = eVar;
     }
 
     public static x a(h2.x xVar, boolean z10, xi.e eVar) {
@@ -53,7 +53,7 @@ public final class x {
             }
             int A = xVar.A() & 3;
             int A2 = xVar.A();
-            int i11 = xVar.f13837b;
+            int i11 = xVar.f13834b;
             int i12 = 0;
             int i13 = 0;
             int i14 = 0;
@@ -97,29 +97,29 @@ public final class x {
                     boolean z12 = z11;
                     int H4 = xVar.H();
                     int i29 = A;
-                    System.arraycopy(i2.o.f15977a, i12, bArr, i27, i10);
+                    System.arraycopy(i2.o.f15974a, i12, bArr, i27, i10);
                     int i30 = i27 + 4;
-                    System.arraycopy(xVar.f13836a, xVar.f13837b, bArr, i30, H4);
+                    System.arraycopy(xVar.f13833a, xVar.f13834b, bArr, i30, H4);
                     if (A3 == 32 && i28 == 0) {
                         eVar3 = i2.o.l(i30, i30 + H4, bArr);
                     } else {
                         if (A3 == 33 && i28 == 0) {
                             i2.k k10 = i2.o.k(bArr, i30, i30 + H4, eVar3);
-                            i16 = k10.f15944a + 1;
-                            i17 = k10.f15949g;
+                            i16 = k10.f15941a + 1;
+                            i17 = k10.f15946g;
                             int i31 = k10.h;
-                            i19 = k10.f15946c + 8;
+                            i19 = k10.f15943c + 8;
                             i20 = k10.d + 8;
-                            int i32 = k10.f15952k;
+                            int i32 = k10.f15949k;
                             i18 = i31;
-                            int i33 = k10.f15953l;
-                            int i34 = k10.f15954m;
-                            float f11 = k10.f15950i;
-                            int i35 = k10.f15951j;
-                            i2.h hVar = k10.f15945b;
+                            int i33 = k10.f15950l;
+                            int i34 = k10.f15951m;
+                            float f11 = k10.f15947i;
+                            int i35 = k10.f15948j;
+                            i2.h hVar = k10.f15942b;
                             if (hVar != null) {
                                 i7 = i35;
-                                str2 = h2.g.a(hVar.f15933a, hVar.f15935c, hVar.d, hVar.f15937f, hVar.f15934b, hVar.f15936e);
+                                str2 = h2.g.a(hVar.f15930a, hVar.f15932c, hVar.d, hVar.f15934f, hVar.f15931b, hVar.f15933e);
                             } else {
                                 i7 = i35;
                             }
@@ -130,7 +130,7 @@ public final class x {
                             i21 = i32;
                         } else if (A3 == 39 && i28 == 0 && (j3 = i2.o.j(i30, i30 + H4, bArr)) != null && eVar3 != null) {
                             i12 = 0;
-                            if (j3.f2960a == ((i2.g) ((h9.i0) eVar3.f60620a).get(0)).f15932b) {
+                            if (j3.f2961a == ((i2.g) ((h9.i0) eVar3.f60621a).get(0)).f15929b) {
                                 i24 = 4;
                             } else {
                                 i24 = 5;

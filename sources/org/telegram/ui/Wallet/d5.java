@@ -2,7 +2,7 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import org.telegram.messenger.gd;
-import org.telegram.ui.cd0;
+import org.telegram.ui.dd0;
 public final class d5 implements Runnable {
     public final int f44034a;
     public final Context f44035b;
@@ -24,7 +24,7 @@ public final class d5 implements Runnable {
                 vf.c.v(context, gd.M0(2131743961, null), false);
                 return;
             default:
-                new p6(context.getApplicationContext(), 2131232813, 46, new cd0(11));
+                new p6(context.getApplicationContext(), 2131232813, 46, new dd0(11));
                 return;
         }
     }

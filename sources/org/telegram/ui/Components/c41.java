@@ -21,7 +21,7 @@ public final class c41 implements gw0 {
         if (adapter == g41Var) {
             while (i7 < g41Var.f35328e.size()) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) g41Var.f35328e.get(i7);
-                if (stickerSetCovered.set.f28432id == inputStickerSet.f28425id) {
+                if (stickerSetCovered.set.f28430id == inputStickerSet.f28423id) {
                     g41Var.F(stickerSetCovered, null);
                     return;
                 }
@@ -33,7 +33,7 @@ public final class c41 implements gw0 {
         ArrayList arrayList = c2Var.F;
         while (i7 < arrayList.size()) {
             TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i7);
-            if (stickerSetCovered2.set.f28432id == inputStickerSet.f28425id) {
+            if (stickerSetCovered2.set.f28430id == inputStickerSet.f28423id) {
                 c2Var.F(stickerSetCovered2, null);
                 return;
             }

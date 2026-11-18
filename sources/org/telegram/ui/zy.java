@@ -15,21 +15,21 @@ public final class zy extends org.telegram.ui.Components.sa {
     public yy X1;
     public final TextView Y1;
     public final ArrayList Z1;
-    public final ArrayList f54613a2;
+    public final ArrayList f54614a2;
 
     public zy(org.telegram.ui.ActionBar.h2 h2Var, org.telegram.messenger.ro roVar, ArrayList arrayList) {
         super(h2Var, false);
         ArrayList arrayList2 = new ArrayList();
         this.V1 = arrayList2;
         this.Z1 = new ArrayList();
-        this.f54613a2 = new ArrayList();
+        this.f54614a2 = new ArrayList();
         this.U1 = roVar;
         if (arrayList != null) {
             arrayList2.addAll(arrayList);
         }
         i1(false);
         this.f39535p1.setTitle(f1(null));
-        P(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false));
+        P(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false));
         this.T1 = this.H0;
         TextView textView = new TextView(getContext());
         this.Y1 = textView;
@@ -42,13 +42,13 @@ public final class zy extends org.telegram.ui.Components.sa {
         textView.setOnClickListener(new a(this, 21));
         FrameLayout.LayoutParams d = c8.ma.d(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 10.0f);
         int i7 = d.leftMargin;
-        int i10 = this.f30227u0;
+        int i10 = this.f30225u0;
         d.leftMargin = i7 + i10;
         d.rightMargin += i10;
-        this.f30192b.addView(textView, d);
+        this.f30190b.addView(textView, d);
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.W1 = frameLayout;
-        this.f30192b.addView(frameLayout, c8.ma.d(-1, 100.0f, 80, 6.0f, 0.0f, 6.0f, 0.0f));
+        this.f30190b.addView(frameLayout, c8.ma.d(-1, 100.0f, 80, 6.0f, 0.0f, 6.0f, 0.0f));
         h1();
     }
 
@@ -57,7 +57,7 @@ public final class zy extends org.telegram.ui.Components.sa {
         TL_chatlists.TL_chatlists_getExportedInvites tL_chatlists_getExportedInvites = new TL_chatlists.TL_chatlists_getExportedInvites();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_getExportedInvites.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = roVar.f26674a;
+        tL_inputChatlistDialogFilter.filter_id = roVar.f26672a;
         h2Var.getConnectionsManager().sendRequest(tL_chatlists_getExportedInvites, new di.y(h2Var, roVar, lzVar, currentTimeMillis, 4));
     }
 
@@ -79,7 +79,7 @@ public final class zy extends org.telegram.ui.Components.sa {
         ck0Var.setOverScrollMode(2);
         ck0Var.setOnItemClickListener(new h(this, 11));
         v4.k kVar = new v4.k();
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.lr.h);
         kVar.n(350L);
@@ -112,7 +112,7 @@ public final class zy extends org.telegram.ui.Components.sa {
         TL_chatlists.TL_chatlists_exportChatlistInvite tL_chatlists_exportChatlistInvite = new TL_chatlists.TL_chatlists_exportChatlistInvite();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_exportChatlistInvite.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = roVar.f26674a;
+        tL_inputChatlistDialogFilter.filter_id = roVar.f26672a;
         tL_chatlists_exportChatlistInvite.peers = arrayList;
         tL_chatlists_exportChatlistInvite.title = "";
         h2Var.getConnectionsManager().sendRequest(tL_chatlists_exportChatlistInvite, new l(this, 7));
@@ -128,7 +128,7 @@ public final class zy extends org.telegram.ui.Components.sa {
             } else {
                 fontMetricsInt = lVar.getPaint().getFontMetricsInt();
             }
-            obj = org.telegram.messenger.fj.B5(org.telegram.messenger.j6.m(new SpannableStringBuilder(roVar.f26675b), fontMetricsInt, false, null, 0), roVar.f26676c, fontMetricsInt, false);
+            obj = org.telegram.messenger.fj.B5(org.telegram.messenger.j6.m(new SpannableStringBuilder(roVar.f26673b), fontMetricsInt, false, null, 0), roVar.f26674c, fontMetricsInt, false);
         } else {
             obj = "";
         }
@@ -158,7 +158,7 @@ public final class zy extends org.telegram.ui.Components.sa {
     public final void i1(boolean z10) {
         ArrayList arrayList = this.Z1;
         arrayList.clear();
-        ArrayList arrayList2 = this.f54613a2;
+        ArrayList arrayList2 = this.f54614a2;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         ?? aVar = new rg.a(0, false);
@@ -170,7 +170,7 @@ public final class zy extends org.telegram.ui.Components.sa {
             arrayList2.add(new rg.a(8, false));
             for (int i7 = 0; i7 < arrayList3.size(); i7++) {
                 ?? aVar2 = new rg.a(7, false);
-                aVar2.f46801m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i7);
+                aVar2.f46781m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i7);
                 arrayList2.add(aVar2);
             }
         }
@@ -189,7 +189,7 @@ public final class zy extends org.telegram.ui.Components.sa {
         int x02;
         super.s0();
         try {
-            if (this.H0 == this.T1 && (x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false)) != this.H0) {
+            if (this.H0 == this.T1 && (x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false)) != this.H0) {
                 P(x02);
                 this.T1 = this.H0;
             }

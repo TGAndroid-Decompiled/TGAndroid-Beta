@@ -38,7 +38,7 @@ public final class t implements org.telegram.messenger.q10 {
             default:
                 ArrayList arrayList = (ArrayList) obj;
                 z41 z41Var = (z41) obj2;
-                org.telegram.ui.Wallet.n6 n6Var = (org.telegram.ui.Wallet.n6) ((di.i4) obj3).f9011c;
+                org.telegram.ui.Wallet.n6 n6Var = (org.telegram.ui.Wallet.n6) ((di.i4) obj3).f9008c;
                 if (i10 == 0) {
                     z41Var.V();
                     org.telegram.ui.Wallet.t0 t0Var = n6Var.G0;
@@ -60,7 +60,7 @@ public final class t implements org.telegram.messenger.q10 {
                     }
                     z41Var.U();
                     if (z10) {
-                        long j3 = ((org.telegram.messenger.l0) n6Var.getMessagesController().A7.f26165r0.f14001b).f25310c;
+                        long j3 = ((org.telegram.messenger.l0) n6Var.getMessagesController().A7.f26163r0.f13998b).f25308c;
                         if (j3 > 0) {
                             arrayList.add(l41.C(org.telegram.messenger.gd.V(null, null, 2131742859, org.telegram.ui.Wallet.u0.x(j3, false))));
                             return;

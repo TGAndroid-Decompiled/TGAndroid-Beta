@@ -42,26 +42,26 @@ public final class io implements Runnable {
                 wg.a0 a0Var = (wg.a0) obj3;
                 TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
                 TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
-                int l10 = wg.s.l(a0Var.f59702i2);
-                int i10 = a0Var.f59699f2;
-                int i11 = yg.u.f61268w;
+                int l10 = wg.s.l(a0Var.f59703i2);
+                int i10 = a0Var.f59700f2;
+                int i11 = yg.u.f61269w;
                 if (i10 == 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                a0Var.f59706m2.b(true);
+                a0Var.f59707m2.b(true);
                 ArrayList arrayList = a0Var.Y1;
-                ArrayList arrayList2 = a0Var.f59695a2;
+                ArrayList arrayList2 = a0Var.f59696a2;
                 TLRPC.Chat chat = a0Var.X1;
-                boolean z11 = a0Var.f59713t2;
-                boolean z12 = a0Var.f59712s2;
+                boolean z11 = a0Var.f59714t2;
+                boolean z12 = a0Var.f59713s2;
                 int i12 = prepaidGiveaway.quantity;
-                String str = a0Var.f59711r2;
+                String str = a0Var.f59712r2;
                 wg.y yVar = new wg.y(this.f36154b, this.f36155c, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
                 wg.v vVar = new wg.v(a0Var, 6);
-                org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0);
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.j10.f24773t0);
+                org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.j10.f24770t0);
                 if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                     tL_inputStorePaymentStarsGiveaway = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
                     tL_inputStorePaymentStarsGiveaway.only_new_subscribers = z10;
@@ -75,7 +75,7 @@ public final class io implements Runnable {
                     }
                     tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
                     tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = u12.l1(-chat.f28405id);
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = u12.l1(-chat.f28403id);
                     tL_inputStorePaymentStarsGiveaway.currency = "";
                     int size = arrayList2.size();
                     int i14 = 0;
@@ -91,7 +91,7 @@ public final class io implements Runnable {
                         i15++;
                         TLObject tLObject = (TLObject) obj5;
                         if (tLObject instanceof TLRPC.Chat) {
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(u12.l1(-((TLRPC.Chat) tLObject).f28405id));
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(u12.l1(-((TLRPC.Chat) tLObject).f28403id));
                         }
                     }
                 } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
@@ -107,7 +107,7 @@ public final class io implements Runnable {
                     }
                     tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
                     tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = u12.l1(-chat.f28405id);
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = u12.l1(-chat.f28403id);
                     tL_inputStorePaymentStarsGiveaway.currency = "";
                     tL_inputStorePaymentStarsGiveaway.stars = ((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars;
                     tL_inputStorePaymentStarsGiveaway.users = prepaidGiveaway.quantity;
@@ -125,15 +125,15 @@ public final class io implements Runnable {
                         i18++;
                         TLObject tLObject2 = (TLObject) obj7;
                         if (tLObject2 instanceof TLRPC.Chat) {
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(u12.l1(-((TLRPC.Chat) tLObject2).f28405id));
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(u12.l1(-((TLRPC.Chat) tLObject2).f28403id));
                         }
                     }
                 } else {
                     return;
                 }
                 TLRPC.TL_payments_launchPrepaidGiveaway tL_payments_launchPrepaidGiveaway = new TLRPC.TL_payments_launchPrepaidGiveaway();
-                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f28643id;
-                tL_payments_launchPrepaidGiveaway.peer = u12.l1(-chat.f28405id);
+                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f28641id;
+                tL_payments_launchPrepaidGiveaway.peer = u12.l1(-chat.f28403id);
                 tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
                 connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new bi.m1(vVar, u12, yVar, 26));
                 return;

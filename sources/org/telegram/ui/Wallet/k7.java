@@ -31,7 +31,7 @@ public final class k7 extends vg.m {
         int round = Math.round(Math.min(i7, i10) * 3.5f);
         surfaceTexture.setDefaultBufferSize(round, round);
         this.E = round;
-        this.f59479y = round;
+        this.f59480y = round;
     }
 
     @Override

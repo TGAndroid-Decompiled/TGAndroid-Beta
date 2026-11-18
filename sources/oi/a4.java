@@ -23,7 +23,7 @@ public abstract class a4 {
             pageblockcollage = new TL_iv.pageBlockCollage();
         }
         ArrayList j3 = s3.j3(pageblockcollage);
-        ArrayList arrayList = z3Var.f22555e;
+        ArrayList arrayList = z3Var.f22552e;
         int size = arrayList.size();
         CharSequence charSequence = null;
         int i7 = 0;
@@ -31,12 +31,12 @@ public abstract class a4 {
             Object obj = arrayList.get(i7);
             i7++;
             z3 z3Var2 = (z3) obj;
-            if (!z3Var2.f22553b) {
-                if ("figcaption".equals(z3Var2.f22552a)) {
+            if (!z3Var2.f22550b) {
+                if ("figcaption".equals(z3Var2.f22549a)) {
                     charSequence = w(z3Var2);
                 } else {
-                    boolean equals = "video".equals(z3Var2.f22552a);
-                    if (equals || "img".equals(z3Var2.f22552a)) {
+                    boolean equals = "video".equals(z3Var2.f22549a);
+                    if (equals || "img".equals(z3Var2.f22549a)) {
                         long E = E(z3Var2.a("src"));
                         if (E > 0) {
                             TL_iv.PageBlock y10 = y(E, equals, z3Var2.b("data-spoiler"));
@@ -81,7 +81,7 @@ public abstract class a4 {
         ArrayList arrayList2;
         int i11;
         int i12 = i7 + 1;
-        ArrayList arrayList3 = z3Var.f22555e;
+        ArrayList arrayList3 = z3Var.f22552e;
         int size = arrayList3.size();
         int i13 = 1;
         int i14 = 0;
@@ -89,19 +89,19 @@ public abstract class a4 {
             Object obj = arrayList3.get(i14);
             i14++;
             z3 z3Var2 = (z3) obj;
-            if (!z3Var2.f22553b && "li".equals(z3Var2.f22552a)) {
+            if (!z3Var2.f22550b && "li".equals(z3Var2.f22549a)) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 ArrayList arrayList4 = new ArrayList();
-                ArrayList arrayList5 = z3Var2.f22555e;
+                ArrayList arrayList5 = z3Var2.f22552e;
                 int size2 = arrayList5.size();
                 int i15 = 0;
                 while (i15 < size2) {
                     int i16 = i15 + 1;
                     z3 z3Var3 = (z3) arrayList5.get(i15);
-                    if (!z3Var3.f22553b && ("ul".equals(z3Var3.f22552a) || "ol".equals(z3Var3.f22552a))) {
+                    if (!z3Var3.f22550b && ("ul".equals(z3Var3.f22549a) || "ol".equals(z3Var3.f22549a))) {
                         arrayList4.add(z3Var3);
-                    } else if (z3Var3.f22553b) {
-                        spannableStringBuilder.append((CharSequence) q(z3Var3.f22554c));
+                    } else if (z3Var3.f22550b) {
+                        spannableStringBuilder.append((CharSequence) q(z3Var3.f22551c));
                     } else {
                         arrayList2 = arrayList5;
                         i11 = size2;
@@ -129,8 +129,8 @@ public abstract class a4 {
                 } else {
                     z11 = true;
                 }
-                aVar.f21912e = z11;
-                aVar.f21913f = z3Var2.b("data-checked");
+                aVar.f21909e = z11;
+                aVar.f21910f = z3Var2.b("data-checked");
                 arrayList.add(aVar);
                 int size3 = arrayList4.size();
                 int i17 = 0;
@@ -138,7 +138,7 @@ public abstract class a4 {
                     Object obj2 = arrayList4.get(i17);
                     i17++;
                     z3 z3Var4 = (z3) obj2;
-                    D(z3Var4, arrayList, i12, "ol".equals(z3Var4.f22552a));
+                    D(z3Var4, arrayList, i12, "ol".equals(z3Var4.f22549a));
                 }
                 i13++;
             }
@@ -167,17 +167,17 @@ public abstract class a4 {
         int i16 = i7;
         y3 y3Var2 = y3Var;
         int i17 = i14;
-        ArrayList arrayList = y3Var2.f22506a;
+        ArrayList arrayList = y3Var2.f22503a;
         while (true) {
             int i18 = iArr[0];
             if (i18 > i16) {
                 return;
             }
             a aVar = (a) list3.get(i18);
-            if (!aVar.f21915i) {
-                if (aVar.f21917k.size() > i17) {
+            if (!aVar.f21912i) {
+                if (aVar.f21914k.size() > i17) {
                     y3Var2.h(sb3);
-                    Long l10 = (Long) ((a) list3.get(iArr[0])).f21917k.get(i17);
+                    Long l10 = (Long) ((a) list3.get(iArr[0])).f21914k.get(i17);
                     long longValue = l10.longValue();
                     int i19 = iArr[0];
                     while (true) {
@@ -186,7 +186,7 @@ public abstract class a4 {
                             break;
                         }
                         a aVar2 = (a) list3.get(i20);
-                        if (aVar2.f21917k.size() <= i17 || ((Long) aVar2.f21917k.get(i17)).longValue() != longValue) {
+                        if (aVar2.f21914k.size() <= i17 || ((Long) aVar2.f21914k.get(i17)).longValue() != longValue) {
                             break;
                         }
                         i19 = i20;
@@ -203,7 +203,7 @@ public abstract class a4 {
                     if (s3.A3(aVar)) {
                         y3Var2.h(sb3);
                         a aVar3 = (a) list3.get(iArr[0]);
-                        sb3.append(((TL_iv.pageBlockDetails) aVar3.f21910b).open ? "<details open>" : "<details>");
+                        sb3.append(((TL_iv.pageBlockDetails) aVar3.f21907b).open ? "<details open>" : "<details>");
                         sb3.append("<summary>");
                         g(sb3, K(aVar3, iArr[0], i10, i11, i12, i13));
                         sb3.append("</summary>");
@@ -214,7 +214,7 @@ public abstract class a4 {
                         i15 = i7;
                         y3Var4.h(sb3);
                         int i21 = iArr[0];
-                        if (i21 <= i15 && i21 < list2.size() && ((a) list2.get(iArr[0])).f21915i) {
+                        if (i21 <= i15 && i21 < list2.size() && ((a) list2.get(iArr[0])).f21912i) {
                             iArr[0] = iArr[0] + 1;
                         }
                         sb3.append("</details>");
@@ -222,8 +222,8 @@ public abstract class a4 {
                         i15 = i7;
                         list2 = list3;
                         boolean z12 = true;
-                        if (aVar.f21911c > 0 && l(aVar.f21910b) != null) {
-                            int i22 = aVar.f21911c;
+                        if (aVar.f21908c > 0 && l(aVar.f21907b) != null) {
+                            int i22 = aVar.f21908c;
                             boolean z13 = aVar.d > 0;
                             while (arrayList.size() > i22) {
                                 y3Var2.g(sb3);
@@ -251,7 +251,7 @@ public abstract class a4 {
                         } else {
                             y3Var2.h(sb3);
                             int i23 = iArr[0];
-                            TL_iv.PageBlock pageBlock = aVar.f21910b;
+                            TL_iv.PageBlock pageBlock = aVar.f21907b;
                             if (pageBlock instanceof TL_iv.pageBlockDivider) {
                                 sb3.append("<hr>");
                             } else if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
@@ -284,17 +284,17 @@ public abstract class a4 {
                             } else if (pageBlock instanceof TL_iv.pageBlockTable) {
                                 H(sb3, (TL_iv.pageBlockTable) pageBlock);
                             } else if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-                                G(sb3, "img", ((TL_iv.pageBlockPhoto) pageBlock).photo_id, aVar.f21914g, pageBlock);
+                                G(sb3, "img", ((TL_iv.pageBlockPhoto) pageBlock).photo_id, aVar.f21911g, pageBlock);
                                 sb3 = sb2;
                             } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
                                 sb3 = sb2;
-                                G(sb3, "video", ((TL_iv.pageBlockVideo) pageBlock).video_id, aVar.f21914g, pageBlock);
+                                G(sb3, "video", ((TL_iv.pageBlockVideo) pageBlock).video_id, aVar.f21911g, pageBlock);
                             } else if (pageBlock instanceof TL_iv.pageBlockAudio) {
                                 sb3 = sb2;
-                                G(sb3, "audio", ((TL_iv.pageBlockAudio) pageBlock).audio_id, aVar.f21914g, pageBlock);
+                                G(sb3, "audio", ((TL_iv.pageBlockAudio) pageBlock).audio_id, aVar.f21911g, pageBlock);
                             } else if (pageBlock instanceof TL_iv.pageBlockDocument) {
                                 sb3 = sb2;
-                                G(sb3, "document", ((TL_iv.pageBlockDocument) pageBlock).document_id, aVar.f21914g, pageBlock);
+                                G(sb3, "document", ((TL_iv.pageBlockDocument) pageBlock).document_id, aVar.f21911g, pageBlock);
                             } else {
                                 sb3 = sb2;
                                 String str3 = "<figcaption>";
@@ -373,9 +373,9 @@ public abstract class a4 {
                                         sb3.append(pageblockmap.zoom);
                                         sb3.append('\"');
                                     }
-                                    if (pageblockmap.f28630w != 0) {
+                                    if (pageblockmap.f28628w != 0) {
                                         sb3.append(" w=\"");
-                                        sb3.append(pageblockmap.f28630w);
+                                        sb3.append(pageblockmap.f28628w);
                                         sb3.append('\"');
                                     }
                                     if (pageblockmap.h != 0) {
@@ -608,9 +608,9 @@ public abstract class a4 {
         int i14;
         int i15;
         if (s3.A3(aVar)) {
-            A = b6.r(((TL_iv.pageBlockDetails) aVar.f21910b).title, null, true);
+            A = b6.r(((TL_iv.pageBlockDetails) aVar.f21907b).title, null, true);
         } else {
-            A = z5.A(aVar.f21910b);
+            A = z5.A(aVar.f21907b);
         }
         if (A == null) {
             A = "";
@@ -721,19 +721,19 @@ public abstract class a4 {
         int i10;
         String str2;
         long j10;
-        ArrayList arrayList = z3Var.f22555e;
+        ArrayList arrayList = z3Var.f22552e;
         int size = arrayList.size();
         int i11 = 0;
         while (i11 < size) {
             Object obj = arrayList.get(i11);
             i11++;
             z3 z3Var2 = (z3) obj;
-            if (z3Var2.f22553b) {
+            if (z3Var2.f22550b) {
                 spannableStringBuilder2 = spannableStringBuilder;
                 i10 = i7;
                 str2 = str;
                 j10 = j3;
-                j(spannableStringBuilder2, q(z3Var2.f22554c), i10, str2, j10);
+                j(spannableStringBuilder2, q(z3Var2.f22551c), i10, str2, j10);
             } else {
                 spannableStringBuilder2 = spannableStringBuilder;
                 i10 = i7;
@@ -750,19 +750,19 @@ public abstract class a4 {
 
     public static void f(SpannableStringBuilder spannableStringBuilder, z3 z3Var) {
         SpannableStringBuilder spannableStringBuilder2;
-        ArrayList arrayList = z3Var.f22555e;
+        ArrayList arrayList = z3Var.f22552e;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             z3 z3Var2 = (z3) obj;
-            if (z3Var2.f22553b) {
+            if (z3Var2.f22550b) {
                 spannableStringBuilder2 = spannableStringBuilder;
-                j(spannableStringBuilder2, q(z3Var2.f22554c), 0, null, 0L);
+                j(spannableStringBuilder2, q(z3Var2.f22551c), 0, null, 0L);
             } else {
                 spannableStringBuilder2 = spannableStringBuilder;
-                if (!"cite".equals(z3Var2.f22552a)) {
+                if (!"cite".equals(z3Var2.f22549a)) {
                     h(spannableStringBuilder2, z3Var2, 0, null, 0L);
                 }
             }
@@ -780,7 +780,7 @@ public abstract class a4 {
         int i11;
         long j10;
         TL_keyboard.InlineButtonType v;
-        if ("button".equals(z3Var.f22552a) && (v = v(z3Var)) != null) {
+        if ("button".equals(z3Var.f22549a) && (v = v(z3Var)) != null) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             e(spannableStringBuilder2, z3Var, i7, str, j3);
             if (spannableStringBuilder2.length() > 0) {
@@ -795,7 +795,7 @@ public abstract class a4 {
             }
             return;
         }
-        String str3 = z3Var.f22552a;
+        String str3 = z3Var.f22549a;
         str3.getClass();
         char c10 = 65535;
         switch (str3.hashCode()) {
@@ -990,7 +990,7 @@ public abstract class a4 {
                 j10 = j3;
                 break;
         }
-        if (z3Var.f22555e.isEmpty() && !z3Var.f22553b) {
+        if (z3Var.f22552e.isEmpty() && !z3Var.f22550b) {
             return;
         }
         e(spannableStringBuilder, z3Var, i10, str2, j10);
@@ -1003,14 +1003,14 @@ public abstract class a4 {
         sb2.append(j3);
         sb2.append('\"');
         if (rVar != null) {
-            if (rVar.f22268j > 0) {
+            if (rVar.f22265j > 0) {
                 sb2.append(" width=\"");
-                sb2.append(rVar.f22268j);
+                sb2.append(rVar.f22265j);
                 sb2.append('\"');
             }
-            if (rVar.f22269k > 0) {
+            if (rVar.f22266k > 0) {
                 sb2.append(" height=\"");
-                sb2.append(rVar.f22269k);
+                sb2.append(rVar.f22266k);
                 sb2.append('\"');
             }
         }
@@ -1117,7 +1117,7 @@ public abstract class a4 {
         boolean z10;
         String lowerCase;
         int indexOf;
-        ArrayList arrayList = z3Var.f22555e;
+        ArrayList arrayList = z3Var.f22552e;
         int size = arrayList.size();
         int i7 = 0;
         int i10 = 0;
@@ -1125,8 +1125,8 @@ public abstract class a4 {
             Object obj = arrayList.get(i10);
             i10++;
             z3 z3Var2 = (z3) obj;
-            if (!z3Var2.f22553b) {
-                String str = z3Var2.f22552a;
+            if (!z3Var2.f22550b) {
+                String str = z3Var2.f22549a;
                 str.getClass();
                 int i11 = -1;
                 switch (str.hashCode()) {
@@ -1166,20 +1166,20 @@ public abstract class a4 {
                         ArrayList<TL_iv.pageTableRow> arrayList2 = pageblocktable.rows;
                         TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
                         pagetablerow.cells = new ArrayList<>();
-                        ArrayList arrayList3 = z3Var2.f22555e;
+                        ArrayList arrayList3 = z3Var2.f22552e;
                         int size2 = arrayList3.size();
                         int i12 = i7;
                         while (i12 < size2) {
                             Object obj2 = arrayList3.get(i12);
                             i12++;
                             z3 z3Var3 = (z3) obj2;
-                            if (!z3Var3.f22553b) {
-                                if ("td".equals(z3Var3.f22552a) || "th".equals(z3Var3.f22552a)) {
+                            if (!z3Var3.f22550b) {
+                                if ("td".equals(z3Var3.f22549a) || "th".equals(z3Var3.f22549a)) {
                                     TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
                                     pagetablecell.colspan = C(i7, z3Var3.a("colspan"));
                                     pagetablecell.rowspan = C(i7, z3Var3.a("rowspan"));
                                     d6.d(pagetablecell, w(z3Var3));
-                                    if (!"th".equals(z3Var3.f22552a) && !z3Var3.b("header")) {
+                                    if (!"th".equals(z3Var3.f22549a) && !z3Var3.b("header")) {
                                         z10 = i7;
                                     } else {
                                         z10 = 1;

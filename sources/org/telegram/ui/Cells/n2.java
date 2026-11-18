@@ -1,58 +1,69 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class n2 extends AnimatorListenerAdapter {
-    public final int f31110a;
-    public final t2 f31111b;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.cx;
+public final class n2 extends fi.e7 {
+    public final u2 S;
 
-    public n2(t2 t2Var, int i7) {
-        this.f31110a = i7;
-        this.f31111b = t2Var;
+    public n2(u2 u2Var) {
+        super(null, false);
+        this.S = u2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i7;
-        int i10;
-        switch (this.f31110a) {
-            case 0:
-                t2 t2Var = this.f31111b;
-                t2Var.W3 = 1.0f;
-                t2Var.Z3 = null;
-                t2Var.f31847a4 = null;
-                t2Var.f31853b4 = null;
-                t2Var.invalidate();
-                return;
-            case 1:
-                t2 t2Var2 = this.f31111b;
-                t2Var2.X3 = 1.0f;
-                t2Var2.invalidate();
-                return;
-            default:
-                t2 t2Var3 = this.f31111b;
-                boolean z10 = t2Var3.T2;
-                if (t2Var3.R2) {
-                    i7 = 2;
-                } else {
-                    i7 = 0;
+    public final boolean c(TLRPC.Chat chat, TLRPC.User user) {
+        if (((chat != null && chat.linked_community_id != 0) || (user != null && user.linked_community_id != 0)) && !this.S.P0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean d(long j3) {
+        u2 u2Var = this.S;
+        int i7 = u2Var.G0;
+        cx cxVar = u2Var.E4;
+        if (cxVar != null && !u2Var.P0) {
+            if (j3 > 0) {
+                TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(j3));
+                if (c22 != null && c22.linked_community_id != 0) {
+                    cxVar.showDialog(new li.d0(cxVar, c22.linked_community_id));
+                    return true;
                 }
-                int i11 = (z10 ? 1 : 0) + i7;
-                if (t2Var3.S2) {
-                    i10 = 4;
-                } else {
-                    i10 = 0;
-                }
-                int i12 = i11 + i10;
-                int i13 = t2Var3.f31957w4;
-                if (i13 != i12) {
-                    t2Var3.F(i13, i12);
-                } else {
-                    t2Var3.A4 = false;
-                    t2Var3.f31969y4 = i13;
-                }
-                t2Var3.invalidate();
-                return;
+                return false;
+            }
+            TLRPC.Chat O0 = mp.u1(i7).O0(Long.valueOf(-j3));
+            if (O0 != null && O0.linked_community_id != 0) {
+                cxVar.showDialog(new li.d0(cxVar, O0.linked_community_id));
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void e() {
+        u2 u2Var = this.S;
+        q2 q2Var = u2Var.f31911e0;
+        if (q2Var == null) {
+            return;
+        }
+        q2Var.w(u2Var);
+    }
+
+    @Override
+    public final void f(long j3) {
+        u2 u2Var = this.S;
+        q2 q2Var = u2Var.f31911e0;
+        if (q2Var == null) {
+            return;
+        }
+        if (u2Var.K0 != 0) {
+            q2Var.q();
+        } else {
+            q2Var.u(u2Var);
         }
     }
 }

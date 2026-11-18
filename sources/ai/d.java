@@ -136,7 +136,7 @@ public abstract class d {
         if (j3 == 0 || elapsedRealtime - j3 > 60000) {
             f1170b = elapsedRealtime;
             try {
-                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26915b);
+                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26913b);
             } catch (Throwable unused) {
                 z10 = false;
             }

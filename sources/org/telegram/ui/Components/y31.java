@@ -21,7 +21,7 @@ public final class y31 extends vy {
 
     @Override
     public final boolean Y0() {
-        return org.telegram.messenger.gd.f24216a0;
+        return org.telegram.messenger.gd.f24213a0;
     }
 
     @Override

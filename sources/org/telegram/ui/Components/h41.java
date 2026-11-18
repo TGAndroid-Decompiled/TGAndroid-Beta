@@ -43,7 +43,7 @@ public final class h41 extends FrameLayout implements org.telegram.messenger.fs 
 
     public h41(Context context, final e41 e41Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, TLRPC.StickerSetCovered stickerSetCovered, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        int i7 = org.telegram.messenger.j10.f24773t0;
+        int i7 = org.telegram.messenger.j10.f24770t0;
         this.f35714a = i7;
         this.R = 1.0f;
         this.S = new Paint();
@@ -58,7 +58,7 @@ public final class h41 extends FrameLayout implements org.telegram.messenger.fs 
         this.f35722w = new jg.c2(context, new v31(this, e41Var), stickerSetCoveredArr, longSparseArray, longSparseArray2, i6Var);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f35723x = frameLayout;
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29469h5, frameLayout, i6Var);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29467h5, frameLayout, i6Var);
         w31 w31Var = new w31(this, context, i6Var);
         this.h = w31Var;
         w31Var.setHint(org.telegram.messenger.gd.M0(2131745510, null));
@@ -95,8 +95,8 @@ public final class h41 extends FrameLayout implements org.telegram.messenger.fs 
         addView(frameLayout, c8.ma.e(-1, 58, 51));
         d();
         org.telegram.messenger.ks f10 = org.telegram.messenger.ks.f(i7);
-        f10.c(this, org.telegram.messenger.ks.f25220x0);
-        f10.c(this, org.telegram.messenger.ks.f25234z0);
+        f10.c(this, org.telegram.messenger.ks.f25218x0);
+        f10.c(this, org.telegram.messenger.ks.f25232z0);
     }
 
     private void setShadowVisible(boolean z10) {
@@ -123,7 +123,7 @@ public final class h41 extends FrameLayout implements org.telegram.messenger.fs 
                 ofFloat.addUpdateListener(new d41(this, contentTopOffset));
                 this.M.addListener(new s11(this, 2));
                 this.M.setDuration(250L);
-                this.M.setInterpolator(org.telegram.ui.ActionBar.j1.f29019w);
+                this.M.setInterpolator(org.telegram.ui.ActionBar.j1.f29017w);
                 this.M.start();
                 return;
             }
@@ -142,7 +142,7 @@ public final class h41 extends FrameLayout implements org.telegram.messenger.fs 
         if (stickerSet != null) {
             inputStickerSet = new TLRPC.TL_inputStickerSetID();
             inputStickerSet.access_hash = stickerSet.access_hash;
-            inputStickerSet.f28425id = stickerSet.f28432id;
+            inputStickerSet.f28423id = stickerSet.f28430id;
         }
         TLRPC.InputStickerSet inputStickerSet2 = inputStickerSet;
         if (inputStickerSet2 != null) {
@@ -218,17 +218,17 @@ public final class h41 extends FrameLayout implements org.telegram.messenger.fs 
         int childCount = x31Var.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
             View childAt = x31Var.getChildAt(i7);
-            if (childAt instanceof org.telegram.ui.Cells.j8) {
-                org.telegram.ui.Cells.j8 j8Var = (org.telegram.ui.Cells.j8) childAt;
-                j8Var.d();
-                j8Var.e();
+            if (childAt instanceof org.telegram.ui.Cells.k8) {
+                org.telegram.ui.Cells.k8 k8Var = (org.telegram.ui.Cells.k8) childAt;
+                k8Var.d();
+                k8Var.e();
             }
         }
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = org.telegram.messenger.ks.f25220x0;
+        int i11 = org.telegram.messenger.ks.f25218x0;
         x31 x31Var = this.f35719n;
         g41 g41Var = this.f35721s;
         if (i7 == i11) {
@@ -243,7 +243,7 @@ public final class h41 extends FrameLayout implements org.telegram.messenger.fs 
                 }
                 g41Var.G();
             }
-        } else if (i7 == org.telegram.messenger.ks.f25234z0) {
+        } else if (i7 == org.telegram.messenger.ks.f25232z0) {
             if (this.L != org.telegram.messenger.ri.d0(this.f35714a).Z()) {
                 this.K = false;
             }

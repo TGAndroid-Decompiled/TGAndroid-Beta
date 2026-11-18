@@ -83,10 +83,10 @@ public final class h90 extends gt0 {
         } else {
             i7 = 0;
         }
-        org.telegram.ui.ne0 ne0Var = i90Var.K;
-        if (ne0Var != null && i90Var.M != i7) {
+        org.telegram.ui.oe0 oe0Var = i90Var.K;
+        if (oe0Var != null && i90Var.M != i7) {
             i90Var.M = i7;
-            ne0Var.r(i90Var.L[i7], true);
+            oe0Var.r(i90Var.L[i7], true);
         }
         i90Var.h0(true);
     }

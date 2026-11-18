@@ -8,7 +8,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class l0 extends k41 {
-    public static final int f12205b = 0;
+    public static final int f12202b = 0;
 
     static {
         k41.h(new k41());

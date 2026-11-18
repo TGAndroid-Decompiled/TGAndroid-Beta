@@ -20,22 +20,22 @@ public final class g7 implements Runnable {
         switch (this.f35359a) {
             case 0:
                 g8 g8Var = this.f35360b;
-                frameLayout = (FrameLayout) g8Var.f30192b;
+                frameLayout = (FrameLayout) g8Var.f30190b;
                 i6Var = g8Var.J0;
                 break;
             case 1:
                 g8 g8Var2 = this.f35360b;
-                frameLayout = (FrameLayout) g8Var2.f30192b;
+                frameLayout = (FrameLayout) g8Var2.f30190b;
                 i6Var = g8Var2.J0;
                 break;
             case 2:
                 g8 g8Var3 = this.f35360b;
-                frameLayout = (FrameLayout) g8Var3.f30192b;
+                frameLayout = (FrameLayout) g8Var3.f30190b;
                 i6Var = g8Var3.J0;
                 break;
             default:
                 g8 g8Var4 = this.f35360b;
-                frameLayout = (FrameLayout) g8Var4.f30192b;
+                frameLayout = (FrameLayout) g8Var4.f30190b;
                 i6Var = g8Var4.J0;
                 break;
         }

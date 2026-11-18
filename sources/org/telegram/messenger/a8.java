@@ -13,18 +13,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.time.FastDateFormat;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 public final class a8 {
-    public static boolean f22841j = false;
-    public static volatile a8 f22842k;
-    public static long f22843l;
-    public OutputStreamWriter f22844a;
-    public FastDateFormat f22845b;
-    public FastDateFormat f22846c;
+    public static boolean f22838j = false;
+    public static volatile a8 f22839k;
+    public static long f22840l;
+    public OutputStreamWriter f22841a;
+    public FastDateFormat f22842b;
+    public FastDateFormat f22843c;
     public q5 d;
-    public File f22847e;
-    public File f22848f;
-    public boolean f22849g;
+    public File f22844e;
+    public File f22845f;
+    public boolean f22846g;
     public OutputStreamWriter h;
-    public File f22850i;
+    public File f22847i;
 
     static {
         new AtomicInteger();
@@ -36,7 +36,7 @@ public final class a8 {
         File P0 = g0.P0();
         if (P0 != null && (listFiles = P0.listFiles()) != null) {
             for (File file : listFiles) {
-                if ((j().f22847e == null || !file.getAbsolutePath().equals(j().f22847e.getAbsolutePath())) && (j().f22848f == null || !file.getAbsolutePath().equals(j().f22848f.getAbsolutePath()))) {
+                if ((j().f22844e == null || !file.getAbsolutePath().equals(j().f22844e.getAbsolutePath())) && (j().f22845f == null || !file.getAbsolutePath().equals(j().f22845f.getAbsolutePath()))) {
                     j();
                     file.delete();
                 }
@@ -45,43 +45,43 @@ public final class a8 {
     }
 
     public static void b(String str) {
-        if (s2.f26723a) {
+        if (s2.f26721a) {
             h();
             Log.d("tmessages", str);
-            if (j().f22844a != null) {
+            if (j().f22841a != null) {
                 j().d.c(new n4(str, 3));
             }
         }
     }
 
     public static void c(boolean z10) {
-        if (!z10 && System.currentTimeMillis() - f22843l < 30000) {
+        if (!z10 && System.currentTimeMillis() - f22840l < 30000) {
             return;
         }
-        f22843l = System.currentTimeMillis();
+        f22840l = System.currentTimeMillis();
         try {
             File P0 = g0.P0();
-            Debug.dumpHprofData(new File(P0, j().f22845b.format(System.currentTimeMillis()) + "_heap.hprof").getAbsolutePath());
+            Debug.dumpHprofData(new File(P0, j().f22842b.format(System.currentTimeMillis()) + "_heap.hprof").getAbsolutePath());
         } catch (Exception e10) {
             g(e10, true);
         }
     }
 
     public static void d(String str) {
-        if (s2.f26723a) {
+        if (s2.f26721a) {
             h();
             Log.e("tmessages", str);
-            if (j().f22844a != null) {
+            if (j().f22841a != null) {
                 j().d.c(new n4(str, 2));
             }
         }
     }
 
     public static void e(String str, Throwable th2) {
-        if (s2.f26723a) {
+        if (s2.f26721a) {
             h();
             Log.e("tmessages", str, th2);
-            if (j().f22844a != null) {
+            if (j().f22841a != null) {
                 j().d.c(new z4(11, str, th2));
             }
         }
@@ -92,21 +92,21 @@ public final class a8 {
     }
 
     public static void g(Throwable th2, boolean z10) {
-        if (s2.f26723a) {
+        if (s2.f26721a) {
             if (!(th2 instanceof InterruptedException) && !(th2 instanceof MediaCodecVideoConvertor.ConversionCanceledException) && !(th2 instanceof z7) && z10) {
-                Typeface typeface = g0.f24093a;
+                Typeface typeface = g0.f24090a;
                 t0.a(th2);
             }
-            if (th2.getMessage() != null && th2.getMessage().contains("disk image is malformed") && !f22841j) {
+            if (th2.getMessage() != null && th2.getMessage().contains("disk image is malformed") && !f22838j) {
                 b("copy malformed files");
-                f22841j = true;
+                f22838j = true;
                 File file = new File(t0.h(), "malformed_database/");
                 file.mkdirs();
-                tr a02 = tr.a0(j10.f24773t0);
+                tr a02 = tr.a0(j10.f24770t0);
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(a02.f27058c);
+                arrayList.add(a02.f27056c);
                 arrayList.add(a02.d);
-                arrayList.add(a02.f27061e);
+                arrayList.add(a02.f27059e);
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     try {
                         g0.E((File) arrayList.get(i7), new File(file, ((File) arrayList.get(i7)).getName()));
@@ -117,7 +117,7 @@ public final class a8 {
             }
             h();
             th2.printStackTrace();
-            if (j().f22844a != null) {
+            if (j().f22841a != null) {
                 j().d.c(new y7(0, th2));
             } else {
                 th2.printStackTrace();
@@ -130,7 +130,7 @@ public final class a8 {
     }
 
     public static void i(Throwable th2, boolean z10) {
-        if (!s2.f26723a) {
+        if (!s2.f26721a) {
             return;
         }
         if (th2 instanceof OutOfMemoryError) {
@@ -138,12 +138,12 @@ public final class a8 {
             c(false);
         }
         if (z10 && !(th2 instanceof InterruptedException) && !(th2 instanceof MediaCodecVideoConvertor.ConversionCanceledException) && !(th2 instanceof z7)) {
-            Typeface typeface = g0.f24093a;
+            Typeface typeface = g0.f24090a;
             t0.a(th2);
         }
         h();
         th2.printStackTrace();
-        if (j().f22844a != null) {
+        if (j().f22841a != null) {
             j().d.c(new y7(1, th2));
         } else {
             th2.printStackTrace();
@@ -152,25 +152,25 @@ public final class a8 {
 
     public static a8 j() {
         a8 a8Var;
-        a8 a8Var2 = f22842k;
+        a8 a8Var2 = f22839k;
         if (a8Var2 == null) {
             synchronized (a8.class) {
                 try {
-                    a8 a8Var3 = f22842k;
+                    a8 a8Var3 = f22839k;
                     a8Var = a8Var3;
                     if (a8Var3 == null) {
                         ?? obj = new Object();
-                        obj.f22844a = null;
-                        obj.f22845b = null;
-                        obj.f22846c = null;
+                        obj.f22841a = null;
+                        obj.f22842b = null;
+                        obj.f22843c = null;
                         obj.d = null;
-                        obj.f22847e = null;
-                        obj.f22848f = null;
+                        obj.f22844e = null;
+                        obj.f22845f = null;
                         obj.h = null;
-                        obj.f22850i = null;
-                        f22842k = obj;
+                        obj.f22847i = null;
+                        f22839k = obj;
                         a8Var = obj;
-                        if (s2.f26723a) {
+                        if (s2.f26721a) {
                             obj.k();
                             a8Var = obj;
                         }
@@ -185,10 +185,10 @@ public final class a8 {
     }
 
     public static void l(String str) {
-        if (s2.f26723a) {
+        if (s2.f26721a) {
             h();
             Log.w("tmessages", str);
-            if (j().f22844a != null) {
+            if (j().f22841a != null) {
                 j().d.c(new n4(str, 1));
             }
         }
@@ -196,11 +196,11 @@ public final class a8 {
 
     public final void k() {
         File P0;
-        if (!this.f22849g) {
+        if (!this.f22846g) {
             Locale locale = Locale.US;
-            this.f22845b = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss.SSS", locale);
+            this.f22842b = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss.SSS", locale);
             FastDateFormat fastDateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss", locale);
-            this.f22846c = fastDateFormat;
+            this.f22843c = fastDateFormat;
             String format = fastDateFormat.format(System.currentTimeMillis());
             try {
                 P0 = g0.P0();
@@ -210,23 +210,23 @@ public final class a8 {
             if (P0 == null) {
                 return;
             }
-            this.f22847e = new File(P0, format + ".txt");
-            this.f22850i = new File(P0, format + "_mtproto.txt");
+            this.f22844e = new File(P0, format + ".txt");
+            this.f22847i = new File(P0, format + "_mtproto.txt");
             try {
                 this.d = new q5("logQueue");
-                this.f22847e.createNewFile();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(this.f22847e));
-                this.f22844a = outputStreamWriter;
+                this.f22844e.createNewFile();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(this.f22844e));
+                this.f22841a = outputStreamWriter;
                 outputStreamWriter.write("-----start log " + format + "-----\n");
-                this.f22844a.flush();
-                OutputStreamWriter outputStreamWriter2 = new OutputStreamWriter(new FileOutputStream(this.f22850i));
+                this.f22841a.flush();
+                OutputStreamWriter outputStreamWriter2 = new OutputStreamWriter(new FileOutputStream(this.f22847i));
                 this.h = outputStreamWriter2;
                 outputStreamWriter2.write("-----start log " + format + "-----\n");
                 this.h.flush();
             } catch (Exception e11) {
                 e11.printStackTrace();
             }
-            this.f22849g = true;
+            this.f22846g = true;
         }
     }
 }

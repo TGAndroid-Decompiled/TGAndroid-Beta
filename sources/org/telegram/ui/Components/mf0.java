@@ -58,7 +58,7 @@ public final class mf0 extends FrameLayout {
         this.f37452b = currentAccount;
         e51 e51Var = new e51(context, currentAccount, 0, false, new d(this, 19), new iy(this, 11), null, null);
         this.f37453c = e51Var;
-        e51Var.j(new bi.e6(5, this, cxVar));
+        e51Var.j(new bi.d6(5, this, cxVar));
         addView(e51Var, c8.ma.e(-1, -1, 119));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f37461y = frameLayout;
@@ -129,7 +129,7 @@ public final class mf0 extends FrameLayout {
                             org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) i5.c.h(1, arrayList);
                             tL_channels_searchPosts.offset_rate = this.f37455f;
                             tL_channels_searchPosts.offset_id = fjVar.L1();
-                            tL_channels_searchPosts.offset_peer = u12.o1(fjVar.f23968k.peer_id);
+                            tL_channels_searchPosts.offset_peer = u12.o1(fjVar.f23965k.peer_id);
                         } else {
                             tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
                         }
@@ -139,7 +139,7 @@ public final class mf0 extends FrameLayout {
                             org.telegram.messenger.fj fjVar2 = (org.telegram.messenger.fj) i5.c.h(1, arrayList2);
                             tL_channels_searchPosts.offset_rate = this.f37457r;
                             tL_channels_searchPosts.offset_id = fjVar2.L1();
-                            tL_channels_searchPosts.offset_peer = u12.o1(fjVar2.f23968k.peer_id);
+                            tL_channels_searchPosts.offset_peer = u12.o1(fjVar2.f23965k.peer_id);
                         } else {
                             tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
                         }
@@ -185,9 +185,9 @@ public final class mf0 extends FrameLayout {
     }
 
     public final void c() {
-        this.f37461y.setBackgroundColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+        this.f37461y.setBackgroundColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
         this.G.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.G6, false));
-        int i7 = org.telegram.ui.ActionBar.n6.f29788y6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29786y6;
         this.J.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
         this.H.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
         e51 e51Var = this.f37453c;
@@ -294,7 +294,7 @@ public final class mf0 extends FrameLayout {
             }
             sb2.append(valueOf2);
             dVar.g(org.telegram.messenger.gd.a0(null, null, 2131745532, sb2.toString()), true);
-            dVar.f14341e.r(false, true);
+            dVar.f14338e.r(false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
                 public final mf0 f36755b;
 
@@ -433,6 +433,6 @@ public final class mf0 extends FrameLayout {
     }
 
     public void setKeyboardHeight(int i7) {
-        this.E.animate().translationY((-i7) / 2.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.j1.f29019w).start();
+        this.E.animate().translationY((-i7) / 2.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.j1.f29017w).start();
     }
 }

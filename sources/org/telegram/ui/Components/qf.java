@@ -66,7 +66,7 @@ public final class qf {
         org.telegram.ui.bn bnVar = chatActivityEnterView.D3;
         if (bnVar != null) {
             bnVar.dd();
-            yw0 yw0Var = bnVar.f46170s1;
+            yw0 yw0Var = bnVar.f46161s1;
             if (yw0Var != null) {
                 yw0Var.e();
             }

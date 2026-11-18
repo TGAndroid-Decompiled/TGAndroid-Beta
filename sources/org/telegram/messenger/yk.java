@@ -1,20 +1,20 @@
 package org.telegram.messenger;
 public final class yk implements Runnable {
-    public final int f28153a;
-    public final mp f28154b;
-    public final long f28155c;
+    public final int f28151a;
+    public final mp f28152b;
+    public final long f28153c;
     public final int d;
-    public final boolean f28156e;
-    public final int f28157f;
+    public final boolean f28154e;
+    public final int f28155f;
     public final int h;
 
     public yk(mp mpVar, long j3, int i7, boolean z10, int i10, int i11, int i12) {
-        this.f28153a = i12;
-        this.f28154b = mpVar;
-        this.f28155c = j3;
+        this.f28151a = i12;
+        this.f28152b = mpVar;
+        this.f28153c = j3;
         this.d = i7;
-        this.f28156e = z10;
-        this.f28157f = i10;
+        this.f28154e = z10;
+        this.f28155f = i10;
         this.h = i11;
     }
 

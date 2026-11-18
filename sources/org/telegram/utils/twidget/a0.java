@@ -7,13 +7,13 @@ import android.os.Parcel;
 import android.os.SystemClock;
 import android.util.Log;
 import java.nio.charset.StandardCharsets;
-import org.telegram.ui.cd0;
+import org.telegram.ui.dd0;
 public final class a0 extends Binder implements b {
-    public static final int f54675b = 0;
-    public final WidgetEngineService f54676a;
+    public static final int f54676b = 0;
+    public final WidgetEngineService f54677a;
 
     public a0(WidgetEngineService widgetEngineService) {
-        this.f54676a = widgetEngineService;
+        this.f54677a = widgetEngineService;
         attachInterface(this, "org.telegram.utils.twidget.IWidgetEngine");
     }
 
@@ -28,8 +28,8 @@ public final class a0 extends Binder implements b {
             @Override
             public final void run() {
                 WidgetSandboxNative.destroy(j3);
-                synchronized (l.f54825a) {
-                    l.f54826b = Math.max(0, l.f54826b - 1);
+                synchronized (l.f54826a) {
+                    l.f54827b = Math.max(0, l.f54827b - 1);
                 }
             }
         });
@@ -52,17 +52,16 @@ public final class a0 extends Binder implements b {
 
     @Override
     public final void b1() {
-        if (WidgetEngineService.f54672e) {
+        if (WidgetEngineService.f54673e) {
             return;
         }
-        long uptimeMillis = SystemClock.uptimeMillis();
+        SystemClock.uptimeMillis();
         try {
-            String d = WidgetEngineService.d(new q(this.f54676a.getAssets(), 3));
-            long uptimeMillis2 = SystemClock.uptimeMillis() - uptimeMillis;
-            WidgetEngineBackend.warmFonts(this.f54676a.getResources().getDisplayMetrics().density);
-            long uptimeMillis3 = (SystemClock.uptimeMillis() - uptimeMillis) - uptimeMillis2;
+            String d = WidgetEngineService.d(new q(this.f54677a.getAssets(), 3));
+            SystemClock.uptimeMillis();
+            WidgetEngineBackend.warmFonts(this.f54677a.getResources().getDisplayMetrics().density);
+            SystemClock.uptimeMillis();
             WidgetSandboxNative.prepare(d.getBytes(StandardCharsets.UTF_8));
-            Log.i("WidgetEngine", "warm: bundles in " + uptimeMillis2 + " ms, fonts in " + uptimeMillis3 + " ms, the validator in " + (((SystemClock.uptimeMillis() - uptimeMillis) - uptimeMillis2) - uptimeMillis3) + " ms");
         } catch (RuntimeException e10) {
             Log.e("WidgetEngine", "warmup failed", e10);
         }
@@ -130,7 +129,7 @@ public final class a0 extends Binder implements b {
                         dVar2 = (d) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
-                        obj.f54682a = readStrongBinder;
+                        obj.f54683a = readStrongBinder;
                         dVar = obj;
                         long t6 = t(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z10, dVar);
                         parcel2.writeNoException();
@@ -234,18 +233,18 @@ public final class a0 extends Binder implements b {
 
     @Override
     public final long t(byte[] bArr, byte[] bArr2, float f10, float f11, int i7, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z10, d dVar) {
-        if (!WidgetEngineService.f54672e) {
-            long uptimeMillis = SystemClock.uptimeMillis();
-            String d = WidgetEngineService.d(new q(this.f54676a.getAssets(), 3));
-            long uptimeMillis2 = SystemClock.uptimeMillis() - uptimeMillis;
+        if (!WidgetEngineService.f54673e) {
+            SystemClock.uptimeMillis();
+            String d = WidgetEngineService.d(new q(this.f54677a.getAssets(), 3));
+            SystemClock.uptimeMillis();
             long create = WidgetSandboxNative.create(d.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f10, f11, i7, bArr3, bArr4, bArr5, bArr6, z10, new WidgetEngineBackend(dVar, f11));
-            Object obj = l.f54825a;
+            Object obj = l.f54826a;
             synchronized (obj) {
                 try {
-                    l.f54826b++;
-                    if (!l.f54827c) {
-                        l.f54827c = true;
-                        Thread thread = new Thread(new cd0(17), "widget-engine-memory");
+                    l.f54827b++;
+                    if (!l.f54828c) {
+                        l.f54828c = true;
+                        Thread thread = new Thread(new dd0(17), "widget-engine-memory");
                         thread.setDaemon(true);
                         thread.start();
                     }
@@ -254,7 +253,6 @@ public final class a0 extends Binder implements b {
                     throw th2;
                 }
             }
-            Log.i("WidgetEngine", "session in " + (SystemClock.uptimeMillis() - uptimeMillis) + " ms (bundles " + uptimeMillis2 + " ms)");
             return create;
         }
         throw new IllegalStateException("Widget engine: no seccomp filter on this device");

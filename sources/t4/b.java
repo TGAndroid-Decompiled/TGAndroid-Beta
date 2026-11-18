@@ -34,7 +34,7 @@ public final class b {
             if (iArr2[i13] > 0) {
                 int rgb = Color.rgb(b((i13 >> 10) & 31, 5, 8), b((i13 >> 5) & 31, 5, 8), b(i13 & 31, 5, 8));
                 float[] fArr = (float[]) this.f57600e;
-                ThreadLocal threadLocal = i0.a.f15890a;
+                ThreadLocal threadLocal = i0.a.f15887a;
                 i0.a.c(Color.red(rgb), Color.green(rgb), Color.blue(rgb), fArr);
                 if (c(fArr)) {
                     iArr2[i13] = 0;

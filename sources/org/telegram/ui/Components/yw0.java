@@ -98,9 +98,9 @@ public class yw0 extends FrameLayout implements org.telegram.messenger.fs, org.t
             this.f42650e.setLayoutManager(c0Var);
             v4.k kVar = new v4.k();
             kVar.n(45L);
-            kVar.f59169o = lrVar;
+            kVar.f59170o = lrVar;
             this.f42650e.setItemAnimator(kVar);
-            org.telegram.ui.ActionBar.u6.J(this.f42650e, org.telegram.ui.ActionBar.n6.f29488i6, this.f42645b);
+            org.telegram.ui.ActionBar.u6.J(this.f42650e, org.telegram.ui.ActionBar.n6.f29486i6, this.f42645b);
             vw0 vw0Var2 = this.f42650e;
             n nVar = new n(this, 17);
             vw0Var2.setOnItemClickListener(nVar);
@@ -125,7 +125,7 @@ public class yw0 extends FrameLayout implements org.telegram.messenger.fs, org.t
             if (arrayList != null && !arrayList.isEmpty()) {
                 e();
             }
-        } else if (i7 == org.telegram.messenger.ks.f25145k4 && this.f42650e != null) {
+        } else if (i7 == org.telegram.messenger.ks.f25148l4 && this.f42650e != null) {
             for (int i11 = 0; i11 < this.f42650e.getChildCount(); i11++) {
                 this.f42650e.getChildAt(i11).invalidate();
             }
@@ -196,14 +196,14 @@ public class yw0 extends FrameLayout implements org.telegram.messenger.fs, org.t
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25145k4);
+        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25148l4);
         org.telegram.messenger.ks.f(this.f42643a).c(this, org.telegram.messenger.ks.L2);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25145k4);
+        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25148l4);
         org.telegram.messenger.ks.f(this.f42643a).n(this, org.telegram.messenger.ks.L2);
     }
 
@@ -227,9 +227,9 @@ public class yw0 extends FrameLayout implements org.telegram.messenger.fs, org.t
         Paint paint = this.R;
         org.telegram.ui.ActionBar.i6 i6Var = this.f42645b;
         if (paint != null) {
-            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29701tf, i6Var));
+            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29699tf, i6Var));
         }
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29701tf, i6Var);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29699tf, i6Var);
         if (this.G == null || this.H != w02) {
             this.H = w02;
             this.G = new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY);

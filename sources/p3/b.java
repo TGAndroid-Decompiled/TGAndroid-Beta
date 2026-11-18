@@ -17,7 +17,7 @@ public final class b extends da {
         v.getClass();
         String v10 = xVar.v();
         v10.getClass();
-        return new q3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f13836a, xVar.f13837b, xVar.f13838c));
+        return new q3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f13833a, xVar.f13834b, xVar.f13835c));
     }
 
     @Override

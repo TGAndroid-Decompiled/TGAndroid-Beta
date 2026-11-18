@@ -15,7 +15,7 @@ import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.p80;
 import org.telegram.ui.Components.z41;
 public final class bb extends k41 {
-    public static final int f8579b = 0;
+    public static final int f8576b = 0;
 
     static {
         k41.h(new k41());
@@ -46,24 +46,24 @@ public final class bb extends k41 {
         int i7 = l41Var.A;
         CharSequence charSequence = l41Var.f37018m;
         CharSequence charSequence2 = l41Var.f37019n;
-        org.telegram.ui.Components.n6 n6Var = cbVar.f8630e;
+        org.telegram.ui.Components.n6 n6Var = cbVar.f8627e;
         TextView textView = cbVar.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        cbVar.f8632n = i7;
+        cbVar.f8629n = i7;
         if (!equals) {
-            cbVar.f8633r.e(true, i7);
+            cbVar.f8630r.e(true, i7);
         }
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            if (cbVar.f8631f == null) {
+            if (cbVar.f8628f == null) {
                 SpannableString spannableString = new SpannableString("x");
-                cbVar.f8631f = spannableString;
-                spannableString.setSpan(new p80(org.telegram.messenger.g0.L(55.0f), n6Var), 0, cbVar.f8631f.length(), 33);
+                cbVar.f8628f = spannableString;
+                spannableString.setSpan(new p80(org.telegram.messenger.g0.L(55.0f), n6Var), 0, cbVar.f8628f.length(), 33);
             }
-            charSequence2 = cbVar.f8631f;
+            charSequence2 = cbVar.f8628f;
         }
         n6Var.setText(charSequence2);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             f10 = -1.0f;
         } else {
             f10 = 1.0f;

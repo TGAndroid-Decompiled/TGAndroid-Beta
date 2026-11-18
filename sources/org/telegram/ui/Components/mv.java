@@ -53,7 +53,7 @@ public final class mv implements Runnable {
                 for (int i10 = 0; i10 < emojipacks.size(); i10++) {
                     if (emojipacks.get(i10).f35177i) {
                         SparseIntArray sparseIntArray = ryVar.S.f33806s;
-                        char[] cArr = org.telegram.messenger.k6.f24990a;
+                        char[] cArr = org.telegram.messenger.k6.f24987a;
                         int i11 = sparseIntArray.get(i10 + 8);
                         ryVar.Q.C0();
                         ryVar.V(i11);

@@ -105,7 +105,7 @@ public final class p extends View {
         canvas.drawText(str, width, org.telegram.messenger.g0.L(6.0f) + height, paint2);
         canvas.drawText(str, width, height + org.telegram.messenger.g0.L(6.0f), paint3);
         if (this.f41114a == null) {
-            org.telegram.ui.Cells.y a02 = n6.a0(n6.x0(null, n6.f29488i6, false), 8, 8);
+            org.telegram.ui.Cells.y a02 = n6.a0(n6.x0(null, n6.f29486i6, false), 8, 8);
             this.f41114a = a02;
             a02.setCallback(this);
         }

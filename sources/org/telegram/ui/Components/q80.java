@@ -52,8 +52,8 @@ public final class q80 extends Drawable {
         if (bitmap == null) {
             return;
         }
-        int i7 = org.telegram.ui.ActionBar.n6.f29469h5;
-        int i10 = org.telegram.ui.ActionBar.n6.f29487i5;
+        int i7 = org.telegram.ui.ActionBar.n6.f29467h5;
+        int i10 = org.telegram.ui.ActionBar.n6.f29485i5;
         int x02 = org.telegram.ui.ActionBar.n6.x0(null, i7, false);
         int x03 = org.telegram.ui.ActionBar.n6.x0(null, i10, false);
         int i11 = this.f38740i;

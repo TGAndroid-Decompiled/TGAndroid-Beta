@@ -24,31 +24,31 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.f40;
 import org.telegram.ui.h30;
 import org.telegram.ui.lb;
-import org.telegram.ui.lh0;
+import org.telegram.ui.mh0;
 import org.telegram.ui.sv;
 import org.telegram.ui.y91;
 public final class j5 implements View.OnClickListener {
-    public final int f12155a;
-    public final int f12156b;
-    public final Object f12157c;
+    public final int f12152a;
+    public final int f12153b;
+    public final Object f12154c;
     public final Object d;
-    public final Object f12158e;
+    public final Object f12155e;
 
     public j5(KeyEvent.Callback callback, Object obj, int i7, Object obj2, int i10) {
-        this.f12155a = i10;
-        this.f12157c = callback;
+        this.f12152a = i10;
+        this.f12154c = callback;
         this.d = obj;
-        this.f12156b = i7;
-        this.f12158e = obj2;
+        this.f12153b = i7;
+        this.f12155e = obj2;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f12155a;
-        int i10 = this.f12156b;
-        Object obj = this.f12158e;
+        int i7 = this.f12152a;
+        int i10 = this.f12153b;
+        Object obj = this.f12155e;
         Object obj2 = this.d;
-        Object obj3 = this.f12157c;
+        Object obj3 = this.f12154c;
         switch (i7) {
             case 0:
                 m5 m5Var = (m5) obj3;
@@ -63,26 +63,26 @@ public final class j5 implements View.OnClickListener {
                     return;
                 } else if (m5Var.n1) {
                     m5Var.dismiss();
-                    sv svVar = m5Var.f12273p1;
+                    sv svVar = m5Var.f12270p1;
                     if (svVar != null) {
                         svVar.a(false);
                         return;
                     }
                     return;
                 } else {
-                    p6 R1 = mp.u1(m5Var.f30189a).R1();
+                    p6 R1 = mp.u1(m5Var.f30187a).R1();
                     TL_stories.TL_storiesStealthMode tL_storiesStealthMode = R1.B;
-                    if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(m5Var.f30189a).getCurrentTime() <= tL_storiesStealthMode.cooldown_until_date) {
+                    if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(m5Var.f30187a).getCurrentTime() <= tL_storiesStealthMode.cooldown_until_date) {
                         if (m5Var.n1) {
                             m5Var.dismiss();
-                            sv svVar2 = m5Var.f12273p1;
+                            sv svVar2 = m5Var.f12270p1;
                             if (svVar2 != null) {
                                 svVar2.a(false);
                                 return;
                             }
                             return;
                         }
-                        new lc(m5Var.f30195c, i6Var).t(org.telegram.messenger.g0.W2(gd.M0(2131744649, null)), null).k(true);
+                        new lc(m5Var.f30193c, i6Var).t(org.telegram.messenger.g0.W2(gd.M0(2131744649, null)), null).k(true);
                         return;
                     }
                     TL_stories.TL_stories_activateStealthMode tL_stories_activateStealthMode = new TL_stories.TL_stories_activateStealthMode();
@@ -90,19 +90,19 @@ public final class j5 implements View.OnClickListener {
                     tL_stories_activateStealthMode.past = true;
                     TL_stories.TL_storiesStealthMode tL_storiesStealthMode2 = new TL_stories.TL_storiesStealthMode();
                     tL_storiesStealthMode2.flags |= 3;
-                    tL_storiesStealthMode2.cooldown_until_date = ConnectionsManager.getInstance(m5Var.f30189a).getCurrentTime() + mp.u1(m5Var.f30189a).f25662h0;
-                    tL_storiesStealthMode2.active_until_date = ConnectionsManager.getInstance(m5Var.f30189a).getCurrentTime() + mp.u1(m5Var.f30189a).f25653g0;
+                    tL_storiesStealthMode2.cooldown_until_date = ConnectionsManager.getInstance(m5Var.f30187a).getCurrentTime() + mp.u1(m5Var.f30187a).f25660h0;
+                    tL_storiesStealthMode2.active_until_date = ConnectionsManager.getInstance(m5Var.f30187a).getCurrentTime() + mp.u1(m5Var.f30187a).f25651g0;
                     R1.i0(tL_storiesStealthMode2);
-                    ConnectionsManager.getInstance(m5Var.f30189a).sendRequest(tL_stories_activateStealthMode, new k5(0));
+                    ConnectionsManager.getInstance(m5Var.f30187a).sendRequest(tL_stories_activateStealthMode, new k5(0));
                     try {
-                        m5Var.f30192b.performHapticFeedback(3);
+                        m5Var.f30190b.performHapticFeedback(3);
                     } catch (Exception unused) {
                     }
                     m5Var.dismiss();
                     if (i10 == 0) {
                         m5.J0();
                     }
-                    sv svVar3 = m5Var.f12273p1;
+                    sv svVar3 = m5Var.f12270p1;
                     if (svVar3 != null) {
                         svVar3.a(true);
                         return;
@@ -115,9 +115,9 @@ public final class j5 implements View.OnClickListener {
             case 2:
                 int[] iArr = (int[]) obj3;
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) obj2;
-                lh0 lh0Var = (lh0) obj;
+                mh0 mh0Var = (mh0) obj;
                 iArr[0] = ((Integer) view.getTag()).intValue();
-                SharedPreferences.Editor edit = mp.u1(j10.f24773t0).f25660g7.edit();
+                SharedPreferences.Editor edit = mp.u1(j10.f24770t0).f25658g7.edit();
                 if (i10 == 1) {
                     edit.putInt("popupAll", iArr[0]);
                 } else if (i10 == 0) {
@@ -126,8 +126,8 @@ public final class j5 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f28746a.M0.run();
-                lh0Var.run();
+                alertDialog$Builder.f28744a.M0.run();
+                mh0Var.run();
                 return;
             case 3:
                 f40 f40Var = (f40) obj3;
@@ -139,7 +139,7 @@ public final class j5 implements View.OnClickListener {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     f40Var.D1(groupCallParticipant, fj.B1(groupCallParticipant.peer), ((Integer) arrayList.get(i10)).intValue());
-                    h30 h30Var = f40Var.f47461e5;
+                    h30 h30Var = f40Var.f47417e5;
                     if (h30Var != null) {
                         h30Var.dismiss();
                         return;
@@ -157,7 +157,7 @@ public final class j5 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.x2 x2Var = (org.telegram.ui.ActionBar.x2) obj;
                 if (!dVar.R) {
                     dVar.setLoading(true);
-                    int i11 = this.f12156b;
+                    int i11 = this.f12153b;
                     jt.b(i11, context, new di.j0(dVar, context, x2Var, i11, 8));
                     return;
                 }
@@ -184,9 +184,9 @@ public final class j5 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj2;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) obj;
                 mp messagesController = y91Var.getMessagesController();
-                long j3 = -y91Var.f54109a;
-                if (messagesController.u2(j3, tL_forumTopic.f28457id, null)) {
-                    y91Var.getNotificationsController().G(j3, tL_forumTopic.f28457id, false);
+                long j3 = -y91Var.f54050a;
+                if (messagesController.u2(j3, tL_forumTopic.f28455id, null)) {
+                    y91Var.getNotificationsController().G(j3, tL_forumTopic.f28455id, false);
                     y91Var.finishPreviewFragment();
                     if (lc.a(y91Var)) {
                         lc.z(y91Var, 4, 0, y91Var.getResourceProvider()).j();
@@ -200,18 +200,18 @@ public final class j5 implements View.OnClickListener {
     }
 
     public j5(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f12155a = i10;
-        this.f12157c = obj;
-        this.f12156b = i7;
+        this.f12152a = i10;
+        this.f12154c = obj;
+        this.f12153b = i7;
         this.d = obj2;
-        this.f12158e = obj3;
+        this.f12155e = obj3;
     }
 
     public j5(org.telegram.ui.ActionBar.h2 h2Var, Object obj, Serializable serializable, int i7, int i10) {
-        this.f12155a = i10;
-        this.f12157c = h2Var;
+        this.f12152a = i10;
+        this.f12154c = h2Var;
         this.d = obj;
-        this.f12158e = serializable;
-        this.f12156b = i7;
+        this.f12155e = serializable;
+        this.f12153b = i7;
     }
 }

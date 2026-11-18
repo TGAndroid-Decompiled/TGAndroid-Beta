@@ -14,15 +14,15 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.mt;
 import org.telegram.ui.Wallet.i9;
 public final class l extends LinearLayout {
-    public final mt f61241a;
-    public final TextView f61242b;
-    public k f61243c;
+    public final mt f61242a;
+    public final TextView f61243b;
+    public k f61244c;
 
     public l(Context context, i6 i6Var) {
         super(context);
         setOrientation(0);
         mt mtVar = new mt(context, i6Var);
-        this.f61241a = mtVar;
+        this.f61242a = mtVar;
         mtVar.setLines(1);
         mtVar.setSingleLine(true);
         InputFilter[] inputFilterArr = {new j(this)};
@@ -31,21 +31,21 @@ public final class l extends LinearLayout {
         mtVar.setTextSize(1, 16.0f);
         u6.U(mtVar, n6.Le, i6Var);
         u6.G(mtVar, n6.Yc, i6Var);
-        u6.C(mtVar, n6.f29552lg, i6Var);
+        u6.C(mtVar, n6.f29550lg, i6Var);
         int i7 = n6.Me;
         u6.l(mtVar, 34, i7, i6Var);
         u6.D(mtVar, i7, i6Var);
         u6.l(mtVar, 30, n6.Ne, i6Var);
-        u6.l(mtVar, 36, n6.f29569mg, i6Var);
+        u6.l(mtVar, 36, n6.f29567mg, i6Var);
         mtVar.setBackground(null);
         mtVar.setHint(gd.M0(2131753475, null));
         mtVar.addTextChangedListener(new i9(this, 7));
         mtVar.setImeOptions(6);
         TextView textView = new TextView(context);
-        this.f61242b = textView;
+        this.f61243b = textView;
         textView.setTextSize(1, 16.0f);
-        u6.U(textView, n6.f29504j5, i6Var);
-        if (gd.f24216a0) {
+        u6.U(textView, n6.f29502j5, i6Var);
+        if (gd.f24213a0) {
             LinearLayout.LayoutParams t6 = ma.t(-1, -2, 16, 20, 0, 36, 0);
             t6.weight = 1.0f;
             addView(mtVar, t6);
@@ -62,10 +62,10 @@ public final class l extends LinearLayout {
     }
 
     public void setAfterTextChangedListener(k kVar) {
-        this.f61243c = kVar;
+        this.f61244c = kVar;
     }
 
     public void setCount(int i7) {
-        this.f61242b.setText(String.valueOf(i7));
+        this.f61243b.setText(String.valueOf(i7));
     }
 }

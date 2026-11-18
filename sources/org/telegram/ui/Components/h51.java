@@ -21,7 +21,7 @@ public final class h51 extends Drawable {
     public final Paint f35737f;
     public final RectF f35738g;
     public final mc h;
-    public final org.telegram.ui.Cells.l9 f35739i;
+    public final org.telegram.ui.Cells.m9 f35739i;
     public Runnable f35740j;
     public StaticLayout f35741k;
     public StaticLayout f35742l;
@@ -50,7 +50,7 @@ public final class h51 extends Drawable {
         this.f35738g = new RectF();
         mc mcVar = new mc((View) null);
         this.h = mcVar;
-        this.f35739i = new org.telegram.ui.Cells.l9(new of(this, 7));
+        this.f35739i = new org.telegram.ui.Cells.m9(new of(this, 7));
         this.f35749s = org.telegram.messenger.g0.L(62.33f);
         this.f35750t = org.telegram.messenger.g0.L(12.0f);
         this.f35751u = org.telegram.messenger.g0.L(30.0f);
@@ -58,8 +58,8 @@ public final class h51 extends Drawable {
         this.f35752w = org.telegram.messenger.g0.L(7.0f);
         this.f35753x = org.telegram.messenger.g0.L(12.0f);
         this.f35754y = org.telegram.messenger.g0.L(2.0f);
-        this.f35733a = org.telegram.messenger.t0.f26915b.getDrawable(2131232697).mutate();
-        this.f35734b = org.telegram.messenger.t0.f26915b.getDrawable(2131231618).mutate();
+        this.f35733a = org.telegram.messenger.t0.f26913b.getDrawable(2131232697).mutate();
+        this.f35734b = org.telegram.messenger.t0.f26913b.getDrawable(2131231618).mutate();
         mcVar.f37432f = new ap0(this, 29);
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));

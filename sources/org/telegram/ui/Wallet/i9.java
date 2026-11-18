@@ -159,17 +159,17 @@ public final class i9 implements TextWatcher {
                 if (TextUtils.isEmpty(lowerCase2)) {
                     g4Var.F.clear();
                     g4Var.G = lowerCase2;
-                    g4Var.f47935v0[0].f49159c.E.clear();
+                    g4Var.f47899v0[0].f49136c.E.clear();
                     g4Var.b0(false);
-                    if (g4Var.f47935v0[0].f()) {
-                        if (g4Var.f47935v0[0].getWebView() != null) {
-                            org.telegram.ui.web.s0 webView = g4Var.f47935v0[0].getWebView();
+                    if (g4Var.f47899v0[0].f()) {
+                        if (g4Var.f47899v0[0].getWebView() != null) {
+                            org.telegram.ui.web.s0 webView = g4Var.f47899v0[0].getWebView();
                             webView.J = new org.telegram.ui.z(g4Var, 9);
                             webView.findAllAsync("");
                             g4Var.f0();
                         }
                     } else {
-                        g4Var.f47935v0[0].f49158b.g1();
+                        g4Var.f47899v0[0].f49135b.g1();
                         g4Var.U(0);
                     }
                     g4Var.Y0 = -1;
@@ -177,10 +177,10 @@ public final class i9 implements TextWatcher {
                 }
                 int i10 = g4Var.Y0 + 1;
                 g4Var.Y0 = i10;
-                if (g4Var.f47935v0[0].f()) {
+                if (g4Var.f47899v0[0].f()) {
                     g4Var.b0(true);
-                    if (g4Var.f47935v0[0].getWebView() != null) {
-                        org.telegram.ui.web.s0 webView2 = g4Var.f47935v0[0].getWebView();
+                    if (g4Var.f47899v0[0].getWebView() != null) {
+                        org.telegram.ui.web.s0 webView2 = g4Var.f47899v0[0].getWebView();
                         webView2.J = new org.telegram.ui.z(g4Var, 9);
                         webView2.findAllAsync(lowerCase2);
                         g4Var.f0();
@@ -219,11 +219,11 @@ public final class i9 implements TextWatcher {
                 gVar.Z1.O(true);
                 return;
             default:
-                yg.k kVar = ((yg.l) this.f44368b).f61243c;
+                yg.k kVar = ((yg.l) this.f44368b).f61244c;
                 if (kVar != null) {
                     String trim2 = editable.toString().trim();
-                    wg.a0 a0Var = ((wg.u) kVar).f59825a;
-                    a0Var.f59711r2 = trim2;
+                    wg.a0 a0Var = ((wg.u) kVar).f59826a;
+                    a0Var.f59712r2 = trim2;
                     a0Var.l1(false, false);
                     a0Var.l1(true, true);
                     return;

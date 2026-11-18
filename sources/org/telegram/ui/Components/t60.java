@@ -23,7 +23,7 @@ public final class t60 implements org.telegram.messenger.x10 {
                 return;
             default:
                 Boolean bool = (Boolean) obj;
-                ((org.telegram.ui.Cells.o7) this.d).n(this.f39916b, this.f39917c);
+                ((org.telegram.ui.Cells.p7) this.d).n(this.f39916b, this.f39917c);
                 return;
         }
     }

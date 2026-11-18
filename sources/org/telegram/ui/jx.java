@@ -11,55 +11,55 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 public final class jx extends FrameLayout {
-    public org.telegram.ui.Components.o9 f49100a;
-    public org.telegram.ui.Components.o9 f49101b;
-    public Drawable f49102c;
+    public org.telegram.ui.Components.o9 f49077a;
+    public org.telegram.ui.Components.o9 f49078b;
+    public Drawable f49079c;
     public Drawable d;
-    public final Drawable f49103e;
-    public Paint f49104f;
+    public final Drawable f49080e;
+    public Paint f49081f;
     public RectF h;
-    public final ViewGroup[] f49105n;
-    public final kx f49106r;
+    public final ViewGroup[] f49082n;
+    public final kx f49083r;
 
     public jx(kx kxVar, Context context) {
         super(context);
-        this.f49106r = kxVar;
-        this.f49104f = new Paint(1);
+        this.f49083r = kxVar;
+        this.f49081f = new Paint(1);
         this.h = new RectF();
-        this.f49105n = new ViewGroup[2];
+        this.f49082n = new ViewGroup[2];
         int i7 = 0;
         setWillNotDraw(false);
         setPadding(0, org.telegram.messenger.g0.L(24.0f), 0, org.telegram.messenger.g0.L(24.0f));
         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
         addView(g10, c8.ma.e(-2, -2, 17));
-        org.telegram.ui.Cells.u0 u0Var = new org.telegram.ui.Cells.u0(context);
-        u0Var.setCustomText(org.telegram.messenger.gd.M0(2131742611, null));
-        g10.addView(u0Var, c8.ma.t(-2, -2, 17, 0, 0, 0, 4));
+        org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context);
+        v0Var.setCustomText(org.telegram.messenger.gd.M0(2131742611, null));
+        g10.addView(v0Var, c8.ma.t(-2, -2, 17, 0, 0, 0, 4));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setBackgroundResource(2131232862);
         g10.addView(linearLayout, c8.ma.t(-2, -2, 17, 10, 0, 10, 0));
         kxVar.d = new ImageView(context);
-        int i10 = kxVar.f49355x;
+        int i10 = kxVar.f49361x;
         if (i10 == 0) {
             while (i7 < 2) {
-                this.f49105n[i7] = (ViewGroup) kxVar.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
-                linearLayout.addView(this.f49105n[i7], c8.ma.o(-1, -2));
+                this.f49082n[i7] = (ViewGroup) kxVar.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
+                linearLayout.addView(this.f49082n[i7], c8.ma.o(-1, -2));
                 i7++;
             }
             linearLayout.addView(kxVar.d, c8.ma.r(218, 160, 17));
             kxVar.d.setImageResource(2131231003);
         } else if (i10 == 1) {
             while (i7 < 2) {
-                this.f49105n[i7] = (ViewGroup) kxVar.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
-                linearLayout.addView(this.f49105n[i7], c8.ma.o(160, -2));
+                this.f49082n[i7] = (ViewGroup) kxVar.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
+                linearLayout.addView(this.f49082n[i7], c8.ma.o(160, -2));
                 i7++;
             }
             linearLayout.addView(kxVar.d, c8.ma.r(160, 160, 17));
             kxVar.d.setImageResource(2131231031);
         }
         a();
-        this.f49103e = org.telegram.ui.ActionBar.n6.Y0(context, 2131231230, org.telegram.ui.ActionBar.n6.f29360b7);
+        this.f49080e = org.telegram.ui.ActionBar.n6.Y0(context, 2131231230, org.telegram.ui.ActionBar.n6.f29358b7);
     }
 
     public final void a() {
@@ -74,15 +74,15 @@ public final class jx extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.o9 o9Var = this.f49100a;
+        org.telegram.ui.Components.o9 o9Var = this.f49077a;
         if (o9Var != null) {
             o9Var.dispose();
-            this.f49100a = null;
+            this.f49077a = null;
         }
-        org.telegram.ui.Components.o9 o9Var2 = this.f49101b;
+        org.telegram.ui.Components.o9 o9Var2 = this.f49078b;
         if (o9Var2 != null) {
             o9Var2.dispose();
-            this.f49101b = null;
+            this.f49078b = null;
         }
     }
 

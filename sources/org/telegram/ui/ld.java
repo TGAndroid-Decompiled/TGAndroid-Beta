@@ -4,14 +4,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 public final class ld implements TextView.OnEditorActionListener {
-    public final int f49573a;
-    public final Object f49574b;
-    public final Object f49575c;
+    public final int f49546a;
+    public final Object f49547b;
+    public final Object f49548c;
 
     public ld(int i7, Object obj, Object obj2) {
-        this.f49573a = i7;
-        this.f49574b = obj;
-        this.f49575c = obj2;
+        this.f49546a = i7;
+        this.f49547b = obj;
+        this.f49548c = obj2;
     }
 
     @Override
@@ -20,10 +20,10 @@ public final class ld implements TextView.OnEditorActionListener {
         int b10;
         v4.f1 T2;
         int b11;
-        switch (this.f49573a) {
+        switch (this.f49546a) {
             case 0:
-                xd xdVar = (xd) this.f49574b;
-                c51 c51Var = (c51) this.f49575c;
+                xd xdVar = (xd) this.f49547b;
+                c51 c51Var = (c51) this.f49548c;
                 if (i7 == 5) {
                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                     hd hdVar = new hd(xdVar, twoStepVerificationActivity, 1);
@@ -35,16 +35,16 @@ public final class ld implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f49574b;
-                ki.m1 m1Var = (ki.m1) this.f49575c;
+                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f49547b;
+                ki.m1 m1Var = (ki.m1) this.f49548c;
                 if ((i7 != 6 && keyEvent.getKeyCode() != 66) || !u1Var.isShowing()) {
                     return false;
                 }
                 m1Var.h(u1Var, 0);
                 return true;
             case 2:
-                org.telegram.ui.Components.pn pnVar = (org.telegram.ui.Components.pn) this.f49575c;
-                org.telegram.ui.Components.rn rnVar = (org.telegram.ui.Components.rn) ((l4) this.f49574b).f49426e;
+                org.telegram.ui.Components.pn pnVar = (org.telegram.ui.Components.pn) this.f49548c;
+                org.telegram.ui.Components.rn rnVar = (org.telegram.ui.Components.rn) ((l4) this.f49547b).f49432e;
                 f61 f61Var = rnVar.f39242s;
                 if (i7 == 5) {
                     View F = f61Var.F(pnVar);
@@ -70,20 +70,20 @@ public final class ld implements TextView.OnEditorActionListener {
                         if (K == null) {
                             return true;
                         }
-                        View view = K.f59122a;
-                        if (!(view instanceof org.telegram.ui.Cells.a6)) {
+                        View view = K.f59123a;
+                        if (!(view instanceof org.telegram.ui.Cells.b6)) {
                             return true;
                         }
-                        ((org.telegram.ui.Cells.a6) view).getTextView().requestFocus();
+                        ((org.telegram.ui.Cells.b6) view).getTextView().requestFocus();
                         return true;
                     }
                 }
                 return false;
             default:
-                mr0 mr0Var = (mr0) this.f49575c;
-                pr0 pr0Var = ((nr0) this.f49574b).d;
+                mr0 mr0Var = (mr0) this.f49548c;
+                pr0 pr0Var = ((nr0) this.f49547b).d;
                 if (i7 == 5) {
-                    f61 f61Var2 = pr0Var.f50967c;
+                    f61 f61Var2 = pr0Var.f50888c;
                     View F2 = f61Var2.F(mr0Var);
                     if (F2 == null) {
                         T2 = null;
@@ -93,25 +93,25 @@ public final class ld implements TextView.OnEditorActionListener {
                     if (T2 == null || (b11 = T2.b()) == -1) {
                         return true;
                     }
-                    int i13 = b11 - pr0Var.f50982o0;
+                    int i13 = b11 - pr0Var.f50903o0;
                     int i14 = pr0Var.E;
                     int i15 = i14 - 1;
-                    if (i13 == i15 && i14 < pr0Var.f50980n) {
+                    if (i13 == i15 && i14 < pr0Var.f50901n) {
                         pr0Var.k0();
                         return true;
                     } else if (i13 == i15) {
                         org.telegram.messenger.g0.v1(mr0Var.getTextView());
                         return true;
                     } else {
-                        v4.f1 K2 = pr0Var.f50967c.K(b11 + 1);
+                        v4.f1 K2 = pr0Var.f50888c.K(b11 + 1);
                         if (K2 == null) {
                             return true;
                         }
-                        View view2 = K2.f59122a;
-                        if (!(view2 instanceof org.telegram.ui.Cells.a6)) {
+                        View view2 = K2.f59123a;
+                        if (!(view2 instanceof org.telegram.ui.Cells.b6)) {
                             return true;
                         }
-                        ((org.telegram.ui.Cells.a6) view2).getTextView().requestFocus();
+                        ((org.telegram.ui.Cells.b6) view2).getTextView().requestFocus();
                         return true;
                     }
                 }

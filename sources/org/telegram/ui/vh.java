@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class vh implements org.telegram.ui.Components.rj0 {
-    public final bn f52793a;
+    public final bn f52787a;
 
     public vh(bn bnVar) {
-        this.f52793a = bnVar;
+        this.f52787a = bnVar;
     }
 
     @Override

@@ -17,19 +17,19 @@ import org.telegram.ui.qu0;
 import org.telegram.ui.vv0;
 import org.telegram.ui.zw0;
 public final class f implements eh.a {
-    public final int f8746a;
-    public final Object f8747b;
-    public final Object f8748c;
+    public final int f8743a;
+    public final Object f8744b;
+    public final Object f8745c;
 
     public f(int i7, Object obj, Object obj2) {
-        this.f8746a = i7;
-        this.f8747b = obj;
-        this.f8748c = obj2;
+        this.f8743a = i7;
+        this.f8744b = obj;
+        this.f8745c = obj2;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f8746a) {
+        switch (this.f8743a) {
             case 0:
             case 1:
             case 2:
@@ -40,7 +40,7 @@ public final class f implements eh.a {
             case 7:
             case 8:
             default:
-                aVar.f8372a = true;
+                aVar.f8369a = true;
                 return;
         }
     }
@@ -50,31 +50,31 @@ public final class f implements eh.a {
         float f10;
         Canvas canvas2;
         float f11;
-        switch (this.f8746a) {
+        switch (this.f8743a) {
             case 0:
-                ((t) this.f8747b).f9759f.d(canvas, rectF, (e) this.f8748c);
+                ((t) this.f8744b).f9756f.d(canvas, rectF, (e) this.f8745c);
                 return;
             case 1:
-                ((pb) this.f8747b).V.d(canvas, rectF, (e) this.f8748c);
+                ((pb) this.f8744b).V.d(canvas, rectF, (e) this.f8745c);
                 return;
             case 2:
-                ((ii.t) this.f8747b).V.d(canvas, rectF, (e) this.f8748c);
+                ((ii.t) this.f8744b).V.d(canvas, rectF, (e) this.f8745c);
                 return;
             case 3:
-                ((org.telegram.ui.x6) this.f8747b).f53657c0.d(canvas, rectF, (org.telegram.ui.z5) this.f8748c);
+                ((org.telegram.ui.x6) this.f8744b).f53608c0.d(canvas, rectF, (org.telegram.ui.z5) this.f8745c);
                 return;
             case 4:
-                ((c30) this.f8747b).f33873n.L(canvas, rectF, (FrameLayout) this.f8748c);
+                ((c30) this.f8744b).f33873n.L(canvas, rectF, (FrameLayout) this.f8745c);
                 return;
             case 5:
-                ((i90) this.f8747b).S.L(canvas, rectF, (bi.a3) this.f8748c);
+                ((i90) this.f8744b).S.L(canvas, rectF, (bi.a3) this.f8745c);
                 return;
             case 6:
-                pt ptVar = (pt) this.f8747b;
-                bi.p2 p2Var = (bi.p2) this.f8748c;
-                int childCount = ptVar.f51009a.getChildCount();
+                pt ptVar = (pt) this.f8744b;
+                bi.p2 p2Var = (bi.p2) this.f8745c;
+                int childCount = ptVar.f50930a.getChildCount();
                 for (int i7 = 0; i7 < childCount; i7++) {
-                    View childAt = ptVar.f51009a.getChildAt(i7);
+                    View childAt = ptVar.f50930a.getChildAt(i7);
                     if (childAt instanceof ck0) {
                         ck0 ck0Var = (ck0) childAt;
                         ih.d.a(ck0Var, canvas, rectF, ck0Var, p2Var);
@@ -82,8 +82,8 @@ public final class f implements eh.a {
                 }
                 return;
             case 7:
-                ProfileActivity profileActivity = (ProfileActivity) this.f8747b;
-                dh.k kVar = (dh.k) this.f8748c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f8744b;
+                dh.k kVar = (dh.k) this.f8745c;
                 Paint paint = profileActivity.T6;
                 ViewGroup viewGroup = (ViewGroup) profileActivity.fragmentView;
                 vv0 vv0Var = profileActivity.O;
@@ -110,7 +110,7 @@ public final class f implements eh.a {
                     } else {
                         f11 = Float.MAX_VALUE;
                     }
-                    paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, profileActivity.A0));
+                    paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, profileActivity.A0));
                     paint.setAlpha((int) (f10 * 255.0f));
                     canvas2 = canvas;
                     canvas2.drawRect(rectF.left, rectF.top, rectF.right, Math.min(rectF.bottom, f11), paint);
@@ -123,12 +123,12 @@ public final class f implements eh.a {
                 ProfileActivity.N3(profileActivity.f43601n0, canvas2, rectF, viewGroup);
                 return;
             case 8:
-                tm0 tm0Var = (tm0) this.f8747b;
-                ih.d.a(tm0Var, canvas, rectF, tm0Var, (FrameLayout) this.f8748c);
+                tm0 tm0Var = (tm0) this.f8744b;
+                ih.d.a(tm0Var, canvas, rectF, tm0Var, (FrameLayout) this.f8745c);
                 return;
             default:
-                ck0 ck0Var2 = (ck0) this.f8747b;
-                ih.d.a(ck0Var2, canvas, rectF, ck0Var2, (FrameLayout) this.f8748c);
+                ck0 ck0Var2 = (ck0) this.f8744b;
+                ih.d.a(ck0Var2, canvas, rectF, ck0Var2, (FrameLayout) this.f8745c);
                 return;
         }
     }

@@ -37,7 +37,7 @@ public final class w2 implements x2 {
         }
         zArr[0] = true;
         org.telegram.utils.twidget.i0 i0Var = this.f45199b;
-        i0Var.f54785b.b(4, null, i0Var.f54786c);
+        i0Var.f54786b.b(4, null, i0Var.f54787c);
     }
 
     public final void d(TLRPC.WidgetQueryType widgetQueryType) {
@@ -47,6 +47,6 @@ public final class w2 implements x2 {
         }
         zArr[0] = true;
         org.telegram.utils.twidget.i0 i0Var = this.f45199b;
-        org.telegram.utils.twidget.n0.w(i0Var.f54784a, i0Var.f54785b, i0Var.f54786c, widgetQueryType, i0Var.d);
+        org.telegram.utils.twidget.n0.w(i0Var.f54785a, i0Var.f54786b, i0Var.f54787c, widgetQueryType, i0Var.d);
     }
 }

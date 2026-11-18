@@ -12,7 +12,7 @@ public final class i9 extends tg.m0 {
 
     @Override
     public final void invalidate() {
-        View view = this.R.f12175c;
+        View view = this.R.f12172c;
         if (view != null) {
             view.invalidate();
         }

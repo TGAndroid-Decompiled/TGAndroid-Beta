@@ -18,47 +18,47 @@ import m.k3;
 import r0.i0;
 import r0.l0;
 public final class b0 extends fa implements m.b {
-    public static final AccelerateInterpolator f12941x = new AccelerateInterpolator();
-    public static final DecelerateInterpolator f12942y = new DecelerateInterpolator();
-    public Context f12943a;
-    public Context f12944b;
-    public ActionBarOverlayLayout f12945c;
+    public static final AccelerateInterpolator f12938x = new AccelerateInterpolator();
+    public static final DecelerateInterpolator f12939y = new DecelerateInterpolator();
+    public Context f12940a;
+    public Context f12941b;
+    public ActionBarOverlayLayout f12942c;
     public ActionBarContainer d;
-    public k1 f12946e;
-    public ActionBarContextView f12947f;
-    public final View f12948g;
+    public k1 f12943e;
+    public ActionBarContextView f12944f;
+    public final View f12945g;
     public boolean h;
-    public a0 f12949i;
-    public a0 f12950j;
-    public q4.q f12951k;
-    public boolean f12952l;
-    public final ArrayList f12953m;
-    public int f12954n;
-    public boolean f12955o;
-    public boolean f12956p;
-    public boolean f12957q;
-    public boolean f12958r;
-    public ac.d f12959s;
-    public boolean f12960t;
-    public final z f12961u;
+    public a0 f12946i;
+    public a0 f12947j;
+    public q4.q f12948k;
+    public boolean f12949l;
+    public final ArrayList f12950m;
+    public int f12951n;
+    public boolean f12952o;
+    public boolean f12953p;
+    public boolean f12954q;
+    public boolean f12955r;
+    public ac.d f12956s;
+    public boolean f12957t;
+    public final z f12958u;
     public final z v;
-    public final cb.c f12962w;
+    public final cb.c f12959w;
 
     public b0(Activity activity, boolean z10) {
         new ArrayList();
-        this.f12953m = new ArrayList();
-        this.f12954n = 0;
-        this.f12955o = true;
-        this.f12958r = true;
-        this.f12961u = new z(this, 0);
+        this.f12950m = new ArrayList();
+        this.f12951n = 0;
+        this.f12952o = true;
+        this.f12955r = true;
+        this.f12958u = new z(this, 0);
         this.v = new z(this, 1);
-        this.f12962w = new cb.c(this, 24);
+        this.f12959w = new cb.c(this, 24);
         View decorView = activity.getWindow().getDecorView();
         b(decorView);
         if (z10) {
             return;
         }
-        this.f12948g = decorView.findViewById(16908290);
+        this.f12945g = decorView.findViewById(16908290);
     }
 
     public final void a(boolean z10) {
@@ -66,17 +66,17 @@ public final class b0 extends fa implements m.b {
         l0 l0Var;
         long j3;
         if (z10) {
-            if (!this.f12957q) {
-                this.f12957q = true;
-                ActionBarOverlayLayout actionBarOverlayLayout = this.f12945c;
+            if (!this.f12954q) {
+                this.f12954q = true;
+                ActionBarOverlayLayout actionBarOverlayLayout = this.f12942c;
                 if (actionBarOverlayLayout != null) {
                     actionBarOverlayLayout.setShowingForActionMode(true);
                 }
                 d(false);
             }
-        } else if (this.f12957q) {
-            this.f12957q = false;
-            ActionBarOverlayLayout actionBarOverlayLayout2 = this.f12945c;
+        } else if (this.f12954q) {
+            this.f12954q = false;
+            ActionBarOverlayLayout actionBarOverlayLayout2 = this.f12942c;
             if (actionBarOverlayLayout2 != null) {
                 actionBarOverlayLayout2.setShowingForActionMode(false);
             }
@@ -86,19 +86,19 @@ public final class b0 extends fa implements m.b {
         WeakHashMap weakHashMap = i0.f56244a;
         if (actionBarContainer.isLaidOut()) {
             if (z10) {
-                k3 k3Var = (k3) this.f12946e;
-                i7 = i0.a(k3Var.f20101a);
+                k3 k3Var = (k3) this.f12943e;
+                i7 = i0.a(k3Var.f20098a);
                 i7.a(0.0f);
                 i7.c(100L);
                 i7.d(new k.i(k3Var, 4));
-                l0Var = this.f12947f.i(0, 200L);
+                l0Var = this.f12944f.i(0, 200L);
             } else {
-                k3 k3Var2 = (k3) this.f12946e;
-                l0 a10 = i0.a(k3Var2.f20101a);
+                k3 k3Var2 = (k3) this.f12943e;
+                l0 a10 = i0.a(k3Var2.f20098a);
                 a10.a(1.0f);
                 a10.c(200L);
                 a10.d(new k.i(k3Var2, 0));
-                i7 = this.f12947f.i(8, 100L);
+                i7 = this.f12944f.i(8, 100L);
                 l0Var = a10;
             }
             ac.d dVar = new ac.d();
@@ -117,11 +117,11 @@ public final class b0 extends fa implements m.b {
             arrayList.add(l0Var);
             dVar.b();
         } else if (z10) {
-            ((k3) this.f12946e).f20101a.setVisibility(4);
-            this.f12947f.setVisibility(0);
+            ((k3) this.f12943e).f20098a.setVisibility(4);
+            this.f12944f.setVisibility(0);
         } else {
-            ((k3) this.f12946e).f20101a.setVisibility(0);
-            this.f12947f.setVisibility(8);
+            ((k3) this.f12943e).f20098a.setVisibility(0);
+            this.f12944f.setVisibility(8);
         }
     }
 
@@ -130,7 +130,7 @@ public final class b0 extends fa implements m.b {
         k1 wrapper;
         boolean z10;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) view.findViewById(2131296411);
-        this.f12945c = actionBarOverlayLayout;
+        this.f12942c = actionBarOverlayLayout;
         if (actionBarOverlayLayout != null) {
             actionBarOverlayLayout.setActionBarVisibilityCallback(this);
         }
@@ -147,15 +147,15 @@ public final class b0 extends fa implements m.b {
             }
             throw new IllegalStateException("Can't make a decor toolbar out of ".concat(str));
         }
-        this.f12946e = wrapper;
-        this.f12947f = (ActionBarContextView) view.findViewById(2131296311);
+        this.f12943e = wrapper;
+        this.f12944f = (ActionBarContextView) view.findViewById(2131296311);
         ActionBarContainer actionBarContainer = (ActionBarContainer) view.findViewById(2131296305);
         this.d = actionBarContainer;
-        k1 k1Var = this.f12946e;
-        if (k1Var != null && this.f12947f != null && actionBarContainer != null) {
-            Context context = ((k3) k1Var).f20101a.getContext();
-            this.f12943a = context;
-            if ((((k3) this.f12946e).f20102b & 4) != 0) {
+        k1 k1Var = this.f12943e;
+        if (k1Var != null && this.f12944f != null && actionBarContainer != null) {
+            Context context = ((k3) k1Var).f20098a.getContext();
+            this.f12940a = context;
+            if ((((k3) this.f12943e).f20099b & 4) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -164,22 +164,22 @@ public final class b0 extends fa implements m.b {
                 this.h = true;
             }
             int i7 = context.getApplicationInfo().targetSdkVersion;
-            this.f12946e.getClass();
+            this.f12943e.getClass();
             if (!context.getResources().getBoolean(2131034112)) {
-                ((k3) this.f12946e).getClass();
+                ((k3) this.f12943e).getClass();
                 this.d.setTabContainer(null);
             } else {
                 this.d.setTabContainer(null);
-                ((k3) this.f12946e).getClass();
+                ((k3) this.f12943e).getClass();
             }
-            this.f12946e.getClass();
-            ((k3) this.f12946e).f20101a.setCollapsible(false);
-            this.f12945c.setHasNonEmbeddedTabs(false);
-            TypedArray obtainStyledAttributes = this.f12943a.obtainStyledAttributes(null, f.a.f10991a, 2130968581, 0);
+            this.f12943e.getClass();
+            ((k3) this.f12943e).f20098a.setCollapsible(false);
+            this.f12942c.setHasNonEmbeddedTabs(false);
+            TypedArray obtainStyledAttributes = this.f12940a.obtainStyledAttributes(null, f.a.f10988a, 2130968581, 0);
             if (obtainStyledAttributes.getBoolean(14, false)) {
-                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f12945c;
-                if (actionBarOverlayLayout2.f1874n) {
-                    this.f12960t = true;
+                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f12942c;
+                if (actionBarOverlayLayout2.f1875n) {
+                    this.f12957t = true;
                     actionBarOverlayLayout2.setHideOnContentScrollEnabled(true);
                 } else {
                     throw new IllegalStateException("Action bar must be in overlay mode (Window.FEATURE_OVERLAY_ACTION_BAR) to enable hide on content scroll");
@@ -205,8 +205,8 @@ public final class b0 extends fa implements m.b {
             } else {
                 i7 = 0;
             }
-            k3 k3Var = (k3) this.f12946e;
-            int i10 = k3Var.f20102b;
+            k3 k3Var = (k3) this.f12943e;
+            int i10 = k3Var.f20099b;
             this.h = true;
             k3Var.a((i7 & 4) | (i10 & (-5)));
         }
@@ -215,20 +215,20 @@ public final class b0 extends fa implements m.b {
     public final void d(boolean z10) {
         int[] iArr;
         int[] iArr2;
-        boolean z11 = this.f12956p;
-        boolean z12 = this.f12957q;
+        boolean z11 = this.f12953p;
+        boolean z12 = this.f12954q;
         ch.w wVar = null;
-        cb.c cVar = this.f12962w;
-        View view = this.f12948g;
+        cb.c cVar = this.f12959w;
+        View view = this.f12945g;
         if (!z12 && z11) {
-            if (this.f12958r) {
-                this.f12958r = false;
-                ac.d dVar = this.f12959s;
+            if (this.f12955r) {
+                this.f12955r = false;
+                ac.d dVar = this.f12956s;
                 if (dVar != null) {
                     dVar.a();
                 }
-                int i7 = this.f12954n;
-                z zVar = this.f12961u;
+                int i7 = this.f12951n;
+                z zVar = this.f12958u;
                 if (i7 == 0 && z10) {
                     this.d.setAlpha(1.0f);
                     this.d.setTransitioning(true);
@@ -251,7 +251,7 @@ public final class b0 extends fa implements m.b {
                     if (!dVar2.f1016b) {
                         arrayList.add(a10);
                     }
-                    if (this.f12955o && view != null) {
+                    if (this.f12952o && view != null) {
                         l0 a11 = i0.a(view);
                         a11.e(f10);
                         if (!dVar2.f1016b) {
@@ -260,7 +260,7 @@ public final class b0 extends fa implements m.b {
                     }
                     boolean z13 = dVar2.f1016b;
                     if (!z13) {
-                        dVar2.d = f12941x;
+                        dVar2.d = f12938x;
                     }
                     if (!z13) {
                         dVar2.f1015a = 250L;
@@ -268,20 +268,20 @@ public final class b0 extends fa implements m.b {
                     if (!z13) {
                         dVar2.f1018e = zVar;
                     }
-                    this.f12959s = dVar2;
+                    this.f12956s = dVar2;
                     dVar2.b();
                     return;
                 }
                 zVar.c();
             }
-        } else if (!this.f12958r) {
-            this.f12958r = true;
-            ac.d dVar3 = this.f12959s;
+        } else if (!this.f12955r) {
+            this.f12955r = true;
+            ac.d dVar3 = this.f12956s;
             if (dVar3 != null) {
                 dVar3.a();
             }
             this.d.setVisibility(0);
-            int i10 = this.f12954n;
+            int i10 = this.f12951n;
             z zVar2 = this.v;
             if (i10 == 0 && z10) {
                 this.d.setTranslationY(0.0f);
@@ -305,7 +305,7 @@ public final class b0 extends fa implements m.b {
                 if (!dVar4.f1016b) {
                     arrayList2.add(a12);
                 }
-                if (this.f12955o && view != null) {
+                if (this.f12952o && view != null) {
                     view.setTranslationY(f11);
                     l0 a13 = i0.a(view);
                     a13.e(0.0f);
@@ -315,7 +315,7 @@ public final class b0 extends fa implements m.b {
                 }
                 boolean z14 = dVar4.f1016b;
                 if (!z14) {
-                    dVar4.d = f12942y;
+                    dVar4.d = f12939y;
                 }
                 if (!z14) {
                     dVar4.f1015a = 250L;
@@ -323,17 +323,17 @@ public final class b0 extends fa implements m.b {
                 if (!z14) {
                     dVar4.f1018e = zVar2;
                 }
-                this.f12959s = dVar4;
+                this.f12956s = dVar4;
                 dVar4.b();
             } else {
                 this.d.setAlpha(1.0f);
                 this.d.setTranslationY(0.0f);
-                if (this.f12955o && view != null) {
+                if (this.f12952o && view != null) {
                     view.setTranslationY(0.0f);
                 }
                 zVar2.c();
             }
-            ActionBarOverlayLayout actionBarOverlayLayout = this.f12945c;
+            ActionBarOverlayLayout actionBarOverlayLayout = this.f12942c;
             if (actionBarOverlayLayout != null) {
                 WeakHashMap weakHashMap = i0.f56244a;
                 r0.y.c(actionBarOverlayLayout);
@@ -343,13 +343,13 @@ public final class b0 extends fa implements m.b {
 
     public b0(u uVar) {
         new ArrayList();
-        this.f12953m = new ArrayList();
-        this.f12954n = 0;
-        this.f12955o = true;
-        this.f12958r = true;
-        this.f12961u = new z(this, 0);
+        this.f12950m = new ArrayList();
+        this.f12951n = 0;
+        this.f12952o = true;
+        this.f12955r = true;
+        this.f12958u = new z(this, 0);
         this.v = new z(this, 1);
-        this.f12962w = new cb.c(this, 24);
+        this.f12959w = new cb.c(this, 24);
         b(uVar.getWindow().getDecorView());
     }
 }

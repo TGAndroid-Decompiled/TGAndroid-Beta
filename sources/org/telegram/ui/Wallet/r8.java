@@ -299,7 +299,7 @@ public final class r8 extends View {
     public static boolean F(int i7, String str) {
         if (!TextUtils.isEmpty(str)) {
             int lastIndexOf = str.lastIndexOf(45);
-            HashSet hashSet = ((org.telegram.messenger.o0) mp.u1(i7).A7.f26167s0.f14001b).f26017c;
+            HashSet hashSet = ((org.telegram.messenger.o0) mp.u1(i7).A7.f26165s0.f13998b).f26015c;
             if (hashSet != null) {
                 if (lastIndexOf > 0) {
                     str = str.substring(0, lastIndexOf);
@@ -532,7 +532,7 @@ public final class r8 extends View {
             return;
         }
         m3Var.setTag(Integer.valueOf(i7));
-        m3Var.f14991a = i7;
+        m3Var.f14988a = i7;
         m3Var.p(1.0f, 0.0f);
     }
 
@@ -545,7 +545,7 @@ public final class r8 extends View {
         if (mediaAreaCoordinates == null) {
             return "";
         }
-        return String.format(Locale.US, "%.2f,%.2f,%.2f,%.2f", Double.valueOf(mediaAreaCoordinates.f28641x), Double.valueOf(mediaAreaCoordinates.f28642y), Double.valueOf(mediaAreaCoordinates.f28640w), Double.valueOf(mediaAreaCoordinates.rotation % 360.0d));
+        return String.format(Locale.US, "%.2f,%.2f,%.2f,%.2f", Double.valueOf(mediaAreaCoordinates.f28639x), Double.valueOf(mediaAreaCoordinates.f28640y), Double.valueOf(mediaAreaCoordinates.f28638w), Double.valueOf(mediaAreaCoordinates.rotation % 360.0d));
     }
 
     public final boolean A() {
@@ -807,11 +807,11 @@ public final class r8 extends View {
     }
 
     public final void K(q8 q8Var, TL_stories.MediaAreaCoordinates mediaAreaCoordinates, boolean z10) {
-        q8Var.h.a((float) (mediaAreaCoordinates.f28640w / 23.100000381469727d));
+        q8Var.h.a((float) (mediaAreaCoordinates.f28638w / 23.100000381469727d));
         q8Var.f44836i.a(c((float) mediaAreaCoordinates.rotation));
         q8Var.N = z10;
-        q8Var.f44833e.a((((float) mediaAreaCoordinates.f28641x) / 100.0f) * this.Z0);
-        q8Var.f44834f.a((((float) mediaAreaCoordinates.f28642y) / 100.0f) * this.f44885a1);
+        q8Var.f44833e.a((((float) mediaAreaCoordinates.f28639x) / 100.0f) * this.Z0);
+        q8Var.f44834f.a((((float) mediaAreaCoordinates.f28640y) / 100.0f) * this.f44885a1);
         q8Var.f44835g.a(1.0f);
         q8Var.f44837j.a(0.0f);
         q8Var.f44838k.a(0.0f);
@@ -1191,7 +1191,7 @@ public final class r8 extends View {
             p8Var5.f44798e = 0.75f;
             p8Var5.a((f(q8Var) * Z.width()) / U());
             p8Var.a(0.0f);
-            n6.m0((n6) this.d.f18184c, 0L);
+            n6.m0((n6) this.d.f18181c, 0L);
             fArr = fArr2;
         }
         p8Var3.d = 1100.0f;
@@ -1271,9 +1271,9 @@ public final class r8 extends View {
     public final TL_stories.TL_mediaAreaCoordinates a0(q8 q8Var) {
         TL_stories.TL_mediaAreaCoordinates tL_mediaAreaCoordinates = new TL_stories.TL_mediaAreaCoordinates();
         float U = U() * q8Var.h.f44796b;
-        tL_mediaAreaCoordinates.f28641x = N((q8Var.f44833e.f44796b / this.Z0) * 100.0f);
-        tL_mediaAreaCoordinates.f28642y = N((q8Var.f44834f.f44796b / this.f44885a1) * 100.0f);
-        tL_mediaAreaCoordinates.f28640w = N((U / this.Z0) * 100.0f);
+        tL_mediaAreaCoordinates.f28639x = N((q8Var.f44833e.f44796b / this.Z0) * 100.0f);
+        tL_mediaAreaCoordinates.f28640y = N((q8Var.f44834f.f44796b / this.f44885a1) * 100.0f);
+        tL_mediaAreaCoordinates.f28638w = N((U / this.Z0) * 100.0f);
         tL_mediaAreaCoordinates.h = N((U / this.f44885a1) * 100.0f);
         float f10 = q8Var.f44836i.f44796b % 360.0f;
         if (f10 < 0.0f) {
@@ -1430,7 +1430,7 @@ public final class r8 extends View {
     }
 
     public final void d0(q8 q8Var) {
-        n6.m0((n6) this.d.f18184c, 2600L);
+        n6.m0((n6) this.d.f18181c, 2600L);
         if (A()) {
             float[] x10 = x(q8Var, Float.NaN, Float.NaN, true);
             RectF Z = Z(q8Var);
@@ -1546,7 +1546,7 @@ public final class r8 extends View {
     }
 
     public final float h() {
-        return (getHeight() - org.telegram.messenger.g0.L(64.0f)) - org.telegram.messenger.g0.f24116n;
+        return (getHeight() - org.telegram.messenger.g0.L(64.0f)) - org.telegram.messenger.g0.f24113n;
     }
 
     public final void i(e8 e8Var) {
@@ -1674,7 +1674,7 @@ public final class r8 extends View {
                 canvas2.translate(r8Var.getWidth() / 2.0f, ((1.0f - f17) * org.telegram.messenger.g0.L(90.0f)) + r8Var.h());
                 float f18 = (f17 * 0.4f) + 0.6f;
                 canvas2.scale(f18, f18);
-                int i12 = org.telegram.ui.ActionBar.n6.f29396d6;
+                int i12 = org.telegram.ui.ActionBar.n6.f29394d6;
                 org.telegram.ui.ActionBar.h2 h2Var = r8Var.f44883a;
                 paint2.setColor(i0.a.f(l10, org.telegram.ui.ActionBar.n6.w0(i12, h2Var.getResourceProvider()), -1750963));
                 paint2.setAlpha((int) (Utilities.l(f17) * 255.0f));

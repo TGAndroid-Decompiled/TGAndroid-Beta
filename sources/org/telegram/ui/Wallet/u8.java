@@ -58,7 +58,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, u8Var.getParentActivity(), u8Var.getResourceProvider());
         String M0 = gd.M0(2131742844, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         u1Var.U = gd.M0(2131742843, null);
         org.telegram.messenger.f3.m(null, 2131742824, alertDialog$Builder, null);
@@ -127,7 +127,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
                         if (bArr == null) {
                             u8Var.d.setLoading(false);
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, u8Var.getParentActivity(), u8Var.getResourceProvider());
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                             u1Var.S = gd.M0(2131742844, null);
                             u1Var.U = gd.M0(2131742843, null);
                             alertDialog$Builder.k(gd.M0(2131742824, null), null);
@@ -148,7 +148,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
                                 textView.setPadding(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(12.0f));
                                 textView.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
                                 int L = org.telegram.messenger.g0.L(10.0f);
-                                int i14 = org.telegram.ui.ActionBar.n6.f29339a7;
+                                int i14 = org.telegram.ui.ActionBar.n6.f29337a7;
                                 ShapeDrawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.w0(i14, u8Var.resourceProvider));
                                 org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i14);
                                 org.telegram.ui.ActionBar.i6 i6Var = u8Var.resourceProvider;
@@ -161,7 +161,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
                             }
                             u8Var.d.setLoading(false);
                             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, u8Var.getParentActivity(), u8Var.getResourceProvider());
-                            org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f28746a;
+                            org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f28744a;
                             u1Var2.S = gd.M0(2131742699, null);
                             u1Var2.U = gd.M0(2131742698, null);
                             alertDialog$Builder2.o(frameLayout);
@@ -230,7 +230,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
                 int i13 = i10 + 1;
                 if (i10 % 2 == 1) {
                     org.telegram.messenger.t tVar = new org.telegram.messenger.t(false);
-                    tVar.f26913b = (int) 191.25f;
+                    tVar.f26911b = (int) 191.25f;
                     spannableStringBuilder.setSpan(tVar, i7, spannableStringBuilder.length(), 33);
                 }
                 i7 = spannableStringBuilder.length();
@@ -287,7 +287,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
         this.actionBar.setOccupyStatusBar(false);
         au0 au0Var = new au0(context, null);
         this.fragmentView = au0Var;
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, au0Var, this.resourceProvider);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29394d6, au0Var, this.resourceProvider);
         ScrollView scrollView = new ScrollView(context);
         scrollView.setFillViewport(true);
         scrollView.setVerticalScrollBarEnabled(false);
@@ -309,7 +309,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
         org.telegram.ui.ActionBar.u6.s(imageView2, i10, this.resourceProvider, PorterDuff.Mode.SRC_IN);
         this.f45140e.setImageResource(2131231241);
         ImageView imageView3 = this.f45140e;
-        int i11 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.ActionBar.u6.Q(imageView3, org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i11, this.resourceProvider), 3, -1), null, org.telegram.ui.ActionBar.u6.M(i11), this.resourceProvider);
         this.f45140e.setOnClickListener(new View.OnClickListener(this) {
             public final u8 f45023b;
@@ -353,7 +353,7 @@ public final class u8 extends org.telegram.ui.ActionBar.h2 {
         this.h = k80Var;
         k80Var.setTextSize(1, 14.0f);
         this.h.setGravity(1);
-        org.telegram.ui.ActionBar.u6.U(this.h, org.telegram.ui.ActionBar.n6.f29807z6, this.resourceProvider);
+        org.telegram.ui.ActionBar.u6.U(this.h, org.telegram.ui.ActionBar.n6.f29805z6, this.resourceProvider);
         org.telegram.ui.ActionBar.u6.G(this.h, org.telegram.ui.ActionBar.n6.Xc, this.resourceProvider);
         if (this.f45144s != null) {
             this.h.setText(org.telegram.messenger.g0.T2(gd.M0(2131742887, null), new t8(this, 0)));

@@ -45,7 +45,7 @@ public final class py extends bk0 {
         int i10;
         String str;
         ColorFilter colorFilter;
-        q9 q9Var = (q9) f1Var.f59122a;
+        q9 q9Var = (q9) f1Var.f59123a;
         ry ryVar = this.d;
         boolean z10 = this.f38609c;
         if (z10) {
@@ -72,7 +72,7 @@ public final class py extends bk0 {
             if (arrayList2 != null && !arrayList2.isEmpty()) {
                 if (stickerSetCovered.set != null) {
                     for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                        if (arrayList2.get(i11).f28411id == stickerSetCovered.set.thumb_document_id) {
+                        if (arrayList2.get(i11).f28409id == stickerSetCovered.set.thumb_document_id) {
                             document = arrayList2.get(i11);
                             break;
                         }
@@ -96,10 +96,10 @@ public final class py extends bk0 {
                 q9Var.setColorFilter(colorFilter);
             }
             TLObject w10 = org.telegram.messenger.w7.w(stickerSetCovered.set.thumbs, 90, false, null, false);
-            org.telegram.messenger.lz d = org.telegram.messenger.u5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.n6.f29379c7, 0.2f, false);
+            org.telegram.messenger.lz d = org.telegram.messenger.u5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.n6.f29377c7, 0.2f, false);
             if (d != null) {
-                d.f25488e = 512;
-                d.f25489f = 512;
+                d.f25486e = 512;
+                d.f25487f = 512;
             }
             if (w10 == null || org.telegram.messenger.fj.N4(document)) {
                 w10 = document;
@@ -131,7 +131,7 @@ public final class py extends bk0 {
                     } else {
                         q9Var.l(org.telegram.messenger.fc.b(document), str2, fcVar, null, 0, stickerSetCovered);
                     }
-                } else if (fcVar.f23880p == 1) {
+                } else if (fcVar.f23877p == 1) {
                     q9Var.k(fcVar, str2, "tgs", d, stickerSetCovered);
                 } else {
                     q9Var.k(fcVar, null, "webp", d, stickerSetCovered);

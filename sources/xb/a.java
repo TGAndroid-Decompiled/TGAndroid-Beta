@@ -3,7 +3,7 @@ package xb;
 import q6.m;
 import wb.c;
 public final class a extends c {
-    public static final a f60443b;
+    public static final a f60444b;
 
     static {
         ?? obj = new Object();
@@ -14,6 +14,6 @@ public final class a extends c {
         }
         m.a("Confidence Threshold should be in range [0.0f, 1.0f].", z10);
         obj.f56305a = 0.5f;
-        f60443b = new c(obj);
+        f60444b = new c(obj);
     }
 }

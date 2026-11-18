@@ -39,15 +39,15 @@ public abstract class u0 extends j {
     public v4 K0;
     public v4 L0;
     public v4 M0;
-    public final n4 f58139r0;
-    public final p0 f58140s0;
-    public final ArrayList f58141t0;
-    public final aj f58142u0;
-    public boolean f58143v0;
-    public boolean f58144w0;
-    public TextureView f58145x0;
-    public boolean f58146y0;
-    public int f58147z0;
+    public final n4 f58140r0;
+    public final p0 f58141s0;
+    public final ArrayList f58142t0;
+    public final aj f58143u0;
+    public boolean f58144v0;
+    public boolean f58145w0;
+    public TextureView f58146x0;
+    public boolean f58147y0;
+    public int f58148z0;
 
     public u0(Context context, PointF pointF, ArrayList arrayList, ca caVar, boolean z10, v5 v5Var) {
         super(context, pointF);
@@ -57,8 +57,8 @@ public abstract class u0 extends j {
         Boolean D;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        this.f58141t0 = new ArrayList();
-        this.f58147z0 = 1;
+        this.f58142t0 = new ArrayList();
+        this.f58148z0 = 1;
         this.A0 = 1;
         this.B0 = true;
         this.C0 = n6.I.q();
@@ -69,7 +69,7 @@ public abstract class u0 extends j {
         setScale(1.0f);
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             fj fjVar = (fj) arrayList.get(i7);
-            TLRPC.Message message2 = fjVar.f23968k;
+            TLRPC.Message message2 = fjVar.f23965k;
             int i10 = message2.date;
             if (message2 instanceof TLRPC.TL_message) {
                 tL_messageService = new TLRPC.TL_message();
@@ -86,11 +86,11 @@ public abstract class u0 extends j {
                 }
                 message.voiceTranscriptionOpen = false;
                 int i11 = fjVar.K1;
-                fj fjVar2 = new fj(i11, message, fjVar.C, mp.u1(i11).d, mp.u1(fjVar.K1).f25605b, null, null, true, true, 0L, true, z10, false, 0);
+                fj fjVar2 = new fj(i11, message, fjVar.C, mp.u1(i11).d, mp.u1(fjVar.K1).f25603b, null, null, true, true, 0L, true, z10, false, 0);
                 fjVar2.L5();
-                this.f58141t0.add(fjVar2);
+                this.f58142t0.add(fjVar2);
             }
-            tL_messageService.f28426id = message2.f28426id;
+            tL_messageService.f28424id = message2.f28424id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -169,51 +169,51 @@ public abstract class u0 extends j {
             }
             message.voiceTranscriptionOpen = false;
             int i112 = fjVar.K1;
-            fj fjVar22 = new fj(i112, message, fjVar.C, mp.u1(i112).d, mp.u1(fjVar.K1).f25605b, null, null, true, true, 0L, true, z10, false, 0);
+            fj fjVar22 = new fj(i112, message, fjVar.C, mp.u1(i112).d, mp.u1(fjVar.K1).f25603b, null, null, true, true, 0L, true, z10, false, 0);
             fjVar22.L5();
-            this.f58141t0.add(fjVar22);
+            this.f58142t0.add(fjVar22);
         }
-        this.f58142u0 = null;
-        if (this.f58141t0.size() > 1) {
+        this.f58143u0 = null;
+        if (this.f58142t0.size() > 1) {
             aj ajVar = new aj();
-            this.f58142u0 = ajVar;
-            ajVar.d.addAll(this.f58141t0);
-            ajVar.f22898a = ((fj) this.f58141t0.get(0)).c1();
+            this.f58143u0 = ajVar;
+            ajVar.d.addAll(this.f58142t0);
+            ajVar.f22895a = ((fj) this.f58142t0.get(0)).c1();
             ajVar.a();
         }
         n4 n4Var = new n4(b5Var, context);
-        this.f58139r0 = n4Var;
+        this.f58140r0 = n4Var;
         addView(n4Var, ma.c(-1.0f, -1));
         p0 p0Var = new p0(b5Var, context, this.E0);
-        this.f58140s0 = p0Var;
+        this.f58141s0 = p0Var;
         p0Var.setAdapter(new s0(b5Var, context, caVar, v5Var, z10));
         ga0 ga0Var = new ga0(b5Var, 2);
         ga0Var.O = new s2(b5Var, 18);
         p0Var.setLayoutManager(ga0Var);
         p0Var.i(new fi.k(16));
         n4Var.addView(p0Var, ma.c(-1.0f, -1));
-        if (v5Var != null && v5Var.f15579g) {
+        if (v5Var != null && v5Var.f15576g) {
             t6 t6Var = new t6(b5Var, 28);
             org.telegram.ui.web.b bVar2 = new org.telegram.ui.web.b(b5Var, 1);
-            v5Var.f15575b = t6Var;
-            v5Var.f15576c = bVar2;
-            TextureView textureView = v5Var.f15574a;
+            v5Var.f15572b = t6Var;
+            v5Var.f15573c = bVar2;
+            TextureView textureView = v5Var.f15571a;
             if (textureView != null) {
                 t6Var.a(textureView);
             }
-            if (v5Var.d && (bVar = v5Var.f15576c) != null) {
-                bVar.a(Integer.valueOf(v5Var.f15577e), Integer.valueOf(v5Var.f15578f));
+            if (v5Var.d && (bVar = v5Var.f15573c) != null) {
+                bVar.a(Integer.valueOf(v5Var.f15574e), Integer.valueOf(v5Var.f15575f));
             }
         }
         k();
     }
 
-    public org.telegram.ui.Cells.q1 getCell() {
-        p0 p0Var = this.f58140s0;
+    public org.telegram.ui.Cells.r1 getCell() {
+        p0 p0Var = this.f58141s0;
         if (p0Var != null) {
             for (int i7 = 0; i7 < p0Var.getChildCount(); i7++) {
-                if (p0Var.getChildAt(i7) instanceof org.telegram.ui.Cells.q1) {
-                    return (org.telegram.ui.Cells.q1) p0Var.getChildAt(i7);
+                if (p0Var.getChildAt(i7) instanceof org.telegram.ui.Cells.r1) {
+                    return (org.telegram.ui.Cells.r1) p0Var.getChildAt(i7);
                 }
             }
             return null;
@@ -246,7 +246,7 @@ public abstract class u0 extends j {
         setX(getPositionX() - (getMeasuredWidth() / 2.0f));
         setY(getPositionY() - (getMeasuredHeight() / 2.0f));
         m();
-        if (this.f58144w0) {
+        if (this.f58145w0) {
             s();
         }
     }
@@ -267,26 +267,26 @@ public abstract class u0 extends j {
         float f14 = 2.1474836E9f;
         float f15 = -2.1474836E9f;
         while (true) {
-            p0 p0Var = this.f58140s0;
+            p0 p0Var = this.f58141s0;
             if (i7 < p0Var.getChildCount()) {
                 View childAt = p0Var.getChildAt(i7);
-                boolean z10 = childAt instanceof org.telegram.ui.Cells.q1;
-                n4 n4Var = this.f58139r0;
+                boolean z10 = childAt instanceof org.telegram.ui.Cells.r1;
+                n4 n4Var = this.f58140r0;
                 if (z10) {
-                    org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) childAt;
-                    if (q1Var.getMessageObject() != null && q1Var.getMessageObject().h4() && q1Var.getPhotoImage() != null) {
-                        f10 = q1Var.getX() + n4Var.getX() + q1Var.getPhotoImage().L0;
-                        f11 = q1Var.getPhotoImage().y() + q1Var.getX() + n4Var.getX();
-                        L = q1Var.getY() + n4Var.getY() + q1Var.getPhotoImage().M0;
-                        y10 = q1Var.getPhotoImage().A() + q1Var.getY() + n4Var.getY();
+                    org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) childAt;
+                    if (r1Var.getMessageObject() != null && r1Var.getMessageObject().h4() && r1Var.getPhotoImage() != null) {
+                        f10 = r1Var.getX() + n4Var.getX() + r1Var.getPhotoImage().L0;
+                        f11 = r1Var.getPhotoImage().y() + r1Var.getX() + n4Var.getX();
+                        L = r1Var.getY() + n4Var.getY() + r1Var.getPhotoImage().M0;
+                        y10 = r1Var.getPhotoImage().A() + r1Var.getY() + n4Var.getY();
                     } else {
-                        float x10 = childAt.getX() + n4Var.getX() + q1Var.getBackgroundDrawableLeft() + org.telegram.messenger.g0.L(1.0f);
-                        if (this.f58142u0 == null) {
+                        float x10 = childAt.getX() + n4Var.getX() + r1Var.getBackgroundDrawableLeft() + org.telegram.messenger.g0.L(1.0f);
+                        if (this.f58143u0 == null) {
                             x10 += org.telegram.messenger.g0.L(8.0f);
                         }
-                        float x11 = ((childAt.getX() + n4Var.getX()) + q1Var.getBackgroundDrawableRight()) - org.telegram.messenger.g0.L(1.66f);
-                        float y11 = childAt.getY() + n4Var.getY() + q1Var.getBackgroundDrawableTop();
-                        y10 = ((childAt.getY() + n4Var.getY()) + q1Var.getBackgroundDrawableBottom()) - org.telegram.messenger.g0.L(1.0f);
+                        float x11 = ((childAt.getX() + n4Var.getX()) + r1Var.getBackgroundDrawableRight()) - org.telegram.messenger.g0.L(1.66f);
+                        float y11 = childAt.getY() + n4Var.getY() + r1Var.getBackgroundDrawableTop();
+                        y10 = ((childAt.getY() + n4Var.getY()) + r1Var.getBackgroundDrawableBottom()) - org.telegram.messenger.g0.L(1.0f);
                         f10 = x10;
                         f11 = x11;
                         L = org.telegram.messenger.g0.L(2.0f) + y11;
@@ -295,13 +295,13 @@ public abstract class u0 extends j {
                     f15 = Math.max(Math.max(f15, f10), f11);
                     f14 = Math.min(Math.min(f14, L), y10);
                     f13 = Math.max(Math.max(f13, L), y10);
-                } else if (childAt instanceof org.telegram.ui.Cells.u0) {
-                    org.telegram.ui.Cells.u0 u0Var = (org.telegram.ui.Cells.u0) childAt;
-                    if (u0Var.U()) {
-                        float x12 = u0Var.getX() + n4Var.getX() + u0Var.getBoundsLeft();
-                        float x13 = u0Var.getX() + n4Var.getX() + u0Var.getBoundsRight();
-                        float y12 = u0Var.getY() + n4Var.getY();
-                        float y13 = u0Var.getY() + n4Var.getY() + u0Var.getMeasuredHeight();
+                } else if (childAt instanceof org.telegram.ui.Cells.v0) {
+                    org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) childAt;
+                    if (v0Var.S()) {
+                        float x12 = v0Var.getX() + n4Var.getX() + v0Var.getBoundsLeft();
+                        float x13 = v0Var.getX() + n4Var.getX() + v0Var.getBoundsRight();
+                        float y12 = v0Var.getY() + n4Var.getY();
+                        float y13 = v0Var.getY() + n4Var.getY() + v0Var.getMeasuredHeight();
                         f12 = Math.min(Math.min(f12, x12), x13);
                         f15 = Math.max(Math.max(f15, x12), x13);
                         f14 = Math.min(Math.min(f14, y12), y13);
@@ -317,7 +317,7 @@ public abstract class u0 extends j {
     }
 
     public final void s() {
-        p0 p0Var = this.f58140s0;
+        p0 p0Var = this.f58141s0;
         p0Var.invalidate();
         for (int i7 = 0; i7 < p0Var.getChildCount(); i7++) {
             p0Var.getChildAt(i7).invalidate();

@@ -4,7 +4,7 @@ import android.content.Context;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.tc1;
 import org.telegram.ui.uc1;
-public final class ej extends org.telegram.ui.Cells.ua {
+public final class ej extends org.telegram.ui.Cells.va {
     public final int f34721x;
     public final bk0 f34722y;
 

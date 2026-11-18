@@ -27,14 +27,14 @@ public final class k51 extends org.telegram.ui.ActionBar.x2 {
         super(context, false);
         this.f36689s1 = new int[2];
         setCanceledOnTouchOutside(false);
-        this.f30228v0 = false;
-        this.f30230w0 = false;
+        this.f30226v0 = false;
+        this.f30228w0 = false;
         Drawable g10 = i5.c.g(context, 2131232730);
         this.f36684m1 = g10;
-        g10.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false), PorterDuff.Mode.MULTIPLY));
+        g10.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false), PorterDuff.Mode.MULTIPLY));
         w01 w01Var = new w01(1, context, this);
         w01Var.setWillNotDraw(false);
-        this.f30192b = w01Var;
+        this.f30190b = w01Var;
         j51 j51Var = new j51(this, context);
         this.n1 = j51Var;
         j51Var.setFillViewport(true);
@@ -48,22 +48,22 @@ public final class k51 extends org.telegram.ui.ActionBar.x2 {
         j51Var.addView(linearLayout, c8.ma.x(-1, -2, 51));
         TextView textView = new TextView(context);
         org.telegram.messenger.n10.p(textView, 1, 20.0f);
-        int i7 = org.telegram.ui.ActionBar.n6.f29504j5;
+        int i7 = org.telegram.ui.ActionBar.n6.f29502j5;
         textView.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setText(org.telegram.messenger.gd.M0(2131754227, null));
         linearLayout.addView(textView, c8.ma.t(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29654r5, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29652r5, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setMovementMethod(new org.telegram.messenger.c0(false));
-        int i10 = org.telegram.ui.ActionBar.n6.f29524k5;
+        int i10 = org.telegram.ui.ActionBar.n6.f29522k5;
         textView2.setLinkTextColor(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
-        textView2.setText(org.telegram.messenger.gd.a0(null, null, 2131754240, d1Var.f23461b, Integer.valueOf(d1Var.f23460a)));
+        textView2.setText(org.telegram.messenger.gd.a0(null, null, 2131754240, d1Var.f23458b, Integer.valueOf(d1Var.f23457a)));
         textView2.setGravity(49);
         linearLayout.addView(textView2, c8.ma.t(-2, -2, 49, 23, 0, 23, 5));
-        String str = d1Var.f23462c;
+        String str = d1Var.f23459c;
         if (!TextUtils.isEmpty(str)) {
             TextView textView3 = new TextView(getContext());
             textView3.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
@@ -84,7 +84,7 @@ public final class k51 extends org.telegram.ui.ActionBar.x2 {
         view.setTag(1);
         w01Var.addView(view, layoutParams);
         hi.d dVar = new hi.d(context, null, true);
-        File g11 = org.telegram.messenger.t0.f26914a.g();
+        File g11 = org.telegram.messenger.t0.f26912a.g();
         if (g11 != null) {
             dVar.i(org.telegram.messenger.gd.a0(null, null, 2131754223, new Object[0]), false, true);
             dVar.setOnClickListener(new c31(4, this, g11));
@@ -101,7 +101,7 @@ public final class k51 extends org.telegram.ui.ActionBar.x2 {
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26914a).q()) {
+                            if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26912a).q()) {
                                 org.telegram.messenger.h1.e().b(false);
                             }
                             this.f36059b.dismiss();
@@ -127,7 +127,7 @@ public final class k51 extends org.telegram.ui.ActionBar.x2 {
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26914a).q()) {
+                        if (((ApplicationLoaderImpl) org.telegram.messenger.t0.f26912a).q()) {
                             org.telegram.messenger.h1.e().b(false);
                         }
                         this.f36059b.dismiss();
@@ -147,7 +147,7 @@ public final class k51 extends org.telegram.ui.ActionBar.x2 {
         int[] iArr = k51Var.f36689s1;
         childAt.getLocationInWindow(iArr);
         int max = Math.max(iArr[1] - org.telegram.messenger.g0.L(24.0f), 0);
-        if (linearLayout.getMeasuredHeight() + iArr[1] <= k51Var.f30192b.getTranslationY() + (k51Var.f30195c.getMeasuredHeight() - org.telegram.messenger.g0.L(113.0f))) {
+        if (linearLayout.getMeasuredHeight() + iArr[1] <= k51Var.f30190b.getTranslationY() + (k51Var.f30193c.getMeasuredHeight() - org.telegram.messenger.g0.L(113.0f))) {
             k51Var.K0(false);
         } else {
             k51Var.K0(true);

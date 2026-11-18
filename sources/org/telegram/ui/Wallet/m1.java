@@ -36,12 +36,12 @@ public final class m1 implements Predicate {
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
         switch (this.f44509a) {
             case 0:
-                if (tonconnectsession.f28667id == this.f44510b.f28667id) {
+                if (tonconnectsession.f28665id == this.f44510b.f28665id) {
                     return true;
                 }
                 return false;
             default:
-                if (tonconnectsession.f28667id == this.f44510b.f28667id) {
+                if (tonconnectsession.f28665id == this.f44510b.f28665id) {
                     return true;
                 }
                 return false;

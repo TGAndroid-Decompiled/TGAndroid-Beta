@@ -13,7 +13,7 @@ public final class e extends h {
     @Override
     public final IInterface i(IBinder iBinder) {
         j.e(iBinder, "iBinder");
-        int i7 = c.f18178b;
+        int i7 = c.f18175b;
         IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
         if (queryLocalInterface instanceof d) {
             return (d) queryLocalInterface;

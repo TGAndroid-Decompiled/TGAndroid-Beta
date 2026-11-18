@@ -13,7 +13,7 @@ public final class j extends rg.b {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59126f;
+        int i7 = f1Var.f59127f;
         if (i7 != 2 && i7 != 0) {
             return true;
         }
@@ -52,54 +52,54 @@ public final class j extends rg.b {
             } else {
                 z10 = false;
             }
-            int i12 = f1Var.f59126f;
-            View view = f1Var.f59122a;
+            int i12 = f1Var.f59127f;
+            View view = f1Var.f59123a;
             if (i12 == 0) {
-                ((org.telegram.ui.Cells.n4) view).setText(iVar.f48551c);
+                ((org.telegram.ui.Cells.o4) view).setText(iVar.f48507c);
             } else if (i12 == 2) {
-                org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-                if (TextUtils.isEmpty(iVar.f48551c)) {
-                    z8Var.setFixedSize(12);
-                    z8Var.setText(null);
+                org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
+                if (TextUtils.isEmpty(iVar.f48507c)) {
+                    a9Var.setFixedSize(12);
+                    a9Var.setText(null);
                     return;
                 }
-                z8Var.setFixedSize(0);
-                z8Var.setText(iVar.f48551c);
+                a9Var.setFixedSize(0);
+                a9Var.setText(iVar.f48507c);
             } else if (i12 == 1) {
-                org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
+                org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
                 int i13 = iVar.d;
                 if (i13 == 1) {
                     z11 = kVar.d.keep_archived_unmuted;
-                    r8Var.setCheckBoxIcon(0);
+                    s8Var.setCheckBoxIcon(0);
                 } else if (i13 == 4) {
                     z11 = kVar.d.keep_archived_folders;
-                    r8Var.setCheckBoxIcon(0);
+                    s8Var.setCheckBoxIcon(0);
                 } else if (i13 == 7) {
                     boolean z12 = kVar.d.archive_and_mute_new_noncontact_peers;
-                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().f25610b4) {
+                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().f25608b4) {
                         i11 = 2131232515;
                     }
-                    r8Var.setCheckBoxIcon(i11);
+                    s8Var.setCheckBoxIcon(i11);
                     z11 = z12;
                 } else {
                     return;
                 }
-                r8Var.f(iVar.f48551c, z11, z10);
+                s8Var.f(iVar.f48507c, z11, z10);
             }
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View z8Var;
+        View a9Var;
         k kVar = this.d;
         if (i7 == 0) {
-            z8Var = new org.telegram.ui.Cells.n4(kVar.getParentActivity());
+            a9Var = new org.telegram.ui.Cells.o4(kVar.getParentActivity());
         } else if (i7 == 1) {
-            z8Var = new org.telegram.ui.Cells.r8(kVar.getParentActivity());
+            a9Var = new org.telegram.ui.Cells.s8(kVar.getParentActivity());
         } else {
-            z8Var = new org.telegram.ui.Cells.z8(kVar.getParentActivity());
+            a9Var = new org.telegram.ui.Cells.a9(kVar.getParentActivity());
         }
-        return new v4.f1(z8Var);
+        return new v4.f1(a9Var);
     }
 }

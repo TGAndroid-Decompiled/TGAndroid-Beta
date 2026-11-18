@@ -29,7 +29,7 @@ public final class la extends kb0 {
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
             sa saVar = this.f37088o0;
-            if (y10 < saVar.f30225s0.getBounds().top) {
+            if (y10 < saVar.f30223s0.getBounds().top) {
                 saVar.dismiss();
             }
         }

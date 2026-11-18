@@ -47,8 +47,8 @@ public class uy extends v4.t {
         boolean z11;
         float f10;
         SparseIntArray sparseIntArray = this.R;
-        if (sparseIntArray.size() != A() || this.W != this.f59216m || this.T != this.J) {
-            int i10 = this.f59216m;
+        if (sparseIntArray.size() != A() || this.W != this.f59217m || this.T != this.J) {
+            int i10 = this.f59217m;
             this.W = i10;
             float f11 = i10;
             if (f11 == 0.0f) {

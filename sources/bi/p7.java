@@ -1,61 +1,32 @@
 package bi;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.i41;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.ph0;
-import org.telegram.ui.Components.z41;
-public final class p7 extends k41 {
-    public static final int f3977b = 0;
+public final class p7 extends org.telegram.ui.ActionBar.z0 {
+    public final int W;
+    public long f3952a0;
+    public n7 f3953b0;
 
-    static {
-        k41.h(new k41());
+    public p7(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(0, context, i6Var, false, false);
+        this.W = i7;
+        setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
+        c(org.telegram.ui.ActionBar.n6.E8, org.telegram.ui.ActionBar.n6.F8);
+        setIconColor(-1);
+        this.f30303c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
+        this.f30303c.setScaleX(1.2f);
+        this.f30303c.setScaleY(1.2f);
+        a(2);
+        setBackground(null);
+        this.f30303c.addOnAttachStateChangeListener(new r2(this, 2));
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        q7 q7Var = (q7) view;
-        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) l41Var.H;
-        int i7 = l41Var.A;
-        String str = (String) l41Var.f37018m;
-        boolean z11 = l41Var.f37011e;
-        ph0 ph0Var = q7Var.f30305c;
-        o7 o7Var = q7Var.f4015b0;
-        if (o7Var == null || q7Var.f4014a0 != stargiftattributemodel.document.f28411id) {
-            q7Var.f4014a0 = stargiftattributemodel.document.f28411id;
-            if (o7Var != null) {
-                o7Var.n(ph0Var);
-            }
-            q7Var.f4015b0 = new org.telegram.ui.Components.o5(3, q7Var.W, stargiftattributemodel.document);
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i7);
+        if (View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
+            size = org.telegram.messenger.g0.L(250.0f);
         }
-        if (ph0Var.isAttachedToWindow()) {
-            q7Var.f4015b0.a(ph0Var);
-        }
-        SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
-        if (!TextUtils.isEmpty(str)) {
-            spannableStringBuilder = org.telegram.messenger.g0.w1(spannableStringBuilder, str, q7Var.P);
-        }
-        if (i7 > 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
-            spannableStringBuilder2.append((CharSequence) "  ");
-            int length = spannableStringBuilder2.length();
-            spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
-            spannableStringBuilder2.setSpan(new i41(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        q7Var.j(spannableStringBuilder, 0, q7Var.f4015b0);
-        q7Var.setChecked(z11);
-    }
-
-    @Override
-    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new q7(i7, context, i6Var);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
     }
 }

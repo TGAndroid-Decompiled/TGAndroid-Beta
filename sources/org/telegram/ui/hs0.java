@@ -10,12 +10,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hs0 extends org.telegram.ui.ActionBar.j {
-    public final int f48517a;
-    public final Object f48518b;
+    public final int f48473a;
+    public final Object f48474b;
 
     public hs0(Object obj, int i7) {
-        this.f48517a = i7;
-        this.f48518b = obj;
+        this.f48473a = i7;
+        this.f48474b = obj;
     }
 
     @Override
@@ -31,10 +31,10 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
         org.telegram.messenger.fj fjVar;
         org.telegram.ui.ActionBar.k kVar3;
         org.telegram.ui.ActionBar.k kVar4;
-        int i11 = this.f48517a;
+        int i11 = this.f48473a;
         org.telegram.ui.ActionBar.j jVar = null;
         boolean z10 = true;
-        Object obj = this.f48518b;
+        Object obj = this.f48474b;
         switch (i11) {
             case 0:
                 is0 is0Var = (is0) obj;
@@ -124,47 +124,47 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
                     return;
                 } else if (i7 == 1 && yx0Var.getParentActivity() != null) {
                     n2.o0 a10 = xi.a.a();
-                    a10.p(yx0Var.f54326w);
-                    String obj2 = yx0Var.f54318a[0].getText().toString();
+                    a10.p(yx0Var.f54285w);
+                    String obj2 = yx0Var.f54277a[0].getText().toString();
                     String str5 = "";
                     if (obj2 == null) {
                         obj2 = "";
                     }
-                    a10.f21195c = obj2;
-                    if (yx0Var.f54326w == 3) {
+                    a10.f21192c = obj2;
+                    if (yx0Var.f54285w == 3) {
                         intValue = 0;
                     } else {
-                        intValue = Utilities.z(yx0Var.f54318a[1].getText().toString()).intValue();
+                        intValue = Utilities.z(yx0Var.f54277a[1].getText().toString()).intValue();
                     }
-                    a10.f21194b = intValue;
-                    if (yx0Var.f54326w != 1) {
+                    a10.f21191b = intValue;
+                    if (yx0Var.f54285w != 1) {
                         str = "";
                     } else {
-                        str = yx0Var.f54318a[2].getText().toString();
+                        str = yx0Var.f54277a[2].getText().toString();
                     }
                     if (str == null) {
                         str = "";
                     }
                     a10.d = str;
-                    if (yx0Var.f54326w != 1) {
+                    if (yx0Var.f54285w != 1) {
                         str2 = "";
                     } else {
-                        str2 = yx0Var.f54318a[3].getText().toString();
+                        str2 = yx0Var.f54277a[3].getText().toString();
                     }
                     if (str2 == null) {
                         str2 = "";
                     }
-                    a10.f21196e = str2;
-                    if (yx0Var.f54326w == 1) {
+                    a10.f21193e = str2;
+                    if (yx0Var.f54285w == 1) {
                         str3 = "";
                     } else {
-                        str3 = yx0Var.f54318a[4].getText().toString();
+                        str3 = yx0Var.f54277a[4].getText().toString();
                     }
                     if (str3 != null) {
                         str5 = str3;
                     }
-                    a10.f21197f = str5;
-                    azVar.f22988a = a10.d();
+                    a10.f21194f = str5;
+                    azVar.f22985a = a10.d();
                     SharedPreferences g12 = org.telegram.messenger.mp.g1();
                     SharedPreferences.Editor edit = g12.edit();
                     if (z11) {
@@ -176,11 +176,11 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
                         org.telegram.messenger.bz.z();
                     }
                     if (z11 || org.telegram.messenger.bz.B1 == azVar) {
-                        azVar.f22988a.i(edit);
-                        ConnectionsManager.setProxySettings(z10, azVar.f22988a);
+                        azVar.f22985a.i(edit);
+                        ConnectionsManager.setProxySettings(z10, azVar.f22985a);
                     }
                     edit.commit();
-                    org.telegram.messenger.ks.e().k(279, new Object[0]);
+                    org.telegram.messenger.ks.e().k(280, new Object[0]);
                     yx0Var.finishFragment();
                     return;
                 } else {
@@ -335,7 +335,7 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
                 }
             case 24:
                 org.telegram.ui.web.m mVar = (org.telegram.ui.web.m) obj;
-                HashSet hashSet = mVar.f53241y;
+                HashSet hashSet = mVar.f53192y;
                 if (i7 == -1) {
                     if (org.telegram.ui.web.m.e0(mVar).y()) {
                         org.telegram.ui.web.m.f0(mVar).x();
@@ -352,7 +352,7 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
                     Iterator it = hashSet.iterator();
                     while (it.hasNext()) {
                         int intValue2 = ((Integer) it.next()).intValue();
-                        ArrayList arrayList2 = mVar.f53234e.f53158a;
+                        ArrayList arrayList2 = mVar.f53185e.f53109a;
                         int size = arrayList2.size();
                         int i12 = 0;
                         while (true) {
@@ -366,9 +366,9 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
                                 fjVar = null;
                             }
                         }
-                        org.telegram.ui.web.i iVar = mVar.f53235f;
+                        org.telegram.ui.web.i iVar = mVar.f53186f;
                         if (iVar != null && fjVar == null) {
-                            ArrayList arrayList3 = iVar.f53158a;
+                            ArrayList arrayList3 = iVar.f53109a;
                             int size2 = arrayList3.size();
                             int i13 = 0;
                             while (true) {
@@ -390,7 +390,7 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, mVar.getParentActivity(), mVar.getResourceProvider());
                     String G = org.telegram.messenger.gd.G(hashSet3.size(), "DeleteOptionsTitle", new Object[0]);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                     u1Var.S = G;
                     if (hashSet3.size() == 1) {
                         str4 = "AreYouSureUnsaveSingleMessage";
@@ -416,7 +416,7 @@ public final class hs0 extends org.telegram.ui.ActionBar.j {
                     if (kVar3.y()) {
                         kVar4 = ((org.telegram.ui.ActionBar.h2) x0Var).actionBar;
                         kVar4.x();
-                        x0Var.f53402w.clear();
+                        x0Var.f53353w.clear();
                         org.telegram.messenger.g0.d0(x0Var.f33530a, new fi.e(29));
                         return;
                     }

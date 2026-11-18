@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class k9 implements q10 {
-    public final int f25014a;
-    public final c1 f25015b;
-    public final Object f25016c;
+    public final int f25011a;
+    public final c1 f25012b;
+    public final Object f25013c;
     public final Object d;
-    public final Object f25017e;
+    public final Object f25014e;
 
     public k9(c1 c1Var, Object obj, Object obj2, Object obj3, int i7) {
-        this.f25014a = i7;
-        this.f25015b = c1Var;
-        this.f25016c = obj;
+        this.f25011a = i7;
+        this.f25012b = c1Var;
+        this.f25013c = obj;
         this.d = obj2;
-        this.f25017e = obj3;
+        this.f25014e = obj3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         Integer num;
-        int i7 = this.f25014a;
-        Object obj3 = this.f25017e;
+        int i7 = this.f25011a;
+        Object obj3 = this.f25014e;
         Object obj4 = this.d;
-        Object obj5 = this.f25016c;
-        c1 c1Var = this.f25015b;
+        Object obj5 = this.f25013c;
+        c1 c1Var = this.f25012b;
         switch (i7) {
             case 0:
                 u9 u9Var = (u9) c1Var;
@@ -36,11 +36,11 @@ public final class k9 implements q10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
                     nVar.a(Boolean.FALSE, tL_error.text);
-                    r9Var.f26563f = false;
+                    r9Var.f26561f = false;
                     return;
                 } else if (!(paymentForm instanceof TLRPC.TL_payments_paymentFormStarGift)) {
                     nVar.a(Boolean.FALSE, "NO_PAYMENT_FORM");
-                    r9Var.f26563f = false;
+                    r9Var.f26561f = false;
                     return;
                 } else {
                     TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
@@ -60,7 +60,7 @@ public final class k9 implements q10 {
                 if (qiVar == null) {
                     qiVar = new qi();
                 }
-                ArrayList arrayList = qiVar.f26409a;
+                ArrayList arrayList = qiVar.f26407a;
                 if (messages_foundstickers instanceof TLRPC.TL_messages_foundStickers) {
                     TLRPC.TL_messages_foundStickers tL_messages_foundStickers = (TLRPC.TL_messages_foundStickers) messages_foundstickers;
                     arrayList.addAll(tL_messages_foundStickers.stickers);
@@ -69,7 +69,7 @@ public final class k9 implements q10 {
                     } else {
                         num = null;
                     }
-                    qiVar.f26410b = num;
+                    qiVar.f26408b = num;
                 }
                 riVar.T1.put(piVar, qiVar);
                 x10Var.a(arrayList);
@@ -87,7 +87,7 @@ public final class k9 implements q10 {
                 if (tL_messages_stickerSet != null) {
                     TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                     if (stickerSet != null) {
-                        riVar2.J.k(tL_messages_stickerSet, stickerSet.f28432id);
+                        riVar2.J.k(tL_messages_stickerSet, stickerSet.f28430id);
                         riVar2.O.put(tL_messages_stickerSet.set.short_name.toLowerCase(), tL_messages_stickerSet);
                         boolean z10 = inputStickerSet instanceof TLRPC.TL_inputStickerSetEmojiDefaultStatuses;
                         if (z10) {
@@ -98,7 +98,7 @@ public final class k9 implements q10 {
                         }
                     }
                     riVar2.Z1(tL_messages_stickerSet);
-                    riVar2.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f28432id), tL_messages_stickerSet);
+                    riVar2.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f28430id), tL_messages_stickerSet);
                     return;
                 }
                 return;

@@ -15,9 +15,9 @@ public final class j2 extends c5.l {
         int actionMasked = motionEvent.getActionMasked();
         o2 o2Var = this.f48852x0;
         if (actionMasked == 0) {
-            o2Var.E.f47921g0.requestDisallowInterceptTouchEvent(true);
+            o2Var.E.f47885g0.requestDisallowInterceptTouchEvent(true);
         } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-            o2Var.E.f47921g0.requestDisallowInterceptTouchEvent(false);
+            o2Var.E.f47885g0.requestDisallowInterceptTouchEvent(false);
         }
         o2Var.E.i();
         return super.onInterceptTouchEvent(motionEvent);
@@ -28,13 +28,13 @@ public final class j2 extends c5.l {
         int actionMasked = motionEvent.getActionMasked();
         o2 o2Var = this.f48852x0;
         if (actionMasked == 0) {
-            o2Var.E.f47921g0.requestDisallowInterceptTouchEvent(true);
+            o2Var.E.f47885g0.requestDisallowInterceptTouchEvent(true);
         }
         boolean onTouchEvent = super.onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        o2Var.E.f47921g0.requestDisallowInterceptTouchEvent(false);
+        o2Var.E.f47885g0.requestDisallowInterceptTouchEvent(false);
         return onTouchEvent;
     }
 }

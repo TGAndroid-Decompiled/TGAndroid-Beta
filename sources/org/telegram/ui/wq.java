@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import android.graphics.drawable.Drawable;
 public final class wq implements Drawable.Callback {
-    public final int f53494a;
-    public final Drawable f53495b;
+    public final int f53445a;
+    public final Drawable f53446b;
 
     public wq(int i7, Drawable drawable) {
-        this.f53494a = i7;
-        this.f53495b = drawable;
+        this.f53445a = i7;
+        this.f53446b = drawable;
     }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f53494a) {
+        switch (this.f53445a) {
             case 0:
-                ((xq) this.f53495b).invalidateSelf();
+                ((xq) this.f53446b).invalidateSelf();
                 return;
             default:
-                org.telegram.ui.Cells.u0 u0Var = ((xw0) this.f53495b).h;
-                if (u0Var != null) {
-                    u0Var.invalidate();
+                org.telegram.ui.Cells.v0 v0Var = ((xw0) this.f53446b).h;
+                if (v0Var != null) {
+                    v0Var.invalidate();
                     return;
                 }
                 return;
@@ -28,9 +28,9 @@ public final class wq implements Drawable.Callback {
 
     @Override
     public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f53494a) {
+        switch (this.f53445a) {
             case 0:
-                ((xq) this.f53495b).scheduleSelf(runnable, j3);
+                ((xq) this.f53446b).scheduleSelf(runnable, j3);
                 return;
             default:
                 return;
@@ -39,9 +39,9 @@ public final class wq implements Drawable.Callback {
 
     @Override
     public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f53494a) {
+        switch (this.f53445a) {
             case 0:
-                ((xq) this.f53495b).unscheduleSelf(runnable);
+                ((xq) this.f53446b).unscheduleSelf(runnable);
                 return;
             default:
                 return;

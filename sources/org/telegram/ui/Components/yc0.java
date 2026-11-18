@@ -19,7 +19,7 @@ public final class yc0 implements org.telegram.ui.ActionBar.r1 {
                 Activity activity = this.f42469b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26915b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26913b.getPackageName()));
                     activity.startActivity(intent);
                     return;
                 } catch (Exception e10) {
@@ -30,7 +30,7 @@ public final class yc0 implements org.telegram.ui.ActionBar.r1 {
                 Activity activity2 = this.f42469b;
                 try {
                     Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26915b.getPackageName()));
+                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26913b.getPackageName()));
                     activity2.startActivity(intent2);
                     return;
                 } catch (Exception e11) {

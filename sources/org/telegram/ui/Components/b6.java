@@ -155,7 +155,7 @@ public final class b6 extends BitmapDrawable implements Animatable, bg.g {
         if (this.S0) {
             this.S0 = false;
             z5 z5Var = new z5(this, 0);
-            Typeface typeface = org.telegram.messenger.g0.f24093a;
+            Typeface typeface = org.telegram.messenger.g0.f24090a;
             if (Looper.myLooper() != Looper.getMainLooper()) {
                 org.telegram.messenger.g0.g3(z5Var);
             } else {
@@ -443,7 +443,7 @@ public final class b6 extends BitmapDrawable implements Animatable, bg.g {
         int i10 = 0;
         while (it.hasNext()) {
             ImageReceiver imageReceiver = (ImageReceiver) it.next();
-            if (!imageReceiver.f22679y1) {
+            if (!imageReceiver.f22676y1) {
                 bVar.remove(imageReceiver);
             } else {
                 i7++;
@@ -651,7 +651,7 @@ public final class b6 extends BitmapDrawable implements Animatable, bg.g {
     public final void stop() {
         this.f33538c0 = false;
         z5 z5Var = new z5(this, 0);
-        Typeface typeface = org.telegram.messenger.g0.f24093a;
+        Typeface typeface = org.telegram.messenger.g0.f24090a;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             org.telegram.messenger.g0.g3(z5Var);
         } else {
@@ -675,7 +675,7 @@ public final class b6 extends BitmapDrawable implements Animatable, bg.g {
         this.f33538c0 = false;
         this.f33539d0 = true;
         z5 z5Var = new z5(this, 0);
-        Typeface typeface = org.telegram.messenger.g0.f24093a;
+        Typeface typeface = org.telegram.messenger.g0.f24090a;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             org.telegram.messenger.g0.g3(z5Var);
         } else {

@@ -17,27 +17,27 @@ import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.ri;
 import org.telegram.ui.Components.sp;
 public final class e extends sh.d implements Drawable.Callback, te.b {
-    public final String f58216b;
+    public final String f58217b;
     public final Drawable d;
-    public final sp f58219f;
+    public final sp f58220f;
     public ri h;
-    public TLRPC.WebPage f58220n;
-    public final te.a f58221r;
-    public final te.a f58222s;
-    public final xa f58217c = new xa((char) 0, 18);
-    public final Paint f58218e = new Paint(1);
+    public TLRPC.WebPage f58221n;
+    public final te.a f58222r;
+    public final te.a f58223s;
+    public final xa f58218c = new xa((char) 0, 18);
+    public final Paint f58219e = new Paint(1);
 
     public e(String str) {
         sp spVar = new sp(-1);
-        this.f58219f = spVar;
+        this.f58220f = spVar;
         lr lrVar = lr.h;
-        this.f58221r = new te.a(0, this, lrVar, 320L, false);
-        this.f58222s = new te.a(0, this, lrVar, 320L, false);
-        this.f58216b = str;
+        this.f58222r = new te.a(0, this, lrVar, 320L, false);
+        this.f58223s = new te.a(0, this, lrVar, 320L, false);
+        this.f58217b = str;
         this.f57433a.J0(g0.L(7.0f));
-        this.d = i5.c.g(t0.f26915b, 2131231746);
+        this.d = i5.c.g(t0.f26913b, 2131231746);
         spVar.setCallback(this);
-        spVar.b(n6.x0(null, n6.f29597o7, false));
+        spVar.b(n6.x0(null, n6.f29595o7, false));
         spVar.f39806a = g0.L(15.0f);
     }
 
@@ -68,17 +68,17 @@ public final class e extends sh.d implements Drawable.Callback, te.b {
         ImageReceiver imageReceiver = this.f57433a;
         imageReceiver.y0(0.0f, 0.0f, f10, f11);
         imageReceiver.h(canvas, null);
-        sp spVar = this.f58219f;
+        sp spVar = this.f58220f;
         spVar.setBounds(0, 0, i7, i10);
-        int x02 = n6.x0(null, n6.f29339a7, false);
-        te.a aVar = this.f58222s;
+        int x02 = n6.x0(null, n6.f29337a7, false);
+        te.a aVar = this.f58223s;
         int f12 = i0.a.f(aVar.f57657e, x02, 1073741824);
-        Paint paint = this.f58218e;
+        Paint paint = this.f58219e;
         paint.setColor(f12);
         canvas.drawRoundRect(0.0f, 0.0f, f10, f11, g0.L(7.0f), g0.L(7.0f), paint);
-        int f13 = i0.a.f(aVar.f57657e, n6.x0(null, n6.f29597o7, false), -1);
+        int f13 = i0.a.f(aVar.f57657e, n6.x0(null, n6.f29595o7, false), -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        xa xaVar = this.f58217c;
+        xa xaVar = this.f58218c;
         xaVar.getClass();
         if (((PorterDuffColorFilter) xaVar.f714c) == null || xaVar.f713b != f13 || ((PorterDuff.Mode) xaVar.d) != mode) {
             xaVar.f714c = new PorterDuffColorFilter(f13, mode);
@@ -88,7 +88,7 @@ public final class e extends sh.d implements Drawable.Callback, te.b {
         Drawable drawable = this.d;
         drawable.setColorFilter((PorterDuffColorFilter) xaVar.f714c);
         t.e(this.d, f10 / 2.0f, f11 / 2.0f, g0.L(24.0f), g0.L(24.0f), 17);
-        te.a aVar2 = this.f58221r;
+        te.a aVar2 = this.f58222r;
         t.b(canvas, drawable, 1.0f - aVar2.f57657e);
         t.b(canvas, spVar, aVar2.f57657e);
     }

@@ -57,7 +57,7 @@ public final class m4 {
     public final Paint X;
     public final mc Y;
     public r1.g Z;
-    public final org.telegram.ui.Cells.u0 f44515a;
+    public final org.telegram.ui.Cells.v0 f44515a;
     public float f44516a0;
     public final org.telegram.ui.ActionBar.i6 f44517b;
     public r1.g f44518b0;
@@ -110,7 +110,7 @@ public final class m4 {
     public int f44557x = -1;
     public float C = 1.0f;
 
-    public m4(org.telegram.ui.Cells.u0 u0Var, org.telegram.ui.ActionBar.i6 i6Var) {
+    public m4(org.telegram.ui.Cells.v0 v0Var, org.telegram.ui.ActionBar.i6 i6Var) {
         Paint paint = new Paint(1);
         this.L = paint;
         Paint paint2 = new Paint(1);
@@ -127,31 +127,31 @@ public final class m4 {
         new Paint(1);
         new Paint(1);
         this.f44558x0 = new Object();
-        this.f44515a = u0Var;
+        this.f44515a = v0Var;
         this.f44517b = i6Var;
-        this.f44529i = u0Var.getResources().getDrawable(2131232808).mutate();
-        Context context = u0Var.getContext();
+        this.f44529i = v0Var.getResources().getDrawable(2131232808).mutate();
+        Context context = v0Var.getContext();
         if (y6.H == null) {
             y6.H = new y6(context.getApplicationContext());
         }
         this.f44533k = y6.H;
         mh0 mh0Var = new mh0(2131624357, org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(42.0f), false, null);
         this.f44535l = mh0Var;
-        mh0Var.R(u0Var);
+        mh0Var.R(v0Var);
         mh0Var.K(0);
-        u0Var.addOnAttachStateChangeListener(new org.telegram.ui.Components.ea(2, this, u0Var));
+        v0Var.addOnAttachStateChangeListener(new org.telegram.ui.Components.ea(2, this, v0Var));
         paint2.setColor(-10033409);
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint2.setStrokeWidth(org.telegram.messenger.g0.N(1.0f));
-        m mVar = new m(u0Var, 5);
+        m mVar = new m(v0Var, 5);
         lr lrVar = lr.h;
         this.Q = new org.telegram.ui.Components.c6(1.0f, mVar, 0L, 180L, lrVar);
-        this.K = new org.telegram.ui.Components.c6(new m(u0Var, 5), 320L, lrVar, 0);
-        this.J = new org.telegram.ui.Components.c6(new m(u0Var, 5), 320L, lrVar, 0);
-        j4 j4Var = new j4(u0Var, u0Var);
+        this.K = new org.telegram.ui.Components.c6(new m(v0Var, 5), 320L, lrVar, 0);
+        this.J = new org.telegram.ui.Components.c6(new m(v0Var, 5), 320L, lrVar, 0);
+        j4 j4Var = new j4(v0Var, v0Var);
         this.I = j4Var;
-        j4Var.f3606y = -1;
+        j4Var.f3573y = -1;
         bi.f3.d(path, 1.0f, false);
         paint3.setStyle(style);
         paint3.setStrokeWidth(org.telegram.messenger.g0.N(4.0f));
@@ -159,10 +159,10 @@ public final class m4 {
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         paint3.setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(48.0f), org.telegram.messenger.g0.L(48.0f), new int[]{16777215, org.telegram.ui.ActionBar.n6.r1(0.35f, 16777215), 16777215}, new float[]{0.0f, 0.5f, 1.0f}, tileMode));
         paint.setShader(new LinearGradient(-org.telegram.messenger.g0.L(10.0f), 0.0f, org.telegram.messenger.g0.L(10.0f), 0.0f, new int[]{16777215, -2130706433, 16777215}, new float[]{0.0f, 0.5f, 1.0f}, tileMode));
-        mc mcVar = new mc(u0Var);
+        mc mcVar = new mc(v0Var);
         this.Y = mcVar;
         mcVar.f37432f = new i4(this, 0);
-        this.f44556w0 = new org.telegram.ui.Components.c6(1.0f, new m(u0Var, 5), 0L, 400L, lrVar);
+        this.f44556w0 = new org.telegram.ui.Components.c6(1.0f, new m(v0Var, 5), 0L, 400L, lrVar);
     }
 
     public static int h() {
@@ -184,9 +184,9 @@ public final class m4 {
     }
 
     public final void b() {
-        org.telegram.ui.Cells.u0 u0Var = this.f44515a;
-        if (u0Var.isShown()) {
-            org.telegram.messenger.g0.a4(u0Var);
+        org.telegram.ui.Cells.v0 v0Var = this.f44515a;
+        if (v0Var.isShown()) {
+            org.telegram.messenger.g0.a4(v0Var);
         }
         r1.g gVar = this.Z;
         if (gVar != null) {
@@ -303,9 +303,9 @@ public final class m4 {
 
     public final void j() {
         this.f44557x = -1;
-        org.telegram.ui.Cells.u0 u0Var = this.f44515a;
-        if (u0Var.getParent() != null) {
-            u0Var.getParent().requestDisallowInterceptTouchEvent(false);
+        org.telegram.ui.Cells.v0 v0Var = this.f44515a;
+        if (v0Var.getParent() != null) {
+            v0Var.getParent().requestDisallowInterceptTouchEvent(false);
         }
         this.D = true;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -321,9 +321,9 @@ public final class m4 {
         i(false);
         this.Q.e(true, 1.0f);
         if (this.f44557x != -1) {
-            org.telegram.ui.Cells.u0 u0Var = this.f44515a;
-            if (u0Var.getParent() != null) {
-                u0Var.getParent().requestDisallowInterceptTouchEvent(false);
+            org.telegram.ui.Cells.v0 v0Var = this.f44515a;
+            if (v0Var.getParent() != null) {
+                v0Var.getParent().requestDisallowInterceptTouchEvent(false);
             }
         }
         this.f44557x = -1;
@@ -359,10 +359,10 @@ public final class m4 {
             this.f44518b0 = null;
         }
         this.f44520c0 = 0.0f;
-        org.telegram.ui.Cells.u0 u0Var = this.f44515a;
-        u0Var.invalidate();
-        if (u0Var.getParent() instanceof View) {
-            ((View) u0Var.getParent()).invalidate();
+        org.telegram.ui.Cells.v0 v0Var = this.f44515a;
+        v0Var.invalidate();
+        if (v0Var.getParent() instanceof View) {
+            ((View) v0Var.getParent()).invalidate();
         }
     }
 
@@ -374,7 +374,7 @@ public final class m4 {
         int i10;
         String M0;
         String str2;
-        org.telegram.ui.Cells.u0 u0Var = this.f44515a;
+        org.telegram.ui.Cells.v0 v0Var = this.f44515a;
         if (z11) {
             f();
             this.M = false;
@@ -387,9 +387,9 @@ public final class m4 {
                 this.Z = null;
             }
             this.f44516a0 = 1.0f;
-            u0Var.invalidate();
-            if (u0Var.getParent() instanceof View) {
-                ((View) u0Var.getParent()).invalidate();
+            v0Var.invalidate();
+            if (v0Var.getParent() instanceof View) {
+                ((View) v0Var.getParent()).invalidate();
             }
             l();
             this.R = 0.0f;
@@ -431,7 +431,7 @@ public final class m4 {
             g();
             this.f44550t = 18.0f;
             this.f44552u.f();
-            u0Var.invalidate();
+            v0Var.invalidate();
         }
         if (z15) {
             if (!this.f44528h0) {
@@ -463,16 +463,16 @@ public final class m4 {
                 k4Var2.f38013b = -1L;
                 k4Var2.f38014c = -1L;
             }
-            u0Var.invalidate();
+            v0Var.invalidate();
         } else {
             k4 k4Var3 = this.f44521d0;
             if (k4Var3 != null && this.f44523e0 == 0 && !k4Var3.d() && !this.f44521d0.c()) {
                 this.f44521d0.a();
-                u0Var.invalidate();
+                v0Var.invalidate();
             }
         }
         if (z14) {
-            i10 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29637q7, this.f44517b);
+            i10 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29635q7, this.f44517b);
         } else if (z10) {
             i10 = -15352320;
         } else {
@@ -488,7 +488,7 @@ public final class m4 {
             this.T = this.V;
             this.U = i10;
             this.J.e(true, 0.0f);
-            u0Var.invalidate();
+            v0Var.invalidate();
         }
         if (z14) {
             M0 = gd.M0(2131742721, null);
@@ -569,7 +569,7 @@ public final class m4 {
             obj2.f34537a |= 256;
             spannableStringBuilder2.setSpan(new ez0(obj2, 0), 0, spannableStringBuilder2.length(), 33);
             this.f44545q0.q(spannableStringBuilder2);
-            xh.f.c(u0Var, this.f44545q0.f41481b, stack, arrayList);
+            xh.f.c(v0Var, this.f44545q0.f41481b, stack, arrayList);
             n(this.f44522e);
             return;
         }
@@ -614,10 +614,10 @@ public final class m4 {
         if (!z10 && !this.f44528h0 && this.f44546r == 0.0f && this.f44548s == 0.0f && this.f44550t == 0.0f) {
             z11 = false;
         }
-        l4Var.f59547r = f10;
-        l4Var.f59548s = f11;
-        l4Var.f59549w = z11;
-        l4Var.f59550x = z10;
+        l4Var.f59548r = f10;
+        l4Var.f59549s = f11;
+        l4Var.f59550w = z11;
+        l4Var.f59551x = z10;
     }
 
     public final void q() {

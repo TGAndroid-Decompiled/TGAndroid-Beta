@@ -35,38 +35,38 @@ public class e extends FrameLayout implements te.b, c6 {
     public float F;
     public final Paint G;
     public int H;
-    public final n[] f19857a;
-    public final View.OnClickListener[] f19858b;
-    public final ee[] f19859c;
+    public final n[] f19854a;
+    public final View.OnClickListener[] f19855b;
+    public final ee[] f19856c;
     public d d;
-    public final FrameLayout f19860e;
-    public final HashSet f19861f;
+    public final FrameLayout f19857e;
+    public final HashSet f19858f;
     public final i6 h;
-    public final dh.c f19862n;
-    public final gh.a f19863r;
-    public fh.g f19864s;
-    public final te.a f19865w;
-    public final te.a f19866x;
-    public float f19867y;
+    public final dh.c f19859n;
+    public final gh.a f19860r;
+    public fh.g f19861s;
+    public final te.a f19862w;
+    public final te.a f19863x;
+    public float f19864y;
 
     public e(Context context, dh.c cVar, gh.a aVar, i6 i6Var) {
         super(context);
-        this.f19857a = new n[5];
-        this.f19858b = new View.OnClickListener[5];
-        this.f19859c = new ee[5];
-        this.f19861f = new HashSet();
+        this.f19854a = new n[5];
+        this.f19855b = new View.OnClickListener[5];
+        this.f19856c = new ee[5];
+        this.f19858f = new HashSet();
         lr lrVar = lr.h;
-        this.f19865w = new te.a(99, this, lrVar, 320L, false);
-        this.f19866x = new te.a(100, this, lrVar, 320L, false);
+        this.f19862w = new te.a(99, this, lrVar, 320L, false);
+        this.f19863x = new te.a(100, this, lrVar, 320L, false);
         this.G = new Paint(1);
         this.H = 0;
-        this.f19862n = cVar;
-        this.f19863r = aVar;
+        this.f19859n = cVar;
+        this.f19860r = aVar;
         this.h = i6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f19860e = frameLayout;
+        this.f19857e = frameLayout;
         frameLayout.setClipToOutline(true);
-        q0 q0Var = u0.f3342a;
+        q0 q0Var = u0.f3343a;
         frameLayout.setOutlineProvider(new s0(0, g0.L(22.0f)));
         addView(frameLayout, ma.e(-1, 44, 16));
     }
@@ -81,17 +81,17 @@ public class e extends FrameLayout implements te.b, c6 {
         int i10 = i7 >> 16;
         int i11 = i7 & 65535;
         if (i10 >= 0) {
-            n[] nVarArr = this.f19857a;
+            n[] nVarArr = this.f19854a;
             if (i10 < nVarArr.length && (nVar = nVarArr[i10]) != null && i11 == 1 && ((te.a) nVar.d).f57658f) {
-                ee eeVar = this.f19859c[i10];
+                ee eeVar = this.f19856c[i10];
                 if (eeVar != null) {
-                    final kh.a aVar = (kh.a) nVar.f1788c;
-                    boolean z10 = nVar.f1787b;
-                    int i12 = eeVar.f47209a;
-                    final bn bnVar = eeVar.f47210b;
+                    final kh.a aVar = (kh.a) nVar.f1789c;
+                    boolean z10 = nVar.f1788b;
+                    int i12 = eeVar.f47175a;
+                    final bn bnVar = eeVar.f47176b;
                     switch (i12) {
                         case 28:
-                            if (bnVar.Y0 == null && !z10 && (((m3Var = bnVar.f45933a1) == null || !m3Var.W) && k30.h.c())) {
+                            if (bnVar.Y0 == null && !z10 && (((m3Var = bnVar.f45924a1) == null || !m3Var.W) && k30.h.c())) {
                                 g0.h3(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -101,24 +101,24 @@ public class e extends FrameLayout implements te.b, c6 {
                                         switch (i13) {
                                             case 0:
                                                 if (bnVar2.getParentActivity() != null) {
-                                                    float f11 = bnVar2.f46218w.f(2).d / org.telegram.messenger.g0.f24120p;
-                                                    float width = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46093m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24120p;
+                                                    float f11 = bnVar2.f46209w.f(2).d / org.telegram.messenger.g0.f24117p;
+                                                    float width = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46084m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24117p;
                                                     hi.m3 m3Var2 = new hi.m3(bnVar2.getParentActivity(), 3);
-                                                    bnVar2.f45933a1 = m3Var2;
+                                                    bnVar2.f45924a1 = m3Var2;
                                                     m3Var2.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-                                                    bnVar2.f45933a1.l(bnVar2.L);
-                                                    bnVar2.f45933a1.r(false);
-                                                    hi.m3 m3Var3 = bnVar2.f45933a1;
+                                                    bnVar2.f45924a1.l(bnVar2.L);
+                                                    bnVar2.f45924a1.r(false);
+                                                    hi.m3 m3Var3 = bnVar2.f45924a1;
                                                     String M0 = org.telegram.messenger.gd.M0(2131744189, null);
                                                     if (m3Var3.getMeasuredWidth() < 0) {
                                                         m3Var3.H = M0;
                                                     } else {
-                                                        m3Var3.I.t(M0, !org.telegram.messenger.gd.f24216a0, true);
+                                                        m3Var3.I.t(M0, !org.telegram.messenger.gd.f24213a0, true);
                                                     }
-                                                    bnVar2.f45933a1.o(1.0f, (-width) + 7.33f);
-                                                    bnVar2.f46093m1.addView(bnVar2.f45933a1, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
-                                                    hi.m3 m3Var4 = bnVar2.f45933a1;
-                                                    m3Var4.f15014r0 = new vf(bnVar2, 14);
+                                                    bnVar2.f45924a1.o(1.0f, (-width) + 7.33f);
+                                                    bnVar2.f46084m1.addView(bnVar2.f45924a1, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
+                                                    hi.m3 m3Var4 = bnVar2.f45924a1;
+                                                    m3Var4.f15011r0 = new vf(bnVar2, 14);
                                                     m3Var4.x();
                                                     org.telegram.ui.Components.k30.f36655f.b();
                                                     return;
@@ -126,8 +126,8 @@ public class e extends FrameLayout implements te.b, c6 {
                                                 return;
                                             default:
                                                 if (bnVar2.getParentActivity() != null) {
-                                                    float f12 = bnVar2.f46218w.f(2).d / org.telegram.messenger.g0.f24120p;
-                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46093m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24120p;
+                                                    float f12 = bnVar2.f46209w.f(2).d / org.telegram.messenger.g0.f24117p;
+                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46084m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24117p;
                                                     hi.m3 m3Var5 = new hi.m3(bnVar2.getParentActivity(), 3);
                                                     bnVar2.Y0 = m3Var5;
                                                     m3Var5.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
@@ -135,9 +135,9 @@ public class e extends FrameLayout implements te.b, c6 {
                                                     bnVar2.Y0.r(false);
                                                     bnVar2.Y0.v(org.telegram.messenger.gd.M0(2131750235, null));
                                                     bnVar2.Y0.o(1.0f, (-width2) + 7.33f);
-                                                    bnVar2.f46093m1.addView(bnVar2.Y0, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
+                                                    bnVar2.f46084m1.addView(bnVar2.Y0, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
                                                     hi.m3 m3Var6 = bnVar2.Y0;
-                                                    m3Var6.f15014r0 = new af(bnVar2, 17);
+                                                    m3Var6.f15011r0 = new af(bnVar2, 17);
                                                     m3Var6.x();
                                                     org.telegram.ui.Components.k30.h.b();
                                                     return;
@@ -150,7 +150,7 @@ public class e extends FrameLayout implements te.b, c6 {
                             }
                             break;
                         default:
-                            if (bnVar.f45933a1 == null && !z10 && k30.f36655f.c()) {
+                            if (bnVar.f45924a1 == null && !z10 && k30.f36655f.c()) {
                                 g0.h3(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -160,24 +160,24 @@ public class e extends FrameLayout implements te.b, c6 {
                                         switch (i13) {
                                             case 0:
                                                 if (bnVar2.getParentActivity() != null) {
-                                                    float f11 = bnVar2.f46218w.f(2).d / org.telegram.messenger.g0.f24120p;
-                                                    float width = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46093m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24120p;
+                                                    float f11 = bnVar2.f46209w.f(2).d / org.telegram.messenger.g0.f24117p;
+                                                    float width = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46084m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24117p;
                                                     hi.m3 m3Var2 = new hi.m3(bnVar2.getParentActivity(), 3);
-                                                    bnVar2.f45933a1 = m3Var2;
+                                                    bnVar2.f45924a1 = m3Var2;
                                                     m3Var2.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-                                                    bnVar2.f45933a1.l(bnVar2.L);
-                                                    bnVar2.f45933a1.r(false);
-                                                    hi.m3 m3Var3 = bnVar2.f45933a1;
+                                                    bnVar2.f45924a1.l(bnVar2.L);
+                                                    bnVar2.f45924a1.r(false);
+                                                    hi.m3 m3Var3 = bnVar2.f45924a1;
                                                     String M0 = org.telegram.messenger.gd.M0(2131744189, null);
                                                     if (m3Var3.getMeasuredWidth() < 0) {
                                                         m3Var3.H = M0;
                                                     } else {
-                                                        m3Var3.I.t(M0, !org.telegram.messenger.gd.f24216a0, true);
+                                                        m3Var3.I.t(M0, !org.telegram.messenger.gd.f24213a0, true);
                                                     }
-                                                    bnVar2.f45933a1.o(1.0f, (-width) + 7.33f);
-                                                    bnVar2.f46093m1.addView(bnVar2.f45933a1, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
-                                                    hi.m3 m3Var4 = bnVar2.f45933a1;
-                                                    m3Var4.f15014r0 = new vf(bnVar2, 14);
+                                                    bnVar2.f45924a1.o(1.0f, (-width) + 7.33f);
+                                                    bnVar2.f46084m1.addView(bnVar2.f45924a1, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
+                                                    hi.m3 m3Var4 = bnVar2.f45924a1;
+                                                    m3Var4.f15011r0 = new vf(bnVar2, 14);
                                                     m3Var4.x();
                                                     org.telegram.ui.Components.k30.f36655f.b();
                                                     return;
@@ -185,8 +185,8 @@ public class e extends FrameLayout implements te.b, c6 {
                                                 return;
                                             default:
                                                 if (bnVar2.getParentActivity() != null) {
-                                                    float f12 = bnVar2.f46218w.f(2).d / org.telegram.messenger.g0.f24120p;
-                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46093m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24120p;
+                                                    float f12 = bnVar2.f46209w.f(2).d / org.telegram.messenger.g0.f24117p;
+                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (bnVar2.f46084m1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f24117p;
                                                     hi.m3 m3Var5 = new hi.m3(bnVar2.getParentActivity(), 3);
                                                     bnVar2.Y0 = m3Var5;
                                                     m3Var5.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
@@ -194,9 +194,9 @@ public class e extends FrameLayout implements te.b, c6 {
                                                     bnVar2.Y0.r(false);
                                                     bnVar2.Y0.v(org.telegram.messenger.gd.M0(2131750235, null));
                                                     bnVar2.Y0.o(1.0f, (-width2) + 7.33f);
-                                                    bnVar2.f46093m1.addView(bnVar2.Y0, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
+                                                    bnVar2.f46084m1.addView(bnVar2.Y0, c8.ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
                                                     hi.m3 m3Var6 = bnVar2.Y0;
-                                                    m3Var6.f15014r0 = new af(bnVar2, 17);
+                                                    m3Var6.f15011r0 = new af(bnVar2, 17);
                                                     m3Var6.x();
                                                     org.telegram.ui.Components.k30.h.b();
                                                     return;
@@ -210,7 +210,7 @@ public class e extends FrameLayout implements te.b, c6 {
                             break;
                     }
                 }
-                nVar.f1787b = true;
+                nVar.f1788b = true;
             }
         }
     }
@@ -228,7 +228,7 @@ public class e extends FrameLayout implements te.b, c6 {
         int i10 = i7 >> 16;
         int i11 = i7 & 65535;
         if (i10 >= 0) {
-            n[] nVarArr = this.f19857a;
+            n[] nVarArr = this.f19854a;
             if (i10 < nVarArr.length && nVarArr[i10] != null && i11 == 1) {
                 b(true);
                 a();
@@ -244,11 +244,11 @@ public class e extends FrameLayout implements te.b, c6 {
         float f10 = 0.0f;
         this.E = 0.0f;
         this.F = 0.0f;
-        n[] nVarArr = this.f19857a;
+        n[] nVarArr = this.f19854a;
         for (n nVar : nVarArr) {
             if (nVar != null) {
-                kh.a aVar = (kh.a) nVar.f1788c;
-                float f11 = ((te.a) nVar.d).f57657e * this.f19867y;
+                kh.a aVar = (kh.a) nVar.f1789c;
+                float f11 = ((te.a) nVar.d).f57657e * this.f19864y;
                 if (f11 > 0.0f) {
                     i7 = 0;
                 } else {
@@ -264,7 +264,7 @@ public class e extends FrameLayout implements te.b, c6 {
         n nVar2 = nVarArr[iArr2[0]];
         if (nVar2 != null) {
             float L2 = ((te.a) nVar2.d).f57657e * g0.L(54.0f);
-            ((kh.a) nVar2.f1788c).setTranslationX(g0.L(1.0f) + this.E);
+            ((kh.a) nVar2.f1789c).setTranslationX(g0.L(1.0f) + this.E);
             this.E += L2;
         }
         int i10 = 0;
@@ -275,36 +275,36 @@ public class e extends FrameLayout implements te.b, c6 {
             }
             n nVar3 = nVarArr[iArr[i10]];
             if (nVar3 != null) {
-                kh.a aVar2 = (kh.a) nVar3.f1788c;
+                kh.a aVar2 = (kh.a) nVar3.f1789c;
                 float L3 = ((te.a) nVar3.d).f57657e * g0.L(54.0f);
                 aVar2.setTranslationX(((getMeasuredWidth() - aVar2.getMeasuredWidth()) - g0.L(1.0f)) - this.F);
                 this.F += L3;
             }
             i10++;
         }
-        if (this.f19867y < 1.0f) {
+        if (this.f19864y < 1.0f) {
             n nVar4 = nVarArr[iArr2[0]];
             if (nVar4 != null) {
-                kh.a aVar3 = (kh.a) nVar4.f1788c;
-                aVar3.setTranslationX(aVar3.getTranslationX() - ((1.0f - this.f19867y) * this.E));
+                kh.a aVar3 = (kh.a) nVar4.f1789c;
+                aVar3.setTranslationX(aVar3.getTranslationX() - ((1.0f - this.f19864y) * this.E));
             }
             for (int i11 = 0; i11 < 4; i11++) {
                 n nVar5 = nVarArr[iArr[i11]];
                 if (nVar5 != null) {
-                    kh.a aVar4 = (kh.a) nVar5.f1788c;
-                    aVar4.setTranslationX(((1.0f - this.f19867y) * this.F) + aVar4.getTranslationX());
+                    kh.a aVar4 = (kh.a) nVar5.f1789c;
+                    aVar4.setTranslationX(((1.0f - this.f19864y) * this.F) + aVar4.getTranslationX());
                 }
             }
             float f12 = this.E;
-            float f13 = this.f19867y;
+            float f13 = this.f19864y;
             this.E = f12 * f13;
             this.F *= f13;
         }
-        float f14 = this.f19866x.f57657e;
+        float f14 = this.f19863x.f57657e;
         if (f14 > 0.0f && getMeasuredWidth() > 0) {
             float measuredWidth = getMeasuredWidth();
             for (int i12 = 0; i12 < getContainer().getChildCount(); i12++) {
-                if (this.f19861f.contains(getContainer().getChildAt(i12))) {
+                if (this.f19858f.contains(getContainer().getChildAt(i12))) {
                     measuredWidth = Math.min(measuredWidth, childAt.getLeft());
                     f10 = Math.max(f10, childAt.getRight());
                 }
@@ -320,7 +320,7 @@ public class e extends FrameLayout implements te.b, c6 {
         if (dVar != null) {
             float f15 = this.E;
             float f16 = this.F;
-            jh.f fVar = ((dh) dVar).f46977a.U;
+            jh.f fVar = ((dh) dVar).f46901a.U;
             fVar.F = f15;
             fVar.G = f16;
             fVar.invalidate();
@@ -333,7 +333,7 @@ public class e extends FrameLayout implements te.b, c6 {
         int L2 = g0.L(7.0f);
         int L3 = g0.L(7.0f);
         int i11 = J[0];
-        n[] nVarArr = this.f19857a;
+        n[] nVarArr = this.f19854a;
         n nVar = nVarArr[i11];
         if (nVar != null) {
             if (((te.a) nVar.d).f57658f) {
@@ -354,7 +354,7 @@ public class e extends FrameLayout implements te.b, c6 {
                 L3 += i7;
             }
         }
-        FrameLayout frameLayout = this.f19860e;
+        FrameLayout frameLayout = this.f19857e;
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
         if (marginLayoutParams.leftMargin != L2 || marginLayoutParams.rightMargin != L3) {
             marginLayoutParams.leftMargin = L2;
@@ -368,11 +368,11 @@ public class e extends FrameLayout implements te.b, c6 {
     public final void c(int i7, boolean z10, boolean z11) {
         n nVar;
         if (i7 >= 0) {
-            n[] nVarArr = this.f19857a;
+            n[] nVarArr = this.f19854a;
             if (i7 < nVarArr.length && ((nVar = nVarArr[i7]) != null || z10)) {
                 if (nVar == null) {
                     te.a aVar = new te.a((i7 << 16) | 1, this, lr.h, 300L, false);
-                    kh.a d = kh.a.d(getContext(), this.f19862n, this.f19863r, this.h, I[i7], 48);
+                    kh.a d = kh.a.d(getContext(), this.f19859n, this.f19860r, this.h, I[i7], 48);
                     if (i7 == 1) {
                         d.setContentDescription(gd.M0(2131746542, null));
                     } else if (i7 == 2) {
@@ -401,18 +401,18 @@ public class e extends FrameLayout implements te.b, c6 {
             boolean z12 = false;
             for (int i7 = 0; i7 < getContainer().getChildCount(); i7++) {
                 View childAt = getContainer().getChildAt(i7);
-                if (this.f19861f.contains(childAt) && childAt.getVisibility() == 0) {
+                if (this.f19858f.contains(childAt) && childAt.getVisibility() == 0) {
                     z12 = true;
                 }
             }
             z11 = z12;
         }
-        this.f19866x.a(z11, z10);
+        this.f19863x.a(z11, z10);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i7 = (int) (this.f19867y * 255.0f * this.f19865w.f57657e);
+        int i7 = (int) (this.f19864y * 255.0f * this.f19862w.f57657e);
         if (i7 > 0) {
             float measuredWidth = (getMeasuredWidth() - g0.L(10.0f)) - this.F;
             float measuredHeight = getMeasuredHeight() - g0.L(9.0f);
@@ -429,19 +429,19 @@ public class e extends FrameLayout implements te.b, c6 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f19860e && this.f19864s != null) {
+        if (view == this.f19857e && this.f19861s != null) {
             RectF rectF = L;
             rectF.set(this.E + g0.L(1.0f), 0.0f, (getMeasuredWidth() - g0.L(1.0f)) - this.F, getMeasuredHeight());
             Rect rect = g0.Q;
             rectF.round(rect);
-            this.f19864s.setBounds(rect);
-            this.f19864s.draw(canvas);
+            this.f19861s.setBounds(rect);
+            this.f19861s.draw(canvas);
         }
         return super.drawChild(canvas, view, j3);
     }
 
     public FrameLayout getContainer() {
-        return this.f19860e;
+        return this.f19857e;
     }
 
     @Override
@@ -466,8 +466,8 @@ public class e extends FrameLayout implements te.b, c6 {
     }
 
     public void setTotalVisibilityFactor(float f10) {
-        if (this.f19867y != f10) {
-            this.f19867y = f10;
+        if (this.f19864y != f10) {
+            this.f19864y = f10;
             a();
             invalidate();
         }
@@ -483,8 +483,8 @@ public class e extends FrameLayout implements te.b, c6 {
     public final void updateColors() {
         n[] nVarArr;
         kh.a aVar;
-        for (n nVar : this.f19857a) {
-            if (nVar != null && (aVar = (kh.a) nVar.f1788c) != null) {
+        for (n nVar : this.f19854a) {
+            if (nVar != null && (aVar = (kh.a) nVar.f1789c) != null) {
                 aVar.updateColors();
             }
         }

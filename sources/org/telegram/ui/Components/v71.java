@@ -25,7 +25,7 @@ public final class v71 extends AsyncTask {
         String str = strArr[0];
         w71 w71Var = this.f40523e;
         if (str != null) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 StringBuilder sb2 = new StringBuilder("start play youtube video ");
                 sb2.append(strArr[1]);
                 sb2.append(" ");

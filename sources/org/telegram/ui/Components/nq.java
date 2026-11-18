@@ -25,7 +25,7 @@ public final class nq extends LinearLayout {
         addView(textView, c8.ma.t(-2, -2, 49, 0, 15, 0, 7));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29379c7, null);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29377c7, null);
         textView2.setGravity(1);
         textView2.setText(org.telegram.messenger.gd.M0(2131748026, null));
         textView2.setMaxWidth(org.telegram.messenger.g0.L(260.0f));

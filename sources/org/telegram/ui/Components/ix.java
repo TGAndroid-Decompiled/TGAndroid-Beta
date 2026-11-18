@@ -35,7 +35,7 @@ public final class ix implements View.OnClickListener {
                         ryVar.f39409x2 = true;
                         ArrayList arrayList = new ArrayList(1);
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-                        tL_inputStickerSetID.f28425id = stickerSet.f28432id;
+                        tL_inputStickerSetID.f28423id = stickerSet.f28430id;
                         tL_inputStickerSetID.access_hash = stickerSet.access_hash;
                         arrayList.add(tL_inputStickerSetID);
                         new lw(ryVar, ryVar.Z1, ryVar.getContext(), ryVar.f39335a2, arrayList, stickerSet).show();
@@ -54,7 +54,7 @@ public final class ix implements View.OnClickListener {
                 } else if (textView != null && textView.getVisibility() == 0 && textView.isEnabled()) {
                     textView.performClick();
                     return;
-                } else if (s0Var != null && s0Var.getVisibility() == 0 && s0Var.f58867w.isEnabled()) {
+                } else if (s0Var != null && s0Var.getVisibility() == 0 && s0Var.f58868w.isEnabled()) {
                     s0Var.performClick();
                     return;
                 } else {
@@ -70,14 +70,14 @@ public final class ix implements View.OnClickListener {
                     int i11 = ryVar2.f39345d1;
                     ArrayList arrayList3 = ryVar2.f39387r1;
                     ex exVar = ryVar2.Q;
-                    if (!arrayList2.contains(Long.valueOf(stickerSet2.f28432id))) {
-                        arrayList2.add(Long.valueOf(jxVar.f36552x.f35172b.f28432id));
+                    if (!arrayList2.contains(Long.valueOf(stickerSet2.f28430id))) {
+                        arrayList2.add(Long.valueOf(jxVar.f36552x.f35172b.f28430id));
                     }
                     jxVar.a(true);
                     int i12 = 0;
                     while (true) {
                         if (i12 < exVar.getChildCount()) {
-                            if ((exVar.getChildAt(i12) instanceof hx) && (R = RecyclerView.R((view2 = exVar.getChildAt(i12)))) >= 0 && (i7 = bxVar.f33808x.get(R)) >= 0 && i7 < arrayList3.size() && arrayList3.get(i7) != null && jxVar.f36552x != null && ((fx) arrayList3.get(i7)).f35172b.f28432id == jxVar.f36552x.f35172b.f28432id) {
+                            if ((exVar.getChildAt(i12) instanceof hx) && (R = RecyclerView.R((view2 = exVar.getChildAt(i12)))) >= 0 && (i7 = bxVar.f33808x.get(R)) >= 0 && i7 < arrayList3.size() && arrayList3.get(i7) != null && jxVar.f36552x != null && ((fx) arrayList3.get(i7)).f35172b.f28430id == jxVar.f36552x.f35172b.f28430id) {
                                 num = Integer.valueOf(R);
                             } else {
                                 i12++;
@@ -93,13 +93,13 @@ public final class ix implements View.OnClickListener {
                     if (jxVar.f36550s == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
                         TLRPC.StickerSet stickerSet4 = jxVar.f36552x.f35172b;
-                        tL_inputStickerSetID2.f28425id = stickerSet4.f28432id;
+                        tL_inputStickerSetID2.f28423id = stickerSet4.f28430id;
                         tL_inputStickerSetID2.access_hash = stickerSet4.access_hash;
                         TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.ri.d0(i11).o0(tL_inputStickerSetID2, true);
                         if (o02 != null && o02.set != null) {
                             org.telegram.ui.ActionBar.h2 h2Var = ryVar2.Z1;
                             if (h2Var == null) {
-                                h2Var = new bi.z8(jxVar, 8);
+                                h2Var = new bi.y8(jxVar, 8);
                             }
                             bv.K0(h2Var, o02, true, null, new mo(jxVar, 15));
                             return;
@@ -120,7 +120,7 @@ public final class ix implements View.OnClickListener {
                     fxVar3.f35175f = false;
                     ArrayList arrayList4 = ryVar3.f39383q1;
                     int i13 = ryVar3.f39345d1;
-                    arrayList4.remove(Long.valueOf(stickerSet3.f28432id));
+                    arrayList4.remove(Long.valueOf(stickerSet3.f28430id));
                     jxVar.a(true);
                     ww wwVar = ryVar3.J;
                     if (wwVar != null) {
@@ -130,13 +130,13 @@ public final class ix implements View.OnClickListener {
                     if (jxVar.f36551w == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
                         TLRPC.StickerSet stickerSet5 = jxVar.f36552x.f35172b;
-                        tL_inputStickerSetID3.f28425id = stickerSet5.f28432id;
+                        tL_inputStickerSetID3.f28423id = stickerSet5.f28430id;
                         tL_inputStickerSetID3.access_hash = stickerSet5.access_hash;
                         TLRPC.TL_messages_stickerSet o03 = org.telegram.messenger.ri.d0(i13).o0(tL_inputStickerSetID3, true);
                         if (o03 != null && o03.set != null) {
                             org.telegram.ui.ActionBar.h2 h2Var2 = ryVar3.Z1;
                             if (h2Var2 == null) {
-                                h2Var2 = new bi.z8(jxVar, 8);
+                                h2Var2 = new bi.y8(jxVar, 8);
                             }
                             org.telegram.ui.ActionBar.h2 h2Var3 = h2Var2;
                             dw dwVar = new dw(1, jxVar, o03);

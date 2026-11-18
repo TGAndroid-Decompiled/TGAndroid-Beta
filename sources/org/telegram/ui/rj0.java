@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class rj0 implements TextWatcher {
-    public final int f51624a;
-    public final hk0 f51625b;
+    public final int f51613a;
+    public final hk0 f51614b;
 
     public rj0(hk0 hk0Var, int i7) {
-        this.f51624a = i7;
-        this.f51625b = hk0Var;
+        this.f51613a = i7;
+        this.f51614b = hk0Var;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class rj0 implements TextWatcher {
         boolean z10;
         String str;
         int indexOf;
-        int i7 = this.f51624a;
-        hk0 hk0Var = this.f51625b;
+        int i7 = this.f51613a;
+        hk0 hk0Var = this.f51614b;
         switch (i7) {
             case 0:
-                if (!hk0Var.f48415a1 && hk0Var.U0 != 0 && hk0Var.Z[0].length() == hk0Var.U0) {
+                if (!hk0Var.f48371a1 && hk0Var.U0 != 0 && hk0Var.Z[0].length() == hk0Var.U0) {
                     hk0Var.M.callOnClick();
                     return;
                 }
@@ -31,8 +31,8 @@ public final class rj0 implements TextWatcher {
             default:
                 ArrayList arrayList = hk0Var.V0;
                 HashMap hashMap = hk0Var.X0;
-                if (!hk0Var.f48415a1) {
-                    hk0Var.f48415a1 = true;
+                if (!hk0Var.f48371a1) {
+                    hk0Var.f48371a1 = true;
                     String d = pf.b.d(hk0Var.Z[1].getText().toString(), false);
                     hk0Var.Z[1].setText(d);
                     org.telegram.ui.Components.g30 g30Var = (org.telegram.ui.Components.g30) hk0Var.Z[2];
@@ -92,7 +92,7 @@ public final class rj0 implements TextWatcher {
                             g30Var.setSelection(g30Var.length());
                         }
                     }
-                    hk0Var.f48415a1 = false;
+                    hk0Var.f48371a1 = false;
                     return;
                 }
                 return;
@@ -101,12 +101,12 @@ public final class rj0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f51624a;
+        int i12 = this.f51613a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f51624a;
+        int i12 = this.f51613a;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

@@ -30,7 +30,7 @@ public final class k implements View.OnClickListener {
                 g0Var2.B0(1);
                 g0Var2.postDelayed(new n(g0Var2, 1), 350L);
                 hi.j2 j2Var = new hi.j2(g0Var2.getContext(), g0Var2.A1, false, false);
-                j2Var.f14808z1 = new q(g0Var2);
+                j2Var.f14805z1 = new q(g0Var2);
                 j2Var.O0(new ta(g0Var2, 4));
                 j2Var.setOnDismissListener(new ba(g0Var2, i7));
                 j2Var.show();

@@ -2,11 +2,11 @@ package zi;
 
 import android.opengl.GLES20;
 public class y extends b3.h {
-    public final int f62376e;
+    public final int f62377e;
 
     public y() {
         super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", d0.G);
-        this.f62376e = GLES20.glGetUniformLocation(this.f2895a, "texOffset");
+        this.f62377e = GLES20.glGetUniformLocation(this.f2896a, "texOffset");
     }
 
     public y(String str, int i7) {
@@ -14,10 +14,10 @@ public class y extends b3.h {
         switch (i7) {
             case 1:
                 super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", str);
-                this.f62376e = GLES20.glGetUniformLocation(this.f2895a, "texOffset");
+                this.f62377e = GLES20.glGetUniformLocation(this.f2896a, "texOffset");
                 return;
             default:
-                this.f62376e = GLES20.glGetUniformLocation(this.f2895a, "uTextureMatrix");
+                this.f62377e = GLES20.glGetUniformLocation(this.f2896a, "uTextureMatrix");
                 return;
         }
     }

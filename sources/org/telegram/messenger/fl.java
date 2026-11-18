@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class fl implements q10 {
-    public final int f24033a;
-    public final mp f24034b;
-    public final q10 f24035c;
+    public final int f24030a;
+    public final mp f24031b;
+    public final q10 f24032c;
 
     public fl(mp mpVar, q10 q10Var, int i7) {
-        this.f24033a = i7;
-        this.f24034b = mpVar;
-        this.f24035c = q10Var;
+        this.f24030a = i7;
+        this.f24031b = mpVar;
+        this.f24032c = q10Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         int i7;
-        switch (this.f24033a) {
+        switch (this.f24030a) {
             case 0:
                 TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                mp mpVar = this.f24034b;
+                mp mpVar = this.f24031b;
                 mpVar.getClass();
-                q10 q10Var = this.f24035c;
+                q10 q10Var = this.f24032c;
                 if (messages_chats != null) {
                     ArrayList arrayList = new ArrayList(messages_chats.chats.size());
                     mpVar.Z3(messages_chats.chats, true);
@@ -46,7 +46,7 @@ public final class fl implements q10 {
             default:
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                q10 q10Var2 = this.f24035c;
+                q10 q10Var2 = this.f24032c;
                 if (updates != null) {
                     ArrayList<TLRPC.Update> arrayList3 = updates.updates;
                     int size2 = arrayList3.size();
@@ -68,7 +68,7 @@ public final class fl implements q10 {
                             i7 = 0;
                         }
                     }
-                    mp mpVar2 = this.f24034b;
+                    mp mpVar2 = this.f24031b;
                     mpVar2.V3(updates, false);
                     g0.g3(new l7(mpVar2, q10Var2, i7, 13));
                     return;

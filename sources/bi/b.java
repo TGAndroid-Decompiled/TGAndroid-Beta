@@ -25,36 +25,36 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.mt;
 import org.telegram.ui.Components.z41;
 public final class b implements q10 {
-    public final int f3443a;
-    public final Object f3444b;
+    public final int f3426a;
+    public final Object f3427b;
 
     public b(Object obj, int i7) {
-        this.f3443a = i7;
-        this.f3444b = obj;
+        this.f3426a = i7;
+        this.f3427b = obj;
     }
 
     private final void b(Object obj, Object obj2) {
         String str;
-        di.h1 h1Var = (di.h1) this.f3444b;
+        di.h1 h1Var = (di.h1) this.f3427b;
         ArrayList arrayList = (ArrayList) obj;
         z41 z41Var = (z41) obj2;
         ArrayList arrayList2 = h1Var.Z1;
-        boolean z10 = h1Var.f8912q2;
-        com.google.android.gms.common.api.internal.p pVar = h1Var.f8899c2;
+        boolean z10 = h1Var.f8909q2;
+        com.google.android.gms.common.api.internal.p pVar = h1Var.f8896c2;
         ArrayList arrayList3 = h1Var.X1;
         ArrayList arrayList4 = h1Var.W1;
-        com.google.android.gms.common.api.internal.p pVar2 = h1Var.f8898b2;
-        com.google.android.gms.common.api.internal.p pVar3 = h1Var.f8897a2;
+        com.google.android.gms.common.api.internal.p pVar2 = h1Var.f8895b2;
+        com.google.android.gms.common.api.internal.p pVar3 = h1Var.f8894a2;
         ArrayList arrayList5 = h1Var.Y1;
         if (arrayList5 != null && arrayList4 != null && arrayList3 != null) {
             arrayList.add(l41.D(org.telegram.messenger.g0.L(315.0f)));
-            pVar3.f6344a = 0;
+            pVar3.f6341a = 0;
             pVar3.c();
-            pVar2.f6344a = 0;
+            pVar2.f6341a = 0;
             pVar2.c();
-            pVar.f6344a = 0;
+            pVar.f6341a = 0;
             pVar.c();
-            int i7 = h1Var.f8901f2.f8852s;
+            int i7 = h1Var.f8898f2.f8849s;
             if (i7 == 0) {
                 String str2 = "GiftPreviewCountModels";
                 if (!z10) {
@@ -108,12 +108,12 @@ public final class b implements q10 {
     private final void c(Object obj, Object obj2) {
         int i7;
         String f10;
-        ab abVar = (ab) this.f3444b;
+        ab abVar = (ab) this.f3427b;
         ArrayList arrayList = (ArrayList) obj;
         z41 z41Var = (z41) obj2;
         arrayList.add(l41.k(abVar.T1));
         arrayList.add(l41.u(gd.M0(2131743979, null)));
-        ArrayList u10 = di.x8.y(abVar.f30189a, false).u();
+        ArrayList u10 = di.x8.y(abVar.f30187a, false).u();
         if (u10 != null && !u10.isEmpty()) {
             int i10 = 0;
             int i11 = 1;
@@ -123,7 +123,7 @@ public final class b implements q10 {
                     i10++;
                 } else {
                     int i13 = i11 + 1;
-                    int i14 = bb.f8579b;
+                    int i14 = bb.f8576b;
                     l41 K = l41.K(bb.class);
                     K.d = i12;
                     K.A = i11;
@@ -149,7 +149,7 @@ public final class b implements q10 {
                     i7 = 2131747643;
                 }
                 String M0 = gd.M0(i7, null);
-                int i15 = wa.f9979b;
+                int i15 = wa.f9976b;
                 l41 K2 = l41.K(wa.class);
                 K2.d = -1;
                 K2.f37018m = M0;
@@ -168,7 +168,7 @@ public final class b implements q10 {
     private final void d(Object obj, Object obj2) {
         int i7;
         int i10;
-        fb fbVar = (fb) this.f3444b;
+        fb fbVar = (fb) this.f3427b;
         ArrayList arrayList = (ArrayList) obj;
         z41 z41Var = (z41) obj2;
         long j3 = fbVar.T1;
@@ -178,7 +178,7 @@ public final class b implements q10 {
         if (z10) {
             i5.c.s(2131743979, null, arrayList);
         }
-        ArrayList z11 = di.x8.y(fbVar.f30189a, false).z();
+        ArrayList z11 = di.x8.y(fbVar.f30187a, false).z();
         if (z10) {
             if (z11 != null && !z11.isEmpty()) {
                 int i11 = 0;
@@ -188,7 +188,7 @@ public final class b implements q10 {
                 for (int i14 = 0; i14 < z11.size(); i14++) {
                     TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) z11.get(i14);
                     if (tL_starsTopupOption.stars >= j3) {
-                        if (tL_starsTopupOption.extended && !fbVar.f8841b2 && z12) {
+                        if (tL_starsTopupOption.extended && !fbVar.f8838b2 && z12) {
                             i12++;
                         } else {
                             arrayList.add(bb.i(i14, i13, tL_starsTopupOption));
@@ -218,7 +218,7 @@ public final class b implements q10 {
                             i17++;
                             i13++;
                         }
-                        boolean z13 = fbVar.f8841b2;
+                        boolean z13 = fbVar.f8838b2;
                         if (!z13 && i12 > 0) {
                             if (z13) {
                                 i10 = 2131747652;
@@ -226,19 +226,19 @@ public final class b implements q10 {
                                 i10 = 2131747643;
                             }
                             String M0 = gd.M0(i10, null);
-                            int i18 = wa.f9979b;
+                            int i18 = wa.f9976b;
                             l41 K = l41.K(wa.class);
                             K.d = -1;
                             K.f37018m = M0;
-                            K.f37012f = !fbVar.f8841b2;
+                            K.f37012f = !fbVar.f8838b2;
                             K.f37023r = true;
                             arrayList.add(K);
                         }
                     } else {
-                        fbVar.f8841b2 = true;
+                        fbVar.f8838b2 = true;
                     }
                 } else if (i11 > 0) {
-                    boolean z14 = fbVar.f8841b2;
+                    boolean z14 = fbVar.f8838b2;
                     if (!z14 && i12 > 0) {
                         if (z14) {
                             i7 = 2131747652;
@@ -246,11 +246,11 @@ public final class b implements q10 {
                             i7 = 2131747643;
                         }
                         String M02 = gd.M0(i7, null);
-                        int i19 = wa.f9979b;
+                        int i19 = wa.f9976b;
                         l41 K2 = l41.K(wa.class);
                         K2.d = -1;
                         K2.f37018m = M02;
-                        K2.f37012f = !fbVar.f8841b2;
+                        K2.f37012f = !fbVar.f8838b2;
                         K2.f37023r = true;
                         arrayList.add(K2);
                     }
@@ -277,28 +277,28 @@ public final class b implements q10 {
         int i10;
         String str;
         boolean z10;
-        mb mbVar = (mb) this.f3444b;
+        mb mbVar = (mb) this.f3427b;
         ArrayList arrayList2 = (ArrayList) obj;
         z41 z41Var = (z41) obj2;
-        boolean z11 = mbVar.f9340e;
+        boolean z11 = mbVar.f9337e;
         int i11 = mbVar.d;
-        int i12 = mbVar.f9339c;
-        long j3 = mbVar.f9341f;
+        int i12 = mbVar.f9336c;
+        long j3 = mbVar.f9338f;
         if (j3 != 0) {
             di.e0 g10 = di.e0.g(i12);
-            ArrayList arrayList3 = g10.k(j3).f8640a[i11];
+            ArrayList arrayList3 = g10.k(j3).f8637a[i11];
             int size = arrayList3.size();
             int i13 = 0;
             while (i13 < size) {
                 Object obj3 = arrayList3.get(i13);
                 i13++;
-                int i14 = jb.f9107b;
+                int i14 = jb.f9104b;
                 l41 K = l41.K(jb.class);
                 K.H = (TL_stars.StarsTransaction) obj3;
                 K.f37023r = true;
                 arrayList2.add(K);
             }
-            if (!g10.k(j3).f8643e[i11]) {
+            if (!g10.k(j3).f8640e[i11]) {
                 arrayList2.add(l41.q(arrayList2.size(), 7));
                 arrayList2.add(l41.q(arrayList2.size(), 7));
                 arrayList2.add(l41.q(arrayList2.size(), 7));
@@ -307,15 +307,15 @@ public final class b implements q10 {
             return;
         }
         di.x8 y10 = di.x8.y(i12, z11);
-        ArrayList[] arrayListArr = y10.f10032q;
+        ArrayList[] arrayListArr = y10.f10029q;
         if (z11 && ii.n.c(i12)) {
-            if (mbVar.f9342n == null) {
-                mbVar.f9342n = new org.telegram.ui.Wallet.e4();
+            if (mbVar.f9339n == null) {
+                mbVar.f9339n = new org.telegram.ui.Wallet.e4();
             }
-            mbVar.f9343r = org.telegram.ui.Wallet.u0.D(i12).y();
+            mbVar.f9340r = org.telegram.ui.Wallet.u0.D(i12).y();
             ArrayList arrayList4 = arrayListArr[i11];
-            org.telegram.ui.Wallet.e4 e4Var = mbVar.f9342n;
-            ii.m mVar = ii.n.f16326b[i12];
+            org.telegram.ui.Wallet.e4 e4Var = mbVar.f9339n;
+            ii.m mVar = ii.n.f16323b[i12];
             String y11 = org.telegram.ui.Wallet.u0.D(i12).y();
             HashSet hashSet = e4Var.f44108a;
             HashSet hashSet2 = e4Var.f44108a;
@@ -327,11 +327,11 @@ public final class b implements q10 {
             }
             hashMap.clear();
             e4Var.b(4, new ArrayList(hashSet2));
-            if (mVar != null && mVar.f16324g == null && System.currentTimeMillis() - mVar.f16322e <= 600000 && i11 != 1) {
+            if (mVar != null && mVar.f16321g == null && System.currentTimeMillis() - mVar.f16319e <= 600000 && i11 != 1) {
                 TL_wallet.walletTransaction wallettransaction = new TL_wallet.walletTransaction();
-                wallettransaction.f28668id = "earnings:" + mVar.f16320b;
+                wallettransaction.f28666id = "earnings:" + mVar.f16317b;
                 wallettransaction.pending = true;
-                wallettransaction.amount = mVar.f16321c;
+                wallettransaction.amount = mVar.f16318c;
                 wallettransaction.date = mVar.d;
                 wallettransaction.peer = new org.telegram.ui.Wallet.b4(y11);
                 arrayList2.add(org.telegram.ui.Wallet.d4.i(wallettransaction, e4Var));
@@ -343,11 +343,11 @@ public final class b implements q10 {
                 Object obj4 = arrayList4.get(i15);
                 i15++;
                 TL_stars.StarsTransaction starsTransaction = (TL_stars.StarsTransaction) obj4;
-                String str2 = starsTransaction.f28636id;
-                if (str2 == null || ((!e10.contains(str2) && (mVar == null || !starsTransaction.f28636id.equals(mVar.f16324g))) || starsTransaction.amount == null)) {
+                String str2 = starsTransaction.f28634id;
+                if (str2 == null || ((!e10.contains(str2) && (mVar == null || !starsTransaction.f28634id.equals(mVar.f16321g))) || starsTransaction.amount == null)) {
                     arrayList = arrayList4;
                     i10 = i11;
-                    int i16 = jb.f9107b;
+                    int i16 = jb.f9104b;
                     l41 K2 = l41.K(jb.class);
                     K2.H = starsTransaction;
                     K2.f37023r = false;
@@ -357,10 +357,10 @@ public final class b implements q10 {
                     StringBuilder sb2 = new StringBuilder("earnings:");
                     if (mVar != null) {
                         arrayList = arrayList4;
-                        if (starsTransaction.f28636id.equals(mVar.f16324g)) {
-                            str = mVar.f16320b;
+                        if (starsTransaction.f28634id.equals(mVar.f16321g)) {
+                            str = mVar.f16317b;
                             sb2.append(str);
-                            wallettransaction2.f28668id = sb2.toString();
+                            wallettransaction2.f28666id = sb2.toString();
                             if (!starsTransaction.pending && !starsTransaction.failed) {
                                 z10 = true;
                             } else {
@@ -377,9 +377,9 @@ public final class b implements q10 {
                     } else {
                         arrayList = arrayList4;
                     }
-                    str = starsTransaction.f28636id;
+                    str = starsTransaction.f28634id;
                     sb2.append(str);
-                    wallettransaction2.f28668id = sb2.toString();
+                    wallettransaction2.f28666id = sb2.toString();
                     if (!starsTransaction.pending) {
                     }
                     z10 = false;
@@ -403,14 +403,14 @@ public final class b implements q10 {
             while (i17 < size3) {
                 Object obj5 = arrayList5.get(i17);
                 i17++;
-                int i18 = jb.f9107b;
+                int i18 = jb.f9104b;
                 l41 K3 = l41.K(jb.class);
                 K3.H = (TL_stars.StarsTransaction) obj5;
                 K3.f37023r = false;
                 arrayList2.add(K3);
             }
         }
-        if (!y10.f10036u[i7]) {
+        if (!y10.f10033u[i7]) {
             arrayList2.add(l41.q(arrayList2.size(), 7));
             arrayList2.add(l41.q(arrayList2.size(), 7));
             arrayList2.add(l41.q(arrayList2.size(), 7));
@@ -420,14 +420,14 @@ public final class b implements q10 {
     private final void f(Object obj, Object obj2) {
         ArrayList arrayList = (ArrayList) obj;
         z41 z41Var = (z41) obj2;
-        ((gi.p) this.f3444b).getClass();
+        ((gi.p) this.f3427b).getClass();
         ArrayList n10 = z00.n();
         int size = n10.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj3 = n10.get(i7);
             i7++;
-            int i10 = gi.n.f13663b;
+            int i10 = gi.n.f13660b;
             l41 K = l41.K(gi.n.class);
             K.H = (s00) obj3;
             arrayList.add(K);
@@ -436,12 +436,12 @@ public final class b implements q10 {
 
     private final void g(Object obj, Object obj2) {
         int i7;
-        hi.n nVar = (hi.n) this.f3444b;
+        hi.n nVar = (hi.n) this.f3427b;
         Canvas canvas = (Canvas) obj;
         Runnable runnable = (Runnable) obj2;
         Paint paint = nVar.J;
-        RectF rectF = nVar.f15077z0;
-        hi.g gVar = nVar.f15051f;
+        RectF rectF = nVar.f15074z0;
+        hi.g gVar = nVar.f15048f;
         if (nVar.g()) {
             if (nVar.H == null) {
                 runnable.run();
@@ -479,20 +479,20 @@ public final class b implements q10 {
     }
 
     private final void h(Object obj, Object obj2) {
-        hi.z1 z1Var = (hi.z1) this.f3444b;
+        hi.z1 z1Var = (hi.z1) this.f3427b;
         String str = (String) obj;
-        hi.j2 j2Var = z1Var.f15808s;
-        j2Var.f14796m1 = str;
+        hi.j2 j2Var = z1Var.f15805s;
+        j2Var.f14793m1 = str;
         j2Var.n1 = ((Integer) obj2).intValue();
-        z1Var.f15803c.D(str);
+        z1Var.f15800c.D(str);
     }
 
     private final void i(Object obj, Object obj2) {
         x10 x10Var;
-        hi.i3 i3Var = (hi.i3) this.f3444b;
+        hi.i3 i3Var = (hi.i3) this.f3427b;
         Bitmap bitmap = (Bitmap) obj2;
         if (obj != null) {
-            if (i3Var.f14759p1 == null && (obj instanceof ef) && (x10Var = i3Var.f14760q1) != null) {
+            if (i3Var.f14756p1 == null && (obj instanceof ef) && (x10Var = i3Var.f14757q1) != null) {
                 x10Var.a((ef) obj);
                 return;
             }

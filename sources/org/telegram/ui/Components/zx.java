@@ -21,7 +21,7 @@ public final class zx extends ImageView {
         super(context);
         this.f42964f = new org.telegram.messenger.gc[2];
         setScaleType(ImageView.ScaleType.CENTER);
-        int i7 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.n6.a0(org.telegram.ui.ActionBar.n6.x0(null, i7, false), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
         setBackground(a02);
@@ -42,7 +42,7 @@ public final class zx extends ImageView {
         if (isPressed()) {
             float f10 = this.h;
             if (f10 != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f24122r) / 100.0f) + f10;
+                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f24119r) / 100.0f) + f10;
                 this.h = min;
                 this.h = Utilities.i(min, 1.0f, 0.0f);
                 invalidate();

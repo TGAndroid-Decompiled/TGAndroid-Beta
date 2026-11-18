@@ -15,16 +15,16 @@ import org.telegram.ui.Components.vt0;
 import org.telegram.ui.Components.wd0;
 import org.telegram.ui.Components.yi0;
 public final class fa extends FrameLayout {
-    public final Rect f14663a;
-    public final Rect f14664b;
-    public RenderNode f14665c;
+    public final Rect f14660a;
+    public final Rect f14661b;
+    public RenderNode f14662c;
     public final ta d;
 
     public fa(ta taVar, Activity activity) {
         super(activity);
         this.d = taVar;
-        this.f14663a = new Rect();
-        this.f14664b = new Rect();
+        this.f14660a = new Rect();
+        this.f14661b = new Rect();
     }
 
     @Override
@@ -33,11 +33,11 @@ public final class fa extends FrameLayout {
         RecordingCanvas recordingCanvas;
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 31 && canvas.isHardwareAccelerated() && !org.telegram.messenger.g0.m0) {
-            if (this.f14665c == null) {
-                this.f14665c = new RenderNode("StoryRecorder.PreviewView");
+            if (this.f14662c == null) {
+                this.f14662c = new RenderNode("StoryRecorder.PreviewView");
             }
-            this.f14665c.setPosition(0, 0, getWidth(), getHeight());
-            recordingCanvas = this.f14665c.beginRecording();
+            this.f14662c.setPosition(0, 0, getWidth(), getHeight());
+            recordingCanvas = this.f14662c.beginRecording();
             z10 = true;
         } else {
             z10 = false;
@@ -45,12 +45,12 @@ public final class fa extends FrameLayout {
         }
         super.dispatchDraw(recordingCanvas);
         if (z10 && i7 >= 31) {
-            this.f14665c.endRecording();
-            org.telegram.ui.Components.ca caVar = this.d.f15481s0;
+            this.f14662c.endRecording();
+            org.telegram.ui.Components.ca caVar = this.d.f15478s0;
             if (caVar != null) {
-                caVar.g(this, this.f14665c);
+                caVar.g(this, this.f14662c);
             }
-            canvas.drawRenderNode(this.f14665c);
+            canvas.drawRenderNode(this.f14662c);
         }
     }
 
@@ -70,9 +70,9 @@ public final class fa extends FrameLayout {
             int i13 = i11 - i7;
             int i14 = i12 - i10;
             int L = org.telegram.messenger.g0.L(40.0f);
-            Rect rect = this.f14663a;
+            Rect rect = this.f14660a;
             rect.set(0, i14 - org.telegram.messenger.g0.L(120.0f), L, i14);
-            Rect rect2 = this.f14664b;
+            Rect rect2 = this.f14661b;
             rect2.set(i13 - org.telegram.messenger.g0.L(40.0f), i14 - org.telegram.messenger.g0.L(120.0f), i13, i14);
             setSystemGestureExclusionRects(Arrays.asList(rect, rect2));
         }
@@ -100,7 +100,7 @@ public final class fa extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ?? r02 = this.d.f15496w2;
+        ?? r02 = this.d.f15493w2;
         if (r02 != 0) {
             r02.i(motionEvent);
             return true;

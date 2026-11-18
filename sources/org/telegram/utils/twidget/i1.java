@@ -7,8 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public abstract class i1 {
-    public static final ExecutorService f54787a = Executors.newFixedThreadPool(4, new ai.y0(7));
-    public static File f54788b;
+    public static final ExecutorService f54788a = Executors.newFixedThreadPool(4, new ai.y0(7));
+    public static File f54789b;
 
     public static String a(InputStream inputStream) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

@@ -43,7 +43,7 @@ public final class c implements h {
 
     @Override
     public void v0(long j3) {
-        long[] jArr = (long[]) ((wf.b) this.d).f59672b;
+        long[] jArr = (long[]) ((wf.b) this.d).f59673b;
         this.f159b = jArr[l0.f(jArr, j3, true)];
     }
 

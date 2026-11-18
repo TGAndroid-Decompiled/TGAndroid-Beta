@@ -5,10 +5,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class m21 extends org.telegram.ui.ActionBar.x2 {
-    public static final int f49739p1 = 0;
-    public TLRPC.TL_authorization f49740m1;
+    public static final int f49698p1 = 0;
+    public TLRPC.TL_authorization f49699m1;
     public SessionsActivity n1;
-    public org.telegram.ui.Components.ph0 f49741o1;
+    public org.telegram.ui.Components.ph0 f49700o1;
 
     public static void J0(m21 m21Var, String str) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m21Var.getContext());
@@ -18,17 +18,17 @@ public final class m21 extends org.telegram.ui.ActionBar.x2 {
 
     public static void K0(m21 m21Var) {
         TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = m21Var.f49740m1;
+        TLRPC.TL_authorization tL_authorization = m21Var.f49699m1;
         changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
         changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
         changeauthorizationsettings.flags = 3;
         changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(m21Var.f30189a).sendRequest(changeauthorizationsettings, new fi.k5(28));
+        ConnectionsManager.getInstance(m21Var.f30187a).sendRequest(changeauthorizationsettings, new fi.k5(28));
     }
 
     @Override
     public final void show() {
         super.show();
-        this.f49741o1.d();
+        this.f49700o1.d();
     }
 }

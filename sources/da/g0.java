@@ -1,13 +1,13 @@
 package da;
 public final class g0 extends t1 {
-    public final String f8030a;
-    public final String f8031b;
-    public final String f8032c;
+    public final String f8027a;
+    public final String f8028b;
+    public final String f8029c;
 
     public g0(String str, String str2, String str3) {
-        this.f8030a = str;
-        this.f8031b = str2;
-        this.f8032c = str3;
+        this.f8027a = str;
+        this.f8028b = str2;
+        this.f8029c = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class g0 extends t1 {
         }
         if (obj instanceof t1) {
             g0 g0Var = (g0) ((t1) obj);
-            if (this.f8030a.equals(g0Var.f8030a) && this.f8031b.equals(g0Var.f8031b) && this.f8032c.equals(g0Var.f8032c)) {
+            if (this.f8027a.equals(g0Var.f8027a) && this.f8028b.equals(g0Var.f8028b) && this.f8029c.equals(g0Var.f8029c)) {
                 return true;
             }
         }
@@ -24,15 +24,15 @@ public final class g0 extends t1 {
     }
 
     public final int hashCode() {
-        return ((((this.f8030a.hashCode() ^ 1000003) * 1000003) ^ this.f8031b.hashCode()) * 1000003) ^ this.f8032c.hashCode();
+        return ((((this.f8027a.hashCode() ^ 1000003) * 1000003) ^ this.f8028b.hashCode()) * 1000003) ^ this.f8029c.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("BuildIdMappingForArch{arch=");
-        sb2.append(this.f8030a);
+        sb2.append(this.f8027a);
         sb2.append(", libraryName=");
-        sb2.append(this.f8031b);
+        sb2.append(this.f8028b);
         sb2.append(", buildId=");
-        return a8.p0.s(sb2, this.f8032c, "}");
+        return a8.p0.s(sb2, this.f8029c, "}");
     }
 }

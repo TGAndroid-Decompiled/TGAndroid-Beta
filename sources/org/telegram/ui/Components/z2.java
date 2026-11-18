@@ -40,30 +40,30 @@ public final class z2 implements DialogInterface.OnClickListener {
                 ArrayList arrayList = (ArrayList) this.d;
                 ArrayList arrayList2 = (ArrayList) this.f42754e;
                 org.telegram.ui.cl0 cl0Var = new org.telegram.ui.cl0(ml0Var, (Runnable) this.f42753c);
-                TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard = ml0Var.f49921z0;
-                if (tL_paymentSavedCredentialsCard == null && ml0Var.f49920y0 == null) {
+                TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard = ml0Var.f49895z0;
+                if (tL_paymentSavedCredentialsCard == null && ml0Var.f49894y0 == null) {
                     i10 = 0;
                 } else {
                     i10 = 1;
                 }
-                if ((tL_paymentSavedCredentialsCard == null && ml0Var.f49920y0 == null) || i7 != 0) {
+                if ((tL_paymentSavedCredentialsCard == null && ml0Var.f49894y0 == null) || i7 != 0) {
                     if (i7 >= i10 && i7 < arrayList.size() + i10) {
                         TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard2 = (TLRPC.TL_paymentSavedCredentialsCard) arrayList.get(i7 - i10);
-                        ml0Var.f49921z0 = tL_paymentSavedCredentialsCard2;
+                        ml0Var.f49895z0 = tL_paymentSavedCredentialsCard2;
                         cl0Var.c(null, tL_paymentSavedCredentialsCard2.title, true, null, tL_paymentSavedCredentialsCard2);
                         return;
                     } else if (i7 < arrayList2.size() - 1) {
-                        org.telegram.ui.ml0 ml0Var2 = new org.telegram.ui.ml0(ml0Var.f49887c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 2, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49920y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49911s0, ml0Var.X0);
-                        ml0Var2.f49889d1 = ml0Var.f49889d1;
-                        ml0Var2.f49892e1 = ml0Var.f49892e1;
+                        org.telegram.ui.ml0 ml0Var2 = new org.telegram.ui.ml0(ml0Var.f49861c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 2, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49894y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49885s0, ml0Var.X0);
+                        ml0Var2.f49863d1 = ml0Var.f49863d1;
+                        ml0Var2.f49866e1 = ml0Var.f49866e1;
                         ml0Var2.G0 = ml0Var.D0.additional_methods.get((i7 - arrayList.size()) - i10);
                         ml0Var2.U = cl0Var;
                         ml0Var.presentFragment(ml0Var2);
                         return;
                     } else if (i7 == arrayList2.size() - 1) {
-                        org.telegram.ui.ml0 ml0Var3 = new org.telegram.ui.ml0(ml0Var.f49887c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 2, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49920y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49911s0, ml0Var.X0);
-                        ml0Var3.f49889d1 = ml0Var.f49889d1;
-                        ml0Var3.f49892e1 = ml0Var.f49892e1;
+                        org.telegram.ui.ml0 ml0Var3 = new org.telegram.ui.ml0(ml0Var.f49861c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 2, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49894y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49885s0, ml0Var.X0);
+                        ml0Var3.f49863d1 = ml0Var.f49863d1;
+                        ml0Var3.f49866e1 = ml0Var.f49866e1;
                         ml0Var3.U = cl0Var;
                         ml0Var.presentFragment(ml0Var3);
                         return;

@@ -23,8 +23,8 @@ public final class yb0 extends Dialog implements org.telegram.ui.ActionBar.p4 {
         ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
         this.f42448a = actionBarLayout;
         actionBarLayout.setFragmentStack(new ArrayList());
-        org.telegram.ui.ActionBar.q4 q4Var = new org.telegram.ui.ActionBar.q4(new bi.z8(this, 9));
-        q4Var.f29905c = true;
+        org.telegram.ui.ActionBar.q4 q4Var = new org.telegram.ui.ActionBar.q4(new bi.y8(this, 9));
+        q4Var.f29903c = true;
         actionBarLayout.U(q4Var);
         actionBarLayout.setDelegate(this);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -81,7 +81,7 @@ public final class yb0 extends Dialog implements org.telegram.ui.ActionBar.p4 {
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.q4 q4Var) {
-        org.telegram.ui.ActionBar.h2 h2Var = q4Var.f29903a;
+        org.telegram.ui.ActionBar.h2 h2Var = q4Var.f29901a;
         return true;
     }
 
@@ -129,7 +129,7 @@ public final class yb0 extends Dialog implements org.telegram.ui.ActionBar.p4 {
         frameLayout.setSystemUiVisibility(1280);
         frameLayout.setOnApplyWindowInsetsListener(new org.telegram.ui.ActionBar.y2(2));
         if (i7 >= 26) {
-            if (i0.a.h(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, true)) < 0.9d) {
+            if (i0.a.h(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, true)) < 0.9d) {
                 z10 = false;
             }
             org.telegram.messenger.g0.m3(this, z10);

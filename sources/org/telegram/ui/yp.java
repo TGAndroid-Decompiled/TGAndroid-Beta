@@ -10,16 +10,16 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class yp implements ViewTreeObserver.OnPreDrawListener {
-    public final int f54263a;
-    public final View f54264b;
-    public final int f54265c;
+    public final int f54222a;
+    public final View f54223b;
+    public final int f54224c;
     public final Object d;
 
     public yp(Object obj, org.telegram.ui.Components.wz wzVar, int i7, int i10) {
-        this.f54263a = i10;
+        this.f54222a = i10;
         this.d = obj;
-        this.f54264b = wzVar;
-        this.f54265c = i7;
+        this.f54223b = wzVar;
+        this.f54224c = i7;
     }
 
     @Override
@@ -28,10 +28,10 @@ public final class yp implements ViewTreeObserver.OnPreDrawListener {
         float f10;
         float f11;
         int i7;
-        int i10 = this.f54263a;
-        int i11 = this.f54265c;
+        int i10 = this.f54222a;
+        int i11 = this.f54224c;
         Object obj = this.d;
-        View view = this.f54264b;
+        View view = this.f54223b;
         float f12 = 0.0f;
         int i12 = 2;
         int i13 = 0;
@@ -39,30 +39,30 @@ public final class yp implements ViewTreeObserver.OnPreDrawListener {
         switch (i10) {
             case 0:
                 rq rqVar = (rq) obj;
-                rqVar.f51733c.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = rqVar.f51733c.getChildCount();
+                rqVar.f51722c.getViewTreeObserver().removeOnPreDrawListener(this);
+                int childCount = rqVar.f51722c.getChildCount();
                 AnimatorSet animatorSet = new AnimatorSet();
                 for (int i14 = 0; i14 < childCount; i14++) {
-                    View childAt = rqVar.f51733c.getChildAt(i14);
+                    View childAt = rqVar.f51722c.getChildAt(i14);
                     if (childAt != view) {
-                        rqVar.f51733c.getClass();
+                        rqVar.f51722c.getClass();
                         if (RecyclerView.R(childAt) >= i11) {
                             childAt.setAlpha(0.0f);
                             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                            ofFloat.setStartDelay((int) ((Math.min(rqVar.f51733c.getMeasuredHeight(), Math.max(0, childAt.getTop())) / rqVar.f51733c.getMeasuredHeight()) * 100.0f));
+                            ofFloat.setStartDelay((int) ((Math.min(rqVar.f51722c.getMeasuredHeight(), Math.max(0, childAt.getTop())) / rqVar.f51722c.getMeasuredHeight()) * 100.0f));
                             ofFloat.setDuration(200L);
                             animatorSet.playTogether(ofFloat);
                         }
                     }
                 }
                 if (view != null && view.getParent() == null) {
-                    rqVar.f51733c.addView(view);
-                    v4.p0 layoutManager = rqVar.f51733c.getLayoutManager();
+                    rqVar.f51722c.addView(view);
+                    v4.p0 layoutManager = rqVar.f51722c.getLayoutManager();
                     if (layoutManager != null) {
                         layoutManager.M(view);
                         z10 = true;
                         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
-                        ofFloat2.addListener(new org.telegram.ui.Cells.x9(this, layoutManager));
+                        ofFloat2.addListener(new org.telegram.ui.Cells.y9(this, layoutManager));
                         ofFloat2.start();
                         animatorSet.start();
                         return z10;
@@ -146,7 +146,7 @@ public final class yp implements ViewTreeObserver.OnPreDrawListener {
             default:
                 c00 c00Var = (c00) obj;
                 c00Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                et etVar = c00Var.f46331b;
+                et etVar = c00Var.f46322b;
                 int childCount4 = etVar.getChildCount();
                 AnimatorSet animatorSet4 = new AnimatorSet();
                 int i17 = 0;

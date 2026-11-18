@@ -12,7 +12,7 @@ public final class dx0 extends sb0 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29504j5, false);
+        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29502j5, false);
         ex0 ex0Var = this.f34527z0;
         if (x02 != ex0Var.f34824a) {
             ex0Var.f34824a = x02;

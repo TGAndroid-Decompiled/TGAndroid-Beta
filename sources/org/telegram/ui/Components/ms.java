@@ -5,14 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 public final class ms extends AnimatorListenerAdapter {
     public final int f37620a;
     public final v4.f1 f37621b;
-    public final org.telegram.ui.Cells.t2 f37622c;
+    public final org.telegram.ui.Cells.u2 f37622c;
     public final rs d;
 
-    public ms(rs rsVar, v4.f1 f1Var, org.telegram.ui.Cells.t2 t2Var, int i7) {
+    public ms(rs rsVar, v4.f1 f1Var, org.telegram.ui.Cells.u2 u2Var, int i7) {
         this.f37620a = i7;
         this.d = rsVar;
         this.f37621b = f1Var;
-        this.f37622c = t2Var;
+        this.f37622c = u2Var;
     }
 
     @Override
@@ -20,9 +20,9 @@ public final class ms extends AnimatorListenerAdapter {
         switch (this.f37620a) {
             case 0:
                 animator.removeAllListeners();
-                org.telegram.ui.Cells.t2 t2Var = this.f37622c;
-                t2Var.setClipProgress(0.0f);
-                t2Var.setElevation(0.0f);
+                org.telegram.ui.Cells.u2 u2Var = this.f37622c;
+                u2Var.setClipProgress(0.0f);
+                u2Var.setElevation(0.0f);
                 rs rsVar = this.d;
                 v4.f1 f1Var = this.f37621b;
                 rsVar.d(f1Var);
@@ -31,9 +31,9 @@ public final class ms extends AnimatorListenerAdapter {
                 return;
             default:
                 animator.removeAllListeners();
-                org.telegram.ui.Cells.t2 t2Var2 = this.f37622c;
-                t2Var2.setClipProgress(0.0f);
-                t2Var2.setElevation(0.0f);
+                org.telegram.ui.Cells.u2 u2Var2 = this.f37622c;
+                u2Var2.setClipProgress(0.0f);
+                u2Var2.setElevation(0.0f);
                 rs rsVar2 = this.d;
                 v4.f1 f1Var2 = this.f37621b;
                 rsVar2.d(f1Var2);

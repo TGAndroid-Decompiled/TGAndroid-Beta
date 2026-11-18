@@ -34,13 +34,13 @@ public final class kp0 implements Runnable {
         o5.i iVar = (o5.i) this.d;
         int i7 = this.f36842c;
         Runnable runnable = (Runnable) this.f36843e;
-        w5.c cVar2 = (w5.c) cVar.f16195f;
+        w5.c cVar2 = (w5.c) cVar.f16192f;
         try {
             try {
-                v5.d dVar = (v5.d) cVar.f16193c;
+                v5.d dVar = (v5.d) cVar.f16190c;
                 Objects.requireNonNull(dVar);
                 ((v5.g) cVar2).f(new tg.z1(dVar, 4));
-                NetworkInfo activeNetworkInfo = ((ConnectivityManager) ((Context) cVar.f16191a).getSystemService("connectivity")).getActiveNetworkInfo();
+                NetworkInfo activeNetworkInfo = ((ConnectivityManager) ((Context) cVar.f16188a).getSystemService("connectivity")).getActiveNetworkInfo();
                 if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
                     cVar.c(iVar, i7);
                 } else {
@@ -48,7 +48,7 @@ public final class kp0 implements Runnable {
                 }
                 runnable.run();
             } catch (w5.a unused) {
-                ((org.telegram.ui.md0) cVar.d).H(iVar, i7 + 1, false);
+                ((org.telegram.ui.nd0) cVar.d).H(iVar, i7 + 1, false);
                 runnable.run();
             }
         } catch (Throwable th2) {

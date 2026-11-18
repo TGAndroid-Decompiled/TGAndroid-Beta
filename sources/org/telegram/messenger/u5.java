@@ -9,10 +9,10 @@ public abstract class u5 {
         try {
             lz lzVar = new lz();
             dz dzVar = new dz(256.0f, 256.0f, 204.8f);
-            lzVar.f25485a.add(dzVar);
-            lzVar.f25486b.put(dzVar, new Paint(1));
-            lzVar.f25488e = 512;
-            lzVar.f25489f = 512;
+            lzVar.f25483a.add(dzVar);
+            lzVar.f25484b.put(dzVar, new Paint(1));
+            lzVar.f25486e = 512;
+            lzVar.f25487f = 512;
             lzVar.f(i7, null, 0.65f, false);
             return lzVar;
         } catch (Exception e10) {
@@ -26,10 +26,10 @@ public abstract class u5 {
         path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
         path.close();
         lz lzVar = new lz();
-        lzVar.f25485a.add(path);
-        lzVar.f25486b.put(path, new Paint(1));
-        lzVar.f25488e = 512;
-        lzVar.f25489f = 512;
+        lzVar.f25483a.add(path);
+        lzVar.f25484b.put(path, new Paint(1));
+        lzVar.f25486e = 512;
+        lzVar.f25487f = 512;
         lzVar.f(i7, null, 1.0f, false);
         return lzVar;
     }
@@ -52,7 +52,7 @@ public abstract class u5 {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z10) {
-                i10 = photoSize.f28430w;
+                i10 = photoSize.f28428w;
                 i11 = photoSize.h;
             }
         }
@@ -82,7 +82,7 @@ public abstract class u5 {
                     for (int i13 = 0; i13 < size2; i13++) {
                         TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i13);
                         if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                            i10 = documentAttribute.f28412w;
+                            i10 = documentAttribute.f28410w;
                             i11 = documentAttribute.h;
                             break;
                         }

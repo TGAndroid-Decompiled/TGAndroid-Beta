@@ -4,38 +4,38 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageView;
 public final class d2 extends AnimatorListenerAdapter {
-    public final int f11843a;
-    public final boolean f11844b;
-    public final z3 f11845c;
+    public final int f11840a;
+    public final boolean f11841b;
+    public final z3 f11842c;
 
     public d2(z3 z3Var, boolean z10, int i7) {
-        this.f11843a = i7;
-        this.f11845c = z3Var;
-        this.f11844b = z10;
+        this.f11840a = i7;
+        this.f11842c = z3Var;
+        this.f11841b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f10;
         float hideInterfaceAlpha;
-        switch (this.f11843a) {
+        switch (this.f11840a) {
             case 0:
-                if (!this.f11844b) {
-                    z3 z3Var = this.f11845c;
-                    z3Var.f12815b3.setVisibility(8);
-                    z3Var.f12815b3.n();
+                if (!this.f11841b) {
+                    z3 z3Var = this.f11842c;
+                    z3Var.f12812b3.setVisibility(8);
+                    z3Var.f12812b3.n();
                     return;
                 }
                 return;
             default:
-                z3 z3Var2 = this.f11845c;
+                z3 z3Var2 = this.f11842c;
                 k8 k8Var = z3Var2.m0;
-                bi.p2 p2Var = z3Var2.f12835i0;
-                ImageView imageView = z3Var2.f12831h0;
-                ImageView imageView2 = z3Var2.f12827g0;
+                bi.p2 p2Var = z3Var2.f12832i0;
+                ImageView imageView = z3Var2.f12828h0;
+                ImageView imageView2 = z3Var2.f12824g0;
                 v3 v3Var = z3Var2.Y0;
                 float f11 = 0.0f;
-                if (this.f11844b) {
+                if (this.f11841b) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
@@ -58,21 +58,21 @@ public final class d2 extends AnimatorListenerAdapter {
                     k8Var.setTranslationY((-org.telegram.messenger.g0.L(8.0f)) * z3Var2.O3);
                     k8Var.setAlpha(1.0f - z3Var2.O3);
                 }
-                z3Var2.f12879u0.setAlpha(1.0f - z3Var2.O3);
+                z3Var2.f12876u0.setAlpha(1.0f - z3Var2.O3);
                 s3 s3Var = z3Var2.A1;
                 if (s3Var != null) {
                     f11 = ((w8) s3Var).d.W;
                 }
                 hideInterfaceAlpha = z3Var2.getHideInterfaceAlpha();
-                t2 t2Var2 = z3Var2.f12852n0;
+                t2 t2Var2 = z3Var2.f12849n0;
                 if (t2Var2 != null) {
                     t2Var2.setAlpha((1.0f - z3Var2.O3) * (1.0f - f11) * hideInterfaceAlpha);
                 }
-                ImageView imageView3 = z3Var2.f12891x0;
+                ImageView imageView3 = z3Var2.f12888x0;
                 if (imageView3 != null) {
                     imageView3.setAlpha((1.0f - z3Var2.O3) * (1.0f - f11) * hideInterfaceAlpha);
                 }
-                t2 t2Var3 = z3Var2.f12899z0;
+                t2 t2Var3 = z3Var2.f12896z0;
                 if (t2Var3 != null) {
                     t2Var3.setAlpha((1.0f - z3Var2.O3) * (1.0f - f11) * hideInterfaceAlpha);
                 }

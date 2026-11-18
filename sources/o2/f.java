@@ -6,38 +6,38 @@ import j2.b0;
 import java.io.IOException;
 import x2.u;
 public final class f implements b3.k {
-    public final h f21626a;
+    public final h f21623a;
 
     @Override
     public b3.i l(b3.m mVar, long j3, long j10, IOException iOException, int i7) {
         s sVar = (s) mVar;
-        h hVar = this.f21626a;
-        xa xaVar = hVar.f21636q;
-        long j11 = sVar.f2916a;
-        j2.m mVar2 = sVar.f2917b;
+        h hVar = this.f21623a;
+        xa xaVar = hVar.f21633q;
+        long j11 = sVar.f2917a;
+        j2.m mVar2 = sVar.f2918b;
         b0 b0Var = sVar.d;
-        xaVar.r(new u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b), sVar.f2918c, iOException, true);
-        hVar.f21632m.getClass();
+        xaVar.r(new u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b), sVar.f2919c, iOException, true);
+        hVar.f21629m.getClass();
         hVar.y(iOException);
-        return b3.p.f2911e;
+        return b3.p.f2912e;
     }
 
     @Override
     public void p(b3.m mVar, long j3, long j10, boolean z10) {
-        this.f21626a.x((s) mVar, j3, j10);
+        this.f21623a.x((s) mVar, j3, j10);
     }
 
     @Override
     public void z(b3.m mVar, long j3, long j10) {
         s sVar = (s) mVar;
-        h hVar = this.f21626a;
-        long j11 = sVar.f2916a;
-        j2.m mVar2 = sVar.f2917b;
+        h hVar = this.f21623a;
+        long j11 = sVar.f2917a;
+        j2.m mVar2 = sVar.f2918b;
         b0 b0Var = sVar.d;
-        u uVar = new u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
-        hVar.f21632m.getClass();
-        hVar.f21636q.p(uVar, sVar.f2918c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        hVar.K = ((Long) sVar.f2920f).longValue() - j3;
+        u uVar = new u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
+        hVar.f21629m.getClass();
+        hVar.f21633q.p(uVar, sVar.f2919c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        hVar.K = ((Long) sVar.f2921f).longValue() - j3;
         hVar.z(true);
     }
 

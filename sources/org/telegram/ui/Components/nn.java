@@ -17,7 +17,7 @@ public final class nn implements TextWatcher {
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
-        rn rnVar = (rn) this.f37831c.f49426e;
+        rn rnVar = (rn) this.f37831c.f49432e;
         mn mnVar = this.f37829a;
         if (mnVar.getTag() != null) {
             return;
@@ -36,7 +36,7 @@ public final class nn implements TextWatcher {
             org.telegram.messenger.j6.l(editable, mnVar.getEditField().getPaint().getFontMetricsInt(), false);
             rnVar.f39251y.setDirection(1);
             rnVar.f39251y.setDelegate(mnVar);
-            rnVar.f39251y.setTranslationY(K.f59122a.getY());
+            rnVar.f39251y.setTranslationY(K.f59123a.getY());
             rnVar.f39251y.e();
         }
         if (i10 == 11) {
@@ -45,7 +45,7 @@ public final class nn implements TextWatcher {
             rnVar.O = editable;
         }
         if (K != null) {
-            rn.Q(rnVar, K.f59122a, i7);
+            rn.Q(rnVar, K.f59123a, i7);
         }
         rnVar.Y();
     }

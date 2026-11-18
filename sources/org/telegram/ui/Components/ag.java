@@ -130,15 +130,15 @@ public final class ag implements Runnable {
                     ArrayList c10 = ai.u0.c(chatActivityEnterView.getContext(), chatActivityEnterView.E3);
                     android.support.v4.media.session.a0 P = DictationAsr.P(c10, true);
                     if (P != null) {
-                        ai.t tVar = (ai.t) P.f1704b;
-                        if (System.currentTimeMillis() - org.telegram.messenger.mp.g1().getLong("tinyasr_checked_" + tVar.f1530a, 0L) > 86400000) {
+                        ai.t tVar = (ai.t) P.f1705b;
+                        if (System.currentTimeMillis() - org.telegram.messenger.mp.g1().getLong("tinyasr_checked_" + tVar.f1531a, 0L) > 86400000) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         boolean w10 = DictationAsr.w(tVar);
-                        if (w10 && !tVar.f1535g) {
-                            tVar.f1535g = true;
+                        if (w10 && !tVar.f1536g) {
+                            tVar.f1536g = true;
                             DictationAsr.d.execute(new ai.p(tVar, 0));
                         }
                         if ((w10 || ai.j1.b()) && (!w10 || z10)) {

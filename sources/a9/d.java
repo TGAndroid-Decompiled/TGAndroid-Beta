@@ -38,7 +38,7 @@ public final class d extends q {
                         Runnable uVar = new u(this, dataHolder, false, 2);
                         try {
                             String valueOf = String.valueOf(dataHolder);
-                            int i10 = dataHolder.f6408n;
+                            int i10 = dataHolder.f6405n;
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append(valueOf);
                             sb2.append(", rows=");
@@ -114,7 +114,7 @@ public final class d extends q {
 
     public final boolean m1(Runnable runnable, String str, Object obj) {
         if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", String.format("%s: %s %s", str, this.f757c.f22794a.toString(), obj));
+            Log.d("WearableLS", String.format("%s: %s %s", str, this.f757c.f22791a.toString(), obj));
         }
         int callingUid = Binder.getCallingUid();
         if (callingUid != this.f756b) {
@@ -127,13 +127,13 @@ public final class d extends q {
                 return false;
             }
         }
-        synchronized (this.f757c.f22798f) {
+        synchronized (this.f757c.f22795f) {
             try {
                 WearAuthListenerService wearAuthListenerService = this.f757c;
                 if (wearAuthListenerService.h) {
                     return false;
                 }
-                wearAuthListenerService.f22795b.post(runnable);
+                wearAuthListenerService.f22792b.post(runnable);
                 return true;
             } catch (Throwable th2) {
                 throw th2;

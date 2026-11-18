@@ -13,7 +13,7 @@ public final class mh extends org.telegram.ui.Components.bv {
     @Override
     public final void dismiss() {
         super.dismiss();
-        bn bnVar = this.R1.f50204p;
+        bn bnVar = this.R1.f50183p;
         bnVar.getClass();
         bnVar.x8(false, true, 0.0f);
     }

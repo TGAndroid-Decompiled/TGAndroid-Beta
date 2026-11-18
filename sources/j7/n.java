@@ -6,18 +6,18 @@ import android.os.Parcelable;
 import c8.bc;
 public final class n extends r6.a {
     public static final Parcelable.Creator<n> CREATOR = new b(13);
-    public final PendingIntent f17317a;
+    public final PendingIntent f17314a;
 
     public n(PendingIntent pendingIntent) {
         kotlin.jvm.internal.j.e(pendingIntent, "pendingIntent");
-        this.f17317a = pendingIntent;
+        this.f17314a = pendingIntent;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
         int r10 = bc.r(dest, 20293);
-        bc.k(dest, 1, this.f17317a, i7);
+        bc.k(dest, 1, this.f17314a, i7);
         bc.s(dest, r10);
     }
 }

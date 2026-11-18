@@ -52,7 +52,7 @@ public final class fp0 implements Runnable {
                 gt0Var.getClass();
                 Bundle bundle = new Bundle();
                 bundle.putInt("type", 2);
-                bundle.putLong("dialog_id", -gt0Var.f35590g1.f28406id);
+                bundle.putLong("dialog_id", -gt0Var.f35590g1.f28404id);
                 i90 i90Var = new i90(bundle, null);
                 i90Var.f36077c = gt0Var.f35590g1;
                 gt0Var.f35642y1.presentFragment(i90Var);
@@ -62,11 +62,11 @@ public final class fp0 implements Runnable {
                 hi.ta D = hi.ta.D(h2Var.getParentActivity(), h2Var.getCurrentAccount());
                 long j3 = gt0Var.f35606m1;
                 String currentLang = gt0Var.f35568a0.getCurrentLang();
-                D.f15494w0 = j3;
-                D.f15498x0 = currentLang;
+                D.f15491w0 = j3;
+                D.f15495x0 = currentLang;
                 D.Q(null);
-                D.f15494w0 = j3;
-                D.f15498x0 = currentLang;
+                D.f15491w0 = j3;
+                D.f15495x0 = currentLang;
                 return;
             case 5:
                 gt0Var.f35568a0.f();
@@ -111,7 +111,7 @@ public final class fp0 implements Runnable {
             case 11:
                 eq0 eq0Var = gt0Var.f35572b0;
                 eq0Var.getClass();
-                eq0Var.h(null, new bi.i5(eq0Var, 1));
+                eq0Var.h(null, new bi.h5(eq0Var, 1));
                 return;
             case 12:
                 gt0Var.f35572b0.setReordering(true);

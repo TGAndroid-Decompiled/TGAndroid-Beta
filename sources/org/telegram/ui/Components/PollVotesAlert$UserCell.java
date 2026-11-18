@@ -40,15 +40,15 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
         addView(q9Var, c8.ma.t(34, 34, 16, 0, 0, 11, 0));
         org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(context);
         this.f33013b = n5Var;
-        int i7 = org.telegram.ui.ActionBar.n6.f29504j5;
+        int i7 = org.telegram.ui.ActionBar.n6.f29502j5;
         org.telegram.ui.ActionBar.u6.X(n5Var, i7, null);
         n5Var.setTypeface(org.telegram.messenger.g0.o());
         n5Var.setTextSize(16);
-        n5Var.setGravity((org.telegram.messenger.gd.f24216a0 ? 5 : 3) | 16);
+        n5Var.setGravity((org.telegram.messenger.gd.f24213a0 ? 5 : 3) | 16);
         addView(n5Var, c8.ma.q(0, 24, 1.0f, 16, 0, 0, 0, 0));
         TextView textView = new TextView(context);
         this.f33014c = textView;
-        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29654r5, null);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29652r5, null);
         textView.setTextSize(1, 13.0f);
         addView(textView, c8.ma.q(-2, -2, 0.0f, 21, 4, 0, 2, 0));
         TextView textView2 = new TextView(context);
@@ -61,7 +61,7 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29810z9));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29808z9));
     }
 
     public float getPlaceholderAlpha() {
@@ -106,7 +106,7 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
                 L = org.telegram.messenger.g0.L(65.0f);
                 L2 = org.telegram.messenger.g0.L(60.0f);
             }
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 L = (getMeasuredWidth() - L) - L2;
             }
             df0Var.H1.set(L, measuredHeight - org.telegram.messenger.g0.L(4.0f), L + L2, org.telegram.messenger.g0.L(4.0f) + measuredHeight);
@@ -118,25 +118,25 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
                 L3 = org.telegram.messenger.g0.L(131.0f);
                 L4 = org.telegram.messenger.g0.L(80.0f);
             }
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 L3 = (getMeasuredWidth() - L3) - L4;
             }
             df0Var.H1.set(L3, measuredHeight - org.telegram.messenger.g0.L(4.0f), L3 + L4, org.telegram.messenger.g0.L(4.0f) + measuredHeight);
             canvas.drawRoundRect(df0Var.H1, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), df0Var.B1);
         }
         if (this.f33019s) {
-            if (!org.telegram.messenger.gd.f24216a0) {
+            if (!org.telegram.messenger.gd.f24213a0) {
                 f10 = org.telegram.messenger.g0.L(64.0f);
             }
             float f11 = f10;
             float measuredHeight2 = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 i7 = org.telegram.messenger.g0.L(64.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f11, measuredHeight2, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.n6.f29519k0);
+            canvas.drawLine(f11, measuredHeight2, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.n6.f29517k0);
         }
     }
 
@@ -163,9 +163,9 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
                     z10 = false;
                 }
                 if (z10 && m5Var.G != null) {
-                    int i7 = org.telegram.ui.ActionBar.n6.f29810z9;
+                    int i7 = org.telegram.ui.ActionBar.n6.f29808z9;
                     df0 df0Var = this.F;
-                    org.telegram.ui.Cells.o8 o8Var = df0.M1;
+                    org.telegram.ui.Cells.p8 p8Var = df0.M1;
                     m5Var.k(Integer.valueOf(org.telegram.ui.ActionBar.n6.w0(i7, df0Var.J0)));
                     org.telegram.ui.ActionBar.n5 n5Var = this.f33013b;
                     if (n5Var != null) {

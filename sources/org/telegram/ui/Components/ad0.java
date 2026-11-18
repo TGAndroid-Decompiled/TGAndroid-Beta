@@ -12,7 +12,7 @@ public final class ad0 implements org.telegram.messenger.fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = org.telegram.messenger.ks.f25185r5;
+        int i11 = org.telegram.messenger.ks.s5;
         if (i7 == i11) {
             int intValue = ((Integer) objArr[0]).intValue();
             String[] strArr = (String[]) objArr[1];

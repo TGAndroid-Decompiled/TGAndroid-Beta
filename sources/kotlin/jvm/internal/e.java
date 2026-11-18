@@ -12,9 +12,9 @@ import java.util.Map;
 import rd.v;
 import rd.w;
 public final class e implements vd.c, d {
-    public static final Map f19114b;
-    public static final LinkedHashMap f19115c;
-    public final Class f19116a;
+    public static final Map f19111b;
+    public static final LinkedHashMap f19112c;
+    public final Class f19113a;
 
     static {
         int i7 = 0;
@@ -29,7 +29,7 @@ public final class e implements vd.c, d {
                 throw new ArithmeticException("Index overflow has happened.");
             }
         }
-        f19114b = hd.r.f(arrayList);
+        f19111b = hd.r.f(arrayList);
         HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
@@ -79,7 +79,7 @@ public final class e implements vd.c, d {
             sb2.append("CompanionObject");
             hashMap3.put(sb2.toString(), str.concat(".Companion"));
         }
-        for (Map.Entry entry : f19114b.entrySet()) {
+        for (Map.Entry entry : f19111b.entrySet()) {
             int intValue = ((Number) entry.getValue()).intValue();
             String name = ((Class) entry.getKey()).getName();
             hashMap3.put(name, "kotlin.Function" + intValue);
@@ -91,22 +91,22 @@ public final class e implements vd.c, d {
             j.b(str2);
             linkedHashMap.put(key, xd.d.m(str2, str2));
         }
-        f19115c = linkedHashMap;
+        f19112c = linkedHashMap;
     }
 
     public e(Class jClass) {
         j.e(jClass, "jClass");
-        this.f19116a = jClass;
+        this.f19113a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f19116a;
+        return this.f19113a;
     }
 
     public final String b() {
         String str;
-        Class jClass = this.f19116a;
+        Class jClass = this.f19113a;
         j.e(jClass, "jClass");
         String str2 = null;
         if (jClass.isAnonymousClass()) {
@@ -131,7 +131,7 @@ public final class e implements vd.c, d {
             return substring;
         }
         boolean isArray = jClass.isArray();
-        LinkedHashMap linkedHashMap = f19115c;
+        LinkedHashMap linkedHashMap = f19112c;
         if (isArray) {
             Class<?> componentType = jClass.getComponentType();
             if (componentType.isPrimitive() && (str = (String) linkedHashMap.get(componentType.getName())) != null) {
@@ -161,6 +161,6 @@ public final class e implements vd.c, d {
     }
 
     public final String toString() {
-        return this.f19116a + " (Kotlin reflection is not available)";
+        return this.f19113a + " (Kotlin reflection is not available)";
     }
 }

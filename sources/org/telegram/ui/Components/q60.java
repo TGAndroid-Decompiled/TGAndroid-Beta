@@ -42,9 +42,9 @@ public final class q60 extends AnimatorListenerAdapter {
                 y60Var.f42370p0 = null;
                 return;
             case 1:
-                org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) this.f38718b;
-                ((g70) w0Var.f32230e).B1 = false;
-                TextView[] textViewArr = (TextView[]) w0Var.f32228b;
+                org.telegram.ui.Cells.x0 x0Var = (org.telegram.ui.Cells.x0) this.f38718b;
+                ((g70) x0Var.f32283e).B1 = false;
+                TextView[] textViewArr = (TextView[]) x0Var.f32281b;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
@@ -95,9 +95,9 @@ public final class q60 extends AnimatorListenerAdapter {
                 return;
             case 8:
                 we weVar = (we) this.f38718b;
-                AnimatorSet animatorSet2 = (AnimatorSet) ((hi.y7) weVar.f41704c).f15779e;
+                AnimatorSet animatorSet2 = (AnimatorSet) ((hi.y7) weVar.f41704c).f15776e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ((hi.y7) weVar.f41704c).f15779e = null;
+                    ((hi.y7) weVar.f41704c).f15776e = null;
                     return;
                 }
                 return;

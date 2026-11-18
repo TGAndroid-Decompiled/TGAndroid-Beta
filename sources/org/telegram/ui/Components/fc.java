@@ -25,7 +25,7 @@ public final class fc extends eb {
             q2Var.setTextSize(1, 15.0f);
             q2Var.setEllipsize(TextUtils.TruncateAt.END);
             q2Var.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
-            q2Var.setGravity(org.telegram.messenger.gd.f24216a0 ? 5 : 3);
+            q2Var.setGravity(org.telegram.messenger.gd.f24213a0 ? 5 : 3);
             addView(q2Var, c8.ma.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
         } else {
             LinearLayout linearLayout = new LinearLayout(getContext());

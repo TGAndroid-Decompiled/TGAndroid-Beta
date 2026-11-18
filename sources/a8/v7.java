@@ -11,13 +11,13 @@ import com.google.android.gms.tasks.Tasks;
 public abstract class v7 {
     public static b9.k0 a(Context context, GoogleSignInOptions googleSignInOptions) {
         q6.m.h(googleSignInOptions);
-        return new com.google.android.gms.common.api.j(context, z5.a.f61478a, googleSignInOptions, new com.google.android.gms.common.api.i(new w7.s(6), Looper.getMainLooper()));
+        return new com.google.android.gms.common.api.j(context, z5.a.f61479a, googleSignInOptions, new com.google.android.gms.common.api.i(new w7.s(6), Looper.getMainLooper()));
     }
 
     public static Task b(Intent intent) {
         c6.b bVar;
         GoogleSignInAccount googleSignInAccount;
-        org.telegram.messenger.d1 d1Var = d6.h.f7878a;
+        org.telegram.messenger.d1 d1Var = d6.h.f7875a;
         Status status = Status.h;
         if (intent == null) {
             bVar = new c6.b(null, status);
@@ -30,11 +30,11 @@ public abstract class v7 {
                 }
                 bVar = new c6.b(null, status);
             } else {
-                bVar = new c6.b(googleSignInAccount2, Status.f6193e);
+                bVar = new c6.b(googleSignInAccount2, Status.f6190e);
             }
         }
-        Status status3 = bVar.f4470a;
-        if (status3.b() && (googleSignInAccount = bVar.f4471b) != null) {
+        Status status3 = bVar.f4467a;
+        if (status3.b() && (googleSignInAccount = bVar.f4468b) != null) {
             return Tasks.forResult(googleSignInAccount);
         }
         return Tasks.forException(q6.m.m(status3));

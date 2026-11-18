@@ -96,7 +96,7 @@ public final class e9 extends FrameLayout {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         l4 l4Var = this.f44139b;
         int i7 = 0;
-        if (l4Var.f59546n && l4Var.getVisibility() == 0) {
+        if (l4Var.f59547n && l4Var.getVisibility() == 0) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked != 0) {
                 if (actionMasked != 1) {
@@ -124,7 +124,7 @@ public final class e9 extends FrameLayout {
                                 b();
                                 return true;
                             }
-                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f24120p;
+                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f24117p;
                             this.f44140c = com.google.android.gms.internal.vision.e2.z(motionEvent.getX(findPointerIndex), this.f44143n, radians, this.f44140c);
                             this.d = com.google.android.gms.internal.vision.e2.z(motionEvent.getY(findPointerIndex), this.f44144r, radians, this.d);
                             this.f44143n = motionEvent.getX(findPointerIndex);

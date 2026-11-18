@@ -72,7 +72,7 @@ public final class ei extends org.telegram.ui.ActionBar.j1 {
             f14 = siVar.f39686j4;
         }
         siVar.F0 = f14;
-        siVar.f30195c.invalidate();
+        siVar.f30193c.invalidate();
         fiVar.invalidate();
         siVar.B2.invalidate();
         siVar.K1();

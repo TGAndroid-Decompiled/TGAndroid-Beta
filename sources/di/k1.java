@@ -1,11 +1,11 @@
 package di;
 public final class k1 implements Runnable {
-    public final int f9139a;
-    public final f6 f9140b;
+    public final int f9136a;
+    public final f6 f9137b;
 
     public k1(f6 f6Var, int i7) {
-        this.f9139a = i7;
-        this.f9140b = f6Var;
+        this.f9136a = i7;
+        this.f9137b = f6Var;
     }
 
     @Override

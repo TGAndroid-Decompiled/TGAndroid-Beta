@@ -3,7 +3,7 @@ package f2;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public interface n {
-    public static final ByteBuffer f11057a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
+    public static final ByteBuffer f11054a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
 
     boolean a();
 

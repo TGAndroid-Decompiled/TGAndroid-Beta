@@ -25,7 +25,7 @@ public abstract class l0 {
         int i12;
         int i13;
         int i14;
-        TLRPC.Message message = fjVar.f23968k;
+        TLRPC.Message message = fjVar.f23965k;
         TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
         if (n5.o(message.peer_id) == n5.o(message.from_id)) {
             z12 = true;
@@ -128,7 +128,7 @@ public abstract class l0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (n5.o(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = mp.u1(i7).U0(user.f28554id);
+                        dialog = mp.u1(i7).U0(user.f28552id);
                     }
                     return c(O0, dialog, user, communityPeer2);
                 }

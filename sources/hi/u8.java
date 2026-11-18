@@ -17,12 +17,12 @@ import org.telegram.messenger.mp;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.ue0;
 public final class u8 implements View.OnClickListener {
-    public final int f15547a;
-    public final ta f15548b;
+    public final int f15544a;
+    public final ta f15545b;
 
     public u8(ta taVar, int i7) {
-        this.f15547a = i7;
-        this.f15548b = taVar;
+        this.f15544a = i7;
+        this.f15545b = taVar;
     }
 
     @Override
@@ -35,49 +35,49 @@ public final class u8 implements View.OnClickListener {
         int i10;
         int i11;
         z zVar;
-        int i12 = this.f15547a;
+        int i12 = this.f15544a;
         boolean z11 = false;
-        ta taVar = this.f15548b;
+        ta taVar = this.f15545b;
         switch (i12) {
             case 0:
-                ta taVar2 = this.f15548b;
-                if (taVar2.L1 != null && taVar2.D2 == null && taVar2.f15455j1 != null) {
+                ta taVar2 = this.f15545b;
+                if (taVar2.L1 != null && taVar2.D2 == null && taVar2.f15452j1 != null) {
                     ValueAnimator valueAnimator = taVar2.F2;
                     if (valueAnimator == null || !valueAnimator.isRunning()) {
-                        boolean z12 = taVar2.L1.f14438y0;
-                        Bitmap createBitmap = Bitmap.createBitmap(taVar2.f15464n.getWidth(), taVar2.f15464n.getHeight(), Bitmap.Config.ARGB_8888);
+                        boolean z12 = taVar2.L1.f14435y0;
+                        Bitmap createBitmap = Bitmap.createBitmap(taVar2.f15461n.getWidth(), taVar2.f15461n.getHeight(), Bitmap.Config.ARGB_8888);
                         Canvas canvas = new Canvas(createBitmap);
-                        taVar2.f15455j1.setAlpha(0.0f);
+                        taVar2.f15452j1.setAlpha(0.0f);
                         ha haVar = taVar2.Y0;
                         if (haVar != null) {
-                            haVar.f15658h0 = true;
+                            haVar.f15655h0 = true;
                         }
-                        v9 v9Var = taVar2.f15495w1;
+                        v9 v9Var = taVar2.f15492w1;
                         if (v9Var != null) {
-                            v9Var.f14927s0 = true;
+                            v9Var.f14924s0 = true;
                         }
-                        taVar2.f15464n.draw(canvas);
+                        taVar2.f15461n.draw(canvas);
                         ha haVar2 = taVar2.Y0;
                         if (haVar2 != null) {
-                            haVar2.f15658h0 = false;
+                            haVar2.f15655h0 = false;
                         }
-                        v9 v9Var2 = taVar2.f15495w1;
+                        v9 v9Var2 = taVar2.f15492w1;
                         if (v9Var2 != null) {
-                            v9Var2.f14927s0 = false;
+                            v9Var2.f14924s0 = false;
                         }
-                        taVar2.f15455j1.setAlpha(1.0f);
+                        taVar2.f15452j1.setAlpha(1.0f);
                         Paint paint = new Paint(1);
                         paint.setColor(-16777216);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                         Paint paint2 = new Paint(1);
                         paint2.setFilterBitmap(true);
                         int[] iArr = new int[2];
-                        taVar2.f15455j1.getLocationInWindow(iArr);
+                        taVar2.f15452j1.getLocationInWindow(iArr);
                         float f10 = iArr[0];
                         float f11 = iArr[1];
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        ba baVar = new ba(taVar2, taVar2.f15427b, z12, canvas, (taVar2.f15455j1.getMeasuredWidth() / 2.0f) + f10, (taVar2.f15455j1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f24116n, paint, createBitmap, paint2, f10, f11);
+                        ba baVar = new ba(taVar2, taVar2.f15424b, z12, canvas, (taVar2.f15452j1.getMeasuredWidth() / 2.0f) + f10, (taVar2.f15452j1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f24113n, paint, createBitmap, paint2, f10, f11);
                         taVar2.D2 = baVar;
                         baVar.setOnTouchListener(new gi.a(2));
                         taVar2.E2 = 0.0f;
@@ -101,7 +101,7 @@ public final class u8 implements View.OnClickListener {
                         }
                         valueAnimator3.setInterpolator(lrVar);
                         taVar2.F2.start();
-                        taVar2.f15464n.addView(taVar2.D2, new ViewGroup.LayoutParams(-1, -1));
+                        taVar2.f15461n.addView(taVar2.D2, new ViewGroup.LayoutParams(-1, -1));
                         org.telegram.messenger.g0.g3(new s8(taVar2, 4));
                         return;
                     }
@@ -128,14 +128,14 @@ public final class u8 implements View.OnClickListener {
                             ((d7) obj).Y = taVar.L1.Y;
                         }
                     }
-                    boolean isEmpty = TextUtils.isEmpty(taVar.L1.f14437y);
+                    boolean isEmpty = TextUtils.isEmpty(taVar.L1.f14434y);
                     d7 d7Var2 = taVar.L1;
-                    if (d7Var2.f14419o0 != null) {
+                    if (d7Var2.f14416o0 != null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (taVar.f15448h0 == -1) {
+                    if (taVar.f15445h0 == -1) {
                         m3 m3Var = taVar.l1;
                         if (d7Var2.Y) {
                             if (isEmpty && !z10) {
@@ -157,7 +157,7 @@ public final class u8 implements View.OnClickListener {
                             m3Var.H = M0;
                         } else {
                             org.telegram.ui.Components.m6 m6Var = m3Var.I;
-                            if (!gd.f24216a0 && z13) {
+                            if (!gd.f24213a0 && z13) {
                                 z11 = true;
                             }
                             m6Var.t(M0, z11, true);
@@ -172,7 +172,7 @@ public final class u8 implements View.OnClickListener {
             case 3:
                 boolean k10 = taVar.Y0.k();
                 taVar.Y0.x(-9982, k10);
-                ((ue0) taVar.f15458k1.f15032c).a(!k10, true);
+                ((ue0) taVar.f15455k1.f15029c).a(!k10, true);
                 return;
             case 4:
                 if (taVar.C0 != null && !taVar.T1) {
@@ -182,10 +182,10 @@ public final class u8 implements View.OnClickListener {
                         w9 w9Var = taVar.C0;
                         if (w9Var != null && w9Var.getCameraSession() != null) {
                             if (taVar.C0.isFrontface() && !taVar.C0.getCameraSession().hasFlashModes()) {
-                                int indexOf = taVar.f15492v2.indexOf(E);
+                                int indexOf = taVar.f15489v2.indexOf(E);
                                 if (indexOf >= 0) {
-                                    taVar.f15489u2 = indexOf;
-                                    mp.g1().edit().putInt("frontflash", taVar.f15489u2).apply();
+                                    taVar.f15486u2 = indexOf;
+                                    mp.g1().edit().putInt("frontflash", taVar.f15486u2).apply();
                                 }
                             } else {
                                 taVar.C0.getCameraSession().setCurrentFlashMode(E);
@@ -199,7 +199,7 @@ public final class u8 implements View.OnClickListener {
                 return;
             case 5:
                 w9 w9Var2 = taVar.C0;
-                if (w9Var2 != null && taVar.f15445g0 == 0) {
+                if (w9Var2 != null && taVar.f15442g0 == 0) {
                     w9Var2.toggleDual();
                     taVar.G0.setValue(taVar.C0.isDual());
                     fb fbVar = taVar.G0;
@@ -209,7 +209,7 @@ public final class u8 implements View.OnClickListener {
                         i11 = 2131754887;
                     }
                     fbVar.setContentDescription(gd.M0(i11, null));
-                    taVar.f15462m1.f(true);
+                    taVar.f15459m1.f(true);
                     mp.g1().edit().putInt("storydualhint", 2).apply();
                     if (taVar.n1.W) {
                         mp.g1().edit().putInt("storysvddualhint", 2).apply();
@@ -219,12 +219,12 @@ public final class u8 implements View.OnClickListener {
                 }
                 return;
             case 6:
-                if (taVar.f15445g0 == 0 && !taVar.f15430b2) {
+                if (taVar.f15442g0 == 0 && !taVar.f15427b2) {
                     w9 w9Var3 = taVar.C0;
                     if (w9Var3 != null && w9Var3.isDual()) {
                         taVar.C0.toggleDual();
                     }
-                    if (!taVar.J0.f15797e && !taVar.B0.j()) {
+                    if (!taVar.J0.f15794e && !taVar.B0.j()) {
                         taVar.B0.o(taVar.A0);
                         taVar.J0.setSelected(taVar.A0);
                         taVar.H0.a(new v(taVar.A0, false), true);
@@ -239,7 +239,7 @@ public final class u8 implements View.OnClickListener {
                             taVar.N0.setMaxCount(Math.min(10, u.b() - taVar.B0.getFilledCount()));
                         }
                     }
-                    taVar.J0.a(!zVar.f15797e, true);
+                    taVar.J0.a(!zVar.f15794e, true);
                     taVar.l0(true);
                     return;
                 }
@@ -266,15 +266,15 @@ public final class u8 implements View.OnClickListener {
                 return;
             case 9:
                 w9 w9Var6 = taVar.C0;
-                if (w9Var6 != null && !taVar.T1 && !taVar.Q1 && w9Var6.isInited() && taVar.f15445g0 == 0) {
+                if (w9Var6 != null && !taVar.T1 && !taVar.Q1 && w9Var6.isInited() && taVar.f15442g0 == 0) {
                     taVar.C0.switchCamera();
                     taVar.P0.d(180.0f);
                     ta.Z(taVar.C0.isFrontface());
                     if (taVar.p0()) {
-                        taVar.f15480s.c(null);
+                        taVar.f15477s.c(null);
                         return;
                     } else {
-                        taVar.f15480s.d();
+                        taVar.f15477s.d();
                         return;
                     }
                 }
@@ -285,11 +285,11 @@ public final class u8 implements View.OnClickListener {
             case 11:
                 d7 d7Var3 = taVar.L1;
                 if (d7Var3 != null) {
-                    d7Var3.f14403f0 = true;
-                    d7Var3.f14400e0 = taVar.N1;
+                    d7Var3.f14400f0 = true;
+                    d7Var3.f14397e0 = taVar.N1;
                     taVar.W();
                     d7 d7Var4 = taVar.L1;
-                    if (d7Var4 != null && !d7Var4.f14392b0) {
+                    if (d7Var4 != null && !d7Var4.f14389b0) {
                         org.telegram.messenger.g0.h3(new s8(taVar, 24), 400L);
                         return;
                     }
@@ -297,7 +297,7 @@ public final class u8 implements View.OnClickListener {
                 }
                 return;
             case 12:
-                if (taVar.f15486t2) {
+                if (taVar.f15483t2) {
                     taVar.Y(true);
                     return;
                 }

@@ -17,7 +17,7 @@ public final class s50 extends bk0 {
         int b10 = f1Var.b();
         x50 x50Var = this.f39494c;
         if (b10 == x50Var.f41899s1) {
-            if (x50Var.f41894m1.admin_id != org.telegram.messenger.j10.i(x50Var.f30189a).f24792n) {
+            if (x50Var.f41894m1.admin_id != org.telegram.messenger.j10.i(x50Var.f30187a).f24789n) {
                 return true;
             }
             return false;
@@ -95,10 +95,10 @@ public final class s50 extends bk0 {
                 o50Var = new v50(context);
                 break;
             case 2:
-                int i10 = org.telegram.ui.ActionBar.n6.f29339a7;
-                View y6Var = new org.telegram.ui.Cells.y6(context, org.telegram.ui.ActionBar.n6.x0(null, i10, false), 0);
-                org.telegram.ui.ActionBar.u6.h(i10, y6Var, null);
-                wzVar = y6Var;
+                int i10 = org.telegram.ui.ActionBar.n6.f29337a7;
+                View z6Var = new org.telegram.ui.Cells.z6(context, org.telegram.ui.ActionBar.n6.x0(null, i10, false), 0);
+                org.telegram.ui.ActionBar.u6.h(i10, z6Var, null);
+                wzVar = z6Var;
                 o50Var = wzVar;
                 break;
             case 3:
@@ -123,14 +123,14 @@ public final class s50 extends bk0 {
                 o50Var = new jn(context, 11);
                 break;
             case 7:
-                o50Var = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.c0) null);
+                o50Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c0) null);
                 break;
             case 8:
                 ?? frameLayout = new FrameLayout(context);
                 TextView textView = new TextView(context);
                 frameLayout.f39909a = textView;
                 textView.setTextSize(1, 14.0f);
-                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29788y6, null);
+                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29786y6, null);
                 textView.setGravity(1);
                 frameLayout.addView(textView, c8.ma.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
                 o50Var = frameLayout;
@@ -139,7 +139,7 @@ public final class s50 extends bk0 {
                 o50Var = new u50(x50Var, context);
                 break;
             default:
-                o50Var = new org.telegram.ui.Cells.x3(context, x50Var.J0);
+                o50Var = new org.telegram.ui.Cells.y3(context, x50Var.J0);
                 break;
         }
         return i5.c.q(o50Var, o50Var, -1, -2);

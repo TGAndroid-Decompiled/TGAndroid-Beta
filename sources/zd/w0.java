@@ -1,14 +1,14 @@
 package zd;
 public final class w0 implements x0 {
-    public final o1 f61898a;
+    public final o1 f61899a;
 
     public w0(o1 o1Var) {
-        this.f61898a = o1Var;
+        this.f61899a = o1Var;
     }
 
     @Override
     public final o1 b() {
-        return this.f61898a;
+        return this.f61899a;
     }
 
     @Override

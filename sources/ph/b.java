@@ -14,12 +14,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Cells.z7;
+import org.telegram.ui.Cells.a8;
 import org.telegram.ui.Components.lr;
 public final class b extends FrameLayout implements te.b, c6 {
     public ShapeDrawable f55629a;
     public final i6 f55630b;
-    public final z7 f55631c;
+    public final a8 f55631c;
     public final TextView d;
     public final te.a f55632e;
 
@@ -27,9 +27,9 @@ public final class b extends FrameLayout implements te.b, c6 {
         super(context);
         this.f55632e = new te.a(0, this, lr.h, 380L, false);
         this.f55630b = i6Var;
-        z7 z7Var = new z7(context, i6Var, false);
-        this.f55631c = z7Var;
-        addView(z7Var, ma.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
+        a8 a8Var = new a8(context, i6Var, false);
+        this.f55631c = a8Var;
+        addView(a8Var, ma.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 10.0f);

@@ -8,19 +8,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
-    public final k0 f49456a;
-    public final org.telegram.ui.Components.m6 f49457b;
-    public final org.telegram.ui.Components.m6 f49458c;
+    public final k0 f49462a;
+    public final org.telegram.ui.Components.m6 f49463b;
+    public final org.telegram.ui.Components.m6 f49464c;
 
     public l6(Context context) {
         super(context);
         k0 k0Var = new k0(3, context, this);
-        this.f49456a = k0Var;
+        this.f49462a = k0Var;
         int i7 = org.telegram.ui.ActionBar.n6.Fi;
         k0Var.setBackground(org.telegram.ui.ActionBar.b6.f(i7, 24.0f));
         k0Var.setImportantForAccessibility(1);
         c8.ra.b(k0Var, 0.02f, 1.2f);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             TextView textView = new TextView(context);
             textView.setText(org.telegram.messenger.gd.M0(2131752087, null));
             textView.setGravity(17);
@@ -29,7 +29,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
             k0Var.addView(textView, c8.ma.e(-2, -1, 17));
         }
         org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(true, true, true);
-        this.f49457b = m6Var;
+        this.f49463b = m6Var;
         org.telegram.ui.Components.lr lrVar = org.telegram.ui.Components.lr.h;
         m6Var.n(0.25f, 300L, lrVar);
         m6Var.setCallback(k0Var);
@@ -40,7 +40,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
         int i10 = org.telegram.ui.ActionBar.n6.Ji;
         m6Var.u(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
         org.telegram.ui.Components.m6 m6Var2 = new org.telegram.ui.Components.m6(true, true, true);
-        this.f49458c = m6Var2;
+        this.f49464c = m6Var2;
         m6Var2.n(0.25f, 300L, lrVar);
         m6Var2.setCallback(k0Var);
         m6Var2.w(org.telegram.messenger.g0.L(14.0f));
@@ -60,7 +60,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
         } else {
             M0 = org.telegram.messenger.gd.M0(2131752039, null);
         }
-        org.telegram.ui.Components.m6 m6Var = this.f49457b;
+        org.telegram.ui.Components.m6 m6Var = this.f49463b;
         m6Var.t(M0, true, true);
         int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i7 <= 0) {
@@ -68,7 +68,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
         } else {
             i02 = org.telegram.messenger.g0.i0(j3, false, false);
         }
-        org.telegram.ui.Components.m6 m6Var2 = this.f49458c;
+        org.telegram.ui.Components.m6 m6Var2 = this.f49464c;
         m6Var2.t(i02, true, true);
         if (i7 <= 0) {
             z11 = true;
@@ -76,7 +76,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
             z11 = false;
         }
         setDisabled(z11);
-        k0 k0Var = this.f49456a;
+        k0 k0Var = this.f49462a;
         k0Var.invalidate();
         k0Var.setContentDescription(TextUtils.concat(m6Var.f37384i, "\t", m6Var2.f37384i));
     }
@@ -93,7 +93,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
 
     public void setDisabled(boolean z10) {
         float f10;
-        k0 k0Var = this.f49456a;
+        k0 k0Var = this.f49462a;
         k0Var.animate().cancel();
         ViewPropertyAnimator animate = k0Var.animate();
         if (z10) {
@@ -108,15 +108,15 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void updateColors() {
         try {
-            org.telegram.ui.Components.m6 m6Var = this.f49457b;
+            org.telegram.ui.Components.m6 m6Var = this.f49463b;
             if (m6Var != null) {
                 m6Var.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ji, false));
             }
-            org.telegram.ui.Components.m6 m6Var2 = this.f49458c;
+            org.telegram.ui.Components.m6 m6Var2 = this.f49464c;
             if (m6Var2 != null) {
                 m6Var2.u(org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Fi, false), org.telegram.ui.ActionBar.n6.r1(0.7f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ji, false))));
             }
-            k0 k0Var = this.f49456a;
+            k0 k0Var = this.f49462a;
             if (k0Var != null) {
                 k0Var.invalidate();
             }

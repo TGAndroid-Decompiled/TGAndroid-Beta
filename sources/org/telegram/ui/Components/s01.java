@@ -25,7 +25,7 @@ public final class s01 implements Runnable {
                         f11Var2.k();
                         return;
                     }
-                    org.telegram.messenger.e00 e00Var = org.telegram.messenger.mp.u1(f11Var2.f34873a).f25771t7;
+                    org.telegram.messenger.e00 e00Var = org.telegram.messenger.mp.u1(f11Var2.f34873a).f25769t7;
                     long j10 = -j3;
                     if (!e00Var.e(j10)) {
                         e00Var.o(j10);

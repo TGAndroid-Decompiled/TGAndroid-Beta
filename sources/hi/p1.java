@@ -20,14 +20,14 @@ import org.telegram.ui.j00;
 import org.telegram.ui.kx;
 import org.telegram.ui.ns;
 public final class p1 implements View.OnTouchListener {
-    public final int f15213a;
-    public final Object f15214b;
-    public final Object f15215c;
+    public final int f15210a;
+    public final Object f15211b;
+    public final Object f15212c;
 
     public p1(int i7, Object obj, Object obj2) {
-        this.f15213a = i7;
-        this.f15214b = obj;
-        this.f15215c = obj2;
+        this.f15210a = i7;
+        this.f15211b = obj;
+        this.f15212c = obj2;
     }
 
     @Override
@@ -45,18 +45,18 @@ public final class p1 implements View.OnTouchListener {
         int i15;
         int i16;
         boolean z11;
-        int i17 = this.f15213a;
-        Object obj = this.f15215c;
-        Object obj2 = this.f15214b;
+        int i17 = this.f15210a;
+        Object obj = this.f15212c;
+        Object obj2 = this.f15211b;
         switch (i17) {
             case 0:
                 u1 u1Var = (u1) obj2;
                 ns p10 = ns.p();
-                di.b1 b1Var = u1Var.f15524b;
-                q1 q1Var = u1Var.f15527f;
-                j2 j2Var = u1Var.f15529r;
+                di.b1 b1Var = u1Var.f15521b;
+                q1 q1Var = u1Var.f15524f;
+                j2 j2Var = u1Var.f15526r;
                 int i18 = j2.C1;
-                return p10.r(motionEvent, b1Var, (bi.i8) obj, q1Var, j2Var.J0);
+                return p10.r(motionEvent, b1Var, (bi.h8) obj, q1Var, j2Var.J0);
             case 1:
                 org.telegram.ui.Components.f8 f8Var = (org.telegram.ui.Components.f8) obj2;
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) obj;
@@ -74,11 +74,11 @@ public final class p1 implements View.OnTouchListener {
                 return r10;
             case 4:
                 hx hxVar = (hx) obj2;
-                org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) obj;
+                org.telegram.ui.Cells.i4 i4Var = (org.telegram.ui.Cells.i4) obj;
                 hxVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    kx kxVar = hxVar.f48539f;
-                    kxVar.f49348c.t(kxVar.f49347b.T(h4Var));
+                    kx kxVar = hxVar.f48495f;
+                    kxVar.f49354c.t(kxVar.f49353b.T(i4Var));
                     return false;
                 }
                 return false;
@@ -151,7 +151,7 @@ public final class p1 implements View.OnTouchListener {
                     if (intValue == 8) {
                         w10.h(gd.M0(2131747272, str2), new aj0(0, hk0Var, editTextBoldCursor));
                     }
-                    hk0Var.showDialog(w10.f28746a);
+                    hk0Var.showDialog(w10.f28744a);
                     return true;
                 } catch (Exception e11) {
                     e = e11;

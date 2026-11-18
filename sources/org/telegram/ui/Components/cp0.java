@@ -56,11 +56,11 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
     }
 
     public static void a(hi.k1 k1Var, TLRPC.WebPage webPage, String str) {
-        q9 q9Var = (q9) k1Var.f14857r;
-        ((ImageView) k1Var.f14853c).setImageResource(2131232206);
-        ((ImageView) k1Var.f14853c).setVisibility(0);
+        q9 q9Var = (q9) k1Var.f14854r;
+        ((ImageView) k1Var.f14850c).setImageResource(2131232206);
+        ((ImageView) k1Var.f14850c).setVisibility(0);
         ((FrameLayout) k1Var.h).setVisibility(8);
-        ((ImageView) k1Var.f14858s).setVisibility(0);
+        ((ImageView) k1Var.f14855s).setVisibility(0);
         String str2 = webPage.site_name;
         if (str2 == null) {
             str2 = webPage.title;
@@ -80,7 +80,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
             }
             str3 = str;
         }
-        ((org.telegram.ui.ActionBar.n5) k1Var.f14854e).l(str3, false);
+        ((org.telegram.ui.ActionBar.n5) k1Var.f14851e).l(str3, false);
         TLRPC.Photo photo = webPage.photo;
         if (photo != null) {
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(photo.sizes, 320, false, null, false);
@@ -95,7 +95,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
         } else {
             q9Var.setVisibility(8);
         }
-        ((LinearLayout) k1Var.f14852b).setClickable(false);
+        ((LinearLayout) k1Var.f14849b).setClickable(false);
     }
 
     public static void b(q9 q9Var, org.telegram.messenger.ef efVar) {
@@ -107,11 +107,11 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
         String str = efVar.I;
         q9Var.setVisibility(0);
         q9Var.r();
-        String str2 = efVar.f27850c;
+        String str2 = efVar.f27848c;
         if (str2 != null) {
             q9Var.h(str2, null, null);
         } else if (str != null) {
-            if (efVar.f27849b) {
+            if (efVar.f27847b) {
                 q9Var.h("vthumb://" + i7 + ":" + str, null, null);
                 return;
             }
@@ -151,9 +151,9 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
             }
         }
         String a02 = org.telegram.messenger.gd.a0(null, null, 2131745244, sb2.toString());
-        org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14854e;
+        org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14851e;
         if (n5Var.getMeasuredWidth() <= 0) {
-            measuredWidth = org.telegram.messenger.g0.f24121q.x - org.telegram.messenger.g0.L(140.0f);
+            measuredWidth = org.telegram.messenger.g0.f24118q.x - org.telegram.messenger.g0.L(140.0f);
         } else {
             measuredWidth = n5Var.getMeasuredWidth();
         }
@@ -166,7 +166,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
 
     public final void d() {
         if (this.f34158y != 0) {
-            ConnectionsManager.getInstance(org.telegram.messenger.c.a(this.f34150c).f23221a).cancelRequest(this.f34158y, true);
+            ConnectionsManager.getInstance(org.telegram.messenger.c.a(this.f34150c).f23218a).cancelRequest(this.f34158y, true);
             this.f34158y = 0;
         }
         this.E++;
@@ -175,11 +175,11 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         String str;
-        if (i7 == org.telegram.messenger.ks.f25213w0 && this.f34157x != null && i10 == this.f34150c) {
+        if (i7 == org.telegram.messenger.ks.f25211w0 && this.f34157x != null && i10 == this.f34150c) {
             a0.h hVar = (a0.h) objArr[0];
             for (int i11 = 0; i11 < hVar.m(); i11++) {
                 TLRPC.WebPage webPage = (TLRPC.WebPage) hVar.n(i11);
-                if (webPage != null && webPage.f28560id == this.f34157x.f28560id) {
+                if (webPage != null && webPage.f28558id == this.f34157x.f28558id) {
                     if (webPage instanceof TLRPC.TL_webPageEmpty) {
                         this.f34157x = null;
                         d();
@@ -221,7 +221,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
 
     public final q9 f(int i7) {
         q9[] q9VarArr;
-        if (this.f34149b == 1 && (q9VarArr = (q9[]) this.f34148a[0].f14856n) != null && i7 >= 0 && i7 < q9VarArr.length && q9VarArr[i7].getVisibility() == 0) {
+        if (this.f34149b == 1 && (q9VarArr = (q9[]) this.f34148a[0].f14853n) != null && i7 >= 0 && i7 < q9VarArr.length && q9VarArr[i7].getVisibility() == 0) {
             return q9VarArr[i7];
         }
         return null;
@@ -229,7 +229,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
 
     public final void g(int i7) {
         h(i7);
-        this.d = org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i7).f23221a).e();
+        this.d = org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i7).f23218a).e();
         this.f34151e = null;
         this.h = true;
         this.f34153n = true;
@@ -249,7 +249,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
 
     public final void h(int i7) {
         int i10 = this.f34150c;
-        int i11 = org.telegram.messenger.ks.f25213w0;
+        int i11 = org.telegram.messenger.ks.f25211w0;
         if (i10 == i7) {
             this.f34150c = i7;
             if (isAttachedToWindow()) {
@@ -274,7 +274,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
         org.telegram.messenger.ef efVar2;
         int i10;
         h(i7);
-        this.d = org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i7).f23221a).e();
+        this.d = org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i7).f23218a).e();
         this.f34151e = arrayList;
         this.h = false;
         org.telegram.messenger.ef efVar3 = null;
@@ -293,15 +293,15 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
         }
         hi.k1[] k1VarArr = this.f34148a;
         hi.k1 k1Var = k1VarArr[0];
-        org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14854e;
-        q9[] q9VarArr = (q9[]) k1Var.f14856n;
+        org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14851e;
+        q9[] q9VarArr = (q9[]) k1Var.f14853n;
         org.telegram.ui.ActionBar.n5 n5Var2 = (org.telegram.ui.ActionBar.n5) k1Var.d;
-        ((ImageView) k1Var.f14853c).setImageResource(2131231112);
-        ((ImageView) k1Var.f14853c).setVisibility(0);
-        ((q9) k1Var.f14857r).setVisibility(8);
+        ((ImageView) k1Var.f14850c).setImageResource(2131231112);
+        ((ImageView) k1Var.f14850c).setVisibility(0);
+        ((q9) k1Var.f14854r).setVisibility(8);
         ((FrameLayout) k1Var.h).setVisibility(0);
-        ((ImageView) k1Var.f14858s).setVisibility(8);
-        ((LinearLayout) k1Var.f14852b).setClickable(true);
+        ((ImageView) k1Var.f14855s).setVisibility(8);
+        ((LinearLayout) k1Var.f14849b).setClickable(true);
         ArrayList arrayList2 = this.f34151e;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             int size = arrayList2.size();
@@ -311,7 +311,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
             while (i14 < size) {
                 Object obj = arrayList2.get(i14);
                 i14++;
-                if (((org.telegram.messenger.ef) obj).f27849b) {
+                if (((org.telegram.messenger.ef) obj).f27847b) {
                     i12++;
                 } else {
                     i13++;
@@ -319,7 +319,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
             }
             int size2 = arrayList2.size();
             if (size2 == 1) {
-                if (((org.telegram.messenger.ef) arrayList2.get(0)).f27849b) {
+                if (((org.telegram.messenger.ef) arrayList2.get(0)).f27847b) {
                     i10 = 2131745238;
                 } else {
                     i10 = 2131745249;
@@ -362,7 +362,7 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
         hi.k1 k1Var2 = k1VarArr[0];
         String str = this.G;
         if (str != null) {
-            ((org.telegram.ui.ActionBar.n5) k1Var2.f14855f).l(str, false);
+            ((org.telegram.ui.ActionBar.n5) k1Var2.f14852f).l(str, false);
         }
         int i15 = this.f34149b;
         if (i11 != i15 && (bp0Var = this.I) != null) {
@@ -379,11 +379,11 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
         }
         this.F = false;
         for (hi.k1 k1Var : this.f34148a) {
-            org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14854e;
+            org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14851e;
             n5Var.setAlpha(1.0f);
             n5Var.setScaleX(1.0f);
             n5Var.setScaleY(1.0f);
-            ((org.telegram.ui.ActionBar.n5) k1Var.f14855f).setAlpha(0.0f);
+            ((org.telegram.ui.ActionBar.n5) k1Var.f14852f).setAlpha(0.0f);
         }
     }
 
@@ -410,19 +410,19 @@ public final class cp0 extends FrameLayout implements org.telegram.messenger.fs 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.ks.f(this.f34150c).c(this, org.telegram.messenger.ks.f25213w0);
+        org.telegram.messenger.ks.f(this.f34150c).c(this, org.telegram.messenger.ks.f25211w0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ks.f(this.f34150c).n(this, org.telegram.messenger.ks.f25213w0);
+        org.telegram.messenger.ks.f(this.f34150c).n(this, org.telegram.messenger.ks.f25211w0);
         d();
     }
 
     public void setLayoutClickListener(View.OnClickListener onClickListener) {
         for (hi.k1 k1Var : this.f34148a) {
-            ((LinearLayout) k1Var.f14852b).setOnClickListener(onClickListener);
+            ((LinearLayout) k1Var.f14849b).setOnClickListener(onClickListener);
         }
     }
 

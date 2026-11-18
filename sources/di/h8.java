@@ -6,43 +6,43 @@ import org.telegram.messenger.q10;
 import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLRPC;
 public final class h8 implements x10 {
-    public final x8 f8974a;
-    public final long f8975b;
-    public final int f8976c;
+    public final x8 f8971a;
+    public final long f8972b;
+    public final int f8973c;
     public final boolean[] d;
-    public final q10 f8977e;
-    public final Context f8978f;
-    public final org.telegram.ui.ActionBar.i6 f8979g;
+    public final q10 f8974e;
+    public final Context f8975f;
+    public final org.telegram.ui.ActionBar.i6 f8976g;
     public final TLRPC.ChatInvite h;
-    public final String f8980i;
+    public final String f8977i;
 
     public h8(x8 x8Var, long j3, int i7, boolean[] zArr, q10 q10Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, TLRPC.ChatInvite chatInvite, String str) {
-        this.f8974a = x8Var;
-        this.f8975b = j3;
-        this.f8976c = i7;
+        this.f8971a = x8Var;
+        this.f8972b = j3;
+        this.f8973c = i7;
         this.d = zArr;
-        this.f8977e = q10Var;
-        this.f8978f = context;
-        this.f8979g = i6Var;
+        this.f8974e = q10Var;
+        this.f8975f = context;
+        this.f8976g = i6Var;
         this.h = chatInvite;
-        this.f8980i = str;
+        this.f8977i = str;
     }
 
     @Override
     public final void a(Object obj) {
         x10 x10Var = (x10) obj;
-        x8 x8Var = this.f8974a;
-        long j3 = x8Var.f10022f.amount;
-        long j10 = this.f8975b;
+        x8 x8Var = this.f8971a;
+        long j3 = x8Var.f10019f.amount;
+        long j10 = this.f8972b;
         int i7 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
         boolean[] zArr = this.d;
-        q10 q10Var = this.f8977e;
+        q10 q10Var = this.f8974e;
         TLRPC.ChatInvite chatInvite = this.h;
-        String str = this.f8980i;
+        String str = this.f8977i;
         if (i7 < 0) {
-            boolean z10 = mp.u1(this.f8976c).f25709m7;
-            Context context = this.f8978f;
-            org.telegram.ui.ActionBar.i6 i6Var = this.f8979g;
+            boolean z10 = mp.u1(this.f8973c).f25707m7;
+            Context context = this.f8975f;
+            org.telegram.ui.ActionBar.i6 i6Var = this.f8976g;
             if (z10) {
                 if (x10Var != null) {
                     x10Var.a(Boolean.FALSE);

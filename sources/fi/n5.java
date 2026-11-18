@@ -9,28 +9,28 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class n5 implements RequestDelegate {
-    public final int f12304a;
-    public final p6 f12305b;
+    public final int f12301a;
+    public final p6 f12302b;
 
     public n5(p6 p6Var, int i7) {
-        this.f12304a = i7;
-        this.f12305b = p6Var;
+        this.f12301a = i7;
+        this.f12302b = p6Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f12304a) {
+        switch (this.f12301a) {
             case 0:
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 if (updates != null) {
-                    p6 p6Var = this.f12305b;
-                    mp.u1(p6Var.f12385a).U3(updates.updates, updates.users, updates.chats, false, updates.date);
+                    p6 p6Var = this.f12302b;
+                    mp.u1(p6Var.f12382a).U3(updates.updates, updates.users, updates.chats, false, updates.date);
                     org.telegram.messenger.g0.g3(new u5(p6Var, 1));
                     return;
                 }
                 return;
             case 1:
-                final p6 p6Var2 = this.f12305b;
+                final p6 p6Var2 = this.f12302b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -38,7 +38,7 @@ public final class n5 implements RequestDelegate {
                             case 0:
                                 p6 p6Var3 = p6Var2;
                                 HashSet hashSet = p6Var3.L;
-                                int i7 = p6Var3.f12385a;
+                                int i7 = p6Var3.f12382a;
                                 TLObject tLObject2 = tLObject;
                                 boolean z10 = true;
                                 if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
@@ -82,7 +82,7 @@ public final class n5 implements RequestDelegate {
                                 return;
                             default:
                                 p6 p6Var4 = p6Var2;
-                                int i12 = p6Var4.f12385a;
+                                int i12 = p6Var4.f12382a;
                                 ArrayList arrayList3 = p6Var4.T;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
@@ -107,7 +107,7 @@ public final class n5 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final p6 p6Var3 = this.f12305b;
+                final p6 p6Var3 = this.f12302b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -115,7 +115,7 @@ public final class n5 implements RequestDelegate {
                             case 0:
                                 p6 p6Var32 = p6Var3;
                                 HashSet hashSet = p6Var32.L;
-                                int i7 = p6Var32.f12385a;
+                                int i7 = p6Var32.f12382a;
                                 TLObject tLObject2 = tLObject;
                                 boolean z10 = true;
                                 if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
@@ -159,7 +159,7 @@ public final class n5 implements RequestDelegate {
                                 return;
                             default:
                                 p6 p6Var4 = p6Var3;
-                                int i12 = p6Var4.f12385a;
+                                int i12 = p6Var4.f12382a;
                                 ArrayList arrayList3 = p6Var4.T;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
@@ -184,12 +184,12 @@ public final class n5 implements RequestDelegate {
                 });
                 return;
             case 3:
-                p6 p6Var4 = this.f12305b;
+                p6 p6Var4 = this.f12302b;
                 p6Var4.getClass();
                 org.telegram.messenger.g0.g3(new u5(p6Var4, 0));
                 return;
             case 4:
-                p6 p6Var5 = this.f12305b;
+                p6 p6Var5 = this.f12302b;
                 p6Var5.getClass();
                 if (tL_error == null) {
                     org.telegram.messenger.g0.g3(new u5(p6Var5, 0));
@@ -197,7 +197,7 @@ public final class n5 implements RequestDelegate {
                 }
                 return;
             default:
-                org.telegram.messenger.g0.g3(new ga(this.f12305b, tLObject, tL_error, 4));
+                org.telegram.messenger.g0.g3(new ga(this.f12302b, tLObject, tL_error, 4));
                 return;
         }
     }

@@ -43,10 +43,10 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 import org.telegram.ui.cx;
 import org.telegram.ui.j91;
-import org.telegram.ui.ma0;
 import org.telegram.ui.mw;
+import org.telegram.ui.na0;
 import org.telegram.ui.u40;
-public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, lr, j2.g, org.telegram.ui.ActionBar.r1, u40, p4.c1, v5.e {
+public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, na0, lr, j2.g, org.telegram.ui.ActionBar.r1, u40, p4.c1, v5.e {
     public final int f1172a;
     public final long f1173b;
     public final Object f1174c;
@@ -83,7 +83,7 @@ public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, l
     @Override
     public void a(String str) {
         l8 l8Var = (l8) this.f1174c;
-        mp.u1(l8Var.f14955a0.f30189a).R1().r(this.f1173b, str, new c8(l8Var, 2));
+        mp.u1(l8Var.f14952a0.f30187a).R1().r(this.f1173b, str, new c8(l8Var, 2));
     }
 
     @Override
@@ -92,10 +92,10 @@ public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, l
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         ContentValues contentValues = new ContentValues();
         contentValues.put("next_request_ms", Long.valueOf(this.f1173b));
-        String str = iVar.f21714a;
-        l5.d dVar = iVar.f21716c;
+        String str = iVar.f21711a;
+        l5.d dVar = iVar.f21713c;
         if (sQLiteDatabase.update("transport_contexts", contentValues, "backend_name = ? and priority = ?", new String[]{str, String.valueOf(y5.a.a(dVar))}) < 1) {
-            contentValues.put("backend_name", iVar.f21714a);
+            contentValues.put("backend_name", iVar.f21711a);
             contentValues.put("priority", Integer.valueOf(y5.a.a(dVar)));
             sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }
@@ -145,21 +145,21 @@ public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, l
         switch (this.f1172a) {
             case 8:
                 km0 km0Var = ((cx) this.f1174c).D0.f39185e0;
-                a0.h hVar = km0Var.f17501y0;
+                a0.h hVar = km0Var.f17498y0;
                 long j3 = this.f1173b;
                 jg.g0 g0Var = (jg.g0) hVar.f(j3);
                 if (g0Var != null) {
-                    km0Var.f17501y0.l(j3);
-                    km0Var.f17494u0.remove(g0Var);
-                    km0Var.f17497w0.remove(g0Var);
-                    km0Var.f17495v0.remove(g0Var);
+                    km0Var.f17498y0.l(j3);
+                    km0Var.f17491u0.remove(g0Var);
+                    km0Var.f17494w0.remove(g0Var);
+                    km0Var.f17492v0.remove(g0Var);
                     km0Var.f();
-                    tr.a0(km0Var.f17493t0).f27054a.c(new y3(km0Var, j3, 11));
+                    tr.a0(km0Var.f17490t0).f27052a.c(new y3(km0Var, j3, 11));
                     return;
                 }
                 return;
             default:
-                ((mw) this.f1174c).f49979a.getMediaDataController().S1(this.f1173b);
+                ((mw) this.f1174c).f49953a.getMediaDataController().S1(this.f1173b);
                 return;
         }
     }
@@ -167,7 +167,7 @@ public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, l
     @Override
     public void i(int i7, ArrayList arrayList) {
         j91 j91Var = (j91) this.f1174c;
-        org.telegram.ui.ActionBar.h2 h2Var = j91Var.f48928b;
+        org.telegram.ui.ActionBar.h2 h2Var = j91Var.f48916b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();
@@ -195,7 +195,7 @@ public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, l
         oi.e0 e0Var = (oi.e0) this.f1174c;
         hc p10 = imageReceiver.p();
         if (z10 && p10 != null) {
-            Bitmap bitmap = p10.f24426c;
+            Bitmap bitmap = p10.f24423c;
             if (bitmap == null) {
                 Drawable drawable = p10.d;
                 if (drawable instanceof BitmapDrawable) {
@@ -211,7 +211,7 @@ public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, l
         fi.c1 c1Var = (fi.c1) this.f1174c;
         long j10 = 0;
         if (tL_error == null) {
-            if (c1Var.F != null && !c1Var.f11802x) {
+            if (c1Var.F != null && !c1Var.f11799x) {
                 TL_phone.groupCallStreamChannels groupcallstreamchannels = (TL_phone.groupCallStreamChannels) tLObject;
                 int i7 = 0;
                 if (!groupcallstreamchannels.channels.isEmpty()) {
@@ -223,7 +223,7 @@ public final class d0 implements f, RequestDelegateTimestamp, rr, jc, z4, ma0, l
                 if (c1Var.H == null && !groupcallstreamchannels.channels.isEmpty()) {
                     TLRPC.TL_groupCallParticipant tL_groupCallParticipant = new TLRPC.TL_groupCallParticipant();
                     c1Var.H = tL_groupCallParticipant;
-                    tL_groupCallParticipant.peer = mp.u1(c1Var.f11796e).B1(c1Var.f11794b);
+                    tL_groupCallParticipant.peer = mp.u1(c1Var.f11793e).B1(c1Var.f11791b);
                     c1Var.H.video = new TLRPC.TL_groupCallParticipantVideo();
                     TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup = new TLRPC.TL_groupCallParticipantVideoSourceGroup();
                     tL_groupCallParticipantVideoSourceGroup.semantics = "SIM";

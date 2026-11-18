@@ -1,20 +1,28 @@
 package org.telegram.ui.Cells;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.text.style.UpdateAppearance;
-public final class i8 extends CharacterStyle implements UpdateAppearance {
-    public final int f30826a;
-    public final org.telegram.ui.ActionBar.i6 f30827b;
-
-    public i8(int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f30826a = i7;
-        this.f30827b = i6Var;
-    }
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class i8 extends LinearLayout {
+    public TextView f30836a;
+    public boolean f30837b;
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(this.f30826a, this.f30827b));
-        textPaint.setUnderlineText(true);
+    public final void onMeasure(int i7, int i10) {
+        View view;
+        int measuredHeight;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+        if (this.f30837b && (view = (View) getParent()) != null && getMeasuredHeight() < (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - org.telegram.messenger.g0.L(24.0f))) {
+            setMeasuredDimension(getMeasuredWidth(), measuredHeight);
+        }
+    }
+
+    public void setAddOnClickListener(View.OnClickListener onClickListener) {
+        this.f30836a.setOnClickListener(onClickListener);
+    }
+
+    public void setIsLast(boolean z10) {
+        this.f30837b = z10;
+        requestLayout();
     }
 }

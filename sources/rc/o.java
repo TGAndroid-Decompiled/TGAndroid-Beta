@@ -39,19 +39,19 @@ public final class o extends w {
             this.d = new b3.j(0, 13);
         }
         b3.j jVar2 = this.d;
-        int i7 = jVar2.f2901b;
+        int i7 = jVar2.f2902b;
         try {
             c.a(jVar, jVar2);
             b3.j jVar3 = this.d;
-            byte[] u10 = jVar3.u(i7, jVar3.f2901b);
+            byte[] u10 = jVar3.u(i7, jVar3.f2902b);
             b3.j jVar4 = this.d;
-            if (((ByteBuffer) jVar4.f2902c).capacity() > 0) {
-                int i10 = jVar4.f2901b;
+            if (((ByteBuffer) jVar4.f2903c).capacity() > 0) {
+                int i10 = jVar4.f2902b;
                 byte[] u11 = jVar4.u(i10, i10);
                 ByteBuffer wrap = ByteBuffer.wrap(u11);
-                jVar4.f2902c = wrap;
+                jVar4.f2903c = wrap;
                 wrap.position(u11.length);
-                jVar4.f2901b = u11.length;
+                jVar4.f2902b = u11.length;
             }
             return u10;
         } catch (Exception e10) {

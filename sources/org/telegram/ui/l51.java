@@ -26,7 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
-public final class l51 implements if0 {
+public final class l51 implements jf0 {
     public final float A;
     public final bn B;
     public final LinearGradient C;
@@ -47,34 +47,34 @@ public final class l51 implements if0 {
     public final RectF R;
     public float[] S;
     public final float T;
-    public float f49433a;
-    public final Paint f49434b;
-    public final boolean f49435c;
+    public float f49439a;
+    public final Paint f49440b;
+    public final boolean f49441c;
     public final ValueAnimator d;
-    public final float f49436e;
-    public final float f49437f;
-    public final float f49438g;
+    public final float f49442e;
+    public final float f49443f;
+    public final float f49444g;
     public final int h;
-    public final int f49439i;
-    public final float f49440j;
-    public final org.telegram.messenger.fj f49441k;
-    public final float f49442l;
-    public final float f49443m;
-    public final boolean f49444n;
-    public final boolean f49445o;
-    public final boolean f49446p;
-    public final StaticLayout f49447q;
-    public final StaticLayout f49448r;
-    public final org.telegram.ui.Cells.q1 f49449s;
-    public final org.telegram.ui.Components.ck0 f49450t;
-    public final org.telegram.ui.Components.ri f49451u;
+    public final int f49445i;
+    public final float f49446j;
+    public final org.telegram.messenger.fj f49447k;
+    public final float f49448l;
+    public final float f49449m;
+    public final boolean f49450n;
+    public final boolean f49451o;
+    public final boolean f49452p;
+    public final StaticLayout f49453q;
+    public final StaticLayout f49454r;
+    public final org.telegram.ui.Cells.r1 f49455s;
+    public final org.telegram.ui.Components.ck0 f49456t;
+    public final org.telegram.ui.Components.ri f49457u;
     public final Matrix v;
-    public final Paint f49452w;
-    public final int f49453x;
-    public final float f49454y;
-    public final float f49455z;
+    public final Paint f49458w;
+    public final int f49459x;
+    public final float f49460y;
+    public final float f49461z;
 
-    public l51(org.telegram.ui.Cells.q1 q1Var, bn bnVar, org.telegram.ui.Components.ck0 ck0Var, org.telegram.ui.Components.ri riVar, org.telegram.ui.ActionBar.i6 i6Var) {
+    public l51(org.telegram.ui.Cells.r1 r1Var, bn bnVar, org.telegram.ui.Components.ck0 ck0Var, org.telegram.ui.Components.ri riVar, org.telegram.ui.ActionBar.i6 i6Var) {
         boolean z10;
         float f10;
         boolean z11;
@@ -89,92 +89,92 @@ public final class l51 implements if0 {
         Object[] spans;
         boolean z13;
         Paint paint = new Paint(1);
-        this.f49434b = paint;
+        this.f49440b = paint;
         this.E = new h2.f((int[]) null);
         PointF pointF = new PointF();
         this.P = pointF;
         this.Q = new RectF();
         this.R = new RectF();
         this.O = i6Var;
-        if (q1Var.getMessageObject().B2 != null && q1Var.getMessageObject().B2.size() <= 1 && !q1Var.getMessageObject().B2.isEmpty() && ((org.telegram.messenger.cj) q1Var.getMessageObject().B2.get(0)).f23364e.getLineCount() <= 10) {
-            this.f49449s = q1Var;
-            this.f49450t = ck0Var;
-            this.f49451u = riVar;
+        if (r1Var.getMessageObject().B2 != null && r1Var.getMessageObject().B2.size() <= 1 && !r1Var.getMessageObject().B2.isEmpty() && ((org.telegram.messenger.cj) r1Var.getMessageObject().B2.get(0)).f23361e.getLineCount() <= 10) {
+            this.f49455s = r1Var;
+            this.f49456t = ck0Var;
+            this.f49457u = riVar;
             this.B = bnVar;
-            rj rjVar = bnVar.f45932a0;
+            rj rjVar = bnVar.f45923a0;
             this.H = rjVar;
             if (rjVar != null && rjVar.getEditField() != null && rjVar.getEditField().getLayout() != null) {
                 rjVar.getRecordCircle();
                 paint.setFilterBitmap(true);
-                this.f49441k = q1Var.getMessageObject();
-                if (!q1Var.getTransitionParams().f32391w0) {
-                    q1Var.draw(new Canvas());
+                this.f49447k = r1Var.getMessageObject();
+                if (!r1Var.getTransitionParams().f32438w0) {
+                    r1Var.draw(new Canvas());
                 }
-                q1Var.setEnterTransitionInProgress(true);
+                r1Var.setEnterTransitionInProgress(true);
                 Editable editText = rjVar.getEditText();
-                CharSequence charSequence = q1Var.getMessageObject().v;
-                this.f49444n = false;
+                CharSequence charSequence = r1Var.getMessageObject().v;
+                this.f49450n = false;
                 if (rjVar.f32676r6 != 0 && SystemClock.uptimeMillis() - rjVar.f32676r6 < 1500) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f49445o = z10;
+                this.f49451o = z10;
                 rjVar.getEditField().getLayout().getHeight();
-                TextPaint textPaint = org.telegram.ui.ActionBar.n6.f29593o2;
+                TextPaint textPaint = org.telegram.ui.ActionBar.n6.f29591o2;
                 org.telegram.messenger.g0.L(20.0f);
-                if (q1Var.getMessageObject().P1 != 0) {
-                    if (q1Var.getMessageObject().P1 == q1Var.getMessageObject().Q1) {
+                if (r1Var.getMessageObject().P1 != 0) {
+                    if (r1Var.getMessageObject().P1 == r1Var.getMessageObject().Q1) {
                         z13 = true;
                     } else {
                         z13 = false;
                     }
                     f10 = 4.0f;
-                    switch (Math.max(q1Var.getMessageObject().P1, q1Var.getMessageObject().Q1)) {
+                    switch (Math.max(r1Var.getMessageObject().P1, r1Var.getMessageObject().Q1)) {
                         case 0:
                         case 1:
                         case 2:
                             if (z13) {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[0];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[0];
                                 break;
                             } else {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[2];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[2];
                                 break;
                             }
                         case 3:
                             if (z13) {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[1];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[1];
                                 break;
                             } else {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[3];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[3];
                                 break;
                             }
                         case 4:
                             if (z13) {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[2];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[2];
                                 break;
                             } else {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[4];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[4];
                                 break;
                             }
                         case 5:
                             if (z13) {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[3];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[3];
                                 break;
                             } else {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[5];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[5];
                                 break;
                             }
                         case 6:
                             if (z13) {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[4];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[4];
                                 break;
                             } else {
-                                textPaint = org.telegram.ui.ActionBar.n6.f29784y2[5];
+                                textPaint = org.telegram.ui.ActionBar.n6.f29782y2[5];
                                 break;
                             }
                         default:
-                            textPaint = org.telegram.ui.ActionBar.n6.f29784y2[5];
+                            textPaint = org.telegram.ui.ActionBar.n6.f29782y2[5];
                             break;
                     }
                     if (textPaint != null) {
@@ -192,7 +192,7 @@ public final class l51 implements if0 {
                 if (editText.length() == charSequence.length() && !z11) {
                     i7 = 0;
                 } else {
-                    this.f49444n = true;
+                    this.f49450n = true;
                     int[] iArr = new int[1];
                     CharSequence N3 = org.telegram.messenger.g0.N3(editText, iArr);
                     if (iArr[0] > 0) {
@@ -209,48 +209,48 @@ public final class l51 implements if0 {
                 int lineCount = rjVar.getEditField().getLayout().getLineCount();
                 int width = (int) (rjVar.getEditField().getLayout().getWidth() / textSize);
                 if (Build.VERSION.SDK_INT >= 24) {
-                    this.f49447q = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+                    this.f49453q = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
                 } else {
-                    this.f49447q = new StaticLayout(charSequence, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    this.f49453q = new StaticLayout(charSequence, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 }
-                this.I = org.telegram.ui.Components.x5.update(2, (View) null, this.I, this.f49447q);
-                jh.k.b(rjVar.getEditField(), bnVar.f46093m1, pointF);
+                this.I = org.telegram.ui.Components.x5.update(2, (View) null, this.I, this.f49453q);
+                jh.k.b(rjVar.getEditField(), bnVar.f46084m1, pointF);
                 float f13 = pointF.y;
-                this.f49455z = pointF.x;
+                this.f49461z = pointF.x;
                 this.A = ((org.telegram.messenger.g0.L(10.0f) + f13) - rjVar.getEditField().getScrollY()) + i7;
                 float f14 = 0.0f;
-                this.f49442l = 0.0f;
+                this.f49448l = 0.0f;
                 float f15 = Float.MAX_VALUE;
-                for (int i13 = 0; i13 < this.f49447q.getLineCount(); i13++) {
-                    float lineLeft = this.f49447q.getLineLeft(i13);
+                for (int i13 = 0; i13 < this.f49453q.getLineCount(); i13++) {
+                    float lineLeft = this.f49453q.getLineLeft(i13);
                     if (lineLeft < f15) {
                         f15 = lineLeft;
                     }
                 }
                 if (f15 != Float.MAX_VALUE) {
-                    this.f49442l = f15;
+                    this.f49448l = f15;
                 }
-                this.f49447q.getHeight();
+                this.f49453q.getHeight();
                 float L = org.telegram.messenger.g0.L(f10) + f13;
-                this.f49440j = L;
+                this.f49446j = L;
                 float f16 = 12.0f;
                 if (this.H.V0()) {
-                    this.f49440j = L - org.telegram.messenger.g0.L(12.0f);
+                    this.f49446j = L - org.telegram.messenger.g0.L(12.0f);
                 }
-                this.f49454y = f13 + rjVar.getEditField().getMeasuredHeight();
-                org.telegram.messenger.cj cjVar = (org.telegram.messenger.cj) q1Var.getMessageObject().B2.get(0);
+                this.f49460y = f13 + rjVar.getEditField().getMeasuredHeight();
+                org.telegram.messenger.cj cjVar = (org.telegram.messenger.cj) r1Var.getMessageObject().B2.get(0);
                 this.F = cjVar;
-                StaticLayout staticLayout = cjVar.f23364e;
+                StaticLayout staticLayout = cjVar.f23361e;
                 int i14 = org.telegram.ui.ActionBar.n6.Wc;
                 double h = i0.a.h(org.telegram.ui.ActionBar.n6.w0(i14, this.O));
                 int i15 = org.telegram.ui.ActionBar.n6.Le;
                 if (Math.abs(h - i0.a.h(org.telegram.ui.ActionBar.n6.w0(i15, this.O))) > 0.20000000298023224d) {
-                    this.f49444n = true;
-                    this.f49446p = true;
+                    this.f49450n = true;
+                    this.f49452p = true;
                 }
                 this.M = org.telegram.ui.ActionBar.n6.w0(i15, this.O);
                 this.N = org.telegram.ui.ActionBar.n6.w0(i14, this.O);
-                if (staticLayout.getLineCount() == this.f49447q.getLineCount()) {
+                if (staticLayout.getLineCount() == this.f49453q.getLineCount()) {
                     lineCount = staticLayout.getLineCount();
                     int i16 = 0;
                     i10 = 0;
@@ -258,15 +258,15 @@ public final class l51 implements if0 {
                     while (true) {
                         if (i16 < lineCount) {
                             f12 = f16;
-                            StaticLayout staticLayout2 = this.f49447q;
+                            StaticLayout staticLayout2 = this.f49453q;
                             f11 = f14;
                             if (staticLayout2.getLineRight(i16) == staticLayout2.getWidth() && staticLayout2.getLineLeft(i16) != f11) {
                                 i11++;
                             } else {
                                 i10++;
                             }
-                            if (staticLayout.getLineEnd(i16) != this.f49447q.getLineEnd(i16)) {
-                                this.f49444n = true;
+                            if (staticLayout.getLineEnd(i16) != this.f49453q.getLineEnd(i16)) {
+                                this.f49450n = true;
                             } else {
                                 i16++;
                                 f16 = f12;
@@ -280,27 +280,27 @@ public final class l51 implements if0 {
                 } else {
                     f11 = 0.0f;
                     f12 = 12.0f;
-                    this.f49444n = true;
+                    this.f49450n = true;
                     i10 = 0;
                     i11 = 0;
                 }
-                if (!this.f49444n && i11 > 0 && i10 > 0) {
+                if (!this.f49450n && i11 > 0 && i10 > 0) {
                     SpannableString spannableString = new SpannableString(charSequence);
                     SpannableString spannableString2 = new SpannableString(charSequence);
                     float f17 = Float.MAX_VALUE;
                     int i17 = 0;
                     while (i17 < lineCount) {
-                        StaticLayout staticLayout3 = this.f49447q;
+                        StaticLayout staticLayout3 = this.f49453q;
                         if (staticLayout3.getLineRight(i17) == staticLayout3.getWidth() && staticLayout3.getLineLeft(i17) != f11) {
                             i12 = lineCount;
-                            spannableString.setSpan(new org.telegram.ui.Components.sy(false), this.f49447q.getLineStart(i17), this.f49447q.getLineEnd(i17), 0);
-                            float lineLeft2 = this.f49447q.getLineLeft(i17);
+                            spannableString.setSpan(new org.telegram.ui.Components.sy(false), this.f49453q.getLineStart(i17), this.f49453q.getLineEnd(i17), 0);
+                            float lineLeft2 = this.f49453q.getLineLeft(i17);
                             if (lineLeft2 < f17) {
                                 f17 = lineLeft2;
                             }
                         } else {
                             i12 = lineCount;
-                            spannableString2.setSpan(new org.telegram.ui.Components.sy(false), this.f49447q.getLineStart(i17), this.f49447q.getLineEnd(i17), 0);
+                            spannableString2.setSpan(new org.telegram.ui.Components.sy(false), this.f49453q.getLineStart(i17), this.f49453q.getLineEnd(i17), 0);
                         }
                         i17++;
                         lineCount = i12;
@@ -308,51 +308,51 @@ public final class l51 implements if0 {
                     if (Build.VERSION.SDK_INT >= 24) {
                         StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(spannableString, 0, spannableString.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0);
                         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                        this.f49447q = hyphenationFrequency.setAlignment(alignment).build();
-                        this.f49448r = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(alignment).build();
+                        this.f49453q = hyphenationFrequency.setAlignment(alignment).build();
+                        this.f49454r = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(alignment).build();
                     } else {
                         Layout.Alignment alignment2 = Layout.Alignment.ALIGN_NORMAL;
                         TextPaint textPaint2 = textPaint;
-                        this.f49447q = new StaticLayout(spannableString, textPaint2, width, alignment2, 1.0f, 0.0f, false);
-                        this.f49448r = new StaticLayout(spannableString2, textPaint2, width, alignment2, 1.0f, 0.0f, false);
+                        this.f49453q = new StaticLayout(spannableString, textPaint2, width, alignment2, 1.0f, 0.0f, false);
+                        this.f49454r = new StaticLayout(spannableString2, textPaint2, width, alignment2, 1.0f, 0.0f, false);
                     }
                 }
-                this.f49443m = this.f49447q.getWidth() - ((org.telegram.messenger.cj) q1Var.getMessageObject().B2.get(0)).f23364e.getWidth();
-                if (q1Var.getMessageObject().N1() != 0 && q1Var.Q7 != null) {
+                this.f49449m = this.f49453q.getWidth() - ((org.telegram.messenger.cj) r1Var.getMessageObject().B2.get(0)).f23361e.getWidth();
+                if (r1Var.getMessageObject().N1() != 0 && r1Var.Q7 != null) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                this.f49435c = z12;
+                this.f49441c = z12;
                 if (z12) {
-                    org.telegram.ui.ActionBar.n5 n5Var = ((org.telegram.ui.Components.qo[]) bnVar.f45961c0.f3399b)[0].f38849c;
-                    jh.k.b(n5Var, bnVar.f46093m1, this.P);
+                    org.telegram.ui.ActionBar.n5 n5Var = ((org.telegram.ui.Components.qo[]) bnVar.f45952c0.f3400b)[0].f38849c;
+                    jh.k.b(n5Var, bnVar.f46084m1, this.P);
                     PointF pointF2 = this.P;
-                    this.f49436e = pointF2.x;
-                    this.f49438g = pointF2.y;
-                    this.f49437f = ((View) n5Var.getParent()).getWidth();
-                    org.telegram.ui.ActionBar.n5 n5Var2 = ((org.telegram.ui.Components.qo[]) bnVar.f45961c0.f3399b)[0].d;
-                    jh.k.b(n5Var2, bnVar.f46093m1, this.P);
+                    this.f49442e = pointF2.x;
+                    this.f49444g = pointF2.y;
+                    this.f49443f = ((View) n5Var.getParent()).getWidth();
+                    org.telegram.ui.ActionBar.n5 n5Var2 = ((org.telegram.ui.Components.qo[]) bnVar.f45952c0.f3400b)[0].d;
+                    jh.k.b(n5Var2, bnVar.f46084m1, this.P);
                     float f18 = this.P.y;
                     this.h = n5Var.getTextColor();
-                    this.f49439i = n5Var2.getTextColor();
-                    this.f49440j -= org.telegram.messenger.g0.L(46.0f);
+                    this.f49445i = n5Var2.getTextColor();
+                    this.f49446j -= org.telegram.messenger.g0.L(46.0f);
                 }
-                this.T = ck0Var.getPaddingBottom() - (bnVar.f45945ad - rjVar.getRestingFieldHeight());
+                this.T = ck0Var.getPaddingBottom() - (bnVar.f45936ad - rjVar.getRestingFieldHeight());
                 this.v = new Matrix();
                 Paint paint2 = new Paint(1);
-                this.f49452w = paint2;
+                this.f49458w = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                 LinearGradient linearGradient = new LinearGradient(0.0f, org.telegram.messenger.g0.L(f12), 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP);
                 this.C = linearGradient;
                 paint2.setShader(linearGradient);
-                this.f49453x = q1Var.getMessageObject().f23978m1;
+                this.f49459x = r1Var.getMessageObject().f23975m1;
                 float f19 = f11;
                 rjVar.getEditField().setAlpha(f19);
                 rjVar.setTextTransitionIsRunning(true);
-                StaticLayout staticLayout4 = q1Var.Q7;
-                if (staticLayout4 != null && staticLayout4.getText().length() > 1 && q1Var.Q7.getPrimaryHorizontal(0) != f19) {
-                    this.L = q1Var.Q7.getWidth() - q1Var.Q7.getLineWidth(0);
+                StaticLayout staticLayout4 = r1Var.Q7;
+                if (staticLayout4 != null && staticLayout4.getText().length() > 1 && r1Var.Q7.getPrimaryHorizontal(0) != f19) {
+                    this.L = r1Var.Q7.getWidth() - r1Var.Q7.getLineWidth(0);
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 this.d = ofFloat;
@@ -363,10 +363,10 @@ public final class l51 implements if0 {
                 riVar.a();
                 ((ViewGroup) riVar.d).invalidate();
                 this.E.d();
-                ofFloat.addListener(new org.telegram.ui.Components.t10(this, riVar, q1Var, rjVar, bnVar));
-                if (org.telegram.messenger.bz.o() == 2 && (M1 = q1Var.M1(true)) != null) {
+                ofFloat.addListener(new org.telegram.ui.Components.t10(this, riVar, r1Var, rjVar, bnVar));
+                if (org.telegram.messenger.bz.o() == 2 && (M1 = r1Var.M1(true)) != null) {
                     int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Je, this.O);
-                    Rect rect = M1.f30109o;
+                    Rect rect = M1.f30107o;
                     if (M1.F == null) {
                         Bitmap createBitmap = Bitmap.createBitmap(M1.b(50.0f), M1.b(40.0f), Bitmap.Config.ARGB_8888);
                         Canvas canvas = new Canvas(createBitmap);

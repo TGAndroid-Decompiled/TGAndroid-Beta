@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import java.util.ArrayList;
 public final class b9 extends org.telegram.ui.ActionBar.x2 {
-    public final int f23053m1 = 0;
+    public final int f23050m1 = 0;
     public org.telegram.ui.ActionBar.h2 n1;
 
     public b9(Context context, boolean z10) {
@@ -15,7 +15,7 @@ public final class b9 extends org.telegram.ui.ActionBar.x2 {
 
     @Override
     public boolean G() {
-        switch (this.f23053m1) {
+        switch (this.f23050m1) {
             case 0:
                 return false;
             default:
@@ -25,7 +25,7 @@ public final class b9 extends org.telegram.ui.ActionBar.x2 {
 
     @Override
     public boolean I() {
-        switch (this.f23053m1) {
+        switch (this.f23050m1) {
             case 0:
                 return false;
             default:
@@ -47,8 +47,8 @@ public final class b9 extends org.telegram.ui.ActionBar.x2 {
             z11 = true;
         }
         if (z11 && z10) {
-            boolean z12 = FilesMigrationService.f22616c;
-            t0.f26915b.startService(new Intent(t0.f26915b, FilesMigrationService.class));
+            boolean z12 = FilesMigrationService.f22613c;
+            t0.f26913b.startService(new Intent(t0.f26913b, FilesMigrationService.class));
             dismiss();
             return;
         }
@@ -70,7 +70,7 @@ public final class b9 extends org.telegram.ui.ActionBar.x2 {
 
     @Override
     public void L() {
-        switch (this.f23053m1) {
+        switch (this.f23050m1) {
             case 1:
                 super.L();
                 org.telegram.ui.Components.y8 y8Var = (org.telegram.ui.Components.y8) this.n1;
@@ -85,10 +85,10 @@ public final class b9 extends org.telegram.ui.ActionBar.x2 {
 
     @Override
     public final void dismiss() {
-        switch (this.f23053m1) {
+        switch (this.f23050m1) {
             case 0:
                 super.dismiss();
-                FilesMigrationService.f22617e = null;
+                FilesMigrationService.f22614e = null;
                 return;
             default:
                 super.dismiss();

@@ -21,43 +21,43 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.cy0;
 import org.telegram.ui.Components.m30;
 public final class h5 {
-    public final TL_stars.TL_starGiftUnique f8924a;
-    public final Context f8925b;
-    public final int f8926c;
+    public final TL_stars.TL_starGiftUnique f8921a;
+    public final Context f8922b;
+    public final int f8923c;
     public final long d;
-    public final String f8927e;
-    public final boolean f8928f;
-    public final org.telegram.ui.ActionBar.i6 f8929g;
+    public final String f8924e;
+    public final boolean f8925f;
+    public final org.telegram.ui.ActionBar.i6 f8926g;
     public final org.telegram.ui.ActionBar.u1 h;
-    public final m30 f8930i;
-    public final TextView f8931j;
-    public b f8932k;
-    public TextView f8933l;
-    public FrameLayout f8934m;
-    public vf.b f8935n;
-    public TLRPC.TL_textWithEntities f8936o;
-    public boolean f8937p = true;
-    public final HashMap f8938q;
-    public final HashSet f8939r;
-    public cg.b f8940s;
-    public hi.m3 f8941t;
+    public final m30 f8927i;
+    public final TextView f8928j;
+    public b f8929k;
+    public TextView f8930l;
+    public FrameLayout f8931m;
+    public vf.b f8932n;
+    public TLRPC.TL_textWithEntities f8933o;
+    public boolean f8934p = true;
+    public final HashMap f8935q;
+    public final HashSet f8936r;
+    public cg.b f8937s;
+    public hi.m3 f8938t;
 
     public h5(Context context, org.telegram.ui.ActionBar.i6 i6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, f5 f5Var, int i7, long j3, String str, boolean z10, q10 q10Var) {
         TLObject O0;
         HashMap hashMap = new HashMap();
-        this.f8938q = hashMap;
-        this.f8939r = new HashSet();
-        this.f8925b = context;
-        this.f8924a = tL_starGiftUnique;
+        this.f8935q = hashMap;
+        this.f8936r = new HashSet();
+        this.f8922b = context;
+        this.f8921a = tL_starGiftUnique;
         this.d = j3;
-        this.f8926c = i7;
-        cg.b bVar = f5Var.f8767a;
-        this.f8940s = bVar;
+        this.f8923c = i7;
+        cg.b bVar = f5Var.f8764a;
+        this.f8937s = bVar;
         hashMap.put(bVar, f5Var);
-        this.f8929g = i6Var;
-        this.f8927e = str;
+        this.f8926g = i6Var;
+        this.f8924e = str;
         boolean z11 = tL_starGiftUnique.resale_ton_only;
-        this.f8928f = !z11;
+        this.f8925f = !z11;
         if (j3 >= 0) {
             O0 = mp.u1(i7).c2(Long.valueOf(j3));
         } else {
@@ -68,24 +68,24 @@ public final class h5 {
         g5Var.addView(g10, c8.ma.c(-2.0f, -1));
         if (!z11) {
             m30 m30Var = new m30(context, i6Var);
-            this.f8930i = m30Var;
+            this.f8927i = m30Var;
             ArrayList arrayList = new ArrayList();
             arrayList.add(gd.M0(2131750263, null));
             arrayList.add(gd.M0(2131750262, null));
             m30Var.b(arrayList, new k0(this, 2));
             g10.addView(m30Var, c8.ma.t(-2, -2, 1, 18, 0, 18, 12));
         } else {
-            this.f8930i = null;
+            this.f8927i = null;
             TextView textView = new TextView(context);
-            org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29788y6, i6Var);
+            org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29786y6, i6Var);
             i5.c.r(14.0f, 1, 2131750261, textView, null);
             textView.setGravity(17);
             g10.addView(textView, c8.ma.t(-2, -2, 17, 24, 4, 24, 4));
         }
         g10.addView(new d5(context, tL_starGiftUnique, O0), c8.ma.t(-1, -2, 48, 0, -4, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f8931j = textView2;
-        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29504j5, i6Var);
+        this.f8928j = textView2;
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29502j5, i6Var);
         textView2.setTextSize(1, 16.0f);
         g10.addView(textView2, c8.ma.t(-1, -2, 48, 24, 4, 24, 4));
         if (z10) {
@@ -105,9 +105,9 @@ public final class h5 {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
         alertDialog$Builder.o(g5Var);
-        alertDialog$Builder.k("_", new bi.j5(this, i7, context, i6Var, q10Var));
+        alertDialog$Builder.k("_", new bi.i5(this, i7, context, i6Var, q10Var));
         alertDialog$Builder.h(gd.M0(2131752578, null), null);
-        this.h = alertDialog$Builder.f28746a;
+        this.h = alertDialog$Builder.f28744a;
     }
 
     public final void a(boolean z10) {
@@ -120,9 +120,9 @@ public final class h5 {
         String K;
         hi.m3 m3Var;
         int i7;
-        cg.b bVar = this.f8940s;
-        f5 f5Var = (f5) this.f8938q.get(bVar);
-        TextView textView = this.f8931j;
+        cg.b bVar = this.f8937s;
+        f5 f5Var = (f5) this.f8935q.get(bVar);
+        TextView textView = this.f8928j;
         ViewPropertyAnimator animate = textView.animate();
         if (f5Var != null) {
             f10 = 1.0f;
@@ -136,20 +136,20 @@ public final class h5 {
             z11 = false;
         }
         textView.setEnabled(z11);
-        TextView textView2 = this.f8933l;
+        TextView textView2 = this.f8930l;
         if (f5Var != null) {
             z12 = true;
         } else {
             z12 = false;
         }
         textView2.setEnabled(z12);
-        b bVar2 = this.f8932k;
-        if (bVar2.f8514e != bVar) {
-            bVar2.f8514e = bVar;
+        b bVar2 = this.f8929k;
+        if (bVar2.f8511e != bVar) {
+            bVar2.f8511e = bVar;
             bVar2.b();
         }
-        cg.b bVar3 = cg.b.f5277b;
-        m30 m30Var = this.f8930i;
+        cg.b bVar3 = cg.b.f5274b;
+        m30 m30Var = this.f8927i;
         if (m30Var != null) {
             if (bVar == bVar3) {
                 i7 = 1;
@@ -158,11 +158,11 @@ public final class h5 {
             }
             m30Var.a(i7, z10);
         }
-        if (bVar == bVar3 && (m3Var = this.f8941t) != null && m3Var.W) {
+        if (bVar == bVar3 && (m3Var = this.f8938t) != null && m3Var.W) {
             m3Var.f(true);
         }
-        b bVar4 = this.f8932k;
-        cg.b bVar5 = cg.b.f5276a;
+        b bVar4 = this.f8929k;
+        cg.b bVar5 = cg.b.f5273a;
         if (bVar4 != null) {
             if (bVar == bVar5) {
                 bVar4.setOnClickListener(new ah.d(this, 18));
@@ -170,15 +170,15 @@ public final class h5 {
                 bVar4.setOnClickListener(new bi.o(24));
             }
         }
-        vf.b bVar6 = this.f8935n;
+        vf.b bVar6 = this.f8932n;
         if (bVar6 != null) {
             bVar6.a(false);
-            this.f8935n = null;
+            this.f8932n = null;
         }
-        int i10 = this.f8926c;
+        int i10 = this.f8923c;
         if (f5Var != null) {
-            cg.b bVar7 = f5Var.f8767a;
-            cg.a aVar = f5Var.f8769c;
+            cg.b bVar7 = f5Var.f8764a;
+            cg.a aVar = f5Var.f8766c;
             long e10 = j10.i(i10).e();
             long j3 = this.d;
             if (j3 == e10) {
@@ -186,10 +186,10 @@ public final class h5 {
             } else {
                 z13 = false;
             }
-            String str = this.f8927e;
+            String str = this.f8924e;
             if (bVar7 == bVar5) {
                 c10 = 0;
-                this.f8933l.setText(pb.T0(gd.H(',', "Gift2BuyDoPrice2", (int) aVar.a())));
+                this.f8930l.setText(pb.T0(gd.H(',', "Gift2BuyDoPrice2", (int) aVar.a())));
                 if (z13) {
                     K = gd.K("Gift2BuyPriceSelfText", (int) aVar.a(), ',', str);
                 } else {
@@ -200,7 +200,7 @@ public final class h5 {
                 c10 = 0;
             }
             if (bVar7 == bVar3) {
-                TextView textView3 = this.f8933l;
+                TextView textView3 = this.f8930l;
                 Object[] objArr = new Object[1];
                 objArr[c10] = aVar.d();
                 textView3.setText(pb.V0(gd.a0(null, null, 2131750266, objArr), true));
@@ -225,10 +225,10 @@ public final class h5 {
             return;
         }
         vf.b h = this.h.h(-1, false, false);
-        this.f8935n = h;
+        this.f8932n = h;
         h.d();
-        if (this.f8939r.add(bVar)) {
-            x8.x(i10, bVar).H(this.f8924a, this.d, this.f8936o, this.f8937p, new ai.v1(12, this, bVar));
+        if (this.f8936r.add(bVar)) {
+            x8.x(i10, bVar).H(this.f8921a, this.d, this.f8933o, this.f8934p, new ai.v1(12, this, bVar));
         }
     }
 
@@ -236,20 +236,20 @@ public final class h5 {
         org.telegram.ui.ActionBar.u1 u1Var = this.h;
         u1Var.Y0 = true;
         u1Var.show();
-        this.f8933l = (TextView) u1Var.d(-1);
-        this.f8932k = u1Var.f30028a1;
+        this.f8930l = (TextView) u1Var.d(-1);
+        this.f8929k = u1Var.f30026a1;
         FrameLayout frameLayout = u1Var.Z0;
-        this.f8934m = frameLayout;
-        if (frameLayout != null && this.f8928f) {
-            hi.m3 m3Var = new hi.m3(this.f8925b, 3);
+        this.f8931m = frameLayout;
+        if (frameLayout != null && this.f8925f) {
+            hi.m3 m3Var = new hi.m3(this.f8922b, 3);
             m3Var.r(true);
             m3Var.L = Layout.Alignment.ALIGN_NORMAL;
             m3Var.d = 5000L;
             m3Var.v(gd.M0(2131750260, null));
             m3Var.x();
-            this.f8941t = m3Var;
+            this.f8938t = m3Var;
             m3Var.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-            this.f8934m.addView(this.f8941t, c8.ma.d(-2, 100.0f, 48, 0.0f, 26.0f, 0.0f, 0.0f));
+            this.f8931m.addView(this.f8938t, c8.ma.d(-2, 100.0f, 48, 0.0f, 26.0f, 0.0f, 0.0f));
         }
         a(false);
     }

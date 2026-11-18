@@ -13,7 +13,7 @@ public abstract class ne {
         q4.q qVar = new q4.q(9, false);
         qVar.f55827c = dVar.a();
         qVar.f55826b = eb.NO_ERROR;
-        dVar2.f13282e = new ae(qVar);
+        dVar2.f13279e = new ae(qVar);
         pb.n.f55540a.execute(new a8.qa(b10, new a8.xa(dVar2, 1), fb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 1));
         return mobileVisionBase;
     }

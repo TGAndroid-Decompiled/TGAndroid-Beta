@@ -15,9 +15,9 @@ public abstract class e7 {
     public static boolean b(int i7, rd.p pVar, rd.l lVar, CancellationSignal cancellationSignal) {
         if (i7 != -1) {
             ?? obj = new Object();
-            obj.f19124a = new w0.h(2, i5.c.j(i7, "activity with result code: ", " indicating not RESULT_OK"));
+            obj.f19121a = new w0.h(2, i5.c.j(i7, "activity with result code: ", " indicating not RESULT_OK"));
             if (i7 == 0) {
-                obj.f19124a = new w0.g("activity is cancelled by the user.");
+                obj.f19121a = new w0.g("activity is cancelled by the user.");
             }
             pVar.invoke(cancellationSignal, new b1.c(lVar, obj, 1));
             return true;

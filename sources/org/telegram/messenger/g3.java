@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class g3 {
-    public boolean f24155a;
-    public boolean f24156b;
-    public long f24157c;
+    public boolean f24152a;
+    public boolean f24153b;
+    public long f24154c;
     public boolean d;
-    public boolean f24158e;
-    public int f24159f;
-    public int f24160g;
+    public boolean f24155e;
+    public int f24156f;
+    public int f24157g;
     public TL_stories.TL_premium_myBoosts h;
-    public int f24161i = 0;
-    public long f24162j;
-    public TLRPC.Chat f24163k;
-    public boolean f24164l;
-    public boolean f24165m;
+    public int f24158i = 0;
+    public long f24159j;
+    public TLRPC.Chat f24160k;
+    public boolean f24161l;
+    public boolean f24162m;
 
     public final void a(TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
         this.h = tL_premium_myBoosts;
-        this.f24161i = 0;
-        this.f24160g = 0;
+        this.f24158i = 0;
+        this.f24157g = 0;
         this.d = false;
-        this.f24155a = false;
-        this.f24158e = false;
-        this.f24157c = 0L;
+        this.f24152a = false;
+        this.f24155e = false;
+        this.f24154c = 0L;
         if (tL_premium_myBoosts.my_boosts.isEmpty()) {
-            this.f24156b = true;
+            this.f24153b = true;
         }
         ArrayList<TL_stories.TL_myBoost> arrayList = tL_premium_myBoosts.my_boosts;
         int size = arrayList.size();
@@ -35,11 +35,11 @@ public final class g3 {
         while (i7 < size) {
             TL_stories.TL_myBoost tL_myBoost = arrayList.get(i7);
             i7++;
-            if (this.f24162j == n5.o(tL_myBoost.peer)) {
-                this.f24161i++;
+            if (this.f24159j == n5.o(tL_myBoost.peer)) {
+                this.f24158i++;
             }
         }
-        if (this.f24161i > 0) {
+        if (this.f24158i > 0) {
             this.d = true;
         }
         ArrayList<TL_stories.TL_myBoost> arrayList2 = tL_premium_myBoosts.my_boosts;
@@ -53,11 +53,11 @@ public final class g3 {
             i10++;
             TL_stories.TL_myBoost tL_myBoost3 = tL_myBoost2;
             if (tL_myBoost3.peer == null) {
-                this.f24160g = tL_myBoost3.slot;
+                this.f24157g = tL_myBoost3.slot;
                 break;
             }
         }
-        if (this.f24160g == 0) {
+        if (this.f24157g == 0) {
             ArrayList arrayList3 = new ArrayList();
             ArrayList<TL_stories.TL_myBoost> arrayList4 = tL_premium_myBoosts.my_boosts;
             int size3 = arrayList4.size();
@@ -67,31 +67,31 @@ public final class g3 {
                 i11++;
                 TL_stories.TL_myBoost tL_myBoost5 = tL_myBoost4;
                 TLRPC.Peer peer = tL_myBoost5.peer;
-                if (peer != null && n5.o(peer) != (-this.f24163k.f28405id)) {
+                if (peer != null && n5.o(peer) != (-this.f24160k.f28403id)) {
                     arrayList3.add(tL_myBoost5);
                 }
             }
             if (arrayList3.size() == 1 && ((TL_stories.TL_myBoost) arrayList3.get(0)).cooldown_until_date == 0) {
                 TL_stories.TL_myBoost tL_myBoost6 = (TL_stories.TL_myBoost) arrayList3.get(0);
-                this.f24157c = n5.o(tL_myBoost6.peer);
-                this.f24160g = tL_myBoost6.slot;
-                this.f24155a = true;
+                this.f24154c = n5.o(tL_myBoost6.peer);
+                this.f24157g = tL_myBoost6.slot;
+                this.f24152a = true;
             } else if (arrayList3.size() >= 1) {
-                this.f24158e = true;
+                this.f24155e = true;
                 if (!wg.s.i()) {
                     TL_stories.TL_myBoost tL_myBoost7 = (TL_stories.TL_myBoost) arrayList3.get(0);
-                    this.f24157c = n5.o(tL_myBoost7.peer);
-                    this.f24160g = tL_myBoost7.slot;
+                    this.f24154c = n5.o(tL_myBoost7.peer);
+                    this.f24157g = tL_myBoost7.slot;
                 }
-                this.f24155a = true;
+                this.f24152a = true;
             } else {
-                this.f24155a = false;
+                this.f24152a = false;
             }
         } else {
-            this.f24155a = true;
+            this.f24152a = true;
         }
-        if (this.f24165m) {
-            this.f24155a = false;
+        if (this.f24162m) {
+            this.f24152a = false;
         }
     }
 }

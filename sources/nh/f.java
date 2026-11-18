@@ -29,22 +29,22 @@ public final class f extends k {
         h hVar = this.F;
         e eVar = hVar.T0;
         int b10 = f1Var.b();
-        List list = eVar.f21539c;
+        List list = eVar.f21536c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f21539c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f21536c.get(b10);
         }
         if (groupCallMessage != null && (p0Var = groupCallMessage.visibleReaction) != null) {
-            View view = f1Var.f59122a;
+            View view = f1Var.f59123a;
             if ((view instanceof c) && (gVar = hVar.Y0) != null) {
-                f40 f40Var = ((h20) gVar).f48204a;
-                l0 l0Var = new l0(f40Var.getContext(), null, f40Var.F1, (c) view, null, 0.0f, 0.0f, p0Var, f40Var.f30189a, 1, false);
+                f40 f40Var = ((h20) gVar).f48132a;
+                l0 l0Var = new l0(f40Var.getContext(), null, f40Var.F1, (c) view, null, 0.0f, 0.0f, p0Var, f40Var.f30187a, 1, false);
                 l0.B = l0Var;
-                i0 i0Var = l0Var.f5409i;
+                i0 i0Var = l0Var.f5406i;
                 i0Var.setTag(2131296591, 1);
-                f40Var.f30195c.addView(i0Var);
-                l0Var.f5419s = true;
-                l0Var.f5424y = System.currentTimeMillis();
+                f40Var.f30193c.addView(i0Var);
+                l0Var.f5416s = true;
+                l0Var.f5421y = System.currentTimeMillis();
             }
         }
     }

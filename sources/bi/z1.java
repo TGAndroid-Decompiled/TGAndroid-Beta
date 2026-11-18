@@ -9,7 +9,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class z1 extends k41 {
-    public static final int f4297b = 0;
+    public static final int f4263b = 0;
 
     static {
         k41.h(new k41());
@@ -22,7 +22,7 @@ public final class z1 extends k41 {
         CharSequence charSequence = l41Var.f37019n;
         if (charSequence != null) {
             rVar.setSubtitle(charSequence);
-            rVar.setSubtitleColorKey(org.telegram.ui.ActionBar.n6.f29654r5);
+            rVar.setSubtitleColorKey(org.telegram.ui.ActionBar.n6.f29652r5);
         }
         rVar.setOptions(l41Var.E);
         rVar.setDivider(z10);

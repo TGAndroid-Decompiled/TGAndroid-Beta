@@ -34,7 +34,7 @@ public final class x0 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c1 c1Var3 = this.f41310b;
                 c1Var3.F = floatValue;
-                int L3 = (org.telegram.messenger.g0.f24121q.x - org.telegram.messenger.g0.L(36.0f)) - org.telegram.messenger.g0.L(52.0f);
+                int L3 = (org.telegram.messenger.g0.f24118q.x - org.telegram.messenger.g0.L(36.0f)) - org.telegram.messenger.g0.L(52.0f);
                 a1 a1Var = c1Var3.f40790c;
                 a1Var.getLayoutParams().width = org.telegram.messenger.g0.L(52.0f) + ((int) (L3 * c1Var3.F));
                 a1Var.requestLayout();

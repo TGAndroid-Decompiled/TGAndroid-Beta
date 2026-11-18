@@ -21,7 +21,7 @@ public final class n2 extends j {
         m0Var.setMaxWidth(i10);
         m0Var.e(0, this.f58055t0);
         this.f58057v0 = qbVar;
-        String str = qbVar.f15300c;
+        String str = qbVar.f15297c;
         String a10 = qbVar.a();
         m0Var.d(i7, str);
         m0Var.setText(a10);

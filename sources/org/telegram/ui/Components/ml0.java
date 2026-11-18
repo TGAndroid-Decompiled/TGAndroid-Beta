@@ -64,7 +64,7 @@ public final class ml0 extends v4.o {
                 fjVar2 = (org.telegram.messenger.fj) ql0Var.f38831f.get(i10 - i14);
             }
         }
-        if (fjVar2 != null && fjVar != null && fjVar2.F0() != null && fjVar.F0() != null && fjVar2.F0().f28411id == fjVar.F0().f28411id) {
+        if (fjVar2 != null && fjVar != null && fjVar2.F0() != null && fjVar.F0() != null && fjVar2.F0().f28409id == fjVar.F0().f28409id) {
             return true;
         }
         return false;

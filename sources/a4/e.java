@@ -49,7 +49,7 @@ public final class e implements o {
                 long j11 = (jVar.f185i * j10) / 1000000;
                 jVar.f182e = j11;
                 h hVar = jVar.d;
-                String str = l0.f13786a;
+                String str = l0.f13783a;
                 hVar.v0(j11);
                 jVar.h = 2;
             }
@@ -58,8 +58,8 @@ public final class e implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14006b;
-        return t1.f14074e;
+        g0 g0Var = i0.f14003b;
+        return t1.f14071e;
     }
 
     @Override
@@ -73,7 +73,7 @@ public final class e implements o {
         if (gVar.a(pVar, true) && (gVar.f170a & 2) == 2) {
             int min = Math.min(gVar.f173e, 8);
             x xVar = new x(min);
-            pVar.b(0, min, xVar.f13836a);
+            pVar.b(0, min, xVar.f13833a);
             xVar.N(0);
             if (xVar.a() >= 5 && xVar.A() == 127 && xVar.C() == 1179402563) {
                 this.f164b = new j();

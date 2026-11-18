@@ -33,7 +33,7 @@ public final class i7 implements r1.d {
                 }
                 siVar.f39736x2.m(siVar.f39686j4);
                 siVar.Y0.g();
-                siVar.f30192b.invalidate();
+                siVar.f30190b.invalidate();
                 return;
             case 4:
                 xk xkVar = (xk) this.f36070b;

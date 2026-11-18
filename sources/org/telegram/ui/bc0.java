@@ -1,57 +1,109 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
+import android.os.Bundle;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class bc0 implements Runnable {
-    public final int f45843a;
-    public final dc0 f45844b;
+    public final int f45830a = 0;
+    public final ec0 f45831b;
+    public final TLRPC.TL_error f45832c;
+    public final Bundle d;
+    public final TLObject f45833e;
 
-    public bc0(dc0 dc0Var, int i7) {
-        this.f45843a = i7;
-        this.f45844b = dc0Var;
+    public bc0(ec0 ec0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
+        this.f45831b = ec0Var;
+        this.f45833e = tLObject;
+        this.d = bundle;
+        this.f45832c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f45843a) {
+        String str;
+        int i7 = this.f45830a;
+        TLObject tLObject = this.f45833e;
+        Bundle bundle = this.d;
+        TLRPC.TL_error tL_error = this.f45832c;
+        ec0 ec0Var = this.f45831b;
+        switch (i7) {
             case 0:
-                dc0 dc0Var = this.f45844b;
-                ah.i iVar = dc0Var.f46916c;
-                iVar.requestFocus();
-                String str = dc0Var.L;
-                if (str != null) {
-                    int i7 = 1;
-                    if (str.length() > 1) {
-                        String obj = iVar.getText().toString();
-                        int length = obj.length();
-                        int i10 = 0;
-                        while (i10 < length && obj.charAt(i10) <= ' ') {
-                            i10++;
+                ee0 ee0Var = ec0Var.f47162b0;
+                ec0Var.N = false;
+                ec0Var.f47169w.invalidate();
+                if (tLObject != null) {
+                    ec0Var.T = bundle;
+                    TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject;
+                    ec0Var.U = tL_auth_sentCode;
+                    ee0Var.y1(bundle, tL_auth_sentCode, true);
+                    return;
+                } else if (tL_error != null && (str = tL_error.text) != null) {
+                    if (str.contains("PHONE_NUMBER_INVALID")) {
+                        ee0Var.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131748987, null));
+                        return;
+                    } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                        if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                            ec0Var.c(true);
+                            ee0Var.M1(0, true, null, true);
+                            ee0Var.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131752010, null));
+                            return;
+                        } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                            ee0Var.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131750671, null));
+                            return;
+                        } else if (tL_error.code != -1000) {
+                            String M0 = org.telegram.messenger.gd.M0(2131745876, null);
+                            StringBuilder sb2 = new StringBuilder();
+                            org.telegram.ui.Cells.c0.u(null, 2131751094, sb2, "\n");
+                            sb2.append(tL_error.text);
+                            ee0Var.D1(M0, sb2.toString());
+                            return;
+                        } else {
+                            return;
                         }
-                        int length2 = dc0Var.L.length() + i10;
-                        if (length2 < 0 || length2 >= obj.length() || obj.charAt(length2) != ' ') {
-                            i7 = 0;
-                        }
-                        iVar.setSelection(Utilities.j(length2 + i7, obj.length(), 0), iVar.getText().length());
+                    } else {
+                        ee0Var.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131748991, null));
                         return;
                     }
-                }
-                iVar.setSelection(0, iVar.getText().length());
-                return;
-            case 1:
-                this.f45844b.p(true);
-                return;
-            case 2:
-                this.f45844b.n(false);
-                return;
-            default:
-                ah.i iVar2 = this.f45844b.f46916c;
-                if (iVar2 != null) {
-                    iVar2.requestFocus();
-                    iVar2.setSelection(iVar2.length());
-                    org.telegram.messenger.g0.I3(iVar2);
+                } else {
                     return;
                 }
+            default:
+                ee0 ee0Var2 = ec0Var.f47162b0;
+                ec0Var.S = false;
+                if (tL_error == null) {
+                    ee0Var2.y1(bundle, (TLRPC.TL_auth_sentCode) tLObject, true);
+                } else {
+                    String str2 = tL_error.text;
+                    if (str2 != null) {
+                        if (str2.contains("PHONE_NUMBER_INVALID")) {
+                            ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131748987, null));
+                        } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                            if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                                ec0Var.c(true);
+                                ee0Var2.M1(0, true, null, true);
+                                ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131752010, null));
+                            } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                                ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131750671, null));
+                            } else if (tL_error.code != -1000) {
+                                String M02 = org.telegram.messenger.gd.M0(2131745876, null);
+                                StringBuilder sb3 = new StringBuilder();
+                                org.telegram.ui.Cells.c0.u(null, 2131751094, sb3, "\n");
+                                sb3.append(tL_error.text);
+                                ee0Var2.D1(M02, sb3.toString());
+                            }
+                        } else {
+                            ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131748991, null));
+                        }
+                    }
+                }
+                ee0Var2.C1(false, true);
                 return;
         }
+    }
+
+    public bc0(ec0 ec0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
+        this.f45831b = ec0Var;
+        this.f45832c = tL_error;
+        this.d = bundle;
+        this.f45833e = tLObject;
     }
 }

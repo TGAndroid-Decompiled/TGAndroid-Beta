@@ -49,22 +49,22 @@ public final class cu0 extends wm0 {
                 ((eu0) this.f34183e).setOption(min);
                 return;
             case 1:
-                ym0 ym0Var = ((org.telegram.ui.w90) this.f34183e).h;
+                ym0 ym0Var = ((org.telegram.ui.x90) this.f34183e).h;
                 float f10 = min / 100.0f;
                 ym0Var.f42545y.n(true, f10);
                 ym0Var.setProgress(f10);
                 return;
             default:
-                if (((org.telegram.ui.xq0) this.f34183e).f53922s.Z7 > 0 && (max = Math.max(0, Math.min(((org.telegram.ui.xq0) this.f34183e).f53922s.Z7 - 1, min))) != ((org.telegram.ui.xq0) this.f34183e).f53922s.Y7) {
+                if (((org.telegram.ui.xq0) this.f34183e).f53890s.Z7 > 0 && (max = Math.max(0, Math.min(((org.telegram.ui.xq0) this.f34183e).f53890s.Z7 - 1, min))) != ((org.telegram.ui.xq0) this.f34183e).f53890s.Y7) {
                     org.telegram.ui.xq0 xq0Var = (org.telegram.ui.xq0) this.f34183e;
-                    xq0Var.f53921r = xq0Var.f53922s.Y7;
-                    ((org.telegram.ui.xq0) this.f34183e).f53922s.Y7 = max;
-                    ((org.telegram.ui.xq0) this.f34183e).f53922s.L0();
+                    xq0Var.f53889r = xq0Var.f53890s.Y7;
+                    ((org.telegram.ui.xq0) this.f34183e).f53890s.Y7 = max;
+                    ((org.telegram.ui.xq0) this.f34183e).f53890s.L0();
                     ((org.telegram.ui.xq0) this.f34183e).invalidate();
-                    int i10 = ((org.telegram.ui.xq0) this.f34183e).f53922s.Y7;
+                    int i10 = ((org.telegram.ui.xq0) this.f34183e).f53890s.Y7;
                     org.telegram.ui.xq0 xq0Var2 = (org.telegram.ui.xq0) this.f34183e;
-                    if (i10 != xq0Var2.f53921r) {
-                        xq0Var2.f53922s.n2(1);
+                    if (i10 != xq0Var2.f53889r) {
+                        xq0Var2.f53890s.n2(1);
                         return;
                     }
                     return;
@@ -90,16 +90,16 @@ public final class cu0 extends wm0 {
             case 2:
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(org.telegram.messenger.gd.M0(2131754735, "AccDescrVideoQuality"));
-                if (((org.telegram.ui.xq0) this.f34183e).f53922s.Z7 > 0) {
+                if (((org.telegram.ui.xq0) this.f34183e).f53890s.Z7 > 0) {
                     sb2.append(", ");
-                    sb2.append(((org.telegram.ui.xq0) this.f34183e).f53922s.Y7 + 1);
+                    sb2.append(((org.telegram.ui.xq0) this.f34183e).f53890s.Y7 + 1);
                     sb2.append(" / ");
-                    sb2.append(((org.telegram.ui.xq0) this.f34183e).f53922s.Z7);
+                    sb2.append(((org.telegram.ui.xq0) this.f34183e).f53890s.Z7);
                 }
                 sb2.append(", ");
                 sb2.append(((org.telegram.ui.xq0) this.f34183e).h);
                 sb2.append(" – ");
-                sb2.append(((org.telegram.ui.xq0) this.f34183e).f53920n);
+                sb2.append(((org.telegram.ui.xq0) this.f34183e).f53888n);
                 return sb2.toString();
         }
     }
@@ -124,7 +124,7 @@ public final class cu0 extends wm0 {
             case 1:
                 return 100;
             default:
-                return Math.max(0, ((org.telegram.ui.xq0) this.f34183e).f53922s.Z7 - 1);
+                return Math.max(0, ((org.telegram.ui.xq0) this.f34183e).f53890s.Z7 - 1);
         }
     }
 
@@ -135,7 +135,7 @@ public final class cu0 extends wm0 {
             case 1:
                 return org.telegram.messenger.pc.c();
             default:
-                return ((org.telegram.ui.xq0) this.f34183e).f53922s.Y7;
+                return ((org.telegram.ui.xq0) this.f34183e).f53890s.Y7;
         }
     }
 
@@ -155,7 +155,7 @@ public final class cu0 extends wm0 {
                     sb2.append(org.telegram.messenger.gd.a0(null, null, 2131754849, Integer.valueOf(Math.round(c10))));
                 }
                 accessibilityEvent.setContentDescription(sb2);
-                ((org.telegram.ui.w90) this.f34183e).setContentDescription(sb2);
+                ((org.telegram.ui.x90) this.f34183e).setContentDescription(sb2);
                 return;
             default:
                 super.onPopulateAccessibilityEvent(view, accessibilityEvent);

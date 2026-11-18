@@ -73,7 +73,7 @@ public final class p extends q {
             while (true) {
                 if (i11 < list2.size()) {
                     f1 f1Var = (f1) list2.get(i11);
-                    if (f1Var.f10402b == i7 && f1Var.f10403c == i10) {
+                    if (f1Var.f10399b == i7 && f1Var.f10400c == i10) {
                         arrayList.add(obj);
                         break;
                     }

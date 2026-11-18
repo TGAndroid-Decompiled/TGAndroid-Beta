@@ -8,7 +8,6 @@ import hi.e7;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.x10;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Cells.h6;
 import org.telegram.ui.Components.b5;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.ck0;
@@ -28,7 +27,7 @@ public final class a extends sa {
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30189a, 0, false, new e7(this, 24), this.J0);
+        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30187a, 0, false, new e7(this, 24), this.J0);
         this.T1 = z41Var;
         z41Var.f42809r = false;
         return z41Var;
@@ -69,15 +68,15 @@ public final class a extends sa {
             this.U1 = z10;
             ck0 ck0Var = this.f39534o1;
             View T0 = ck0Var.T0(this.Y1 + 1);
-            if (T0 instanceof h6) {
-                ((h6) T0).a(!z10);
+            if (T0 instanceof org.telegram.ui.Cells.i6) {
+                ((org.telegram.ui.Cells.i6) T0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
             View T02 = ck0Var.T0(this.Y1 + 2);
-            if (T02 instanceof h6) {
-                ((h6) T02).a(z10);
+            if (T02 instanceof org.telegram.ui.Cells.i6) {
+                ((org.telegram.ui.Cells.i6) T02).a(z10);
             } else {
                 z11 = true;
             }

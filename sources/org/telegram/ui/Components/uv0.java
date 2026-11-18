@@ -16,7 +16,7 @@ public final class uv0 extends yo0 {
         org.telegram.ui.ActionBar.h2 h2Var = this.V2.G1;
         if (h2Var instanceof org.telegram.ui.bn) {
             org.telegram.messenger.g0.Z2(h2Var.getParentActivity(), h2Var.getClassGuid());
-            if (((org.telegram.ui.bn) h2Var).f45932a0.getVisibility() == 0) {
+            if (((org.telegram.ui.bn) h2Var).f45923a0.getVisibility() == 0) {
                 h2Var.getFragmentView().requestLayout();
             }
         }

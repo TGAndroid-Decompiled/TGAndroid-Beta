@@ -33,13 +33,13 @@ public final class yr0 implements Runnable {
                 }
                 zr0Var2.f42941r = 2;
                 if (arrayList != null) {
-                    Utilities.f22784g.c(new k7(zr0Var2, str2, arrayList, 27));
+                    Utilities.f22781g.c(new k7(zr0Var2, str2, arrayList, 27));
                 } else {
                     zr0Var2.f42941r = 1;
                 }
                 jg.z1 z1Var = zr0Var2.f42938e;
                 if (org.telegram.messenger.v3.T(zr0Var2.f42940n)) {
-                    j3 = zr0Var2.f42940n.f28405id;
+                    j3 = zr0Var2.f42940n.f28403id;
                 } else {
                     j3 = 0;
                 }

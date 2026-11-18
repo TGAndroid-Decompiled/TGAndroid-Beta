@@ -2,12 +2,12 @@ package wi;
 
 import java.util.ArrayList;
 public final class f implements r1.c {
-    public final ArrayList f59940a;
-    public final og.b f59941b;
+    public final ArrayList f59941a;
+    public final og.b f59942b;
 
     public f(og.b bVar, ArrayList arrayList) {
-        this.f59941b = bVar;
-        this.f59940a = arrayList;
+        this.f59942b = bVar;
+        this.f59941a = arrayList;
     }
 
     @Override
@@ -17,10 +17,10 @@ public final class f implements r1.c {
         if (indexOf >= 0) {
             arrayList.set(indexOf, null);
         }
-        ArrayList arrayList2 = this.f59940a;
+        ArrayList arrayList2 = this.f59941a;
         arrayList2.add(gVar);
         if (arrayList2.size() == 2) {
-            this.f59941b.b();
+            this.f59942b.b();
         }
     }
 }

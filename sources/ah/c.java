@@ -25,16 +25,16 @@ public final class c extends yg.c {
         this.f1060x = textPaint;
         this.f1061y = new a3.f(this, 3);
         textPaint.setTextSize(g0.L(20.0f));
-        this.f61214f.setVisibility(8);
-        this.f61212c.setVisibility(8);
+        this.f61215f.setVisibility(8);
+        this.f61213c.setVisibility(8);
         mp mpVar = new mp(21, context, i6Var);
         this.f1058s = mpVar;
-        mpVar.b(n6.B5, n6.f29506j7, n6.C5);
+        mpVar.b(n6.B5, n6.f29504j7, n6.C5);
         mpVar.setDrawUnchecked(true);
         mpVar.setDrawBackgroundAsArc(10);
         addView(mpVar);
         mpVar.a(false, false);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -70,7 +70,7 @@ public final class c extends yg.c {
         float f13;
         float f14;
         float f15;
-        boolean z10 = gd.f24216a0;
+        boolean z10 = gd.f24213a0;
         int i11 = 3;
         if (z10) {
             i7 = 5;
@@ -89,7 +89,7 @@ public final class c extends yg.c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ma.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = gd.f24216a0;
+        boolean z11 = gd.f24213a0;
         if (z11) {
             i10 = 5;
         } else {
@@ -106,8 +106,8 @@ public final class c extends yg.c {
         } else {
             f13 = 20.0f;
         }
-        this.f61213e.setLayoutParams(ma.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        boolean z12 = gd.f24216a0;
+        this.f61214e.setLayoutParams(ma.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        boolean z12 = gd.f24213a0;
         if (z12) {
             i11 = 5;
         }
@@ -122,7 +122,7 @@ public final class c extends yg.c {
         } else {
             f15 = 15.0f;
         }
-        this.f61214f.setLayoutParams(ma.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
+        this.f61215f.setLayoutParams(ma.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
     public final void f() {

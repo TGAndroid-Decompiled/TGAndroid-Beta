@@ -51,7 +51,7 @@ public final class fi0 extends FrameLayout implements org.telegram.ui.ActionBar.
         TextView textView = new TextView(context);
         this.f35109f = textView;
         textView.setImportantForAccessibility(2);
-        textView.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29580n8, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29578n8, false));
         textView.setTypeface(org.telegram.messenger.g0.o());
         addView(textView, c8.ma.i(-1.0f, -2.0f, 8388627, 40.0f, 0.0f, 8.0f, 0.0f));
         paint.setStyle(Paint.Style.STROKE);
@@ -66,7 +66,7 @@ public final class fi0 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.f35109f.setText(org.telegram.messenger.gd.S(null, i10));
         ch.p0 d = ch.p0.d(reactionCount.reaction);
         this.f35113w = d;
-        String str = d.f5478f;
+        String str = d.f5475f;
         ImageView imageView = this.f35108e;
         q9 q9Var = this.d;
         if (str != null) {
@@ -77,8 +77,8 @@ public final class fi0 extends FrameLayout implements org.telegram.ui.ActionBar.
                 Object obj = arrayList.get(i11);
                 i11++;
                 TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj;
-                if (tL_availableReaction.reaction.equals(this.f35113w.f5478f)) {
-                    q9Var.k(org.telegram.messenger.fc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", org.telegram.messenger.u5.f(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.n6.f29339a7, 1.0f, null), tL_availableReaction);
+                if (tL_availableReaction.reaction.equals(this.f35113w.f5475f)) {
+                    q9Var.k(org.telegram.messenger.fc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", org.telegram.messenger.u5.f(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.n6.f29337a7, 1.0f, null), tL_availableReaction);
                     q9Var.setVisibility(0);
                     imageView.setVisibility(8);
                     return;
@@ -86,7 +86,7 @@ public final class fi0 extends FrameLayout implements org.telegram.ui.ActionBar.
             }
             return;
         }
-        q9Var.setAnimatedEmojiDrawable(new o5(0, i7, this.f35113w.f5479g));
+        q9Var.setAnimatedEmojiDrawable(new o5(0, i7, this.f35113w.f5476g));
         q9Var.setVisibility(0);
         imageView.setVisibility(8);
     }

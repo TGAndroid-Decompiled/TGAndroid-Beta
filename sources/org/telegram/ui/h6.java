@@ -8,6 +8,6 @@ public final class h6 extends v4.k {
 
     @Override
     public final void P(v4.f1 f1Var) {
-        this.F.f53654b.invalidate();
+        this.F.f53605b.invalidate();
     }
 }

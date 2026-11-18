@@ -28,26 +28,26 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.tr0;
 public final class s0 {
-    public static final HashMap f18878g = new HashMap();
-    public final Context f18879a;
-    public final int f18880b;
-    public final long f18881c;
+    public static final HashMap f18875g = new HashMap();
+    public final Context f18876a;
+    public final int f18877b;
+    public final long f18878c;
     public boolean d;
-    public boolean f18882e;
-    public final HashSet f18883f;
+    public boolean f18879e;
+    public final HashSet f18880f;
 
     public s0(Context context, int i7, long j3) {
         HashSet hashSet = new HashSet();
-        this.f18883f = hashSet;
-        this.f18879a = context;
-        this.f18880b = i7;
-        this.f18881c = j3;
+        this.f18880f = hashSet;
+        this.f18876a = context;
+        this.f18877b = i7;
+        this.f18878c = j3;
         SharedPreferences sharedPreferences = context.getSharedPreferences("botlocation_" + i7, 0);
         this.d = sharedPreferences.getBoolean(j3 + "_requested", false);
         boolean z10 = sharedPreferences.getBoolean(j3 + "_granted", false);
-        this.f18882e = z10;
+        this.f18879e = z10;
         if (z10 && !a()) {
-            this.f18882e = false;
+            this.f18879e = false;
             this.d = false;
             k();
             Iterator it = hashSet.iterator();
@@ -58,19 +58,19 @@ public final class s0 {
     }
 
     public static void c() {
-        Context context = org.telegram.messenger.t0.f26915b;
+        Context context = org.telegram.messenger.t0.f26913b;
         if (context == null) {
             return;
         }
         for (int i7 = 0; i7 < 4; i7++) {
             context.getSharedPreferences("botlocation_" + i7, 0).edit().clear().apply();
         }
-        f18878g.clear();
+        f18875g.clear();
     }
 
     public static s0 e(Context context, int i7, long j3) {
         Pair pair = new Pair(Integer.valueOf(i7), Long.valueOf(j3));
-        HashMap hashMap = f18878g;
+        HashMap hashMap = f18875g;
         s0 s0Var = (s0) hashMap.get(pair);
         if (s0Var == null) {
             s0 s0Var2 = new s0(context, i7, j3);
@@ -151,16 +151,16 @@ public final class s0 {
     public final Activity f() {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(this.f18879a);
+            activity = org.telegram.messenger.g0.W(this.f18876a);
         }
         if (activity == null) {
-            return org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26915b);
+            return org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
         }
         return activity;
     }
 
     public final boolean g() {
-        if (a() && this.f18882e) {
+        if (a() && this.f18879e) {
             return true;
         }
         return false;
@@ -175,38 +175,38 @@ public final class s0 {
         if (!d()) {
             Boolean bool = Boolean.FALSE;
             oVar.a(bool, bool);
-        } else if (a() && (this.d || this.f18882e)) {
+        } else if (a() && (this.d || this.f18879e)) {
             oVar.a(Boolean.FALSE, Boolean.TRUE);
         } else {
             final boolean[] zArr = new boolean[1];
-            int i7 = this.f18880b;
-            TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(this.f18881c));
+            int i7 = this.f18877b;
+            TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(this.f18878c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f11, null);
             SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131753046, o10.q(c22), o10.q(c22)));
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
             u1Var.U = W2;
-            r0 r0Var = new r0(this.f18879a, j10.i(i7).f(), c22);
+            r0 r0Var = new r0(this.f18876a, j10.i(i7).f(), c22);
             int i10 = n6.L5;
             int x02 = n6.x0(null, i10, false);
-            u1Var.f30033c0 = r0Var;
-            u1Var.f30035d0 = x02;
-            u1Var.f30038e0 = -1;
+            u1Var.f30031c0 = r0Var;
+            u1Var.f30033d0 = x02;
+            u1Var.f30036e0 = -1;
             alertDialog$Builder.n(i10, null);
             if (!a() && (f10 = f()) != null && (!f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(gd.M0(2131753042, null), new a3.h(f11, zArr, oVar, 13));
             } else {
                 alertDialog$Builder.k(gd.M0(2131753048, null), new org.telegram.ui.ActionBar.r1(this) {
-                    public final s0 f18827b;
+                    public final s0 f18824b;
 
                     {
-                        this.f18827b = this;
+                        this.f18824b = this;
                     }
 
                     @Override
                     public final void h(org.telegram.ui.ActionBar.u1 u1Var2, int i11) {
                         switch (r4) {
                             case 0:
-                                s0 s0Var = this.f18827b;
+                                s0 s0Var = this.f18824b;
                                 s0Var.getClass();
                                 zArr[0] = true;
                                 boolean a10 = s0Var.a();
@@ -216,9 +216,9 @@ public final class s0 {
                                     return;
                                 }
                                 s0Var.d = true;
-                                s0Var.f18882e = true;
+                                s0Var.f18879e = true;
                                 s0Var.k();
-                                Iterator it = s0Var.f18883f.iterator();
+                                Iterator it = s0Var.f18880f.iterator();
                                 while (it.hasNext()) {
                                     ((Runnable) it.next()).run();
                                 }
@@ -226,15 +226,15 @@ public final class s0 {
                                 oVar2.a(bool2, bool2);
                                 return;
                             default:
-                                s0 s0Var2 = this.f18827b;
+                                s0 s0Var2 = this.f18824b;
                                 s0Var2.getClass();
                                 boolean[] zArr2 = zArr;
                                 if (!zArr2[0]) {
                                     zArr2[0] = true;
                                     s0Var2.d = true;
-                                    s0Var2.f18882e = false;
+                                    s0Var2.f18879e = false;
                                     s0Var2.k();
-                                    Iterator it2 = s0Var2.f18883f.iterator();
+                                    Iterator it2 = s0Var2.f18880f.iterator();
                                     while (it2.hasNext()) {
                                         ((Runnable) it2.next()).run();
                                     }
@@ -247,17 +247,17 @@ public final class s0 {
                 });
             }
             alertDialog$Builder.h(gd.M0(2131753047, null), new org.telegram.ui.ActionBar.r1(this) {
-                public final s0 f18827b;
+                public final s0 f18824b;
 
                 {
-                    this.f18827b = this;
+                    this.f18824b = this;
                 }
 
                 @Override
                 public final void h(org.telegram.ui.ActionBar.u1 u1Var2, int i11) {
                     switch (r4) {
                         case 0:
-                            s0 s0Var = this.f18827b;
+                            s0 s0Var = this.f18824b;
                             s0Var.getClass();
                             zArr[0] = true;
                             boolean a10 = s0Var.a();
@@ -267,9 +267,9 @@ public final class s0 {
                                 return;
                             }
                             s0Var.d = true;
-                            s0Var.f18882e = true;
+                            s0Var.f18879e = true;
                             s0Var.k();
-                            Iterator it = s0Var.f18883f.iterator();
+                            Iterator it = s0Var.f18880f.iterator();
                             while (it.hasNext()) {
                                 ((Runnable) it.next()).run();
                             }
@@ -277,15 +277,15 @@ public final class s0 {
                             oVar2.a(bool2, bool2);
                             return;
                         default:
-                            s0 s0Var2 = this.f18827b;
+                            s0 s0Var2 = this.f18824b;
                             s0Var2.getClass();
                             boolean[] zArr2 = zArr;
                             if (!zArr2[0]) {
                                 zArr2[0] = true;
                                 s0Var2.d = true;
-                                s0Var2.f18882e = false;
+                                s0Var2.f18879e = false;
                                 s0Var2.k();
-                                Iterator it2 = s0Var2.f18883f.iterator();
+                                Iterator it2 = s0Var2.f18880f.iterator();
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
@@ -303,8 +303,8 @@ public final class s0 {
 
     public final void j(x10 x10Var) {
         JSONObject jSONObject = new JSONObject();
-        if (this.f18882e && a() && d()) {
-            LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f26915b.getSystemService("location");
+        if (this.f18879e && a() && d()) {
+            LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f26913b.getSystemService("location");
             List<String> providers = locationManager.getProviders(true);
             Location location = null;
             for (int size = providers.size() - 1; size >= 0; size--) {
@@ -316,7 +316,7 @@ public final class s0 {
             if (location == null && !locationManager.isProviderEnabled("gps")) {
                 Context context = LaunchActivity.H1;
                 if (context == null) {
-                    context = org.telegram.messenger.t0.f26915b;
+                    context = org.telegram.messenger.t0.f26913b;
                 }
                 if (context != null) {
                     try {
@@ -324,7 +324,7 @@ public final class s0 {
                         int i7 = n6.L5;
                         alertDialog$Builder.m(2131624120, 72, n6.x0(null, i7, false), null);
                         alertDialog$Builder.n(i7, null);
-                        alertDialog$Builder.f28746a.U = gd.M0(2131749355, null);
+                        alertDialog$Builder.f28744a.U = gd.M0(2131749355, null);
                         alertDialog$Builder.k(gd.M0(2131751149, null), new ob(context, 1));
                         alertDialog$Builder.h(gd.M0(2131752578, null), null);
                         alertDialog$Builder.p();
@@ -359,10 +359,10 @@ public final class s0 {
     }
 
     public final void k() {
-        SharedPreferences.Editor edit = this.f18879a.getSharedPreferences("botlocation_" + this.f18880b, 0).edit();
+        SharedPreferences.Editor edit = this.f18876a.getSharedPreferences("botlocation_" + this.f18877b, 0).edit();
         StringBuilder sb2 = new StringBuilder();
-        long j3 = this.f18881c;
-        edit.putBoolean(a8.p0.r(sb2, j3, "_granted"), this.f18882e);
+        long j3 = this.f18878c;
+        edit.putBoolean(a8.p0.r(sb2, j3, "_granted"), this.f18879e);
         edit.putBoolean(j3 + "_requested", this.d);
         edit.apply();
     }
@@ -374,51 +374,51 @@ public final class s0 {
             if (f10 == null) {
                 return;
             }
-            int i7 = this.f18880b;
-            TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(this.f18881c));
+            int i7 = this.f18877b;
+            TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(this.f18878c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f(), null);
             SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131753046, o10.q(c22), o10.q(c22)));
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
             u1Var.U = W2;
-            r0 r0Var = new r0(this.f18879a, j10.i(i7).f(), c22);
+            r0 r0Var = new r0(this.f18876a, j10.i(i7).f(), c22);
             int i10 = n6.L5;
             int x02 = n6.x0(null, i10, false);
-            u1Var.f30033c0 = r0Var;
-            u1Var.f30035d0 = x02;
-            u1Var.f30038e0 = -1;
+            u1Var.f30031c0 = r0Var;
+            u1Var.f30033d0 = x02;
+            u1Var.f30036e0 = -1;
             alertDialog$Builder.n(i10, null);
             Activity f11 = f();
             if (f11 == null || (f11.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f11.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(gd.M0(2131753048, null), new org.telegram.ui.ActionBar.r1(this) {
-                    public final s0 f18812b;
+                    public final s0 f18809b;
 
                     {
-                        this.f18812b = this;
+                        this.f18809b = this;
                     }
 
                     @Override
                     public final void h(org.telegram.ui.ActionBar.u1 u1Var2, int i11) {
                         switch (r3) {
                             case 0:
-                                s0 s0Var = this.f18812b;
+                                s0 s0Var = this.f18809b;
                                 if (!s0Var.a()) {
                                     na.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.v1(27, s0Var, tr0Var));
                                     return;
                                 }
                                 s0Var.d = true;
-                                s0Var.f18882e = true;
+                                s0Var.f18879e = true;
                                 s0Var.k();
-                                Iterator it = s0Var.f18883f.iterator();
+                                Iterator it = s0Var.f18880f.iterator();
                                 while (it.hasNext()) {
                                     ((Runnable) it.next()).run();
                                 }
                                 return;
                             default:
-                                s0 s0Var2 = this.f18812b;
+                                s0 s0Var2 = this.f18809b;
                                 s0Var2.d = true;
-                                s0Var2.f18882e = false;
+                                s0Var2.f18879e = false;
                                 s0Var2.k();
-                                Iterator it2 = s0Var2.f18883f.iterator();
+                                Iterator it2 = s0Var2.f18880f.iterator();
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
@@ -435,35 +435,35 @@ public final class s0 {
                 alertDialog$Builder.k(gd.M0(2131753042, null), new n0(f10, 0));
             }
             alertDialog$Builder.h(gd.M0(2131753047, null), new org.telegram.ui.ActionBar.r1(this) {
-                public final s0 f18812b;
+                public final s0 f18809b;
 
                 {
-                    this.f18812b = this;
+                    this.f18809b = this;
                 }
 
                 @Override
                 public final void h(org.telegram.ui.ActionBar.u1 u1Var2, int i11) {
                     switch (r3) {
                         case 0:
-                            s0 s0Var = this.f18812b;
+                            s0 s0Var = this.f18809b;
                             if (!s0Var.a()) {
                                 na.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.v1(27, s0Var, tr0Var));
                                 return;
                             }
                             s0Var.d = true;
-                            s0Var.f18882e = true;
+                            s0Var.f18879e = true;
                             s0Var.k();
-                            Iterator it = s0Var.f18883f.iterator();
+                            Iterator it = s0Var.f18880f.iterator();
                             while (it.hasNext()) {
                                 ((Runnable) it.next()).run();
                             }
                             return;
                         default:
-                            s0 s0Var2 = this.f18812b;
+                            s0 s0Var2 = this.f18809b;
                             s0Var2.d = true;
-                            s0Var2.f18882e = false;
+                            s0Var2.f18879e = false;
                             s0Var2.k();
-                            Iterator it2 = s0Var2.f18883f.iterator();
+                            Iterator it2 = s0Var2.f18880f.iterator();
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
@@ -478,8 +478,8 @@ public final class s0 {
             });
             alertDialog$Builder.p();
         } else {
-            this.f18882e = z10;
-            Iterator it = this.f18883f.iterator();
+            this.f18879e = z10;
+            Iterator it = this.f18880f.iterator();
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }

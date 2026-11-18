@@ -19,32 +19,32 @@ public final class km0 extends FrameLayout {
     public boolean J;
     public final Path K;
     public int L;
-    public final et f49304a;
-    public final v4.c0 f49305b;
-    public final y7 f49306c;
+    public final et f49310a;
+    public final v4.c0 f49311b;
+    public final y7 f49312c;
     public int d;
-    public final org.telegram.ui.Components.c6 f49307e;
-    public final ArrayList f49308f;
+    public final org.telegram.ui.Components.c6 f49313e;
+    public final ArrayList f49314f;
     public xl0 h;
-    public final RectF f49309n;
-    public final RectF f49310r;
-    public final RectF f49311s;
-    public final Paint f49312w;
-    public final Paint f49313x;
-    public int f49314y;
+    public final RectF f49315n;
+    public final RectF f49316r;
+    public final RectF f49317s;
+    public final Paint f49318w;
+    public final Paint f49319x;
+    public int f49320y;
 
     public km0(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f49308f = new ArrayList();
-        this.f49309n = new RectF();
-        this.f49310r = new RectF();
-        this.f49311s = new RectF();
-        this.f49312w = new Paint(1);
-        this.f49313x = new Paint(1);
+        this.f49314f = new ArrayList();
+        this.f49315n = new RectF();
+        this.f49316r = new RectF();
+        this.f49317s = new RectF();
+        this.f49318w = new Paint(1);
+        this.f49319x = new Paint(1);
         this.K = new Path();
         this.L = Integer.MIN_VALUE;
         et etVar = new et(this, context, i6Var, 6);
-        this.f49304a = etVar;
+        this.f49310a = etVar;
         etVar.setClipToPadding(false);
         etVar.setClipChildren(false);
         etVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
@@ -52,32 +52,32 @@ public final class km0 extends FrameLayout {
         etVar.setHorizontalScrollBarEnabled(false);
         etVar.setItemAnimator(null);
         v4.c0 c0Var = new v4.c0(0, false);
-        this.f49305b = c0Var;
+        this.f49311b = c0Var;
         etVar.setLayoutManager(c0Var);
         y7 y7Var = new y7(this, 6);
-        this.f49306c = y7Var;
+        this.f49312c = y7Var;
         etVar.setAdapter(y7Var);
         etVar.setOnItemClickListener(new h(this, 20));
         addView(etVar, c8.ma.e(-1, -1, 119));
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f49307e = new org.telegram.ui.Components.c6(etVar, 0L, 320L, org.telegram.ui.Components.lr.h);
+        this.f49313e = new org.telegram.ui.Components.c6(etVar, 0L, 320L, org.telegram.ui.Components.lr.h);
     }
 
     public final void a(int i7, boolean z10) {
         int i10 = this.d;
         this.d = i7;
         if (!z10) {
-            this.f49307e.e(true, i7);
+            this.f49313e.e(true, i7);
         }
         b(i10);
         if (i7 != i10) {
             b(i7);
         }
-        ArrayList arrayList = this.f49308f;
+        ArrayList arrayList = this.f49314f;
         boolean isEmpty = arrayList.isEmpty();
-        et etVar = this.f49304a;
+        et etVar = this.f49310a;
         if (!isEmpty) {
             int j3 = Utilities.j(i7, arrayList.size() - 1, 0);
             if (z10) {
@@ -91,7 +91,7 @@ public final class km0 extends FrameLayout {
 
     public final void b(int i7) {
         int i10;
-        View m10 = this.f49305b.m(i7);
+        View m10 = this.f49311b.m(i7);
         if (m10 instanceof TextView) {
             TextView textView = (TextView) m10;
             if (i7 == this.d) {

@@ -12,16 +12,16 @@ import org.telegram.ui.Components.je0;
 import org.telegram.ui.Components.sl0;
 import org.telegram.ui.kz;
 public final class x7 implements Runnable {
-    public final int f10015a;
-    public final int f10016b;
-    public final boolean f10017c;
+    public final int f10012a;
+    public final int f10013b;
+    public final boolean f10014c;
     public final Object d;
 
     public x7(Object obj, int i7, boolean z10, int i10) {
-        this.f10015a = i10;
+        this.f10012a = i10;
         this.d = obj;
-        this.f10016b = i7;
-        this.f10017c = z10;
+        this.f10013b = i7;
+        this.f10014c = z10;
     }
 
     @Override
@@ -29,9 +29,9 @@ public final class x7 implements Runnable {
         TLRPC.TL_account_setMainProfileTab tL_account_setMainProfileTab;
         int i7;
         String G;
-        int i10 = this.f10015a;
-        int i11 = this.f10016b;
-        boolean z10 = this.f10017c;
+        int i10 = this.f10012a;
+        int i11 = this.f10013b;
+        boolean z10 = this.f10014c;
         Object obj = this.d;
         switch (i10) {
             case 0:
@@ -50,7 +50,7 @@ public final class x7 implements Runnable {
             case 1:
                 l2.o0 o0Var = (l2.o0) obj;
                 m2.d dVar = o0Var.N;
-                int i12 = o0Var.f19488a[i11].f19481a.f19256b;
+                int i12 = o0Var.f19485a[i11].f19478a.f19253b;
                 m2.a U = dVar.U();
                 dVar.V(U, 1033, new li.c(U, i11, i12, z10));
                 return;
@@ -58,7 +58,7 @@ public final class x7 implements Runnable {
                 mp mpVar = (mp) obj;
                 int i13 = 0;
                 while (i13 < mpVar.Q0.size()) {
-                    if (((ro) mpVar.Q0.get(i13)).f26674a == i11) {
+                    if (((ro) mpVar.Q0.get(i13)).f26672a == i11) {
                         mpVar.Q0.remove(i13);
                         i13--;
                     }
@@ -95,7 +95,7 @@ public final class x7 implements Runnable {
                     if (z10) {
                         TLRPC.TL_channels_setMainProfileTab tL_channels_setMainProfileTab = new TLRPC.TL_channels_setMainProfileTab();
                         tL_channels_setMainProfileTab.tab = gt0.o0(i11, true);
-                        tL_channels_setMainProfileTab.channel = h2Var.getMessagesController().j1(gt0Var.f35590g1.f28406id);
+                        tL_channels_setMainProfileTab.channel = h2Var.getMessagesController().j1(gt0Var.f35590g1.f28404id);
                         TLRPC.ChatFull chatFull = gt0Var.f35590g1;
                         chatFull.flags2 |= 4194304;
                         chatFull.main_tab = tL_channels_setMainProfileTab.tab;
@@ -138,9 +138,9 @@ public final class x7 implements Runnable {
     }
 
     public x7(Object obj, boolean z10, int i7, int i10) {
-        this.f10015a = i10;
+        this.f10012a = i10;
         this.d = obj;
-        this.f10017c = z10;
-        this.f10016b = i7;
+        this.f10014c = z10;
+        this.f10013b = i7;
     }
 }

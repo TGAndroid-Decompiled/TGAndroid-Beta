@@ -30,25 +30,25 @@ public final class b1 {
         double d = ((z0) arrayList.get(0)).f57412a;
         double d2 = ((z0) arrayList.get(0)).f57413b;
         m8.d dVar = new m8.d(1);
-        dVar.f20899b = d;
-        dVar.f20900c = d2;
+        dVar.f20896b = d;
+        dVar.f20897c = d2;
         dVar.d = d;
-        dVar.f20901e = d2;
+        dVar.f20898e = d2;
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
             z0 z0Var = (z0) arrayList.get(i7);
             double d10 = z0Var.f57412a;
             double d11 = z0Var.f57413b;
-            if (dVar.f20899b >= d10) {
-                dVar.f20899b = d10;
+            if (dVar.f20896b >= d10) {
+                dVar.f20896b = d10;
             }
-            if (dVar.f20900c >= d11) {
-                dVar.f20900c = d11;
+            if (dVar.f20897c >= d11) {
+                dVar.f20897c = d11;
             }
             if (dVar.d <= d10) {
                 dVar.d = d10;
             }
-            if (dVar.f20901e <= d11) {
-                dVar.f20901e = d11;
+            if (dVar.f20898e <= d11) {
+                dVar.f20898e = d11;
             }
         }
         return dVar;
@@ -132,7 +132,7 @@ public final class b1 {
         this.d = false;
         if (this.h && (arrayList = this.f57171i) != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f57169f);
-            alertDialog$Builder.f28746a.S = "Shape?";
+            alertDialog$Builder.f28744a.S = "Shape?";
             alertDialog$Builder.f(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new og.j(14, this, arrayList));
             alertDialog$Builder.p();
             this.f57171i = null;

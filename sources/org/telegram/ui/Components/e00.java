@@ -140,15 +140,15 @@ public final class e00 extends View implements org.telegram.ui.ActionBar.c6 {
         TextPaint textPaint = this.f34545b;
         TextPaint textPaint2 = this.f34544a;
         if (textPaint2 != null && textPaint != null && paint != null) {
-            int i7 = org.telegram.ui.ActionBar.n6.f29742vi;
+            int i7 = org.telegram.ui.ActionBar.n6.f29740vi;
             textPaint2.setColor(org.telegram.ui.ActionBar.n6.r1(0.8f, org.telegram.ui.ActionBar.n6.x0(null, i7, false)));
-            int i10 = org.telegram.ui.ActionBar.n6.f29596o6;
+            int i10 = org.telegram.ui.ActionBar.n6.f29594o6;
             textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
             paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ki, false));
             try {
                 m6 m6Var = this.F;
                 if (m6Var != null) {
-                    m6Var.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+                    m6Var.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
                 }
                 int r12 = org.telegram.ui.ActionBar.n6.r1(0.8f, org.telegram.ui.ActionBar.n6.x0(null, i7, false));
                 vy0 vy0Var = this.f34548f;

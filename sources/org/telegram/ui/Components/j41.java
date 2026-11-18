@@ -5,7 +5,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.view.animation.DecelerateInterpolator;
 public final class j41 extends yu0 {
-    public final int f36329a = org.telegram.messenger.j10.f24773t0;
+    public final int f36329a = org.telegram.messenger.j10.f24770t0;
     public boolean f36330b = false;
     public final float[] f36331c = new float[3];
     public final float[] d = {0.0f, 150.0f, 300.0f};
@@ -57,14 +57,14 @@ public final class j41 extends yu0 {
         int i11 = L + i7;
         Paint paint = this.f36336j;
         if (paint == null) {
-            paint = org.telegram.ui.ActionBar.n6.f29374c2;
+            paint = org.telegram.ui.ActionBar.n6.f29372c2;
             paint.setAlpha(255);
         }
         float f10 = i11;
         float[] fArr = this.f36331c;
-        canvas.drawCircle(org.telegram.messenger.g0.L(3.0f) + i10, f10, fArr[0] * org.telegram.messenger.g0.f24120p, paint);
-        canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + i10, f10, fArr[1] * org.telegram.messenger.g0.f24120p, paint);
-        canvas.drawCircle(org.telegram.messenger.g0.L(15.0f) + i10, f10, fArr[2] * org.telegram.messenger.g0.f24120p, paint);
+        canvas.drawCircle(org.telegram.messenger.g0.L(3.0f) + i10, f10, fArr[0] * org.telegram.messenger.g0.f24117p, paint);
+        canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + i10, f10, fArr[1] * org.telegram.messenger.g0.f24117p, paint);
+        canvas.drawCircle(org.telegram.messenger.g0.L(15.0f) + i10, f10, fArr[2] * org.telegram.messenger.g0.f24117p, paint);
         f();
     }
 

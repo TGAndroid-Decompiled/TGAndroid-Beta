@@ -44,24 +44,24 @@ public final class u7 extends FrameLayout {
         v7 v7Var = g8Var.n1;
         boolean z10 = g8Var.f35401o2;
         if (g8Var.f35407r2.size() <= 1) {
-            g8Var.f30225s0.setBounds(0, (getMeasuredHeight() - g8Var.f35420y1.getMeasuredHeight()) - g8Var.f30226t0, getMeasuredWidth(), getMeasuredHeight());
-            g8Var.f30225s0.draw(canvas);
+            g8Var.f30223s0.setBounds(0, (getMeasuredHeight() - g8Var.f35420y1.getMeasuredHeight()) - g8Var.f30224t0, getMeasuredWidth(), getMeasuredHeight());
+            g8Var.f30223s0.draw(canvas);
             if (z10) {
                 v7Var.setVisibility(8);
             }
         } else if (r7Var.getVisibility() == 0) {
             int L = org.telegram.messenger.g0.L(13.0f);
-            int translationY = (int) (r7Var.getTranslationY() + ((g8Var.f35413u2 - g8Var.f30226t0) - L));
+            int translationY = (int) (r7Var.getTranslationY() + ((g8Var.f35413u2 - g8Var.f30224t0) - L));
             if (z10) {
                 translationY = (translationY - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) + org.telegram.messenger.g0.L(10.0f);
             }
             int L2 = org.telegram.messenger.g0.L(20.0f) + translationY;
             int L3 = org.telegram.messenger.g0.L(15.0f) + getMeasuredHeight();
-            int i7 = g8Var.f30226t0;
+            int i7 = g8Var.f30224t0;
             int i10 = L3 + i7;
             if (!z10 && i7 + translationY < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) {
                 float L4 = org.telegram.messenger.g0.L(4.0f) + L;
-                f10 = Math.min(1.0f, ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - translationY) - g8Var.f30226t0) / L4);
+                f10 = Math.min(1.0f, ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - translationY) - g8Var.f30224t0) / L4);
                 int currentActionBarHeight = (int) ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - L4) * f10);
                 translationY -= currentActionBarHeight;
                 L2 -= currentActionBarHeight;
@@ -71,18 +71,18 @@ public final class u7 extends FrameLayout {
                 f10 = 0.0f;
                 f11 = 1.0f;
             }
-            int i11 = (int) ((1.0f - f10) * org.telegram.messenger.g0.f24115m);
+            int i11 = (int) ((1.0f - f10) * org.telegram.messenger.g0.f24112m);
             int i12 = translationY + i11;
             int i13 = L2 + i11;
-            g8Var.f30225s0.setBounds(0, i12, getMeasuredWidth(), i10);
-            g8Var.f30225s0.draw(canvas);
+            g8Var.f30223s0.setBounds(0, i12, getMeasuredWidth(), i10);
+            g8Var.f30223s0.draw(canvas);
             RectF rectF = this.f40233a;
             if (!z10 && f11 != 1.0f) {
                 f12 = 20.0f;
-                org.telegram.ui.ActionBar.n6.f29687t0.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, g8Var.J0));
+                org.telegram.ui.ActionBar.n6.f29685t0.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, g8Var.J0));
                 f13 = 4.0f;
-                rectF.set(g8Var.f30227u0, g8Var.f30226t0 + i12, getMeasuredWidth() - g8Var.f30227u0, org.telegram.messenger.g0.L(24.0f) + g8Var.f30226t0 + i12);
-                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f) * f11, org.telegram.messenger.g0.L(12.0f) * f11, org.telegram.ui.ActionBar.n6.f29687t0);
+                rectF.set(g8Var.f30225u0, g8Var.f30224t0 + i12, getMeasuredWidth() - g8Var.f30225u0, org.telegram.messenger.g0.L(24.0f) + g8Var.f30224t0 + i12);
+                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f) * f11, org.telegram.messenger.g0.L(12.0f) * f11, org.telegram.ui.ActionBar.n6.f29685t0);
             } else {
                 f12 = 20.0f;
                 f13 = 4.0f;
@@ -92,13 +92,13 @@ public final class u7 extends FrameLayout {
                 rectF.set((getMeasuredWidth() - L5) / 2, i13, (getMeasuredWidth() + L5) / 2, org.telegram.messenger.g0.L(f13) + i13);
                 int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.zj, g8Var.J0);
                 int alpha = Color.alpha(w02);
-                org.telegram.ui.ActionBar.n6.f29687t0.setColor(w02);
-                org.telegram.ui.ActionBar.n6.f29687t0.setAlpha((int) (alpha * 1.0f * f11));
-                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.ui.ActionBar.n6.f29687t0);
+                org.telegram.ui.ActionBar.n6.f29685t0.setColor(w02);
+                org.telegram.ui.ActionBar.n6.f29685t0.setAlpha((int) (alpha * 1.0f * f11));
+                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.ui.ActionBar.n6.f29685t0);
             }
             if (z10) {
                 v7Var.setVisibility(0);
-                int i14 = (i12 - org.telegram.messenger.g0.f24115m) - g8Var.f30226t0;
+                int i14 = (i12 - org.telegram.messenger.g0.f24112m) - g8Var.f30224t0;
                 float max = Math.max(0.0f, com.google.android.gms.internal.vision.e2.z(1.0f, g8Var.L2, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(f12) + i14) - v7Var.getTop());
                 v7Var.setTranslationY(max);
                 g8Var.f35400o1.setTranslationY(max);
@@ -148,8 +148,8 @@ public final class u7 extends FrameLayout {
         m7Var.setVisibility(i11);
         g8Var.f35402p1.setVisibility(m7Var.getVisibility());
         int paddingTop = size - getPaddingTop();
-        ((FrameLayout.LayoutParams) r7Var.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f24115m;
-        ((FrameLayout.LayoutParams) g8Var.f35400o1.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f24115m;
+        ((FrameLayout.LayoutParams) r7Var.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f24112m;
+        ((FrameLayout.LayoutParams) g8Var.f35400o1.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f24112m;
         ((FrameLayout.LayoutParams) m7Var2.getLayoutParams()).topMargin = -getPaddingTop();
         int i14 = 52;
         if (!g8Var.P0() && !g8Var.f35411t2) {
@@ -159,7 +159,7 @@ public final class u7 extends FrameLayout {
         }
         int L2 = org.telegram.messenger.g0.L(179 + i12);
         if (g8Var.f35407r2.size() > 1) {
-            L2 += (org.telegram.messenger.g0.L(56.0f) * g8Var.f35407r2.size()) + g8Var.f30226t0;
+            L2 += (org.telegram.messenger.g0.L(56.0f) * g8Var.f35407r2.size()) + g8Var.f30224t0;
         }
         if (!g8Var.f35406r1 && !g8Var.d) {
             if (L2 >= paddingTop) {

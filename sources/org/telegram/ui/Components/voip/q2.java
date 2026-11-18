@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import c8.ma;
 import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.on;
 public class q2 extends FrameLayout {
     public int E;
@@ -110,7 +110,7 @@ public class q2 extends FrameLayout {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
                     this.V = ofFloat;
                     ofFloat.addUpdateListener(new p2(this, 0));
-                    this.V.addListener(new x9(this, 18));
+                    this.V.addListener(new y9(this, 18));
                     this.V.setDuration(150L);
                     this.V.start();
                     return;

@@ -18,12 +18,12 @@ public final class gm extends org.telegram.ui.Components.yo0 {
     @Override
     public final void L() {
         int i7;
-        bn bnVar = this.W2.f49922a;
+        bn bnVar = this.W2.f49896a;
         Activity parentActivity = bnVar.getParentActivity();
         i7 = ((org.telegram.ui.ActionBar.h2) bnVar).classGuid;
         org.telegram.messenger.g0.Z2(parentActivity, i7);
         super.L();
-        if (bnVar.f45932a0.getVisibility() == 0) {
+        if (bnVar.f45923a0.getVisibility() == 0) {
             bnVar.fragmentView.requestLayout();
         }
     }
@@ -31,28 +31,28 @@ public final class gm extends org.telegram.ui.Components.yo0 {
     @Override
     public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         mm mmVar = this.W2;
-        bn bnVar = mmVar.f49922a;
-        int i10 = bn.f45922md;
+        bn bnVar = mmVar.f49896a;
+        int i10 = bn.f45913md;
         bnVar.h8();
-        if (mmVar.f49922a.N3 != null && z10) {
+        if (mmVar.f49896a.N3 != null && z10) {
             if (hVar.m() == 1) {
-                if (((TLRPC.Dialog) hVar.n(0)).f28409id != mmVar.f49922a.getUserConfig().e() || !org.telegram.ui.Components.lc.b0(mmVar.f49922a).h0(i7, ((TLRPC.Dialog) hVar.n(0)).f28409id)) {
-                    mmVar.f49922a.N3.k(((TLRPC.Dialog) hVar.n(0)).f28409id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) hVar.n(0)).f28407id != mmVar.f49896a.getUserConfig().e() || !org.telegram.ui.Components.lc.b0(mmVar.f49896a).h0(i7, ((TLRPC.Dialog) hVar.n(0)).f28407id)) {
+                    mmVar.f49896a.N3.k(((TLRPC.Dialog) hVar.n(0)).f28407id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            mmVar.f49922a.N3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+            mmVar.f49896a.N3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
     public final void T0(final View view) {
         hi.ma maVar;
-        bn bnVar = this.W2.f49922a;
+        bn bnVar = this.W2.f49896a;
         org.telegram.messenger.aj ajVar = null;
-        if (view instanceof org.telegram.ui.Cells.d7) {
-            maVar = hi.oa.b((org.telegram.ui.Cells.d7) view);
+        if (view instanceof org.telegram.ui.Cells.e7) {
+            maVar = hi.oa.b((org.telegram.ui.Cells.e7) view);
         } else {
             maVar = null;
         }
@@ -66,7 +66,7 @@ public final class gm extends org.telegram.ui.Components.yo0 {
         } else {
             arrayList.add(fjVar);
         }
-        final hi.ta D = hi.ta.D(bnVar.getParentActivity(), this.f30189a);
+        final hi.ta D = hi.ta.D(bnVar.getParentActivity(), this.f30187a);
         D.S = new org.telegram.messenger.u10() {
             @Override
             public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
@@ -83,8 +83,8 @@ public final class gm extends org.telegram.ui.Components.yo0 {
                     taVar.X(null);
                 } else {
                     View view2 = view;
-                    if ((view2 instanceof org.telegram.ui.Cells.d7) && view2.isAttachedToWindow()) {
-                        maVar2 = hi.oa.b((org.telegram.ui.Cells.d7) view2);
+                    if ((view2 instanceof org.telegram.ui.Cells.e7) && view2.isAttachedToWindow()) {
+                        maVar2 = hi.oa.b((org.telegram.ui.Cells.e7) view2);
                     }
                     taVar.X(maVar2);
                 }

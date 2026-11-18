@@ -28,7 +28,7 @@ public final class vv0 implements TextWatcher {
             default:
                 org.telegram.ui.hk0 hk0Var = (org.telegram.ui.hk0) this.f41467e;
                 String str = (String) this.f41466c;
-                if (((HashMap) this.d) == hk0Var.f48459u1) {
+                if (((HashMap) this.d) == hk0Var.f48415u1) {
                     z10 = true;
                 } else {
                     z10 = false;

@@ -23,7 +23,7 @@ public final class sy0 implements org.telegram.ui.ActionBar.r1 {
             case 1:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uy0Var.getContext());
                 String M0 = org.telegram.messenger.gd.M0(2131743739, null);
-                org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f28744a;
                 u1Var2.U = M0;
                 u1Var2.S = org.telegram.messenger.gd.M0(2131689472, null);
                 alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751641, null), new sy0(uy0Var, 2));
@@ -32,7 +32,7 @@ public final class sy0 implements org.telegram.ui.ActionBar.r1 {
                 return;
             default:
                 org.telegram.ui.ActionBar.u1 u1Var3 = new org.telegram.ui.ActionBar.u1(3, uy0Var.getContext(), null);
-                u1Var3.f30049j0 = false;
+                u1Var3.f30047j0 = false;
                 TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
                 deleteaccount.reason = "Decline ToS update";
                 ConnectionsManager.getInstance(uy0Var.d).sendRequest(deleteaccount, new org.telegram.ui.u7(24, uy0Var, u1Var3));

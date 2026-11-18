@@ -19,7 +19,7 @@ public final class g {
         TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
         tL_inputMediaPoll.poll = tL_poll;
         TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        tL_poll.f28431id = poll.f28431id;
+        tL_poll.f28429id = poll.f28429id;
         tL_poll.flags = poll.flags;
         tL_poll.closed = poll.closed;
         tL_poll.public_voters = poll.public_voters;
@@ -66,19 +66,19 @@ public final class g {
                 d dVar = (d) sparseArray.valueAt(i10);
                 if (dVar instanceof th.e) {
                     TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
-                    tL_inputMediaWebPage.url = ((th.e) dVar).f58216b;
+                    tL_inputMediaWebPage.url = ((th.e) dVar).f58217b;
                     tL_inputMediaWebPage.optional = true;
                     e.k(tL_inputMediaPoll, keyAt, tL_inputMediaWebPage);
                 } else if (dVar instanceof th.f) {
-                    e.k(tL_inputMediaPoll, keyAt, cg.d.h(((th.f) dVar).f58223b));
+                    e.k(tL_inputMediaPoll, keyAt, cg.d.h(((th.f) dVar).f58224b));
                 } else if (dVar instanceof th.h) {
                     TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    TLRPC.Document document = ((th.h) dVar).f58226b;
-                    tL_inputDocument.f28417id = document.f28411id;
+                    TLRPC.Document document = ((th.h) dVar).f58227b;
+                    tL_inputDocument.f28415id = document.f28409id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    tL_inputMediaDocument.f28466id = tL_inputDocument;
+                    tL_inputMediaDocument.f28464id = tL_inputDocument;
                     e.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
                 }
             }
@@ -90,15 +90,15 @@ public final class g {
                     TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
                     TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
                     tL_messageMediaWebPage.webpage = tL_webPage;
-                    String str2 = ((th.e) dVar2).f58216b;
+                    String str2 = ((th.e) dVar2).f58217b;
                     tL_webPage.display_url = str2;
                     tL_webPage.url = str2;
                     e.l(tL_messageMediaPoll, keyAt2, tL_messageMediaWebPage);
                 } else if (dVar2 instanceof th.f) {
-                    e.l(tL_messageMediaPoll, keyAt2, ((th.f) dVar2).f58223b);
+                    e.l(tL_messageMediaPoll, keyAt2, ((th.f) dVar2).f58224b);
                 } else if (dVar2 instanceof th.h) {
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                    tL_messageMediaDocument.document = ((th.h) dVar2).f58226b;
+                    tL_messageMediaDocument.document = ((th.h) dVar2).f58227b;
                     e.l(tL_messageMediaPoll, keyAt2, tL_messageMediaDocument);
                 }
             }

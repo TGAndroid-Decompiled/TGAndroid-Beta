@@ -1,7 +1,7 @@
 package bi;
 
 import android.view.ViewTreeObserver;
-public final class w2 extends h8 {
+public final class w2 extends g8 {
     public final ViewTreeObserver V;
     public final f2 W;
 

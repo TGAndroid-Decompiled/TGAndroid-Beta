@@ -5,27 +5,27 @@ import h9.i0;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 public final class j {
-    public final i0 f11048a;
-    public final ArrayList f11049b = new ArrayList();
-    public ByteBuffer[] f11050c = new ByteBuffer[0];
+    public final i0 f11045a;
+    public final ArrayList f11046b = new ArrayList();
+    public ByteBuffer[] f11047c = new ByteBuffer[0];
     public boolean d;
 
     public j(i0 i0Var) {
-        this.f11048a = i0Var;
-        k kVar = k.f11051e;
+        this.f11045a = i0Var;
+        k kVar = k.f11048e;
         this.d = false;
     }
 
     public final void a() {
         boolean z10;
-        l lVar = l.f11055b;
-        ArrayList arrayList = this.f11049b;
+        l lVar = l.f11052b;
+        ArrayList arrayList = this.f11046b;
         arrayList.clear();
         this.d = false;
-        long j3 = lVar.f11056a;
+        long j3 = lVar.f11053a;
         int i7 = 0;
         while (true) {
-            i0 i0Var = this.f11048a;
+            i0 i0Var = this.f11045a;
             if (i7 >= i0Var.size()) {
                 break;
             }
@@ -43,25 +43,25 @@ public final class j {
             }
             i7++;
         }
-        this.f11050c = new ByteBuffer[arrayList.size()];
+        this.f11047c = new ByteBuffer[arrayList.size()];
         for (int i10 = 0; i10 <= b(); i10++) {
-            this.f11050c[i10] = ((n) arrayList.get(i10)).b();
+            this.f11047c[i10] = ((n) arrayList.get(i10)).b();
         }
     }
 
     public final int b() {
-        return this.f11050c.length - 1;
+        return this.f11047c.length - 1;
     }
 
     public final boolean c() {
-        if (this.d && ((n) this.f11049b.get(b())).a() && !this.f11050c[b()].hasRemaining()) {
+        if (this.d && ((n) this.f11046b.get(b())).a() && !this.f11047c[b()].hasRemaining()) {
             return true;
         }
         return false;
     }
 
     public final boolean d() {
-        return !this.f11049b.isEmpty();
+        return !this.f11046b.isEmpty();
     }
 
     public final void e(ByteBuffer byteBuffer) {
@@ -71,24 +71,24 @@ public final class j {
         for (boolean z12 = true; z12; z12 = z10) {
             z10 = false;
             for (int i7 = 0; i7 <= b(); i7++) {
-                if (!this.f11050c[i7].hasRemaining()) {
-                    ArrayList arrayList = this.f11049b;
+                if (!this.f11047c[i7].hasRemaining()) {
+                    ArrayList arrayList = this.f11046b;
                     n nVar = (n) arrayList.get(i7);
                     if (nVar.a()) {
-                        if (!this.f11050c[i7].hasRemaining() && i7 < b()) {
+                        if (!this.f11047c[i7].hasRemaining() && i7 < b()) {
                             ((n) arrayList.get(i7 + 1)).f();
                         }
                     } else {
                         if (i7 > 0) {
-                            byteBuffer2 = this.f11050c[i7 - 1];
+                            byteBuffer2 = this.f11047c[i7 - 1];
                         } else if (byteBuffer.hasRemaining()) {
                             byteBuffer2 = byteBuffer;
                         } else {
-                            byteBuffer2 = n.f11057a;
+                            byteBuffer2 = n.f11054a;
                         }
                         nVar.c(byteBuffer2);
-                        this.f11050c[i7] = nVar.b();
-                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f11050c[i7].hasRemaining()) {
+                        this.f11047c[i7] = nVar.b();
+                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f11047c[i7].hasRemaining()) {
                             z11 = false;
                         } else {
                             z11 = true;
@@ -107,8 +107,8 @@ public final class j {
         if (!(obj instanceof j)) {
             return false;
         }
-        i0 i0Var = ((j) obj).f11048a;
-        i0 i0Var2 = this.f11048a;
+        i0 i0Var = ((j) obj).f11045a;
+        i0 i0Var2 = this.f11045a;
         if (i0Var2.size() != i0Var.size()) {
             return false;
         }
@@ -121,6 +121,6 @@ public final class j {
     }
 
     public final int hashCode() {
-        return this.f11048a.hashCode();
+        return this.f11045a.hashCode();
     }
 }

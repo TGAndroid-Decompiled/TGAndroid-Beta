@@ -28,7 +28,7 @@ public final class rb0 implements Runnable {
 
     @Override
     public final void run() {
-        org.telegram.ui.Cells.q1 q1Var;
+        org.telegram.ui.Cells.r1 r1Var;
         org.telegram.ui.bn bnVar;
         switch (this.f39087a) {
             case 0:
@@ -74,35 +74,35 @@ public final class rb0 implements Runnable {
                 int i12 = this.f39088b;
                 int i13 = this.f39089c;
                 ck0 ck0Var = nxVar.I;
-                if (nxVar.f50346n) {
+                if (nxVar.f50330n) {
                     int i14 = 0;
                     while (true) {
                         if (i14 < ck0Var.getChildCount()) {
                             View childAt = ck0Var.getChildAt(i14);
-                            if (childAt instanceof org.telegram.ui.Cells.q1) {
-                                q1Var = (org.telegram.ui.Cells.q1) childAt;
-                                String V1 = q1Var.getMessageObject().V1();
+                            if (childAt instanceof org.telegram.ui.Cells.r1) {
+                                r1Var = (org.telegram.ui.Cells.r1) childAt;
+                                String V1 = r1Var.getMessageObject().V1();
                                 if (V1 == null) {
-                                    V1 = q1Var.getMessageObject().f23968k.message;
+                                    V1 = r1Var.getMessageObject().f23965k.message;
                                 }
-                                if (q1Var.getPhotoImage().L() && V1 != null && q1Var.getMessageObject().e1() == i12) {
+                                if (r1Var.getPhotoImage().L() && V1 != null && r1Var.getMessageObject().e1() == i12) {
                                 }
                             }
                             i14++;
                         } else {
-                            q1Var = null;
+                            r1Var = null;
                         }
                     }
-                    if (q1Var != null && (bnVar = nxVar.f50341a) != null) {
-                        bnVar.qb(q1Var);
-                        String V12 = q1Var.getMessageObject().V1();
-                        if (!org.telegram.messenger.k6.a(V12) && !"🍑".equals(V12) && !"⚰".equals(V12) && !q1Var.getMessageObject().W3() && !q1Var.getMessageObject().F2()) {
+                    if (r1Var != null && (bnVar = nxVar.f50325a) != null) {
+                        bnVar.qb(r1Var);
+                        String V12 = r1Var.getMessageObject().V1();
+                        if (!org.telegram.messenger.k6.a(V12) && !"🍑".equals(V12) && !"⚰".equals(V12) && !r1Var.getMessageObject().W3() && !r1Var.getMessageObject().F2()) {
                             try {
-                                q1Var.performHapticFeedback(3);
+                                r1Var.performHapticFeedback(3);
                             } catch (Exception unused) {
                             }
                         }
-                        nxVar.n(q1Var, i13, false, true);
+                        nxVar.n(r1Var, i13, false, true);
                         return;
                     }
                     return;

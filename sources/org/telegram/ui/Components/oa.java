@@ -46,9 +46,9 @@ public final class oa extends v4.u0 {
                         i10 = 0;
                     }
                     int i13 = L + i10;
-                    int i14 = siVar.f30226t0;
+                    int i14 = siVar.f30224t0;
                     if (((siVar.Z3[0] - i14) - i13) + i14 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (kj0Var = (kj0) b1Var.K(0)) != null) {
-                        View view = kj0Var.f59122a;
+                        View view = kj0Var.f59123a;
                         if (view.getTop() > org.telegram.messenger.g0.L(7.0f)) {
                             b1Var.w0(0, view.getTop() - org.telegram.messenger.g0.L(7.0f), null);
                             return;
@@ -64,8 +64,8 @@ public final class oa extends v4.u0 {
                 yj yjVar = kkVar.f36781r;
                 if (i7 == 0) {
                     int L2 = org.telegram.messenger.g0.L(13.0f);
-                    int i15 = siVar2.f30226t0;
-                    if (((siVar2.Z3[0] - i15) - L2) + i15 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (kj0Var2 = (kj0) yjVar.K(0)) != null && (top = (kj0Var2.f59122a.getTop() - org.telegram.messenger.g0.f24115m) - org.telegram.messenger.g0.L(56.0f)) > 0) {
+                    int i15 = siVar2.f30224t0;
+                    if (((siVar2.Z3[0] - i15) - L2) + i15 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (kj0Var2 = (kj0) yjVar.K(0)) != null && (top = (kj0Var2.f59123a.getTop() - org.telegram.messenger.g0.f24112m) - org.telegram.messenger.g0.L(56.0f)) > 0) {
                         yjVar.w0(0, top, null);
                     }
                 }
@@ -90,9 +90,9 @@ public final class oa extends v4.u0 {
                         i11 = 0;
                     }
                     int i16 = L3 + i11;
-                    int i17 = siVar3.f30226t0;
+                    int i17 = siVar3.f30224t0;
                     if (((siVar3.Z3[0] - i17) - i16) + i17 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (kj0Var3 = (kj0) ck0Var.K(0)) != null) {
-                        View view2 = kj0Var3.f59122a;
+                        View view2 = kj0Var3.f59123a;
                         if (view2.getTop() > org.telegram.messenger.g0.L(7.0f)) {
                             ck0Var.w0(0, view2.getTop() - org.telegram.messenger.g0.L(7.0f), null);
                             return;
@@ -108,8 +108,8 @@ public final class oa extends v4.u0 {
                 if (i7 == 0) {
                     int L4 = org.telegram.messenger.g0.L(13.0f);
                     si siVar4 = rnVar.f36766b;
-                    int i18 = siVar4.f30226t0;
-                    if (((siVar4.Z3[0] - i18) - L4) + i18 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (kj0Var4 = (kj0) f61Var.K(1)) != null && (top2 = (kj0Var4.f59122a.getTop() - org.telegram.messenger.g0.f24115m) - org.telegram.messenger.g0.L(65.0f)) > 0) {
+                    int i18 = siVar4.f30224t0;
+                    if (((siVar4.Z3[0] - i18) - L4) + i18 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (kj0Var4 = (kj0) f61Var.K(1)) != null && (top2 = (kj0Var4.f59123a.getTop() - org.telegram.messenger.g0.f24112m) - org.telegram.messenger.g0.L(65.0f)) > 0) {
                         f61Var.w0(0, top2, null);
                     }
                     int i19 = rnVar.X0;
@@ -140,9 +140,9 @@ public final class oa extends v4.u0 {
                 if (i7 == 0) {
                     int L5 = org.telegram.messenger.g0.L(13.0f);
                     int i20 = df0Var.f34432z1;
-                    int i21 = df0Var.f30226t0;
+                    int i21 = df0Var.f30224t0;
                     if (((i20 - i21) - L5) + i21 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && xe0Var.canScrollVertically(1) && (kj0Var5 = (kj0) xe0Var.K(0)) != null) {
-                        View view3 = kj0Var5.f59122a;
+                        View view3 = kj0Var5.f59123a;
                         if (view3.getTop() > org.telegram.messenger.g0.L(7.0f)) {
                             xe0Var.w0(0, view3.getTop() - org.telegram.messenger.g0.L(7.0f), null);
                             return;
@@ -206,8 +206,8 @@ public final class oa extends v4.u0 {
             case 22:
                 o51 o51Var = (o51) obj;
                 di.b1 b1Var2 = o51Var.f37984o1;
-                if (i7 == 0 && o51Var.B1 && org.telegram.messenger.g0.L(13.0f) + o51Var.f37994y1 + o51Var.f30226t0 < org.telegram.messenger.g0.f24115m * 2 && b1Var2.canScrollVertically(1) && (kj0Var6 = (kj0) b1Var2.K(0)) != null) {
-                    View view5 = kj0Var6.f59122a;
+                if (i7 == 0 && o51Var.B1 && org.telegram.messenger.g0.L(13.0f) + o51Var.f37994y1 + o51Var.f30224t0 < org.telegram.messenger.g0.f24112m * 2 && b1Var2.canScrollVertically(1) && (kj0Var6 = (kj0) b1Var2.K(0)) != null) {
+                    View view5 = kj0Var6.f59123a;
                     if (view5.getTop() > 0) {
                         b1Var2.w0(0, view5.getTop(), null);
                         return;
@@ -296,16 +296,16 @@ public final class oa extends v4.u0 {
                 in inVar = rnVar.f39251y;
                 if (inVar != null && inVar.f42657s) {
                     ww0 delegate = inVar.getDelegate();
-                    if (delegate instanceof org.telegram.ui.Cells.a6) {
+                    if (delegate instanceof org.telegram.ui.Cells.b6) {
                         org.telegram.ui.f61 f61Var = rnVar.f39242s;
-                        View F = f61Var.F((org.telegram.ui.Cells.a6) delegate);
+                        View F = f61Var.F((org.telegram.ui.Cells.b6) delegate);
                         if (F == null) {
                             T = null;
                         } else {
                             T = f61Var.T(F);
                         }
                         if (T != null) {
-                            View view = T.f59122a;
+                            View view = T.f59123a;
                             int b11 = T.b();
                             if (inVar.getDirection() == 0) {
                                 inVar.setTranslationY((view.getY() - org.telegram.messenger.g0.L(166.0f)) + view.getMeasuredHeight());
@@ -372,8 +372,8 @@ public final class oa extends v4.u0 {
                 }
                 if (i11 > 0) {
                     jg.h1 h1Var = t90Var.f39949f;
-                    if (N0 > h1Var.N0 - 5 && h1Var.f17529v0 == 0 && (str = h1Var.f17527t0) != null && str.length() != 0 && (user = h1Var.f17533x0) != null && (str2 = h1Var.f17526s0) != null) {
-                        h1Var.T(true, user, str2, h1Var.f17527t0);
+                    if (N0 > h1Var.N0 - 5 && h1Var.f17526v0 == 0 && (str = h1Var.f17524t0) != null && str.length() != 0 && (user = h1Var.f17530x0) != null && (str2 = h1Var.f17523s0) != null) {
+                        h1Var.T(true, user, str2, h1Var.f17524t0);
                     }
                 }
                 s90Var.canScrollVertically(1);
@@ -386,8 +386,8 @@ public final class oa extends v4.u0 {
                 di.b1 b1Var = oa0Var.f38047f;
                 for (int i12 = 0; i12 < b1Var.getChildCount(); i12++) {
                     View childAt = b1Var.getChildAt(i12);
-                    if (childAt instanceof org.telegram.ui.Cells.q1) {
-                        ((org.telegram.ui.Cells.q1) childAt).A3(v8Var.getMeasuredWidth(), v8Var.getBackgroundSizeY());
+                    if (childAt instanceof org.telegram.ui.Cells.r1) {
+                        ((org.telegram.ui.Cells.r1) childAt).A3(v8Var.getMeasuredWidth(), v8Var.getBackgroundSizeY());
                     }
                 }
                 ia0 ia0Var = oa0Var.f38046e;
@@ -506,10 +506,10 @@ public final class oa extends v4.u0 {
             case 27:
                 org.telegram.ui.web.m mVar = (org.telegram.ui.web.m) this.f38038b;
                 if (!mVar.f33530a.canScrollVertically(1)) {
-                    if (TextUtils.isEmpty(mVar.f53239w)) {
-                        mVar.f53234e.d();
+                    if (TextUtils.isEmpty(mVar.f53190w)) {
+                        mVar.f53185e.d();
                     } else {
-                        org.telegram.ui.web.i iVar = mVar.f53235f;
+                        org.telegram.ui.web.i iVar = mVar.f53186f;
                         if (iVar != null) {
                             iVar.d();
                         }

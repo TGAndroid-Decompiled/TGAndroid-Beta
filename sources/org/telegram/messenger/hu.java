@@ -14,7 +14,7 @@ public final class hu extends zt {
 
     @Override
     public final int I() {
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         return g0.L(12.0f) + rect.top + rect.bottom;
     }
 
@@ -26,11 +26,11 @@ public final class hu extends zt {
     @Override
     public final void W(Canvas canvas) {
         int i7;
-        ev evVar = this.f28351a;
+        ev evVar = this.f28349a;
         int i10 = evVar.C;
         int i11 = evVar.S;
         int i12 = i10 + i11 + evVar.T;
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         int i13 = rect.left;
         int i14 = (i12 - i13) - rect.right;
         int i15 = i14 / 2;

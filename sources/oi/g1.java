@@ -11,14 +11,14 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.ry;
 import org.telegram.ui.Components.wg;
 import org.telegram.ui.Components.y60;
-import org.telegram.ui.eg0;
+import org.telegram.ui.fg0;
 public final class g1 implements View.OnClickListener {
-    public final int f22070a;
-    public final z1 f22071b;
+    public final int f22067a;
+    public final z1 f22068b;
 
     public g1(z1 z1Var, int i7) {
-        this.f22070a = i7;
-        this.f22071b = z1Var;
+        this.f22067a = i7;
+        this.f22068b = z1Var;
     }
 
     @Override
@@ -31,12 +31,12 @@ public final class g1 implements View.OnClickListener {
         l5 U2;
         o5 q10;
         String str;
-        int i7 = this.f22070a;
+        int i7 = this.f22067a;
         TL_iv.pageTableCell pagetablecell = null;
         r6 = null;
         TL_iv.pageBlockMath pageblockmath = null;
         pagetablecell = null;
-        final z1 z1Var = this.f22071b;
+        final z1 z1Var = this.f22068b;
         switch (i7) {
             case 0:
                 z1Var.w0();
@@ -65,7 +65,7 @@ public final class g1 implements View.OnClickListener {
                 z1.Z(z1Var);
                 return;
             case 5:
-                z1 z1Var2 = this.f22071b;
+                z1 z1Var2 = this.f22068b;
                 if (z1Var2.C0) {
                     z1Var2.p0(true);
                     e1 S2 = z1Var2.Q.S2();
@@ -83,7 +83,7 @@ public final class g1 implements View.OnClickListener {
                     ry ryVar2 = z1Var2.B0;
                     ryVar2.f39413y2 = false;
                     ryVar2.setDelegate(new q1(z1Var2));
-                    int indexOfChild = z1Var2.P.indexOfChild(z1Var2.f22518b0);
+                    int indexOfChild = z1Var2.P.indexOfChild(z1Var2.f22515b0);
                     if (indexOfChild < 0) {
                         indexOfChild = z1Var2.P.getChildCount();
                     }
@@ -108,13 +108,13 @@ public final class g1 implements View.OnClickListener {
                     org.telegram.messenger.g0.v1(S22);
                 }
                 z1Var2.m0();
-                z1Var2.f22520c0.j(wg.d, true);
+                z1Var2.f22517c0.j(wg.d, true);
                 return;
             case 6:
-                y60 y60Var = z1Var.f22549y0;
+                y60 y60Var = z1Var.f22546y0;
                 if (y60Var != null) {
                     y60Var.v();
-                    z1Var.f22549y0 = null;
+                    z1Var.f22546y0 = null;
                 }
                 final y60 I = y60.I(z1Var, view);
                 I.T = true;
@@ -143,7 +143,7 @@ public final class g1 implements View.OnClickListener {
                     z13 = false;
                 }
                 I.j(z13, 2131231598, null, gd.M0(2131754002, null), new j1(z1Var, T2, 8));
-                if (T2 != null && (T2.f21910b instanceof TL_iv.pageBlockDetails)) {
+                if (T2 != null && (T2.f21907b instanceof TL_iv.pageBlockDetails)) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -193,25 +193,25 @@ public final class g1 implements View.OnClickListener {
                 }
                 I.X = true;
                 I.a0();
-                z1Var.f22549y0 = I;
+                z1Var.f22546y0 = I;
                 return;
             case 7:
-                y60 y60Var2 = z1Var.f22549y0;
+                y60 y60Var2 = z1Var.f22546y0;
                 if (y60Var2 != null) {
                     y60Var2.v();
-                    z1Var.f22549y0 = null;
+                    z1Var.f22546y0 = null;
                 }
                 s3 s3Var2 = z1Var.Q;
-                l5 l5Var = s3Var2.f22340q4;
+                l5 l5Var = s3Var2.f22337q4;
                 if (l5Var == null && (U2 = s3Var2.U2()) != null && U2.getModel() != null) {
                     View findFocus = z1Var.Q.findFocus();
                     if ((findFocus instanceof e1) && (q10 = U2.q((e1) findFocus)) != null) {
-                        pagetablecell = q10.f22227b;
+                        pagetablecell = q10.f22224b;
                     }
                     if (pagetablecell != null) {
                         z1Var.Q.j2(U2);
                         if (U2.I.add(pagetablecell)) {
-                            U2.f22168w.invalidate();
+                            U2.f22165w.invalidate();
                             U2.v();
                         }
                         l5Var = U2;
@@ -225,14 +225,14 @@ public final class g1 implements View.OnClickListener {
                     return;
                 }
             case 8:
-                y60 y60Var3 = z1Var.f22549y0;
+                y60 y60Var3 = z1Var.f22546y0;
                 if (y60Var3 != null) {
                     y60Var3.v();
-                    z1Var.f22549y0 = null;
+                    z1Var.f22546y0 = null;
                 }
                 a T22 = z1Var.Q.T2();
                 if (T22 != null) {
-                    TL_iv.PageBlock pageBlock = T22.f21910b;
+                    TL_iv.PageBlock pageBlock = T22.f21907b;
                     if (pageBlock instanceof TL_iv.pageBlockMath) {
                         pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                     }
@@ -246,14 +246,14 @@ public final class g1 implements View.OnClickListener {
                 o.Z(parentActivity, str, new li.d(5, z1Var, pageblockmath), z1Var.getResourceProvider());
                 return;
             case 9:
-                z1Var.Q.f22330j4 = null;
+                z1Var.Q.f22327j4 = null;
                 z1Var.t0(90, 0);
                 return;
             case 10:
                 z1Var.w0();
-                eg0 eg0Var = z1Var.P0;
-                if (eg0Var != null) {
-                    eg0Var.h(true);
+                fg0 fg0Var = z1Var.P0;
+                if (fg0Var != null) {
+                    fg0Var.h(true);
                     z1Var.P0 = null;
                     return;
                 }

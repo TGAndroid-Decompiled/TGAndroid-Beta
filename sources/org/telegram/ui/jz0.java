@@ -7,35 +7,35 @@ import android.transition.TransitionValues;
 import android.view.View;
 import android.view.ViewGroup;
 public final class jz0 extends Fade {
-    public final int f49132a;
-    public final boolean f49133b;
-    public final boolean f49134c;
+    public final int f49109a;
+    public final boolean f49110b;
+    public final boolean f49111c;
     public final SecretMediaViewer d;
 
     public jz0(SecretMediaViewer secretMediaViewer, boolean z10, boolean z11, int i7) {
         super(1);
-        this.f49132a = i7;
+        this.f49109a = i7;
         switch (i7) {
             case 1:
                 this.d = secretMediaViewer;
-                this.f49133b = z10;
-                this.f49134c = z11;
+                this.f49110b = z10;
+                this.f49111c = z11;
                 super(2);
                 return;
             default:
                 this.d = secretMediaViewer;
-                this.f49133b = z10;
-                this.f49134c = z11;
+                this.f49110b = z10;
+                this.f49111c = z11;
                 return;
         }
     }
 
     @Override
     public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f49132a) {
+        switch (this.f49109a) {
             case 0:
                 Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f49133b && !this.f49134c && view == this.d.Y) {
+                if (this.f49110b && !this.f49111c && view == this.d.Y) {
                     onAppear.addListener(new ay(this, 25));
                     ((ObjectAnimator) onAppear).addUpdateListener(new iz0(this, 0));
                 }
@@ -47,10 +47,10 @@ public final class jz0 extends Fade {
 
     @Override
     public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f49132a) {
+        switch (this.f49109a) {
             case 1:
                 Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f49133b && this.f49134c && view == this.d.Y) {
+                if (!this.f49110b && this.f49111c && view == this.d.Y) {
                     onDisappear.addListener(new ay(this, 26));
                     ((ObjectAnimator) onDisappear).addUpdateListener(new iz0(this, 1));
                 }

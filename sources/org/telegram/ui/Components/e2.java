@@ -20,7 +20,7 @@ public final class e2 implements RequestDelegate {
             case 0:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
                 if (tLObject instanceof TLRPC.Updates) {
-                    org.telegram.messenger.mp.u1(cVar.f23221a).V3((TLRPC.Updates) tLObject, false);
+                    org.telegram.messenger.mp.u1(cVar.f23218a).V3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;

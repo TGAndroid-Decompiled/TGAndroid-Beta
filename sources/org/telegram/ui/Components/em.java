@@ -24,7 +24,7 @@ public final class em extends CameraView {
             return;
         }
         if (!this.f34766b && (chatAttachAlertPhotoLayout.f32775e0 || !chatAttachAlertPhotoLayout.f32771c0)) {
-            float translationY = (siVar.f30192b.getTranslationY() + (siVar.E2[1] + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY();
+            float translationY = (siVar.f30190b.getTranslationY() + (siVar.E2[1] + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY();
             hi.i iVar = siVar.C4;
             if (iVar != null) {
                 f10 = iVar.d() + org.telegram.messenger.g0.L(8.0f);

@@ -49,7 +49,7 @@ public final class z9 implements Runnable {
                 }
             }
             if (i11 == 1) {
-                aaVar.f33305f[i11].eraseColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, aaVar.f33322y));
+                aaVar.f33305f[i11].eraseColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, aaVar.f33322y));
             } else {
                 aaVar.f33305f[i11].eraseColor(0);
             }

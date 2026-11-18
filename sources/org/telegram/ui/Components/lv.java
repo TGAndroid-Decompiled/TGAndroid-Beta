@@ -46,7 +46,7 @@ public abstract class lv extends il0 {
         super(context);
         boolean z15;
         this.h = 2131232127;
-        this.f37250n = !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q();
+        this.f37250n = !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q();
         this.f37251r = true;
         this.I = new HashMap();
         this.L = 0.0f;

@@ -16,7 +16,7 @@ public final class ug0 extends FrameLayout {
     public lr G;
     public sb0 H;
     public sb0 I;
-    public org.telegram.ui.ca0 J;
+    public org.telegram.ui.da0 J;
     public sg0 K;
     public TextView L;
     public boolean M;
@@ -24,7 +24,7 @@ public final class ug0 extends FrameLayout {
     public int O;
     public boolean P;
     public rg0 Q;
-    public org.telegram.ui.z90 R;
+    public org.telegram.ui.aa0 R;
     public VelocityTracker f40341a;
     public int f40342b;
     public int f40343c;
@@ -62,7 +62,7 @@ public final class ug0 extends FrameLayout {
         }
         this.f40348s.setInterpolator(lr.f37208f);
         this.f40348s.addListener(new tg0(this, 2));
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25137j1, 512);
+        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25135j1, 512);
         this.f40348s.start();
     }
 
@@ -132,7 +132,7 @@ public final class ug0 extends FrameLayout {
                             this.h.setDuration((int) ((Math.max(0.0f, translationY) / org.telegram.messenger.g0.a1(false, 0.8f)) * 150.0f));
                             this.h.setInterpolator(lr.f37209g);
                             this.h.addListener(new tg0(this, 0));
-                            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25137j1, 512);
+                            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25135j1, 512);
                             this.h.start();
                         } else {
                             this.F = true;

@@ -7,16 +7,16 @@ import org.telegram.ui.Dictation.DictationLid;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.utils.twidget.WidgetEngineService;
 public final class y0 implements ThreadFactory {
-    public final int f1623a;
+    public final int f1624a;
 
     public y0(int i7) {
-        this.f1623a = i7;
+        this.f1624a = i7;
     }
 
     @Override
     public final Thread newThread(Runnable runnable) {
         Thread lambda$new$0;
-        switch (this.f1623a) {
+        switch (this.f1624a) {
             case 0:
                 ExecutorService executorService = DictationLid.f43030a;
                 return new Thread(new z0(0, runnable), "DictationLid");
@@ -32,7 +32,7 @@ public final class y0 implements ThreadFactory {
                 lambda$new$0 = WalletEngine2.lambda$new$0(runnable);
                 return lambda$new$0;
             case 6:
-                String str = WidgetEngineService.f54670b;
+                String str = WidgetEngineService.f54671b;
                 Thread thread = new Thread(runnable, "widget-engine-destroy");
                 thread.setDaemon(true);
                 return thread;

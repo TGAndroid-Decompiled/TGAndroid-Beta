@@ -29,7 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import bi.i8;
+import bi.h8;
 import c8.ma;
 import fi.q7;
 import fi.z2;
@@ -68,7 +68,7 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import org.telegram.ui.Components.bu0;
 import org.telegram.ui.Components.c6;
 import org.telegram.ui.Components.lr;
@@ -83,8 +83,8 @@ import org.telegram.ui.Components.wg;
 import org.telegram.ui.Components.x5;
 import org.telegram.ui.Components.yg;
 import org.telegram.ui.Components.zt0;
-import org.telegram.ui.hh0;
 import org.telegram.ui.hn0;
+import org.telegram.ui.ih0;
 import org.telegram.ui.jw0;
 import org.telegram.ui.uv;
 import org.telegram.ui.vp0;
@@ -105,7 +105,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
     public boolean G1;
     public final uv H0;
     public float H1;
-    public final hh0 I0;
+    public final ih0 I0;
     public boolean I1;
     public final c0 J0;
     public final c6 J1;
@@ -226,7 +226,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
 
             @Override
             public final ColorFilter f() {
-                return n6.f29728v3;
+                return n6.f29726v3;
             }
 
             @Override
@@ -260,16 +260,16 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                     return -14145495;
                 }
                 if (i11 != n6.E8) {
-                    if (i11 == n6.f29469h5) {
+                    if (i11 == n6.f29467h5) {
                         return -14737633;
                     }
-                    if (i11 == n6.f29504j5) {
+                    if (i11 == n6.f29502j5) {
                         return -592138;
                     }
-                    if (i11 == n6.f29654r5) {
+                    if (i11 == n6.f29652r5) {
                         return -8553091;
                     }
-                    if (i11 != n6.f29816zf) {
+                    if (i11 != n6.f29814zf) {
                         if (i11 == n6.Cf) {
                             return -1610612736;
                         }
@@ -281,33 +281,33 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                             if (i11 == i12) {
                                 return -11754001;
                             }
-                            if (i11 == n6.f29488i6) {
+                            if (i11 == n6.f29486i6) {
                                 return 536870911;
                             }
-                            if (i11 != n6.f29761wi && i11 != n6.f29742vi && i11 != n6.f29780xi) {
-                                if (i11 == n6.f29799yi) {
+                            if (i11 != n6.f29759wi && i11 != n6.f29740vi && i11 != n6.f29778xi) {
+                                if (i11 == n6.f29797yi) {
                                     return 352321535;
                                 }
                                 if (i11 != n6.Bf && i11 != i12) {
                                     if (i11 == n6.Af) {
                                         return 780633991;
                                     }
-                                    if (i11 == n6.f29339a7) {
+                                    if (i11 == n6.f29337a7) {
                                         return -15921907;
                                     }
-                                    if (i11 == n6.f29562m7) {
+                                    if (i11 == n6.f29560m7) {
                                         return -12500671;
                                     }
-                                    if (i11 == n6.f29544l7) {
+                                    if (i11 == n6.f29542l7) {
                                         return -13133079;
                                     }
-                                    if (i11 == n6.f29579n7) {
+                                    if (i11 == n6.f29577n7) {
                                         return -1;
                                     }
-                                    if (i11 == n6.f29396d6) {
+                                    if (i11 == n6.f29394d6) {
                                         return -15198183;
                                     }
-                                    if (i11 == n6.f29397d7) {
+                                    if (i11 == n6.f29395d7) {
                                         return -16777216;
                                     }
                                     i6 i6Var2 = i6.this;
@@ -363,7 +363,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         this.H0 = uvVar;
         uvVar.setVisibility(4);
         addView(uvVar, ma.e(-1, -1, 51));
-        c0 c0Var = new c0(vp0Var, context, new b5(vp0Var));
+        c0 c0Var = new c0(vp0Var, context, new c5(vp0Var));
         this.J0 = c0Var;
         addView(c0Var);
         if (arrayList2 != null && !arrayList2.isEmpty()) {
@@ -371,23 +371,23 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
             int i11 = 0;
             while (i11 < size) {
                 c20 c20Var = (c20) arrayList2.get(i11);
-                byte b11 = c20Var.f23232a;
+                byte b11 = c20Var.f23229a;
                 if (b11 == 0) {
                     ?? g02 = g0(c20Var.C, c20Var.B, z11);
-                    if ((c20Var.f23233b & 2) != 0) {
+                    if ((c20Var.f23230b & 2) != 0) {
                         g02.r(z11);
                     }
                     ViewGroup.LayoutParams layoutParams = g02.getLayoutParams();
-                    layoutParams.width = c20Var.f23246q;
-                    layoutParams.height = c20Var.f23247r;
+                    layoutParams.width = c20Var.f23243q;
+                    layoutParams.height = c20Var.f23244r;
                     n1Var = g02;
                 } else if (b11 == 1) {
                     ?? h02 = h0(z11);
-                    h02.setType(c20Var.f23233b);
-                    h02.setTypeface(c20Var.f23243n);
-                    h02.setBaseFontSize(c20Var.f23242m);
-                    SpannableString spannableString = new SpannableString(c20Var.f23239j);
-                    ?? r13 = c20Var.f23240k;
+                    h02.setType(c20Var.f23230b);
+                    h02.setTypeface(c20Var.f23240n);
+                    h02.setBaseFontSize(c20Var.f23239m);
+                    SpannableString spannableString = new SpannableString(c20Var.f23236j);
+                    ?? r13 = c20Var.f23237k;
                     int size2 = r13.size();
                     int i12 = z11;
                     while (i12 < size2) {
@@ -403,29 +403,29 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                     CharSequence m10 = j6.m(spannableString, h02.getFontMetricsInt(), false, null, 0);
                     if ((m10 instanceof Spanned) && (g6VarArr = (g6[]) ((Spanned) m10).getSpans(0, m10.length(), g6.class)) != null) {
                         for (g6 g6Var : g6VarArr) {
-                            g6Var.f24176b = 0.85f;
+                            g6Var.f24173b = 0.85f;
                         }
                     }
                     h02.setText(m10);
-                    u0(h02, c20Var.f23245p);
+                    u0(h02, c20Var.f23242p);
                     sg.h1 swatch = h02.getSwatch();
-                    swatch.f57218a = c20Var.f23241l;
+                    swatch.f57218a = c20Var.f23238l;
                     h02.setSwatch(swatch);
                     n1Var = h02;
                 } else {
                     byte b12 = b10;
                     if (b11 == b12) {
-                        n1 f02 = f0(c20Var.f23239j, false);
+                        n1 f02 = f0(c20Var.f23236j, false);
                         f02.C0 = false;
-                        if ((c20Var.f23233b & b12) != 0) {
+                        if ((c20Var.f23230b & b12) != 0) {
                             f02.r(false);
                         }
-                        if ((c20Var.f23233b & 16) != 0) {
+                        if ((c20Var.f23230b & 16) != 0) {
                             f02.t(false);
                         }
                         ViewGroup.LayoutParams layoutParams2 = f02.getLayoutParams();
-                        layoutParams2.width = c20Var.f23246q;
-                        layoutParams2.height = c20Var.f23247r;
+                        layoutParams2.width = c20Var.f23243q;
+                        layoutParams2.height = c20Var.f23244r;
                         n1Var = f02;
                     } else {
                         i11++;
@@ -434,11 +434,11 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                         b10 = 2;
                     }
                 }
-                n1Var.setX((c20Var.f23234c * this.B0.f41433a) - (((1.0f - c20Var.v) * c20Var.f23246q) / 2.0f));
-                n1Var.setY((c20Var.d * this.B0.f41434b) - (((1.0f - c20Var.v) * c20Var.f23247r) / 2.0f));
-                n1Var.setPosition(new PointF((c20Var.f23246q / 2.0f) + n1Var.getX(), (c20Var.f23247r / 2.0f) + n1Var.getY()));
+                n1Var.setX((c20Var.f23231c * this.B0.f41433a) - (((1.0f - c20Var.v) * c20Var.f23243q) / 2.0f));
+                n1Var.setY((c20Var.d * this.B0.f41434b) - (((1.0f - c20Var.v) * c20Var.f23244r) / 2.0f));
+                n1Var.setPosition(new PointF((c20Var.f23243q / 2.0f) + n1Var.getX(), (c20Var.f23244r / 2.0f) + n1Var.getY()));
                 n1Var.setScale(c20Var.v);
-                n1Var.setRotation((float) (((-c20Var.f23235e) / 3.141592653589793d) * 180.0d));
+                n1Var.setRotation((float) (((-c20Var.f23232e) / 3.141592653589793d) * 180.0d));
                 i11++;
                 arrayList2 = arrayList;
                 z11 = false;
@@ -446,9 +446,9 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
             }
         }
         this.J0.setVisibility(4);
-        hh0 hh0Var = new hh0(context, 19);
-        this.I0 = hh0Var;
-        addView(hh0Var);
+        ih0 ih0Var = new ih0(context, 19);
+        this.I0 = ih0Var;
+        addView(ih0Var);
         ?? frameLayout = new FrameLayout(context);
         this.L0 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
@@ -744,7 +744,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         j1 j1Var = new j1(context);
         this.f57855f1 = j1Var;
         j1Var.setVisibility(8);
-        j1Var.setOnItemClickListener(new i8(vp0Var, 20));
+        j1Var.setOnItemClickListener(new h8(vp0Var, 20));
         e1Var.setTypefaceListView(j1Var);
         w01Var.addView(j1Var, ma.d(-2, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
         Paint paint2 = this.l1;
@@ -788,7 +788,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         w((sg.h) sg.h.f57214a.get(0));
         updateColors();
         if (Build.VERSION.SDK_INT >= 29) {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             setSystemGestureExclusionRects(Arrays.asList(new Rect(0, (int) (point.y * 0.35f), org.telegram.messenger.g0.L(100.0f), (int) (point.y * 0.65d))));
         }
     }
@@ -927,7 +927,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         this.f57850a1 = textView;
         textView.setText(gd.M0(2131747084, null).toUpperCase());
         TextView textView2 = this.f57850a1;
-        int i7 = n6.f29488i6;
+        int i7 = n6.f29486i6;
         u uVar = this.A1;
         u6.Q(textView2, n6.h0(n6.w0(i7, uVar), 7, -1), null, u6.M(i7), uVar);
         this.f57850a1.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
@@ -981,7 +981,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         }
         m2Var.getEditText().setGravity(i10);
         if (i7 != 1) {
-            if (i7 == 2 ? !gd.f24216a0 : gd.f24216a0) {
+            if (i7 == 2 ? !gd.f24213a0 : gd.f24213a0) {
                 i11 = 3;
             }
         } else {
@@ -999,7 +999,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         float f10 = 200.0f;
         we weVar = this.f57871r0;
         if (weVar != null) {
-            f10 = 200.0f / weVar.f27678c;
+            f10 = 200.0f / weVar.f27676c;
         }
         if (jVar != null) {
             PointF position = jVar.getPosition();
@@ -1007,7 +1007,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         }
         float f11 = 100.0f;
         if (weVar != null) {
-            f11 = 100.0f / weVar.f27678c;
+            f11 = 100.0f / weVar.f27676c;
         }
         PointF e02 = e0();
         while (true) {
@@ -1138,7 +1138,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
             }
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.P1.getLayoutParams();
             int i11 = layoutParams.width;
-            int i12 = org.telegram.messenger.g0.f24121q.x;
+            int i12 = org.telegram.messenger.g0.f24118q.x;
             if (i11 != i12 || layoutParams.height != i10) {
                 layoutParams.width = i12;
                 layoutParams.height = i10;
@@ -1192,28 +1192,28 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(n6.G8));
-        hashSet.add(Integer.valueOf(n6.f29469h5));
-        hashSet.add(Integer.valueOf(n6.f29504j5));
-        hashSet.add(Integer.valueOf(n6.f29654r5));
-        hashSet.add(Integer.valueOf(n6.f29816zf));
+        hashSet.add(Integer.valueOf(n6.f29467h5));
+        hashSet.add(Integer.valueOf(n6.f29502j5));
+        hashSet.add(Integer.valueOf(n6.f29652r5));
+        hashSet.add(Integer.valueOf(n6.f29814zf));
         hashSet.add(Integer.valueOf(n6.Cf));
         hashSet.add(Integer.valueOf(n6.Ff));
         hashSet.add(Integer.valueOf(n6.Jf));
         hashSet.add(Integer.valueOf(n6.Ef));
         hashSet.add(Integer.valueOf(n6.G6));
         hashSet.add(Integer.valueOf(n6.Di));
-        hashSet.add(Integer.valueOf(n6.f29761wi));
-        hashSet.add(Integer.valueOf(n6.f29742vi));
-        hashSet.add(Integer.valueOf(n6.f29780xi));
-        hashSet.add(Integer.valueOf(n6.f29799yi));
+        hashSet.add(Integer.valueOf(n6.f29759wi));
+        hashSet.add(Integer.valueOf(n6.f29740vi));
+        hashSet.add(Integer.valueOf(n6.f29778xi));
+        hashSet.add(Integer.valueOf(n6.f29797yi));
         hashSet.add(Integer.valueOf(n6.Bf));
         hashSet.add(Integer.valueOf(n6.Af));
-        hashSet.add(Integer.valueOf(n6.f29339a7));
-        hashSet.add(Integer.valueOf(n6.f29562m7));
-        hashSet.add(Integer.valueOf(n6.f29544l7));
-        hashSet.add(Integer.valueOf(n6.f29579n7));
-        hashSet.add(Integer.valueOf(n6.f29396d6));
-        hashSet.add(Integer.valueOf(n6.f29397d7));
+        hashSet.add(Integer.valueOf(n6.f29337a7));
+        hashSet.add(Integer.valueOf(n6.f29560m7));
+        hashSet.add(Integer.valueOf(n6.f29542l7));
+        hashSet.add(Integer.valueOf(n6.f29577n7));
+        hashSet.add(Integer.valueOf(n6.f29394d6));
+        hashSet.add(Integer.valueOf(n6.f29395d7));
     }
 
     @Override
@@ -1246,7 +1246,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         c0 c0Var;
         m2 m2Var;
         String str;
-        if (i7 == ks.E5 && (c0Var = this.J0) != null) {
+        if (i7 == ks.F5 && (c0Var = this.J0) != null) {
             for (int i11 = 0; i11 < c0Var.getChildCount(); i11++) {
                 View childAt = c0Var.getChildAt(i11);
                 if ((childAt instanceof m2) && (str = (m2Var = (m2) childAt).B0) != null) {
@@ -1275,9 +1275,9 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         float f10 = paintingSize.f41433a / 2.0f;
         float f11 = paintingSize.f41434b / 2.0f;
         if (this.f57871r0 != null) {
-            double radians = (float) Math.toRadians(-(weVar.f27683k + weVar.d));
-            float cos = (float) ((Math.cos(radians) * weVar.f27676a) - (Math.sin(radians) * weVar.f27677b));
-            float c10 = (float) i5.c.c(radians, weVar.f27677b, Math.sin(radians) * weVar.f27676a);
+            double radians = (float) Math.toRadians(-(weVar.f27681k + weVar.d));
+            float cos = (float) ((Math.cos(radians) * weVar.f27674a) - (Math.sin(radians) * weVar.f27675b));
+            float c10 = (float) i5.c.c(radians, weVar.f27675b, Math.sin(radians) * weVar.f27674a);
             f10 -= cos * paintingSize.f41433a;
             f11 -= c10 * paintingSize.f41434b;
         }
@@ -1351,7 +1351,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
     public float getCropRotation() {
         we weVar = this.f57871r0;
         if (weVar != null) {
-            return weVar.d + weVar.f27683k;
+            return weVar.d + weVar.f27681k;
         }
         return 0.0f;
     }
@@ -1377,7 +1377,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                     arrayList = new ArrayList();
                 }
                 TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                tL_inputDocument.f28417id = sticker.f28411id;
+                tL_inputDocument.f28415id = sticker.f28409id;
                 tL_inputDocument.access_hash = sticker.access_hash;
                 byte[] bArr = sticker.file_reference;
                 tL_inputDocument.file_reference = bArr;
@@ -1399,7 +1399,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                                     arrayList = new ArrayList();
                                 }
                                 TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
-                                tL_inputDocument2.f28417id = document.f28411id;
+                                tL_inputDocument2.f28415id = document.f28409id;
                                 tL_inputDocument2.access_hash = document.access_hash;
                                 byte[] bArr2 = document.file_reference;
                                 tL_inputDocument2.file_reference = bArr2;
@@ -1477,8 +1477,8 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         c0Var.addView(m2Var, ma.c(-2.0f, -2));
         we weVar = this.f57871r0;
         if (weVar != null) {
-            m2Var.j(1.0f / weVar.f27678c);
-            m2Var.f(-(weVar.f27683k + weVar.d));
+            m2Var.j(1.0f / weVar.f27676c);
+            m2Var.f(-(weVar.f27681k + weVar.d));
         }
         if (z10) {
             p0(m2Var);
@@ -1537,7 +1537,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         iArr[0] = round;
         int round2 = Math.round(fArr[1]);
         iArr[1] = round2;
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         double d = iArr[0] - (point.x / 2.0f);
         double radians = (float) Math.toRadians(-this.J0.getRotation());
         double d2 = round2 - (point.y / 2.0f);
@@ -1562,7 +1562,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                 this.S1 = true;
                 ofFloat.addListener(new z(this, 1));
                 ofFloat.setDuration(250L);
-                ofFloat.setInterpolator(org.telegram.ui.ActionBar.j1.f29019w);
+                ofFloat.setInterpolator(org.telegram.ui.ActionBar.j1.f29017w);
                 ofFloat.start();
                 return;
             }
@@ -1631,13 +1631,13 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ks.e().c(this, ks.E5);
+        ks.e().c(this, ks.F5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.e().n(this, ks.E5);
+        ks.e().n(this, ks.F5);
     }
 
     @Override
@@ -1657,7 +1657,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
             ryVar.layout(0, Q, ryVar.getMeasuredWidth(), this.P1.getMeasuredHeight() + Q);
         }
         if (!this.F0) {
-            i15 = org.telegram.messenger.g0.f24115m;
+            i15 = org.telegram.messenger.g0.f24112m;
         }
         b0 b0Var = this.G0;
         int ceil = (int) Math.ceil((i13 - b0Var.getMeasuredWidth()) / 2.0f);
@@ -1674,8 +1674,8 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         if (mz0Var != null) {
             mz0Var.layout(measuredWidth2, measuredHeight, c0Var.getMeasuredWidth() + measuredWidth2, c0Var.getMeasuredHeight() + measuredHeight);
         }
-        hh0 hh0Var = this.I0;
-        hh0Var.layout(ceil, additionalTop, hh0Var.getMeasuredWidth() + ceil, hh0Var.getMeasuredHeight() + additionalTop);
+        ih0 ih0Var = this.I0;
+        ih0Var.layout(ceil, additionalTop, ih0Var.getMeasuredWidth() + ceil, ih0Var.getMeasuredHeight() + additionalTop);
     }
 
     @Override
@@ -1686,7 +1686,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
         setMeasuredDimension(size, size2);
-        int currentActionBarHeight2 = (((org.telegram.messenger.g0.f24121q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - getAdditionalTop()) - getAdditionalBottom()) - org.telegram.messenger.g0.L(48.0f);
+        int currentActionBarHeight2 = (((org.telegram.messenger.g0.f24118q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - getAdditionalTop()) - getAdditionalBottom()) - org.telegram.messenger.g0.L(48.0f);
         Bitmap bitmap = this.f57864n0;
         if (bitmap != null) {
             f10 = bitmap.getWidth();
@@ -1725,7 +1725,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         measureChild(this.O0, i7, i10);
         measureChild(this.N0, i7, View.MeasureSpec.makeMeasureSpec(size2 - Math.max(getPKeyboardHeight(), this.T1), 1073741824));
         FrameLayout frameLayout = this.L0;
-        frameLayout.setPadding(frameLayout.getPaddingLeft(), org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.f24115m, frameLayout.getPaddingRight(), frameLayout.getPaddingBottom());
+        frameLayout.setPadding(frameLayout.getPaddingLeft(), org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.f24112m, frameLayout.getPaddingRight(), frameLayout.getPaddingBottom());
         measureChild(frameLayout, i7, i10);
         this.f57887z0 = false;
         if (org.telegram.messenger.g0.L(20.0f) >= 0 && !this.Q1 && !this.S1) {
@@ -1867,9 +1867,9 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         sg.h1 h1Var = g0Var.f57878u1;
         m1 m1Var = g0Var.V0;
         if (jVar5 != null) {
-            hh0 hh0Var = g0Var.I0;
-            jVar5.f57963n0 = hh0Var;
-            jVar5.l(hh0Var, true);
+            ih0 ih0Var = g0Var.I0;
+            jVar5.f57963n0 = ih0Var;
+            jVar5.l(ih0Var, true);
             g0Var.J0.bringChildToFront(g0Var.C0);
             j jVar6 = g0Var.C0;
             if (jVar6 instanceof m2) {
@@ -1971,7 +1971,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         }
         boolean z10 = this.Q1;
         if (z10 && (p3Var = ((vp0) this).Y1.L1) != null) {
-            p3Var.f15221e = true;
+            p3Var.f15218e = true;
         }
         x0(!z10 ? 1 : 0);
         if (z10) {
@@ -2000,7 +2000,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
 
     @Override
     public final void v(float f10, float f11, float[] fArr) {
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         double d = f10 - (point.x / 2.0f);
         double radians = (float) Math.toRadians(-this.J0.getRotation());
         double d2 = f11 - (point.y / 2.0f);
@@ -2037,22 +2037,22 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
             }
             we weVar = this.f57871r0;
             if (weVar != null) {
-                float f23 = weVar.f27678c * 1.0f;
+                float f23 = weVar.f27676c * 1.0f;
                 int measuredWidth = view.getMeasuredWidth();
                 int measuredHeight = view.getMeasuredHeight();
                 if (measuredWidth != 0 && measuredHeight != 0) {
-                    int i10 = weVar.f27683k;
+                    int i10 = weVar.f27681k;
                     if (i10 == 90 || i10 == 270) {
                         measuredHeight = measuredWidth;
                         measuredWidth = measuredHeight;
                     }
-                    float max = Math.max(f13 / ((int) (weVar.f27679e * f20)), f14 / ((int) (weVar.f27680f * f21)));
+                    float max = Math.max(f13 / ((int) (weVar.f27677e * f20)), f14 / ((int) (weVar.f27678f * f21)));
                     f16 = f23 * max;
-                    float D = com.google.android.gms.internal.vision.e2.D(weVar.f27676a, measuredWidth, f10, max);
-                    float f24 = weVar.f27678c;
+                    float D = com.google.android.gms.internal.vision.e2.D(weVar.f27674a, measuredWidth, f10, max);
+                    float f24 = weVar.f27676c;
                     f17 = (D * f24) + f11;
                     f15 = 1.0f;
-                    f18 = (weVar.f27677b * measuredHeight * f10 * max * f24) + f22;
+                    f18 = (weVar.f27675b * measuredHeight * f10 * max * f24) + f22;
                     f19 = weVar.d + i10;
                 } else {
                     return;
@@ -2207,7 +2207,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                 z10 = false;
             }
             ry ryVar2 = this.P1;
-            if (ryVar2 != null && ryVar2.f39345d1 != j10.f24773t0) {
+            if (ryVar2 != null && ryVar2.f39345d1 != j10.f24770t0) {
                 removeView(ryVar2);
                 this.P1 = null;
             }
@@ -2239,7 +2239,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
                     this.V1 = mp.f1().getInt("kbd_height_land3", org.telegram.messenger.g0.L(200.0f));
                 }
             }
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             if (point.x > point.y) {
                 i10 = this.V1;
             } else {
@@ -2317,7 +2317,7 @@ public abstract class g0 extends bu0 implements g1, h, c1, zt0, fs {
         if (this.B1 == null) {
             org.telegram.ui.ActionBar.h1 h1Var2 = new org.telegram.ui.ActionBar.h1(this.C1, -2, -2);
             this.B1 = h1Var2;
-            h1Var2.f28991b = true;
+            h1Var2.f28989b = true;
             h1Var2.setAnimationStyle(2131755191);
             this.B1.setOutsideTouchable(true);
             this.B1.setClippingEnabled(true);

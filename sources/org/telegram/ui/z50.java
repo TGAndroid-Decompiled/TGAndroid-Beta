@@ -7,37 +7,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class z50 extends ViewGroup {
-    public AnimatorSet f54433a;
-    public boolean f54434b;
-    public final ArrayList f54435c;
+    public AnimatorSet f54392a;
+    public boolean f54393b;
+    public final ArrayList f54394c;
     public org.telegram.ui.Components.m20 d;
-    public int f54436e;
-    public final a60 f54437f;
+    public int f54395e;
+    public final a60 f54396f;
 
     public z50(a60 a60Var, Context context) {
         super(context);
-        this.f54437f = a60Var;
-        this.f54435c = new ArrayList();
+        this.f54396f = a60Var;
+        this.f54394c = new ArrayList();
     }
 
     public final void a(org.telegram.ui.Components.m20 m20Var) {
-        a60 a60Var = this.f54437f;
+        a60 a60Var = this.f54396f;
         a60Var.E.remove(m20Var.getKey());
         a60Var.F.remove(m20Var);
         m20Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f54433a;
+        AnimatorSet animatorSet = this.f54392a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.f54433a.setupEndValues();
-            this.f54433a.cancel();
+            this.f54392a.setupEndValues();
+            this.f54392a.cancel();
         }
-        this.f54434b = false;
+        this.f54393b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f54433a = animatorSet2;
+        this.f54392a = animatorSet2;
         animatorSet2.addListener(new org.telegram.ui.Components.h60(9, this, m20Var));
-        this.f54433a.setInterpolator(org.telegram.ui.Components.lr.h);
-        this.f54433a.setDuration(320L);
+        this.f54392a.setInterpolator(org.telegram.ui.Components.lr.h);
+        this.f54392a.setDuration(320L);
         this.d = m20Var;
-        ArrayList arrayList = this.f54435c;
+        ArrayList arrayList = this.f54394c;
         arrayList.clear();
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 1.0f, 0.75f));
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 1.0f, 0.75f));
@@ -70,7 +70,7 @@ public final class z50 extends ViewGroup {
         int i17 = 0;
         int i18 = 0;
         while (true) {
-            arrayList = this.f54435c;
+            arrayList = this.f54394c;
             if (i15 >= childCount) {
                 break;
             }
@@ -86,7 +86,7 @@ public final class z50 extends ViewGroup {
                     i18 = 0;
                 }
                 int i19 = L + i17;
-                if (!this.f54434b) {
+                if (!this.f54393b) {
                     org.telegram.ui.Components.m20 m20Var = this.d;
                     if (childAt == m20Var) {
                         childAt.setTranslationX(L + i18);
@@ -120,18 +120,18 @@ public final class z50 extends ViewGroup {
             i15++;
         }
         int C2 = org.telegram.messenger.f3.C(28.0f, i16, L);
-        if (!this.f54434b) {
-            AnimatorSet animatorSet = this.f54433a;
+        if (!this.f54393b) {
+            AnimatorSet animatorSet = this.f54392a;
             if (animatorSet != null) {
-                this.f54436e = C2;
+                this.f54395e = C2;
                 animatorSet.playTogether(arrayList);
-                this.f54433a.start();
-                this.f54434b = true;
+                this.f54392a.start();
+                this.f54393b = true;
             } else {
-                this.f54436e = Math.max(C2, org.telegram.messenger.g0.L(28.0f) + i13 + L);
+                this.f54395e = Math.max(C2, org.telegram.messenger.g0.L(28.0f) + i13 + L);
             }
         }
-        a60 a60Var = this.f54437f;
+        a60 a60Var = this.f54396f;
         te.c cVar = a60Var.f45467a;
         if (a60Var.F.isEmpty()) {
             min = 0.0f;
@@ -139,6 +139,6 @@ public final class z50 extends ViewGroup {
             min = Math.min(C2, a60Var.f45476x);
         }
         cVar.a(min);
-        setMeasuredDimension(size, this.f54436e);
+        setMeasuredDimension(size, this.f54395e);
     }
 }

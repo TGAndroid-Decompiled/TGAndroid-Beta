@@ -31,7 +31,7 @@ public final class ck extends bk0 {
     public final boolean D(v4.f1 f1Var) {
         switch (this.f34039c) {
             case 0:
-                if (f1Var.f59126f == 1) {
+                if (f1Var.f59127f == 1) {
                     return true;
                 }
                 return false;
@@ -115,12 +115,12 @@ public final class ck extends bk0 {
         switch (i10) {
             case 0:
                 kk kkVar = (kk) obj;
-                int i11 = f1Var.f59126f;
-                View view = f1Var.f59122a;
+                int i11 = f1Var.f59127f;
+                View view = f1Var.f59123a;
                 if (i11 != 0) {
                     if (i11 == 1) {
                         dk E = E(i7);
-                        org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
+                        org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view;
                         int i12 = E.f34452a;
                         if (i12 != 0) {
                             String str2 = E.f34453b;
@@ -130,44 +130,44 @@ public final class ck extends bk0 {
                             } else {
                                 z10 = false;
                             }
-                            h7Var.d(str2, str3, null, null, i12, z10);
+                            i7Var.d(str2, str3, null, null, i12, z10);
                         } else {
-                            h7Var.d(E.f34453b, E.f34454c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.f34455e, 0, false);
+                            i7Var.d(E.f34453b, E.f34454c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.f34455e, 0, false);
                         }
                         File file = E.f34456f;
                         if (file != null) {
-                            h7Var.b(kkVar.S.containsKey(file.toString()), !kkVar.V);
+                            i7Var.b(kkVar.S.containsKey(file.toString()), !kkVar.V);
                             return;
                         } else {
-                            h7Var.b(false, !kkVar.V);
+                            i7Var.b(false, !kkVar.V);
                             return;
                         }
                     }
                     return;
                 }
-                org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
+                org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) view;
                 if (kkVar.f36776d0) {
-                    n4Var.setText(org.telegram.messenger.gd.M0(2131746172, null));
+                    o4Var.setText(org.telegram.messenger.gd.M0(2131746172, null));
                     return;
                 } else {
-                    n4Var.setText(org.telegram.messenger.gd.M0(2131746173, null));
+                    o4Var.setText(org.telegram.messenger.gd.M0(2131746173, null));
                     return;
                 }
             default:
                 org.telegram.ui.ps psVar = (org.telegram.ui.ps) this.f34040e.get(i7);
-                org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) f1Var.f59122a;
-                CharSequence m10 = org.telegram.messenger.j6.m(org.telegram.ui.ts.a0(psVar), w9Var.getTextView().getPaint().getFontMetricsInt(), false, null, 0);
+                org.telegram.ui.Cells.x9 x9Var = (org.telegram.ui.Cells.x9) f1Var.f59123a;
+                CharSequence m10 = org.telegram.messenger.j6.m(org.telegram.ui.ts.a0(psVar), x9Var.getTextView().getPaint().getFontMetricsInt(), false, null, 0);
                 if (((org.telegram.ui.ts) obj).h) {
-                    str = "+" + psVar.f51001c;
+                    str = "+" + psVar.f50922c;
                 }
-                w9Var.c(m10, str, false, false);
+                x9Var.c(m10, str, false, false);
                 return;
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View n4Var;
+        View o4Var;
         View view;
         switch (this.f34039c) {
             case 0:
@@ -179,15 +179,15 @@ public final class ck extends bk0 {
                             view = new View(context);
                             view.setTag(-33024);
                         } else {
-                            view = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.c0) null);
+                            view = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c0) null);
                         }
                         return new v4.f1(view);
                     }
-                    n4Var = new org.telegram.ui.Cells.h7(1, context, i6Var);
+                    o4Var = new org.telegram.ui.Cells.i7(1, context, i6Var);
                 } else {
-                    n4Var = new org.telegram.ui.Cells.n4(context, i6Var);
+                    o4Var = new org.telegram.ui.Cells.o4(context, i6Var);
                 }
-                view = n4Var;
+                view = o4Var;
                 return new v4.f1(view);
             default:
                 return new v4.f1(org.telegram.ui.ts.Z(this.d));

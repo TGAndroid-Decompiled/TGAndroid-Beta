@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kotlin.jvm.internal.j;
 public final class c {
-    public static final c f60427a = new Object();
+    public static final c f60428a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -28,7 +28,7 @@ public final class c {
             activityManager = null;
         }
         if (activityManager == null || (list = activityManager.getRunningAppProcesses()) == null) {
-            list = n.f14148a;
+            list = n.f14145a;
         }
         ArrayList arrayList = new ArrayList();
         for (Object obj : list) {
@@ -56,12 +56,12 @@ public final class c {
             ?? obj4 = new Object();
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                obj4.f7994a = str2;
-                obj4.f7995b = runningAppProcessInfo.pid;
-                obj4.f7996c = runningAppProcessInfo.importance;
-                obj4.f7997e = (byte) (((byte) (obj4.f7997e | 1)) | 2);
+                obj4.f7991a = str2;
+                obj4.f7992b = runningAppProcessInfo.pid;
+                obj4.f7993c = runningAppProcessInfo.importance;
+                obj4.f7994e = (byte) (((byte) (obj4.f7994e | 1)) | 2);
                 obj4.d = j.a(str2, str);
-                obj4.f7997e = (byte) (obj4.f7997e | 4);
+                obj4.f7994e = (byte) (obj4.f7994e | 4);
                 arrayList3.add(obj4.a());
             } else {
                 throw new NullPointerException("Null processName");
@@ -82,7 +82,7 @@ public final class c {
             if (i7 < size) {
                 obj = a10.get(i7);
                 i7++;
-                if (((e1) ((j2) obj)).f8010b == myPid) {
+                if (((e1) ((j2) obj)).f8007b == myPid) {
                     break;
                 }
             } else {
@@ -101,11 +101,11 @@ public final class c {
             }
             j.e(processName, "processName");
             ?? obj2 = new Object();
-            obj2.f7994a = processName;
-            obj2.f7995b = myPid;
-            obj2.f7996c = 0;
+            obj2.f7991a = processName;
+            obj2.f7992b = myPid;
+            obj2.f7993c = 0;
             obj2.d = false;
-            obj2.f7997e = (byte) (((byte) (((byte) (obj2.f7997e | 1)) | 2)) | 4);
+            obj2.f7994e = (byte) (((byte) (((byte) (obj2.f7994e | 1)) | 2)) | 4);
             return obj2.a();
         }
         return j2Var;

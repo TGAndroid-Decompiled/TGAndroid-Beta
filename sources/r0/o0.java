@@ -48,7 +48,7 @@ public final class o0 implements ValueAnimator.AnimatorUpdateListener {
                 i0.b f10 = i1Var.f(i10);
                 i0.b f11 = this.f56264c.f56258a.f(i10);
                 float f12 = 1.0f - b10;
-                w0Var.c(i10, l1.e(f10, (int) (((f10.f15892a - f11.f15892a) * f12) + 0.5d), (int) (((f10.f15893b - f11.f15893b) * f12) + 0.5d), (int) (((f10.f15894c - f11.f15894c) * f12) + 0.5d), (int) (((f10.d - f11.d) * f12) + 0.5d)));
+                w0Var.c(i10, l1.e(f10, (int) (((f10.f15889a - f11.f15889a) * f12) + 0.5d), (int) (((f10.f15890b - f11.f15890b) * f12) + 0.5d), (int) (((f10.f15891c - f11.f15891c) * f12) + 0.5d), (int) (((f10.d - f11.d) * f12) + 0.5d)));
             }
         }
         q0.g(this.f56265e, w0Var.b(), Collections.singletonList(v0Var));

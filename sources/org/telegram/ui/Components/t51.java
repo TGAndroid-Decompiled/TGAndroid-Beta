@@ -47,7 +47,7 @@ public final class t51 implements Runnable {
                 }
                 return;
             case 2:
-                f61 f61Var2 = (f61) ((oi.a6) this.f39911b).f21943f;
+                f61 f61Var2 = (f61) ((oi.a6) this.f39911b).f21940f;
                 f61Var2.f34964b0.removeCallbacksAndMessages(null);
                 f61Var2.L.x(false, null);
                 return;
@@ -55,7 +55,7 @@ public final class t51 implements Runnable {
                 ((h61) this.f39911b).f35765g = false;
                 return;
             case 4:
-                ((w71) ((h40) ((org.telegram.ui.ActionBar.i1) this.f39911b).f29010b).f35713b).f41612w.b();
+                ((w71) ((h40) ((org.telegram.ui.ActionBar.i1) this.f39911b).f29008b).f35713b).f41612w.b();
                 return;
             default:
                 ((s71) this.f39911b).d(false, true);

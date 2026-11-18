@@ -62,14 +62,14 @@ public final class id implements View.OnClickListener {
         switch (i18) {
             case 0:
                 org.telegram.ui.ActionBar.j1 j1Var = chatActivityEnterView.V;
-                if ((j1Var == null || !j1Var.f29024f) && chatActivityEnterView.G != 0.0f) {
+                if ((j1Var == null || !j1Var.f29022f) && chatActivityEnterView.G != 0.0f) {
                     chatActivityEnterView.N3.n1();
                     return;
                 }
                 return;
             case 1:
                 org.telegram.ui.ActionBar.j1 j1Var2 = chatActivityEnterView.V;
-                if ((j1Var2 == null || !j1Var2.f29024f) && chatActivityEnterView.G != 0.0f) {
+                if ((j1Var2 == null || !j1Var2.f29022f) && chatActivityEnterView.G != 0.0f) {
                     chatActivityEnterView.N3.B2();
                     return;
                 }
@@ -109,7 +109,7 @@ public final class id implements View.OnClickListener {
                     }
                     xe xeVar = chatActivityEnterView2.f32670r0;
                     if (xeVar != null) {
-                        xeVar.f28993e = false;
+                        xeVar.f28991e = false;
                         xeVar.l(new r1.g[0]);
                         return;
                     }
@@ -138,8 +138,8 @@ public final class id implements View.OnClickListener {
                     }
                     xe xeVar2 = new xe(chatActivityEnterView2, chatActivityEnterView2.getContext(), chatActivityEnterView2.D3, u12, V, peer4, chatActivityEnterView2.N3.J(), new a3.h(chatActivityEnterView2, peer2, u12, 24), chatActivityEnterView2.K4);
                     chatActivityEnterView2.f32670r0 = xeVar2;
-                    xeVar2.f28993e = true;
-                    xeVar2.f28992c = 220;
+                    xeVar2.f28991e = true;
+                    xeVar2.f28990c = 220;
                     xeVar2.setOutsideTouchable(true);
                     chatActivityEnterView2.f32670r0.setClippingEnabled(true);
                     chatActivityEnterView2.f32670r0.setFocusable(true);
@@ -147,7 +147,7 @@ public final class id implements View.OnClickListener {
                     chatActivityEnterView2.f32670r0.setInputMethodMode(2);
                     chatActivityEnterView2.f32670r0.setSoftInputMode(0);
                     chatActivityEnterView2.f32670r0.getContentView().setFocusableInTouchMode(true);
-                    chatActivityEnterView2.f32670r0.f28991b = false;
+                    chatActivityEnterView2.f32670r0.f28989b = false;
                     int i19 = -org.telegram.messenger.g0.L(4.0f);
                     int[] iArr = new int[2];
                     if (org.telegram.messenger.g0.Q1() && bnVar2 != null) {
@@ -170,7 +170,7 @@ public final class id implements View.OnClickListener {
                     if (bnVar2 != null && bnVar2.isInBubbleMode()) {
                         i10 = 0;
                     } else {
-                        i10 = org.telegram.messenger.g0.f24115m;
+                        i10 = org.telegram.messenger.g0.f24112m;
                     }
                     if (measuredHeight < (i20 - i10) - chatActivityEnterView2.f32670r0.f38137p.getMeasuredHeight()) {
                         chatActivityEnterView2.getLocationInWindow(iArr);
@@ -179,7 +179,7 @@ public final class id implements View.OnClickListener {
                         if (bnVar2 != null && bnVar2.isInBubbleMode()) {
                             i11 = 0;
                         } else {
-                            i11 = org.telegram.messenger.g0.f24115m;
+                            i11 = org.telegram.messenger.g0.f24112m;
                         }
                         chatActivityEnterView2.f32670r0.f38136o.getLayoutParams().height = ((b13 - i11) - org.telegram.messenger.g0.L(14.0f)) - chatActivityEnterView2.getHeightWithTopView();
                         i12 = i11;
@@ -286,8 +286,8 @@ public final class id implements View.OnClickListener {
                     return;
                 }
             case 5:
-                org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
-                if (eg0Var == null || eg0Var.f47250u0) {
+                org.telegram.ui.fg0 fg0Var = chatActivityEnterView.M0;
+                if (fg0Var == null || fg0Var.f47645u0) {
                     AnimatorSet animatorSet = chatActivityEnterView.f32602h3;
                     if ((animatorSet == null || !animatorSet.isRunning()) && chatActivityEnterView.f32591g0 == null) {
                         chatActivityEnterView.r1();
@@ -453,7 +453,7 @@ public final class id implements View.OnClickListener {
                                             z10 = false;
                                         }
                                         xi0Var2.Z0 = z10;
-                                        int max = Math.max(1, Math.round(org.telegram.messenger.g0.f24120p * 0.75f));
+                                        int max = Math.max(1, Math.round(org.telegram.messenger.g0.f24117p * 0.75f));
                                         int i27 = 0;
                                         int i28 = 0;
                                         int i29 = 0;
@@ -489,7 +489,7 @@ public final class id implements View.OnClickListener {
                                         vu0Var.S = 0.0f;
                                         vu0Var.R = 0.0f;
                                         vu0Var.e(xi0Var2.f42054a1);
-                                        float f17 = org.telegram.messenger.g0.f24120p;
+                                        float f17 = org.telegram.messenger.g0.f24117p;
                                         int i34 = 0;
                                         int i35 = 0;
                                         int i36 = 0;
@@ -578,7 +578,7 @@ public final class id implements View.OnClickListener {
                 return;
             case 11:
                 ki.z zVar = chatActivityEnterView.m0;
-                boolean z14 = zVar.f19090w;
+                boolean z14 = zVar.f19087w;
                 zVar.setOpened(!z14);
                 try {
                     chatActivityEnterView.performHapticFeedback(3, 2);
@@ -599,18 +599,18 @@ public final class id implements View.OnClickListener {
                     if (chatActivityEnterView.f32643n0 == null) {
                         ef efVar = new ef(chatActivityEnterView, chatActivityEnterView.getContext());
                         chatActivityEnterView.f32643n0 = efVar;
-                        di.b1 b1Var = efVar.f18983c;
+                        di.b1 b1Var = efVar.f18980c;
                         chatActivityEnterView.getContext();
                         b1Var.setLayoutManager(new v4.c0());
-                        di.b1 b1Var2 = chatActivityEnterView.f32643n0.f18983c;
+                        di.b1 b1Var2 = chatActivityEnterView.f32643n0.f18980c;
                         ?? i0Var = new v4.i0();
-                        i0Var.f19056c = new ArrayList();
+                        i0Var.f19053c = new ArrayList();
                         i0Var.d = new ArrayList();
-                        i0Var.f19057e = new ArrayList();
+                        i0Var.f19054e = new ArrayList();
                         chatActivityEnterView.f32649o0 = i0Var;
                         b1Var2.setAdapter(i0Var);
-                        chatActivityEnterView.f32643n0.f18983c.setOnItemClickListener(new ff(chatActivityEnterView));
-                        chatActivityEnterView.f32643n0.f18983c.setOnItemLongClickListener(new ve(chatActivityEnterView));
+                        chatActivityEnterView.f32643n0.f18980c.setOnItemClickListener(new ff(chatActivityEnterView));
+                        chatActivityEnterView.f32643n0.f18980c.setOnItemLongClickListener(new ve(chatActivityEnterView));
                         chatActivityEnterView.f32643n0.setClipToPadding(false);
                         chatActivityEnterView.f32542a2.addView(chatActivityEnterView.f32643n0, c8.ma.e(-1, -1, 80));
                         chatActivityEnterView.f32643n0.setVisibility(8);
@@ -623,12 +623,12 @@ public final class id implements View.OnClickListener {
                     ef efVar2 = chatActivityEnterView.f32643n0;
                     if (efVar2.getVisibility() != 0) {
                         efVar2.setVisibility(0);
-                        efVar2.f18983c.v0(0);
-                        efVar2.f18986n = true;
-                        efVar2.f18985f = false;
+                        efVar2.f18980c.v0(0);
+                        efVar2.f18983n = true;
+                        efVar2.f18982f = false;
                         return;
-                    } else if (efVar2.f18985f) {
-                        efVar2.f18985f = false;
+                    } else if (efVar2.f18982f) {
+                        efVar2.f18982f = false;
                         efVar2.a();
                         efVar2.d(false);
                         return;
@@ -651,22 +651,22 @@ public final class id implements View.OnClickListener {
                 return;
             case 13:
                 SharedPreferences.Editor edit = org.telegram.messenger.mp.u1(chatActivityEnterView.R).h7.edit();
-                if (org.telegram.messenger.v1.d(chatActivityEnterView.D3.f46176s8)) {
+                if (org.telegram.messenger.v1.d(chatActivityEnterView.D3.f46167s8)) {
                     edit.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + bnVar.a(), false);
                 } else {
                     edit.putBoolean("show_gift_for_" + bnVar.a(), false);
                 }
-                if (org.telegram.messenger.mp.u1(chatActivityEnterView.R).f25819y7 && org.telegram.messenger.mp.u1(chatActivityEnterView.R).f25828z7) {
+                if (org.telegram.messenger.mp.u1(chatActivityEnterView.R).f25817y7 && org.telegram.messenger.mp.u1(chatActivityEnterView.R).f25826z7) {
                     edit.putBoolean("show_gift_for_" + bnVar.a(), false);
                 }
                 edit.apply();
                 TLRPC.UserFull d2 = org.telegram.messenger.mp.u1(chatActivityEnterView.R).d2(org.telegram.messenger.j10.i(chatActivityEnterView.R).e());
-                if ((chatActivityEnterView.getParentFragment().f46176s8 == null || !chatActivityEnterView.getParentFragment().f46176s8.display_gifts_button) && (d2 == null || !d2.display_gifts_button)) {
+                if ((chatActivityEnterView.getParentFragment().f46167s8 == null || !chatActivityEnterView.getParentFragment().f46167s8.display_gifts_button) && (d2 == null || !d2.display_gifts_button)) {
                     org.telegram.messenger.g0.V3(chatActivityEnterView.f32723y2, false);
                 }
                 TLRPC.User j12 = chatActivityEnterView.getParentFragment().j();
                 if (j12 != null) {
-                    if (chatActivityEnterView.getParentFragment().f46176s8 != null && org.telegram.messenger.v1.e(chatActivityEnterView.getParentFragment().f46176s8.birthday)) {
+                    if (chatActivityEnterView.getParentFragment().f46167s8 != null && org.telegram.messenger.v1.e(chatActivityEnterView.getParentFragment().f46167s8.birthday)) {
                         z13 = true;
                     }
                     org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, chatActivityEnterView.getContext(), null);
@@ -768,7 +768,7 @@ public final class id implements View.OnClickListener {
                     return;
                 }
                 org.telegram.ui.ActionBar.j1 j1Var3 = chatActivityEnterView.V;
-                if (j1Var3 == null || !j1Var3.f29024f) {
+                if (j1Var3 == null || !j1Var3.f29022f) {
                     if (feVar.f42488x) {
                         y60 y60Var = chatActivityEnterView.T6;
                         if (y60Var != null) {

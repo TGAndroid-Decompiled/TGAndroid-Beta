@@ -10,84 +10,84 @@ import h9.i0;
 import h9.t1;
 import java.util.List;
 public final class a implements o {
-    public final int f2930a;
-    public final d0 f2931b;
+    public final int f2931a;
+    public final d0 f2932b;
 
     public a(int i7) {
-        this.f2930a = i7;
+        this.f2931a = i7;
         switch (i7) {
             case 1:
-                this.f2931b = new d0(16973, 2, "image/bmp");
+                this.f2932b = new d0(16973, 2, "image/bmp");
                 return;
             default:
-                this.f2931b = new d0(35152, 2, "image/png");
+                this.f2932b = new d0(35152, 2, "image/png");
                 return;
         }
     }
 
     @Override
     public final o a() {
-        int i7 = this.f2930a;
+        int i7 = this.f2931a;
         return this;
     }
 
     @Override
     public final boolean b(p pVar) {
-        switch (this.f2930a) {
+        switch (this.f2931a) {
             case 0:
-                return this.f2931b.b(pVar);
+                return this.f2932b.b(pVar);
             default:
-                return this.f2931b.b(pVar);
+                return this.f2932b.b(pVar);
         }
     }
 
     @Override
     public final void c(q qVar) {
-        switch (this.f2930a) {
+        switch (this.f2931a) {
             case 0:
-                this.f2931b.c(qVar);
+                this.f2932b.c(qVar);
                 return;
             default:
-                this.f2931b.c(qVar);
+                this.f2932b.c(qVar);
                 return;
         }
     }
 
     @Override
     public final void d(long j3, long j10) {
-        switch (this.f2930a) {
+        switch (this.f2931a) {
             case 0:
-                this.f2931b.d(j3, j10);
+                this.f2932b.d(j3, j10);
                 return;
             default:
-                this.f2931b.d(j3, j10);
+                this.f2932b.d(j3, j10);
                 return;
         }
     }
 
     @Override
     public final List e() {
-        switch (this.f2930a) {
+        switch (this.f2931a) {
             case 0:
             default:
-                g0 g0Var = i0.f14006b;
-                return t1.f14074e;
+                g0 g0Var = i0.f14003b;
+                return t1.f14071e;
         }
     }
 
     @Override
     public final int f(p pVar, s sVar) {
-        switch (this.f2930a) {
+        switch (this.f2931a) {
             case 0:
-                return this.f2931b.f(pVar, sVar);
+                return this.f2932b.f(pVar, sVar);
             default:
-                return this.f2931b.f(pVar, sVar);
+                return this.f2932b.f(pVar, sVar);
         }
     }
 
     @Override
     public final void release() {
-        int i7 = this.f2930a;
+        int i7 = this.f2931a;
     }
 
     private final void g() {

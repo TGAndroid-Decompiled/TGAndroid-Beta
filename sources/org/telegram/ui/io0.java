@@ -15,10 +15,10 @@ public final class io0 implements org.telegram.messenger.x10 {
         Uri uri = (Uri) obj;
         switch (this.f48773a) {
             case 0:
-                new org.telegram.ui.Components.lc(this.f48774b.f51721b.f43208f0, null).m(org.telegram.ui.Components.kc.f36729r, 1, -115203550, -1, null).j();
+                new org.telegram.ui.Components.lc(this.f48774b.f51710b.f43208f0, null).m(org.telegram.ui.Components.kc.f36729r, 1, -115203550, -1, null).j();
                 return;
             default:
-                new org.telegram.ui.Components.lc(this.f48774b.f51721b.f43208f0, null).m(org.telegram.ui.Components.kc.f36729r, 1, -115203550, -1, null).j();
+                new org.telegram.ui.Components.lc(this.f48774b.f51710b.f43208f0, null).m(org.telegram.ui.Components.kc.f36729r, 1, -115203550, -1, null).j();
                 return;
         }
     }

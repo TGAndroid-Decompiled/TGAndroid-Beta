@@ -19,11 +19,11 @@ public final class lw extends bv {
         ArrayList arrayList = ryVar.f39383q1;
         TLRPC.StickerSet stickerSet = this.R1;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f28432id))) {
-                arrayList.add(Long.valueOf(stickerSet.f28432id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f28430id))) {
+                arrayList.add(Long.valueOf(stickerSet.f28430id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f28432id));
+            arrayList.remove(Long.valueOf(stickerSet.f28430id));
         }
         ryVar.U();
     }

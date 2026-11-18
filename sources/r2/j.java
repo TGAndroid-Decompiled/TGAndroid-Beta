@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import l2.p1;
 import l2.r0;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import org.telegram.ui.Components.of;
 import p4.o0;
 import s2.u;
@@ -45,7 +45,7 @@ public final class j implements e0, u {
     public final long O;
     public final c f56376a;
     public final s2.d f56377b;
-    public final b5 f56378c;
+    public final c5 f56378c;
     public final c0 d;
     public final q2.m f56379e;
     public final q2.j f56380f;
@@ -53,14 +53,14 @@ public final class j implements e0, u {
     public final xa f56381n;
     public final h6.m f56382r;
     public final IdentityHashMap f56383s;
-    public final b5 f56384w;
+    public final c5 f56384w;
     public final nb.a f56385x;
     public final boolean f56386y;
 
-    public j(c cVar, s2.d dVar, b5 b5Var, c0 c0Var, q2.m mVar, q2.j jVar, qb.a aVar, xa xaVar, h6.m mVar2, nb.a aVar2, boolean z10, int i7, m2.i iVar) {
+    public j(c cVar, s2.d dVar, c5 c5Var, c0 c0Var, q2.m mVar, q2.j jVar, qb.a aVar, xa xaVar, h6.m mVar2, nb.a aVar2, boolean z10, int i7, m2.i iVar) {
         this.f56376a = cVar;
         this.f56377b = dVar;
-        this.f56378c = b5Var;
+        this.f56378c = c5Var;
         this.d = c0Var;
         this.f56379e = mVar;
         this.f56380f = jVar;
@@ -72,11 +72,11 @@ public final class j implements e0, u {
         this.E = i7;
         this.F = iVar;
         aVar2.getClass();
-        g0 g0Var = i0.f14006b;
-        t1 t1Var = t1.f14074e;
+        g0 g0Var = i0.f14003b;
+        t1 t1Var = t1.f14071e;
         this.N = new x2.n(t1Var, t1Var);
         this.f56383s = new IdentityHashMap();
-        this.f56384w = new b5(17);
+        this.f56384w = new c5(17);
         this.K = new p[0];
         this.L = new p[0];
         this.O = Long.MIN_VALUE;
@@ -92,29 +92,29 @@ public final class j implements e0, u {
         int i11;
         String str3;
         int i12;
-        g0 g0Var = i0.f14006b;
-        t1 t1Var = t1.f14074e;
+        g0 g0Var = i0.f14003b;
+        t1 t1Var = t1.f14071e;
         int i13 = -1;
         if (uVar2 != null) {
-            str2 = uVar2.f10761k;
-            q0Var = uVar2.f10762l;
+            str2 = uVar2.f10758k;
+            q0Var = uVar2.f10759l;
             i10 = uVar2.K;
-            i7 = uVar2.f10756e;
-            i11 = uVar2.f10757f;
+            i7 = uVar2.f10753e;
+            i11 = uVar2.f10754f;
             str = uVar2.d;
-            str3 = uVar2.f10754b;
-            i0Var = uVar2.f10755c;
+            str3 = uVar2.f10751b;
+            i0Var = uVar2.f10752c;
         } else {
-            String w10 = l0.w(1, uVar.f10761k);
-            q0Var = uVar.f10762l;
+            String w10 = l0.w(1, uVar.f10758k);
+            q0Var = uVar.f10759l;
             if (z10) {
                 i10 = uVar.K;
-                i7 = uVar.f10756e;
-                i11 = uVar.f10757f;
+                i7 = uVar.f10753e;
+                i11 = uVar.f10754f;
                 str = uVar.d;
-                str3 = uVar.f10754b;
+                str3 = uVar.f10751b;
                 str2 = w10;
-                i0Var = uVar.f10755c;
+                i0Var = uVar.f10752c;
             } else {
                 i7 = 0;
                 str = null;
@@ -132,21 +132,21 @@ public final class j implements e0, u {
             i12 = -1;
         }
         if (z10) {
-            i13 = uVar.f10759i;
+            i13 = uVar.f10756i;
         }
         t tVar = new t();
-        tVar.f10702a = uVar.f10753a;
-        tVar.f10703b = str3;
-        tVar.f10704c = i0.q(i0Var);
-        tVar.f10716q = s0.n(uVar.f10768r);
-        tVar.f10717r = s0.n(d);
-        tVar.f10709j = str2;
-        tVar.f10710k = q0Var;
+        tVar.f10699a = uVar.f10750a;
+        tVar.f10700b = str3;
+        tVar.f10701c = i0.q(i0Var);
+        tVar.f10713q = s0.n(uVar.f10765r);
+        tVar.f10714r = s0.n(d);
+        tVar.f10706j = str2;
+        tVar.f10707k = q0Var;
         tVar.h = i12;
-        tVar.f10708i = i13;
+        tVar.f10705i = i13;
         tVar.J = i10;
-        tVar.f10705e = i7;
-        tVar.f10706f = i11;
+        tVar.f10702e = i7;
+        tVar.f10703f = i11;
         tVar.d = str;
         return new e2.u(tVar);
     }
@@ -174,7 +174,7 @@ public final class j implements e0, u {
                         s2.m b10 = hVar.f56357g.b(iVar.f56375y, false);
                         b10.getClass();
                         i0 i0Var2 = b10.f56839r;
-                        int i10 = (int) (iVar.f60706s - b10.f56832k);
+                        int i10 = (int) (iVar.f60707s - b10.f56832k);
                         if (i10 < 0) {
                             j3 = 0;
                         } else {
@@ -209,7 +209,7 @@ public final class j implements e0, u {
             for (p pVar : this.K) {
                 if (!pVar.U) {
                     r0 r0Var = new r0();
-                    r0Var.f19539a = pVar.f56421g0;
+                    r0Var.f19536a = pVar.f56421g0;
                     pVar.c(new l2.s0(r0Var));
                 }
             }
@@ -259,9 +259,9 @@ public final class j implements e0, u {
                     }
                     hVar.f56364o = uri;
                     if (iVar != null) {
-                        int i12 = iVar.f2898a;
+                        int i12 = iVar.f2899a;
                         i7 = i10;
-                        long j3 = iVar.f2899b;
+                        long j3 = iVar.f2900b;
                         if (i12 != 1) {
                             if (i12 == 2) {
                                 int i13 = 0;
@@ -409,7 +409,7 @@ public final class j implements e0, u {
                 i7++;
             }
             if (H) {
-                ((SparseArray) this.f56384w.f30431a).clear();
+                ((SparseArray) this.f56384w.f30477a).clear();
             }
         }
         return j3;
@@ -503,7 +503,7 @@ public final class j implements e0, u {
             for (int i14 = 0; i14 < c10.size(); i14++) {
                 e2.u uVar2 = ((w) c10.get(i14)).f56905a.f56902a;
                 int i15 = uVar2.A;
-                String str2 = uVar2.f10761k;
+                String str2 = uVar2.f10758k;
                 if (i15 > 0 || l0.w(2, str2) != null) {
                     int i16 = i13;
                     iArr[i14] = 2;
@@ -558,7 +558,7 @@ public final class j implements e0, u {
                 list2 = list;
             }
             List list3 = list2;
-            String str3 = uVarArr[0].f10761k;
+            String str3 = uVarArr[0].f10758k;
             int v = l0.v(2, str3);
             int i21 = 1;
             int v10 = l0.v(1, str3);
@@ -585,24 +585,24 @@ public final class j implements e0, u {
                     int i22 = 0;
                     while (i22 < i11) {
                         e2.u uVar3 = uVarArr[i22];
-                        String w10 = l0.w(2, uVar3.f10761k);
+                        String w10 = l0.w(2, uVar3.f10758k);
                         String d = s0.d(w10);
                         e2.u[] uVarArr3 = uVarArr;
                         t tVar = new t();
-                        tVar.f10702a = uVar3.f10753a;
-                        tVar.f10703b = uVar3.f10754b;
-                        tVar.f10704c = i0.q(uVar3.f10755c);
-                        tVar.f10716q = s0.n(uVar3.f10768r);
-                        tVar.f10717r = s0.n(d);
-                        tVar.f10709j = w10;
-                        tVar.f10710k = uVar3.f10762l;
+                        tVar.f10699a = uVar3.f10750a;
+                        tVar.f10700b = uVar3.f10751b;
+                        tVar.f10701c = i0.q(uVar3.f10752c);
+                        tVar.f10713q = s0.n(uVar3.f10765r);
+                        tVar.f10714r = s0.n(d);
+                        tVar.f10706j = w10;
+                        tVar.f10707k = uVar3.f10759l;
                         tVar.h = uVar3.h;
-                        tVar.f10708i = uVar3.f10759i;
-                        tVar.f10723y = uVar3.f10775z;
-                        tVar.f10724z = uVar3.A;
+                        tVar.f10705i = uVar3.f10756i;
+                        tVar.f10720y = uVar3.f10772z;
+                        tVar.f10721z = uVar3.A;
                         tVar.C = uVar3.D;
-                        tVar.f10705e = uVar3.f10756e;
-                        tVar.f10706f = uVar3.f10757f;
+                        tVar.f10702e = uVar3.f10753e;
+                        tVar.f10703f = uVar3.f10754f;
                         tVar.H = uVar3.I;
                         uVarArr2[i22] = new e2.u(tVar);
                         i22++;
@@ -614,14 +614,14 @@ public final class j implements e0, u {
                     arrayList5.add(new m1("main", uVarArr2));
                     if (v10 > 0 && (uVar != null || c11.isEmpty())) {
                         t a10 = j(uVarArr4[0], uVar, false).a();
-                        a10.f10711l = "main";
+                        a10.f10708l = "main";
                         arrayList5.add(new m1("main:audio", new e2.u(a10)));
                     }
                     if (list3 != null) {
                         for (int i23 = 0; i23 < list3.size(); i23++) {
                             String i24 = i5.c.i(i23, "main:cc:");
                             t a11 = cVar2.b((e2.u) list3.get(i23)).a();
-                            a11.f10711l = "main";
+                            a11.f10708l = "main";
                             arrayList5.add(new m1(i24, new e2.u(a11)));
                         }
                     }
@@ -637,9 +637,9 @@ public final class j implements e0, u {
                 }
                 t tVar2 = new t();
                 str = "ID3";
-                tVar2.f10702a = str;
-                tVar2.f10717r = s0.n("application/id3");
-                tVar2.f10711l = "main";
+                tVar2.f10699a = str;
+                tVar2.f10714r = s0.n("application/id3");
+                tVar2.f10708l = "main";
                 m1 m1Var = new m1("main:id3", new e2.u(tVar2));
                 arrayList5.add(m1Var);
                 h.F((m1[]) arrayList5.toArray(new m1[0]), arrayList5.indexOf(m1Var));
@@ -676,7 +676,7 @@ public final class j implements e0, u {
                         arrayList8.add(Integer.valueOf(i27));
                         arrayList6.add(wVar2);
                         arrayList7.add(uVar4);
-                        if (l0.v(1, uVar4.f10761k) == 1) {
+                        if (l0.v(1, uVar4.f10758k) == 1) {
                             z11 = true;
                         } else {
                             z11 = false;
@@ -685,7 +685,7 @@ public final class j implements e0, u {
                     }
                 }
                 String concat = "audio:".concat(str4);
-                String str5 = l0.f13786a;
+                String str5 = l0.f13783a;
                 i10 = i26;
                 hashSet2 = hashSet3;
                 i0Var2 = c11;
@@ -698,9 +698,9 @@ public final class j implements e0, u {
                 if (z10 && z18) {
                     String v11 = p5.c.v(concat, ":id3");
                     t tVar3 = new t();
-                    tVar3.f10702a = str;
-                    tVar3.f10717r = s0.n("application/id3");
-                    tVar3.f10711l = concat;
+                    tVar3.f10699a = str;
+                    tVar3.f10714r = s0.n("application/id3");
+                    tVar3.f10708l = concat;
                     h7.F(new m1[]{new m1(concat, (e2.u[]) arrayList.toArray(new e2.u[0])), new m1(v11, new e2.u(tVar3))}, 1);
                 }
             }
@@ -740,12 +740,12 @@ public final class j implements e0, u {
                 }
                 String concat2 = "subtitle:".concat(str6);
                 e2.u[] uVarArr6 = (e2.u[]) arrayList10.toArray(new e2.u[0]);
-                String str7 = l0.f13786a;
-                g0 g0Var = i0.f14006b;
+                String str7 = l0.f13783a;
+                g0 g0Var = i0.f14003b;
                 i0Var = i0Var3;
                 i7 = i28;
                 hashSet = hashSet4;
-                p h10 = h(concat2, 3, (w[]) arrayList9.toArray(new w[0]), uVarArr6, null, t1.f14074e, map4, j3);
+                p h10 = h(concat2, 3, (w[]) arrayList9.toArray(new w[0]), uVarArr6, null, t1.f14071e, map4, j3);
                 arrayList4.add(k1.f(arrayList11));
                 arrayList3.add(h10);
                 int length = uVarArr6.length;
@@ -767,7 +767,7 @@ public final class j implements e0, u {
         for (p pVar2 : this.K) {
             if (!pVar2.U) {
                 r0 r0Var = new r0();
-                r0Var.f19539a = pVar2.f56421g0;
+                r0Var.f19536a = pVar2.f56421g0;
                 pVar2.c(new l2.s0(r0Var));
             }
         }

@@ -14,7 +14,7 @@ public final class rr0 extends v4.w {
     @Override
     public final void a(RecyclerView recyclerView, v4.f1 f1Var) {
         super.a(recyclerView, f1Var);
-        f1Var.f59122a.setPressed(false);
+        f1Var.f59123a.setPressed(false);
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class rr0 extends v4.w {
         gt0 gt0Var = this.f39280e;
         if (!gt0Var.F1) {
             hq0 hq0Var = gt0Var.f35576c0;
-            if (hq0Var == null || !hq0Var.f50356f) {
+            if (hq0Var == null || !hq0Var.f50340f) {
                 return false;
             }
             return true;
@@ -71,13 +71,13 @@ public final class rr0 extends v4.w {
         int b10 = f1Var.b();
         int b11 = f1Var2.b();
         ArrayList arrayList2 = dt0Var.E;
-        if (!dt0Var.h && (h6Var = dt0Var.f34504s) != null && b10 >= 0 && b10 < h6Var.f12048i.size() && b11 >= 0 && b11 < dt0Var.f34504s.f12048i.size()) {
+        if (!dt0Var.h && (h6Var = dt0Var.f34504s) != null && b10 >= 0 && b10 < h6Var.f12045i.size() && b11 >= 0 && b11 < dt0Var.f34504s.f12045i.size()) {
             if (!(dt0Var.f34504s instanceof fi.z5) && dt0Var.f34502n <= 0) {
-                arrayList = new ArrayList(dt0Var.f34504s.f12047g);
+                arrayList = new ArrayList(dt0Var.f34504s.f12044g);
             } else {
                 arrayList = new ArrayList();
-                for (int i7 = 0; i7 < dt0Var.f34504s.f12048i.size(); i7++) {
-                    arrayList.add(Integer.valueOf(((org.telegram.messenger.fj) dt0Var.f34504s.f12048i.get(i7)).e1()));
+                for (int i7 = 0; i7 < dt0Var.f34504s.f12045i.size(); i7++) {
+                    arrayList.add(Integer.valueOf(((org.telegram.messenger.fj) dt0Var.f34504s.f12045i.get(i7)).e1()));
                 }
             }
             if (!dt0Var.F) {
@@ -85,8 +85,8 @@ public final class rr0 extends v4.w {
                 arrayList2.addAll(arrayList);
                 dt0Var.F = true;
             }
-            org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) dt0Var.f34504s.f12048i.get(b10);
-            org.telegram.messenger.fj fjVar2 = (org.telegram.messenger.fj) dt0Var.f34504s.f12048i.get(b11);
+            org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) dt0Var.f34504s.f12045i.get(b10);
+            org.telegram.messenger.fj fjVar2 = (org.telegram.messenger.fj) dt0Var.f34504s.f12045i.get(b11);
             arrayList.remove(Integer.valueOf(fjVar.e1()));
             arrayList.add(Utilities.j(b11, arrayList.size(), 0), Integer.valueOf(fjVar.e1()));
             dt0Var.f34504s.C(arrayList, false);
@@ -111,11 +111,11 @@ public final class rr0 extends v4.w {
                 ArrayList arrayList2 = dt0Var.E;
                 if (!dt0Var.h && (h6Var = dt0Var.f34504s) != null && dt0Var.F) {
                     if (!(h6Var instanceof fi.z5) && dt0Var.f34502n <= 0) {
-                        arrayList = h6Var.f12047g;
+                        arrayList = h6Var.f12044g;
                     } else {
                         arrayList = new ArrayList();
-                        for (int i10 = 0; i10 < dt0Var.f34504s.f12048i.size(); i10++) {
-                            arrayList.add(Integer.valueOf(((org.telegram.messenger.fj) dt0Var.f34504s.f12048i.get(i10)).e1()));
+                        for (int i10 = 0; i10 < dt0Var.f34504s.f12045i.size(); i10++) {
+                            arrayList.add(Integer.valueOf(((org.telegram.messenger.fj) dt0Var.f34504s.f12045i.get(i10)).e1()));
                         }
                     }
                     if (arrayList2.size() != arrayList.size()) {
@@ -154,7 +154,7 @@ public final class rr0 extends v4.w {
             as0Var4.I0(false);
         }
         if (f1Var != null) {
-            f1Var.f59122a.setPressed(true);
+            f1Var.f59123a.setPressed(true);
         }
     }
 

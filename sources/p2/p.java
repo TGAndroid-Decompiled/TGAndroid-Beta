@@ -5,25 +5,25 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 public final class p extends n {
-    public final md0 f55135j;
-    public final md0 f55136k;
+    public final nd0 f55135j;
+    public final nd0 f55136k;
     public final long f55137l;
 
-    public p(j jVar, long j3, long j10, long j11, long j12, long j13, List list, long j14, md0 md0Var, md0 md0Var2, long j15, long j16) {
+    public p(j jVar, long j3, long j10, long j11, long j12, long j13, List list, long j14, nd0 nd0Var, nd0 nd0Var2, long j15, long j16) {
         super(jVar, j3, j10, j11, j13, list, j14, j15, j16);
-        this.f55135j = md0Var;
-        this.f55136k = md0Var2;
+        this.f55135j = nd0Var;
+        this.f55136k = nd0Var2;
         this.f55137l = j12;
     }
 
     @Override
     public final j a(m mVar) {
-        md0 md0Var = this.f55135j;
-        if (md0Var != null) {
+        nd0 nd0Var = this.f55135j;
+        if (nd0Var != null) {
             u uVar = mVar.f55125a;
-            return new j(0L, md0Var.m(uVar.f10760j, 0L, 0L, uVar.f10753a), -1L);
+            return new j(0L, nd0Var.m(uVar.f10757j, 0L, 0L, uVar.f10750a), -1L);
         }
         return this.f55141a;
     }
@@ -44,7 +44,7 @@ public final class p extends n {
         BigInteger multiply = BigInteger.valueOf(j3).multiply(BigInteger.valueOf(this.f55142b));
         BigInteger multiply2 = BigInteger.valueOf(this.f55130e).multiply(BigInteger.valueOf(1000000L));
         RoundingMode roundingMode = RoundingMode.CEILING;
-        int i7 = j9.a.f17337a;
+        int i7 = j9.a.f17334a;
         return new BigDecimal(multiply).divide(new BigDecimal(multiply2), 0, roundingMode).toBigIntegerExact().longValue();
     }
 
@@ -60,7 +60,7 @@ public final class p extends n {
         }
         long j12 = j10;
         u uVar = kVar.f55125a;
-        String str = uVar.f10753a;
-        return new j(0L, this.f55136k.m(uVar.f10760j, j3, j12, str), -1L);
+        String str = uVar.f10750a;
+        return new j(0L, this.f55136k.m(uVar.f10757j, j3, j12, str), -1L);
     }
 }

@@ -5,28 +5,28 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.view.View;
 public final class f6 implements org.telegram.ui.ActionBar.v6 {
-    public final int f47579a;
-    public final org.telegram.ui.ActionBar.h2 f47580b;
+    public final int f47535a;
+    public final org.telegram.ui.ActionBar.h2 f47536b;
 
     public f6(int i7, org.telegram.ui.ActionBar.h2 h2Var) {
-        this.f47579a = i7;
-        this.f47580b = h2Var;
+        this.f47535a = i7;
+        this.f47536b = h2Var;
     }
 
     @Override
     public final void a(float f10) {
-        int i7 = this.f47579a;
+        int i7 = this.f47535a;
     }
 
     @Override
     public final void b() {
-        int i7 = this.f47579a;
-        org.telegram.ui.ActionBar.h2 h2Var = this.f47580b;
+        int i7 = this.f47535a;
+        org.telegram.ui.ActionBar.h2 h2Var = this.f47536b;
         switch (i7) {
             case 0:
-                au auVar = ((x6) h2Var).f53653a0;
+                au auVar = ((x6) h2Var).f53604a0;
                 if (auVar != null) {
-                    auVar.v0(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false));
+                    auVar.v0(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false));
                     return;
                 }
                 return;
@@ -54,11 +54,11 @@ public final class f6 implements org.telegram.ui.ActionBar.v6 {
                 if (kwVar != null) {
                     org.telegram.ui.ActionBar.z actionMode = kwVar.getActionMode();
                     if (actionMode != null) {
-                        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29752w8, actionMode, cxVar.getResourceProvider());
+                        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29750w8, actionMode, cxVar.getResourceProvider());
                     }
                     org.telegram.ui.ActionBar.r0 speedItem = cxVar.D0.getSpeedItem();
                     if (speedItem != null) {
-                        speedItem.getIconView().setColorFilter(new PorterDuffColorFilter(cxVar.getThemedColor(org.telegram.ui.ActionBar.n6.f29790y8), PorterDuff.Mode.SRC_IN));
+                        speedItem.getIconView().setColorFilter(new PorterDuffColorFilter(cxVar.getThemedColor(org.telegram.ui.ActionBar.n6.f29788y8), PorterDuff.Mode.SRC_IN));
                         return;
                     }
                     return;
@@ -74,13 +74,13 @@ public final class f6 implements org.telegram.ui.ActionBar.v6 {
                 ((v50) h2Var).a0(true);
                 return;
             case 11:
-                ((de0) h2Var).Q1();
+                ((ee0) h2Var).Q1();
                 return;
             case 12:
-                ((ff0) h2Var).g0();
+                ((gf0) h2Var).g0();
                 return;
             case 13:
-                ((ng0) h2Var).f0();
+                ((og0) h2Var).f0();
                 return;
             case 14:
                 ((NotificationsCustomSettingsActivity) h2Var).getClass();
@@ -102,7 +102,7 @@ public final class f6 implements org.telegram.ui.ActionBar.v6 {
                 ((jx0) h2Var).getClass();
                 return;
             case 20:
-                ((ey0) h2Var).f47385b.f();
+                ((ey0) h2Var).f47341b.f();
                 return;
             case 21:
                 ((c51) h2Var).s0();

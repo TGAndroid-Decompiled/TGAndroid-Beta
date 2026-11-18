@@ -5,41 +5,41 @@ import android.text.TextWatcher;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class v6 implements TextWatcher {
-    public boolean f27327a;
-    public final int f27328b;
-    public final t6 f27329c;
+    public boolean f27325a;
+    public final int f27326b;
+    public final t6 f27327c;
     public final TextView[] d;
-    public final TLRPC.TL_factCheck f27330e;
+    public final TLRPC.TL_factCheck f27328e;
 
     public v6(int i7, t6 t6Var, TextView[] textViewArr, TLRPC.TL_factCheck tL_factCheck) {
-        this.f27328b = i7;
-        this.f27329c = t6Var;
+        this.f27326b = i7;
+        this.f27327c = t6Var;
         this.d = textViewArr;
-        this.f27330e = tL_factCheck;
+        this.f27328e = tL_factCheck;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
         int i10;
-        if (!this.f27327a) {
+        if (!this.f27325a) {
             int length = editable.length();
             boolean z10 = true;
-            int i11 = this.f27328b;
+            int i11 = this.f27326b;
             if (length > i11) {
-                this.f27327a = true;
+                this.f27325a = true;
                 editable.delete(i11, editable.length());
-                t6 t6Var = this.f27329c;
+                t6 t6Var = this.f27327c;
                 g0.D3(t6Var);
                 try {
                     t6Var.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                this.f27327a = false;
+                this.f27325a = false;
             }
             TextView[] textViewArr = this.d;
             if (textViewArr[0] != null) {
-                if (editable.length() <= 0 && this.f27330e != null) {
+                if (editable.length() <= 0 && this.f27328e != null) {
                     z10 = false;
                 }
                 TextView textView = textViewArr[0];
@@ -53,7 +53,7 @@ public final class v6 implements TextWatcher {
                 if (z10) {
                     i10 = org.telegram.ui.ActionBar.n6.H5;
                 } else {
-                    i10 = org.telegram.ui.ActionBar.n6.f29637q7;
+                    i10 = org.telegram.ui.ActionBar.n6.f29635q7;
                 }
                 textView2.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
             }

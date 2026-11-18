@@ -123,13 +123,13 @@ public final class m30 extends HorizontalScrollView {
             CharSequence charSequence = (CharSequence) arrayList.get(i7);
             bi.i3 i3Var = new bi.i3(getContext(), 19);
             i3Var.setDrawingCacheEnabled(false);
-            i3Var.setOnClickListener(new bi.f5(this, i7, nrVar, 13));
+            i3Var.setOnClickListener(new bi.e5(this, i7, nrVar, 13));
             i3Var.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(5.0f));
             LinearLayout.LayoutParams o4 = c8.ma.o(-2, -2);
             if (i7 < arrayList.size() - 1) {
                 o4.rightMargin = org.telegram.messenger.g0.L(4.0f);
             }
-            i3Var.f3723b = new vy0(charSequence, this.f37348f);
+            i3Var.f3688b = new vy0(charSequence, this.f37348f);
             linearLayout.addView(i3Var, o4);
         }
     }
@@ -156,12 +156,12 @@ public final class m30 extends HorizontalScrollView {
         if (z10) {
             w02 = org.telegram.ui.ActionBar.n6.r1(0.1f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, i6Var));
         } else {
-            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29788y6, i6Var) & 520093695;
+            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, i6Var) & 520093695;
         }
         Paint paint = this.f37347e;
         paint.setColor(w02);
         canvas.drawPath(path, paint);
-        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29788y6, i6Var);
+        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, i6Var);
         TextPaint textPaint = this.f37348f;
         textPaint.setColor(w04);
         canvas.save();

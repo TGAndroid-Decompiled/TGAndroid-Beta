@@ -8,19 +8,19 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.view.View;
 public final class rp0 extends AnimatorListenerAdapter {
-    public final int f51725a;
-    public final PhotoViewer f51726b;
+    public final int f51714a;
+    public final PhotoViewer f51715b;
 
     public rp0(PhotoViewer photoViewer, int i7) {
-        this.f51726b = photoViewer;
-        this.f51725a = i7;
+        this.f51715b = photoViewer;
+        this.f51714a = i7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         boolean z10;
         int i7;
-        PhotoViewer photoViewer = this.f51726b;
+        PhotoViewer photoViewer = this.f51715b;
         nq0 nq0Var = photoViewer.X4;
         org.telegram.ui.Components.v51 v51Var = null;
         photoViewer.f43307q6 = null;
@@ -65,19 +65,19 @@ public final class rp0 extends AnimatorListenerAdapter {
             if (photoViewer.f43322s1) {
                 v51Var = (org.telegram.ui.Components.v51) photoViewer.C2;
             }
-            qd0Var.b(n10, i11, z10, false, gVar, v51Var, nq0Var.f50282c);
+            qd0Var.b(n10, i11, z10, false, gVar, v51Var, nq0Var.f50266c);
             photoViewer.D1.a();
             int q10 = photoViewer.C4.q();
             int o4 = photoViewer.C4.o();
-            org.telegram.messenger.we weVar = nq0Var.f50282c;
+            org.telegram.messenger.we weVar = nq0Var.f50266c;
             if (weVar != null) {
-                int i12 = weVar.f27683k;
+                int i12 = weVar.f27681k;
                 if (i12 == 90 || i12 == 270) {
                     o4 = q10;
                     q10 = o4;
                 }
-                q10 = (int) (q10 * weVar.f27679e);
-                o4 = (int) (o4 * weVar.f27680f);
+                q10 = (int) (q10 * weVar.f27677e);
+                o4 = (int) (o4 * weVar.f27678f);
             }
             float f10 = q10;
             float f11 = o4;
@@ -92,7 +92,7 @@ public final class rp0 extends AnimatorListenerAdapter {
             photoViewer.f43186c6 = (rect.left / 2) - (rect.right / 2);
             int i13 = -org.telegram.messenger.g0.L(56.0f);
             if (!photoViewer.f43320s) {
-                i7 = org.telegram.messenger.g0.f24115m / 2;
+                i7 = org.telegram.messenger.g0.f24112m / 2;
             } else {
                 i7 = 0;
             }

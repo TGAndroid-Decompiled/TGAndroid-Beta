@@ -40,7 +40,7 @@ public final class jx extends FrameLayout implements org.telegram.ui.ActionBar.c
     public jx(ry ryVar, Context context) {
         super(context);
         this.H = ryVar;
-        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30084a;
+        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30082a;
         ?? imageView = new ImageView(context);
         this.f36545c = imageView;
         imageView.f(2131624315, 24, 24, null);
@@ -163,7 +163,7 @@ public final class jx extends FrameLayout implements org.telegram.ui.ActionBar.c
         }
         boolean z17 = fxVar.f35175f;
         ry ryVar = this.H;
-        if (!z17 && !ryVar.f39383q1.contains(Long.valueOf(fxVar.f35172b.f28432id))) {
+        if (!z17 && !ryVar.f39383q1.contains(Long.valueOf(fxVar.f35172b.f28430id))) {
             z11 = false;
         } else {
             z11 = true;
@@ -445,18 +445,18 @@ public final class jx extends FrameLayout implements org.telegram.ui.ActionBar.c
         ry ryVar = this.H;
         int i11 = ryVar.f39345d1;
         if (i7 == org.telegram.messenger.ks.B0) {
-            if (this.f36550s != null && (q03 = org.telegram.messenger.ri.d0(i11).q0(this.f36550s.f28425id)) != null && q03.set != null) {
+            if (this.f36550s != null && (q03 = org.telegram.messenger.ri.d0(i11).q0(this.f36550s.f28423id)) != null && q03.set != null) {
                 org.telegram.ui.ActionBar.h2 h2Var = ryVar.Z1;
                 if (h2Var == null) {
-                    h2Var = new bi.z8(this, 8);
+                    h2Var = new bi.y8(this, 8);
                 }
                 bv.K0(h2Var, q03, true, null, new mo(this, 15));
                 this.f36550s = null;
             }
-            if (this.f36551w != null && (q02 = org.telegram.messenger.ri.d0(i11).q0(this.f36551w.f28425id)) != null && q02.set != null) {
+            if (this.f36551w != null && (q02 = org.telegram.messenger.ri.d0(i11).q0(this.f36551w.f28423id)) != null && q02.set != null) {
                 org.telegram.ui.ActionBar.h2 h2Var2 = ryVar.Z1;
                 if (h2Var2 == null) {
-                    h2Var2 = new bi.z8(this, 8);
+                    h2Var2 = new bi.y8(this, 8);
                 }
                 org.telegram.ui.ActionBar.h2 h2Var3 = h2Var2;
                 dw dwVar = new dw(1, this, q02);
@@ -483,7 +483,7 @@ public final class jx extends FrameLayout implements org.telegram.ui.ActionBar.c
                 Paint paint = new Paint(1);
                 this.E = paint;
                 paint.setStrokeWidth(1.0f);
-                this.E.setColor(this.H.z(org.telegram.ui.ActionBar.n6.f29397d7));
+                this.E.setColor(this.H.z(org.telegram.ui.ActionBar.n6.f29395d7));
             }
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, this.E);

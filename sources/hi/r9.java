@@ -3,15 +3,15 @@ package hi;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 public final class r9 extends CharacterStyle {
-    public final int f15336a;
+    public final int f15333a;
 
     public r9(int i7) {
-        this.f15336a = i7;
+        this.f15333a = i7;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f15336a) {
+        switch (this.f15333a) {
             case 0:
                 textPaint.setAlpha(128);
                 return;
@@ -20,7 +20,7 @@ public final class r9 extends CharacterStyle {
                 textPaint.setColor(org.telegram.ui.ActionBar.n6.T2.getColor());
                 return;
             case 2:
-                textPaint.setColor(org.telegram.ui.ActionBar.n6.f29593o2.linkColor);
+                textPaint.setColor(org.telegram.ui.ActionBar.n6.f29591o2.linkColor);
                 return;
             default:
                 return;

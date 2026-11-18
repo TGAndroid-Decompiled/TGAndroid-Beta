@@ -96,7 +96,7 @@ public final class wx extends uy {
         vt0 vt0Var = this.X;
         vt0Var.f41434b = 100.0f;
         vt0Var.f41433a = 100.0f;
-        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i7 = w10.f28430w) != 0 && (i10 = w10.h) != 0) {
+        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i7 = w10.f28428w) != 0 && (i10 = w10.h) != 0) {
             vt0Var.f41433a = i7;
             vt0Var.f41434b = i10;
         }
@@ -104,7 +104,7 @@ public final class wx extends uy {
             for (int i11 = 0; i11 < list.size(); i11++) {
                 TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i11);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    vt0Var.f41433a = documentAttribute.f28412w;
+                    vt0Var.f41433a = documentAttribute.f28410w;
                     vt0Var.f41434b = documentAttribute.h;
                     break;
                 }

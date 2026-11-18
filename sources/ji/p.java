@@ -47,7 +47,7 @@ public final class p extends View {
     public static int X1;
     public static int Y1;
     public static float Z1;
-    public static long f17991b2;
+    public static long f17988b2;
     public boolean A0;
     public boolean A1;
     public float B0;
@@ -113,75 +113,75 @@ public final class p extends View {
     public float X0;
     public float Y0;
     public boolean Z0;
-    public final m f17992a;
-    public boolean f17993a0;
-    public float f17994a1;
-    public final i6 f17995b;
-    public Paint f17996b0;
-    public float f17997b1;
-    public final TextPaint f17998c;
-    public Object f17999c0;
-    public int f18000c1;
+    public final m f17989a;
+    public boolean f17990a0;
+    public float f17991a1;
+    public final i6 f17992b;
+    public Paint f17993b0;
+    public float f17994b1;
+    public final TextPaint f17995c;
+    public Object f17996c0;
+    public int f17997c1;
     public final TextPaint d;
-    public Object f18001d0;
-    public final RectF f18002d1;
-    public final TextPaint f18003e;
-    public float f18004e0;
-    public final RectF f18005e1;
-    public final Paint f18006f;
-    public long f18007f0;
-    public final RectF f18008f1;
-    public boolean f18009g0;
-    public final RectF f18010g1;
+    public Object f17998d0;
+    public final RectF f17999d1;
+    public final TextPaint f18000e;
+    public float f18001e0;
+    public final RectF f18002e1;
+    public final Paint f18003f;
+    public long f18004f0;
+    public final RectF f18005f1;
+    public boolean f18006g0;
+    public final RectF f18007g1;
     public final Paint h;
-    public int f18011h0;
-    public final RectF f18012h1;
-    public int f18013i0;
-    public final RectF f18014i1;
-    public boolean f18015j0;
-    public float f18016j1;
-    public String f18017k0;
-    public float f18018k1;
-    public StaticLayout f18019l0;
+    public int f18008h0;
+    public final RectF f18009h1;
+    public int f18010i0;
+    public final RectF f18011i1;
+    public boolean f18012j0;
+    public float f18013j1;
+    public String f18014k0;
+    public float f18015k1;
+    public StaticLayout f18016l0;
     public int l1;
     public StaticLayout m0;
-    public final float[] f18020m1;
-    public final Paint f18021n;
-    public int f18022n0;
+    public final float[] f18017m1;
+    public final Paint f18018n;
+    public int f18019n0;
     public final RectF n1;
-    public final ArrayList f18023o0;
-    public float f18024o1;
-    public boolean f18025p0;
-    public Drawable f18026p1;
-    public boolean f18027q0;
-    public float f18028q1;
-    public int f18029r;
-    public long f18030r0;
-    public float f18031r1;
-    public final Paint f18032s;
-    public long f18033s0;
-    public float f18034s1;
-    public long f18035t0;
-    public boolean f18036t1;
-    public float f18037u0;
-    public boolean f18038u1;
-    public float f18039v0;
-    public VelocityTracker f18040v1;
-    public final Paint f18041w;
-    public float f18042w0;
-    public final int f18043w1;
-    public final Paint f18044x;
-    public float f18045x0;
-    public String f18046x1;
-    public final Paint f18047y;
-    public float f18048y0;
-    public int f18049y1;
-    public float f18050z0;
-    public boolean f18051z1;
+    public final ArrayList f18020o0;
+    public float f18021o1;
+    public boolean f18022p0;
+    public Drawable f18023p1;
+    public boolean f18024q0;
+    public float f18025q1;
+    public int f18026r;
+    public long f18027r0;
+    public float f18028r1;
+    public final Paint f18029s;
+    public long f18030s0;
+    public float f18031s1;
+    public long f18032t0;
+    public boolean f18033t1;
+    public float f18034u0;
+    public boolean f18035u1;
+    public float f18036v0;
+    public VelocityTracker f18037v1;
+    public final Paint f18038w;
+    public float f18039w0;
+    public final int f18040w1;
+    public final Paint f18041x;
+    public float f18042x0;
+    public String f18043x1;
+    public final Paint f18044y;
+    public float f18045y0;
+    public int f18046y1;
+    public float f18047z0;
+    public boolean f18048z1;
     public static final lr U1 = new lr(0.4d, 0.0d, 0.2d, 1.0d);
     public static final lr V1 = lr.h;
     public static final lr W1 = new lr(0.4d, 0.0d, 1.0d, 1.0d);
-    public static final OvershootInterpolator f17990a2 = new OvershootInterpolator(1.3f);
+    public static final OvershootInterpolator f17987a2 = new OvershootInterpolator(1.3f);
 
     static {
         new lr(0.3d, 0.0d, 0.1d, 1.0d);
@@ -190,20 +190,20 @@ public final class p extends View {
     public p(Context context, i6 i6Var, m mVar) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f17998c = textPaint;
+        this.f17995c = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.d = textPaint2;
         TextPaint textPaint3 = new TextPaint(1);
-        this.f18003e = textPaint3;
-        this.f18006f = new Paint();
+        this.f18000e = textPaint3;
+        this.f18003f = new Paint();
         this.h = new Paint(1);
-        this.f18021n = new Paint(1);
+        this.f18018n = new Paint(1);
         Paint paint = new Paint(1);
-        this.f18032s = paint;
-        this.f18041w = new Paint(1);
-        this.f18044x = new Paint(1);
+        this.f18029s = paint;
+        this.f18038w = new Paint(1);
+        this.f18041x = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f18047y = paint2;
+        this.f18044y = paint2;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{-603979776, -1073741824, Integer.MIN_VALUE, 939524096, 201326592, 0}, new float[]{0.0f, 0.18f, 0.42f, 0.66f, 0.86f, 1.0f}, Shader.TileMode.CLAMP);
         this.E = linearGradient;
         this.F = new Matrix();
@@ -215,10 +215,10 @@ public final class p extends View {
         this.S = new RectF();
         this.T = new RectF();
         new Matrix();
-        this.f18004e0 = -1.0f;
-        this.f18013i0 = -12939291;
-        this.f18017k0 = "";
-        this.f18023o0 = new ArrayList();
+        this.f18001e0 = -1.0f;
+        this.f18010i0 = -12939291;
+        this.f18014k0 = "";
+        this.f18020o0 = new ArrayList();
         this.A0 = true;
         this.G0 = -1.0f;
         this.H0 = -1.0f;
@@ -226,19 +226,19 @@ public final class p extends View {
         this.Q0 = -1.0f;
         this.U0 = true;
         this.Z0 = true;
-        this.f17994a1 = 1.0f;
-        this.f18000c1 = -1;
-        this.f18002d1 = new RectF();
-        this.f18005e1 = new RectF();
-        this.f18008f1 = new RectF();
-        this.f18010g1 = new RectF();
-        this.f18012h1 = new RectF();
-        this.f18014i1 = new RectF();
-        this.f18018k1 = 1.0f;
+        this.f17991a1 = 1.0f;
+        this.f17997c1 = -1;
+        this.f17999d1 = new RectF();
+        this.f18002e1 = new RectF();
+        this.f18005f1 = new RectF();
+        this.f18007g1 = new RectF();
+        this.f18009h1 = new RectF();
+        this.f18011i1 = new RectF();
+        this.f18015k1 = 1.0f;
         this.l1 = -1;
-        this.f18020m1 = new float[6];
+        this.f18017m1 = new float[6];
         this.n1 = new RectF();
-        this.f18049y1 = -1;
+        this.f18046y1 = -1;
         new RectF();
         this.E1 = new ArrayList();
         this.F1 = new Paint(1);
@@ -252,9 +252,9 @@ public final class p extends View {
         this.M1 = new Paint(1);
         this.N1 = new Paint(1);
         this.T1 = 1.0f;
-        this.f17995b = i6Var;
-        this.f17992a = mVar;
-        this.f18043w1 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f17992b = i6Var;
+        this.f17989a = mVar;
+        this.f18040w1 = ViewConfiguration.get(context).getScaledTouchSlop();
         textPaint.setTextSize(g0.L(21.0f));
         textPaint2.setTextSize(g0.L(21.0f));
         textPaint3.setTextSize(g0.L(14.0f));
@@ -300,7 +300,7 @@ public final class p extends View {
     }
 
     public final StaticLayout a(CharSequence charSequence, TextPaint textPaint) {
-        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, this.f18022n0).setAlignment(Layout.Alignment.ALIGN_NORMAL).setLineSpacing(g0.L(4.0f), 1.0f).setIncludePad(false).build();
+        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, this.f18019n0).setAlignment(Layout.Alignment.ALIGN_NORMAL).setLineSpacing(g0.L(4.0f), 1.0f).setIncludePad(false).build();
     }
 
     public final void d(Canvas canvas) {
@@ -350,7 +350,7 @@ public final class p extends View {
         int L = g0.L(1.0f);
         int L2 = g0.L(14.0f);
         float L3 = f11 - (g0.L(10.0f) + (L2 + (g0.L(8.0f) + L)));
-        Paint paint = this.f18041w;
+        Paint paint = this.f18038w;
         paint.setColor(i7);
         paint.setAlpha((int) (35.7f * f10));
         canvas.drawRect(L3, centerY - g0.L(9.0f), g0.N(1.0f) + L3, centerY + g0.L(9.0f), paint);
@@ -372,7 +372,7 @@ public final class p extends View {
         int i10 = (int) f12;
         paint2.setAlpha(i10);
         float L4 = L3 + g0.L(1.0f) + g0.L(8.0f) + g0.L(7.0f);
-        if (this.f18051z1) {
+        if (this.f18048z1) {
             float L5 = g0.L(6.5f);
             Paint paint3 = this.N1;
             paint3.setStyle(style);
@@ -408,7 +408,7 @@ public final class p extends View {
             matrix.postTranslate(0.0f, f11);
         }
         this.E.setLocalMatrix(matrix);
-        Paint paint = this.f18047y;
+        Paint paint = this.f18044y;
         paint.setAlpha((int) (f14 * 255.0f));
         canvas.drawRect(f10, f11, f12, f13, paint);
     }
@@ -416,15 +416,15 @@ public final class p extends View {
     public final void g(Canvas canvas, RectF rectF, float f10, float f11, float f12) {
         canvas.save();
         float height = rectF.height() / 2.0f;
-        boolean z10 = this.f18009g0;
-        RectF rectF2 = this.f18005e1;
+        boolean z10 = this.f18006g0;
+        RectF rectF2 = this.f18002e1;
         int i7 = -16777216;
         Path path = this.L1;
-        Paint paint = this.f18021n;
+        Paint paint = this.f18018n;
         Paint paint2 = this.K1;
         if (z10) {
             paint.clearShadowLayer();
-            if (this.f18001d0 != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated()) {
+            if (this.f17998d0 != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated()) {
                 if (this.R1 == null) {
                     ColorMatrix colorMatrix = new ColorMatrix();
                     colorMatrix.setSaturation(1.7f);
@@ -442,10 +442,10 @@ public final class p extends View {
                 canvas.scale(f13, f13, rectF.centerX(), rectF.centerY());
                 float f14 = 1.0f / this.T1;
                 canvas.scale(f14, f14, rectF2.left, rectF2.centerY());
-                canvas.translate(0.0f, -this.f18016j1);
+                canvas.translate(0.0f, -this.f18013j1);
                 int saveLayer = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), this.R1);
                 canvas.scale(4.0f, 4.0f);
-                canvas.drawRenderNode(a0.d(this.f18001d0));
+                canvas.drawRenderNode(a0.d(this.f17998d0));
                 canvas.restoreToCount(saveLayer);
                 canvas.restore();
             }
@@ -471,7 +471,7 @@ public final class p extends View {
             canvas.drawRoundRect(rectF3, g0.N(0.5f) + height, g0.N(0.5f) + height, paint4);
         } else {
             paint.clearShadowLayer();
-            if (this.f18001d0 != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated()) {
+            if (this.f17998d0 != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated()) {
                 if (this.S1 == null) {
                     ColorMatrix colorMatrix2 = new ColorMatrix();
                     colorMatrix2.setSaturation(1.3f);
@@ -489,10 +489,10 @@ public final class p extends View {
                 canvas.scale(f15, f15, rectF.centerX(), rectF.centerY());
                 float f16 = 1.0f / this.T1;
                 canvas.scale(f16, f16, rectF2.left, rectF2.centerY());
-                canvas.translate(0.0f, -this.f18016j1);
+                canvas.translate(0.0f, -this.f18013j1);
                 int saveLayer2 = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), this.S1);
                 canvas.scale(4.0f, 4.0f);
-                canvas.drawRenderNode(a0.d(this.f18001d0));
+                canvas.drawRenderNode(a0.d(this.f17998d0));
                 canvas.restoreToCount(saveLayer2);
                 canvas.restore();
             }
@@ -513,10 +513,10 @@ public final class p extends View {
             canvas.drawRoundRect(rectF4, g0.N(0.33f) + height, g0.N(0.33f) + height, paint2);
         }
         if (f10 > 0.01f) {
-            if (this.f18009g0) {
+            if (this.f18006g0) {
                 i7 = -1;
             }
-            Paint paint6 = this.f18041w;
+            Paint paint6 = this.f18038w;
             paint6.setColor(i7);
             paint6.setAlpha((int) (20.4f * f10 * f11));
             canvas.drawRoundRect(rectF, height, height, paint6);
@@ -540,7 +540,7 @@ public final class p extends View {
         float f18;
         int i12 = 0;
         while (true) {
-            fArr = this.f18020m1;
+            fArr = this.f18017m1;
             float f19 = 0.0f;
             if (i12 >= fArr.length) {
                 break;
@@ -558,15 +558,15 @@ public final class p extends View {
             fArr[i12] = k(f20, f12, f19, f18);
             i12++;
         }
-        float f21 = this.f18024o1;
-        if (this.K != null && !this.f18051z1) {
+        float f21 = this.f18021o1;
+        if (this.K != null && !this.f18048z1) {
             f13 = 1.0f;
         } else {
             f13 = 0.0f;
         }
-        this.f18024o1 = k(f21, f12, f13, 90.0f);
+        this.f18021o1 = k(f21, f12, f13, 90.0f);
         String str = this.I;
-        TextPaint textPaint = this.f18003e;
+        TextPaint textPaint = this.f18000e;
         float measureText = textPaint.measureText(str);
         float measureText2 = textPaint.measureText(this.J);
         float c11 = c(i7) - g0.L(2.0f);
@@ -584,25 +584,25 @@ public final class p extends View {
         }
         this.O1 = L2;
         float f24 = f10 + f11;
-        RectF rectF = this.f18012h1;
+        RectF rectF = this.f18009h1;
         rectF.set(c11, f10, L2 + c11, f24);
         float f25 = rectF.right;
-        RectF rectF2 = this.f18014i1;
+        RectF rectF2 = this.f18011i1;
         rectF2.set(f25, f10, f22 + f25, f24);
         float f26 = rectF.left;
         float f27 = rectF2.right;
-        RectF rectF3 = this.f18008f1;
+        RectF rectF3 = this.f18005f1;
         rectF3.set(f26, f10, f27, f24);
         RectF rectF4 = this.n1;
         rectF4.set(rectF3.right + g0.L(8.0f), f10, rectF3.right + g0.L(8.0f) + f11, f24);
-        float L3 = (((this.f18024o1 * f11) + g0.L(8.0f)) * this.f18024o1) + rectF3.right + g0.L(8.0f);
-        RectF rectF5 = this.f18010g1;
+        float L3 = (((this.f18021o1 * f11) + g0.L(8.0f)) * this.f18021o1) + rectF3.right + g0.L(8.0f);
+        RectF rectF5 = this.f18007g1;
         rectF5.set(L3, f10, measureText2 + L3 + g0.L(32.0f), f24);
         float f28 = rectF3.left;
         float f29 = rectF5.right;
-        RectF rectF6 = this.f18005e1;
+        RectF rectF6 = this.f18002e1;
         rectF6.set(f28, f10, f29, f24);
-        if (this.f18050z0 > 0.001f) {
+        if (this.f18047z0 > 0.001f) {
             if (z10 && this.S0 == 0) {
                 this.S0 = SystemClock.uptimeMillis();
             }
@@ -615,31 +615,31 @@ public final class p extends View {
                 f14 = 0.001f;
                 b10 = b(((float) (SystemClock.uptimeMillis() - this.S0)) / 460.0f);
             }
-            if (!this.f18025p0) {
+            if (!this.f18022p0) {
                 interpolation = this.T0;
             } else {
-                interpolation = f17990a2.getInterpolation(b10);
+                interpolation = f17987a2.getInterpolation(b10);
             }
             this.T0 = interpolation;
             if (interpolation <= f14) {
                 return;
             }
-            if (this.f18025p0) {
-                f15 = b(this.f18050z0 * 1.6f);
+            if (this.f18022p0) {
+                f15 = b(this.f18047z0 * 1.6f);
             } else {
-                f15 = this.f18050z0;
+                f15 = this.f18047z0;
             }
             float b11 = b(this.T0 * 1.8f) * f15;
-            float T1 = g0.T1(0.6f, 1.0f, this.f17997b1) * b11;
+            float T1 = g0.T1(0.6f, 1.0f, this.f17994b1) * b11;
             canvas.save();
-            canvas.translate(0.0f, this.f18016j1);
-            float T12 = g0.T1(0.6f, 1.0f, this.T0) * this.f18018k1;
+            canvas.translate(0.0f, this.f18013j1);
+            float T12 = g0.T1(0.6f, 1.0f, this.T0) * this.f18015k1;
             canvas.scale(T12, T12, rectF6.left, rectF6.centerY());
             this.T1 = T12;
-            if (this.f18009g0) {
+            if (this.f18006g0) {
                 i11 = -1;
             } else {
-                i11 = this.f18011h0;
+                i11 = this.f18008h0;
             }
             int i14 = i11;
             float max = Math.max(fArr[c10], fArr[2]);
@@ -662,19 +662,19 @@ public final class p extends View {
                 e(canvas2, rectF3, i14, T1);
                 canvas2.restore();
             }
-            if (this.f18024o1 > 0.01f) {
+            if (this.f18021o1 > 0.01f) {
                 canvas2.save();
-                float T13 = g0.T1(0.6f, 1.0f, this.f18024o1) * (1.0f - (fArr[3] * 0.05f));
+                float T13 = g0.T1(0.6f, 1.0f, this.f18021o1) * (1.0f - (fArr[3] * 0.05f));
                 canvas2.scale(T13, T13, rectF4.centerX(), rectF4.centerY());
-                g(canvas2, rectF4, fArr[3], f17 * this.f18024o1, T13);
-                if (this.f18026p1 == null) {
-                    this.f18026p1 = getContext().getResources().getDrawable(2131231001).mutate();
+                g(canvas2, rectF4, fArr[3], f17 * this.f18021o1, T13);
+                if (this.f18023p1 == null) {
+                    this.f18023p1 = getContext().getResources().getDrawable(2131231001).mutate();
                 }
-                this.f18026p1.setColorFilter(new PorterDuffColorFilter(i14, PorterDuff.Mode.SRC_IN));
-                this.f18026p1.setAlpha((int) (255.0f * T1 * this.f18024o1));
+                this.f18023p1.setColorFilter(new PorterDuffColorFilter(i14, PorterDuff.Mode.SRC_IN));
+                this.f18023p1.setAlpha((int) (255.0f * T1 * this.f18021o1));
                 float L4 = g0.L(22.0f) / f16;
-                this.f18026p1.setBounds((int) (rectF4.centerX() - L4), (int) (rectF4.centerY() - L4), (int) (rectF4.centerX() + L4), (int) (rectF4.centerY() + L4));
-                this.f18026p1.draw(canvas2);
+                this.f18023p1.setBounds((int) (rectF4.centerX() - L4), (int) (rectF4.centerY() - L4), (int) (rectF4.centerX() + L4), (int) (rectF4.centerY() + L4));
+                this.f18023p1.draw(canvas2);
                 canvas2.restore();
             }
             canvas2.save();
@@ -688,7 +688,7 @@ public final class p extends View {
     }
 
     public final void i(Canvas canvas, String str, float f10, float f11, int i7, float f12) {
-        TextPaint textPaint = this.f18003e;
+        TextPaint textPaint = this.f18000e;
         textPaint.setColor(i7);
         textPaint.setAlpha((int) (f12 * 255.0f));
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
@@ -719,7 +719,7 @@ public final class p extends View {
         }
         i(canvas, str, rectF.left + g0.L(10.0f) + g0.L(20.0f) + g0.L(6.0f), centerY, i7, g0.T1(0.5f, 1.0f, this.P) * f10);
         canvas.restore();
-        Paint paint = this.f18041w;
+        Paint paint = this.f18038w;
         paint.setColor(i7);
         paint.setAlpha((int) (35.7f * f10));
         canvas.drawRect(L3, centerY - g0.L(9.0f), g0.N(1.0f) + L3, centerY + g0.L(9.0f), paint);
@@ -733,32 +733,32 @@ public final class p extends View {
 
     public final void l(RectF rectF) {
         float f10 = this.T1;
-        RectF rectF2 = this.f18005e1;
+        RectF rectF2 = this.f18002e1;
         float centerY = rectF2.centerY();
         float f11 = rectF2.left;
-        RectF rectF3 = this.f18008f1;
+        RectF rectF3 = this.f18005f1;
         float z10 = e2.z(rectF3.left, f11, f10, f11);
         float z11 = e2.z(rectF3.top, centerY, f10, centerY);
-        float f12 = this.f18016j1;
+        float f12 = this.f18013j1;
         rectF.set(z10, z11 + f12, e2.z(rectF3.right, f11, f10, f11), ((rectF3.bottom - centerY) * f10) + centerY + f12);
     }
 
     public final void m() {
         p pVar;
-        if (!this.f18025p0) {
-            if (getVisibility() != 0 && (pVar = this.f17992a.h) != null) {
+        if (!this.f18022p0) {
+            if (getVisibility() != 0 && (pVar = this.f17989a.h) != null) {
                 g0.E2(pVar);
                 Log.d("VoiceLive", "overlay removed");
                 return;
             }
             return;
         }
-        this.f18025p0 = false;
-        this.f18027q0 = false;
-        this.f18033s0 = SystemClock.uptimeMillis();
-        this.f18037u0 = this.f18045x0;
-        this.f18039v0 = this.f18048y0;
-        this.f18042w0 = this.f18050z0;
+        this.f18022p0 = false;
+        this.f18024q0 = false;
+        this.f18030s0 = SystemClock.uptimeMillis();
+        this.f18034u0 = this.f18042x0;
+        this.f18036v0 = this.f18045y0;
+        this.f18039w0 = this.f18047z0;
         this.l1 = -1;
         invalidate();
     }
@@ -766,21 +766,21 @@ public final class p extends View {
     public final int n(float f10, float f11) {
         float f12;
         float f13 = 0.7f;
-        if (this.f18050z0 >= 0.7f && this.T0 >= 0.7f) {
+        if (this.f18047z0 >= 0.7f && this.T0 >= 0.7f) {
             float L = g0.L(4.0f);
-            float f14 = f11 - this.f18016j1;
+            float f14 = f11 - this.f18013j1;
             int i7 = 0;
-            RectF[] rectFArr = {this.f18012h1, this.f18010g1, this.f18014i1, this.n1};
+            RectF[] rectFArr = {this.f18009h1, this.f18007g1, this.f18011i1, this.n1};
             while (i7 < 4) {
-                if (i7 != 3 || this.f18024o1 >= f13) {
+                if (i7 != 3 || this.f18021o1 >= f13) {
                     RectF rectF = rectFArr[i7];
-                    RectF rectF2 = this.f18005e1;
+                    RectF rectF2 = this.f18002e1;
                     float f15 = rectF2.left;
-                    float f16 = this.f18018k1;
+                    float f16 = this.f18015k1;
                     float f17 = ((rectF.left - f15) * f16) + f15;
                     float z10 = e2.z(rectF.right, f15, f16, f15);
-                    float centerY = ((rectF.top - rectF2.centerY()) * this.f18018k1) + rectF2.centerY();
-                    float centerY2 = ((rectF.bottom - rectF2.centerY()) * this.f18018k1) + rectF2.centerY();
+                    float centerY = ((rectF.top - rectF2.centerY()) * this.f18015k1) + rectF2.centerY();
+                    float centerY2 = ((rectF.bottom - rectF2.centerY()) * this.f18015k1) + rectF2.centerY();
                     float f18 = 0.0f;
                     if (i7 == 2) {
                         f12 = 0.0f;
@@ -806,7 +806,7 @@ public final class p extends View {
     }
 
     public final int o(float f10, float f11) {
-        if (this.f18048y0 >= 0.7f) {
+        if (this.f18045y0 >= 0.7f) {
             RectF rectF = this.R;
             if (!rectF.isEmpty() && !this.W) {
                 float L = g0.L(4.0f);
@@ -825,10 +825,10 @@ public final class p extends View {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         s();
-        VelocityTracker velocityTracker = this.f18040v1;
+        VelocityTracker velocityTracker = this.f18037v1;
         if (velocityTracker != null) {
             velocityTracker.recycle();
-            this.f18040v1 = null;
+            this.f18037v1 = null;
         }
     }
 
@@ -842,14 +842,14 @@ public final class p extends View {
         String str;
         super.onSizeChanged(i7, i10, i11, i12);
         int c10 = (int) ((i7 - (c(i7) * 2.0f)) - g0.L(28.0f));
-        if (c10 != this.f18022n0 && c10 > 0) {
-            this.f18022n0 = c10;
+        if (c10 != this.f18019n0 && c10 > 0) {
+            this.f18019n0 = c10;
             this.O0 = 0.0f;
             this.N0 = 0.0f;
             this.m0 = a(this.M, this.d);
             q();
         }
-        this.f18000c1 = -1;
+        this.f17997c1 = -1;
         if (getParent() instanceof View) {
             View view = (View) getParent();
             StringBuilder sb2 = new StringBuilder("overlay bounds top=");
@@ -871,7 +871,7 @@ public final class p extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         VelocityTracker velocityTracker;
         boolean z10 = false;
-        if (!this.f18025p0) {
+        if (!this.f18022p0) {
             return false;
         }
         float x10 = motionEvent.getX();
@@ -885,32 +885,32 @@ public final class p extends View {
                         return true;
                     }
                     this.l1 = -1;
-                    this.f18038u1 = false;
-                    this.f18036t1 = false;
+                    this.f18035u1 = false;
+                    this.f18033t1 = false;
                     invalidate();
                     return true;
                 }
                 int i10 = this.l1;
-                int i11 = this.f18043w1;
+                int i11 = this.f18040w1;
                 if (i10 >= 0) {
                     int o4 = o(x10, y10);
                     if (o4 < 0) {
                         o4 = n(x10, y10);
                     }
-                    if (o4 != this.l1 && Math.hypot(x10 - this.f18028q1, y10 - this.f18031r1) > i11) {
+                    if (o4 != this.l1 && Math.hypot(x10 - this.f18025q1, y10 - this.f18028r1) > i11) {
                         this.l1 = -1;
                     }
                 }
-                if (this.f18036t1) {
-                    this.f18040v1.addMovement(motionEvent);
-                    if (!this.f18038u1 && Math.abs(y10 - this.f18031r1) > i11) {
-                        this.f18038u1 = true;
+                if (this.f18033t1) {
+                    this.f18037v1.addMovement(motionEvent);
+                    if (!this.f18035u1 && Math.abs(y10 - this.f18028r1) > i11) {
+                        this.f18035u1 = true;
                         this.U0 = false;
-                        this.f18034s1 = y10;
+                        this.f18031s1 = y10;
                     }
-                    if (this.f18038u1) {
-                        this.C0 -= y10 - this.f18034s1;
-                        this.f18034s1 = y10;
+                    if (this.f18035u1) {
+                        this.C0 -= y10 - this.f18031s1;
+                        this.f18031s1 = y10;
                     }
                 }
                 invalidate();
@@ -931,21 +931,21 @@ public final class p extends View {
                     post(new w0(this, i12, 15));
                 }
             }
-            if (this.f18036t1 && this.f18038u1 && (velocityTracker = this.f18040v1) != null) {
+            if (this.f18033t1 && this.f18035u1 && (velocityTracker = this.f18037v1) != null) {
                 velocityTracker.addMovement(motionEvent);
-                this.f18040v1.computeCurrentVelocity(1);
-                this.D0 = -this.f18040v1.getYVelocity();
+                this.f18037v1.computeCurrentVelocity(1);
+                this.D0 = -this.f18037v1.getYVelocity();
             }
-            this.f18038u1 = false;
-            this.f18036t1 = false;
+            this.f18035u1 = false;
+            this.f18033t1 = false;
             invalidate();
             return true;
         }
-        this.f18028q1 = x10;
-        this.f18034s1 = y10;
-        this.f18031r1 = y10;
-        this.f18038u1 = false;
-        boolean isEmpty = this.f18017k0.trim().isEmpty();
+        this.f18025q1 = x10;
+        this.f18031s1 = y10;
+        this.f18028r1 = y10;
+        this.f18035u1 = false;
+        boolean isEmpty = this.f18014k0.trim().isEmpty();
         int o11 = o(x10, y10);
         this.l1 = o11;
         if (o11 < 0) {
@@ -954,16 +954,16 @@ public final class p extends View {
             }
             this.l1 = i7;
         }
-        if (this.l1 < 0 && this.f18002d1.contains(x10, y10)) {
+        if (this.l1 < 0 && this.f17999d1.contains(x10, y10)) {
             z10 = true;
         }
-        this.f18036t1 = z10;
+        this.f18033t1 = z10;
         if (z10) {
-            if (this.f18040v1 == null) {
-                this.f18040v1 = VelocityTracker.obtain();
+            if (this.f18037v1 == null) {
+                this.f18037v1 = VelocityTracker.obtain();
             }
-            this.f18040v1.clear();
-            this.f18040v1.addMovement(motionEvent);
+            this.f18037v1.clear();
+            this.f18037v1.addMovement(motionEvent);
             this.D0 = 0.0f;
         }
         invalidate();
@@ -971,31 +971,31 @@ public final class p extends View {
     }
 
     public final void q() {
-        if (this.f18022n0 <= 0) {
+        if (this.f18019n0 <= 0) {
             return;
         }
-        if (this.f18017k0.isEmpty()) {
-            this.f18019l0 = null;
+        if (this.f18014k0.isEmpty()) {
+            this.f18016l0 = null;
             return;
         }
-        SpannableString spannableString = new SpannableString(this.f18017k0);
-        ArrayList arrayList = this.f18023o0;
+        SpannableString spannableString = new SpannableString(this.f18014k0);
+        ArrayList arrayList = this.f18020o0;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             o oVar = (o) obj;
-            int i10 = oVar.f17988b;
-            if (i10 > oVar.f17987a && i10 <= spannableString.length()) {
-                spannableString.setSpan(new g2(oVar, 2), oVar.f17987a, oVar.f17988b, 65569);
+            int i10 = oVar.f17985b;
+            if (i10 > oVar.f17984a && i10 <= spannableString.length()) {
+                spannableString.setSpan(new g2(oVar, 2), oVar.f17984a, oVar.f17985b, 65569);
             }
         }
-        int i11 = this.f18049y1;
+        int i11 = this.f18046y1;
         if (i11 >= 0 && i11 < spannableString.length()) {
-            spannableString.setSpan(new b(1), this.f18049y1, spannableString.length(), 33);
+            spannableString.setSpan(new b(1), this.f18046y1, spannableString.length(), 33);
         }
-        this.f18019l0 = a(spannableString, this.f17998c);
+        this.f18016l0 = a(spannableString, this.f17995c);
     }
 
     public final void r(String str) {
@@ -1003,7 +1003,7 @@ public final class p extends View {
             return;
         }
         long uptimeMillis = SystemClock.uptimeMillis();
-        StaticLayout staticLayout = this.f18019l0;
+        StaticLayout staticLayout = this.f18016l0;
         this.D1 = staticLayout;
         this.C1 = uptimeMillis;
         int i7 = 1;
@@ -1043,7 +1043,7 @@ public final class p extends View {
                     float h = c0.h(random, f13, lineLeft);
                     float nextFloat = (random.nextFloat() * 0.6f) + 0.2f;
                     int i13 = i7;
-                    float c10 = e2.c(h, Math.max(i7, this.f18022n0), 520.0f, (float) uptimeMillis);
+                    float c10 = e2.c(h, Math.max(i7, this.f18019n0), 520.0f, (float) uptimeMillis);
                     long j3 = uptimeMillis;
                     float f16 = (-((random.nextFloat() * g0.L(34.0f)) + g0.L(10.0f))) / 1000.0f;
                     float h7 = c0.h(random, 380.0f, 480.0f);
@@ -1069,21 +1069,21 @@ public final class p extends View {
             }
         }
         long j10 = uptimeMillis;
-        this.f18017k0 = "";
-        ArrayList arrayList = this.f18023o0;
+        this.f18014k0 = "";
+        ArrayList arrayList = this.f18020o0;
         arrayList.clear();
         this.A1 = i7;
         setText(str);
         this.A1 = false;
-        if (this.f18019l0 != null) {
+        if (this.f18016l0 != null) {
             int size = arrayList.size();
             int i14 = 0;
             while (i14 < size) {
                 Object obj = arrayList.get(i14);
                 i14++;
                 o oVar = (o) obj;
-                if (oVar.f17987a < this.f18017k0.length()) {
-                    oVar.f17989c = j10 + (b((this.f18019l0.getPrimaryHorizontal(Math.max(oVar.f17987a, Math.min(oVar.f17988b, this.f18017k0.length()) - 1)) + g0.L(60.0f)) / f3.b(120.0f, this.f18022n0, 1)) * 520.0f) + 60;
+                if (oVar.f17984a < this.f18014k0.length()) {
+                    oVar.f17986c = j10 + (b((this.f18016l0.getPrimaryHorizontal(Math.max(oVar.f17984a, Math.min(oVar.f17985b, this.f18014k0.length()) - 1)) + g0.L(60.0f)) / f3.b(120.0f, this.f18019n0, 1)) * 520.0f) + 60;
                     oVar.d = 0.0f;
                 }
             }
@@ -1093,25 +1093,25 @@ public final class p extends View {
 
     public final void s() {
         Object obj;
-        if (Build.VERSION.SDK_INT >= 29 && (obj = this.f18001d0) != null) {
+        if (Build.VERSION.SDK_INT >= 29 && (obj = this.f17998d0) != null) {
             a0.d(obj).discardDisplayList();
         }
-        this.f18001d0 = null;
-        this.f18004e0 = -1.0f;
+        this.f17998d0 = null;
+        this.f18001e0 = -1.0f;
     }
 
     public void setAccent(int i7) {
-        this.f18013i0 = i7 | (-16777216);
+        this.f18010i0 = i7 | (-16777216);
     }
 
     public void setBusy(boolean z10) {
-        if (this.f18051z1 == z10) {
+        if (this.f18048z1 == z10) {
             return;
         }
-        this.f18051z1 = z10;
+        this.f18048z1 = z10;
         this.B1 = SystemClock.uptimeMillis();
         if (!z10) {
-            this.f17998c.setShader(null);
+            this.f17995c.setShader(null);
         }
         invalidate();
     }
@@ -1126,11 +1126,11 @@ public final class p extends View {
         if (!z10) {
             this.Q1 = 0.0f;
             if (this.P0) {
-                this.f18046x1 = null;
+                this.f18043x1 = null;
             }
-            String str = this.f18046x1;
+            String str = this.f18043x1;
             if (str != null) {
-                this.f18046x1 = null;
+                this.f18043x1 = null;
                 setText(str);
             }
         }
@@ -1146,7 +1146,7 @@ public final class p extends View {
             charSequence2 = charSequence.toString();
         }
         this.O = charSequence2;
-        if (this.f18048y0 < 0.01f) {
+        if (this.f18045y0 < 0.01f) {
             if (charSequence2 != null) {
                 f10 = 1.0f;
             } else {
@@ -1180,7 +1180,7 @@ public final class p extends View {
             return;
         }
         this.M = str;
-        if (this.f18022n0 > 0) {
+        if (this.f18019n0 > 0) {
             this.m0 = a(str, this.d);
         }
         invalidate();

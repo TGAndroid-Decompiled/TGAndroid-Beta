@@ -10,26 +10,26 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Cells.d2;
-import org.telegram.ui.Cells.x3;
-import org.telegram.ui.Cells.y6;
-import org.telegram.ui.Cells.z8;
+import org.telegram.ui.Cells.a9;
+import org.telegram.ui.Cells.e2;
+import org.telegram.ui.Cells.y3;
+import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.z41;
 import org.telegram.ui.Wallet.n6;
 import org.telegram.ui.Wallet.na;
 import org.telegram.ui.g00;
 public final class y implements y10 {
-    public final int f5842a;
+    public final int f5839a;
 
     public y(int i7) {
-        this.f5842a = i7;
+        this.f5839a = i7;
     }
 
     @Override
     public final Object a(Object obj) {
         boolean z10 = true;
-        switch (this.f5842a) {
+        switch (this.f5839a) {
             case 0:
                 String str = (String) obj;
                 if (TextUtils.isEmpty(str) || (!str.startsWith("tg:") && !vf.c.g(Uri.parse(str), false, null))) {
@@ -63,7 +63,7 @@ public final class y implements y10 {
                 return gd.G(((Integer) obj).intValue(), "Minutes", new Object[0]);
             case 7:
                 View view = (View) obj;
-                if ((view instanceof z8) || (view instanceof y6) || (view instanceof g00) || (view instanceof x3) || (view instanceof d2) || Objects.equals(view.getTag(), -33024)) {
+                if ((view instanceof a9) || (view instanceof z6) || (view instanceof g00) || (view instanceof y3) || (view instanceof e2) || Objects.equals(view.getTag(), -33024)) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);

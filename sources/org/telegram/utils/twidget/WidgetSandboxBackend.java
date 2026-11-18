@@ -18,9 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
-import org.telegram.messenger.a8;
 import org.telegram.messenger.gd;
-import org.telegram.messenger.s2;
 import org.telegram.ui.ActionBar.h2;
 import org.telegram.ui.Components.az;
 import org.telegram.ui.Components.lc;
@@ -244,7 +242,7 @@ public final class WidgetSandboxBackend implements g1, h {
                             System.nanoTime();
                             p1Var.getClass();
                             p1Var.S = null;
-                            this.owner.c(d0Var, layers, d2, i7, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f54790b, this.text);
+                            this.owner.c(d0Var, layers, d2, i7, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f54791b, this.text);
                             return;
                         } catch (Throwable th2) {
                             d0Var.d();
@@ -341,18 +339,18 @@ public final class WidgetSandboxBackend implements g1, h {
             }
             synchronized (iVar) {
                 byte[] bArr = new byte[Math.max(i12, 0) * Math.max(i13, 0) * 4];
-                if (iVar.f54773o == null) {
+                if (iVar.f54774o == null) {
                     return bArr;
                 }
                 int max = Math.max(0, i14);
                 int max2 = Math.max(0, i11);
-                int min = Math.min(iVar.f54773o.getWidth(), i14 + i12);
-                int min2 = Math.min(iVar.f54773o.getHeight(), i13 + i11);
+                int min = Math.min(iVar.f54774o.getWidth(), i14 + i12);
+                int min2 = Math.min(iVar.f54774o.getHeight(), i13 + i11);
                 if (min > max && min2 > max2) {
                     int i15 = min - max;
                     int i16 = min2 - max2;
                     int[] iArr = new int[i15 * i16];
-                    iVar.f54773o.getPixels(iArr, 0, i15, max, max2, i15, i16);
+                    iVar.f54774o.getPixels(iArr, 0, i15, max, max2, i15, i16);
                     int i17 = max2;
                     while (i17 < min2) {
                         int i18 = max;
@@ -532,11 +530,15 @@ public final class WidgetSandboxBackend implements g1, h {
     }
 
     public void signal(final int i7, byte[] bArr) {
+        boolean optBoolean;
         JSONObject jSONObject;
         String str;
         boolean d;
         boolean z10;
         boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
         boolean isEmpty;
         final String text = text(bArr);
         if (jsonSignal(i7)) {
@@ -563,18 +565,17 @@ public final class WidgetSandboxBackend implements g1, h {
                             }
                         }
                         if (isEmpty) {
-                            p1Var.f54880a.post(new j1(p1Var, 6));
+                            p1Var.f54881a.post(new j1(p1Var, 6));
                         }
                     }
                 }
             } else if (i7 == 10) {
                 p1Var.getClass();
             } else if (!p1Var.A) {
-                boolean z12 = false;
                 if (i7 != 12 && i7 != 19) {
                     if (i7 != 13 && i7 != 14) {
                         if (i7 == 11) {
-                            p1Var.f54880a.post(new g0(5, p1Var, text));
+                            p1Var.f54881a.post(new g0(5, p1Var, text));
                             return;
                         } else if (i7 == 18) {
                             JSONObject jSONObject3 = new JSONObject(text);
@@ -584,18 +585,12 @@ public final class WidgetSandboxBackend implements g1, h {
                             if (i7 != 16 && i7 != 17 && i7 != 9) {
                                 if (i7 == 3) {
                                     JSONObject jSONObject4 = new JSONObject(text);
-                                    p1Var.f54880a.post(new az(p1Var, jSONObject4.optBoolean("x"), jSONObject4.optBoolean("y"), jSONObject4.optBoolean("hold"), 2));
+                                    p1Var.f54881a.post(new az(p1Var, jSONObject4.optBoolean("x"), jSONObject4.optBoolean("y"), jSONObject4.optBoolean("hold"), 2));
                                     return;
                                 } else if (i7 == 4) {
                                     JSONObject jSONObject5 = new JSONObject(text);
                                     if (jSONObject5.optBoolean("loaded")) {
                                         p1Var.B = true;
-                                    }
-                                    if (!p1Var.f54888e0 && jSONObject5.has("engine")) {
-                                        p1Var.f54888e0 = true;
-                                        if (s2.f26723a) {
-                                            a8.b("widget engine: " + jSONObject5.optString("engine") + ", " + jSONObject5.optString("boot"));
-                                        }
                                     }
                                     p1Var.G = "bottom".equals(jSONObject5.optString("resizeAnchor"));
                                     if (jSONObject5.optBoolean("rendered") && !p1Var.E) {
@@ -616,7 +611,7 @@ public final class WidgetSandboxBackend implements g1, h {
                                         p1Var.P = jSONObject5;
                                         if (!p1Var.Q) {
                                             p1Var.Q = true;
-                                            p1Var.f54880a.post(p1Var.V);
+                                            p1Var.f54881a.post(p1Var.V);
                                         }
                                         return;
                                     }
@@ -625,9 +620,9 @@ public final class WidgetSandboxBackend implements g1, h {
                                     String optString2 = jSONObject6.optString("kind");
                                     if (!"openLink".equals(optString2) && !"openTelegramLink".equals(optString2)) {
                                         if ("haptic".equals(optString2)) {
-                                            z10 = p1Var.d.a(p1Var.L);
+                                            z13 = p1Var.d.a(p1Var.L);
                                         } else {
-                                            z10 = "ready".equals(optString2);
+                                            z13 = "ready".equals(optString2);
                                         }
                                     } else {
                                         String optString3 = jSONObject6.optString("url");
@@ -650,7 +645,11 @@ public final class WidgetSandboxBackend implements g1, h {
                                                     loop1: while (true) {
                                                         if (i11 < length) {
                                                             String str2 = split[i11];
-                                                            if (str2.isEmpty() || str2.length() > 63 || str2.charAt(0) == '-' || str2.charAt(str2.length() - 1) == '-') {
+                                                            if (str2.isEmpty() || str2.length() > 63) {
+                                                                break;
+                                                            }
+                                                            z11 = false;
+                                                            if (str2.charAt(0) == '-' || str2.charAt(str2.length() - 1) == '-') {
                                                                 break;
                                                             }
                                                             for (int i12 = 0; i12 < str2.length(); i12++) {
@@ -661,31 +660,37 @@ public final class WidgetSandboxBackend implements g1, h {
                                                             }
                                                             i11++;
                                                         } else {
-                                                            String[] strArr = e0.f54713m;
-                                                            boolean z13 = false;
+                                                            z11 = false;
+                                                            String[] strArr = e0.f54714m;
+                                                            boolean z15 = false;
                                                             for (int i13 = 0; i13 < 3; i13++) {
                                                                 String str3 = strArr[i13];
                                                                 if (!substring.equals(str3)) {
                                                                     if (!substring.endsWith("." + str3)) {
-                                                                        z11 = false;
-                                                                        z13 |= z11;
+                                                                        z14 = false;
+                                                                        z15 |= z14;
                                                                     }
                                                                 }
-                                                                z11 = true;
-                                                                z13 |= z11;
+                                                                z14 = true;
+                                                                z15 |= z14;
                                                             }
-                                                            if (z13 == equals && p1Var.d.c(p1Var.L)) {
+                                                            if (z15 == equals && p1Var.d.c(p1Var.L)) {
                                                                 z12 = true;
                                                             }
                                                         }
                                                     }
                                                 }
+                                                z11 = false;
+                                                z12 = z11;
+                                                z13 = z12;
                                             }
                                         }
-                                        z10 = z12;
+                                        z11 = false;
+                                        z12 = z11;
+                                        z13 = z12;
                                     }
-                                    if (z10) {
-                                        p1Var.f54880a.post(new g0(7, p1Var, jSONObject6));
+                                    if (z13) {
+                                        p1Var.f54881a.post(new g0(7, p1Var, jSONObject6));
                                         return;
                                     }
                                     return;
@@ -698,13 +703,15 @@ public final class WidgetSandboxBackend implements g1, h {
                     }
                     if (i7 == 13) {
                         if (text != null && text.length() <= 256) {
-                            z12 = true;
+                            z10 = true;
+                        } else {
+                            z10 = false;
                         }
-                        if (!z12 || !p1Var.d.c(p1Var.L)) {
+                        if (!z10 || !p1Var.d.c(p1Var.L)) {
                             return;
                         }
                     }
-                    p1Var.f54880a.post(new Runnable() {
+                    p1Var.f54881a.post(new Runnable() {
                         @Override
                         public final void run() {
                             d1 d1Var;
@@ -714,7 +721,7 @@ public final class WidgetSandboxBackend implements g1, h {
                             String str4 = text;
                             if (!p1Var2.A && (d1Var = p1Var2.R) != null) {
                                 if (i14 == 13) {
-                                    if (d1Var.f54693e != null && !TextUtils.isEmpty(str4)) {
+                                    if (d1Var.f54694e != null && !TextUtils.isEmpty(str4)) {
                                         org.telegram.messenger.g0.g(str4);
                                         if (org.telegram.messenger.g0.G3()) {
                                             h2Var = LaunchActivity.T();
@@ -735,7 +742,7 @@ public final class WidgetSandboxBackend implements g1, h {
                                 boolean equals2 = "1".equals(str4);
                                 if (d1Var.A != equals2) {
                                     d1Var.A = equals2;
-                                    sa.d dVar = d1Var.f54693e;
+                                    sa.d dVar = d1Var.f54694e;
                                     if (dVar != null) {
                                         dVar.getClass();
                                         n0.E();
@@ -751,28 +758,28 @@ public final class WidgetSandboxBackend implements g1, h {
                 if (i7 == 19) {
                     str = null;
                     jSONObject = jSONObject7.getJSONObject("call");
+                    optBoolean = false;
                 } else {
                     String string = jSONObject7.getString("data");
-                    z12 = jSONObject7.optBoolean("wallet");
+                    optBoolean = jSONObject7.optBoolean("wallet");
                     jSONObject = null;
                     str = string;
                 }
-                boolean z14 = z12;
                 e0 e0Var = p1Var.d;
                 if (i7 == 19) {
                     d = e0Var.e(jSONObject.toString(), p1Var.L);
                 } else {
-                    d = e0Var.d(str, z14, p1Var.L);
+                    d = e0Var.d(str, optBoolean, p1Var.L);
                 }
                 if (!d) {
                     long j10 = p1Var.v;
                     if (j10 != 0) {
-                        p1Var.f54884c.a(j10, j3, 3, null);
+                        p1Var.f54885c.a(j10, j3, 3, null);
                         return;
                     }
                     return;
                 }
-                p1Var.f54880a.post(new org.telegram.messenger.voip.p(p1Var, i7, j3, jSONObject, str, z14));
+                p1Var.f54881a.post(new org.telegram.messenger.voip.p(p1Var, i7, j3, jSONObject, str, optBoolean));
             }
         } catch (Exception unused) {
         }
@@ -792,7 +799,7 @@ public final class WidgetSandboxBackend implements g1, h {
                 atomicBoolean.set(z10);
                 p1Var.f54905x = f10;
                 if (p1Var.f54906y.compareAndSet(false, true)) {
-                    p1Var.f54880a.post(new j1(p1Var, 5));
+                    p1Var.f54881a.post(new j1(p1Var, 5));
                 }
             }
             if ((i7 & 4) != 0) {
@@ -802,12 +809,12 @@ public final class WidgetSandboxBackend implements g1, h {
                 p1Var.f54896n.set(true);
             }
             if ((i7 & 6) != 0) {
-                p1Var.f54880a.removeCallbacks(p1Var.W);
-                p1Var.f54880a.post(p1Var.W);
+                p1Var.f54881a.removeCallbacks(p1Var.W);
+                p1Var.f54881a.post(p1Var.W);
             }
             if ((i7 & 1) != 0) {
                 p1Var.f54898p.set(true);
-                p1Var.f54880a.post(p1Var.f54886d0);
+                p1Var.f54881a.post(p1Var.f54887d0);
             }
         }
     }

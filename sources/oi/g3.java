@@ -1,8 +1,8 @@
 package oi;
 
 import java.util.ArrayList;
-import org.telegram.ui.Cells.i9;
-public final class g3 extends i9 {
+import org.telegram.ui.Cells.j9;
+public final class g3 extends j9 {
     public final q3 F0;
     public final s3 G0;
 
@@ -14,7 +14,7 @@ public final class g3 extends i9 {
     @Override
     public final boolean C() {
         s3 s3Var = this.G0;
-        CharSequence r10 = s3Var.f22349v3.r();
+        CharSequence r10 = s3Var.f22346v3.r();
         if (r10 != null && r10.length() != 0) {
             s3Var.f5(r10);
             return true;
@@ -25,7 +25,7 @@ public final class g3 extends i9 {
     @Override
     public final void D() {
         s3 s3Var = this.G0;
-        CharSequence r10 = s3Var.f22349v3.r();
+        CharSequence r10 = s3Var.f22346v3.r();
         if (r10 != null && r10.length() > 0) {
             s3Var.f5(r10);
         }
@@ -66,23 +66,23 @@ public final class g3 extends i9 {
         String str;
         int length;
         s3 s3Var = this.G0;
-        g3 g3Var = s3Var.f22349v3;
-        ArrayList arrayList = s3Var.f22345t3;
-        if (!arrayList.isEmpty() && g3Var.x() && g3Var.f30828p0 == 0 && g3Var.f30829q0 == 0 && g3Var.f30830r0 <= 0 && g3Var.f30831s0 == (size = arrayList.size() - 1)) {
+        g3 g3Var = s3Var.f22346v3;
+        ArrayList arrayList = s3Var.f22342t3;
+        if (!arrayList.isEmpty() && g3Var.x() && g3Var.f30892p0 == 0 && g3Var.f30893q0 == 0 && g3Var.f30894r0 <= 0 && g3Var.f30895s0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (z5.p(aVar.f21910b)) {
-                str = b6.l(z5.j(aVar.f21910b));
+            if (z5.p(aVar.f21907b)) {
+                str = b6.l(z5.j(aVar.f21907b));
             } else {
                 str = "";
             }
             int i7 = !str.isEmpty();
-            if (g3Var.f30832t0 == i7) {
+            if (g3Var.f30896t0 == i7) {
                 if (i7 == 1) {
                     length = str.length();
                 } else {
-                    length = z5.z(aVar.f21910b).length();
+                    length = z5.z(aVar.f21907b).length();
                 }
-                if (g3Var.f30833u0 >= length) {
+                if (g3Var.f30897u0 >= length) {
                     z10 = true;
                     return !z10;
                 }

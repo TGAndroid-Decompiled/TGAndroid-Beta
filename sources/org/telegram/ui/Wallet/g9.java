@@ -34,10 +34,10 @@ public final class g9 extends FrameLayout {
         frameLayout.setPivotX(0.0f);
         frameLayout.setPivotY(0.0f);
         addView(frameLayout, c8.ma.c(-1.0f, -1));
-        int i7 = org.telegram.ui.ActionBar.n6.f29339a7;
+        int i7 = org.telegram.ui.ActionBar.n6.f29337a7;
         int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
         int w03 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
-        int i10 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.Cells.y b02 = org.telegram.ui.ActionBar.n6.b0(w02, org.telegram.ui.ActionBar.n6.w(w03, org.telegram.ui.ActionBar.n6.w0(i10, i6Var)), org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f));
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
         org.telegram.ui.ActionBar.q6 p10 = org.telegram.ui.ActionBar.u6.p(i7, i10);
@@ -78,10 +78,10 @@ public final class g9 extends FrameLayout {
         if (user2 == null) {
             j3 = 0;
         } else {
-            j3 = user2.f28554id;
+            j3 = user2.f28552id;
         }
         if (user != null) {
-            j10 = user.f28554id;
+            j10 = user.f28552id;
         }
         if (j3 != j10) {
             z10 = true;

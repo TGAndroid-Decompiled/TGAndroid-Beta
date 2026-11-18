@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 import m9.y;
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 import org.xmlpull.v1.XmlSerializer;
 import v4.f1;
 import v4.n0;
@@ -86,8 +86,8 @@ public final class l implements Runnable {
                     iVar.c();
                     iVar.f55529c.set(false);
                 }
-                w7.n.f59621a.clear();
-                w7.r.f59625a.clear();
+                w7.n.f59622a.clear();
+                w7.r.f59626a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 3:
@@ -127,19 +127,19 @@ public final class l implements Runnable {
                 return;
             case 5:
                 v vVar = (v) this.f55536b;
-                f1 f1Var = vVar.f59235e;
+                f1 f1Var = vVar.f59236e;
                 z zVar = (z) this.f55537c;
                 RecyclerView recyclerView = zVar.I;
-                if (recyclerView != null && recyclerView.H && !vVar.f59240w && f1Var.b() != -1) {
+                if (recyclerView != null && recyclerView.H && !vVar.f59241w && f1Var.b() != -1) {
                     n0 itemAnimator = zVar.I.getItemAnimator();
                     if (itemAnimator == null || !itemAnimator.k()) {
                         ArrayList arrayList2 = zVar.G;
                         int size2 = arrayList2.size();
                         for (int i10 = 0; i10 < size2; i10++) {
-                            if (((v) arrayList2.get(i10)).f59241x) {
+                            if (((v) arrayList2.get(i10)).f59242x) {
                             }
                         }
-                        zVar.f59269y.q(f1Var);
+                        zVar.f59270y.q(f1Var);
                         return;
                     }
                     zVar.I.post(this);
@@ -151,8 +151,8 @@ public final class l implements Runnable {
                     a();
                     return;
                 } catch (Error e12) {
-                    synchronized (((v9.i) this.f55537c).f59327b) {
-                        ((v9.i) this.f55537c).f59328c = 1;
+                    synchronized (((v9.i) this.f55537c).f59328b) {
+                        ((v9.i) this.f55537c).f59329c = 1;
                         throw e12;
                     }
                 }
@@ -160,12 +160,12 @@ public final class l implements Runnable {
                 ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f55537c;
                 ArrayList arrayList3 = (ArrayList) this.f55536b;
                 shortcutInfoCompatSaverImpl.e(arrayList3);
-                File file = shortcutInfoCompatSaverImpl.f2830f;
-                md0 md0Var = new md0(file);
-                File file2 = (File) md0Var.f49839c;
+                File file = shortcutInfoCompatSaverImpl.f2831f;
+                nd0 nd0Var = new nd0(file);
+                File file2 = (File) nd0Var.f50149c;
                 FileOutputStream fileOutputStream = null;
                 try {
-                    J = md0Var.J();
+                    J = nd0Var.J();
                 } catch (Exception e13) {
                     exc = e13;
                 }
@@ -200,7 +200,7 @@ public final class l implements Runnable {
                     } catch (IOException e14) {
                         Log.e("AtomicFile", "Failed to close file output stream", e14);
                     }
-                    md0.G(file2, file);
+                    nd0.G(file2, file);
                     return;
                 } catch (Exception e15) {
                     exc = e15;
@@ -235,11 +235,11 @@ public final class l implements Runnable {
                 }
             case 9:
                 ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f55537c;
-                a0.f fVar = shortcutInfoCompatSaverImpl2.f2827b;
+                a0.f fVar = shortcutInfoCompatSaverImpl2.f2828b;
                 try {
                     ShortcutInfoCompatSaverImpl.f((File) this.f55536b);
-                    ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f2831g);
-                    fVar.putAll(x4.d.c(shortcutInfoCompatSaverImpl2.f2830f, shortcutInfoCompatSaverImpl2.f2826a));
+                    ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f2832g);
+                    fVar.putAll(x4.d.c(shortcutInfoCompatSaverImpl2.f2831f, shortcutInfoCompatSaverImpl2.f2827a));
                     shortcutInfoCompatSaverImpl2.e(new ArrayList(fVar.values()));
                     return;
                 } catch (Exception e18) {
@@ -248,8 +248,8 @@ public final class l implements Runnable {
                 }
             case 10:
                 ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f55537c;
-                shortcutInfoCompatSaverImpl3.f2827b.clear();
-                a0.f fVar2 = shortcutInfoCompatSaverImpl3.f2828c;
+                shortcutInfoCompatSaverImpl3.f2828b.clear();
+                a0.f fVar2 = shortcutInfoCompatSaverImpl3.f2829c;
                 Iterator it = ((a0.e) fVar2.values()).iterator();
                 while (it.hasNext()) {
                     ((y) it.next()).cancel(false);
@@ -258,7 +258,7 @@ public final class l implements Runnable {
                 shortcutInfoCompatSaverImpl3.h((c0.m) this.f55536b);
                 return;
             case 11:
-                if (!(((c0.m) this.f55536b).f4340a instanceof c0.a)) {
+                if (!(((c0.m) this.f55536b).f4337a instanceof c0.a)) {
                     try {
                         ((Runnable) this.f55537c).run();
                         ((c0.m) this.f55536b).k(null);
@@ -284,7 +284,7 @@ public final class l implements Runnable {
                     return "SequentialExecutorWorker{running=" + runnable + "}";
                 }
                 StringBuilder sb2 = new StringBuilder("SequentialExecutorWorker{state=");
-                int i7 = ((v9.i) this.f55537c).f59328c;
+                int i7 = ((v9.i) this.f55537c).f59329c;
                 if (i7 != 1) {
                     if (i7 != 2) {
                         if (i7 != 3) {

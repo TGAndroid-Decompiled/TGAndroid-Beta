@@ -5,10 +5,10 @@ import android.widget.ScrollView;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class go implements org.telegram.ui.Components.oj0 {
-    public final io f48145a;
+    public final io f48073a;
 
     public go(io ioVar) {
-        this.f48145a = ioVar;
+        this.f48073a = ioVar;
     }
 
     @Override
@@ -17,15 +17,15 @@ public final class go implements org.telegram.ui.Components.oj0 {
         int i10;
         int i11;
         int i12;
-        io ioVar = this.f48145a;
+        io ioVar = this.f48073a;
         jo joVar = ioVar.f48772i3;
-        if ((view instanceof ia) && (tL_username = ((ia) view).f48676w) != null) {
+        if ((view instanceof ia) && (tL_username = ((ia) view).f48673w) != null) {
             if (tL_username.editable) {
                 if (joVar.fragmentView instanceof ScrollView) {
-                    joVar.f49018a.smoothScrollTo(0, joVar.E.getTop() - org.telegram.messenger.g0.L(128.0f));
+                    joVar.f48995a.smoothScrollTo(0, joVar.E.getTop() - org.telegram.messenger.g0.L(128.0f));
                 }
-                joVar.f49020b.requestFocus();
-                org.telegram.messenger.g0.I3(joVar.f49020b);
+                joVar.f48997b.requestFocus();
+                org.telegram.messenger.g0.I3(joVar.f48997b);
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ioVar.getContext(), joVar.getResourceProvider());
@@ -35,7 +35,7 @@ public final class go implements org.telegram.ui.Components.oj0 {
                 i10 = 2131743434;
             }
             String M0 = org.telegram.messenger.gd.M0(i10, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
             u1Var.S = M0;
             if (tL_username.active) {
                 i11 = 2131743426;

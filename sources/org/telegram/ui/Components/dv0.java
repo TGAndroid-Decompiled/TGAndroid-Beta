@@ -62,7 +62,7 @@ public final class dv0 extends ph0 implements org.telegram.ui.ActionBar.c6 {
         if (isPressed()) {
             float f10 = this.F;
             if (f10 != 1.0f) {
-                this.F = Utilities.i(((1000.0f / org.telegram.messenger.g0.f24122r) / 100.0f) + f10, 1.0f, 0.0f);
+                this.F = Utilities.i(((1000.0f / org.telegram.messenger.g0.f24119r) / 100.0f) + f10, 1.0f, 0.0f);
                 invalidate();
                 this.I.invalidate();
             }

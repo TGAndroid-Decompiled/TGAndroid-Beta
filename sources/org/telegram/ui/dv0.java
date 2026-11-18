@@ -7,22 +7,22 @@ import android.animation.ObjectAnimator;
 import android.graphics.RectF;
 import org.telegram.messenger.ImageReceiver;
 public final class dv0 extends AnimatorListenerAdapter {
-    public final int f47057a;
-    public final ProfileActivity f47058b;
+    public final int f46980a;
+    public final ProfileActivity f46981b;
 
     public dv0(ProfileActivity profileActivity, int i7) {
-        this.f47057a = i7;
-        this.f47058b = profileActivity;
+        this.f46980a = i7;
+        this.f46981b = profileActivity;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f47057a) {
+        switch (this.f46980a) {
             case 1:
-                this.f47058b.U5 = null;
+                this.f46981b.U5 = null;
                 return;
             case 4:
-                ProfileActivity profileActivity = this.f47058b;
+                ProfileActivity profileActivity = this.f46981b;
                 profileActivity.O1 = false;
                 profileActivity.f43508a.P0 = true;
                 return;
@@ -37,8 +37,8 @@ public final class dv0 extends AnimatorListenerAdapter {
         ri.q qVar;
         org.telegram.ui.ActionBar.k kVar;
         int w02;
-        int i7 = this.f47057a;
-        ProfileActivity profileActivity = this.f47058b;
+        int i7 = this.f46980a;
+        ProfileActivity profileActivity = this.f46981b;
         switch (i7) {
             case 0:
                 qVar = ((org.telegram.ui.ActionBar.h2) profileActivity).glassEngine;
@@ -49,7 +49,7 @@ public final class dv0 extends AnimatorListenerAdapter {
                 } else if (profileActivity.f43606n6 != null) {
                     w02 = 553648127;
                 } else {
-                    w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29436f8, profileActivity.A0);
+                    w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29434f8, profileActivity.A0);
                 }
                 kVar.G(w02, false);
                 zu0 zu0Var = profileActivity.f43547f0;
@@ -59,10 +59,10 @@ public final class dv0 extends AnimatorListenerAdapter {
                     m10.w(zu0Var);
                 }
                 imageReceiver.f();
-                org.telegram.messenger.hc hcVar = zu0Var.f53535a0;
+                org.telegram.messenger.hc hcVar = zu0Var.f53486a0;
                 if (hcVar != null) {
                     hcVar.a();
-                    zu0Var.f53535a0 = null;
+                    zu0Var.f53486a0 = null;
                 }
                 zu0Var.W = 0.0f;
                 zu0Var.invalidate();
@@ -116,11 +116,11 @@ public final class dv0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f47057a) {
+        switch (this.f46980a) {
             case 0:
                 return;
             case 4:
-                ProfileActivity profileActivity = this.f47058b;
+                ProfileActivity profileActivity = this.f46981b;
                 ProfileActivity.G3(profileActivity, false);
                 profileActivity.f43607o0.setAnimatedFileMaybe(profileActivity.f43547f0.getImageReceiver().m());
                 profileActivity.f43607o0.L();

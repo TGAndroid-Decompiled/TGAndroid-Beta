@@ -5,15 +5,15 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class pc implements org.telegram.ui.ActionBar.i6 {
-    public final qc f50878a;
+    public final qc f50802a;
 
     public pc(qc qcVar) {
-        this.f50878a = qcVar;
+        this.f50802a = qcVar;
     }
 
     @Override
     public final boolean d() {
-        return this.f50878a.K;
+        return this.f50802a.K;
     }
 
     @Override
@@ -23,33 +23,33 @@ public final class pc implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final ColorFilter f() {
-        return org.telegram.ui.ActionBar.n6.f29728v3;
+        return org.telegram.ui.ActionBar.n6.f29726v3;
     }
 
     @Override
     public final Paint g(String str) {
         if (str.equals("paintDivider")) {
-            return this.f50878a.f51236z0;
+            return this.f50802a.f51194z0;
         }
         return org.telegram.ui.ActionBar.n6.V0(str);
     }
 
     @Override
     public final Drawable getDrawable(String str) {
-        qc qcVar = this.f50878a;
-        Drawable drawable = qcVar.f51235y0;
-        Drawable drawable2 = qcVar.f51233x0;
+        qc qcVar = this.f50802a;
+        Drawable drawable = qcVar.f51193y0;
+        Drawable drawable2 = qcVar.f51191x0;
         if (str.equals("drawableMsgIn")) {
-            return qcVar.f51227t0;
+            return qcVar.f51185t0;
         }
         if (str.equals("drawableMsgInSelected")) {
-            return qcVar.f51228u0;
+            return qcVar.f51186u0;
         }
         if (str.equals("drawableMsgOut")) {
-            return qcVar.f51229v0;
+            return qcVar.f51187v0;
         }
         if (str.equals("drawableMsgOutSelected")) {
-            return qcVar.f51231w0;
+            return qcVar.f51189w0;
         }
         if (str.equals("drawableMsgOutCheckRead")) {
             drawable2.setColorFilter(k(org.telegram.ui.ActionBar.n6.Cb), PorterDuff.Mode.MULTIPLY);
@@ -58,7 +58,7 @@ public final class pc implements org.telegram.ui.ActionBar.i6 {
             drawable.setColorFilter(k(org.telegram.ui.ActionBar.n6.Cb), PorterDuff.Mode.MULTIPLY);
             return drawable;
         } else {
-            org.telegram.ui.ActionBar.i6 i6Var = qcVar.f51224r0;
+            org.telegram.ui.ActionBar.i6 i6Var = qcVar.f51182r0;
             if (i6Var != null) {
                 return i6Var.getDrawable(str);
             }
@@ -83,12 +83,12 @@ public final class pc implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final int k(int i7) {
-        qc qcVar = this.f50878a;
-        int indexOfKey = qcVar.f51226s0.indexOfKey(i7);
+        qc qcVar = this.f50802a;
+        int indexOfKey = qcVar.f51184s0.indexOfKey(i7);
         if (indexOfKey >= 0) {
-            return qcVar.f51226s0.valueAt(indexOfKey);
+            return qcVar.f51184s0.valueAt(indexOfKey);
         }
-        org.telegram.ui.ActionBar.i6 i6Var = qcVar.f51224r0;
+        org.telegram.ui.ActionBar.i6 i6Var = qcVar.f51182r0;
         if (i6Var != null) {
             return i6Var.k(i7);
         }

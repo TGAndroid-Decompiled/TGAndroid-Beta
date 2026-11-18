@@ -11,31 +11,31 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.LaunchActivity;
 public final class n implements q10 {
-    public final int f3892a;
-    public final long f3893b;
-    public final Object f3894c;
+    public final int f3866a;
+    public final long f3867b;
+    public final Object f3868c;
 
     public n(Object obj, long j3, int i7) {
-        this.f3892a = i7;
-        this.f3894c = obj;
-        this.f3893b = j3;
+        this.f3866a = i7;
+        this.f3868c = obj;
+        this.f3867b = j3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z10;
         int i7;
-        int i10 = this.f3892a;
-        long j3 = this.f3893b;
-        Object obj3 = this.f3894c;
+        int i10 = this.f3866a;
+        long j3 = this.f3867b;
+        Object obj3 = this.f3868c;
         switch (i10) {
             case 0:
                 y yVar = (y) obj3;
                 Boolean bool = (Boolean) obj;
                 String str = (String) obj2;
-                FrameLayout frameLayout = yVar.f4230g2;
+                FrameLayout frameLayout = yVar.f4198g2;
                 yVar.W1.setLoading(false);
-                yVar.f4245v2 = false;
+                yVar.f4213v2 = false;
                 if (bool != null) {
                     if (j3 > 0) {
                         z10 = true;
@@ -56,14 +56,14 @@ public final class n implements q10 {
                     textView.setTextSize(1, 15.0f);
                     textView.setMaxLines(1);
                     textView.setTypeface(org.telegram.messenger.g0.o());
-                    String a02 = gd.a0(null, null, 2131750326, Integer.valueOf(yVar.f4231h2.d.gifts_per_round));
+                    String a02 = gd.a0(null, null, 2131750326, Integer.valueOf(yVar.f4199h2.d.gifts_per_round));
                     TextView textView2 = ccVar.f33965c;
                     textView2.setText(a02);
                     textView2.setSingleLine(false);
                     textView2.setMaxLines(5);
                     yVar.i1();
                     gc.f(frameLayout, ccVar, 2750).j();
-                    di.x8.y(yVar.f30189a, false).q(null, false, true);
+                    di.x8.y(yVar.f30187a, false).q(null, false, true);
                 }
                 if (str != null) {
                     yVar.i1();
@@ -91,7 +91,7 @@ public final class n implements q10 {
                 Long l10 = (Long) obj2;
                 String str2 = LaunchActivity.C1;
                 if ("paid".equals((String) obj) && l10.longValue() != 0) {
-                    org.telegram.messenger.g0.g3(new m2(launchActivity, l10, this.f3893b, 29));
+                    org.telegram.messenger.g0.g3(new m2(launchActivity, l10, this.f3867b, 29));
                     return;
                 }
                 return;

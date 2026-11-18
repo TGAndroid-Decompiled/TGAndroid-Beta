@@ -54,17 +54,17 @@ public final class y0 implements ServiceConnection, IBinder.DeathRecipient {
             }
             try {
                 iBinder.linkToDeath(this, 0);
-                int i7 = a0.f54675b;
+                int i7 = a0.f54676b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("org.telegram.utils.twidget.IWidgetEngine");
                 if (queryLocalInterface != null && (queryLocalInterface instanceof b)) {
                     bVar = (b) queryLocalInterface;
                 } else {
                     ?? obj = new Object();
-                    obj.f54674a = iBinder;
+                    obj.f54675a = iBinder;
                     bVar = obj;
                 }
                 this.f54987c = bVar;
-                if (s2.f26723a) {
+                if (s2.f26721a) {
                     StringBuilder sb2 = new StringBuilder("process ");
                     sb2.append(this.f54985a);
                     sb2.append(" up in ");

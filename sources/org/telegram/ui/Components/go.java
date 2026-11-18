@@ -86,7 +86,7 @@ public abstract class go extends LinearLayout implements org.telegram.ui.ActionB
         this.f35535a = document;
         if (document == null) {
             org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(i7);
-            TLRPC.Document document2 = d02.f26656z0;
+            TLRPC.Document document2 = d02.f26654z0;
             d02.q1();
             this.f35535a = document2;
         }
@@ -126,7 +126,7 @@ public abstract class go extends LinearLayout implements org.telegram.ui.ActionB
             min = org.telegram.messenger.g0.Q0();
             f10 = 0.4f;
         } else {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             min = Math.min(point.x, point.y);
             f10 = 0.5f;
         }
@@ -137,7 +137,7 @@ public abstract class go extends LinearLayout implements org.telegram.ui.ActionB
             if (i11 < document.attributes.size()) {
                 TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i11);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) {
-                    i10 = documentAttribute.f28412w;
+                    i10 = documentAttribute.f28410w;
                     i7 = documentAttribute.h;
                     break;
                 }
@@ -163,7 +163,7 @@ public abstract class go extends LinearLayout implements org.telegram.ui.ActionB
             i12 = i13;
         }
         float f13 = i13;
-        float f14 = org.telegram.messenger.g0.f24120p;
+        float f14 = org.telegram.messenger.g0.f24117p;
         Locale locale = Locale.US;
         return com.google.android.gms.internal.vision.e2.j((int) (f13 / f14), "_", (int) (i12 / f14));
     }
@@ -249,9 +249,9 @@ public abstract class go extends LinearLayout implements org.telegram.ui.ActionB
         TextView textView = this.f35537c;
         textView.setText(charSequence2);
         if (textView.getText().length() > 60) {
-            i7 = Math.min((int) (org.telegram.messenger.g0.f24121q.x * 0.5f), hi.m3.a(textView.getText(), textView.getPaint()));
+            i7 = Math.min((int) (org.telegram.messenger.g0.f24118q.x * 0.5f), hi.m3.a(textView.getText(), textView.getPaint()));
         } else {
-            i7 = (int) (org.telegram.messenger.g0.f24121q.x * 0.5f);
+            i7 = (int) (org.telegram.messenger.g0.f24118q.x * 0.5f);
         }
         textView.setMaxWidth(i7);
     }
@@ -311,7 +311,7 @@ public abstract class go extends LinearLayout implements org.telegram.ui.ActionB
         super.onAttachedToWindow();
         if (this.f35535a == null) {
             org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(this.f35538e);
-            TLRPC.Document document = d02.f26656z0;
+            TLRPC.Document document = d02.f26654z0;
             d02.q1();
             this.f35535a = document;
             if (this.f35542s) {
@@ -373,7 +373,7 @@ public abstract class go extends LinearLayout implements org.telegram.ui.ActionB
         }
         this.f35542s = true;
         this.f35540n.b();
-        org.telegram.messenger.lz f10 = org.telegram.messenger.u5.f(document, org.telegram.ui.ActionBar.n6.f29385cd, 1.0f, null);
+        org.telegram.messenger.lz f10 = org.telegram.messenger.u5.f(document, org.telegram.ui.ActionBar.n6.f29383cd, 1.0f, null);
         if (f10 != null) {
             this.h.p(org.telegram.messenger.fc.b(document), b(document), f10, document);
             document2 = document;

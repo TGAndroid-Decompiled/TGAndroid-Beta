@@ -5,21 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.HashMap;
 public final class l1 implements org.telegram.ui.Components.t71 {
-    public final q1 f49397a;
+    public final q1 f49403a;
 
     public l1(q1 q1Var) {
-        this.f49397a = q1Var;
+        this.f49403a = q1Var;
     }
 
     @Override
     public final TextureView a(View view, boolean z10, float f10, int i7, boolean z11) {
-        q1 q1Var = this.f49397a;
-        g4 g4Var = q1Var.f51061y;
+        q1 q1Var = this.f49403a;
+        g4 g4Var = q1Var.f50982y;
         if (z10) {
             g4Var.S.addView(g4Var.R, c8.ma.c(-1.0f, -1));
             g4Var.S.setVisibility(0);
             g4Var.S.a(f10, i7);
-            g4Var.G0 = q1Var.f51052b;
+            g4Var.G0 = q1Var.f50973b;
             g4Var.Q.addView(view, c8.ma.c(-1.0f, -1));
             g4Var.Q.setVisibility(0);
         } else {
@@ -33,23 +33,23 @@ public final class l1 implements org.telegram.ui.Components.t71 {
 
     @Override
     public final void c(float f10) {
-        this.f49397a.f51061y.S.a(f10, 0);
+        this.f49403a.f50982y.S.a(f10, 0);
     }
 
     @Override
     public final void d() {
-        this.f49397a.f51051a.setVisibility(0);
-        this.f49397a.f51052b.setVisibility(4);
-        this.f49397a.f51052b.g(null, null, null, null, false);
+        this.f49403a.f50972a.setVisibility(0);
+        this.f49403a.f50973b.setVisibility(4);
+        this.f49403a.f50973b.g(null, null, null, null, false);
         HashMap hashMap = new HashMap();
-        hashMap.put("Referer", org.telegram.messenger.t0.f26915b.getPackageName());
-        q1 q1Var = this.f49397a;
-        q1Var.f51051a.loadUrl(q1Var.f51059w.url, hashMap);
+        hashMap.put("Referer", org.telegram.messenger.t0.f26913b.getPackageName());
+        q1 q1Var = this.f49403a;
+        q1Var.f50972a.loadUrl(q1Var.f50980w.url, hashMap);
     }
 
     @Override
     public final void e(org.telegram.ui.Components.w71 w71Var, boolean z10) {
-        g4 g4Var = this.f49397a.f51061y;
+        g4 g4Var = this.f49403a.f50982y;
         if (z10) {
             org.telegram.ui.Components.w71 w71Var2 = g4Var.F0;
             if (w71Var2 != null && w71Var2 != w71Var) {

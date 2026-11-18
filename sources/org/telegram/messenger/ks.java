@@ -86,7 +86,7 @@ public final class ks {
     public static final int L0 = 74;
     public static final int L1 = 127;
     public static final int L2 = 181;
-    public static final int L3 = 236;
+    public static final int L3 = 235;
     public static final int L4 = 288;
     public static final int L5 = 340;
     public static final int M = 23;
@@ -172,218 +172,219 @@ public final class ks {
     public static final int X2 = 193;
     public static final int X3 = 248;
     public static final int X4 = 300;
-    public static boolean X5 = false;
+    public static final int X5 = 352;
     public static final int Y = 35;
     public static final int Y0 = 87;
     public static final int Y1 = 142;
     public static final int Y2 = 194;
     public static final int Y3 = 249;
     public static final int Y4 = 301;
-    public static volatile ks[] Y5 = new ks[4];
+    public static boolean Y5 = false;
     public static final int Z = 36;
     public static final int Z0 = 88;
     public static final int Z1 = 143;
     public static final int Z2 = 195;
     public static final int Z3 = 250;
     public static final int Z4 = 302;
-    public static volatile ks Z5 = null;
-    public static final int f25083a0 = 37;
-    public static final int f25084a1 = 89;
-    public static final int f25085a2 = 144;
-    public static final int f25086a3 = 196;
-    public static final int f25087a4 = 251;
-    public static final int f25088a5 = 303;
-    public static final int f25089b0 = 38;
-    public static final int f25090b1 = 90;
-    public static final int f25091b2 = 145;
-    public static final int f25092b3 = 197;
-    public static final int f25093b4 = 252;
-    public static final int f25094b5 = 304;
-    public static final int f25095c0 = 39;
-    public static final int f25096c1 = 91;
-    public static final int f25097c2 = 146;
-    public static final int f25098c3 = 198;
-    public static final int f25099c4 = 253;
-    public static final int f25100c5 = 305;
-    public static final int f25101d0 = 40;
-    public static final int f25102d1 = 92;
+    public static volatile ks[] Z5 = new ks[4];
+    public static final int f25080a0 = 37;
+    public static final int f25081a1 = 89;
+    public static final int f25082a2 = 144;
+    public static final int f25083a3 = 196;
+    public static final int f25084a4 = 251;
+    public static final int f25085a5 = 303;
+    public static volatile ks f25086a6 = null;
+    public static final int f25087b0 = 38;
+    public static final int f25088b1 = 90;
+    public static final int f25089b2 = 145;
+    public static final int f25090b3 = 197;
+    public static final int f25091b4 = 252;
+    public static final int f25092b5 = 304;
+    public static final int f25093c0 = 39;
+    public static final int f25094c1 = 91;
+    public static final int f25095c2 = 146;
+    public static final int f25096c3 = 198;
+    public static final int f25097c4 = 253;
+    public static final int f25098c5 = 305;
+    public static final int f25099d0 = 40;
+    public static final int f25100d1 = 92;
     public static final int d2 = 147;
-    public static final int f25103d3 = 199;
-    public static final int f25104d4 = 254;
-    public static final int f25105d5 = 306;
-    public static final int f25106e0 = 41;
-    public static final int f25107e1 = 93;
-    public static final int f25108e2 = 148;
-    public static final int f25109e3 = 200;
-    public static final int f25110e4 = 255;
-    public static final int f25111e5 = 307;
-    public static final int f25112f0 = 42;
-    public static final int f25113f1 = 94;
-    public static final int f25114f2 = 149;
-    public static final int f25115f3 = 201;
-    public static final int f25116f4 = 256;
-    public static final int f25117f5 = 308;
-    public static final int f25118g0 = 43;
-    public static final int f25119g1 = 95;
-    public static final int f25120g2 = 150;
-    public static final int f25121g3 = 202;
-    public static final int f25122g4 = 257;
-    public static final int f25123g5 = 309;
-    public static final int f25124h0 = 44;
-    public static final int f25125h1 = 96;
-    public static final int f25126h2 = 151;
-    public static final int f25127h3 = 203;
-    public static final int f25128h4 = 258;
-    public static final int f25129h5 = 310;
-    public static final int f25130i0 = 45;
-    public static final int f25131i1 = 97;
-    public static final int f25132i2 = 152;
-    public static final int f25133i3 = 204;
-    public static final int f25134i4 = 259;
-    public static final int f25135i5 = 311;
-    public static final int f25136j0 = 46;
-    public static final int f25137j1 = 98;
-    public static final int f25138j2 = 153;
+    public static final int f25101d3 = 199;
+    public static final int f25102d4 = 254;
+    public static final int f25103d5 = 306;
+    public static final int f25104e0 = 41;
+    public static final int f25105e1 = 93;
+    public static final int f25106e2 = 148;
+    public static final int f25107e3 = 200;
+    public static final int f25108e4 = 255;
+    public static final int f25109e5 = 307;
+    public static final int f25110f0 = 42;
+    public static final int f25111f1 = 94;
+    public static final int f25112f2 = 149;
+    public static final int f25113f3 = 201;
+    public static final int f25114f4 = 256;
+    public static final int f25115f5 = 308;
+    public static final int f25116g0 = 43;
+    public static final int f25117g1 = 95;
+    public static final int f25118g2 = 150;
+    public static final int f25119g3 = 202;
+    public static final int f25120g4 = 257;
+    public static final int f25121g5 = 309;
+    public static final int f25122h0 = 44;
+    public static final int f25123h1 = 96;
+    public static final int f25124h2 = 151;
+    public static final int f25125h3 = 203;
+    public static final int f25126h4 = 258;
+    public static final int f25127h5 = 310;
+    public static final int f25128i0 = 45;
+    public static final int f25129i1 = 97;
+    public static final int f25130i2 = 152;
+    public static final int f25131i3 = 204;
+    public static final int f25132i4 = 259;
+    public static final int f25133i5 = 311;
+    public static final int f25134j0 = 46;
+    public static final int f25135j1 = 98;
+    public static final int f25136j2 = 153;
     public static final int j3 = 205;
-    public static final int f25139j4 = 260;
-    public static final int f25140j5 = 312;
-    public static final int f25141k0 = 47;
-    public static final int f25142k1 = 99;
-    public static final int f25143k2 = 154;
-    public static final int f25144k3 = 206;
-    public static final int f25145k4 = 261;
-    public static final int f25146k5 = 313;
-    public static final int f25147l0 = 48;
+    public static final int f25137j4 = 260;
+    public static final int f25138j5 = 312;
+    public static final int f25139k0 = 47;
+    public static final int f25140k1 = 99;
+    public static final int f25141k2 = 154;
+    public static final int f25142k3 = 206;
+    public static final int f25143k4 = 261;
+    public static final int f25144k5 = 313;
+    public static final int f25145l0 = 48;
     public static final int l1 = 100;
-    public static final int f25148l2 = 155;
-    public static final int f25149l3 = 207;
-    public static final int f25150l4 = 262;
-    public static final int f25151l5 = 314;
+    public static final int f25146l2 = 155;
+    public static final int f25147l3 = 207;
+    public static final int f25148l4 = 262;
+    public static final int f25149l5 = 314;
     public static final int m0 = 49;
-    public static final int f25152m1 = 101;
-    public static final int f25153m2 = 156;
-    public static final int f25154m3 = 208;
-    public static final int f25155m4 = 263;
-    public static final int f25156m5 = 315;
-    public static final int f25157n0 = 50;
+    public static final int f25150m1 = 101;
+    public static final int f25151m2 = 156;
+    public static final int f25152m3 = 208;
+    public static final int f25153m4 = 263;
+    public static final int f25154m5 = 315;
+    public static final int f25155n0 = 50;
     public static final int n1 = 102;
-    public static final int f25158n2 = 157;
-    public static final int f25159n3 = 209;
-    public static final int f25160n4 = 264;
-    public static final int f25161n5 = 316;
-    public static final int f25162o0 = 51;
-    public static final int f25163o1 = 103;
-    public static final int f25164o2 = 158;
-    public static final int f25165o3 = 211;
+    public static final int f25156n2 = 157;
+    public static final int f25157n3 = 209;
+    public static final int f25158n4 = 264;
+    public static final int f25159n5 = 316;
+    public static final int f25160o0 = 51;
+    public static final int f25161o1 = 103;
+    public static final int f25162o2 = 158;
+    public static final int f25163o3 = 211;
     public static final int o4 = 265;
-    public static final int f25166o5 = 317;
-    public static final int f25167p0 = 52;
-    public static final int f25168p1 = 104;
-    public static final int f25169p2 = 159;
-    public static final int f25170p3 = 212;
-    public static final int f25171p4 = 266;
-    public static final int f25172p5 = 318;
-    public static final int f25173q0 = 53;
-    public static final int f25174q1 = 105;
-    public static final int f25175q2 = 160;
-    public static final int f25176q3 = 213;
-    public static final int f25177q4 = 267;
-    public static final int f25178q5 = 319;
-    public static final int f25179r = 2;
-    public static final int f25180r0 = 54;
-    public static final int f25181r1 = 106;
-    public static final int f25182r2 = 161;
-    public static final int f25183r3 = 214;
-    public static final int f25184r4 = 268;
-    public static final int f25185r5 = 320;
-    public static final int f25186s = 3;
-    public static final int f25187s0 = 55;
-    public static final int f25188s1 = 107;
-    public static final int f25189s2 = 162;
-    public static final int f25190s3 = 215;
-    public static final int f25191s4 = 269;
+    public static final int f25164o5 = 317;
+    public static final int f25165p0 = 52;
+    public static final int f25166p1 = 104;
+    public static final int f25167p2 = 159;
+    public static final int f25168p3 = 212;
+    public static final int f25169p4 = 266;
+    public static final int f25170p5 = 318;
+    public static final int f25171q0 = 53;
+    public static final int f25172q1 = 105;
+    public static final int f25173q2 = 160;
+    public static final int f25174q3 = 213;
+    public static final int f25175q4 = 267;
+    public static final int f25176q5 = 319;
+    public static final int f25177r = 2;
+    public static final int f25178r0 = 54;
+    public static final int f25179r1 = 106;
+    public static final int f25180r2 = 161;
+    public static final int f25181r3 = 214;
+    public static final int f25182r4 = 268;
+    public static final int f25183r5 = 320;
+    public static final int f25184s = 3;
+    public static final int f25185s0 = 55;
+    public static final int f25186s1 = 107;
+    public static final int f25187s2 = 162;
+    public static final int f25188s3 = 215;
+    public static final int f25189s4 = 269;
     public static final int s5 = 321;
-    public static final int f25192t = 4;
-    public static final int f25193t0 = 56;
-    public static final int f25194t1 = 108;
-    public static final int f25195t2 = 163;
-    public static final int f25196t3 = 216;
-    public static final int f25197t4 = 270;
-    public static final int f25198t5 = 322;
-    public static final int f25199u = 5;
-    public static final int f25200u0 = 57;
-    public static final int f25201u1 = 109;
-    public static final int f25202u2 = 164;
-    public static final int f25203u3 = 217;
-    public static final int f25204u4 = 271;
-    public static final int f25205u5 = 323;
+    public static final int f25190t = 4;
+    public static final int f25191t0 = 56;
+    public static final int f25192t1 = 108;
+    public static final int f25193t2 = 163;
+    public static final int f25194t3 = 216;
+    public static final int f25195t4 = 270;
+    public static final int f25196t5 = 322;
+    public static final int f25197u = 5;
+    public static final int f25198u0 = 57;
+    public static final int f25199u1 = 109;
+    public static final int f25200u2 = 164;
+    public static final int f25201u3 = 217;
+    public static final int f25202u4 = 271;
+    public static final int f25203u5 = 323;
     public static final int v = 6;
-    public static final int f25206v0 = 58;
-    public static final int f25207v1 = 110;
-    public static final int f25208v2 = 165;
-    public static final int f25209v3 = 218;
-    public static final int f25210v4 = 272;
-    public static final int f25211v5 = 324;
-    public static final int f25212w = 7;
-    public static final int f25213w0 = 59;
-    public static final int f25214w1 = 111;
-    public static final int f25215w2 = 166;
-    public static final int f25216w3 = 219;
-    public static final int f25217w4 = 273;
-    public static final int f25218w5 = 325;
-    public static final int f25219x = 8;
-    public static final int f25220x0 = 60;
-    public static final int f25221x1 = 112;
-    public static final int f25222x2 = 167;
-    public static final int f25223x3 = 220;
-    public static final int f25224x4 = 274;
-    public static final int f25225x5 = 326;
-    public static final int f25226y = 9;
-    public static final int f25227y0 = 61;
-    public static final int f25228y1 = 113;
-    public static final int f25229y2 = 168;
-    public static final int f25230y3 = 221;
-    public static final int f25231y4 = 275;
-    public static final int f25232y5 = 327;
-    public static final int f25233z = 10;
-    public static final int f25234z0 = 62;
-    public static final int f25235z1 = 114;
-    public static final int f25236z2 = 169;
-    public static final int f25237z3 = 222;
-    public static final int f25238z4 = 276;
-    public static final int f25239z5 = 328;
-    public Runnable f25246i;
-    public int f25248k;
-    public final int f25252o;
-    public int f25253p;
-    public final SparseArray f25240a = new SparseArray();
-    public final SparseArray f25241b = new SparseArray();
-    public final SparseArray f25242c = new SparseArray();
+    public static final int f25204v0 = 58;
+    public static final int f25205v1 = 110;
+    public static final int f25206v2 = 165;
+    public static final int f25207v3 = 218;
+    public static final int f25208v4 = 272;
+    public static final int f25209v5 = 324;
+    public static final int f25210w = 7;
+    public static final int f25211w0 = 59;
+    public static final int f25212w1 = 111;
+    public static final int f25213w2 = 166;
+    public static final int f25214w3 = 219;
+    public static final int f25215w4 = 273;
+    public static final int f25216w5 = 325;
+    public static final int f25217x = 8;
+    public static final int f25218x0 = 60;
+    public static final int f25219x1 = 112;
+    public static final int f25220x2 = 167;
+    public static final int f25221x3 = 220;
+    public static final int f25222x4 = 274;
+    public static final int f25223x5 = 326;
+    public static final int f25224y = 9;
+    public static final int f25225y0 = 61;
+    public static final int f25226y1 = 113;
+    public static final int f25227y2 = 168;
+    public static final int f25228y3 = 221;
+    public static final int f25229y4 = 275;
+    public static final int f25230y5 = 327;
+    public static final int f25231z = 10;
+    public static final int f25232z0 = 62;
+    public static final int f25233z1 = 114;
+    public static final int f25234z2 = 169;
+    public static final int f25235z3 = 222;
+    public static final int f25236z4 = 276;
+    public static final int f25237z5 = 328;
+    public Runnable f25244i;
+    public int f25246k;
+    public final int f25250o;
+    public int f25251p;
+    public final SparseArray f25238a = new SparseArray();
+    public final SparseArray f25239b = new SparseArray();
+    public final SparseArray f25240c = new SparseArray();
     public final ArrayList d = new ArrayList(10);
-    public final ArrayList f25243e = new ArrayList(10);
-    public final ArrayList f25244f = new ArrayList(10);
-    public final ArrayList f25245g = new ArrayList(10);
+    public final ArrayList f25241e = new ArrayList(10);
+    public final ArrayList f25242f = new ArrayList(10);
+    public final ArrayList f25243g = new ArrayList(10);
     public final ArrayList h = new ArrayList(10);
-    public int f25247j = 0;
-    public int f25249l = 1;
-    public final HashSet f25250m = new HashSet();
-    public final SparseArray f25251n = new SparseArray();
-    public final SparseArray f25254q = new SparseArray();
+    public int f25245j = 0;
+    public int f25247l = 1;
+    public final HashSet f25248m = new HashSet();
+    public final SparseArray f25249n = new SparseArray();
+    public final SparseArray f25252q = new SparseArray();
 
     public ks(int i7) {
-        this.f25252o = i7;
+        this.f25250o = i7;
     }
 
     public static ks e() {
         ks ksVar;
-        ks ksVar2 = Z5;
+        ks ksVar2 = f25086a6;
         if (ksVar2 == null) {
             synchronized (ks.class) {
                 try {
-                    ksVar = Z5;
+                    ksVar = f25086a6;
                     if (ksVar == null) {
                         ksVar = new ks(-1);
-                        Z5 = ksVar;
+                        f25086a6 = ksVar;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -396,13 +397,13 @@ public final class ks {
 
     public static ks f(int i7) {
         ks ksVar;
-        ks ksVar2 = Y5[i7];
+        ks ksVar2 = Z5[i7];
         if (ksVar2 == null) {
             synchronized (ks.class) {
                 try {
-                    ksVar = Y5[i7];
+                    ksVar = Z5[i7];
                     if (ksVar == null) {
-                        ks[] ksVarArr = Y5;
+                        ks[] ksVarArr = Z5;
                         ks ksVar3 = new ks(i7);
                         ksVarArr[i7] = ksVar3;
                         ksVar = ksVar3;
@@ -417,48 +418,48 @@ public final class ks {
     }
 
     public static void i(View view) {
-        e().h(view, f25145k4, new a4(view, 2));
+        e().h(view, f25148l4, new a4(view, 2));
     }
 
     public final void a(js jsVar) {
-        b(jsVar, f25117f5);
+        b(jsVar, f25121g5);
     }
 
     public final void b(fs fsVar, int i7) {
         fs fsVar2;
         ArrayList arrayList;
-        boolean z10 = s2.f26723a;
+        boolean z10 = s2.f26721a;
         if (Thread.currentThread() == t0.d.getLooper().getThread()) {
-            if (this.f25247j != 0) {
-                ArrayList arrayList2 = (ArrayList) this.f25242c.get(i7);
+            if (this.f25245j != 0) {
+                ArrayList arrayList2 = (ArrayList) this.f25240c.get(i7);
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
-                    this.f25242c.put(i7, arrayList2);
+                    this.f25240c.put(i7, arrayList2);
                 }
                 arrayList2.add(fsVar);
                 return;
             }
-            ArrayList arrayList3 = (ArrayList) this.f25240a.get(i7);
+            ArrayList arrayList3 = (ArrayList) this.f25238a.get(i7);
             if (arrayList3 == null) {
-                SparseArray sparseArray = this.f25240a;
-                if (i7 != o4 && i7 != f25137j1 && i7 != f25142k1) {
+                SparseArray sparseArray = this.f25238a;
+                if (i7 != f25169p4 && i7 != f25135j1 && i7 != f25140k1) {
                     arrayList = new ArrayList();
                 } else {
                     ?? arrayList4 = new ArrayList();
-                    arrayList4.f24503a = new HashSet();
+                    arrayList4.f24500a = new HashSet();
                     arrayList = arrayList4;
                 }
                 sparseArray.put(i7, arrayList);
                 arrayList3 = arrayList;
             }
             if (fsVar instanceof is) {
-                fsVar2 = (fs) ((is) fsVar).f24714b.get();
+                fsVar2 = (fs) ((is) fsVar).f24711b.get();
             } else {
                 fsVar2 = fsVar;
             }
             if (fsVar2 != null) {
                 if (arrayList3 instanceof hs) {
-                    HashSet hashSet = ((hs) arrayList3).f24503a;
+                    HashSet hashSet = ((hs) arrayList3).f24500a;
                     if (hashSet.contains(fsVar2) || hashSet.contains(new is(null, fsVar2))) {
                         return;
                     }
@@ -467,7 +468,7 @@ public final class ks {
                     for (int i10 = 0; i10 < size; i10++) {
                         fs fsVar3 = (fs) arrayList3.get(i10);
                         if (!fsVar2.equals(fsVar3)) {
-                            if ((fsVar3 instanceof is) && ((is) fsVar3).f24714b.get() == fsVar2) {
+                            if ((fsVar3 instanceof is) && ((is) fsVar3).f24711b.get() == fsVar2) {
                                 return;
                             }
                         } else {
@@ -477,9 +478,9 @@ public final class ks {
                 }
             }
             arrayList3.add(fsVar);
-            boolean z11 = s2.f26723a;
-            if (!X5 && arrayList3.size() > 1000) {
-                X5 = true;
+            boolean z11 = s2.f26721a;
+            if (!Y5 && arrayList3.size() > 1000) {
+                Y5 = true;
                 a8.g(new RuntimeException(i5.c.i(i7, "Total observers more than 1000, need check for memory leak. ")), true);
                 return;
             }
@@ -497,14 +498,14 @@ public final class ks {
 
     public final void d(Runnable runnable) {
         if (g()) {
-            this.f25243e.add(runnable);
+            this.f25241e.add(runnable);
         } else {
             runnable.run();
         }
     }
 
     public final boolean g() {
-        if (this.f25248k > 0) {
+        if (this.f25246k > 0) {
             return true;
         }
         return false;
@@ -528,25 +529,25 @@ public final class ks {
     }
 
     public final void j(int i7) {
-        SparseArray sparseArray = this.f25251n;
+        SparseArray sparseArray = this.f25249n;
         ds dsVar = (ds) sparseArray.get(i7);
         sparseArray.delete(i7);
         if (dsVar != null) {
-            this.f25248k--;
-            HashSet hashSet = this.f25250m;
+            this.f25246k--;
+            HashSet hashSet = this.f25248m;
             if (!hashSet.isEmpty()) {
                 hashSet.remove(Integer.valueOf(i7));
                 if (hashSet.isEmpty()) {
-                    e().k(f25142k1, 512);
+                    e().k(f25140k1, 512);
                 }
             }
-            if (this.f25248k == 0) {
+            if (this.f25246k == 0) {
                 o();
             }
         }
-        if (this.f25246i != null && sparseArray.size() == 0) {
-            g0.r(this.f25246i);
-            this.f25246i = null;
+        if (this.f25244i != null && sparseArray.size() == 0) {
+            g0.r(this.f25244i);
+            this.f25244i = null;
         }
     }
 
@@ -555,7 +556,7 @@ public final class ks {
     }
 
     public final void l(Object[] objArr, int i7, boolean z10) {
-        boolean z11 = s2.f26723a;
+        boolean z11 = s2.f26721a;
         if (Thread.currentThread() == t0.d.getLooper().getThread()) {
             if (!z10 && g()) {
                 this.d.add(new es(i7, objArr));
@@ -567,43 +568,43 @@ public final class ks {
                     fkVar.getClass();
                     if (i7 == 1) {
                         long longValue = ((Long) objArr[0]).longValue();
-                        org.telegram.ui.bn bnVar = fkVar.f47716a;
-                        if (bnVar.Z6 && longValue == bnVar.f46085l6) {
+                        org.telegram.ui.bn bnVar = fkVar.f47680a;
+                        if (bnVar.Z6 && longValue == bnVar.f46076l6) {
                             this.d.add(new es(i7, objArr));
                             return;
                         }
                     }
                 }
             }
-            this.f25247j++;
-            ArrayList arrayList = (ArrayList) this.f25240a.get(i7);
+            this.f25245j++;
+            ArrayList arrayList = (ArrayList) this.f25238a.get(i7);
             if (arrayList != null && !arrayList.isEmpty()) {
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    ((fs) arrayList.get(i11)).didReceivedNotification(i7, this.f25252o, objArr);
+                    ((fs) arrayList.get(i11)).didReceivedNotification(i7, this.f25250o, objArr);
                 }
             }
-            int i12 = this.f25247j - 1;
-            this.f25247j = i12;
+            int i12 = this.f25245j - 1;
+            this.f25245j = i12;
             if (i12 == 0) {
-                if (this.f25241b.size() != 0) {
-                    for (int i13 = 0; i13 < this.f25241b.size(); i13++) {
-                        int keyAt = this.f25241b.keyAt(i13);
-                        ArrayList arrayList2 = (ArrayList) this.f25241b.get(keyAt);
+                if (this.f25239b.size() != 0) {
+                    for (int i13 = 0; i13 < this.f25239b.size(); i13++) {
+                        int keyAt = this.f25239b.keyAt(i13);
+                        ArrayList arrayList2 = (ArrayList) this.f25239b.get(keyAt);
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             n((fs) arrayList2.get(i14), keyAt);
                         }
                     }
-                    this.f25241b.clear();
+                    this.f25239b.clear();
                 }
-                if (this.f25242c.size() != 0) {
-                    for (int i15 = 0; i15 < this.f25242c.size(); i15++) {
-                        int keyAt2 = this.f25242c.keyAt(i15);
-                        ArrayList arrayList3 = (ArrayList) this.f25242c.get(keyAt2);
+                if (this.f25240c.size() != 0) {
+                    for (int i15 = 0; i15 < this.f25240c.size(); i15++) {
+                        int keyAt2 = this.f25240c.keyAt(i15);
+                        ArrayList arrayList3 = (ArrayList) this.f25240c.get(keyAt2);
                         for (int i16 = 0; i16 < arrayList3.size(); i16++) {
                             b((fs) arrayList3.get(i16), keyAt2);
                         }
                     }
-                    this.f25242c.clear();
+                    this.f25240c.clear();
                     return;
                 }
                 return;
@@ -620,21 +621,21 @@ public final class ks {
     public final void n(fs fsVar, int i7) {
         fs fsVar2;
         fs fsVar3;
-        boolean z10 = s2.f26723a;
+        boolean z10 = s2.f26721a;
         if (Thread.currentThread() == t0.d.getLooper().getThread()) {
-            if (this.f25247j != 0) {
-                ArrayList arrayList = (ArrayList) this.f25241b.get(i7);
+            if (this.f25245j != 0) {
+                ArrayList arrayList = (ArrayList) this.f25239b.get(i7);
                 if (arrayList == null) {
                     arrayList = new ArrayList();
-                    this.f25241b.put(i7, arrayList);
+                    this.f25239b.put(i7, arrayList);
                 }
                 arrayList.add(fsVar);
                 return;
             }
-            ArrayList arrayList2 = (ArrayList) this.f25240a.get(i7);
+            ArrayList arrayList2 = (ArrayList) this.f25238a.get(i7);
             if (arrayList2 != null) {
                 if (fsVar instanceof is) {
-                    fsVar2 = (fs) ((is) fsVar).f24714b.get();
+                    fsVar2 = (fs) ((is) fsVar).f24711b.get();
                 } else {
                     fsVar2 = fsVar;
                 }
@@ -651,7 +652,7 @@ public final class ks {
                     fs fsVar4 = (fs) arrayList2.get(size);
                     if (fsVar.equals(fsVar4)) {
                         arrayList2.remove(size);
-                    } else if ((fsVar4 instanceof is) && ((fsVar3 = (fs) ((is) fsVar4).f24714b.get()) == null || fsVar3 == fsVar2)) {
+                    } else if ((fsVar4 instanceof is) && ((fsVar3 = (fs) ((is) fsVar4).f24711b.get()) == null || fsVar3 == fsVar2)) {
                         arrayList2.remove(size);
                     }
                 }
@@ -665,19 +666,19 @@ public final class ks {
     public final void o() {
         ArrayList arrayList = this.d;
         if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = this.f25245g;
+            ArrayList arrayList2 = this.f25243g;
             arrayList2.clear();
             arrayList2.addAll(arrayList);
             arrayList.clear();
             for (int i7 = 0; i7 < arrayList2.size(); i7++) {
                 es esVar = (es) arrayList2.get(i7);
-                l(esVar.f23764b, esVar.f23763a, true);
+                l(esVar.f23761b, esVar.f23760a, true);
             }
             arrayList2.clear();
         }
-        ArrayList arrayList3 = this.f25243e;
+        ArrayList arrayList3 = this.f25241e;
         if (!arrayList3.isEmpty()) {
-            ArrayList arrayList4 = this.f25244f;
+            ArrayList arrayList4 = this.f25242f;
             arrayList4.clear();
             arrayList4.addAll(arrayList3);
             arrayList3.clear();
@@ -694,24 +695,24 @@ public final class ks {
 
     public final int q(int[] iArr, int i7, boolean z10) {
         j(i7);
-        HashSet hashSet = this.f25250m;
+        HashSet hashSet = this.f25248m;
         if (hashSet.isEmpty() && z10) {
-            e().k(f25137j1, 512);
+            e().k(f25135j1, 512);
         }
-        this.f25248k++;
-        int i10 = this.f25249l + 1;
-        this.f25249l = i10;
+        this.f25246k++;
+        int i10 = this.f25247l + 1;
+        this.f25247l = i10;
         if (z10) {
             hashSet.add(Integer.valueOf(i10));
         }
         ds dsVar = new ds();
-        dsVar.f23570a = iArr;
-        this.f25251n.put(this.f25249l, dsVar);
-        if (this.f25246i == null) {
+        dsVar.f23567a = iArr;
+        this.f25249n.put(this.f25247l, dsVar);
+        if (this.f25244i == null) {
             as asVar = new as(this, 0);
-            this.f25246i = asVar;
+            this.f25244i = asVar;
             g0.h3(asVar, 5017L);
         }
-        return this.f25249l;
+        return this.f25247l;
     }
 }

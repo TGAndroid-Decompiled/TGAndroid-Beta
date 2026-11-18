@@ -2,46 +2,46 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Intro;
 public final class k2 implements c5.h {
-    public final int f49152a;
-    public final Object f49153b;
+    public final int f49129a;
+    public final Object f49130b;
 
     public k2(Object obj, int i7) {
-        this.f49152a = i7;
-        this.f49153b = obj;
+        this.f49129a = i7;
+        this.f49130b = obj;
     }
 
     @Override
     public final void a(int i7) {
-        switch (this.f49152a) {
+        switch (this.f49129a) {
             case 0:
-                o2 o2Var = (o2) this.f49153b;
-                o2Var.f50408x = i7;
+                o2 o2Var = (o2) this.f49130b;
+                o2Var.f50392x = i7;
                 o2Var.d.invalidate();
                 return;
             case 1:
-                ((v50) this.f49153b).I = i7;
+                ((v50) this.f49130b).I = i7;
                 return;
             default:
-                ((x71) this.f49153b).f53691c0.invalidate();
+                ((x71) this.f49130b).f53679c0.invalidate();
                 return;
         }
     }
 
     @Override
     public final void b(float f10, int i7, int i10) {
-        switch (this.f49152a) {
+        switch (this.f49129a) {
             case 0:
-                o2 o2Var = (o2) this.f49153b;
-                float measuredWidth = o2Var.f50400b.getMeasuredWidth();
+                o2 o2Var = (o2) this.f49130b;
+                float measuredWidth = o2Var.f50384b.getMeasuredWidth();
                 if (measuredWidth != 0.0f) {
-                    o2Var.f50407w = com.google.android.gms.internal.vision.e2.w(o2Var.f50408x, measuredWidth, (i7 * measuredWidth) + i10, measuredWidth);
+                    o2Var.f50391w = com.google.android.gms.internal.vision.e2.w(o2Var.f50392x, measuredWidth, (i7 * measuredWidth) + i10, measuredWidth);
                     o2Var.d.invalidate();
                     return;
                 }
                 return;
             case 1:
-                v50 v50Var = (v50) this.f49153b;
-                org.telegram.ui.Components.ia iaVar = v50Var.f52693e;
+                v50 v50Var = (v50) this.f49130b;
+                org.telegram.ui.Components.ia iaVar = v50Var.f52678e;
                 iaVar.f36087b = f10;
                 iaVar.f36088c = i7;
                 iaVar.invalidate();
@@ -58,11 +58,11 @@ public final class k2 implements c5.h {
 
     @Override
     public final void c(int i7) {
-        switch (this.f49152a) {
+        switch (this.f49129a) {
             case 0:
                 return;
             case 1:
-                v50 v50Var = (v50) this.f49153b;
+                v50 v50Var = (v50) this.f49130b;
                 if (i7 == 1) {
                     v50Var.L = true;
                     v50Var.d.getCurrentItem();
@@ -72,8 +72,8 @@ public final class k2 implements c5.h {
                     if (v50Var.L) {
                         v50Var.L = false;
                     }
-                    if (v50Var.f52699x != v50Var.d.getCurrentItem()) {
-                        v50Var.f52699x = v50Var.d.getCurrentItem();
+                    if (v50Var.f52684x != v50Var.d.getCurrentItem()) {
+                        v50Var.f52684x = v50Var.d.getCurrentItem();
                         return;
                     }
                     return;

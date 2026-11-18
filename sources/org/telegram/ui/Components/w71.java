@@ -760,7 +760,7 @@ public final class w71 extends ViewGroup implements d61, AudioManager.OnAudioFoc
         org.telegram.messenger.g0.h3(this.f41606j0, 500L);
         if (!this.K) {
             this.K = true;
-            ((AudioManager) org.telegram.messenger.t0.f26915b.getSystemService("audio")).requestAudioFocus(this, 3, 1);
+            ((AudioManager) org.telegram.messenger.t0.f26913b.getSystemService("audio")).requestAudioFocus(this, 3, 1);
         }
     }
 

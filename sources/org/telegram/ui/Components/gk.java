@@ -79,9 +79,9 @@ public final class gk implements Runnable {
             case 2:
                 rn rnVar = (rn) obj;
                 gk gkVar = rnVar.V0;
-                org.telegram.ui.Cells.a6 a6Var = rnVar.f39222h1;
-                if (a6Var != null) {
-                    EditTextBoldCursor editField = a6Var.getEditField();
+                org.telegram.ui.Cells.b6 b6Var = rnVar.f39222h1;
+                if (b6Var != null) {
+                    EditTextBoldCursor editField = b6Var.getEditField();
                     if (!rnVar.I && editField != null && rnVar.H && !rnVar.f39218f1 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E && org.telegram.messenger.g0.Q1()) {
                         editField.requestFocus();
                         org.telegram.messenger.g0.I3(editField);
@@ -448,7 +448,7 @@ public final class gk implements Runnable {
                 return;
             case 22:
                 org.telegram.ui.b20 b20Var = (org.telegram.ui.b20) obj;
-                if (b20Var.f40973b && b20Var.R0.f47527u2 == null) {
+                if (b20Var.f40973b && b20Var.R0.f47483u2 == null) {
                     b20Var.f40983h0 = false;
                     org.telegram.ui.Components.voip.k0.a(b20Var);
                     return;

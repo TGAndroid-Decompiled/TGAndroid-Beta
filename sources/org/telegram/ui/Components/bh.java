@@ -101,7 +101,7 @@ public final class bh implements jl, org.telegram.ui.ActionBar.r1, te.i, qj0, ri
     public int e() {
         si siVar = this.f33687b;
         siVar.getClass();
-        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, siVar.J0);
+        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, siVar.J0);
     }
 
     @Override
@@ -141,9 +141,9 @@ public final class bh implements jl, org.telegram.ui.ActionBar.r1, te.i, qj0, ri
                 } else {
                     charSequence2 = null;
                 }
-                long j11 = bnVar.f46085l6;
+                long j11 = bnVar.f46076l6;
                 org.telegram.messenger.fj fjVar = bnVar.F5;
-                org.telegram.messenger.fj fjVar2 = bnVar.f46096m4;
+                org.telegram.messenger.fj fjVar2 = bnVar.f46087m4;
                 org.telegram.messenger.fj fjVar3 = bnVar.H5;
                 org.telegram.messenger.bw Y8 = bnVar.Y8();
                 org.telegram.messenger.q5 q5Var = org.telegram.messenger.zy.J;
@@ -171,12 +171,12 @@ public final class bh implements jl, org.telegram.ui.ActionBar.r1, te.i, qj0, ri
                     f10 = 0.76f;
                 }
                 if (z10) {
-                    i7 = org.telegram.ui.ActionBar.n6.f29339a7;
+                    i7 = org.telegram.ui.ActionBar.n6.f29337a7;
                 } else {
-                    i7 = org.telegram.ui.ActionBar.n6.f29487i5;
+                    i7 = org.telegram.ui.ActionBar.n6.f29485i5;
                 }
                 int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
-                int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var);
+                int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var);
                 si siVar = this.f33687b;
                 if (siVar.f39689k4) {
                     return i0.a.f(0.75f, w03, siVar.f39692l4);
@@ -218,10 +218,10 @@ public final class bh implements jl, org.telegram.ui.ActionBar.r1, te.i, qj0, ri
         if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
             if (c8.dd.a(i7, 4)) {
                 ti.a e10 = siVar.Y0.e();
-                e10.b(siVar.f30192b.getY(), siVar.f30192b.getWidth(), siVar.f30192b.getY() + siVar.f30192b.getHeight());
+                e10.b(siVar.f30190b.getY(), siVar.f30190b.getWidth(), siVar.f30190b.getY() + siVar.f30190b.getHeight());
                 gVar.h(e10);
             }
-            gVar.e(siVar.H4, siVar.f30192b.getWidth(), siVar.f30192b.getHeight());
+            gVar.e(siVar.H4, siVar.f30190b.getWidth(), siVar.f30190b.getHeight());
         }
     }
 

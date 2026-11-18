@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class mt0 implements Runnable {
-    public final int f49970a;
-    public final PrivacySettingsActivity f49971b;
+    public final int f49944a;
+    public final PrivacySettingsActivity f49945b;
 
     public mt0(PrivacySettingsActivity privacySettingsActivity, int i7) {
-        this.f49970a = i7;
-        this.f49971b = privacySettingsActivity;
+        this.f49944a = i7;
+        this.f49945b = privacySettingsActivity;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f49970a;
-        PrivacySettingsActivity privacySettingsActivity = this.f49971b;
+        int i7 = this.f49944a;
+        PrivacySettingsActivity privacySettingsActivity = this.f49945b;
         switch (i7) {
             case 0:
                 privacySettingsActivity.f43492a.f();

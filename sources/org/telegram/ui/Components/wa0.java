@@ -49,21 +49,21 @@ public final class wa0 implements View.OnClickListener {
                 return;
             default:
                 ArrayList arrayList = (ArrayList) this.f41652c;
-                org.telegram.ui.ns nsVar = ((org.telegram.ui.js) this.d).f49073a;
-                if (nsVar.f50313w != null && nsVar.f50303l != null) {
+                org.telegram.ui.ns nsVar = ((org.telegram.ui.js) this.d).f49050a;
+                if (nsVar.f50297w != null && nsVar.f50287l != null) {
                     int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
                     if (intValue == 0) {
-                        nsVar.f50303l.B(nsVar.W);
+                        nsVar.f50287l.B(nsVar.W);
                     } else if (intValue == 1) {
-                        nsVar.f50303l.t(nsVar.W);
+                        nsVar.f50287l.t(nsVar.W);
                     } else if (intValue == 2) {
-                        nsVar.f50303l.t(null);
+                        nsVar.f50287l.t(null);
                     } else if (intValue == 3) {
-                        nsVar.f50303l.H(nsVar.W);
+                        nsVar.f50287l.H(nsVar.W);
                     } else if (intValue == 4) {
-                        nsVar.f50303l.p(nsVar.W);
+                        nsVar.f50287l.p(nsVar.W);
                     } else if (intValue == 5) {
-                        org.telegram.messenger.ri.d0(nsVar.f50309r).d(2, nsVar.f50292b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), this.f41651b);
+                        org.telegram.messenger.ri.d0(nsVar.f50293r).d(2, nsVar.f50276b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), this.f41651b);
                     }
                     nsVar.o();
                     return;

@@ -4,7 +4,7 @@ import java.io.File;
 public final class me extends File {
     @Override
     public final boolean delete() {
-        if (s2.f26723a) {
+        if (s2.f26721a) {
             a8.d("delete voice file (joined)");
         }
         return super.delete();

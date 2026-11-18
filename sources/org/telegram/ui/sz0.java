@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.graphics.SurfaceTexture;
 public final class sz0 implements org.telegram.ui.Components.d61, org.telegram.ui.Components.z51 {
-    public final tz0 f52115a;
+    public final tz0 f52117a;
 
     public sz0(tz0 tz0Var) {
-        this.f52115a = tz0Var;
+        this.f52117a = tz0Var;
     }
 
     @Override
@@ -14,13 +14,13 @@ public final class sz0 implements org.telegram.ui.Components.d61, org.telegram.u
 
     @Override
     public void onStateChanged(boolean z10, int i7) {
-        tz0 tz0Var = this.f52115a;
+        tz0 tz0Var = this.f52117a;
         if (i7 == 4) {
             tz0Var.dismiss();
             return;
         }
-        org.telegram.messenger.g0.r(tz0Var.f52383a0);
-        org.telegram.messenger.g0.h3(tz0Var.f52383a0, 16L);
+        org.telegram.messenger.g0.r(tz0Var.f52378a0);
+        org.telegram.messenger.g0.h3(tz0Var.f52378a0, 16L);
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class sz0 implements org.telegram.ui.Components.d61, org.telegram.u
 
     @Override
     public boolean t() {
-        if (this.f52115a.W.f35806i != null) {
+        if (this.f52117a.W.f35806i != null) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class sz0 implements org.telegram.ui.Components.d61, org.telegram.u
 
     @Override
     public void x(boolean z10, float[] fArr) {
-        this.f52115a.W.e(z10, fArr);
+        this.f52117a.W.e(z10, fArr);
     }
 
     @Override

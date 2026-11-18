@@ -14,42 +14,42 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.lz;
 import org.telegram.ui.Components.vy0;
 public final class i0 extends Drawable {
-    public final int f12083a;
-    public Object f12084b;
-    public float f12085c;
+    public final int f12080a;
+    public Object f12081b;
+    public float f12082c;
     public Object d;
 
     public i0() {
-        this.f12083a = 2;
+        this.f12080a = 2;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         float min;
-        switch (this.f12083a) {
+        switch (this.f12080a) {
             case 0:
                 Rect bounds = getBounds();
                 canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-                Drawable drawable = (Drawable) this.f12084b;
+                Drawable drawable = (Drawable) this.f12081b;
                 drawable.setBounds(bounds);
                 drawable.draw(canvas);
                 ((vy0) this.d).c(bounds.centerX() - (((vy0) this.d).f41482c / 2.0f), org.telegram.messenger.g0.L(0.15f) + bounds.centerY(), drawable.getAlpha() / 255.0f, -1, canvas);
                 canvas.restore();
                 return;
             case 1:
-                float f10 = this.f12085c;
+                float f10 = this.f12082c;
                 canvas.drawRoundRect(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, f10, f10, (Paint) this.d);
-                bg.t.e((Drawable) this.f12084b, getBounds().exactCenterX(), getBounds().exactCenterY(), org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(36.0f), 17);
-                ((Drawable) this.f12084b).draw(canvas);
+                bg.t.e((Drawable) this.f12081b, getBounds().exactCenterX(), getBounds().exactCenterY(), org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(36.0f), 17);
+                ((Drawable) this.f12081b).draw(canvas);
                 return;
             case 2:
                 Paint paint = (Paint) this.d;
-                if (this.f12085c != org.telegram.messenger.g0.f24120p) {
+                if (this.f12082c != org.telegram.messenger.g0.f24117p) {
                     f();
                 }
                 canvas.save();
                 canvas.translate(getBounds().left, getBounds().top);
-                canvas.drawPath((Path) this.f12084b, paint);
+                canvas.drawPath((Path) this.f12081b, paint);
                 canvas.drawRect(org.telegram.messenger.g0.N(7.56f), org.telegram.messenger.g0.N(8.0f), org.telegram.messenger.g0.L(18.0f) - org.telegram.messenger.g0.N(7.56f), org.telegram.messenger.g0.N(11.1f), paint);
                 canvas.restore();
                 return;
@@ -60,18 +60,18 @@ public final class i0 extends Drawable {
                 nVar.f41050f = getBounds().width();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(getBounds());
-                nVar.a(this.f12085c, canvas, rectF, null);
-                lz lzVar = (lz) this.f12084b;
+                nVar.a(this.f12082c, canvas, rectF, null);
+                lz lzVar = (lz) this.f12081b;
                 if (lzVar != null) {
-                    lzVar.f25487c = nVar.f41046a;
+                    lzVar.f25485c = nVar.f41046a;
                     int i10 = nVar.f41050f;
                     float f11 = (((i7 * 2) + i10) * nVar.f41051g) - i7;
                     int i11 = (int) (i10 * 0.5f);
                     int width = getBounds().width();
                     int height = getBounds().height();
-                    float f12 = width / lzVar.f25488e;
-                    float f13 = height / lzVar.f25489f;
-                    if (lzVar.f25501s) {
+                    float f12 = width / lzVar.f25486e;
+                    float f13 = height / lzVar.f25487f;
+                    if (lzVar.f25499s) {
                         min = Math.max(f12, f13);
                     } else {
                         min = Math.min(f12, f13);
@@ -91,7 +91,7 @@ public final class i0 extends Drawable {
 
     public void f() {
         int L = org.telegram.messenger.g0.L(18.0f);
-        Path path = (Path) this.f12084b;
+        Path path = (Path) this.f12081b;
         path.reset();
         float f10 = L >> 1;
         path.moveTo(f10, org.telegram.messenger.g0.N(4.98f));
@@ -102,14 +102,14 @@ public final class i0 extends Drawable {
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(1.0f));
-        this.f12085c = org.telegram.messenger.g0.f24120p;
+        this.f12082c = org.telegram.messenger.g0.f24117p;
     }
 
     @Override
     public int getAlpha() {
-        switch (this.f12083a) {
+        switch (this.f12080a) {
             case 0:
-                return ((Drawable) this.f12084b).getAlpha();
+                return ((Drawable) this.f12081b).getAlpha();
             default:
                 return super.getAlpha();
         }
@@ -117,9 +117,9 @@ public final class i0 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f12083a) {
+        switch (this.f12080a) {
             case 0:
-                return (int) (((Drawable) this.f12084b).getIntrinsicHeight() * this.f12085c);
+                return (int) (((Drawable) this.f12081b).getIntrinsicHeight() * this.f12082c);
             case 1:
             default:
                 return super.getIntrinsicHeight();
@@ -130,9 +130,9 @@ public final class i0 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f12083a) {
+        switch (this.f12080a) {
             case 0:
-                return (int) (((Drawable) this.f12084b).getIntrinsicWidth() * this.f12085c);
+                return (int) (((Drawable) this.f12081b).getIntrinsicWidth() * this.f12082c);
             case 1:
             default:
                 return super.getIntrinsicWidth();
@@ -143,7 +143,7 @@ public final class i0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f12083a) {
+        switch (this.f12080a) {
             case 0:
                 return -2;
             case 1:
@@ -157,9 +157,9 @@ public final class i0 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f12083a) {
+        switch (this.f12080a) {
             case 0:
-                ((Drawable) this.f12084b).setAlpha(i7);
+                ((Drawable) this.f12081b).setAlpha(i7);
                 return;
             case 1:
             case 2:
@@ -174,9 +174,9 @@ public final class i0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f12083a) {
+        switch (this.f12080a) {
             case 0:
-                ((Drawable) this.f12084b).setColorFilter(colorFilter);
+                ((Drawable) this.f12081b).setColorFilter(colorFilter);
                 return;
             case 1:
             case 2:
@@ -186,24 +186,24 @@ public final class i0 extends Drawable {
     }
 
     public i0(Context context, float f10) {
-        this.f12083a = 1;
+        this.f12080a = 1;
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f12084b = context.getResources().getDrawable(2131232150);
+        this.f12081b = context.getResources().getDrawable(2131232150);
         paint.setColor(org.telegram.ui.ActionBar.n6.r1(0.1552f, -16777216));
-        this.f12085c = f10;
+        this.f12082c = f10;
     }
 
     public i0(org.telegram.ui.Components.voip.n nVar, lz lzVar) {
-        this.f12083a = 3;
+        this.f12080a = 3;
         this.d = nVar;
-        this.f12084b = lzVar;
+        this.f12081b = lzVar;
     }
 
     public i0(Context context, int i7) {
-        this.f12083a = 0;
-        this.f12085c = 0.75f;
-        this.f12084b = i5.c.g(context, 2131231174);
+        this.f12080a = 0;
+        this.f12082c = 0.75f;
+        this.f12081b = i5.c.g(context, 2131231174);
         vy0 vy0Var = new vy0(i5.c.i(i7, ""), 8.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
         this.d = vy0Var;
         vy0Var.f41480a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));

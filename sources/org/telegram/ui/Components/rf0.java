@@ -458,7 +458,7 @@ public final class rf0 extends View {
                         if (i11 == 0) {
                             int i12 = of0Var5.f38077a;
                             RectF rectF = of0Var5.d;
-                            ProfileActivity.l0(((org.telegram.ui.tt0) qf0Var).f52356b, i12, rectF.left, rectF.top);
+                            ProfileActivity.l0(((org.telegram.ui.tt0) qf0Var).f52351b, i12, rectF.left, rectF.top);
                         } else {
                             postDelayed(new dw(24, this, of0Var5), i11);
                         }

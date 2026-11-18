@@ -46,7 +46,7 @@ public final class tc {
         Paint paint3 = new Paint(1);
         paint3.setFilterBitmap(true);
         paint3.setColor(-1);
-        ?? rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29488i6, false) & 436207615}), null, new sc(this, paint3));
+        ?? rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29486i6, false) & 436207615}), null, new sc(this, paint3));
         this.f39970e = rippleDrawable;
         rippleDrawable.setCallback(view);
     }
@@ -190,7 +190,7 @@ public final class tc {
         }
     }
 
-    public final void e(org.telegram.ui.Cells.k2 k2Var) {
-        this.h = k2Var;
+    public final void e(org.telegram.ui.Cells.l2 l2Var) {
+        this.h = l2Var;
     }
 }

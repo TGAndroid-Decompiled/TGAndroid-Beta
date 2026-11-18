@@ -1,6 +1,6 @@
 package z7;
 public final class p1 implements na.d {
-    public static final p1 f61688a = new Object();
+    public static final p1 f61689a = new Object();
 
     static {
         p5.c.u(yi.i.a(d.class, new a(1)));

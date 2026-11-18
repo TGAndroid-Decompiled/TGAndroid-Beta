@@ -64,8 +64,8 @@ public final class wm implements rx {
     @Override
     public final boolean k() {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.a6 a6Var = this.f41737a.f39222h1;
-        if (a6Var == null || (editField = a6Var.getEditField()) == null) {
+        org.telegram.ui.Cells.b6 b6Var = this.f41737a.f39222h1;
+        if (b6Var == null || (editField = b6Var.getEditField()) == null) {
             return false;
         }
         editField.dispatchKeyEvent(new KeyEvent(0, 67));
@@ -75,8 +75,8 @@ public final class wm implements rx {
     @Override
     public final void l(String str) {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.a6 a6Var = this.f41737a.f39222h1;
-        if (a6Var == null || (editField = a6Var.getEditField()) == null) {
+        org.telegram.ui.Cells.b6 b6Var = this.f41737a.f39222h1;
+        if (b6Var == null || (editField = b6Var.getEditField()) == null) {
             return;
         }
         int selectionEnd = editField.getSelectionEnd();
@@ -98,7 +98,7 @@ public final class wm implements rx {
         rn rnVar = this.f41737a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, rnVar.getContext(), rnVar.f36765a);
         String M0 = org.telegram.messenger.gd.M0(2131752057, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         u1Var.U = org.telegram.messenger.gd.M0(2131752058, null);
         alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131752088, null), new b0(this, 23));
@@ -115,8 +115,8 @@ public final class wm implements rx {
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         EditTextBoldCursor editField;
         x5 x5Var;
-        org.telegram.ui.Cells.a6 a6Var = this.f41737a.f39222h1;
-        if (a6Var == null || (editField = a6Var.getEditField()) == null) {
+        org.telegram.ui.Cells.b6 b6Var = this.f41737a.f39222h1;
+        if (b6Var == null || (editField = b6Var.getEditField()) == null) {
             return;
         }
         int selectionEnd = editField.getSelectionEnd();

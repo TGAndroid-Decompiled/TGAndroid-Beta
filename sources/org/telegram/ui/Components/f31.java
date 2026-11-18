@@ -62,13 +62,13 @@ public final class f31 extends FrameLayout implements org.telegram.ui.ActionBar.
         linearLayout2.setOrientation(0);
         mp mpVar = new mp(20, context, i6Var);
         this.f34932n = mpVar;
-        mpVar.b(org.telegram.ui.ActionBar.n6.h7, org.telegram.ui.ActionBar.n6.f29506j7, org.telegram.ui.ActionBar.n6.f29526k7);
+        mpVar.b(org.telegram.ui.ActionBar.n6.h7, org.telegram.ui.ActionBar.n6.f29504j7, org.telegram.ui.ActionBar.n6.f29524k7);
         mpVar.setDrawUnchecked(true);
         mpVar.a(false, false);
         mpVar.setDrawBackgroundAsArc(10);
         linearLayout2.addView(mpVar, c8.ma.t(22, 22, 16, 0, 0, 0, 0));
         TextView textView4 = new TextView(context);
-        org.telegram.messenger.f3.l(textView4, org.telegram.ui.ActionBar.n6.f29504j5, i6Var, 1, 14.0f);
+        org.telegram.messenger.f3.l(textView4, org.telegram.ui.ActionBar.n6.f29502j5, i6Var, 1, 14.0f);
         textView4.setText(org.telegram.messenger.gd.M0(2131754995, null));
         linearLayout2.addView(textView4, c8.ma.t(-2, -2, 16, 3, -1, 2, 0));
         addView(linearLayout2, c8.ma.d(-2, -2.0f, 21, 0.0f, -3.0f, -6.0f, -3.0f));
@@ -97,7 +97,7 @@ public final class f31 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.G6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.L6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29488i6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29486i6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.Fi));
     }
 
@@ -128,7 +128,7 @@ public final class f31 extends FrameLayout implements org.telegram.ui.ActionBar.
         } else {
             linearLayout.setStateListAnimator(null);
         }
-        this.h.setBackground(org.telegram.ui.ActionBar.n6.a0(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29488i6, i6Var), 24, 24));
+        this.h.setBackground(org.telegram.ui.ActionBar.n6.a0(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29486i6, i6Var), 24, 24));
         int i11 = org.telegram.ui.ActionBar.n6.Fi;
         this.f34934s.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.w0(i11, i6Var), PorterDuff.Mode.SRC_IN));
         this.f34935w.setTextColor(org.telegram.ui.ActionBar.n6.w0(i11, i6Var));

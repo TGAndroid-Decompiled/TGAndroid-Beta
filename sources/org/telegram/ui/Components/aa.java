@@ -61,7 +61,7 @@ public final class aa {
             hi.m5 m5Var = this.d;
             int measuredHeight = m5Var.getMeasuredHeight();
             int measuredWidth = m5Var.getMeasuredWidth();
-            int L = org.telegram.messenger.g0.L(200.0f) + org.telegram.messenger.g0.f24115m;
+            int L = org.telegram.messenger.g0.L(200.0f) + org.telegram.messenger.g0.f24112m;
             this.f33317s = L;
             if (i7 != 0) {
                 L = measuredHeight;
@@ -78,7 +78,7 @@ public final class aa {
                 bitmapArr2[i7] = Bitmap.createBitmap(i10, (int) (L / 15.0f), config);
                 org.telegram.ui.ActionBar.i6 i6Var = this.f33322y;
                 if (i7 == 1) {
-                    this.f33304e[i7].eraseColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var));
+                    this.f33304e[i7].eraseColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var));
                 }
                 this.f33308j[i7] = new Canvas(this.f33304e[i7]);
                 if (i7 == 0) {
@@ -116,7 +116,7 @@ public final class aa {
                 Paint paint = this.f33320w;
                 paint.setAlpha(255);
                 if (i7 == 1) {
-                    this.f33306g[i7].eraseColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var));
+                    this.f33306g[i7].eraseColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var));
                 }
                 this.h[i7].drawBitmap(this.f33304e[i7], 0.0f, 0.0f, paint);
             }

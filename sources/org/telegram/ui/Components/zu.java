@@ -31,11 +31,11 @@ public abstract class zu implements org.telegram.messenger.fs {
                             this.f42947c[i7].add(null);
                         } else {
                             ?? obj = new Object();
-                            long j3 = document.f28411id;
+                            long j3 = document.f28409id;
                             for (int i12 = 0; i12 < tL_messages_stickerSet.packs.size() && ((arrayList = tL_messages_stickerSet.packs.get(i12).documents) == null || !arrayList.contains(Long.valueOf(j3))); i12++) {
                             }
                             obj.f42198a = tL_messages_stickerSet;
-                            obj.f42199b = document.f28411id;
+                            obj.f42199b = document.f28409id;
                             this.f42947c[i7].add(obj);
                             if (this.f42949f.C1) {
                                 TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
@@ -78,7 +78,7 @@ public abstract class zu implements org.telegram.messenger.fs {
                         TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) this.f42945a.get(i11);
                         org.telegram.ui.ActionBar.h2 h2Var2 = bvVar.n1;
                         if (h2Var2 instanceof org.telegram.ui.bn) {
-                            rjVar = ((org.telegram.ui.bn) h2Var2).f45932a0;
+                            rjVar = ((org.telegram.ui.bn) h2Var2).f45923a0;
                         } else {
                             rjVar = null;
                         }

@@ -93,8 +93,8 @@ public final class w implements Parcelable {
         this.h = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
         AbstractCollection createTypedArrayList = parcel.createTypedArrayList(v.CREATOR);
         if (createTypedArrayList == null) {
-            g0 g0Var = i0.f14006b;
-            createTypedArrayList = t1.f14074e;
+            g0 g0Var = i0.f14003b;
+            createTypedArrayList = t1.f14071e;
         }
         this.f55844r = createTypedArrayList;
         this.f55845s = parcel.readLong();

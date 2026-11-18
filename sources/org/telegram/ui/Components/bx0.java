@@ -11,10 +11,10 @@ public final class bx0 extends Drawable {
     public final Drawable d;
     public int f33813e = 255;
 
-    public bx0(org.telegram.ui.Cells.q1 q1Var) {
-        this.f33811b = new c6(q1Var, 420L, lr.h);
-        this.f33812c = q1Var.getContext().getResources().getDrawable(2131232771);
-        this.d = q1Var.getContext().getResources().getDrawable(2131232772);
+    public bx0(org.telegram.ui.Cells.r1 r1Var) {
+        this.f33811b = new c6(r1Var, 420L, lr.h);
+        this.f33812c = r1Var.getContext().getResources().getDrawable(2131232771);
+        this.d = r1Var.getContext().getResources().getDrawable(2131232772);
     }
 
     @Override

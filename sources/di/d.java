@@ -9,25 +9,25 @@ import org.telegram.ui.Components.mt0;
 import org.telegram.ui.Components.ot0;
 import org.telegram.ui.bb1;
 public final class d implements te.b, mt0, ot0, org.telegram.ui.ActionBar.r1, v10 {
-    public final t f8639a;
+    public final t f8636a;
 
     public d(t tVar) {
-        this.f8639a = tVar;
+        this.f8636a = tVar;
     }
 
     @Override
     public void H(int i7, float f10, float f11, te.c cVar) {
-        this.f8639a.y0();
+        this.f8636a.y0();
     }
 
     @Override
     public int b() {
-        return this.f8639a.f9767n;
+        return this.f8636a.f9764n;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        t tVar = this.f8639a;
+        t tVar = this.f8636a;
         tVar.getClass();
         tVar.presentFragment(new bb1(6, null));
     }
@@ -43,17 +43,17 @@ public final class d implements te.b, mt0, ot0, org.telegram.ui.ActionBar.r1, v1
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        t.a0(this.f8639a, (l41) obj);
+        t.a0(this.f8636a, (l41) obj);
     }
 
     @Override
     public RecyclerView n(View view) {
-        t tVar = this.f8639a;
-        if (tVar.f9750a == 1) {
-            return ((s) view).f9684c;
+        t tVar = this.f8636a;
+        if (tVar.f9747a == 1) {
+            return ((s) view).f9681c;
         }
         tVar.L.getClass();
-        return ((mb) view).f9337a;
+        return ((mb) view).f9334a;
     }
 
     @Override

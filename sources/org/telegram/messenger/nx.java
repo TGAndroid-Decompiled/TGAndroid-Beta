@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class nx implements Runnable {
-    public final int f26002a = 0;
-    public final zy f26003b;
-    public final TLRPC.TL_error f26004c;
+    public final int f26000a = 0;
+    public final zy f26001b;
+    public final TLRPC.TL_error f26002c;
     public final TLObject d;
-    public final boolean f26005e;
-    public final TLObject f26006f;
+    public final boolean f26003e;
+    public final TLObject f26004f;
     public final Object h;
-    public final Object f26007n;
+    public final Object f26005n;
 
     public nx(zy zyVar, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject2) {
-        this.f26003b = zyVar;
-        this.f26004c = tL_error;
+        this.f26001b = zyVar;
+        this.f26002c = tL_error;
         this.d = tLObject;
-        this.f26005e = z10;
+        this.f26003e = z10;
         this.h = arrayList;
-        this.f26007n = arrayList2;
-        this.f26006f = tLObject2;
+        this.f26005n = arrayList2;
+        this.f26004f = tLObject2;
     }
 
     @Override
@@ -67,15 +67,15 @@ public final class nx implements Runnable {
         int i16;
         a0.h hVar4;
         a0.h hVar5 = null;
-        switch (this.f26002a) {
+        switch (this.f26000a) {
             case 0:
-                zy zyVar = this.f26003b;
-                TLRPC.TL_error tL_error3 = this.f26004c;
+                zy zyVar = this.f26001b;
+                TLRPC.TL_error tL_error3 = this.f26002c;
                 TLObject tLObject = this.d;
-                boolean z14 = this.f26005e;
+                boolean z14 = this.f26003e;
                 ArrayList arrayList6 = (ArrayList) this.h;
-                ArrayList arrayList7 = (ArrayList) this.f26007n;
-                TLObject tLObject2 = this.f26006f;
+                ArrayList arrayList7 = (ArrayList) this.f26005n;
+                TLObject tLObject2 = this.f26004f;
                 if (tL_error3 == null) {
                     SparseArray sparseArray3 = new SparseArray();
                     a0.h hVar6 = new a0.h();
@@ -88,7 +88,7 @@ public final class nx implements Runnable {
                         TLRPC.Update update = arrayList8.get(i17);
                         if (update instanceof TL_update.TL_updateMessageID) {
                             TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update;
-                            hVar6.k(Integer.valueOf(tL_updateMessageID.f28663id), tL_updateMessageID.random_id);
+                            hVar6.k(Integer.valueOf(tL_updateMessageID.f28661id), tL_updateMessageID.random_id);
                             arrayList8.remove(i17);
                             i17--;
                             tL_error2 = tL_error3;
@@ -97,7 +97,7 @@ public final class nx implements Runnable {
                             if (update instanceof TL_update.TL_updateNewMessage) {
                                 TL_update.TL_updateNewMessage tL_updateNewMessage = (TL_update.TL_updateNewMessage) update;
                                 TLRPC.Message message4 = tL_updateNewMessage.message;
-                                sparseArray3.put(message4.f28426id, message4);
+                                sparseArray3.put(message4.f28424id, message4);
                                 tL_error2 = tL_error4;
                                 Utilities.d.c(new ay(zyVar, tL_updateNewMessage, 0));
                                 arrayList8.remove(i17);
@@ -112,7 +112,7 @@ public final class nx implements Runnable {
                                 if (update instanceof TL_update.TL_updateNewEphemeralMessage) {
                                     TL_update.TL_updateNewEphemeralMessage tL_updateNewEphemeralMessage = (TL_update.TL_updateNewEphemeralMessage) update;
                                     TLRPC.TL_message b10 = bg.x.b(tL_updateNewEphemeralMessage.message);
-                                    sparseArray3.put(b10.f28426id, b10);
+                                    sparseArray3.put(b10.f28424id, b10);
                                     arrayList9.add(tL_updateNewEphemeralMessage.message);
                                     arrayList8.remove(i17);
                                     i17--;
@@ -152,7 +152,7 @@ public final class nx implements Runnable {
                                             hVar5 = hVar3;
                                         }
                                         TLRPC.Message message5 = tL_updateNewChannelMessage.message;
-                                        sparseArray3.put(message5.f28426id, message5);
+                                        sparseArray3.put(message5.f28424id, message5);
                                         Utilities.d.c(new cy(zyVar, tL_updateNewChannelMessage, 0));
                                         arrayList8.remove(i17);
                                         int i19 = i17 - 1;
@@ -184,7 +184,7 @@ public final class nx implements Runnable {
                                         arrayList5 = arrayList9;
                                         if (update instanceof TL_update.TL_updateNewScheduledMessage) {
                                             TLRPC.Message message6 = ((TL_update.TL_updateNewScheduledMessage) update).message;
-                                            sparseArray2.put(message6.f28426id, message6);
+                                            sparseArray2.put(message6.f28424id, message6);
                                             arrayList4.remove(i17);
                                             i17--;
                                             z15 = true;
@@ -195,16 +195,16 @@ public final class nx implements Runnable {
                                                 J1 = null;
                                             } else {
                                                 i15 = 0;
-                                                J1 = fj.J1(((fj) arrayList6.get(0)).f23968k);
+                                                J1 = fj.J1(((fj) arrayList6.get(0)).f23965k);
                                             }
                                             if (arrayList6.isEmpty()) {
                                                 valueOf = null;
                                             } else {
-                                                valueOf = Integer.valueOf(fj.I1(((fj) arrayList6.get(i15)).f23968k));
+                                                valueOf = Integer.valueOf(fj.I1(((fj) arrayList6.get(i15)).f23965k));
                                             }
                                             f10.j(update, J1, valueOf.intValue());
                                             TLRPC.Message message7 = ((TL_update.TL_updateQuickReplyMessage) update).message;
-                                            sparseArray2.put(message7.f28426id, message7);
+                                            sparseArray2.put(message7.f28424id, message7);
                                             arrayList4.remove(i17);
                                             i17--;
                                         }
@@ -275,8 +275,8 @@ public final class nx implements Runnable {
                     while (i21 < arrayList6.size()) {
                         fj fjVar2 = (fj) arrayList6.get(i21);
                         String str2 = (String) arrayList7.get(i21);
-                        TLRPC.Message message8 = fjVar2.f23968k;
-                        int i22 = message8.f28426id;
+                        TLRPC.Message message8 = fjVar2.f23965k;
+                        int i22 = message8.f28424id;
                         char c13 = c11;
                         ArrayList arrayList12 = new ArrayList();
                         i7 = i20;
@@ -286,7 +286,7 @@ public final class nx implements Runnable {
                             fj.B0(message);
                             arrayList12.add(message);
                             if ((message.flags & 33554432) != 0) {
-                                TLRPC.Message message9 = fjVar2.f23968k;
+                                TLRPC.Message message9 = fjVar2.f23965k;
                                 c10 = c12;
                                 message9.ttl_period = message.ttl_period;
                                 message9.flags |= 33554432;
@@ -297,7 +297,7 @@ public final class nx implements Runnable {
                                 arrayList6 = arrayList13;
                                 fj fjVar3 = (fj) arrayList6.get(0);
                                 i12 = i21;
-                                int i23 = message.f28426id;
+                                int i23 = message.f28424id;
                                 arrayList = arrayList12;
                                 HashMap<String, String> hashMap = message.params;
                                 arrayList2 = arrayList11;
@@ -318,10 +318,10 @@ public final class nx implements Runnable {
                                 arrayList3 = arrayList7;
                                 message3 = message8;
                                 i13 = i22;
-                                zyVar.z0(fjVar, message2, message2.f28426id, Collections.singletonList(str2), false, -1, message2.params);
+                                zyVar.z0(fjVar, message2, message2.f28424id, Collections.singletonList(str2), false, -1, message2.params);
                             }
                             final int o12 = fjVar.o1();
-                            message3.f28426id = message2.f28426id;
+                            message3.f28424id = message2.f28424id;
                             int i24 = message2.quick_reply_shortcut_id;
                             message3.quick_reply_shortcut_id = i24;
                             if (i24 != 0) {
@@ -341,7 +341,7 @@ public final class nx implements Runnable {
                                     i14 = i12;
                                     sparseArray = sparseArray5;
                                 }
-                                if (num2.intValue() < message2.f28426id) {
+                                if (num2.intValue() < message2.f28424id) {
                                     z12 = true;
                                 } else {
                                     z12 = false;
@@ -361,7 +361,7 @@ public final class nx implements Runnable {
                             message3.errorNewPriceStars = 0L;
                             ks notificationCenter2 = zyVar.getNotificationCenter();
                             Integer valueOf2 = Integer.valueOf(i13);
-                            Integer valueOf3 = Integer.valueOf(message3.f28426id);
+                            Integer valueOf3 = Integer.valueOf(message3.f28424id);
                             Long valueOf4 = Long.valueOf(message3.dialog_id);
                             Long valueOf5 = Long.valueOf(j3);
                             Integer valueOf6 = Integer.valueOf(o12);
@@ -378,7 +378,7 @@ public final class nx implements Runnable {
                             notificationCenter2.k(21, objArr2);
                             ks notificationCenter3 = zyVar.getNotificationCenter();
                             Integer valueOf8 = Integer.valueOf(i13);
-                            Integer valueOf9 = Integer.valueOf(message3.f28426id);
+                            Integer valueOf9 = Integer.valueOf(message3.f28424id);
                             Long valueOf10 = Long.valueOf(message3.dialog_id);
                             Long valueOf11 = Long.valueOf(j3);
                             Integer valueOf12 = Integer.valueOf(o12);
@@ -403,7 +403,7 @@ public final class nx implements Runnable {
                             final int i25 = i13;
                             arrayList11 = arrayList15;
                             zyVar = zyVar3;
-                            zyVar.getMessagesStorage().f27054a.c(new Runnable() {
+                            zyVar.getMessagesStorage().f27052a.c(new Runnable() {
                                 @Override
                                 public final void run() {
                                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.dy.run():void");
@@ -445,7 +445,7 @@ public final class nx implements Runnable {
                     int i26 = 0;
                     while (i26 < arrayList6.size()) {
                         fj fjVar5 = (fj) arrayList6.get(i26);
-                        TLRPC.Message message11 = fjVar5.f23968k;
+                        TLRPC.Message message11 = fjVar5.f23965k;
                         zyVar.getMessagesStorage().N0(r12, message11);
                         int i27 = i7;
                         message11.send_state = i27;
@@ -456,9 +456,9 @@ public final class nx implements Runnable {
                             di.x8.y(zyVar.currentAccount, false).d0(Arrays.asList(fjVar5));
                             zyVar.getMessagesStorage().X1(fj.B0(message11), message11);
                         }
-                        zyVar.getNotificationCenter().k(23, Integer.valueOf(message11.f28426id));
-                        zyVar.d0(message11.f28426id);
-                        zyVar.i0(message11.f28426id, r12);
+                        zyVar.getNotificationCenter().k(23, Integer.valueOf(message11.f28424id));
+                        zyVar.d0(message11.f28424id);
+                        zyVar.i0(message11.f28424id, r12);
                         i26++;
                         i7 = i27;
                     }
@@ -466,13 +466,13 @@ public final class nx implements Runnable {
                 }
                 return;
             default:
-                zy zyVar4 = this.f26003b;
-                TLRPC.TL_error tL_error6 = this.f26004c;
+                zy zyVar4 = this.f26001b;
+                TLRPC.TL_error tL_error6 = this.f26002c;
                 TLRPC.Message message12 = (TLRPC.Message) this.h;
                 TLObject tLObject3 = this.d;
-                fj fjVar6 = (fj) this.f26007n;
-                boolean z19 = this.f26005e;
-                TLObject tLObject4 = this.f26006f;
+                fj fjVar6 = (fj) this.f26005n;
+                boolean z19 = this.f26003e;
+                TLObject tLObject4 = this.f26004f;
                 if (tL_error6 == null) {
                     String str3 = message12.attachPath;
                     TLRPC.Updates updates2 = (TLRPC.Updates) tLObject3;
@@ -481,8 +481,8 @@ public final class nx implements Runnable {
                     ArrayList arrayList18 = new ArrayList();
                     arrayList18.add(message12);
                     zyVar4.getMessagesStorage().j1(arrayList18, false, true, false, 0, false, 0, 0L);
-                    e00 e00Var = zyVar4.getMessagesController().f25771t7;
-                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) e00Var.f23626e.f(e00.p(message12.f28426id, -message12.dialog_id));
+                    e00 e00Var = zyVar4.getMessagesController().f25769t7;
+                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) e00Var.f23623e.f(e00.p(message12.f28424id, -message12.dialog_id));
                     if (tL_forumTopic != null) {
                         tL_forumTopic.topMessage = message12;
                         e00Var.y(-message12.dialog_id, true);
@@ -491,19 +491,19 @@ public final class nx implements Runnable {
                     return;
                 }
                 org.telegram.ui.Components.b5.c0(zyVar4.currentAccount, tL_error6, null, tLObject4, new Object[0]);
-                zyVar4.i0(message12.f28426id, z19);
+                zyVar4.i0(message12.f28424id, z19);
                 zyVar4.l0(fjVar6);
                 return;
         }
     }
 
     public nx(zy zyVar, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, fj fjVar, String str, HashMap hashMap, boolean z10, TLObject tLObject2) {
-        this.f26003b = zyVar;
-        this.f26004c = tL_error;
+        this.f26001b = zyVar;
+        this.f26002c = tL_error;
         this.h = message;
         this.d = tLObject;
-        this.f26007n = fjVar;
-        this.f26005e = z10;
-        this.f26006f = tLObject2;
+        this.f26005n = fjVar;
+        this.f26003e = z10;
+        this.f26004f = tLObject2;
     }
 }

@@ -57,8 +57,8 @@ public final class e extends i {
                     Object obj = a10.get(i7);
                     i7++;
                     IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f7574a)) {
-                        str2 = identifiedLanguage.f7574a;
+                    if (!"unknown".equals(identifiedLanguage.f7571a)) {
+                        str2 = identifiedLanguage.f7571a;
                         break;
                     }
                 } else {

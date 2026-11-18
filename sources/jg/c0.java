@@ -8,21 +8,21 @@ import org.telegram.messenger.o10;
 import org.telegram.messenger.ri;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Cells.l2;
-import org.telegram.ui.Cells.o4;
+import org.telegram.ui.Cells.m2;
+import org.telegram.ui.Cells.p4;
 import org.telegram.ui.Components.bk0;
 public class c0 extends bk0 {
-    public final Context f17414c;
+    public final Context f17411c;
     public final int d;
-    public final boolean f17415e;
-    public final boolean f17416f;
+    public final boolean f17412e;
+    public final boolean f17413f;
     public final i6 h;
 
     public c0(int i7, Context context, i6 i6Var, boolean z10, boolean z11) {
-        this.f17415e = z10;
-        this.f17414c = context;
+        this.f17412e = z10;
+        this.f17411c = context;
         this.d = i7;
-        this.f17416f = z11;
+        this.f17413f = z11;
         this.h = i6Var;
     }
 
@@ -33,16 +33,16 @@ public class c0 extends bk0 {
 
     @Override
     public final int b() {
-        return ri.d0(this.d).f26622j1.size();
+        return ri.d0(this.d).f26620j1.size();
     }
 
     @Override
     public void t(v4.f1 f1Var, int i7) {
         TLRPC.Chat chat;
         String str;
-        o4 o4Var = (o4) f1Var.f59122a;
+        p4 p4Var = (p4) f1Var.f59123a;
         int i10 = this.d;
-        TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) ri.d0(i10).f26622j1.get(i7);
+        TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) ri.d0(i10).f26620j1.get(i7);
         new TLRPC.TL_dialog();
         TLRPC.Peer peer = tL_topPeer.peer;
         long j3 = peer.user_id;
@@ -66,7 +66,7 @@ public class c0 extends bk0 {
                 }
             }
         }
-        o4Var.setTag(Long.valueOf(j3));
+        p4Var.setTag(Long.valueOf(j3));
         if (user != null) {
             str = o10.k(user, true);
         } else if (chat != null) {
@@ -78,18 +78,18 @@ public class c0 extends bk0 {
         } else {
             str = "";
         }
-        o4Var.a(j3, true, str);
+        p4Var.a(j3, true, str);
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        boolean z10 = this.f17415e;
-        o4 o4Var = new o4(this.f17414c, this.h, z10);
-        if (this.f17416f && !o4Var.f31169y) {
-            o4Var.f31169y = true;
-            ks.f(o4Var.h).h(o4Var, ks.f25144k3, new l2(o4Var, 1));
+        boolean z10 = this.f17412e;
+        p4 p4Var = new p4(this.f17411c, this.h, z10);
+        if (this.f17413f && !p4Var.f31216y) {
+            p4Var.f31216y = true;
+            ks.f(p4Var.h).h(p4Var, ks.f25142k3, new m2(p4Var, 1));
         }
-        o4Var.setLayoutParams(new v4.q0(org.telegram.messenger.g0.L(80.0f), org.telegram.messenger.g0.L(86.0f)));
-        return new v4.f1(o4Var);
+        p4Var.setLayoutParams(new v4.q0(org.telegram.messenger.g0.L(80.0f), org.telegram.messenger.g0.L(86.0f)));
+        return new v4.f1(p4Var);
     }
 }

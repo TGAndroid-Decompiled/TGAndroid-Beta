@@ -11,15 +11,15 @@ import org.telegram.ui.Components.wa;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.Components.xs;
 public final class s implements kb {
-    public long f11199a;
+    public long f11196a;
 
     public s(fj fjVar) {
-        this.f11199a = fj.B0(fjVar.f23968k);
+        this.f11196a = fj.B0(fjVar.f23965k);
         fjVar.e1();
     }
 
     public boolean a(tf.m mVar) {
-        if (mVar.f912b == this.f11199a && tf.a.c(mVar)) {
+        if (mVar.f912b == this.f11196a && tf.a.c(mVar)) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public final class s implements kb {
         lbVar.setInOutOffset(lbVar.getMeasuredHeight());
         plVar.accept(Float.valueOf(lbVar.getTranslationY()));
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(lbVar, lb.IN_OUT_OFFSET_Y2, 0.0f);
-        ofFloat.setDuration(this.f11199a);
+        ofFloat.setDuration(this.f11196a);
         ofFloat.setInterpolator(xs.d);
         ofFloat.addListener(new ah.l(waVar, lgVar, 19));
         ofFloat.addUpdateListener(new ch.w(13, plVar, lbVar));

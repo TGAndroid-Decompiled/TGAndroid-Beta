@@ -6,9 +6,9 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class h9 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
-    public final org.telegram.ui.Cells.g6 f48308a;
-    public final org.telegram.ui.Components.ng0 f48309b;
-    public TLRPC.Chat f48310c;
+    public final org.telegram.ui.Cells.h6 f48218a;
+    public final org.telegram.ui.Components.ng0 f48219b;
+    public TLRPC.Chat f48220c;
 
     public h9(Context context) {
         super(context);
@@ -16,26 +16,26 @@ public final class h9 extends FrameLayout implements org.telegram.ui.ActionBar.c
         int L;
         String M0 = org.telegram.messenger.gd.M0(2131743205, null);
         org.telegram.ui.Components.ng0 ng0Var = new org.telegram.ui.Components.ng0(context);
-        this.f48309b = ng0Var;
+        this.f48219b = ng0Var;
         int ceil = (int) Math.ceil(ng0Var.getPaint().measureText(M0));
-        org.telegram.ui.Cells.g6 g6Var = new org.telegram.ui.Cells.g6(context, null);
-        this.f48308a = g6Var;
-        g6Var.N0 = true;
-        g6Var.F0 = true;
-        if (org.telegram.messenger.gd.f24216a0) {
+        org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, null);
+        this.f48218a = h6Var;
+        h6Var.N0 = true;
+        h6Var.F0 = true;
+        if (org.telegram.messenger.gd.f24213a0) {
             i7 = org.telegram.messenger.g0.L(44.0f) + ceil;
         } else {
             i7 = 0;
         }
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             L = 0;
         } else {
             L = org.telegram.messenger.g0.L(44.0f) + ceil;
         }
-        g6Var.setPadding(i7, 0, L, 0);
-        g6Var.f30656c0 = 0;
-        g6Var.f30657d0 = -org.telegram.messenger.g0.L(4.0f);
-        addView(g6Var, c8.ma.c(-1.0f, -1));
+        h6Var.setPadding(i7, 0, L, 0);
+        h6Var.f30705c0 = 0;
+        h6Var.f30706d0 = -org.telegram.messenger.g0.L(4.0f);
+        addView(h6Var, c8.ma.c(-1.0f, -1));
         ng0Var.setText(M0);
         ng0Var.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.u6.U(ng0Var, org.telegram.ui.ActionBar.n6.Ji, null);
@@ -55,7 +55,7 @@ public final class h9 extends FrameLayout implements org.telegram.ui.ActionBar.c
     @Override
     public final void updateColors() {
         try {
-            this.f48309b.setProgressColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ei, false));
+            this.f48219b.setProgressColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ei, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

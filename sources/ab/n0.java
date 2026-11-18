@@ -18,7 +18,7 @@ public final class n0 extends Binder {
                 Log.d("FirebaseMessaging", "service received new intent via bind strategy");
             }
             Intent intent = o0Var.f977a;
-            h hVar = (h) this.f974a.f5154b;
+            h hVar = (h) this.f974a.f5151b;
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
             hVar.f931a.execute(new aa.r(hVar, intent, taskCompletionSource, 1));
             taskCompletionSource.getTask().addOnCompleteListener(new d3.b(3), new a1.c(o0Var, 6));

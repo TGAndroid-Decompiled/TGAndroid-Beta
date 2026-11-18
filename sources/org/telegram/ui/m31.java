@@ -28,11 +28,11 @@ public final class m31 extends org.telegram.ui.Components.k41 {
         View.OnClickListener onClickListener = l41Var.E;
         CharSequence charSequence4 = l41Var.f37021p;
         View.OnClickListener onClickListener2 = l41Var.F;
-        hi.d dVar = n31Var.f50078e;
-        org.telegram.ui.Components.k80 k80Var = n31Var.f50076b;
+        hi.d dVar = n31Var.f50052e;
+        org.telegram.ui.Components.k80 k80Var = n31Var.f50050b;
         int i7 = 0;
         k80Var.setText(org.telegram.messenger.j6.m(charSequence, k80Var.getPaint().getFontMetricsInt(), false, null, 0));
-        org.telegram.ui.Components.k80 k80Var2 = n31Var.f50077c;
+        org.telegram.ui.Components.k80 k80Var2 = n31Var.f50051c;
         k80Var2.setText(org.telegram.messenger.j6.m(charSequence2, k80Var2.getPaint().getFontMetricsInt(), false, null, 0));
         hi.d dVar2 = n31Var.d;
         if (TextUtils.isEmpty(charSequence3)) {

@@ -18,7 +18,7 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.x2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.g71;
-import org.telegram.ui.bd0;
+import org.telegram.ui.cd0;
 public final class q extends x2 {
     public static final int f57317u1 = 0;
     public final za f57318m1;
@@ -35,7 +35,7 @@ public final class q extends x2 {
         this.f57320p1 = new Path();
         P(-14342875);
         Drawable mutate = context.getResources().getDrawable(2131232730).mutate();
-        this.f30225s0 = mutate;
+        this.f30223s0 = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-14342875, PorterDuff.Mode.MULTIPLY));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -46,7 +46,7 @@ public final class q extends x2 {
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         imageView.setBackground(n6.h0(1090519039, 1, -1));
-        imageView.setOnClickListener(new bd0(27, this, context));
+        imageView.setOnClickListener(new cd0(27, this, context));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(2131231242);
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -60,9 +60,9 @@ public final class q extends x2 {
         za zaVar = new za(context, 6);
         zaVar.setOrientation(1);
         o oVar = new o(this, context);
-        zaVar.f10176b = oVar;
+        zaVar.f10173b = oVar;
         oVar.a(this.f57321q1);
-        zaVar.f10177c = new n(this, context);
+        zaVar.f10174c = new n(this, context);
         zaVar.d = new p(this, context);
         g71 g71Var = new g71(context, this.J0);
         g71Var.setAdapter(new li.x(zaVar, 4));
@@ -98,10 +98,10 @@ public final class q extends x2 {
             org.telegram.messenger.g0.v1(findFocus);
         }
         if (i10 != 3) {
-            ((o) zaVar.f10176b).a(i7);
+            ((o) zaVar.f10173b).a(i7);
         }
         if (i10 != 0) {
-            n nVar = (n) zaVar.f10177c;
+            n nVar = (n) zaVar.f10174c;
             if (i10 != 1) {
                 z10 = true;
             } else {
@@ -162,9 +162,9 @@ public final class q extends x2 {
     public final void show() {
         boolean z10;
         androidx.activity.n nVar = this.f57323s1;
-        switch (nVar.f1786a) {
+        switch (nVar.f1787a) {
             default:
-                if (((Bitmap) nVar.f1788c) != null) {
+                if (((Bitmap) nVar.f1789c) != null) {
                     z10 = true;
                     break;
                 }

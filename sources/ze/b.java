@@ -10,20 +10,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.q90;
 import ug.n0;
 public final class b implements q90 {
-    public final int f61913a = 0;
-    public Object f61914b;
+    public final int f61914a = 0;
+    public Object f61915b;
 
     public b() {
     }
 
     @Override
     public Paint.FontMetricsInt P() {
-        return ((n) this.f61914b).f15051f.getEditText().getPaint().getFontMetricsInt();
+        return ((n) this.f61915b).f15048f.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public void l0(int i7, int i10, CharSequence charSequence, boolean z10) {
-        g gVar = ((n) this.f61914b).f15051f;
+        g gVar = ((n) this.f61915b).f15048f;
         if (gVar == null) {
             return;
         }
@@ -41,13 +41,13 @@ public final class b implements q90 {
     }
 
     public String toString() {
-        switch (this.f61913a) {
+        switch (this.f61914a) {
             case 0:
-                c cVar = c.f61915e;
+                c cVar = c.f61916e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((n0) this.f61914b).m());
+                stringBuffer.append(((n0) this.f61915b).m());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -56,7 +56,7 @@ public final class b implements q90 {
     }
 
     public b(n nVar) {
-        this.f61914b = nVar;
+        this.f61915b = nVar;
     }
 
     @Override

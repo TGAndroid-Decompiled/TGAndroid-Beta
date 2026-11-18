@@ -11,19 +11,19 @@ import android.widget.FrameLayout;
 import java.util.WeakHashMap;
 import org.telegram.messenger.a8;
 public final class p3 extends FrameLayout {
-    public s4 f29863a;
-    public ActionBarLayout f29864b;
-    public boolean f29865c;
+    public s4 f29861a;
+    public ActionBarLayout f29862b;
+    public boolean f29863c;
     public final Paint d;
-    public r0.l1 f29866e;
-    public i0.b f29867f;
+    public r0.l1 f29864e;
+    public i0.b f29865f;
     public i0.b h;
 
     public p3(Activity activity) {
         super(activity);
         this.d = new Paint(1);
-        i0.b bVar = i0.b.f15891e;
-        this.f29867f = bVar;
+        i0.b bVar = i0.b.f15888e;
+        this.f29865f = bVar;
         this.h = bVar;
         p pVar = new p(this, 5);
         WeakHashMap weakHashMap = r0.i0.f56244a;
@@ -34,7 +34,7 @@ public final class p3 extends FrameLayout {
     @Override
     public final void addView(View view, int i7, ViewGroup.LayoutParams layoutParams) {
         super.addView(view, i7, layoutParams);
-        r0.l1 l1Var = this.f29866e;
+        r0.l1 l1Var = this.f29864e;
         if (l1Var != null) {
             if ((view instanceof ActionBarLayout) || view.getTag() == null) {
                 r0.i0.b(view, l1Var);
@@ -44,9 +44,9 @@ public final class p3 extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ActionBarLayout actionBarLayout = this.f29864b;
+        ActionBarLayout actionBarLayout = this.f29862b;
         if (actionBarLayout != null && actionBarLayout.getParent() == this) {
-            this.f29864b.Q(canvas, this);
+            this.f29862b.Q(canvas, this);
         }
         super.dispatchDraw(canvas);
     }
@@ -62,12 +62,12 @@ public final class p3 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return ((ActionBarLayout) this.f29863a).i();
+        return ((ActionBarLayout) this.f29861a).i();
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        this.f29865c = true;
+        this.f29863c = true;
         int childCount = getChildCount();
         for (int i13 = 0; i13 < childCount; i13++) {
             View childAt = getChildAt(i13);
@@ -77,12 +77,12 @@ public final class p3 extends FrameLayout {
                     childAt.layout(layoutParams.leftMargin, layoutParams.topMargin + getPaddingTop(), layoutParams.leftMargin + childAt.getMeasuredWidth(), layoutParams.topMargin + childAt.getMeasuredHeight() + getPaddingTop());
                 } catch (Exception e10) {
                     a8.g(e10, true);
-                    boolean z11 = org.telegram.messenger.s2.f26723a;
+                    boolean z11 = org.telegram.messenger.s2.f26721a;
                     throw e10;
                 }
             }
         }
-        this.f29865c = false;
+        this.f29863c = false;
     }
 
     @Override
@@ -91,10 +91,10 @@ public final class p3 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
         setMeasuredDimension(size, size2);
-        i0.b bVar = this.f29867f;
-        int i11 = (size - bVar.f15892a) - bVar.f15894c;
-        int i12 = (size2 - bVar.f15893b) - bVar.d;
-        Point point = org.telegram.messenger.g0.f24121q;
+        i0.b bVar = this.f29865f;
+        int i11 = (size - bVar.f15889a) - bVar.f15891c;
+        int i12 = (size2 - bVar.f15890b) - bVar.d;
+        Point point = org.telegram.messenger.g0.f24118q;
         point.x = i11;
         point.y = i12;
         int childCount = getChildCount();
@@ -124,13 +124,13 @@ public final class p3 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (!this.f29865c) {
+        if (!this.f29863c) {
             super.requestLayout();
         }
     }
 
     public void setActionBarLayout(ActionBarLayout actionBarLayout) {
-        this.f29864b = actionBarLayout;
+        this.f29862b = actionBarLayout;
     }
 
     public void setInternalNavigationBarColor(int i7) {
@@ -146,6 +146,6 @@ public final class p3 extends FrameLayout {
     }
 
     public void setParentActionBarLayout(s4 s4Var) {
-        this.f29863a = s4Var;
+        this.f29861a = s4Var;
     }
 }

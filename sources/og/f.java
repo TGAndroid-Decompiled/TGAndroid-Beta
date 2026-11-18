@@ -19,68 +19,68 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
 import org.telegram.ui.ActionBar.n6;
 public final class f extends FrameLayout {
-    public final Paint f21844a;
-    public final Paint f21845b;
-    public final ImageView f21846c;
+    public final Paint f21841a;
+    public final Paint f21842b;
+    public final ImageView f21843c;
     public final ImageView d;
-    public final ImageView f21847e;
-    public String f21848f;
+    public final ImageView f21844e;
+    public String f21845f;
     public final TextPaint h;
-    public float f21849n;
-    public final RectF f21850r;
-    public float f21851s;
-    public e f21852w;
+    public float f21846n;
+    public final RectF f21847r;
+    public float f21848s;
+    public e f21849w;
 
     public f(Context context) {
         super(context);
-        this.f21850r = new RectF(0.0f, 0.0f, 0.0f, 0.0f);
+        this.f21847r = new RectF(0.0f, 0.0f, 0.0f, 0.0f);
         Paint paint = new Paint();
-        this.f21844a = paint;
+        this.f21841a = paint;
         Paint.Style style = Paint.Style.FILL;
         paint.setStyle(style);
         paint.setColor(-1);
         paint.setAlpha(255);
         paint.setAntiAlias(true);
         Paint paint2 = new Paint();
-        this.f21845b = paint2;
+        this.f21842b = paint2;
         paint2.setStyle(style);
         paint2.setColor(-11420173);
         paint2.setAlpha(255);
         paint2.setAntiAlias(true);
         ImageView imageView = new ImageView(context);
-        this.f21847e = imageView;
+        this.f21844e = imageView;
         imageView.setImageResource(2131232283);
         imageView.setBackgroundDrawable(n6.h0(1090519039, 1, -1));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final f f21843b;
+            public final f f21840b;
 
             {
-                this.f21843b = this;
+                this.f21840b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        f fVar = this.f21843b;
-                        e eVar = fVar.f21852w;
+                        f fVar = this.f21840b;
+                        e eVar = fVar.f21849w;
                         if (eVar != null) {
                             fVar.setMirrored(eVar.a());
                             return;
                         }
                         return;
                     case 1:
-                        e eVar2 = this.f21843b.f21852w;
+                        e eVar2 = this.f21840b.f21849w;
                         if (eVar2 != null) {
                             eVar2.b();
                             return;
                         }
                         return;
                     default:
-                        f fVar2 = this.f21843b;
-                        e eVar3 = fVar2.f21852w;
+                        f fVar2 = this.f21840b;
+                        e eVar3 = fVar2.f21849w;
                         if (eVar3 != null) {
                             fVar2.setRotated(eVar3.d());
                             return;
@@ -93,38 +93,38 @@ public final class f extends FrameLayout {
         imageView.setContentDescription(gd.M0(2131754840, null));
         addView(imageView, ma.e(70, 64, 19));
         ImageView imageView2 = new ImageView(context);
-        this.f21846c = imageView2;
+        this.f21843c = imageView2;
         imageView2.setImageResource(2131232281);
         imageView2.setBackgroundDrawable(n6.h0(1090519039, 1, -1));
         imageView2.setScaleType(scaleType);
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final f f21843b;
+            public final f f21840b;
 
             {
-                this.f21843b = this;
+                this.f21840b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        f fVar = this.f21843b;
-                        e eVar = fVar.f21852w;
+                        f fVar = this.f21840b;
+                        e eVar = fVar.f21849w;
                         if (eVar != null) {
                             fVar.setMirrored(eVar.a());
                             return;
                         }
                         return;
                     case 1:
-                        e eVar2 = this.f21843b.f21852w;
+                        e eVar2 = this.f21840b.f21849w;
                         if (eVar2 != null) {
                             eVar2.b();
                             return;
                         }
                         return;
                     default:
-                        f fVar2 = this.f21843b;
-                        e eVar3 = fVar2.f21852w;
+                        f fVar2 = this.f21840b;
+                        e eVar3 = fVar2.f21849w;
                         if (eVar3 != null) {
                             fVar2.setRotated(eVar3.d());
                             return;
@@ -142,33 +142,33 @@ public final class f extends FrameLayout {
         imageView3.setBackgroundDrawable(n6.h0(1090519039, 1, -1));
         imageView3.setScaleType(scaleType);
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final f f21843b;
+            public final f f21840b;
 
             {
-                this.f21843b = this;
+                this.f21840b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        f fVar = this.f21843b;
-                        e eVar = fVar.f21852w;
+                        f fVar = this.f21840b;
+                        e eVar = fVar.f21849w;
                         if (eVar != null) {
                             fVar.setMirrored(eVar.a());
                             return;
                         }
                         return;
                     case 1:
-                        e eVar2 = this.f21843b.f21852w;
+                        e eVar2 = this.f21840b.f21849w;
                         if (eVar2 != null) {
                             eVar2.b();
                             return;
                         }
                         return;
                     default:
-                        f fVar2 = this.f21843b;
-                        e eVar3 = fVar2.f21852w;
+                        f fVar2 = this.f21840b;
+                        e eVar3 = fVar2.f21849w;
                         if (eVar3 != null) {
                             fVar2.setRotated(eVar3.d());
                             return;
@@ -196,7 +196,7 @@ public final class f extends FrameLayout {
         float abs = Math.abs(cos) / L;
         int min = Math.min(255, Math.max(0, (int) ((1.0f - (abs * abs)) * 255.0f)));
         if (z10) {
-            paint = this.f21845b;
+            paint = this.f21842b;
         }
         Paint paint2 = paint;
         paint2.setAlpha(min);
@@ -216,17 +216,17 @@ public final class f extends FrameLayout {
     }
 
     public final void b(float f10) {
-        this.f21849n = f10;
+        this.f21846n = f10;
         if (Math.abs(f10) < 0.099d) {
             f10 = Math.abs(f10);
         }
-        this.f21848f = String.format("%.1fº", Float.valueOf(f10));
+        this.f21845f = String.format("%.1fº", Float.valueOf(f10));
         invalidate();
     }
 
     @Override
     public float getRotation() {
-        return this.f21849n;
+        return this.f21846n;
     }
 
     @Override
@@ -239,13 +239,13 @@ public final class f extends FrameLayout {
         super.onDraw(canvas);
         int width = getWidth();
         int height = getHeight();
-        float f11 = ((-this.f21849n) * 2.0f) % 5.0f;
+        float f11 = ((-this.f21846n) * 2.0f) % 5.0f;
         int floor = (int) Math.floor(f10 / 5.0f);
         int i7 = 0;
         while (true) {
-            Paint paint3 = this.f21845b;
+            Paint paint3 = this.f21842b;
             if (i7 < 16) {
-                Paint paint4 = this.f21844a;
+                Paint paint4 = this.f21841a;
                 if (i7 >= floor && (i7 != 0 || f11 >= 0.0f)) {
                     paint = paint4;
                 } else {
@@ -278,15 +278,15 @@ public final class f extends FrameLayout {
             } else {
                 Canvas canvas3 = canvas;
                 paint3.setAlpha(255);
-                RectF rectF = this.f21850r;
+                RectF rectF = this.f21847r;
                 rectF.left = (width - g0.L(2.5f)) / 2;
                 rectF.top = n10.z(22.0f, height, 2);
                 rectF.right = (g0.L(2.5f) + width) / 2;
                 rectF.bottom = (g0.L(22.0f) + height) / 2;
                 canvas3.drawRoundRect(rectF, g0.L(2.0f), g0.L(2.0f), paint3);
-                String str = this.f21848f;
+                String str = this.f21845f;
                 TextPaint textPaint = this.h;
-                canvas3.drawText(this.f21848f, (width - textPaint.measureText(str)) / 2.0f, g0.L(14.0f), textPaint);
+                canvas3.drawText(this.f21845f, (width - textPaint.measureText(str)) / 2.0f, g0.L(14.0f), textPaint);
                 return;
             }
         }
@@ -302,43 +302,43 @@ public final class f extends FrameLayout {
         int actionMasked = motionEvent.getActionMasked();
         float x10 = motionEvent.getX();
         if (actionMasked == 0) {
-            this.f21851s = x10;
-            e eVar = this.f21852w;
+            this.f21848s = x10;
+            e eVar = this.f21849w;
             if (eVar != null) {
                 eVar.e();
                 return true;
             }
         } else if (actionMasked != 1 && actionMasked != 3) {
             if (actionMasked == 2) {
-                float A = n10.A(this.f21849n, (float) ((((this.f21851s - x10) / g0.f24120p) / 3.141592653589793d) / 1.649999976158142d), 45.0f, -45.0f);
+                float A = n10.A(this.f21846n, (float) ((((this.f21848s - x10) / g0.f24117p) / 3.141592653589793d) / 1.649999976158142d), 45.0f, -45.0f);
                 if (Build.VERSION.SDK_INT >= 27) {
                     try {
-                        if ((Math.abs(A - 45.0f) < 0.001f && Math.abs(this.f21849n - 45.0f) >= 0.001f) || (Math.abs(A - (-45.0f)) < 0.001f && Math.abs(this.f21849n - (-45.0f)) >= 0.001f)) {
+                        if ((Math.abs(A - 45.0f) < 0.001f && Math.abs(this.f21846n - 45.0f) >= 0.001f) || (Math.abs(A - (-45.0f)) < 0.001f && Math.abs(this.f21846n - (-45.0f)) >= 0.001f)) {
                             performHapticFeedback(3, 1);
-                        } else if (Math.floor(this.f21849n / 2.5f) != Math.floor(A / 2.5f)) {
+                        } else if (Math.floor(this.f21846n / 2.5f) != Math.floor(A / 2.5f)) {
                             g0.a4(this);
                         }
                     } catch (Exception unused) {
                     }
                 }
-                if (Math.abs(A - this.f21849n) > 0.001d) {
+                if (Math.abs(A - this.f21846n) > 0.001d) {
                     if (Math.abs(A) < 0.05d) {
                         A = 0.0f;
                     }
                     b(A);
-                    e eVar2 = this.f21852w;
+                    e eVar2 = this.f21849w;
                     if (eVar2 != null) {
-                        eVar2.f(this.f21849n);
+                        eVar2.f(this.f21846n);
                     }
-                    this.f21851s = x10;
+                    this.f21848s = x10;
                 }
             }
         } else {
-            e eVar3 = this.f21852w;
+            e eVar3 = this.f21849w;
             if (eVar3 != null) {
                 eVar3.c();
             }
-            g0.i2(String.format("%.1f°", Float.valueOf(this.f21849n)));
+            g0.i2(String.format("%.1f°", Float.valueOf(this.f21846n)));
             return true;
         }
         return true;
@@ -351,25 +351,25 @@ public final class f extends FrameLayout {
         } else {
             porterDuffColorFilter = null;
         }
-        this.f21846c.setColorFilter(porterDuffColorFilter);
+        this.f21843c.setColorFilter(porterDuffColorFilter);
     }
 
     public void setListener(e eVar) {
-        this.f21852w = eVar;
+        this.f21849w = eVar;
     }
 
     public void setMirrored(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(n6.x0(null, n6.f29645qg, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(n6.x0(null, n6.f29643qg, false), PorterDuff.Mode.MULTIPLY);
         }
-        this.f21847e.setColorFilter(porterDuffColorFilter);
+        this.f21844e.setColorFilter(porterDuffColorFilter);
     }
 
     public void setRotated(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(n6.x0(null, n6.f29645qg, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(n6.x0(null, n6.f29643qg, false), PorterDuff.Mode.MULTIPLY);
         }
         this.d.setColorFilter(porterDuffColorFilter);
     }

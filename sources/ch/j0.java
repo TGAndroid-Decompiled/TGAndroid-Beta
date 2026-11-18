@@ -67,7 +67,7 @@ public final class j0 extends q9 {
         }
         if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f37495l0) {
             l0 l0Var = this.L;
-            if (l0Var.f5403a == 2 && !l0Var.f5425z) {
+            if (l0Var.f5400a == 2 && !l0Var.f5422z) {
                 getImageReceiver().B().N(getImageReceiver().B().f37486e[0] - 1, false, false);
             } else {
                 getImageReceiver().B().N(0, false, false);

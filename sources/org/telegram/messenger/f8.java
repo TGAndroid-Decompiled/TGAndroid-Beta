@@ -5,22 +5,22 @@ import java.io.File;
 import java.io.IOException;
 import org.telegram.SQLite.SQLiteDatabase;
 public final class f8 {
-    public q5 f23855a;
-    public final int f23856b;
-    public SQLiteDatabase f23857c;
+    public q5 f23852a;
+    public final int f23853b;
+    public SQLiteDatabase f23854c;
     public File d;
-    public File f23858e;
-    public final ConcurrentHashMap f23859f = new ConcurrentHashMap();
-    public final e8 f23860g = new Object();
+    public File f23855e;
+    public final ConcurrentHashMap f23856f = new ConcurrentHashMap();
+    public final e8 f23857g = new Object();
     public boolean h;
 
     public f8(int i7) {
-        this.f23856b = i7;
+        this.f23853b = i7;
     }
 
     public final void a() {
         File h = t0.h();
-        int i7 = this.f23856b;
+        int i7 = this.f23853b;
         if (i7 != 0) {
             File file = new File(h, i5.c.j(i7, "account", "/"));
             file.mkdirs();
@@ -41,9 +41,9 @@ public final class f8 {
 
     public final void c() {
         if (!this.h) {
-            if (!vr.f27585a) {
+            if (!vr.f27583a) {
                 int i7 = 0;
-                while (!vr.f27585a) {
+                while (!vr.f27583a) {
                     try {
                         Thread.sleep(1000L);
                     } catch (InterruptedException e10) {
@@ -61,12 +61,12 @@ public final class f8 {
     }
 
     public final void d() {
-        if (this.f23855a == null) {
+        if (this.f23852a == null) {
             synchronized (this) {
                 try {
-                    if (this.f23855a == null) {
-                        q5 q5Var = new q5("files_database_queue_" + this.f23856b);
-                        this.f23855a = q5Var;
+                    if (this.f23852a == null) {
+                        q5 q5Var = new q5("files_database_queue_" + this.f23853b);
+                        this.f23852a = q5Var;
                         q5Var.setPriority(10);
                     }
                 } catch (Throwable th2) {
@@ -86,34 +86,34 @@ public final class f8 {
 
     public final void g(int i7) {
         if (i7 == 1) {
-            f3.s(this.f23857c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
-            f3.s(this.f23857c, "PRAGMA user_version = 2");
+            f3.s(this.f23854c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
+            f3.s(this.f23854c, "PRAGMA user_version = 2");
             i7 = 2;
         }
         if (i7 == 2) {
-            f3.s(this.f23857c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
-            f3.s(this.f23857c, "PRAGMA user_version = 3");
+            f3.s(this.f23854c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
+            f3.s(this.f23854c, "PRAGMA user_version = 3");
             i7 = 3;
         }
         if (i7 == 3) {
-            f3.s(this.f23857c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
-            f3.s(this.f23857c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
-            f3.s(this.f23857c, "PRAGMA user_version = 4");
+            f3.s(this.f23854c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
+            f3.s(this.f23854c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
+            f3.s(this.f23854c, "PRAGMA user_version = 4");
             i7 = 4;
         }
         if (i7 != 4 && i7 != 5 && i7 != 6) {
             return;
         }
         try {
-            this.f23857c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
+            this.f23854c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        f3.s(this.f23857c, "PRAGMA user_version = 7");
+        f3.s(this.f23854c, "PRAGMA user_version = 7");
     }
 
     public final void h(Runnable runnable) {
         d();
-        this.f23855a.c(runnable);
+        this.f23852a.c(runnable);
     }
 }

@@ -14,7 +14,7 @@ public final class rn0 {
         zt ztVar = new zt(1, view);
         this.f39255b = System.currentTimeMillis();
         this.f39254a = ztVar;
-        g5.a aVar = Utilities.f22781c;
+        g5.a aVar = Utilities.f22778c;
         this.f39256c = org.telegram.messenger.g0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
         this.d = org.telegram.messenger.g0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
         this.f39257e = org.telegram.messenger.g0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));

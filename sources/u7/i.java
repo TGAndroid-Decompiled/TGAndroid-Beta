@@ -6,17 +6,17 @@ import com.google.android.gms.location.LocationResult;
 import org.telegram.ui.Components.hn;
 import org.telegram.ui.Components.of;
 public final class i extends a8.q implements j8.j {
-    public static final int f58446c = 0;
-    public final androidx.activity.n f58447b;
+    public static final int f58447c = 0;
+    public final androidx.activity.n f58448b;
 
     public i(androidx.activity.n nVar) {
         super("com.google.android.gms.location.ILocationCallback", 11);
-        this.f58447b = nVar;
+        this.f58448b = nVar;
     }
 
     @Override
     public final boolean l1(Parcel parcel, int i7) {
-        androidx.activity.n nVar = this.f58447b;
+        androidx.activity.n nVar = this.f58448b;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -36,16 +36,16 @@ public final class i extends a8.q implements j8.j {
     }
 
     public final void m1() {
-        this.f58447b.i().a(new of(this, 22));
+        this.f58448b.i().a(new of(this, 22));
     }
 
     public final void n1(com.google.android.gms.common.api.internal.o oVar) {
-        androidx.activity.n nVar = this.f58447b;
+        androidx.activity.n nVar = this.f58448b;
         synchronized (nVar) {
-            com.google.android.gms.common.api.internal.o oVar2 = (com.google.android.gms.common.api.internal.o) nVar.f1788c;
+            com.google.android.gms.common.api.internal.o oVar2 = (com.google.android.gms.common.api.internal.o) nVar.f1789c;
             if (oVar2 != oVar) {
-                oVar2.f6338b = null;
-                nVar.f1788c = oVar;
+                oVar2.f6335b = null;
+                nVar.f1789c = oVar;
             }
         }
     }

@@ -74,7 +74,7 @@ public final class rc0 extends Dialog {
         int i7 = attributes.flags & (-3);
         attributes.flags = i7;
         attributes.softInputMode = 16;
-        boolean z10 = org.telegram.messenger.s2.f26723a;
+        boolean z10 = org.telegram.messenger.s2.f26721a;
         attributes.flags = i7 | 8192;
         org.telegram.messenger.g0.h2();
         attributes.flags |= -2013198976;

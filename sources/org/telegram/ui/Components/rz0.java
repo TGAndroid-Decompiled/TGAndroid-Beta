@@ -29,14 +29,14 @@ public final class rz0 extends FrameLayout {
         boolean z11;
         ThemeEditorView.EditorAlert editorAlert = this.d;
         Drawable drawable = editorAlert.f33169y1;
-        int L = org.telegram.messenger.g0.L(6.0f) + (editorAlert.f33170z1 - editorAlert.f30226t0);
-        int L2 = (editorAlert.f33170z1 - editorAlert.f30226t0) - org.telegram.messenger.g0.L(13.0f);
+        int L = org.telegram.messenger.g0.L(6.0f) + (editorAlert.f33170z1 - editorAlert.f30224t0);
+        int L2 = (editorAlert.f33170z1 - editorAlert.f30224t0) - org.telegram.messenger.g0.L(13.0f);
         int L3 = org.telegram.messenger.g0.L(30.0f) + getMeasuredHeight();
-        int i10 = editorAlert.f30226t0;
+        int i10 = editorAlert.f30224t0;
         int i11 = L3 + i10;
         boolean z12 = false;
         if (!editorAlert.W) {
-            int i12 = org.telegram.messenger.g0.f24115m;
+            int i12 = org.telegram.messenger.g0.f24112m;
             L2 += i12;
             L += i12;
             i11 -= i12;
@@ -45,13 +45,13 @@ public final class rz0 extends FrameLayout {
                 int min = Math.min(i12, (i13 - L2) - i10);
                 L2 -= min;
                 i11 += min;
-                f10 = 1.0f - Math.min(1.0f, (min * 2) / org.telegram.messenger.g0.f24115m);
+                f10 = 1.0f - Math.min(1.0f, (min * 2) / org.telegram.messenger.g0.f24112m);
             } else {
                 f10 = 1.0f;
             }
-            int i14 = editorAlert.f30226t0;
+            int i14 = editorAlert.f30224t0;
             int i15 = L2 + i14;
-            int i16 = org.telegram.messenger.g0.f24115m;
+            int i16 = org.telegram.messenger.g0.f24112m;
             if (i15 < i16) {
                 i7 = Math.min(i16, (i16 - L2) - i14);
             } else {
@@ -66,20 +66,20 @@ public final class rz0 extends FrameLayout {
         int i17 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
         RectF rectF = this.f39429b;
         if (i17 != 0) {
-            org.telegram.ui.ActionBar.n6.f29687t0.setColor(-1);
-            rectF.set(editorAlert.f30227u0, editorAlert.f30226t0 + L2, getMeasuredWidth() - editorAlert.f30227u0, org.telegram.messenger.g0.L(24.0f) + editorAlert.f30226t0 + L2);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.ui.ActionBar.n6.f29687t0);
+            org.telegram.ui.ActionBar.n6.f29685t0.setColor(-1);
+            rectF.set(editorAlert.f30225u0, editorAlert.f30224t0 + L2, getMeasuredWidth() - editorAlert.f30225u0, org.telegram.messenger.g0.L(24.0f) + editorAlert.f30224t0 + L2);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.ui.ActionBar.n6.f29685t0);
         }
         int L4 = org.telegram.messenger.g0.L(36.0f);
         rectF.set((getMeasuredWidth() - L4) / 2, L, (getMeasuredWidth() + L4) / 2, org.telegram.messenger.g0.L(4.0f) + L);
-        org.telegram.ui.ActionBar.n6.f29687t0.setColor(-1973016);
-        org.telegram.ui.ActionBar.n6.f29687t0.setAlpha((int) (editorAlert.n1.getAlpha() * 255.0f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.ui.ActionBar.n6.f29687t0);
+        org.telegram.ui.ActionBar.n6.f29685t0.setColor(-1973016);
+        org.telegram.ui.ActionBar.n6.f29685t0.setAlpha((int) (editorAlert.n1.getAlpha() * 255.0f));
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.ui.ActionBar.n6.f29685t0);
         if (i7 > 0) {
-            org.telegram.ui.ActionBar.n6.f29687t0.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false));
-            canvas.drawRect(editorAlert.f30227u0, org.telegram.messenger.g0.f24115m - i7, getMeasuredWidth() - editorAlert.f30227u0, org.telegram.messenger.g0.f24115m, org.telegram.ui.ActionBar.n6.f29687t0);
+            org.telegram.ui.ActionBar.n6.f29685t0.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false));
+            canvas.drawRect(editorAlert.f30225u0, org.telegram.messenger.g0.f24112m - i7, getMeasuredWidth() - editorAlert.f30225u0, org.telegram.messenger.g0.f24112m, org.telegram.ui.ActionBar.n6.f29685t0);
         }
-        if (i7 > org.telegram.messenger.g0.f24115m / 2) {
+        if (i7 > org.telegram.messenger.g0.f24112m / 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -88,14 +88,14 @@ public final class rz0 extends FrameLayout {
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        int i18 = org.telegram.ui.ActionBar.n6.f29469h5;
+        int i18 = org.telegram.ui.ActionBar.n6.f29467h5;
         int i19 = ThemeEditorView.EditorAlert.H1;
         if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w0(i18, editorAlert.J0)) > 0.721f) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29676s8, editorAlert.J0), 855638016)) > 0.721f) {
+        if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29674s8, editorAlert.J0), 855638016)) > 0.721f) {
             z12 = true;
         }
         this.f39430c = Boolean.valueOf(z10);
@@ -132,11 +132,11 @@ public final class rz0 extends FrameLayout {
         int i11 = ThemeEditorView.EditorAlert.H1;
         if (!editorAlert.W) {
             this.f39428a = true;
-            int i12 = editorAlert.f30227u0;
-            setPadding(i12, org.telegram.messenger.g0.f24115m, i12, 0);
+            int i12 = editorAlert.f30225u0;
+            setPadding(i12, org.telegram.messenger.g0.f24112m, i12, 0);
             this.f39428a = false;
         }
-        int L = (org.telegram.messenger.g0.L(8.0f) + (size2 - org.telegram.messenger.g0.f24115m)) - Math.min(size, size2 - org.telegram.messenger.g0.f24115m);
+        int L = (org.telegram.messenger.g0.L(8.0f) + (size2 - org.telegram.messenger.g0.f24112m)) - Math.min(size, size2 - org.telegram.messenger.g0.f24112m);
         if (sz0Var.getPaddingTop() != L) {
             this.f39428a = true;
             sz0Var.getPaddingTop();

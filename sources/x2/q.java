@@ -6,38 +6,38 @@ import android.net.Uri;
 import j$.util.Objects;
 import java.util.Collections;
 import java.util.List;
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 import org.telegram.ui.wc1;
 import tg.z1;
 public final class q implements f0 {
-    public final p f60199a;
-    public final wf.b f60200b;
-    public nb.a f60201c;
+    public final p f60200a;
+    public final wf.b f60201b;
+    public nb.a f60202c;
     public final long d;
-    public final long f60202e;
-    public final long f60203f;
-    public final float f60204g;
+    public final long f60203e;
+    public final long f60204f;
+    public final float f60205g;
     public final float h;
-    public boolean f60205i;
+    public boolean f60206i;
 
     public q(Context context, f3.m mVar) {
         wf.b bVar = new wf.b(context);
         nb.a aVar = new nb.a(6);
-        this.f60200b = bVar;
-        this.f60201c = aVar;
+        this.f60201b = bVar;
+        this.f60202c = aVar;
         p pVar = new p(mVar, aVar);
-        this.f60199a = pVar;
+        this.f60200a = pVar;
         if (bVar != pVar.d) {
             pVar.d = bVar;
-            pVar.f60189b.clear();
-            pVar.f60190c.clear();
+            pVar.f60190b.clear();
+            pVar.f60191c.clear();
         }
         this.d = -9223372036854775807L;
-        this.f60202e = -9223372036854775807L;
-        this.f60203f = -9223372036854775807L;
-        this.f60204g = -3.4028235E38f;
+        this.f60203e = -9223372036854775807L;
+        this.f60204f = -9223372036854775807L;
+        this.f60205g = -3.4028235E38f;
         this.h = -3.4028235E38f;
-        this.f60205i = true;
+        this.f60206i = true;
     }
 
     public static f0 e(Class cls, j2.g gVar) {
@@ -50,14 +50,14 @@ public final class q implements f0 {
 
     @Override
     public final f0 a(nb.a aVar) {
-        this.f60201c = aVar;
-        p pVar = this.f60199a;
-        pVar.f60192f = aVar;
-        f3.m mVar = pVar.f60188a;
+        this.f60202c = aVar;
+        p pVar = this.f60200a;
+        pVar.f60193f = aVar;
+        f3.m mVar = pVar.f60189a;
         synchronized (mVar) {
-            mVar.f11194c = aVar;
+            mVar.f11191c = aVar;
         }
-        for (f0 f0Var : pVar.f60190c.values()) {
+        for (f0 f0Var : pVar.f60191c.values()) {
             f0Var.a(aVar);
         }
         return this;
@@ -83,78 +83,78 @@ public final class q implements f0 {
         e2.d0 d0Var2;
         e2.c0 c0Var;
         e2.l0 l0Var2 = l0Var;
-        l0Var2.f10504b.getClass();
-        String scheme = l0Var2.f10504b.f10413a.getScheme();
+        l0Var2.f10501b.getClass();
+        String scheme = l0Var2.f10501b.f10410a.getScheme();
         if (scheme != null && scheme.equals("ssai")) {
             throw null;
         }
-        if (!Objects.equals(l0Var2.f10504b.f10414b, "application/x-image-uri")) {
-            e2.g0 g0Var5 = l0Var2.f10504b;
-            int K = h2.l0.K(g0Var5.f10413a, g0Var5.f10414b);
-            if (l0Var2.f10504b.h != -9223372036854775807L) {
-                f3.m mVar = this.f60199a.f60188a;
+        if (!Objects.equals(l0Var2.f10501b.f10411b, "application/x-image-uri")) {
+            e2.g0 g0Var5 = l0Var2.f10501b;
+            int K = h2.l0.K(g0Var5.f10410a, g0Var5.f10411b);
+            if (l0Var2.f10501b.h != -9223372036854775807L) {
+                f3.m mVar = this.f60200a.f60189a;
                 synchronized (mVar) {
-                    mVar.f11195e = 1;
+                    mVar.f11192e = 1;
                 }
-                p.a(this.f60199a);
+                p.a(this.f60200a);
             }
             try {
-                f0 b10 = this.f60199a.b(K);
-                e2.e0 a10 = l0Var2.f10505c.a();
-                e2.f0 f0Var = l0Var2.f10505c;
-                if (f0Var.f10395a == -9223372036854775807L) {
-                    a10.f10383a = this.d;
+                f0 b10 = this.f60200a.b(K);
+                e2.e0 a10 = l0Var2.f10502c.a();
+                e2.f0 f0Var = l0Var2.f10502c;
+                if (f0Var.f10392a == -9223372036854775807L) {
+                    a10.f10380a = this.d;
                 }
                 if (f0Var.d == -3.4028235E38f) {
-                    a10.d = this.f60204g;
+                    a10.d = this.f60205g;
                 }
-                if (f0Var.f10398e == -3.4028235E38f) {
-                    a10.f10386e = this.h;
+                if (f0Var.f10395e == -3.4028235E38f) {
+                    a10.f10383e = this.h;
                 }
-                if (f0Var.f10396b == -9223372036854775807L) {
-                    a10.f10384b = this.f60202e;
+                if (f0Var.f10393b == -9223372036854775807L) {
+                    a10.f10381b = this.f60203e;
                 }
-                if (f0Var.f10397c == -9223372036854775807L) {
-                    a10.f10385c = this.f60203f;
+                if (f0Var.f10394c == -9223372036854775807L) {
+                    a10.f10382c = this.f60204f;
                 }
                 e2.f0 f0Var2 = new e2.f0(a10);
-                if (!f0Var2.equals(l0Var2.f10505c)) {
+                if (!f0Var2.equals(l0Var2.f10502c)) {
                     e2.c0 c0Var2 = new e2.c0();
                     List list = Collections.EMPTY_LIST;
-                    h9.i0 i0Var = h9.t1.f14074e;
+                    h9.i0 i0Var = h9.t1.f14071e;
                     e2.h0 h0Var = e2.h0.d;
-                    e2.b0 b0Var = l0Var2.f10506e;
+                    e2.b0 b0Var = l0Var2.f10503e;
                     ?? obj = new Object();
-                    obj.f10811a = b0Var.f10324b;
-                    obj.f10812b = b0Var.d;
-                    obj.f10813c = b0Var.f10326e;
-                    obj.d = b0Var.f10327f;
-                    obj.f10814e = b0Var.f10328g;
-                    obj.f10815f = b0Var.h;
-                    String str3 = l0Var2.f10503a;
+                    obj.f10808a = b0Var.f10321b;
+                    obj.f10809b = b0Var.d;
+                    obj.f10810c = b0Var.f10323e;
+                    obj.d = b0Var.f10324f;
+                    obj.f10811e = b0Var.f10325g;
+                    obj.f10812f = b0Var.h;
+                    String str3 = l0Var2.f10500a;
                     e2.o0 o0Var = l0Var2.d;
-                    l0Var2.f10505c.a();
-                    e2.h0 h0Var2 = l0Var2.f10507f;
-                    e2.g0 g0Var6 = l0Var2.f10504b;
+                    l0Var2.f10502c.a();
+                    e2.h0 h0Var2 = l0Var2.f10504f;
+                    e2.g0 g0Var6 = l0Var2.f10501b;
                     if (g0Var6 != null) {
-                        String str4 = g0Var6.f10417f;
-                        String str5 = g0Var6.f10414b;
-                        Uri uri2 = g0Var6.f10413a;
-                        list = g0Var6.f10416e;
-                        i0Var = g0Var6.f10418g;
+                        String str4 = g0Var6.f10414f;
+                        String str5 = g0Var6.f10411b;
+                        Uri uri2 = g0Var6.f10410a;
+                        list = g0Var6.f10413e;
+                        i0Var = g0Var6.f10415g;
                         g0Var3 = null;
-                        e2.d0 d0Var3 = g0Var6.f10415c;
+                        e2.d0 d0Var3 = g0Var6.f10412c;
                         if (d0Var3 != null) {
                             z11 = false;
                             ?? obj2 = new Object();
                             z10 = true;
-                            obj2.f10348a = d0Var3.f10362a;
-                            obj2.f10349b = d0Var3.f10363b;
-                            obj2.f10350c = d0Var3.f10364c;
+                            obj2.f10345a = d0Var3.f10359a;
+                            obj2.f10346b = d0Var3.f10360b;
+                            obj2.f10347c = d0Var3.f10361c;
                             obj2.d = d0Var3.d;
-                            obj2.f10351e = d0Var3.f10365e;
-                            obj2.f10352f = d0Var3.f10366f;
-                            obj2.f10353g = d0Var3.f10367g;
+                            obj2.f10348e = d0Var3.f10362e;
+                            obj2.f10349f = d0Var3.f10363f;
+                            obj2.f10350g = d0Var3.f10364g;
                             obj2.h = d0Var3.h;
                             c0Var = obj2;
                         } else {
@@ -182,14 +182,14 @@ public final class q implements f0 {
                     List list2 = list;
                     h9.i0 i0Var2 = i0Var;
                     e2.e0 a11 = f0Var2.a();
-                    if (c0Var2.f10349b != null && c0Var2.f10348a == null) {
+                    if (c0Var2.f10346b != null && c0Var2.f10345a == null) {
                         z13 = z11 ? 1 : 0;
                     } else {
                         z13 = z10;
                     }
                     la.p(z13);
                     if (uri != null) {
-                        if (c0Var2.f10348a != null) {
+                        if (c0Var2.f10345a != null) {
                             d0Var2 = new e2.d0(c0Var2);
                         } else {
                             d0Var2 = g0Var3;
@@ -215,39 +215,39 @@ public final class q implements f0 {
                     z11 = false;
                 }
                 a b11 = b10.b(l0Var2);
-                h9.i0 i0Var3 = l0Var2.f10504b.f10418g;
+                h9.i0 i0Var3 = l0Var2.f10501b.f10415g;
                 if (!i0Var3.isEmpty()) {
                     a[] aVarArr = new a[i0Var3.size() + 1];
                     aVarArr[z11 ? 1 : 0] = b11;
                     for (int i7 = z11 ? 1 : 0; i7 < i0Var3.size(); i7++) {
-                        if (this.f60205i) {
+                        if (this.f60206i) {
                             e2.t tVar = new e2.t();
-                            tVar.f10717r = e2.s0.n(((e2.k0) i0Var3.get(i7)).f10464b);
-                            tVar.d = ((e2.k0) i0Var3.get(i7)).f10465c;
-                            tVar.f10705e = ((e2.k0) i0Var3.get(i7)).d;
-                            tVar.f10706f = ((e2.k0) i0Var3.get(i7)).f10466e;
-                            tVar.f10703b = ((e2.k0) i0Var3.get(i7)).f10467f;
-                            tVar.f10702a = ((e2.k0) i0Var3.get(i7)).f10468g;
+                            tVar.f10714r = e2.s0.n(((e2.k0) i0Var3.get(i7)).f10461b);
+                            tVar.d = ((e2.k0) i0Var3.get(i7)).f10462c;
+                            tVar.f10702e = ((e2.k0) i0Var3.get(i7)).d;
+                            tVar.f10703f = ((e2.k0) i0Var3.get(i7)).f10463e;
+                            tVar.f10700b = ((e2.k0) i0Var3.get(i7)).f10464f;
+                            tVar.f10699a = ((e2.k0) i0Var3.get(i7)).f10465g;
                             e2.u uVar = new e2.u(tVar);
                             wc1 wc1Var = new wc1(26, this, uVar);
-                            wf.b bVar = this.f60200b;
+                            wf.b bVar = this.f60201b;
                             z1 z1Var = new z1(wc1Var, 15);
-                            md0 md0Var = new md0(7);
+                            nd0 nd0Var = new nd0(7);
                             qb.a aVar = new qb.a(4);
-                            if (this.f60201c.H(uVar)) {
+                            if (this.f60202c.H(uVar)) {
                                 e2.t a12 = uVar.a();
-                                a12.f10717r = e2.s0.n("application/x-media3-cues");
-                                a12.f10709j = uVar.f10769s;
-                                a12.P = this.f60201c.O(uVar);
+                                a12.f10714r = e2.s0.n("application/x-media3-cues");
+                                a12.f10706j = uVar.f10766s;
+                                a12.P = this.f60202c.O(uVar);
                                 uVar = new e2.u(a12);
                             }
                             e2.u uVar2 = uVar;
                             int i10 = i7 + 1;
-                            String uri3 = ((e2.k0) i0Var3.get(i7)).f10463a.toString();
+                            String uri3 = ((e2.k0) i0Var3.get(i7)).f10460a.toString();
                             e2.z zVar = new e2.z();
                             e2.c0 c0Var3 = new e2.c0();
                             List list3 = Collections.EMPTY_LIST;
-                            h9.t1 t1Var = h9.t1.f14074e;
+                            h9.t1 t1Var = h9.t1.f14071e;
                             e2.e0 e0Var = new e2.e0();
                             e2.h0 h0Var3 = e2.h0.d;
                             if (uri3 == null) {
@@ -255,14 +255,14 @@ public final class q implements f0 {
                             } else {
                                 parse = Uri.parse(uri3);
                             }
-                            if (c0Var3.f10349b != null && c0Var3.f10348a == null) {
+                            if (c0Var3.f10346b != null && c0Var3.f10345a == null) {
                                 z12 = z11 ? 1 : 0;
                             } else {
                                 z12 = z10;
                             }
                             la.p(z12);
                             if (parse != null) {
-                                if (c0Var3.f10348a != null) {
+                                if (c0Var3.f10345a != null) {
                                     d0Var = new e2.d0(c0Var3);
                                 } else {
                                     d0Var = g0Var;
@@ -273,45 +273,45 @@ public final class q implements f0 {
                             }
                             e2.l0 l0Var3 = new e2.l0("", new e2.a0(zVar), g0Var2, new e2.f0(e0Var), e2.o0.L, h0Var3);
                             g0Var2.getClass();
-                            aVarArr[i10] = new y0(l0Var3, bVar, z1Var, md0Var.s(l0Var3), aVar, 1048576, uVar2);
+                            aVarArr[i10] = new y0(l0Var3, bVar, z1Var, nd0Var.s(l0Var3), aVar, 1048576, uVar2);
                         } else {
-                            wf.b bVar2 = this.f60200b;
+                            wf.b bVar2 = this.f60201b;
                             bVar2.getClass();
                             aVarArr[i7 + 1] = new n1((e2.k0) i0Var3.get(i7), bVar2, new qb.a(4));
                         }
                     }
                     b11 = new o0(aVarArr);
                 }
-                e2.b0 b0Var2 = l0Var2.f10506e;
-                if (b0Var2.f10324b != 0 || b0Var2.d != Long.MIN_VALUE || b0Var2.f10327f) {
+                e2.b0 b0Var2 = l0Var2.f10503e;
+                if (b0Var2.f10321b != 0 || b0Var2.d != Long.MIN_VALUE || b0Var2.f10324f) {
                     e eVar = new e(b11);
-                    long j10 = b0Var2.f10324b;
+                    long j10 = b0Var2.f10321b;
                     if (j10 >= 0) {
                         z11 = z10;
                     }
                     la.f(z11);
                     la.p(!eVar.h);
-                    eVar.f60079b = j10;
+                    eVar.f60080b = j10;
                     long j11 = b0Var2.d;
                     la.p(!eVar.h);
-                    eVar.f60080c = j11;
+                    eVar.f60081c = j11;
                     la.p(!eVar.h);
-                    eVar.d = !b0Var2.f10328g;
-                    boolean z14 = b0Var2.f10326e;
+                    eVar.d = !b0Var2.f10325g;
+                    boolean z14 = b0Var2.f10323e;
                     la.p(!eVar.h);
-                    eVar.f60081e = z14;
-                    boolean z15 = b0Var2.f10327f;
+                    eVar.f60082e = z14;
+                    boolean z15 = b0Var2.f10324f;
                     la.p(!eVar.h);
-                    eVar.f60082f = z15;
+                    eVar.f60083f = z15;
                     boolean z16 = b0Var2.h;
                     la.p(!eVar.h);
-                    eVar.f60083g = z16;
+                    eVar.f60084g = z16;
                     la.p(!eVar.h);
                     eVar.h = z10;
                     b11 = new h(eVar);
                 }
-                l0Var2.f10504b.getClass();
-                if (l0Var2.f10504b.d == null) {
+                l0Var2.f10501b.getClass();
+                if (l0Var2.f10501b.d == null) {
                     return b11;
                 }
                 h2.a.l("DMediaSourceFactory", "Playing media without ads. Configure ad support by calling setAdsLoaderProvider and setAdViewProvider.");
@@ -320,21 +320,21 @@ public final class q implements f0 {
                 throw new IllegalStateException(e10);
             }
         }
-        long j12 = l0Var2.f10504b.h;
-        String str7 = h2.l0.f13786a;
+        long j12 = l0Var2.f10501b.h;
+        String str7 = h2.l0.f13783a;
         throw null;
     }
 
     @Override
     public final f0 c(boolean z10) {
-        this.f60205i = z10;
-        p pVar = this.f60199a;
-        pVar.f60191e = z10;
-        f3.m mVar = pVar.f60188a;
+        this.f60206i = z10;
+        p pVar = this.f60200a;
+        pVar.f60192e = z10;
+        f3.m mVar = pVar.f60189a;
         synchronized (mVar) {
-            mVar.f11193b = z10;
+            mVar.f11190b = z10;
         }
-        for (f0 f0Var : pVar.f60190c.values()) {
+        for (f0 f0Var : pVar.f60191c.values()) {
             f0Var.c(z10);
         }
         return this;
@@ -342,9 +342,9 @@ public final class q implements f0 {
 
     @Override
     public final f0 d(int i7) {
-        p pVar = this.f60199a;
-        pVar.f60193g = i7;
-        f3.m mVar = pVar.f60188a;
+        p pVar = this.f60200a;
+        pVar.f60194g = i7;
+        f3.m mVar = pVar.f60189a;
         synchronized (mVar) {
             mVar.d = i7;
         }

@@ -4,12 +4,12 @@ import java.util.Calendar;
 import java.util.Locale;
 import org.telegram.messenger.gd;
 public final class e1 {
-    public int f18304a;
-    public int f18305b;
+    public int f18301a;
+    public int f18302b;
 
     public e1(int i7, int i10) {
-        this.f18304a = i7;
-        this.f18305b = i10;
+        this.f18301a = i7;
+        this.f18302b = i10;
     }
 
     public static String a(int i7) {
@@ -19,11 +19,11 @@ public final class e1 {
         Calendar calendar = Calendar.getInstance();
         calendar.set(0, 0, 0, ((i7 - i10) / 60) % 24, i10);
         gd E0 = gd.E0();
-        if (E0.f24225c == null) {
+        if (E0.f24222c == null) {
             synchronized (E0) {
                 try {
-                    if (E0.f24225c == null) {
-                        Locale locale = E0.f24244y;
+                    if (E0.f24222c == null) {
+                        Locale locale = E0.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -35,7 +35,7 @@ public final class e1 {
                         if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
                             locale = Locale.US;
                         }
-                        boolean z10 = gd.f24218c0;
+                        boolean z10 = gd.f24215c0;
                         if (z10) {
                             str = "HH:mm";
                         } else {
@@ -46,13 +46,13 @@ public final class e1 {
                         } else {
                             str2 = "h:mm a";
                         }
-                        E0.f24225c = gd.k(locale, str, str2);
+                        E0.f24222c = gd.k(locale, str, str2);
                     }
                 } finally {
                 }
             }
         }
-        String format = E0.f24225c.format(calendar.getTime());
+        String format = E0.f24222c.format(calendar.getTime());
         if (i7 > 1440) {
             return gd.a0(null, null, 2131752737, format);
         }
@@ -60,6 +60,6 @@ public final class e1 {
     }
 
     public final String toString() {
-        return a(this.f18304a) + " - " + a(this.f18305b);
+        return a(this.f18301a) + " - " + a(this.f18302b);
     }
 }

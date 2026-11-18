@@ -175,7 +175,7 @@ public final class xi0 extends View {
         m6Var.setCallback(this);
         m6Var.w(org.telegram.messenger.g0.L(12.0f));
         m6Var.x(org.telegram.messenger.g0.o());
-        m6Var.N = org.telegram.messenger.g0.f24121q.x;
+        m6Var.N = org.telegram.messenger.g0.f24118q.x;
     }
 
     public static float c(int i7) {
@@ -204,12 +204,12 @@ public final class xi0 extends View {
             b(canvas, rectF, f10);
             return;
         }
-        int i13 = org.telegram.ui.ActionBar.n6.f29368bg;
+        int i13 = org.telegram.ui.ActionBar.n6.f29366bg;
         org.telegram.ui.ActionBar.i6 i6Var = this.f42052a;
         int w02 = org.telegram.ui.ActionBar.n6.w0(i13, i6Var);
         Paint paint4 = this.f42055b;
         paint4.setColor(w02);
-        int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29388cg, i6Var);
+        int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29386cg, i6Var);
         Paint paint5 = this.f42058c;
         paint5.setColor(w03);
         int i14 = org.telegram.ui.ActionBar.n6.Zf;
@@ -671,7 +671,7 @@ public final class xi0 extends View {
     }
 
     public final boolean f() {
-        if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f42052a)) < 0.5f) {
+        if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f42052a)) < 0.5f) {
             return true;
         }
         return false;
@@ -759,7 +759,7 @@ public final class xi0 extends View {
         }
         boolean z11 = false;
         String g02 = org.telegram.messenger.g0.g0(round, false, false);
-        if (z10 && !org.telegram.messenger.gd.f24216a0) {
+        if (z10 && !org.telegram.messenger.gd.f24213a0) {
             z11 = true;
         }
         this.h.t(g02, z11, true);

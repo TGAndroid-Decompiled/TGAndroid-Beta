@@ -8,18 +8,18 @@ import org.telegram.messenger.j10;
 import org.telegram.ui.Components.ck0;
 import org.telegram.ui.Components.xj0;
 public final class d0 extends xj0 {
-    public final ArrayList f18275r;
-    public final int f18276s;
-    public final Context f18277w;
-    public final g0 f18278x;
+    public final ArrayList f18272r;
+    public final int f18273s;
+    public final Context f18274w;
+    public final g0 f18275x;
 
     public d0(g0 g0Var, Context context) {
-        this.f18278x = g0Var;
+        this.f18275x = g0Var;
         ArrayList arrayList = new ArrayList();
-        this.f18275r = arrayList;
-        int i7 = j10.f24773t0;
-        this.f18276s = i7;
-        this.f18277w = context;
+        this.f18272r = arrayList;
+        int i7 = j10.f24770t0;
+        this.f18273s = i7;
+        this.f18274w = context;
         arrayList.addAll(w1.f(i7).e());
     }
 
@@ -37,7 +37,7 @@ public final class d0 extends xj0 {
     @Override
     public final int M(int i7) {
         if (i7 != 0 && i7 != 2) {
-            return this.f18275r.size();
+            return this.f18272r.size();
         }
         return 1;
     }
@@ -45,7 +45,7 @@ public final class d0 extends xj0 {
     @Override
     public final Object O(int i7, int i10) {
         if (i7 != 0 && i10 >= 0) {
-            ArrayList arrayList = this.f18275r;
+            ArrayList arrayList = this.f18272r;
             if (i10 < arrayList.size()) {
                 return arrayList.get(i10);
             }
@@ -76,7 +76,7 @@ public final class d0 extends xj0 {
 
     @Override
     public final boolean V(int i7, int i10, v4.f1 f1Var) {
-        if (i7 != 0 && i7 != 2 && i10 < this.f18275r.size()) {
+        if (i7 != 0 && i7 != 2 && i10 < this.f18272r.size()) {
             return true;
         }
         return false;
@@ -84,8 +84,8 @@ public final class d0 extends xj0 {
 
     @Override
     public final void W(int i7, int i10, v4.f1 f1Var) {
-        if (f1Var.f59126f == 0) {
-            s1 s1Var = (s1) f1Var.f59122a;
+        if (f1Var.f59127f == 0) {
+            s1 s1Var = (s1) f1Var.f59123a;
             Object O = O(i7, i10);
             boolean z10 = true;
             if (i7 == 1 && i10 == M(i7) - 1) {
@@ -94,24 +94,24 @@ public final class d0 extends xj0 {
             if (O instanceof v1) {
                 v1 v1Var = (v1) O;
                 s1Var.a(v1Var, null, z10);
-                s1Var.d.a(this.f18278x.f18324x.contains(Integer.valueOf(v1Var.f18509a)), false);
+                s1Var.d.a(this.f18275x.f18321x.contains(Integer.valueOf(v1Var.f18506a)), false);
             }
         }
     }
 
     @Override
     public final void f() {
-        ArrayList arrayList = this.f18275r;
+        ArrayList arrayList = this.f18272r;
         arrayList.clear();
-        arrayList.addAll(w1.f(this.f18276s).e());
+        arrayList.addAll(w1.f(this.f18273s).e());
         X(false);
-        this.f18278x.Q();
+        this.f18275x.Q();
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View s1Var;
-        Context context = this.f18277w;
+        Context context = this.f18274w;
         if (i7 != 0) {
             if (i7 != 1) {
                 s1Var = new View(context);
@@ -122,7 +122,7 @@ public final class d0 extends xj0 {
                 s1Var.setTag(-33024);
             }
         } else {
-            s1Var = new s1(context, this.f18278x.f36765a, false);
+            s1Var = new s1(context, this.f18275x.f36765a, false);
         }
         return new v4.f1(s1Var);
     }

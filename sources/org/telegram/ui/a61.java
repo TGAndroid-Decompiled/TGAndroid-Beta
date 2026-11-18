@@ -28,7 +28,7 @@ public final class a61 implements org.telegram.ui.Components.oj0 {
             case 0:
                 i61 i61Var = (i61) this.f45480c;
                 f61 f61Var = (f61) this.d;
-                ThemeActivity themeActivity = ((g61) this.f45479b).f47948e;
+                ThemeActivity themeActivity = ((g61) this.f45479b).f47912e;
                 int i10 = themeActivity.f43839f;
                 if (i10 == 1) {
                     D0 = org.telegram.ui.ActionBar.n6.J;
@@ -44,12 +44,12 @@ public final class a61 implements org.telegram.ui.Components.oj0 {
                     }
                     themeActivity.presentFragment(new x71(m6Var, false, 1, false, z13));
                 } else {
-                    org.telegram.ui.ActionBar.k6 k6Var = (org.telegram.ui.ActionBar.k6) i61Var.f48591e.get(i7);
-                    if (!TextUtils.isEmpty(k6Var.f29182o) && k6Var.f29170a != org.telegram.ui.ActionBar.n6.f29572n) {
+                    org.telegram.ui.ActionBar.k6 k6Var = (org.telegram.ui.ActionBar.k6) i61Var.f48547e.get(i7);
+                    if (!TextUtils.isEmpty(k6Var.f29180o) && k6Var.f29168a != org.telegram.ui.ActionBar.n6.f29570n) {
                         org.telegram.ui.ActionBar.h6.a(false);
                     }
                     int i11 = m6Var.Z;
-                    int i12 = k6Var.f29170a;
+                    int i12 = k6Var.f29168a;
                     if (i11 != i12) {
                         if (i10 == 1) {
                             z12 = true;
@@ -57,7 +57,7 @@ public final class a61 implements org.telegram.ui.Components.oj0 {
                             z12 = false;
                         }
                         org.telegram.ui.ActionBar.n6.K1(m6Var, z12, i12, view);
-                        org.telegram.ui.ActionBar.t3.q(m6Var, k6Var.f29170a);
+                        org.telegram.ui.ActionBar.t3.q(m6Var, k6Var.f29168a);
                         org.telegram.ui.ActionBar.n6.M1(themeActivity);
                     } else {
                         if (i12 >= 100) {

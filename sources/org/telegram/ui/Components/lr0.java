@@ -38,13 +38,13 @@ public final class lr0 extends org.telegram.ui.ActionBar.n0 {
         }
         or0 or0Var = gt0Var.W;
         if (or0Var != null) {
-            org.telegram.ui.cn cnVar = or0Var.f47021a;
+            org.telegram.ui.cn cnVar = or0Var.f46944a;
             org.telegram.ui.tm tmVar = cnVar.Vc;
             if (tmVar != null) {
                 tmVar.h();
             }
             cnVar.H3 = false;
-            cnVar.f46155r0 = false;
+            cnVar.f46146r0 = false;
             cnVar.Pc(false);
             cnVar.qd();
         }
@@ -104,7 +104,7 @@ public final class lr0 extends org.telegram.ui.ActionBar.n0 {
     public final void k(EditTextBoldCursor editTextBoldCursor) {
         or0 or0Var = this.f37218a.W;
         if (or0Var != null) {
-            or0Var.f47021a.L9();
+            or0Var.f46944a.L9();
         }
     }
 
@@ -116,20 +116,20 @@ public final class lr0 extends org.telegram.ui.ActionBar.n0 {
         gt0 gt0Var = this.f37218a;
         or0 or0Var = gt0Var.W;
         if (or0Var != null) {
-            org.telegram.ui.cn cnVar = or0Var.f47021a;
-            org.telegram.ui.ActionBar.r0 r0Var = cnVar.f46067k0;
+            org.telegram.ui.cn cnVar = or0Var.f46944a;
+            org.telegram.ui.ActionBar.r0 r0Var = cnVar.f46058k0;
             if (r0Var != null) {
                 cnVar.I3 = obj;
                 r0Var.Q(obj, false);
             }
             if (TextUtils.isEmpty(obj) && gt0Var.Z0 == null) {
-                org.telegram.ui.cn cnVar2 = or0Var.f47021a;
+                org.telegram.ui.cn cnVar2 = or0Var.f46944a;
                 org.telegram.ui.tm tmVar = cnVar2.Vc;
                 if (tmVar != null) {
                     tmVar.h();
                 }
                 cnVar2.H3 = false;
-                cnVar2.f46155r0 = false;
+                cnVar2.f46146r0 = false;
                 cnVar2.Pc(false);
                 cnVar2.qd();
             }

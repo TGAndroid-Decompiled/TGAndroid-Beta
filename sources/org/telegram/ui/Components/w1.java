@@ -9,10 +9,10 @@ public final class w1 implements DialogInterface.OnCancelListener {
     public final int[] f41519c;
     public final Runnable d;
 
-    public w1(int i7, int[] iArr, org.telegram.ui.n60 n60Var) {
+    public w1(int i7, int[] iArr, org.telegram.ui.o60 o60Var) {
         this.f41518b = i7;
         this.f41519c = iArr;
-        this.d = n60Var;
+        this.d = o60Var;
     }
 
     @Override

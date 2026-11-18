@@ -26,20 +26,20 @@ public final class fp implements org.telegram.ui.p71 {
         lpVar.H1 = !lpVar.H1;
         if (lpVar.G1 != null) {
             lpVar.J1 = true;
-            bnVar.f46226w7 = true;
+            bnVar.f46217w7 = true;
             if (lpVar.Q0()) {
                 wallPaper = null;
             } else {
-                wallPaper = lpVar.f37179s1.f54538g;
+                wallPaper = lpVar.f37179s1.f54539g;
             }
             TLRPC.WallPaper wallPaper2 = wallPaper;
             org.telegram.ui.ActionBar.t3 t3Var = lpVar.G1.f36837a;
-            if (t3Var.f29999a) {
+            if (t3Var.f29997a) {
                 lpVar.f37179s1.r(null, wallPaper2, z10, Boolean.valueOf(lpVar.H1), false);
             } else {
                 lpVar.f37179s1.r(t3Var, wallPaper2, z10, Boolean.valueOf(lpVar.H1), false);
             }
-            bnVar.f46226w7 = false;
+            bnVar.f46217w7 = false;
         }
     }
 }

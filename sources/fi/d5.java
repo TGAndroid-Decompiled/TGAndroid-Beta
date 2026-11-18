@@ -5,22 +5,22 @@ import android.view.View;
 import org.telegram.ui.Components.bc0;
 import org.telegram.ui.Components.xf0;
 public final class d5 implements c5.h {
-    public final int f11851a;
-    public final View f11852b;
+    public final int f11848a;
+    public final View f11849b;
 
     public d5(int i7, View view) {
-        this.f11851a = i7;
-        this.f11852b = view;
+        this.f11848a = i7;
+        this.f11849b = view;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
-        switch (this.f11851a) {
+        switch (this.f11848a) {
             case 0:
                 return;
             case 1:
-                bc0 bc0Var = (bc0) this.f11852b;
+                bc0 bc0Var = (bc0) this.f11849b;
                 c5.h hVar = bc0Var.f33655c;
                 if (hVar != null) {
                     hVar.a(i7);
@@ -43,10 +43,10 @@ public final class d5 implements c5.h {
     @Override
     public final void b(float f10, int i7, int i10) {
         float f11;
-        switch (this.f11851a) {
+        switch (this.f11848a) {
             case 0:
-                i5 i5Var = (i5) this.f11852b;
-                if (i5Var.f12110x) {
+                i5 i5Var = (i5) this.f11849b;
+                if (i5Var.f12107x) {
                     b5 b5Var = i5Var.h;
                     b5Var.d.abortAnimation();
                     if (Math.abs(f10) <= 1.0f) {
@@ -55,20 +55,20 @@ public final class d5 implements c5.h {
                             valueAnimator.cancel();
                             b5Var.N = null;
                         }
-                        int i11 = b5Var.f11939s;
-                        float f12 = (i11 / 2.0f) + ((-b5Var.getMeasuredWidth()) / 2.0f) + ((i11 + b5Var.f11937n) * i7);
+                        int i11 = b5Var.f11936s;
+                        float f12 = (i11 / 2.0f) + ((-b5Var.getMeasuredWidth()) / 2.0f) + ((i11 + b5Var.f11934n) * i7);
                         if (f10 > 0.0f) {
-                            int i12 = b5Var.f11939s;
-                            f11 = (i12 / 2.0f) + ((-b5Var.getMeasuredWidth()) / 2.0f) + ((i7 + 1) * (i12 + b5Var.f11937n));
+                            int i12 = b5Var.f11936s;
+                            f11 = (i12 / 2.0f) + ((-b5Var.getMeasuredWidth()) / 2.0f) + ((i7 + 1) * (i12 + b5Var.f11934n));
                         } else {
-                            int i13 = b5Var.f11939s;
-                            f11 = (i13 / 2.0f) + ((-b5Var.getMeasuredWidth()) / 2.0f) + ((i7 - 1) * (i13 + b5Var.f11937n));
+                            int i13 = b5Var.f11936s;
+                            f11 = (i13 / 2.0f) + ((-b5Var.getMeasuredWidth()) / 2.0f) + ((i7 - 1) * (i13 + b5Var.f11934n));
                             f10 = -f10;
                         }
                         if (f10 == 0.0f) {
-                            b5Var.f11935e = f12;
+                            b5Var.f11932e = f12;
                         } else {
-                            b5Var.f11935e = org.telegram.messenger.g0.T1(f12, f11, f10);
+                            b5Var.f11932e = org.telegram.messenger.g0.T1(f12, f11, f10);
                         }
                         b5Var.M = false;
                         b5Var.invalidate();
@@ -78,7 +78,7 @@ public final class d5 implements c5.h {
                 }
                 return;
             case 1:
-                bc0 bc0Var = (bc0) this.f11852b;
+                bc0 bc0Var = (bc0) this.f11849b;
                 bc0Var.h = i7;
                 bc0Var.f33658n = f10;
                 if (bc0Var.d.getChildAt(i7) != null) {
@@ -93,7 +93,7 @@ public final class d5 implements c5.h {
                 }
                 return;
             default:
-                xf0 xf0Var = (xf0) this.f11852b;
+                xf0 xf0Var = (xf0) this.f11849b;
                 if (!xf0Var.f41999a && Math.abs(i7 - xf0Var.f42008x) == 1) {
                     int i14 = xf0Var.f42008x;
                     if (i7 > i14) {
@@ -118,16 +118,16 @@ public final class d5 implements c5.h {
 
     @Override
     public final void c(int i7) {
-        switch (this.f11851a) {
+        switch (this.f11848a) {
             case 0:
-                i5 i5Var = (i5) this.f11852b;
+                i5 i5Var = (i5) this.f11849b;
                 if (i7 == 1) {
-                    i5Var.f12110x = true;
+                    i5Var.f12107x = true;
                     return;
                 }
                 return;
             case 1:
-                bc0 bc0Var = (bc0) this.f11852b;
+                bc0 bc0Var = (bc0) this.f11849b;
                 if (i7 == 0) {
                     bc0.a(bc0Var, bc0Var.f33656e.getCurrentItem(), 0);
                 }

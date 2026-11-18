@@ -21,7 +21,7 @@ public final class y50 extends m51 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         j60 j60Var = this.f42338w;
-        j60Var.Q1.setTranslationY(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.L(6.0f) + (j60Var.f37994y1 - j60Var.f30226t0));
+        j60Var.Q1.setTranslationY(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.L(6.0f) + (j60Var.f37994y1 - j60Var.f30224t0));
         float f10 = j60Var.f36360j2 + j60Var.f36366p2;
         kv0 kv0Var = j60Var.f37990u1;
         if (kv0Var.getVisibility() != 0) {
@@ -55,8 +55,8 @@ public final class y50 extends m51 {
         if (view == j60Var.Q1) {
             canvas.save();
             canvas.clipRect(0.0f, view.getY() - org.telegram.messenger.g0.L(4.0f), getMeasuredWidth(), view.getY() + j60Var.f36356f2 + 1.0f);
-            canvas.drawColor(i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false), (int) (j60Var.f36354c2 * 255.0f)));
-            int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29397d7, false), (int) (j60Var.f36354c2 * 255.0f));
+            canvas.drawColor(i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false), (int) (j60Var.f36354c2 * 255.0f)));
+            int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29395d7, false), (int) (j60Var.f36354c2 * 255.0f));
             Paint paint = this.f42335n;
             paint.setColor(o4);
             canvas.drawRect(0.0f, view.getY() + j60Var.f36356f2, getMeasuredWidth(), view.getY() + j60Var.f36356f2 + 1.0f, paint);
@@ -72,7 +72,7 @@ public final class y50 extends m51 {
         super.onAttachedToWindow();
         h6.m mVar = this.f42337s;
         if (mVar != null) {
-            ((r51) mVar.f13939b).f39044b = true;
+            ((r51) mVar.f13936b).f39044b = true;
         }
     }
 

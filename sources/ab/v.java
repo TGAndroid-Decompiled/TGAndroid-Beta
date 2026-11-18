@@ -16,13 +16,13 @@ public final class v {
 
     public static String b(o9.g gVar) {
         gVar.a();
-        o9.i iVar = gVar.f21765c;
-        String str = iVar.f21778e;
+        o9.i iVar = gVar.f21762c;
+        String str = iVar.f21775e;
         if (str != null) {
             return str;
         }
         gVar.a();
-        String str2 = iVar.f21776b;
+        String str2 = iVar.f21773b;
         if (!str2.startsWith("1:")) {
             return str2;
         }

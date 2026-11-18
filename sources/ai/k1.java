@@ -789,7 +789,7 @@ public final class k1 extends FrameLayout {
                                     if (i11 == 3 || i11 == 4) {
                                         bi.x0 x0Var = new bi.x0(context, this.f1269c, i6Var, new a0(n0Var, 3));
                                         x0Var.R = true;
-                                        x0Var.f4201f = org.telegram.messenger.g0.L(316);
+                                        x0Var.f4169f = org.telegram.messenger.g0.L(316);
                                         x0Var.K = org.telegram.messenger.g0.L(220);
                                         x0Var.Q = true;
                                         x0Var.J = 0;
@@ -840,7 +840,7 @@ public final class k1 extends FrameLayout {
                                     i6 i6Var2 = n0Var.f1372n;
                                     bi.x0 x0Var2 = new bi.x0(context3, this.d, i6Var2, new a0(n0Var, 1));
                                     x0Var2.R = true;
-                                    x0Var2.f4201f = org.telegram.messenger.g0.L(316);
+                                    x0Var2.f4169f = org.telegram.messenger.g0.L(316);
                                     x0Var2.K = org.telegram.messenger.g0.L(200);
                                     x0Var2.Q = true;
                                     x0Var2.J = 0;
@@ -897,7 +897,7 @@ public final class k1 extends FrameLayout {
         int i7;
         int i10;
         int i11;
-        int i12 = n6.f29396d6;
+        int i12 = n6.f29394d6;
         i6 i6Var = this.f1267b;
         if (org.telegram.messenger.g0.B(n6.w0(i12, i6Var)) < 0.5f) {
             z10 = true;

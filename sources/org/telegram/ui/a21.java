@@ -48,7 +48,7 @@ public final class a21 implements org.telegram.messenger.fs {
         int size;
         if (!this.f45435f && !this.h) {
             TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f45433c;
-            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f28404q)) {
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f28402q)) {
                 this.f45435f = true;
                 TLRPC.Chat chat = this.f45432b;
                 if (org.telegram.messenger.v3.T(chat)) {
@@ -71,9 +71,9 @@ public final class a21 implements org.telegram.messenger.fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.ks.T) {
-            long j3 = ((TLRPC.ChatFull) objArr[0]).f28406id;
+            long j3 = ((TLRPC.ChatFull) objArr[0]).f28404id;
             TLRPC.Chat chat = this.f45432b;
-            if (j3 == chat.f28405id && !org.telegram.messenger.v3.T(chat) && this.f45435f) {
+            if (j3 == chat.f28403id && !org.telegram.messenger.v3.T(chat) && this.f45435f) {
                 this.f45435f = false;
                 b();
             }

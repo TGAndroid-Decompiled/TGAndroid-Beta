@@ -106,7 +106,7 @@ public final class e1 implements RequestDelegate {
             case 5:
                 mc mcVar = (mc) this.f1186b;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    tr.a0(mcVar.n1).j1(new ArrayList(Arrays.asList(mcVar.G1.f23968k)), true, true, true, 0, false, 0, 0L);
+                    tr.a0(mcVar.n1).j1(new ArrayList(Arrays.asList(mcVar.G1.f23965k)), true, true, true, 0, false, 0, 0L);
                     return;
                 } else {
                     mcVar.getClass();
@@ -198,8 +198,8 @@ public final class e1 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (gd.E0().f24244y != null) {
-                            locale = gd.E0().f24244y;
+                        if (gd.E0().f24241y != null) {
+                            locale = gd.E0().f24241y;
                         } else {
                             locale = Locale.getDefault();
                         }
@@ -259,8 +259,8 @@ public final class e1 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (gd.E0().f24244y != null) {
-                            locale2 = gd.E0().f24244y;
+                        if (gd.E0().f24241y != null) {
+                            locale2 = gd.E0().f24241y;
                         } else {
                             locale2 = Locale.getDefault();
                         }

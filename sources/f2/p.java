@@ -4,47 +4,47 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.util.Arrays;
 public final class p implements q {
-    public final float[] f11063a;
-    public float[] f11064b;
-    public float[] f11065c;
+    public final float[] f11060a;
+    public float[] f11061b;
+    public float[] f11062c;
     public float[] d;
-    public double f11066e;
-    public double f11067f;
-    public double f11068g;
+    public double f11063e;
+    public double f11064f;
+    public double f11065g;
     public final r h;
 
     public p(r rVar) {
         this.h = rVar;
         int i7 = rVar.h;
-        this.f11063a = new float[i7];
-        int i10 = i7 * rVar.f11070b;
-        this.f11064b = new float[i10];
-        this.f11065c = new float[i10];
+        this.f11060a = new float[i7];
+        int i10 = i7 * rVar.f11067b;
+        this.f11061b = new float[i10];
+        this.f11062c = new float[i10];
         this.d = new float[i10];
     }
 
     @Override
     public final void a(int i7, ByteBuffer byteBuffer) {
         FloatBuffer asFloatBuffer = byteBuffer.asFloatBuffer();
-        float[] fArr = this.f11064b;
+        float[] fArr = this.f11061b;
         r rVar = this.h;
-        asFloatBuffer.get(fArr, rVar.f11076j * rVar.f11070b, i7 / 4);
+        asFloatBuffer.get(fArr, rVar.f11073j * rVar.f11067b, i7 / 4);
         byteBuffer.position(byteBuffer.position() + i7);
     }
 
     @Override
     public final void b(int i7, ByteBuffer byteBuffer) {
         FloatBuffer asFloatBuffer = byteBuffer.asFloatBuffer();
-        float[] fArr = this.f11065c;
+        float[] fArr = this.f11062c;
         r rVar = this.h;
-        asFloatBuffer.put(fArr, 0, rVar.f11070b * i7);
-        byteBuffer.position((i7 * 4 * rVar.f11070b) + byteBuffer.position());
+        asFloatBuffer.put(fArr, 0, rVar.f11067b * i7);
+        byteBuffer.position((i7 * 4 * rVar.f11067b) + byteBuffer.position());
     }
 
     @Override
     public final void c(int i7, int i10) {
-        for (int i11 = 0; i11 < this.h.f11070b * i10; i11++) {
-            this.f11064b[i7 + i11] = 0.0f;
+        for (int i11 = 0; i11 < this.h.f11067b * i10; i11++) {
+            this.f11061b[i7 + i11] = 0.0f;
         }
     }
 
@@ -52,54 +52,54 @@ public final class p implements q {
     public final void d(int i7, int i10) {
         r rVar = this.h;
         int i11 = rVar.h / i10;
-        int i12 = rVar.f11070b;
+        int i12 = rVar.f11067b;
         int i13 = i10 * i12;
         int i14 = i7 * i12;
         for (int i15 = 0; i15 < i11; i15++) {
             double d = 0.0d;
             for (int i16 = 0; i16 < i13; i16++) {
-                d += this.f11064b[(i15 * i13) + i14 + i16];
+                d += this.f11061b[(i15 * i13) + i14 + i16];
             }
-            this.f11063a[i15] = (float) (d / i13);
+            this.f11060a[i15] = (float) (d / i13);
         }
     }
 
     @Override
     public final int e(int i7, int i10, int i11) {
-        return s(i7, i10, i11, this.f11064b);
+        return s(i7, i10, i11, this.f11061b);
     }
 
     @Override
     public final void f() {
-        this.f11068g = this.f11066e;
+        this.f11065g = this.f11063e;
     }
 
     @Override
     public final void flush() {
-        this.f11068g = 0.0d;
-        this.f11066e = 0.0d;
-        this.f11067f = 0.0d;
+        this.f11065g = 0.0d;
+        this.f11063e = 0.0d;
+        this.f11064f = 0.0d;
     }
 
     @Override
     public final Object g() {
-        return this.f11064b;
+        return this.f11061b;
     }
 
     @Override
     public final Object h() {
-        return this.f11065c;
+        return this.f11062c;
     }
 
     @Override
     public final void i(int i7) {
-        this.f11065c = r(this.h.f11077k, i7, this.f11065c);
+        this.f11062c = r(this.h.f11074k, i7, this.f11062c);
     }
 
     @Override
     public final boolean j() {
-        double d = this.f11066e;
-        if (d == 0.0d || this.h.f11082p == 0 || this.f11067f > d * 3.0d || d * 2.0d <= this.f11068g * 3.0d) {
+        double d = this.f11063e;
+        if (d == 0.0d || this.h.f11079p == 0 || this.f11064f > d * 3.0d || d * 2.0d <= this.f11065g * 3.0d) {
             return false;
         }
         return true;
@@ -110,17 +110,17 @@ public final class p implements q {
         int i10 = 0;
         while (true) {
             r rVar = this.h;
-            int i11 = rVar.f11070b;
+            int i11 = rVar.f11067b;
             if (i10 < i11) {
                 float[] fArr = this.d;
                 int i12 = (i7 * i11) + i10;
                 float f10 = fArr[i12];
                 float f11 = fArr[i12 + i11];
-                int i13 = rVar.f11079m;
+                int i13 = rVar.f11076m;
                 long j11 = (i13 + 1) * j10;
-                long j12 = j11 - (rVar.f11080n * j3);
+                long j12 = j11 - (rVar.f11077n * j3);
                 long j13 = j11 - (i13 * j10);
-                this.f11065c[(rVar.f11077k * i11) + i10] = ((((float) (j13 - j12)) * f11) + (((float) j12) * f10)) / ((float) j13);
+                this.f11062c[(rVar.f11074k * i11) + i10] = ((((float) (j13 - j12)) * f11) + (((float) j12) * f10)) / ((float) j13);
                 i10++;
             } else {
                 return;
@@ -135,8 +135,8 @@ public final class p implements q {
 
     @Override
     public final void m(int i7, int i10, int i11, int i12, int i13) {
-        float[] fArr = this.f11065c;
-        float[] fArr2 = this.f11064b;
+        float[] fArr = this.f11062c;
+        float[] fArr2 = this.f11061b;
         for (int i14 = 0; i14 < i10; i14++) {
             int i15 = (i11 * i10) + i14;
             int i16 = (i13 * i10) + i14;
@@ -152,7 +152,7 @@ public final class p implements q {
 
     @Override
     public final void n(int i7) {
-        this.d = r(this.h.f11078l, i7, this.d);
+        this.d = r(this.h.f11075l, i7, this.d);
     }
 
     @Override
@@ -162,17 +162,17 @@ public final class p implements q {
 
     @Override
     public final void p(int i7) {
-        this.f11064b = r(this.h.f11076j, i7, this.f11064b);
+        this.f11061b = r(this.h.f11073j, i7, this.f11061b);
     }
 
     @Override
     public final int q(int i7, int i10) {
-        return s(0, i7, i10, this.f11063a);
+        return s(0, i7, i10, this.f11060a);
     }
 
     public final float[] r(int i7, int i10, float[] fArr) {
         int length = fArr.length;
-        int i11 = this.h.f11070b;
+        int i11 = this.h.f11067b;
         int i12 = length / i11;
         if (i7 + i10 <= i12) {
             return fArr;
@@ -181,7 +181,7 @@ public final class p implements q {
     }
 
     public final int s(int i7, int i10, int i11, float[] fArr) {
-        int i12 = this.h.f11070b * i7;
+        int i12 = this.h.f11067b * i7;
         double d = 1.0d;
         int i13 = 0;
         double d2 = 0.0d;
@@ -205,8 +205,8 @@ public final class p implements q {
             i15++;
             i12 = i17;
         }
-        this.f11066e = d / i13;
-        this.f11067f = d2 / i14;
+        this.f11063e = d / i13;
+        this.f11064f = d2 / i14;
         return i13;
     }
 }

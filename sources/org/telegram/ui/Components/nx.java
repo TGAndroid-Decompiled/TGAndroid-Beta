@@ -16,7 +16,7 @@ public final class nx implements View.OnClickListener {
 
     @Override
     public final void onClick(View view) {
-        qx qxVar = (qx) this.f37869c.f2781b;
+        qx qxVar = (qx) this.f37869c.f2782b;
         boolean[] zArr = this.f37867a;
         if (zArr[0]) {
             return;

@@ -2,77 +2,77 @@ package e2;
 
 import android.os.Bundle;
 public final class f0 {
-    public static final f0 f10390f = new f0(new e0());
-    public static final String f10391g;
+    public static final f0 f10387f = new f0(new e0());
+    public static final String f10388g;
     public static final String h;
-    public static final String f10392i;
-    public static final String f10393j;
-    public static final String f10394k;
-    public final long f10395a;
-    public final long f10396b;
-    public final long f10397c;
+    public static final String f10389i;
+    public static final String f10390j;
+    public static final String f10391k;
+    public final long f10392a;
+    public final long f10393b;
+    public final long f10394c;
     public final float d;
-    public final float f10398e;
+    public final float f10395e;
 
     static {
-        String str = h2.l0.f13786a;
-        f10391g = Integer.toString(0, 36);
+        String str = h2.l0.f13783a;
+        f10388g = Integer.toString(0, 36);
         h = Integer.toString(1, 36);
-        f10392i = Integer.toString(2, 36);
-        f10393j = Integer.toString(3, 36);
-        f10394k = Integer.toString(4, 36);
+        f10389i = Integer.toString(2, 36);
+        f10390j = Integer.toString(3, 36);
+        f10391k = Integer.toString(4, 36);
     }
 
     public f0(e0 e0Var) {
-        long j3 = e0Var.f10383a;
-        long j10 = e0Var.f10384b;
-        long j11 = e0Var.f10385c;
+        long j3 = e0Var.f10380a;
+        long j10 = e0Var.f10381b;
+        long j11 = e0Var.f10382c;
         float f10 = e0Var.d;
-        float f11 = e0Var.f10386e;
-        this.f10395a = j3;
-        this.f10396b = j10;
-        this.f10397c = j11;
+        float f11 = e0Var.f10383e;
+        this.f10392a = j3;
+        this.f10393b = j10;
+        this.f10394c = j11;
         this.d = f10;
-        this.f10398e = f11;
+        this.f10395e = f11;
     }
 
     public final e0 a() {
         ?? obj = new Object();
-        obj.f10383a = this.f10395a;
-        obj.f10384b = this.f10396b;
-        obj.f10385c = this.f10397c;
+        obj.f10380a = this.f10392a;
+        obj.f10381b = this.f10393b;
+        obj.f10382c = this.f10394c;
         obj.d = this.d;
-        obj.f10386e = this.f10398e;
+        obj.f10383e = this.f10395e;
         return obj;
     }
 
     public final Bundle b() {
         Bundle bundle = new Bundle();
-        f0 f0Var = f10390f;
-        long j3 = f0Var.f10395a;
-        long j10 = this.f10395a;
+        f0 f0Var = f10387f;
+        long j3 = f0Var.f10392a;
+        long j10 = this.f10392a;
         if (j10 != j3) {
-            bundle.putLong(f10391g, j10);
+            bundle.putLong(f10388g, j10);
         }
-        long j11 = f0Var.f10396b;
-        long j12 = this.f10396b;
+        long j11 = f0Var.f10393b;
+        long j12 = this.f10393b;
         if (j12 != j11) {
             bundle.putLong(h, j12);
         }
-        long j13 = f0Var.f10397c;
-        long j14 = this.f10397c;
+        long j13 = f0Var.f10394c;
+        long j14 = this.f10394c;
         if (j14 != j13) {
-            bundle.putLong(f10392i, j14);
+            bundle.putLong(f10389i, j14);
         }
         float f10 = f0Var.d;
         float f11 = this.d;
         if (f11 != f10) {
-            bundle.putFloat(f10393j, f11);
+            bundle.putFloat(f10390j, f11);
         }
-        float f12 = f0Var.f10398e;
-        float f13 = this.f10398e;
+        float f12 = f0Var.f10395e;
+        float f13 = this.f10395e;
         if (f13 != f12) {
-            bundle.putFloat(f10394k, f13);
+            bundle.putFloat(f10391k, f13);
         }
         return bundle;
     }
@@ -85,7 +85,7 @@ public final class f0 {
             return false;
         }
         f0 f0Var = (f0) obj;
-        if (this.f10395a == f0Var.f10395a && this.f10396b == f0Var.f10396b && this.f10397c == f0Var.f10397c && this.d == f0Var.d && this.f10398e == f0Var.f10398e) {
+        if (this.f10392a == f0Var.f10392a && this.f10393b == f0Var.f10393b && this.f10394c == f0Var.f10394c && this.d == f0Var.d && this.f10395e == f0Var.f10395e) {
             return true;
         }
         return false;
@@ -93,9 +93,9 @@ public final class f0 {
 
     public final int hashCode() {
         int i7;
-        long j3 = this.f10395a;
-        long j10 = this.f10396b;
-        long j11 = this.f10397c;
+        long j3 = this.f10392a;
+        long j10 = this.f10393b;
+        long j11 = this.f10394c;
         int i10 = ((((((int) (j3 ^ (j3 >>> 32))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) ((j11 >>> 32) ^ j11))) * 31;
         float f10 = this.d;
         int i11 = 0;
@@ -105,7 +105,7 @@ public final class f0 {
             i7 = 0;
         }
         int i12 = (i10 + i7) * 31;
-        float f11 = this.f10398e;
+        float f11 = this.f10395e;
         if (f11 != 0.0f) {
             i11 = Float.floatToIntBits(f11);
         }

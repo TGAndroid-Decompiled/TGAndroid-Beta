@@ -42,7 +42,7 @@ public final class n0 {
                 case 1:
                     n0 n0Var2 = this.f41017b;
                     mh0 mh0Var2 = n0Var2.f41061b;
-                    int nextInt = Utilities.f22780b.nextInt(100);
+                    int nextInt = Utilities.f22777b.nextInt(100);
                     int i10 = 120;
                     if (nextInt < 32) {
                         i7 = 0;
@@ -111,7 +111,7 @@ public final class n0 {
                 case 1:
                     n0 n0Var2 = this.f41017b;
                     mh0 mh0Var2 = n0Var2.f41061b;
-                    int nextInt = Utilities.f22780b.nextInt(100);
+                    int nextInt = Utilities.f22777b.nextInt(100);
                     int i10 = 120;
                     if (nextInt < 32) {
                         i7 = 0;
@@ -180,7 +180,7 @@ public final class n0 {
                 case 1:
                     n0 n0Var2 = this.f41017b;
                     mh0 mh0Var2 = n0Var2.f41061b;
-                    int nextInt = Utilities.f22780b.nextInt(100);
+                    int nextInt = Utilities.f22777b.nextInt(100);
                     int i10 = 120;
                     if (nextInt < 32) {
                         i7 = 0;
@@ -249,7 +249,7 @@ public final class n0 {
                 case 1:
                     n0 n0Var2 = this.f41017b;
                     mh0 mh0Var2 = n0Var2.f41061b;
-                    int nextInt = Utilities.f22780b.nextInt(100);
+                    int nextInt = Utilities.f22777b.nextInt(100);
                     int i10 = 120;
                     if (nextInt < 32) {
                         i7 = 0;

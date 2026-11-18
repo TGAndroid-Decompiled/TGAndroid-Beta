@@ -5,16 +5,16 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Pattern;
 public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui.Components.tt0, org.telegram.messenger.mc, org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.qb0, org.telegram.ui.Components.ob0 {
-    public final int f46618a;
+    public final int f46598a;
 
     public cr(int i7) {
-        this.f46618a = i7;
+        this.f46598a = i7;
     }
 
     @Override
     public void c(Object obj, float f10) {
         er erVar = (er) obj;
-        switch (this.f46618a) {
+        switch (this.f46598a) {
             case 1:
                 erVar.M1 = f10;
                 if (erVar.getParent() != null) {
@@ -51,7 +51,7 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
     @Override
     public float get(Object obj) {
         er erVar = (er) obj;
-        switch (this.f46618a) {
+        switch (this.f46598a) {
             case 0:
                 return erVar.M1;
             case 1:
@@ -67,7 +67,7 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
 
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f46618a) {
+        switch (this.f46598a) {
             case 10:
                 u1Var.dismiss();
                 return;
@@ -79,7 +79,7 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
 
     @Override
     public String i(int i7) {
-        switch (this.f46618a) {
+        switch (this.f46598a) {
             case 12:
                 if (i7 == 0) {
                     return org.telegram.messenger.gd.M0(2131748339, null);
@@ -172,7 +172,7 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
 
     @Override
     public void q(Exception exc) {
-        switch (this.f46618a) {
+        switch (this.f46598a) {
             case 8:
                 org.telegram.messenger.a8.g(exc, true);
                 return;

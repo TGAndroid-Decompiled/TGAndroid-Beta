@@ -30,34 +30,34 @@ import org.telegram.ui.p51;
 import org.telegram.ui.qy0;
 import org.telegram.ui.yj0;
 public final class h2 implements Runnable {
-    public final int f3684a;
-    public final Object f3685b;
-    public final Object f3686c;
+    public final int f3658a;
+    public final Object f3659b;
+    public final Object f3660c;
     public final Object d;
-    public final Object f3687e;
-    public final Object f3688f;
+    public final Object f3661e;
+    public final Object f3662f;
     public final Object h;
 
     public h2(di.x8 x8Var, Object obj, fj fjVar, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, x10 x10Var, int i7) {
-        this.f3684a = i7;
+        this.f3658a = i7;
         this.d = x8Var;
-        this.f3687e = obj;
-        this.f3685b = fjVar;
-        this.f3688f = inputInvoice;
-        this.f3686c = tL_payments_paymentFormStars;
+        this.f3661e = obj;
+        this.f3659b = fjVar;
+        this.f3662f = inputInvoice;
+        this.f3660c = tL_payments_paymentFormStars;
         this.h = x10Var;
     }
 
     private final void a() {
-        byte[] bArr = (byte[]) this.f3685b;
-        org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) this.f3688f;
+        byte[] bArr = (byte[]) this.f3659b;
+        org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) this.f3662f;
         byte[] bArr2 = i2Var.f44342b;
         org.telegram.ui.Wallet.e0 e0Var = (org.telegram.ui.Wallet.e0) this.h;
-        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.f3686c;
+        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.f3660c;
         org.telegram.ui.Wallet.u0 u0Var = ((org.telegram.ui.Wallet.l2) this.d).f44480b;
-        if (TextUtils.equals((String) this.f3687e, u0Var.y()) && Arrays.equals(bArr, u0Var.E())) {
+        if (TextUtils.equals((String) this.f3661e, u0Var.y()) && Arrays.equals(bArr, u0Var.E())) {
             TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = new TL_wallet.inputTonConnectOauthSession();
-            inputtonconnectoauthsession.session_id = tonconnectsession.f28667id;
+            inputtonconnectoauthsession.session_id = tonconnectsession.f28665id;
             inputtonconnectoauthsession.challenge_answer = bArr2;
             inputtonconnectoauthsession.body = i2Var.f44343c;
             inputtonconnectoauthsession.proof = i2Var.d;
@@ -70,11 +70,11 @@ public final class h2 implements Runnable {
 
     private final void b() {
         org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) this.d;
-        String str = (String) this.f3687e;
+        String str = (String) this.f3661e;
         x10 x10Var = (x10) this.h;
-        org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) this.f3685b;
-        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f3688f;
-        TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) this.f3686c;
+        org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) this.f3659b;
+        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f3662f;
+        TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) this.f3660c;
         if (str != null) {
             x10Var.a(str);
         } else if (l2Var.A(h2Var) && !l2Var.j(h2Var)) {
@@ -87,11 +87,11 @@ public final class h2 implements Runnable {
     private final void c() {
         int i7;
         org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) this.d;
-        org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) this.f3687e;
-        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f3685b;
-        p51 p51Var = (p51) this.f3688f;
+        org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) this.f3661e;
+        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f3659b;
+        p51 p51Var = (p51) this.f3662f;
         JSONObject jSONObject = (JSONObject) this.h;
-        String str = (String) this.f3686c;
+        String str = (String) this.f3660c;
         if (l2Var.A(h2Var) && !l2Var.j(h2Var)) {
             if (jSONObject == null) {
                 i7 = 0;
@@ -106,11 +106,11 @@ public final class h2 implements Runnable {
 
     private final void d() {
         org.telegram.ui.Wallet.y2 y2Var = (org.telegram.ui.Wallet.y2) this.d;
-        int[] iArr = (int[]) this.f3687e;
-        TextView textView = (TextView) this.f3685b;
-        org.telegram.ui.Wallet.v7 v7Var = (org.telegram.ui.Wallet.v7) this.f3688f;
+        int[] iArr = (int[]) this.f3661e;
+        TextView textView = (TextView) this.f3659b;
+        org.telegram.ui.Wallet.v7 v7Var = (org.telegram.ui.Wallet.v7) this.f3662f;
         org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.h;
-        org.telegram.ui.Wallet.k2 k2Var = (org.telegram.ui.Wallet.k2) this.f3686c;
+        org.telegram.ui.Wallet.k2 k2Var = (org.telegram.ui.Wallet.k2) this.f3660c;
         if (!y2Var.f45302e && !y2Var.d) {
             iArr[0] = 0;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(" ");
@@ -129,17 +129,17 @@ public final class h2 implements Runnable {
     }
 
     private final void f() {
-        ((WalletEngine2) this.d).lambda$prepareSendNFT$29((String) this.f3687e, (String) this.f3685b, (String) this.f3688f, (byte[]) this.h, (q10) this.f3686c);
+        ((WalletEngine2) this.d).lambda$prepareSendNFT$29((String) this.f3661e, (String) this.f3659b, (String) this.f3662f, (byte[]) this.h, (q10) this.f3660c);
     }
 
     private final void g() {
         org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.d;
-        TLObject tLObject = (TLObject) this.f3685b;
-        TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f3687e;
-        String str = (String) this.f3688f;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f3686c;
+        TLObject tLObject = (TLObject) this.f3659b;
+        TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f3661e;
+        String str = (String) this.f3662f;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f3660c;
         String str2 = (String) this.h;
-        org.telegram.ui.ActionBar.i6 i6Var = v0Var.f53350e;
+        org.telegram.ui.ActionBar.i6 i6Var = v0Var.f53301e;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
                 gi0.b(false, v0Var.N, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, v0Var);
@@ -163,112 +163,112 @@ public final class h2 implements Runnable {
     }
 
     public h2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
-        this.f3684a = i7;
+        this.f3658a = i7;
         this.d = obj;
-        this.f3687e = obj2;
-        this.f3685b = obj3;
-        this.f3688f = obj4;
+        this.f3661e = obj2;
+        this.f3659b = obj3;
+        this.f3662f = obj4;
         this.h = obj5;
-        this.f3686c = obj6;
+        this.f3660c = obj6;
     }
 
     public h2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7, boolean z10) {
-        this.f3684a = i7;
+        this.f3658a = i7;
         this.d = obj;
-        this.f3685b = obj2;
-        this.f3687e = obj3;
-        this.f3688f = obj4;
+        this.f3659b = obj2;
+        this.f3661e = obj3;
+        this.f3662f = obj4;
         this.h = obj5;
-        this.f3686c = obj6;
+        this.f3660c = obj6;
     }
 
     public h2(jg.z0 z0Var, String str, TLRPC.TL_error tL_error, TLObject tLObject, mp mpVar, tr trVar) {
-        this.f3684a = 10;
+        this.f3658a = 10;
         this.d = z0Var;
-        this.f3687e = str;
-        this.f3686c = tL_error;
-        this.f3685b = tLObject;
-        this.f3688f = mpVar;
+        this.f3661e = str;
+        this.f3660c = tL_error;
+        this.f3659b = tLObject;
+        this.f3662f = mpVar;
         this.h = trVar;
     }
 
     public h2(TLObject tLObject, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f3684a = i7;
-        this.f3685b = tLObject;
+        this.f3658a = i7;
+        this.f3659b = tLObject;
         this.d = obj;
-        this.f3687e = obj2;
-        this.f3688f = obj3;
+        this.f3661e = obj2;
+        this.f3662f = obj3;
         this.h = obj4;
-        this.f3686c = obj5;
+        this.f3660c = obj5;
     }
 
     public h2(TLRPC.TL_error tL_error, Context context, org.telegram.ui.ActionBar.i6 i6Var, hi.d dVar, org.telegram.ui.o6 o6Var, Runnable runnable) {
-        this.f3684a = 15;
-        this.f3686c = tL_error;
+        this.f3658a = 15;
+        this.f3660c = tL_error;
         this.d = context;
-        this.f3687e = i6Var;
-        this.f3685b = dVar;
-        this.f3688f = o6Var;
+        this.f3661e = i6Var;
+        this.f3659b = dVar;
+        this.f3662f = o6Var;
         this.h = runnable;
     }
 
-    public h2(bn bnVar, vf.b bVar, org.telegram.ui.Cells.q1 q1Var, String str, TLObject tLObject, CharacterStyle characterStyle) {
-        this.f3684a = 13;
+    public h2(bn bnVar, vf.b bVar, org.telegram.ui.Cells.r1 r1Var, String str, TLObject tLObject, CharacterStyle characterStyle) {
+        this.f3658a = 13;
         this.d = bnVar;
-        this.f3687e = bVar;
-        this.f3688f = q1Var;
+        this.f3661e = bVar;
+        this.f3662f = r1Var;
         this.h = str;
-        this.f3685b = tLObject;
-        this.f3686c = characterStyle;
+        this.f3659b = tLObject;
+        this.f3660c = characterStyle;
     }
 
     public h2(hk0 hk0Var, TLRPC.TL_error tL_error, String str, yj0 yj0Var, TLObject tLObject, TL_account.sendVerifyPhoneCode sendverifyphonecode) {
-        this.f3684a = 17;
+        this.f3658a = 17;
         this.d = hk0Var;
-        this.f3686c = tL_error;
-        this.f3687e = str;
-        this.f3688f = yj0Var;
-        this.f3685b = tLObject;
+        this.f3660c = tL_error;
+        this.f3661e = str;
+        this.f3662f = yj0Var;
+        this.f3659b = tLObject;
         this.h = sendverifyphonecode;
     }
 
     public h2(qy0 qy0Var, TLObject tLObject, CharSequence charSequence, TLRPC.TL_error tL_error, byte[] bArr, String str) {
-        this.f3684a = 18;
+        this.f3658a = 18;
         this.d = qy0Var;
-        this.f3685b = tLObject;
-        this.f3687e = charSequence;
-        this.f3686c = tL_error;
-        this.f3688f = bArr;
+        this.f3659b = tLObject;
+        this.f3661e = charSequence;
+        this.f3660c = tL_error;
+        this.f3662f = bArr;
         this.h = str;
     }
 
     public h2(b21 b21Var, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TLRPC.User user, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
-        this.f3684a = 20;
+        this.f3658a = 20;
         this.d = b21Var;
-        this.f3686c = tL_error;
-        this.f3687e = inputCheckPasswordSRP;
-        this.f3685b = user;
-        this.f3688f = twoStepVerificationActivity;
+        this.f3660c = tL_error;
+        this.f3661e = inputCheckPasswordSRP;
+        this.f3659b = user;
+        this.f3662f = twoStepVerificationActivity;
         this.h = tL_channels_editCreator;
     }
 
     public h2(org.telegram.ui.Wallet.l2 l2Var, String str, x10 x10Var, org.telegram.ui.Wallet.h2 h2Var, org.telegram.ui.Wallet.r0 r0Var, TL_wallet.sendTransfer sendtransfer) {
-        this.f3684a = 23;
+        this.f3658a = 23;
         this.d = l2Var;
-        this.f3687e = str;
+        this.f3661e = str;
         this.h = x10Var;
-        this.f3685b = h2Var;
-        this.f3688f = r0Var;
-        this.f3686c = sendtransfer;
+        this.f3659b = h2Var;
+        this.f3662f = r0Var;
+        this.f3660c = sendtransfer;
     }
 
     public h2(org.telegram.ui.web.v0 v0Var, TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error, String str2) {
-        this.f3684a = 28;
+        this.f3658a = 28;
         this.d = v0Var;
-        this.f3685b = tLObject;
-        this.f3687e = tL_messages_requestUrlAuth;
-        this.f3688f = str;
-        this.f3686c = tL_error;
+        this.f3659b = tLObject;
+        this.f3661e = tL_messages_requestUrlAuth;
+        this.f3662f = str;
+        this.f3660c = tL_error;
         this.h = str2;
     }
 }

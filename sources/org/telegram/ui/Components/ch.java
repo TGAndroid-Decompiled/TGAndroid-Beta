@@ -23,7 +23,7 @@ public final class ch implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 si siVar = this.f33995b;
                 siVar.D0 = floatValue;
-                org.telegram.ui.ActionBar.n2 n2Var = siVar.f30195c;
+                org.telegram.ui.ActionBar.n2 n2Var = siVar.f30193c;
                 if (n2Var != null) {
                     n2Var.invalidate();
                     return;

@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gl implements Runnable {
-    public final int f24275a = 0;
-    public final mp f24276b;
-    public final TLObject f24277c;
+    public final int f24272a = 0;
+    public final mp f24273b;
+    public final TLObject f24274c;
     public final long d;
 
     public gl(mp mpVar, long j3, TLObject tLObject) {
-        this.f24276b = mpVar;
+        this.f24273b = mpVar;
         this.d = j3;
-        this.f24277c = tLObject;
+        this.f24274c = tLObject;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f24275a;
+        int i7 = this.f24272a;
         long j3 = this.d;
-        TLObject tLObject = this.f24277c;
-        mp mpVar = this.f24276b;
+        TLObject tLObject = this.f24274c;
+        mp mpVar = this.f24273b;
         switch (i7) {
             case 0:
-                mpVar.f25773u0.l(j3);
+                mpVar.f25771u0.l(j3);
                 if (tLObject != null) {
                     TLRPC.TL_messages_peerSettings tL_messages_peerSettings = (TLRPC.TL_messages_peerSettings) tLObject;
                     TLRPC.PeerSettings peerSettings = tL_messages_peerSettings.settings;
@@ -52,7 +52,7 @@ public final class gl implements Runnable {
                         tL_userProfilePhoto.has_video = !tL_photos_photo.photo.video_sizes.isEmpty();
                         TLRPC.UserProfilePhoto userProfilePhoto = c22.photo;
                         TLRPC.Photo photo = tL_photos_photo.photo;
-                        userProfilePhoto.photo_id = photo.f28429id;
+                        userProfilePhoto.photo_id = photo.f28427id;
                         userProfilePhoto.photo_small = w7.w(photo.sizes, 150, false, null, false).location;
                         c22.photo.photo_big = w7.w(tL_photos_photo.photo.sizes, 800, false, null, false).location;
                         c22.photo.dc_id = tL_photos_photo.photo.dc_id;
@@ -77,8 +77,8 @@ public final class gl implements Runnable {
     }
 
     public gl(mp mpVar, TLObject tLObject, long j3) {
-        this.f24276b = mpVar;
-        this.f24277c = tLObject;
+        this.f24273b = mpVar;
+        this.f24274c = tLObject;
         this.d = j3;
     }
 }

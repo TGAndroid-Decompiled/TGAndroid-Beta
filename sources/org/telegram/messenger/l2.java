@@ -7,23 +7,23 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class l2 extends c1 {
-    public static volatile l2[] f25324b = new l2[4];
-    public final LongSparseLongArray f25325a;
+    public static volatile l2[] f25322b = new l2[4];
+    public final LongSparseLongArray f25323a;
 
     public l2(int i7) {
         super(i7);
-        this.f25325a = new LongSparseLongArray();
+        this.f25323a = new LongSparseLongArray();
     }
 
     public static l2 b(int i7) {
         l2 l2Var;
-        l2 l2Var2 = f25324b[i7];
+        l2 l2Var2 = f25322b[i7];
         if (l2Var2 == null) {
             synchronized (f2.class) {
                 try {
-                    l2Var = f25324b[i7];
+                    l2Var = f25322b[i7];
                     if (l2Var == null) {
-                        l2[] l2VarArr = f25324b;
+                        l2[] l2VarArr = f25322b;
                         l2 l2Var3 = new l2(i7);
                         l2VarArr[i7] = l2Var3;
                         l2Var = l2Var3;
@@ -38,18 +38,18 @@ public final class l2 extends c1 {
     }
 
     public final void a(long j3, long j10, TLRPC.JoinChatBotResult joinChatBotResult) {
-        this.f25325a.get(j10, 0L);
-        getNotificationCenter().k(ks.S5, new k2(j3, joinChatBotResult));
-        HashSet hashSet = ki.t2.f18917b1;
+        this.f25323a.get(j10, 0L);
+        getNotificationCenter().k(ks.T5, new k2(j3, joinChatBotResult));
+        HashSet hashSet = ki.t2.f18914b1;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
                 ki.t2 t2Var = (ki.t2) it.next();
-                ki.f4 f4Var = t2Var.f18953x0;
-                if (f4Var != null && f4Var.f18671g == 5) {
-                    long j11 = f4Var.f18667b;
+                ki.f4 f4Var = t2Var.f18950x0;
+                if (f4Var != null && f4Var.f18668g == 5) {
+                    long j11 = f4Var.f18664b;
                     if (j11 == j3 || j11 == 0) {
-                        TLObject tLObject = f4Var.f18680q;
+                        TLObject tLObject = f4Var.f18677q;
                         if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j10) {
                             t2Var.o(false);
                             return;
@@ -85,7 +85,7 @@ public final class l2 extends c1 {
                 return;
             }
         }
-        this.f25325a.put(j11, j10);
+        this.f25323a.put(j11, j10);
         org.telegram.ui.ActionBar.h2 Q2 = LaunchActivity.Q();
         ki.f4 b10 = ki.f4.b(this.currentAccount, j3, j10, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
         b10.d = j11;

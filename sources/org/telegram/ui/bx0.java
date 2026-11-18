@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 public final class bx0 implements org.telegram.messenger.jc {
-    public final Runnable[] f46318a;
+    public final Runnable[] f46309a;
 
     public bx0(Runnable[] runnableArr) {
-        this.f46318a = runnableArr;
+        this.f46309a = runnableArr;
     }
 
     @Override
     public final void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         if (imageReceiver.I()) {
-            Runnable[] runnableArr = this.f46318a;
+            Runnable[] runnableArr = this.f46309a;
             if (runnableArr[0] != null) {
                 org.telegram.ui.Components.mh0 B = imageReceiver.B();
                 if (B == null) {

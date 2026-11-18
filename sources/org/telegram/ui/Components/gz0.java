@@ -35,7 +35,7 @@ public final class gz0 implements Choreographer.FrameCallback {
                 }
                 return;
             default:
-                r1.a aVar = (r1.a) ((of) ((org.telegram.ui.md0) this.f35669b).f49838b).f38076b;
+                r1.a aVar = (r1.a) ((of) ((org.telegram.ui.nd0) this.f35669b).f50148b).f38076b;
                 long uptimeMillis = SystemClock.uptimeMillis();
                 ArrayList arrayList = aVar.f56301b;
                 long uptimeMillis2 = SystemClock.uptimeMillis();
@@ -66,14 +66,14 @@ public final class gz0 implements Choreographer.FrameCallback {
                                 r1.h hVar2 = gVar.f56323m;
                                 hVar2.f56331i = gVar.f56324n;
                                 gVar.f56324n = Float.MAX_VALUE;
-                                org.telegram.ui.Cells.i c11 = hVar2.c(c10.f30801a, c10.f30802b, j12);
-                                gVar.f56314b = c11.f30801a;
-                                gVar.f56313a = c11.f30802b;
+                                org.telegram.ui.Cells.i c11 = hVar2.c(c10.f30773a, c10.f30774b, j12);
+                                gVar.f56314b = c11.f30773a;
+                                gVar.f56313a = c11.f30774b;
                             } else {
                                 z10 = true;
                                 org.telegram.ui.Cells.i c12 = gVar.f56323m.c(gVar.f56314b, gVar.f56313a, j11);
-                                gVar.f56314b = c12.f30801a;
-                                gVar.f56313a = c12.f30802b;
+                                gVar.f56314b = c12.f30773a;
+                                gVar.f56313a = c12.f30774b;
                             }
                             float max = Math.max(gVar.f56314b, gVar.h);
                             gVar.f56314b = max;
@@ -114,10 +114,10 @@ public final class gz0 implements Choreographer.FrameCallback {
                 }
                 if (arrayList.size() > 0) {
                     if (aVar.d == null) {
-                        aVar.d = new org.telegram.ui.md0(aVar.f56302c);
+                        aVar.d = new org.telegram.ui.nd0(aVar.f56302c);
                     }
-                    org.telegram.ui.md0 md0Var = aVar.d;
-                    ((Choreographer) md0Var.f49839c).postFrameCallback((gz0) md0Var.d);
+                    org.telegram.ui.nd0 nd0Var = aVar.d;
+                    ((Choreographer) nd0Var.f50149c).postFrameCallback((gz0) nd0Var.d);
                     return;
                 }
                 return;

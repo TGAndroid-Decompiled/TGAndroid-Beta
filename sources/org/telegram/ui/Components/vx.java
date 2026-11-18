@@ -48,7 +48,7 @@ public final class vx extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             return true;
         }
         return false;
@@ -86,10 +86,10 @@ public final class vx extends bk0 {
                 int i7 = 0;
                 for (int i10 = 0; i10 < messages_botresults.results.size(); i10++) {
                     TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(i10);
-                    if (!hashMap.containsKey(botInlineResult.f28403id)) {
+                    if (!hashMap.containsKey(botInlineResult.f28401id)) {
                         botInlineResult.query_id = messages_botresults.query_id;
                         arrayList.add(botInlineResult);
-                        hashMap.put(botInlineResult.f28403id, botInlineResult);
+                        hashMap.put(botInlineResult.f28401id, botInlineResult);
                         i7++;
                     }
                 }
@@ -266,7 +266,7 @@ public final class vx extends bk0 {
                 vv vvVar = ryVar.f39360i0;
                 int currentPosition = zwVar.getCurrentPosition();
                 if (currentPosition != ryVar.f39390s0 && currentPosition != ryVar.f39393t0) {
-                    H((String) org.telegram.messenger.mp.u1(ryVar.f39345d1).f25638e4.get(currentPosition - ryVar.f39396u0));
+                    H((String) org.telegram.messenger.mp.u1(ryVar.f39345d1).f25636e4.get(currentPosition - ryVar.f39396u0));
                     return;
                 }
                 v4.i0 adapter = vvVar.getAdapter();
@@ -387,23 +387,23 @@ public final class vx extends bk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        if (f1Var.f59126f != 0) {
+        if (f1Var.f59127f != 0) {
             return;
         }
-        org.telegram.ui.Cells.h2 h2Var = (org.telegram.ui.Cells.h2) f1Var.f59122a;
+        org.telegram.ui.Cells.i2 i2Var = (org.telegram.ui.Cells.i2) f1Var.f59123a;
         int i10 = this.K;
         if (i10 >= 0 && i7 >= i10) {
-            h2Var.e((TLRPC.BotInlineResult) this.f41479y.get(i7 - i10), this.f41474n, true, false, false, true);
+            i2Var.e((TLRPC.BotInlineResult) this.f41479y.get(i7 - i10), this.f41474n, true, false, false, true);
             return;
         }
         TLRPC.Document document = (TLRPC.Document) this.M.f39364j1.get(i7);
-        h2Var.getClass();
-        h2Var.d(0, "gif" + document, document);
+        i2Var.getClass();
+        i2Var.d(0, "gif" + document, document);
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.j8 j8Var;
+        org.telegram.ui.Cells.k8 k8Var;
         if (i7 != 0) {
             ry ryVar = this.M;
             if (i7 != 1) {
@@ -411,27 +411,27 @@ public final class vx extends bk0 {
                     ViewGroup.LayoutParams q0Var = new v4.q0(-1, -2);
                     View view = this.f41472e;
                     view.setLayoutParams(q0Var);
-                    j8Var = view;
+                    k8Var = view;
                 } else {
-                    org.telegram.ui.Cells.j8 j8Var2 = new org.telegram.ui.Cells.j8(this.f41471c, false, false, ryVar.f39335a2, ryVar.f39365j2);
-                    j8Var2.a(0, org.telegram.messenger.gd.M0(2131750823, null));
+                    org.telegram.ui.Cells.k8 k8Var2 = new org.telegram.ui.Cells.k8(this.f41471c, false, false, ryVar.f39335a2, ryVar.f39365j2);
+                    k8Var2.a(0, org.telegram.messenger.gd.M0(2131750823, null));
                     v4.q0 q0Var2 = new v4.q0(-1, -2);
                     ((ViewGroup.MarginLayoutParams) q0Var2).topMargin = org.telegram.messenger.g0.L(2.5f);
                     ((ViewGroup.MarginLayoutParams) q0Var2).bottomMargin = org.telegram.messenger.g0.L(5.5f);
-                    j8Var2.setLayoutParams(q0Var2);
-                    j8Var = j8Var2;
+                    k8Var2.setLayoutParams(q0Var2);
+                    k8Var = k8Var2;
                 }
             } else {
                 View view2 = new View(ryVar.getContext());
                 view2.setLayoutParams(new v4.q0(-1, ryVar.f39342c1));
-                j8Var = view2;
+                k8Var = view2;
             }
         } else {
-            org.telegram.ui.Cells.h2 h2Var = new org.telegram.ui.Cells.h2(this.f41471c);
-            h2Var.setIsKeyboard(true);
-            h2Var.setCanPreviewGif(true);
-            j8Var = h2Var;
+            org.telegram.ui.Cells.i2 i2Var = new org.telegram.ui.Cells.i2(this.f41471c);
+            i2Var.setIsKeyboard(true);
+            i2Var.setCanPreviewGif(true);
+            k8Var = i2Var;
         }
-        return new v4.f1(j8Var);
+        return new v4.f1(k8Var);
     }
 }

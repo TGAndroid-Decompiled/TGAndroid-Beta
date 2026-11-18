@@ -103,7 +103,7 @@ public class GroupCallMessagesController extends c1 {
         ConferenceCall conferenceCall;
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f28415id != j3) {
+        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f28413id != j3) {
             return null;
         }
         long callId = conferenceCall.getCallId();
@@ -156,8 +156,8 @@ public class GroupCallMessagesController extends c1 {
                 Object obj = arrayList.get(i7);
                 i7++;
                 TLRPC.Update update2 = (TLRPC.Update) obj;
-                if ((update2 instanceof TL_update.TL_updateGroupCallMessage) && (inputGroupCall = (tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) update2).call) != null && inputGroupCall.f28422id == j3 && (groupCallMessage2 = tL_updateGroupCallMessage.message) != null && n5.o(groupCallMessage2.from_id) == j10) {
-                    String str = j3 + "_" + tL_updateGroupCallMessage.message.f28416id;
+                if ((update2 instanceof TL_update.TL_updateGroupCallMessage) && (inputGroupCall = (tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) update2).call) != null && inputGroupCall.f28420id == j3 && (groupCallMessage2 = tL_updateGroupCallMessage.message) != null && n5.o(groupCallMessage2.from_id) == j10) {
+                    String str = j3 + "_" + tL_updateGroupCallMessage.message.f28414id;
                     if (this.sentMessageIds.add(str)) {
                         org.telegram.messenger.g0.h3(new s2(11, this, str), 60000L);
                     }
@@ -223,10 +223,10 @@ public class GroupCallMessagesController extends c1 {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
-        long j3 = tL_updateGroupCallMessage.call.f28422id;
+        long j3 = tL_updateGroupCallMessage.call.f28420id;
         long o4 = n5.o(tL_updateGroupCallMessage.message.from_id);
-        long j10 = tL_updateGroupCallMessage.message.f28416id;
-        if (getUserConfig().f24792n == o4) {
+        long j10 = tL_updateGroupCallMessage.message.f28414id;
+        if (getUserConfig().f24789n == o4) {
             return;
         }
         if (this.sentMessageIds.contains(j3 + "_" + j10)) {
@@ -245,7 +245,7 @@ public class GroupCallMessagesController extends c1 {
             long E = zy.E();
             if (sharedInstance.isConference()) {
                 ConferenceCall conferenceCall = sharedInstance.conference;
-                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f28415id == j10) {
+                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f28413id == j10) {
                     long callId = conferenceCall.getCallId();
                     if (callId != -1) {
                         TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
@@ -305,12 +305,12 @@ public class GroupCallMessagesController extends c1 {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
-        long j3 = tL_updateGroupCallEncryptedMessage.call.f28422id;
+        long j3 = tL_updateGroupCallEncryptedMessage.call.f28420id;
         long o4 = n5.o(tL_updateGroupCallEncryptedMessage.from_id);
         byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;
-        if (getUserConfig().f24792n == o4) {
+        if (getUserConfig().f24789n == o4) {
             return;
         }
-        Utilities.f22782e.c(new d3.e0(this, j3, o4, bArr, 4));
+        Utilities.f22779e.c(new d3.e0(this, j3, o4, bArr, 4));
     }
 }

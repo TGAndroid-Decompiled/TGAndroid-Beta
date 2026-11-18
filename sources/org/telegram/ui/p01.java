@@ -4,23 +4,23 @@ import android.content.Context;
 import android.util.SparseIntArray;
 import java.util.ArrayList;
 public final class p01 extends u01 {
-    public final int f50700n3;
-    public final r11 f50701o3;
+    public final int f50656n3;
+    public final r11 f50657o3;
 
     public p01(r11 r11Var, Context context, int i7) {
         super(r11Var, context);
-        this.f50701o3 = r11Var;
-        this.f50700n3 = i7;
+        this.f50657o3 = r11Var;
+        this.f50656n3 = i7;
     }
 
     @Override
     public final void k0(int i7) {
         int i10;
         if (i7 == 0) {
-            r11 r11Var = this.f50701o3;
-            r11Var.f51474y1 = false;
-            if (r11Var.f51416a != -1 && r11Var.f51434g0.getVisibility() == 0 && r11Var.f51434g0.getTranslationY() > (-org.telegram.messenger.g0.L(51.0f))) {
-                if (r11Var.f51434g0.getTranslationY() > (-org.telegram.messenger.g0.L(16.0f))) {
+            r11 r11Var = this.f50657o3;
+            r11Var.f51434y1 = false;
+            if (r11Var.f51376a != -1 && r11Var.f51394g0.getVisibility() == 0 && r11Var.f51394g0.getTranslationY() > (-org.telegram.messenger.g0.L(51.0f))) {
+                if (r11Var.f51394g0.getTranslationY() > (-org.telegram.messenger.g0.L(16.0f))) {
                     i10 = 0;
                 } else {
                     i10 = 1;
@@ -36,13 +36,13 @@ public final class p01 extends u01 {
         org.telegram.ui.Components.fx fxVar;
         int i11;
         int i12;
-        r11 r11Var = this.f50701o3;
+        r11 r11Var = this.f50657o3;
         r11Var.h();
         boolean z10 = false;
-        if (!r11Var.f51474y1) {
-            int I0 = r11Var.f51458s0.I0();
+        if (!r11Var.f51434y1) {
+            int I0 = r11Var.f51418s0.I0();
             ArrayList arrayList = r11Var.E0;
-            SparseIntArray sparseIntArray = r11Var.f51470x0;
+            SparseIntArray sparseIntArray = r11Var.f51430x0;
             if (I0 != -1) {
                 int i13 = 40;
                 if (arrayList.size() <= 40 || r11Var.D0) {
@@ -68,7 +68,7 @@ public final class p01 extends u01 {
                                 size = Math.min(24, size);
                             }
                             if (I0 > keyAt && I0 <= keyAt + 1 + size) {
-                                org.telegram.ui.Components.lv lvVar = r11Var.f51429e0;
+                                org.telegram.ui.Components.lv lvVar = r11Var.f51389e0;
                                 if (lvVar.E != null) {
                                     i11 = 1;
                                 } else {
@@ -85,13 +85,13 @@ public final class p01 extends u01 {
                         i14++;
                     }
                 } else {
-                    r11Var.f51429e0.j(0, true);
+                    r11Var.f51389e0.j(0, true);
                 }
             }
         }
         r11Var.C();
-        k01 k01Var = r11Var.f51432f0;
-        if (r11Var.f51438i0.computeVerticalScrollOffset() != 0 || (i10 = this.f50700n3) == 0 || i10 == 12 || i10 == 10 || i10 == 1 || i10 == 11 || i10 == 6) {
+        k01 k01Var = r11Var.f51392f0;
+        if (r11Var.f51398i0.computeVerticalScrollOffset() != 0 || (i10 = this.f50656n3) == 0 || i10 == 12 || i10 == 10 || i10 == 1 || i10 == 11 || i10 == 6) {
             z10 = true;
         }
         org.telegram.messenger.g0.X3(k01Var, z10, 1.0f, true, true);

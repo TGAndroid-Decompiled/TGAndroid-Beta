@@ -4,19 +4,19 @@ import ai.r2;
 import android.animation.ValueAnimator;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
 public final class x1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f58169a;
-    public final Object f58170b;
+    public final int f58170a;
+    public final Object f58171b;
 
     public x1(Object obj, int i7) {
-        this.f58169a = i7;
-        this.f58170b = obj;
+        this.f58170a = i7;
+        this.f58171b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
-        int i7 = this.f58169a;
-        Object obj = this.f58170b;
+        int i7 = this.f58170a;
+        Object obj = this.f58171b;
         switch (i7) {
             case 0:
                 e2 e2Var = (e2) obj;
@@ -48,7 +48,7 @@ public final class x1 implements ValueAnimator.AnimatorUpdateListener {
             case 3:
                 ug.s0 s0Var = (ug.s0) obj;
                 s0Var.P = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s0Var.f58863f.invalidate();
+                s0Var.f58864f.invalidate();
                 ug.r0 r0Var = s0Var.h;
                 if (r0Var != null) {
                     r0Var.invalidate();
@@ -56,19 +56,19 @@ public final class x1 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 4:
-                ((ug.u1) obj).f58919a.f58904o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((ug.u1) obj).f58920a.f58905o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 5:
-                ((vg.e) obj).f59413a.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((vg.e) obj).f59414a.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 6:
                 wg.b bVar = (wg.b) obj;
                 bVar.getClass();
-                bVar.f59719b = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                bVar.f59720b = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 bVar.invalidate();
                 return;
             default:
-                ((wi.h) obj).f59955m.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((wi.h) obj).f59956m.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

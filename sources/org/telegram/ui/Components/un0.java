@@ -21,7 +21,7 @@ public final class un0 implements ri.m, r0.m, org.telegram.ui.ActionBar.f1, ri.n
         i0.b f10 = l1Var.f56258a.f(519);
         if (!yo0Var.C2.equals(f10)) {
             yo0Var.C2 = f10;
-            yo0Var.f30195c.requestLayout();
+            yo0Var.f30193c.requestLayout();
         }
         return r0.l1.f56257b;
     }
@@ -30,7 +30,7 @@ public final class un0 implements ri.m, r0.m, org.telegram.ui.ActionBar.f1, ri.n
     public int e() {
         yo0 yo0Var = this.f40383b;
         yo0Var.getClass();
-        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, yo0Var.J0);
+        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, yo0Var.J0);
     }
 
     @Override
@@ -65,7 +65,7 @@ public final class un0 implements ri.m, r0.m, org.telegram.ui.ActionBar.f1, ri.n
             if (c8.dd.a(i7, 4)) {
                 gVar.h(yo0Var.Y0.e());
             }
-            gVar.e(yo0Var.P2, yo0Var.f30192b.getWidth(), yo0Var.f30192b.getHeight());
+            gVar.e(yo0Var.P2, yo0Var.f30190b.getWidth(), yo0Var.f30190b.getHeight());
         }
     }
 }

@@ -54,15 +54,15 @@ public final class z0 extends l {
     public z0() {
         this.f55013u = Build.VERSION.SDK_INT >= 29;
         this.f55015x = new Runnable(this) {
-            public final z0 f54869b;
+            public final z0 f54870b;
 
             {
-                this.f54869b = this;
+                this.f54870b = this;
             }
 
             private final void a() {
                 int i7;
-                z0 z0Var = this.f54869b;
+                z0 z0Var = this.f54870b;
                 synchronized (z0Var.f54998e) {
                     try {
                         if (SystemClock.elapsedRealtime() < z0Var.f55002j) {
@@ -88,7 +88,7 @@ public final class z0 extends l {
                         a();
                         return;
                     default:
-                        z0 z0Var = this.f54869b;
+                        z0 z0Var = this.f54870b;
                         synchronized (z0Var.f54998e) {
                             try {
                                 if (!z0Var.f55008p) {
@@ -113,15 +113,15 @@ public final class z0 extends l {
             }
         };
         this.f55016y = new Runnable(this) {
-            public final z0 f54869b;
+            public final z0 f54870b;
 
             {
-                this.f54869b = this;
+                this.f54870b = this;
             }
 
             private final void a() {
                 int i7;
-                z0 z0Var = this.f54869b;
+                z0 z0Var = this.f54870b;
                 synchronized (z0Var.f54998e) {
                     try {
                         if (SystemClock.elapsedRealtime() < z0Var.f55002j) {
@@ -147,7 +147,7 @@ public final class z0 extends l {
                         a();
                         return;
                     default:
-                        z0 z0Var = this.f54869b;
+                        z0 z0Var = this.f54870b;
                         synchronized (z0Var.f54998e) {
                             try {
                                 if (!z0Var.f55008p) {
@@ -561,7 +561,7 @@ public final class z0 extends l {
                         it2.remove();
                     }
                 }
-                if (s2.f26723a) {
+                if (s2.f26721a) {
                     Log.d("WidgetEngine", "process " + y0Var7.f54985a + " with " + y0Var7.d + " sessions makes room for another bot");
                 }
                 t(y0Var7);
@@ -660,7 +660,7 @@ public final class z0 extends l {
                     String str2 = "widget engine process " + y0Var.f54985a + " " + str + " with " + arrayList.size() + " sessions";
                     Log.w("WidgetEngine", str2);
                     if (Build.VERSION.SDK_INT >= 30 && y0Var.f54992s != 0 && this.f55006n != null) {
-                        Utilities.f22782e.d(new sv0((Object) this, (Object) y0Var, str2, 15), 700L);
+                        Utilities.f22779e.d(new sv0((Object) this, (Object) y0Var, str2, 15), 700L);
                     } else {
                         a8.b(str2);
                     }
@@ -703,7 +703,7 @@ public final class z0 extends l {
             return 1;
         }
         try {
-            i7 = ((org.telegram.messenger.j0) mp.u1(j10.f24773t0).A7.f26172v0.f15539b).f24767c;
+            i7 = ((org.telegram.messenger.j0) mp.u1(j10.f24770t0).A7.f26170v0.f15536b).f24764c;
         } catch (Exception unused) {
             i7 = 6;
         }
@@ -754,7 +754,7 @@ public final class z0 extends l {
             cls = WidgetEngineService.class;
         }
         Intent intent = new Intent(context, cls);
-        boolean z13 = s2.f26723a;
+        boolean z13 = s2.f26721a;
         try {
             if (Build.VERSION.SDK_INT >= 29) {
                 z12 = this.f55006n.bindIsolatedService(intent, 65, "w" + y0Var.f54985a, A, y0Var);

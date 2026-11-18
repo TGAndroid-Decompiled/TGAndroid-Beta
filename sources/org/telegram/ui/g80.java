@@ -1,56 +1,125 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class g80 implements org.telegram.ui.Components.nc0, org.telegram.ui.ActionBar.r1 {
-    public final LaunchActivity f48001a;
+import android.os.Bundle;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class g80 implements Runnable {
+    public final int f47933a;
+    public final long f47934b;
+    public final Object f47935c;
+    public final Object d;
 
-    public g80(LaunchActivity launchActivity) {
-        this.f48001a = launchActivity;
+    public g80(Object obj, long j3, Object obj2, int i7) {
+        this.f47933a = i7;
+        this.f47935c = obj;
+        this.f47934b = j3;
+        this.d = obj2;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        String str = LaunchActivity.C1;
-        org.telegram.messenger.mp.u1(this.f48001a.P).H3(2);
-    }
-
-    @Override
-    public void p(org.telegram.ui.Components.pc0 pc0Var) {
-        String str = LaunchActivity.C1;
-        org.telegram.messenger.bz.C = false;
-        LaunchActivity launchActivity = this.f48001a;
-        Intent intent = launchActivity.K0;
-        if (intent != null) {
-            launchActivity.W(intent, launchActivity.L0, launchActivity.M0, true, null, false, true);
-            launchActivity.K0 = null;
-        }
-        launchActivity.f43094p0.getView().setVisibility(0);
-        launchActivity.f43094p0.X(true, true);
-        ActionBarLayout actionBarLayout = launchActivity.f43094p0;
-        org.telegram.ui.ActionBar.h2 lastFragment = actionBarLayout.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.setTitleOverlayText(actionBarLayout.N0, actionBarLayout.O0, actionBarLayout.P0);
-        }
-        if (org.telegram.messenger.g0.Q1()) {
-            ActionBarLayout actionBarLayout2 = launchActivity.f43096q0;
-            if (actionBarLayout2 != null) {
-                actionBarLayout2.X(true, true);
-                if (launchActivity.f43096q0.getView().getVisibility() == 4) {
-                    launchActivity.f43096q0.getView().setVisibility(0);
+    public final void run() {
+        switch (this.f47933a) {
+            case 0:
+                LaunchActivity launchActivity = (LaunchActivity) this.f47935c;
+                long j3 = this.f47934b;
+                String str = LaunchActivity.C1;
+                org.telegram.messenger.g0.g3(new up(launchActivity, org.telegram.messenger.tr.a0(launchActivity.P).j0(j3), (y70) this.d, 19));
+                return;
+            case 1:
+                qa0 qa0Var = (qa0) this.f47935c;
+                TLObject tLObject = (TLObject) this.d;
+                long j10 = this.f47934b;
+                if (qa0Var.F != null) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    int i7 = 0;
+                    while (i7 < messages_messages.messages.size()) {
+                        if (!(messages_messages.messages.get(i7).media instanceof TLRPC.TL_messageMediaGeoLive)) {
+                            messages_messages.messages.remove(i7);
+                            i7--;
+                        }
+                        i7++;
+                    }
+                    qa0Var.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
+                    qa0Var.getMessagesController().f4(messages_messages.users, false);
+                    qa0Var.getMessagesController().Z3(messages_messages.chats, false);
+                    qa0Var.getLocationController().f26381c.k(messages_messages.messages, j10);
+                    qa0Var.getNotificationCenter().k(285, Long.valueOf(j10));
+                    qa0Var.p0(messages_messages.messages);
+                    qa0Var.getLocationController().j(qa0Var.m0);
+                    if (qa0Var.Q0 == null) {
+                        aa0 aa0Var = new aa0(qa0Var, 0);
+                        qa0Var.Q0 = aa0Var;
+                        org.telegram.messenger.g0.h3(aa0Var, 5000L);
+                        return;
+                    }
+                    return;
                 }
-            }
-            ActionBarLayout actionBarLayout3 = launchActivity.f43098r0;
-            if (actionBarLayout3 != null) {
-                actionBarLayout3.X(true, true);
-                launchActivity.f43098r0.getView().setVisibility(0);
-            }
+                return;
+            case 2:
+                as0 as0Var = (as0) this.f47935c;
+                long j11 = this.f47934b;
+                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.d;
+                as0Var.getClass();
+                Bundle bundle = new Bundle();
+                if (j11 > 0) {
+                    bundle.putLong("user_id", j11);
+                } else {
+                    bundle.putLong("chat_id", -j11);
+                }
+                h2Var.presentFragment(new ProfileActivity(bundle, null));
+                as0Var.c(false);
+                return;
+            case 3:
+                xi.e eVar = (xi.e) this.f47935c;
+                xi.d dVar = (xi.d) this.d;
+                long j12 = this.f47934b;
+                if (((xi.d) eVar.f60622b) == dVar) {
+                    xi.b bVar = (xi.b) eVar.d;
+                    if (bVar != null) {
+                        org.telegram.messenger.g0.r(bVar);
+                        eVar.d = null;
+                    }
+                    synchronized (xi.i.f60630y) {
+                        try {
+                            xi.i iVar = xi.i.A;
+                            if (iVar != null) {
+                                iVar.q();
+                                xi.i.A = null;
+                            }
+                        } catch (Throwable th2) {
+                            throw th2;
+                        }
+                    }
+                    eVar.f60622b = null;
+                    dVar.f60619c.run(j12);
+                    eVar.K();
+                    return;
+                }
+                return;
+            default:
+                long j13 = this.f47934b;
+                Exception exc = (Exception) this.d;
+                yi.j jVar = (yi.j) ((ac.e) this.f47935c).f1022c;
+                if (j13 == jVar.f61329o) {
+                    jVar.f61328n = null;
+                    int i10 = jVar.G;
+                    if (i10 != 10 && i10 != 9) {
+                        jVar.g(exc);
+                        return;
+                    }
+                    jVar.h.a("capture error after session end", exc);
+                    jVar.c();
+                    jVar.t();
+                    return;
+                }
+                return;
         }
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25162o0, pc0Var);
-        try {
-            org.telegram.messenger.xs.t(org.telegram.messenger.j10.f24773t0).Y();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
+    }
+
+    public g80(Object obj, Object obj2, long j3, int i7) {
+        this.f47933a = i7;
+        this.f47935c = obj;
+        this.d = obj2;
+        this.f47934b = j3;
     }
 }

@@ -8,13 +8,13 @@ import org.telegram.messenger.u5;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.n6;
 public final class h extends sh.d {
-    public final TLRPC.Document f58226b;
-    public final Object f58227c;
+    public final TLRPC.Document f58227b;
+    public final Object f58228c;
 
     public h(Object obj, TLRPC.Document document) {
         boolean z10;
-        this.f58226b = document;
-        this.f58227c = obj;
+        this.f58227b = document;
+        this.f58228c = obj;
         fj.H2(document);
         ImageReceiver imageReceiver = this.f57433a;
         if (!fj.u4(document) && !fj.N4(document)) {
@@ -23,7 +23,7 @@ public final class h extends sh.d {
             z10 = true;
         }
         fj.K2(document, true);
-        imageReceiver.p0(fc.b(document), "38_38", u5.f(document, n6.f29385cd, 1.0f, null), document.size, z10 ? "webp" : null, obj, 0);
+        imageReceiver.p0(fc.b(document), "38_38", u5.f(document, n6.f29383cd, 1.0f, null), document.size, z10 ? "webp" : null, obj, 0);
     }
 
     @Override

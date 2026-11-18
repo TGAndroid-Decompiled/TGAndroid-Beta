@@ -17,7 +17,7 @@ public final class ih implements eh.a {
             case 0:
             case 1:
             default:
-                aVar.f8372a = true;
+                aVar.f8369a = true;
                 return;
         }
     }
@@ -47,7 +47,7 @@ public final class ih implements eh.a {
                         }
                         canvas2 = canvas;
                         rectF2 = rectF;
-                        ih.d.b(kiVar.f36767c, canvas2, rectF2, kiVar.d, siVar.f30192b, (int) (alpha * 255.0f));
+                        ih.d.b(kiVar.f36767c, canvas2, rectF2, kiVar.d, siVar.f30190b, (int) (alpha * 255.0f));
                     } else {
                         canvas2 = canvas;
                         rectF2 = rectF;
@@ -69,7 +69,7 @@ public final class ih implements eh.a {
             default:
                 yo0 yo0Var = (yo0) this.f36127b;
                 ao0 ao0Var = yo0Var.B1;
-                ih.d.a(ao0Var, canvas, rectF, ao0Var, yo0Var.f30192b);
+                ih.d.a(ao0Var, canvas, rectF, ao0Var, yo0Var.f30190b);
                 return;
         }
     }

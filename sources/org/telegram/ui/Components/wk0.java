@@ -60,7 +60,7 @@ public final class wk0 extends Dialog {
         dh.c cVar = new dh.c(bVar, bVar, bVar);
         this.f41729n = cVar;
         cVar.h = new jh.k(a3Var);
-        cVar.f8380i = a3Var;
+        cVar.f8377i = a3Var;
         of ofVar = new of(this, 5);
         WeakHashMap weakHashMap = r0.i0.f56244a;
         r0.a0.i(a3Var, ofVar);
@@ -114,8 +114,8 @@ public final class wk0 extends Dialog {
         this.f41732w.addView(this.f41734y, c8.ma.c(-2.0f, -2));
     }
 
-    public final void f(org.telegram.ui.Cells.q1 r28, android.text.style.CharacterStyle r29, java.lang.CharSequence r30, boolean r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wk0.f(org.telegram.ui.Cells.q1, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
+    public final void f(org.telegram.ui.Cells.r1 r28, android.text.style.CharacterStyle r29, java.lang.CharSequence r30, boolean r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wk0.f(org.telegram.ui.Cells.r1, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
     }
 
     @Override

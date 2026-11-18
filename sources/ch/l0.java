@@ -4,8 +4,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Cells.u0;
+import org.telegram.ui.Cells.r1;
+import org.telegram.ui.Cells.v0;
 import org.telegram.ui.Components.ti0;
 public final class l0 {
     public static l0 B;
@@ -13,32 +13,32 @@ public final class l0 {
     public static int D;
     public static long E;
     public boolean A;
-    public final int f5403a;
-    public final j0 f5404b;
-    public final j0 f5405c;
+    public final int f5400a;
+    public final j0 f5401b;
+    public final j0 f5402c;
     public final j0 d;
-    public final FrameLayout f5406e;
-    public final l0 f5407f;
-    public float f5408g;
+    public final FrameLayout f5403e;
+    public final l0 f5404f;
+    public float f5405g;
     public float h;
-    public final i0 f5409i;
-    public WindowManager f5411k;
-    public boolean f5412l;
-    public float f5413m;
-    public final int f5414n;
-    public final long f5415o;
-    public final p0 f5416p;
-    public float f5417q;
-    public float f5418r;
-    public boolean f5419s;
-    public final ti0 f5420t;
-    public boolean f5421u;
+    public final i0 f5406i;
+    public WindowManager f5408k;
+    public boolean f5409l;
+    public float f5410m;
+    public final int f5411n;
+    public final long f5412o;
+    public final p0 f5413p;
+    public float f5414q;
+    public float f5415r;
+    public boolean f5416s;
+    public final ti0 f5417t;
+    public boolean f5418u;
     public final View v;
-    public boolean f5422w;
-    public long f5424y;
-    public boolean f5425z;
-    public final int[] f5410j = new int[2];
-    public final ArrayList f5423x = new ArrayList();
+    public boolean f5419w;
+    public long f5421y;
+    public boolean f5422z;
+    public final int[] f5407j = new int[2];
+    public final ArrayList f5420x = new ArrayList();
 
     public l0(android.content.Context r33, org.telegram.ui.ActionBar.h2 r34, org.telegram.ui.Components.vi0 r35, android.view.View r36, android.view.View r37, float r38, float r39, ch.p0 r40, int r41, int r42, boolean r43) {
         throw new UnsupportedOperationException("Method not decompiled: ch.l0.<init>(android.content.Context, org.telegram.ui.ActionBar.h2, org.telegram.ui.Components.vi0, android.view.View, android.view.View, float, float, ch.p0, int, int, boolean):void");
@@ -60,7 +60,7 @@ public final class l0 {
                 if (z10) {
                     l0Var.c();
                 } else {
-                    l0Var.f5412l = true;
+                    l0Var.f5409l = true;
                 }
             }
         }
@@ -73,15 +73,15 @@ public final class l0 {
     }
 
     public static int e() {
-        return (int) ((org.telegram.messenger.g0.L(40.0f) * 2.0f) / org.telegram.messenger.g0.f24120p);
+        return (int) ((org.telegram.messenger.g0.L(40.0f) * 2.0f) / org.telegram.messenger.g0.f24117p);
     }
 
     public static void f() {
         l0 l0Var = B;
         if (l0Var != null) {
-            l0Var.f5419s = true;
-            l0Var.f5424y = System.currentTimeMillis();
-            if (B.f5403a == 0 && System.currentTimeMillis() - E > 200) {
+            l0Var.f5416s = true;
+            l0Var.f5421y = System.currentTimeMillis();
+            if (B.f5400a == 0 && System.currentTimeMillis() - E > 200) {
                 E = System.currentTimeMillis();
                 B.v.performHapticFeedback(3);
                 return;
@@ -92,20 +92,20 @@ public final class l0 {
         l0 l0Var2 = C;
         if (l0Var2 != null) {
             View view = l0Var2.v;
-            if (view instanceof q1) {
-                ((q1) view).O.b(l0Var2.f5416p);
-            } else if (view instanceof u0) {
-                ((u0) view).F0.b(l0Var2.f5416p);
+            if (view instanceof r1) {
+                ((r1) view).O.b(l0Var2.f5413p);
+            } else if (view instanceof v0) {
+                ((v0) view).F0.b(l0Var2.f5413p);
             }
         }
     }
 
     public static void g() {
         l0 l0Var = C;
-        if (l0Var != null && !l0Var.f5419s) {
-            l0Var.f5419s = true;
-            l0Var.f5424y = System.currentTimeMillis();
-            if (C.f5403a == 1 && System.currentTimeMillis() - E > 200) {
+        if (l0Var != null && !l0Var.f5416s) {
+            l0Var.f5416s = true;
+            l0Var.f5421y = System.currentTimeMillis();
+            if (C.f5400a == 1 && System.currentTimeMillis() - E > 200) {
                 E = System.currentTimeMillis();
                 View view = C.v;
                 if (view != null) {
@@ -117,10 +117,10 @@ public final class l0 {
 
     public final void c() {
         try {
-            boolean z10 = this.f5422w;
-            i0 i0Var = this.f5409i;
+            boolean z10 = this.f5419w;
+            i0 i0Var = this.f5406i;
             if (z10) {
-                this.f5411k.removeView(i0Var);
+                this.f5408k.removeView(i0Var);
             } else {
                 org.telegram.messenger.g0.E2(i0Var);
             }

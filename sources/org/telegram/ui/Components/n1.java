@@ -20,7 +20,7 @@ public final class n1 implements Runnable {
             case 0:
                 if (this.f37689b != null && (Q = LaunchActivity.Q()) != 0) {
                     ?? obj = new Object();
-                    obj.f28923a = true;
+                    obj.f28921a = true;
                     Q.showAsSheet(new PrivacyControlActivity(11, false), obj);
                     return;
                 }
@@ -31,9 +31,9 @@ public final class n1 implements Runnable {
                     ArrayList arrayList = this.f37689b;
                     if (i7 < arrayList.size()) {
                         ((View) arrayList.get(i7)).setVisibility(8);
-                        if (arrayList.get(i7) instanceof org.telegram.ui.Cells.q1) {
-                            ((org.telegram.ui.Cells.q1) arrayList.get(i7)).l3(false, false);
-                            ((org.telegram.ui.Cells.q1) arrayList.get(i7)).n3(false, false, false);
+                        if (arrayList.get(i7) instanceof org.telegram.ui.Cells.r1) {
+                            ((org.telegram.ui.Cells.r1) arrayList.get(i7)).l3(false, false);
+                            ((org.telegram.ui.Cells.r1) arrayList.get(i7)).n3(false, false, false);
                         }
                         i7++;
                     } else {

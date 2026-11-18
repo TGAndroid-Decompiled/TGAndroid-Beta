@@ -6,15 +6,15 @@ public final class hu0 implements Runnable {
     public final TLRPC.Document f35981b;
     public final int f35982c;
     public final org.telegram.messenger.fj d;
-    public final org.telegram.ui.Cells.q1 f35983e;
+    public final org.telegram.ui.Cells.r1 f35983e;
     public final TLRPC.TL_messages_stickerSet f35984f;
 
-    public hu0(TLRPC.Document document, int i7, org.telegram.messenger.fj fjVar, org.telegram.ui.Cells.q1 q1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
+    public hu0(TLRPC.Document document, int i7, org.telegram.messenger.fj fjVar, org.telegram.ui.Cells.r1 r1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
         this.f35980a = i10;
         this.f35981b = document;
         this.f35982c = i7;
         this.d = fjVar;
-        this.f35983e = q1Var;
+        this.f35983e = r1Var;
         this.f35984f = tL_messages_stickerSet;
     }
 

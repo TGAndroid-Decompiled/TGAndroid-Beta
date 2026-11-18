@@ -15,8 +15,8 @@ public final class x71 implements z71 {
     public int f41935n;
     public boolean f41936r;
 
-    public x71(org.telegram.ui.Cells.h2 h2Var, int i7, TLRPC.BotInlineResult botInlineResult, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f41930a = h2Var;
+    public x71(org.telegram.ui.Cells.i2 i2Var, int i7, TLRPC.BotInlineResult botInlineResult, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.f41930a = i2Var;
         this.d = i6Var;
         String v = org.telegram.utils.twidget.n0.v(i7, botInlineResult);
         this.f41931b = v;
@@ -32,7 +32,7 @@ public final class x71 implements z71 {
                 this.f41936r = true;
                 d1Var.j(org.telegram.utils.twidget.q1.a(this.d, true));
                 if (this.h == null) {
-                    this.h = new a81(this, org.telegram.messenger.g0.f24120p);
+                    this.h = new a81(this, org.telegram.messenger.g0.f24117p);
                 }
                 this.h.b(d1Var);
                 this.h.q(true);

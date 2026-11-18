@@ -6,10 +6,10 @@ public final class l extends e2.v0 {
     public final int E;
     public final x2.g0 F;
     public final boolean G;
-    public final int f19428s;
-    public final String f19429w;
-    public final int f19430x;
-    public final e2.u f19431y;
+    public final int f19425s;
+    public final String f19426w;
+    public final int f19427x;
+    public final e2.u f19428y;
 
     public l(int i7, Exception exc, int i10) {
         this(i7, exc, i10, null, -1, null, 4, null, false);
@@ -17,8 +17,8 @@ public final class l extends e2.v0 {
 
     public final l a(x2.g0 g0Var) {
         String message = getMessage();
-        String str = h2.l0.f13786a;
-        return new l(message, getCause(), this.f10783a, this.f19428s, this.f19429w, this.f19430x, this.f19431y, this.E, g0Var, this.f10784b, this.G);
+        String str = h2.l0.f13783a;
+        return new l(message, getCause(), this.f10780a, this.f19425s, this.f19426w, this.f19427x, this.f19428y, this.E, g0Var, this.f10781b, this.G);
     }
 
     public l(String str, Throwable th2, int i7, int i10, String str2, int i11, e2.u uVar, int i12, x2.g0 g0Var, long j3, boolean z10) {
@@ -27,10 +27,10 @@ public final class l extends e2.v0 {
         boolean z11 = false;
         la.f(!z10 || i10 == 1);
         la.f((th2 != null || i10 == 3) ? true : z11);
-        this.f19428s = i10;
-        this.f19429w = str2;
-        this.f19430x = i11;
-        this.f19431y = uVar;
+        this.f19425s = i10;
+        this.f19426w = str2;
+        this.f19427x = i11;
+        this.f19428y = uVar;
         this.E = i12;
         this.F = g0Var;
         this.G = z10;

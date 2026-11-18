@@ -11,43 +11,43 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 import org.telegram.ui.c51;
 public final class u2 implements Runnable {
-    public final int f9848a = 1;
-    public final f6 f9849b;
-    public final TLObject f9850c;
+    public final int f9845a = 1;
+    public final f6 f9846b;
+    public final TLObject f9847c;
     public final long d;
-    public final long f9851e;
-    public final TLRPC.TL_error f9852f;
+    public final long f9848e;
+    public final TLRPC.TL_error f9849f;
     public final long h;
-    public final Object f9853n;
+    public final Object f9850n;
 
     public u2(f6 f6Var, TLObject tLObject, long j3, long j10, x10 x10Var, TLRPC.TL_error tL_error, long j11) {
-        this.f9849b = f6Var;
-        this.f9850c = tLObject;
+        this.f9846b = f6Var;
+        this.f9847c = tLObject;
         this.d = j3;
-        this.f9851e = j10;
-        this.f9853n = x10Var;
-        this.f9852f = tL_error;
+        this.f9848e = j10;
+        this.f9850n = x10Var;
+        this.f9849f = tL_error;
         this.h = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f9848a) {
+        switch (this.f9845a) {
             case 0:
-                f6 f6Var = this.f9849b;
-                TLObject tLObject = this.f9850c;
+                f6 f6Var = this.f9846b;
+                TLObject tLObject = this.f9847c;
                 long j3 = this.d;
-                long j10 = this.f9851e;
+                long j10 = this.f9848e;
                 long j11 = this.h;
-                TLRPC.TL_error tL_error = this.f9852f;
-                ((org.telegram.ui.ActionBar.u1) this.f9853n).c(400L);
+                TLRPC.TL_error tL_error = this.f9849f;
+                ((org.telegram.ui.ActionBar.u1) this.f9850n).c(400L);
                 org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
                 if (T != null) {
                     if (tLObject instanceof TLRPC.TL_boolTrue) {
                         f6Var.dismiss();
-                        x8.y(f6Var.f30189a, false).O(j3);
+                        x8.y(f6Var.f30187a, false).O(j3);
                         if (j3 >= 0) {
-                            TLRPC.UserFull d2 = mp.u1(f6Var.f30189a).d2(j10);
+                            TLRPC.UserFull d2 = mp.u1(f6Var.f30187a).d2(j10);
                             if (d2 != null) {
                                 int max = Math.max(0, d2.stargifts_count - 1);
                                 d2.stargifts_count = max;
@@ -55,8 +55,8 @@ public final class u2 implements Runnable {
                                     d2.flags2 &= -257;
                                 }
                             }
-                            x8.y(f6Var.f30189a, false).N();
-                            x8.y(f6Var.f30189a, false).R(true);
+                            x8.y(f6Var.f30187a, false).N();
+                            x8.y(f6Var.f30187a, false).R(true);
                             if (!(T instanceof pb)) {
                                 pb pbVar = new pb();
                                 pbVar.whenFullyVisible(new bi.y3(pbVar, j11, 1));
@@ -70,8 +70,8 @@ public final class u2 implements Runnable {
                         bundle.putLong("chat_id", -j3);
                         bundle.putBoolean("start_from_monetization", true);
                         c51 c51Var = new c51(bundle);
-                        e0.g(f6Var.f30189a).h(j3, true);
-                        e0.g(f6Var.f30189a).l(j3);
+                        e0.g(f6Var.f30187a).h(j3, true);
+                        e0.g(f6Var.f30187a).l(j3);
                         c51Var.whenFullyVisible(new bi.y3(c51Var, j11, 2));
                         T.presentFragment(c51Var);
                         return;
@@ -85,21 +85,21 @@ public final class u2 implements Runnable {
                 }
                 return;
             default:
-                f6 f6Var2 = this.f9849b;
-                TLObject tLObject2 = this.f9850c;
+                f6 f6Var2 = this.f9846b;
+                TLObject tLObject2 = this.f9847c;
                 long j12 = this.d;
-                long j13 = this.f9851e;
-                x10 x10Var = (x10) this.f9853n;
-                TLRPC.TL_error tL_error2 = this.f9852f;
+                long j13 = this.f9848e;
+                x10 x10Var = (x10) this.f9850n;
+                TLRPC.TL_error tL_error2 = this.f9849f;
                 long j14 = this.h;
                 if (tLObject2 instanceof TLRPC.TL_payments_paymentResult) {
                     TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject2;
-                    mp.u1(f6Var2.f30189a).f4(tL_payments_paymentResult.updates.users, false);
-                    mp.u1(f6Var2.f30189a).Z3(tL_payments_paymentResult.updates.chats, false);
-                    x8.y(f6Var2.f30189a, false).R(false);
-                    x8.y(f6Var2.f30189a, false).O(j12);
-                    x8.y(f6Var2.f30189a, false).O(j13);
-                    x8.y(f6Var2.f30189a, false).N();
+                    mp.u1(f6Var2.f30187a).f4(tL_payments_paymentResult.updates.users, false);
+                    mp.u1(f6Var2.f30187a).Z3(tL_payments_paymentResult.updates.chats, false);
+                    x8.y(f6Var2.f30187a, false).R(false);
+                    x8.y(f6Var2.f30187a, false).O(j12);
+                    x8.y(f6Var2.f30187a, false).O(j13);
+                    x8.y(f6Var2.f30187a, false).N();
                     x10Var.a(null);
                     org.telegram.ui.ActionBar.h2 T2 = LaunchActivity.T();
                     if (T2 != null) {
@@ -116,16 +116,16 @@ public final class u2 implements Runnable {
                     Utilities.d.c(new i3(f6Var2, tL_payments_paymentResult, 1));
                     return;
                 } else if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                    if (mp.u1(f6Var2.f30189a).f25709m7) {
-                        f6Var2.f8782g2.setLoading(false);
+                    if (mp.u1(f6Var2.f30187a).f25707m7) {
+                        f6Var2.f8779g2.setLoading(false);
                         x8.c0(f6Var2.getContext(), f6Var2.J0);
                         return;
                     }
-                    x8 y10 = x8.y(f6Var2.f30189a, false);
+                    x8 y10 = x8.y(f6Var2.f30187a, false);
                     d3.e0 e0Var = new d3.e0(f6Var2, j14, j12, x10Var, 1);
-                    y10.f10021e = false;
+                    y10.f10018e = false;
                     y10.q(e0Var, false, true);
-                    y10.f10021e = true;
+                    y10.f10018e = true;
                     return;
                 } else {
                     x10Var.a(tL_error2);
@@ -136,12 +136,12 @@ public final class u2 implements Runnable {
     }
 
     public u2(f6 f6Var, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, long j3, long j10, long j11, TLRPC.TL_error tL_error) {
-        this.f9849b = f6Var;
-        this.f9853n = u1Var;
-        this.f9850c = tLObject;
+        this.f9846b = f6Var;
+        this.f9850n = u1Var;
+        this.f9847c = tLObject;
         this.d = j3;
-        this.f9851e = j10;
+        this.f9848e = j10;
         this.h = j11;
-        this.f9852f = tL_error;
+        this.f9849f = tL_error;
     }
 }

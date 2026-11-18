@@ -19,18 +19,18 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.k80;
 import org.telegram.ui.Components.q9;
 public final class m extends FrameLayout {
-    public static final int f18768n = 0;
-    public final i6 f18769a;
-    public final q9 f18770b;
-    public final ImageView f18771c;
+    public static final int f18765n = 0;
+    public final i6 f18766a;
+    public final q9 f18767b;
+    public final ImageView f18768c;
     public final TextView d;
-    public final TextView f18772e;
-    public final TextView f18773f;
+    public final TextView f18769e;
+    public final TextView f18770f;
     public final k80 h;
 
     public m(Activity activity, i6 i6Var) {
         super(activity);
-        this.f18769a = i6Var;
+        this.f18766a = i6Var;
         LinearLayout f10 = org.telegram.messenger.f3.f(activity, 0);
         f10.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f));
         ra.b(f10, 0.025f, 1.4f);
@@ -54,7 +54,7 @@ public final class m extends FrameLayout {
         linearLayout.addView(textView, ma.p(-2, -2, 0.0f, 16));
         ks.i(textView);
         TextView textView2 = new TextView(activity);
-        this.f18773f = textView2;
+        this.f18770f = textView2;
         textView2.setTextSize(1, 11.0f);
         u6.U(textView2, i7, i6Var);
         ra.b(textView2, 0.1f, 1.5f);
@@ -66,7 +66,7 @@ public final class m extends FrameLayout {
         textView2.setText(gd.M0(2131753153, null));
         linearLayout.addView(textView2, ma.q(-2, 17, 0.0f, 19, 5, 1, 0, 0));
         TextView textView3 = new TextView(activity);
-        this.f18772e = textView3;
+        this.f18769e = textView3;
         textView3.setVisibility(8);
         textView3.setTextSize(1, 14.0f);
         u6.U(textView3, i10, i6Var);
@@ -81,12 +81,12 @@ public final class m extends FrameLayout {
         f11.addView(k80Var, ma.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
         ks.i(k80Var);
         q9 q9Var = new q9(activity);
-        this.f18770b = q9Var;
+        this.f18767b = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(4.0f));
         q9Var.setVisibility(8);
         f10.addView(q9Var, ma.t(48, 48, 53, 10, 0, 2, 2));
         ImageView imageView = new ImageView(activity);
-        this.f18771c = imageView;
+        this.f18768c = imageView;
         imageView.setBackground(n6.h0(5, n6.r1(0.2f, n6.w0(n6.W5, i6Var)), -1));
         ra.a(imageView);
         imageView.setImageResource(2131232098);

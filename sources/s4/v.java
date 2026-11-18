@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import org.telegram.ui.Components.hn;
 public final class v {
     public final u f57042a;
@@ -55,12 +55,12 @@ public final class v {
         return null;
     }
 
-    public final b5 b(v vVar) {
+    public final c5 b(v vVar) {
         if (vVar != null) {
             String str = vVar.f57044c;
             a0.f fVar = this.f57061w;
             if (fVar != null && fVar.containsKey(str)) {
-                return new b5((o) this.f57061w.get(str));
+                return new c5((o) this.f57061w.get(str));
             }
             return null;
         }

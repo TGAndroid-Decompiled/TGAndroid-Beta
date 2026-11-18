@@ -32,13 +32,13 @@ public final class li extends ni {
         bVar.f56164w = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Sl, i6Var);
         bVar.a();
         this.f37793a = bVar;
-        bVar.getBackupImageView().f38742a.f22642h1 = new k2(18);
+        bVar.getBackupImageView().f38742a.f22639h1 = new k2(18);
         addView(this.f37793a, c8.ma.c(-1.0f, -1));
     }
 
     public final void a(boolean z10) {
         boolean z11;
-        if (this.f37130c != null && (-this.f37129b.f28554id) == this.d.U2) {
+        if (this.f37130c != null && (-this.f37129b.f28552id) == this.d.U2) {
             z11 = true;
         } else {
             z11 = false;

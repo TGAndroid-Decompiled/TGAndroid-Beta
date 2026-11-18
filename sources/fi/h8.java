@@ -21,58 +21,58 @@ public class h8 extends View {
     public long G;
     public final Path H;
     public final f2.a I;
-    public final org.telegram.ui.Components.c6 f12067a;
-    public final TL_stories.MediaArea f12068b;
-    public final Paint f12069c;
+    public final org.telegram.ui.Components.c6 f12064a;
+    public final TL_stories.MediaArea f12065b;
+    public final Paint f12066c;
     public final Paint d;
-    public LinearGradient f12070e;
-    public LinearGradient f12071f;
+    public LinearGradient f12067e;
+    public LinearGradient f12068f;
     public final Matrix h;
-    public final org.telegram.ui.Cells.y f12072n;
-    public final mc f12073r;
-    public final boolean f12074s;
-    public final boolean f12075w;
-    public final boolean f12076x;
-    public final boolean f12077y;
+    public final org.telegram.ui.Cells.y f12069n;
+    public final mc f12070r;
+    public final boolean f12071s;
+    public final boolean f12072w;
+    public final boolean f12073x;
+    public final boolean f12074y;
 
     public h8(Context context, View view, TL_stories.MediaArea mediaArea) {
         super(context);
         boolean z10;
         boolean z11;
         boolean z12 = true;
-        this.f12069c = new Paint(1);
+        this.f12066c = new Paint(1);
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = new Matrix();
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(1174405119, 2, -1);
-        this.f12072n = h02;
-        this.f12073r = new mc(this);
-        this.f12074s = false;
-        this.f12075w = false;
+        this.f12069n = h02;
+        this.f12070r = new mc(this);
+        this.f12071s = false;
+        this.f12072w = false;
         this.F = false;
         this.H = new Path();
         this.I = new f2.a(this, 21);
-        this.f12068b = mediaArea;
+        this.f12065b = mediaArea;
         boolean z13 = mediaArea instanceof TL_stories.TL_mediaAreaGeoPoint;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && !(mediaArea instanceof TL_stories.TL_mediaAreaUrl)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f12074s = z10;
+        this.f12071s = z10;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue)) {
             z11 = false;
         } else {
             z11 = true;
         }
-        this.f12075w = z11;
+        this.f12072w = z11;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && (mediaArea.coordinates.flags & 1) == 0) {
             z12 = false;
         }
-        this.f12076x = z12;
+        this.f12073x = z12;
         this.E = z12;
-        this.f12077y = z12;
-        this.f12067a = new org.telegram.ui.Components.c6(view, 0L, 120L, new LinearInterpolator());
+        this.f12074y = z12;
+        this.f12064a = new org.telegram.ui.Components.c6(view, 0L, 120L, new LinearInterpolator());
         paint.setStyle(Paint.Style.STROKE);
         h02.setCallback(this);
     }
@@ -91,7 +91,7 @@ public class h8 extends View {
         canvas.clipPath(path);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Cells.y yVar = this.f12072n;
+        org.telegram.ui.Cells.y yVar = this.f12069n;
         yVar.setBounds(0, 0, width, height);
         yVar.draw(canvas);
         canvas.restore();
@@ -100,8 +100,8 @@ public class h8 extends View {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        org.telegram.ui.Cells.y yVar = this.f12072n;
-        mc mcVar = this.f12073r;
+        org.telegram.ui.Cells.y yVar = this.f12069n;
+        mc mcVar = this.f12070r;
         if (action == 0) {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
@@ -122,7 +122,7 @@ public class h8 extends View {
     public float getInnerRadius() {
         TL_stories.MediaArea mediaArea;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
-        if ((getParent() instanceof View) && (mediaArea = this.f12068b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
+        if ((getParent() instanceof View) && (mediaArea = this.f12065b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
             if ((mediaAreaCoordinates.flags & 1) != 0) {
                 return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
             }
@@ -136,7 +136,7 @@ public class h8 extends View {
         super.onDraw(canvas);
         float innerRadius = getInnerRadius();
         b(canvas);
-        if (this.f12075w && this.F && this.f12070e != null) {
+        if (this.f12072w && this.F && this.f12067e != null) {
             float measuredWidth = getMeasuredWidth() * 0.7f;
             float currentTimeMillis = ((float) (System.currentTimeMillis() - this.G)) / 600.0f;
             float measuredWidth2 = ((getMeasuredWidth() + measuredWidth) * currentTimeMillis) - measuredWidth;
@@ -148,15 +148,15 @@ public class h8 extends View {
             matrix.reset();
             matrix.postScale(measuredWidth / 40.0f, 1.0f);
             matrix.postTranslate(measuredWidth2, 0.0f);
-            this.f12070e.setLocalMatrix(matrix);
-            LinearGradient linearGradient = this.f12070e;
-            Paint paint = this.f12069c;
+            this.f12067e.setLocalMatrix(matrix);
+            LinearGradient linearGradient = this.f12067e;
+            Paint paint = this.f12066c;
             paint.setShader(linearGradient);
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             canvas.drawRoundRect(rectF, innerRadius, innerRadius, paint);
-            this.f12071f.setLocalMatrix(matrix);
-            LinearGradient linearGradient2 = this.f12071f;
+            this.f12068f.setLocalMatrix(matrix);
+            LinearGradient linearGradient2 = this.f12068f;
             Paint paint2 = this.d;
             paint2.setShader(linearGradient2);
             float N = org.telegram.messenger.g0.N(1.5f);
@@ -171,7 +171,7 @@ public class h8 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f12072n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f12069n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

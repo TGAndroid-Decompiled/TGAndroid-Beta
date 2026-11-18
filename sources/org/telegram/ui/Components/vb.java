@@ -102,7 +102,7 @@ public final class vb extends GestureDetector.SimpleOnGestureListener {
         zaVar.h = f12;
         float f13 = zaVar.f42835n + f11;
         zaVar.f42835n = f13;
-        if (Utilities.t(0.0f, 0.0f, f12, f13) > org.telegram.messenger.g0.f24100e) {
+        if (Utilities.t(0.0f, 0.0f, f12, f13) > org.telegram.messenger.g0.f24097e) {
             zaVar.f42836r = true;
         }
         if (!zaVar.d) {

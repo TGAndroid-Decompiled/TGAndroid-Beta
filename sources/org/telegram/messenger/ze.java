@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class ze implements Runnable {
-    public final int f28290a;
-    public final af f28291b;
+    public final int f28288a;
+    public final af f28289b;
 
     public ze(af afVar, int i7) {
-        this.f28290a = i7;
-        this.f28291b = afVar;
+        this.f28288a = i7;
+        this.f28289b = afVar;
     }
 
     @Override
@@ -25,23 +25,23 @@ public final class ze implements Runnable {
         int i7;
         String absolutePath;
         File file2;
-        switch (this.f28290a) {
+        switch (this.f28288a) {
             case 0:
-                af afVar = this.f28291b;
-                afVar.f22873s.a(afVar.f22871n);
+                af afVar = this.f28289b;
+                afVar.f22870s.a(afVar.f22868n);
                 return;
             case 1:
-                af afVar2 = this.f28291b;
+                af afVar2 = this.f28289b;
                 if (!afVar2.h) {
-                    afVar2.f22867b.show();
+                    afVar2.f22864b.show();
                     return;
                 }
                 return;
             case 2:
-                af afVar3 = this.f28291b;
-                boolean z11 = afVar3.f22874w;
-                c cVar = afVar3.f22866a;
-                ArrayList arrayList = afVar3.f22868c;
+                af afVar3 = this.f28289b;
+                boolean z11 = afVar3.f22871w;
+                c cVar = afVar3.f22863a;
+                ArrayList arrayList = afVar3.f22865c;
                 try {
                     try {
                         if (Build.VERSION.SDK_INT >= 29) {
@@ -49,9 +49,9 @@ public final class ze implements Runnable {
                             for (int i10 = 0; i10 < size; i10++) {
                                 fj fjVar = (fj) arrayList.get(i10);
                                 if (!afVar3.b(fjVar)) {
-                                    String str2 = fjVar.f23968k.attachPath;
+                                    String str2 = fjVar.f23965k.attachPath;
                                     TLRPC.Document F0 = fjVar.F0();
-                                    TLRPC.Document document = fjVar.f23949f3;
+                                    TLRPC.Document document = fjVar.f23946f3;
                                     if (document != null) {
                                         str2 = null;
                                         F0 = document;
@@ -61,13 +61,13 @@ public final class ze implements Runnable {
                                         str2 = null;
                                     }
                                     if (TextUtils.isEmpty(str2)) {
-                                        w7.G(cVar.f23221a);
+                                        w7.G(cVar.f23218a);
                                         TLRPC.MessageMedia m12 = fj.m1(fjVar);
-                                        TLRPC.Document document2 = fjVar.f23949f3;
+                                        TLRPC.Document document2 = fjVar.f23946f3;
                                         if (document2 != null) {
                                             file2 = w7.J(document2, null, false, true);
                                         } else {
-                                            File M = w7.M(fjVar.f23968k, false, true);
+                                            File M = w7.M(fjVar.f23965k, false, true);
                                             if (m12 instanceof TLRPC.TL_messageMediaDocument) {
                                                 TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) m12;
                                                 if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
@@ -80,14 +80,14 @@ public final class ze implements Runnable {
                                     }
                                     File file3 = new File(str2);
                                     if (!file3.exists()) {
-                                        afVar3.f22872r = new CountDownLatch(1);
+                                        afVar3.f22869r = new CountDownLatch(1);
                                         g0.g3(new z4(26, afVar3, fjVar));
-                                        afVar3.f22872r.await();
+                                        afVar3.f22869r.await();
                                     }
-                                    if (!afVar3.f22870f) {
+                                    if (!afVar3.f22867f) {
                                         if (!file3.exists()) {
-                                            w7.G(cVar.f23221a);
-                                            file3 = w7.J(fjVar.f23968k, null, true, true);
+                                            w7.G(cVar.f23218a);
+                                            file3 = w7.J(fjVar.f23965k, null, true, true);
                                             StringBuilder sb2 = new StringBuilder();
                                             sb2.append("saving file: correcting path from ");
                                             sb2.append(str2);
@@ -107,7 +107,7 @@ public final class ze implements Runnable {
                                                 i7 = 2;
                                             }
                                             MediaController.f0(i7, file3, B);
-                                            afVar3.f22871n++;
+                                            afVar3.f22868n++;
                                         }
                                     }
                                 }
@@ -124,7 +124,7 @@ public final class ze implements Runnable {
                                 fj fjVar2 = (fj) arrayList.get(i11);
                                 if (!afVar3.b(fjVar2)) {
                                     TLRPC.Document F02 = fjVar2.F0();
-                                    TLRPC.Document document3 = fjVar2.f23949f3;
+                                    TLRPC.Document document3 = fjVar2.f23946f3;
                                     if (document3 != null) {
                                         F02 = document3;
                                     }
@@ -146,31 +146,31 @@ public final class ze implements Runnable {
                                     if (!file4.exists()) {
                                         file4.createNewFile();
                                     }
-                                    String str3 = fjVar2.f23968k.attachPath;
-                                    if (fjVar2.f23949f3 != null) {
+                                    String str3 = fjVar2.f23965k.attachPath;
+                                    if (fjVar2.f23946f3 != null) {
                                         str3 = null;
                                     }
                                     if (str3 != null && str3.length() > 0 && !new File(str3).exists()) {
                                         str3 = null;
                                     }
-                                    if (fjVar2.f23949f3 != null) {
-                                        w7.G(cVar.f23221a);
-                                        file = w7.J(fjVar2.f23949f3, null, false, true);
+                                    if (fjVar2.f23946f3 != null) {
+                                        w7.G(cVar.f23218a);
+                                        file = w7.J(fjVar2.f23946f3, null, false, true);
                                     } else {
                                         if (str3 == null || str3.length() == 0) {
-                                            w7.G(cVar.f23221a);
-                                            str3 = w7.M(fjVar2.f23968k, false, true).toString();
+                                            w7.G(cVar.f23218a);
+                                            str3 = w7.M(fjVar2.f23965k, false, true).toString();
                                         }
                                         file = new File(str3);
                                     }
                                     if (!file.exists()) {
-                                        afVar3.f22872r = new CountDownLatch(1);
+                                        afVar3.f22869r = new CountDownLatch(1);
                                         g0.g3(new z4(26, afVar3, fjVar2));
-                                        afVar3.f22872r.await();
+                                        afVar3.f22869r.await();
                                     }
                                     if (file.exists()) {
                                         afVar3.a(file, file4, fjVar2.t1());
-                                        afVar3.f22871n++;
+                                        afVar3.f22868n++;
                                     }
                                 }
                             }
@@ -193,29 +193,29 @@ public final class ze implements Runnable {
                 break;
             case 3:
                 try {
-                    this.f28291b.f22867b.dismiss();
+                    this.f28289b.f22864b.dismiss();
                     return;
                 } catch (Exception e12) {
                     a8.g(e12, true);
                     return;
                 }
             default:
-                af afVar4 = this.f28291b;
-                org.telegram.ui.ActionBar.u1 u1Var = afVar4.f22867b;
-                c cVar2 = afVar4.f22866a;
+                af afVar4 = this.f28289b;
+                org.telegram.ui.ActionBar.u1 u1Var = afVar4.f22864b;
+                c cVar2 = afVar4.f22863a;
                 try {
                     if (u1Var.isShowing()) {
                         u1Var.dismiss();
                     } else {
                         afVar4.h = true;
                     }
-                    if (afVar4.f22873s != null) {
+                    if (afVar4.f22870s != null) {
                         g0.g3(new ze(afVar4, 0));
                     }
                 } catch (Exception e13) {
                     a8.g(e13, true);
                 }
-                int i13 = cVar2.f23221a;
+                int i13 = cVar2.f23218a;
                 ks.f(i13).n(afVar4, 142);
                 ks.f(i13).n(afVar4, 141);
                 ks.f(i13).n(afVar4, 143);

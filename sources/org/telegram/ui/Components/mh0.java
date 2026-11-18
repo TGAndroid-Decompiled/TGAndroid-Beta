@@ -316,16 +316,16 @@ public class mh0 extends BitmapDrawable implements Animatable, bg.g {
             D(z10);
             bg.i iVar = this.C0;
             if (iVar != null) {
-                RandomAccessFile randomAccessFile = iVar.f3264s;
+                RandomAccessFile randomAccessFile = iVar.f3265s;
                 if (randomAccessFile != null) {
                     try {
                         randomAccessFile.close();
                     } catch (IOException e10) {
                         e10.printStackTrace();
                     }
-                    iVar.f3264s = null;
+                    iVar.f3265s = null;
                 }
-                iVar.f3263r = true;
+                iVar.f3264r = true;
                 this.C0 = null;
             }
             E();
@@ -342,7 +342,7 @@ public class mh0 extends BitmapDrawable implements Animatable, bg.g {
             if (z10) {
                 org.telegram.messenger.s5.a(gb0Var);
             } else {
-                Utilities.f22782e.c(gb0Var);
+                Utilities.f22779e.c(gb0Var);
             }
         }
     }
@@ -602,7 +602,7 @@ public class mh0 extends BitmapDrawable implements Animatable, bg.g {
                         try {
                             Activity activity = LaunchActivity.H1;
                             if (activity == null) {
-                                activity = BubbleActivity.f30340b0;
+                                activity = BubbleActivity.f30338b0;
                             }
                             View decorView = activity.getWindow().getDecorView();
                             if (num.intValue() == 1) {
@@ -840,7 +840,7 @@ public class mh0 extends BitmapDrawable implements Animatable, bg.g {
 
     public final void l() {
         lh0 lh0Var = new lh0(this, 6);
-        Typeface typeface = org.telegram.messenger.g0.f24093a;
+        Typeface typeface = org.telegram.messenger.g0.f24090a;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             org.telegram.messenger.g0.g3(lh0Var);
         } else {
@@ -1153,7 +1153,7 @@ public class mh0 extends BitmapDrawable implements Animatable, bg.g {
         ?? obj = new Object();
         this.f37507v0 = obj;
         obj.f1002c = iArr == null ? null : (int[]) iArr.clone();
-        long[] jArr = org.telegram.messenger.ot.f26105a;
+        long[] jArr = org.telegram.messenger.ot.f26103a;
         int length = jArr.length - 1;
         int i12 = 0;
         while (true) {

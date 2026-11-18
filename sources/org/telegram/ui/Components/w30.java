@@ -30,15 +30,15 @@ public final class w30 extends org.telegram.ui.ActionBar.x2 implements org.teleg
         this.f41549m1 = new TextView[2];
         this.f41556u1 = new TextView[2];
         mo moVar = new mo(this, 23);
-        this.f30230w0 = false;
-        this.f30228v0 = false;
+        this.f30228w0 = false;
+        this.f30226v0 = false;
         this.f41551p1 = bnVar;
         this.f41557v1 = str;
         FrameLayout frameLayout = new FrameLayout(context);
         this.O = frameLayout;
         TextView textView = new TextView(context);
         org.telegram.messenger.n10.p(textView, 1, 20.0f);
-        int i7 = org.telegram.ui.ActionBar.n6.f29504j5;
+        int i7 = org.telegram.ui.ActionBar.n6.f29502j5;
         org.telegram.ui.ActionBar.u6.U(textView, i7, i6Var);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -117,11 +117,11 @@ public final class w30 extends org.telegram.ui.ActionBar.x2 implements org.teleg
             this.f41549m1[i13] = new TextView(context);
             this.f41549m1[i13].setTextSize(1, 16.0f);
             this.f41549m1[i13].setTypeface(org.telegram.messenger.g0.o());
-            org.telegram.ui.ActionBar.u6.U(this.f41549m1[i13], org.telegram.ui.ActionBar.n6.f29504j5, i6Var);
+            org.telegram.ui.ActionBar.u6.U(this.f41549m1[i13], org.telegram.ui.ActionBar.n6.f29502j5, i6Var);
             frameLayout.addView(this.f41549m1[i13], c8.ma.d(-2, -2.0f, 49, 17.0f, 340.0f, 17.0f, 0.0f));
             this.f41556u1[i13] = new TextView(context);
             this.f41556u1[i13].setTextSize(1, 14.0f);
-            org.telegram.ui.ActionBar.u6.U(this.f41556u1[i13], org.telegram.ui.ActionBar.n6.f29654r5, i6Var);
+            org.telegram.ui.ActionBar.u6.U(this.f41556u1[i13], org.telegram.ui.ActionBar.n6.f29652r5, i6Var);
             this.f41556u1[i13].setGravity(1);
             frameLayout.addView(this.f41556u1[i13], c8.ma.d(-2, -2.0f, 49, 30.0f, 368.0f, 30.0f, 44.0f));
             if (i13 == 0) {
@@ -136,22 +136,22 @@ public final class w30 extends org.telegram.ui.ActionBar.x2 implements org.teleg
         if (this.f41551p1 != null) {
             textView.setText(org.telegram.messenger.gd.M0(2131749054, null));
             org.telegram.messenger.qy B = this.f41551p1.getSendMessagesHelper().B(this.f41551p1.a());
-            this.n1.setText(String.format("%d%%", Integer.valueOf(B.f26494l)));
-            this.f41550o1.a(false, B.f26494l / 100.0f);
-            this.f41549m1[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(B.f26491i, false, false), org.telegram.messenger.g0.i0(B.h, false, false)));
+            this.n1.setText(String.format("%d%%", Integer.valueOf(B.f26492l)));
+            this.f41550o1.a(false, B.f26492l / 100.0f);
+            this.f41549m1[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(B.f26489i, false, false), org.telegram.messenger.g0.i0(B.h, false, false)));
             this.f41556u1[1].setText(org.telegram.messenger.gd.M0(2131749069, null));
             this.f41549m1[1].setText(org.telegram.messenger.gd.M0(2131749068, null));
-            this.f41551p1.getNotificationCenter().c(this, org.telegram.messenger.ks.f25207v1);
+            this.f41551p1.getNotificationCenter().c(this, org.telegram.messenger.ks.f25205v1);
             return;
         }
         textView.setText(org.telegram.messenger.gd.M0(2131749044, null));
-        org.telegram.messenger.uy uyVar = (org.telegram.messenger.uy) org.telegram.messenger.zy.C(this.f30189a).G.get(str);
-        this.n1.setText(String.format("%d%%", Integer.valueOf(uyVar.f27295j)));
-        this.f41550o1.a(false, uyVar.f27295j / 100.0f);
-        this.f41549m1[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(uyVar.f27294i, false, false), org.telegram.messenger.g0.i0(uyVar.h, false, false)));
+        org.telegram.messenger.uy uyVar = (org.telegram.messenger.uy) org.telegram.messenger.zy.C(this.f30187a).G.get(str);
+        this.n1.setText(String.format("%d%%", Integer.valueOf(uyVar.f27293j)));
+        this.f41550o1.a(false, uyVar.f27293j / 100.0f);
+        this.f41549m1[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(uyVar.f27292i, false, false), org.telegram.messenger.g0.i0(uyVar.h, false, false)));
         this.f41556u1[1].setText(org.telegram.messenger.gd.M0(2131749049, null));
         this.f41549m1[1].setText(org.telegram.messenger.gd.M0(2131749048, null));
-        org.telegram.messenger.ks.f(this.f30189a).c(this, org.telegram.messenger.ks.f25214w1);
+        org.telegram.messenger.ks.f(this.f30187a).c(this, org.telegram.messenger.ks.f25212w1);
     }
 
     public final void J0() {
@@ -183,15 +183,15 @@ public final class w30 extends org.telegram.ui.ActionBar.x2 implements org.teleg
         super.L();
         org.telegram.ui.bn bnVar = this.f41551p1;
         if (bnVar != null) {
-            bnVar.getNotificationCenter().n(this, org.telegram.messenger.ks.f25207v1);
+            bnVar.getNotificationCenter().n(this, org.telegram.messenger.ks.f25205v1);
         } else {
-            org.telegram.messenger.ks.f(this.f30189a).n(this, org.telegram.messenger.ks.f25214w1);
+            org.telegram.messenger.ks.f(this.f30187a).n(this, org.telegram.messenger.ks.f25212w1);
         }
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = org.telegram.messenger.ks.f25207v1;
+        int i11 = org.telegram.messenger.ks.f25205v1;
         v70 v70Var = this.f41550o1;
         TextView[] textViewArr = this.f41549m1;
         TextView textView = this.n1;
@@ -207,30 +207,30 @@ public final class w30 extends org.telegram.ui.ActionBar.x2 implements org.teleg
                 J0();
                 return;
             }
-            if (!this.f41554s1 && ((180 - ph0Var.getAnimatedDrawable().f37482b0) * 16.6d) + 3000.0d >= B.f26498p) {
+            if (!this.f41554s1 && ((180 - ph0Var.getAnimatedDrawable().f37482b0) * 16.6d) + 3000.0d >= B.f26496p) {
                 ph0Var.setAutoRepeat(false);
                 this.f41554s1 = true;
             }
-            textView.setText(String.format("%d%%", Integer.valueOf(B.f26494l)));
-            textViewArr[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(B.f26491i, false, false), org.telegram.messenger.g0.i0(B.h, false, false)));
-            v70Var.a(true, B.f26494l / 100.0f);
-        } else if (i7 == org.telegram.messenger.ks.f25214w1) {
+            textView.setText(String.format("%d%%", Integer.valueOf(B.f26492l)));
+            textViewArr[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(B.f26489i, false, false), org.telegram.messenger.g0.i0(B.h, false, false)));
+            v70Var.a(true, B.f26492l / 100.0f);
+        } else if (i7 == org.telegram.messenger.ks.f25212w1) {
             if (objArr.length > 1) {
                 dismiss();
                 return;
             }
-            org.telegram.messenger.uy uyVar = (org.telegram.messenger.uy) org.telegram.messenger.zy.C(this.f30189a).G.get(this.f41557v1);
+            org.telegram.messenger.uy uyVar = (org.telegram.messenger.uy) org.telegram.messenger.zy.C(this.f30187a).G.get(this.f41557v1);
             if (uyVar == null) {
                 J0();
                 return;
             }
-            if (!this.f41554s1 && ((180 - ph0Var.getAnimatedDrawable().f37482b0) * 16.6d) + 3000.0d >= uyVar.f27299n) {
+            if (!this.f41554s1 && ((180 - ph0Var.getAnimatedDrawable().f37482b0) * 16.6d) + 3000.0d >= uyVar.f27297n) {
                 ph0Var.setAutoRepeat(false);
                 this.f41554s1 = true;
             }
-            textView.setText(String.format("%d%%", Integer.valueOf(uyVar.f27295j)));
-            textViewArr[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(uyVar.f27294i, false, false), org.telegram.messenger.g0.i0(uyVar.h, false, false)));
-            v70Var.a(true, uyVar.f27295j / 100.0f);
+            textView.setText(String.format("%d%%", Integer.valueOf(uyVar.f27293j)));
+            textViewArr[0].setText(org.telegram.messenger.gd.a0("ImportCount", null, 2131749071, org.telegram.messenger.g0.i0(uyVar.f27292i, false, false), org.telegram.messenger.g0.i0(uyVar.h, false, false)));
+            v70Var.a(true, uyVar.f27293j / 100.0f);
         }
     }
 

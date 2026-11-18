@@ -34,10 +34,10 @@ public final class bn0 {
     public int h;
     public int f33732i;
     public int f33733j;
-    public org.telegram.ui.Cells.q1 f33734k;
+    public org.telegram.ui.Cells.r1 f33734k;
     public byte[] f33735l;
     public org.telegram.messenger.fj f33736m;
-    public org.telegram.ui.Cells.q1 f33737n;
+    public org.telegram.ui.Cells.r1 f33737n;
     public boolean f33738o;
     public int f33739p;
     public int f33740q;
@@ -113,8 +113,8 @@ public final class bn0 {
         return null;
     }
 
-    public final void c(android.graphics.Canvas r22, org.telegram.ui.Cells.q1 r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bn0.c(android.graphics.Canvas, org.telegram.ui.Cells.q1):void");
+    public final void c(android.graphics.Canvas r22, org.telegram.ui.Cells.r1 r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bn0.c(android.graphics.Canvas, org.telegram.ui.Cells.r1):void");
     }
 
     public final void d(Canvas canvas, float f10) {
@@ -126,7 +126,7 @@ public final class bn0 {
         c6 c6Var = this.B;
         float N2 = org.telegram.messenger.g0.N(2.0f);
         org.telegram.messenger.fj fjVar = this.f33736m;
-        if (fjVar != null && fjVar.f23968k.media_unread && !fjVar.N3() && this.f33728c <= 0.0f) {
+        if (fjVar != null && fjVar.f23965k.media_unread && !fjVar.N3() && this.f33728c <= 0.0f) {
             z10 = true;
         } else {
             z10 = false;
@@ -178,9 +178,9 @@ public final class bn0 {
             canvas.translate(pow, 0.0f);
             canvas.drawRect(-pow, 0.0f, (this.f33731g + 5) - pow, this.h, this.C);
             canvas.restore();
-            org.telegram.ui.Cells.q1 q1Var = this.f33737n;
-            if (q1Var != null) {
-                q1Var.invalidate();
+            org.telegram.ui.Cells.r1 r1Var = this.f33737n;
+            if (r1Var != null) {
+                r1Var.invalidate();
             }
         }
     }

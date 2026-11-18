@@ -8,16 +8,16 @@ import android.widget.TextView;
 import c8.ma;
 import org.telegram.messenger.gd;
 public final class n extends FrameLayout {
-    public final TextView f5723a;
-    public final TextView f5724b;
-    public final h0 f5725c;
+    public final TextView f5720a;
+    public final TextView f5721b;
+    public final h0 f5722c;
 
     public n(h0 h0Var, Context context) {
         super(context);
-        this.f5725c = h0Var;
+        this.f5722c = h0Var;
         TextView textView = new TextView(context);
-        this.f5723a = textView;
-        textView.setTextColor(h0Var.f5770y);
+        this.f5720a = textView;
+        textView.setTextColor(h0Var.f5767y);
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setSingleLine();
@@ -25,7 +25,7 @@ public final class n extends FrameLayout {
         textView.setGravity(16);
         addView(textView, ma.d(-1, -1.0f, 51, 15.0f, 8.0f, 15.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f5724b = textView2;
+        this.f5721b = textView2;
         textView2.setTextColor(-1);
         textView2.setTextSize(1, 13.0f);
         textView2.setTypeface(org.telegram.messenger.g0.o());

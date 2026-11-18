@@ -66,13 +66,13 @@ import org.telegram.ui.Components.oo0;
 import org.telegram.ui.p11;
 import org.telegram.ui.r00;
 public final class c implements SuccessContinuation, p0, a0, androidx.activity.result.b, e71, p11, q0, nt0, n, q, oo0, i1, OnCompleteListener, ib.b {
-    public static volatile c f5152c;
-    public final int f5153a;
-    public Object f5154b;
+    public static volatile c f5149c;
+    public final int f5150a;
+    public Object f5151b;
 
     public c(Object obj, int i7) {
-        this.f5153a = i7;
-        this.f5154b = obj;
+        this.f5150a = i7;
+        this.f5151b = obj;
     }
 
     public static int B(int i7) {
@@ -309,7 +309,7 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
     @Override
     public void A(Object obj) {
         CharSequence charSequence = (CharSequence) obj;
-        g0 g0Var = (g0) this.f5154b;
+        g0 g0Var = (g0) this.f5151b;
         Handler handler = g0Var.B0;
         sa saVar = g0Var.C0;
         handler.removeCallbacks(saVar);
@@ -322,17 +322,17 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
 
     @Override
     public void D0() {
-        z3.h0((z3) this.f5154b);
+        z3.h0((z3) this.f5151b);
     }
 
     @Override
     public void G(boolean z10) {
-        pb pbVar = (pb) this.f5154b;
+        pb pbVar = (pb) this.f5151b;
         te.a aVar = pbVar.Z;
         if (aVar != null) {
             aVar.a(z10, true);
         }
-        r00 r00Var = pbVar.f51839s;
+        r00 r00Var = pbVar.f51828s;
         if (r00Var != null) {
             r00Var.invalidate();
         }
@@ -340,17 +340,17 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
 
     @Override
     public float U0() {
-        return i5.c.d(9.66f, ri.a.d(((pb) this.f5154b).f9533c0), 0);
+        return i5.c.d(9.66f, ri.a.d(((pb) this.f5151b).f9530c0), 0);
     }
 
     @Override
     public void a(int i7, boolean z10) {
-        j3 j3Var = (j3) this.f5154b;
-        if (j3Var.f3753m2 == i7) {
+        j3 j3Var = (j3) this.f5151b;
+        if (j3Var.f3733m2 == i7) {
             return;
         }
-        j3Var.f3753m2 = i7;
-        j3Var.f3745e2.g();
+        j3Var.f3733m2 = i7;
+        j3Var.f3725e2.g();
         j3Var.U1.O(true);
     }
 
@@ -358,7 +358,7 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
     public void accept(Object obj, Object obj2) {
         x xVar = (x) obj;
         f fVar = (f) xVar.n();
-        d0 d0Var = ((e0) this.f5154b).f11384l;
+        d0 d0Var = ((e0) this.f5151b).f11381l;
         Parcel p12 = fVar.p1();
         t.d(p12, d0Var);
         fVar.u1(p12, 18);
@@ -374,23 +374,23 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
 
     @Override
     public WebViewProviderBoundaryInterface createWebView(WebView webView) {
-        return (WebViewProviderBoundaryInterface) af.b.b(WebViewProviderBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f5154b).createWebView(webView));
+        return (WebViewProviderBoundaryInterface) af.b.b(WebViewProviderBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f5151b).createWebView(webView));
     }
 
     @Override
     public String[] d() {
-        return ((WebViewProviderFactoryBoundaryInterface) this.f5154b).getSupportedFeatures();
+        return ((WebViewProviderFactoryBoundaryInterface) this.f5151b).getSupportedFeatures();
     }
 
     public void e(StringBuilder sb2, Iterator it) {
-        g gVar = (g) this.f5154b;
+        g gVar = (g) this.f5151b;
         if (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
             sb2.append(g.f(entry.getKey()));
             sb2.append("=");
             sb2.append(g.f(entry.getValue()));
             while (it.hasNext()) {
-                sb2.append((CharSequence) gVar.f11289a);
+                sb2.append((CharSequence) gVar.f11286a);
                 Map.Entry entry2 = (Map.Entry) it.next();
                 sb2.append(g.f(entry2.getKey()));
                 sb2.append("=");
@@ -402,30 +402,30 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
     @Override
     public void f(Object obj) {
         Bundle extras;
-        switch (this.f5153a) {
+        switch (this.f5150a) {
             case 7:
                 androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                j0 j0Var = (j0) this.f5154b;
+                j0 j0Var = (j0) this.f5151b;
                 f0 f0Var = (f0) j0Var.F.pollFirst();
                 if (f0Var == null) {
                     Log.w("FragmentManager", "No IntentSenders were started for " + this);
                     return;
                 }
-                String str = f0Var.f2333a;
-                int i7 = f0Var.f2334b;
-                s o4 = j0Var.f2347c.o(str);
+                String str = f0Var.f2334a;
+                int i7 = f0Var.f2335b;
+                s o4 = j0Var.f2348c.o(str);
                 if (o4 == null) {
                     Log.w("FragmentManager", "Intent Sender result delivered for unknown Fragment " + str);
                     return;
                 }
-                o4.x(i7, aVar.f1799a, aVar.f1800b);
+                o4.x(i7, aVar.f1800a, aVar.f1801b);
                 return;
             default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f5154b;
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f5151b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
-                Intent intent = aVar2.f1800b;
-                int i10 = u.e("ProxyBillingActivityV2", intent).f11286a;
+                Intent intent = aVar2.f1801b;
+                int i10 = u.e("ProxyBillingActivityV2", intent).f11283a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.O;
                 if (resultReceiver != null) {
                     if (intent == null) {
@@ -435,7 +435,7 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
                     }
                     resultReceiver.send(i10, extras);
                 }
-                int i11 = aVar2.f1799a;
+                int i11 = aVar2.f1800a;
                 if (i11 != -1 || i10 != 0) {
                     u.h("ProxyBillingActivityV2", "External offer dialog finished with resultCode: " + i11 + " and billing's responseCode: " + i10);
                 }
@@ -446,17 +446,17 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
 
     @Override
     public Object mo24get() {
-        switch (this.f5153a) {
+        switch (this.f5150a) {
             case 27:
-                return new l((ua.b) ((o) this.f5154b).f7925a);
+                return new l((ua.b) ((o) this.f5151b).f7922a);
             default:
-                return new w0((d1) ((ib.c) this.f5154b).mo24get());
+                return new w0((d1) ((ib.c) this.f5151b).mo24get());
         }
     }
 
     @Override
     public StaticsBoundaryInterface getStatics() {
-        return (StaticsBoundaryInterface) af.b.b(StaticsBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f5154b).getStatics());
+        return (StaticsBoundaryInterface) af.b.b(StaticsBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f5151b).getStatics());
     }
 
     @Override
@@ -466,33 +466,33 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
 
     @Override
     public void i(n6.a aVar) {
-        h1 h1Var = (h1) this.f5154b;
-        h1Var.f6295o.lock();
+        h1 h1Var = (h1) this.f5151b;
+        h1Var.f6292o.lock();
         try {
-            h1Var.f6292l = aVar;
+            h1Var.f6289l = aVar;
             h1Var.j();
         } finally {
-            h1Var.f6295o.unlock();
+            h1Var.f6292o.unlock();
         }
     }
 
     @Override
     public void j(int i7) {
         n6.a aVar;
-        h1 h1Var = (h1) this.f5154b;
-        Lock lock = h1Var.f6295o;
-        Lock lock2 = h1Var.f6295o;
+        h1 h1Var = (h1) this.f5151b;
+        Lock lock = h1Var.f6292o;
+        Lock lock2 = h1Var.f6292o;
         lock.lock();
         try {
-            if (!h1Var.f6294n && (aVar = h1Var.f6293m) != null && aVar.c()) {
-                h1Var.f6294n = true;
-                h1Var.f6287e.onConnectionSuspended(i7);
+            if (!h1Var.f6291n && (aVar = h1Var.f6290m) != null && aVar.c()) {
+                h1Var.f6291n = true;
+                h1Var.f6284e.onConnectionSuspended(i7);
                 return;
             }
-            h1Var.f6294n = false;
-            h1Var.f6285b.j(i7);
-            h1Var.f6293m = null;
-            h1Var.f6292l = null;
+            h1Var.f6291n = false;
+            h1Var.f6282b.j(i7);
+            h1Var.f6290m = null;
+            h1Var.f6289l = null;
         } finally {
             lock2.unlock();
         }
@@ -500,56 +500,56 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
 
     @Override
     public int j1() {
-        return ((pb) this.f5154b).f9534d0;
+        return ((pb) this.f5151b).f9531d0;
     }
 
     public Set l() {
         Set unmodifiableSet;
-        synchronized (((HashSet) this.f5154b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f5154b);
+        synchronized (((HashSet) this.f5151b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f5151b);
         }
         return unmodifiableSet;
     }
 
     @Override
     public void m(Bundle bundle) {
-        h1 h1Var = (h1) this.f5154b;
-        h1Var.f6295o.lock();
+        h1 h1Var = (h1) this.f5151b;
+        h1Var.f6292o.lock();
         try {
-            Bundle bundle2 = h1Var.f6291k;
+            Bundle bundle2 = h1Var.f6288k;
             if (bundle2 == null) {
-                h1Var.f6291k = bundle;
+                h1Var.f6288k = bundle;
             } else if (bundle != null) {
                 bundle2.putAll(bundle);
             }
-            h1Var.f6292l = n6.a.f21420f;
+            h1Var.f6289l = n6.a.f21417f;
             h1Var.j();
         } finally {
-            h1Var.f6295o.unlock();
+            h1Var.f6292o.unlock();
         }
     }
 
     public void n() {
-        ((androidx.fragment.app.u) this.f5154b).d.R();
+        ((androidx.fragment.app.u) this.f5151b).d.R();
     }
 
     @Override
     public void onComplete(Task task) {
-        g6.c.h((g6.c) ((j) this.f5154b).f13230c, "launchApplication", task);
+        g6.c.h((g6.c) ((j) this.f5151b).f13227c, "launchApplication", task);
     }
 
     public void p(m mVar) {
-        o3 o3Var = (o3) this.f5154b;
-        o3Var.f20162b = mVar;
-        Iterator it = ((LinkedList) o3Var.f20163c).iterator();
+        o3 o3Var = (o3) this.f5151b;
+        o3Var.f20159b = mVar;
+        Iterator it = ((LinkedList) o3Var.f20160c).iterator();
         while (it.hasNext()) {
             ((a7.c) it.next()).b();
         }
-        ((LinkedList) o3Var.f20163c).clear();
+        ((LinkedList) o3Var.f20160c).clear();
     }
 
     public void r(int i7, String str) {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f5154b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f5151b;
         w(i7, 2);
         try {
             int C = C(str.length());
@@ -579,7 +579,7 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
         w(i7, 2);
         u(bArr.length);
         int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f5154b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f5151b;
         if (byteBuffer.remaining() >= length) {
             byteBuffer.put(bArr, 0, length);
             return;
@@ -589,7 +589,7 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
 
     public void t(int i7) {
         byte b10 = (byte) i7;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f5154b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f5151b;
         if (byteBuffer.hasRemaining()) {
             byteBuffer.put(b10);
             return;
@@ -600,12 +600,12 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
     @Override
     public Task then(Object obj) {
         ia.b bVar = (ia.b) obj;
-        p pVar = ((aa.n) this.f5154b).f825e;
+        p pVar = ((aa.n) this.f5151b).f825e;
         if (bVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
             return Tasks.forResult(null);
         }
-        return Tasks.whenAll(p.b(pVar), pVar.f840m.h(null, pVar.f833e.f3087a));
+        return Tasks.whenAll(p.b(pVar), pVar.f840m.h(null, pVar.f833e.f3088a));
     }
 
     public void u(int i7) {
@@ -629,32 +629,32 @@ public final class c implements SuccessContinuation, p0, a0, androidx.activity.r
     }
 
     public c(byte[] bArr, int i7) {
-        this.f5153a = 14;
+        this.f5150a = 14;
         ByteBuffer wrap = ByteBuffer.wrap(bArr, 0, i7);
-        this.f5154b = wrap;
+        this.f5151b = wrap;
         wrap.order(ByteOrder.LITTLE_ENDIAN);
     }
 
     public c(int i7) {
-        this.f5153a = i7;
+        this.f5150a = i7;
         switch (i7) {
             case 8:
-                this.f5154b = new CopyOnWriteArrayList();
+                this.f5151b = new CopyOnWriteArrayList();
                 return;
             case 10:
-                this.f5154b = new q4.q[cg.b.values().length];
+                this.f5151b = new q4.q[cg.b.values().length];
                 return;
             case 19:
                 return;
             default:
-                this.f5154b = new HashSet();
+                this.f5151b = new HashSet();
                 return;
         }
     }
 
     public c(aa.n nVar, String str) {
-        this.f5153a = 2;
-        this.f5154b = nVar;
+        this.f5150a = 2;
+        this.f5151b = nVar;
     }
 
     @Override

@@ -136,12 +136,12 @@ public final class if0 extends FrameLayout {
             float f13 = this.f36113b;
             float f14 = ((f10 - measuredWidth) * f13) + measuredWidth;
             float z11 = com.google.android.gms.internal.vision.e2.z(f11, measuredHeight, f13, measuredHeight) + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingBottom() + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingTop();
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f28735a = false;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f28733a = false;
             actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleX((f14 + (actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingRight() + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingLeft())) / actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth());
             if (z10) {
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(Math.min(1.0f, z11 / actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight()));
             }
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f28735a = true;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f28733a = true;
             for (int i12 = 0; i12 < getChildCount(); i12++) {
                 View childAt3 = getChildAt(i12);
                 childAt3.setPivotX(0.0f);
@@ -209,7 +209,7 @@ public final class if0 extends FrameLayout {
                 gf0 gf0Var = this.L;
                 int height = (int) rectF.height();
                 this.K = height;
-                org.telegram.ui.ActionBar.h2[] h2VarArr = (org.telegram.ui.ActionBar.h2[]) ((org.telegram.ui.zr) gf0Var).f54578b;
+                org.telegram.ui.ActionBar.h2[] h2VarArr = (org.telegram.ui.ActionBar.h2[]) ((org.telegram.ui.zr) gf0Var).f54579b;
                 org.telegram.ui.ActionBar.h2 h2Var = h2VarArr[0];
                 if (h2Var != null && h2Var.getFragmentView() != null && h2VarArr[0].isInPreviewMode()) {
                     ViewGroup.LayoutParams layoutParams = h2VarArr[0].getFragmentView().getLayoutParams();

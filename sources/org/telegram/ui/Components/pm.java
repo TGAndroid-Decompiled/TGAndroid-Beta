@@ -141,7 +141,7 @@ public final class pm extends ki {
             if (org.telegram.messenger.g0.Q1()) {
                 i7 = 16;
             } else {
-                Point point = org.telegram.messenger.g0.f24121q;
+                Point point = org.telegram.messenger.g0.f24118q;
                 if (point.x > point.y) {
                     i7 = 6;
                 } else {
@@ -154,7 +154,7 @@ public final class pm extends ki {
             int max = Math.max(0, currentItemTop);
             canvas.save();
             canvas.clipRect(0, max, getWidth(), getHeight());
-            c10.setBounds(0, max, getWidth(), org.telegram.messenger.g0.f24121q.y + max);
+            c10.setBounds(0, max, getWidth(), org.telegram.messenger.g0.f24118q.y + max);
             c10.draw(canvas);
             z10 = true;
         }
@@ -193,7 +193,7 @@ public final class pm extends ki {
     }
 
     public float getPreviewScale() {
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         if (point.y > point.x) {
             return 0.8f;
         }
@@ -232,7 +232,7 @@ public final class pm extends ki {
         boolean z11;
         om omVar = this.f38489w;
         super.onLayout(z10, i7, i10, i11, i12);
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         if (point.y > point.x) {
             z11 = true;
         } else {

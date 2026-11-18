@@ -5,24 +5,24 @@ import java.util.Comparator;
 import org.telegram.messenger.fj;
 import org.telegram.tgnet.TLRPC;
 public final class a1 implements Comparator {
-    public final ArrayList f17403a;
-    public final ArrayList f17404b;
+    public final ArrayList f17400a;
+    public final ArrayList f17401b;
 
     public a1(ArrayList arrayList, ArrayList arrayList2) {
-        this.f17403a = arrayList;
-        this.f17404b = arrayList2;
+        this.f17400a = arrayList;
+        this.f17401b = arrayList2;
     }
 
     public final int a(g1 g1Var) {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f17403a;
+            ArrayList arrayList = this.f17400a;
             if (i10 >= arrayList.size()) {
                 while (true) {
-                    ArrayList arrayList2 = this.f17404b;
+                    ArrayList arrayList2 = this.f17401b;
                     if (i7 < Math.min(20, arrayList2.size())) {
-                        if (((TLRPC.Document) arrayList2.get(i7)).f28411id == g1Var.f17466a.f28411id) {
+                        if (((TLRPC.Document) arrayList2.get(i7)).f28409id == g1Var.f17463a.f28409id) {
                             return (arrayList2.size() - i7) + 1000000;
                         }
                         i7++;
@@ -30,7 +30,7 @@ public final class a1 implements Comparator {
                         return -1;
                     }
                 }
-            } else if (((TLRPC.Document) arrayList.get(i10)).f28411id == g1Var.f17466a.f28411id) {
+            } else if (((TLRPC.Document) arrayList.get(i10)).f28409id == g1Var.f17463a.f28409id) {
                 return i10 + 2000000;
             } else {
                 i10++;
@@ -42,8 +42,8 @@ public final class a1 implements Comparator {
     public final int compare(Object obj, Object obj2) {
         g1 g1Var = (g1) obj;
         g1 g1Var2 = (g1) obj2;
-        boolean K2 = fj.K2(g1Var.f17466a, true);
-        if (K2 == fj.K2(g1Var2.f17466a, true)) {
+        boolean K2 = fj.K2(g1Var.f17463a, true);
+        if (K2 == fj.K2(g1Var2.f17463a, true)) {
             int a10 = a(g1Var);
             int a11 = a(g1Var2);
             if (a10 <= a11) {

@@ -3,13 +3,13 @@ public abstract class aa {
     public static void a(kf.s sVar, kf.s sVar2, int i7) {
         if (sVar != null && sVar2 != null && sVar != sVar2) {
             StringBuilder sb2 = new StringBuilder(i7);
-            sb2.append(sVar.f18240g);
-            kf.p pVar = (kf.p) sVar2.f18238f;
-            for (kf.p pVar2 = (kf.p) sVar.f18238f; pVar2 != pVar; pVar2 = (kf.p) pVar2.f18238f) {
-                sb2.append(((kf.s) pVar2).f18240g);
+            sb2.append(sVar.f18237g);
+            kf.p pVar = (kf.p) sVar2.f18235f;
+            for (kf.p pVar2 = (kf.p) sVar.f18235f; pVar2 != pVar; pVar2 = (kf.p) pVar2.f18235f) {
+                sb2.append(((kf.s) pVar2).f18237g);
                 pVar2.g();
             }
-            sVar.f18240g = sb2.toString();
+            sVar.f18237g = sb2.toString();
         }
     }
 
@@ -23,7 +23,7 @@ public abstract class aa {
                 if (sVar == null) {
                     sVar = sVar2;
                 }
-                i7 = sVar2.f18240g.length() + i7;
+                i7 = sVar2.f18237g.length() + i7;
             } else {
                 a(sVar, sVar2, i7);
                 sVar = null;
@@ -33,7 +33,7 @@ public abstract class aa {
             if (pVar == pVar2) {
                 break;
             }
-            pVar = (kf.p) pVar.f18238f;
+            pVar = (kf.p) pVar.f18235f;
         }
         a(sVar, sVar2, i7);
     }

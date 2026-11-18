@@ -77,56 +77,56 @@ public final class jd implements Runnable {
                 if (z13) {
                     TLRPC.Document document = (TLRPC.Document) obj;
                     if (efVar != null) {
-                        e20Var = efVar.f27864s;
+                        e20Var = efVar.f27862s;
                     } else {
                         e20Var = null;
                     }
                     if (e20Var != null && efVar != null) {
-                        e20Var.f23655s = true;
+                        e20Var.f23652s = true;
                         boolean c10 = e20Var.c();
-                        e20Var.f23655s = false;
-                        e20Var.f23656t = true;
+                        e20Var.f23652s = false;
+                        e20Var.f23653t = true;
                         z12 = c10;
                     }
                     boolean z15 = this.f36411f;
                     if (z12) {
                         ArrayList arrayList = new ArrayList();
                         ?? obj3 = new Object();
-                        if (!efVar.f27849b && (str2 = efVar.h) != null) {
-                            obj3.f28213c = str2;
+                        if (!efVar.f27847b && (str2 = efVar.h) != null) {
+                            obj3.f28211c = str2;
                             if (efVar.c()) {
-                                obj3.f28232y = efVar.clone();
+                                obj3.f28230y = efVar.clone();
                             }
                         } else {
                             String str4 = efVar.I;
                             if (str4 != null) {
-                                obj3.f28213c = str4;
+                                obj3.f28211c = str4;
                             }
                         }
-                        obj3.f28214e = efVar.f27850c;
-                        obj3.f28215f = efVar.f27853g;
-                        obj3.f28216g = efVar.f27851e;
-                        obj3.f28224p = efVar.d();
-                        obj3.f28223o = efVar.f27849b;
-                        obj3.f28225q = efVar.j();
-                        obj3.f28233z = efVar.f27858m;
+                        obj3.f28212e = efVar.f27848c;
+                        obj3.f28213f = efVar.f27851g;
+                        obj3.f28214g = efVar.f27849e;
+                        obj3.f28222p = efVar.d();
+                        obj3.f28221o = efVar.f27847b;
+                        obj3.f28223q = efVar.j();
+                        obj3.f28231z = efVar.f27856m;
                         obj3.A = efVar.P;
-                        CharSequence charSequence2 = efVar.f27848a;
+                        CharSequence charSequence2 = efVar.f27846a;
                         if (charSequence2 != null) {
                             str = charSequence2.toString();
                         } else {
                             str = null;
                         }
                         obj3.d = str;
-                        obj3.f28217i = efVar.f27859n;
-                        obj3.f28218j = efVar.f27863r;
-                        obj3.h = efVar.f27868x;
-                        obj3.f28219k = efVar.f27864s;
-                        obj3.f28226r = efVar.L;
-                        obj3.f28228t = org.telegram.messenger.zy.h(efVar.f27848a);
-                        obj3.f28229u = efVar.M;
-                        obj3.f28230w = efVar.N;
-                        obj3.f28231x = efVar.c();
+                        obj3.f28215i = efVar.f27857n;
+                        obj3.f28216j = efVar.f27861r;
+                        obj3.h = efVar.f27866x;
+                        obj3.f28217k = efVar.f27862s;
+                        obj3.f28224r = efVar.L;
+                        obj3.f28226t = org.telegram.messenger.zy.h(efVar.f27846a);
+                        obj3.f28227u = efVar.M;
+                        obj3.f28228w = efVar.N;
+                        obj3.f28229x = efVar.c();
                         arrayList.add(obj3);
                         efVar.e();
                         org.telegram.messenger.c a10 = org.telegram.messenger.c.a(chatActivityEnterView.R);
@@ -145,7 +145,7 @@ public final class jd implements Runnable {
                         org.telegram.messenger.zy C = org.telegram.messenger.zy.C(chatActivityEnterView.R);
                         long j10 = chatActivityEnterView.E3;
                         if (efVar != null) {
-                            charSequence = efVar.f27848a;
+                            charSequence = efVar.f27846a;
                         } else {
                             charSequence = null;
                         }
@@ -161,7 +161,7 @@ public final class jd implements Runnable {
                         i11 = i11;
                         org.telegram.messenger.ri.d0(chatActivityEnterView.R).c(document, (int) (System.currentTimeMillis() / 1000), true);
                         if (org.telegram.messenger.n5.C(chatActivityEnterView.E3)) {
-                            org.telegram.messenger.mp.u1(chatActivityEnterView.S.f23221a).C4(obj2, document);
+                            org.telegram.messenger.mp.u1(chatActivityEnterView.S.f23218a).C4(obj2, document);
                         }
                     }
                 } else {
@@ -172,12 +172,12 @@ public final class jd implements Runnable {
                         if (botInlineResult.document != null) {
                             org.telegram.messenger.ri.d0(chatActivityEnterView.R).c(botInlineResult.document, (int) (System.currentTimeMillis() / 1000), false);
                             if (org.telegram.messenger.n5.C(chatActivityEnterView.E3)) {
-                                org.telegram.messenger.mp.u1(chatActivityEnterView.S.f23221a).C4(obj2, botInlineResult.document);
+                                org.telegram.messenger.mp.u1(chatActivityEnterView.S.f23218a).C4(obj2, botInlineResult.document);
                             }
                         }
                         TLRPC.User user = (TLRPC.User) obj2;
                         HashMap hashMap = new HashMap();
-                        hashMap.put("id", botInlineResult.f28403id);
+                        hashMap.put("id", botInlineResult.f28401id);
                         hashMap.put("query_id", "" + botInlineResult.query_id);
                         hashMap.put("force_gif", "1");
                         if (storyItem3 == null) {

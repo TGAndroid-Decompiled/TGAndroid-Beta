@@ -11,7 +11,7 @@ public final class m3 extends TwoStepVerificationActivity {
     @Override
     public final void onFragmentDestroy() {
         m.b3 b3Var = this.f44514e0;
-        if ((((Runnable) b3Var.f20026c) != null || ((Runnable) b3Var.d) != null) && !b3Var.f20025b) {
+        if ((((Runnable) b3Var.f20023c) != null || ((Runnable) b3Var.d) != null) && !b3Var.f20022b) {
             b3Var.b();
         }
         super.onFragmentDestroy();

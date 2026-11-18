@@ -26,40 +26,40 @@ public final class z extends View implements c6 {
     public mh0 H;
     public int I;
     public int J;
-    public final RectF f19082a;
-    public final Paint f19083b;
-    public final TextPaint f19084c;
+    public final RectF f19079a;
+    public final Paint f19080b;
+    public final TextPaint f19081c;
     public final w d;
-    public final mh0 f19085e;
-    public boolean f19086f;
+    public final mh0 f19082e;
+    public boolean f19083f;
     public float h;
-    public String f19087n;
-    public StaticLayout f19088r;
-    public float f19089s;
-    public boolean f19090w;
-    public boolean f19091x;
-    public boolean f19092y;
+    public String f19084n;
+    public StaticLayout f19085r;
+    public float f19086s;
+    public boolean f19087w;
+    public boolean f19088x;
+    public boolean f19089y;
 
     public z(Context context) {
         super(context);
-        this.f19082a = new RectF();
-        this.f19083b = new Paint(1);
+        this.f19079a = new RectF();
+        this.f19080b = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f19084c = textPaint;
+        this.f19081c = textPaint;
         w wVar = new w(this);
         this.d = wVar;
         mh0 mh0Var = new mh0(2131623945, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f));
-        this.f19085e = mh0Var;
-        this.f19087n = gd.M0(2131752880, null);
+        this.f19082e = mh0Var;
+        this.f19084n = gd.M0(2131752880, null);
         this.F = true;
         updateColors();
-        wVar.f30016n = true;
+        wVar.f30014n = true;
         wVar.h = false;
         wVar.a(false, 0.0f);
         wVar.setCallback(this);
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        wVar.f30005a.setStrokeCap(Paint.Cap.ROUND);
-        wVar.f30014l = true;
+        wVar.f30003a.setStrokeCap(Paint.Cap.ROUND);
+        wVar.f30012l = true;
         int L = org.telegram.messenger.g0.L(16.0f);
         int x02 = n6.x0(null, n6.Hi, false);
         this.G = x02;
@@ -99,26 +99,26 @@ public final class z extends View implements c6 {
     public final void onMeasure(int i7, int i10) {
         float f10;
         int size = (View.MeasureSpec.getSize(i10) + View.MeasureSpec.getSize(i7)) << 16;
-        if (this.J != size || this.f19088r == null) {
+        if (this.J != size || this.f19085r == null) {
             this.d.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            TextPaint textPaint = this.f19084c;
+            TextPaint textPaint = this.f19081c;
             textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
             this.J = size;
-            CharSequence m10 = j6.m(this.f19087n, textPaint.getFontMetricsInt(), false, null, 0);
-            int i11 = (int) (org.telegram.messenger.g0.f24121q.x * 0.6f);
+            CharSequence m10 = j6.m(this.f19084n, textPaint.getFontMetricsInt(), false, null, 0);
+            int i11 = (int) (org.telegram.messenger.g0.f24118q.x * 0.6f);
             StaticLayout c10 = wu0.c(m10, textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i11, 1, true);
-            this.f19088r = c10;
+            this.f19085r = c10;
             if (c10.getLineCount() > 0) {
-                f10 = this.f19088r.getLineWidth(0);
+                f10 = this.f19085r.getLineWidth(0);
             } else {
                 f10 = 0.0f;
             }
-            this.f19089s = f10;
+            this.f19086s = f10;
         }
         org.telegram.messenger.g0.L(4.0f);
         int L = org.telegram.messenger.g0.L(40.0f);
-        if (this.f19086f) {
-            L = org.telegram.messenger.f3.C(4.0f, (int) this.f19089s, L);
+        if (this.f19083f) {
+            L = org.telegram.messenger.f3.C(4.0f, (int) this.f19086s, L);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
     }
@@ -130,13 +130,13 @@ public final class z extends View implements c6 {
 
     public void setOpened(boolean z10) {
         float f10;
-        if (this.f19090w != z10) {
-            this.f19090w = z10;
+        if (this.f19087w != z10) {
+            this.f19087w = z10;
         }
         int i7 = 1;
-        if (this.f19091x) {
-            if (this.f19092y != z10) {
-                mh0 mh0Var = this.f19085e;
+        if (this.f19088x) {
+            if (this.f19089y != z10) {
+                mh0 mh0Var = this.f19082e;
                 mh0Var.stop();
                 mh0Var.h = true;
                 if (z10) {
@@ -144,7 +144,7 @@ public final class z extends View implements c6 {
                 }
                 mh0Var.P(i7);
                 mh0Var.start();
-                this.f19092y = z10;
+                this.f19089y = z10;
                 return;
             }
             return;
@@ -158,20 +158,20 @@ public final class z extends View implements c6 {
     }
 
     public void setWebView(boolean z10) {
-        this.f19091x = z10;
+        this.f19088x = z10;
         invalidate();
     }
 
     @Override
     public final void updateColors() {
-        TextPaint textPaint = this.f19084c;
+        TextPaint textPaint = this.f19081c;
         try {
-            this.f19083b.setColor(n6.x0(null, n6.Uf, false));
+            this.f19080b.setColor(n6.x0(null, n6.Uf, false));
             int x02 = n6.x0(null, n6.Wf, false);
             w wVar = this.d;
-            wVar.f30013k = x02;
-            wVar.f30012j = x02;
-            mh0 mh0Var = this.f19085e;
+            wVar.f30011k = x02;
+            wVar.f30010j = x02;
+            mh0 mh0Var = this.f19082e;
             if (mh0Var != null) {
                 if (mh0Var == this.H) {
                     if (x02 != this.I) {

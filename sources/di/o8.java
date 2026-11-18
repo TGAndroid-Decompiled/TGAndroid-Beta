@@ -11,27 +11,27 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class o8 implements p8 {
-    public final int f9461a;
-    public final long f9462b;
+    public final int f9458a;
+    public final long f9459b;
     public int d;
     public Boolean h;
-    public boolean f9467i;
-    public boolean f9468j;
-    public String f9469k;
-    public int f9472n;
-    public boolean f9473o;
-    public ArrayList f9475q;
-    public boolean f9463c = false;
-    public boolean f9464e = true;
-    public boolean f9465f = false;
-    public int f9466g = 783;
-    public final ArrayList f9470l = new ArrayList();
-    public int f9471m = -1;
-    public long f9474p = 0;
+    public boolean f9464i;
+    public boolean f9465j;
+    public String f9466k;
+    public int f9469n;
+    public boolean f9470o;
+    public ArrayList f9472q;
+    public boolean f9460c = false;
+    public boolean f9461e = true;
+    public boolean f9462f = false;
+    public int f9463g = 783;
+    public final ArrayList f9467l = new ArrayList();
+    public int f9468m = -1;
+    public long f9471p = 0;
 
     public o8(int i7, long j3, boolean z10) {
-        this.f9461a = i7;
-        this.f9462b = j3;
+        this.f9458a = i7;
+        this.f9459b = j3;
         if (z10) {
             a();
         }
@@ -41,22 +41,22 @@ public final class o8 implements p8 {
     public final void a() {
         boolean z10;
         TL_stars.getSavedStarGifts getsavedstargifts;
-        if (!this.f9467i && !this.f9468j) {
-            if (this.f9469k == null) {
+        if (!this.f9464i && !this.f9465j) {
+            if (this.f9466k == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f9467i = true;
-            int i7 = (this.f9474p > 0L ? 1 : (this.f9474p == 0L ? 0 : -1));
+            this.f9464i = true;
+            int i7 = (this.f9471p > 0L ? 1 : (this.f9471p == 0L ? 0 : -1));
             int i10 = 30;
             String str = "";
-            int i11 = this.f9461a;
+            int i11 = this.f9458a;
             if (i7 != 0) {
                 TL_stars.getCraftStarGifts getcraftstargifts = new TL_stars.getCraftStarGifts();
-                getcraftstargifts.gift_id = this.f9474p;
+                getcraftstargifts.gift_id = this.f9471p;
                 if (!z10) {
-                    str = this.f9469k;
+                    str = this.f9466k;
                 }
                 getcraftstargifts.offset = str;
                 if (z10) {
@@ -66,22 +66,22 @@ public final class o8 implements p8 {
                 getsavedstargifts = getcraftstargifts;
             } else {
                 TL_stars.getSavedStarGifts getsavedstargifts2 = new TL_stars.getSavedStarGifts();
-                getsavedstargifts2.sort_by_value = !this.f9464e;
-                getsavedstargifts2.exclude_unupgradable = !TLObject.hasFlag(this.f9466g, 2);
-                getsavedstargifts2.exclude_upgradable = !TLObject.hasFlag(this.f9466g, 4);
-                getsavedstargifts2.exclude_unlimited = !TLObject.hasFlag(this.f9466g, 1);
-                getsavedstargifts2.exclude_unique = !TLObject.hasFlag(this.f9466g, 8);
-                getsavedstargifts2.exclude_saved = !TLObject.hasFlag(this.f9466g, 256);
-                getsavedstargifts2.exclude_unsaved = !TLObject.hasFlag(this.f9466g, 512);
-                getsavedstargifts2.peer_color_available = this.f9465f;
-                long j3 = this.f9462b;
+                getsavedstargifts2.sort_by_value = !this.f9461e;
+                getsavedstargifts2.exclude_unupgradable = !TLObject.hasFlag(this.f9463g, 2);
+                getsavedstargifts2.exclude_upgradable = !TLObject.hasFlag(this.f9463g, 4);
+                getsavedstargifts2.exclude_unlimited = !TLObject.hasFlag(this.f9463g, 1);
+                getsavedstargifts2.exclude_unique = !TLObject.hasFlag(this.f9463g, 8);
+                getsavedstargifts2.exclude_saved = !TLObject.hasFlag(this.f9463g, 256);
+                getsavedstargifts2.exclude_unsaved = !TLObject.hasFlag(this.f9463g, 512);
+                getsavedstargifts2.peer_color_available = this.f9462f;
+                long j3 = this.f9459b;
                 if (j3 == 0) {
                     getsavedstargifts2.peer = new TLRPC.TL_inputPeerSelf();
                 } else {
                     getsavedstargifts2.peer = mp.u1(i11).l1(j3);
                 }
                 if (!z10) {
-                    str = this.f9469k;
+                    str = this.f9466k;
                 }
                 getsavedstargifts2.offset = str;
                 if (z10) {
@@ -89,26 +89,26 @@ public final class o8 implements p8 {
                 }
                 getsavedstargifts2.limit = i10;
                 getsavedstargifts = getsavedstargifts2;
-                if (this.f9463c) {
+                if (this.f9460c) {
                     getsavedstargifts2.flags |= 64;
                     getsavedstargifts2.collection_id = this.d;
                     getsavedstargifts = getsavedstargifts2;
                 }
             }
             int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(getsavedstargifts, new n8(this, r2, z10, 0));
-            this.f9471m = sendRequest;
+            this.f9468m = sendRequest;
             int[] iArr = {sendRequest};
         }
     }
 
     @Override
     public final int b(int i7) {
-        if (!f6.S1(this.f9461a, this.f9462b)) {
+        if (!f6.S1(this.f9458a, this.f9459b)) {
             return -1;
         }
         int i10 = i7 + 1;
         while (true) {
-            ArrayList arrayList = this.f9470l;
+            ArrayList arrayList = this.f9467l;
             if (i10 < arrayList.size()) {
                 if (((TL_stars.SavedStarGift) arrayList.get(i10)).can_upgrade) {
                     return i10;
@@ -127,25 +127,25 @@ public final class o8 implements p8 {
 
     @Override
     public final int c() {
-        return this.f9472n;
+        return this.f9469n;
     }
 
     @Override
     public final void d() {
-        ks.f(this.f9461a).k(ks.I3, Long.valueOf(this.f9462b), this);
+        ks.f(this.f9458a).k(ks.I3, Long.valueOf(this.f9459b), this);
     }
 
     @Override
     public final int e() {
-        return this.f9470l.size();
+        return this.f9467l.size();
     }
 
     public final void f() {
-        if (this.f9471m != -1) {
-            ConnectionsManager.getInstance(this.f9461a).cancelRequest(this.f9471m, true);
-            this.f9471m = -1;
+        if (this.f9468m != -1) {
+            ConnectionsManager.getInstance(this.f9458a).cancelRequest(this.f9468m, true);
+            this.f9468m = -1;
         }
-        this.f9467i = false;
+        this.f9464i = false;
     }
 
     public final void g(int i7, boolean z10) {
@@ -157,10 +157,10 @@ public final class o8 implements p8 {
         } else {
             i10 = 0;
         }
-        int i11 = this.f9466g;
+        int i11 = this.f9463g;
         int i12 = i7 | ((~i10) & i11);
         if (i11 != i12) {
-            this.f9466g = i12;
+            this.f9463g = i12;
             if (z10) {
                 k(true);
             }
@@ -170,7 +170,7 @@ public final class o8 implements p8 {
     @Override
     public final Object get(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f9470l;
+            ArrayList arrayList = this.f9467l;
             if (i7 < arrayList.size()) {
                 return arrayList.get(i7);
             }
@@ -189,7 +189,7 @@ public final class o8 implements p8 {
             return tL_inputSavedStarGiftUser;
         }
         TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = new TL_stars.TL_inputSavedStarGiftChat();
-        tL_inputSavedStarGiftChat.peer = mp.u1(this.f9461a).l1(this.f9462b);
+        tL_inputSavedStarGiftChat.peer = mp.u1(this.f9458a).l1(this.f9459b);
         tL_inputSavedStarGiftChat.saved_id = savedStarGift.saved_id;
         return tL_inputSavedStarGiftChat;
     }
@@ -198,7 +198,7 @@ public final class o8 implements p8 {
         ArrayList arrayList = new ArrayList();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f9470l;
+            ArrayList arrayList2 = this.f9467l;
             if (i7 < arrayList2.size()) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList2.get(i7);
                 if (savedStarGift.pinned_to_top && !savedStarGift.unsaved) {
@@ -213,13 +213,13 @@ public final class o8 implements p8 {
 
     @Override
     public final int indexOf(Object obj) {
-        return this.f9470l.indexOf(obj);
+        return this.f9467l.indexOf(obj);
     }
 
     public final boolean j(String str) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f9470l;
+            ArrayList arrayList = this.f9467l;
             if (i7 >= arrayList.size()) {
                 return false;
             }
@@ -235,22 +235,22 @@ public final class o8 implements p8 {
     }
 
     public final void k(boolean z10) {
-        if (this.f9471m != -1) {
-            ConnectionsManager.getInstance(this.f9461a).cancelRequest(this.f9471m, true);
-            this.f9471m = -1;
+        if (this.f9468m != -1) {
+            ConnectionsManager.getInstance(this.f9458a).cancelRequest(this.f9468m, true);
+            this.f9468m = -1;
         }
-        this.f9467i = false;
-        this.f9470l.clear();
-        this.f9469k = null;
-        this.f9468j = false;
-        if (!z10 && !this.f9473o) {
+        this.f9464i = false;
+        this.f9467l.clear();
+        this.f9466k = null;
+        this.f9465j = false;
+        if (!z10 && !this.f9470o) {
             return;
         }
         a();
     }
 
     public final void l(ArrayList arrayList, TL_stars.StarGift starGift) {
-        int i7 = this.f9461a;
+        int i7 = this.f9458a;
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = arrayList.size();
             boolean z10 = false;
@@ -261,12 +261,12 @@ public final class o8 implements p8 {
                 TL_stars.StarGift starGift2 = (TL_stars.StarGift) obj;
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f9470l;
+                    ArrayList arrayList2 = this.f9467l;
                     if (i11 < arrayList2.size()) {
                         TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) arrayList2.get(i11)).gift;
-                        if (starGift3 != null && starGift3.f28634id == starGift2.f28634id) {
+                        if (starGift3 != null && starGift3.f28632id == starGift2.f28632id) {
                             arrayList2.remove(i11);
-                            this.f9472n = Math.max(0, this.f9472n - 1);
+                            this.f9469n = Math.max(0, this.f9469n - 1);
                             z10 = true;
                             break;
                         }
@@ -277,7 +277,7 @@ public final class o8 implements p8 {
                 }
             }
             if (z10) {
-                ks.f(i7).k(ks.I3, Long.valueOf(this.f9462b), this);
+                ks.f(i7).k(ks.I3, Long.valueOf(this.f9459b), this);
             }
         }
         if (starGift != null) {
@@ -292,14 +292,14 @@ public final class o8 implements p8 {
     public final boolean m(TL_stars.SavedStarGift savedStarGift) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f9470l;
+            ArrayList arrayList = this.f9467l;
             if (i7 >= arrayList.size()) {
                 return false;
             }
             if (x8.k((TL_stars.SavedStarGift) arrayList.get(i7), savedStarGift)) {
                 arrayList.remove(i7);
-                this.f9472n = Math.max(0, this.f9472n - 1);
-                ks.f(this.f9461a).k(ks.I3, Long.valueOf(this.f9462b), this);
+                this.f9469n = Math.max(0, this.f9469n - 1);
+                ks.f(this.f9458a).k(ks.I3, Long.valueOf(this.f9459b), this);
                 return true;
             }
             i7++;
@@ -307,7 +307,7 @@ public final class o8 implements p8 {
     }
 
     public final void n(int i7, int i10) {
-        ArrayList arrayList = this.f9470l;
+        ArrayList arrayList = this.f9467l;
         int j3 = Utilities.j(i7, arrayList.size() - 1, 0);
         if (j3 >= 0 && j3 < arrayList.size()) {
             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.remove(j3);
@@ -319,7 +319,7 @@ public final class o8 implements p8 {
     }
 
     public final void o(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        ArrayList arrayList = this.f9470l;
+        ArrayList arrayList = this.f9467l;
         int size = arrayList.size();
         boolean z10 = false;
         int i7 = 0;
@@ -339,16 +339,16 @@ public final class o8 implements p8 {
     }
 
     public final void p() {
-        boolean z10 = this.f9463c;
+        boolean z10 = this.f9460c;
         int i7 = 0;
-        long j3 = this.f9462b;
-        int i10 = this.f9461a;
+        long j3 = this.f9459b;
+        int i10 = this.f9458a;
         if (z10) {
             TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
             updatestargiftcollection.peer = mp.u1(i10).l1(j3);
             updatestargiftcollection.collection_id = this.d;
             updatestargiftcollection.flags |= 8;
-            ArrayList arrayList = this.f9470l;
+            ArrayList arrayList = this.f9467l;
             int size = arrayList.size();
             while (i7 < size) {
                 Object obj = arrayList.get(i7);
@@ -376,19 +376,19 @@ public final class o8 implements p8 {
         if (savedStarGift != null) {
             ArrayList i7 = i();
             boolean contains = i7.contains(savedStarGift);
-            int i10 = this.f9461a;
+            int i10 = this.f9458a;
             if (contains) {
                 if (!z10) {
                     i7.remove(savedStarGift);
                     z12 = false;
                     savedStarGift.pinned_to_top = z10;
-                    arrayList = this.f9470l;
+                    arrayList = this.f9467l;
                     arrayList.removeAll(i7);
-                    if (this.f9464e && !this.f9463c) {
+                    if (this.f9461e && !this.f9460c) {
                         Collections.sort(arrayList, new a3.c(15));
                     }
                     arrayList.addAll(0, i7);
-                    ks.f(i10).k(ks.I3, Long.valueOf(this.f9462b), this);
+                    ks.f(i10).k(ks.I3, Long.valueOf(this.f9459b), this);
                     p();
                     return z12;
                 }
@@ -406,13 +406,13 @@ public final class o8 implements p8 {
                 }
                 i7.add(savedStarGift);
                 savedStarGift.pinned_to_top = z10;
-                arrayList = this.f9470l;
+                arrayList = this.f9467l;
                 arrayList.removeAll(i7);
-                if (this.f9464e) {
+                if (this.f9461e) {
                     Collections.sort(arrayList, new a3.c(15));
                 }
                 arrayList.addAll(0, i7);
-                ks.f(i10).k(ks.I3, Long.valueOf(this.f9462b), this);
+                ks.f(i10).k(ks.I3, Long.valueOf(this.f9459b), this);
                 p();
                 return z12;
             }
@@ -421,7 +421,7 @@ public final class o8 implements p8 {
     }
 
     public final void r(TL_stars.SavedStarGift savedStarGift, int i7, boolean z10) {
-        ArrayList arrayList = this.f9470l;
+        ArrayList arrayList = this.f9467l;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -441,7 +441,7 @@ public final class o8 implements p8 {
     }
 
     public final void s(TL_stars.SavedStarGift savedStarGift, boolean z10) {
-        ArrayList arrayList = this.f9470l;
+        ArrayList arrayList = this.f9467l;
         int size = arrayList.size();
         boolean z11 = false;
         int i7 = 0;
@@ -455,7 +455,7 @@ public final class o8 implements p8 {
             }
         }
         if (z11) {
-            ks.f(this.f9461a).k(ks.I3, Long.valueOf(this.f9462b), this);
+            ks.f(this.f9458a).k(ks.I3, Long.valueOf(this.f9459b), this);
         }
     }
 }

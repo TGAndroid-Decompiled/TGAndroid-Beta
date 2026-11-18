@@ -89,7 +89,7 @@ public final class z0 extends q6.h {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, i8.b.f16172a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, i8.b.f16169a);
                     q6.m.i(bVar, "Connection progress callbacks cannot be null.");
                     this.f55872o = bVar;
                     c0Var.sendMessage(c0Var.obtainMessage(3, atomicInteger.get(), 6, activity));

@@ -21,7 +21,7 @@ public final class ur0 extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59126f;
+        int i7 = f1Var.f59127f;
         if (i7 != 14 && i7 != 25) {
             return false;
         }
@@ -101,30 +101,30 @@ public final class ur0 extends bk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        int i10 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        int i10 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         boolean z10 = false;
         if (i10 == 14) {
-            if (view instanceof org.telegram.ui.Cells.g6) {
-                org.telegram.ui.Cells.g6 g6Var = (org.telegram.ui.Cells.g6) view;
+            if (view instanceof org.telegram.ui.Cells.h6) {
+                org.telegram.ui.Cells.h6 h6Var = (org.telegram.ui.Cells.h6) view;
                 if (G()) {
                     i7--;
                 }
                 ArrayList arrayList = this.d;
-                g6Var.x((TLRPC.Chat) arrayList.get(i7), null, null, null, false, false);
+                h6Var.x((TLRPC.Chat) arrayList.get(i7), null, null, null, false, false);
                 if (i7 != arrayList.size() - 1 || !this.h) {
                     z10 = true;
                 }
-                g6Var.N = z10;
+                h6Var.N = z10;
             }
-        } else if (i10 == 25 && (view instanceof org.telegram.ui.Cells.x4)) {
-            ((org.telegram.ui.Cells.x4) view).b(2131232178, 5, org.telegram.messenger.gd.a0(null, null, 2131751734, org.telegram.messenger.o10.k(this.f40408r.f35642y1.getMessagesController().c2(Long.valueOf(F())), true)), true);
+        } else if (i10 == 25 && (view instanceof org.telegram.ui.Cells.y4)) {
+            ((org.telegram.ui.Cells.y4) view).b(2131232178, 5, org.telegram.messenger.gd.a0(null, null, 2131751734, org.telegram.messenger.o10.k(this.f40408r.f35642y1.getMessagesController().c2(Long.valueOf(F())), true)), true);
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.g6 g6Var;
+        org.telegram.ui.Cells.h6 h6Var;
         gt0 gt0Var = this.f40408r;
         org.telegram.ui.ActionBar.i6 i6Var = gt0Var.I1;
         Context context = this.f40404c;
@@ -135,12 +135,12 @@ public final class ur0 extends bk0 {
                     wzVar.setIsSingleCell(true);
                     wzVar.f41829x = false;
                     wzVar.setViewType(1);
-                    g6Var = wzVar;
+                    h6Var = wzVar;
                 } else {
-                    org.telegram.ui.Cells.x4 x4Var = new org.telegram.ui.Cells.x4(context);
-                    x4Var.a(org.telegram.ui.ActionBar.n6.f29731v6, org.telegram.ui.ActionBar.n6.f29712u6);
-                    x4Var.setTextLeft(org.telegram.messenger.g0.C);
-                    g6Var = x4Var;
+                    org.telegram.ui.Cells.y4 y4Var = new org.telegram.ui.Cells.y4(context);
+                    y4Var.a(org.telegram.ui.ActionBar.n6.f29729v6, org.telegram.ui.ActionBar.n6.f29710u6);
+                    y4Var.setTextLeft(org.telegram.messenger.g0.C);
+                    h6Var = y4Var;
                 }
             } else {
                 x3 X = gt0.X(6, gt0Var.f35606m1, context, i6Var);
@@ -148,8 +148,8 @@ public final class ur0 extends bk0 {
                 return new v4.f1(X);
             }
         } else {
-            g6Var = new org.telegram.ui.Cells.g6(context, i6Var);
+            h6Var = new org.telegram.ui.Cells.h6(context, i6Var);
         }
-        return i5.c.q(g6Var, g6Var, -1, -2);
+        return i5.c.q(h6Var, h6Var, -1, -2);
     }
 }

@@ -16,12 +16,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import x2.e0;
 import x2.j1;
 public final class k extends x2.a {
     public final c h;
-    public final b5 f56387i;
+    public final c5 f56387i;
     public final nb.a f56388j;
     public final q2.m f56389k;
     public final qb.a f56390l;
@@ -37,10 +37,10 @@ public final class k extends x2.a {
         m0.a("media3.exoplayer.hls");
     }
 
-    public k(l0 l0Var, b5 b5Var, c cVar, nb.a aVar, q2.m mVar, qb.a aVar2, s2.d dVar, long j3, boolean z10, int i7) {
+    public k(l0 l0Var, c5 c5Var, c cVar, nb.a aVar, q2.m mVar, qb.a aVar2, s2.d dVar, long j3, boolean z10, int i7) {
         this.f56397s = l0Var;
-        this.f56395q = l0Var.f10505c;
-        this.f56387i = b5Var;
+        this.f56395q = l0Var.f10502c;
+        this.f56387i = c5Var;
         this.h = cVar;
         this.f56388j = aVar;
         this.f56389k = mVar;
@@ -68,10 +68,10 @@ public final class k extends x2.a {
     @Override
     public final boolean a(l0 l0Var) {
         l0 i7 = i();
-        g0 g0Var = i7.f10504b;
+        g0 g0Var = i7.f10501b;
         g0Var.getClass();
-        g0 g0Var2 = l0Var.f10504b;
-        if (g0Var2 != null && g0Var2.f10413a.equals(g0Var.f10413a) && g0Var2.f10416e.equals(g0Var.f10416e) && Objects.equals(g0Var2.f10415c, g0Var.f10415c) && i7.f10505c.equals(l0Var.f10505c)) {
+        g0 g0Var2 = l0Var.f10501b;
+        if (g0Var2 != null && g0Var2.f10410a.equals(g0Var.f10410a) && g0Var2.f10413e.equals(g0Var.f10413e) && Objects.equals(g0Var2.f10412c, g0Var.f10412c) && i7.f10502c.equals(l0Var.f10502c)) {
             return true;
         }
         return false;
@@ -82,7 +82,7 @@ public final class k extends x2.a {
         xa b10 = b(g0Var);
         q2.j jVar = new q2.j(this.d.f55761c, 0, g0Var);
         c0 c0Var = this.f56396r;
-        m2.i iVar = this.f60028g;
+        m2.i iVar = this.f60029g;
         iVar.getClass();
         return new j(this.h, this.f56393o, this.f56387i, c0Var, this.f56389k, jVar, this.f56390l, b10, mVar, this.f56388j, this.f56391m, this.f56392n, iVar);
     }
@@ -117,15 +117,15 @@ public final class k extends x2.a {
         this.f56396r = c0Var;
         Looper myLooper = Looper.myLooper();
         myLooper.getClass();
-        m2.i iVar = this.f60028g;
+        m2.i iVar = this.f60029g;
         iVar.getClass();
         q2.m mVar = this.f56389k;
         mVar.r1(myLooper, iVar);
         mVar.a();
         xa b10 = b(null);
-        g0 g0Var = i().f10504b;
+        g0 g0Var = i().f10501b;
         g0Var.getClass();
-        Uri uri = g0Var.f10413a;
+        Uri uri = g0Var.f10410a;
         s2.d dVar = this.f56393o;
         dVar.getClass();
         dVar.f56762n = h2.l0.q(null);
@@ -133,7 +133,7 @@ public final class k extends x2.a {
         dVar.f56763r = this;
         Map map = Collections.EMPTY_MAP;
         la.k(uri, "The uri must be set.");
-        b3.s sVar = new b3.s(((j2.g) dVar.f56757a.f30431a).createDataSource(), new j2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, dVar.f56758b.f0());
+        b3.s sVar = new b3.s(((j2.g) dVar.f56757a.f30477a).createDataSource(), new j2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, dVar.f56758b.f0());
         if (dVar.h == null) {
             z10 = true;
         } else {
@@ -142,7 +142,7 @@ public final class k extends x2.a {
         la.p(z10);
         b3.p pVar = new b3.p("DefaultHlsPlaylistTracker:MultivariantPlaylist");
         dVar.h = pVar;
-        pVar.f(sVar, dVar, dVar.f56759c.R4(sVar.f2918c));
+        pVar.f(sVar, dVar, dVar.f56759c.R4(sVar.f2919c));
     }
 
     @Override
@@ -157,9 +157,9 @@ public final class k extends x2.a {
                     oVar.l();
                     q2.g gVar = oVar.h;
                     if (gVar != null) {
-                        gVar.c(oVar.f60052e);
+                        gVar.c(oVar.f60053e);
                         oVar.h = null;
-                        oVar.f60054g = null;
+                        oVar.f60055g = null;
                     }
                 }
             }
@@ -261,7 +261,7 @@ public final class k extends x2.a {
             } else {
                 j13 = 0;
             }
-            long j22 = this.f56395q.f10395a;
+            long j22 = this.f56395q.f10392a;
             if (j22 != -9223372036854775807L) {
                 j15 = h2.l0.S(j22);
             } else {
@@ -280,14 +280,14 @@ public final class k extends x2.a {
             }
             long j23 = j17 + j13;
             long j24 = h2.l0.j(j15, j13, j23);
-            f0 f0Var = i().f10505c;
-            if (f0Var.d == -3.4028235E38f && f0Var.f10398e == -3.4028235E38f && lVar.f56825c == -9223372036854775807L && lVar.d == -9223372036854775807L) {
+            f0 f0Var = i().f10502c;
+            if (f0Var.d == -3.4028235E38f && f0Var.f10395e == -3.4028235E38f && lVar.f56825c == -9223372036854775807L && lVar.d == -9223372036854775807L) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.e0 a10 = this.f56395q.a();
-            a10.f10383a = h2.l0.h0(j24);
+            a10.f10380a = h2.l0.h0(j24);
             float f11 = 1.0f;
             if (z10) {
                 f10 = 1.0f;
@@ -296,13 +296,13 @@ public final class k extends x2.a {
             }
             a10.d = f10;
             if (!z10) {
-                f11 = this.f56395q.f10398e;
+                f11 = this.f56395q.f10395e;
             }
-            a10.f10386e = f11;
+            a10.f10383e = f11;
             f0 f0Var2 = new f0(a10);
             this.f56395q = f0Var2;
             if (j18 == -9223372036854775807L) {
-                j18 = j23 - h2.l0.S(f0Var2.f10395a);
+                j18 = j23 - h2.l0.S(f0Var2.f10392a);
             }
             if (z13) {
                 j20 = j18;

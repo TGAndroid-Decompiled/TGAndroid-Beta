@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class om0 extends org.telegram.ui.Components.au0 {
-    public int f50632g0;
-    public boolean f50633h0;
-    public final qm0 f50634i0;
+    public int f50588g0;
+    public boolean f50589h0;
+    public final qm0 f50590i0;
 
     public om0(qm0 qm0Var, Context context) {
         super(context, null);
-        this.f50634i0 = qm0Var;
+        this.f50590i0 = qm0Var;
     }
 
     @Override
@@ -26,16 +26,16 @@ public final class om0 extends org.telegram.ui.Components.au0 {
         setMeasuredDimension(size, size2);
         int L = org.telegram.messenger.g0.L(20.0f);
         int i12 = 0;
-        qm0 qm0Var = this.f50634i0;
+        qm0 qm0Var = this.f50590i0;
         if (L >= 0) {
             if (!org.telegram.messenger.g0.E) {
                 size2 -= qm0Var.N.getEmojiPadding();
                 i10 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
             }
         } else {
-            this.f50633h0 = true;
+            this.f50589h0 = true;
             qm0Var.N.j();
-            this.f50633h0 = false;
+            this.f50589h0 = false;
         }
         int i13 = i10;
         int childCount = getChildCount();
@@ -53,9 +53,9 @@ public final class om0 extends org.telegram.ui.Components.au0 {
                         } else {
                             f10 = 320.0f;
                         }
-                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size2 - org.telegram.messenger.g0.f24115m)), 1073741824));
+                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size2 - org.telegram.messenger.g0.f24112m)), 1073741824));
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - org.telegram.messenger.g0.f24115m), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - org.telegram.messenger.g0.f24112m), 1073741824));
                     }
                 } else {
                     i11 = i7;
@@ -72,7 +72,7 @@ public final class om0 extends org.telegram.ui.Components.au0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f50633h0) {
+        if (this.f50589h0) {
             return;
         }
         super.requestLayout();

@@ -94,7 +94,7 @@ public final class m71 extends FrameLayout {
             textView2.setTypeface(org.telegram.messenger.g0.o());
             textView2.setText(webPage.title);
             textView2.setTextSize(1, 14.0f);
-            org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29504j5, i6Var);
+            org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29502j5, i6Var);
             textView2.setSingleLine(true);
             textView2.setEllipsize(TextUtils.TruncateAt.END);
             linearLayout.addView(textView2, c8.ma.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
@@ -103,7 +103,7 @@ public final class m71 extends FrameLayout {
             TextView textView3 = new TextView(getContext());
             textView3.setText(webPage.description);
             textView3.setTextSize(1, 13.0f);
-            org.telegram.ui.ActionBar.u6.U(textView3, org.telegram.ui.ActionBar.n6.f29504j5, i6Var);
+            org.telegram.ui.ActionBar.u6.U(textView3, org.telegram.ui.ActionBar.n6.f29502j5, i6Var);
             textView3.setMaxLines(4);
             textView3.setEllipsize(TextUtils.TruncateAt.END);
             linearLayout.addView(textView3, c8.ma.o(-1, -2));
@@ -118,7 +118,7 @@ public final class m71 extends FrameLayout {
             q9 q9Var = new q9(getContext());
             q9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
             int L = org.telegram.messenger.g0.L(6.0f);
-            int i7 = org.telegram.ui.ActionBar.n6.f29504j5;
+            int i7 = org.telegram.ui.ActionBar.n6.f29502j5;
             ShapeDrawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.r1(0.08f, org.telegram.ui.ActionBar.n6.w0(i7, i6Var)));
             org.telegram.ui.ActionBar.q6 K = org.telegram.ui.ActionBar.u6.K(0.08f, i7);
             q9Var.setBackground(d02);

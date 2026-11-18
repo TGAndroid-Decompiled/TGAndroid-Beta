@@ -62,7 +62,7 @@ public final class b extends k41 {
             textView.setText(nftitem.description);
         }
         fc c10 = c.c(nftitem, !cVar.f43978f);
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29788y6, cVar.f43974a);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, cVar.f43974a);
         Drawable mutate = cVar.getContext().getResources().getDrawable(2131232838).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
         if (cVar.f43978f) {

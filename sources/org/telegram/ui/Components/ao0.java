@@ -24,7 +24,7 @@ public final class ao0 extends ck0 {
                 } else {
                     f11 = 58.0f;
                 }
-                if (f10 >= org.telegram.messenger.g0.L(f11) + yo0Var.C2.f15893b) {
+                if (f10 >= org.telegram.messenger.g0.L(f11) + yo0Var.C2.f15890b) {
                     return true;
                 }
                 return false;
@@ -35,7 +35,7 @@ public final class ao0 extends ck0 {
                 } else {
                     f12 = 58.0f;
                 }
-                if (f10 >= org.telegram.messenger.g0.L(f12) + yo0Var2.C2.f15893b) {
+                if (f10 >= org.telegram.messenger.g0.L(f12) + yo0Var2.C2.f15890b) {
                     return true;
                 }
                 return false;

@@ -9,20 +9,20 @@ public final class ef extends ki.v {
     public ef(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
         this.f34689w = chatActivityEnterView;
-        this.f18981a = null;
+        this.f18978a = null;
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f18985f = true;
-        this.f18982b = new Object();
+        this.f18982f = true;
+        this.f18979b = new Object();
         di.b1 b1Var = new di.b1(5, context, this);
-        this.f18983c = b1Var;
+        this.f18980c = b1Var;
         b1Var.setOverScrollMode(2);
         b1Var.setClipToPadding(false);
         b1Var.setClipToOutline(true);
         b1Var.j(new bi.q1(this, 21));
         addView(b1Var);
         paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.zj, false));
-        fh.g gVar = this.f18987r;
+        fh.g gVar = this.f18984r;
         if (gVar != null) {
             gVar.updateColors();
         }

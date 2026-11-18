@@ -14,7 +14,7 @@ public final class r00 implements Runnable {
         if (fragmentContextView.f32964h0 != null && (h2Var instanceof org.telegram.ui.bn)) {
             org.telegram.messenger.t3 groupCall = fragmentContextView.f32969n.getGroupCall();
             if (groupCall != null && groupCall.j()) {
-                int currentTime = groupCall.f26937b.schedule_date - h2Var.getConnectionsManager().getCurrentTime();
+                int currentTime = groupCall.f26935b.schedule_date - h2Var.getConnectionsManager().getCurrentTime();
                 if (currentTime >= 86400) {
                     j02 = org.telegram.messenger.gd.G(Math.round(currentTime / 86400.0f), "Days", new Object[0]);
                 } else {

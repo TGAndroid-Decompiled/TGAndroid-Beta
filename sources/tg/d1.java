@@ -31,7 +31,7 @@ public final class d1 extends TextView {
         canvas.restore();
         if (this.f57779a) {
             int z10 = n10.z(16.0f, getHeight(), 2);
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 this.f57780b.setBounds(org.telegram.messenger.g0.L(7.0f), z10, org.telegram.messenger.g0.L(23.0f), org.telegram.messenger.g0.L(16.0f) + z10);
             } else {
                 this.f57780b.setBounds(getWidth() - org.telegram.messenger.g0.L(23.0f), z10, getWidth() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(16.0f) + z10);
@@ -45,14 +45,14 @@ public final class d1 extends TextView {
         this.f57779a = z10;
         if (z10) {
             float f11 = 12.0f;
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 f10 = 27.0f;
             } else {
                 f10 = 12.0f;
             }
             int L = org.telegram.messenger.g0.L(f10);
             int L2 = org.telegram.messenger.g0.L(6.0f);
-            if (!gd.f24216a0) {
+            if (!gd.f24213a0) {
                 f11 = 27.0f;
             }
             setPadding(L, L2, org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(6.0f));

@@ -42,7 +42,7 @@ public final class qk0 extends yu0 {
         float f10;
         Paint paint = this.f38824f;
         if (paint == null) {
-            paint = org.telegram.ui.ActionBar.n6.f29374c2;
+            paint = org.telegram.ui.ActionBar.n6.f29372c2;
         }
         paint.setAlpha(((int) (this.d * 200.0f)) + 55);
         float L = org.telegram.messenger.g0.L(6.0f);

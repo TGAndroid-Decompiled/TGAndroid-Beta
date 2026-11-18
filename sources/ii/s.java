@@ -35,13 +35,13 @@ public final class s extends sa implements fs {
     @Override
     public final void L() {
         super.L();
-        ks.f(this.f30189a).n(this, ks.f25223x3);
-        ks.f(this.f30189a).n(this, ks.A3);
+        ks.f(this.f30187a).n(this, ks.f25221x3);
+        ks.f(this.f30187a).n(this, ks.A3);
     }
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30189a, 0, true, new e7(this, 5), this.J0);
+        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30187a, 0, true, new e7(this, 5), this.J0);
         this.Y1 = z41Var;
         return z41Var;
     }
@@ -52,25 +52,25 @@ public final class s extends sa implements fs {
         if (zaVar == null) {
             return null;
         }
-        return ((TextView) zaVar.f10177c).getText();
+        return ((TextView) zaVar.f10174c).getText();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
-        if (i7 == ks.f25223x3 || i7 == ks.A3) {
+        if (i7 == ks.f25221x3 || i7 == ks.A3) {
             z41 z41Var = this.Y1;
             if (z41Var != null) {
                 z41Var.O(true);
             }
-            cg.a s5 = x8.y(this.f30189a, true).s();
+            cg.a s5 = x8.y(this.f30187a, true).s();
             cg.a aVar = this.T1;
-            ((TextView) this.U1.f10177c).setText(gd.a0(null, null, 2131743810, cg.a.j(aVar.f5275b - s5.f5275b, cg.b.f5277b).d()));
+            ((TextView) this.U1.f10174c).setText(gd.a0(null, null, 2131743810, cg.a.j(aVar.f5272b - s5.f5272b, cg.b.f5274b).d()));
             na naVar = this.f39535p1;
             if (naVar != null) {
                 naVar.setTitle(P0());
             }
-            if (s5.f5275b >= aVar.f5275b && (runnable = this.W1) != null) {
+            if (s5.f5272b >= aVar.f5272b && (runnable = this.W1) != null) {
                 runnable.run();
                 this.W1 = null;
                 dismiss();
@@ -83,7 +83,7 @@ public final class s extends sa implements fs {
         super.dismiss();
         za zaVar = this.U1;
         if (zaVar != null) {
-            ((m7) zaVar.f10176b).setPaused(true);
+            ((m7) zaVar.f10173b).setPaused(true);
         }
     }
 
@@ -91,7 +91,7 @@ public final class s extends sa implements fs {
     public final void s0() {
         super.s0();
         try {
-            int w02 = n6.w0(n6.f29469h5, this.J0);
+            int w02 = n6.w0(n6.f29467h5, this.J0);
             if (w02 != this.X1) {
                 this.X1 = w02;
                 v0(w02);
@@ -104,7 +104,7 @@ public final class s extends sa implements fs {
     @Override
     public final void show() {
         rj rjVar;
-        if (x8.y(this.f30189a, true).s().f5275b >= this.T1.f5275b) {
+        if (x8.y(this.f30187a, true).s().f5272b >= this.T1.f5272b) {
             Runnable runnable = this.W1;
             if (runnable != null) {
                 runnable.run();
@@ -116,12 +116,12 @@ public final class s extends sa implements fs {
         h2 Q = LaunchActivity.Q();
         if (Q instanceof bn) {
             bn bnVar = (bn) Q;
-            if (bnVar.V9() && (rjVar = bnVar.f45932a0) != null) {
+            if (bnVar.V9() && (rjVar = bnVar.f45923a0) != null) {
                 rjVar.U();
             }
         }
         super.show();
-        ks.f(this.f30189a).c(this, ks.f25223x3);
-        ks.f(this.f30189a).c(this, ks.A3);
+        ks.f(this.f30187a).c(this, ks.f25221x3);
+        ks.f(this.f30187a).c(this, ks.A3);
     }
 }

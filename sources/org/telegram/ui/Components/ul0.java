@@ -68,8 +68,8 @@ public final class ul0 implements oj0 {
                 ug.i1 i1Var = (ug.i1) this.d;
                 if (view instanceof org.telegram.ui.js0) {
                     org.telegram.ui.js0 js0Var = (org.telegram.ui.js0) view;
-                    PremiumPreviewFragment.v0(this.f40375b, js0Var.f49078f.f53518a);
-                    i1Var.t(new ug.z0(this.f40376c, js0Var.f49078f.f53518a, false));
+                    PremiumPreviewFragment.v0(this.f40375b, js0Var.f49055f.f53469a);
+                    i1Var.t(new ug.z0(this.f40376c, js0Var.f49055f.f53469a, false));
                     return;
                 }
                 return;

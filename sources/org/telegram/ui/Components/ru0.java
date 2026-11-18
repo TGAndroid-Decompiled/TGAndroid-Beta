@@ -23,7 +23,7 @@ public final class ru0 implements Runnable {
                 tu0 tu0Var = uu0Var2.f40424e;
                 if (tu0Var != null) {
                     uu0Var2.getVisibilityFactor();
-                    ProfileActivity profileActivity = ((org.telegram.ui.tt0) tu0Var).f52356b;
+                    ProfileActivity profileActivity = ((org.telegram.ui.tt0) tu0Var).f52351b;
                     profileActivity.f43627r.setTranslationX(profileActivity.m4(profileActivity.B6, profileActivity.D6));
                     profileActivity.f43627r.setTranslationY(profileActivity.n4(profileActivity.E6));
                     return;

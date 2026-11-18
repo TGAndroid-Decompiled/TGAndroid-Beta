@@ -5,9 +5,9 @@ import android.view.Window;
 import java.lang.ref.WeakReference;
 import org.telegram.ui.LaunchActivity;
 public final class v0 {
-    public final int f3346a = 0;
-    public boolean f3347b;
-    public boolean f3348c;
+    public final int f3347a = 0;
+    public boolean f3348b;
+    public boolean f3349c;
     public final Object d;
 
     public v0(w0 w0Var) {
@@ -15,14 +15,14 @@ public final class v0 {
     }
 
     public final void a() {
-        switch (this.f3346a) {
+        switch (this.f3347a) {
             case 0:
                 b(false);
-                this.f3348c = true;
+                this.f3349c = true;
                 return;
             default:
                 b(false);
-                this.f3348c = true;
+                this.f3349c = true;
                 return;
         }
     }
@@ -30,24 +30,24 @@ public final class v0 {
     public final void b(boolean z10) {
         int i7;
         int i10;
-        switch (this.f3346a) {
+        switch (this.f3347a) {
             case 0:
                 w0 w0Var = (w0) this.d;
-                if (this.f3347b != z10 && !this.f3348c) {
-                    this.f3347b = z10;
+                if (this.f3348b != z10 && !this.f3349c) {
+                    this.f3348b = z10;
                     boolean z11 = true;
                     if (z10) {
-                        w0Var.f3354b++;
+                        w0Var.f3355b++;
                     } else {
-                        w0Var.f3354b--;
+                        w0Var.f3355b--;
                     }
                     int i11 = 0;
-                    if (w0Var.f3354b <= 0) {
+                    if (w0Var.f3355b <= 0) {
                         z11 = false;
                     }
-                    if (w0Var.f3353a != z11) {
-                        w0Var.f3353a = z11;
-                        Window window = (Window) ((WeakReference) ((a1.c) w0Var.f3355c).f38b).get();
+                    if (w0Var.f3354a != z11) {
+                        w0Var.f3354a = z11;
+                        Window window = (Window) ((WeakReference) ((a1.c) w0Var.f3356c).f38b).get();
                         if (window != null) {
                             View decorView = window.getDecorView();
                             if (z11) {
@@ -62,8 +62,8 @@ public final class v0 {
                 }
                 return;
             default:
-                if (this.f3347b != z10 && !this.f3348c) {
-                    this.f3347b = z10;
+                if (this.f3348b != z10 && !this.f3349c) {
+                    this.f3348b = z10;
                     LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
                     if (launchActivity != null) {
                         int i12 = launchActivity.B1;

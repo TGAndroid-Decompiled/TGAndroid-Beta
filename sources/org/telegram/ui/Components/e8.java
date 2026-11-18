@@ -61,9 +61,9 @@ public final class e8 implements Runnable {
                                     arrayList2.add(fjVar);
                                 } else {
                                     if (fjVar.D == 0) {
-                                        document = fjVar.f23968k.media.webpage.document;
+                                        document = fjVar.f23965k.media.webpage.document;
                                     } else {
-                                        document = fjVar.f23968k.media.document;
+                                        document = fjVar.f23965k.media.document;
                                     }
                                     int i14 = 0;
                                     while (true) {

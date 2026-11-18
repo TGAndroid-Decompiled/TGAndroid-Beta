@@ -24,62 +24,62 @@ public final class o0 implements fs {
     public boolean E;
     public boolean F;
     public TLRPC.ShareTheme I;
-    public final int f5731a;
-    public final z0 f5732b;
-    public final m0 f5733c;
-    public boolean f5734e;
-    public TLRPC.TL_exportedNoPaidMessagesToken f5735f;
+    public final int f5728a;
+    public final z0 f5729b;
+    public final m0 f5730c;
+    public boolean f5731e;
+    public TLRPC.TL_exportedNoPaidMessagesToken f5732f;
     public long h;
-    public int f5736n;
-    public TLRPC.TL_exportedContactToken f5737r;
-    public long f5738s;
-    public TLRPC.ShareTheme f5739w;
-    public int f5740x;
-    public boolean f5741y;
+    public int f5733n;
+    public TLRPC.TL_exportedContactToken f5734r;
+    public long f5735s;
+    public TLRPC.ShareTheme f5736w;
+    public int f5737x;
+    public boolean f5738y;
     public int d = 0;
     public final k0 G = new Runnable(this) {
-        public final o0 f5704b;
+        public final o0 f5701b;
 
         {
-            this.f5704b = this;
+            this.f5701b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f5704b.p();
+                    this.f5701b.p();
                     return;
                 default:
-                    this.f5704b.o();
+                    this.f5701b.o();
                     return;
             }
         }
     };
     public final k0 H = new Runnable(this) {
-        public final o0 f5704b;
+        public final o0 f5701b;
 
         {
-            this.f5704b = this;
+            this.f5701b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f5704b.p();
+                    this.f5701b.p();
                     return;
                 default:
-                    this.f5704b.o();
+                    this.f5701b.o();
                     return;
             }
         }
     };
 
     public o0(int i7, z0 z0Var, m0 m0Var) {
-        this.f5731a = i7;
-        this.f5732b = z0Var;
-        this.f5733c = m0Var;
+        this.f5728a = i7;
+        this.f5729b = z0Var;
+        this.f5730c = m0Var;
     }
 
     public static LongSparseArray h(int i7) {
@@ -109,16 +109,16 @@ public final class o0 implements fs {
         this.I = shareTheme;
         boolean z10 = shareTheme instanceof TLRPC.TL_shareThemeGift;
         boolean z11 = false;
-        z0 z0Var = this.f5732b;
+        z0 z0Var = this.f5729b;
         if (z10) {
             TL_stars.StarGift starGift = ((TLRPC.TL_shareThemeGift) shareTheme).stargift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
-                ArrayList arrayList2 = z0Var.f6069w1;
+                ArrayList arrayList2 = z0Var.f6066w1;
                 int i7 = 0;
                 while (true) {
                     if (i7 < arrayList2.size()) {
-                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i7)).f28634id == tL_starGiftUnique.f28634id) {
+                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i7)).f28632id == tL_starGiftUnique.f28632id) {
                             break;
                         }
                         i7++;
@@ -132,17 +132,17 @@ public final class o0 implements fs {
                     i7 = 0;
                 }
                 w0 w0Var = z0Var.G;
-                if (w0Var.f5811a == 2 && w0Var.f5825q == i7) {
+                if (w0Var.f5808a == 2 && w0Var.f5822q == i7) {
                     return;
                 }
-                z0Var.f5906f2 = true;
+                z0Var.f5903f2 = true;
                 z0Var.J.clear();
-                Runnable runnable = z0Var.f5895e2;
+                Runnable runnable = z0Var.f5892e2;
                 if (runnable != null) {
                     runnable.run();
                 }
                 z0Var.M7 = i7;
-                if (z0Var.f5916g2) {
+                if (z0Var.f5913g2) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
@@ -150,7 +150,7 @@ public final class o0 implements fs {
                 z0Var.O7 = f10;
                 z0Var.P7 = 1.0f;
                 z0Var.I0(z0Var.getWidth() / 2.0f, (z0Var.l() / 2.0f) + z0Var.m(), i7);
-                z0Var.f5906f2 = false;
+                z0Var.f5903f2 = false;
                 return;
             }
         }
@@ -173,13 +173,13 @@ public final class o0 implements fs {
     }
 
     public final void b() {
-        this.f5739w = null;
+        this.f5736w = null;
         org.telegram.messenger.g0.r(this.H);
-        int i7 = this.f5731a;
+        int i7 = this.f5728a;
         LongSparseArray h = h(i7);
-        long j3 = this.f5733c.f5721f;
+        long j3 = this.f5730c.f5718f;
         n0 n0Var = (n0) h.get(j3);
-        if (n0Var != null && n0Var.f5727b == 0) {
+        if (n0Var != null && n0Var.f5724b == 0) {
             h(i7).remove(j3);
         }
     }
@@ -196,8 +196,8 @@ public final class o0 implements fs {
     }
 
     public final String d(TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken) {
-        m0 m0Var = this.f5733c;
-        String str = m0Var.f5717a;
+        m0 m0Var = this.f5730c;
+        String str = m0Var.f5714a;
         if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url) && str != null && !m0Var.d) {
             return str + "?free=" + tL_exportedNoPaidMessagesToken.token;
         } else if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url)) {
@@ -210,24 +210,24 @@ public final class o0 implements fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TLRPC.ChatFull chatFull;
-        long j3 = this.f5733c.f5721f;
-        if (i7 == ks.f25141k0) {
+        long j3 = this.f5730c.f5718f;
+        if (i7 == ks.f25139k0) {
             r();
         } else if (i7 == ks.E0) {
             if (((Long) objArr[0]).longValue() == j3) {
                 i(((TLRPC.UserFull) objArr[1]).share_theme);
             }
-        } else if (i7 == ks.T && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f28406id) == j3) {
+        } else if (i7 == ks.T && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f28404id) == j3) {
             i(chatFull.share_theme);
         }
     }
 
     public final TLRPC.InputPeer e() {
-        m0 m0Var = this.f5733c;
-        if (m0Var.f5720e) {
+        m0 m0Var = this.f5730c;
+        if (m0Var.f5717e) {
             return new TLRPC.TL_inputPeerSelf();
         }
-        TLRPC.InputPeer l1 = mp.u1(this.f5731a).l1(m0Var.f5721f);
+        TLRPC.InputPeer l1 = mp.u1(this.f5728a).l1(m0Var.f5718f);
         if (l1 instanceof TLRPC.TL_inputPeerEmpty) {
             return null;
         }
@@ -235,13 +235,13 @@ public final class o0 implements fs {
     }
 
     public final SharedPreferences f() {
-        return mp.u1(this.f5731a).h7;
+        return mp.u1(this.f5728a).h7;
     }
 
     public final void g() {
-        int i7 = this.f5731a;
+        int i7 = this.f5728a;
         mp u12 = mp.u1(i7);
-        long j3 = this.f5733c.f5721f;
+        long j3 = this.f5730c.f5718f;
         if (j3 > 0) {
             TLRPC.User c22 = u12.c2(Long.valueOf(j3));
             if (c22 != null) {
@@ -256,34 +256,34 @@ public final class o0 implements fs {
             return;
         }
         ks.f(i7).c(this, ks.T);
-        tr.a0(i7).F0(O0.f28405id, v3.T(O0), null, true, false, 0);
+        tr.a0(i7).F0(O0.f28403id, v3.T(O0), null, true, false, 0);
     }
 
     public final void i(TLRPC.ShareTheme shareTheme) {
-        long j3 = this.f5733c.f5721f;
+        long j3 = this.f5730c.f5718f;
         if (!this.F) {
             if (shareTheme == null) {
                 shareTheme = new TLRPC.TL_shareThemeDefault();
             }
-            int i7 = this.f5731a;
+            int i7 = this.f5728a;
             n0 n0Var = (n0) h(i7).get(j3);
             if (n0Var != null) {
-                TLRPC.ShareTheme shareTheme2 = n0Var.f5726a;
+                TLRPC.ShareTheme shareTheme2 = n0Var.f5723a;
                 byte[] q10 = q(shareTheme);
                 byte[] q11 = q(shareTheme2);
                 if (q10 != null && Arrays.equals(q10, q11)) {
                     h(i7).remove(j3);
-                } else if (n0Var.f5727b != 0 && SystemClock.elapsedRealtime() - n0Var.f5727b >= 10000) {
+                } else if (n0Var.f5724b != 0 && SystemClock.elapsedRealtime() - n0Var.f5724b >= 10000) {
                     h(i7).remove(j3);
                 } else {
-                    k(n0Var.f5726a);
+                    k(n0Var.f5723a);
                     return;
                 }
             }
-            if (!this.f5741y) {
+            if (!this.f5738y) {
                 TLRPC.ShareTheme shareTheme3 = this.I;
                 if (shareTheme3 == null) {
-                    z0 z0Var = this.f5732b;
+                    z0 z0Var = this.f5729b;
                     z0Var.setInstantTheme(true);
                     a(shareTheme);
                     z0Var.setInstantTheme(false);
@@ -301,14 +301,14 @@ public final class o0 implements fs {
 
     public final void j() {
         TLRPC.TL_shareThemeGift tL_shareThemeGift;
-        this.f5741y = true;
+        this.f5738y = true;
         boolean z10 = false;
         this.E = false;
-        m0 m0Var = this.f5733c;
-        if (!m0Var.f5722g) {
+        m0 m0Var = this.f5730c;
+        if (!m0Var.f5719g) {
             return;
         }
-        z0 z0Var = this.f5732b;
+        z0 z0Var = this.f5729b;
         TL_stars.TL_starGiftUnique themeGift = z0Var.getThemeGift();
         ArrayList<TLRPC.Reaction> pickedEmoji = z0Var.getPickedEmoji();
         TLRPC.TL_shareThemeGift tL_shareThemeGift2 = null;
@@ -317,7 +317,7 @@ public final class o0 implements fs {
         TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = null;
         tL_shareThemeGift2 = null;
         if (themeGift != null) {
-            if (m0Var.f5720e) {
+            if (m0Var.f5717e) {
                 if (!TextUtils.isEmpty(themeGift.slug)) {
                     ?? tL_inputSavedStarGiftSlug = new TL_stars.TL_inputSavedStarGiftSlug();
                     tL_inputSavedStarGiftSlug.slug = themeGift.slug;
@@ -371,19 +371,19 @@ public final class o0 implements fs {
         }
         this.I = tL_shareThemeGift2;
         ?? obj = new Object();
-        obj.f5726a = tL_shareThemeGift2;
-        h(this.f5731a).put(m0Var.f5721f, obj);
+        obj.f5723a = tL_shareThemeGift2;
+        h(this.f5728a).put(m0Var.f5718f, obj);
         k(this.I);
-        this.f5739w = tL_shareThemeGift;
+        this.f5736w = tL_shareThemeGift;
         k0 k0Var = this.H;
         org.telegram.messenger.g0.r(k0Var);
         org.telegram.messenger.g0.h3(k0Var, 700L);
     }
 
     public final void k(TLRPC.ShareTheme shareTheme) {
-        int i7 = this.f5731a;
+        int i7 = this.f5728a;
         mp u12 = mp.u1(i7);
-        long j3 = this.f5733c.f5721f;
+        long j3 = this.f5730c.f5718f;
         if (j3 > 0) {
             TLRPC.UserFull d2 = u12.d2(j3);
             if (d2 != null) {
@@ -402,71 +402,71 @@ public final class o0 implements fs {
 
     public final void l() {
         this.F = true;
-        int i7 = this.f5731a;
-        ks.f(i7).n(this, ks.f25141k0);
+        int i7 = this.f5728a;
+        ks.f(i7).n(this, ks.f25139k0);
         ks.f(i7).n(this, ks.E0);
         ks.f(i7).n(this, ks.T);
         org.telegram.messenger.g0.r(this.G);
         org.telegram.messenger.g0.r(this.H);
         o();
-        if (this.f5736n != 0) {
-            ConnectionsManager.getInstance(i7).cancelRequest(this.f5736n, true);
-            this.f5736n = 0;
+        if (this.f5733n != 0) {
+            ConnectionsManager.getInstance(i7).cancelRequest(this.f5733n, true);
+            this.f5733n = 0;
         }
     }
 
     public final void m() {
-        this.f5738s = SystemClock.elapsedRealtime();
-        mp u12 = mp.u1(this.f5731a);
+        this.f5735s = SystemClock.elapsedRealtime();
+        mp u12 = mp.u1(this.f5728a);
         ai.g0 g0Var = new ai.g0(this, 8);
-        if (u12.f25624c8) {
+        if (u12.f25622c8) {
             return;
         }
-        TLRPC.TL_exportedContactToken tL_exportedContactToken = u12.f25632d8;
+        TLRPC.TL_exportedContactToken tL_exportedContactToken = u12.f25630d8;
         if (tL_exportedContactToken != null && tL_exportedContactToken.expires > System.currentTimeMillis() / 1000) {
-            g0Var.a(u12.f25632d8);
+            g0Var.a(u12.f25630d8);
             return;
         }
-        u12.f25624c8 = true;
+        u12.f25622c8 = true;
         u12.getConnectionsManager().sendRequest(new TLRPC.TL_contacts_exportContactToken(), new go(u12, g0Var, System.currentTimeMillis(), 7));
     }
 
     public final void n(boolean z10, boolean z11) {
-        int i7 = this.f5736n;
-        int i10 = this.f5731a;
+        int i7 = this.f5733n;
+        int i10 = this.f5728a;
         if (i7 != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f5736n, true);
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f5733n, true);
         }
         TLRPC.TL_contacts_exportNoPaidMessagesToken tL_contacts_exportNoPaidMessagesToken = new TLRPC.TL_contacts_exportNoPaidMessagesToken();
         tL_contacts_exportNoPaidMessagesToken.revoke = z10;
         tL_contacts_exportNoPaidMessagesToken.temporary = z11;
         int sendRequestTyped = ConnectionsManager.getInstance(i10).sendRequestTyped(tL_contacts_exportNoPaidMessagesToken, new d3.b(1), new l0(this, r6, z11, 0));
-        this.f5736n = sendRequestTyped;
+        this.f5733n = sendRequestTyped;
         int[] iArr = {sendRequestTyped};
     }
 
     public final void o() {
-        if (this.f5739w != null) {
+        if (this.f5736w != null) {
             TLRPC.TL_messages_setShareTheme tL_messages_setShareTheme = new TLRPC.TL_messages_setShareTheme();
             TLRPC.InputPeer e10 = e();
             tL_messages_setShareTheme.peer = e10;
-            tL_messages_setShareTheme.theme = this.f5739w;
-            this.f5739w = null;
+            tL_messages_setShareTheme.theme = this.f5736w;
+            this.f5736w = null;
             if (e10 == null) {
                 return;
             }
-            int i7 = this.f5740x;
-            int i10 = this.f5731a;
+            int i7 = this.f5737x;
+            int i10 = this.f5728a;
             if (i7 != 0) {
-                ConnectionsManager.getInstance(i10).cancelRequest(this.f5740x, true);
+                ConnectionsManager.getInstance(i10).cancelRequest(this.f5737x, true);
             }
             LongSparseArray h = h(i10);
-            m0 m0Var = this.f5733c;
-            n0 n0Var = (n0) h.get(m0Var.f5721f);
-            long j3 = m0Var.f5721f;
-            int i11 = this.f5731a;
+            m0 m0Var = this.f5730c;
+            n0 n0Var = (n0) h.get(m0Var.f5718f);
+            long j3 = m0Var.f5718f;
+            int i11 = this.f5728a;
             int sendRequestTyped = ConnectionsManager.getInstance(i11).sendRequestTyped(tL_messages_setShareTheme, new d3.b(1), new bi.z(this, r7, n0Var, i11, j3));
-            this.f5740x = sendRequestTyped;
+            this.f5737x = sendRequestTyped;
             int[] iArr = {sendRequestTyped};
         }
     }
@@ -478,10 +478,10 @@ public final class o0 implements fs {
         if (this.F) {
             return;
         }
-        if (this.d == 1 && this.f5736n == 0 && (this.f5735f == null || SystemClock.elapsedRealtime() - this.h >= 30000 || ((tL_exportedNoPaidMessagesToken = this.f5735f) != null && tL_exportedNoPaidMessagesToken.expires != 0 && ConnectionsManager.getInstance(this.f5731a).getCurrentTime() >= this.f5735f.expires - 5))) {
+        if (this.d == 1 && this.f5733n == 0 && (this.f5732f == null || SystemClock.elapsedRealtime() - this.h >= 30000 || ((tL_exportedNoPaidMessagesToken = this.f5732f) != null && tL_exportedNoPaidMessagesToken.expires != 0 && ConnectionsManager.getInstance(this.f5728a).getCurrentTime() >= this.f5732f.expires - 5))) {
             n(false, true);
         }
-        if (this.f5733c.d && ((this.f5737r == null || System.currentTimeMillis() / 1000 >= this.f5737r.expires) && SystemClock.elapsedRealtime() - this.f5738s >= 5000)) {
+        if (this.f5730c.d && ((this.f5734r == null || System.currentTimeMillis() / 1000 >= this.f5734r.expires) && SystemClock.elapsedRealtime() - this.f5735s >= 5000)) {
             m();
         }
         org.telegram.messenger.g0.h3(k0Var, 1000L);
@@ -489,7 +489,7 @@ public final class o0 implements fs {
 
     public final void r() {
         long j3;
-        int i7 = this.f5731a;
+        int i7 = this.f5728a;
         TLRPC.GlobalPrivacySettings globalPrivacySettings = i5.r(i7).Y;
         if (globalPrivacySettings == null) {
             i5.r(i7).B();
@@ -497,14 +497,14 @@ public final class o0 implements fs {
         } else {
             j3 = globalPrivacySettings.noncontact_peers_paid_stars;
         }
-        z0 z0Var = this.f5732b;
+        z0 z0Var = this.f5729b;
         z0Var.setFeeStars(j3);
-        if (j3 > 0 && !this.f5734e) {
-            this.f5734e = true;
-            if (!this.f5733c.d && this.d == 0 && f().getBoolean("qrNoPaidPermanent", false)) {
+        if (j3 > 0 && !this.f5731e) {
+            this.f5731e = true;
+            if (!this.f5730c.d && this.d == 0 && f().getBoolean("qrNoPaidPermanent", false)) {
                 this.d = 2;
-                z0Var.f6068w0 = true;
-                z0Var.f6079x0 = false;
+                z0Var.f6065w0 = true;
+                z0Var.f6076x0 = false;
                 z0Var.C0 = 1.0f;
                 z0Var.E0 = 1.0f;
                 z0Var.D0 = 1.0f;
@@ -515,7 +515,7 @@ public final class o0 implements fs {
                 z0Var.u1(false);
                 z0Var.invalidate();
                 TLRPC.TL_exportedNoPaidMessagesToken c10 = c();
-                this.f5735f = c10;
+                this.f5732f = c10;
                 if (c10 != null) {
                     z0Var.setFreeLink(d(c10));
                 }

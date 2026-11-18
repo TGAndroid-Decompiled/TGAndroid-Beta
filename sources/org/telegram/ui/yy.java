@@ -12,7 +12,7 @@ public final class yy extends rg.b {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59126f;
+        int i7 = f1Var.f59127f;
         if (i7 != 8 && i7 != 7) {
             return false;
         }
@@ -25,12 +25,12 @@ public final class yy extends rg.b {
 
     @Override
     public final int b() {
-        return this.d.f54613a2.size();
+        return this.d.f54614a2.size();
     }
 
     @Override
     public final int d(int i7) {
-        return ((cz) this.d.f54613a2.get(i7)).f56589a;
+        return ((cz) this.d.f54614a2.get(i7)).f56589a;
     }
 
     @Override
@@ -72,9 +72,9 @@ public final class yy extends rg.b {
     public final void t(v4.f1 f1Var, int i7) {
         boolean z10;
         int i10;
-        int i11 = f1Var.f59126f;
-        View view = f1Var.f59122a;
-        ArrayList arrayList = this.d.f54613a2;
+        int i11 = f1Var.f59127f;
+        View view = f1Var.f59123a;
+        ArrayList arrayList = this.d.f54614a2;
         cz czVar = (cz) arrayList.get(i7);
         int i12 = i7 + 1;
         if (i12 < arrayList.size() && (i10 = ((cz) arrayList.get(i12)).f56589a) != 3 && i10 != 6) {
@@ -83,44 +83,44 @@ public final class yy extends rg.b {
             z10 = false;
         }
         if (i11 == 7) {
-            ((ez) view).e(czVar.f46801m, z10);
+            ((ez) view).e(czVar.f46781m, z10);
         } else if (i11 != 6 && i11 != 3) {
             if (i11 != 0 && i11 == 8) {
                 vy vyVar = (vy) view;
-                vyVar.f52881a.setText(org.telegram.messenger.gd.M0(2131751703, null));
-                if (vyVar.f52883c != z10) {
-                    vyVar.f52883c = z10;
+                vyVar.f52871a.setText(org.telegram.messenger.gd.M0(2131751703, null));
+                if (vyVar.f52873c != z10) {
+                    vyVar.f52873c = z10;
                     vyVar.setWillNotDraw(!z10);
                 }
             }
         } else {
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
+            org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
             if (i11 == 6) {
-                z8Var.setFixedSize(0);
-                z8Var.setText(czVar.d);
+                a9Var.setFixedSize(0);
+                a9Var.setText(czVar.d);
                 return;
             }
-            z8Var.setFixedSize(12);
-            z8Var.setText("");
+            a9Var.setFixedSize(12);
+            a9Var.setText("");
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View z8Var;
+        View a9Var;
         zy zyVar = this.d;
         if (i7 == 8) {
-            z8Var = new vy(zyVar.getContext());
-            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29469h5, z8Var, null);
+            a9Var = new vy(zyVar.getContext());
+            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29467h5, a9Var, null);
         } else if (i7 == 7) {
-            z8Var = new xy(this, zyVar.getContext(), zyVar.f30189a, zyVar.U1.f26674a);
-            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29469h5, z8Var, null);
+            a9Var = new xy(this, zyVar.getContext(), zyVar.f30187a, zyVar.U1.f26672a);
+            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29467h5, a9Var, null);
         } else if (i7 != 6 && i7 != 3) {
-            z8Var = new k0(zyVar, zyVar.getContext());
+            a9Var = new k0(zyVar, zyVar.getContext());
         } else {
-            z8Var = new org.telegram.ui.Cells.z8(zyVar.getContext());
-            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29339a7, z8Var, null);
+            a9Var = new org.telegram.ui.Cells.a9(zyVar.getContext());
+            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29337a7, a9Var, null);
         }
-        return new v4.f1(z8Var);
+        return new v4.f1(a9Var);
     }
 }

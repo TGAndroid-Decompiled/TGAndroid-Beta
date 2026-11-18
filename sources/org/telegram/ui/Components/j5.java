@@ -32,11 +32,11 @@ public final class j5 implements Runnable {
                 TLObject tLObject = this.d;
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList = ((Vector) tLObject).objects;
-                    org.telegram.messenger.tr.a0(i7).f27054a.c(new h5(k5Var, arrayList, 1));
+                    org.telegram.messenger.tr.a0(i7).f27052a.c(new h5(k5Var, arrayList, 1));
                     k5Var.d(arrayList);
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         if (arrayList.get(i10) instanceof TLRPC.Document) {
-                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i10)).f28411id));
+                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i10)).f28409id));
                         }
                     }
                     if (!hashSet.isEmpty()) {

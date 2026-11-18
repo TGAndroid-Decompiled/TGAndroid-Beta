@@ -60,7 +60,7 @@ public abstract class f30 extends z41 {
     public final void W() {
         fi.b6 b6Var = this.T;
         if (b6Var != null && b6Var.I != 0) {
-            ConnectionsManager.getInstance(b6Var.f12044c).cancelRequest(b6Var.I, true);
+            ConnectionsManager.getInstance(b6Var.f12041c).cancelRequest(b6Var.I, true);
             b6Var.I = 0;
         }
         this.S = false;

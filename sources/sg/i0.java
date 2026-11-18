@@ -491,7 +491,7 @@ public final class i0 {
                     if (i1Var == null) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inScaled = false;
-                        i1Var = new i1(BitmapFactory.decodeResource(org.telegram.messenger.t0.f26915b.getResources(), hVar.l(), options));
+                        i1Var = new i1(BitmapFactory.decodeResource(org.telegram.messenger.t0.f26913b.getResources(), hVar.l(), options));
                         this.f57228j.put(Integer.valueOf(hVar.l()), i1Var);
                     }
                     GLES20.glActiveTexture(33984);

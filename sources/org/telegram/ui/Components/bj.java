@@ -38,7 +38,7 @@ public final class bj extends FrameLayout implements org.telegram.ui.ActionBar.c
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29788y6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29786y6));
     }
 
     @Override
@@ -51,6 +51,6 @@ public final class bj extends FrameLayout implements org.telegram.ui.ActionBar.c
         int i7 = org.telegram.ui.ActionBar.n6.G6;
         org.telegram.ui.ActionBar.i6 i6Var = this.f33699a;
         this.f33700b.setTextColor(org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
-        this.f33701c.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29788y6, i6Var));
+        this.f33701c.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, i6Var));
     }
 }

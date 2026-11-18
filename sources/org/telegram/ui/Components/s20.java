@@ -42,7 +42,7 @@ public final class s20 extends o51 {
         this.T1 = new ArrayList();
         this.V1 = new a0.h();
         this.W1 = new a0.h();
-        this.f30221q0 = 75;
+        this.f30219q0 = 75;
         this.Q1 = chat;
         this.R1 = chatFull;
         this.Z1 = hVar;
@@ -65,8 +65,8 @@ public final class s20 extends o51 {
 
     @Override
     public final void K0(MotionEvent motionEvent, ah.i iVar) {
-        org.telegram.ui.f40 f40Var = this.f39452b2.f49149a;
-        if (!f40Var.f47513r2) {
+        org.telegram.ui.f40 f40Var = this.f39452b2.f49126a;
+        if (!f40Var.f47469r2) {
             if (motionEvent.getX() > iVar.getLeft() && motionEvent.getX() < iVar.getRight() && motionEvent.getY() > iVar.getTop() && motionEvent.getY() < iVar.getBottom()) {
                 f40Var.w1(f40Var.D3, null, iVar, true);
             } else {
@@ -88,7 +88,7 @@ public final class s20 extends o51 {
         z1Var.f(null, null);
         TLRPC.Chat chat = s20Var.Q1;
         di.b1 b1Var = s20Var.f37984o1;
-        z1Var.g(null, true, false, true, false, chat.f28405id, false, 2, -1);
+        z1Var.g(null, true, false, true, false, chat.f28403id, false, 2, -1);
         if (!TextUtils.isEmpty(str)) {
             s20Var.f37990u1.e(true, true);
             b1Var.X1 = false;
@@ -117,24 +117,24 @@ public final class s20 extends o51 {
     public final void Q0() {
         this.D1 = org.telegram.ui.ActionBar.n6.Gh;
         this.E1 = org.telegram.ui.ActionBar.n6.Vg;
-        int i7 = org.telegram.ui.ActionBar.n6.f29331a;
+        int i7 = org.telegram.ui.ActionBar.n6.f29329a;
         this.F1 = org.telegram.ui.ActionBar.n6.Wg;
-        this.G1 = org.telegram.ui.ActionBar.n6.f29535kh;
-        this.H1 = org.telegram.ui.ActionBar.n6.f29425eh;
-        this.I1 = org.telegram.ui.ActionBar.n6.f29442fh;
-        this.J1 = org.telegram.ui.ActionBar.n6.f29389ch;
-        this.K1 = org.telegram.ui.ActionBar.n6.f29497ih;
-        this.L1 = org.telegram.ui.ActionBar.n6.f29406dh;
+        this.G1 = org.telegram.ui.ActionBar.n6.f29533kh;
+        this.H1 = org.telegram.ui.ActionBar.n6.f29423eh;
+        this.I1 = org.telegram.ui.ActionBar.n6.f29440fh;
+        this.J1 = org.telegram.ui.ActionBar.n6.f29387ch;
+        this.K1 = org.telegram.ui.ActionBar.n6.f29495ih;
+        this.L1 = org.telegram.ui.ActionBar.n6.f29404dh;
     }
 
     public final void S0() {
         if (!this.f39453c2) {
             return;
         }
-        ArrayList arrayList = org.telegram.messenger.i5.r(this.f30189a).f24570f0;
+        ArrayList arrayList = org.telegram.messenger.i5.r(this.f30187a).f24567f0;
         ArrayList arrayList2 = this.T1;
         arrayList2.addAll(arrayList);
-        long j3 = org.telegram.messenger.j10.i(this.f30189a).f24792n;
+        long j3 = org.telegram.messenger.j10.i(this.f30187a).f24789n;
         int size = arrayList2.size();
         int i7 = 0;
         while (i7 < size) {
@@ -149,7 +149,7 @@ public final class s20 extends o51 {
             }
             i7++;
         }
-        Collections.sort(arrayList2, new jg.d(org.telegram.messenger.mp.u1(this.f30189a), ConnectionsManager.getInstance(this.f30189a).getCurrentTime(), 2));
+        Collections.sort(arrayList2, new jg.d(org.telegram.messenger.mp.u1(this.f30187a), ConnectionsManager.getInstance(this.f30187a).getCurrentTime(), 2));
     }
 
     public final void T0() {
@@ -166,13 +166,13 @@ public final class s20 extends o51 {
             hVar2.b();
             this.W1.b();
             if (chatFull != null) {
-                long j3 = org.telegram.messenger.j10.i(this.f30189a).f24792n;
+                long j3 = org.telegram.messenger.j10.i(this.f30187a).f24789n;
                 int size = chatFull.participants.participants.size();
                 for (int i7 = 0; i7 < size; i7++) {
                     TLRPC.ChatParticipant chatParticipant = chatFull.participants.participants.get(i7);
                     long j10 = chatParticipant.user_id;
                     if (j10 != j3 && ((hVar = this.Z1) == null || hVar.h(j10) < 0)) {
-                        TLRPC.User c22 = org.telegram.messenger.mp.u1(this.f30189a).c2(Long.valueOf(chatParticipant.user_id));
+                        TLRPC.User c22 = org.telegram.messenger.mp.u1(this.f30187a).c2(Long.valueOf(chatParticipant.user_id));
                         if (!org.telegram.messenger.o10.y(c22) && !c22.bot) {
                             arrayList.add(chatParticipant);
                             hVar2.k(chatParticipant, chatParticipant.user_id);
@@ -213,10 +213,10 @@ public final class s20 extends o51 {
         } else {
             tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
         }
-        tL_channels_getParticipants.filter.f28404q = "";
+        tL_channels_getParticipants.filter.f28402q = "";
         tL_channels_getParticipants.offset = 0;
         tL_channels_getParticipants.limit = 200;
-        ConnectionsManager.getInstance(this.f30189a).sendRequest(tL_channels_getParticipants, new org.telegram.ui.u7(18, this, tL_channels_getParticipants));
+        ConnectionsManager.getInstance(this.f30187a).sendRequest(tL_channels_getParticipants, new org.telegram.ui.u7(18, this, tL_channels_getParticipants));
     }
 
     public final void U0() {

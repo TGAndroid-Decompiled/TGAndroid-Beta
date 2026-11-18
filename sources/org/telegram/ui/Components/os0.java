@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class os0 extends org.telegram.ui.Cells.q1 {
+public final class os0 extends org.telegram.ui.Cells.r1 {
     public final int f38170zd = 1;
 
     public os0(Context context, int i7) {
@@ -18,7 +18,7 @@ public final class os0 extends org.telegram.ui.Cells.q1 {
                     i7 = getMeasuredWidth();
                     L = org.telegram.messenger.g0.L(24.0f);
                 } else {
-                    i7 = org.telegram.messenger.g0.f24121q.x;
+                    i7 = org.telegram.messenger.g0.f24118q.x;
                     L = org.telegram.messenger.g0.L(24.0f);
                 }
                 return i7 - L;

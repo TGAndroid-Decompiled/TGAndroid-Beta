@@ -4,39 +4,39 @@ import android.os.Bundle;
 import j$.util.Objects;
 public final class w extends d1 {
     public static final String d;
-    public static final String f10787e;
-    public final boolean f10788b;
-    public final boolean f10789c;
+    public static final String f10784e;
+    public final boolean f10785b;
+    public final boolean f10786c;
 
     static {
-        String str = h2.l0.f13786a;
+        String str = h2.l0.f13783a;
         d = Integer.toString(1, 36);
-        f10787e = Integer.toString(2, 36);
+        f10784e = Integer.toString(2, 36);
     }
 
     public w() {
-        this.f10788b = false;
-        this.f10789c = false;
+        this.f10785b = false;
+        this.f10786c = false;
     }
 
     @Override
     public final boolean b() {
-        return this.f10788b;
+        return this.f10785b;
     }
 
     @Override
     public final Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d1.f10368a, 0);
-        bundle.putBoolean(d, this.f10788b);
-        bundle.putBoolean(f10787e, this.f10789c);
+        bundle.putInt(d1.f10365a, 0);
+        bundle.putBoolean(d, this.f10785b);
+        bundle.putBoolean(f10784e, this.f10786c);
         return bundle;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof w) {
             w wVar = (w) obj;
-            if (this.f10789c == wVar.f10789c && this.f10788b == wVar.f10788b) {
+            if (this.f10786c == wVar.f10786c && this.f10785b == wVar.f10785b) {
                 return true;
             }
             return false;
@@ -45,11 +45,11 @@ public final class w extends d1 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f10788b), Boolean.valueOf(this.f10789c));
+        return Objects.hash(Boolean.valueOf(this.f10785b), Boolean.valueOf(this.f10786c));
     }
 
     public w(boolean z10) {
-        this.f10788b = true;
-        this.f10789c = z10;
+        this.f10785b = true;
+        this.f10786c = z10;
     }
 }

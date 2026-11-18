@@ -30,7 +30,7 @@ public final class bw extends v4.t {
     public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
         try {
             pi.l lVar = new pi.l(recyclerView.getContext(), 2);
-            lVar.f59066a = i7;
+            lVar.f59067a = i7;
             w0(lVar);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

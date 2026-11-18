@@ -12,7 +12,7 @@ public final class d extends j {
 
     @Override
     public final long b(x xVar) {
-        byte[] bArr = xVar.f13836a;
+        byte[] bArr = xVar.f13833a;
         if (bArr[0] == -1) {
             int i7 = (bArr[2] & 255) >> 4;
             if (i7 == 6 || i7 == 7) {
@@ -28,20 +28,20 @@ public final class d extends j {
 
     @Override
     public final boolean c(x xVar, long j3, q qVar) {
-        byte[] bArr = xVar.f13836a;
+        byte[] bArr = xVar.f13833a;
         u uVar = this.f161n;
         if (uVar == null) {
             u uVar2 = new u(bArr, 17);
             this.f161n = uVar2;
-            t a10 = uVar2.c(Arrays.copyOfRange(bArr, 9, xVar.f13838c), null).a();
-            a10.f10716q = s0.n("audio/ogg");
+            t a10 = uVar2.c(Arrays.copyOfRange(bArr, 9, xVar.f13835c), null).a();
+            a10.f10713q = s0.n("audio/ogg");
             qVar.f55826b = new e2.u(a10);
             return true;
         }
         byte b10 = bArr[0];
         if ((b10 & Byte.MAX_VALUE) == 3) {
             wf.b t6 = f3.b.t(xVar);
-            u uVar3 = new u(uVar.f11203a, uVar.f11204b, uVar.f11205c, uVar.d, uVar.f11206e, uVar.f11208g, uVar.h, uVar.f11210j, t6, uVar.f11212l);
+            u uVar3 = new u(uVar.f11200a, uVar.f11201b, uVar.f11202c, uVar.d, uVar.f11203e, uVar.f11205g, uVar.h, uVar.f11207j, t6, uVar.f11209l);
             this.f161n = uVar3;
             ?? obj = new Object();
             obj.f160c = uVar3;

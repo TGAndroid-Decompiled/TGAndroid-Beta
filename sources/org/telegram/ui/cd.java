@@ -3,20 +3,20 @@ package org.telegram.ui;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class cd implements Runnable {
-    public final int f46487a;
-    public final xd f46488b;
+    public final int f46484a;
+    public final xd f46485b;
 
     public cd(xd xdVar, int i7) {
-        this.f46487a = i7;
-        this.f46488b = xdVar;
+        this.f46484a = i7;
+        this.f46485b = xdVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        int i7 = this.f46487a;
+        int i7 = this.f46484a;
         boolean z11 = false;
-        xd xdVar = this.f46488b;
+        xd xdVar = this.f46485b;
         switch (i7) {
             case 0:
                 vf.c.t(xdVar.getContext(), org.telegram.messenger.gd.M0(2131748212, null));
@@ -34,7 +34,7 @@ public final class cd implements Runnable {
                         z10 = false;
                     }
                     org.telegram.ui.Components.z41 z41Var = e51Var.f34607g3;
-                    if (z10 == xdVar.f53793b1.a()) {
+                    if (z10 == xdVar.f53787b1.a()) {
                         z11 = true;
                     }
                     z41Var.O(z11);
@@ -46,7 +46,7 @@ public final class cd implements Runnable {
                 }
                 return;
             case 3:
-                xdVar.l1 = xdVar.f53802k1;
+                xdVar.l1 = xdVar.f53796k1;
                 return;
             case 4:
                 xdVar.K0.setLoading(false);
@@ -58,12 +58,12 @@ public final class cd implements Runnable {
                 xdVar.Z0.setVisibility(8);
                 return;
             default:
-                int i10 = xdVar.f53807p0;
-                org.telegram.messenger.g0.r(xdVar.f53816t1);
-                if (xdVar.f53802k1 != xdVar.l1) {
+                int i10 = xdVar.f53801p0;
+                org.telegram.messenger.g0.r(xdVar.f53810t1);
+                if (xdVar.f53796k1 != xdVar.l1) {
                     TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.mp.u1(i10).j1(-xdVar.f53809q0);
-                    tL_channels_restrictSponsoredMessages.restricted = xdVar.f53802k1;
+                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.mp.u1(i10).j1(-xdVar.f53803q0);
+                    tL_channels_restrictSponsoredMessages.restricted = xdVar.f53796k1;
                     ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new jd(xdVar, 0));
                     return;
                 }

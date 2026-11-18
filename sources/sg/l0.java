@@ -18,9 +18,9 @@ public final class l0 {
         PointF pointF2 = null;
         PointF pointF3 = null;
         PointF pointF4 = null;
-        for (w8.c cVar : aVar.f59630b) {
-            PointF pointF5 = cVar.f59635a;
-            int i7 = cVar.f59636b;
+        for (w8.c cVar : aVar.f59631b) {
+            PointF pointF5 = cVar.f59636a;
+            int i7 = cVar.f59637b;
             if (i7 != 4) {
                 if (i7 != 5) {
                     if (i7 != 10) {

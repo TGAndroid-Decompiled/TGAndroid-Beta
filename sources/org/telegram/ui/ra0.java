@@ -1,40 +1,38 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class ra0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f51551a;
-    public final de0 f51552b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ra0 implements Runnable {
+    public final int f51536a;
+    public final ee0 f51537b;
 
-    public ra0(de0 de0Var, int i7) {
-        this.f51551a = i7;
-        this.f51552b = de0Var;
+    public ra0(ee0 ee0Var, int i7) {
+        this.f51536a = i7;
+        this.f51537b = ee0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f51551a) {
+    public final void run() {
+        int i7 = this.f51536a;
+        ee0 ee0Var = this.f51537b;
+        switch (i7) {
             case 0:
-                de0 de0Var = this.f51552b;
-                de0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                de0Var.f46937c.setAlpha(floatValue);
-                de0Var.f46937c.setTranslationY((1.0f - floatValue) * org.telegram.messenger.g0.L(230.0f));
+                ee0Var.f47183d0 = false;
                 return;
             case 1:
-                de0 de0Var2 = this.f51552b;
-                de0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f10 = (0.9f * floatValue2) + 0.1f;
-                de0Var2.W.setScaleX(f10);
-                de0Var2.W.setScaleY(f10);
-                de0Var2.W.setAlpha(floatValue2);
+                ee0Var.f47211y0 = false;
+                ee0Var.P1(true, true);
                 return;
             default:
-                de0 de0Var3 = this.f51552b;
-                de0Var3.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                de0Var3.f46937c.setAlpha(floatValue3);
-                de0Var3.f46937c.setTranslationY((1.0f - floatValue3) * org.telegram.messenger.g0.L(230.0f));
+                if (ee0Var.getParentActivity() != null && !ee0Var.getParentActivity().isFinishing() && ee0Var.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ee0Var.getParentActivity());
+                    String M0 = org.telegram.messenger.gd.M0(2131745876, null);
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
+                    u1Var.S = M0;
+                    u1Var.U = org.telegram.messenger.gd.M0(2131745754, null);
+                    alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747638, null), new ua0(ee0Var, 1));
+                    alertDialog$Builder.p();
+                    return;
+                }
                 return;
         }
     }

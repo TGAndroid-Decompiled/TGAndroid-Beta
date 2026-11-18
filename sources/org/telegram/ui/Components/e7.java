@@ -40,7 +40,7 @@ public final class e7 implements Runnable {
                 return;
             default:
                 g8Var.V0(true);
-                org.telegram.messenger.f3.n(null, 2131753910, new lc((FrameLayout) g8Var.f30192b, g8Var.J0), 2131624191, 36);
+                org.telegram.messenger.f3.n(null, 2131753910, new lc((FrameLayout) g8Var.f30190b, g8Var.J0), 2131624191, 36);
                 y60Var.v();
                 return;
         }

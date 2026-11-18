@@ -1,7 +1,7 @@
 package di;
 public abstract class j5 {
-    public String f9080a;
-    public int f9081b;
+    public String f9077a;
+    public int f9078b;
 
     public boolean b() {
         return true;

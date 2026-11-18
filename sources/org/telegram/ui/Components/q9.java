@@ -39,9 +39,9 @@ public class q9 extends View {
         this.f38751x = true;
         ImageReceiver c10 = c();
         this.f38742a = c10;
-        c10.f22654o1 = 0.0f;
+        c10.f22651o1 = 0.0f;
         c10.A1 = true;
-        c10.f22642h1 = new b0(this, 13);
+        c10.f22639h1 = new b0(this, 13);
     }
 
     public final void a() {
@@ -269,7 +269,7 @@ public class q9 extends View {
     }
 
     public void setColorFilter(ColorFilter colorFilter) {
-        this.f38742a.f22656p1 = colorFilter;
+        this.f38742a.f22653p1 = colorFilter;
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {

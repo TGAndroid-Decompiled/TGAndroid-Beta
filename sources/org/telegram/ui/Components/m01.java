@@ -56,7 +56,7 @@ public final class m01 {
                 l01Var.f36945a = centerX;
                 l01Var.f36946b = centerY;
             }
-            SecureRandom secureRandom = Utilities.f22780b;
+            SecureRandom secureRandom = Utilities.f22777b;
             double d10 = sin;
             double nextInt = (secureRandom.nextInt(140) - 70) * 0.017453292519943295d;
             if (nextInt < 0.0d) {

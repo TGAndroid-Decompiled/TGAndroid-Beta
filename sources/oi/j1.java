@@ -4,28 +4,28 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class j1 implements Runnable {
-    public final int f22118a;
-    public final z1 f22119b;
-    public final a f22120c;
+    public final int f22115a;
+    public final z1 f22116b;
+    public final a f22117c;
 
     public j1(z1 z1Var, a aVar, int i7) {
-        this.f22118a = i7;
-        this.f22119b = z1Var;
-        this.f22120c = aVar;
+        this.f22115a = i7;
+        this.f22116b = z1Var;
+        this.f22117c = aVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f22118a;
-        a aVar = this.f22120c;
-        z1 z1Var = this.f22119b;
+        int i7 = this.f22115a;
+        a aVar = this.f22117c;
+        z1 z1Var = this.f22116b;
         switch (i7) {
             case 0:
                 s3 s3Var = z1Var.Q;
                 ArrayList arrayList = s3.A4;
                 TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
                 pageblockpullquote.caption = new TL_iv.textEmpty();
-                s3Var.X4(this.f22120c, pageblockpullquote, 0, 0, false, false);
+                s3Var.X4(this.f22117c, pageblockpullquote, 0, 0, false, false);
                 return;
             case 1:
                 z1Var.Q.Y4(aVar, new TL_iv.pageBlockPreformatted());
@@ -41,7 +41,7 @@ public final class j1 implements Runnable {
                 ArrayList arrayList2 = s3.A4;
                 TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                 pageblockblockquote.caption = new TL_iv.textEmpty();
-                s3Var2.X4(this.f22120c, pageblockblockquote, 0, 0, false, false);
+                s3Var2.X4(this.f22117c, pageblockblockquote, 0, 0, false, false);
                 return;
             case 5:
                 z1Var.Q.Z4(aVar, 0);

@@ -5,17 +5,17 @@ import j$.util.Objects;
 import java.lang.Thread;
 import java.util.ArrayList;
 public abstract class s2 {
-    public static boolean f26723a = true;
-    public static final boolean f26724b;
-    public static final String f26725c;
+    public static boolean f26721a = true;
+    public static final boolean f26722b;
+    public static final String f26723c;
     public static final int d;
-    public static final String f26726e;
-    public static final String f26727f;
-    public static final String f26728g;
+    public static final String f26724e;
+    public static final String f26725f;
+    public static final String f26726g;
     public static String h;
-    public static final boolean f26729i;
-    public static final boolean f26730j;
-    public static Boolean f26731k;
+    public static final boolean f26727i;
+    public static final boolean f26728j;
+    public static Boolean f26729k;
 
     static {
         boolean z10;
@@ -24,18 +24,18 @@ public abstract class s2 {
         } else {
             z10 = false;
         }
-        f26724b = z10;
-        f26725c = "13.3.0";
+        f26722b = z10;
+        f26723c = "13.3.0";
         d = 4;
-        f26726e = "014b35b6184100b085b0d0572f9b5103";
-        f26727f = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
-        f26728g = "https://play.google.com/store/apps/details?id=org.telegram.messenger";
+        f26724e = "014b35b6184100b085b0d0572f9b5103";
+        f26725f = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
+        f26726g = "https://play.google.com/store/apps/details?id=org.telegram.messenger";
         h = "760348033671-81kmi3pi84p11ub8hp9a1funsv0rn2p9.apps.googleusercontent.com";
-        f26729i = true;
-        f26730j = true;
-        if (t0.f26915b != null) {
-            t0.f26915b.getSharedPreferences("systemConfig", 0);
-            f26723a = true;
+        f26727i = true;
+        f26728j = true;
+        if (t0.f26913b != null) {
+            t0.f26913b.getSharedPreferences("systemConfig", 0);
+            f26721a = true;
             final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
@@ -52,44 +52,44 @@ public abstract class s2 {
 
     public static boolean a() {
         boolean z10;
-        if (f26731k == null) {
-            if (t0.f26915b != null && "org.telegram.messenger.beta".equals(t0.f26915b.getPackageName())) {
+        if (f26729k == null) {
+            if (t0.f26913b != null && "org.telegram.messenger.beta".equals(t0.f26913b.getPackageName())) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            f26731k = Boolean.valueOf(z10);
+            f26729k = Boolean.valueOf(z10);
         }
-        return f26731k.booleanValue();
+        return f26729k.booleanValue();
     }
 
     public static boolean b() {
         f5.m mVar;
-        if (!r1.f26528n) {
+        if (!r1.f26526n) {
             t0.u();
             a();
             t0.r();
-            if (r1.i().k() && (mVar = r1.f26526l) != null) {
+            if (r1.i().k() && (mVar = r1.f26524l) != null) {
                 ArrayList arrayList = mVar.h;
                 int size = arrayList.size();
                 int i7 = 0;
                 while (i7 < size) {
                     Object obj = arrayList.get(i7);
                     i7++;
-                    ArrayList arrayList2 = ((f5.l) obj).f11301b.f11299a;
+                    ArrayList arrayList2 = ((f5.l) obj).f11298b.f11296a;
                     int size2 = arrayList2.size();
                     int i10 = 0;
                     while (i10 < size2) {
                         Object obj2 = arrayList2.get(i10);
                         i10++;
                         f5.j jVar = (f5.j) obj2;
-                        ArrayList arrayList3 = mp.u1(j10.f24773t0).f25718n7;
+                        ArrayList arrayList3 = mp.u1(j10.f24770t0).f25716n7;
                         int size3 = arrayList3.size();
                         int i11 = 0;
                         while (i11 < size3) {
                             Object obj3 = arrayList3.get(i11);
                             i11++;
-                            if (Objects.equals(jVar.f11298c, (String) obj3)) {
+                            if (Objects.equals(jVar.f11295c, (String) obj3)) {
                                 return true;
                             }
                         }

@@ -79,14 +79,14 @@ public final class d90 extends Drawable {
         if (v4Var != null && v4Var.l() && !this.E) {
             Rect bounds = getBounds();
             org.telegram.ui.ActionBar.v4 v4Var2 = this.B;
-            Shader shader = v4Var2.f30097a;
-            Matrix matrix = v4Var2.f30105k;
+            Shader shader = v4Var2.f30095a;
+            Matrix matrix = v4Var2.f30103k;
             matrix.reset();
             this.B.a();
             if (z10) {
-                matrix.postTranslate(-bounds.centerX(), (-this.B.f30112r) + bounds.top);
+                matrix.postTranslate(-bounds.centerX(), (-this.B.f30110r) + bounds.top);
             } else {
-                matrix.postTranslate(0.0f, -this.B.f30112r);
+                matrix.postTranslate(0.0f, -this.B.f30110r);
             }
             shader.setLocalMatrix(matrix);
         }

@@ -56,7 +56,7 @@ public abstract class j1 {
         } else {
             n10 = q10.n();
         }
-        if (n10 != null && n10.f28270g) {
+        if (n10 != null && n10.f28268g) {
             return true;
         }
         return false;
@@ -78,7 +78,7 @@ public abstract class j1 {
             }
             if (currentTimeMillis <= j3) {
                 if (!a10.isEmpty() || f1250b != 0) {
-                    if ((org.telegram.messenger.s2.f26725c + "/" + DictationAsr.X()).equals(mp.g1().getString("speech_models_build", null))) {
+                    if ((org.telegram.messenger.s2.f26723c + "/" + DictationAsr.X()).equals(mp.g1().getString("speech_models_build", null))) {
                         return false;
                     }
                     return true;
@@ -169,7 +169,7 @@ public abstract class j1 {
     public static boolean i(TLRPC.TL_transcriptionModel tL_transcriptionModel, File file) {
         if (tL_transcriptionModel != null && file.exists()) {
             SharedPreferences g12 = mp.g1();
-            if (g12.getLong("speech_doc_" + file.getName(), 0L) != tL_transcriptionModel.document.f28411id) {
+            if (g12.getLong("speech_doc_" + file.getName(), 0L) != tL_transcriptionModel.document.f28409id) {
                 return true;
             }
             return false;
@@ -195,7 +195,7 @@ public abstract class j1 {
             ((TLRPC.TL_transcriptionModel) obj).serializeToStream(serializedData);
         }
         SharedPreferences.Editor putLong = mp.g1().edit().putString("speech_models", Base64.encodeToString(serializedData.toByteArray(), 2)).putLong("speech_models_checked", System.currentTimeMillis());
-        putLong.putString("speech_models_build", org.telegram.messenger.s2.f26725c + "/" + DictationAsr.X()).apply();
+        putLong.putString("speech_models_build", org.telegram.messenger.s2.f26723c + "/" + DictationAsr.X()).apply();
         serializedData.cleanup();
     }
 }

@@ -42,7 +42,7 @@ public final class du implements t71 {
                             activity.setRequestedOrientation(0);
                         }
                     }
-                    guVar.f30192b.setSystemUiVisibility(1028);
+                    guVar.f30190b.setSystemUiVisibility(1028);
                     return null;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -55,7 +55,7 @@ public final class du implements t71 {
         guVar.H1 = false;
         if (activity != null) {
             try {
-                guVar.f30192b.setSystemUiVisibility(0);
+                guVar.f30190b.setSystemUiVisibility(0);
                 activity.setRequestedOrientation(guVar.G1);
                 return null;
             } catch (Exception e11) {
@@ -132,7 +132,7 @@ public final class du implements t71 {
             guVar.J1 = true;
             w71Var.getAspectRatioView().getLocationInWindow(iArr);
             iArr[0] = iArr[0] - guVar.T();
-            iArr[1] = (int) (iArr[1] - guVar.f30192b.getTranslationY());
+            iArr[1] = (int) (iArr[1] - guVar.f30190b.getTranslationY());
             TextureView textureView2 = w71Var.getTextureView();
             ImageView textureImageView = w71Var.getTextureImageView();
             AnimatorSet animatorSet = new AnimatorSet();
@@ -143,21 +143,21 @@ public final class du implements t71 {
             Property property3 = View.TRANSLATION_X;
             ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textureImageView, property3, iArr[0]);
             Property property4 = View.TRANSLATION_Y;
-            animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(textureImageView, property4, iArr[1]), ObjectAnimator.ofFloat(textureView2, property, 1.0f), ObjectAnimator.ofFloat(textureView2, property2, 1.0f), ObjectAnimator.ofFloat(textureView2, property3, iArr[0]), ObjectAnimator.ofFloat(textureView2, property4, iArr[1]), ObjectAnimator.ofFloat(guVar.f30192b, property4, 0.0f), ObjectAnimator.ofInt(guVar.Z, q6.d, 51));
+            animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(textureImageView, property4, iArr[1]), ObjectAnimator.ofFloat(textureView2, property, 1.0f), ObjectAnimator.ofFloat(textureView2, property2, 1.0f), ObjectAnimator.ofFloat(textureView2, property3, iArr[0]), ObjectAnimator.ofFloat(textureView2, property4, iArr[1]), ObjectAnimator.ofFloat(guVar.f30190b, property4, 0.0f), ObjectAnimator.ofInt(guVar.Z, q6.d, 51));
             animatorSet.setInterpolator(new DecelerateInterpolator());
             animatorSet.setDuration(250L);
             animatorSet.addListener(new x(this, 23));
             animatorSet.start();
             return null;
         } else {
-            guVar.f30192b.setTranslationY(0.0f);
+            guVar.f30190b.setTranslationY(0.0f);
             return null;
         }
     }
 
     @Override
     public final ViewGroup g() {
-        return this.f34508a.f30195c;
+        return this.f34508a.f30193c;
     }
 
     @Override
@@ -171,7 +171,7 @@ public final class du implements t71 {
             gu guVar = this.f34508a;
             if (guVar.f35651t1 != null) {
                 try {
-                    guVar.f30192b.setSystemUiVisibility(0);
+                    guVar.f30190b.setSystemUiVisibility(0);
                     gu guVar2 = this.f34508a;
                     int i7 = guVar2.G1;
                     if (i7 != -2) {
@@ -182,7 +182,7 @@ public final class du implements t71 {
                 }
             }
             if (this.f34508a.f35647p1.getVisibility() == 0) {
-                ViewGroup viewGroup = this.f34508a.f30192b;
+                ViewGroup viewGroup = this.f34508a.f30190b;
                 viewGroup.setTranslationY(org.telegram.messenger.g0.L(10.0f) + viewGroup.getMeasuredHeight());
                 this.f34508a.Z.setAlpha(0);
             }
@@ -206,7 +206,7 @@ public final class du implements t71 {
                 ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(textureView, property2, width);
                 ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(textureView, property3, J0.f42503a);
                 ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(textureView, property4, J0.f42504b);
-                ViewGroup viewGroup2 = this.f34508a.f30192b;
+                ViewGroup viewGroup2 = this.f34508a.f30190b;
                 ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(viewGroup2, property4, org.telegram.messenger.g0.L(10.0f) + viewGroup2.getMeasuredHeight());
                 ObjectAnimator ofInt = ObjectAnimator.ofInt(this.f34508a.Z, q6.d, 0);
                 FrameLayout frameLayout = this.f34508a.f35647p1;
@@ -226,9 +226,9 @@ public final class du implements t71 {
             this.f34508a.L();
             return;
         }
-        if (org.telegram.messenger.t0.f26923x) {
+        if (org.telegram.messenger.t0.f26921x) {
             try {
-                this.f34508a.f35651t1.startService(new Intent(org.telegram.messenger.t0.f26915b, BringAppForegroundService.class));
+                this.f34508a.f35651t1.startService(new Intent(org.telegram.messenger.t0.f26913b, BringAppForegroundService.class));
             } catch (Throwable th2) {
                 org.telegram.messenger.a8.g(th2, true);
             }
@@ -252,13 +252,13 @@ public final class du implements t71 {
             this.f34508a.K0();
         }
         gu guVar4 = this.f34508a;
-        guVar4.f30204f0 = true;
+        guVar4.f30202f0 = true;
         guVar4.show();
         if (z11) {
             gu guVar5 = this.f34508a;
             guVar5.K1 = 4;
             guVar5.Z.setAlpha(1);
-            ViewGroup viewGroup3 = this.f34508a.f30192b;
+            ViewGroup viewGroup3 = this.f34508a.f30190b;
             viewGroup3.setTranslationY(org.telegram.messenger.g0.L(10.0f) + viewGroup3.getMeasuredHeight());
         }
     }

@@ -58,7 +58,7 @@ public final class q {
 
     public final int[] b(s0 s0Var) {
         int i7;
-        int[] iArr = (int[]) s0Var.f7128c;
+        int[] iArr = (int[]) s0Var.f7125c;
         int length = iArr.length / 5;
         if (length == 0) {
             return new int[0];
@@ -67,7 +67,7 @@ public final class q {
         int[] iArr3 = new int[length];
         int[] iArr4 = new int[length];
         b3.j jVar = new b3.j(12, false, false);
-        jVar.f2902c = new int[48];
+        jVar.f2903c = new int[48];
         int i10 = -1;
         int i11 = 0;
         int i12 = 0;
@@ -117,6 +117,6 @@ public final class q {
             i12 = iArr3[i10];
             i10--;
         }
-        return Arrays.copyOf((int[]) jVar.f2902c, jVar.f2901b);
+        return Arrays.copyOf((int[]) jVar.f2903c, jVar.f2902b);
     }
 }

@@ -8,16 +8,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import org.telegram.messenger.n10;
 public final class xb extends TextView {
-    public final int f10052a;
+    public final int f10049a;
 
     public xb(Context context, int i7) {
         super(context);
-        this.f10052a = i7;
+        this.f10049a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f10052a) {
+        switch (this.f10049a) {
             case 2:
                 if (getPaddingLeft() > 0) {
                     canvas.drawCircle((getPaddingLeft() - org.telegram.messenger.g0.L(2.5f)) / 2.0f, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(2.5f), getPaint());
@@ -36,7 +36,7 @@ public final class xb extends TextView {
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f10052a) {
+        switch (this.f10049a) {
             case 14:
                 return Button.class.getName();
             case 15:
@@ -62,9 +62,9 @@ public final class xb extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f10052a) {
+        switch (this.f10049a) {
             case 5:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.g4.f47905t1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.g4.f47869t1);
                 super.onDraw(canvas);
                 return;
             default:
@@ -75,7 +75,7 @@ public final class xb extends TextView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f10052a) {
+        switch (this.f10049a) {
             case 0:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
                 return;
@@ -154,7 +154,7 @@ public final class xb extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f10052a) {
+        switch (this.f10049a) {
             case 4:
                 super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
                 return;

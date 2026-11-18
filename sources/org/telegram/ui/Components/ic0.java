@@ -31,7 +31,7 @@ public final class ic0 extends AnimatorListenerAdapter {
                     if (runnable != null) {
                         runnable.run();
                     }
-                    if (org.telegram.messenger.bz.f23194r == 1 && pc0Var2.f38379y.getVisibility() != 0 && (editTextBoldCursor = pc0Var2.f38375r) != null) {
+                    if (org.telegram.messenger.bz.f23191r == 1 && pc0Var2.f38379y.getVisibility() != 0 && (editTextBoldCursor = pc0Var2.f38375r) != null) {
                         editTextBoldCursor.requestFocus();
                         org.telegram.messenger.g0.I3(pc0Var2.f38375r);
                         return;

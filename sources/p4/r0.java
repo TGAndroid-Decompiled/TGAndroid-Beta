@@ -13,7 +13,7 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
     }
 
     public static qi.a b() {
-        InputStream open = org.telegram.messenger.t0.f26915b.getAssets().open("grammars.dat");
+        InputStream open = org.telegram.messenger.t0.f26913b.getAssets().open("grammars.dat");
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             byte[] bArr = new byte[8192];

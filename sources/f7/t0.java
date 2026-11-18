@@ -3,10 +3,10 @@ package f7;
 import android.os.Parcelable;
 import com.google.android.gms.identity.intents.model.UserAddress;
 public final class t0 implements Parcelable.Creator {
-    public final int f11565a;
+    public final int f11562a;
 
     public t0(int i7) {
-        this.f11565a = i7;
+        this.f11562a = i7;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class t0 implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f11565a) {
+        switch (this.f11562a) {
             case 0:
                 return new f[i7];
             case 1:

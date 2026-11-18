@@ -37,7 +37,7 @@ public final class s00 extends FrameLayout {
             }
             org.telegram.messenger.t3 groupCall = fragmentContextView.f32969n.getGroupCall();
             if (h2Var != null && groupCall != null && groupCall.j()) {
-                long currentTimeMillis = (groupCall.f26937b.schedule_date * 1000) - h2Var.getConnectionsManager().getCurrentTimeMillis();
+                long currentTimeMillis = (groupCall.f26935b.schedule_date * 1000) - h2Var.getConnectionsManager().getCurrentTimeMillis();
                 f10 = 1.0f;
                 if (currentTimeMillis >= 0) {
                     if (currentTimeMillis < 5000) {
@@ -70,7 +70,7 @@ public final class s00 extends FrameLayout {
             rectF2.set(0.0f, 0.0f, L, org.telegram.messenger.g0.L(28.0f));
             canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), fragmentContextView.f32958d0);
             canvas.translate(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
-            m6Var.setBounds(0, 0, org.telegram.messenger.g0.f24121q.x, org.telegram.messenger.g0.L(16.0f));
+            m6Var.setBounds(0, 0, org.telegram.messenger.g0.f24118q.x, org.telegram.messenger.g0.L(16.0f));
             m6Var.draw(canvas);
             canvas.restore();
         }
@@ -95,14 +95,14 @@ public final class s00 extends FrameLayout {
                 if (contains) {
                     r00 r00Var = fragmentContextView.f32970n0;
                     org.telegram.ui.ActionBar.h2 h2Var = fragmentContextView.h;
-                    if (h2Var != null && (zgVar = fragmentContextView.f32969n) != null && (groupCall = zgVar.getGroupCall()) != null && groupCall.f26937b != null) {
+                    if (h2Var != null && (zgVar = fragmentContextView.f32969n) != null && (groupCall = zgVar.getGroupCall()) != null && groupCall.f26935b != null) {
                         if (fragmentContextView.T0 != 0) {
                             h2Var.getConnectionsManager().cancelRequest(fragmentContextView.T0, true);
                             fragmentContextView.T0 = 0;
                         }
                         TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
-                        togglegroupcallstartsubscription.call = groupCall.g(groupCall.f26936a);
-                        TLRPC.GroupCall groupCall2 = groupCall.f26937b;
+                        togglegroupcallstartsubscription.call = groupCall.g(groupCall.f26934a);
+                        TLRPC.GroupCall groupCall2 = groupCall.f26935b;
                         boolean z10 = !fragmentContextView.f32966j0;
                         fragmentContextView.f32966j0 = z10;
                         groupCall2.schedule_start_subscribed = z10;

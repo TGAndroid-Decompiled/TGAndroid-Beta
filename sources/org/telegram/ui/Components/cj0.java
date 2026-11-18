@@ -29,8 +29,8 @@ public final class cj0 implements View.OnLayoutChangeListener {
         long min;
         View view2;
         org.telegram.ui.ActionBar.l5 l5Var = this.f34038e;
-        HashMap hashMap = (HashMap) l5Var.f29208w;
-        ck0 ck0Var = (ck0) l5Var.f29203e;
+        HashMap hashMap = (HashMap) l5Var.f29206w;
+        ck0 ck0Var = (ck0) l5Var.f29201e;
         ck0Var.removeOnLayoutChangeListener(this);
         final ArrayList arrayList2 = new ArrayList();
         ck0Var.C0();
@@ -53,19 +53,19 @@ public final class cj0 implements View.OnLayoutChangeListener {
             if (childAt.getBottom() > i21) {
                 i21 = childAt.getBottom();
             }
-            if (childAt instanceof org.telegram.ui.Cells.p4) {
-                ((org.telegram.ui.Cells.p4) childAt).c(true, false);
+            if (childAt instanceof org.telegram.ui.Cells.q4) {
+                ((org.telegram.ui.Cells.q4) childAt).c(true, false);
             }
             v4.i0 i0Var = this.f34035a;
-            if (i0Var != null && (i0Var.f59159b || l5Var.f29202c)) {
+            if (i0Var != null && (i0Var.f59160b || l5Var.f29200c)) {
                 ck0Var.getClass();
                 long c10 = i0Var.c(RecyclerView.R(childAt));
                 if (hashMap.containsKey(Long.valueOf(c10)) && (view2 = (View) hashMap.get(Long.valueOf(c10))) != null) {
-                    if (view2 instanceof org.telegram.ui.Cells.p4) {
-                        ((org.telegram.ui.Cells.p4) view2).c(false, false);
+                    if (view2 instanceof org.telegram.ui.Cells.q4) {
+                        ((org.telegram.ui.Cells.q4) view2).c(false, false);
                     }
                     arrayList.remove(view2);
-                    c8.oa oaVar = (c8.oa) l5Var.f29206r;
+                    c8.oa oaVar = (c8.oa) l5Var.f29204r;
                     if (oaVar != null) {
                         oaVar.d(view2);
                     }
@@ -97,10 +97,10 @@ public final class cj0 implements View.OnLayoutChangeListener {
             }
             if (view3.getParent() == null) {
                 ck0Var.addView(view3);
-                ((v4.c0) l5Var.f29204f).M(view3);
+                ((v4.c0) l5Var.f29202f).M(view3);
             }
-            if (view3 instanceof org.telegram.ui.Cells.p4) {
-                ((org.telegram.ui.Cells.p4) view3).c(true, true);
+            if (view3 instanceof org.telegram.ui.Cells.q4) {
+                ((org.telegram.ui.Cells.q4) view3).c(true, true);
             }
         }
         if (i25 == Integer.MAX_VALUE) {
@@ -108,7 +108,7 @@ public final class cj0 implements View.OnLayoutChangeListener {
         } else {
             i17 = i25;
         }
-        c8.oa oaVar2 = (c8.oa) l5Var.f29206r;
+        c8.oa oaVar2 = (c8.oa) l5Var.f29204r;
         if (oaVar2 != null) {
             oaVar2.b();
         }
@@ -142,7 +142,7 @@ public final class cj0 implements View.OnLayoutChangeListener {
                 boolean z13;
                 int i27;
                 org.telegram.ui.ActionBar.l5 l5Var2 = cj0.this.f34038e;
-                ck0 ck0Var2 = (ck0) l5Var2.f29203e;
+                ck0 ck0Var2 = (ck0) l5Var2.f29201e;
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 ArrayList arrayList3 = arrayList;
                 int size2 = arrayList3.size();
@@ -176,7 +176,7 @@ public final class cj0 implements View.OnLayoutChangeListener {
                     }
                 }
                 ck0Var2.invalidate();
-                ej0 ej0Var = (ej0) l5Var2.f29205n;
+                ej0 ej0Var = (ej0) l5Var2.f29203n;
                 if (ej0Var != null) {
                     ej0Var.i();
                 }

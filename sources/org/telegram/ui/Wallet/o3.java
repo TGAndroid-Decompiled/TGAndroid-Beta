@@ -39,8 +39,8 @@ public final class o3 implements View.OnClickListener {
                 j9Var.b(!j9Var.E);
                 return;
             case 6:
-                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f44700b;
-                c2Var.c(!c2Var.b(), true);
+                org.telegram.ui.Cells.d2 d2Var = (org.telegram.ui.Cells.d2) this.f44700b;
+                d2Var.c(!d2Var.b(), true);
                 return;
             default:
                 y9 y9Var = ((ca) this.f44700b).f44007c;

@@ -38,7 +38,7 @@ public class w5 extends TextView {
         } else {
             f10 = 0.0f;
         }
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             paddingLeft = getPaddingRight();
         } else {
             paddingLeft = getPaddingLeft();

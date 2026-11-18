@@ -34,7 +34,7 @@ public class dt0 extends at0 {
         org.telegram.messenger.fj fjVar;
         TL_stories.StoryItem storyItem;
         fi.h6 h6Var = this.f34504s;
-        if (h6Var == null || i7 < 0 || i7 >= h6Var.f12048i.size() || (fjVar = (org.telegram.messenger.fj) this.f34504s.f12048i.get(i7)) == null || (storyItem = fjVar.f23973l) == null) {
+        if (h6Var == null || i7 < 0 || i7 >= h6Var.f12045i.size() || (fjVar = (org.telegram.messenger.fj) this.f34504s.f12045i.get(i7)) == null || (storyItem = fjVar.f23970l) == null) {
             return null;
         }
         return org.telegram.messenger.gd.e0(storyItem.date, true);
@@ -61,10 +61,10 @@ public class dt0 extends at0 {
                     return true;
                 }
                 return false;
-            } else if (i7 >= 0 && i7 < h6Var.f12048i.size()) {
-                org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) this.f34504s.f12048i.get(i7);
+            } else if (i7 >= 0 && i7 < h6Var.f12045i.size()) {
+                org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) this.f34504s.f12045i.get(i7);
                 fi.h6 h6Var2 = this.f34504s;
-                if (h6Var2.f12046f > 0) {
+                if (h6Var2.f12043f > 0) {
                     return true;
                 }
                 return h6Var2.m(fjVar.e1());
@@ -99,7 +99,7 @@ public class dt0 extends at0 {
                     gt0Var.n1 = z11;
                 } else if (gt0Var.n1) {
                     gt0Var.n1 = false;
-                    iArr[1] = Math.max(2, org.telegram.messenger.bz.f23205u1);
+                    iArr[1] = Math.max(2, org.telegram.messenger.bz.f23202u1);
                     if (bs0VarArr != null && (bs0Var = bs0VarArr[0]) != null && (bs0Var2 = bs0VarArr[1]) != null && bs0Var.h != null && bs0Var2.h != null) {
                         gt0Var.B1(false);
                     }
@@ -160,7 +160,7 @@ public class dt0 extends at0 {
             if (gt0Var.B0()) {
                 ArrayList arrayList = this.f34503r;
                 arrayList.clear();
-                ArrayList F = org.telegram.messenger.mp.u1(this.f34504s.f12044c).R1().F(gt0Var.f35606m1);
+                ArrayList F = org.telegram.messenger.mp.u1(this.f34504s.f12041c).R1().F(gt0Var.f35606m1);
                 if (F != null) {
                     arrayList.addAll(F);
                 }
@@ -176,53 +176,53 @@ public class dt0 extends at0 {
         boolean z11;
         char c10;
         boolean z12;
-        if (this.f34504s != null && f1Var.f59126f == 19) {
-            View view = f1Var.f59122a;
-            if (view instanceof org.telegram.ui.Cells.o7) {
-                org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
-                o7Var.f31183e0 = true;
+        if (this.f34504s != null && f1Var.f59127f == 19) {
+            View view = f1Var.f59123a;
+            if (view instanceof org.telegram.ui.Cells.p7) {
+                org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;
+                p7Var.f31230e0 = true;
                 ArrayList arrayList = this.f34503r;
                 if (i7 >= 0 && i7 < arrayList.size()) {
                     fi.o6 o6Var = (fi.o6) arrayList.get(i7);
-                    o7Var.f31186g0 = false;
+                    p7Var.f31233g0 = false;
                     if (o6Var.L == null) {
                         TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                        long j3 = o6Var.f12331a;
+                        long j3 = o6Var.f12328a;
                         int i10 = (int) (j3 ^ (j3 >>> 32));
                         tL_storyItem.messageId = i10;
-                        tL_storyItem.f28644id = i10;
-                        tL_storyItem.attachPath = o6Var.f12335f;
-                        org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(this.f34504s.f12044c, tL_storyItem);
+                        tL_storyItem.f28642id = i10;
+                        tL_storyItem.attachPath = o6Var.f12332f;
+                        org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(this.f34504s.f12041c, tL_storyItem);
                         o6Var.L = fjVar;
-                        fjVar.f23977m = o6Var;
+                        fjVar.f23974m = o6Var;
                     }
-                    o7Var.k(o6Var.L, O(), false);
-                    o7Var.f31183e0 = true;
-                    o7Var.setReorder(false);
-                    o7Var.i(false, false);
+                    p7Var.k(o6Var.L, O(), false);
+                    p7Var.f31230e0 = true;
+                    p7Var.setReorder(false);
+                    p7Var.i(false, false);
                     return;
                 }
                 int size = i7 - arrayList.size();
-                if (size >= 0 && size < this.f34504s.f12048i.size()) {
-                    org.telegram.messenger.fj fjVar2 = (org.telegram.messenger.fj) this.f34504s.f12048i.get(size);
+                if (size >= 0 && size < this.f34504s.f12045i.size()) {
+                    org.telegram.messenger.fj fjVar2 = (org.telegram.messenger.fj) this.f34504s.f12045i.get(size);
                     if (fjVar2 != null && this.f34504s.m(fjVar2.e1())) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    o7Var.f31186g0 = z10;
+                    p7Var.f31233g0 = z10;
                     gt0 gt0Var = this.G;
-                    if (!gt0Var.B0() && !o7Var.f31186g0) {
+                    if (!gt0Var.B0() && !p7Var.f31233g0) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
-                    o7Var.setReorder(z11);
-                    o7Var.h = gt0Var.G0();
-                    o7Var.k(fjVar2, O(), false);
+                    p7Var.setReorder(z11);
+                    p7Var.h = gt0Var.G0();
+                    p7Var.k(fjVar2, O(), false);
                     if (gt0Var.F1 && fjVar2 != null) {
                         SparseArray[] sparseArrayArr = gt0Var.f35577c1;
-                        if (org.telegram.messenger.fj.B0(fjVar2.f23968k) == gt0Var.f35606m1) {
+                        if (org.telegram.messenger.fj.B0(fjVar2.f23965k) == gt0Var.f35606m1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -232,16 +232,16 @@ public class dt0 extends at0 {
                         } else {
                             z12 = false;
                         }
-                        o7Var.i(z12, true);
+                        p7Var.i(z12, true);
                     } else {
-                        o7Var.i(false, false);
+                        p7Var.i(false, false);
                     }
-                    o7Var.l(this.f34507y, false);
+                    p7Var.l(this.f34507y, false);
                     return;
                 }
-                o7Var.f31186g0 = false;
-                o7Var.k(null, O(), false);
-                o7Var.f31183e0 = true;
+                p7Var.f31233g0 = false;
+                p7Var.k(null, O(), false);
+                p7Var.f31230e0 = true;
             }
         }
     }
@@ -249,9 +249,9 @@ public class dt0 extends at0 {
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         v4.f1 x10 = super.x(viewGroup, i7);
-        View view = x10.f59122a;
-        if (view instanceof org.telegram.ui.Cells.o7) {
-            ((org.telegram.ui.Cells.o7) view).f31183e0 = true;
+        View view = x10.f59123a;
+        if (view instanceof org.telegram.ui.Cells.p7) {
+            ((org.telegram.ui.Cells.p7) view).f31230e0 = true;
         }
         return x10;
     }
@@ -301,7 +301,7 @@ public class dt0 extends at0 {
         fi.h6 h6Var = this.f34504s;
         if (h6Var != null) {
             this.f34505w = h6Var.o();
-            this.f34506x = new bt0(this, h2Var.getMessagesController().R1(), gt0Var.f35606m1, this.f34504s.f12044c);
+            this.f34506x = new bt0(this, h2Var.getMessagesController().R1(), gt0Var.f35606m1, this.f34504s.f12041c);
         }
         N();
     }

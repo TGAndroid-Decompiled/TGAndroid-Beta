@@ -48,7 +48,7 @@ public final class i3 {
             ofFloat.addUpdateListener(new ch.w(20, this, u2Var));
             this.f40932e = org.telegram.messenger.g0.L(12.0f) + this.f40931c;
             this.f40933f = org.telegram.messenger.g0.L(12.0f) + this.d;
-            SecureRandom secureRandom = Utilities.f22780b;
+            SecureRandom secureRandom = Utilities.f22777b;
             this.f40931c = org.telegram.messenger.g0.L(12.0f) + secureRandom.nextInt(org.telegram.messenger.g0.L(16.0f));
             this.d = org.telegram.messenger.g0.L(12.0f) + secureRandom.nextInt(org.telegram.messenger.g0.L(16.0f));
             this.f40930b.setInterpolator(new LinearInterpolator());

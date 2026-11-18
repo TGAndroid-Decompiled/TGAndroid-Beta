@@ -6,32 +6,32 @@ import android.view.ViewTreeObserver;
 import java.util.WeakHashMap;
 import org.telegram.messenger.x10;
 public class p3 {
-    public final View f15218a;
-    public View f15219b;
-    public final x10 f15220c;
+    public final View f15215a;
+    public View f15216b;
+    public final x10 f15217c;
     public boolean d;
-    public boolean f15221e;
-    public boolean f15222f;
-    public boolean f15223g;
+    public boolean f15218e;
+    public boolean f15219f;
+    public boolean f15220g;
     public final Rect h = new Rect();
-    public final bi.o1 f15224i;
-    public final n3 f15225j;
-    public int f15226k;
-    public int f15227l;
+    public final bi.o1 f15221i;
+    public final n3 f15222j;
+    public int f15223k;
+    public int f15224l;
 
     public p3(View view, boolean z10, x10 x10Var) {
         bi.o1 o1Var = new bi.o1(this, 1);
-        this.f15224i = o1Var;
+        this.f15221i = o1Var;
         ?? r12 = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public final void onGlobalLayout() {
                 p3.this.d();
             }
         };
-        this.f15225j = r12;
-        this.f15218a = view;
-        this.f15220c = x10Var;
-        this.f15219b = view;
+        this.f15222j = r12;
+        this.f15215a = view;
+        this.f15217c = x10Var;
+        this.f15216b = view;
         if (view.isAttachedToWindow()) {
             view.getViewTreeObserver().addOnGlobalLayoutListener(r12);
             view.addOnLayoutChangeListener(o1Var);
@@ -40,16 +40,16 @@ public class p3 {
     }
 
     public final void a() {
-        if (this.f15221e) {
-            if (this.f15227l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24116n) {
-                this.f15221e = false;
+        if (this.f15218e) {
+            if (this.f15224l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24113n) {
+                this.f15218e = false;
             } else {
                 return;
             }
         }
-        x10 x10Var = this.f15220c;
+        x10 x10Var = this.f15217c;
         if (x10Var != null) {
-            x10Var.a(Integer.valueOf(this.f15227l));
+            x10Var.a(Integer.valueOf(this.f15224l));
         }
     }
 
@@ -59,7 +59,7 @@ public class p3 {
     }
 
     public final boolean c() {
-        if (this.f15227l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24116n && !this.f15221e) {
+        if (this.f15224l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24113n && !this.f15218e) {
             return false;
         }
         return true;
@@ -68,11 +68,11 @@ public class p3 {
     public final void d() {
         int i7;
         if (!this.d) {
-            boolean z10 = this.f15222f;
+            boolean z10 = this.f15219f;
             boolean z11 = false;
-            View view = this.f15218a;
+            View view = this.f15215a;
             if (z10) {
-                View view2 = this.f15219b;
+                View view2 = this.f15216b;
                 if (view2 != null) {
                     view = view2;
                 }
@@ -83,25 +83,25 @@ public class p3 {
                 } else {
                     i7 = 0;
                 }
-                this.f15227l = i7;
+                this.f15224l = i7;
             } else {
                 Rect rect = this.h;
                 view.getWindowVisibleDisplayFrame(rect);
-                View view3 = this.f15219b;
+                View view3 = this.f15216b;
                 if (view3 != null) {
                     view = view3;
                 }
-                this.f15227l = view.getHeight() - rect.bottom;
+                this.f15224l = view.getHeight() - rect.bottom;
             }
-            if (this.f15223g) {
-                this.f15227l = Math.max(0, this.f15227l - org.telegram.messenger.g0.f24116n);
+            if (this.f15220g) {
+                this.f15224l = Math.max(0, this.f15224l - org.telegram.messenger.g0.f24113n);
             }
-            int i10 = this.f15226k;
-            int i11 = this.f15227l;
+            int i10 = this.f15223k;
+            int i11 = this.f15224l;
             if (i10 != i11) {
                 z11 = true;
             }
-            this.f15226k = i11;
+            this.f15223k = i11;
             if (z11) {
                 a();
             }

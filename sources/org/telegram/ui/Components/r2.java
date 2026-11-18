@@ -47,27 +47,27 @@ public final class r2 implements Runnable {
                 boolean z12 = this.f38986c;
                 TLRPC.Document document = (TLRPC.Document) this.f38987e;
                 Runnable runnable = (Runnable) this.f38988f;
-                HashSet hashSet = org.telegram.messenger.mp.u1(g8Var.f30189a).J1().f24049b;
+                HashSet hashSet = org.telegram.messenger.mp.u1(g8Var.f30187a).J1().f24046b;
                 if (z12) {
                     hashSet.add(Long.valueOf(j10));
                 } else {
                     hashSet.remove(Long.valueOf(j10));
                 }
-                long e10 = org.telegram.messenger.j10.i(g8Var.f30189a).e();
-                TLRPC.UserFull d2 = org.telegram.messenger.mp.u1(g8Var.f30189a).d2(e10);
+                long e10 = org.telegram.messenger.j10.i(g8Var.f30187a).e();
+                TLRPC.UserFull d2 = org.telegram.messenger.mp.u1(g8Var.f30187a).d2(e10);
                 if (d2 != null) {
                     if (z12) {
                         d2.flags2 |= 2097152;
                         d2.saved_music = document;
                     } else {
                         TLRPC.Document document2 = d2.saved_music;
-                        if (document2 != null && document2.f28411id == j10) {
+                        if (document2 != null && document2.f28409id == j10) {
                             d2.flags2 &= -2097153;
                             d2.saved_music = null;
                         }
                     }
-                    org.telegram.messenger.tr.a0(g8Var.f30189a).j2(d2, true);
-                    org.telegram.messenger.ks.f(g8Var.f30189a).k(248, Long.valueOf(e10));
+                    org.telegram.messenger.tr.a0(g8Var.f30187a).j2(d2, true);
+                    org.telegram.messenger.ks.f(g8Var.f30187a).k(249, Long.valueOf(e10));
                 }
                 runnable.run();
                 return;
@@ -94,7 +94,7 @@ public final class r2 implements Runnable {
                                         s5.f38183b = ConnectionsManager.getInstance(z0Var.f45336b).getCurrentTime();
                                         if (!z0Var.d.exists()) {
                                             if (z0Var.r().edit().putInt("lastUsageDate", s5.f38183b).commit()) {
-                                                org.telegram.messenger.g0.g3(new org.telegram.ui.cd0(10));
+                                                org.telegram.messenger.g0.g3(new org.telegram.ui.dd0(10));
                                             } else {
                                                 throw new IOException("usage write");
                                             }

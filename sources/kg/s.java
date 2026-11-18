@@ -33,7 +33,7 @@ public final class s extends EditTextBoldCursor {
         int i7;
         super.dispatchDraw(canvas);
         if (this.N1 < 0) {
-            i7 = n6.f29617p7;
+            i7 = n6.f29615p7;
         } else {
             i7 = n6.P5;
         }

@@ -4,7 +4,7 @@ public abstract class d {
 
     static {
         b bVar;
-        Integer num = od.a.f21789a;
+        Integer num = od.a.f21786a;
         if (num != null && num.intValue() < 34) {
             bVar = new b();
         } else {

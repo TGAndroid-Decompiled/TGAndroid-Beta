@@ -18,7 +18,7 @@ public final class t8 implements Runnable {
         switch (i7) {
             case 0:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, u8Var.getParentActivity(), u8Var.getResourceProvider());
-                alertDialog$Builder.f28746a.U = gd.M0(2131742886, null);
+                alertDialog$Builder.f28744a.U = gd.M0(2131742886, null);
                 org.telegram.messenger.f3.m(null, 2131747638, alertDialog$Builder, null);
                 return;
             default:

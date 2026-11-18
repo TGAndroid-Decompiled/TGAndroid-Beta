@@ -9,19 +9,19 @@ import org.telegram.messenger.fj;
 import org.telegram.ui.Wallet.c5;
 import org.telegram.ui.bn;
 public final class b3 implements m9.t {
-    public boolean f20024a;
-    public boolean f20025b;
-    public Object f20026c;
+    public boolean f20021a;
+    public boolean f20022b;
+    public Object f20023c;
     public Object d;
 
     public b3(org.telegram.ui.Wallet.m mVar, org.telegram.ui.Wallet.u uVar) {
-        this.f20026c = mVar;
+        this.f20023c = mVar;
         this.d = uVar;
     }
 
     public boolean a(int i7) {
-        SparseArray sparseArray = (SparseArray) this.f20026c;
-        boolean z10 = this.f20025b;
+        SparseArray sparseArray = (SparseArray) this.f20023c;
+        boolean z10 = this.f20022b;
         bn bnVar = (bn) this.d;
         int i10 = i7 - bnVar.D0.K;
         if (i10 >= 0 && i10 < bnVar.M6.size()) {
@@ -41,14 +41,14 @@ public final class b3 implements m9.t {
     }
 
     public void b() {
-        if (!this.f20024a) {
-            this.f20024a = true;
-            Runnable runnable = (Runnable) this.f20026c;
+        if (!this.f20021a) {
+            this.f20021a = true;
+            Runnable runnable = (Runnable) this.f20023c;
             if (runnable != null) {
                 runnable.run();
             }
             Runnable runnable2 = (Runnable) this.d;
-            if (runnable2 != null && !this.f20025b) {
+            if (runnable2 != null && !this.f20022b) {
                 runnable2.run();
             }
         }
@@ -57,13 +57,13 @@ public final class b3 implements m9.t {
     public boolean c(Rect rect, boolean z10, boolean z11) {
         boolean z12;
         Rect rect2 = (Rect) this.d;
-        if (!rect2.isEmpty() && rect2.top == rect.top && rect2.bottom == rect.bottom && rect2.right == rect.right && rect2.left == rect.left && this.f20024a == z11 && this.f20025b == z10 && z11 && z10) {
+        if (!rect2.isEmpty() && rect2.top == rect.top && rect2.bottom == rect.bottom && rect2.right == rect.right && rect2.left == rect.left && this.f20021a == z11 && this.f20022b == z10 && z11 && z10) {
             z12 = false;
         } else {
             z12 = true;
         }
-        this.f20024a = z11;
-        this.f20025b = z10;
+        this.f20021a = z11;
+        this.f20022b = z10;
         rect2.set(rect);
         return z12;
     }
@@ -77,12 +77,12 @@ public final class b3 implements m9.t {
         p4.w wVar = (p4.w) obj;
         p4.d0 d0Var = ((p4.m0) this.d).h;
         Handler handler = d0Var.f55187l;
-        p4.v vVar = (p4.v) this.f20026c;
-        h2.l0.W(handler, new c5(d0Var, vVar, new p5(this, wVar, this.f20024a, this.f20025b, vVar, 4)));
+        p4.v vVar = (p4.v) this.f20023c;
+        h2.l0.W(handler, new c5(d0Var, vVar, new p5(this, wVar, this.f20021a, this.f20022b, vVar, 4)));
     }
 
     public b3() {
-        this.f20026c = new Path();
+        this.f20023c = new Path();
         this.d = new Rect();
     }
 

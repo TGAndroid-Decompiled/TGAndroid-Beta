@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.webrtc.RendererCommon;
 public final class yb1 implements RendererCommon.RendererEvents {
-    public final hc1 f54168a;
+    public final hc1 f54111a;
 
     public yb1(hc1 hc1Var) {
-        this.f54168a = hc1Var;
+        this.f54111a = hc1Var;
     }
 
     @Override

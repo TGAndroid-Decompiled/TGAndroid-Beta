@@ -49,7 +49,7 @@ public final class ar0 extends cm0 {
             return true;
         }
         if (i7 == 12 && (or0Var = gt0Var.W) != null) {
-            org.telegram.ui.cn cnVar = or0Var.f47021a;
+            org.telegram.ui.cn cnVar = or0Var.f46944a;
             org.telegram.ui.bk bkVar = cnVar.D1;
             if (bkVar != null) {
                 bkVar.e(p0Var, true);
@@ -60,7 +60,7 @@ public final class ar0 extends cm0 {
                 z11 = true;
             }
             cnVar.H3 = z11;
-            cnVar.f46155r0 = z11;
+            cnVar.f46146r0 = z11;
             cnVar.Pc(false);
             cnVar.qd();
         }
@@ -88,7 +88,7 @@ public final class ar0 extends cm0 {
             } else {
                 i10 = 2131232488;
             }
-            ph0 ph0Var = r0Var.f29949y;
+            ph0 ph0Var = r0Var.f29947y;
             if (ph0Var != null && r0Var.E != i10) {
                 if (z10) {
                     r0Var.E = i10;

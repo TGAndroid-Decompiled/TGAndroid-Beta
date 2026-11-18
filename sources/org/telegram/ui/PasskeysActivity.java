@@ -28,7 +28,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.h2 {
                 if ("EMPTY".equalsIgnoreCase(str)) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(passkeysActivity.getParentActivity());
                     String M0 = org.telegram.messenger.gd.M0(2131747439, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                     u1Var.S = M0;
                     u1Var.U = org.telegram.messenger.gd.M0(2131747440, null);
                     org.telegram.messenger.f3.m(null, 2131747638, alertDialog$Builder, null);
@@ -46,7 +46,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.h2 {
         passkeysActivity.f43150b.remove(passkey);
         passkeysActivity.f43149a.f34607g3.O(true);
         TL_account.deletePasskey deletepasskey = new TL_account.deletePasskey();
-        deletepasskey.f28613id = str;
+        deletepasskey.f28611id = str;
         ConnectionsManager.getInstance(passkeysActivity.currentAccount).sendRequestTyped(deletepasskey, new d3.b(1), new xf(passkeysActivity, i7, passkey, 2));
     }
 
@@ -63,7 +63,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.h2 {
         int i7 = passkeysActivity.currentAccount;
         org.telegram.ui.ActionBar.i6 i6Var = passkeysActivity.resourceProvider;
         boolean z10 = true;
-        if (passkeysActivity.f43150b.size() + 1 > ((org.telegram.messenger.j0) passkeysActivity.getMessagesController().A7.E.f15539b).f24767c) {
+        if (passkeysActivity.f43150b.size() + 1 > ((org.telegram.messenger.j0) passkeysActivity.getMessagesController().A7.E.f15536b).f24764c) {
             z10 = false;
         }
         f0(i7, parentActivity, i6Var, z10);
@@ -78,7 +78,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.h2 {
         imageView.f(2131624114, org.telegram.messenger.g0.L(115.0f), org.telegram.messenger.g0.L(115.0f), null);
         imageView.d();
         g10.addView((View) imageView, c8.ma.t(115, 115, 17, 0, 0, 0, 9));
-        int i10 = org.telegram.ui.ActionBar.n6.f29504j5;
+        int i10 = org.telegram.ui.ActionBar.n6.f29502j5;
         TextView b10 = c8.va.b(context, 18.0f, i10, true, i6Var);
         org.telegram.messenger.f3.k(b10, 17, null, 2131747443);
         g10.addView(b10, c8.ma.k(32.0f, 0.0f, 32.0f, 6.0f, -1, -2));
@@ -142,12 +142,12 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.h2 {
             viewParent = view.getParent();
         }
         si0 si0Var = (si0) viewParent;
-        String str = si0Var.f52008w;
+        String str = si0Var.f52010w;
         int i7 = 0;
         while (true) {
             arrayList = this.f43150b;
             if (i7 < arrayList.size()) {
-                if (str.equals(((TL_account.Passkey) arrayList.get(i7)).f28612id)) {
+                if (str.equals(((TL_account.Passkey) arrayList.get(i7)).f28610id)) {
                     break;
                 }
                 i7++;

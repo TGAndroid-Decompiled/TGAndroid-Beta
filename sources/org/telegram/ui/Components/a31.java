@@ -39,7 +39,7 @@ public final class a31 implements View.OnClickListener {
                 return;
             default:
                 final k31 k31Var2 = this.f33239b;
-                y60 G = y60.G(k31Var2.f30195c, k31Var2.J0, view);
+                y60 G = y60.G(k31Var2.f30193c, k31Var2.J0, view);
                 G.f42343a0 = org.telegram.messenger.g0.L(450.0f);
                 int i10 = 0;
                 G.f42377t = false;
@@ -76,15 +76,15 @@ public final class a31 implements View.OnClickListener {
                 while (i12 < size) {
                     int i13 = i12 + 1;
                     final org.telegram.messenger.s00 s00Var = (org.telegram.messenger.s00) o4.get(i12);
-                    if (!TextUtils.equals(s00Var.f26718a, k31Var2.f36666b2)) {
-                        k31Var2.e1(G, linearLayout3, false, s00Var.f26719b, new Runnable() {
+                    if (!TextUtils.equals(s00Var.f26716a, k31Var2.f36666b2)) {
+                        k31Var2.e1(G, linearLayout3, false, s00Var.f26717b, new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
                                         k31 k31Var3 = k31Var2;
                                         k31Var3.f1();
-                                        String str = s00Var.f26718a;
+                                        String str = s00Var.f26716a;
                                         k31Var3.f36666b2 = str;
                                         y21.U0(str);
                                         k31Var3.g1();
@@ -92,7 +92,7 @@ public final class a31 implements View.OnClickListener {
                                     default:
                                         k31 k31Var4 = k31Var2;
                                         k31Var4.f1();
-                                        String str2 = s00Var.f26718a;
+                                        String str2 = s00Var.f26716a;
                                         k31Var4.f36666b2 = str2;
                                         y21.U0(str2);
                                         k31Var4.g1();
@@ -111,14 +111,14 @@ public final class a31 implements View.OnClickListener {
                     Object obj = n10.get(i10);
                     i10++;
                     final org.telegram.messenger.s00 s00Var2 = (org.telegram.messenger.s00) obj;
-                    k31Var2.e1(G, linearLayout3, TextUtils.equals(s00Var2.f26718a, k31Var2.f36666b2), s00Var2.f26719b, new Runnable() {
+                    k31Var2.e1(G, linearLayout3, TextUtils.equals(s00Var2.f26716a, k31Var2.f36666b2), s00Var2.f26717b, new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
                                     k31 k31Var3 = k31Var2;
                                     k31Var3.f1();
-                                    String str = s00Var2.f26718a;
+                                    String str = s00Var2.f26716a;
                                     k31Var3.f36666b2 = str;
                                     y21.U0(str);
                                     k31Var3.g1();
@@ -126,7 +126,7 @@ public final class a31 implements View.OnClickListener {
                                 default:
                                     k31 k31Var4 = k31Var2;
                                     k31Var4.f1();
-                                    String str2 = s00Var2.f26718a;
+                                    String str2 = s00Var2.f26716a;
                                     k31Var4.f36666b2 = str2;
                                     y21.U0(str2);
                                     k31Var4.g1();

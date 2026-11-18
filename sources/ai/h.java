@@ -53,7 +53,7 @@ public final class h {
         ArrayList arrayList = new ArrayList();
         org.telegram.messenger.e T1 = mp.u1(this.f1212a).T1();
         if (T1 != null) {
-            ArrayList arrayList2 = T1.f23614b;
+            ArrayList arrayList2 = T1.f23611b;
             int size = arrayList2.size();
             int i7 = 0;
             while (i7 < size) {

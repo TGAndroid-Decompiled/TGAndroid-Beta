@@ -55,11 +55,11 @@ public final class i01 {
         } else {
             kp kpVar = j01Var.H;
             f11 = 255.0f;
-            org.telegram.ui.ActionBar.s3 s3Var = (org.telegram.ui.ActionBar.s3) kpVar.f36837a.f30003f.get(kpVar.f36839c);
+            org.telegram.ui.ActionBar.s3 s3Var = (org.telegram.ui.ActionBar.s3) kpVar.f36837a.f30001f.get(kpVar.f36839c);
             if (j01Var.H.f36837a.l()) {
                 i7 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, j01Var.f36292y);
             } else {
-                i7 = s3Var.f29981j;
+                i7 = s3Var.f29979j;
             }
             Paint paint = this.f36019a;
             paint.setColor(i7);

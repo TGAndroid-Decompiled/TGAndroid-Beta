@@ -39,7 +39,7 @@ public final class tr implements org.telegram.messenger.a20, pj0, org.telegram.m
             if (i10 == 103) {
                 boolean z11 = !yrVar.f42606l2;
                 yrVar.f42606l2 = z11;
-                ((org.telegram.ui.Cells.q8) view).setChecked(z11);
+                ((org.telegram.ui.Cells.r8) view).setChecked(z11);
                 return;
             }
             int i11 = G.f56589a;
@@ -62,7 +62,7 @@ public final class tr implements org.telegram.messenger.a20, pj0, org.telegram.m
                     if (G.f37026u) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yrVar.getContext());
                         String M0 = org.telegram.messenger.gd.M0(2131743482, null);
-                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                         u1Var.S = M0;
                         u1Var.U = org.telegram.messenger.gd.M0(2131743481, null);
                         alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747638, null), null);
@@ -130,7 +130,7 @@ public final class tr implements org.telegram.messenger.a20, pj0, org.telegram.m
                 if (G.f37026u) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(yrVar.getContext());
                     String M02 = org.telegram.messenger.gd.M0(2131743482, null);
-                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f28744a;
                     u1Var2.S = M02;
                     u1Var2.U = org.telegram.messenger.gd.M0(2131743481, null);
                     alertDialog$Builder2.k(org.telegram.messenger.gd.M0(2131747638, null), null);
@@ -183,7 +183,7 @@ public final class tr implements org.telegram.messenger.a20, pj0, org.telegram.m
                                     if (G2.f56589a == 39 && G2.d == 0) {
                                         v4.f1 K = yrVar.f39534o1.K(i14 + 1);
                                         if (K != null) {
-                                            View view2 = K.f59122a;
+                                            View view2 = K.f59123a;
                                             float f12 = -yrVar.B2;
                                             yrVar.B2 = f12;
                                             org.telegram.messenger.g0.E3(f12, view2, null);

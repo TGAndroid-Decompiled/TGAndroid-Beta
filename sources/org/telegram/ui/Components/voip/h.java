@@ -43,7 +43,7 @@ public final class h extends View {
         Paint paint2 = new Paint();
         this.h = paint2;
         paint2.setColor(Integer.MIN_VALUE);
-        paint.setColor(n6.x0(null, n6.f29479hh, false));
+        paint.setColor(n6.x0(null, n6.f29477hh, false));
         w9Var.f41628a = 48.0f;
         w9Var.f41629b = 58.999996f;
         w9Var2.f41628a = 51.0f;
@@ -59,16 +59,16 @@ public final class h extends View {
         b9Var.p(tLObject);
         this.f40886a.i0(tLObject, b9Var, null);
         if (tLObject instanceof TLRPC.User) {
-            a10 = fc.l(j10.f24773t0, 1, (TLRPC.User) tLObject);
+            a10 = fc.l(j10.f24770t0, 1, (TLRPC.User) tLObject);
         } else if (tLObject instanceof TLRPC.Chat) {
             a10 = fc.a(1, (TLRPC.Chat) tLObject);
         } else {
             fcVar = null;
-            this.f40887b.q0(fcVar, "50_50_b", new ColorDrawable(n6.x0(null, n6.f29535kh, false)), null, tLObject, 0);
+            this.f40887b.q0(fcVar, "50_50_b", new ColorDrawable(n6.x0(null, n6.f29533kh, false)), null, tLObject, 0);
             invalidate();
         }
         fcVar = a10;
-        this.f40887b.q0(fcVar, "50_50_b", new ColorDrawable(n6.x0(null, n6.f29535kh, false)), null, tLObject, 0);
+        this.f40887b.q0(fcVar, "50_50_b", new ColorDrawable(n6.x0(null, n6.f29533kh, false)), null, tLObject, 0);
         invalidate();
     }
 

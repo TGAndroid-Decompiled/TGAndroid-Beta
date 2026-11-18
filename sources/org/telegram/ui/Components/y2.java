@@ -33,7 +33,7 @@ public final class y2 implements org.telegram.messenger.x10 {
                 return;
             case 1:
                 CharSequence charSequence = (CharSequence) obj;
-                hi.g gVar = ((yc) this.f42273b).f15051f;
+                hi.g gVar = ((yc) this.f42273b).f15048f;
                 gVar.setText(charSequence);
                 gVar.w(charSequence.length(), charSequence.length());
                 return;
@@ -100,8 +100,8 @@ public final class y2 implements org.telegram.messenger.x10 {
                     } else {
                         z10 = false;
                     }
-                    int intValue = num2.intValue() - org.telegram.messenger.g0.f24116n;
-                    if (org.telegram.messenger.bz.f23194r == 1) {
+                    int intValue = num2.intValue() - org.telegram.messenger.g0.f24113n;
+                    if (org.telegram.messenger.bz.f23191r == 1) {
                         ViewPropertyAnimator animate = frameLayout.animate();
                         float f13 = 1.0f;
                         if (intValue <= org.telegram.messenger.g0.L(20.0f)) {

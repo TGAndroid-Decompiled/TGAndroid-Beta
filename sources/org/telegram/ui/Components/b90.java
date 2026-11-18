@@ -77,10 +77,10 @@ public abstract class b90 {
         textmath.tried = true;
         oi.p a10 = oi.p.a(trim, org.telegram.messenger.g0.L(20.0f), true);
         if (a10 != null) {
-            textmath.f28632w = a10.f22230b;
-            textmath.h = a10.f22231c;
+            textmath.f28630w = a10.f22227b;
+            textmath.h = a10.f22228c;
             textmath.depth = a10.d;
-            textmath.bitmap = a10.f22229a;
+            textmath.bitmap = a10.f22226a;
         }
         return textmath;
     }
@@ -140,20 +140,20 @@ public abstract class b90 {
 
     public static File i(org.telegram.messenger.fj fjVar) {
         File file;
-        TLRPC.Message message = fjVar.f23968k;
+        TLRPC.Message message = fjVar.f23965k;
         int i7 = fjVar.K1;
         if (!TextUtils.isEmpty(message.attachPath)) {
-            file = new File(fjVar.f23968k.attachPath);
+            file = new File(fjVar.f23965k.attachPath);
         } else {
             file = null;
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(fjVar.f23968k, false, true);
+            file = org.telegram.messenger.w7.M(fjVar.f23965k, false, true);
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(fjVar.f23968k, true, true);
+            file = org.telegram.messenger.w7.M(fjVar.f23965k, true, true);
         }
         if (file == null || !file.exists()) {
             return null;
@@ -305,7 +305,7 @@ public abstract class b90 {
         matcher2.appendTail(stringBuffer);
         String stringBuffer2 = stringBuffer.toString();
         List<bf.a> asList = Arrays.asList(new cf.b(0), new cf.b(1));
-        Pattern pattern = ed.i.f10901j;
+        Pattern pattern = ed.i.f10898j;
         ArrayList arrayList2 = new ArrayList(3);
         ArrayList arrayList3 = new ArrayList(3);
         arrayList2.addAll(Arrays.asList(new Object(), new Object(), new Object(), new ed.d(0), new Object(), new Object(), new Object(), new Object(), new ed.d(1)));
@@ -320,7 +320,7 @@ public abstract class b90 {
         if (asList != null) {
             for (bf.a aVar : asList) {
                 if (aVar instanceof cf.b) {
-                    switch (((cf.b) aVar).f5273a) {
+                    switch (((cf.b) aVar).f5270a) {
                         case 0:
                             ((ArrayList) r7Var.f618c).add(new Object());
                             continue;
@@ -333,21 +333,21 @@ public abstract class b90 {
             r7Var.f620f = new wf.b(15, arrayList2, arrayList3);
             ((ArrayList) r7Var.f617b).add(new ff.a(8));
             ?? obj = new Object();
-            LinkedHashSet linkedHashSet = gf.g.f13547p;
+            LinkedHashSet linkedHashSet = gf.g.f13544p;
             ArrayList arrayList4 = new ArrayList();
             arrayList4.addAll((ArrayList) r7Var.f617b);
             for (Class cls : (LinkedHashSet) r7Var.f619e) {
-                arrayList4.add(gf.g.f13548q.get(cls));
+                arrayList4.add(gf.g.f13545q.get(cls));
             }
-            obj.f60620a = arrayList4;
+            obj.f60621a = arrayList4;
             lf.b bVar = (wf.b) r7Var.f620f;
             if (bVar == null) {
                 bVar = new nb.a(13);
             }
-            obj.f60622c = bVar;
+            obj.f60623c = bVar;
             obj.d = (ArrayList) r7Var.d;
             ArrayList arrayList5 = (ArrayList) r7Var.f618c;
-            obj.f60621b = arrayList5;
+            obj.f60622b = arrayList5;
             bVar.d(new wf.b(23, arrayList5, Collections.EMPTY_MAP));
             ArrayDeque arrayDeque = new ArrayDeque();
             String str3 = null;

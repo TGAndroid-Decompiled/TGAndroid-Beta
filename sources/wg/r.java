@@ -2,23 +2,23 @@ package wg;
 
 import java.io.File;
 public final class r implements Runnable {
-    public final int f59813a;
-    public final Object f59814b;
-    public final Object f59815c;
+    public final int f59814a;
+    public final Object f59815b;
+    public final Object f59816c;
 
     public r(int i7, Object obj, Object obj2) {
-        this.f59813a = i7;
-        this.f59814b = obj;
-        this.f59815c = obj2;
+        this.f59814a = i7;
+        this.f59815b = obj;
+        this.f59816c = obj2;
     }
 
     private final void a() {
-        yi.j jVar = (yi.j) this.f59814b;
-        File file = (File) this.f59815c;
-        synchronized (jVar.f61326m) {
-            for (int i7 = 0; i7 < jVar.f61326m.size(); i7++) {
+        yi.j jVar = (yi.j) this.f59815b;
+        File file = (File) this.f59816c;
+        synchronized (jVar.f61327m) {
+            for (int i7 = 0; i7 < jVar.f61327m.size(); i7++) {
                 try {
-                    File file2 = (File) jVar.f61326m.get(i7);
+                    File file2 = (File) jVar.f61327m.get(i7);
                     if (file != null && file.equals(file2)) {
                     }
                     if (file2.exists() && !file2.delete()) {
@@ -29,7 +29,7 @@ public final class r implements Runnable {
                     throw th2;
                 }
             }
-            jVar.f61326m.clear();
+            jVar.f61327m.clear();
         }
     }
 

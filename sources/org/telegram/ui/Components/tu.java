@@ -87,14 +87,14 @@ public final class tu extends FrameLayout {
         if (!this.d) {
             return;
         }
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, bvVar.J0);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, bvVar.J0);
         Paint paint = this.f40098a;
         paint.setColor(w02);
         org.telegram.ui.ActionBar.n6.n(paint);
         Path path = this.f40099b;
         path.reset();
         float J0 = bvVar.J0();
-        if (J0 <= bvVar.f30192b.getPaddingTop()) {
+        if (J0 <= bvVar.f30190b.getPaddingTop()) {
             z10 = true;
         } else {
             z10 = false;
@@ -139,12 +139,12 @@ public final class tu extends FrameLayout {
             this.f40100c = Boolean.valueOf(z11);
             bvVar.P0(z11);
         }
-        org.telegram.ui.ActionBar.n6.f29687t0.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.zj, bvVar.J0));
-        org.telegram.ui.ActionBar.n6.f29687t0.setAlpha((int) (c8.l9.a(T1 / org.telegram.messenger.g0.L(f10), 0.0f, 1.0f) * org.telegram.ui.ActionBar.n6.f29687t0.getAlpha()));
+        org.telegram.ui.ActionBar.n6.f29685t0.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.zj, bvVar.J0));
+        org.telegram.ui.ActionBar.n6.f29685t0.setAlpha((int) (c8.l9.a(T1 / org.telegram.messenger.g0.L(f10), 0.0f, 1.0f) * org.telegram.ui.ActionBar.n6.f29685t0.getAlpha()));
         int L4 = org.telegram.messenger.g0.L(36.0f);
         float L5 = T1 + org.telegram.messenger.g0.L(10.0f);
         rectF.set((getMeasuredWidth() - L4) / 2, L5, (getMeasuredWidth() + L4) / 2, org.telegram.messenger.g0.L(4.0f) + L5);
-        canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f11), org.telegram.ui.ActionBar.n6.f29687t0);
+        canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f11), org.telegram.ui.ActionBar.n6.f29685t0);
         View view = bvVar.f33790t1;
         if (!wVar.canScrollVertically(1) && bvVar.f33793w1.getVisibility() != 0) {
             i7 = 4;

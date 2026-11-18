@@ -6,20 +6,20 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 import java.util.Collections;
 public final class d6 implements Runnable {
-    public final int f46841a;
-    public final x6 f46842b;
-    public final ArrayList f46843c;
+    public final int f46821a;
+    public final x6 f46822b;
+    public final ArrayList f46823c;
     public final ArrayList d;
-    public final ArrayList f46844e;
-    public final ei.c f46845f;
+    public final ArrayList f46824e;
+    public final ei.c f46825f;
 
     public d6(x6 x6Var, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ei.c cVar, int i7) {
-        this.f46841a = i7;
-        this.f46842b = x6Var;
-        this.f46843c = arrayList;
+        this.f46821a = i7;
+        this.f46822b = x6Var;
+        this.f46823c = arrayList;
         this.d = arrayList2;
-        this.f46844e = arrayList3;
-        this.f46845f = cVar;
+        this.f46824e = arrayList3;
+        this.f46825f = cVar;
     }
 
     @Override
@@ -28,13 +28,13 @@ public final class d6 implements Runnable {
         float f10;
         boolean z11;
         boolean z12;
-        switch (this.f46841a) {
+        switch (this.f46821a) {
             case 0:
-                x6 x6Var = this.f46842b;
-                ArrayList arrayList = this.f46843c;
+                x6 x6Var = this.f46822b;
+                ArrayList arrayList = this.f46823c;
                 ArrayList arrayList2 = this.d;
-                ArrayList arrayList3 = this.f46844e;
-                ei.c cVar = this.f46845f;
+                ArrayList arrayList3 = this.f46824e;
+                ei.c cVar = this.f46825f;
                 ArrayList arrayList4 = new ArrayList();
                 ArrayList arrayList5 = new ArrayList();
                 int i7 = 0;
@@ -53,7 +53,7 @@ public final class d6 implements Runnable {
                     }
                 }
                 while (i7 < arrayList3.size()) {
-                    if (((r6) arrayList3.get(i7)).f51513c <= 0) {
+                    if (((r6) arrayList3.get(i7)).f51473c <= 0) {
                         arrayList3.remove(i7);
                         i7--;
                     }
@@ -63,11 +63,11 @@ public final class d6 implements Runnable {
                 org.telegram.messenger.g0.g3(new d6(x6Var, arrayList4, arrayList5, arrayList3, cVar, 1));
                 return;
             default:
-                x6 x6Var2 = this.f46842b;
-                ArrayList arrayList6 = this.f46843c;
+                x6 x6Var2 = this.f46822b;
+                ArrayList arrayList6 = this.f46823c;
                 ArrayList arrayList7 = this.d;
-                ArrayList arrayList8 = this.f46844e;
-                ei.c cVar2 = this.f46845f;
+                ArrayList arrayList8 = this.f46824e;
+                ei.c cVar2 = this.f46825f;
                 boolean z13 = true;
                 x6Var2.getMessagesController().f4(arrayList6, true);
                 x6Var2.getMessagesController().Z3(arrayList7, true);
@@ -76,8 +76,8 @@ public final class d6 implements Runnable {
                 int i10 = 0;
                 while (i10 < arrayList8.size()) {
                     r6 r6Var2 = (r6) arrayList8.get(i10);
-                    if (x6Var2.getMessagesController().g2(r6Var2.f51511a) == null) {
-                        r6Var2.f51511a = Long.MAX_VALUE;
+                    if (x6Var2.getMessagesController().g2(r6Var2.f51471a) == null) {
+                        r6Var2.f51471a = Long.MAX_VALUE;
                         if (r6Var != null) {
                             SparseArray sparseArray = r6Var.d;
                             int i11 = 0;
@@ -93,16 +93,16 @@ public final class d6 implements Runnable {
                                     }
                                     s6Var.getClass();
                                     r6 r6Var3 = r6Var;
-                                    s6Var2.f51913a += s6Var.f51913a;
-                                    r6Var3.f51513c += s6Var.f51913a;
-                                    s6Var2.f51914b.addAll(s6Var.f51914b);
+                                    s6Var2.f51902a += s6Var.f51902a;
+                                    r6Var3.f51473c += s6Var.f51902a;
+                                    s6Var2.f51903b.addAll(s6Var.f51903b);
                                     i11++;
                                     r6Var = r6Var3;
                                     z13 = z13;
                                     z14 = false;
                                 } else {
                                     z11 = z13;
-                                    r6Var.f51512b += r6Var2.f51512b;
+                                    r6Var.f51472b += r6Var2.f51472b;
                                     arrayList8.remove(i10);
                                     i10--;
                                     z12 = z11;
@@ -124,8 +124,8 @@ public final class d6 implements Runnable {
                     z14 = false;
                 }
                 boolean z15 = z13;
-                cVar2.f10973b = arrayList8;
-                LongSparseArray longSparseArray = cVar2.f10974c;
+                cVar2.f10970b = arrayList8;
+                LongSparseArray longSparseArray = cVar2.f10971c;
                 longSparseArray.clear();
                 int size = arrayList8.size();
                 int i12 = 0;
@@ -133,17 +133,17 @@ public final class d6 implements Runnable {
                     Object obj = arrayList8.get(i12);
                     i12++;
                     r6 r6Var4 = (r6) obj;
-                    longSparseArray.put(r6Var4.f51511a, r6Var4);
+                    longSparseArray.put(r6Var4.f51471a, r6Var4);
                 }
-                if (!x6.f53648i0) {
-                    x6Var2.f53660e0 = cVar2;
+                if (!x6.f53599i0) {
+                    x6Var2.f53611e0 = cVar2;
                     i6 i6Var = x6Var2.N;
                     if (i6Var != null) {
                         i6Var.setCacheModel(cVar2);
                     }
                     x6Var2.A0(z15);
                     x6Var2.y0();
-                    if (x6Var2.Y != null && !x6Var2.L && System.currentTimeMillis() - x6Var2.f53655b0 > 120) {
+                    if (x6Var2.Y != null && !x6Var2.L && System.currentTimeMillis() - x6Var2.f53606b0 > 120) {
                         k6 k6Var = x6Var2.Y;
                         long j3 = x6Var2.H;
                         if (j3 > 0) {

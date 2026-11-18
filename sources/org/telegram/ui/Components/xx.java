@@ -17,7 +17,7 @@ public final class xx extends FrameLayout implements org.telegram.ui.ActionBar.c
     public xx(ry ryVar, Context context) {
         super(context);
         this.f42208e = ryVar;
-        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30084a;
+        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30082a;
         ImageView imageView = new ImageView(getContext());
         this.f42205a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -34,7 +34,7 @@ public final class xx extends FrameLayout implements org.telegram.ui.ActionBar.c
         RadialProgressView radialProgressView = new RadialProgressView(context, i6Var);
         this.f42207c = radialProgressView;
         radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(ryVar.z(org.telegram.ui.ActionBar.n6.f29470h6));
+        radialProgressView.setProgressColor(ryVar.z(org.telegram.ui.ActionBar.n6.f29468h6));
         addView(radialProgressView, c8.ma.e(-2, -2, 17));
     }
 
@@ -79,7 +79,7 @@ public final class xx extends FrameLayout implements org.telegram.ui.ActionBar.c
     @Override
     public final void updateColors() {
         try {
-            this.f42207c.setProgressColor(this.f42208e.z(org.telegram.ui.ActionBar.n6.f29470h6));
+            this.f42207c.setProgressColor(this.f42208e.z(org.telegram.ui.ActionBar.n6.f29468h6));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

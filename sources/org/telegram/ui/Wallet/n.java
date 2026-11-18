@@ -66,7 +66,7 @@ public final class n implements Runnable {
                         return;
                     }
                     ?? obj = new Object();
-                    obj.f28923a = true;
+                    obj.f28921a = true;
                     boolean[] zArr = {false};
                     f0 f0Var = new f0(zArr, x10Var);
                     f0Var.W = new b31(25, zArr, nVar);
@@ -208,7 +208,7 @@ public final class n implements Runnable {
                                 nftitem2 = nftitem4;
                                 if (k2Var4 != null && nftitem2 != null) {
                                     TL_wallet.walletTransactionPeerTelegramGift wallettransactionpeertelegramgift = new TL_wallet.walletTransactionPeerTelegramGift();
-                                    if (user3 != null && user3.f28554id == j10.i(i7).e()) {
+                                    if (user3 != null && user3.f28552id == j10.i(i7).e()) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
@@ -222,7 +222,7 @@ public final class n implements Runnable {
                             u0 u0Var5 = u0Var3;
                             TL_wallet.nftItem nftitem6 = nftitem2;
                             v7 v7Var = new v7(u0Var5, wallettransaction, nftitem6, H, 4);
-                            long nextLong = Utilities.f22780b.nextLong();
+                            long nextLong = Utilities.f22777b.nextLong();
                             wallettransaction.random_id = nextLong;
                             u0Var5.f45096p.add(0, wallettransaction);
                             if (nftitem6 != null) {
@@ -235,7 +235,7 @@ public final class n implements Runnable {
                             H.i();
                             u0Var5.a0();
                             zy C = zy.C(i7);
-                            if (user3 != null && user3.f28554id != j10.i(i7).e() && nftitem6 == null) {
+                            if (user3 != null && user3.f28552id != j10.i(i7).e() && nftitem6 == null) {
                                 user2 = user3;
                                 j10 = nextLong;
                                 j11 = j13;

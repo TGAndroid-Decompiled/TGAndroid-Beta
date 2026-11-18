@@ -39,7 +39,7 @@ public final class b31 implements org.telegram.messenger.q10 {
                         if (clickableSpan == null) {
                             return;
                         }
-                        clickableSpan.onClick(k31.this.f30192b);
+                        clickableSpan.onClick(k31.this.f30190b);
                     }
                 }, null));
                 StringBuilder sb2 = new StringBuilder();
@@ -57,7 +57,7 @@ public final class b31 implements org.telegram.messenger.q10 {
                         if (clickableSpan == null) {
                             return;
                         }
-                        clickableSpan.onClick(k31.this.f30192b);
+                        clickableSpan.onClick(k31.this.f30190b);
                     }
                 }, null));
                 z41Var.U();

@@ -57,7 +57,7 @@ public final class fe extends yg {
             return;
         }
         super.onDraw(canvas);
-        if (getTag() != null && chatActivityEnterView.d2 != null && !chatActivityEnterView.X0 && !this.f42488x && !org.telegram.messenger.ri.d0(chatActivityEnterView.R).f26645v0[0].isEmpty() && paint != null) {
+        if (getTag() != null && chatActivityEnterView.d2 != null && !chatActivityEnterView.X0 && !this.f42488x && !org.telegram.messenger.ri.d0(chatActivityEnterView.R).f26643v0[0].isEmpty() && paint != null) {
             canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + (getWidth() / 2), (getHeight() / 2) - org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f), paint);
         }
     }

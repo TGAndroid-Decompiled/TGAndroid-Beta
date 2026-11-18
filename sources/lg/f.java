@@ -22,24 +22,24 @@ import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.m6;
 import org.telegram.ui.l0;
 public final class f {
-    public int f19766a;
-    public int f19767b;
-    public boolean f19768c;
+    public int f19763a;
+    public int f19764b;
+    public boolean f19765c;
     public Object d;
-    public Object f19769e;
-    public final Object f19770f;
-    public final Object f19771g;
+    public Object f19766e;
+    public final Object f19767f;
+    public final Object f19768g;
     public final Object h;
 
     public f(int i7, int i10, q5 q5Var) {
         this.d = new ArrayList();
-        this.f19769e = new ArrayList();
-        this.f19768c = false;
-        this.f19771g = new x7(this, 0);
+        this.f19766e = new ArrayList();
+        this.f19765c = false;
+        this.f19768g = new x7(this, 0);
         this.h = new x7(this, 1);
-        this.f19767b = i7;
-        this.f19766a = i10;
-        this.f19770f = q5Var;
+        this.f19764b = i7;
+        this.f19763a = i10;
+        this.f19767f = q5Var;
     }
 
     public void a(i7 i7Var) {
@@ -72,28 +72,28 @@ public final class f {
     }
 
     public void b(boolean z10) {
-        q5 q5Var = (q5) this.f19770f;
+        q5 q5Var = (q5) this.f19767f;
         x7 x7Var = (x7) this.h;
         if (z10) {
             q5Var.a(x7Var);
             x7Var.run();
-        } else if (this.f19768c) {
+        } else if (this.f19765c) {
         } else {
-            this.f19768c = true;
+            this.f19765c = true;
             q5Var.a(x7Var);
             q5Var.d(x7Var, 20L);
         }
     }
 
     public void c(Canvas canvas, float f10, float f11, float f12) {
-        Drawable drawable = (Drawable) this.f19771g;
+        Drawable drawable = (Drawable) this.f19768g;
         l0 l0Var = (l0) this.h;
-        RectF rectF = l0Var.f53176a;
+        RectF rectF = l0Var.f53127a;
         rectF.set(0.0f, 0.0f, f10, f11);
         canvas.saveLayerAlpha(rectF, (int) (f12 * 255.0f), 31);
         m6 m6Var = (m6) this.d;
         float i7 = m6Var.i();
-        m6 m6Var2 = (m6) this.f19769e;
+        m6 m6Var2 = (m6) this.f19766e;
         float i10 = m6Var2.i();
         TextPaint textPaint = m6Var2.f37375a;
         float f13 = i10 * i7;
@@ -106,16 +106,16 @@ public final class f {
         m6Var.o(0.0f, 0.0f, f10, f11);
         m6Var.draw(canvas);
         canvas.restore();
-        float d = ((c6) this.f19770f).d(this.f19768c);
+        float d = ((c6) this.f19767f).d(this.f19765c);
         canvas.save();
         canvas.translate(0.0f, e2.t(1.0f, f13, g0.L(4.0f), (g0.L(14.0f) * f13) + ((1.0f - l0Var.H) * f14 * f13) + (-g0.L(1.0f))));
         float T12 = g0.T1(1.15f, 0.9f, f13) * l0Var.H;
         canvas.scale(T12, T12, 0.0f, 0.0f);
-        m6Var2.u(i0.a.f(d, this.f19766a, n6.x0(null, n6.f29637q7, false)));
+        m6Var2.u(i0.a.f(d, this.f19763a, n6.x0(null, n6.f29635q7, false)));
         if (d > 0.0f) {
-            if (this.f19767b != textPaint.getColor()) {
+            if (this.f19764b != textPaint.getColor()) {
                 int color = textPaint.getColor();
-                this.f19767b = color;
+                this.f19764b = color;
                 drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
             }
             drawable.setAlpha((int) (d * 255.0f));
@@ -126,31 +126,31 @@ public final class f {
         m6Var2.draw(canvas);
         canvas.restore();
         rectF.set(f10 - g0.L(12.0f), 0.0f, f10, f11);
-        l0Var.f53201s0.n(canvas, rectF, 2, 1.0f);
+        l0Var.f53152s0.n(canvas, rectF, 2, 1.0f);
         canvas.restore();
     }
 
     public Bitmap d(int i7, int i10) {
         Canvas canvas;
-        Paint paint = (Paint) this.f19771g;
-        RectF rectF = (RectF) this.f19770f;
-        int w02 = n6.w0(n6.f29396d6, (i6) this.h);
+        Paint paint = (Paint) this.f19768g;
+        RectF rectF = (RectF) this.f19767f;
+        int w02 = n6.w0(n6.f29394d6, (i6) this.h);
         int i11 = (i7 + i10) << 10;
-        if (i11 == this.f19766a && !this.f19768c) {
-            if (w02 != this.f19767b && (canvas = (Canvas) this.f19769e) != null && ((Bitmap) this.d) != null) {
-                this.f19767b = w02;
+        if (i11 == this.f19763a && !this.f19765c) {
+            if (w02 != this.f19764b && (canvas = (Canvas) this.f19766e) != null && ((Bitmap) this.d) != null) {
+                this.f19764b = w02;
                 canvas.drawColor(w02, PorterDuff.Mode.SRC);
-                ((Canvas) this.f19769e).drawRoundRect(rectF, g0.L(6.0f), g0.L(6.0f), paint);
+                ((Canvas) this.f19766e).drawRoundRect(rectF, g0.L(6.0f), g0.L(6.0f), paint);
             }
         } else {
-            this.f19768c = false;
-            this.f19766a = i11;
+            this.f19765c = false;
+            this.f19763a = i11;
             this.d = Bitmap.createBitmap(i10, i7, Bitmap.Config.ARGB_8888);
-            this.f19769e = new Canvas((Bitmap) this.d);
+            this.f19766e = new Canvas((Bitmap) this.d);
             rectF.set(0.0f, 0.0f, i10, i7);
-            this.f19767b = w02;
-            ((Canvas) this.f19769e).drawColor(w02);
-            ((Canvas) this.f19769e).drawRoundRect(rectF, g0.L(6.0f), g0.L(6.0f), paint);
+            this.f19764b = w02;
+            ((Canvas) this.f19766e).drawColor(w02);
+            ((Canvas) this.f19766e).drawRoundRect(rectF, g0.L(6.0f), g0.L(6.0f), paint);
         }
         return (Bitmap) this.d;
     }
@@ -160,9 +160,9 @@ public final class f {
         m6 m6Var = new m6(true, true, true);
         this.d = m6Var;
         m6 m6Var2 = new m6(true, true, true);
-        this.f19769e = m6Var2;
-        this.f19770f = new c6(l0Var, 0L, 300L, lr.h);
-        this.f19768c = false;
+        this.f19766e = m6Var2;
+        this.f19767f = new c6(l0Var, 0L, 300L, lr.h);
+        this.f19765c = false;
         m6Var.L = true;
         m6Var.w(g0.L(18.33f));
         m6Var.B = 0.6f;
@@ -175,15 +175,15 @@ public final class f {
         m6Var2.q(false);
         m6Var2.setCallback(l0Var);
         m6Var2.N = 9999999;
-        this.f19771g = l0Var.getContext().getResources().getDrawable(2131232852).mutate();
+        this.f19768g = l0Var.getContext().getResources().getDrawable(2131232852).mutate();
     }
 
     public f(i6 i6Var) {
-        this.f19770f = new RectF();
+        this.f19767f = new RectF();
         Paint paint = new Paint(1);
-        this.f19771g = paint;
-        this.f19766a = 0;
-        this.f19768c = true;
+        this.f19768g = paint;
+        this.f19763a = 0;
+        this.f19765c = true;
         paint.setColor(0);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         this.h = i6Var;

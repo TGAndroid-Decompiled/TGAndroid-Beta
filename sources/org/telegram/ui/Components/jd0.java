@@ -26,7 +26,7 @@ public final class jd0 extends FrameLayout {
         float L;
         int i7;
         if (this.f36419e) {
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(70.0f);
@@ -34,12 +34,12 @@ public final class jd0 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 i7 = org.telegram.messenger.g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.n6.f29519k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.n6.f29517k0);
         }
     }
 

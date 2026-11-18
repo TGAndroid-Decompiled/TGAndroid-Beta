@@ -3,33 +3,33 @@ package org.telegram.messenger;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 public final class rv implements Runnable {
-    public final int f26699a;
-    public final xv f26700b;
-    public final long f26701c;
+    public final int f26697a;
+    public final xv f26698b;
+    public final long f26699c;
 
     public rv(xv xvVar, long j3, int i7) {
-        this.f26699a = i7;
-        this.f26700b = xvVar;
-        this.f26701c = j3;
+        this.f26697a = i7;
+        this.f26698b = xvVar;
+        this.f26699c = j3;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26699a;
-        long j3 = this.f26701c;
-        xv xvVar = this.f26700b;
+        int i7 = this.f26697a;
+        long j3 = this.f26699c;
+        xv xvVar = this.f26698b;
         switch (i7) {
             case 0:
                 a0.h hVar = xvVar.getMessagesController().R;
-                long j10 = this.f26701c;
+                long j10 = this.f26699c;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j10);
                 if (dialog != null) {
                     dialog.unread_count = 0;
-                    xvVar.getMessagesController().S.l(dialog.f28409id);
+                    xvVar.getMessagesController().S.l(dialog.f28407id);
                 }
-                xvVar.getMessagesStorage().f27054a.c(new rv(xvVar, j10, 1));
+                xvVar.getMessagesStorage().f27052a.c(new rv(xvVar, j10, 1));
                 tr messagesStorage = xvVar.getMessagesStorage();
-                messagesStorage.f27054a.c(new vp(messagesStorage, 1, j10, 1));
+                messagesStorage.f27052a.c(new vp(messagesStorage, 1, j10, 1));
                 xvVar.getNotificationCenter().k(3, new Object[0]);
                 xvVar.getNotificationCenter().k(41, Long.valueOf(j10), Boolean.FALSE, null);
                 return;
@@ -38,7 +38,7 @@ public final class rv implements Runnable {
                 return;
             case 2:
                 xs notificationsController = xvVar.getNotificationsController();
-                long j11 = this.f26701c;
+                long j11 = this.f26699c;
                 notificationsController.L(null, j11, 0, Integer.MAX_VALUE, false);
                 LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
                 longSparseIntArray.put(j11, 0);

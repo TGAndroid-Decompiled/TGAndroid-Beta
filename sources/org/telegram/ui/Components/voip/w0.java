@@ -18,7 +18,7 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.Components.c31;
 import org.telegram.ui.Components.k20;
 import org.telegram.ui.Components.mh0;
@@ -86,7 +86,7 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
         jVar.setMinWidth(org.telegram.messenger.g0.L(64.0f));
         jVar.setTag(-1);
         jVar.setTextSize(1, 14.0f);
-        int i10 = n6.f29425eh;
+        int i10 = n6.f29423eh;
         u6.U(jVar, i10, null);
         jVar.setGravity(17);
         jVar.setTypeface(org.telegram.messenger.g0.o());
@@ -170,8 +170,8 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
         this.f41279a = true;
         c();
         f40 f40Var = ((w20) this).F;
-        boolean z12 = f40Var.f47527u2.f41287w;
-        f40Var.f47527u2 = null;
+        boolean z12 = f40Var.f47483u2.f41287w;
+        f40Var.f47483u2 = null;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (z11) {
             if (sharedInstance != null) {
@@ -183,11 +183,11 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
             f40Var.W1(true, false);
             f40Var.V2.z();
             f40Var.R0(true);
-            f40Var.f47502p1.requestLayout();
+            f40Var.f47458p1.requestLayout();
         } else if (sharedInstance != null) {
             sharedInstance.setVideoState(false, 0);
         }
-        animate().alpha(0.0f).translationX(org.telegram.messenger.g0.L(32.0f)).setDuration(150L).setListener(new x9(this, 13));
+        animate().alpha(0.0f).translationX(org.telegram.messenger.g0.L(32.0f)).setDuration(150L).setListener(new y9(this, 13));
         invalidate();
     }
 

@@ -6,33 +6,33 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.widget.FrameLayout;
 public final class m20 extends FrameLayout {
-    public final RectF f49735a;
-    public final RectF f49736b;
-    public final RectF f49737c;
+    public final RectF f49694a;
+    public final RectF f49695b;
+    public final RectF f49696c;
     public final Paint d;
-    public final f40 f49738e;
+    public final f40 f49697e;
 
     public m20(f40 f40Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f49738e = f40Var;
-        this.f49735a = new RectF();
-        this.f49736b = new RectF();
-        this.f49737c = new RectF();
+        this.f49697e = f40Var;
+        this.f49694a = new RectF();
+        this.f49695b = new RectF();
+        this.f49696c = new RectF();
         this.d = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        f40 f40Var = this.f49738e;
+        f40 f40Var = this.f49697e;
         o20 o20Var = f40Var.A1;
         float y10 = o20Var.getY() + o20Var.getMeasuredHeight();
         te.c cVar = f40Var.A5;
-        RectF rectF = this.f49735a;
+        RectF rectF = this.f49694a;
         rectF.set(0.0f, y10 - cVar.f57663f, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f49736b;
+        RectF rectF2 = this.f49695b;
         rectF2.set(0.0f, o20Var.getY() + o20Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y11 = o20Var.getY() + o20Var.getMeasuredHeight();
-        RectF rectF3 = this.f49737c;
+        RectF rectF3 = this.f49696c;
         rectF3.set(0.0f, (o20Var.getY() + o20Var.getMeasuredHeight()) - cVar.f57663f, getMeasuredWidth(), y11);
         int i7 = Build.VERSION.SDK_INT;
         Paint paint = this.d;

@@ -10,10 +10,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.h41;
 import org.telegram.ui.Components.rx;
 public final class n implements rx {
-    public final o f22182a;
+    public final o f22179a;
 
     public n(o oVar) {
-        this.f22182a = oVar;
+        this.f22179a = oVar;
     }
 
     @Override
@@ -50,8 +50,8 @@ public final class n implements rx {
     public final void i(int i7) {
         e1 focusedEditTextOrNull;
         boolean z10 = false;
-        o oVar = this.f22182a;
-        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22210r.getFocusedEditTextOrNull()) != null) {
+        o oVar = this.f22179a;
+        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22207r.getFocusedEditTextOrNull()) != null) {
             oVar.G = focusedEditTextOrNull;
             oVar.H = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
@@ -69,7 +69,7 @@ public final class n implements rx {
 
     @Override
     public final boolean k() {
-        e1 R = o.R(this.f22182a);
+        e1 R = o.R(this.f22179a);
         if (R == null || R.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class n implements rx {
 
     @Override
     public final void l(String str) {
-        o oVar = this.f22182a;
+        o oVar = this.f22179a;
         e1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
@@ -104,7 +104,7 @@ public final class n implements rx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.x5 x5Var;
-        o oVar = this.f22182a;
+        o oVar = this.f22179a;
         e1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
@@ -133,7 +133,7 @@ public final class n implements rx {
 
     @Override
     public final boolean z() {
-        return this.f22182a.E;
+        return this.f22179a.E;
     }
 
     @Override

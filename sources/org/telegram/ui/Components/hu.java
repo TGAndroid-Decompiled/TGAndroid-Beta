@@ -56,11 +56,11 @@ public final class hu extends View {
     }
 
     public final void a() {
-        int i7 = org.telegram.ui.ActionBar.n6.f29469h5;
+        int i7 = org.telegram.ui.ActionBar.n6.f29467h5;
         org.telegram.ui.ActionBar.i6 i6Var = this.E;
         org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.w0(i7, i6Var), this.f35971c);
         org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.w0(i7, i6Var), this.d);
-        org.telegram.messenger.j4.f24810b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Ef, i6Var), PorterDuff.Mode.SRC_IN));
+        org.telegram.messenger.j4.f24807b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Ef, i6Var), PorterDuff.Mode.SRC_IN));
     }
 
     public String getEmoji() {
@@ -111,7 +111,7 @@ public final class hu extends View {
                     float max = Math.max(0.0f, Math.min(f11, -e10));
                     rectF.set((int) ((i7 * (e10 + f11)) + org.telegram.messenger.g0.L((f10 * 4.0f) + (Math.max(0.0f, Math.min(f11, f10)) * 3.0f) + 5.0f)), org.telegram.messenger.g0.W1(max, ((org.telegram.messenger.g0.L(f11) + i7) * i10) + org.telegram.messenger.g0.L(3.0f), (huVar.getMeasuredHeight() - i7) / 2), L2 + i7, W1 + i7);
                     rectF.inset(org.telegram.messenger.g0.L(-2.0f), org.telegram.messenger.g0.L(max * (-2.0f)));
-                    paint.setColor(org.telegram.ui.ActionBar.n6.r1(org.telegram.messenger.g0.T1(f11, 0.5f, max), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29488i6, i6Var)));
+                    paint.setColor(org.telegram.ui.ActionBar.n6.r1(org.telegram.messenger.g0.T1(f11, 0.5f, max), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29486i6, i6Var)));
                     canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
                     int i11 = z12;
                     while (i11 < 5) {
@@ -130,7 +130,7 @@ public final class hu extends View {
                 boolean z13 = z10;
                 drawableArr[z13 ? 1 : 0].setBounds(org.telegram.messenger.g0.L(5.0f), (getMeasuredHeight() - i7) / 2, org.telegram.messenger.g0.L(5.0f) + i7, (getMeasuredHeight() + i7) / 2);
                 drawableArr[z13 ? 1 : 0].draw(canvas);
-                canvas.drawRect(org.telegram.messenger.g0.L(8.45f) + i7, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.45f) + i7 + 1, getMeasuredHeight() - org.telegram.messenger.g0.L(6.0f), org.telegram.ui.ActionBar.n6.f29519k0);
+                canvas.drawRect(org.telegram.messenger.g0.L(8.45f) + i7, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.45f) + i7 + 1, getMeasuredHeight() - org.telegram.messenger.g0.L(6.0f), org.telegram.ui.ActionBar.n6.f29517k0);
                 return;
             }
             float e11 = c6Var2.e(false, iArr[0]);
@@ -138,7 +138,7 @@ public final class hu extends View {
             float f12 = L7;
             rectF.set((int) ((i7 * e11) + org.telegram.messenger.g0.L((e11 * 4.0f) + 5.0f)), f12, L + i7, L7 + i7);
             rectF.inset(org.telegram.messenger.g0.L(-2.0f), org.telegram.messenger.g0.L(-2.0f));
-            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29488i6, i6Var));
+            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29486i6, i6Var));
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
             for (int i13 = 0; i13 < 6; i13++) {
                 Drawable drawable3 = drawableArr[i13];

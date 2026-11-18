@@ -18,18 +18,18 @@ public final class f extends FrameLayout {
         super(context);
         int i7;
         this.f1069a = i6Var;
-        u6.h(n6.f29416e7, this, i6Var);
+        u6.h(n6.f29414e7, this, i6Var);
         TextView textView = new TextView(getContext());
         this.f1070b = textView;
         i5.c.x(textView, 1, 14.0f);
-        u6.U(textView, n6.f29435f7, i6Var);
-        if (gd.f24216a0) {
+        u6.U(textView, n6.f29433f7, i6Var);
+        if (gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, ma.d(-1, -1.0f, (gd.f24216a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, ma.d(-1, -1.0f, (gd.f24213a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override

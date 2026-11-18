@@ -8,15 +8,15 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.yr;
 public final class b implements q10 {
-    public final int f17751a;
+    public final int f17748a;
 
     public b(int i7) {
-        this.f17751a = i7;
+        this.f17748a = i7;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f17751a) {
+        switch (this.f17748a) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;

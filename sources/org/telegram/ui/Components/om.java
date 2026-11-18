@@ -28,7 +28,7 @@ public final class om extends ViewGroup {
     public final lm O;
     public int P;
     public final pm Q;
-    public final org.telegram.ui.Cells.u0 f38124a;
+    public final org.telegram.ui.Cells.v0 f38124a;
     public final ArrayList f38125b;
     public final HashMap f38126c;
     public HashMap d;
@@ -62,10 +62,10 @@ public final class om extends ViewGroup {
         this.P = 0;
         new HashMap();
         setWillNotDraw(false);
-        org.telegram.ui.Cells.u0 u0Var = new org.telegram.ui.Cells.u0(context, pmVar.f38486n, true);
-        this.f38124a = u0Var;
-        u0Var.setCustomText(org.telegram.messenger.gd.M0(2131753958, null));
-        addView(u0Var);
+        org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context, pmVar.f38486n, true);
+        this.f38124a = v0Var;
+        v0Var.setCustomText(org.telegram.messenger.gd.M0(2131753958, null));
+        addView(v0Var);
     }
 
     public final void a() {
@@ -221,11 +221,11 @@ public final class om extends ViewGroup {
         for (int i10 = 0; i10 < size; i10++) {
             i7 = (int) (((nm) arrayList.get(i10)).b() + i7);
         }
-        org.telegram.ui.Cells.u0 u0Var = this.f38124a;
-        if (u0Var.getMeasuredHeight() <= 0) {
-            u0Var.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24121q.x, 1073741824), View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
+        org.telegram.ui.Cells.v0 v0Var = this.f38124a;
+        if (v0Var.getMeasuredHeight() <= 0) {
+            v0Var.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24118q.x, 1073741824), View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
         }
-        return u0Var.getMeasuredHeight() + i7;
+        return v0Var.getMeasuredHeight() + i7;
     }
 
     public final void f(nm nmVar, org.telegram.messenger.ef efVar, int i7) {
@@ -320,7 +320,7 @@ public final class om extends ViewGroup {
             int i7 = 0;
             while (i7 < childCount) {
                 View childAt = xlVar.getChildAt(i7);
-                if (childAt instanceof org.telegram.ui.Cells.r5) {
+                if (childAt instanceof org.telegram.ui.Cells.s5) {
                     int R = RecyclerView.R(childAt);
                     boolean z16 = hmVar.f35926f;
                     boolean z17 = hmVar.d;
@@ -330,9 +330,9 @@ public final class om extends ViewGroup {
                     if (z17 && chatAttachAlertPhotoLayout.U0 == chatAttachAlertPhotoLayout.V0) {
                         R--;
                     }
-                    org.telegram.ui.Cells.r5 r5Var = (org.telegram.ui.Cells.r5) childAt;
+                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) childAt;
                     if (siVar.O2 != 0 || siVar.C1) {
-                        r5Var.getCheckBox().setVisibility(8);
+                        s5Var.getCheckBox().setVisibility(8);
                     }
                     org.telegram.messenger.ef e02 = chatAttachAlertPhotoLayout.e0(R);
                     if (e02 != null) {
@@ -352,13 +352,13 @@ public final class om extends ViewGroup {
                         } else {
                             z14 = false;
                         }
-                        r5Var.d(e02, z12, z13, z14, siVar.d2);
+                        s5Var.d(e02, z12, z13, z14, siVar.d2);
                         if ((siVar.f39659a2 instanceof org.telegram.ui.bn) && siVar.R3) {
                             z11 = false;
-                            r5Var.b(arrayList2.indexOf(Integer.valueOf(i10)), hashMap2.containsKey(Integer.valueOf(i10)), false);
+                            s5Var.b(arrayList2.indexOf(Integer.valueOf(i10)), hashMap2.containsKey(Integer.valueOf(i10)), false);
                         } else {
                             z11 = false;
-                            r5Var.b(-1, hashMap2.containsKey(Integer.valueOf(i10)), false);
+                            s5Var.b(-1, hashMap2.containsKey(Integer.valueOf(i10)), false);
                         }
                     } else {
                         z11 = false;
@@ -377,7 +377,7 @@ public final class om extends ViewGroup {
 
     @Override
     public final void invalidate() {
-        int d = i5.c.d(45.0f, org.telegram.messenger.g0.f24121q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
+        int d = i5.c.d(45.0f, org.telegram.messenger.g0.f24118q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
         if (this.f38131s != d) {
             this.f38131s = d;
             requestLayout();
@@ -462,7 +462,7 @@ public final class om extends ViewGroup {
             } else {
                 z10 = false;
             }
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             float max = Math.max(point.x, point.y) * 0.5f;
             float T1 = org.telegram.messenger.g0.T1(nmVar.f37810f, nmVar.d, interpolation);
             int width = omVar.getWidth();
@@ -546,13 +546,13 @@ public final class om extends ViewGroup {
             size = i7;
             arrayList2 = arrayList;
         }
-        org.telegram.ui.Cells.u0 u0Var = this.f38124a;
-        u0Var.l0(f14, u0Var.getMeasuredHeight());
-        if (u0Var.T()) {
-            u0Var.G(canvas, true);
-            u0Var.L(canvas, true);
+        org.telegram.ui.Cells.v0 v0Var = this.f38124a;
+        v0Var.k0(f14, v0Var.getMeasuredHeight());
+        if (v0Var.R()) {
+            v0Var.F(canvas, true);
+            v0Var.J(canvas, true);
         }
-        u0Var.draw(canvas);
+        v0Var.draw(canvas);
         canvas.restore();
         if (pmVar.K != null) {
             canvas.save();
@@ -568,15 +568,15 @@ public final class om extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        org.telegram.ui.Cells.u0 u0Var = this.f38124a;
-        u0Var.layout(0, 0, u0Var.getMeasuredWidth(), u0Var.getMeasuredHeight());
+        org.telegram.ui.Cells.v0 v0Var = this.f38124a;
+        v0Var.layout(0, 0, v0Var.getMeasuredWidth(), v0Var.getMeasuredHeight());
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         this.f38124a.measure(i7, View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
         if (this.f38131s <= 0) {
-            this.f38131s = i5.c.d(45.0f, org.telegram.messenger.g0.f24121q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
+            this.f38131s = i5.c.d(45.0f, org.telegram.messenger.g0.f24118q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
         }
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i10), this.f38131s), 1073741824));
     }

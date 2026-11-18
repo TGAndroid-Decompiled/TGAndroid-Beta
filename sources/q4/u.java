@@ -25,8 +25,8 @@ public final class u {
                     Context applicationContext = context.getApplicationContext();
                     ?? obj = new Object();
                     ji.j jVar = new ji.j(23, false);
-                    jVar.f17948b = applicationContext;
-                    jVar.f17949c = applicationContext.getContentResolver();
+                    jVar.f17945b = applicationContext;
+                    jVar.f17946c = applicationContext.getContentResolver();
                     obj.f55834a = jVar;
                     f55833c = obj;
                 }
@@ -41,7 +41,7 @@ public final class u {
     public boolean b(r rVar) {
         ji.j jVar = (ji.j) this.f55834a;
         t tVar = rVar.f55828a;
-        Context context = (Context) jVar.f17948b;
+        Context context = (Context) jVar.f17945b;
         int i7 = tVar.f55831c;
         String str = tVar.f55829a;
         try {
@@ -53,7 +53,7 @@ public final class u {
                         i7 = applicationInfo.uid;
                     }
                     if (i7 != 1000 && i7 != Process.myUid() && context.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", tVar.f55830b, tVar.f55831c) != 0 && !jVar.P(tVar, "android.permission.STATUS_BAR_SERVICE") && !jVar.P(tVar, "android.permission.MEDIA_CONTENT_CONTROL")) {
-                        String string = Settings.Secure.getString((ContentResolver) jVar.f17949c, "enabled_notification_listeners");
+                        String string = Settings.Secure.getString((ContentResolver) jVar.f17946c, "enabled_notification_listeners");
                         if (string != null) {
                             for (String str2 : string.split(":")) {
                                 ComponentName unflattenFromString = ComponentName.unflattenFromString(str2);

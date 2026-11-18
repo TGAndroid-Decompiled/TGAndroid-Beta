@@ -71,9 +71,9 @@ import org.telegram.ui.Wallet.e0;
 import org.telegram.ui.b21;
 import org.telegram.ui.bn;
 import org.telegram.ui.cx;
-import org.telegram.ui.de0;
-import org.telegram.ui.eh0;
+import org.telegram.ui.ee0;
 import org.telegram.ui.f40;
+import org.telegram.ui.fh0;
 import org.telegram.ui.g4;
 import org.telegram.ui.ls;
 import org.telegram.ui.p20;
@@ -177,18 +177,18 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                 if (G0 != null) {
                     for (int i7 = 0; i7 < arrayList.size(); i7++) {
                         try {
-                            if (!((ni) arrayList.get(i7)).f25929a.startsWith("animated_")) {
-                                String c10 = j6.c(((ni) arrayList.get(i7)).f25929a);
+                            if (!((ni) arrayList.get(i7)).f25927a.startsWith("animated_")) {
+                                String c10 = j6.c(((ni) arrayList.get(i7)).f25927a);
                                 for (int i10 = 0; i10 < G0.effects.size(); i10++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = G0.effects.get(i10);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f28436id)) && (tL_availableEffect.emoticon.contains(c10) || c10.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f28434id)) && (tL_availableEffect.emoticon.contains(c10) || c10.contains(tL_availableEffect.emoticon))) {
                                         if (tL_availableEffect.effect_animation_id == 0) {
                                             arrayList2 = arrayList4;
                                         } else {
                                             arrayList2 = arrayList5;
                                         }
                                         arrayList2.add(p0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f28436id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f28434id));
                                     }
                                 }
                             }
@@ -205,7 +205,7 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                 Runnable runnable2 = (Runnable) this.f42e;
                 int size = arrayList.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    String str2 = ((ni) arrayList.get(i11)).f25929a;
+                    String str2 = ((ni) arrayList.get(i11)).f25927a;
                     if (hashMap != null) {
                         arrayList3 = (ArrayList) hashMap.get(str2);
                     } else {
@@ -251,7 +251,7 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
         }
         TextView textView = new TextView(context);
         textView.setTypeface(g0.o1("fonts/num.otf"));
-        u6.U(textView, n6.f29504j5, i6Var);
+        u6.U(textView, n6.f29502j5, i6Var);
         StringBuilder sb2 = new StringBuilder("x");
         int i10 = (f10.floatValue() > 0.0f ? 1 : (f10.floatValue() == 0.0f ? 0 : -1));
         Object obj2 = f10;
@@ -284,8 +284,8 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
             case 15:
                 String str2 = (String) obj;
                 String str3 = LaunchActivity.C1;
-                eh0 eh0Var = new eh0((LaunchActivity) obj4, (org.telegram.ui.ActionBar.h2) obj3);
-                eh0Var.O0((String) obj2, false);
+                fh0 fh0Var = new fh0((LaunchActivity) obj4, (org.telegram.ui.ActionBar.h2) obj3);
+                fh0Var.O0((String) obj2, false);
                 if (str2 != null) {
                     String[] split = str2.split(" ", 2);
                     String str4 = split[0];
@@ -294,23 +294,23 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                     } else {
                         str = null;
                     }
-                    vb0 vb0Var = eh0Var.n1;
+                    vb0 vb0Var = fh0Var.n1;
                     if (vb0Var != null) {
                         vb0Var.getEditText().setText(str4);
                     } else {
-                        eh0Var.E1 = str4;
+                        fh0Var.E1 = str4;
                     }
-                    vb0 vb0Var2 = eh0Var.f47263o1;
+                    vb0 vb0Var2 = fh0Var.f47659o1;
                     if (vb0Var2 != null) {
                         vb0Var2.getEditText().setText(str);
                     } else {
-                        eh0Var.F1 = str;
+                        fh0Var.F1 = str;
                     }
                 }
-                eh0Var.show();
+                fh0Var.show();
                 return;
             case 16:
-                de0.Z((de0) obj4, (String) obj3, (String) obj2, (String) obj);
+                ee0.Z((ee0) obj4, (String) obj3, (String) obj2, (String) obj);
                 return;
             case 17:
                 NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) obj4;
@@ -342,7 +342,7 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
         p20 p20Var = (p20) this.d;
         q20 q20Var = (q20) this.f42e;
         try {
-            f40Var.f30195c.performHapticFeedback(3, 2);
+            f40Var.f30193c.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
         b5.g(f40Var.O1, f40Var.N1, 0L, 604800L, 2, sb0Var2, p20Var, q20Var);
@@ -373,7 +373,7 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
         TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.d;
         TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f42e;
         if (j3 != 0) {
-            b21Var.T1 = mp.u1(b21Var.f30189a).O0(Long.valueOf(j3));
+            b21Var.T1 = mp.u1(b21Var.f30187a).O0(Long.valueOf(j3));
             b21Var.f1(user, inputCheckPasswordSRP, twoStepVerificationActivity);
             return;
         }
@@ -396,7 +396,7 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                 String str = (String) obj2;
                 yb0 yb0Var = (yb0) obj;
                 t2 t2Var = ((o2) obj4).d;
-                long j10 = ((sr) arrayList.get(0)).f26847a;
+                long j10 = ((sr) arrayList.get(0)).f26845a;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
                 if (n5.C(j10)) {
                     k10.putInt("enc_id", (int) (j10 & 4294967295L));
@@ -411,18 +411,18 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                     org.telegram.ui.ActionBar.h2 lastFragment = ((LaunchActivity) activity).M().getLastFragment();
                     if (mp.u1(t2Var.I).E(k10, lastFragment, null, null)) {
                         yb0Var.dismiss();
-                        t2Var.f18929e0 = true;
-                        g0.r(t2Var.f18949v0);
+                        t2Var.f18926e0 = true;
+                        g0.r(t2Var.f18946v0);
                         t2Var.E.h();
                         ks.f(t2Var.I).n(t2Var, 114);
-                        ks.e().n(t2Var, 266);
-                        ks.f(t2Var.I).n(t2Var, 236);
+                        ks.e().n(t2Var, 267);
+                        ks.f(t2Var.I).n(t2Var, 237);
                         if (!t2Var.R0) {
                             t2.j(t2Var);
                             t2Var.R0 = true;
                         }
                         q4 q4Var = new q4(new bn(k10));
-                        q4Var.f29904b = true;
+                        q4Var.f29902b = true;
                         lastFragment.presentFragment(q4Var);
                     }
                 }
@@ -432,9 +432,9 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                 ArrayList arrayList2 = (ArrayList) obj3;
                 TLRPC.TL_document tL_document2 = (TLRPC.TL_document) obj2;
                 fj fjVar = (fj) obj;
-                if (arrayList.size() <= 1 && ((sr) arrayList.get(0)).f26847a != j10.i(g8Var.f30189a).e() && charSequence == null && arrayList2 != null) {
+                if (arrayList.size() <= 1 && ((sr) arrayList.get(0)).f26845a != j10.i(g8Var.f30187a).e() && charSequence == null && arrayList2 != null) {
                     sr srVar = (sr) arrayList.get(0);
-                    long j11 = srVar.f26847a;
+                    long j11 = srVar.f26845a;
                     Bundle k11 = a8.p0.k("scrollToTopOnResume", true);
                     if (n5.C(j11)) {
                         k11.putInt("enc_id", (int) (j11 & 4294967295L));
@@ -444,12 +444,12 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                         k11.putLong("chat_id", -j11);
                     }
                     bn bnVar = new bn(k11);
-                    if (srVar.f26848b != 0) {
+                    if (srVar.f26846b != 0) {
                         qg.c.a(bnVar, srVar);
                     }
                     if (g8Var.A2.u0(bnVar, true, false)) {
                         bnVar.hc(arrayList2);
-                        if (srVar.f26848b != 0) {
+                        if (srVar.f26846b != 0) {
                             cxVar.removeSelfFromStack();
                         }
                     } else {
@@ -458,19 +458,19 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                 } else {
                     int i12 = 0;
                     while (i12 < arrayList.size()) {
-                        long j12 = ((sr) arrayList.get(i12)).f26847a;
+                        long j12 = ((sr) arrayList.get(i12)).f26845a;
                         if (charSequence != null) {
                             j3 = j12;
-                            zy.C(g8Var.f30189a).r0(xy.b(charSequence.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                            zy.C(g8Var.f30187a).r0(xy.b(charSequence.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
                         } else {
                             j3 = j12;
                         }
                         if (arrayList2 != null) {
-                            zy.C(g8Var.f30189a).q0(arrayList2, j3, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+                            zy.C(g8Var.f30187a).q0(arrayList2, j3, false, false, true, 0, 0, null, -1, 0L, 0L, null);
                             tL_document = tL_document2;
                         } else {
                             tL_document = tL_document2;
-                            zy.C(g8Var.f30189a).r0(xy.e(tL_document, null, fjVar.f23968k.attachPath, j3, null, null, null, null, null, z11, i7, 0, 0, g8Var.f35405q2, false));
+                            zy.C(g8Var.f30187a).r0(xy.e(tL_document, null, fjVar.f23965k.attachPath, j3, null, null, null, null, null, z11, i7, 0, 0, g8Var.f35405q2, false));
                         }
                         i12++;
                         tL_document2 = tL_document;
@@ -479,12 +479,12 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                     org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
                     if (Q != null) {
                         lc b02 = lc.b0(Q);
-                        if (arrayList.size() == 1 && ((sr) arrayList.get(0)).f26847a == j10.i(g8Var.f30189a).e()) {
+                        if (arrayList.size() == 1 && ((sr) arrayList.get(0)).f26845a == j10.i(g8Var.f30187a).e()) {
                             H = gd.M0(2131750482, null);
-                        } else if (arrayList.size() == 1 && ((sr) arrayList.get(0)).f26847a > 0) {
-                            H = gd.a0(null, null, 2131750481, n5.t(((sr) arrayList.get(0)).f26847a));
-                        } else if (arrayList.size() == 1 && ((sr) arrayList.get(0)).f26847a < 0) {
-                            H = gd.a0(null, null, 2131750486, n5.t(((sr) arrayList.get(0)).f26847a));
+                        } else if (arrayList.size() == 1 && ((sr) arrayList.get(0)).f26845a > 0) {
+                            H = gd.a0(null, null, 2131750481, n5.t(((sr) arrayList.get(0)).f26845a));
+                        } else if (arrayList.size() == 1 && ((sr) arrayList.get(0)).f26845a < 0) {
+                            H = gd.a0(null, null, 2131750486, n5.t(((sr) arrayList.get(0)).f26845a));
                         } else {
                             H = gd.H(',', "FwdMessageToManyChats", arrayList.size());
                         }
@@ -497,7 +497,7 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                 String str2 = (String) obj2;
                 yb0 yb0Var2 = (yb0) obj;
                 si siVar = ((yh) obj4).f42500e;
-                long j13 = ((sr) arrayList.get(0)).f26847a;
+                long j13 = ((sr) arrayList.get(0)).f26845a;
                 Bundle k12 = a8.p0.k("scrollToTopOnResume", true);
                 if (n5.C(j13)) {
                     k12.putInt("enc_id", (int) (j13 & 4294967295L));
@@ -512,7 +512,7 @@ public final class d implements OnFailureListener, p, q1, ww, r1, z4, qb0, oi, o
                     yb0Var2.dismiss();
                     siVar.a(true);
                     q4 q4Var2 = new q4(new bn(k12));
-                    q4Var2.f29904b = true;
+                    q4Var2.f29902b = true;
                     h2Var.presentFragment(q4Var2);
                 }
                 return true;

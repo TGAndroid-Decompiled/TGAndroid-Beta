@@ -3,28 +3,28 @@ package ce;
 import java.util.ArrayList;
 import zd.b0;
 public final class b implements de.e {
-    public final id.h f5204a;
-    public final int f5205b;
-    public final be.a f5206c;
+    public final id.h f5201a;
+    public final int f5202b;
+    public final be.a f5203c;
     public final int d;
-    public final Object f5207e;
+    public final Object f5204e;
 
     public b(Object obj, id.h hVar, int i7, be.a aVar, int i10) {
         this.d = i10;
-        this.f5204a = hVar;
-        this.f5205b = i7;
-        this.f5206c = aVar;
-        this.f5207e = obj;
+        this.f5201a = hVar;
+        this.f5202b = i7;
+        this.f5203c = aVar;
+        this.f5204e = obj;
     }
 
     @Override
     public final c B(id.h hVar, int i7, be.a aVar) {
         be.a aVar2;
-        id.h hVar2 = this.f5204a;
+        id.h hVar2 = this.f5201a;
         id.h plus = hVar.plus(hVar2);
-        be.a aVar3 = be.a.f3134a;
-        be.a aVar4 = this.f5206c;
-        int i10 = this.f5205b;
+        be.a aVar3 = be.a.f3135a;
+        be.a aVar4 = this.f5203c;
+        int i10 = this.f5202b;
         if (aVar != aVar3) {
             aVar2 = aVar;
         } else {
@@ -49,33 +49,33 @@ public final class b implements de.e {
         }
         switch (this.d) {
             case 0:
-                return new b((de.c) this.f5207e, plus, i11, aVar2, 0);
+                return new b((de.c) this.f5204e, plus, i11, aVar2, 0);
             default:
-                return new b((c) this.f5207e, plus, i11, aVar2, 1);
+                return new b((c) this.f5204e, plus, i11, aVar2, 1);
         }
     }
 
     public final Object a(d dVar, kd.c cVar) {
         Object e10 = b0.e(new de.c(dVar, this, (id.c) null), cVar);
-        if (e10 == jd.a.f17384a) {
+        if (e10 == jd.a.f17381a) {
             return e10;
         }
-        return gd.k.f13488a;
+        return gd.k.f13485a;
     }
 
     public final String b() {
         ArrayList arrayList = new ArrayList(4);
-        id.i iVar = id.i.f16229a;
-        id.h hVar = this.f5204a;
+        id.i iVar = id.i.f16226a;
+        id.h hVar = this.f5201a;
         if (hVar != iVar) {
             arrayList.add("context=" + hVar);
         }
-        int i7 = this.f5205b;
+        int i7 = this.f5202b;
         if (i7 != -3) {
             arrayList.add("capacity=" + i7);
         }
-        be.a aVar = be.a.f3134a;
-        be.a aVar2 = this.f5206c;
+        be.a aVar = be.a.f3135a;
+        be.a aVar2 = this.f5203c;
         if (aVar2 != aVar) {
             arrayList.add("onBufferOverflow=" + aVar2);
         }
@@ -85,9 +85,9 @@ public final class b implements de.e {
     public final String toString() {
         switch (this.d) {
             case 0:
-                return "block[" + ((de.c) this.f5207e) + "] -> " + b();
+                return "block[" + ((de.c) this.f5204e) + "] -> " + b();
             default:
-                return ((c) this.f5207e) + " -> " + b();
+                return ((c) this.f5204e) + " -> " + b();
         }
     }
 
@@ -97,21 +97,21 @@ public final class b implements de.e {
         id.h h;
         switch (this.d) {
             case 1:
-                int i7 = this.f5205b;
-                gd.k kVar = gd.k.f13488a;
+                int i7 = this.f5202b;
+                gd.k kVar = gd.k.f13485a;
                 if (i7 == -3) {
                     id.h context = cVar.getContext();
                     Boolean bool = Boolean.FALSE;
                     b1.e eVar = new b1.e(10);
-                    id.h hVar = this.f5204a;
+                    id.h hVar = this.f5201a;
                     if (!((Boolean) hVar.fold(bool, eVar)).booleanValue()) {
                         h = context.plus(hVar);
                     } else {
                         h = b0.h(context, hVar, false);
                     }
                     if (kotlin.jvm.internal.j.a(h, context)) {
-                        a10 = ((c) this.f5207e).v(dVar, cVar);
-                        jd.a aVar = jd.a.f17384a;
+                        a10 = ((c) this.f5204e).v(dVar, cVar);
+                        jd.a aVar = jd.a.f17381a;
                         if (a10 != aVar) {
                             a10 = kVar;
                         }
@@ -119,14 +119,14 @@ public final class b implements de.e {
                             return kVar;
                         }
                     } else {
-                        id.d dVar2 = id.d.f16228a;
+                        id.d dVar2 = id.d.f16225a;
                         if (kotlin.jvm.internal.j.a(h.get(dVar2), context.get(dVar2))) {
                             id.h context2 = cVar.getContext();
                             if (!(dVar instanceof de.l)) {
                                 dVar = new o(dVar, context2);
                             }
                             a10 = de.g.a(h, dVar, ee.a.k(h), new be.l(this, (id.c) null, 2), cVar);
-                            if (a10 != jd.a.f17384a) {
+                            if (a10 != jd.a.f17381a) {
                                 return kVar;
                             }
                         }
@@ -134,7 +134,7 @@ public final class b implements de.e {
                     return a10;
                 }
                 a10 = a(dVar, cVar);
-                if (a10 != jd.a.f17384a) {
+                if (a10 != jd.a.f17381a) {
                     return kVar;
                 }
                 return a10;

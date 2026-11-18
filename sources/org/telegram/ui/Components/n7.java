@@ -23,7 +23,7 @@ public final class n7 implements Runnable {
                 if (i7 == 1) {
                     g8 g8Var = o7Var.I;
                     g8Var.B2 = -1;
-                    g8Var.C2 = MediaController.B().f22743v0.f23928b0;
+                    g8Var.C2 = MediaController.B().f22740v0.f23925b0;
                     o7Var.f38004x = System.currentTimeMillis();
                     org.telegram.messenger.g0.h3(this, 2000L);
                     org.telegram.messenger.g0.g3(o7Var.F);
@@ -37,7 +37,7 @@ public final class n7 implements Runnable {
             default:
                 o7 o7Var2 = this.f37748b;
                 g8 g8Var2 = o7Var2.I;
-                f61 f61Var = MediaController.B().f22719j0;
+                f61 f61Var = MediaController.B().f22716j0;
                 if (f61Var == null) {
                     U = 0;
                 } else {
@@ -62,7 +62,7 @@ public final class n7 implements Runnable {
                         f12 = 0.0f;
                     }
                     g8Var2.C2 = f12;
-                    org.telegram.messenger.fj fjVar = MediaController.B().f22743v0;
+                    org.telegram.messenger.fj fjVar = MediaController.B().f22740v0;
                     if (fjVar != null && fjVar.I3()) {
                         g8Var2.c1(fjVar, false);
                     }
@@ -70,13 +70,13 @@ public final class n7 implements Runnable {
                         if (j11 > 200 || g8Var2.C2 == 0.0f) {
                             o7Var2.f38005y = currentTimeMillis;
                             if (g8Var2.C2 == 0.0f) {
-                                MediaController.B().i0(MediaController.B().f22743v0, 0.0f);
-                                f61 f61Var2 = MediaController.B().f22719j0;
+                                MediaController.B().i0(MediaController.B().f22740v0, 0.0f);
+                                f61 f61Var2 = MediaController.B().f22716j0;
                                 if (f61Var2 != null) {
                                     f61Var2.g0();
                                 }
                             } else {
-                                MediaController.B().i0(MediaController.B().f22743v0, f12);
+                                MediaController.B().i0(MediaController.B().f22740v0, f12);
                             }
                         }
                         if (o7Var2.f38003w > 0 && g8Var2.C2 > 0.0f) {

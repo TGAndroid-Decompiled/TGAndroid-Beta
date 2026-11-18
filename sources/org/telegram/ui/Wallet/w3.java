@@ -29,7 +29,7 @@ import org.telegram.ui.Components.lq;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.sf0;
 import org.telegram.ui.Components.wk0;
-import org.telegram.ui.hh0;
+import org.telegram.ui.ih0;
 public final class w3 extends Dialog {
     public static final int X = 0;
     public final RectF E;
@@ -61,7 +61,7 @@ public final class w3 extends Dialog {
     public final v3 f45205n;
     public final x6 f45206r;
     public final r8 f45207s;
-    public final hh0 f45208w;
+    public final ih0 f45208w;
     public final TextView f45209x;
     public final Paint f45210y;
 
@@ -80,20 +80,20 @@ public final class w3 extends Dialog {
         this.E = new RectF();
         ui.b bVar = new ui.b();
         this.F = bVar;
-        this.I = i0.b.f15891e;
+        this.I = i0.b.f15888e;
         this.M = new h6.m(29);
         this.N = new RectF();
         this.O = new RectF();
         this.W = new int[2];
         this.f45200a = h2Var;
         this.f45201b = sf0Var;
-        if (user != null && user.f28554id == j10.i(h2Var.getCurrentAccount()).e()) {
+        if (user != null && user.f28552id == j10.i(h2Var.getCurrentAccount()).e()) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.f45203e = z10;
-        if (user != null && !z10 && ((org.telegram.messenger.h0) mp.u1(h2Var.getCurrentAccount()).A7.f26161p0.f14001b).f24339c) {
+        if (user != null && !z10 && ((org.telegram.messenger.h0) mp.u1(h2Var.getCurrentAccount()).A7.f26159p0.f13998b).f24336c) {
             z11 = true;
         } else {
             z11 = false;
@@ -207,14 +207,14 @@ public final class w3 extends Dialog {
         dh.c cVar = new dh.c(bVar, bVar, bVar);
         this.G = cVar;
         cVar.h = new jh.k(u3Var);
-        cVar.f8380i = u3Var;
-        hh0 hh0Var = new hh0(getContext());
-        this.f45208w = hh0Var;
-        fh.g c10 = cVar.c(hh0Var, new gh.b(org.telegram.ui.ActionBar.n6.f29396d6, h2Var.getResourceProvider()), false);
+        cVar.f8377i = u3Var;
+        ih0 ih0Var = new ih0(getContext());
+        this.f45208w = ih0Var;
+        fh.g c10 = cVar.c(ih0Var, new gh.b(org.telegram.ui.ActionBar.n6.f29394d6, h2Var.getResourceProvider()), false);
         c10.q(org.telegram.messenger.g0.L(8.0f));
         c10.r(org.telegram.messenger.g0.L(22.0f));
-        hh0Var.setBackground(c10);
-        c8.ra.b(hh0Var, 0.02f, 1.2f);
+        ih0Var.setBackground(c10);
+        c8.ra.b(ih0Var, 0.02f, 1.2f);
         hi.d dVar = new hi.d(getContext(), h2Var.getResourceProvider(), true);
         dVar.setUseWrapContent(true);
         dVar.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
@@ -238,9 +238,9 @@ public final class w3 extends Dialog {
             dVar.i(append, false, true);
         }
         dVar.setStateListAnimator(null);
-        hh0Var.addView(dVar, c8.ma.e(-2, -1, 17));
-        hh0Var.setContentDescription(M0);
-        hh0Var.setOnClickListener(new View.OnClickListener(this) {
+        ih0Var.addView(dVar, c8.ma.e(-2, -1, 17));
+        ih0Var.setContentDescription(M0);
+        ih0Var.setOnClickListener(new View.OnClickListener(this) {
             public final w3 f44983b;
 
             {
@@ -302,14 +302,14 @@ public final class w3 extends Dialog {
                 }
             }
         });
-        hh0Var.setAlpha(0.0f);
+        ih0Var.setAlpha(0.0f);
         if (c()) {
             i10 = 0;
         } else {
             i10 = 8;
         }
-        hh0Var.setVisibility(i10);
-        u3Var.addView(hh0Var, c8.ma.e(-2, 60, 81));
+        ih0Var.setVisibility(i10);
+        u3Var.addView(ih0Var, c8.ma.e(-2, 60, 81));
         TextView textView = new TextView(getContext());
         this.f45209x = textView;
         textView.setTextSize(14.0f);
@@ -489,14 +489,14 @@ public final class w3 extends Dialog {
         this.f45201b.setEjectProgress(interpolation);
         this.f45205n.setAlpha(this.J);
         this.f45207s.setAlpha(interpolation2);
-        hh0 hh0Var = this.f45208w;
-        hh0Var.setAlpha(interpolation2);
+        ih0 ih0Var = this.f45208w;
+        ih0Var.setAlpha(interpolation2);
         TextView textView = this.f45209x;
         textView.setAlpha(interpolation2);
         textView.setTranslationY((-org.telegram.messenger.g0.L(8.0f)) * f22);
-        hh0Var.setTranslationY(org.telegram.messenger.g0.L(16.0f) * f22);
-        hh0Var.setScaleX(org.telegram.messenger.g0.T1(0.8f, 1.0f, interpolation2));
-        hh0Var.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, interpolation2));
+        ih0Var.setTranslationY(org.telegram.messenger.g0.L(16.0f) * f22);
+        ih0Var.setScaleX(org.telegram.messenger.g0.T1(0.8f, 1.0f, interpolation2));
+        ih0Var.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, interpolation2));
         this.h.invalidate();
     }
 

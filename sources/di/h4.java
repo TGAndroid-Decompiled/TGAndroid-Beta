@@ -29,7 +29,7 @@ public final class h4 extends g71 {
         }
         float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
         f6 f6Var = this.W;
-        view.setTranslationX(((-i7) * 2.0f * f6Var.f30227u0) + f10);
+        view.setTranslationX(((-i7) * 2.0f * f6Var.f30225u0) + f10);
         float f11 = 0.0f;
         if (i7 <= 0.0f) {
             f11 = view.getMeasuredWidth();
@@ -43,14 +43,14 @@ public final class h4 extends g71 {
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
                 v2Var = f6Var.Y1;
-                if (v2Var != null && view2 == v2Var.U1 && (k4Var3 = v2Var.f8771a2) != null) {
+                if (v2Var != null && view2 == v2Var.U1 && (k4Var3 = v2Var.f8768a2) != null) {
                     k4Var3.invalidate();
                 }
-                if (view2 == f6Var.U1 && (k4Var2 = f6Var.f8771a2) != null) {
+                if (view2 == f6Var.U1 && (k4Var2 = f6Var.f8768a2) != null) {
                     k4Var2.invalidate();
                 }
                 v2Var2 = f6Var.Z1;
-                if (v2Var2 == null && view2 == v2Var2.U1 && (k4Var = v2Var2.f8771a2) != null) {
+                if (v2Var2 == null && view2 == v2Var2.U1 && (k4Var = v2Var2.f8768a2) != null) {
                     k4Var.invalidate();
                     return;
                 }
@@ -97,13 +97,13 @@ public final class h4 extends g71 {
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         f6 f6Var = this.W;
-        canvas.clipRect(f6Var.f30227u0, -getHeight(), getWidth() - f6Var.f30227u0, getHeight() * 2);
+        canvas.clipRect(f6Var.f30225u0, -getHeight(), getWidth() - f6Var.f30225u0, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
 
     @Override
     public final float getAvailableTranslationX() {
-        return Math.max(1, getMeasuredWidth() - (this.W.f30227u0 * 2));
+        return Math.max(1, getMeasuredWidth() - (this.W.f30225u0 * 2));
     }
 }

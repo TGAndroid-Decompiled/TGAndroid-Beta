@@ -1,21 +1,50 @@
 package bi;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.widget.FrameLayout;
-public final class x8 extends FrameLayout {
-    public final float f4223a;
+import android.graphics.PointF;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.ck0;
+public final class x8 extends v4.o0 {
+    public final PointF f4190a = new PointF();
+    public final z8 f4191b;
 
-    public x8(Context context, float f10) {
-        super(context);
-        this.f4223a = f10;
+    public x8(z8 z8Var) {
+        this.f4191b = z8Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth() * this.f4223a, getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public final void f(Canvas canvas, RecyclerView recyclerView) {
+        float f10;
+        i3 i3Var;
+        float height = recyclerView.getHeight();
+        float width = recyclerView.getWidth();
+        z8 z8Var = this.f4191b;
+        t8 t8Var = z8Var.f4310p2;
+        s8 s8Var = z8Var.d2;
+        ck0 ck0Var = z8Var.f39534o1;
+        PointF pointF = this.f4190a;
+        float f11 = 0.0f;
+        if (jh.k.b(s8Var, ck0Var, pointF)) {
+            float f12 = pointF.x;
+            height = Math.min(height, pointF.y);
+            f11 = Math.max(0.0f, pointF.y + s8Var.getMeasuredHeight());
+            f10 = f12;
+            width = s8Var.getMeasuredWidth() + f12;
+        } else {
+            f10 = 0.0f;
+        }
+        if (jh.k.b(t8Var, ck0Var, pointF)) {
+            height = Math.min(height, pointF.y);
+            f11 = Math.max(f11, pointF.y + t8Var.getMeasuredHeight() + org.telegram.messenger.g0.L(12.0f));
+        }
+        if (height < f11 && (i3Var = s8Var.M) != null) {
+            float height2 = (f11 - height) / i3Var.getHeight();
+            canvas.save();
+            canvas.clipRect(f10, height, width, f11);
+            canvas.translate(f10, height);
+            canvas.scale(height2, height2);
+            s8Var.M.draw(canvas);
+            canvas.restore();
+        }
     }
 }

@@ -7,18 +7,18 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.s2;
 import org.telegram.ui.Components.ck0;
 public final class m1 extends v4.k0 {
-    public final int f17590a;
-    public final Object f17591b;
+    public final int f17587a;
+    public final Object f17588b;
 
     public m1(Object obj, int i7) {
-        this.f17590a = i7;
-        this.f17591b = obj;
+        this.f17587a = i7;
+        this.f17588b = obj;
     }
 
     @Override
     public final void a() {
-        int i7 = this.f17590a;
-        Object obj = this.f17591b;
+        int i7 = this.f17587a;
+        Object obj = this.f17588b;
         switch (i7) {
             case 0:
                 ((n1) obj).f();
@@ -37,8 +37,8 @@ public final class m1 extends v4.k0 {
             default:
                 RecyclerView recyclerView = (RecyclerView) obj;
                 recyclerView.l(null);
-                recyclerView.f2816v0.f59089f = true;
-                boolean z10 = s2.f26723a;
+                recyclerView.f2817v0.f59090f = true;
+                boolean z10 = s2.f26721a;
                 recyclerView.d.h("notifyDataSetChanged()");
                 recyclerView.n0(true);
                 if (!recyclerView.d.g()) {
@@ -51,9 +51,9 @@ public final class m1 extends v4.k0 {
 
     @Override
     public void b(int i7, int i10) {
-        switch (this.f17590a) {
+        switch (this.f17587a) {
             case 0:
-                ((n1) this.f17591b).k(i7 + 1, i10);
+                ((n1) this.f17588b).k(i7 + 1, i10);
                 return;
             default:
                 return;
@@ -62,20 +62,20 @@ public final class m1 extends v4.k0 {
 
     @Override
     public void c(int i7, int i10, Object obj) {
-        switch (this.f17590a) {
+        switch (this.f17587a) {
             case 2:
-                RecyclerView recyclerView = (RecyclerView) this.f17591b;
+                RecyclerView recyclerView = (RecyclerView) this.f17588b;
                 recyclerView.l(null);
                 ug.n0 n0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) n0Var.d;
                 if (i10 >= 1) {
-                    boolean z10 = s2.f26723a;
+                    boolean z10 = s2.f26721a;
                     StringBuilder n10 = i5.c.n("onItemRangeChanged(", i7, ", ", i10, ", ");
                     n10.append(obj);
                     n10.append(")");
                     n0Var.h(n10.toString());
                     arrayList.add(n0Var.i(4, i7, obj, i10));
-                    n0Var.f58779b |= 4;
+                    n0Var.f58780b |= 4;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -91,8 +91,8 @@ public final class m1 extends v4.k0 {
 
     @Override
     public final void d(int i7, int i10) {
-        int i11 = this.f17590a;
-        Object obj = this.f17591b;
+        int i11 = this.f17587a;
+        Object obj = this.f17588b;
         switch (i11) {
             case 0:
                 ((n1) obj).o(i7 + 1, i10);
@@ -113,10 +113,10 @@ public final class m1 extends v4.k0 {
                 ug.n0 n0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) n0Var.d;
                 if (i10 >= 1) {
-                    boolean z10 = s2.f26723a;
+                    boolean z10 = s2.f26721a;
                     n0Var.h("onItemRangeInserted(" + i7 + ", " + i10 + ")");
                     arrayList.add(n0Var.i(1, i7, null, i10));
-                    n0Var.f58779b = n0Var.f58779b | 1;
+                    n0Var.f58780b = n0Var.f58780b | 1;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -129,8 +129,8 @@ public final class m1 extends v4.k0 {
 
     @Override
     public void e(int i7, int i10) {
-        int i11 = this.f17590a;
-        Object obj = this.f17591b;
+        int i11 = this.f17587a;
+        Object obj = this.f17588b;
         switch (i11) {
             case 0:
                 ((n1) obj).k(i7 + 1, i10 + 2);
@@ -144,10 +144,10 @@ public final class m1 extends v4.k0 {
                 ug.n0 n0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) n0Var.d;
                 if (i7 != i10) {
-                    boolean z10 = s2.f26723a;
+                    boolean z10 = s2.f26721a;
                     n0Var.h("onItemRangeMoved(" + i7 + ", " + i10 + ", 1)");
                     arrayList.add(n0Var.i(8, i7, null, i10));
-                    n0Var.f58779b = n0Var.f58779b | 8;
+                    n0Var.f58780b = n0Var.f58780b | 8;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -160,8 +160,8 @@ public final class m1 extends v4.k0 {
 
     @Override
     public final void f(int i7, int i10) {
-        int i11 = this.f17590a;
-        Object obj = this.f17591b;
+        int i11 = this.f17587a;
+        Object obj = this.f17588b;
         switch (i11) {
             case 0:
                 ((n1) obj).p(i7 + 1, i10);
@@ -175,10 +175,10 @@ public final class m1 extends v4.k0 {
                 ug.n0 n0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) n0Var.d;
                 if (i10 >= 1) {
-                    boolean z10 = s2.f26723a;
+                    boolean z10 = s2.f26721a;
                     n0Var.h("onItemRangeRemoved(" + i7 + ", " + i10 + ")");
                     arrayList.add(n0Var.i(2, i7, null, i10));
-                    n0Var.f58779b = n0Var.f58779b | 2;
+                    n0Var.f58780b = n0Var.f58780b | 2;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -191,9 +191,9 @@ public final class m1 extends v4.k0 {
 
     public void g() {
         int[] iArr = RecyclerView.R0;
-        RecyclerView recyclerView = (RecyclerView) this.f17591b;
+        RecyclerView recyclerView = (RecyclerView) this.f17588b;
         if (recyclerView.I && recyclerView.H) {
-            v4.h0 h0Var = recyclerView.f2805n;
+            v4.h0 h0Var = recyclerView.f2806n;
             WeakHashMap weakHashMap = r0.i0.f56244a;
             recyclerView.postOnAnimation(h0Var);
             return;

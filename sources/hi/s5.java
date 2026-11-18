@@ -11,29 +11,29 @@ import org.telegram.messenger.tr;
 import org.telegram.messenger.x10;
 import org.telegram.tgnet.ConnectionsManager;
 public final class s5 implements Runnable {
-    public final int f15381a;
-    public final int f15382b;
-    public final int f15383c;
+    public final int f15378a;
+    public final int f15379b;
+    public final int f15380c;
     public final int d;
-    public final Object f15384e;
-    public final Object f15385f;
+    public final Object f15381e;
+    public final Object f15382f;
 
     public s5(int i7, int i10, int i11, Serializable serializable, Object obj, int i12) {
-        this.f15381a = i12;
-        this.f15382b = i7;
-        this.f15383c = i10;
+        this.f15378a = i12;
+        this.f15379b = i7;
+        this.f15380c = i10;
         this.d = i11;
-        this.f15384e = serializable;
-        this.f15385f = obj;
+        this.f15381e = serializable;
+        this.f15382f = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f15381a) {
+        switch (this.f15378a) {
             case 0:
-                Bitmap[] bitmapArr = (Bitmap[]) this.f15384e;
-                x10 x10Var = (x10) this.f15385f;
-                Bitmap createBitmap = Bitmap.createBitmap(this.f15382b, this.f15383c, Bitmap.Config.ARGB_8888);
+                Bitmap[] bitmapArr = (Bitmap[]) this.f15381e;
+                x10 x10Var = (x10) this.f15382f;
+                Bitmap createBitmap = Bitmap.createBitmap(this.f15379b, this.f15380c, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Path path = new Path();
                 RectF rectF = new RectF();
@@ -57,20 +57,20 @@ public final class s5 implements Runnable {
                 org.telegram.messenger.g0.g3(new r1(4, x10Var, createBitmap));
                 return;
             case 1:
-                ((tr) this.f15384e).B0(this.f15382b, this.f15383c, this.d, (long[]) this.f15385f);
+                ((tr) this.f15381e).B0(this.f15379b, this.f15380c, this.d, (long[]) this.f15382f);
                 return;
             default:
-                ConnectionsManager.lambda$onCaptchaCheck$28(this.f15382b, this.f15383c, this.d, (String) this.f15384e, (String) this.f15385f);
+                ConnectionsManager.lambda$onCaptchaCheck$28(this.f15379b, this.f15380c, this.d, (String) this.f15381e, (String) this.f15382f);
                 return;
         }
     }
 
     public s5(tr trVar, int i7, int i10, int i11, long[] jArr) {
-        this.f15381a = 1;
-        this.f15384e = trVar;
-        this.f15382b = i7;
-        this.f15383c = i10;
+        this.f15378a = 1;
+        this.f15381e = trVar;
+        this.f15379b = i7;
+        this.f15380c = i10;
         this.d = i11;
-        this.f15385f = jArr;
+        this.f15382f = jArr;
     }
 }

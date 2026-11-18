@@ -19,7 +19,7 @@ public final class t5 implements fs {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TL_wallet.walletTransaction[] wallettransactionArr;
         TL_wallet.walletTransaction wallettransaction;
-        if (i7 == ks.f25099c4 || i7 == ks.f25104d4) {
+        if (i7 == ks.f25102d4 || i7 == ks.f25108e4) {
             ArrayList arrayList = u0.D(this.f45067a).H().f45043c;
             int size = arrayList.size();
             int i11 = 0;

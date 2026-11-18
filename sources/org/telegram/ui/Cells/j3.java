@@ -1,227 +1,91 @@
 package org.telegram.ui.Cells;
 
-import android.text.Editable;
-import android.text.Spannable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.style.CharacterStyle;
-import android.text.style.ParagraphStyle;
-import android.text.style.SuggestionSpan;
-import android.util.Pair;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.dc0;
-public final class j3 implements TextWatcher {
-    public final int f30863a = 2;
-    public boolean f30864b;
-    public int f30865c;
-    public Object d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.view.ActionMode;
+import android.view.Menu;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.ez0;
+import org.telegram.ui.Components.i41;
+import org.telegram.ui.Components.mt;
+public final class j3 extends mt {
+    public final int f30871e2;
+    public final org.telegram.ui.ActionBar.i6 f30872f2;
+    public final boolean f30873g2;
+    public final l3 f30874h2;
 
-    public j3() {
+    public j3(l3 l3Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7, org.telegram.ui.ActionBar.i6 i6Var2, boolean z10) {
+        super(context, i6Var);
+        this.f30874h2 = l3Var;
+        this.f30871e2 = i7;
+        this.f30872f2 = i6Var2;
+        this.f30873g2 = z10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f30863a) {
-            case 0:
-                int i7 = this.f30865c;
-                k3 k3Var = (k3) this.d;
-                i3 i3Var = k3Var.d;
-                if (!k3Var.f30908c) {
-                    if (i7 > 0 && editable != null && editable.length() > i7) {
-                        k3Var.f30908c = true;
-                        i3Var.setText(editable.subSequence(0, i7));
-                        i3Var.setSelection(i3Var.length());
-                        k3Var.f30908c = false;
-                    }
-                    k3Var.b(editable);
-                }
-                if (this.f30864b) {
-                    return;
-                }
-                while (true) {
-                    int indexOf = editable.toString().indexOf("\n");
-                    if (indexOf >= 0) {
-                        editable.delete(indexOf, indexOf + 1);
-                    } else {
-                        return;
-                    }
-                }
-            case 1:
-                org.telegram.ui.Components.a5 a5Var = (org.telegram.ui.Components.a5) this.d;
-                if (!this.f30864b) {
-                    int length = editable.length();
-                    int i10 = this.f30865c;
-                    if (length > i10) {
-                        this.f30864b = true;
-                        editable.delete(i10, editable.length());
-                        org.telegram.messenger.g0.D3(a5Var);
-                        try {
-                            a5Var.performHapticFeedback(3, 2);
-                        } catch (Exception unused) {
-                        }
-                        this.f30864b = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                return;
-            default:
-                dc0 dc0Var = (dc0) this.d;
-                ah.i iVar = dc0Var.f46916c;
-                if (!this.f30864b) {
-                    boolean z10 = true;
-                    dc0Var.p(true);
-                    org.telegram.messenger.g0.r(dc0Var.W);
-                    dc0Var.n(false);
-                    if (TextUtils.isEmpty(editable)) {
-                        dc0Var.E = false;
-                    }
-                    if (!dc0Var.o(editable.toString())) {
-                        dc0Var.r(true);
-                        this.f30864b = true;
-                        if (iVar.getSelectionEnd() < iVar.getText().length()) {
-                            z10 = false;
-                        }
-                        if (!dc0Var.E) {
-                            String str = dc0Var.L;
-                            iVar.setText(str.substring(0, Utilities.j(this.f30865c, str.length(), 0)));
-                            if (z10) {
-                                iVar.setSelection(iVar.getText().length());
-                            }
-                        }
-                        this.f30864b = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int i7;
+        super.dispatchDraw(canvas);
+        l3 l3Var = this.f30874h2;
+        org.telegram.ui.Components.m6 m6Var = l3Var.f30979y;
+        org.telegram.ui.Components.f5 f5Var = l3Var.f30977w;
+        if (l3Var.f30978x <= 0) {
+            i7 = org.telegram.ui.ActionBar.n6.f29615p7;
+        } else {
+            i7 = org.telegram.ui.ActionBar.n6.P5;
         }
+        m6Var.u(f5Var.a(org.telegram.ui.ActionBar.n6.w0(i7, this.f30872f2), false));
+        int min = Math.min(org.telegram.messenger.g0.L(52.0f), getHeight());
+        l3Var.f30979y.setBounds(getScrollX(), getHeight() - min, org.telegram.messenger.g0.L(42.0f) + ((getWidth() + getScrollX()) - getPaddingRight()), getHeight());
+        l3Var.f30979y.draw(canvas);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f30863a) {
-            case 0:
-                k3 k3Var = (k3) this.d;
-                if (!k3Var.f30908c) {
-                    k3Var.f30912r = false;
-                    return;
-                }
-                return;
-            case 1:
-                return;
-            case 2:
-                if (!this.f30864b) {
-                    HashMap hashMap = new HashMap();
-                    boolean z10 = charSequence instanceof Spannable;
-                    int i12 = 0;
-                    if (z10) {
-                        Spannable spannable = (Spannable) charSequence;
-                        CharacterStyle[] characterStyleArr = (CharacterStyle[]) spannable.getSpans(0, spannable.length(), CharacterStyle.class);
-                        ParagraphStyle[] paragraphStyleArr = (ParagraphStyle[]) spannable.getSpans(0, spannable.length(), ParagraphStyle.class);
-                        if (characterStyleArr != null && characterStyleArr.length > 0) {
-                            for (CharacterStyle characterStyle : characterStyleArr) {
-                                if (characterStyle != null && !(characterStyle instanceof SuggestionSpan)) {
-                                    hashMap.put(characterStyle, new Pair(Integer.valueOf(spannable.getSpanStart(characterStyle)), Integer.valueOf(spannable.getSpanEnd(characterStyle))));
-                                }
-                            }
-                        }
-                        if (paragraphStyleArr != null && paragraphStyleArr.length > 0) {
-                            for (ParagraphStyle paragraphStyle : paragraphStyleArr) {
-                                if (paragraphStyle != null && !(paragraphStyle instanceof SuggestionSpan)) {
-                                    hashMap.put(paragraphStyle, new Pair(Integer.valueOf(spannable.getSpanStart(paragraphStyle)), Integer.valueOf(spannable.getSpanEnd(paragraphStyle))));
-                                }
-                            }
-                        }
-                    }
-                    this.d = hashMap;
-                    if (z10) {
-                        i12 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
-                    }
-                    this.f30865c = i12;
-                    return;
-                }
-                return;
-            default:
-                if (!this.f30864b && charSequence != null && ((dc0) this.d).L != null) {
-                    this.f30865c = dc0.s(charSequence.toString()).length();
-                    return;
-                }
-                return;
+    public final void o(ActionMode actionMode, Menu menu) {
+        if (!this.f30873g2 || menu.findItem(2131296491) != null) {
+            return;
         }
+        menu.removeItem(16908341);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(gd.M0(2131753669, null));
+        spannableStringBuilder.setSpan(new i41(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        menu.add(2131296496, 2131296491, 6, spannableStringBuilder);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(gd.M0(2131748895, null));
+        spannableStringBuilder2.setSpan(new i41(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        menu.add(2131296496, 2131296497, 7, spannableStringBuilder2);
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(gd.M0(2131744202, null));
+        ?? obj = new Object();
+        obj.f34537a |= 8;
+        spannableStringBuilder3.setSpan(new ez0(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        menu.add(2131296496, 2131296509, 8, spannableStringBuilder3);
+        menu.add(2131296496, 2131296503, 9, gd.M0(2131746142, null));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(getPaddingLeft() + getScrollX(), getScrollY(), (getWidth() + getScrollX()) - getPaddingRight(), getHeight() + getScrollY());
+        super.onDraw(canvas);
+        canvas.restore();
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12;
-        switch (this.f30863a) {
-            case 0:
-            case 1:
-                return;
-            case 2:
-                if (!this.f30864b) {
-                    boolean z10 = charSequence instanceof Spannable;
-                    if (z10) {
-                        i12 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
-                    } else {
-                        i12 = 0;
-                    }
-                    HashMap hashMap = (HashMap) this.d;
-                    if (hashMap != null) {
-                        if ((i12 > 0 || this.f30865c > 0) && i7 == 0 && i10 == i11) {
-                            this.f30864b = true;
-                            if (z10) {
-                                Spannable spannable = (Spannable) charSequence;
-                                for (Map.Entry entry : hashMap.entrySet()) {
-                                    if (spannable.getSpanStart(entry.getKey()) == -1) {
-                                        spannable.setSpan(entry.getKey(), ((Integer) ((Pair) entry.getValue()).first).intValue(), ((Integer) ((Pair) entry.getValue()).second).intValue(), 33);
-                                    }
-                                }
-                            }
-                            this.f30864b = false;
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                return;
+        super.onTextChanged(charSequence, i7, i10, i11);
+        l3 l3Var = this.f30874h2;
+        org.telegram.ui.Components.m6 m6Var = l3Var.f30979y;
+        if (m6Var != null && this.f30871e2 > 0) {
+            m6Var.a();
+            l3Var.c();
         }
     }
 
-    public j3(k3 k3Var, int i7, boolean z10) {
-        this.d = k3Var;
-        this.f30865c = i7;
-        this.f30864b = z10;
-    }
-
-    public j3(int i7, org.telegram.ui.Components.a5 a5Var) {
-        this.f30865c = i7;
-        this.d = a5Var;
-    }
-
-    public j3(dc0 dc0Var) {
-        this.d = dc0Var;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i7, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f30874h2.f30979y && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

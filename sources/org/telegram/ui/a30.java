@@ -23,19 +23,19 @@ public final class a30 extends AnimatorListenerAdapter {
                 f40Var.P1.setVisibility(4);
                 return;
             case 1:
-                this.f45442b.f47451c2 = null;
+                this.f45442b.f47407c2 = null;
                 return;
             default:
                 f40 f40Var2 = this.f45442b;
-                f40Var2.f47452c3 = null;
-                Paint paint = f40Var2.f47448b3;
+                f40Var2.f47408c3 = null;
+                Paint paint = f40Var2.f47404b3;
                 if (f40Var2.S3 == 3) {
                     i7 = -1163700;
                 } else {
                     i7 = -12761513;
                 }
                 paint.setColor(i7);
-                f40Var2.f47444a3.invalidate();
+                f40Var2.f47400a3.invalidate();
                 return;
         }
     }

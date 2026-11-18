@@ -17,10 +17,10 @@ public final class xe extends on0 {
         super(context);
         int width;
         this.H = chatActivityEnterView;
-        this.f28991b = true;
-        this.f28992c = 150;
-        this.f28994f = -1L;
-        this.f28997j = new h2.f((int[]) null);
+        this.f28989b = true;
+        this.f28990c = 150;
+        this.f28992f = -1L;
+        this.f28995j = new h2.f((int[]) null);
         e();
         this.f38146z = new ArrayList();
         this.G = new ArrayList();
@@ -41,9 +41,9 @@ public final class xe extends on0 {
         a3Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
         int L = org.telegram.messenger.g0.L(450.0f);
         if (bnVar == null) {
-            width = org.telegram.messenger.g0.f24121q.x;
+            width = org.telegram.messenger.g0.f24118q.x;
         } else {
-            width = bnVar.f46093m1.getWidth();
+            width = bnVar.f46084m1.getWidth();
         }
         int i7 = (int) (width * 0.75f);
         in0 in0Var = new in0(context, i7, L);
@@ -51,7 +51,7 @@ public final class xe extends on0 {
         in0Var.setOrientation(1);
         TextView textView = new TextView(context);
         this.f38137p = textView;
-        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29560m5, i6Var);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29558m5, i6Var);
         textView.setTextSize(1, 16.0f);
         textView.setText(org.telegram.messenger.gd.M0(2131745405, null));
         textView.setTypeface(org.telegram.messenger.g0.o(), 1);

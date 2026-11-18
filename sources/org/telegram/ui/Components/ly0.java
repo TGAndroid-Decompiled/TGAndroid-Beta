@@ -50,7 +50,7 @@ public final class ly0 extends au0 {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24121q.x, 1073741824);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24118q.x, 1073741824);
         jy0 jy0Var = this.f37271i0;
         jy0Var.measure(makeMeasureSpec, i10);
         setMeasuredDimension(View.MeasureSpec.getSize(i7), jy0Var.getMeasuredHeight() + org.telegram.messenger.g0.L(24.0f));

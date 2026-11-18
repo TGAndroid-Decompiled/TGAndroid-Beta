@@ -93,8 +93,8 @@ public final class iy implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                     }
                     org.telegram.ui.vz vzVar = ql0Var.K;
                     int e12 = E.e1();
-                    vzVar.f52886a = org.telegram.messenger.fj.B0(E.f23968k);
-                    vzVar.f52887b = e12;
+                    vzVar.f52876a = org.telegram.messenger.fj.B0(E.f23965k);
+                    vzVar.f52877b = e12;
                 }
                 return true;
         }
@@ -139,7 +139,7 @@ public final class iy implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 a0.h hVar = j60Var.f36352a2;
                 ArrayList arrayList = new ArrayList();
                 for (int i10 = 0; i10 < hVar.m(); i10++) {
-                    arrayList.add(org.telegram.messenger.mp.u1(j60Var.f30189a).c2(Long.valueOf(hVar.j(i10))));
+                    arrayList.add(org.telegram.messenger.mp.u1(j60Var.f30187a).c2(Long.valueOf(hVar.j(i10))));
                 }
                 org.telegram.ui.u40 u40Var = j60Var.f36357g2;
                 if (u40Var != null) {
@@ -161,7 +161,7 @@ public final class iy implements org.telegram.ui.ActionBar.r1, org.telegram.mess
 
     @Override
     public void j(int i7, int i10) {
-        de0 de0Var = (de0) ((org.telegram.ui.l4) this.f36266b).f49426e;
+        de0 de0Var = (de0) ((org.telegram.ui.l4) this.f36266b).f49432e;
         if (i7 == de0Var.f34386b) {
             de0Var.H = i10;
         } else if (i7 == de0Var.f34406r) {
@@ -362,8 +362,8 @@ public final class iy implements org.telegram.ui.ActionBar.r1, org.telegram.mess
         hashMap.clear();
         rm0Var.N(false);
         boolean z12 = true;
-        if (arrayList.size() <= 1 && ((org.telegram.messenger.sr) arrayList.get(0)).f26847a != org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i11).f23221a).e() && charSequence == null) {
-            long j3 = ((org.telegram.messenger.sr) arrayList.get(0)).f26847a;
+        if (arrayList.size() <= 1 && ((org.telegram.messenger.sr) arrayList.get(0)).f26845a != org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i11).f23218a).e() && charSequence == null) {
+            long j3 = ((org.telegram.messenger.sr) arrayList.get(0)).f26845a;
             Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
             if (org.telegram.messenger.n5.C(j3)) {
                 k10.putInt("enc_id", (int) (4294967295L & j3));
@@ -373,7 +373,7 @@ public final class iy implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 } else {
                     k10.putLong("chat_id", -j3);
                 }
-                if (!org.telegram.messenger.mp.u1(org.telegram.messenger.c.a(i11).f23221a).E(k10, cxVar, null, null)) {
+                if (!org.telegram.messenger.mp.u1(org.telegram.messenger.c.a(i11).f23218a).E(k10, cxVar, null, null)) {
                     return true;
                 }
             }
@@ -384,11 +384,11 @@ public final class iy implements org.telegram.ui.ActionBar.r1, org.telegram.mess
         }
         int i12 = 0;
         while (i12 < arrayList.size()) {
-            long j10 = ((org.telegram.messenger.sr) arrayList.get(i12)).f26847a;
+            long j10 = ((org.telegram.messenger.sr) arrayList.get(i12)).f26845a;
             if (charSequence != null) {
-                org.telegram.messenger.zy.C(org.telegram.messenger.c.a(i11).f23221a).r0(org.telegram.messenger.xy.b(charSequence.toString(), j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                org.telegram.messenger.zy.C(org.telegram.messenger.c.a(i11).f23218a).r0(org.telegram.messenger.xy.b(charSequence.toString(), j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
             }
-            org.telegram.messenger.zy.C(org.telegram.messenger.c.a(i11).f23221a).q0(arrayList2, j10, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+            org.telegram.messenger.zy.C(org.telegram.messenger.c.a(i11).f23218a).q0(arrayList2, j10, false, false, true, 0, 0, null, -1, 0L, 0L, null);
             i12++;
             z12 = z12;
         }

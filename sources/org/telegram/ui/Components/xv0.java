@@ -43,7 +43,7 @@ public final class xv0 implements org.telegram.ui.ls {
         u1Var.r(350L);
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
         tL_stickers_removeStickerFromSet.sticker = org.telegram.messenger.ri.c0(document, "").document;
-        ConnectionsManager.getInstance(iw0Var.f30189a).sendRequest(tL_stickers_removeStickerFromSet, new di.n8(this, isEmpty, u1Var, 4));
+        ConnectionsManager.getInstance(iw0Var.f30187a).sendRequest(tL_stickers_removeStickerFromSet, new di.n8(this, isEmpty, u1Var, 4));
     }
 
     @Override

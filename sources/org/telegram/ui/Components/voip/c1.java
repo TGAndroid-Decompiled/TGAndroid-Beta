@@ -28,7 +28,7 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.Components.bb0;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.w01;
@@ -121,7 +121,7 @@ public abstract class c1 extends FrameLayout implements VoIPService.StateListene
         a1Var.setMinWidth(org.telegram.messenger.g0.L(64.0f));
         a1Var.setTag(-1);
         a1Var.setTextSize(1, 14.0f);
-        int i7 = n6.f29425eh;
+        int i7 = n6.f29423eh;
         u6.U(a1Var, i7, null);
         a1Var.setGravity(17);
         a1Var.setTypeface(org.telegram.messenger.g0.o());
@@ -183,7 +183,7 @@ public abstract class c1 extends FrameLayout implements VoIPService.StateListene
         w01Var2.addView(imageView2);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new j9(bc1Var, f10, f11, 2));
-        ofFloat.addListener(new x9(bc1Var, 14));
+        ofFloat.addListener(new y9(bc1Var, 14));
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat2.addUpdateListener(new k3(bc1Var, 19));
         lr lrVar = lr.f37208f;
@@ -200,7 +200,7 @@ public abstract class c1 extends FrameLayout implements VoIPService.StateListene
         this.d.setScaleX(0.8f);
         this.d.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setStartDelay(120L).setDuration(250L).start();
         this.f40790c.setTranslationY(org.telegram.messenger.g0.L(53.0f));
-        this.f40790c.setTranslationX((f10 - (org.telegram.messenger.g0.f24121q.x / 2.0f)) + org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.L(26.0f));
+        this.f40790c.setTranslationX((f10 - (org.telegram.messenger.g0.f24118q.x / 2.0f)) + org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.L(26.0f));
         this.f40790c.animate().translationY(0.0f).translationX(0.0f).setDuration(j3).start();
         this.P = true;
         c(1, false);
@@ -209,28 +209,28 @@ public abstract class c1 extends FrameLayout implements VoIPService.StateListene
     public final void a(boolean z10, boolean z11) {
         if (!this.f40788a && this.E == 1.0f) {
             bc1 bc1Var = (bc1) this;
-            bc1Var.W.f48372w.T = false;
-            bc1Var.W.f48372w.invalidate();
+            bc1Var.W.f48292w.T = false;
+            bc1Var.W.f48292w.invalidate();
             this.f40788a = true;
             b();
             hc1 hc1Var = bc1Var.W;
-            hc1Var.f48362o0 = null;
+            hc1Var.f48282o0 = null;
             VoIPService sharedInstance = VoIPService.getSharedInstance();
-            hc1Var.f48370u0.setLockOnScreen(false);
+            hc1Var.f48290u0.setLockOnScreen(false);
             if (z11) {
-                hc1Var.f48361n0 = true;
+                hc1Var.f48281n0 = true;
                 if (sharedInstance != null && !z10) {
                     sharedInstance.requestVideoCall(false);
                     sharedInstance.setVideoState(false, 2);
                     sharedInstance.switchToSpeaker();
                 }
                 if (sharedInstance != null) {
-                    hc1Var.m(hc1Var.f48346f, sharedInstance, true);
+                    hc1Var.m(hc1Var.f48266f, sharedInstance, true);
                 }
             } else if (sharedInstance != null) {
                 sharedInstance.setVideoState(false, 0);
             }
-            hc1Var.f48364q0 = hc1Var.f48363p0;
+            hc1Var.f48284q0 = hc1Var.f48283p0;
             hc1Var.y();
             if (bc1Var.W.m0 && z11) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -264,7 +264,7 @@ public abstract class c1 extends FrameLayout implements VoIPService.StateListene
                 this.d.setScaleX(1.0f);
                 this.d.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                 float f10 = 320;
-                this.f40790c.animate().translationY(org.telegram.messenger.g0.L(53.0f)).translationX((this.J - (org.telegram.messenger.g0.f24121q.x / 2.0f)) + org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.L(26.0f)).setDuration(0.6f * f10).start();
+                this.f40790c.animate().translationY(org.telegram.messenger.g0.L(53.0f)).translationX((this.J - (org.telegram.messenger.g0.f24118q.x / 2.0f)) + org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.L(26.0f)).setDuration(0.6f * f10).start();
                 animate().alpha(0.0f).setDuration(0.25f * f10).setStartDelay(f10 * 0.75f).start();
             }
             invalidate();
@@ -394,9 +394,9 @@ public abstract class c1 extends FrameLayout implements VoIPService.StateListene
         int i7 = (this.E > 1.0f ? 1 : (this.E == 1.0f ? 0 : -1));
         Path path = this.L;
         if (i7 < 0) {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             int i10 = point.x;
-            int i11 = point.y + org.telegram.messenger.g0.f24115m + org.telegram.messenger.g0.f24116n;
+            int i11 = point.y + org.telegram.messenger.g0.f24112m + org.telegram.messenger.g0.f24113n;
             float L = org.telegram.messenger.g0.L(28.0f) - (org.telegram.messenger.g0.L(28.0f) * this.E);
             path.reset();
             float f10 = this.J;
@@ -418,7 +418,7 @@ public abstract class c1 extends FrameLayout implements VoIPService.StateListene
             int i12 = (int) (floatingViewLocation[0] * f12);
             int i13 = (int) (floatingViewLocation[1] * f12);
             int i14 = floatingViewLocation[2];
-            int i15 = org.telegram.messenger.g0.f24121q.x;
+            int i15 = org.telegram.messenger.g0.f24118q.x;
             float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, f12, i15 - i14, i14) / i15;
             path.reset();
             path.addRoundRect(0.0f, 0.0f, getWidth() * z10, getHeight() * z10, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), Path.Direction.CW);

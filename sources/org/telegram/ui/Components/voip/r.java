@@ -66,7 +66,7 @@ public abstract class r extends FrameLayout {
         } else {
             f10 = 2.0f;
         }
-        int B = n10.B(14.0f, 2, org.telegram.messenger.g0.f24121q.x);
+        int B = n10.B(14.0f, 2, org.telegram.messenger.g0.f24118q.x);
         if (f40.E5) {
             i11 = -org.telegram.messenger.g0.L(90.0f);
         } else {

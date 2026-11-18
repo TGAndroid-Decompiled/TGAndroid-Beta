@@ -17,7 +17,7 @@ public final class b70 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         g70 g70Var = this.f33575a;
-        g70Var.f35362m1.setBounds(0, g70Var.f35370v1 - g70Var.f30226t0, getMeasuredWidth(), getMeasuredHeight());
+        g70Var.f35362m1.setBounds(0, g70Var.f35370v1 - g70Var.f30224t0, getMeasuredWidth(), getMeasuredHeight());
         g70Var.f35362m1.draw(canvas);
     }
 
@@ -42,7 +42,7 @@ public final class b70 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11;
-        int size = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.f24115m;
+        int size = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.f24112m;
         g70 g70Var = this.f33575a;
         TextView textView = g70Var.f35367s1;
         measureChildWithMargins(textView, i7, 0, i10, 0);
@@ -50,7 +50,7 @@ public final class b70 extends FrameLayout {
         c70 c70Var = g70Var.f35365q1;
         ((FrameLayout.LayoutParams) c70Var.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(65.0f) + measuredHeight;
         getMeasuredWidth();
-        int C = org.telegram.messenger.f3.C(55.0f, org.telegram.messenger.f3.D(58.0f, g70Var.f35368t1.size(), org.telegram.messenger.g0.L(80.0f)) + g70Var.f30226t0, measuredHeight);
+        int C = org.telegram.messenger.f3.C(55.0f, org.telegram.messenger.f3.D(58.0f, g70Var.f35368t1.size(), org.telegram.messenger.g0.L(80.0f)) + g70Var.f30224t0, measuredHeight);
         int i12 = size / 5;
         if (C < i12 * 3) {
             i11 = size - C;

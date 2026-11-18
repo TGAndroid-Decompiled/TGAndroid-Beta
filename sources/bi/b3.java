@@ -20,7 +20,7 @@ import org.telegram.ui.Components.lq;
 import org.telegram.ui.Components.q9;
 import org.telegram.ui.Components.z41;
 public final class b3 extends k41 {
-    public static final int f3449b = 0;
+    public static final int f3432b = 0;
 
     static {
         k41.h(new k41());
@@ -57,12 +57,12 @@ public final class b3 extends k41 {
             a3 a3Var = c3Var.K;
             TextView textView = c3Var.J;
             TextView textView2 = c3Var.I;
-            y2 y2Var = c3Var.f3494e;
+            y2 y2Var = c3Var.f3463e;
             q9 q9Var = c3Var.E;
             TextView textView3 = c3Var.M;
             TextView textView4 = c3Var.N;
             int d = jVar.d();
-            if (c3Var.f3502k0 != jVar) {
+            if (c3Var.f3471k0 != jVar) {
                 ea g12 = pb.g1(q9Var, q9Var.getImageReceiver(), d);
                 c3Var.O = g12;
                 g12.run();
@@ -76,9 +76,9 @@ public final class b3 extends k41 {
             textView2.setVisibility(0);
             textView.setVisibility(0);
             q9Var.setTranslationY(-org.telegram.messenger.g0.L(8.0f));
-            c3Var.f3504n.setVisibility(8);
+            c3Var.f3473n.setVisibility(8);
             c3Var.G.setVisibility(8);
-            if (jVar.f58704c == null && jVar.d == null) {
+            if (jVar.f58705c == null && jVar.d == null) {
                 textView4.setVisibility(8);
             } else {
                 if (org.telegram.ui.ActionBar.n6.I.q()) {
@@ -100,20 +100,20 @@ public final class b3 extends k41 {
             textView3.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
             textView3.setTextSize(1, 12.0f);
             textView3.setText(jVar.c());
-            c3Var.f3513t0 = 0;
+            c3Var.f3482t0 = 0;
             c3Var.L.setBackground(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(13.0f), 422810068));
             textView3.setTextColor(-13397548);
             ((ViewGroup.MarginLayoutParams) a3Var.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(130.0f);
             ((FrameLayout.LayoutParams) a3Var.getLayoutParams()).gravity = 49;
-            c3Var.f3502k0 = jVar;
-            c3Var.f3503l0 = null;
-            c3Var.f3490b0 = jVar;
-            c3Var.f3492c0 = null;
-            c3Var.f3495e0 = false;
-            c3Var.f3497f0 = null;
-            c3Var.f3498g0 = false;
-            c3Var.f3499h0 = false;
-            c3Var.f3500i0 = false;
+            c3Var.f3471k0 = jVar;
+            c3Var.f3472l0 = null;
+            c3Var.f3459b0 = jVar;
+            c3Var.f3461c0 = null;
+            c3Var.f3464e0 = false;
+            c3Var.f3466f0 = null;
+            c3Var.f3467g0 = false;
+            c3Var.f3468h0 = false;
+            c3Var.f3469i0 = false;
             c3Var.R = null;
             c3Var.S = null;
             c3Var.d(false, false);
@@ -143,7 +143,7 @@ public final class b3 extends k41 {
             f10 = 0.65f;
         }
         frameLayout.setAlpha(f10);
-        d3 d3Var = c3Var.f3496f;
+        d3 d3Var = c3Var.f3465f;
         if (!l41Var.f37013g) {
             f11 = 0.5f;
         }
@@ -169,7 +169,7 @@ public final class b3 extends k41 {
                 if (obj instanceof TL_stars.StarGift) {
                     Object obj2 = l41Var2.H;
                     if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f28634id == ((TL_stars.StarGift) obj2).f28634id) {
+                        if (((TL_stars.StarGift) obj).f28632id == ((TL_stars.StarGift) obj2).f28632id) {
                             return true;
                         }
                         return false;
@@ -180,7 +180,7 @@ public final class b3 extends k41 {
                     if (obj3 instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f28634id == savedStarGift2.gift.f28634id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
+                        if (savedStarGift.gift.f28632id == savedStarGift2.gift.f28632id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
                             return true;
                         }
                         return false;

@@ -1,5 +1,5 @@
 package org.telegram.messenger;
 public final class ni {
-    public String f25929a;
-    public String f25930b;
+    public String f25927a;
+    public String f25928b;
 }

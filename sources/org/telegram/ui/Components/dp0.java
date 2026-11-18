@@ -85,7 +85,7 @@ public final class dp0 extends View implements org.telegram.ui.ActionBar.c6 {
     public final void updateColors() {
         try {
             Paint paint = this.f34476b;
-            int i7 = org.telegram.ui.ActionBar.n6.f29461gg;
+            int i7 = org.telegram.ui.ActionBar.n6.f29459gg;
             paint.setColor(i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, i7, false), 76));
             this.f34477c.setColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
             invalidate();

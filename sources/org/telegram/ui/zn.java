@@ -4,36 +4,36 @@ import android.content.Context;
 import android.text.TextUtils;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class zn extends org.telegram.ui.ActionBar.j {
-    public final Context f54556a;
-    public final jo f54557b;
+    public final Context f54557a;
+    public final jo f54558b;
 
     public zn(jo joVar, Context context) {
-        this.f54557b = joVar;
-        this.f54556a = context;
+        this.f54558b = joVar;
+        this.f54557a = context;
     }
 
     @Override
     public final void b(int i7) {
         int i10;
         int i11;
-        jo joVar = this.f54557b;
+        jo joVar = this.f54558b;
         if (i7 == -1) {
             joVar.finishFragment();
         } else if (i7 == 1) {
-            org.telegram.ui.ActionBar.d5 d5Var = joVar.f49040r;
-            if (d5Var == null || !d5Var.f28873y.f57658f) {
+            org.telegram.ui.ActionBar.d5 d5Var = joVar.f49017r;
+            if (d5Var == null || !d5Var.f28871y.f57658f) {
                 String K = org.telegram.messenger.v3.K(joVar.Y, false);
                 if (joVar.W && !TextUtils.isEmpty(K)) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f54556a, joVar.getResourceProvider());
-                    if (joVar.f49021b0) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f54557a, joVar.getResourceProvider());
+                    if (joVar.f48998b0) {
                         i10 = 2131748510;
                     } else {
                         i10 = 2131748508;
                     }
                     String M0 = org.telegram.messenger.gd.M0(i10, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                     u1Var.S = M0;
-                    if (joVar.f49021b0) {
+                    if (joVar.f48998b0) {
                         i11 = 2131748511;
                     } else {
                         i11 = 2131748509;

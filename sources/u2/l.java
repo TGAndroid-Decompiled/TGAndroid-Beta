@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import p4.o0;
 public interface l {
     void b(int i7, int i10, int i11, long j3);
@@ -32,7 +32,7 @@ public interface l {
 
     void h(o0 o0Var);
 
-    boolean i(b5 b5Var);
+    boolean i(c5 c5Var);
 
     int j(MediaCodec.BufferInfo bufferInfo);
 

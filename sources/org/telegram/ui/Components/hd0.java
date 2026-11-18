@@ -115,7 +115,7 @@ public final class hd0 implements DialogInterface.OnClickListener {
         while (i12 < arrayList4.size()) {
             org.telegram.messenger.f0 f0Var2 = (org.telegram.messenger.f0) arrayList4.get(i12);
             int i13 = i12;
-            int i14 = f0Var2.f23812c;
+            int i14 = f0Var2.f23809c;
             boolean z11 = z10;
             if (i14 == 1) {
                 ContentValues contentValues2 = new ContentValues();
@@ -326,7 +326,7 @@ public final class hd0 implements DialogInterface.OnClickListener {
                                             org.telegram.messenger.f0 f0Var3 = (org.telegram.messenger.f0) arrayList8.get(i15);
                                             int i16 = i15;
                                             String str11 = str10;
-                                            if (f0Var3.f23812c == 6) {
+                                            if (f0Var3.f23809c == 6) {
                                                 String a14 = f0Var3.a(true);
                                                 if ("ORG".equalsIgnoreCase(a14)) {
                                                     String[] b11 = f0Var3.b();

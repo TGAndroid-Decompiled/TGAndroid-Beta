@@ -104,7 +104,7 @@ public abstract class sg extends View implements x60 {
         m6Var2.u(-1);
         m6Var2.f37377b = 3;
         m6Var2.setCallback(this);
-        m6Var2.N = org.telegram.messenger.g0.f24121q.x;
+        m6Var2.N = org.telegram.messenger.g0.f24118q.x;
         this.f39625e = i5.c.g(context, i7);
         this.f39627f = i5.c.g(context, i7);
         this.h = i5.c.g(context, i7);
@@ -419,7 +419,7 @@ public abstract class sg extends View implements x60 {
 
     public void setEffect(long j3) {
         org.telegram.messenger.f6 f6Var;
-        TLRPC.TL_availableEffect b12 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).b1(j3);
+        TLRPC.TL_availableEffect b12 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).b1(j3);
         if (b12 != null) {
             f6Var = org.telegram.messenger.j6.g(b12.emoticon);
         } else {

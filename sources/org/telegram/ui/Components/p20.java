@@ -39,14 +39,14 @@ public final class p20 implements Runnable {
                     arrayList = new ArrayList(r20Var2.f38996x.R1.participants.participants);
                 }
                 if (arrayList != null) {
-                    Utilities.f22784g.c(new bi.u4(r20Var2, str2, i10, arrayList));
+                    Utilities.f22781g.c(new bi.t4(r20Var2, str2, i10, arrayList));
                 } else {
                     r20Var2.h = false;
                 }
                 jg.z1 z1Var = r20Var2.d;
                 boolean w10 = org.telegram.messenger.v3.w(3, r20Var2.f38996x.Q1);
                 if (org.telegram.messenger.v3.T(r20Var2.f38996x.Q1)) {
-                    j3 = r20Var2.f38996x.Q1.f28405id;
+                    j3 = r20Var2.f38996x.Q1.f28403id;
                 } else {
                     j3 = 0;
                 }

@@ -9,21 +9,21 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.is;
 public final class a implements Runnable {
-    public final int f8461a;
-    public final org.telegram.ui.ActionBar.i6 f8462b;
-    public final Context f8463c;
+    public final int f8458a;
+    public final org.telegram.ui.ActionBar.i6 f8459b;
+    public final Context f8460c;
 
     public a(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f8461a = i7;
-        this.f8463c = context;
-        this.f8462b = i6Var;
+        this.f8458a = i7;
+        this.f8460c = context;
+        this.f8459b = i6Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f8461a;
-        org.telegram.ui.ActionBar.i6 i6Var = this.f8462b;
-        Context context = this.f8463c;
+        int i7 = this.f8458a;
+        org.telegram.ui.ActionBar.i6 i6Var = this.f8459b;
+        Context context = this.f8460c;
         switch (i7) {
             case 0:
                 new gb(context, i6Var).show();
@@ -37,7 +37,7 @@ public final class a implements Runnable {
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
                 String M0 = gd.M0(2131754172, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = U2;
                 alertDialog$Builder.k(gd.M0(2131754174, null), null);
@@ -50,8 +50,8 @@ public final class a implements Runnable {
     }
 
     public a(is isVar, org.telegram.ui.ActionBar.i6 i6Var, Context context) {
-        this.f8461a = 1;
-        this.f8462b = i6Var;
-        this.f8463c = context;
+        this.f8458a = 1;
+        this.f8459b = i6Var;
+        this.f8460c = context;
     }
 }

@@ -42,7 +42,7 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
     public final m7 d;
     public final FrameLayout f44008e;
     public final TextView f44009f;
-    public final org.telegram.ui.Cells.w3 h;
+    public final org.telegram.ui.Cells.x3 h;
     public ValueAnimator f44010n;
     public r1.g f44011r;
     public r1.g f44012s;
@@ -86,7 +86,7 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
         frameLayout.addView(m7Var, c8.ma.d(60, 60.0f, 19, 0.0f, -5.0f, -2.0f, 0.0f));
         TextView textView = new TextView(context);
         this.f44009f = textView;
-        int i10 = org.telegram.ui.ActionBar.n6.f29807z6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29805z6;
         org.telegram.ui.ActionBar.u6.U(textView, i10, i6Var);
         textView.setTextSize(1, 44.0f);
         textView.setTypeface(org.telegram.messenger.g0.o1("fonts/gram.ttf"));
@@ -116,25 +116,25 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
         org.telegram.ui.ActionBar.u6.l(y9Var, 30, i7, i6Var);
         org.telegram.ui.ActionBar.u6.l(y9Var, 36, i7, i6Var);
         org.telegram.ui.ActionBar.q6 K = org.telegram.ui.ActionBar.u6.K(0.3f, i7);
-        org.telegram.ui.ActionBar.u6.n(y9Var, 3, K.f29911a, -1, 2, K.d, i6Var);
+        org.telegram.ui.ActionBar.u6.n(y9Var, 3, K.f29909a, -1, 2, K.d, i6Var);
         y9Var.setAllowDrawCursor(true);
         y9Var.setInputType(8194);
         y9Var.setKeyListener(DigitsKeyListener.getInstance("0123456789.,"));
         y9Var.setImeOptions(33554438);
         linearLayout.addView(y9Var, c8.ma.r(-2, 60, 16));
-        org.telegram.ui.Cells.w3 w3Var = new org.telegram.ui.Cells.w3(context, false, true, false, true, true);
-        this.h = w3Var;
-        w3Var.f37737c.m(0.35f, 420L, 3.5f, lr.h);
-        w3Var.setScaleProperty(0.2f);
-        w3Var.setAllowCancel(true);
-        w3Var.getDrawable().f37380c0 = new m(w3Var, 13);
-        w3Var.setTextColor(org.telegram.ui.ActionBar.n6.w0(this.f44005a, i6Var));
-        w3Var.setTextSize(org.telegram.messenger.g0.L(28.0f));
-        w3Var.setTypeface(org.telegram.messenger.g0.o1("fonts/gram.ttf"));
-        w3Var.setGravity(3);
-        w3Var.getDrawable().T = false;
-        w3Var.c(gd.M0(2131749341, null), false, true);
-        linearLayout.addView(w3Var, c8.ma.t(-2, 60, 16, 4, 0, 0, 0));
+        org.telegram.ui.Cells.x3 x3Var = new org.telegram.ui.Cells.x3(context, false, true, false, true, true);
+        this.h = x3Var;
+        x3Var.f37737c.m(0.35f, 420L, 3.5f, lr.h);
+        x3Var.setScaleProperty(0.2f);
+        x3Var.setAllowCancel(true);
+        x3Var.getDrawable().f37380c0 = new m(x3Var, 13);
+        x3Var.setTextColor(org.telegram.ui.ActionBar.n6.w0(this.f44005a, i6Var));
+        x3Var.setTextSize(org.telegram.messenger.g0.L(28.0f));
+        x3Var.setTypeface(org.telegram.messenger.g0.o1("fonts/gram.ttf"));
+        x3Var.setGravity(3);
+        x3Var.getDrawable().T = false;
+        x3Var.c(gd.M0(2131749341, null), false, true);
+        linearLayout.addView(x3Var, c8.ma.t(-2, 60, 16, 4, 0, 0, 0));
         setOnClickListener(new o3(this, 7));
         y9Var.addTextChangedListener(new wh(this, 1));
     }
@@ -341,7 +341,7 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
         }
         boolean z16 = this.G;
         y9 y9Var = this.f44007c;
-        org.telegram.ui.Cells.w3 w3Var = this.h;
+        org.telegram.ui.Cells.x3 x3Var = this.h;
         TextView textView = this.f44009f;
         if (z16) {
             if (z10) {
@@ -358,8 +358,8 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
                 i12 = org.telegram.ui.ActionBar.n6.Fi;
             }
             org.telegram.ui.ActionBar.u6.U(textView, i12, i6Var);
-            w3Var.f37737c.v(w02, z11);
-            w3Var.invalidate();
+            x3Var.f37737c.v(w02, z11);
+            x3Var.invalidate();
             org.telegram.ui.ActionBar.u6.v(y9Var, this.f44005a, i6Var);
             org.telegram.ui.ActionBar.u6.l(y9Var, 36, this.f44005a, i6Var);
             if (z10) {
@@ -368,7 +368,7 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
                 i13 = org.telegram.ui.ActionBar.n6.Fi;
             }
             org.telegram.ui.ActionBar.q6 K = org.telegram.ui.ActionBar.u6.K(0.3f, i13);
-            org.telegram.ui.ActionBar.u6.n(y9Var, 3, K.f29911a, -1, 2, K.d, i6Var);
+            org.telegram.ui.ActionBar.u6.n(y9Var, 3, K.f29909a, -1, 2, K.d, i6Var);
         }
         TL_wallet.currencyRate j3 = gVar.j();
         String g10 = gVar.g();
@@ -433,15 +433,15 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
         } else if (!z12) {
             g10 = str;
         }
-        w3Var.c(g10, z11, true);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) w3Var.getLayoutParams();
+        x3Var.c(g10, z11, true);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) x3Var.getLayoutParams();
         if (z10 && !z12 && !z13) {
             L = 0;
         } else {
             L = org.telegram.messenger.g0.L(4.0f);
         }
         layoutParams.leftMargin = L;
-        w3Var.setLayoutParams(layoutParams);
+        x3Var.setLayoutParams(layoutParams);
         if (z10 && currencyrate != null) {
             currencyrate2 = currencyrate;
             str2 = currencyrate2.thousandsSeparator;
@@ -477,19 +477,19 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
         m7 m7Var = this.d;
         frameLayout.setTranslationX((((width - frameLayout.getLeft()) - m7Var.getLeft()) - (m7Var.getWidth() / 2.0f)) * f12);
         frameLayout.setTranslationY(n10.y(m7Var.getHeight(), 2.0f, (((getHeight() / 2.0f) - linearLayout.getTop()) - frameLayout.getTop()) - m7Var.getTop(), f12) - (org.telegram.messenger.g0.L(36.0f) * ((float) Math.sin(f10 * 3.141592653589793d))));
-        org.telegram.ui.Cells.w3 w3Var = this.h;
-        int visibility = w3Var.getVisibility();
+        org.telegram.ui.Cells.x3 x3Var = this.h;
+        int visibility = x3Var.getVisibility();
         y9 y9Var = this.f44007c;
         if (visibility == 8) {
             right = y9Var.getRight();
         } else {
-            right = w3Var.getRight();
+            right = x3Var.getRight();
         }
         float left = (1.0f - f11) * (width - ((y9Var.getLeft() + right) / 2.0f));
         y9Var.setTranslationX(left);
-        w3Var.setTranslationX(left);
+        x3Var.setTranslationX(left);
         y9Var.setAlpha(f11);
-        w3Var.setAlpha(f11);
+        x3Var.setAlpha(f11);
         if (z10 && !this.f44014x) {
             z11 = true;
         } else {
@@ -531,8 +531,8 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
         if (textView.getVisibility() == 0) {
             textView.setTranslationY(((baseline - this.f44008e.getTop()) - textView.getTop()) - textView.getBaseline());
         }
-        org.telegram.ui.Cells.w3 w3Var = this.h;
-        w3Var.setTranslationY((baseline - w3Var.getTop()) - w3Var.getBaseline());
+        org.telegram.ui.Cells.x3 x3Var = this.h;
+        x3Var.setTranslationY((baseline - x3Var.getTop()) - x3Var.getBaseline());
     }
 
     @Override
@@ -564,16 +564,16 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.c
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Cells.w3 w3Var;
+        org.telegram.ui.Cells.x3 x3Var;
         y9 y9Var = this.f44007c;
         if (y9Var != null) {
             try {
                 int w02 = org.telegram.ui.ActionBar.n6.w0(this.f44005a, this.F);
                 y9Var.setCursorColor(w02);
                 y9Var.setHandlesColor(w02);
-                if (this.G && (w3Var = this.h) != null) {
-                    w3Var.f37737c.v(w02, false);
-                    w3Var.invalidate();
+                if (this.G && (x3Var = this.h) != null) {
+                    x3Var.f37737c.v(w02, false);
+                    x3Var.invalidate();
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);

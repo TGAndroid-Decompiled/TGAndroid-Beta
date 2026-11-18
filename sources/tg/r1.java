@@ -25,24 +25,24 @@ public final class r1 extends j {
     public boolean B0;
     public boolean C0;
     public final c6 D0;
-    public final int f58106r0;
-    public boolean f58107s0;
-    public final c6 f58108t0;
-    public final vt0 f58109u0;
-    public final TextureView f58110v0;
-    public final Bitmap f58111w0;
-    public final Rect f58112x0;
-    public final Rect f58113y0;
-    public float f58114z0;
+    public final int f58107r0;
+    public boolean f58108s0;
+    public final c6 f58109t0;
+    public final vt0 f58110u0;
+    public final TextureView f58111v0;
+    public final Bitmap f58112w0;
+    public final Rect f58113x0;
+    public final Rect f58114y0;
+    public float f58115z0;
 
     public r1(Context context, PointF pointF, vt0 vt0Var, String str) {
         super(context, pointF);
-        this.f58106r0 = -1;
-        this.f58107s0 = false;
+        this.f58107r0 = -1;
+        this.f58108s0 = false;
         Rect rect = new Rect();
-        this.f58112x0 = rect;
-        this.f58113y0 = new Rect();
-        this.f58114z0 = 1.0f;
+        this.f58113x0 = rect;
+        this.f58114y0 = new Rect();
+        this.f58115z0 = 1.0f;
         this.A0 = new Path();
         this.B0 = true;
         this.C0 = true;
@@ -51,17 +51,17 @@ public final class r1 extends j {
         new Paint(1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         setRotation(0.0f);
         setScale(1.0f);
-        this.f58109u0 = vt0Var;
+        this.f58110u0 = vt0Var;
         Bitmap decodeFile = BitmapFactory.decodeFile(str);
-        this.f58111w0 = decodeFile;
+        this.f58112w0 = decodeFile;
         if (decodeFile != null) {
-            this.f58114z0 = decodeFile.getWidth() / decodeFile.getHeight();
+            this.f58115z0 = decodeFile.getWidth() / decodeFile.getHeight();
             rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
         }
         TextureView textureView = new TextureView(context);
-        this.f58110v0 = textureView;
+        this.f58111v0 = textureView;
         addView(textureView, ma.c(-1.0f, -1));
-        this.f58108t0 = new c6(this, 0L, 500L, lrVar);
+        this.f58109t0 = new c6(this, 0L, 500L, lrVar);
         k();
         setWillNotDraw(false);
     }
@@ -80,9 +80,9 @@ public final class r1 extends j {
         if (!this.B0) {
             return false;
         }
-        if (view == this.f58110v0) {
+        if (view == this.f58111v0) {
             canvas.save();
-            float d = this.f58108t0.d(this.f58107s0);
+            float d = this.f58109t0.d(this.f58108s0);
             canvas.scale(1.0f - (d * 2.0f), 1.0f, getMeasuredWidth() / 2.0f, 0.0f);
             canvas.skew(0.0f, f3.A(1.0f, d, 4.0f * d, 0.25f));
             float d2 = this.D0.d(this.C0);
@@ -90,9 +90,9 @@ public final class r1 extends j {
             float height = (view.getHeight() / 2.0f) + view.getY();
             float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
             int i7 = (d2 > 1.0f ? 1 : (d2 == 1.0f ? 0 : -1));
-            Rect rect2 = this.f58112x0;
-            Rect rect3 = this.f58113y0;
-            Bitmap bitmap2 = this.f58111w0;
+            Rect rect2 = this.f58113x0;
+            Rect rect3 = this.f58114y0;
+            Bitmap bitmap2 = this.f58112w0;
             Path path2 = this.A0;
             if (i7 < 0) {
                 rect = rect3;
@@ -134,11 +134,11 @@ public final class r1 extends j {
     }
 
     public int getAnchor() {
-        return this.f58106r0;
+        return this.f58107r0;
     }
 
     public vt0 getBaseSize() {
-        return this.f58109u0;
+        return this.f58110u0;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class r1 extends j {
 
     @Override
     public final void k() {
-        vt0 vt0Var = this.f58109u0;
+        vt0 vt0Var = this.f58110u0;
         setX(getPositionX() - (vt0Var.f41433a / 2.0f));
         setY(getPositionY() - (vt0Var.f41434b / 2.0f));
         m();
@@ -166,7 +166,7 @@ public final class r1 extends j {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        TextureView textureView = this.f58110v0;
+        TextureView textureView = this.f58111v0;
         if (textureView != null) {
             int measuredHeight = ((i12 - i10) - textureView.getMeasuredHeight()) / 2;
             int measuredWidth = ((i11 - i7) - textureView.getMeasuredWidth()) / 2;
@@ -178,19 +178,19 @@ public final class r1 extends j {
     public final void onMeasure(int i7, int i10) {
         int i11;
         int i12;
-        vt0 vt0Var = this.f58109u0;
+        vt0 vt0Var = this.f58110u0;
         int i13 = (int) vt0Var.f41433a;
         int i14 = (int) vt0Var.f41434b;
-        TextureView textureView = this.f58110v0;
+        TextureView textureView = this.f58111v0;
         if (textureView != null) {
-            float f10 = this.f58114z0;
+            float f10 = this.f58115z0;
             if (f10 >= 1.0f) {
                 i11 = (int) (f10 * i14);
             } else {
                 i11 = i13;
             }
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-            float f11 = this.f58114z0;
+            float f11 = this.f58115z0;
             if (f11 >= 1.0f) {
                 i12 = i14;
             } else {

@@ -1,7 +1,7 @@
 package oe;
 public final class i implements ke.a {
-    public static final i f21804a = new Object();
-    public static final n f21805b = new n("kotlin.Long", me.b.f20970e);
+    public static final i f21801a = new Object();
+    public static final n f21802b = new n("kotlin.Long", me.b.f20967e);
 
     @Override
     public final void a(qe.h hVar, Object obj) {
@@ -16,6 +16,6 @@ public final class i implements ke.a {
 
     @Override
     public final me.d d() {
-        return f21805b;
+        return f21802b;
     }
 }

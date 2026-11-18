@@ -22,12 +22,12 @@ public final class uo implements Runnable {
                 org.telegram.ui.bn bnVar = lpVar.f37182v1;
                 org.telegram.ui.ActionBar.h2 g02 = org.telegram.ui.c51.g0(bnVar.getMessagesController().O0(Long.valueOf(-bnVar.a())), true);
                 ?? obj = new Object();
-                obj.f28923a = true;
+                obj.f28921a = true;
                 g02.setResourceProvider(bnVar.getResourceProvider());
-                obj.f28925c = new me(4);
+                obj.f28923c = new me(4);
                 obj.d = new uo(lpVar, 3);
-                obj.f28924b = new uo(lpVar, 4);
-                obj.f28926e = true;
+                obj.f28922b = new uo(lpVar, 4);
+                obj.f28924e = true;
                 lpVar.R1 = g02;
                 bnVar.showAsSheet(g02, obj);
                 return;

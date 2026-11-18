@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.view.ViewPropertyAnimator;
 import java.util.ArrayList;
 public final class sr implements Runnable {
-    public final int f52060a;
-    public final ContactsActivity f52061b;
+    public final int f52062a;
+    public final ContactsActivity f52063b;
 
     public sr(ContactsActivity contactsActivity, int i7) {
-        this.f52060a = i7;
-        this.f52061b = contactsActivity;
+        this.f52062a = i7;
+        this.f52063b = contactsActivity;
     }
 
     @Override
     public final void run() {
         float f10;
         int i7;
-        switch (this.f52060a) {
+        switch (this.f52062a) {
             case 0:
-                ContactsActivity contactsActivity = this.f52061b;
+                ContactsActivity contactsActivity = this.f52063b;
                 te.c cVar = contactsActivity.f42976a;
                 if (contactsActivity.f42996r) {
                     f10 = 0.0f;
@@ -30,7 +30,7 @@ public final class sr implements Runnable {
                 ArrayList arrayList = vrVar.O;
                 vrVar.M = f11;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((org.telegram.ui.Cells.s4) arrayList.get(i10)).setLetterProgress(f11);
+                    ((org.telegram.ui.Cells.t4) arrayList.get(i10)).setLetterProgress(f11);
                 }
                 vr vrVar2 = contactsActivity.f42978b;
                 if (contactsActivity.f42996r) {
@@ -50,7 +50,7 @@ public final class sr implements Runnable {
                 }
                 return;
             default:
-                this.f52061b.f42986f0 = null;
+                this.f52063b.f42986f0 = null;
                 return;
         }
     }

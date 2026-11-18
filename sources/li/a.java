@@ -9,20 +9,20 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.z41;
 public final class a implements q10 {
-    public final int f19890a;
-    public final g f19891b;
+    public final int f19887a;
+    public final g f19888b;
 
     public a(g gVar, int i7) {
-        this.f19890a = i7;
-        this.f19891b = gVar;
+        this.f19887a = i7;
+        this.f19888b = gVar;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String M0;
         int i7;
-        int i10 = this.f19890a;
-        g gVar = this.f19891b;
+        int i10 = this.f19887a;
+        g gVar = this.f19888b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
@@ -32,19 +32,19 @@ public final class a implements q10 {
                 c10.f37023r = true;
                 arrayList.add(c10);
                 arrayList.add(l41.E(2, org.telegram.messenger.g0.L(14.0f)));
-                ArrayList arrayList2 = gVar.f19936n;
+                ArrayList arrayList2 = gVar.f19933n;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     arrayList.add(l41.t(3, gd.M0(2131751958, null)));
-                    ArrayList arrayList3 = gVar.f19936n;
+                    ArrayList arrayList3 = gVar.f19933n;
                     int size = arrayList3.size();
                     int i11 = 0;
                     while (i11 < size) {
                         Object obj3 = arrayList3.get(i11);
                         i11++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                        TLRPC.ChatFull P0 = gVar.getMessagesController().P0(chat.f28405id);
+                        TLRPC.ChatFull P0 = gVar.getMessagesController().P0(chat.f28403id);
                         l41 w10 = l41.w(chat);
-                        long j3 = chat.f28405id;
+                        long j3 = chat.f28403id;
                         w10.d = (int) (j3 ^ (j3 >>> 32));
                         if (P0 != null) {
                             ArrayList<TL_communities.CommunityPeer> arrayList4 = P0.linked_peers;
@@ -71,7 +71,7 @@ public final class a implements q10 {
                     lc.b0(gVar).g0(tL_error, false);
                     return;
                 }
-                l0.d(0, gVar.f19932b, gVar);
+                l0.d(0, gVar.f19929b, gVar);
                 return;
         }
     }

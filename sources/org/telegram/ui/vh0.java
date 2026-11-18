@@ -1,45 +1,83 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
-import android.text.TextUtils;
-import java.io.File;
-import java.io.IOException;
-import org.telegram.tgnet.TLRPC;
-public final class vh0 {
-    public boolean f52794a;
-    public boolean f52795b;
-    public int f52796c;
-    public int d;
-    public TLRPC.Document f52797e;
-    public String f52798f;
-    public String f52799g;
+import android.os.Parcelable;
+import android.util.SparseArray;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class vh0 extends org.telegram.ui.ActionBar.j {
+    public final Context f52788a;
+    public final yh0 f52789b;
 
-    public final Uri a(int i7) {
-        if (!TextUtils.isEmpty(this.f52799g)) {
-            return Uri.fromFile(new File(this.f52799g));
+    public vh0(yh0 yh0Var, Context context) {
+        this.f52789b = yh0Var;
+        this.f52788a = context;
+    }
+
+    @Override
+    public final void b(int i7) {
+        int i10;
+        int i11;
+        org.telegram.ui.ActionBar.a5 a5Var;
+        yh0 yh0Var = this.f52789b;
+        org.telegram.ui.ActionBar.i6 i6Var = yh0Var.f54165f;
+        SparseArray sparseArray = yh0Var.J;
+        if (i7 == -1) {
+            a5Var = ((org.telegram.ui.ActionBar.h2) yh0Var).simpleActionBar;
+            if (a5Var.x()) {
+                yh0.b0(yh0Var);
+                return;
+            } else {
+                yh0Var.finishFragment();
+                return;
+            }
         }
-        TLRPC.Document document = this.f52797e;
-        if (document != null) {
-            String str = document.file_name_fixed;
-            String A = org.telegram.messenger.w7.A(document);
-            if (A != null) {
-                String lowerCase = A.toLowerCase();
-                if (!str.endsWith(lowerCase)) {
-                    str = a8.p0.E(str, ".", lowerCase);
+        if (i7 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, yh0Var.getParentActivity(), i6Var);
+            String G = org.telegram.messenger.gd.G(sparseArray.size(), "DeleteTones", new Object[0]);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
+            u1Var.S = G;
+            u1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(sparseArray.size(), "DeleteTonesMessage", new Object[0]));
+            alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), new l60(4));
+            alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751587, null), new zr(this, 28));
+            TextView textView = (TextView) alertDialog$Builder.p().d(-1);
+            if (textView != null) {
+                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, i6Var);
+            }
+        } else if (i7 == 2) {
+            int size = sparseArray.size();
+            Context context = this.f52788a;
+            if (size == 1) {
+                Intent intent = new Intent(context, LaunchActivity.class);
+                intent.setAction("android.intent.action.SEND");
+                i11 = ((org.telegram.ui.ActionBar.h2) yh0Var).currentAccount;
+                Uri a10 = ((wh0) sparseArray.valueAt(0)).a(i11);
+                if (a10 != null) {
+                    intent.putExtra("android.intent.extra.STREAM", a10);
+                    context.startActivity(intent);
                 }
-                File file = new File(org.telegram.messenger.g0.E0(), str);
-                if (!file.exists()) {
-                    try {
-                        org.telegram.messenger.w7.G(i7);
-                        org.telegram.messenger.g0.E(org.telegram.messenger.w7.I(this.f52797e), file);
-                    } catch (IOException e10) {
-                        e10.printStackTrace();
+            } else {
+                Intent intent2 = new Intent(context, LaunchActivity.class);
+                intent2.setAction("android.intent.action.SEND_MULTIPLE");
+                ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
+                for (int i12 = 0; i12 < sparseArray.size(); i12++) {
+                    i10 = ((org.telegram.ui.ActionBar.h2) yh0Var).currentAccount;
+                    Uri a11 = ((wh0) sparseArray.valueAt(i12)).a(i10);
+                    if (a11 != null) {
+                        arrayList.add(a11);
                     }
                 }
-                return Uri.fromFile(file);
+                if (!arrayList.isEmpty()) {
+                    intent2.putParcelableArrayListExtra("android.intent.extra.STREAM", arrayList);
+                    context.startActivity(intent2);
+                }
             }
-            return null;
+            yh0.b0(yh0Var);
+            yh0Var.i0();
+            yh0Var.f54164e.f();
         }
-        return null;
     }
 }

@@ -16,8 +16,8 @@ public final class vi extends org.telegram.ui.Components.ao {
         bn bnVar = this.B0;
         if (!bnVar.mb && !bnVar.isInPreviewMode()) {
             z10 = ((org.telegram.ui.ActionBar.h2) bnVar).inBubbleMode;
-            if (!z10 && bnVar.f46067k0 != null && !bnVar.H3) {
-                if (!bnVar.fa() || bnVar.f46236x4) {
+            if (!z10 && bnVar.f46058k0 != null && !bnVar.H3) {
+                if (!bnVar.fa() || bnVar.f46227x4) {
                     return true;
                 }
                 return false;
@@ -30,14 +30,14 @@ public final class vi extends org.telegram.ui.Components.ao {
     @Override
     public final boolean d() {
         bn bnVar = this.B0;
-        TLRPC.User user = bnVar.f46001f;
+        TLRPC.User user = bnVar.f45992f;
         if (user != null && user.linked_community_id != 0) {
-            bnVar.showDialog(new li.d0(bnVar, bnVar.f46001f.linked_community_id, null, null));
+            bnVar.showDialog(new li.d0(bnVar, bnVar.f45992f.linked_community_id, null, null));
             return true;
         }
-        TLRPC.Chat chat = bnVar.f45987e;
+        TLRPC.Chat chat = bnVar.f45978e;
         if (chat != null && chat.linked_community_id != 0) {
-            bnVar.showDialog(new li.d0(bnVar, bnVar.f45987e.linked_community_id, null, null));
+            bnVar.showDialog(new li.d0(bnVar, bnVar.f45978e.linked_community_id, null, null));
             return true;
         }
         return false;
@@ -57,7 +57,7 @@ public final class vi extends org.telegram.ui.Components.ao {
 
     @Override
     public final boolean o() {
-        if (this.B0.f46018g4 == 3) {
+        if (this.B0.f46009g4 == 3) {
             return true;
         }
         return false;

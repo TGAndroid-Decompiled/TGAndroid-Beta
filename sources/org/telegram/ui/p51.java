@@ -5,28 +5,28 @@ import android.graphics.Bitmap;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class p51 implements org.telegram.messenger.x10 {
-    public final int f50761a;
-    public final Object f50762b;
-    public final Object f50763c;
+    public final int f50717a;
+    public final Object f50718b;
+    public final Object f50719c;
 
     public p51(int i7, Object obj, Object obj2) {
-        this.f50761a = i7;
-        this.f50762b = obj;
-        this.f50763c = obj2;
+        this.f50717a = i7;
+        this.f50718b = obj;
+        this.f50719c = obj2;
     }
 
     @Override
     public final void a(Object obj) {
         v4.f1 K;
-        int i7 = this.f50761a;
-        Object obj2 = this.f50763c;
-        Object obj3 = this.f50762b;
+        int i7 = this.f50717a;
+        Object obj2 = this.f50719c;
+        Object obj3 = this.f50718b;
         switch (i7) {
             case 0:
                 ThemeActivity themeActivity = (ThemeActivity) obj3;
                 AtomicReference atomicReference = (AtomicReference) obj2;
                 if (!((Boolean) obj).booleanValue()) {
-                    org.telegram.messenger.bz.f23204u0 = false;
+                    org.telegram.messenger.bz.f23201u0 = false;
                     org.telegram.messenger.bz.y();
                     themeActivity.P0 = true;
                     ((Dialog) atomicReference.get()).dismiss();
@@ -98,7 +98,7 @@ public final class p51 implements org.telegram.messenger.x10 {
                 return;
             case 8:
                 ((org.telegram.ui.Wallet.l2) obj3).h = false;
-                ((bi.t3) obj2).a(null, (String) obj);
+                ((m60) obj2).a(null, (String) obj);
                 return;
             case 9:
                 ((org.telegram.ui.Wallet.r0) obj3).close();
@@ -179,13 +179,13 @@ public final class p51 implements org.telegram.messenger.x10 {
                 org.telegram.ui.web.w0 w0Var = (org.telegram.ui.web.w0) obj;
                 n1Var.getClass();
                 ((org.telegram.ui.web.x0[]) obj2)[0].finishFragment();
-                org.telegram.messenger.x10 x10Var = n1Var.f53258f;
+                org.telegram.messenger.x10 x10Var = n1Var.f53209f;
                 if (x10Var != null) {
                     n1Var.finishFragment();
                     x10Var.a(w0Var);
                     return;
                 }
-                vf.c.t(n1Var.getParentActivity(), w0Var.f53389c);
+                vf.c.t(n1Var.getParentActivity(), w0Var.f53340c);
                 return;
             default:
                 org.telegram.ui.web.v1 v1Var = (org.telegram.ui.web.v1) obj3;
@@ -196,8 +196,8 @@ public final class p51 implements org.telegram.messenger.x10 {
     }
 
     public p51(org.telegram.ui.Wallet.u0 u0Var, org.telegram.ui.Wallet.o0 o0Var, org.telegram.ui.Wallet.y8 y8Var) {
-        this.f50761a = 5;
-        this.f50762b = o0Var;
-        this.f50763c = y8Var;
+        this.f50717a = 5;
+        this.f50718b = o0Var;
+        this.f50719c = y8Var;
     }
 }

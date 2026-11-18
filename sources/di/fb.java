@@ -21,8 +21,8 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
     public Runnable X1;
     public final TLRPC.InputPeer Y1;
     public final boolean Z1;
-    public z41 f8840a2;
-    public boolean f8841b2;
+    public z41 f8837a2;
+    public boolean f8838b2;
 
     public fb(android.content.Context r17, org.telegram.ui.ActionBar.i6 r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
         throw new UnsupportedOperationException("Method not decompiled: di.fb.<init>(android.content.Context, org.telegram.ui.ActionBar.i6, long, int, java.lang.String, java.lang.Runnable, long):void");
@@ -31,14 +31,14 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
     @Override
     public final void L() {
         super.L();
-        ks.f(this.f30189a).n(this, ks.f25223x3);
-        ks.f(this.f30189a).n(this, ks.A3);
+        ks.f(this.f30187a).n(this, ks.f25221x3);
+        ks.f(this.f30187a).n(this, ks.A3);
     }
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30189a, 0, true, new bi.b(this, 20), this.J0);
-        this.f8840a2 = z41Var;
+        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30187a, 0, true, new bi.b(this, 20), this.J0);
+        this.f8837a2 = z41Var;
         return z41Var;
     }
 
@@ -54,12 +54,12 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
-        if (i7 == ks.f25223x3 || i7 == ks.A3) {
-            z41 z41Var = this.f8840a2;
+        if (i7 == ks.f25221x3 || i7 == ks.A3) {
+            z41 z41Var = this.f8837a2;
             if (z41Var != null) {
                 z41Var.O(true);
             }
-            long j3 = x8.y(this.f30189a, false).p().amount;
+            long j3 = x8.y(this.f30187a, false).p().amount;
             long j10 = this.T1;
             ((TextView) this.U1.d).setText(gd.H(',', "StarsNeededTitle", (int) (j10 - j3)));
             org.telegram.ui.Components.na naVar = this.f39535p1;
@@ -88,7 +88,7 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
         rj rjVar;
         if (!this.Z1) {
             org.telegram.messenger.f3.n(null, 2131747204, new org.telegram.ui.Components.lc(org.telegram.ui.Components.cb.a(getContext()), this.J0), 2131624227, 36);
-        } else if (x8.y(this.f30189a, false).p().amount >= this.T1) {
+        } else if (x8.y(this.f30187a, false).p().amount >= this.T1) {
             Runnable runnable = this.X1;
             if (runnable != null) {
                 runnable.run();
@@ -98,13 +98,13 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
             org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
             if (Q instanceof bn) {
                 bn bnVar = (bn) Q;
-                if (bnVar.V9() && (rjVar = bnVar.f45932a0) != null) {
+                if (bnVar.V9() && (rjVar = bnVar.f45923a0) != null) {
                     rjVar.U();
                 }
             }
             super.show();
-            ks.f(this.f30189a).c(this, ks.f25223x3);
-            ks.f(this.f30189a).c(this, ks.A3);
+            ks.f(this.f30187a).c(this, ks.f25221x3);
+            ks.f(this.f30187a).c(this, ks.A3);
         }
     }
 }

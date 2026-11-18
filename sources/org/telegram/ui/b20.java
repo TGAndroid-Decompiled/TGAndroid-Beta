@@ -27,18 +27,18 @@ public final class b20 extends org.telegram.ui.Components.voip.k0 {
         n30 n30Var = f40Var.L1;
         org.telegram.ui.Components.s10 s10Var = f40Var.o4;
         b20 b20Var = f40Var.Z3;
-        x10 x10Var = f40Var.f47487l4;
-        f40Var.f47494n2 = z10;
+        x10 x10Var = f40Var.f47443l4;
+        f40Var.f47450n2 = z10;
         int i7 = 0;
         if (f40.F5) {
             if (!z10 && b20Var.f40973b) {
-                f40Var.f47496n4.H(f40Var.f47492m4, false, true);
+                f40Var.f47452n4.H(f40Var.f47448m4, false, true);
                 return;
             }
             return;
         }
         if (z10) {
-            f40Var.f47458e2[0].d(1, false);
+            f40Var.f47414e2[0].d(1, false);
             b20Var.L0[0].d(2, false);
             if (!b20Var.f40973b) {
                 n30Var.setVisibility(0);
@@ -48,7 +48,7 @@ public final class b20 extends org.telegram.ui.Components.voip.k0 {
                 }
             }
             f40Var.W1(true, false);
-            f40Var.f47502p1.requestLayout();
+            f40Var.f47458p1.requestLayout();
             if (x10Var.getVisibility() != 0) {
                 x10Var.setVisibility(0);
                 s10Var.F(x10Var, true);
@@ -85,7 +85,7 @@ public final class b20 extends org.telegram.ui.Components.voip.k0 {
             i7 = 8;
         }
         view.setVisibility(i7);
-        if (!f40Var.f47494n2) {
+        if (!f40Var.f47450n2) {
             f40Var.R0(true);
         }
     }
@@ -102,8 +102,8 @@ public final class b20 extends org.telegram.ui.Components.voip.k0 {
         } else {
             f10 = b20Var.f40975c;
         }
-        f40Var.H0 = org.telegram.messenger.g0.S0(Math.max(f11, f10), 1.0f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29349ah, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Xg, false));
-        f40Var.f30192b.invalidate();
+        f40Var.H0 = org.telegram.messenger.g0.S0(Math.max(f11, f10), 1.0f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29347ah, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Xg, false));
+        f40Var.f30190b.invalidate();
         f40Var.H1(f40Var.T3);
     }
 }

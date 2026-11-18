@@ -14,7 +14,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class d extends k41 {
-    public static final int f53118b = 0;
+    public static final int f53069b = 0;
 
     static {
         k41.h(new k41());
@@ -32,16 +32,16 @@ public final class d extends k41 {
         String charSequence = l41Var.f37018m.toString();
         View.OnClickListener onClickListener = l41Var.E;
         k kVar = (k) l41Var.I;
-        ImageView imageView = eVar.f53121a;
+        ImageView imageView = eVar.f53072a;
         imageView.setVisibility(0);
         int i11 = kVar.G;
         int i12 = kVar.I;
-        TextView textView = eVar.f53122b;
+        TextView textView = eVar.f53073b;
         textView.setTextColor(i12);
         int r12 = n6.r1(0.6f, i12);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(r12, mode));
-        ImageView imageView2 = eVar.f53123c;
+        ImageView imageView2 = eVar.f53074c;
         imageView2.setColorFilter(new PorterDuffColorFilter(n6.r1(0.6f, i12), mode));
         imageView2.setBackground(n6.b0(0, n6.r1(0.15f, i12), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f)));
         if (i10 == 0) {
@@ -53,7 +53,7 @@ public final class d extends k41 {
         textView.setText(charSequence);
         imageView2.setOnClickListener(onClickListener);
         eVar.d.setColor(n6.r1(0.1f, kVar.I));
-        eVar.f53124e = z10;
+        eVar.f53075e = z10;
         eVar.setWillNotDraw(!z10);
     }
 

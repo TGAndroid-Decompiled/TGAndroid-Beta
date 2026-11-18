@@ -21,19 +21,19 @@ public final class c {
         String str;
         if (this.f56342b && this.f56341a.H(uVar)) {
             t a10 = uVar.a();
-            String str2 = uVar.f10761k;
-            a10.f10717r = s0.n("application/x-media3-cues");
+            String str2 = uVar.f10758k;
+            a10.f10714r = s0.n("application/x-media3-cues");
             a10.P = this.f56341a.O(uVar);
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(uVar.f10769s);
+            sb2.append(uVar.f10766s);
             if (str2 != null) {
                 str = " ".concat(str2);
             } else {
                 str = "";
             }
             sb2.append(str);
-            a10.f10709j = sb2.toString();
-            a10.f10721w = Long.MAX_VALUE;
+            a10.f10706j = sb2.toString();
+            a10.f10718w = Long.MAX_VALUE;
             return new u(a10);
         }
         return uVar;

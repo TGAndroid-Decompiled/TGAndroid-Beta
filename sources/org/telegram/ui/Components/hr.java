@@ -33,26 +33,26 @@ public final class hr extends sa {
             saVar.f35953b2 = true;
             hi.d dVar = new hi.d(context, bVar, true);
             dVar.i(org.telegram.messenger.gd.M0(2131748610, null), false, true);
-            saVar.f30192b.addView(dVar, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (z10 ? 52 : 0) + 12));
+            saVar.f30190b.addView(dVar, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (z10 ? 52 : 0) + 12));
             dVar.setOnClickListener(new ah.h((Object) saVar, v1Var, dVar, 27));
             if (z10) {
                 hi.d dVar2 = new hi.d(context, bVar, false);
-                dVar2.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29656r7, false));
+                dVar2.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29654r7, false));
                 dVar2.d.x(org.telegram.messenger.g0.o());
                 dVar2.i(org.telegram.messenger.gd.M0(2131748608, null), false, true);
                 saVar = this;
                 dVar2.setOnClickListener(new di.y9(this, context, bVar, dVar2, getgroupcallstreamrtmpurl, i7));
-                saVar.f30192b.addView(dVar2, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
+                saVar.f30190b.addView(dVar2, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
             }
         }
         v4.k kVar = new v4.k();
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         kVar.C = false;
         kVar.o(lr.h);
         kVar.n(350L);
         saVar.f39534o1.setItemAnimator(kVar);
         ck0 ck0Var = saVar.f39534o1;
-        int i11 = saVar.f30227u0;
+        int i11 = saVar.f30225u0;
         if (saVar.f35953b2) {
             i10 = org.telegram.messenger.g0.L(z10 ? 124.0f : 72.0f);
         } else {
@@ -85,7 +85,7 @@ public final class hr extends sa {
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(ck0Var, getContext(), this.f30189a, 0, true, new d(this, 8), this.J0);
+        z41 z41Var = new z41(ck0Var, getContext(), this.f30187a, 0, true, new d(this, 8), this.J0);
         this.f35952a2 = z41Var;
         return z41Var;
     }
@@ -101,8 +101,8 @@ public final class hr extends sa {
         this.f39541v1 = 0.26f;
         this.U1 = e70Var;
         this.W1 = z10;
-        Context context = this.f30192b.getContext();
-        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(this.f30189a).O0(Long.valueOf(-j3));
+        Context context = this.f30190b.getContext();
+        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(this.f30187a).O0(Long.valueOf(-j3));
         boolean z11 = O0 != null && O0.creator;
         this.f35953b2 = true;
         TextView textView = new TextView(context);
@@ -116,7 +116,7 @@ public final class hr extends sa {
         int L = org.telegram.messenger.g0.L(8.0f);
         int i7 = org.telegram.ui.ActionBar.n6.Fi;
         int w02 = org.telegram.ui.ActionBar.n6.w0(i7, this.J0);
-        int i10 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29394d6;
         int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, i10, false), 120);
         org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.n6.k0(L, L, L, L, w02, o4, o4);
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
@@ -124,21 +124,21 @@ public final class hr extends sa {
         org.telegram.ui.ActionBar.i6 i6Var = this.J0;
         textView.setBackground(k02);
         org.telegram.ui.ActionBar.u6.j(textView, k02, M, g10, i6Var);
-        this.f30192b.addView(textView, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (z11 ? 52 : 0) + 12));
+        this.f30190b.addView(textView, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (z11 ? 52 : 0) + 12));
         textView.setOnClickListener(new y7(7, this, peer));
         if (z11) {
             hi.d dVar = new hi.d(context, this.J0, false);
-            dVar.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29656r7, false));
+            dVar.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29654r7, false));
             dVar.d.x(org.telegram.messenger.g0.o());
             dVar.i(org.telegram.messenger.gd.M0(2131748608, null), false, true);
             dVar.setOnClickListener(new fr(this, context, dVar, j3, 0));
-            this.f30192b.addView(dVar, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
+            this.f30190b.addView(dVar, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
         }
         ck0 ck0Var = this.f39534o1;
-        int i11 = this.f30227u0;
+        int i11 = this.f30225u0;
         ck0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L((z11 ? 52 : 0) + 72));
         v4.k kVar = new v4.k();
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         kVar.C = false;
         kVar.o(lr.h);
         kVar.n(350L);
@@ -146,8 +146,8 @@ public final class hr extends sa {
         O();
         c1();
         TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
-        getgroupcallstreamrtmpurl.peer = org.telegram.messenger.mp.u1(this.f30189a).l1(j3);
+        getgroupcallstreamrtmpurl.peer = org.telegram.messenger.mp.u1(this.f30187a).l1(j3);
         getgroupcallstreamrtmpurl.revoke = false;
-        ConnectionsManager.getInstance(this.f30189a).sendRequest(getgroupcallstreamrtmpurl, new e2(this, 1));
+        ConnectionsManager.getInstance(this.f30187a).sendRequest(getgroupcallstreamrtmpurl, new e2(this, 1));
     }
 }

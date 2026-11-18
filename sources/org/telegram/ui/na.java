@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.graphics.RectF;
 public final class na implements org.telegram.messenger.nr {
-    public final int f50137a;
-    public final Object f50138b;
+    public final int f50129a;
+    public final Object f50130b;
 
     public na(Object obj, int i7) {
-        this.f50137a = i7;
-        this.f50138b = obj;
+        this.f50129a = i7;
+        this.f50130b = obj;
     }
 
     @Override
     public final void a(int i7) {
         qq0 qq0Var;
-        int i10 = this.f50137a;
-        Object obj = this.f50138b;
+        int i10 = this.f50129a;
+        Object obj = this.f50130b;
         switch (i10) {
             case 0:
                 ((lb) obj).Z0(true);
@@ -42,7 +42,7 @@ public final class na implements org.telegram.messenger.nr {
                 profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f43540e1));
                 return;
             default:
-                y91 y91Var = ((e91) obj).f47184a;
+                y91 y91Var = ((e91) obj).f47140a;
                 if (i7 == 0) {
                     y91Var.S0(false);
                     return;

@@ -8,26 +8,26 @@ import android.widget.TextView;
 import java.util.Iterator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class k71 extends AnimatorListenerAdapter {
-    public final int f49208a;
-    public final Object f49209b;
+    public final int f49194a;
+    public final Object f49195b;
 
     public k71(Object obj, int i7) {
-        this.f49208a = i7;
-        this.f49209b = obj;
+        this.f49194a = i7;
+        this.f49195b = obj;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
         int i10;
-        int i11 = this.f49208a;
+        int i11 = this.f49194a;
         int i12 = 4;
         float f10 = 1.0f;
-        Object obj = this.f49209b;
+        Object obj = this.f49195b;
         switch (i11) {
             case 0:
-                x71 x71Var = ((m71) obj).f49801a;
-                if (!x71Var.f53732r1.d()) {
+                x71 x71Var = ((m71) obj).f49734a;
+                if (!x71Var.f53720r1.d()) {
                     x71Var.T1.setVisibility(8);
                     return;
                 }
@@ -50,9 +50,9 @@ public final class k71 extends AnimatorListenerAdapter {
             case 4:
                 nb1 nb1Var = (nb1) obj;
                 nb1Var.d = null;
-                nb1Var.f50147a = null;
-                nb1Var.f50148b = false;
-                nb1Var.f50151f.f43896c.setAllowDrawCursor(true);
+                nb1Var.f50137a = null;
+                nb1Var.f50138b = false;
+                nb1Var.f50141f.f43896c.setAllowDrawCursor(true);
                 return;
             case 5:
                 ((org.telegram.ui.Wallet.f4) obj).L = null;
@@ -129,16 +129,16 @@ public final class k71 extends AnimatorListenerAdapter {
                 return;
             case 13:
                 n1 n1Var = (n1) obj;
-                ((cd1) n1Var.f50052b).getClass();
-                ((cd1) n1Var.f50052b).f46492c.setVisibility(4);
+                ((cd1) n1Var.f50026b).getClass();
+                ((cd1) n1Var.f50026b).f46491c.setVisibility(4);
                 return;
             case 14:
-                ((org.telegram.ui.web.v0) obj).f53367s.setVisibility(8);
+                ((org.telegram.ui.web.v0) obj).f53318s.setVisibility(8);
                 return;
             case 15:
                 org.telegram.messenger.zi ziVar = (org.telegram.messenger.zi) obj;
-                ziVar.f28309j = false;
-                ziVar.f28308i = false;
+                ziVar.f28307j = false;
+                ziVar.f28306i = false;
                 return;
             case 16:
                 sg.v vVar = (sg.v) obj;
@@ -166,20 +166,20 @@ public final class k71 extends AnimatorListenerAdapter {
                 return;
             case 19:
                 ug.s0 s0Var = (ug.s0) obj;
-                if (!s0Var.f58865r) {
+                if (!s0Var.f58866r) {
                     f10 = 0.0f;
                 }
-                s0Var.f58866s = f10;
+                s0Var.f58867s = f10;
                 s0Var.e();
                 return;
             case 20:
-                ug.x1 x1Var = (ug.x1) ((hi.d0) obj).f14358b;
+                ug.x1 x1Var = (ug.x1) ((hi.d0) obj).f14355b;
                 x1Var.G = true;
                 x1Var.invalidate();
                 return;
             case 21:
                 int i13 = vg.e.L;
-                ((vg.e) ((org.telegram.ui.Cells.y9) obj).f32475b).d();
+                ((vg.e) ((org.telegram.ui.Cells.z9) obj).f32526b).d();
                 return;
             case 22:
                 vg.e eVar = (vg.e) obj;
@@ -188,14 +188,14 @@ public final class k71 extends AnimatorListenerAdapter {
                 return;
             case 23:
                 super.onAnimationEnd(animator);
-                vg.m mVar = ((vg.h) obj).f59450b;
-                mVar.f59462b.d = 0.0f;
-                mVar.f59468e0 = null;
+                vg.m mVar = ((vg.h) obj).f59451b;
+                mVar.f59463b.d = 0.0f;
+                mVar.f59469e0 = null;
                 mVar.j(mVar.M);
                 return;
             case 24:
                 wg.b bVar = (wg.b) obj;
-                bVar.f59719b = 1.0f;
+                bVar.f59720b = 1.0f;
                 bVar.invalidate();
                 return;
             case 25:
@@ -206,17 +206,17 @@ public final class k71 extends AnimatorListenerAdapter {
                 Iterator it = fVar.h.iterator();
                 while (it.hasNext()) {
                     xh.b bVar2 = (xh.b) it.next();
-                    if (fVar.f60548c.size() < fVar.d) {
-                        fVar.f60548c.push(bVar2);
+                    if (fVar.f60549c.size() < fVar.d) {
+                        fVar.f60549c.push(bVar2);
                     }
                     it.remove();
                 }
-                Runnable runnable = fVar.f60560q;
+                Runnable runnable = fVar.f60561q;
                 if (runnable != null) {
                     runnable.run();
-                    fVar.f60560q = null;
+                    fVar.f60561q = null;
                 }
-                fVar.f60561r = null;
+                fVar.f60562r = null;
                 fVar.invalidateSelf();
                 return;
         }

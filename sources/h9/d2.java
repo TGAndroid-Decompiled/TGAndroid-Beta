@@ -9,33 +9,33 @@ import java.util.List;
 import java.util.RandomAccess;
 import java.util.Set;
 public class d2 extends AbstractCollection implements Set {
-    public final Set f13991a;
-    public final g9.l f13992b;
+    public final Set f13988a;
+    public final g9.l f13989b;
 
     public d2(Set set, g9.l lVar) {
-        this.f13991a = set;
-        this.f13992b = lVar;
+        this.f13988a = set;
+        this.f13989b = lVar;
     }
 
     @Override
     public final boolean add(Object obj) {
-        la.f(this.f13992b.apply(obj));
-        return this.f13991a.add(obj);
+        la.f(this.f13989b.apply(obj));
+        return this.f13988a.add(obj);
     }
 
     @Override
     public final boolean addAll(Collection collection) {
         for (Object obj : collection) {
-            la.f(this.f13992b.apply(obj));
+            la.f(this.f13989b.apply(obj));
         }
-        return this.f13991a.addAll(collection);
+        return this.f13988a.addAll(collection);
     }
 
     @Override
     public final void clear() {
-        Set set = this.f13991a;
+        Set set = this.f13988a;
         boolean z10 = set instanceof RandomAccess;
-        g9.l lVar = this.f13992b;
+        g9.l lVar = this.f13989b;
         if (z10 && (set instanceof List)) {
             List list = (List) set;
             lVar.getClass();
@@ -72,7 +72,7 @@ public class d2 extends AbstractCollection implements Set {
     @Override
     public final boolean contains(Object obj) {
         boolean z10;
-        Set set = this.f13991a;
+        Set set = this.f13988a;
         set.getClass();
         try {
             z10 = set.contains(obj);
@@ -82,7 +82,7 @@ public class d2 extends AbstractCollection implements Set {
         if (!z10) {
             return false;
         }
-        return this.f13992b.apply(obj);
+        return this.f13989b.apply(obj);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class d2 extends AbstractCollection implements Set {
 
     @Override
     public final boolean isEmpty() {
-        Iterator it = this.f13991a.iterator();
-        g9.l lVar = this.f13992b;
+        Iterator it = this.f13988a.iterator();
+        g9.l lVar = this.f13989b;
         la.k(lVar, "predicate");
         boolean z10 = false;
         int i7 = 0;
@@ -131,16 +131,16 @@ public class d2 extends AbstractCollection implements Set {
 
     @Override
     public final Iterator iterator() {
-        Iterator it = this.f13991a.iterator();
+        Iterator it = this.f13988a.iterator();
         it.getClass();
-        g9.l lVar = this.f13992b;
+        g9.l lVar = this.f13989b;
         lVar.getClass();
         return new v0(it, lVar);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        if (contains(obj) && this.f13991a.remove(obj)) {
+        if (contains(obj) && this.f13988a.remove(obj)) {
             return true;
         }
         return false;
@@ -148,11 +148,11 @@ public class d2 extends AbstractCollection implements Set {
 
     @Override
     public final boolean removeAll(Collection collection) {
-        Iterator it = this.f13991a.iterator();
+        Iterator it = this.f13988a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f13992b.apply(next) && collection.contains(next)) {
+            if (this.f13989b.apply(next) && collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -162,11 +162,11 @@ public class d2 extends AbstractCollection implements Set {
 
     @Override
     public final boolean retainAll(Collection collection) {
-        Iterator it = this.f13991a.iterator();
+        Iterator it = this.f13988a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f13992b.apply(next) && !collection.contains(next)) {
+            if (this.f13989b.apply(next) && !collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -177,8 +177,8 @@ public class d2 extends AbstractCollection implements Set {
     @Override
     public final int size() {
         int i7 = 0;
-        for (Object obj : this.f13991a) {
-            if (this.f13992b.apply(obj)) {
+        for (Object obj : this.f13988a) {
+            if (this.f13989b.apply(obj)) {
                 i7++;
             }
         }

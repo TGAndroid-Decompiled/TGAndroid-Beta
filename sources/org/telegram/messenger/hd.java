@@ -6,48 +6,48 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class hd implements Runnable {
-    public final int f24428a;
-    public final qd f24429b;
+    public final int f24425a;
+    public final qd f24426b;
 
     public hd(qd qdVar, int i7) {
-        this.f24428a = i7;
-        this.f24429b = qdVar;
+        this.f24425a = i7;
+        this.f24426b = qdVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f24428a) {
+        switch (this.f24425a) {
             case 0:
-                qd qdVar = this.f24429b;
+                qd qdVar = this.f24426b;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 try {
                     ArrayList arrayList4 = new ArrayList();
                     ArrayList arrayList5 = new ArrayList();
-                    SQLiteCursor queryFinalized = qdVar.getMessagesStorage().f27056b.queryFinalized("SELECT uid, mid, date, period, message, proximity FROM sharing_locations WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = qdVar.getMessagesStorage().f27054b.queryFinalized("SELECT uid, mid, date, period, message, proximity FROM sharing_locations WHERE 1", new Object[0]);
                     while (queryFinalized.next()) {
                         ?? obj = new Object();
-                        obj.f26227a = queryFinalized.longValue(0);
-                        obj.f26228b = queryFinalized.intValue(1);
-                        obj.f26229c = queryFinalized.intValue(2);
+                        obj.f26225a = queryFinalized.longValue(0);
+                        obj.f26226b = queryFinalized.intValue(1);
+                        obj.f26227c = queryFinalized.intValue(2);
                         obj.d = queryFinalized.intValue(3);
-                        obj.f26231f = queryFinalized.intValue(5);
-                        obj.f26230e = qdVar.currentAccount;
+                        obj.f26229f = queryFinalized.intValue(5);
+                        obj.f26228e = qdVar.currentAccount;
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(4);
                         if (byteBufferValue != null) {
                             fj fjVar = new fj(qdVar.currentAccount, TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false), false, false);
                             obj.h = fjVar;
-                            tr.e(fjVar.f23968k, arrayList4, arrayList5, null);
+                            tr.e(fjVar.f23965k, arrayList4, arrayList5, null);
                             byteBufferValue.reuse();
                         }
                         arrayList.add(obj);
-                        if (n5.z(obj.f26227a)) {
-                            if (!arrayList5.contains(Long.valueOf(-obj.f26227a))) {
-                                arrayList5.add(Long.valueOf(-obj.f26227a));
+                        if (n5.z(obj.f26225a)) {
+                            if (!arrayList5.contains(Long.valueOf(-obj.f26225a))) {
+                                arrayList5.add(Long.valueOf(-obj.f26225a));
                             }
-                        } else if (n5.E(obj.f26227a) && !arrayList4.contains(Long.valueOf(obj.f26227a))) {
-                            arrayList4.add(Long.valueOf(obj.f26227a));
+                        } else if (n5.E(obj.f26225a) && !arrayList4.contains(Long.valueOf(obj.f26225a))) {
+                            arrayList4.add(Long.valueOf(obj.f26225a));
                         }
                     }
                     queryFinalized.dispose();
@@ -64,50 +64,50 @@ public final class hd implements Runnable {
                 }
                 return;
             case 1:
-                qd qdVar2 = this.f24429b;
+                qd qdVar2 = this.f24426b;
                 qdVar2.J.clear();
                 qdVar2.K.b();
                 qd.s();
-                ks.e().k(282, new Object[0]);
+                ks.e().k(283, new Object[0]);
                 return;
             case 2:
-                qd qdVar3 = this.f24429b;
+                qd qdVar3 = this.f24426b;
                 qdVar3.I = 0L;
                 qdVar3.G.clear();
-                qdVar3.f26381a.b();
-                qdVar3.f26382b.clear();
-                qdVar3.f26388s = null;
+                qdVar3.f26379a.b();
+                qdVar3.f26380b.clear();
+                qdVar3.f26386s = null;
                 qdVar3.r(true);
                 return;
             case 3:
-                this.f24429b.a(true);
+                this.f24426b.a(true);
                 return;
             case 4:
                 Boolean bool = Boolean.FALSE;
-                qd qdVar4 = this.f24429b;
+                qd qdVar4 = this.f24426b;
                 qdVar4.L = bool;
                 try {
-                    ((com.google.android.gms.common.api.internal.d0) qdVar4.N).f6253a.e();
+                    ((com.google.android.gms.common.api.internal.d0) qdVar4.N).f6250a.e();
                     qdVar4.p();
                     return;
                 } catch (Throwable unused) {
                     return;
                 }
             case 5:
-                qd qdVar5 = this.f24429b;
-                qd f10 = qd.f(qdVar5.getAccountInstance().f23221a);
+                qd qdVar5 = this.f24426b;
+                qd f10 = qd.f(qdVar5.getAccountInstance().f23218a);
                 qdVar5.getNotificationCenter().b(f10, 1);
                 qdVar5.getNotificationCenter().b(f10, 7);
                 qdVar5.getNotificationCenter().b(f10, 49);
                 return;
             default:
-                qd qdVar6 = this.f24429b;
-                ArrayList arrayList6 = qdVar6.f26382b;
+                qd qdVar6 = this.f24426b;
+                ArrayList arrayList6 = qdVar6.f26380b;
                 for (int i7 = 0; i7 < arrayList6.size(); i7++) {
                     pd pdVar = (pd) arrayList6.get(i7);
                     TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-                    tL_messages_editMessage.peer = qdVar6.getMessagesController().l1(pdVar.f26227a);
-                    tL_messages_editMessage.f28489id = pdVar.f26228b;
+                    tL_messages_editMessage.peer = qdVar6.getMessagesController().l1(pdVar.f26225a);
+                    tL_messages_editMessage.f28487id = pdVar.f26226b;
                     tL_messages_editMessage.flags |= 16384;
                     TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
                     tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -116,7 +116,7 @@ public final class hd implements Runnable {
                     qdVar6.getConnectionsManager().sendRequest(tL_messages_editMessage, new id(qdVar6, 1));
                 }
                 arrayList6.clear();
-                qdVar6.f26381a.b();
+                qdVar6.f26379a.b();
                 qdVar6.l(null, 2);
                 qdVar6.r(true);
                 g0.g3(new hd(qdVar6, 1));

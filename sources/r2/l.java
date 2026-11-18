@@ -36,7 +36,7 @@ public final class l implements d1 {
             }
         }
         pVar.h();
-        throw new IOException(p0.p("Unable to bind a sample queue to TrackGroup with MIME type ", pVar.Z.a(this.f56398a).d[0].f10769s, "."));
+        throw new IOException(p0.p("Unable to bind a sample queue to TrackGroup with MIME type ", pVar.Z.a(this.f56398a).d[0].f10766s, "."));
     }
 
     public final void b() {
@@ -159,14 +159,14 @@ public final class l implements d1 {
                     i iVar = (i) arrayList.get(0);
                     u uVar2 = iVar.d;
                     if (!uVar2.equals(pVar.X)) {
-                        pVar.f56433w.j(pVar.f56412b, uVar2, iVar.f60683e, iVar.f60684f, iVar.h);
+                        pVar.f56433w.j(pVar.f56412b, uVar2, iVar.f60684e, iVar.f60685f, iVar.h);
                     }
                     pVar.X = uVar2;
                 }
                 if (arrayList.isEmpty() || ((i) arrayList.get(0)).g()) {
                     int F = pVar.M[i10].F(aVar, hVar, i7, pVar.f56425k0);
                     if (F == -5) {
-                        u uVar3 = (u) aVar.f18184c;
+                        u uVar3 = (u) aVar.f18181c;
                         uVar3.getClass();
                         if (i10 == pVar.S) {
                             int b10 = k1.b(pVar.M[i10].E());
@@ -181,7 +181,7 @@ public final class l implements d1 {
                             }
                             uVar3 = uVar3.d(uVar);
                         }
-                        aVar.f18184c = uVar3;
+                        aVar.f18181c = uVar3;
                     }
                     return F;
                 }

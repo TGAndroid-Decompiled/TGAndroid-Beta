@@ -42,7 +42,7 @@ public final class l1 implements q10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 l2Var.getClass();
                 if (tL_error == null && tonconnectchallenge != null) {
-                    Utilities.f22782e.c(new di.j7(l2Var, r0Var, tonconnectsession, str, bArr, g2Var, tonconnectchallenge, p51Var, 7));
+                    Utilities.f22779e.c(new di.j7(l2Var, r0Var, tonconnectsession, str, bArr, g2Var, tonconnectchallenge, p51Var, 7));
                     return;
                 } else {
                     p51Var.a(l2.z(tL_error, "registerKey"));
@@ -60,7 +60,7 @@ public final class l1 implements q10 {
                 l2Var.getClass();
                 if (str3 == null && r0Var2 != null) {
                     r0 b10 = r0Var2.b();
-                    Utilities.f22782e.c(new di.j7(l2Var, b10, tonconnectsession2, str2, bArr2, jSONArray, tL_urlAuthResultRequest, new e0(5, b10, e0Var), 8));
+                    Utilities.f22779e.c(new di.j7(l2Var, b10, tonconnectsession2, str2, bArr2, jSONArray, tL_urlAuthResultRequest, new e0(5, b10, e0Var), 8));
                     return;
                 }
                 if (str3 == null) {

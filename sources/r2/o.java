@@ -20,15 +20,15 @@ public final class o extends c1 {
         e2.r rVar;
         e2.r rVar2 = this.K;
         if (rVar2 == null) {
-            rVar2 = uVar.f10772w;
+            rVar2 = uVar.f10769w;
         }
-        if (rVar2 != null && (rVar = (e2.r) this.J.get(rVar2.f10686c)) != null) {
+        if (rVar2 != null && (rVar = (e2.r) this.J.get(rVar2.f10683c)) != null) {
             rVar2 = rVar;
         }
-        q0 q0Var = uVar.f10762l;
+        q0 q0Var = uVar.f10759l;
         q0 q0Var2 = null;
         if (q0Var != null) {
-            p0[] p0VarArr = q0Var.f10638a;
+            p0[] p0VarArr = q0Var.f10635a;
             int length = p0VarArr.length;
             int i7 = 0;
             while (true) {
@@ -54,20 +54,20 @@ public final class o extends c1 {
                     q0Var2 = new q0(p0VarArr2);
                 }
             }
-            if (rVar2 == uVar.f10772w || q0Var != uVar.f10762l) {
+            if (rVar2 == uVar.f10769w || q0Var != uVar.f10759l) {
                 t a10 = uVar.a();
                 a10.v = rVar2;
-                a10.f10710k = q0Var;
+                a10.f10707k = q0Var;
                 uVar = new u(a10);
             }
             return super.r(uVar);
         }
         q0Var = q0Var2;
-        if (rVar2 == uVar.f10772w) {
+        if (rVar2 == uVar.f10769w) {
         }
         t a102 = uVar.a();
         a102.v = rVar2;
-        a102.f10710k = q0Var;
+        a102.f10707k = q0Var;
         uVar = new u(a102);
         return super.r(uVar);
     }

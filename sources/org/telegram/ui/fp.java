@@ -3,23 +3,23 @@ package org.telegram.ui;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class fp implements Runnable {
-    public final int f47775a;
-    public final np f47776b;
+    public final int f47739a;
+    public final np f47740b;
 
     public fp(np npVar, int i7) {
-        this.f47775a = i7;
-        this.f47776b = npVar;
+        this.f47739a = i7;
+        this.f47740b = npVar;
     }
 
     @Override
     public final void run() {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i7 = this.f47775a;
-        np npVar = this.f47776b;
+        int i7 = this.f47739a;
+        np npVar = this.f47740b;
         int i10 = 1;
         switch (i7) {
             case 0:
-                TLRPC.User user = npVar.f50271w;
+                TLRPC.User user = npVar.f50255w;
                 kp kpVar = npVar.Y0;
                 if (kpVar != null) {
                     if (npVar.L) {
@@ -30,7 +30,7 @@ public final class fp implements Runnable {
                     kpVar.b(0, tL_chatAdminRights, null, npVar.T);
                 }
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                k10.putLong("chat_id", npVar.f50273x.f28405id);
+                k10.putLong("chat_id", npVar.f50257x.f28403id);
                 if (!npVar.getMessagesController().E(k10, npVar, null, null)) {
                     npVar.y0(false);
                     return;
@@ -38,7 +38,7 @@ public final class fp implements Runnable {
                 bn bnVar = new bn(k10);
                 npVar.presentFragment(bnVar, true);
                 if (org.telegram.ui.Components.lc.a(bnVar)) {
-                    boolean z10 = npVar.f50241a1;
+                    boolean z10 = npVar.f50225a1;
                     if (z10 && npVar.L) {
                         String str = user.first_name;
                         org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(bnVar.getParentActivity(), bnVar.Ba);
@@ -58,10 +58,10 @@ public final class fp implements Runnable {
                 npVar.w0(false);
                 return;
             default:
-                if (npVar.f50264r) {
-                    long j3 = npVar.f50259n;
+                if (npVar.f50248r) {
+                    long j3 = npVar.f50243n;
                     org.telegram.ui.ActionBar.u1[] u1VarArr = {new org.telegram.ui.ActionBar.u1(3, npVar.getParentActivity(), null)};
-                    npVar.getMessagesController().o5(npVar.f50266s, j3, true, false, true, new zf(u1VarArr, 2), new zf(u1VarArr, 3));
+                    npVar.getMessagesController().o5(npVar.f50250s, j3, true, false, true, new zf(u1VarArr, 2), new zf(u1VarArr, 3));
                     u1VarArr[0].r(300L);
                 }
                 kp kpVar2 = npVar.Y0;

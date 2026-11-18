@@ -32,19 +32,19 @@ public final class h0 implements ValueAnimator.AnimatorUpdateListener {
             case 1:
                 hc1 hc1Var = (hc1) this.f40899e;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                hc1Var.f48348f1 = com.google.android.gms.internal.vision.e2.z(1.0f, floatValue2, 1.0f, this.f40897b * floatValue2);
+                hc1Var.f48268f1 = com.google.android.gms.internal.vision.e2.z(1.0f, floatValue2, 1.0f, this.f40897b * floatValue2);
                 hc1Var.Y0 = this.f40898c * floatValue2;
                 hc1Var.Z0 = this.d * floatValue2;
-                hc1Var.f48367s.invalidate();
+                hc1Var.f48287s.invalidate();
                 return;
             default:
                 vg.m mVar = (vg.m) this.f40899e;
                 mVar.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = mVar.f59462b;
+                vg.f fVar = mVar.f59463b;
                 fVar.d = this.f40897b * floatValue3;
-                fVar.f59427e = this.f40898c * floatValue3;
-                fVar.f59430i = floatValue3 * this.d;
+                fVar.f59428e = this.f40898c * floatValue3;
+                fVar.f59431i = floatValue3 * this.d;
                 return;
         }
     }

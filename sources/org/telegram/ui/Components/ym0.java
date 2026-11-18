@@ -317,9 +317,9 @@ public class ym0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
             this.W = -1L;
             return;
         }
-        CharSequence charSequence = fjVar.f24026z;
+        CharSequence charSequence = fjVar.f24023z;
         if (fjVar.e5()) {
-            if (fjVar.B == null && (str = fjVar.f23968k.media.webpage.description) != null) {
+            if (fjVar.B == null && (str = fjVar.f23965k.media.webpage.description) != null) {
                 fjVar.B = SpannableString.valueOf(str);
                 org.telegram.messenger.fj.h(fjVar.N3(), fjVar.B, false, 3, (int) valueOf.longValue(), false);
             }

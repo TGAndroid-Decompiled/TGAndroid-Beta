@@ -6,11 +6,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.bn;
 public final class w extends bn {
-    public final g0 f58158vd;
+    public final g0 f58159vd;
 
     public w(g0 g0Var) {
         super(null);
-        this.f58158vd = g0Var;
+        this.f58159vd = g0Var;
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class w extends bn {
 
     @Override
     public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f58158vd.getContext());
+        return org.telegram.messenger.g0.W(this.f58159vd.getContext());
     }
 
     @Override
     public final i6 getResourceProvider() {
-        return this.f58158vd.A1;
+        return this.f58159vd.A1;
     }
 
     @Override

@@ -9,16 +9,16 @@ import org.telegram.ui.Components.vt0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.vp0;
 public final class y extends f2 {
-    public final g0 f58171z0;
+    public final g0 f58172z0;
 
     public y(g0 g0Var, Context context, PointF pointF, float f10, float f11, vt0 vt0Var, TLRPC.Document document, Object obj) {
         super(context, pointF, f10, f11, vt0Var, document, obj);
-        this.f58171z0 = g0Var;
+        this.f58172z0 = g0Var;
     }
 
     @Override
     public final void q(mh0 mh0Var) {
-        PhotoViewer photoViewer = ((vp0) this.f58171z0).Y1;
+        PhotoViewer photoViewer = ((vp0) this.f58172z0).Y1;
         f61 f61Var = photoViewer.G2;
         if (f61Var == null) {
             return;

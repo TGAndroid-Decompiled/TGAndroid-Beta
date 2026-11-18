@@ -34,16 +34,16 @@ public final class k31 extends org.telegram.ui.Components.k41 {
         CharSequence charSequence = l41Var.f37018m;
         CharSequence charSequence2 = l41Var.f37019n;
         CharSequence charSequence3 = l41Var.f37020o;
-        TextView textView = l31Var.f49421e;
-        TextView textView2 = l31Var.f49422f;
+        TextView textView = l31Var.f49427e;
+        TextView textView2 = l31Var.f49428f;
         int i13 = 0;
         if (i10 == 0 && i11 == 0) {
             z11 = false;
         } else {
             z11 = true;
         }
-        l31Var.f49423n = z11;
-        FrameLayout frameLayout = l31Var.f49420c;
+        l31Var.f49429n = z11;
+        FrameLayout frameLayout = l31Var.f49426c;
         if (i12 != 0) {
             i7 = 0;
         } else {
@@ -61,11 +61,11 @@ public final class k31 extends org.telegram.ui.Components.k41 {
             f11 = org.telegram.messenger.g0.L(2.0f);
         }
         textView2.setTranslationX(f11);
-        l31Var.f49419b.b(i10, i11);
+        l31Var.f49425b.b(i10, i11);
         l31Var.d.setImageResource(i12);
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        l31Var.f49424r = !isEmpty;
+        l31Var.f49430r = !isEmpty;
         if (isEmpty) {
             i13 = 8;
         }

@@ -35,7 +35,7 @@ public final class xd implements z4, org.telegram.messenger.nc {
         TLRPC.Chat chat;
         ProfileActivity profileActivity = (ProfileActivity) this.f41987c;
         boolean[] zArr = (boolean[]) this.f41988e;
-        bi.d5 d5Var = (bi.d5) this.f41989f;
+        bi.c5 c5Var = (bi.c5) this.f41989f;
         RectF rectF = ProfileActivity.Z6;
         ((String[]) this.d)[0] = str;
         if (str != null && ((!str.equals(this.f41985a) || str.equals("und")) && ((this.f41986b && !org.telegram.ui.sy0.d0().contains(str)) || ((chat = profileActivity.F2) != null && ((chat.has_link || org.telegram.messenger.v3.t0(chat)) && ("uk".equals(str) || "ru".equals(str))))))) {
@@ -44,15 +44,15 @@ public final class xd implements z4, org.telegram.messenger.nc {
             z10 = false;
         }
         zArr[0] = z10;
-        d5Var.run();
+        c5Var.run();
     }
 
-    public xd(ProfileActivity profileActivity, String[] strArr, boolean[] zArr, String str, boolean z10, bi.d5 d5Var) {
+    public xd(ProfileActivity profileActivity, String[] strArr, boolean[] zArr, String str, boolean z10, bi.c5 c5Var) {
         this.f41987c = profileActivity;
         this.d = strArr;
         this.f41988e = zArr;
         this.f41985a = str;
         this.f41986b = z10;
-        this.f41989f = d5Var;
+        this.f41989f = c5Var;
     }
 }

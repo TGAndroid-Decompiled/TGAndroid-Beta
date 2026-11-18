@@ -24,20 +24,20 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class r implements RequestDelegate {
-    public final int f17637a;
-    public final Object f17638b;
-    public final Object f17639c;
+    public final int f17634a;
+    public final Object f17635b;
+    public final Object f17636c;
     public final int d;
-    public final int f17640e;
-    public final TLObject f17641f;
+    public final int f17637e;
+    public final TLObject f17638f;
 
     public r(int i7, int i10, int i11, Object obj, Object obj2, TLObject tLObject) {
-        this.f17637a = i11;
-        this.f17638b = obj;
-        this.f17639c = obj2;
+        this.f17634a = i11;
+        this.f17635b = obj;
+        this.f17636c = obj2;
         this.d = i7;
-        this.f17640e = i10;
-        this.f17641f = tLObject;
+        this.f17637e = i10;
+        this.f17638f = tLObject;
     }
 
     @Override
@@ -46,13 +46,13 @@ public final class r implements RequestDelegate {
         int i7;
         byte[] bArr;
         int i10;
-        switch (this.f17637a) {
+        switch (this.f17634a) {
             case 0:
-                h0 h0Var = (h0) this.f17638b;
-                String str = (String) this.f17639c;
+                h0 h0Var = (h0) this.f17635b;
+                String str = (String) this.f17636c;
                 int i11 = this.d;
-                int i12 = this.f17640e;
-                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) this.f17641f;
+                int i12 = this.f17637e;
+                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) this.f17638f;
                 ArrayList arrayList = new ArrayList();
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -60,14 +60,14 @@ public final class r implements RequestDelegate {
                     a0.h hVar2 = new a0.h();
                     for (int i13 = 0; i13 < messages_messages.chats.size(); i13++) {
                         TLRPC.Chat chat = messages_messages.chats.get(i13);
-                        hVar.k(chat, chat.f28405id);
+                        hVar.k(chat, chat.f28403id);
                     }
                     for (int i14 = 0; i14 < messages_messages.users.size(); i14++) {
                         TLRPC.User user = messages_messages.users.get(i14);
-                        hVar2.k(user, user.f28554id);
+                        hVar2.k(user, user.f28552id);
                     }
                     for (int i15 = 0; i15 < messages_messages.messages.size(); i15++) {
-                        fj fjVar = new fj(h0Var.f17493t0, messages_messages.messages.get(i15), hVar2, hVar, false, true);
+                        fj fjVar = new fj(h0Var.f17490t0, messages_messages.messages.get(i15), hVar2, hVar, false, true);
                         arrayList.add(fjVar);
                         fjVar.K5(str, true);
                     }
@@ -75,12 +75,12 @@ public final class r implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new t(h0Var, i11, i12, tL_error, str, tLObject, tL_messages_search, arrayList, 0));
                 return;
             case 1:
-                h0 h0Var2 = (h0) this.f17638b;
-                String str2 = (String) this.f17639c;
+                h0 h0Var2 = (h0) this.f17635b;
+                String str2 = (String) this.f17636c;
                 int i16 = this.d;
-                int i17 = this.f17640e;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f17641f;
-                int i18 = h0Var2.f17493t0;
+                int i17 = this.f17637e;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f17638f;
+                int i18 = h0Var2.f17490t0;
                 ArrayList arrayList2 = new ArrayList();
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
@@ -89,19 +89,19 @@ public final class r implements RequestDelegate {
                     int i19 = 0;
                     while (i19 < messages_messages2.chats.size()) {
                         TLRPC.Chat chat2 = messages_messages2.chats.get(i19);
-                        hVar3.k(chat2, chat2.f28405id);
+                        hVar3.k(chat2, chat2.f28403id);
                         i19++;
                         h0Var2 = h0Var2;
                     }
                     h0 h0Var3 = h0Var2;
                     for (int i20 = 0; i20 < messages_messages2.users.size(); i20++) {
                         TLRPC.User user2 = messages_messages2.users.get(i20);
-                        hVar4.k(user2, user2.f28554id);
+                        hVar4.k(user2, user2.f28552id);
                     }
                     int i21 = 0;
                     while (i21 < messages_messages2.messages.size()) {
                         a0.h hVar5 = hVar3;
-                        fj fjVar2 = new fj(h0Var3.f17493t0, messages_messages2.messages.get(i21), hVar4, hVar5, false, true);
+                        fj fjVar2 = new fj(h0Var3.f17490t0, messages_messages2.messages.get(i21), hVar4, hVar5, false, true);
                         arrayList2.add(fjVar2);
                         fjVar2.K5(str2, true);
                         i21++;
@@ -137,21 +137,21 @@ public final class r implements RequestDelegate {
                     org.telegram.messenger.g0.g3(tVar);
                     return;
                 } else {
-                    tr.a0(i24).f27054a.c(new ga(h0Var2, hashSet, tVar, 20));
+                    tr.a0(i24).f27052a.c(new ga(h0Var2, hashSet, tVar, 20));
                     return;
                 }
             default:
-                i7 i7Var = (i7) this.f17638b;
-                h7 h7Var = (h7) this.f17639c;
+                i7 i7Var = (i7) this.f17635b;
+                h7 h7Var = (h7) this.f17636c;
                 int i25 = this.d;
-                int i26 = this.f17640e;
-                TLObject tLObject2 = this.f17641f;
-                if (h7Var.f24403k) {
-                    a8.d("received chunk but definitely cancelled offset=" + h7Var.f24398e + " size=" + h7Var.f24397c + " token=" + h7Var.f24395a);
+                int i26 = this.f17637e;
+                TLObject tLObject2 = this.f17638f;
+                if (h7Var.f24400k) {
+                    a8.d("received chunk but definitely cancelled offset=" + h7Var.f24395e + " size=" + h7Var.f24394c + " token=" + h7Var.f24392a);
                     return;
                 }
-                if (h7Var.f24402j) {
-                    a8.d("received cancelled chunk after cancelRequests! offset=" + h7Var.f24398e + " size=" + h7Var.f24397c + " token=" + h7Var.f24395a);
+                if (h7Var.f24399j) {
+                    a8.d("received cancelled chunk after cancelRequests! offset=" + h7Var.f24395e + " size=" + h7Var.f24394c + " token=" + h7Var.f24392a);
                 }
                 if (!i7Var.G0.contains(h7Var)) {
                     if (i7Var.H0.contains(h7Var)) {
@@ -161,8 +161,8 @@ public final class r implements RequestDelegate {
                             h7 h7Var2 = (h7) i7Var.G0.get(i27);
                             if (h7Var2 != null && h7Var2 != h7Var) {
                                 i10 = 1;
-                                if (h7Var2.f24398e == h7Var.f24398e && h7Var2.f24397c == h7Var.f24397c) {
-                                    a8.d("received cancelled chunk faster than new one! received=" + h7Var.f24395a + " new=" + h7Var2.f24395a);
+                                if (h7Var2.f24395e == h7Var.f24395e && h7Var2.f24394c == h7Var.f24394c) {
+                                    a8.d("received cancelled chunk faster than new one! received=" + h7Var.f24392a + " new=" + h7Var2.f24392a);
                                     if (!z10) {
                                         i7Var.G0.set(i27, h7Var);
                                         z10 = true;
@@ -183,50 +183,50 @@ public final class r implements RequestDelegate {
                 int i28 = 0;
                 while (i28 < i7Var.H0.size()) {
                     h7 h7Var3 = (h7) i7Var.H0.get(i28);
-                    if (h7Var3 != null && h7Var3 != h7Var && h7Var3.f24398e == h7Var.f24398e && h7Var3.f24397c == h7Var.f24397c) {
-                        a8.d("received new chunk faster than cancelled one! received=" + h7Var.f24395a + " cancelled=" + h7Var3.f24395a);
+                    if (h7Var3 != null && h7Var3 != h7Var && h7Var3.f24395e == h7Var.f24395e && h7Var3.f24394c == h7Var.f24394c) {
+                        a8.d("received new chunk faster than cancelled one! received=" + h7Var.f24392a + " cancelled=" + h7Var3.f24392a);
                         i7Var.H0.remove(i28);
                         i28 += -1;
                     }
                     i28++;
                 }
-                if (s2.f26723a) {
+                if (s2.f26721a) {
                     StringBuilder sb2 = new StringBuilder("debug_loading: ");
                     sb2.append(i7Var.L0.getName());
                     sb2.append(" time=");
-                    sb2.append(System.currentTimeMillis() - h7Var.f24396b);
+                    sb2.append(System.currentTimeMillis() - h7Var.f24393b);
                     sb2.append(" dcId=");
                     sb2.append(i25);
                     sb2.append(" cdn=");
-                    sb2.append(i7Var.f24637u0);
+                    sb2.append(i7Var.f24634u0);
                     sb2.append(" conType=");
                     sb2.append(i26);
                     sb2.append(" reqId");
-                    i5.c.t(h7Var.f24395a, sb2);
+                    i5.c.t(h7Var.f24392a, sb2);
                 }
-                if (h7Var == i7Var.f24604f0) {
-                    i5.c.v(i7Var.f24604f0.f24398e, new StringBuilder("frame get request completed "));
-                    i7Var.f24604f0 = null;
+                if (h7Var == i7Var.f24601f0) {
+                    i5.c.v(i7Var.f24601f0.f24395e, new StringBuilder("frame get request completed "));
+                    i7Var.f24601f0 = null;
                 }
                 if (tL_error != null) {
-                    Runnable runnable = h7Var.f24404l;
+                    Runnable runnable = h7Var.f24401l;
                     if (runnable != null) {
                         runnable.run();
                     }
                     if (tL_error.code == -2000) {
                         i7Var.G0.remove(h7Var);
                         long j3 = i7Var.Q;
-                        long j10 = h7Var.f24397c;
+                        long j10 = h7Var.f24394c;
                         i7Var.Q = j3 - j10;
                         ArrayList arrayList3 = i7Var.O;
-                        long j11 = h7Var.f24398e;
+                        long j11 = h7Var.f24395e;
                         i7.n(j11, j10 + j11, arrayList3);
                         return;
                     } else if (r8.r(tL_error.text)) {
                         i7Var.p(h7Var);
                         return;
                     } else if ((tLObject2 instanceof TLRPC.TL_upload_getCdnFile) && tL_error.text.equals("FILE_TOKEN_INVALID")) {
-                        i7Var.f24637u0 = false;
+                        i7Var.f24634u0 = false;
                         i7Var.e(h7Var, false, false);
                         i7Var.s(i26);
                         return;
@@ -235,31 +235,31 @@ public final class r implements RequestDelegate {
                 if (tLObject instanceof TLRPC.TL_upload_fileCdnRedirect) {
                     TLRPC.TL_upload_fileCdnRedirect tL_upload_fileCdnRedirect = (TLRPC.TL_upload_fileCdnRedirect) tLObject;
                     if (!tL_upload_fileCdnRedirect.file_hashes.isEmpty()) {
-                        if (i7Var.f24629q0 == null) {
-                            i7Var.f24629q0 = new HashMap();
+                        if (i7Var.f24626q0 == null) {
+                            i7Var.f24626q0 = new HashMap();
                         }
                         for (int i29 = 0; i29 < tL_upload_fileCdnRedirect.file_hashes.size(); i29++) {
                             TLRPC.TL_fileHash tL_fileHash = tL_upload_fileCdnRedirect.file_hashes.get(i29);
-                            i7Var.f24629q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
+                            i7Var.f24626q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
                         }
                     }
                     byte[] bArr2 = tL_upload_fileCdnRedirect.encryption_iv;
                     if (bArr2 != null && (bArr = tL_upload_fileCdnRedirect.encryption_key) != null && bArr2.length == 16 && bArr.length == 32) {
-                        i7Var.f24637u0 = true;
+                        i7Var.f24634u0 = true;
                         if (i7Var.P == null) {
                             ArrayList arrayList4 = new ArrayList();
                             i7Var.P = arrayList4;
-                            arrayList4.add(new g7(0L, i7Var.f24628q));
+                            arrayList4.add(new g7(0L, i7Var.f24625q));
                         }
-                        i7Var.f24644y0 = tL_upload_fileCdnRedirect.dc_id;
-                        i7Var.f24638v0 = tL_upload_fileCdnRedirect.encryption_iv;
-                        i7Var.f24640w0 = tL_upload_fileCdnRedirect.encryption_key;
-                        i7Var.f24642x0 = tL_upload_fileCdnRedirect.file_token;
+                        i7Var.f24641y0 = tL_upload_fileCdnRedirect.dc_id;
+                        i7Var.f24635v0 = tL_upload_fileCdnRedirect.encryption_iv;
+                        i7Var.f24637w0 = tL_upload_fileCdnRedirect.encryption_key;
+                        i7Var.f24639x0 = tL_upload_fileCdnRedirect.file_token;
                         i7Var.e(h7Var, false, false);
                         i7Var.s(i26);
                         return;
                     }
-                    Runnable runnable2 = h7Var.f24404l;
+                    Runnable runnable2 = h7Var.f24401l;
                     if (runnable2 != null) {
                         runnable2.run();
                     }
@@ -269,11 +269,11 @@ public final class r implements RequestDelegate {
                     i7Var.m(h7Var, tL_error2);
                     return;
                 } else if (tLObject instanceof TLRPC.TL_upload_cdnFileReuploadNeeded) {
-                    if (!i7Var.f24646z0) {
+                    if (!i7Var.f24643z0) {
                         i7Var.e(h7Var, false, false);
-                        i7Var.f24646z0 = true;
+                        i7Var.f24643z0 = true;
                         TLRPC.TL_upload_reuploadCdnFile tL_upload_reuploadCdnFile = new TLRPC.TL_upload_reuploadCdnFile();
-                        tL_upload_reuploadCdnFile.file_token = i7Var.f24642x0;
+                        tL_upload_reuploadCdnFile.file_token = i7Var.f24639x0;
                         tL_upload_reuploadCdnFile.request_token = ((TLRPC.TL_upload_cdnFileReuploadNeeded) tLObject).request_token;
                         ConnectionsManager.getInstance(i7Var.R).sendRequest(tL_upload_reuploadCdnFile, new vn(i7Var, i26, h7Var, 1), null, null, 0, i7Var.T, 1, true);
                         return;
@@ -281,18 +281,18 @@ public final class r implements RequestDelegate {
                     return;
                 } else {
                     if (tLObject instanceof TLRPC.TL_upload_file) {
-                        h7Var.f24399f = (TLRPC.TL_upload_file) tLObject;
+                        h7Var.f24396f = (TLRPC.TL_upload_file) tLObject;
                     } else if (tLObject instanceof TLRPC.TL_upload_webFile) {
                         TLRPC.TL_upload_webFile tL_upload_webFile = (TLRPC.TL_upload_webFile) tLObject;
-                        h7Var.f24400g = tL_upload_webFile;
-                        if (i7Var.f24593b0 == 0 && (i7 = tL_upload_webFile.size) != 0) {
-                            i7Var.f24593b0 = i7;
+                        h7Var.f24397g = tL_upload_webFile;
+                        if (i7Var.f24590b0 == 0 && (i7 = tL_upload_webFile.size) != 0) {
+                            i7Var.f24590b0 = i7;
                         }
                     } else {
                         h7Var.h = (TLRPC.TL_upload_cdnFile) tLObject;
                     }
                     if (tLObject != null) {
-                        int i30 = i7Var.f24594b1;
+                        int i30 = i7Var.f24591b1;
                         if (i30 == 50331648) {
                             cz.e(i7Var.R).h(tLObject.networkType, 3, tLObject.getObjectSize() + 4);
                         } else if (i30 == 33554432) {
@@ -311,12 +311,12 @@ public final class r implements RequestDelegate {
                     if (tL_error == null && tLObject != null) {
                         int objectSize = tLObject.getObjectSize();
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        long j12 = i7Var.f24608g1;
-                        if (j12 != 0 && elapsedRealtime - i7Var.f24610h1 <= 2000) {
-                            long j13 = i7Var.f24613i1 + objectSize;
-                            i7Var.f24613i1 = j13;
-                            int i31 = i7Var.f24616j1 + 1;
-                            i7Var.f24616j1 = i31;
+                        long j12 = i7Var.f24605g1;
+                        if (j12 != 0 && elapsedRealtime - i7Var.f24607h1 <= 2000) {
+                            long j13 = i7Var.f24610i1 + objectSize;
+                            i7Var.f24610i1 = j13;
+                            int i31 = i7Var.f24613j1 + 1;
+                            i7Var.f24613j1 = i31;
                             if (i31 >= 2 && j13 >= 131072) {
                                 long j14 = elapsedRealtime - j12;
                                 if (j14 >= 500) {
@@ -326,31 +326,31 @@ public final class r implements RequestDelegate {
                                             double d = (j15 * 1000.0d) / j14;
                                             try {
                                                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                                                long j16 = c6.f23267b;
+                                                long j16 = c6.f23264b;
                                                 if (j16 != 0 && elapsedRealtime2 - j16 <= 60000) {
-                                                    d = (d * 0.3d) + (c6.f23266a * 0.7d);
+                                                    d = (d * 0.3d) + (c6.f23263a * 0.7d);
                                                 }
-                                                c6.f23266a = d;
-                                                c6.f23267b = elapsedRealtime2;
+                                                c6.f23263a = d;
+                                                c6.f23264b = elapsedRealtime2;
                                             } catch (Throwable th2) {
                                                 throw th2;
                                             }
                                         }
                                     }
-                                    i7Var.f24608g1 = elapsedRealtime;
-                                    i7Var.f24613i1 = 0L;
-                                    i7Var.f24616j1 = 0;
+                                    i7Var.f24605g1 = elapsedRealtime;
+                                    i7Var.f24610i1 = 0L;
+                                    i7Var.f24613j1 = 0;
                                 }
                             }
                         } else {
-                            i7Var.f24608g1 = elapsedRealtime;
-                            i7Var.f24613i1 = 0L;
-                            i7Var.f24616j1 = 0;
+                            i7Var.f24605g1 = elapsedRealtime;
+                            i7Var.f24610i1 = 0L;
+                            i7Var.f24613j1 = 0;
                         }
-                        i7Var.f24610h1 = elapsedRealtime;
+                        i7Var.f24607h1 = elapsedRealtime;
                     }
                     i7Var.m(h7Var, tL_error);
-                    Runnable runnable3 = h7Var.f24404l;
+                    Runnable runnable3 = h7Var.f24401l;
                     if (runnable3 != null) {
                         runnable3.run();
                         return;

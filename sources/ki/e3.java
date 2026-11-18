@@ -24,7 +24,7 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 import org.telegram.ui.iz;
 public final class e3 extends k41 {
-    public static final int f18645b = 0;
+    public static final int f18642b = 0;
 
     static {
         k41.h(new k41());
@@ -43,13 +43,13 @@ public final class e3 extends k41 {
             f3 f3Var = (f3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
             boolean z11 = l41Var.f37024s;
-            i6 i6Var = f3Var.f18659b;
-            View view2 = f3Var.f18661e;
-            ImageView imageView = f3Var.f18662f;
-            TLRPC.User c22 = mp.u1(f3Var.f18658a).c2(Long.valueOf(connectedbotstarref.bot_id));
+            i6 i6Var = f3Var.f18656b;
+            View view2 = f3Var.f18658e;
+            ImageView imageView = f3Var.f18659f;
+            TLRPC.User c22 = mp.u1(f3Var.f18655a).c2(Long.valueOf(connectedbotstarref.bot_id));
             b9 b9Var = new b9((i6) null);
             b9Var.r(c22);
-            f3Var.f18660c.f(c22, b9Var);
+            f3Var.f18657c.f(c22, b9Var);
             TextView textView = f3Var.h;
             textView.setText(j6.m(o10.q(c22), textView.getPaint().getFontMetricsInt(), false, null, 0));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -76,8 +76,8 @@ public final class e3 extends k41 {
             } else {
                 spannableStringBuilder.append((CharSequence) gd.G(i15, "Months", new Object[0]));
             }
-            f3Var.f18663n.setText(spannableStringBuilder);
-            ImageView imageView2 = f3Var.f18664r;
+            f3Var.f18660n.setText(spannableStringBuilder);
+            ImageView imageView2 = f3Var.f18661r;
             if (z11) {
                 i7 = 0;
             } else {
@@ -119,16 +119,16 @@ public final class e3 extends k41 {
                 f11 = 0.8f;
             }
             imageView.setScaleY(f11);
-            f3Var.f18665s = z10;
+            f3Var.f18662s = z10;
             f3Var.setWillNotDraw(!z10);
         } else if (obj instanceof TL_payments.starRefProgram) {
             f3 f3Var2 = (f3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
             boolean z12 = l41Var.f37024s;
-            TLRPC.User c23 = mp.u1(f3Var2.f18658a).c2(Long.valueOf(starrefprogram.bot_id));
+            TLRPC.User c23 = mp.u1(f3Var2.f18655a).c2(Long.valueOf(starrefprogram.bot_id));
             b9 b9Var2 = new b9((i6) null);
             b9Var2.r(c23);
-            f3Var2.f18660c.f(c23, b9Var2);
+            f3Var2.f18657c.f(c23, b9Var2);
             f3Var2.h.setText(o10.q(c23));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             if (starrefprogram.commission_permille > 0) {
@@ -154,16 +154,16 @@ public final class e3 extends k41 {
             } else {
                 spannableStringBuilder2.append((CharSequence) gd.G(i17, "Months", new Object[0]));
             }
-            f3Var2.f18663n.setText(spannableStringBuilder2);
-            ImageView imageView3 = f3Var2.f18664r;
+            f3Var2.f18660n.setText(spannableStringBuilder2);
+            ImageView imageView3 = f3Var2.f18661r;
             if (!z12) {
                 i13 = 8;
             }
             imageView3.setVisibility(i13);
             f3Var2.d.setVisibility(8);
-            f3Var2.f18662f.setVisibility(8);
-            f3Var2.f18661e.setVisibility(8);
-            f3Var2.f18665s = z10;
+            f3Var2.f18659f.setVisibility(8);
+            f3Var2.f18658e.setVisibility(8);
+            f3Var2.f18662s = z10;
             f3Var2.setWillNotDraw(!z10);
         }
     }

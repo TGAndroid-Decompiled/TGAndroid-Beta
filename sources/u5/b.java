@@ -2,14 +2,14 @@ package u5;
 
 import java.util.Set;
 public final class b {
-    public final long f58419a;
-    public final long f58420b;
-    public final Set f58421c;
+    public final long f58420a;
+    public final long f58421b;
+    public final Set f58422c;
 
     public b(long j3, long j10, Set set) {
-        this.f58419a = j3;
-        this.f58420b = j10;
-        this.f58421c = set;
+        this.f58420a = j3;
+        this.f58421b = j10;
+        this.f58422c = set;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class b {
         }
         if (obj instanceof b) {
             b bVar = (b) obj;
-            if (this.f58419a == bVar.f58419a && this.f58420b == bVar.f58420b && this.f58421c.equals(bVar.f58421c)) {
+            if (this.f58420a == bVar.f58420a && this.f58421b == bVar.f58421b && this.f58422c.equals(bVar.f58422c)) {
                 return true;
             }
         }
@@ -26,12 +26,12 @@ public final class b {
     }
 
     public final int hashCode() {
-        long j3 = this.f58419a;
-        long j10 = this.f58420b;
-        return ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ this.f58421c.hashCode();
+        long j3 = this.f58420a;
+        long j10 = this.f58421b;
+        return ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ this.f58422c.hashCode();
     }
 
     public final String toString() {
-        return "ConfigValue{delta=" + this.f58419a + ", maxAllowedDelay=" + this.f58420b + ", flags=" + this.f58421c + "}";
+        return "ConfigValue{delta=" + this.f58420a + ", maxAllowedDelay=" + this.f58421b + ", flags=" + this.f58422c + "}";
     }
 }

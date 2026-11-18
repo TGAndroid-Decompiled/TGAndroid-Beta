@@ -57,10 +57,10 @@ public abstract class dm extends org.telegram.ui.oq0 {
                         T = ChatAttachAlertPhotoLayout.f32765u1.indexOf(Integer.valueOf(e02.C));
                         z10 = true;
                     } else {
-                        e02.f27864s = null;
+                        e02.f27862s = null;
                         z10 = false;
                     }
-                    e02.f27864s = e20Var;
+                    e02.f27862s = e20Var;
                     int childCount = xlVar2.getChildCount();
                     int i11 = 0;
                     while (true) {
@@ -68,11 +68,11 @@ public abstract class dm extends org.telegram.ui.oq0 {
                             break;
                         }
                         View childAt = xlVar2.getChildAt(i11);
-                        if ((childAt instanceof org.telegram.ui.Cells.r5) && ((Integer) childAt.getTag()).intValue() == i7) {
+                        if ((childAt instanceof org.telegram.ui.Cells.s5) && ((Integer) childAt.getTag()).intValue() == i7) {
                             if ((siVar.f39659a2 instanceof org.telegram.ui.bn) && siVar.R3) {
-                                ((org.telegram.ui.Cells.r5) childAt).b(T, z10, false);
+                                ((org.telegram.ui.Cells.s5) childAt).b(T, z10, false);
                             } else {
-                                ((org.telegram.ui.Cells.r5) childAt).b(-1, z10, false);
+                                ((org.telegram.ui.Cells.s5) childAt).b(-1, z10, false);
                             }
                         } else {
                             i11++;
@@ -85,11 +85,11 @@ public abstract class dm extends org.telegram.ui.oq0 {
                             break;
                         }
                         View childAt2 = xlVar.getChildAt(i12);
-                        if ((childAt2 instanceof org.telegram.ui.Cells.r5) && ((Integer) childAt2.getTag()).intValue() == i7) {
+                        if ((childAt2 instanceof org.telegram.ui.Cells.s5) && ((Integer) childAt2.getTag()).intValue() == i7) {
                             if ((siVar.f39659a2 instanceof org.telegram.ui.bn) && siVar.R3) {
-                                ((org.telegram.ui.Cells.r5) childAt2).b(T, z10, false);
+                                ((org.telegram.ui.Cells.s5) childAt2).b(T, z10, false);
                             } else {
-                                ((org.telegram.ui.Cells.r5) childAt2).b(-1, z10, false);
+                                ((org.telegram.ui.Cells.s5) childAt2).b(-1, z10, false);
                             }
                         } else {
                             i12++;

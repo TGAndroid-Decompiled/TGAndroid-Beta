@@ -1,104 +1,35 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.Button;
-public final class w3 extends org.telegram.ui.Components.n6 {
-    public final int f32255s;
+public final class w3 extends View {
+    public final int f32218a;
+    public final int f32219b;
 
-    public w3(Context context, boolean z10, boolean z11, boolean z12, int i7) {
-        super(context, z10, z11, z12);
-        this.f32255s = i7;
+    public w3(Context context, int i7, int i10) {
+        super(context);
+        this.f32218a = i10;
+        this.f32219b = i7;
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f32255s) {
+    public final void onMeasure(int i7, int i10) {
+        switch (this.f32218a) {
             case 0:
-                return Button.class.getName();
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f32219b), 1073741824));
+                return;
             case 1:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
-        }
-    }
-
-    @Override
-    public int getBaseline() {
-        switch (this.f32255s) {
-            case 5:
-                return Math.round((getHeight() - getDrawable().f37381e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
-            default:
-                return super.getBaseline();
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.f32255s) {
-            case 4:
-                if (ch.f0.b(this)) {
-                    return;
-                }
-                super.invalidate();
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f32219b), 1073741824));
                 return;
             default:
-                super.invalidate();
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f32219b, 1073741824));
                 return;
         }
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f32255s) {
-            case 2:
-                canvas.save();
-                canvas.translate(org.telegram.messenger.g0.L(17.0f), 0.0f);
-                super.onDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f32255s) {
-            case 3:
-                super.onMeasure(i7, i10);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 4:
-            default:
-                super.onMeasure(i7, i10);
-                return;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24121q.x, Integer.MIN_VALUE), i10);
-                setMeasuredDimension(View.resolveSize((int) Math.ceil(getDrawable().c()), i7), getMeasuredHeight());
-                return;
-        }
-    }
-
-    public w3(Context context, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        super(context, z10, z11, z12, z13, z14);
-        this.f32255s = 5;
-    }
-
-    @Override
-    public void invalidate(int i7, int i10, int i11, int i12) {
-        switch (this.f32255s) {
-            case 4:
-                if (ch.f0.b(this)) {
-                    return;
-                }
-                super.invalidate(i7, i10, i11, i12);
-                return;
-            default:
-                super.invalidate(i7, i10, i11, i12);
-                return;
-        }
+    public w3(Context context, int i7) {
+        super(context);
+        this.f32218a = 0;
+        this.f32219b = i7;
     }
 }

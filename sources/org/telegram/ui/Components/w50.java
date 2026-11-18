@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class w50 extends org.telegram.ui.Cells.z8 {
+public final class w50 extends org.telegram.ui.Cells.a9 {
     public final x50 E;
     public final gk f41568x;
     public boolean f41569y;

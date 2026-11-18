@@ -22,39 +22,39 @@ import org.telegram.ui.Components.mq;
 import org.telegram.ui.Components.q9;
 import org.telegram.ui.iz;
 public final class f1 extends LinearLayout implements c6 {
-    public ShapeDrawable f17456a;
-    public final i6 f17457b;
-    public final q9 f17458c;
+    public ShapeDrawable f17453a;
+    public final i6 f17454b;
+    public final q9 f17455c;
     public final b9 d;
-    public final TextView f17459e;
-    public final TextView f17460f;
+    public final TextView f17456e;
+    public final TextView f17457f;
 
     public f1(Context context, i6 i6Var, boolean z10) {
         super(context);
         q6 M;
         this.d = new b9((i6) null);
-        this.f17457b = i6Var;
+        this.f17454b = i6Var;
         setOrientation(0);
         q9 q9Var = new q9(context);
-        this.f17458c = q9Var;
+        this.f17455c = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(28.0f));
         addView(q9Var, ma.t(28, 28, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, ma.t(-1, -2, 55, 0, 4, 12, 4));
         TextView textView = new TextView(context);
-        this.f17459e = textView;
+        this.f17456e = textView;
         textView.setTextSize(1, 15.0f);
         int i7 = n6.G6;
         u6.U(textView, i7, i6Var);
         linearLayout.addView(textView, ma.o(-1, -2));
         TextView textView2 = new TextView(context);
-        this.f17460f = textView2;
+        this.f17457f = textView2;
         textView2.setTextSize(1, 13.0f);
         if (z10) {
             M = u6.K(0.5f, i7);
         } else {
-            M = u6.M(n6.f29807z6);
+            M = u6.M(n6.f29805z6);
         }
         u6.V(textView2, M, i6Var);
         linearLayout.addView(textView2, ma.o(-1, -2));
@@ -64,12 +64,12 @@ public final class f1 extends LinearLayout implements c6 {
         if (str == null) {
             return;
         }
-        TextView textView = this.f17460f;
-        TextView textView2 = this.f17459e;
-        q9 q9Var = this.f17458c;
+        TextView textView = this.f17457f;
+        TextView textView2 = this.f17456e;
+        q9 q9Var = this.f17455c;
         if (i7 == 0) {
-            ShapeDrawable d02 = n6.d0(org.telegram.messenger.g0.L(28.0f), n6.w0(n6.Fi, this.f17457b));
-            this.f17456a = d02;
+            ShapeDrawable d02 = n6.d0(org.telegram.messenger.g0.L(28.0f), n6.w0(n6.Fi, this.f17454b));
+            this.f17453a = d02;
             mq mqVar = new mq(d02, getContext().getResources().getDrawable(2131231831).mutate());
             mqVar.f37614s = org.telegram.messenger.g0.L(-0.66f);
             mqVar.f37615w = 0;
@@ -103,10 +103,10 @@ public final class f1 extends LinearLayout implements c6 {
     @Override
     public final void updateColors() {
         try {
-            ShapeDrawable shapeDrawable = this.f17456a;
+            ShapeDrawable shapeDrawable = this.f17453a;
             if (shapeDrawable != null) {
-                n6.C1(n6.w0(n6.Fi, this.f17457b), shapeDrawable);
-                q9 q9Var = this.f17458c;
+                n6.C1(n6.w0(n6.Fi, this.f17454b), shapeDrawable);
+                q9 q9Var = this.f17455c;
                 if (q9Var != null) {
                     q9Var.invalidate();
                 }

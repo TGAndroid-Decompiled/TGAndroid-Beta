@@ -13,7 +13,7 @@ public final class hq0 extends org.telegram.ui.nx0 {
     @Override
     public final void b() {
         lq0 lq0Var;
-        Rect rect = this.f50359s;
+        Rect rect = this.f50343s;
         rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
         setClipBounds(rect);
         invalidate();

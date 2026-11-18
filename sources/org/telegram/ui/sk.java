@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.SharedPreferences;
 import java.util.ArrayList;
 public final class sk implements ll {
-    public final bn f52012a;
-    public final bn f52013b;
+    public final bn f52014a;
+    public final bn f52015b;
 
     public sk(bn bnVar, bn bnVar2) {
-        this.f52013b = bnVar;
-        this.f52012a = bnVar2;
+        this.f52015b = bnVar;
+        this.f52014a = bnVar2;
     }
 
     @Override
     public final void K0(int i7) {
-        this.f52013b.l(i7, 0, true, 0, true, 0);
+        this.f52015b.l(i7, 0, true, 0, true, 0);
     }
 
     @Override
@@ -22,24 +22,24 @@ public final class sk implements ll {
         ArrayList arrayList;
         org.telegram.ui.Components.ob obVar;
         int i7;
-        bn bnVar = this.f52013b;
+        bn bnVar = this.f52015b;
         if (z10) {
             ArrayList arrayList2 = new ArrayList(bnVar.V4);
             ArrayList arrayList3 = new ArrayList(bnVar.X4.values());
             org.telegram.ui.Components.gc gcVar = null;
             if (z11) {
                 i7 = ((org.telegram.ui.ActionBar.h2) bnVar).currentAccount;
-                SharedPreferences sharedPreferences = org.telegram.messenger.mp.u1(i7).f25660g7;
+                SharedPreferences sharedPreferences = org.telegram.messenger.mp.u1(i7).f25658g7;
                 if (bnVar.V4.isEmpty()) {
                     SharedPreferences.Editor edit = sharedPreferences.edit();
-                    edit.remove("pin_" + bnVar.f46085l6).commit();
+                    edit.remove("pin_" + bnVar.f46076l6).commit();
                 } else {
                     SharedPreferences.Editor edit2 = sharedPreferences.edit();
-                    edit2.putInt("pin_" + bnVar.f46085l6, ((Integer) bnVar.V4.get(0)).intValue()).commit();
+                    edit2.putInt("pin_" + bnVar.f46076l6, ((Integer) bnVar.V4.get(0)).intValue()).commit();
                 }
                 bnVar.gd(0, true);
             } else {
-                bnVar.getNotificationCenter().k(org.telegram.messenger.ks.f25193t0, Long.valueOf(bnVar.f46085l6), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
+                bnVar.getNotificationCenter().k(org.telegram.messenger.ks.f25191t0, Long.valueOf(bnVar.f46076l6), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
             }
             org.telegram.ui.Components.gc gcVar2 = bnVar.P3;
             if (gcVar2 != null) {
@@ -48,15 +48,15 @@ public final class sk implements ll {
             bnVar.Q3 = true;
             int i10 = bnVar.R3 + 1;
             bnVar.R3 = i10;
-            boolean z12 = bnVar.f46236x4;
-            bn bnVar2 = this.f52012a;
+            boolean z12 = bnVar.f46227x4;
+            bn bnVar2 = this.f52014a;
             if (z12) {
                 c92 = bnVar2.c9();
             } else {
                 c92 = bnVar.c9();
             }
             int i11 = c92;
-            if (bnVar.f46236x4) {
+            if (bnVar.f46227x4) {
                 arrayList = bnVar2.V4;
             } else {
                 arrayList = bnVar.V4;
@@ -98,6 +98,6 @@ public final class sk implements ll {
 
     @Override
     public final void x0(String str) {
-        this.f52013b.Ga(str, false);
+        this.f52015b.Ga(str, false);
     }
 }

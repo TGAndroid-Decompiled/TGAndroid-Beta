@@ -97,7 +97,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     if (!z10) {
                         sb2.append(",");
                     }
-                    if (!j6.a.f17242a.matcher(str2).matches()) {
+                    if (!j6.a.f17239a.matcher(str2).matches()) {
                         StringBuilder sb3 = new StringBuilder(str2.length());
                         for (int i7 = 0; i7 < str2.length(); i7++) {
                             char charAt = str2.charAt(i7);
@@ -175,7 +175,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public Object apply(Object obj) {
-        return ((g9.k) ((g1) this.f55826b).f14001b).apply(obj);
+        return ((g9.k) ((g1) this.f55826b).f13998b).apply(obj);
     }
 
     public synchronized Map b() {
@@ -194,7 +194,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
         ((ActionMode.Callback) c0Var.f908b).onDestroyActionMode(c0Var.m(aVar));
         g.s sVar = (g.s) this.f55827c;
         if (sVar.F != null) {
-            sVar.f13029f.getDecorView().removeCallbacks(sVar.G);
+            sVar.f13026f.getDecorView().removeCallbacks(sVar.G);
         }
         if (sVar.E != null) {
             l0 l0Var = sVar.H;
@@ -206,7 +206,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             sVar.H = a10;
             a10.d(new g.j(this, 2));
         }
-        sVar.f13046y = null;
+        sVar.f13043y = null;
         ViewGroup viewGroup = sVar.K;
         WeakHashMap weakHashMap = i0.f56244a;
         r0.y.c(viewGroup);
@@ -233,7 +233,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
         l lVar = (l) this.f55826b;
         synchronized (lVar.d) {
             lVar.f55817l = sVar;
-            lVar.f55808a.setCallback((android.support.v4.media.session.r) sVar.f1730e, handler);
+            lVar.f55808a.setCallback((android.support.v4.media.session.r) sVar.f1731e, handler);
             sVar.d0(lVar, handler);
         }
     }
@@ -293,10 +293,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
         j6.m mVar = (j6.m) this.f55827c;
         if (((j6.n) this.f55826b) != null) {
             if (i7 == 2001) {
-                Object[] objArr = {Integer.valueOf(mVar.f17257i)};
-                j6.b bVar = mVar.f17279a;
-                Log.w(bVar.f17244a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
-                Iterator it = ((h6.h) mVar.h.f7881b).f13928i.iterator();
+                Object[] objArr = {Integer.valueOf(mVar.f17254i)};
+                j6.b bVar = mVar.f17276a;
+                Log.w(bVar.f17241a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
+                Iterator it = ((h6.h) mVar.h.f7878b).f13925i.iterator();
                 while (it.hasNext()) {
                     ((h6.g) it.next()).o();
                 }
@@ -312,8 +312,8 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     public void onComplete(Task task) {
         d9.c cVar = (d9.c) this.f55826b;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f55827c;
-        synchronized (cVar.f7897f) {
-            cVar.f7896e.remove(taskCompletionSource);
+        synchronized (cVar.f7894f) {
+            cVar.f7893e.remove(taskCompletionSource);
         }
     }
 
@@ -331,10 +331,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     for (File file : ga.d.i(((File) pVar.f835g.d).listFiles(aa.p.f828r))) {
                         file.delete();
                     }
-                    ga.d dVar = pVar.f840m.f800b.f13276b;
-                    ga.b.b(ga.d.i(((File) dVar.f13283f).listFiles()));
+                    ga.d dVar = pVar.f840m.f800b.f13273b;
+                    ga.b.b(ga.d.i(((File) dVar.f13280f).listFiles()));
                     ga.b.b(ga.d.i(((File) dVar.h).listFiles()));
-                    ga.b.b(ga.d.i(((File) dVar.f13284n).listFiles()));
+                    ga.b.b(ga.d.i(((File) dVar.f13281n).listFiles()));
                     pVar.f844q.trySetResult(null);
                     return Tasks.forResult(null);
                 }
@@ -345,26 +345,26 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                 aa.w wVar = pVar.f831b;
                 if (booleanValue) {
                     wVar.h.trySetResult(null);
-                    return ((Task) this.f55826b).onSuccessTask(pVar.f833e.f3087a, new d6.i(this, 1));
+                    return ((Task) this.f55826b).onSuccessTask(pVar.f833e.f3088a, new d6.i(this, 1));
                 }
                 wVar.getClass();
                 throw new IllegalStateException("An invalid data collection token was used.");
             default:
                 Void r10 = (Void) obj;
                 ia.c cVar = (ia.c) this.f55827c;
-                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55826b).f3089c.f3084a.submit(new aa.s(this, 2)).get();
+                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55826b).f3090c.f3085a.submit(new aa.s(this, 2)).get();
                 FileWriter fileWriter2 = null;
                 if (jSONObject != null) {
-                    ia.b s5 = ((u5) cVar.f16193c).s(jSONObject);
-                    g1 g1Var = (g1) cVar.f16194e;
-                    long j3 = s5.f16188c;
+                    ia.b s5 = ((u5) cVar.f16190c).s(jSONObject);
+                    g1 g1Var = (g1) cVar.f16191e;
+                    long j3 = s5.f16185c;
                     g1Var.getClass();
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Writing settings to cache file...", null);
                     }
                     try {
                         jSONObject.put("expires_at", j3);
-                        fileWriter = new FileWriter((File) g1Var.f14001b);
+                        fileWriter = new FileWriter((File) g1Var.f13998b);
                         try {
                             try {
                                 fileWriter.write(jSONObject.toString());
@@ -380,11 +380,11 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                             Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
                             aa.g.b(fileWriter, "Failed to close settings writer.");
                             ia.c.d("Loaded settings: ", jSONObject);
-                            SharedPreferences.Editor edit = ((Context) cVar.f16191a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
-                            edit.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16192b).f16203f);
+                            SharedPreferences.Editor edit = ((Context) cVar.f16188a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                            edit.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16189b).f16200f);
                             edit.apply();
                             ((AtomicReference) cVar.h).set(s5);
-                            ((TaskCompletionSource) ((AtomicReference) cVar.f16197i).get()).trySetResult(s5);
+                            ((TaskCompletionSource) ((AtomicReference) cVar.f16194i).get()).trySetResult(s5);
                             return Tasks.forResult(null);
                         }
                     } catch (Exception e11) {
@@ -397,11 +397,11 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     }
                     aa.g.b(fileWriter, "Failed to close settings writer.");
                     ia.c.d("Loaded settings: ", jSONObject);
-                    SharedPreferences.Editor edit2 = ((Context) cVar.f16191a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
-                    edit2.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16192b).f16203f);
+                    SharedPreferences.Editor edit2 = ((Context) cVar.f16188a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                    edit2.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16189b).f16200f);
                     edit2.apply();
                     ((AtomicReference) cVar.h).set(s5);
-                    ((TaskCompletionSource) ((AtomicReference) cVar.f16197i).get()).trySetResult(s5);
+                    ((TaskCompletionSource) ((AtomicReference) cVar.f16194i).get()).trySetResult(s5);
                 }
                 return Tasks.forResult(null);
         }
@@ -415,9 +415,9 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     @Override
     public void v0(Bitmap bitmap) {
         wf.b bVar = (wf.b) this.f55826b;
-        bVar.f59673c = bitmap;
+        bVar.f59674c = bitmap;
         i6.f fVar = (i6.f) this.f55827c;
-        fVar.f16141l = bVar;
+        fVar.f16138l = bVar;
         fVar.b();
     }
 

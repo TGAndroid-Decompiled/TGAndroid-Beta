@@ -19,36 +19,36 @@ import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.q9;
 public final class f3 extends FrameLayout {
-    public final int f18658a;
-    public final i6 f18659b;
-    public final q9 f18660c;
+    public final int f18655a;
+    public final i6 f18656b;
+    public final q9 f18657c;
     public final View d;
-    public final View f18661e;
-    public final ImageView f18662f;
+    public final View f18658e;
+    public final ImageView f18659f;
     public final TextView h;
-    public final TextView f18663n;
-    public final ImageView f18664r;
-    public boolean f18665s;
+    public final TextView f18660n;
+    public final ImageView f18661r;
+    public boolean f18662s;
 
     public f3(int i7, Context context, i6 i6Var) {
         super(context);
-        this.f18658a = i7;
-        this.f18659b = i6Var;
+        this.f18655a = i7;
+        this.f18656b = i6Var;
         q9 q9Var = new q9(context);
-        this.f18660c = q9Var;
+        this.f18657c = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(46.0f));
         addView(q9Var, ma.d(46, 46.0f, 19, 13.0f, 0.0f, 13.0f, 0.0f));
         View view = new View(context);
         this.d = view;
         int L = org.telegram.messenger.g0.L(11.0f);
-        int i10 = n6.f29396d6;
+        int i10 = n6.f29394d6;
         Drawable L2 = n6.L(L, n6.w0(i10, i6Var));
         q6 M = u6.M(i10);
         view.setBackground(L2);
         u6.j(view, L2, M, null, i6Var);
         addView(view, ma.d(22, 22.0f, 19, 40.0f, 15.0f, 0.0f, 0.0f));
         View view2 = new View(context);
-        this.f18661e = view2;
+        this.f18658e = view2;
         int L3 = org.telegram.messenger.g0.L(9.665f);
         int i11 = n6.lk;
         Drawable L4 = n6.L(L3, n6.w0(i11, i6Var));
@@ -57,7 +57,7 @@ public final class f3 extends FrameLayout {
         u6.j(view2, L4, M2, null, i6Var);
         addView(view2, ma.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f18662f = imageView;
+        this.f18659f = imageView;
         imageView.setScaleX(0.6f);
         imageView.setScaleY(0.6f);
         addView(imageView, ma.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
@@ -75,15 +75,15 @@ public final class f3 extends FrameLayout {
         u6.U(textView, n6.G6, i6Var);
         ks.i(textView);
         TextView f10 = n10.f(linearLayout, textView, ma.t(-1, -2, 55, 6, 0, 24, 0), context);
-        this.f18663n = f10;
+        this.f18660n = f10;
         f10.setMaxLines(1);
         f10.setSingleLine(true);
         f10.setEllipsize(truncateAt);
         f10.setTextSize(1, 14.0f);
-        u6.U(f10, n6.f29807z6, i6Var);
+        u6.U(f10, n6.f29805z6, i6Var);
         linearLayout.addView(f10, ma.t(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
-        this.f18664r = imageView2;
+        this.f18661r = imageView2;
         u6.s(imageView2, n6.M6, i6Var, PorterDuff.Mode.SRC_IN);
         imageView2.setImageResource(2131232061);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -93,8 +93,8 @@ public final class f3 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f18665s) {
-            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), n6.f29519k0);
+        if (this.f18662s) {
+            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), n6.f29517k0);
         }
     }
 

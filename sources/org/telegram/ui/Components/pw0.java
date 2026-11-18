@@ -149,7 +149,7 @@ public abstract class pw0 extends View implements org.telegram.messenger.fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.f25145k4) {
+        if (i7 == org.telegram.messenger.ks.f25148l4) {
             invalidate();
         }
     }
@@ -161,7 +161,7 @@ public abstract class pw0 extends View implements org.telegram.messenger.fs {
         if (imageReceiver != null) {
             imageReceiver.P();
         }
-        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25145k4);
+        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25148l4);
     }
 
     @Override
@@ -171,7 +171,7 @@ public abstract class pw0 extends View implements org.telegram.messenger.fs {
         if (imageReceiver != null) {
             imageReceiver.R();
         }
-        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25145k4);
+        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25148l4);
     }
 
     @Override
@@ -195,7 +195,7 @@ public abstract class pw0 extends View implements org.telegram.messenger.fs {
                 if (isPressed()) {
                     float f16 = this.H;
                     if (f16 != 1.0f) {
-                        float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f24122r) / 100.0f) + f16;
+                        float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f24119r) / 100.0f) + f16;
                         this.H = min;
                         this.H = Utilities.i(min, 1.0f, 0.0f);
                         invalidate();
@@ -327,7 +327,7 @@ public abstract class pw0 extends View implements org.telegram.messenger.fs {
                 canvas.restore();
             }
             if (m6Var2 != null) {
-                int i14 = org.telegram.ui.ActionBar.n6.f29504j5;
+                int i14 = org.telegram.ui.ActionBar.n6.f29502j5;
                 m6Var2.u(org.telegram.ui.ActionBar.n6.x0(null, i14, false));
                 m6Var.u(org.telegram.ui.ActionBar.n6.x0(null, i14, false));
                 if (this.f38585n != null) {
@@ -342,7 +342,7 @@ public abstract class pw0 extends View implements org.telegram.messenger.fs {
             if (this.f38590y != null) {
                 canvas.save();
                 org.telegram.messenger.n10.k(this.f38590y.getHeight() - org.telegram.messenger.g0.L(13.0f), 2.0f, org.telegram.messenger.g0.L(148.0f), org.telegram.messenger.g0.L(30.0f), canvas);
-                this.f38589x.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29504j5, false));
+                this.f38589x.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29502j5, false));
                 this.f38590y.draw(canvas);
                 canvas.restore();
             }

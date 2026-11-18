@@ -43,7 +43,7 @@ public final class uf implements View.OnKeyListener {
                 mr0 mr0Var = (mr0) this.f52546b;
                 EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
                 if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = mr0Var.f30387f;
+                    ImageView imageView = mr0Var.f30446f;
                     if (imageView != null) {
                         imageView.callOnClick();
                     }

@@ -36,7 +36,7 @@ public abstract class b1 extends i1 {
     }
 
     private i0.b u(int i7, boolean z10) {
-        i0.b bVar = i0.b.f15891e;
+        i0.b bVar = i0.b.f15888e;
         for (int i10 = 1; i10 <= 512; i10 <<= 1) {
             if ((i7 & i10) != 0) {
                 bVar = i0.b.a(bVar, v(i10, z10));
@@ -50,7 +50,7 @@ public abstract class b1 extends i1 {
         if (l1Var != null) {
             return l1Var.f56258a.i();
         }
-        return i0.b.f15891e;
+        return i0.b.f15888e;
     }
 
     private i0.b x(View view) {
@@ -102,7 +102,7 @@ public abstract class b1 extends i1 {
     public void d(View view) {
         i0.b x10 = x(view);
         if (x10 == null) {
-            x10 = i0.b.f15891e;
+            x10 = i0.b.f15888e;
         }
         A(x10);
     }
@@ -193,7 +193,7 @@ public abstract class b1 extends i1 {
         int i11;
         int i12;
         int i13;
-        i0.b bVar = i0.b.f15891e;
+        i0.b bVar = i0.b.f15888e;
         int i14 = 0;
         if (i7 != 1) {
             i0.b bVar2 = null;
@@ -263,7 +263,7 @@ public abstract class b1 extends i1 {
             } else if (z10) {
                 i0.b w11 = w();
                 i0.b i17 = i();
-                return i0.b.b(Math.max(w11.f15892a, i17.f15892a), 0, Math.max(w11.f15894c, i17.f15894c), Math.max(w11.d, i17.d));
+                return i0.b.b(Math.max(w11.f15889a, i17.f15889a), 0, Math.max(w11.f15891c, i17.f15891c), Math.max(w11.d, i17.d));
             } else if ((this.h & 2) == 0) {
                 i0.b k11 = k();
                 l1 l1Var2 = this.f56225f;
@@ -274,13 +274,13 @@ public abstract class b1 extends i1 {
                 if (bVar2 != null) {
                     i18 = Math.min(i18, bVar2.d);
                 }
-                return i0.b.b(k11.f15892a, 0, k11.f15894c, i18);
+                return i0.b.b(k11.f15889a, 0, k11.f15891c, i18);
             }
         } else if (z10) {
-            return i0.b.b(0, Math.max(w().f15893b, k().f15893b), 0, 0);
+            return i0.b.b(0, Math.max(w().f15890b, k().f15890b), 0, 0);
         } else {
             if ((this.h & 4) == 0) {
-                return i0.b.b(0, k().f15893b, 0, 0);
+                return i0.b.b(0, k().f15890b, 0, 0);
             }
         }
         return bVar;
@@ -295,6 +295,6 @@ public abstract class b1 extends i1 {
                 return true;
             }
         }
-        return !v(i7, false).equals(i0.b.f15891e);
+        return !v(i7, false).equals(i0.b.f15888e);
     }
 }

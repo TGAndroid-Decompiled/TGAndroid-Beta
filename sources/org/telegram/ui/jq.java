@@ -12,7 +12,7 @@ public final class jq extends org.telegram.ui.Components.o10 {
     @Override
     public final void K0() {
         rq rqVar = this.n1;
-        rqVar.getMessagesController().S(rqVar.getParentActivity(), rqVar.f51756n, rqVar, new w0(this, 27));
+        rqVar.getMessagesController().S(rqVar.getParentActivity(), rqVar.f51745n, rqVar, new w0(this, 27));
     }
 
     @Override

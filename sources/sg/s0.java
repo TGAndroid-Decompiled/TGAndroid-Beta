@@ -121,13 +121,13 @@ public final class s0 extends r5 {
             r6 = false;
             boolean z10 = false;
             if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-                if (s2.f26723a) {
+                if (s2.f26721a) {
                     n10.v(this.f57338b, new StringBuilder("eglGetDisplay failed "));
                 }
                 finish();
             } else {
                 if (!this.f57338b.eglInitialize(eglGetDisplay, new int[2])) {
-                    if (s2.f26723a) {
+                    if (s2.f26721a) {
                         n10.v(this.f57338b, new StringBuilder("eglInitialize failed "));
                     }
                     finish();
@@ -135,7 +135,7 @@ public final class s0 extends r5 {
                     int[] iArr = new int[1];
                     EGLConfig[] eGLConfigArr = new EGLConfig[1];
                     if (!this.f57338b.eglChooseConfig(this.f57339c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
-                        if (s2.f26723a) {
+                        if (s2.f26721a) {
                             n10.v(this.f57338b, new StringBuilder("eglChooseConfig failed "));
                         }
                         finish();
@@ -159,7 +159,7 @@ public final class s0 extends r5 {
                             EGLContext eglCreateContext = this.f57338b.eglCreateContext(this.f57339c, eGLConfig, eGLContext, iArr2);
                             this.d = eglCreateContext;
                             if (eglCreateContext == null) {
-                                if (s2.f26723a) {
+                                if (s2.f26721a) {
                                     n10.v(this.f57338b, new StringBuilder("eglCreateContext failed "));
                                 }
                                 finish();
@@ -173,7 +173,7 @@ public final class s0 extends r5 {
                                     this.f57340e = eglCreateWindowSurface;
                                     if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
                                         if (!this.f57338b.eglMakeCurrent(this.f57339c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
-                                            if (s2.f26723a) {
+                                            if (s2.f26721a) {
                                                 n10.v(this.f57338b, new StringBuilder("eglMakeCurrent failed "));
                                             }
                                             finish();
@@ -195,17 +195,17 @@ public final class s0 extends r5 {
                                                 obj.f57391b = new HashMap();
                                                 obj.f57390a = GLES20.glCreateProgram();
                                                 e2.r0 b10 = v0.b(35633, (String) map2.get("vertex"));
-                                                int i10 = b10.f10687a;
-                                                if (b10.f10688b == 0) {
-                                                    if (s2.f26723a) {
+                                                int i10 = b10.f10684a;
+                                                if (b10.f10685b == 0) {
+                                                    if (s2.f26721a) {
                                                         a8.d("Vertex shader compilation failed");
                                                     }
                                                     v0.c(i10, i7, obj.f57390a);
                                                 } else {
                                                     e2.r0 b11 = v0.b(35632, str);
-                                                    int i11 = b11.f10687a;
-                                                    if (b11.f10688b == 0) {
-                                                        if (s2.f26723a) {
+                                                    int i11 = b11.f10684a;
+                                                    if (b11.f10685b == 0) {
+                                                        if (s2.f26721a) {
                                                             a8.d("Fragment shader compilation failed");
                                                         }
                                                         v0.c(i10, i11, obj.f57390a);
@@ -219,7 +219,7 @@ public final class s0 extends r5 {
                                                         GLES20.glLinkProgram(i13);
                                                         int[] iArr3 = new int[1];
                                                         GLES20.glGetProgramiv(i13, 35714, iArr3, i7);
-                                                        if (iArr3[i7] == 0 && s2.f26723a) {
+                                                        if (iArr3[i7] == 0 && s2.f26721a) {
                                                             a8.d(GLES20.glGetProgramInfoLog(i13));
                                                         }
                                                         if (iArr3[i7] == 0) {
@@ -271,7 +271,7 @@ public final class s0 extends r5 {
                                             z10 = true;
                                         }
                                     } else {
-                                        if (s2.f26723a) {
+                                        if (s2.f26721a) {
                                             n10.v(this.f57338b, new StringBuilder("createWindowSurface failed "));
                                         }
                                         finish();
@@ -281,7 +281,7 @@ public final class s0 extends r5 {
                                 }
                             }
                         } else {
-                            if (s2.f26723a) {
+                            if (s2.f26721a) {
                                 a8.d("eglConfig not initialized");
                             }
                             finish();

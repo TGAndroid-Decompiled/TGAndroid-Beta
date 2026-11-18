@@ -16,7 +16,7 @@ import org.telegram.ui.LaunchActivity;
 public abstract class s0 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, n nVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j3 = document.f28411id;
+        long j3 = document.f28409id;
         x5 e10 = e(document, Long.valueOf(j3), fontMetricsInt);
         linkedHashMap.put(Long.valueOf(j3), e10);
         arrayList.add(Long.valueOf(j3));
@@ -59,11 +59,11 @@ public abstract class s0 {
     }
 
     public static boolean c(TLRPC.Reaction reaction, p0 p0Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && p0Var.f5479g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, p0Var.f5478f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && p0Var.f5476g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, p0Var.f5475f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j3 = p0Var.f5479g;
+            long j3 = p0Var.f5476g;
             if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                 return true;
             }
@@ -85,7 +85,7 @@ public abstract class s0 {
     public static x5 e(TLRPC.Document document, Long l10, Paint.FontMetricsInt fontMetricsInt) {
         x5 x5Var;
         if (document != null) {
-            x5Var = new x5(document.f28411id, 1.0f, fontMetricsInt);
+            x5Var = new x5(document.f28409id, 1.0f, fontMetricsInt);
             x5Var.document = document;
         } else {
             x5Var = new x5(l10.longValue(), 1.0f, fontMetricsInt);
@@ -97,7 +97,7 @@ public abstract class s0 {
     public static void f(long j3, int i7, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         h2 Q = LaunchActivity.Q();
         if (Q != null && tL_premium_boostsStatus != null) {
-            ug.l0 l0Var = new ug.l0(21, j10.f24773t0, Q.getContext(), Q, Q.getResourceProvider());
+            ug.l0 l0Var = new ug.l0(21, j10.f24770t0, Q.getContext(), Q, Q.getResourceProvider());
             l0Var.N2 = i7;
             l0Var.A1(tL_premium_boostsStatus, true);
             l0Var.C1(j3);

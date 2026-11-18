@@ -3,9 +3,9 @@ package org.telegram.ui;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
 public final class h00 extends rg.a {
-    public CharSequence f48183c;
+    public CharSequence f48111c;
     public org.telegram.messenger.ro d;
-    public TLRPC.TL_dialogFilterSuggested f48184e;
+    public TLRPC.TL_dialogFilterSuggested f48112e;
 
     public final boolean equals(Object obj) {
         boolean z10;
@@ -24,7 +24,7 @@ public final class h00 extends rg.a {
         if (i7 != i10) {
             return false;
         }
-        if ((i10 == 0 || i10 == 4 || i10 == 3 || i10 == 6) && !TextUtils.equals(this.f48183c, h00Var.f48183c)) {
+        if ((i10 == 0 || i10 == 4 || i10 == 3 || i10 == 6) && !TextUtils.equals(this.f48111c, h00Var.f48111c)) {
             return false;
         }
         int i11 = this.f56589a;
@@ -44,18 +44,18 @@ public final class h00 extends rg.a {
             if (z12 != z13) {
                 return false;
             }
-            if (roVar != null && roVar.f26674a != roVar2.f26674a) {
+            if (roVar != null && roVar.f26672a != roVar2.f26672a) {
                 return false;
             }
         }
         if (i11 == 5) {
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f48184e;
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f48112e;
             if (tL_dialogFilterSuggested == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = h00Var.f48184e;
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = h00Var.f48112e;
             if (tL_dialogFilterSuggested2 == null) {
                 z11 = true;
             } else {
@@ -64,7 +64,7 @@ public final class h00 extends rg.a {
             if (z10 != z11) {
                 return false;
             }
-            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f28410id != tL_dialogFilterSuggested2.filter.f28410id) {
+            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f28408id != tL_dialogFilterSuggested2.filter.f28408id) {
                 return false;
             }
         }

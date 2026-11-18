@@ -16,27 +16,27 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.lc;
 public final class c implements q10 {
-    public final int f21956a = 0;
-    public final boolean[] f21957b;
-    public final hi.d f21958c;
+    public final int f21953a = 0;
+    public final boolean[] f21954b;
+    public final hi.d f21955c;
     public final boolean d;
-    public final i6 f21959e;
-    public final Object f21960f;
-    public final Object f21961g;
+    public final i6 f21956e;
+    public final Object f21957f;
+    public final Object f21958g;
     public final Object h;
-    public final Object f21962i;
-    public final KeyEvent.Callback f21963j;
+    public final Object f21959i;
+    public final KeyEvent.Callback f21960j;
 
     public c(String str, String[] strArr, ImageView imageView, i6 i6Var, boolean z10, int[] iArr, hi.d dVar, HorizontalScrollView horizontalScrollView, boolean[] zArr) {
-        this.f21960f = str;
-        this.f21961g = strArr;
+        this.f21957f = str;
+        this.f21958g = strArr;
         this.h = imageView;
-        this.f21959e = i6Var;
+        this.f21956e = i6Var;
         this.d = z10;
-        this.f21962i = iArr;
-        this.f21958c = dVar;
-        this.f21963j = horizontalScrollView;
-        this.f21957b = zArr;
+        this.f21959i = iArr;
+        this.f21955c = dVar;
+        this.f21960j = horizontalScrollView;
+        this.f21954b = zArr;
     }
 
     @Override
@@ -44,16 +44,16 @@ public final class c implements q10 {
         int i7;
         String M0;
         CharSequence V;
-        int i10 = this.f21956a;
-        i6 i6Var = this.f21959e;
-        KeyEvent.Callback callback = this.f21963j;
-        Object obj3 = this.f21962i;
+        int i10 = this.f21953a;
+        i6 i6Var = this.f21956e;
+        KeyEvent.Callback callback = this.f21960j;
+        Object obj3 = this.f21959i;
         Object obj4 = this.h;
         boolean z10 = this.d;
-        hi.d dVar = this.f21958c;
-        Object obj5 = this.f21961g;
-        Object obj6 = this.f21960f;
-        boolean[] zArr = this.f21957b;
+        hi.d dVar = this.f21955c;
+        Object obj5 = this.f21958g;
+        Object obj6 = this.f21957f;
+        boolean[] zArr = this.f21954b;
         switch (i10) {
             case 0:
                 ImageView imageView = (ImageView) obj4;
@@ -63,7 +63,7 @@ public final class c implements q10 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        u6.s(imageView, n6.f29637q7, i6Var, PorterDuff.Mode.SRC_IN);
+                        u6.s(imageView, n6.f29635q7, i6Var, PorterDuff.Mode.SRC_IN);
                         if (!z10) {
                             int i11 = -iArr[0];
                             iArr[0] = i11;
@@ -129,14 +129,14 @@ public final class c implements q10 {
     }
 
     public c(boolean[] zArr, org.telegram.ui.Wallet.h2 h2Var, boolean[] zArr2, hi.d dVar, boolean z10, org.telegram.ui.Wallet.u0 u0Var, TextView textView, org.telegram.ui.Wallet.d3 d3Var, i6 i6Var) {
-        this.f21957b = zArr;
-        this.f21960f = h2Var;
-        this.f21961g = zArr2;
-        this.f21958c = dVar;
+        this.f21954b = zArr;
+        this.f21957f = h2Var;
+        this.f21958g = zArr2;
+        this.f21955c = dVar;
         this.d = z10;
         this.h = u0Var;
-        this.f21962i = textView;
-        this.f21963j = d3Var;
-        this.f21959e = i6Var;
+        this.f21959i = textView;
+        this.f21960j = d3Var;
+        this.f21956e = i6Var;
     }
 }

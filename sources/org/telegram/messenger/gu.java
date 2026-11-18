@@ -13,13 +13,13 @@ public final class gu extends zt {
 
     @Override
     public final int I() {
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         return f3.C(6.0f, rect.top, 1) + rect.bottom;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         return g0.L(32.0f) + rect.left + rect.right;
     }
 
@@ -28,7 +28,7 @@ public final class gu extends zt {
         int i7;
         int i10;
         float f10;
-        ev evVar = this.f28351a;
+        ev evVar = this.f28349a;
         if (evVar.E()) {
             i7 = org.telegram.ui.ActionBar.n6.xl;
         } else {
@@ -39,10 +39,10 @@ public final class gu extends zt {
         paint.setColor(w02);
         float f11 = -evVar.S;
         int i11 = evVar.C + evVar.T;
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         float f12 = (i11 - rect.left) - rect.right;
         float f13 = 0.0f;
-        if (evVar.f23786s) {
+        if (evVar.f23783s) {
             if (this.S) {
                 f10 = 1.0f;
             } else {
@@ -51,13 +51,13 @@ public final class gu extends zt {
             if (this.R) {
                 f13 = 1.0f;
             }
-            f13 = g0.T1(f10, f13, evVar.f23787t);
+            f13 = g0.T1(f10, f13, evVar.f23784t);
         } else if (this.R) {
             f13 = 1.0f;
         }
         fu fuVar = this.M;
         if (fuVar != null) {
-            i10 = fuVar.f28352b.bottom;
+            i10 = fuVar.f28350b.bottom;
         } else {
             i10 = 0;
         }

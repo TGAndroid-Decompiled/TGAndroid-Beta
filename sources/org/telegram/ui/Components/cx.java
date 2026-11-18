@@ -121,8 +121,8 @@ public final class cx extends vs {
                 int i10 = this.L;
                 org.telegram.messenger.gc e02 = s2Var.e0(gcVarArr[i10], i10);
                 gcVarArr[i10] = e02;
-                e02.f24195c = j3;
-                e02.f24194b = 1.0f;
+                e02.f24192c = j3;
+                e02.f24191b = 1.0f;
                 o5Var.setAlpha(255);
                 int height = (int) (zxVar.getHeight() * 0.03f);
                 Rect rect = org.telegram.messenger.g0.Q;
@@ -135,7 +135,7 @@ public final class cx extends vs {
                 } else {
                     porterDuffColorFilter = null;
                 }
-                gcVar.f24215z = porterDuffColorFilter;
+                gcVar.f24212z = porterDuffColorFilter;
                 arrayList.add(zxVar);
             }
         }

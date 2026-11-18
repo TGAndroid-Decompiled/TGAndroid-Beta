@@ -1,17 +1,17 @@
 package u9;
 public final class h {
-    public final q f58544a;
-    public final boolean f58545b;
+    public final q f58545a;
+    public final boolean f58546b;
 
     public h(q qVar, boolean z10) {
-        this.f58544a = qVar;
-        this.f58545b = z10;
+        this.f58545a = qVar;
+        this.f58546b = z10;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof h) {
             h hVar = (h) obj;
-            if (hVar.f58544a.equals(this.f58544a) && hVar.f58545b == this.f58545b) {
+            if (hVar.f58545a.equals(this.f58545a) && hVar.f58546b == this.f58546b) {
                 return true;
             }
         }
@@ -19,6 +19,6 @@ public final class h {
     }
 
     public final int hashCode() {
-        return ((this.f58544a.hashCode() ^ 1000003) * 1000003) ^ Boolean.valueOf(this.f58545b).hashCode();
+        return ((this.f58545a.hashCode() ^ 1000003) * 1000003) ^ Boolean.valueOf(this.f58546b).hashCode();
     }
 }

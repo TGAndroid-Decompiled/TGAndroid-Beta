@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class jp {
-    public int f24905a;
-    public int f24906b;
-    public int f24907c;
+    public int f24902a;
+    public int f24903b;
+    public int f24904c;
     public int d;
-    public boolean f24908e;
+    public boolean f24905e;
 }

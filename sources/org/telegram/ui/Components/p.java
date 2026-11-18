@@ -19,12 +19,12 @@ public final class p extends yo0 {
             lc lcVar = new lc(frameLayout, this.J0);
             if (hVar.m() == 1) {
                 long j3 = hVar.j(0);
-                if (j3 == org.telegram.messenger.j10.i(this.f30189a).f24792n) {
+                if (j3 == org.telegram.messenger.j10.i(this.f30187a).f24789n) {
                     gc G = lcVar.G(2131624191, 5000, org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0(null, null, 2131754967, new Object[0])));
                     G.f35469r = false;
                     G.j();
                 } else if (j3 < 0) {
-                    TLRPC.Chat O0 = org.telegram.messenger.mp.u1(this.f30189a).O0(Long.valueOf(-j3));
+                    TLRPC.Chat O0 = org.telegram.messenger.mp.u1(this.f30187a).O0(Long.valueOf(-j3));
                     if (tL_forumTopic != null) {
                         str = tL_forumTopic.title;
                     } else {
@@ -34,7 +34,7 @@ public final class p extends yo0 {
                     G2.f35469r = false;
                     G2.j();
                 } else {
-                    gc G3 = lcVar.G(2131624029, 5000, org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0(null, null, 2131754971, org.telegram.messenger.mp.u1(this.f30189a).c2(Long.valueOf(j3)).first_name)));
+                    gc G3 = lcVar.G(2131624029, 5000, org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0(null, null, 2131754971, org.telegram.messenger.mp.u1(this.f30187a).c2(Long.valueOf(j3)).first_name)));
                     G3.f35469r = false;
                     G3.j();
                 }

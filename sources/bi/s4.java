@@ -1,103 +1,73 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.q10;
-import org.telegram.tgnet.ConnectionsManager;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.sz;
+import org.telegram.messenger.tz;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.lc;
-public final class s4 implements q10 {
-    public final int f4055a = 1;
-    public final int f4056b;
-    public final String f4057c;
-    public final Object d;
-    public final Object f4058e;
-    public final Object f4059f;
-    public final Object f4060g;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.cx;
+public final class s4 implements Runnable {
+    public final int f4023a = 0;
+    public final int f4024b;
+    public final boolean f4025c;
+    public final long d;
+    public final Object f4026e;
+    public final Object f4027f;
+    public final Object h;
+    public final Object f4028n;
+    public final Object f4029r;
+    public final Object f4030s;
+    public final Object f4031w;
+    public final Object f4032x;
 
-    public s4(int i7, org.telegram.ui.Wallet.u0 u0Var, org.telegram.ui.Wallet.d3 d3Var, org.telegram.ui.Wallet.y2 y2Var, String str, byte[] bArr, byte[] bArr2, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f4056b = i7;
-        this.d = u0Var;
-        this.f4058e = y2Var;
-        this.f4057c = str;
-        this.f4059f = bArr;
-        this.f4060g = bArr2;
+    public s4(Context context, int i7, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10, org.telegram.ui.ActionBar.i6 i6Var, ai.v1 v1Var, lc lcVar, c1.c cVar, c1.c cVar2) {
+        this.f4026e = context;
+        this.f4024b = i7;
+        this.f4027f = tL_starGiftUnique;
+        this.d = j3;
+        this.h = tL_textWithEntities;
+        this.f4025c = z10;
+        this.f4028n = i6Var;
+        this.f4029r = v1Var;
+        this.f4030s = lcVar;
+        this.f4031w = cVar;
+        this.f4032x = cVar2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        int i7;
-        int i10 = this.f4055a;
-        Object obj3 = this.f4060g;
-        Object obj4 = this.f4059f;
-        Object obj5 = this.f4058e;
-        Object obj6 = this.d;
-        switch (i10) {
-            case 0:
-                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj6;
-                Context context = (Context) obj5;
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) obj4;
-                di.k1 k1Var = (di.k1) obj3;
-                org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) obj;
-                Boolean bool = (Boolean) obj2;
-                p0Var.h = new TL_wallet.walletOnchainGiftActionDelist();
-                p0Var.f44737i = tL_starGiftUnique;
-                int i11 = this.f4056b;
-                o3 o3Var = new o3(i11, context, tL_starGiftUnique, i6Var);
-                String str = this.f4057c;
-                String a02 = gd.a0(null, null, 2131749870, str);
-                if (bool.booleanValue()) {
-                    i7 = 2131749513;
-                } else {
-                    i7 = 2131749514;
-                }
-                o3Var.k1(gd.M0(i7, null), a02);
-                o3Var.Z1.e(gd.M0(2131749540, null), v4.i(p0Var.f44732b), null, null);
-                o3Var.d2.i(gd.M0(2131750416, null), false, true);
-                o3Var.f3940q2 = 2131749615;
-                o3Var.j1(p0Var);
-                o3Var.i1(new u4(k1Var, tL_starGiftUnique, str, i11, 0), new ai.v1(3, tL_starGiftUnique, str), new h4(context, i11, i6Var, o3Var, bool, 0));
-                o3Var.show();
-                return;
-            default:
-                org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) obj6;
-                org.telegram.ui.Wallet.y2 y2Var = (org.telegram.ui.Wallet.y2) obj5;
-                byte[] bArr = (byte[]) obj4;
-                byte[] bArr2 = (byte[]) obj3;
-                TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj;
-                String str2 = (String) obj2;
-                if (!y2Var.f45302e || y2Var.d) {
-                    if (sendtransfer == null) {
-                        if (str2 == null) {
-                            str2 = gd.M0(2131742728, null);
-                        }
-                        lc.c0(str2);
-                        y2Var.d = false;
-                        if (!y2Var.f45303f) {
-                            y2Var.f45303f = true;
-                            y2Var.f45300b.a();
-                        }
-                        if (!y2Var.f45302e) {
-                            y2Var.f45299a.dismiss();
-                            return;
-                        }
-                        return;
-                    }
-                    int i12 = this.f4056b;
-                    ConnectionsManager.getInstance(i12).sendRequestTyped(sendtransfer, new d3.b(1), new j4(i12, u0Var, this.f4057c, bArr, bArr2, sendtransfer, y2Var));
-                    return;
-                }
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: bi.s4.run():void");
     }
 
-    public s4(TL_stars.TL_starGiftUnique tL_starGiftUnique, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var, String str, di.k1 k1Var) {
-        this.d = tL_starGiftUnique;
-        this.f4058e = context;
-        this.f4056b = i7;
-        this.f4059f = i6Var;
-        this.f4057c = str;
-        this.f4060g = k1Var;
+    public s4(ri riVar, sz szVar, a0.h hVar, AtomicInteger atomicInteger, Runnable runnable, int i7, tz tzVar, a0.h hVar2, a0.h hVar3, boolean z10, long j3) {
+        this.f4026e = riVar;
+        this.f4027f = szVar;
+        this.h = hVar;
+        this.f4028n = atomicInteger;
+        this.f4029r = runnable;
+        this.f4024b = i7;
+        this.f4030s = tzVar;
+        this.f4031w = hVar2;
+        this.f4032x = hVar3;
+        this.f4025c = z10;
+        this.d = j3;
+    }
+
+    public s4(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z10, String str2, int i7, TLRPC.Chat chat, cx cxVar, TLRPC.User user, long j3, String str3) {
+        this.f4026e = launchActivity;
+        this.f4027f = str;
+        this.h = tL_chatAdminRights;
+        this.f4025c = z10;
+        this.f4028n = str2;
+        this.f4024b = i7;
+        this.f4029r = chat;
+        this.f4030s = cxVar;
+        this.f4031w = user;
+        this.d = j3;
+        this.f4032x = str3;
     }
 }

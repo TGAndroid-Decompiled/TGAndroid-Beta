@@ -14,32 +14,32 @@ public final class wq implements Runnable {
     public final org.telegram.ui.ActionBar.x2 G;
     public final org.telegram.ui.ii H;
     public final org.telegram.ui.ActionBar.i6 I;
-    public final org.telegram.ui.Cells.z8 J;
+    public final org.telegram.ui.Cells.a9 J;
     public final Context K;
     public final boolean[] f41752a;
     public final int[] f41753b;
-    public final org.telegram.ui.Cells.k3 f41754c;
+    public final org.telegram.ui.Cells.l3 f41754c;
     public final TreeSet d;
     public final String[] f41755e;
     public final vq f41756f;
-    public final org.telegram.ui.Cells.k3 h;
+    public final org.telegram.ui.Cells.l3 h;
     public final int[] f41757n;
-    public final bi.u4 f41758r;
+    public final bi.t4 f41758r;
     public final hi.d f41759s;
     public final boolean f41760w;
     public final int f41761x;
     public final TLRPC.User f41762y;
 
-    public wq(boolean[] zArr, int[] iArr, org.telegram.ui.Cells.k3 k3Var, TreeSet treeSet, String[] strArr, vq vqVar, org.telegram.ui.Cells.k3 k3Var2, int[] iArr2, bi.u4 u4Var, hi.d dVar, boolean z10, int i7, TLRPC.User user, boolean[] zArr2, org.telegram.messenger.x10 x10Var, org.telegram.ui.ActionBar.x2 x2Var, org.telegram.ui.ii iiVar, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.Cells.z8 z8Var, Context context) {
+    public wq(boolean[] zArr, int[] iArr, org.telegram.ui.Cells.l3 l3Var, TreeSet treeSet, String[] strArr, vq vqVar, org.telegram.ui.Cells.l3 l3Var2, int[] iArr2, bi.t4 t4Var, hi.d dVar, boolean z10, int i7, TLRPC.User user, boolean[] zArr2, org.telegram.messenger.x10 x10Var, org.telegram.ui.ActionBar.x2 x2Var, org.telegram.ui.ii iiVar, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.Cells.a9 a9Var, Context context) {
         this.f41752a = zArr;
         this.f41753b = iArr;
-        this.f41754c = k3Var;
+        this.f41754c = l3Var;
         this.d = treeSet;
         this.f41755e = strArr;
         this.f41756f = vqVar;
-        this.h = k3Var2;
+        this.h = l3Var2;
         this.f41757n = iArr2;
-        this.f41758r = u4Var;
+        this.f41758r = t4Var;
         this.f41759s = dVar;
         this.f41760w = z10;
         this.f41761x = i7;
@@ -49,20 +49,20 @@ public final class wq implements Runnable {
         this.G = x2Var;
         this.H = iiVar;
         this.I = i6Var;
-        this.J = z8Var;
+        this.J = a9Var;
         this.K = context;
     }
 
     @Override
     public final void run() {
-        final org.telegram.ui.Cells.k3 k3Var = this.h;
-        org.telegram.ui.Cells.i3 i3Var = k3Var.d;
+        final org.telegram.ui.Cells.l3 l3Var = this.h;
+        org.telegram.ui.Cells.j3 j3Var = l3Var.d;
         final boolean[] zArr = this.f41752a;
         if (!zArr[0]) {
             final int[] iArr = this.f41753b;
             if (iArr[0] < 0) {
-                final org.telegram.ui.Cells.k3 k3Var2 = this.f41754c;
-                String charSequence = k3Var2.getText().toString();
+                final org.telegram.ui.Cells.l3 l3Var2 = this.f41754c;
+                String charSequence = l3Var2.getText().toString();
                 StringBuilder m10 = com.google.android.gms.internal.vision.e2.m(charSequence);
                 String str = "bot";
                 boolean a10 = zq.a(charSequence, "bot");
@@ -74,21 +74,21 @@ public final class wq implements Runnable {
                     this.f41756f.run();
                     return;
                 }
-                String trim = i3Var.getText().toString().trim();
+                String trim = j3Var.getText().toString().trim();
                 boolean isEmpty = TextUtils.isEmpty(trim);
                 final int[] iArr2 = this.f41757n;
                 if (isEmpty) {
                     int i7 = -iArr2[0];
                     iArr2[0] = i7;
-                    org.telegram.messenger.g0.E3(i7, k3Var, null);
+                    org.telegram.messenger.g0.E3(i7, l3Var, null);
                     return;
                 }
                 this.f41758r.run();
                 final hi.d dVar = this.f41759s;
                 dVar.setLoading(true);
                 dVar.setEnabled(false);
-                i3Var.setEnabled(false);
-                k3Var2.d.setEnabled(false);
+                j3Var.setEnabled(false);
+                l3Var2.d.setEnabled(false);
                 final TL_bots.createBot createbot = new TL_bots.createBot();
                 createbot.via_deeplink = this.f41760w;
                 createbot.username = strArr[0];
@@ -104,7 +104,7 @@ public final class wq implements Runnable {
                 final org.telegram.ui.ActionBar.x2 x2Var = this.G;
                 final org.telegram.ui.ii iiVar = this.H;
                 final org.telegram.ui.ActionBar.i6 i6Var = this.I;
-                final org.telegram.ui.Cells.z8 z8Var = this.J;
+                final org.telegram.ui.Cells.a9 a9Var = this.J;
                 final Context context = this.K;
                 iArr[0] = connectionsManager.sendRequestTyped(createbot, bVar, new org.telegram.messenger.q10() {
                     @Override
@@ -118,8 +118,8 @@ public final class wq implements Runnable {
                             hi.d dVar2 = dVar;
                             dVar2.setLoading(false);
                             dVar2.setEnabled(true);
-                            k3Var.d.setEnabled(true);
-                            k3Var2.d.setEnabled(true);
+                            l3Var.d.setEnabled(true);
+                            l3Var2.d.setEnabled(true);
                             int i11 = i10;
                             org.telegram.ui.ActionBar.x2 x2Var2 = x2Var;
                             if (user2 != null) {
@@ -140,22 +140,22 @@ public final class wq implements Runnable {
                                 if (d != null) {
                                     strArr[0] = null;
                                     dVar2.setEnabled(false);
-                                    org.telegram.ui.Cells.z8 z8Var2 = z8Var;
-                                    z8Var2.setText(d);
-                                    org.telegram.ui.ActionBar.u6.U(z8Var2.getTextView(), org.telegram.ui.ActionBar.n6.f29637q7, i6Var2);
+                                    org.telegram.ui.Cells.a9 a9Var2 = a9Var;
+                                    a9Var2.setText(d);
+                                    org.telegram.ui.ActionBar.u6.U(a9Var2.getTextView(), org.telegram.ui.ActionBar.n6.f29635q7, i6Var2);
                                     int[] iArr3 = iArr2;
                                     int i12 = -iArr3[0];
                                     iArr3[0] = i12;
-                                    org.telegram.messenger.g0.E3(i12, z8Var2, null);
+                                    org.telegram.messenger.g0.E3(i12, a9Var2, null);
                                 } else if ("BOT_CREATE_LIMIT_EXCEEDED".equalsIgnoreCase(tL_error.text)) {
                                     org.telegram.messenger.p0 p0Var = org.telegram.messenger.mp.u1(i11).A7;
                                     boolean q11 = org.telegram.messenger.j10.i(i11).q();
                                     lc lcVar = new lc(x2Var2.F, i6Var2);
                                     String M0 = org.telegram.messenger.gd.M0(2131751724, null);
                                     if (q11) {
-                                        a02 = org.telegram.messenger.gd.a0(null, null, 2131751727, Integer.valueOf(((org.telegram.messenger.j0) p0Var.R.f15539b).f24767c));
+                                        a02 = org.telegram.messenger.gd.a0(null, null, 2131751727, Integer.valueOf(((org.telegram.messenger.j0) p0Var.R.f15536b).f24764c));
                                     } else {
-                                        a02 = org.telegram.messenger.gd.a0(null, null, 2131751726, Integer.valueOf(((org.telegram.messenger.j0) p0Var.R.f15539b).f24767c), Integer.valueOf(((org.telegram.messenger.j0) p0Var.Q.f15539b).f24767c));
+                                        a02 = org.telegram.messenger.gd.a0(null, null, 2131751726, Integer.valueOf(((org.telegram.messenger.j0) p0Var.R.f15536b).f24764c), Integer.valueOf(((org.telegram.messenger.j0) p0Var.Q.f15536b).f24764c));
                                     }
                                     SpannableStringBuilder O2 = org.telegram.messenger.g0.O2(a02, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.xj, i6Var2), new mo(x2Var2, 4));
                                     mg mgVar = new mg(20, x2Var2, context);

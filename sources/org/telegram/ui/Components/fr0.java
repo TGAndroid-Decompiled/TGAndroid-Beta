@@ -33,7 +33,7 @@ public final class fr0 implements hl0 {
             }
             a10 = org.telegram.messenger.g0.L(56.0f);
         } else {
-            a10 = org.telegram.ui.Cells.p7.a(1);
+            a10 = org.telegram.ui.Cells.q7.a(1);
         }
         bs0 bs0Var = bs0VarArr[0];
         if (bs0Var.F == 0) {
@@ -43,7 +43,7 @@ public final class fr0 implements hl0 {
         }
         if (L0 >= bs0VarArr[0].h.getMeasuredHeight() * 1.2f) {
             org.telegram.ui.ActionBar.l5 l5Var = bs0VarArr[0].E;
-            l5Var.f29201b = 1;
+            l5Var.f29199b = 1;
             l5Var.k(0, 0, false, false);
             return;
         }
@@ -59,7 +59,7 @@ public final class fr0 implements hl0 {
         }
         hq0 hq0Var = gt0Var.f35576c0;
         if (hq0Var != null && i7 == 8) {
-            hq0Var.f50353b.g(1.0f, 0);
+            hq0Var.f50337b.g(1.0f, 0);
         }
         bs0 bs0Var = bs0VarArr[1];
         bs0Var.F = i7;
@@ -141,11 +141,11 @@ public final class fr0 implements hl0 {
             boolean C0 = gt0Var.C0();
             if (gt0.o0(i7, C0) != null) {
                 if (C0) {
-                    if (org.telegram.messenger.v3.w(5, h2Var.getMessagesController().O0(Long.valueOf(gt0Var.f35590g1.f28406id)))) {
+                    if (org.telegram.messenger.v3.w(5, h2Var.getMessagesController().O0(Long.valueOf(gt0Var.f35590g1.f28404id)))) {
                         profileTab = gt0Var.f35590g1.main_tab;
                         if (profileTab != null || (i7 != gt0.p0(profileTab) && gt0Var.V1 != i7)) {
                             y60 I = y60.I(h2Var, view);
-                            I.X(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false)));
+                            I.X(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false)));
                             I.c(2131232775, org.telegram.messenger.gd.M0(2131746427, null), new di.x7(this, C0, i7, 6), false);
                             I.a0();
                             return true;
@@ -156,7 +156,7 @@ public final class fr0 implements hl0 {
                     if (profileTab != null) {
                     }
                     y60 I2 = y60.I(h2Var, view);
-                    I2.X(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false)));
+                    I2.X(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false)));
                     I2.c(2131232775, org.telegram.messenger.gd.M0(2131746427, null), new di.x7(this, C0, i7, 6), false);
                     I2.a0();
                     return true;

@@ -19,7 +19,7 @@ public final class u21 extends n6 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
         } else {
             org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
@@ -47,7 +47,7 @@ public final class u21 extends n6 {
             l80 l80Var = new l80(null, y21Var.J0, motionEvent.getX(), motionEvent.getY(), 0);
             l80Var.d(org.telegram.ui.ActionBar.n6.r1(0.1175f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Gj, y21Var.J0)));
             f80 b10 = l80Var.b();
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
             } else {
                 org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);

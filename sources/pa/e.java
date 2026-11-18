@@ -24,13 +24,13 @@ public final class e implements na.e, g {
 
     @Override
     public final na.e a(na.c cVar, Object obj) {
-        i(obj, cVar.f21465a);
+        i(obj, cVar.f21462a);
         return this;
     }
 
     @Override
     public final na.e b(na.c cVar, double d) {
-        String str = cVar.f21465a;
+        String str = cVar.f21462a;
         j();
         JsonWriter jsonWriter = this.f55510b;
         jsonWriter.name(str);
@@ -41,7 +41,7 @@ public final class e implements na.e, g {
 
     @Override
     public final na.e c(na.c cVar, boolean z10) {
-        String str = cVar.f21465a;
+        String str = cVar.f21462a;
         j();
         JsonWriter jsonWriter = this.f55510b;
         jsonWriter.name(str);
@@ -52,7 +52,7 @@ public final class e implements na.e, g {
 
     @Override
     public final na.e d(na.c cVar, int i7) {
-        String str = cVar.f21465a;
+        String str = cVar.f21462a;
         j();
         JsonWriter jsonWriter = this.f55510b;
         jsonWriter.name(str);
@@ -63,7 +63,7 @@ public final class e implements na.e, g {
 
     @Override
     public final na.e e(na.c cVar, long j3) {
-        String str = cVar.f21465a;
+        String str = cVar.f21462a;
         j();
         JsonWriter jsonWriter = this.f55510b;
         jsonWriter.name(str);

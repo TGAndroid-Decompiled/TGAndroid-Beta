@@ -42,7 +42,7 @@ public final class r1 implements View.OnClickListener {
                 if (!TextUtils.equals(gVar.f44237f, str)) {
                     gVar.f44237f = str;
                     try {
-                        org.telegram.messenger.t0.f26915b.getSharedPreferences("gram_wallet", 0).edit().putString("currency", gVar.g()).apply();
+                        org.telegram.messenger.t0.f26913b.getSharedPreferences("gram_wallet", 0).edit().putString("currency", gVar.g()).apply();
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.e("[gram-wallet] failed to save currency prefs", e10);
                     }

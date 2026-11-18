@@ -61,8 +61,8 @@ public final class de extends FrameLayout {
                         float f17 = 22.0f;
                         if (chatActivityEnterView.K1 == null && chatActivityEnterView.J1 != null) {
                             jh.f z02 = chatActivityEnterView.z0();
-                            if (z02 != null && (gVar2 = z02.f17781n) != null) {
-                                aVar = gVar2.f11674w;
+                            if (z02 != null && (gVar2 = z02.f17778n) != null) {
+                                aVar = gVar2.f11671w;
                             } else {
                                 aVar = null;
                             }

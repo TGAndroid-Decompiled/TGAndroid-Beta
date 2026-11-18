@@ -13,12 +13,12 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import bi.a9;
-import bi.d6;
-import bi.f4;
-import bi.f8;
+import bi.c6;
+import bi.e4;
+import bi.e8;
 import bi.h3;
-import bi.z7;
+import bi.y7;
+import bi.z8;
 import di.k4;
 import di.x8;
 import fi.a5;
@@ -102,7 +102,7 @@ public final class g0 implements x10 {
             case 2:
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f1203b;
                 if (!((Boolean) obj).booleanValue()) {
-                    f4.r(2131749596, tL_starGiftUnique);
+                    e4.t(2131749596, tL_starGiftUnique);
                     return;
                 }
                 return;
@@ -111,14 +111,14 @@ public final class g0 implements x10 {
                 return;
             case 4:
                 ((Boolean) obj).getClass();
-                z7 z7Var = ((f8) this.f1203b).d;
-                if (z7Var != null) {
-                    z7Var.run();
+                y7 y7Var = ((e8) this.f1203b).d;
+                if (y7Var != null) {
+                    y7Var.run();
                     return;
                 }
                 return;
             case 5:
-                wg.h.j(((a9) this.f1203b).getContext(), (TLRPC.TL_error) obj);
+                wg.h.j(((z8) this.f1203b).getContext(), (TLRPC.TL_error) obj);
                 return;
             case 6:
                 ci.s sVar = (ci.s) this.f1203b;
@@ -149,21 +149,21 @@ public final class g0 implements x10 {
             case 8:
                 ci.o0 o0Var = (ci.o0) this.f1203b;
                 TLRPC.TL_exportedContactToken tL_exportedContactToken = (TLRPC.TL_exportedContactToken) obj;
-                ci.z0 z0Var = o0Var.f5732b;
+                ci.z0 z0Var = o0Var.f5729b;
                 if (!o0Var.F && tL_exportedContactToken != null) {
-                    o0Var.f5737r = tL_exportedContactToken;
-                    o0Var.f5738s = 0L;
+                    o0Var.f5734r = tL_exportedContactToken;
+                    o0Var.f5735s = 0L;
                     String str3 = tL_exportedContactToken.url;
-                    String str4 = o0Var.f5733c.f5718b;
-                    if (!TextUtils.equals(z0Var.f5903f, str4) || z0Var.h) {
-                        z0Var.f5903f = str4;
+                    String str4 = o0Var.f5730c.f5715b;
+                    if (!TextUtils.equals(z0Var.f5900f, str4) || z0Var.h) {
+                        z0Var.f5900f = str4;
                         z0Var.h = false;
                         z0Var.I5 = null;
                         z0Var.J5 = 0;
                     }
                     if (!TextUtils.equals(z0Var.d, str3)) {
                         z0Var.d = str3;
-                        Utilities.f22782e.c(new h0(str3, new ci.q0(z0Var, str3, 0)));
+                        Utilities.f22779e.c(new h0(str3, new ci.q0(z0Var, str3, 0)));
                     }
                     z0Var.setLinkExpires(tL_exportedContactToken.expires);
                     return;
@@ -176,7 +176,7 @@ public final class g0 implements x10 {
                     z0Var2.getClass();
                     ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet2.documents;
                     if (arrayList != null && !arrayList.isEmpty()) {
-                        z0Var2.f6016q8 = tL_messages_stickerSet2.documents.get(0);
+                        z0Var2.f6013q8 = tL_messages_stickerSet2.documents.get(0);
                     }
                 }
                 z0Var2.invalidate();
@@ -184,18 +184,18 @@ public final class g0 implements x10 {
             case 10:
                 di.h1 h1Var = (di.h1) this.f1203b;
                 Integer num = (Integer) obj;
-                h1Var.f8900e2.g();
-                h1Var.f8902g2.O(true);
+                h1Var.f8897e2.g();
+                h1Var.f8899g2.O(true);
                 return;
             case 11:
                 k4 k4Var = (k4) this.f1203b;
                 k4Var.getClass();
-                k4Var.f9159s = new Matrix();
-                k4Var.f9160w = new Matrix();
+                k4Var.f9156s = new Matrix();
+                k4Var.f9157w = new Matrix();
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader((Bitmap) obj, tileMode, tileMode);
-                k4Var.f9158r = bitmapShader;
-                Paint paint = k4Var.f9154c;
+                k4Var.f9155r = bitmapShader;
+                Paint paint = k4Var.f9151c;
                 paint.setShader(bitmapShader);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 org.telegram.messenger.g0.i(colorMatrix, 0.25f);
@@ -232,14 +232,14 @@ public final class g0 implements x10 {
                 return;
             case 15:
                 fi.c1 c1Var = (fi.c1) this.f1203b;
-                if (((Boolean) obj).booleanValue() && !c1Var.f11802x) {
-                    c1Var.f11798n = true;
+                if (((Boolean) obj).booleanValue() && !c1Var.f11799x) {
+                    c1Var.f11795n = true;
                     c1Var.J = true;
                     c1Var.u(false);
                     fi.c1.X = c1Var;
                     c1Var.K = NativeInstance.createVideoCapturer(c1Var.I, c1Var.J ? 1 : 0);
                     if (c1Var.F != null) {
-                        q5 q5Var = Utilities.f22782e;
+                        q5 q5Var = Utilities.f22779e;
                         NativeInstance nativeInstance = c1Var.F;
                         Objects.requireNonNull(nativeInstance);
                         q5Var.c(new org.telegram.messenger.voip.q0(nativeInstance, 3));
@@ -248,7 +248,7 @@ public final class g0 implements x10 {
                     }
                     c1Var.c();
                     c1Var.k();
-                    ks.f(c1Var.f11796e).k(176, Long.valueOf(c1Var.f11797f.f28422id));
+                    ks.f(c1Var.f11793e).k(176, Long.valueOf(c1Var.f11794f.f28420id));
                     return;
                 }
                 return;
@@ -266,12 +266,12 @@ public final class g0 implements x10 {
             case 17:
                 f9 f9Var = (f9) this.f1203b;
                 Boolean bool2 = (Boolean) obj;
-                f9Var.f11981k1 = false;
+                f9Var.f11978k1 = false;
                 f9Var.V();
                 return;
             case 18:
                 a5 a5Var = (a5) obj;
-                i5 i5Var = ((f5) this.f1203b).f11944e;
+                i5 i5Var = ((f5) this.f1203b).f11941e;
                 while (true) {
                     ArrayList arrayList2 = i5Var.H;
                     if (i10 < arrayList2.size()) {
@@ -286,16 +286,16 @@ public final class g0 implements x10 {
             case 19:
                 s7 s7Var = (s7) this.f1203b;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-                s7Var.f12547p = true;
+                s7Var.f12544p = true;
                 if (storyItem != null && (str2 = storyItem.caption) != null) {
-                    s7Var.f12544m = true;
-                    s7Var.f12543l = str2;
-                    s7Var.f12538f = TextUtils.isEmpty(str2);
-                    View view = s7Var.f12549r;
+                    s7Var.f12541m = true;
+                    s7Var.f12540l = str2;
+                    s7Var.f12535f = TextUtils.isEmpty(str2);
+                    View view = s7Var.f12546r;
                     if (view != null) {
                         view.invalidate();
                     }
-                    Runnable runnable = s7Var.f12550s;
+                    Runnable runnable = s7Var.f12547s;
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -318,21 +318,21 @@ public final class g0 implements x10 {
                 return;
             case 22:
                 hi.f0 f0Var = (hi.f0) this.f1203b;
-                f0Var.f14625k0.f14520n.P = ((Float) obj).floatValue();
-                hi.e0 e0Var = f0Var.f14625k0;
+                f0Var.f14622k0.f14517n.P = ((Float) obj).floatValue();
+                hi.e0 e0Var = f0Var.f14622k0;
                 hi.d0 d0Var = e0Var.d;
                 if (d0Var != null) {
-                    d0Var.setVolume(e0Var.f14520n.P);
+                    d0Var.setVolume(e0Var.f14517n.P);
                     return;
                 }
                 return;
             case 23:
                 hi.s0 s0Var = (hi.s0) this.f1203b;
                 e20 e20Var = (e20) obj;
-                fj fjVar = s0Var.f15366c;
+                fj fjVar = s0Var.f15363c;
                 if (fjVar != null) {
-                    fjVar.f23996r0 = e20Var;
-                    MediaController.B().h0(s0Var.f15366c, false, true, false);
+                    fjVar.f23993r0 = e20Var;
+                    MediaController.B().h0(s0Var.f15363c, false, true, false);
                     return;
                 }
                 return;
@@ -342,26 +342,26 @@ public final class g0 implements x10 {
                 org.telegram.messenger.g0.h3(new hi.r1(1, o2Var, (Runnable) obj), 80L);
                 return;
             case 25:
-                ((e3) this.f1203b).f14553s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + org.telegram.messenger.g0.L(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.j1.f29019w).start();
+                ((e3) this.f1203b).f14550s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + org.telegram.messenger.g0.L(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.j1.f29017w).start();
                 return;
             case 26:
                 x3 x3Var = (x3) this.f1203b;
                 View view2 = (View) obj;
-                d6 d6Var = x3Var.f15716b;
+                c6 c6Var = x3Var.f15713b;
                 if (view2 instanceof w3) {
-                    d6Var.getClass();
+                    c6Var.getClass();
                     int R = RecyclerView.R(view2);
-                    l41 G = d6Var.f34607g3.G(R);
+                    l41 G = c6Var.f34607g3.G(R);
                     if (G != null) {
                         w3 w3Var = (w3) view2;
                         w3Var.setPosition(x3Var.b(R));
-                        if (x3Var.f15719f == G.d) {
+                        if (x3Var.f15716f == G.d) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         w3Var.b(z10, true);
-                        boolean contains = x3Var.f15718e.contains(Integer.valueOf(G.d));
+                        boolean contains = x3Var.f15715e.contains(Integer.valueOf(G.d));
                         if (w3Var.h != contains) {
                             w3Var.h = contains;
                             w3Var.invalidate();
@@ -373,11 +373,11 @@ public final class g0 implements x10 {
                 }
                 return;
             case 27:
-                d6 d6Var2 = (d6) this.f1203b;
+                c6 c6Var2 = (c6) this.f1203b;
                 View view3 = (View) obj;
                 if (view3 instanceof w3) {
-                    m9 m9Var = (m9) d6Var2.f3557o3;
-                    m9Var.f15716b.getClass();
+                    m9 m9Var = (m9) c6Var2.f3501o3;
+                    m9Var.f15713b.getClass();
                     ((w3) view3).setPosition(m9Var.b(RecyclerView.R(view3)));
                     view3.setPressed(false);
                     return;
@@ -385,15 +385,15 @@ public final class g0 implements x10 {
                 return;
             case 28:
                 v9 v9Var = (v9) ((l5) this.f1203b);
-                ta taVar = v9Var.f15617k2;
+                ta taVar = v9Var.f15614k2;
                 taVar.Y0.q((fj) obj);
                 d7 d7Var = taVar.L1;
                 if (d7Var != null && taVar.P1 != 1) {
-                    boolean isEmpty = TextUtils.isEmpty(d7Var.f14437y);
+                    boolean isEmpty = TextUtils.isEmpty(d7Var.f14434y);
                     boolean z11 = !isEmpty;
-                    ((ue0) taVar.f15458k1.f15032c).a(!taVar.Y0.k(), false);
-                    taVar.f15458k1.setVisibility(0);
-                    ViewPropertyAnimator animate = taVar.f15458k1.animate();
+                    ((ue0) taVar.f15455k1.f15029c).a(!taVar.Y0.k(), false);
+                    taVar.f15455k1.setVisibility(0);
+                    ViewPropertyAnimator animate = taVar.f15455k1.animate();
                     if (!isEmpty) {
                         f10 = 1.0f;
                     } else {
@@ -408,9 +408,9 @@ public final class g0 implements x10 {
                         if (i10 < size) {
                             Object obj2 = arrayList4.get(i10);
                             i10++;
-                            d7 d7Var2 = ((hi.e0) obj2).f14520n;
+                            d7 d7Var2 = ((hi.e0) obj2).f14517n;
                             if (d7Var2 != null && d7Var2.K) {
-                                if (!TextUtils.isEmpty(taVar.L1.f14437y)) {
+                                if (!TextUtils.isEmpty(taVar.L1.f14434y)) {
                                     i7 = 2;
                                 }
                             }
@@ -422,7 +422,7 @@ public final class g0 implements x10 {
                 return;
             default:
                 c7 c7Var = (c7) obj;
-                v51 v51Var = ((w5) this.f1203b).f15663n;
+                v51 v51Var = ((w5) this.f1203b).f15660n;
                 if (v51Var != null) {
                     v51Var.setHDRInfo(c7Var);
                     return;

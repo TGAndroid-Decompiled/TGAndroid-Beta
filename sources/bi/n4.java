@@ -9,30 +9,30 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.bn;
 import org.telegram.ui.vf;
 public final class n4 implements Runnable {
-    public final int f3902a = 0;
-    public final int f3903b;
-    public final int f3904c;
+    public final int f3876a = 0;
+    public final int f3877b;
+    public final int f3878c;
     public final boolean d;
-    public final Object f3905e;
+    public final Object f3879e;
 
     public n4(int i7, int i10, String str, boolean z10) {
-        this.f3905e = str;
-        this.f3903b = i7;
+        this.f3879e = str;
+        this.f3877b = i7;
         this.d = z10;
-        this.f3904c = i10;
+        this.f3878c = i10;
     }
 
     @Override
     public final void run() {
         long j3;
-        switch (this.f3902a) {
+        switch (this.f3876a) {
             case 0:
-                final String str = (String) this.f3905e;
+                final String str = (String) this.f3879e;
                 TL_stars.getUniqueStarGift getuniquestargift = new TL_stars.getUniqueStarGift();
                 getuniquestargift.slug = str;
-                final int i7 = this.f3903b;
+                final int i7 = this.f3877b;
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i7);
-                final int i10 = this.f3904c;
+                final int i10 = this.f3878c;
                 final boolean z10 = this.d;
                 connectionsManager.sendRequest(getuniquestargift, new RequestDelegate() {
                     @Override
@@ -42,23 +42,23 @@ public final class n4 implements Runnable {
                 });
                 return;
             default:
-                bn bnVar = (bn) this.f3905e;
+                bn bnVar = (bn) this.f3879e;
                 mp messagesController = bnVar.getMessagesController();
-                long j10 = bnVar.f46085l6;
-                if (org.telegram.messenger.v3.T(bnVar.f45987e)) {
-                    j3 = bnVar.f46085l6;
+                long j10 = bnVar.f46076l6;
+                if (org.telegram.messenger.v3.T(bnVar.f45978e)) {
+                    j3 = bnVar.f46076l6;
                 } else {
                     j3 = 0;
                 }
-                messagesController.d0(j10, j3, this.f3903b, this.f3904c, this.d, new vf(bnVar, 21));
+                messagesController.d0(j10, j3, this.f3877b, this.f3878c, this.d, new vf(bnVar, 21));
                 return;
         }
     }
 
     public n4(bn bnVar, int i7, int i10, boolean z10) {
-        this.f3905e = bnVar;
-        this.f3903b = i7;
-        this.f3904c = i10;
+        this.f3879e = bnVar;
+        this.f3877b = i7;
+        this.f3878c = i10;
         this.d = z10;
     }
 }

@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 public final class l1 {
     public final b8 f41018a;
     public final b8 f41019b;
@@ -115,7 +115,7 @@ public final class l1 {
             });
             ofFloat.setInterpolator(new LinearInterpolator());
             ofFloat.setDuration(80L);
-            ofFloat.addListener(new x9(this, 15));
+            ofFloat.addListener(new y9(this, 15));
             ofFloat.start();
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {

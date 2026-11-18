@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class qs0 extends org.telegram.ui.Cells.t2 {
+public final class qs0 extends org.telegram.ui.Cells.u2 {
     public final rs0 f38892b5;
 
     public qs0(rs0 rs0Var, Context context) {
@@ -25,7 +25,7 @@ public final class qs0 extends org.telegram.ui.Cells.t2 {
             rs0Var.f39297s.getClass();
             int R = RecyclerView.R(this);
             if (R >= 0 && R < arrayList.size()) {
-                return ((org.telegram.messenger.ov) arrayList.get(R)).f26107b;
+                return ((org.telegram.messenger.ov) arrayList.get(R)).f26105b;
             }
             return false;
         }

@@ -4,7 +4,7 @@ import android.graphics.Typeface;
 import android.widget.TextView;
 import org.telegram.ui.LaunchActivity;
 public final class r6 extends eb {
-    public r6(LaunchActivity launchActivity, org.telegram.ui.y80 y80Var) {
+    public r6(LaunchActivity launchActivity, org.telegram.ui.z80 z80Var) {
         super(launchActivity, null);
         org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
         TextView textView = new TextView(getContext());
@@ -15,10 +15,10 @@ public final class r6 extends eb {
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(Typeface.SANS_SERIF);
         addView(textView, c8.ma.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(y80Var.f54091b));
+        qVar.setImageDrawable(launchActivity.getDrawable(z80Var.f54447b));
         qVar.setOuterPadding(org.telegram.messenger.g0.L(8.0f));
         qVar.setBackgroundOuterPadding(org.telegram.messenger.g0.L(24.0f));
-        qVar.setForeground(y80Var.f54092c);
-        org.telegram.messenger.f3.q(null, null, 2131754236, new Object[]{org.telegram.messenger.gd.M0(y80Var.d, null)}, textView);
+        qVar.setForeground(z80Var.f54448c);
+        org.telegram.messenger.f3.q(null, null, 2131754236, new Object[]{org.telegram.messenger.gd.M0(z80Var.d, null)}, textView);
     }
 }

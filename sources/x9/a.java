@@ -7,25 +7,25 @@ import java.util.concurrent.atomic.AtomicReference;
 import tg.z1;
 import u9.o;
 public final class a {
-    public static final b f60423c = new Object();
-    public final o f60424a;
-    public final AtomicReference f60425b = new AtomicReference(null);
+    public static final b f60424c = new Object();
+    public final o f60425a;
+    public final AtomicReference f60426b = new AtomicReference(null);
 
     public a(o oVar) {
-        this.f60424a = oVar;
+        this.f60425a = oVar;
         oVar.a(new z1(this, 16));
     }
 
     public final b a(String str) {
-        a aVar = (a) this.f60425b.get();
+        a aVar = (a) this.f60426b.get();
         if (aVar == null) {
-            return f60423c;
+            return f60424c;
         }
         return aVar.a(str);
     }
 
     public final boolean b() {
-        a aVar = (a) this.f60425b.get();
+        a aVar = (a) this.f60426b.get();
         if (aVar != null && aVar.b()) {
             return true;
         }
@@ -33,7 +33,7 @@ public final class a {
     }
 
     public final boolean c(String str) {
-        a aVar = (a) this.f60425b.get();
+        a aVar = (a) this.f60426b.get();
         if (aVar != null && aVar.c(str)) {
             return true;
         }
@@ -45,6 +45,6 @@ public final class a {
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", k10, null);
         }
-        this.f60424a.a(new h(str, j3, p1Var, 12));
+        this.f60425a.a(new h(str, j3, p1Var, 12));
     }
 }

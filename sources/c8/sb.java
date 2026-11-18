@@ -15,11 +15,11 @@ import org.telegram.ui.Components.hn;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.y61;
 public abstract class sb {
-    public static pg.i f4957a;
+    public static pg.i f4954a;
 
     public static void a(LaunchActivity launchActivity, boolean z10, boolean z11) {
         boolean z12;
-        pg.i iVar = f4957a;
+        pg.i iVar = f4954a;
         if (iVar != null) {
             z12 = true;
         } else {
@@ -58,15 +58,15 @@ public abstract class sb {
                 frameLayout.E = ck0Var;
                 ck0Var.setLayoutManager(new v4.c0());
                 ck0Var.setAdapter(new org.telegram.ui.l4((pg.i) frameLayout, launchActivity));
-                ck0Var.setOnItemClickListener(new bi.i8(frameLayout, 19));
+                ck0Var.setOnItemClickListener(new bi.h8(frameLayout, 19));
                 linearLayout.addView(ck0Var, ma.l(1.0f, -1, 0));
                 frameLayout.addView(linearLayout, ma.d(-1, -1.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
                 frameLayout.d();
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
-                f4957a = frameLayout;
+                f4954a = frameLayout;
                 launchActivity.f43106v0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
-                pg.i iVar2 = f4957a;
+                pg.i iVar2 = f4954a;
                 iVar2.f55616a.setVisibility(0);
                 r1.g gVar2 = new r1.g(new r1.f(0.0f));
                 gVar2.f56323m = org.telegram.ui.Cells.c0.p(1000.0f, 750.0f, 0.75f);
@@ -74,11 +74,11 @@ public abstract class sb {
                 gVar2.h();
             } else {
                 iVar.getClass();
-                launchActivity.f43106v0.removeView(f4957a);
-                f4957a = null;
+                launchActivity.f43106v0.removeView(f4954a);
+                f4954a = null;
             }
             if (z11) {
-                bz.f23213x1 = z10;
+                bz.f23210x1 = z10;
                 bz.y();
             }
         }

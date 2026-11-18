@@ -23,7 +23,7 @@ public final class q31 extends v4.u0 {
                 }
                 return;
             default:
-                if (i7 == 1 && (j9Var = ((org.telegram.ui.Wallet.n6) ((di.i4) this.f38691c).f9011c).f44632j0) != null) {
+                if (i7 == 1 && (j9Var = ((org.telegram.ui.Wallet.n6) ((di.i4) this.f38691c).f9008c).f44632j0) != null) {
                     j9Var.a();
                     return;
                 }
@@ -47,12 +47,12 @@ public final class q31 extends v4.u0 {
                 }
                 if (i10 != 0 && h41Var.c()) {
                     t31Var.f39901p1 = h41Var.getContentTopOffset();
-                    t31Var.f30192b.invalidate();
+                    t31Var.f30190b.invalidate();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.n6 n6Var = (org.telegram.ui.Wallet.n6) ((di.i4) this.f38691c).f9011c;
+                org.telegram.ui.Wallet.n6 n6Var = (org.telegram.ui.Wallet.n6) ((di.i4) this.f38691c).f9008c;
                 if (this.f38690b == 0) {
                     n6Var.I0();
                     return;

@@ -3,23 +3,23 @@ package c8;
 import android.graphics.Path;
 import android.graphics.RectF;
 public abstract class ja {
-    public static RectF f4851a;
+    public static RectF f4848a;
 
     public static void a(Path path, RectF rectF, float f10) {
         if (path == null) {
             return;
         }
-        if (f4851a == null) {
-            f4851a = new RectF();
+        if (f4848a == null) {
+            f4848a = new RectF();
         }
         float f11 = 2.0f * f10;
         path.rewind();
-        f4851a.set(0.0f, -rectF.height(), f11, (-rectF.height()) + f11);
-        path.arcTo(f4851a, 180.0f, 90.0f);
-        f4851a.set(rectF.width() - f11, -rectF.height(), rectF.width(), (-rectF.height()) + f11);
-        path.arcTo(f4851a, 270.0f, 90.0f);
-        f4851a.set(rectF.width() - f11, -f11, rectF.width(), 0.0f);
-        path.arcTo(f4851a, 0.0f, 90.0f);
+        f4848a.set(0.0f, -rectF.height(), f11, (-rectF.height()) + f11);
+        path.arcTo(f4848a, 180.0f, 90.0f);
+        f4848a.set(rectF.width() - f11, -rectF.height(), rectF.width(), (-rectF.height()) + f11);
+        path.arcTo(f4848a, 270.0f, 90.0f);
+        f4848a.set(rectF.width() - f11, -f11, rectF.width(), 0.0f);
+        path.arcTo(f4848a, 0.0f, 90.0f);
         path.quadTo(f10, 0.0f, f10, 0.0f);
         path.cubicTo(org.telegram.messenger.g0.L(7.62f), org.telegram.messenger.g0.L(-0.5f), org.telegram.messenger.g0.L(5.807f), org.telegram.messenger.g0.L(-1.502f), org.telegram.messenger.g0.L(6.02f), org.telegram.messenger.g0.L(-1.386f));
         path.cubicTo(org.telegram.messenger.g0.L(4.814f), org.telegram.messenger.g0.L(-0.81f), org.telegram.messenger.g0.L(2.706f), org.telegram.messenger.g0.L(-0.133f), org.telegram.messenger.g0.L(3.6f), org.telegram.messenger.g0.L(-0.44f));

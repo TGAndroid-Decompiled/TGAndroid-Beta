@@ -13,35 +13,35 @@ import j$.util.Objects;
 import java.util.List;
 import z3.l;
 public final class b implements o {
-    public q f21298b;
-    public int f21299c;
+    public q f21295b;
+    public int f21296c;
     public int d;
-    public int f21300e;
-    public o3.b f21302g;
+    public int f21297e;
+    public o3.b f21299g;
     public p h;
-    public va f21303i;
-    public l f21304j;
-    public final x f21297a = new x(2);
-    public long f21301f = -1;
+    public va f21300i;
+    public l f21301j;
+    public final x f21294a = new x(2);
+    public long f21298f = -1;
 
     @Override
     public final boolean b(p pVar) {
         String v;
         f3.l lVar = (f3.l) pVar;
-        x xVar = this.f21297a;
+        x xVar = this.f21294a;
         xVar.K(2);
-        lVar.g(xVar.f13836a, 0, 2, false);
+        lVar.g(xVar.f13833a, 0, 2, false);
         if (xVar.H() == 65496) {
             while (true) {
                 xVar.K(2);
-                lVar.g(xVar.f13836a, 0, 2, false);
+                lVar.g(xVar.f13833a, 0, 2, false);
                 int H = xVar.H();
                 this.d = H;
                 if (H == 65498) {
                     break;
                 }
                 xVar.K(2);
-                lVar.b(0, 2, xVar.f13836a);
+                lVar.b(0, 2, xVar.f13833a);
                 int H2 = xVar.H() - 2;
                 if (H2 < 0) {
                     break;
@@ -49,10 +49,10 @@ public final class b implements o {
                     lVar.x(H2, false);
                 } else {
                     xVar.K(H2);
-                    lVar.g(xVar.f13836a, 0, H2, false);
+                    lVar.g(xVar.f13833a, 0, H2, false);
                     if (Objects.equals(xVar.v(), "http://ns.adobe.com/xap/1.0/") && (v = xVar.v()) != null) {
                         for (int i7 = 0; i7 < 4; i7++) {
-                            if (v.contains(d.f21308a[i7] + "=\"1\"")) {
+                            if (v.contains(d.f21305a[i7] + "=\"1\"")) {
                                 return true;
                             }
                         }
@@ -66,16 +66,16 @@ public final class b implements o {
 
     @Override
     public final void c(q qVar) {
-        this.f21298b = qVar;
+        this.f21295b = qVar;
     }
 
     @Override
     public final void d(long j3, long j10) {
         if (j3 == 0) {
-            this.f21299c = 0;
-            this.f21304j = null;
-        } else if (this.f21299c == 5) {
-            l lVar = this.f21304j;
+            this.f21296c = 0;
+            this.f21301j = null;
+        } else if (this.f21296c == 5) {
+            l lVar = this.f21301j;
             lVar.getClass();
             lVar.d(j3, j10);
         }
@@ -83,8 +83,8 @@ public final class b implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14006b;
-        return t1.f14074e;
+        g0 g0Var = i0.f14003b;
+        return t1.f14071e;
     }
 
     @Override
@@ -93,16 +93,16 @@ public final class b implements o {
     }
 
     public final void g() {
-        q qVar = this.f21298b;
+        q qVar = this.f21295b;
         qVar.getClass();
         qVar.d1();
-        this.f21298b.j(new t(-9223372036854775807L));
-        this.f21299c = 6;
+        this.f21295b.j(new t(-9223372036854775807L));
+        this.f21296c = 6;
     }
 
     @Override
     public final void release() {
-        l lVar = this.f21304j;
+        l lVar = this.f21301j;
         if (lVar != null) {
             lVar.getClass();
         }

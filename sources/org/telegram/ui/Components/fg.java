@@ -30,7 +30,7 @@ public final class fg implements rx {
         tg tgVar2 = chatActivityEnterView.G0;
         org.telegram.ui.bn bnVar = chatActivityEnterView.D3;
         org.telegram.ui.rm rmVar = chatActivityEnterView.J3;
-        if (rmVar != null && bnVar != null && rmVar.f51655f) {
+        if (rmVar != null && bnVar != null && rmVar.f51644f) {
             bnVar.yc();
         } else if (c() && i7 == 0) {
             b5.J(chatActivityEnterView.C3, bnVar.a(), new org.telegram.ui.sp(this, view, obj, str, obj2, efVar, z11), chatActivityEnterView.K4);
@@ -89,7 +89,7 @@ public final class fg implements rx {
             if (stickerSet != null) {
                 inputStickerSet = new TLRPC.TL_inputStickerSetID();
                 inputStickerSet.access_hash = stickerSet.access_hash;
-                inputStickerSet.f28425id = stickerSet.f28432id;
+                inputStickerSet.f28423id = stickerSet.f28430id;
             }
             iw0 iw0Var = new iw0(chatActivityEnterView.C3, h2Var2, inputStickerSet, null, chatActivityEnterView, chatActivityEnterView.K4);
             h2Var2.showDialog(iw0Var);
@@ -123,8 +123,8 @@ public final class fg implements rx {
                 }
                 ArrayList arrayList = new ArrayList();
                 org.telegram.messenger.ef efVar = new org.telegram.messenger.ef(0, file.getAbsolutePath(), 0, false, 0, 0);
-                efVar.f27848a = null;
-                efVar.f27849b = true;
+                efVar.f27846a = null;
+                efVar.f27847b = true;
                 arrayList.add(efVar);
                 PhotoViewer.p1().f2(arrayList, 0, 12, false, new dg(this, obj, obj2, efVar), chatActivityEnterView.D3);
             }
@@ -254,7 +254,7 @@ public final class fg implements rx {
                             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                                 TLRPC.InputStickerSet inputStickerSet = documentAttribute.stickerset;
                                 if (!(inputStickerSet instanceof TLRPC.TL_inputStickerSetEmpty)) {
-                                    j3 = inputStickerSet.f28425id;
+                                    j3 = inputStickerSet.f28423id;
                                 }
                             } else {
                                 i10++;
@@ -268,7 +268,7 @@ public final class fg implements rx {
             }
             chatActivityEnterView.d(document, str, obj, bjVar, false, z10, i7, 0);
             if (org.telegram.messenger.n5.C(chatActivityEnterView.E3) && org.telegram.messenger.fj.s3(document, false)) {
-                org.telegram.messenger.mp.u1(chatActivityEnterView.S.f23221a).C4(obj, document);
+                org.telegram.messenger.mp.u1(chatActivityEnterView.S.f23218a).C4(obj, document);
             }
         }
     }
@@ -281,7 +281,7 @@ public final class fg implements rx {
         if (bnVar != null && (activity = chatActivityEnterView.C3) != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, chatActivityEnterView.K4);
             String M0 = org.telegram.messenger.gd.M0(2131752057, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
             u1Var.S = M0;
             u1Var.U = org.telegram.messenger.gd.M0(2131752058, null);
             alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131752088, null), new b0(this, 16));

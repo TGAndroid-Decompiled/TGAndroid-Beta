@@ -4,7 +4,7 @@ import android.content.Context;
 import com.google.mlkit.common.internal.MlKitComponentDiscoveryService;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import r0.f1;
 import sg.h0;
 public final class g {
@@ -44,7 +44,7 @@ public final class g {
             if (applicationContext != null) {
                 context = applicationContext;
             }
-            ArrayList b10 = new h0(4, context, new b5(MlKitComponentDiscoveryService.class)).b();
+            ArrayList b10 = new h0(4, context, new c5(MlKitComponentDiscoveryService.class)).b();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             f1 f1Var = u9.e.B;

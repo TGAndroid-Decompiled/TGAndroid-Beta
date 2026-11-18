@@ -7,21 +7,21 @@ import c8.bc;
 import com.google.android.gms.internal.vision.e2;
 public final class e extends r6.a {
     public static final Parcelable.Creator<e> CREATOR = new c(1);
-    public final f f2991a;
-    public final int f2992b;
-    public final int f2993c;
+    public final f f2992a;
+    public final int f2993b;
+    public final int f2994c;
     public final int d;
 
     public e(f fVar, int i7, int i10, int i11) {
-        this.f2991a = fVar;
-        this.f2992b = i7;
-        this.f2993c = i10;
+        this.f2992a = fVar;
+        this.f2993b = i7;
+        this.f2994c = i10;
         this.d = i11;
     }
 
     public final void b(a9.a aVar) {
-        f fVar = this.f2991a;
-        int i7 = this.f2992b;
+        f fVar = this.f2992a;
+        int i7 = this.f2993b;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -44,8 +44,8 @@ public final class e extends r6.a {
     public final String toString() {
         String str;
         String str2;
-        String valueOf = String.valueOf(this.f2991a);
-        int i7 = this.f2992b;
+        String valueOf = String.valueOf(this.f2992a);
+        int i7 = this.f2993b;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -63,7 +63,7 @@ public final class e extends r6.a {
         } else {
             str = "CHANNEL_OPENED";
         }
-        int i10 = this.f2993c;
+        int i10 = this.f2994c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -92,11 +92,11 @@ public final class e extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.k(parcel, 2, this.f2991a, i7);
+        bc.k(parcel, 2, this.f2992a, i7);
         bc.q(parcel, 3, 4);
-        parcel.writeInt(this.f2992b);
+        parcel.writeInt(this.f2993b);
         bc.q(parcel, 4, 4);
-        parcel.writeInt(this.f2993c);
+        parcel.writeInt(this.f2994c);
         bc.q(parcel, 5, 4);
         parcel.writeInt(this.d);
         bc.s(parcel, r10);

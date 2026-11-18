@@ -13,7 +13,7 @@ public final class gx extends FrameLayout implements org.telegram.ui.ActionBar.c
     public gx(ry ryVar, Context context) {
         super(context);
         this.d = ryVar;
-        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30084a;
+        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30082a;
         n6 n6Var = new n6(getContext(), false, false, false);
         n6Var.b(0.3f, 250L, lr.h);
         n6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));

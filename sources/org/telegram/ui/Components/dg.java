@@ -137,7 +137,7 @@ public final class dg implements org.telegram.ui.uq0 {
     public final void d() {
         hi.g gVar;
         yc b12 = PhotoViewer.p1().b1();
-        if (b12 != null && (gVar = b12.f15051f) != null) {
+        if (b12 != null && (gVar = b12.f15048f) != null) {
             rt rtVar = gVar.f41786a;
             rtVar.requestFocus();
             org.telegram.messenger.g0.I3(rtVar);

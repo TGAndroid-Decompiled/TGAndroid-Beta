@@ -44,7 +44,7 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
         if (fjVar == null) {
             return;
         }
-        fjVar.f23928b0 = f10;
+        fjVar.f23925b0 = f10;
         MediaController.B().i0(this.h, f10);
     }
 
@@ -79,7 +79,7 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
                 requestLayout();
                 return;
             }
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             int i7 = point.y;
             int i10 = point.x;
             if (getParent() instanceof View) {
@@ -88,14 +88,14 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
                 i7 = view.getMeasuredHeight();
                 i10 = measuredWidth;
             }
-            org.telegram.ui.ActionBar.n6.f29633q3.o((int) getY(), i10, i7);
-            org.telegram.ui.ActionBar.v4 v4Var = org.telegram.ui.ActionBar.n6.f29633q3;
+            org.telegram.ui.ActionBar.n6.f29631q3.o((int) getY(), i10, i7);
+            org.telegram.ui.ActionBar.v4 v4Var = org.telegram.ui.ActionBar.n6.f29631q3;
             int measuredWidth2 = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             if (v4Var != null) {
                 v4Var.setBounds(0, 0, measuredWidth2, measuredHeight);
             }
-            org.telegram.ui.ActionBar.n6.f29633q3.draw(canvas);
+            org.telegram.ui.ActionBar.n6.f29631q3.draw(canvas);
             if (this.h == null) {
                 return;
             }
@@ -164,7 +164,7 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
             int i7 = org.telegram.ui.ActionBar.n6.le;
             int x02 = org.telegram.ui.ActionBar.n6.x0(null, i7, false);
             int x03 = org.telegram.ui.ActionBar.n6.x0(null, i7, false);
-            int i10 = org.telegram.ui.ActionBar.n6.f29604oe;
+            int i10 = org.telegram.ui.ActionBar.n6.f29602oe;
             vm0Var.g(x02, x03, org.telegram.ui.ActionBar.n6.x0(null, i10, false), org.telegram.ui.ActionBar.n6.x0(null, i10, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.ne, false));
             og0 og0Var = this.f34694w;
             og0Var.f38100a.setColor(-2497813);
@@ -184,7 +184,7 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
                 int i7 = org.telegram.ui.ActionBar.n6.le;
                 int x02 = org.telegram.ui.ActionBar.n6.x0(null, i7, false);
                 int x03 = org.telegram.ui.ActionBar.n6.x0(null, i7, false);
-                int i10 = org.telegram.ui.ActionBar.n6.f29604oe;
+                int i10 = org.telegram.ui.ActionBar.n6.f29602oe;
                 vm0Var.g(x02, x03, org.telegram.ui.ActionBar.n6.x0(null, i10, false), org.telegram.ui.ActionBar.n6.x0(null, i10, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.ne, false));
                 invalidate();
             }
@@ -197,7 +197,7 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
         og0 og0Var = this.f34694w;
         String S0 = this.h.S0();
         org.telegram.messenger.w7.G(this.f34691n);
-        if (org.telegram.messenger.w7.M(this.h.f23968k, false, true).exists()) {
+        if (org.telegram.messenger.w7.M(this.h.f23965k, false, true).exists()) {
             org.telegram.messenger.a6.q(this.f34691n).v(this);
             boolean I = MediaController.B().I(this.h);
             if (I && (!I || !MediaController.B().H())) {
@@ -233,7 +233,7 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
         }
         vm0 vm0Var = this.f34693s;
         if (!vm0Var.f40710e) {
-            vm0Var.h(fjVar.f23928b0);
+            vm0Var.h(fjVar.f23925b0);
         }
         if (!MediaController.B().I(this.h)) {
             int i10 = 0;
@@ -251,7 +251,7 @@ public final class ef0 extends org.telegram.ui.Cells.z implements um0, org.teleg
                 }
             }
         } else {
-            i7 = this.h.f23960i0;
+            i7 = this.h.f23957i0;
         }
         String g02 = org.telegram.messenger.g0.g0(i7, true, false);
         this.K = (int) Math.ceil(textPaint.measureText(g02));

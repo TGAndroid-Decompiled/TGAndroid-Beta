@@ -29,9 +29,9 @@ public final class a30 implements ValueAnimator.AnimatorUpdateListener {
                 c30Var2.f33873n.setScaleX(org.telegram.messenger.g0.T1(0.95f, 1.0f, floatValue2));
                 c30Var2.f33873n.setScaleY(org.telegram.messenger.g0.T1(0.95f, 1.0f, c30Var2.F));
                 org.telegram.ui.nj njVar = c30Var2.f33872f;
-                if (njVar != null && (cnVar = njVar.f47021a) != null && (b1Var = cnVar.f45936a4) != null) {
+                if (njVar != null && (cnVar = njVar.f46944a) != null && (b1Var = cnVar.f45927a4) != null) {
                     b1Var.setScaleX(org.telegram.messenger.g0.T1(1.0f, 0.95f, c30Var2.F));
-                    c30Var2.f33872f.f47021a.f45936a4.setScaleY(org.telegram.messenger.g0.T1(1.0f, 0.95f, c30Var2.F));
+                    c30Var2.f33872f.f46944a.f45927a4.setScaleY(org.telegram.messenger.g0.T1(1.0f, 0.95f, c30Var2.F));
                 }
                 c30Var2.h.setAlpha(c30Var2.F);
                 return;

@@ -28,7 +28,7 @@ public final class v3 extends LinearLayout {
             case 0:
                 int i7 = org.telegram.ui.ActionBar.n6.G6;
                 ((vy0) this.f40485c).c((getWidth() - ((vy0) this.f40485c).f41482c) / 2.0f, getHeight() / 2.0f, 1.0f, org.telegram.ui.ActionBar.n6.x0(null, i7, false), canvas);
-                if (!org.telegram.messenger.gd.f24218c0) {
+                if (!org.telegram.messenger.gd.f24215c0) {
                     if (((u3) this.f40486e).getValue() % 24 < 12) {
                         z10 = true;
                     } else {
@@ -68,7 +68,7 @@ public final class v3 extends LinearLayout {
                 y3 y3Var = (y3) this.d;
                 sb0 sb0Var = (sb0) this.f40485c;
                 this.f40484b = true;
-                Point point = org.telegram.messenger.g0.f24121q;
+                Point point = org.telegram.messenger.g0.f24118q;
                 if (point.x > point.y) {
                     i11 = 3;
                 } else {
@@ -88,7 +88,7 @@ public final class v3 extends LinearLayout {
                 a4 a4Var = (a4) this.d;
                 sb0 sb0Var2 = (sb0) this.f40485c;
                 this.f40484b = true;
-                Point point2 = org.telegram.messenger.g0.f24121q;
+                Point point2 = org.telegram.messenger.g0.f24118q;
                 if (point2.x > point2.y) {
                     i12 = 3;
                 } else {
@@ -108,7 +108,7 @@ public final class v3 extends LinearLayout {
                 f4 f4Var = (f4) this.d;
                 sb0 sb0Var3 = (sb0) this.f40485c;
                 this.f40484b = true;
-                Point point3 = org.telegram.messenger.g0.f24121q;
+                Point point3 = org.telegram.messenger.g0.f24118q;
                 if (point3.x > point3.y) {
                     i13 = 3;
                 } else {
@@ -128,7 +128,7 @@ public final class v3 extends LinearLayout {
                 i4 i4Var = (i4) this.d;
                 sb0 sb0Var4 = (sb0) this.f40485c;
                 this.f40484b = true;
-                Point point4 = org.telegram.messenger.g0.f24121q;
+                Point point4 = org.telegram.messenger.g0.f24118q;
                 if (point4.x > point4.y) {
                     i14 = 3;
                 } else {
@@ -147,7 +147,7 @@ public final class v3 extends LinearLayout {
                 n4 n4Var = (n4) this.d;
                 m4 m4Var = (m4) this.f40485c;
                 this.f40484b = true;
-                Point point5 = org.telegram.messenger.g0.f24121q;
+                Point point5 = org.telegram.messenger.g0.f24118q;
                 if (point5.x > point5.y) {
                     i15 = 3;
                 } else {
@@ -167,7 +167,7 @@ public final class v3 extends LinearLayout {
                 sb0 sb0Var6 = (sb0) this.d;
                 sb0 sb0Var7 = (sb0) this.f40485c;
                 this.f40484b = true;
-                Point point6 = org.telegram.messenger.g0.f24121q;
+                Point point6 = org.telegram.messenger.g0.f24118q;
                 if (point6.x > point6.y) {
                     i16 = 3;
                 } else {
@@ -188,7 +188,7 @@ public final class v3 extends LinearLayout {
                 t4 t4Var = (t4) this.d;
                 sb0 sb0Var9 = (sb0) this.f40485c;
                 this.f40484b = true;
-                Point point7 = org.telegram.messenger.g0.f24121q;
+                Point point7 = org.telegram.messenger.g0.f24118q;
                 if (point7.x > point7.y) {
                     i17 = 3;
                 } else {

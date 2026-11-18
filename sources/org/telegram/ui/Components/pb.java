@@ -39,14 +39,14 @@ public final class pb extends vi0 {
                 super.j();
                 org.telegram.ui.ns nsVar = (org.telegram.ui.ns) this.f38335o1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = nsVar.f50314x;
+                    WindowManager.LayoutParams layoutParams = nsVar.f50298x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    nsVar.f50314x.flags |= 131072;
+                    nsVar.f50298x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) nsVar.f50313w.getSystemService("window")).updateViewLayout(nsVar.f50315y, nsVar.f50314x);
+                    ((WindowManager) nsVar.f50297w.getSystemService("window")).updateViewLayout(nsVar.f50299y, nsVar.f50298x);
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -66,7 +66,7 @@ public final class pb extends vi0 {
                 if (gcVar != null) {
                     gcVar.i(false);
                 }
-                ((rb) this.f38335o1).d.getReactionsWindow().f5299c.setOnClickListener(new n0(this, 3));
+                ((rb) this.f38335o1).d.getReactionsWindow().f5296c.setOnClickListener(new n0(this, 3));
                 return;
             default:
                 return;

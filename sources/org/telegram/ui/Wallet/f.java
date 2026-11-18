@@ -29,9 +29,9 @@ public final class f implements Runnable {
                     i7 = 1;
                 } else {
                     try {
-                        InputStream open = org.telegram.messenger.t0.f26915b.getAssets().open("currencies.json");
-                        String str2 = h2.l0.f13786a;
-                        JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f13255a));
+                        InputStream open = org.telegram.messenger.t0.f26913b.getAssets().open("currencies.json");
+                        String str2 = h2.l0.f13783a;
+                        JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f13252a));
                         ArrayList<TL_wallet.currencyRate> arrayList = currencyrates.rates;
                         int size = arrayList.size();
                         int i10 = 0;

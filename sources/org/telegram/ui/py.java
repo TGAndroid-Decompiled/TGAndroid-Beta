@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class py implements Runnable {
-    public final int f51034a;
-    public final kz f51035b;
+    public final int f50955a;
+    public final kz f50956b;
 
     public py(kz kzVar, int i7) {
-        this.f51034a = i7;
-        this.f51035b = kzVar;
+        this.f50955a = i7;
+        this.f50956b = kzVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f51034a) {
+        switch (this.f50955a) {
             case 0:
-                kz.a0(this.f51035b);
+                kz.a0(this.f50956b);
                 return;
             default:
-                kz.b0(this.f51035b);
+                kz.b0(this.f50956b);
                 return;
         }
     }

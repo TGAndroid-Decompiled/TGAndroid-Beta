@@ -74,7 +74,7 @@ public final class f extends l2.b {
         if (bVar != null) {
             bVar.release();
         }
-        this.U = new b(nVar.f2260a);
+        this.U = new b(nVar.f2261a);
         this.f57552d0 = false;
     }
 
@@ -183,13 +183,13 @@ public final class f extends l2.b {
     public final void x(long j3, long j10) {
         if (!this.N) {
             if (this.T == null) {
-                k8.a aVar = this.f19257c;
+                k8.a aVar = this.f19254c;
                 aVar.g0();
                 h hVar = this.K;
                 hVar.clear();
                 int w10 = w(aVar, hVar, 2);
                 if (w10 == -5) {
-                    u uVar = (u) aVar.f18184c;
+                    u uVar = (u) aVar.f18181c;
                     uVar.getClass();
                     this.T = uVar;
                     this.f57552d0 = true;

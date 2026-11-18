@@ -18,7 +18,7 @@ import org.telegram.ui.Components.mq;
 import org.telegram.ui.Components.o5;
 import org.telegram.ui.Components.z41;
 public final class l1 extends k41 {
-    public static final int f53233b = 0;
+    public static final int f53184b = 0;
 
     static {
         k41.h(new k41());
@@ -30,9 +30,9 @@ public final class l1 extends k41 {
         CharSequence charSequence = l41Var.f37020o;
         String str = (String) l41Var.f37018m;
         long j3 = l41Var.C;
-        ImageView imageView = m1Var.f53245a;
-        m1Var.f53246b.setText(charSequence);
-        o2 o2Var = m1Var.f53247c;
+        ImageView imageView = m1Var.f53196a;
+        m1Var.f53197b.setText(charSequence);
+        o2 o2Var = m1Var.f53198c;
         o2Var.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             o2Var.setTranslationY(-org.telegram.messenger.g0.L(14.0f));
@@ -43,7 +43,7 @@ public final class l1 extends k41 {
             o2Var.setScaleX(1.0f);
             o2Var.setScaleY(1.0f);
         }
-        m1Var.f53248e = str;
+        m1Var.f53199e = str;
         if (TextUtils.isEmpty(charSequence)) {
             if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
                 charSequence = str;
@@ -59,7 +59,7 @@ public final class l1 extends k41 {
         }
         m1Var.h = null;
         if (j3 != 0) {
-            o5 m10 = o5.m(j10.f24773t0, j3, null, 1);
+            o5 m10 = o5.m(j10.f24770t0, j3, null, 1);
             m1Var.d = m10;
             m10.a(imageView);
             imageView.setImageDrawable(m1Var.d);
@@ -73,7 +73,7 @@ public final class l1 extends k41 {
             mqVar.f37612n = L2;
             imageView.setImageDrawable(mqVar);
         }
-        m1Var.f53249f = z10;
+        m1Var.f53200f = z10;
         m1Var.invalidate();
     }
 

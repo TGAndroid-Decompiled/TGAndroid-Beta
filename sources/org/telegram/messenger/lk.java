@@ -4,27 +4,27 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class lk implements RequestDelegate {
-    public final int f25395a;
-    public final mp f25396b;
-    public final long f25397c;
+    public final int f25393a;
+    public final mp f25394b;
+    public final long f25395c;
     public final long d;
 
     public lk(int i7, long j3, long j10, mp mpVar) {
-        this.f25395a = i7;
-        this.f25396b = mpVar;
-        this.f25397c = j3;
+        this.f25393a = i7;
+        this.f25394b = mpVar;
+        this.f25395c = j3;
         this.d = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f25395a) {
+        switch (this.f25393a) {
             case 0:
-                mp mpVar = this.f25396b;
+                mp mpVar = this.f25394b;
                 mpVar.getClass();
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    mpVar.S3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, this.f25397c);
+                    mpVar.S3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, this.f25395c);
                 }
                 long j3 = this.d;
                 if (j3 != 0) {
@@ -33,7 +33,7 @@ public final class lk implements RequestDelegate {
                 }
                 return;
             default:
-                mp mpVar2 = this.f25396b;
+                mp mpVar2 = this.f25394b;
                 if (tLObject != null) {
                     TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
                     if (!tL_messages_peerDialogs.dialogs.isEmpty()) {
@@ -45,11 +45,11 @@ public final class lk implements RequestDelegate {
                         mpVar2.Q3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, mpVar2.V7, false, false, false);
                     }
                 }
-                long j10 = this.f25397c;
+                long j10 = this.f25395c;
                 if (j10 != 0) {
                     mpVar2.getMessagesStorage().q1(j10);
                 }
-                mpVar2.f25626d1.e(this.d);
+                mpVar2.f25624d1.e(this.d);
                 return;
         }
     }

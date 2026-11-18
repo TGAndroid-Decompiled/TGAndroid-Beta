@@ -4,7 +4,7 @@ public final class v {
     public final x2.u f55777b;
 
     public v(ji.j jVar) {
-        this.f55776a = (byte[]) jVar.f17948b;
-        this.f55777b = (x2.u) jVar.f17949c;
+        this.f55776a = (byte[]) jVar.f17945b;
+        this.f55777b = (x2.u) jVar.f17946c;
     }
 }

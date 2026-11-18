@@ -21,10 +21,10 @@ public final class z31 extends g.p {
             return 1;
         }
         jg.c2 c2Var = h41Var.f35722w;
-        SparseArray sparseArray = c2Var.f17427s;
+        SparseArray sparseArray = c2Var.f17424s;
         if (i7 != c2Var.E && (sparseArray.get(i7) == null || (sparseArray.get(i7) instanceof TLRPC.Document))) {
             return 1;
         }
-        return c2Var.f17423e.a();
+        return c2Var.f17420e.a();
     }
 }

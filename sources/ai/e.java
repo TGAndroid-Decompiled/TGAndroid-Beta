@@ -1,7 +1,7 @@
 package ai;
 
 import android.text.TextUtils;
-import bi.m6;
+import bi.l6;
 import di.f6;
 import org.telegram.messenger.q10;
 import org.telegram.tgnet.TLRPC;
@@ -51,13 +51,13 @@ public final class e implements q10 {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (stargiftdepositpayload == null) {
                     u1Var.dismiss();
-                    new lc(a2Var.f30195c, f6Var.J0).g0(tL_error2, false);
+                    new lc(a2Var.f30193c, f6Var.J0).g0(tL_error2, false);
                     return;
                 }
                 di.o2 o2Var = new di.o2(f6Var, new boolean[1], u1Var, a2Var, this.f1180b, stargiftdepositpayload);
                 c1.c cVar = new c1.c(29, r11, o2Var);
                 org.telegram.messenger.g0.h3(cVar, 5000L);
-                Runnable[] runnableArr = {org.telegram.ui.Wallet.u0.D(f6Var.f30189a).k(stargiftdepositpayload, new m6(1, cVar, o2Var))};
+                Runnable[] runnableArr = {org.telegram.ui.Wallet.u0.D(f6Var.f30187a).k(stargiftdepositpayload, new l6(1, cVar, o2Var))};
                 return;
             default:
                 boolean[] zArr2 = (boolean[]) this.d;

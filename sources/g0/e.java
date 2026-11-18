@@ -24,10 +24,10 @@ import org.telegram.messenger.ue;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
 public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
-    public final int f13076a;
+    public final int f13073a;
 
     public e(int i7) {
-        this.f13076a = i7;
+        this.f13073a = i7;
     }
 
     public static ShortcutManager a(Object obj) {
@@ -40,22 +40,22 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f13076a) {
+        switch (this.f13073a) {
             case 3:
-                return Integer.valueOf(((g2.b) obj).f13120r);
+                return Integer.valueOf(((g2.b) obj).f13117r);
             case 4:
                 o0 o0Var = (o0) obj;
-                String v = p0.f13399b.v(o0Var);
+                String v = p0.f13396b.v(o0Var);
                 j.d(v, "encode(...)");
                 o0Var.getClass();
-                m mVar = m.f13385b;
+                m mVar = m.f13382b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = v.getBytes(xd.a.f60444a);
+                byte[] bytes = v.getBytes(xd.a.f60445a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:
-                ha.a.f14102b.getClass();
-                return ea.a.f10880a.v((u2) obj).getBytes(Charset.forName("UTF-8"));
+                ha.a.f14099b.getClass();
+                return ea.a.f10877a.v((u2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
@@ -63,7 +63,7 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
     public Object e(r7 r7Var) {
         n components$lambda$0;
         r components$lambda$1;
-        switch (this.f13076a) {
+        switch (this.f13073a) {
             case 6:
                 components$lambda$0 = FirebaseSessionsRegistrar.getComponents$lambda$0(r7Var);
                 return components$lambda$0;
@@ -98,14 +98,14 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
         float f18;
         float f19;
         float f20;
-        switch (this.f13076a) {
+        switch (this.f13073a) {
             case 9:
                 if (pc.e(262144)) {
                     f10 = 0.82f;
                 } else {
                     f10 = 0.76f;
                 }
-                int w02 = n6.w0(n6.f29396d6, i6Var);
+                int w02 = n6.w0(n6.f29394d6, i6Var);
                 if (z10) {
                     return n6.r1(0.9f, -15658735);
                 }
@@ -116,7 +116,7 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
                 } else {
                     f11 = 0.76f;
                 }
-                return n6.r1(f11, n6.w0(n6.f29396d6, i6Var));
+                return n6.r1(f11, n6.w0(n6.f29394d6, i6Var));
             case 11:
                 if (!pc.e(256)) {
                     return n6.x0(null, n6.G8, false);
@@ -134,27 +134,27 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
                 } else {
                     f13 = 0.76f;
                 }
-                return i0.n(f13, n6.w0(n6.f29396d6, i6Var), n6.w0(n6.Ql, i6Var));
+                return i0.n(f13, n6.w0(n6.f29394d6, i6Var), n6.w0(n6.Ql, i6Var));
             case 13:
                 if (pc.e(262144)) {
                     f14 = 0.85f;
                 } else {
                     f14 = 0.76f;
                 }
-                return i0.n(f14, n6.w0(n6.f29396d6, i6Var), n6.w0(n6.Je, i6Var));
+                return i0.n(f14, n6.w0(n6.f29394d6, i6Var), n6.w0(n6.Je, i6Var));
             case 14:
                 if (pc.e(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.8f;
                 }
-                return i0.n(f15, n6.w0(n6.f29339a7, i6Var), n6.w0(n6.f29396d6, i6Var));
+                return i0.n(f15, n6.w0(n6.f29337a7, i6Var), n6.w0(n6.f29394d6, i6Var));
             case 15:
                 return 855638016;
             case 16:
                 return 1073741824;
             case 17:
-                int w03 = n6.w0(n6.f29469h5, i6Var);
+                int w03 = n6.w0(n6.f29467h5, i6Var);
                 if (z10) {
                     f16 = 0.82f;
                 } else {
@@ -171,7 +171,7 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
                 }
                 return n6.r1(f17, n6.w0(n6.wj, i6Var));
             case 20:
-                return n6.r1(0.88f, n6.w0(n6.f29396d6, i6Var));
+                return n6.r1(0.88f, n6.w0(n6.f29394d6, i6Var));
             case 21:
                 int w04 = n6.w0(n6.G8, i6Var);
                 if (z10) {
@@ -186,18 +186,18 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
                 } else {
                     f19 = 0.76f;
                 }
-                return i0.n(f19, n6.w0(n6.f29396d6, i6Var), n6.w0(n6.Pl, i6Var));
+                return i0.n(f19, n6.w0(n6.f29394d6, i6Var), n6.w0(n6.Pl, i6Var));
             case 23:
                 if (pc.e(262144)) {
                     f20 = 0.85f;
                 } else {
                     f20 = 0.76f;
                 }
-                return n6.r1(f20, n6.w0(n6.f29396d6, i6Var));
+                return n6.r1(f20, n6.w0(n6.f29394d6, i6Var));
             case 24:
-                return n6.r1(0.78f, n6.w0(n6.f29469h5, i6Var));
+                return n6.r1(0.78f, n6.w0(n6.f29467h5, i6Var));
             case 25:
-                return n6.r1(0.7f, n6.w0(n6.f29396d6, i6Var));
+                return n6.r1(0.7f, n6.w0(n6.f29394d6, i6Var));
             default:
                 pc.e(262144);
                 return 0;
@@ -207,11 +207,11 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
     @Override
     public Object m(Object obj) {
         Integer num = (Integer) obj;
-        ue ueVar = e3.f14535k0;
+        ue ueVar = e3.f14532k0;
         return 0;
     }
 
     public e(l lVar) {
-        this.f13076a = 4;
+        this.f13073a = 4;
     }
 }

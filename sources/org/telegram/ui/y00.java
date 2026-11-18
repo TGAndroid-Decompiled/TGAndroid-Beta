@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import java.util.Calendar;
 public final class y00 implements org.telegram.ui.Components.ob0 {
-    public final int f53983a;
-    public final long f53984b;
-    public final Calendar f53985c;
+    public final int f53951a;
+    public final long f53952b;
+    public final Calendar f53953c;
     public final int d;
 
     public y00(long j3, Calendar calendar, int i7, int i10) {
-        this.f53983a = i10;
-        this.f53984b = j3;
-        this.f53985c = calendar;
+        this.f53951a = i10;
+        this.f53952b = j3;
+        this.f53953c = calendar;
         this.d = i7;
     }
 
     @Override
     public final String i(int i7) {
-        int i10 = this.f53983a;
+        int i10 = this.f53951a;
         int i11 = this.d;
-        Calendar calendar = this.f53985c;
-        long j3 = this.f53984b;
+        Calendar calendar = this.f53953c;
+        long j3 = this.f53952b;
         switch (i10) {
             case 0:
                 if (i7 == 0) {

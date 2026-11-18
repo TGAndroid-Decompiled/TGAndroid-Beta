@@ -171,7 +171,7 @@ public final class l40 extends org.telegram.messenger.r5 {
                         }
                         return;
                     }
-                    if (org.telegram.messenger.s2.f26723a) {
+                    if (org.telegram.messenger.s2.f26721a) {
                         org.telegram.messenger.a8.b("InstantCamera set gl renderer session");
                     }
                     Object obj2 = message.obj;
@@ -198,7 +198,7 @@ public final class l40 extends org.telegram.messenger.r5 {
                 EGLDisplay eGLDisplay = this.f37001c;
                 EGLSurface eGLSurface = this.f37002e;
                 if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d)) {
-                    if (org.telegram.messenger.s2.f26723a) {
+                    if (org.telegram.messenger.s2.f26721a) {
                         org.telegram.messenger.a8.b("InstantCamera eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.f37000b.eglGetError()));
                         return;
                     }
@@ -278,7 +278,7 @@ public final class l40 extends org.telegram.messenger.r5 {
                 EGLDisplay eGLDisplay2 = this.f37001c;
                 EGLSurface eGLSurface2 = this.f37002e;
                 if (!egl102.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, this.d)) {
-                    if (org.telegram.messenger.s2.f26723a) {
+                    if (org.telegram.messenger.s2.f26721a) {
                         org.telegram.messenger.n10.v(this.f37000b, new StringBuilder("eglMakeCurrent failed "));
                         return;
                     }
@@ -347,12 +347,12 @@ public final class l40 extends org.telegram.messenger.r5 {
                     r40Var2.U.sendMessage(r40Var2.U.obtainMessage(0, 1, 0));
                 }
                 r40Var2.G0 = true;
-                int i15 = org.telegram.messenger.mp.u1(r40Var2.I0.f42770e).f25815y3;
+                int i15 = org.telegram.messenger.mp.u1(r40Var2.I0.f42770e).f25813y3;
                 org.telegram.messenger.g0.g3(new me(9));
                 r40Var2.f39002a = neVar;
                 r40Var2.d = i15;
                 r40Var2.f39009e = i15;
-                r40Var2.f39011f = org.telegram.messenger.mp.u1(r40Var2.I0.f42770e).f25824z3 * 1024;
+                r40Var2.f39011f = org.telegram.messenger.mp.u1(r40Var2.I0.f42770e).f25822z3 * 1024;
                 r40Var2.f39033x = eglGetCurrentContext;
                 synchronized (r40Var2.V) {
                     try {
@@ -480,7 +480,7 @@ public final class l40 extends org.telegram.messenger.r5 {
 
     @Override
     public final void run() {
-        if (org.telegram.messenger.s2.f26723a) {
+        if (org.telegram.messenger.s2.f26721a) {
             org.telegram.messenger.a8.b("InstantCamera start init gl");
         }
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
@@ -497,12 +497,12 @@ public final class l40 extends org.telegram.messenger.r5 {
         z10 = false;
         z10 = false;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.n10.v(this.f37000b, new StringBuilder("InstantCamera eglGetDisplay failed "));
             }
             finish();
         } else if (!this.f37000b.eglInitialize(eglGetDisplay, new int[2])) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.n10.v(this.f37000b, new StringBuilder("InstantCamera eglInitialize failed "));
             }
             finish();
@@ -510,7 +510,7 @@ public final class l40 extends org.telegram.messenger.r5 {
             int[] iArr = new int[1];
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
             if (!this.f37000b.eglChooseConfig(this.f37001c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 0, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
-                if (org.telegram.messenger.s2.f26723a) {
+                if (org.telegram.messenger.s2.f26721a) {
                     org.telegram.messenger.n10.v(this.f37000b, new StringBuilder("InstantCamera eglChooseConfig failed "));
                 }
                 finish();
@@ -519,7 +519,7 @@ public final class l40 extends org.telegram.messenger.r5 {
                 EGLContext eglCreateContext = this.f37000b.eglCreateContext(this.f37001c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
                 this.d = eglCreateContext;
                 if (eglCreateContext == null) {
-                    if (org.telegram.messenger.s2.f26723a) {
+                    if (org.telegram.messenger.s2.f26721a) {
                         org.telegram.messenger.n10.v(this.f37000b, new StringBuilder("InstantCamera eglCreateContext failed "));
                     }
                     finish();
@@ -530,7 +530,7 @@ public final class l40 extends org.telegram.messenger.r5 {
                         this.f37002e = eglCreateWindowSurface;
                         if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
                             if (!this.f37000b.eglMakeCurrent(this.f37001c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
-                                if (org.telegram.messenger.s2.f26723a) {
+                                if (org.telegram.messenger.s2.f26721a) {
                                     org.telegram.messenger.n10.v(this.f37000b, new StringBuilder("InstantCamera eglMakeCurrent failed "));
                                 }
                                 finish();
@@ -568,7 +568,7 @@ public final class l40 extends org.telegram.messenger.r5 {
                                     int[] iArr3 = new int[1];
                                     GLES20.glGetProgramiv(this.f37005r, 35714, iArr3, 0);
                                     if (iArr3[0] == 0) {
-                                        if (org.telegram.messenger.s2.f26723a) {
+                                        if (org.telegram.messenger.s2.f26721a) {
                                             org.telegram.messenger.a8.d("InstantCamera failed link shader");
                                         }
                                         GLES20.glDeleteProgram(this.f37005r);
@@ -611,19 +611,19 @@ public final class l40 extends org.telegram.messenger.r5 {
                                         });
                                         org.telegram.messenger.g0.g3(new org.telegram.ui.b0(z40Var, i11, surfaceTextureArr[i11], 15));
                                     }
-                                    if (org.telegram.messenger.s2.f26723a) {
+                                    if (org.telegram.messenger.s2.f26721a) {
                                         org.telegram.messenger.a8.d("InstantCamera gl initied");
                                     }
                                     z10 = true;
                                 } else {
-                                    if (org.telegram.messenger.s2.f26723a) {
+                                    if (org.telegram.messenger.s2.f26721a) {
                                         org.telegram.messenger.a8.d("InstantCamera failed creating shader");
                                     }
                                     finish();
                                 }
                             }
                         } else {
-                            if (org.telegram.messenger.s2.f26723a) {
+                            if (org.telegram.messenger.s2.f26721a) {
                                 org.telegram.messenger.n10.v(this.f37000b, new StringBuilder("InstantCamera createWindowSurface failed "));
                             }
                             finish();
@@ -633,7 +633,7 @@ public final class l40 extends org.telegram.messenger.r5 {
                     }
                 }
             } else {
-                if (org.telegram.messenger.s2.f26723a) {
+                if (org.telegram.messenger.s2.f26721a) {
                     org.telegram.messenger.a8.d("InstantCamera eglConfig not initialized");
                 }
                 finish();

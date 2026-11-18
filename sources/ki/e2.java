@@ -1,17 +1,17 @@
 package ki;
 public final class e2 extends org.telegram.ui.ActionBar.j {
-    public final int f18643a;
-    public final t2 f18644b;
+    public final int f18640a;
+    public final t2 f18641b;
 
     public e2(t2 t2Var, int i7) {
-        this.f18643a = i7;
-        this.f18644b = t2Var;
+        this.f18640a = i7;
+        this.f18641b = t2Var;
     }
 
     @Override
     public final void b(int i7) {
-        int i10 = this.f18643a;
-        t2 t2Var = this.f18644b;
+        int i10 = this.f18640a;
+        t2 t2Var = this.f18641b;
         switch (i10) {
             case 0:
                 if (i7 == -1) {
@@ -21,7 +21,7 @@ public final class e2 extends org.telegram.ui.ActionBar.j {
                     }
                     return;
                 } else if (i7 == 2131296492) {
-                    t2Var.f18956z0 = true;
+                    t2Var.f18953z0 = true;
                     t2Var.o(true);
                     return;
                 } else {

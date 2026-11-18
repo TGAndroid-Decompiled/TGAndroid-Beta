@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 public abstract class fu0 extends LinearLayout {
     public boolean a() {
-        return this instanceof org.telegram.ui.ob0;
+        return this instanceof org.telegram.ui.pb0;
     }
 
     public boolean b() {
-        return this instanceof org.telegram.ui.ob0;
+        return this instanceof org.telegram.ui.pb0;
     }
 
     public boolean c(boolean z10) {

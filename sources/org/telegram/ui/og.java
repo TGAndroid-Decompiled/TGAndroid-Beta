@@ -2,30 +2,30 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MediaController;
 public final class og implements Runnable {
-    public final int f50606a = 0;
-    public final bn f50607b;
-    public final boolean f50608c;
+    public final int f50548a = 0;
+    public final bn f50549b;
+    public final boolean f50550c;
     public final long d;
 
     public og(bn bnVar, long j3, boolean z10) {
-        this.f50607b = bnVar;
+        this.f50549b = bnVar;
         this.d = j3;
-        this.f50608c = z10;
+        this.f50550c = z10;
     }
 
     @Override
     public final void run() {
         long j3;
         long j10;
-        switch (this.f50606a) {
+        switch (this.f50548a) {
             case 0:
-                bn.c1(this.f50607b, this.d, this.f50608c);
+                bn.c1(this.f50549b, this.d, this.f50550c);
                 return;
             default:
-                rj rjVar = this.f50607b.f45932a0;
+                rj rjVar = this.f50549b.f45923a0;
                 if (rjVar != null) {
                     MediaController B = MediaController.B();
-                    if (!rjVar.M2 && !rjVar.f32687t3 && B.J() && !B.K() && B.f22716h1 == rjVar.f32693u3) {
+                    if (!rjVar.M2 && !rjVar.f32687t3 && B.J() && !B.K() && B.f22713h1 == rjVar.f32693u3) {
                         rjVar.f32567d1 = false;
                         org.telegram.ui.Components.pe peVar = rjVar.f32559c1;
                         if (peVar != null) {
@@ -38,7 +38,7 @@ public final class og implements Runnable {
                             kgVar.a1(1);
                         }
                         rjVar.o2(0, true);
-                        if (this.f50608c) {
+                        if (this.f50550c) {
                             rjVar.P = true;
                             org.telegram.ui.Components.pg pgVar = rjVar.C2;
                             if (pgVar != null) {
@@ -47,7 +47,7 @@ public final class og implements Runnable {
                             org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(rjVar.R);
                             long j11 = rjVar.E3;
                             bn bnVar = rjVar.D3;
-                            if (bnVar != null && bnVar.f46236x4) {
+                            if (bnVar != null && bnVar.f46227x4) {
                                 j10 = bnVar.d();
                             } else {
                                 j10 = 0;
@@ -76,8 +76,8 @@ public final class og implements Runnable {
     }
 
     public og(bn bnVar, boolean z10, long j3) {
-        this.f50607b = bnVar;
-        this.f50608c = z10;
+        this.f50549b = bnVar;
+        this.f50550c = z10;
         this.d = j3;
     }
 }

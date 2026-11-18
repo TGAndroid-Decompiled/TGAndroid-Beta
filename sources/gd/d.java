@@ -2,11 +2,11 @@ package gd;
 
 import c8.n1;
 public final class d {
-    public static final d[] f13476a;
+    public static final d[] f13473a;
 
     static {
         d[] dVarArr = {new Enum("SYNCHRONIZED", 0), new Enum("PUBLICATION", 1), new Enum("NONE", 2)};
-        f13476a = dVarArr;
+        f13473a = dVarArr;
         n1.a(dVarArr);
     }
 
@@ -15,6 +15,6 @@ public final class d {
     }
 
     public static d[] values() {
-        return (d[]) f13476a.clone();
+        return (d[]) f13473a.clone();
     }
 }

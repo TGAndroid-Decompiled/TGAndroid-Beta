@@ -64,8 +64,8 @@ public final class dw implements Runnable {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj;
                 jxVar.f36552x.f35175f = true;
                 ry ryVar2 = jxVar.H;
-                if (!ryVar2.f39383q1.contains(Long.valueOf(tL_messages_stickerSet2.set.f28432id))) {
-                    ryVar2.f39383q1.add(Long.valueOf(tL_messages_stickerSet2.set.f28432id));
+                if (!ryVar2.f39383q1.contains(Long.valueOf(tL_messages_stickerSet2.set.f28430id))) {
+                    ryVar2.f39383q1.add(Long.valueOf(tL_messages_stickerSet2.set.f28430id));
                 }
                 jxVar.a(true);
                 return;
@@ -108,20 +108,20 @@ public final class dw implements Runnable {
                                     if (u02 != null) {
                                         for (int i13 = 0; i13 < u02.size(); i13++) {
                                             TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) u02.get(i13);
-                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f28432id))) {
+                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f28430id))) {
                                                 String M32 = org.telegram.messenger.g0.M3(tL_messages_stickerSet3.set.title.toLowerCase());
                                                 if (M32.startsWith(M3) || M32.contains(" ".concat(M3))) {
                                                     arrayList6.add(new kx(tL_messages_stickerSet3, tL_messages_stickerSet3.documents));
-                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f28432id));
+                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f28430id));
                                                 }
                                             }
                                         }
                                     }
-                                    ArrayList arrayList7 = org.telegram.messenger.ri.d0(i12).f26641t0[1];
+                                    ArrayList arrayList7 = org.telegram.messenger.ri.d0(i12).f26639t0[1];
                                     if (arrayList7 != null) {
                                         for (int i14 = 0; i14 < arrayList7.size(); i14++) {
                                             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList7.get(i14);
-                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f28432id))) {
+                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f28430id))) {
                                                 String M33 = org.telegram.messenger.g0.M3(stickerSetCovered.set.title.toLowerCase());
                                                 if (M33.startsWith(M3) || M33.contains(" ".concat(M3))) {
                                                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -138,7 +138,7 @@ public final class dw implements Runnable {
                                                     }
                                                     if (arrayList4 != null && !arrayList4.isEmpty()) {
                                                         arrayList6.add(new kx(stickerSetCovered, arrayList4));
-                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f28432id));
+                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f28430id));
                                                     }
                                                 }
                                             }
@@ -175,20 +175,20 @@ public final class dw implements Runnable {
                                     if (u02 != null) {
                                         for (int i13 = 0; i13 < u02.size(); i13++) {
                                             TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) u02.get(i13);
-                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f28432id))) {
+                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f28430id))) {
                                                 String M32 = org.telegram.messenger.g0.M3(tL_messages_stickerSet3.set.title.toLowerCase());
                                                 if (M32.startsWith(M3) || M32.contains(" ".concat(M3))) {
                                                     arrayList6.add(new kx(tL_messages_stickerSet3, tL_messages_stickerSet3.documents));
-                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f28432id));
+                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f28430id));
                                                 }
                                             }
                                         }
                                     }
-                                    ArrayList arrayList7 = org.telegram.messenger.ri.d0(i12).f26641t0[1];
+                                    ArrayList arrayList7 = org.telegram.messenger.ri.d0(i12).f26639t0[1];
                                     if (arrayList7 != null) {
                                         for (int i14 = 0; i14 < arrayList7.size(); i14++) {
                                             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList7.get(i14);
-                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f28432id))) {
+                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f28430id))) {
                                                 String M33 = org.telegram.messenger.g0.M3(stickerSetCovered.set.title.toLowerCase());
                                                 if (M33.startsWith(M3) || M33.contains(" ".concat(M3))) {
                                                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -205,7 +205,7 @@ public final class dw implements Runnable {
                                                     }
                                                     if (arrayList4 != null && !arrayList4.isEmpty()) {
                                                         arrayList6.add(new kx(stickerSetCovered, arrayList4));
-                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f28432id));
+                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f28430id));
                                                     }
                                                 }
                                             }
@@ -288,9 +288,9 @@ public final class dw implements Runnable {
                             bundle.putParcelable("photoUri", uri);
                         }
                         ?? h2Var = new org.telegram.ui.ActionBar.h2(bundle);
-                        h2Var.f52309e = false;
-                        h2Var.f52310f = false;
-                        h2Var.f52308c = u30Var;
+                        h2Var.f52304e = false;
+                        h2Var.f52305f = false;
+                        h2Var.f52303c = u30Var;
                         launchActivity.t0(h2Var);
                         return;
                     }
@@ -306,30 +306,30 @@ public final class dw implements Runnable {
                 z40 z40Var = r40Var.I0;
                 org.telegram.messenger.e20 e20Var = new org.telegram.messenger.e20();
                 z40Var.S = e20Var;
-                e20Var.f23637a = -1L;
-                e20Var.f23639b = -1L;
-                e20Var.f23653q = Math.max(1L, z40Var.Q);
+                e20Var.f23634a = -1L;
+                e20Var.f23636b = -1L;
+                e20Var.f23650q = Math.max(1L, z40Var.Q);
                 org.telegram.messenger.e20 e20Var2 = z40Var.S;
-                e20Var2.f23655s = true;
-                e20Var2.f23658w = z40Var.M;
-                e20Var2.f23659x = z40Var.N;
-                e20Var2.f23660y = z40Var.O;
-                e20Var2.f23661z = z40Var.P;
-                e20Var2.f23650n = 25;
+                e20Var2.f23652s = true;
+                e20Var2.f23655w = z40Var.M;
+                e20Var2.f23656x = z40Var.N;
+                e20Var2.f23657y = z40Var.O;
+                e20Var2.f23658z = z40Var.P;
+                e20Var2.f23647n = 25;
                 e20Var2.h = 360;
-                e20Var2.f23647k = 360;
-                e20Var2.f23645i = 360;
-                e20Var2.f23648l = 360;
-                e20Var2.f23651o = r40Var.f39002a.getAbsolutePath();
+                e20Var2.f23644k = 360;
+                e20Var2.f23642i = 360;
+                e20Var2.f23645l = 360;
+                e20Var2.f23648o = r40Var.f39002a.getAbsolutePath();
                 org.telegram.messenger.e20 e20Var3 = z40Var.S;
                 e20Var3.P = true;
                 e20Var3.O = z40Var.f42783j1;
-                e20Var3.f23654r = z40Var.f42784k0;
+                e20Var3.f23651r = z40Var.f42784k0;
                 z40Var.f42783j1 = null;
                 org.telegram.messenger.ef efVar = new org.telegram.messenger.ef(0, r40Var.f39002a.getAbsolutePath(), 0, true, 0, 0);
                 if (o40Var != null) {
-                    efVar.f27868x = o40Var.f37956c;
-                    efVar.f27869y = o40Var.d;
+                    efVar.f27866x = o40Var.f37956c;
+                    efVar.f27867y = o40Var.d;
                 }
                 m40 m40Var = z40Var.h;
                 org.telegram.messenger.e20 e20Var4 = z40Var.S;
@@ -378,8 +378,8 @@ public final class dw implements Runnable {
                 r50 r50Var = (r50) obj2;
                 if (((TLRPC.TL_error) obj) == null && (abVar = (x50Var = r50Var.f39042a.f39494c).f41890e2) != null) {
                     TLRPC.TL_chatInviteExported tL_chatInviteExported = x50Var.f41894m1;
-                    org.telegram.ui.lb lbVar = abVar.f45523a;
-                    ArrayList arrayList7 = lbVar.f49546p0;
+                    org.telegram.ui.lb lbVar = abVar.f45517a;
+                    ArrayList arrayList7 = lbVar.f49519p0;
                     int size = arrayList7.size();
                     int i13 = lbVar.F.h;
                     TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
@@ -387,8 +387,8 @@ public final class dw implements Runnable {
                     tL_channelAdminLogEventActionExportedInviteDelete.invite = tL_chatInviteExported;
                     tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteDelete;
                     tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-                    tL_channelAdminLogEvent.user_id = org.telegram.messenger.j10.i(lbVar.getAccountInstance().f23221a).f24792n;
-                    if (new org.telegram.messenger.fj(org.telegram.ui.lb.Q0(lbVar), tL_channelAdminLogEvent, lbVar.f49545o0, lbVar.f49544n0, lbVar.f49535f, lbVar.U, true).U >= 0) {
+                    tL_channelAdminLogEvent.user_id = org.telegram.messenger.j10.i(lbVar.getAccountInstance().f23218a).f24789n;
+                    if (new org.telegram.messenger.fj(org.telegram.ui.lb.Q0(lbVar), tL_channelAdminLogEvent, lbVar.f49518o0, lbVar.f49517n0, lbVar.f49508f, lbVar.U, true).U >= 0) {
                         lbVar.W0();
                         int size2 = arrayList7.size() - size;
                         if (size2 > 0) {
@@ -397,7 +397,7 @@ public final class dw implements Runnable {
                             ibVar.o(ibVar.h, size2);
                             org.telegram.ui.lb.P0(lbVar);
                         }
-                        lbVar.f49561z0.remove(tL_chatInviteExported.link);
+                        lbVar.f49534z0.remove(tL_chatInviteExported.link);
                         return;
                     }
                     return;
@@ -444,7 +444,7 @@ public final class dw implements Runnable {
                 Runnable runnable = (Runnable) obj;
                 g0Var.getClass();
                 runnable.run();
-                g0Var.f3004a.remove(runnable);
+                g0Var.f3005a.remove(runnable);
                 return;
             case 22:
                 mf0 mf0Var = (mf0) obj2;
@@ -545,7 +545,7 @@ public final class dw implements Runnable {
                 qf0 qf0Var = ((rf0) obj2).f39129y;
                 int i17 = of0Var2.f38077a;
                 RectF rectF3 = of0Var2.d;
-                ProfileActivity.l0(((org.telegram.ui.tt0) qf0Var).f52356b, i17, rectF3.left, rectF3.top);
+                ProfileActivity.l0(((org.telegram.ui.tt0) qf0Var).f52351b, i17, rectF3.left, rectF3.top);
                 return;
             case 25:
                 RLottieNative rLottieNative = (RLottieNative) obj2;
@@ -574,17 +574,17 @@ public final class dw implements Runnable {
                         if (i19 < arrayList11.size()) {
                             TLObject tLObject4 = ((th0) arrayList11.get(i19)).f40004a;
                             if (tLObject4 instanceof TLRPC.Chat) {
-                                j10 = -((TLRPC.Chat) tLObject4).f28405id;
+                                j10 = -((TLRPC.Chat) tLObject4).f28403id;
                             } else if (tLObject4 instanceof TLRPC.User) {
-                                j10 = ((TLRPC.User) tLObject4).f28554id;
+                                j10 = ((TLRPC.User) tLObject4).f28552id;
                             } else {
                                 j10 = 0;
                             }
                             TLObject tLObject5 = th0Var.f40004a;
                             if (tLObject5 instanceof TLRPC.Chat) {
-                                j11 = -((TLRPC.Chat) tLObject5).f28405id;
+                                j11 = -((TLRPC.Chat) tLObject5).f28403id;
                             } else if (tLObject5 instanceof TLRPC.User) {
-                                j11 = ((TLRPC.User) tLObject5).f28554id;
+                                j11 = ((TLRPC.User) tLObject5).f28552id;
                             } else {
                                 j11 = 0;
                             }
@@ -613,7 +613,7 @@ public final class dw implements Runnable {
                 if (!arrayList12.isEmpty() && (indexOf = arrayList12.indexOf(tL_sponsoredPeer)) >= 0 && (K = km0Var.K()) < km0Var.b()) {
                     arrayList12.remove(indexOf);
                     km0Var.s(K + 1 + indexOf);
-                    int size6 = km0Var.f17482k0.f17733e.size();
+                    int size6 = km0Var.f17479k0.f17730e.size();
                     int size7 = arrayList12.size();
                     if (km0Var.H0) {
                         size6 = Math.min(3, size6);

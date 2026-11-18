@@ -71,7 +71,7 @@ public final class d01 implements TextWatcher {
         if (a01Var != null && !obj.equals(a01Var.f33202n)) {
             a01Var.f33202n = obj;
             if (a01Var.h != null) {
-                Utilities.f22784g.a(a01Var.h);
+                Utilities.f22781g.a(a01Var.h);
                 a01Var.h = null;
             }
             if (obj.length() == 0) {
@@ -85,7 +85,7 @@ public final class d01 implements TextWatcher {
             int i7 = a01Var.d + 1;
             a01Var.d = i7;
             a01Var.h = new org.telegram.ui.b0(a01Var, obj, i7, 29);
-            Utilities.f22784g.d(a01Var.h, 300L);
+            Utilities.f22781g.d(a01Var.h, 300L);
         }
     }
 

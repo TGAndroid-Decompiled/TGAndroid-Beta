@@ -172,13 +172,13 @@ public final class dv extends LinearLayout {
                         if (l11 == null) {
                             fx fxVar = hvVar2.f35993w;
                             if (fxVar != null && (stickerSet = fxVar.f35172b) != null) {
-                                l10 = Long.valueOf(stickerSet.f28432id);
+                                l10 = Long.valueOf(stickerSet.f28430id);
                             } else {
                                 l11 = hvVar2.f35991r;
                                 if (l11 == null) {
                                     TLRPC.Document document = hvVar2.f35992s;
                                     if (document != null) {
-                                        l10 = Long.valueOf(document.f28411id);
+                                        l10 = Long.valueOf(document.f28409id);
                                     }
                                 }
                             }

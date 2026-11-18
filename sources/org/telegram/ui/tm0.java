@@ -9,12 +9,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class tm0 extends org.telegram.ui.ActionBar.h2 {
-    public Bitmap f52306a;
-    public BitmapDrawable f52307b;
-    public sm0 f52308c;
+    public Bitmap f52301a;
+    public BitmapDrawable f52302b;
+    public sm0 f52303c;
     public rm0 d;
-    public boolean f52309e;
-    public boolean f52310f;
+    public boolean f52304e;
+    public boolean f52305f;
 
     @Override
     public final View createView(Context context) {
@@ -43,7 +43,7 @@ public final class tm0 extends org.telegram.ui.ActionBar.h2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f52306a == null) {
+        if (this.f52301a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
@@ -55,17 +55,17 @@ public final class tm0 extends org.telegram.ui.ActionBar.h2 {
             if (org.telegram.messenger.g0.Q1()) {
                 max = org.telegram.messenger.g0.L(520.0f);
             } else {
-                Point point = org.telegram.messenger.g0.f24121q;
+                Point point = org.telegram.messenger.g0.f24118q;
                 max = Math.max(point.x, point.y);
             }
             float f10 = max;
             Bitmap K = org.telegram.messenger.ec.K(string, uri, f10, f10, true);
-            this.f52306a = K;
+            this.f52301a = K;
             if (K == null) {
                 return false;
             }
         }
-        this.f52307b = new BitmapDrawable(this.f52306a);
+        this.f52302b = new BitmapDrawable(this.f52301a);
         super.onFragmentCreate();
         return true;
     }
@@ -73,11 +73,11 @@ public final class tm0 extends org.telegram.ui.ActionBar.h2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f52306a;
-        if (bitmap != null && !this.f52309e) {
+        Bitmap bitmap = this.f52301a;
+        if (bitmap != null && !this.f52304e) {
             bitmap.recycle();
-            this.f52306a = null;
+            this.f52301a = null;
         }
-        this.f52307b = null;
+        this.f52302b = null;
     }
 }

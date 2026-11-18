@@ -96,9 +96,9 @@ public class e51 extends ck0 {
                 if (i11 >= 0) {
                     int i12 = w41Var.f41563a;
                     if (z41Var.f42808n) {
-                        i7 = org.telegram.ui.ActionBar.n6.f29469h5;
+                        i7 = org.telegram.ui.ActionBar.n6.f29467h5;
                     } else {
-                        i7 = org.telegram.ui.ActionBar.n6.f29396d6;
+                        i7 = org.telegram.ui.ActionBar.n6.f29394d6;
                     }
                     int w02 = org.telegram.ui.ActionBar.n6.w0(i7, z41Var.f42812x);
                     if (i11 >= i12 && i12 >= 0 && i11 >= 0) {
@@ -195,7 +195,7 @@ public class e51 extends ck0 {
             setOnItemLongClickListener(new g2(24, this, w10Var));
         }
         d51 d51Var = new d51(this);
-        d51Var.f59151m = false;
+        d51Var.f59152m = false;
         d51Var.C = false;
         d51Var.o(lr.h);
         d51Var.n(350L);

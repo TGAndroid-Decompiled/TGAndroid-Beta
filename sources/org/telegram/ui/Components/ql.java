@@ -17,7 +17,7 @@ public final class ql implements Runnable {
         switch (i7) {
             case 0:
                 boolean z10 = ChatAttachAlertPhotoLayout.f32762r1;
-                chatAttachAlertPhotoLayout.f36766b.f30195c.removeView(chatAttachAlertPhotoLayout.Q);
+                chatAttachAlertPhotoLayout.f36766b.f30193c.removeView(chatAttachAlertPhotoLayout.Q);
                 chatAttachAlertPhotoLayout.Q = null;
                 return;
             case 1:

@@ -65,7 +65,7 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
             }
         } else {
             com.google.android.gms.common.api.q i7 = q0.i(view);
-            if (i7 != null && Objects.equals((l1) i7.f6398a, h)) {
+            if (i7 != null && Objects.equals((l1) i7.f6395a, h)) {
                 if (view.getTag(2131296687) == null) {
                     return view.onApplyWindowInsets(windowInsets);
                 }
@@ -77,14 +77,14 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
                 while (i10 <= 512) {
                     i0.b f10 = i1Var.f(i10);
                     i0.b f11 = l1Var.f56258a.f(i10);
-                    int i11 = f10.f15892a;
+                    int i11 = f10.f15889a;
                     int i12 = f10.d;
-                    int i13 = f10.f15894c;
-                    int i14 = f10.f15893b;
-                    int i15 = f11.f15892a;
+                    int i13 = f10.f15891c;
+                    int i14 = f10.f15890b;
+                    int i15 = f11.f15889a;
                     int i16 = f11.d;
-                    int i17 = f11.f15894c;
-                    int i18 = f11.f15893b;
+                    int i17 = f11.f15891c;
+                    int i18 = f11.f15890b;
                     if (i11 <= i15 && i14 <= i18 && i13 <= i17 && i12 <= i16) {
                         iArr = iArr2;
                         z10 = false;
@@ -138,16 +138,16 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(v0Var.f56286a.a());
                     i0.b f12 = i1Var.f(i21);
                     i0.b f13 = l1Var2.f56258a.f(i21);
-                    int min = Math.min(f12.f15892a, f13.f15892a);
-                    int i22 = f12.f15893b;
-                    int i23 = f13.f15893b;
+                    int min = Math.min(f12.f15889a, f13.f15889a);
+                    int i22 = f12.f15890b;
+                    int i23 = f13.f15890b;
                     int min2 = Math.min(i22, i23);
-                    int i24 = f12.f15894c;
-                    int i25 = f13.f15894c;
+                    int i24 = f12.f15891c;
+                    int i25 = f13.f15891c;
                     int min3 = Math.min(i24, i25);
                     int i26 = f12.d;
                     int i27 = f13.d;
-                    k8.a aVar = new k8.a(i0.b.b(min, min2, min3, Math.min(i26, i27)), i0.b.b(Math.max(f12.f15892a, f13.f15892a), Math.max(i22, i23), Math.max(i24, i25), Math.max(i26, i27)), false, 28);
+                    k8.a aVar = new k8.a(i0.b.b(min, min2, min3, Math.min(i26, i27)), i0.b.b(Math.max(f12.f15889a, f13.f15889a), Math.max(i22, i23), Math.max(i24, i25), Math.max(i26, i27)), false, 28);
                     q0.f(view, h, false);
                     duration.addUpdateListener(new o0(v0Var, h, l1Var2, i21, view));
                     duration.addListener(new h60(v0Var, view, 19));

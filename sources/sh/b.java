@@ -41,12 +41,12 @@ public final class b implements View.OnClickListener {
                 return;
             case 4:
                 PremiumPreviewFragment.u0();
-                PremiumPreviewFragment.p0(((i1) this.f57421b).f58691p2, null, "profile", null);
+                PremiumPreviewFragment.p0(((i1) this.f57421b).f58692p2, null, "profile", null);
                 return;
             case 5:
                 final g0 g0Var = (g0) this.f57421b;
                 yg.a aVar = g0Var.M2;
-                if (!aVar.f61199a.R) {
+                if (!aVar.f61200a.R) {
                     aVar.b(true);
                     String str = g0Var.N2;
                     x10 x10Var = new x10() {
@@ -63,7 +63,7 @@ public final class b implements View.OnClickListener {
                                 default:
                                     g0 g0Var3 = g0Var;
                                     g0Var3.M2.b(false);
-                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30192b, g0Var3.J0, new e0(g0Var3, 0));
+                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30190b, g0Var3.J0, new e0(g0Var3, 0));
                                     return;
                             }
                         }
@@ -82,12 +82,12 @@ public final class b implements View.OnClickListener {
                                 default:
                                     g0 g0Var3 = g0Var;
                                     g0Var3.M2.b(false);
-                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30192b, g0Var3.J0, new e0(g0Var3, 0));
+                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30190b, g0Var3.J0, new e0(g0Var3, 0));
                                     return;
                             }
                         }
                     };
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(j10.f24773t0);
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(j10.f24770t0);
                     TLRPC.TL_payments_applyGiftCode tL_payments_applyGiftCode = new TLRPC.TL_payments_applyGiftCode();
                     tL_payments_applyGiftCode.slug = str;
                     connectionsManager.sendRequest(tL_payments_applyGiftCode, new wg.n(x10Var2, x10Var, 0), 2);
@@ -98,7 +98,7 @@ public final class b implements View.OnClickListener {
                 ((j0) this.f57421b).dismiss();
                 return;
             default:
-                ((b0) ((xg.e) this.f57421b)).f59722r.dismiss();
+                ((b0) ((xg.e) this.f57421b)).f59723r.dismiss();
                 return;
         }
     }

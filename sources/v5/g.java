@@ -11,26 +11,26 @@ import java.util.Arrays;
 import java.util.Iterator;
 import org.telegram.ui.Components.rm;
 public final class g implements d, w5.c, c {
-    public static final l5.c f59281f = new l5.c("proto");
-    public final i f59282a;
-    public final x5.a f59283b;
-    public final x5.a f59284c;
+    public static final l5.c f59282f = new l5.c("proto");
+    public final i f59283a;
+    public final x5.a f59284b;
+    public final x5.a f59285c;
     public final a d;
-    public final fd.a f59285e;
+    public final fd.a f59286e;
 
     public g(x5.a aVar, x5.a aVar2, a aVar3, i iVar, fd.a aVar4) {
-        this.f59282a = iVar;
-        this.f59283b = aVar;
-        this.f59284c = aVar2;
+        this.f59283a = iVar;
+        this.f59284b = aVar;
+        this.f59285c = aVar2;
         this.d = aVar3;
-        this.f59285e = aVar4;
+        this.f59286e = aVar4;
     }
 
     public static Long b(SQLiteDatabase sQLiteDatabase, o5.i iVar) {
         Long valueOf;
         StringBuilder sb2 = new StringBuilder("backend_name = ? and priority = ?");
-        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f21714a, String.valueOf(y5.a.a(iVar.f21716c))));
-        byte[] bArr = iVar.f21715b;
+        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f21711a, String.valueOf(y5.a.a(iVar.f21713c))));
+        byte[] bArr = iVar.f21712b;
         if (bArr != null) {
             sb2.append(" and extras = ?");
             arrayList.add(Base64.encodeToString(bArr, 0));
@@ -54,7 +54,7 @@ public final class g implements d, w5.c, c {
         StringBuilder sb2 = new StringBuilder("(");
         Iterator it = iterable.iterator();
         while (it.hasNext()) {
-            sb2.append(((b) it.next()).f59276a);
+            sb2.append(((b) it.next()).f59277a);
             if (it.hasNext()) {
                 sb2.append(',');
             }
@@ -72,15 +72,15 @@ public final class g implements d, w5.c, c {
     }
 
     public final SQLiteDatabase a() {
-        i iVar = this.f59282a;
+        i iVar = this.f59283a;
         Objects.requireNonNull(iVar);
-        x5.a aVar = this.f59284c;
+        x5.a aVar = this.f59285c;
         long r10 = aVar.r();
         while (true) {
             try {
                 return iVar.getWritableDatabase();
             } catch (SQLiteDatabaseLockedException e10) {
-                if (aVar.r() < this.d.f59274c + r10) {
+                if (aVar.r() < this.d.f59275c + r10) {
                     SystemClock.sleep(50L);
                 } else {
                     throw new RuntimeException("Timed out while trying to open db.", e10);
@@ -103,7 +103,7 @@ public final class g implements d, w5.c, c {
 
     @Override
     public final void close() {
-        this.f59282a.close();
+        this.f59283a.close();
     }
 
     public final ArrayList d(SQLiteDatabase sQLiteDatabase, o5.i iVar, int i7) {
@@ -122,7 +122,7 @@ public final class g implements d, w5.c, c {
 
     public final Object f(w5.b bVar) {
         SQLiteDatabase a10 = a();
-        x5.a aVar = this.f59284c;
+        x5.a aVar = this.f59285c;
         long r10 = aVar.r();
         while (true) {
             try {
@@ -135,7 +135,7 @@ public final class g implements d, w5.c, c {
                     a10.endTransaction();
                 }
             } catch (SQLiteDatabaseLockedException e10) {
-                if (aVar.r() < this.d.f59274c + r10) {
+                if (aVar.r() < this.d.f59275c + r10) {
                     SystemClock.sleep(50L);
                 } else {
                     throw new RuntimeException("Timed out while trying to acquire the lock.", e10);

@@ -6,14 +6,14 @@ import org.telegram.tgnet.TLRPC;
 public final class is0 implements org.telegram.ui.ls {
     public final TLRPC.TL_messageMediaPoll f36192a;
     public final TLRPC.PollAnswer f36193b;
-    public final org.telegram.ui.Cells.q1 f36194c;
+    public final org.telegram.ui.Cells.r1 f36194c;
     public final ns0 d;
 
-    public is0(ns0 ns0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.q1 q1Var) {
+    public is0(ns0 ns0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.r1 r1Var) {
         this.d = ns0Var;
         this.f36192a = tL_messageMediaPoll;
         this.f36193b = pollAnswer;
-        this.f36194c = q1Var;
+        this.f36194c = r1Var;
     }
 
     @Override
@@ -65,10 +65,10 @@ public final class is0 implements org.telegram.ui.ls {
         if (inputStickerSet != null && ps0Var.f38548s.getContext() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f28425id = inputStickerSet.f28425id;
+            tL_inputStickerSetID.f28423id = inputStickerSet.f28423id;
             iw0 iw0Var = new iw0(ps0Var.f38548s.getContext(), ps0Var.f38548s.f35642y1, tL_inputStickerSetID, null, null, ns0Var.f37852b);
-            iw0Var.f30210i0 = true;
-            iw0Var.f30217n = true;
+            iw0Var.f30208i0 = true;
+            iw0Var.f30215n = true;
             iw0Var.d2 = z10;
             iw0Var.show();
         }

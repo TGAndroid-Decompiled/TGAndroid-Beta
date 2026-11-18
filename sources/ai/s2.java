@@ -18,38 +18,38 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.w9;
 public final class s2 extends View {
     public long E;
-    public final Paint f1519a;
-    public final Paint f1520b;
-    public final Paint f1521c;
+    public final Paint f1520a;
+    public final Paint f1521b;
+    public final Paint f1522c;
     public final Paint d;
-    public final TextPaint f1522e;
-    public final Drawable f1523f;
+    public final TextPaint f1523e;
+    public final Drawable f1524f;
     public final int h;
-    public LinearGradient f1524n;
-    public LinearGradient f1525r;
-    public int f1526s;
-    public final String f1527w;
-    public final w9 f1528x;
-    public final w9 f1529y;
+    public LinearGradient f1525n;
+    public LinearGradient f1526r;
+    public int f1527s;
+    public final String f1528w;
+    public final w9 f1529x;
+    public final w9 f1530y;
 
     public s2(Activity activity, i6 i6Var) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f1519a = paint;
+        this.f1520a = paint;
         Paint paint2 = new Paint(1);
         Paint paint3 = new Paint(1);
-        this.f1520b = paint3;
+        this.f1521b = paint3;
         Paint paint4 = new Paint(1);
-        this.f1521c = paint4;
+        this.f1522c = paint4;
         this.d = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f1522e = textPaint;
-        this.f1527w = gd.M0(2131745051, null) + " · ";
-        this.f1528x = new w9(12);
-        this.f1529y = new w9(11);
+        this.f1523e = textPaint;
+        this.f1528w = gd.M0(2131745051, null) + " · ";
+        this.f1529x = new w9(12);
+        this.f1530y = new w9(11);
         int w02 = n6.w0(n6.Fi, i6Var);
         this.h = w02;
-        n6.w0(n6.f29504j5, i6Var);
+        n6.w0(n6.f29502j5, i6Var);
         paint.setColor(w02);
         paint2.setStyle(Paint.Style.STROKE);
         paint2.setStrokeWidth(org.telegram.messenger.g0.N(1.6f));
@@ -58,7 +58,7 @@ public final class s2 extends View {
         paint3.setStrokeWidth(org.telegram.messenger.g0.N(3.0f));
         textPaint.setTextSize(org.telegram.messenger.g0.L(17.0f));
         Drawable mutate = activity.getResources().getDrawable(2131231508).mutate();
-        this.f1523f = mutate;
+        this.f1524f = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
@@ -128,7 +128,7 @@ public final class s2 extends View {
             float C = a8.p0.C(L3 - f39, org.telegram.messenger.g0.L(34.0f), 1.0f, 0.0f);
             float f42 = 0.8f * C;
             float B = com.google.android.gms.internal.vision.e2.B(f42, C, 0.2f, (a(f39 - L2) * org.telegram.messenger.g0.L(30.0f)) + org.telegram.messenger.g0.L(6.0f));
-            Paint paint = this.f1520b;
+            Paint paint = this.f1521b;
             paint.setAlpha((int) ((f42 + 0.2f) * 255.0f));
             float f43 = 1.0f - C;
             float L6 = f43 * f43 * org.telegram.messenger.g0.L(7.0f);
@@ -172,27 +172,27 @@ public final class s2 extends View {
         Canvas canvas2 = canvas;
         float f58 = 1.0f;
         float f59 = f38;
-        LinearGradient linearGradient = this.f1525r;
-        Paint paint2 = this.f1522e;
+        LinearGradient linearGradient = this.f1526r;
+        Paint paint2 = this.f1523e;
         int i12 = this.h;
-        if (linearGradient != null && this.f1526s == width) {
+        if (linearGradient != null && this.f1527s == width) {
             f11 = L4;
         } else {
             LinearGradient linearGradient2 = new LinearGradient(L4, 0.0f, L4 + 1.0f, 0.0f, i0.a.f(0.22f, i12, -1), i0.a.f(0.22f, i12, -1), Shader.TileMode.CLAMP);
             f11 = L4;
-            this.f1525r = linearGradient2;
+            this.f1526r = linearGradient2;
             paint2.setShader(linearGradient2);
         }
         canvas2.save();
         canvas2.clipRect(f11, 0.0f, f35, f37);
-        String str = this.f1527w;
+        String str = this.f1528w;
         float measureText = paint2.measureText(str);
         float descent = f59 - ((paint2.descent() + paint2.ascent()) / 2.0f);
         for (float L7 = (org.telegram.messenger.g0.L(4.0f) + f11) - (measureText - ((org.telegram.messenger.g0.L(55.0f) * uptimeMillis) % measureText)); L7 < f35; L7 += measureText) {
             canvas2.drawText(str, L7, descent, paint2);
         }
         canvas2.restore();
-        if (this.f1524n != null && this.f1526s == width) {
+        if (this.f1525n != null && this.f1527s == width) {
             f12 = f11;
             f14 = f59;
             f15 = L2;
@@ -202,7 +202,7 @@ public final class s2 extends View {
             c10 = 65535;
             z10 = false;
         } else {
-            this.f1526s = width;
+            this.f1527s = width;
             f12 = f11;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             z10 = false;
@@ -213,17 +213,17 @@ public final class s2 extends View {
             f16 = L;
             c10 = 65535;
             LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, f35, 0.0f, new int[]{0, -16777216, -16777216, 0}, new float[]{0.0f, 0.22f, 0.78f, 1.0f}, tileMode);
-            this.f1524n = linearGradient3;
-            this.f1521c.setShader(linearGradient3);
+            this.f1525n = linearGradient3;
+            this.f1522c.setShader(linearGradient3);
             LinearGradient linearGradient4 = new LinearGradient(f12, 0.0f, f12 + 1.0f, 0.0f, i0.a.f(0.22f, i12, -1), i0.a.f(0.22f, i12, -1), tileMode);
-            this.f1525r = linearGradient4;
+            this.f1526r = linearGradient4;
             paint2.setShader(linearGradient4);
         }
         int i13 = i12;
         float f60 = 3.0f;
         float f61 = descent;
         float f62 = f14;
-        canvas2.drawRect(0.0f, 0.0f, f35, f13, this.f1521c);
+        canvas2.drawRect(0.0f, 0.0f, f35, f13, this.f1522c);
         canvas2.restoreToCount(i7);
         long uptimeMillis2 = SystemClock.uptimeMillis();
         long j3 = this.E;
@@ -235,9 +235,9 @@ public final class s2 extends View {
             min = Math.min(64L, uptimeMillis2 - j3);
         }
         this.E = uptimeMillis2;
-        w9 w9Var = this.f1528x;
+        w9 w9Var = this.f1529x;
         int i14 = (w9Var.f41628a > 0.0f ? 1 : (w9Var.f41628a == 0.0f ? 0 : -1));
-        w9 w9Var2 = this.f1529y;
+        w9 w9Var2 = this.f1530y;
         if (i14 == 0) {
             w9Var2.f41628a = org.telegram.messenger.g0.L(1.0f) + f16;
             f18 = 0.6f;
@@ -374,9 +374,9 @@ public final class s2 extends View {
             f18 = f29;
         }
         float f79 = f64;
-        canvas2.drawCircle(f79, f62, f16, this.f1519a);
+        canvas2.drawCircle(f79, f62, f16, this.f1520a);
         float L12 = org.telegram.messenger.g0.L(30.0f) / 2.0f;
-        Drawable drawable = this.f1523f;
+        Drawable drawable = this.f1524f;
         drawable.setBounds((int) (f79 - L12), (int) (f62 - L12), (int) (f79 + L12), (int) (f62 + L12));
         drawable.draw(canvas2);
         invalidate();

@@ -12,15 +12,15 @@ public class MusicBrowserService extends MediaBrowserService {
     public final void onCreate() {
         super.onCreate();
         t0.w();
-        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) qz.a(this).f26502b.f1704b).f1736c.f1680b);
+        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) qz.a(this).f26500b.f1705b).f1737c.f1681b);
     }
 
     @Override
     public final MediaBrowserService.BrowserRoot onGetRoot(String str, int i7, Bundle bundle) {
         if (str != null) {
             if (1000 != i7 && Process.myUid() != i7) {
-                HashSet hashSet = zs.f28350a;
-                if (i7 != 1000 && i7 != Process.myUid() && !zs.f28350a.contains(str)) {
+                HashSet hashSet = zs.f28348a;
+                if (i7 != 1000 && i7 != Process.myUid() && !zs.f28348a.contains(str)) {
                     PackageManager packageManager = getPackageManager();
                     try {
                         if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) != 0) {

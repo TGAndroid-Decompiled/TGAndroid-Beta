@@ -11,7 +11,7 @@ public abstract class vu extends zt {
     public final dv X;
     public final dv Y;
     public final dv[] Z;
-    public final boolean f27602a0;
+    public final boolean f27600a0;
 
     public vu(ev evVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2, Layout.Alignment alignment) {
         super(evVar, rect, i7);
@@ -22,11 +22,11 @@ public abstract class vu extends zt {
         } else {
             z10 = false;
         }
-        this.f27602a0 = z10;
-        dv dvVar2 = new dv(evVar, spannableStringBuilder, this.f28353c, alignment);
+        this.f27600a0 = z10;
+        dv dvVar2 = new dv(evVar, spannableStringBuilder, this.f28351c, alignment);
         this.X = dvVar2;
         if (!TextUtils.isEmpty(spannableStringBuilder2)) {
-            dvVar = new dv(evVar, spannableStringBuilder2, this.f28353c, alignment);
+            dvVar = new dv(evVar, spannableStringBuilder2, this.f28351c, alignment);
         } else {
             dvVar = null;
         }
@@ -37,11 +37,11 @@ public abstract class vu extends zt {
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f28352b;
-        int i02 = i0() + this.X.f23580b.getHeight() + rect.top;
+        Rect rect = this.f28350b;
+        int i02 = i0() + this.X.f23577b.getHeight() + rect.top;
         dv dvVar = this.Y;
         if (dvVar != null) {
-            i7 = dvVar.f23580b.getHeight();
+            i7 = dvVar.f23577b.getHeight();
         } else {
             i7 = 0;
         }
@@ -54,14 +54,14 @@ public abstract class vu extends zt {
         if (dvVar == null) {
             dvVar = this.X;
         }
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         return dvVar.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
         int i7;
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         int i10 = rect.left;
         int r10 = this.X.r();
         dv dvVar = this.Y;
@@ -74,7 +74,7 @@ public abstract class vu extends zt {
     }
 
     @Override
-    public final org.telegram.ui.Cells.t9[] L() {
+    public final org.telegram.ui.Cells.u9[] L() {
         return this.Z;
     }
 
@@ -106,7 +106,7 @@ public abstract class vu extends zt {
         dv dvVar2 = this.Y;
         if (dvVar2 != null) {
             canvas.save();
-            canvas.translate(j0(dvVar2), i0() + dvVar.f23580b.getHeight());
+            canvas.translate(j0(dvVar2), i0() + dvVar.f23577b.getHeight());
             dvVar2.d(canvas, dvVar2.T);
             canvas.restore();
         }
@@ -116,7 +116,7 @@ public abstract class vu extends zt {
     public final boolean Y(MotionEvent motionEvent) {
         int i7;
         dv dvVar = this.X;
-        int height = dvVar.f23580b.getHeight();
+        int height = dvVar.f23577b.getHeight();
         float y10 = motionEvent.getY();
         int i10 = 0;
         if (y10 >= 0.0f && y10 < height) {
@@ -139,20 +139,20 @@ public abstract class vu extends zt {
     @Override
     public final void Z(int i7, int i10, int i11) {
         dv dvVar = this.X;
-        dvVar.f23581c = (j0(dvVar) + i7) - dvVar.f23583f;
+        dvVar.f23578c = (j0(dvVar) + i7) - dvVar.f23580f;
         dvVar.d = i10;
-        dvVar.f23582e = i11;
+        dvVar.f23579e = i11;
         dv dvVar2 = this.Y;
         if (dvVar2 != null) {
-            dvVar2.f23581c = (j0(dvVar2) + i7) - dvVar2.f23583f;
-            dvVar2.d = i0() + dvVar.f23580b.getHeight() + i10;
-            dvVar2.f23582e = i11;
+            dvVar2.f23578c = (j0(dvVar2) + i7) - dvVar2.f23580f;
+            dvVar2.d = i0() + dvVar.f23577b.getHeight() + i10;
+            dvVar2.f23579e = i11;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.X.f23580b;
+        return this.X.f23577b;
     }
 
     public final int i0() {
@@ -165,9 +165,9 @@ public abstract class vu extends zt {
     public final int j0(dv dvVar) {
         int L;
         int r10;
-        boolean z10 = this.f27602a0;
-        Rect rect = this.f28352b;
-        ev evVar = this.f28351a;
+        boolean z10 = this.f27600a0;
+        Rect rect = this.f28350b;
+        ev evVar = this.f28349a;
         if (z10) {
             L = (((evVar.C + evVar.T) - evVar.S) - dvVar.r()) / 2;
             r10 = rect.left;
@@ -189,16 +189,16 @@ public abstract class vu extends zt {
     public final boolean u(CharacterStyle characterStyle, int i7, qt qtVar) {
         dv dvVar = this.X;
         boolean o4 = dvVar.o(characterStyle, qtVar);
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         if (o4) {
-            qtVar.f26452e = (j0(dvVar) + rect.left) - dvVar.f23583f;
-            qtVar.f26453f = i7 + rect.top;
+            qtVar.f26450e = (j0(dvVar) + rect.left) - dvVar.f23580f;
+            qtVar.f26451f = i7 + rect.top;
             return true;
         }
         dv dvVar2 = this.Y;
         if (dvVar2 != null && dvVar2.o(characterStyle, qtVar)) {
-            qtVar.f26452e = (j0(dvVar2) + rect.left) - dvVar2.f23583f;
-            qtVar.f26453f = i0() + dvVar.f23580b.getHeight() + i7 + rect.top;
+            qtVar.f26450e = (j0(dvVar2) + rect.left) - dvVar2.f23580f;
+            qtVar.f26451f = i0() + dvVar.f23577b.getHeight() + i7 + rect.top;
             return true;
         }
         return false;
@@ -206,6 +206,6 @@ public abstract class vu extends zt {
 
     @Override
     public final boolean v() {
-        return this.f27602a0;
+        return this.f27600a0;
     }
 }

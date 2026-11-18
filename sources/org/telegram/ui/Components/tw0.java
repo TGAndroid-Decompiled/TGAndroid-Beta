@@ -9,7 +9,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class tw0 {
     public final int f40113a;
-    public final org.telegram.ui.Cells.u0 f40114b;
+    public final org.telegram.ui.Cells.v0 f40114b;
     public final org.telegram.ui.ActionBar.i6 f40115c;
     public final mh0 d;
     public TL_account.TL_birthday f40116e;
@@ -22,30 +22,30 @@ public final class tw0 {
     public final Paint f40122l = new Paint(1);
     public final mc f40123m;
 
-    public tw0(int i7, org.telegram.ui.Cells.u0 u0Var, org.telegram.ui.ActionBar.i6 i6Var) {
+    public tw0(int i7, org.telegram.ui.Cells.v0 v0Var, org.telegram.ui.ActionBar.i6 i6Var) {
         this.f40113a = i7;
-        this.f40114b = u0Var;
+        this.f40114b = v0Var;
         this.f40115c = i6Var;
         mh0 mh0Var = new mh0(2131623955, org.telegram.messenger.g0.L(66.0f), org.telegram.messenger.g0.L(66.0f), true, null);
         this.d = mh0Var;
         mh0Var.H(false);
-        this.f40123m = new mc(u0Var);
+        this.f40123m = new mc(v0Var);
     }
 
     public final void a(Canvas canvas) {
         int L = org.telegram.messenger.g0.L(66.0f);
-        org.telegram.ui.Cells.u0 u0Var = this.f40114b;
-        int width = (u0Var.getWidth() - L) / 2;
+        org.telegram.ui.Cells.v0 v0Var = this.f40114b;
+        int width = (v0Var.getWidth() - L) / 2;
         mh0 mh0Var = this.d;
         mh0Var.setBounds(width, org.telegram.messenger.g0.L(13.0f), width + L, org.telegram.messenger.g0.L(13.0f) + L);
         mh0Var.draw(canvas);
-        this.f40117f.c((u0Var.getWidth() - this.f40117f.k()) / 2.0f, org.telegram.messenger.g0.L(19.0f) + L, 1.0f, -1, canvas);
+        this.f40117f.c((v0Var.getWidth() - this.f40117f.k()) / 2.0f, org.telegram.messenger.g0.L(19.0f) + L, 1.0f, -1, canvas);
         int i7 = (int) (this.f40117f.i() + org.telegram.messenger.g0.L(19.0f) + L + org.telegram.messenger.g0.L(17.0f));
         int i10 = 0;
         for (int i11 = 0; i11 < this.f40118g.length; i11++) {
             i10 = (int) (Math.max(this.f40118g[i11].k(), this.h[i11].k()) + org.telegram.messenger.g0.L(9.0f) + org.telegram.messenger.g0.L(9.0f) + i10);
         }
-        int width2 = (u0Var.getWidth() - i10) / 2;
+        int width2 = (v0Var.getWidth() - i10) / 2;
         int i12 = 0;
         while (i12 < this.f40118g.length) {
             float max = Math.max(this.f40118g[i12].k(), this.h[i12].k()) + org.telegram.messenger.g0.L(9.0f) + org.telegram.messenger.g0.L(9.0f);
@@ -65,7 +65,7 @@ public final class tw0 {
             float L2 = org.telegram.messenger.g0.L(30.0f);
             float L3 = org.telegram.messenger.g0.L(38.0f) + i7;
             RectF rectF = this.f40121k;
-            rectF.set((u0Var.getWidth() - k10) / 2.0f, L3, (u0Var.getWidth() + k10) / 2.0f, L3 + L2);
+            rectF.set((v0Var.getWidth() - k10) / 2.0f, L3, (v0Var.getWidth() + k10) / 2.0f, L3 + L2);
             float a10 = this.f40123m.a(0.1f);
             canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
             float f12 = L2 / 2.0f;
@@ -84,7 +84,7 @@ public final class tw0 {
         String i10;
         boolean q10;
         int i11;
-        TLRPC.TL_messageActionSuggestBirthday tL_messageActionSuggestBirthday = (TLRPC.TL_messageActionSuggestBirthday) fjVar.f23968k.action;
+        TLRPC.TL_messageActionSuggestBirthday tL_messageActionSuggestBirthday = (TLRPC.TL_messageActionSuggestBirthday) fjVar.f23965k.action;
         this.f40116e = tL_messageActionSuggestBirthday.birthday;
         vy0 vy0Var = new vy0(TextUtils.concat(fjVar.v, ":"), 13.0f, null);
         vy0Var.m(6);

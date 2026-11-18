@@ -64,7 +64,7 @@ public final class t61 extends View {
         paint3.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
         paint3.setStyle(Paint.Style.STROKE);
         paint3.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29339a7, false));
+        paint2.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29337a7, false));
         this.M = 0;
         r61 r61Var = this.Q;
         if (r61Var != null) {
@@ -338,7 +338,7 @@ public final class t61 extends View {
                             ChatActivityEnterView chatActivityEnterView = ((ve) s61Var3).f40595a;
                             org.telegram.messenger.e20 e20Var = chatActivityEnterView.S3;
                             if (e20Var != null) {
-                                e20Var.f23637a = ((float) e20Var.f23654r) * f16;
+                                e20Var.f23634a = ((float) e20Var.f23651r) * f16;
                                 chatActivityEnterView.N3.Q(f16, 2);
                             }
                         }
@@ -379,7 +379,7 @@ public final class t61 extends View {
                             ChatActivityEnterView chatActivityEnterView2 = ((ve) s61Var4).f40595a;
                             org.telegram.messenger.e20 e20Var2 = chatActivityEnterView2.S3;
                             if (e20Var2 != null) {
-                                e20Var2.f23639b = ((float) e20Var2.f23654r) * f22;
+                                e20Var2.f23636b = ((float) e20Var2.f23651r) * f22;
                                 chatActivityEnterView2.N3.Q(f22, 2);
                             }
                         }

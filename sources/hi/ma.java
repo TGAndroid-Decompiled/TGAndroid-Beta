@@ -2,17 +2,17 @@ package hi;
 
 import org.telegram.ui.wv0;
 public final class ma extends oa {
-    public final int f15039g;
+    public final int f15036g;
     public final Object h;
 
     public ma(Object obj, int i7) {
-        this.f15039g = i7;
+        this.f15036g = i7;
         this.h = obj;
     }
 
     @Override
     public final void e() {
-        switch (this.f15039g) {
+        switch (this.f15036g) {
             case 0:
                 wv0 wv0Var = (wv0) this.h;
                 wv0Var.R = false;
@@ -34,7 +34,7 @@ public final class ma extends oa {
 
     @Override
     public final void f(boolean z10) {
-        switch (this.f15039g) {
+        switch (this.f15036g) {
             case 0:
                 wv0 wv0Var = (wv0) this.h;
                 wv0Var.R = true;
@@ -45,10 +45,10 @@ public final class ma extends oa {
                 if (z11 != null) {
                     z11.k0(false);
                 }
-                fi.c3 c3Var = this.f15206f;
+                fi.c3 c3Var = this.f15203f;
                 if (c3Var != null) {
                     c3Var.setTranslationX(0.0f);
-                    this.f15206f.setTranslationY(0.0f);
+                    this.f15203f.setTranslationY(0.0f);
                     return;
                 }
                 return;

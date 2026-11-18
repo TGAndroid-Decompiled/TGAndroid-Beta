@@ -11,30 +11,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class j2 implements RequestDelegate {
-    public final int f9069a = 0;
-    public final long f9070b;
-    public final long f9071c;
+    public final int f9066a = 0;
+    public final long f9067b;
+    public final long f9068c;
     public final Object d;
-    public final Object f9072e;
-    public final Object f9073f;
+    public final Object f9069e;
+    public final Object f9070f;
 
     public j2(f6 f6Var, TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, long j3, long j10, x10 x10Var) {
         this.d = f6Var;
-        this.f9072e = tL_inputInvoiceStarGiftTransfer;
-        this.f9070b = j3;
-        this.f9071c = j10;
-        this.f9073f = x10Var;
+        this.f9069e = tL_inputInvoiceStarGiftTransfer;
+        this.f9067b = j3;
+        this.f9068c = j10;
+        this.f9070f = x10Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f9069a) {
+        switch (this.f9066a) {
             case 0:
                 final f6 f6Var = (f6) this.d;
-                final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer = (TLRPC.TL_inputInvoiceStarGiftTransfer) this.f9072e;
-                final x10 x10Var = (x10) this.f9073f;
-                final long j3 = this.f9070b;
-                final long j10 = this.f9071c;
+                final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer = (TLRPC.TL_inputInvoiceStarGiftTransfer) this.f9069e;
+                final x10 x10Var = (x10) this.f9070f;
+                final long j3 = this.f9067b;
+                final long j10 = this.f9068c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -45,7 +45,7 @@ public final class j2 implements RequestDelegate {
                         if (z10) {
                             TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
                             int i7 = 0;
-                            mp.u1(f6Var2.f30189a).f4(paymentForm.users, false);
+                            mp.u1(f6Var2.f30187a).f4(paymentForm.users, false);
                             TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
                             tL_payments_sendStarsForm.form_id = paymentForm.form_id;
                             tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftTransfer;
@@ -57,7 +57,7 @@ public final class j2 implements RequestDelegate {
                                 i7++;
                                 j11 += tL_labeledPrice.amount;
                             }
-                            ConnectionsManager.getInstance(f6Var2.f30189a).sendRequest(tL_payments_sendStarsForm, new g2(f6Var2, j3, j10, x10Var2, j11));
+                            ConnectionsManager.getInstance(f6Var2.f30187a).sendRequest(tL_payments_sendStarsForm, new g2(f6Var2, j3, j10, x10Var2, j11));
                             return;
                         }
                         TLRPC.TL_error tL_error2 = tL_error;
@@ -69,16 +69,16 @@ public final class j2 implements RequestDelegate {
                 });
                 return;
             default:
-                ((GroupCallMessagesController) this.d).lambda$sendCallMessage$6((org.telegram.messenger.voip.f) this.f9072e, (GroupCallMessage) this.f9073f, this.f9070b, this.f9071c, tLObject, tL_error);
+                ((GroupCallMessagesController) this.d).lambda$sendCallMessage$6((org.telegram.messenger.voip.f) this.f9069e, (GroupCallMessage) this.f9070f, this.f9067b, this.f9068c, tLObject, tL_error);
                 return;
         }
     }
 
     public j2(GroupCallMessagesController groupCallMessagesController, org.telegram.messenger.voip.f fVar, GroupCallMessage groupCallMessage, long j3, long j10) {
         this.d = groupCallMessagesController;
-        this.f9072e = fVar;
-        this.f9073f = groupCallMessage;
-        this.f9070b = j3;
-        this.f9071c = j10;
+        this.f9069e = fVar;
+        this.f9070f = groupCallMessage;
+        this.f9067b = j3;
+        this.f9068c = j10;
     }
 }

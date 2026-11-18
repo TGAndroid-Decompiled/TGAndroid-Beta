@@ -23,9 +23,9 @@ import org.telegram.ui.Components.lq;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.Wallet.u0;
 public abstract class n {
-    public static final boolean[] f16325a = new boolean[4];
-    public static final m[] f16326b = new m[4];
-    public static final HashSet[] f16327c = new HashSet[4];
+    public static final boolean[] f16322a = new boolean[4];
+    public static final m[] f16323b = new m[4];
+    public static final HashSet[] f16324c = new HashSet[4];
 
     public static void a(int i7, long j3, long j10, int i10, o9 o9Var) {
         u0 D = u0.D(i7);
@@ -57,14 +57,14 @@ public abstract class n {
     }
 
     public static boolean c(int i7) {
-        return ((h0) mp.u1(i7).A7.f26161p0.f14001b).f24339c;
+        return ((h0) mp.u1(i7).A7.f26159p0.f13998b).f24336c;
     }
 
     public static void d(m mVar) {
-        int i7 = mVar.f16319a;
-        m[] mVarArr = f16326b;
+        int i7 = mVar.f16316a;
+        m[] mVarArr = f16323b;
         if (mVarArr[i7] == mVar && !mVar.h) {
-            if (System.currentTimeMillis() - mVar.f16322e > 600000) {
+            if (System.currentTimeMillis() - mVar.f16319e > 600000) {
                 mVarArr[i7] = null;
                 ks.f(i7).k(ks.B3, new Object[0]);
                 return;
@@ -79,7 +79,7 @@ public abstract class n {
     }
 
     public static HashSet e(int i7) {
-        HashSet[] hashSetArr = f16327c;
+        HashSet[] hashSetArr = f16324c;
         if (hashSetArr[i7] == null) {
             hashSetArr[i7] = new HashSet(mp.u1(i7).h7.getStringSet("gram_earnings_wallet_withdraws", Collections.EMPTY_SET));
         }
@@ -109,11 +109,11 @@ public abstract class n {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h2Var.getContext(), h2Var.getResourceProvider());
         String a02 = gd.a0(null, null, 2131749322, u0.x(j3, false));
-        u1 u1Var = alertDialog$Builder.f28746a;
+        u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = a02;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(gd.M0(2131749323, null));
         f(spannableStringBuilder, "⚙", 2131232362, -1);
-        f(spannableStringBuilder, "💎", 2131231956, n6.f29731v6);
+        f(spannableStringBuilder, "💎", 2131231956, n6.f29729v6);
         u1Var.U = spannableStringBuilder;
         alertDialog$Builder.h(gd.M0(2131752578, null), null);
         alertDialog$Builder.k(gd.M0(2131749330, null), new di.h(h2Var, j3, iVar, 3));
@@ -135,7 +135,7 @@ public abstract class n {
         spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) gd.M0(2131751287, null));
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, twoStepVerificationActivity.getParentActivity(), twoStepVerificationActivity.getResourceProvider());
         String M0 = gd.M0(2131751286, null);
-        u1 u1Var = alertDialog$Builder.f28746a;
+        u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         u1Var.U = spannableStringBuilder;
         alertDialog$Builder.k(gd.M0(2131747638, null), null);

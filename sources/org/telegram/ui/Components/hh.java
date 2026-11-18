@@ -21,7 +21,7 @@ public final class hh implements DialogInterface.OnCancelListener {
                 if (gVar != null) {
                     gVar.d();
                 }
-                r1.g gVar2 = new r1.g((Object) siVar.f30192b, (r1.e) r1.g.f56307p, 0.0f);
+                r1.g gVar2 = new r1.g((Object) siVar.f30190b, (r1.e) r1.g.f56307p, 0.0f);
                 siVar.f39699n4 = gVar2;
                 gVar2.f56323m.a(1.5f);
                 siVar.f39699n4.f56323m.b(1500.0f);

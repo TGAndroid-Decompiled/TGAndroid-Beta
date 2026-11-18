@@ -31,7 +31,7 @@ public final class s31 extends au0 {
         this.f39477l0 = 0.0f;
         this.m0 = new float[8];
         setWillNotDraw(false);
-        int i7 = t31Var.f30227u0;
+        int i7 = t31Var.f30225u0;
         setPadding(i7, 0, i7, 0);
         setDelegate(new r31(this));
     }
@@ -98,12 +98,12 @@ public final class s31 extends au0 {
         }
         if (this.f39478n0 != z11) {
             this.f39478n0 = z11;
-            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, t31Var.J0)) > 0.721f) {
+            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, t31Var.J0)) > 0.721f) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29676s8, t31Var.J0), 855638016)) > 0.721f) {
+            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29674s8, t31Var.J0), 855638016)) > 0.721f) {
                 z13 = true;
             }
             if (!z11) {
@@ -112,18 +112,18 @@ public final class s31 extends au0 {
             org.telegram.messenger.g0.r3(t31Var.getWindow(), z12);
         }
         if (this.f39477l0 > 0.0f) {
-            int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, t31Var.J0);
+            int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, t31Var.J0);
             Paint paint = this.f39472g0;
             paint.setColor(w03);
-            float max2 = (int) Math.max(0.0f, h41Var.getTranslationY() + (org.telegram.messenger.g0.f24115m - i7) + ((1.0f - X()) * i7) + t31Var.f39901p1 + org.telegram.messenger.g0.L(24.0f));
+            float max2 = (int) Math.max(0.0f, h41Var.getTranslationY() + (org.telegram.messenger.g0.f24112m - i7) + ((1.0f - X()) * i7) + t31Var.f39901p1 + org.telegram.messenger.g0.L(24.0f));
             canvas2 = canvas;
-            canvas2.drawRect(t31Var.f30227u0, org.telegram.messenger.g0.W1(this.f39477l0, max, -org.telegram.messenger.g0.f24115m), getMeasuredWidth() - t31Var.f30227u0, max2, paint);
+            canvas2.drawRect(t31Var.f30225u0, org.telegram.messenger.g0.W1(this.f39477l0, max, -org.telegram.messenger.g0.f24112m), getMeasuredWidth() - t31Var.f30225u0, max2, paint);
         } else {
             canvas2 = canvas;
         }
         super.dispatchDraw(canvas);
         canvas2.save();
-        canvas2.translate(0.0f, (h41Var.getTranslationY() + org.telegram.messenger.g0.f24115m) - i7);
+        canvas2.translate(0.0f, (h41Var.getTranslationY() + org.telegram.messenger.g0.f24112m) - i7);
         int L = org.telegram.messenger.g0.L(36.0f);
         int L2 = org.telegram.messenger.g0.L(4.0f);
         int i10 = (int) ((1.0f - X) * L2 * 2.0f);
@@ -153,17 +153,17 @@ public final class s31 extends au0 {
         h41 h41Var = t31Var.f39900o1;
         if (h41Var.c()) {
             t31Var.f39901p1 = h41Var.getContentTopOffset();
-            t31Var.f30192b.invalidate();
+            t31Var.f30190b.invalidate();
         }
         super.onDraw(canvas);
         float X = X();
         int i10 = t31Var.f39899m1;
         int i11 = (int) ((1.0f - X) * i10);
-        int i12 = org.telegram.messenger.g0.f24115m - i10;
+        int i12 = org.telegram.messenger.g0.f24112m - i10;
         canvas.save();
         canvas.translate(0.0f, h41Var.getTranslationY() + i12);
-        Drawable drawable = t31Var.f30225s0;
-        int i13 = (t31Var.f39901p1 - t31Var.f30226t0) + i11;
+        Drawable drawable = t31Var.f30223s0;
+        int i13 = (t31Var.f39901p1 - t31Var.f30224t0) + i11;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         if (i12 < 0) {
@@ -172,17 +172,17 @@ public final class s31 extends au0 {
             i7 = 0;
         }
         drawable.setBounds(0, i13, measuredWidth, measuredHeight + i7);
-        t31Var.f30225s0.draw(canvas);
+        t31Var.f30223s0.draw(canvas);
         if (X > 0.0f && X < 1.0f) {
             float L = org.telegram.messenger.g0.L(12.0f) * X;
-            gradientDrawable.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, t31Var.J0));
+            gradientDrawable.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, t31Var.J0));
             float[] fArr = this.m0;
             fArr[3] = L;
             fArr[2] = L;
             fArr[1] = L;
             fArr[0] = L;
             gradientDrawable.setCornerRadii(fArr);
-            gradientDrawable.setBounds(t31Var.f30227u0, t31Var.f39901p1 + i11, getWidth() - t31Var.f30227u0, org.telegram.messenger.g0.L(24.0f) + t31Var.f39901p1 + i11);
+            gradientDrawable.setBounds(t31Var.f30225u0, t31Var.f39901p1 + i11, getWidth() - t31Var.f30225u0, org.telegram.messenger.g0.L(24.0f) + t31Var.f39901p1 + i11);
             gradientDrawable.draw(canvas);
         }
         canvas.restore();
@@ -202,7 +202,7 @@ public final class s31 extends au0 {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        int i13 = org.telegram.messenger.g0.f24115m;
+        int i13 = org.telegram.messenger.g0.f24112m;
         int Q = Q();
         int size = (int) (((View.MeasureSpec.getSize(getMeasuredHeight()) - i13) + Q) * 0.2f);
         this.f39474i0 = true;
@@ -210,16 +210,16 @@ public final class s31 extends au0 {
         t31 t31Var = this.f39479o0;
         if (Q > L) {
             t31Var.f39900o1.a(true);
-            t31Var.f30223r0 = false;
+            t31Var.f30221r0 = false;
             this.f39473h0 = true;
         } else {
             t31Var.f39900o1.a(false);
-            t31Var.f30223r0 = true;
+            t31Var.f30221r0 = true;
             this.f39473h0 = false;
         }
         t31Var.f39900o1.setContentViewPaddingTop(size);
         if (getPaddingTop() != i13) {
-            int i14 = t31Var.f30227u0;
+            int i14 = t31Var.f30225u0;
             setPadding(i14, i13, i14, 0);
         }
         this.f39474i0 = false;

@@ -12,8 +12,8 @@ public final class is extends org.telegram.ui.ActionBar.h1 {
     @Override
     public final void dismiss() {
         d(true);
-        ns nsVar = this.f48789o.f49073a;
-        nsVar.f50302k = null;
+        ns nsVar = this.f48789o.f49050a;
+        nsVar.f50286k = null;
         nsVar.K = false;
         if (nsVar.R) {
             nsVar.m();

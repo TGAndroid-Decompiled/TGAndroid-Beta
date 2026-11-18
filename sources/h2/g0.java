@@ -3,7 +3,7 @@ package h2;
 import android.os.Handler;
 import android.os.Looper;
 public final class g0 {
-    public static final g0 f13763a = new Object();
+    public static final g0 f13760a = new Object();
 
     public final i0 a(Looper looper, Handler.Callback callback) {
         return new i0(new Handler(looper, callback));

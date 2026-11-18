@@ -21,7 +21,7 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 import org.telegram.ui.r50;
 public final class hb extends k41 {
-    public static final int f8990b = 0;
+    public static final int f8987b = 0;
 
     static {
         k41.h(new k41());
@@ -37,15 +37,15 @@ public final class hb extends k41 {
         ib ibVar = (ib) view;
         TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) l41Var.H;
         org.telegram.ui.ActionBar.n5 n5Var2 = ibVar.d;
-        org.telegram.ui.Components.q9 q9Var = ibVar.f9048c;
-        org.telegram.ui.ActionBar.i6 i6Var = ibVar.f9047b;
+        org.telegram.ui.Components.q9 q9Var = ibVar.f9045c;
+        org.telegram.ui.ActionBar.i6 i6Var = ibVar.f9044b;
         TextView textView = ibVar.h;
-        TextView textView2 = ibVar.f9050f;
-        TextView textView3 = ibVar.f9049e;
-        int i10 = ibVar.f9046a;
-        TextView textView4 = ibVar.f9051n;
+        TextView textView2 = ibVar.f9047f;
+        TextView textView3 = ibVar.f9046e;
+        int i10 = ibVar.f9043a;
+        TextView textView4 = ibVar.f9048n;
         long o4 = org.telegram.messenger.n5.o(starsSubscription.peer);
-        ibVar.f9052r = !TextUtils.isEmpty(starsSubscription.title);
+        ibVar.f9049r = !TextUtils.isEmpty(starsSubscription.title);
         if (o4 < 0) {
             TLRPC.Chat O0 = mp.u1(i10).O0(Long.valueOf(-o4));
             org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
@@ -74,11 +74,11 @@ public final class hb extends k41 {
             if (starsSubscription.photo != null) {
                 r50 r50Var = new r50(14.0f, i10, textView3);
                 r50Var.a(4.0f);
-                r50Var.f51502f = false;
+                r50Var.f51462f = false;
                 SpannableString spannableString = new SpannableString("x");
                 n5Var = n5Var2;
                 spannableString.setSpan(r50Var, 0, 1, 33);
-                r50Var.f51499b.q0(org.telegram.messenger.fc.p(h20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                r50Var.f51459b.q0(org.telegram.messenger.fc.p(h20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 n5Var = n5Var2;
@@ -88,7 +88,7 @@ public final class hb extends k41 {
         } else {
             textView3.setVisibility(8);
         }
-        if (ibVar.f9052r) {
+        if (ibVar.f9049r) {
             f10 = 13.0f;
         } else {
             f10 = 14.0f;
@@ -105,7 +105,7 @@ public final class hb extends k41 {
                 textView2.setText(gd.a0(null, null, 2131744742, gd.u(j3, false)));
                 textView.setVisibility(0);
                 textView.setText(pb.b1(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
-                org.telegram.ui.ActionBar.u6.U(textView4, org.telegram.ui.ActionBar.n6.f29807z6, i6Var);
+                org.telegram.ui.ActionBar.u6.U(textView4, org.telegram.ui.ActionBar.n6.f29805z6, i6Var);
                 int i12 = starsSubscription.pricing.period;
                 if (i12 == 2592000) {
                     textView4.setText(gd.M0(2131744821, null));
@@ -134,7 +134,7 @@ public final class hb extends k41 {
             }
             textView4.setText(gd.M0(i7, null));
         }
-        ibVar.f9053s = z10;
+        ibVar.f9050s = z10;
         ibVar.setWillNotDraw(!z10);
     }
 
@@ -150,7 +150,7 @@ public final class hb extends k41 {
             if (obj instanceof TL_stars.StarsSubscription) {
                 Object obj2 = l41Var2.H;
                 if (obj2 instanceof TL_stars.StarsSubscription) {
-                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f28635id, ((TL_stars.StarsSubscription) obj2).f28635id);
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f28633id, ((TL_stars.StarsSubscription) obj2).f28633id);
                 }
                 return false;
             }

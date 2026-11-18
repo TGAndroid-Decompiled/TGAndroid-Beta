@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class dv extends org.telegram.ui.ActionBar.j {
-    public final int f47055a;
-    public final Object f47056b;
+    public final int f46978a;
+    public final Object f46979b;
 
     public dv(Object obj, int i7) {
-        this.f47055a = i7;
-        this.f47056b = obj;
+        this.f46978a = i7;
+        this.f46979b = obj;
     }
 
     @Override

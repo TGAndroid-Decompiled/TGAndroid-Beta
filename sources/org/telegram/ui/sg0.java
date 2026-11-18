@@ -1,47 +1,60 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class sg0 extends hi.d {
-    public final int m0;
-    public final org.telegram.ui.Components.sa f51995n0;
+public final class sg0 extends ah.o {
+    public final int L;
+    public boolean M;
+    public final org.telegram.ui.Components.sa N;
 
     public sg0(org.telegram.ui.Components.sa saVar, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
-        super(context, i6Var, true);
-        this.m0 = i7;
-        this.f51995n0 = saVar;
+        super(context, i6Var);
+        this.L = i7;
+        this.N = saVar;
     }
 
     @Override
-    public final float b(float f10, float f11) {
-        boolean z10;
-        boolean z11;
-        switch (this.m0) {
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        switch (this.L) {
             case 0:
-                ug0 ug0Var = (ug0) this.f51995n0;
-                if (ug0Var.f52560j2 == 0.0f) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                super.onLayout(z10, i7, i10, i11, i12);
+                vg0 vg0Var = (vg0) this.N;
+                vg0Var.f52778h2 = org.telegram.messenger.g0.L(64.0f) + getMeasuredHeight();
+                vg0Var.f52777g2.G();
+                boolean z11 = this.M;
+                boolean z12 = vg0Var.d;
+                if (z11 != z12) {
+                    this.M = z12;
+                    if (z12) {
+                        org.telegram.ui.Components.ck0 ck0Var = vg0Var.f39534o1;
+                        pi.l lVar = new pi.l(vg0Var.getContext(), 2, 0.6f);
+                        lVar.f59067a = 1;
+                        lVar.f55699p = org.telegram.messenger.g0.L(36.0f);
+                        ck0Var.getLayoutManager().w0(lVar);
+                        return;
+                    }
+                    return;
                 }
-                ug0Var.f52560j2 = f10;
-                if (z10) {
-                    ug0Var.f52561k2 = new org.telegram.ui.Components.op(ug0Var, 2);
-                    ug0Var.f1(false);
-                }
-                return f10;
+                return;
             default:
-                wg.d1 d1Var = (wg.d1) this.f51995n0;
-                if (d1Var.f59750o2 == 0.0f) {
-                    z11 = true;
-                } else {
-                    z11 = false;
+                super.onLayout(z10, i7, i10, i11, i12);
+                wg.d1 d1Var = (wg.d1) this.N;
+                d1Var.f59748l2 = org.telegram.messenger.g0.L(64.0f) + getMeasuredHeight();
+                d1Var.f59747k2.G();
+                boolean z13 = this.M;
+                boolean z14 = d1Var.d;
+                if (z13 != z14) {
+                    this.M = z14;
+                    if (z14) {
+                        org.telegram.ui.Components.ck0 ck0Var2 = d1Var.f39534o1;
+                        pi.l lVar2 = new pi.l(d1Var.getContext(), 2, 0.6f);
+                        lVar2.f59067a = 1;
+                        lVar2.f55699p = org.telegram.messenger.g0.L(36.0f);
+                        ck0Var2.getLayoutManager().w0(lVar2);
+                        return;
+                    }
+                    return;
                 }
-                d1Var.f59750o2 = f10;
-                if (z11) {
-                    d1Var.f59751p2 = new org.telegram.ui.Components.op(d1Var, 3);
-                    d1Var.k1(false);
-                }
-                return f10;
+                return;
         }
     }
 }

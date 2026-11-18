@@ -19,7 +19,7 @@ public final class dq0 extends gi.q {
         char c10;
         gt0 gt0Var = this.H;
         SparseArray[] sparseArrayArr = gt0Var.f35577c1;
-        if (org.telegram.messenger.fj.B0(fjVar.f23968k) == gt0Var.f35606m1) {
+        if (org.telegram.messenger.fj.B0(fjVar.f23965k) == gt0Var.f35606m1) {
             c10 = 0;
         } else {
             c10 = 1;
@@ -39,7 +39,7 @@ public final class dq0 extends gi.q {
         ArrayList arrayList = gt0Var.Q0;
         SparseArray[] sparseArrayArr = gt0Var.f35577c1;
         if (fjVar != null) {
-            if (org.telegram.messenger.fj.B0(fjVar.f23968k) == gt0Var.f35606m1) {
+            if (org.telegram.messenger.fj.B0(fjVar.f23965k) == gt0Var.f35606m1) {
                 c10 = 0;
             } else {
                 c10 = 1;
@@ -117,7 +117,7 @@ public final class dq0 extends gi.q {
         ArrayList arrayList = gt0Var.Q0;
         SparseArray[] sparseArrayArr = gt0Var.f35577c1;
         if (fjVar != null) {
-            if (org.telegram.messenger.fj.B0(fjVar.f23968k) == gt0Var.f35606m1) {
+            if (org.telegram.messenger.fj.B0(fjVar.f23965k) == gt0Var.f35606m1) {
                 c10 = 0;
             } else {
                 c10 = 1;

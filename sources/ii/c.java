@@ -24,38 +24,38 @@ import org.telegram.ui.Components.lc;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.iy0;
 public final class c implements RequestDelegate {
-    public final int f16266a = 2;
-    public final long f16267b;
-    public final Object f16268c;
+    public final int f16263a = 2;
+    public final long f16264b;
+    public final Object f16265c;
     public final int d;
-    public final Object f16269e;
-    public final Object f16270f;
-    public final Object f16271g;
+    public final Object f16266e;
+    public final Object f16267f;
+    public final Object f16268g;
     public final Object h;
-    public final Object f16272i;
+    public final Object f16269i;
 
     public c(Context context, h0 h0Var, long j3, byte[] bArr, org.telegram.messenger.video.a aVar, lc lcVar, org.telegram.messenger.video.d dVar, int i7) {
-        this.f16269e = context;
-        this.f16270f = h0Var;
-        this.f16267b = j3;
-        this.f16268c = bArr;
-        this.f16271g = aVar;
+        this.f16266e = context;
+        this.f16267f = h0Var;
+        this.f16264b = j3;
+        this.f16265c = bArr;
+        this.f16268g = aVar;
         this.h = lcVar;
-        this.f16272i = dVar;
+        this.f16269i = dVar;
         this.d = i7;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f16266a) {
+        switch (this.f16263a) {
             case 0:
-                final ConnectionsManager connectionsManager = (ConnectionsManager) this.f16269e;
-                final TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f16270f;
-                final h2 h2Var = (h2) this.f16268c;
-                final q10 q10Var = (q10) this.f16271g;
+                final ConnectionsManager connectionsManager = (ConnectionsManager) this.f16266e;
+                final TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f16267f;
+                final h2 h2Var = (h2) this.f16265c;
+                final q10 q10Var = (q10) this.f16268g;
                 final Runnable runnable = (Runnable) this.h;
-                final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.f16272i;
-                final long j3 = this.f16267b;
+                final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.f16269i;
+                final long j3 = this.f16264b;
                 final int i7 = this.d;
                 g0.g3(new Runnable() {
                     @Override
@@ -73,7 +73,7 @@ public final class c implements RequestDelegate {
                                 connectionsManager2.sendRequest(new TL_account.getPassword(), new e(twoStepVerificationActivity2, h2Var2, j10, q10Var2, runnable2, i10), 8);
                                 return;
                             }
-                            n.f16325a[i10] = false;
+                            n.f16322a[i10] = false;
                             twoStepVerificationActivity2.t0();
                             if (n.h(tL_error2, twoStepVerificationActivity2)) {
                                 return;
@@ -81,7 +81,7 @@ public final class c implements RequestDelegate {
                             if ("PASSWORD_MISSING".equals(tL_error2.text)) {
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, twoStepVerificationActivity2.getParentActivity(), twoStepVerificationActivity2.getResourceProvider());
                                 String M0 = gd.M0(2131751286, null);
-                                u1 u1Var = alertDialog$Builder.f28746a;
+                                u1 u1Var = alertDialog$Builder.f28744a;
                                 u1Var.S = M0;
                                 u1Var.U = gd.M0(2131749328, null);
                                 alertDialog$Builder.h(gd.M0(2131752578, null), null);
@@ -104,18 +104,18 @@ public final class c implements RequestDelegate {
                 });
                 return;
             case 1:
-                g0.g3(new z0((u1) this.f16269e, tLObject, (org.telegram.messenger.c) this.f16270f, (e70) this.f16271g, this.f16267b, (Context) this.h, (h2) this.f16268c, this.d, (TLRPC.Peer) this.f16272i));
+                g0.g3(new z0((u1) this.f16266e, tLObject, (org.telegram.messenger.c) this.f16267f, (e70) this.f16268g, this.f16264b, (Context) this.h, (h2) this.f16265c, this.d, (TLRPC.Peer) this.f16269i));
                 return;
             default:
-                Context context = (Context) this.f16269e;
-                h0 h0Var = (h0) this.f16270f;
-                byte[] bArr = (byte[]) this.f16268c;
-                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f16271g;
+                Context context = (Context) this.f16266e;
+                h0 h0Var = (h0) this.f16267f;
+                byte[] bArr = (byte[]) this.f16265c;
+                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f16268g;
                 lc lcVar = (lc) this.h;
-                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f16272i;
+                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f16269i;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        g0.g3(new m3(tLObject, context, h0Var, this.f16267b, bArr, aVar, lcVar, dVar));
+                        g0.g3(new m3(tLObject, context, h0Var, this.f16264b, bArr, aVar, lcVar, dVar));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
                         g0.h3(new iy0(aVar, lcVar, context, h0Var, 0), 200L);
@@ -136,24 +136,24 @@ public final class c implements RequestDelegate {
     }
 
     public c(ConnectionsManager connectionsManager, TwoStepVerificationActivity twoStepVerificationActivity, h2 h2Var, long j3, q10 q10Var, Runnable runnable, int i7, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-        this.f16269e = connectionsManager;
-        this.f16270f = twoStepVerificationActivity;
-        this.f16268c = h2Var;
-        this.f16267b = j3;
-        this.f16271g = q10Var;
+        this.f16266e = connectionsManager;
+        this.f16267f = twoStepVerificationActivity;
+        this.f16265c = h2Var;
+        this.f16264b = j3;
+        this.f16268g = q10Var;
         this.h = runnable;
         this.d = i7;
-        this.f16272i = inputCheckPasswordSRP;
+        this.f16269i = inputCheckPasswordSRP;
     }
 
     public c(u1 u1Var, org.telegram.messenger.c cVar, e70 e70Var, long j3, Context context, h2 h2Var, int i7, TLRPC.Peer peer) {
-        this.f16269e = u1Var;
-        this.f16270f = cVar;
-        this.f16271g = e70Var;
-        this.f16267b = j3;
+        this.f16266e = u1Var;
+        this.f16267f = cVar;
+        this.f16268g = e70Var;
+        this.f16264b = j3;
         this.h = context;
-        this.f16268c = h2Var;
+        this.f16265c = h2Var;
         this.d = i7;
-        this.f16272i = peer;
+        this.f16269i = peer;
     }
 }

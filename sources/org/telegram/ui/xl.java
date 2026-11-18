@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class xl implements Runnable {
-    public final int f53877a;
-    public final mm f53878b;
-    public final TLRPC.Chat f53879c;
+    public final int f53845a;
+    public final mm f53846b;
+    public final TLRPC.Chat f53847c;
 
     public xl(mm mmVar, TLRPC.Chat chat, int i7) {
-        this.f53877a = i7;
-        this.f53878b = mmVar;
-        this.f53879c = chat;
+        this.f53845a = i7;
+        this.f53846b = mmVar;
+        this.f53847c = chat;
     }
 
     @Override
     public final void run() {
         String str;
-        int i7 = this.f53877a;
-        TLRPC.Chat chat = this.f53879c;
-        mm mmVar = this.f53878b;
+        int i7 = this.f53845a;
+        TLRPC.Chat chat = this.f53847c;
+        mm mmVar = this.f53846b;
         switch (i7) {
             case 0:
                 mmVar.n(chat);
@@ -26,10 +26,10 @@ public final class xl implements Runnable {
                 mmVar.a(chat);
                 return;
             case 2:
-                mmVar.f49922a.Na(chat);
+                mmVar.f49896a.Na(chat);
                 return;
             default:
-                org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(mmVar.f49922a);
+                org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(mmVar.f49896a);
                 if (chat == null) {
                     str = "";
                 } else {

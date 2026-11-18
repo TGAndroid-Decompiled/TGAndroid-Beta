@@ -10,50 +10,56 @@ public final class k0 {
     public boolean A;
     public int B;
     public int C;
-    public boolean D;
+    public int D;
     public int E;
-    public boolean F;
-    public final String f54799a;
-    public final int f54800b;
-    public final long f54801c;
+    public double F;
+    public double G;
+    public double H;
+    public long I;
+    public boolean J;
+    public int K;
+    public boolean L;
+    public final String f54800a;
+    public final int f54801b;
+    public final long f54802c;
     public final int d;
-    public final int f54802e;
-    public final int f54803f;
-    public final byte[] f54804g;
+    public final int f54803e;
+    public final int f54804f;
+    public final byte[] f54805g;
     public final boolean h;
-    public final boolean f54805i;
-    public final boolean f54806j;
-    public final boolean f54807k;
-    public final long f54808l;
-    public final String f54809m;
-    public final long f54810n;
-    public String f54811o;
-    public String f54812p;
-    public long f54813q;
-    public TLRPC.TL_messageMediaWidget f54814r;
-    public String f54815s;
-    public d1 f54816t;
-    public pk0 f54817u;
-    public pk0 f54818w;
-    public int f54819x;
-    public long f54820y;
-    public boolean f54821z;
+    public final boolean f54806i;
+    public final boolean f54807j;
+    public final boolean f54808k;
+    public final long f54809l;
+    public final String f54810m;
+    public final long f54811n;
+    public String f54812o;
+    public String f54813p;
+    public long f54814q;
+    public TLRPC.TL_messageMediaWidget f54815r;
+    public String f54816s;
+    public d1 f54817t;
+    public pk0 f54818u;
+    public pk0 f54819w;
+    public int f54820x;
+    public long f54821y;
+    public boolean f54822z;
     public final ArrayList v = new ArrayList();
-    public final j0 G = new j0(this, 0);
+    public final j0 M = new j0(this, 0);
 
     public k0(String str, int i7, long j3, int i10, long j10, TLRPC.TL_messageMediaWidget tL_messageMediaWidget, boolean z10) {
         boolean z11;
         boolean z12;
-        this.f54799a = str;
-        this.f54800b = i7;
-        this.f54801c = j3;
+        this.f54800a = str;
+        this.f54801b = i7;
+        this.f54802c = j3;
         this.d = i10;
-        this.f54810n = j10;
+        this.f54811n = j10;
         boolean z13 = false;
-        this.f54802e = Math.max(0, tL_messageMediaWidget.width);
-        this.f54803f = Math.max(0, tL_messageMediaWidget.height);
-        this.f54804g = tL_messageMediaWidget.payload;
-        this.f54807k = z10;
+        this.f54803e = Math.max(0, tL_messageMediaWidget.width);
+        this.f54804f = Math.max(0, tL_messageMediaWidget.height);
+        this.f54805g = tL_messageMediaWidget.payload;
+        this.f54808k = z10;
         if (!z10 && tL_messageMediaWidget.is_copy) {
             z11 = true;
         } else {
@@ -65,12 +71,12 @@ public final class k0 {
         } else {
             z12 = false;
         }
-        this.f54805i = z12;
+        this.f54806i = z12;
         if (!z10 && tL_messageMediaWidget.background_query && i10 > 0) {
             z13 = true;
         }
-        this.f54806j = z13;
-        this.f54808l = tL_messageMediaWidget.widget_id;
+        this.f54807j = z13;
+        this.f54809l = tL_messageMediaWidget.widget_id;
         String str2 = null;
         if (!z10 && !z11) {
             if (n5.E(j3)) {
@@ -82,15 +88,15 @@ public final class k0 {
                 }
             }
         }
-        this.f54809m = str2;
-        this.f54814r = tL_messageMediaWidget;
-        this.f54811o = n0.C(tL_messageMediaWidget.chat_data);
-        this.f54812p = n0.C(tL_messageMediaWidget.public_data);
-        this.f54813q = tL_messageMediaWidget.public_data_hash;
+        this.f54810m = str2;
+        this.f54815r = tL_messageMediaWidget;
+        this.f54812o = n0.C(tL_messageMediaWidget.chat_data);
+        this.f54813p = n0.C(tL_messageMediaWidget.public_data);
+        this.f54814q = tL_messageMediaWidget.public_data_hash;
     }
 
     public final String a() {
-        long j3 = this.f54801c;
-        return n0.B(this.f54800b, this.d, j3);
+        long j3 = this.f54802c;
+        return n0.B(this.f54801b, this.d, j3);
     }
 }

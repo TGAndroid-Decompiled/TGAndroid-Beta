@@ -19,7 +19,7 @@ public final class tq0 implements rj0 {
     public final void j() {
         org.telegram.ui.ActionBar.h2 h2Var = this.f40086b.f35642y1;
         if (h2Var != null) {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             if (point.x > point.y) {
                 h2Var.finishPreviewFragment();
             }
@@ -30,7 +30,7 @@ public final class tq0 implements rj0 {
     public final void r(float f10) {
         org.telegram.ui.ActionBar.h2 h2Var = this.f40086b.f35642y1;
         if (h2Var != null) {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             if (point.x > point.y) {
                 h2Var.movePreviewFragment(f10);
             }

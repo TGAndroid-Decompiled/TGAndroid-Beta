@@ -31,38 +31,38 @@ public final class a6 extends c1 implements fs {
     public int R;
     public int S;
     public final j6.o T;
-    public int f22827a;
-    public final ArrayList f22828b;
-    public final ArrayList f22829c;
+    public int f22824a;
+    public final ArrayList f22825b;
+    public final ArrayList f22826c;
     public final ArrayList d;
-    public final ArrayList f22830e;
-    public final HashMap f22831f;
+    public final ArrayList f22827e;
+    public final HashMap f22828f;
     public final HashMap h;
-    public final HashMap f22832n;
-    public final HashMap f22833r;
-    public final SparseArray f22834s;
-    public boolean f22835w;
-    public final HashMap f22836x;
-    public final ArrayList f22837y;
+    public final HashMap f22829n;
+    public final HashMap f22830r;
+    public final SparseArray f22831s;
+    public boolean f22832w;
+    public final HashMap f22833x;
+    public final ArrayList f22834y;
 
     public a6(int i7) {
         super(i7);
         Integer num;
         Integer valueOf;
         Integer valueOf2;
-        this.f22827a = 0;
-        this.f22828b = new ArrayList();
-        this.f22829c = new ArrayList();
+        this.f22824a = 0;
+        this.f22825b = new ArrayList();
+        this.f22826c = new ArrayList();
         this.d = new ArrayList();
-        this.f22830e = new ArrayList();
-        this.f22831f = new HashMap();
+        this.f22827e = new ArrayList();
+        this.f22828f = new HashMap();
         this.h = new HashMap();
-        this.f22832n = new HashMap();
-        this.f22833r = new HashMap();
-        this.f22834s = new SparseArray();
-        this.f22835w = false;
-        this.f22836x = new HashMap();
-        this.f22837y = new ArrayList();
+        this.f22829n = new HashMap();
+        this.f22830r = new HashMap();
+        this.f22831s = new SparseArray();
+        this.f22832w = false;
+        this.f22833x = new HashMap();
+        this.f22834y = new ArrayList();
         this.E = 0;
         this.G = new a0.h();
         this.H = new ArrayList();
@@ -72,7 +72,7 @@ public final class a6 extends c1 implements fs {
         SharedPreferences sharedPreferences = mp.u1(this.currentAccount).h7;
         z5 z5Var = new z5(sharedPreferences.getString("preset0", "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0"), "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0");
         this.K = z5Var;
-        z5Var.f28268e = false;
+        z5Var.f28266e = false;
         this.L = new z5(sharedPreferences.getString("preset1", "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1");
         this.M = new z5(sharedPreferences.getString("preset2", "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1");
         boolean contains = sharedPreferences.contains("newConfig");
@@ -121,18 +121,18 @@ public final class a6 extends c1 implements fs {
                 }
                 i10 = i12 + 1;
             }
-            jArr[2] = sharedPreferences.getLong("mobileMaxDownloadSize2", this.L.f28266b[1]);
-            jArr[3] = sharedPreferences.getLong("mobileMaxDownloadSize3", this.L.f28266b[2]);
-            jArr2[2] = sharedPreferences.getLong("wifiMaxDownloadSize2", this.M.f28266b[1]);
-            jArr2[3] = sharedPreferences.getLong("wifiMaxDownloadSize3", this.M.f28266b[2]);
-            jArr3[2] = sharedPreferences.getLong("roamingMaxDownloadSize2", this.K.f28266b[1]);
-            jArr3[3] = sharedPreferences.getLong("roamingMaxDownloadSize3", this.K.f28266b[2]);
+            jArr[2] = sharedPreferences.getLong("mobileMaxDownloadSize2", this.L.f28264b[1]);
+            jArr[3] = sharedPreferences.getLong("mobileMaxDownloadSize3", this.L.f28264b[2]);
+            jArr2[2] = sharedPreferences.getLong("wifiMaxDownloadSize2", this.M.f28264b[1]);
+            jArr2[3] = sharedPreferences.getLong("wifiMaxDownloadSize3", this.M.f28264b[2]);
+            jArr3[2] = sharedPreferences.getLong("roamingMaxDownloadSize2", this.K.f28264b[1]);
+            jArr3[3] = sharedPreferences.getLong("roamingMaxDownloadSize3", this.K.f28264b[2]);
             boolean z10 = sharedPreferences.getBoolean("globalAutodownloadEnabled", true);
-            z5 z5Var2 = new z5(iArr, this.L.f28266b[0], jArr[2], jArr[3], true, true, z10, false, 100, false);
+            z5 z5Var2 = new z5(iArr, this.L.f28264b[0], jArr[2], jArr[3], true, true, z10, false, 100, false);
             this.N = z5Var2;
-            z5 z5Var3 = new z5(iArr2, this.M.f28266b[0], jArr2[2], jArr2[3], true, true, z10, false, 100, true);
+            z5 z5Var3 = new z5(iArr2, this.M.f28264b[0], jArr2[2], jArr2[3], true, true, z10, false, 100, true);
             this.O = z5Var3;
-            z5 z5Var4 = new z5(iArr3, this.K.f28266b[0], jArr3[2], jArr3[3], false, false, z10, true, 50, true);
+            z5 z5Var4 = new z5(iArr3, this.K.f28264b[0], jArr3[2], jArr3[3], false, false, z10, true, 50, true);
             this.P = z5Var4;
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putBoolean("newConfig", true);
@@ -161,9 +161,9 @@ public final class a6 extends c1 implements fs {
         androidx.mediarouter.app.f fVar = new androidx.mediarouter.app.f(this, 5);
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         if (Build.VERSION.SDK_INT >= 33) {
-            t0.f26915b.registerReceiver(fVar, intentFilter, 4);
+            t0.f26913b.registerReceiver(fVar, intentFilter, 4);
         } else {
-            t0.f26915b.registerReceiver(fVar, intentFilter);
+            t0.f26913b.registerReceiver(fVar, intentFilter);
         }
         if (getUserConfig().p()) {
             g();
@@ -220,12 +220,12 @@ public final class a6 extends c1 implements fs {
     }
 
     public final void a(String str, fj fjVar, y5 y5Var) {
-        if (this.f22835w) {
-            this.f22836x.put(str, y5Var);
+        if (this.f22832w) {
+            this.f22833x.put(str, y5Var);
             return;
         }
         v(y5Var);
-        HashMap hashMap = this.f22832n;
+        HashMap hashMap = this.f22829n;
         ArrayList arrayList = (ArrayList) hashMap.get(str);
         if (arrayList == null) {
             arrayList = new ArrayList();
@@ -233,7 +233,7 @@ public final class a6 extends c1 implements fs {
         }
         arrayList.add(new WeakReference(y5Var));
         if (fjVar != null) {
-            HashMap hashMap2 = this.f22833r;
+            HashMap hashMap2 = this.f22830r;
             ArrayList arrayList2 = (ArrayList) hashMap2.get(str);
             if (arrayList2 == null) {
                 arrayList2 = new ArrayList();
@@ -241,7 +241,7 @@ public final class a6 extends c1 implements fs {
             }
             arrayList2.add(fjVar);
         }
-        this.f22834s.put(y5Var.getObserverTag(), str);
+        this.f22831s.put(y5Var.getObserverTag(), str);
     }
 
     public final int b(org.telegram.tgnet.TLRPC.Message r18) {
@@ -252,24 +252,24 @@ public final class a6 extends c1 implements fs {
         z5 n10;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (this.O.f28270g) {
+            if (this.O.f28268g) {
                 n10 = p();
             } else {
                 return false;
             }
         } else if (e10 == 2) {
-            if (this.P.f28270g) {
+            if (this.P.f28268g) {
                 n10 = o();
             } else {
                 return false;
             }
-        } else if (this.N.f28270g) {
+        } else if (this.N.f28268g) {
             n10 = n();
         } else {
             return false;
         }
-        int i10 = n10.f28265a[1];
-        long j10 = n10.f28266b[x(i7)];
+        int i10 = n10.f28263a[1];
+        long j10 = n10.f28264b[x(i7)];
         if (i7 == 1 || (j3 != 0 && j3 <= j10)) {
             if (i7 == 2 || (i7 & i10) != 0) {
                 return true;
@@ -283,12 +283,12 @@ public final class a6 extends c1 implements fs {
         TL_stories.StoryItem storyItem;
         TLRPC.MessageMedia messageMedia;
         if (fjVar.D == 23) {
-            int i7 = bz.f23148a;
+            int i7 = bz.f23145a;
             if (pc.e(1024) && (storyItem = ((TLRPC.TL_messageMediaStory) fj.m1(fjVar)).storyItem) != null && (messageMedia = storyItem.media) != null && messageMedia.document != null && storyItem.isPublic) {
                 return true;
             }
             return false;
-        } else if (fjVar.f23924a1 != null) {
+        } else if (fjVar.f23921a1 != null) {
             return true;
         } else {
             if (!fjVar.x3() && e(fjVar) == 1) {
@@ -303,12 +303,12 @@ public final class a6 extends c1 implements fs {
         boolean z10;
         a0.h hVar = this.G;
         int i11 = ks.Z1;
-        SparseArray sparseArray = this.f22834s;
-        HashMap hashMap = this.f22832n;
+        SparseArray sparseArray = this.f22831s;
+        HashMap hashMap = this.f22829n;
         if (i7 != i11 && i7 != ks.S1) {
             if (i7 != ks.Y1 && i7 != ks.R1) {
                 if (i7 == ks.X1) {
-                    this.f22835w = true;
+                    this.f22832w = true;
                     ArrayList arrayList = (ArrayList) hashMap.get((String) objArr[0]);
                     if (arrayList != null) {
                         Long l10 = (Long) objArr[1];
@@ -321,11 +321,11 @@ public final class a6 extends c1 implements fs {
                             }
                         }
                     }
-                    this.f22835w = false;
+                    this.f22832w = false;
                     u();
                     return;
                 } else if (i7 == ks.W1) {
-                    this.f22835w = true;
+                    this.f22832w = true;
                     String str = (String) objArr[0];
                     ArrayList arrayList2 = (ArrayList) hashMap.get(str);
                     if (arrayList2 != null) {
@@ -343,21 +343,21 @@ public final class a6 extends c1 implements fs {
                             }
                         }
                     }
-                    this.f22835w = false;
+                    this.f22832w = false;
                     u();
                     try {
-                        ArrayList arrayList3 = (ArrayList) getSendMessagesHelper().f28387a.get(str);
+                        ArrayList arrayList3 = (ArrayList) getSendMessagesHelper().f28385a.get(str);
                         if (arrayList3 != null) {
                             for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                                 ly lyVar = (ly) arrayList3.get(i14);
-                                if (lyVar.f25468n == null) {
-                                    long j3 = lyVar.f25457a;
+                                if (lyVar.f25466n == null) {
+                                    long j3 = lyVar.f25455a;
                                     Long l14 = (Long) hVar.f(j3);
-                                    if (lyVar.f25460e == 4) {
+                                    if (lyVar.f25458e == 4) {
                                         if (l14 != null && l14.longValue() + 4000 >= System.currentTimeMillis()) {
                                         }
                                         fj fjVar = (fj) lyVar.E.get(str + "_i");
-                                        if (fjVar != null && fj.L4(fjVar.f23968k)) {
+                                        if (fjVar != null && fj.L4(fjVar.f23965k)) {
                                             getMessagesController().N4(5, 0, j3, 0, null);
                                         } else if (fjVar != null && fjVar.F0() != null) {
                                             getMessagesController().N4(3, 0, j3, 0, null);
@@ -366,17 +366,17 @@ public final class a6 extends c1 implements fs {
                                         }
                                         hVar.k(Long.valueOf(System.currentTimeMillis()), j3);
                                     } else {
-                                        lyVar.f25467m.F0();
+                                        lyVar.f25465m.F0();
                                         if (l14 == null || l14.longValue() + 4000 < System.currentTimeMillis()) {
-                                            if (lyVar.f25467m.h4()) {
+                                            if (lyVar.f25465m.h4()) {
                                                 getMessagesController().N4(8, 0, j3, 0, null);
-                                            } else if (fj.L4(lyVar.f25467m.f23968k)) {
+                                            } else if (fj.L4(lyVar.f25465m.f23965k)) {
                                                 getMessagesController().N4(5, 0, j3, 0, null);
-                                            } else if (fj.R4(lyVar.f25467m.f23968k)) {
+                                            } else if (fj.R4(lyVar.f25465m.f23965k)) {
                                                 getMessagesController().N4(9, 0, j3, 0, null);
-                                            } else if (lyVar.f25467m.F0() != null) {
+                                            } else if (lyVar.f25465m.F0() != null) {
                                                 getMessagesController().N4(3, 0, j3, 0, null);
-                                            } else if (lyVar.f25462g != null) {
+                                            } else if (lyVar.f25460g != null) {
                                                 getMessagesController().N4(4, 0, j3, 0, null);
                                             }
                                             hVar.k(Long.valueOf(System.currentTimeMillis()), j3);
@@ -395,14 +395,14 @@ public final class a6 extends c1 implements fs {
                     return;
                 }
             }
-            this.f22835w = true;
+            this.f22832w = true;
             String str2 = (String) objArr[0];
-            HashMap hashMap2 = this.f22833r;
+            HashMap hashMap2 = this.f22830r;
             ArrayList arrayList4 = (ArrayList) hashMap2.get(str2);
             if (arrayList4 != null) {
                 int size3 = arrayList4.size();
                 for (int i15 = 0; i15 < size3; i15++) {
-                    ((fj) arrayList4.get(i15)).f24027z0 = true;
+                    ((fj) arrayList4.get(i15)).f24024z0 = true;
                 }
                 hashMap2.remove(str2);
             }
@@ -418,14 +418,14 @@ public final class a6 extends c1 implements fs {
                 }
                 hashMap.remove(str2);
             }
-            this.f22835w = false;
+            this.f22832w = false;
             u();
             h(0, str2);
             return;
         }
         String str3 = (String) objArr[0];
         Integer num = (Integer) objArr[1];
-        this.f22835w = true;
+        this.f22832w = true;
         ArrayList arrayList6 = (ArrayList) hashMap.get(str3);
         if (arrayList6 != null) {
             int size5 = arrayList6.size();
@@ -448,7 +448,7 @@ public final class a6 extends c1 implements fs {
                 hashMap.remove(str3);
             }
         }
-        this.f22835w = false;
+        this.f22832w = false;
         u();
         h(num.intValue(), str3);
     }
@@ -461,30 +461,30 @@ public final class a6 extends c1 implements fs {
         z5 n10;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (!this.O.f28270g) {
+            if (!this.O.f28268g) {
                 return false;
             }
             n10 = p();
         } else if (e10 == 2) {
-            if (!this.P.f28270g) {
+            if (!this.P.f28268g) {
                 return false;
             }
             n10 = o();
-        } else if (!this.N.f28270g) {
+        } else if (!this.N.f28268g) {
             return false;
         } else {
             n10 = n();
         }
-        return n10.f28268e;
+        return n10.f28266e;
     }
 
     public final void g() {
         boolean z10;
         int m10 = m();
-        if (m10 != this.f22827a) {
-            this.f22827a = m10;
+        if (m10 != this.f22824a) {
+            this.f22824a = m10;
             int i7 = m10 & 1;
-            ArrayList arrayList = this.f22828b;
+            ArrayList arrayList = this.f22825b;
             if (i7 != 0) {
                 if (arrayList.isEmpty()) {
                     t(1);
@@ -492,27 +492,27 @@ public final class a6 extends c1 implements fs {
             } else {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     b6 b6Var = (b6) arrayList.get(i10);
-                    TLObject tLObject = b6Var.f23041a;
+                    TLObject tLObject = b6Var.f23038a;
                     if (tLObject instanceof TLRPC.Photo) {
                         TLRPC.PhotoSize w10 = w7.w(((TLRPC.Photo) tLObject).sizes, g0.Z0(false), false, null, false);
                         w7 fileLoader = getFileLoader();
                         fileLoader.getClass();
                         fileLoader.e(null, null, null, w10.location, null, null);
                     } else if (tLObject instanceof TLRPC.Document) {
-                        getFileLoader().f((TLRPC.Document) b6Var.f23041a);
+                        getFileLoader().f((TLRPC.Document) b6Var.f23038a);
                     }
                 }
                 arrayList.clear();
             }
             int i11 = m10 & 2;
-            ArrayList arrayList2 = this.f22829c;
+            ArrayList arrayList2 = this.f22826c;
             if (i11 != 0) {
                 if (arrayList2.isEmpty()) {
                     t(2);
                 }
             } else {
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                    getFileLoader().f((TLRPC.Document) ((b6) arrayList2.get(i12)).f23041a);
+                    getFileLoader().f((TLRPC.Document) ((b6) arrayList2.get(i12)).f23038a);
                 }
                 arrayList2.clear();
             }
@@ -524,37 +524,37 @@ public final class a6 extends c1 implements fs {
                 }
             } else {
                 for (int i14 = 0; i14 < arrayList3.size(); i14++) {
-                    getFileLoader().f((TLRPC.Document) ((b6) arrayList3.get(i14)).f23041a);
+                    getFileLoader().f((TLRPC.Document) ((b6) arrayList3.get(i14)).f23038a);
                 }
                 arrayList3.clear();
             }
             int i15 = m10 & 4;
-            ArrayList arrayList4 = this.f22830e;
+            ArrayList arrayList4 = this.f22827e;
             if (i15 != 0) {
                 if (arrayList4.isEmpty()) {
                     t(4);
                 }
             } else {
                 for (int i16 = 0; i16 < arrayList4.size(); i16++) {
-                    getFileLoader().f((TLRPC.Document) ((b6) arrayList4.get(i16)).f23041a);
+                    getFileLoader().f((TLRPC.Document) ((b6) arrayList4.get(i16)).f23038a);
                 }
                 arrayList4.clear();
             }
-            if (!this.N.f28270g && !this.P.f28270g && !this.O.f28270g) {
+            if (!this.N.f28268g && !this.P.f28268g && !this.O.f28268g) {
                 z10 = false;
             } else {
                 z10 = false;
                 for (int i17 = 0; i17 < 4; i17++) {
-                    if ((n().f28265a[i17] & 1) != 0 || (p().f28265a[i17] & 1) != 0 || (o().f28265a[i17] & 1) != 0) {
+                    if ((n().f28263a[i17] & 1) != 0 || (p().f28263a[i17] & 1) != 0 || (o().f28263a[i17] & 1) != 0) {
                         z10 |= true;
                     }
-                    if ((n().f28265a[i17] & 2) != 0 || (p().f28265a[i17] & 2) != 0 || (o().f28265a[i17] & 2) != 0) {
+                    if ((n().f28263a[i17] & 2) != 0 || (p().f28263a[i17] & 2) != 0 || (o().f28263a[i17] & 2) != 0) {
                         z10 |= true;
                     }
-                    if ((n().f28265a[i17] & 4) != 0 || (p().f28265a[i17] & 4) != 0 || (o().f28265a[i17] & 4) != 0) {
+                    if ((n().f28263a[i17] & 4) != 0 || (p().f28263a[i17] & 4) != 0 || (o().f28263a[i17] & 4) != 0) {
                         z10 |= true;
                     }
-                    if ((n().f28265a[i17] & 8) != 0 || (p().f28265a[i17] & 8) != 0 || (o().f28265a[i17] & 8) != 0) {
+                    if ((n().f28263a[i17] & 8) != 0 || (p().f28263a[i17] & 8) != 0 || (o().f28263a[i17] & 8) != 0) {
                         z10 |= true;
                     }
                 }
@@ -579,31 +579,31 @@ public final class a6 extends c1 implements fs {
     }
 
     public final void h(int i7, String str) {
-        HashMap hashMap = this.f22831f;
+        HashMap hashMap = this.f22828f;
         b6 b6Var = (b6) hashMap.get(str);
         if (b6Var != null) {
             hashMap.remove(str);
-            this.h.remove(new Pair(Long.valueOf(b6Var.f23043c), Integer.valueOf(b6Var.f23042b)));
+            this.h.remove(new Pair(Long.valueOf(b6Var.f23040c), Integer.valueOf(b6Var.f23039b)));
             if (i7 == 0 || i7 == 2) {
                 tr messagesStorage = getMessagesStorage();
-                long j3 = b6Var.f23043c;
-                messagesStorage.f27054a.c(new vp(messagesStorage, b6Var.f23042b, j3, 6));
+                long j3 = b6Var.f23040c;
+                messagesStorage.f27052a.c(new vp(messagesStorage, b6Var.f23039b, j3, 6));
             }
-            int i10 = b6Var.f23042b;
+            int i10 = b6Var.f23039b;
             if (i10 == 1) {
-                ArrayList arrayList = this.f22828b;
+                ArrayList arrayList = this.f22825b;
                 arrayList.remove(b6Var);
                 if (arrayList.isEmpty()) {
                     t(1);
                 }
             } else if (i10 == 2) {
-                ArrayList arrayList2 = this.f22829c;
+                ArrayList arrayList2 = this.f22826c;
                 arrayList2.remove(b6Var);
                 if (arrayList2.isEmpty()) {
                     t(2);
                 }
             } else if (i10 == 4) {
-                ArrayList arrayList3 = this.f22830e;
+                ArrayList arrayList3 = this.f22827e;
                 arrayList3.remove(b6Var);
                 if (arrayList3.isEmpty()) {
                     t(4);
@@ -621,10 +621,10 @@ public final class a6 extends c1 implements fs {
     public final void i(int i7, long j3) {
         SparseArray sparseArray = this.J;
         fj fjVar = (fj) sparseArray.get(i7);
-        if (fjVar != null && fj.B0(fjVar.f23968k) == j3) {
+        if (fjVar != null && fj.B0(fjVar.f23965k) == j3) {
             sparseArray.remove(i7);
             if (sparseArray.size() == 0) {
-                getNotificationCenter().k(ks.f25105d5, new Object[0]);
+                getNotificationCenter().k(ks.f25109e5, new Object[0]);
             }
         }
     }
@@ -635,7 +635,7 @@ public final class a6 extends c1 implements fs {
             while (true) {
                 ArrayList arrayList2 = this.I;
                 if (i10 < arrayList2.size()) {
-                    if (((fj) arrayList.get(i7)).e1() == ((fj) arrayList2.get(i10)).e1() && fj.B0(((fj) arrayList2.get(i10)).f23968k) == fj.B0(((fj) arrayList.get(i7)).f23968k)) {
+                    if (((fj) arrayList.get(i7)).e1() == ((fj) arrayList2.get(i10)).e1() && fj.B0(((fj) arrayList2.get(i10)).f23965k) == fj.B0(((fj) arrayList.get(i7)).f23965k)) {
                         arrayList2.remove(i10);
                         break;
                     }
@@ -647,7 +647,7 @@ public final class a6 extends c1 implements fs {
                         if (i11 >= arrayList3.size()) {
                             break;
                         }
-                        if (((fj) arrayList.get(i7)).e1() == ((fj) arrayList3.get(i11)).e1() && fj.B0(((fj) arrayList3.get(i11)).f23968k) == fj.B0(((fj) arrayList.get(i7)).f23968k)) {
+                        if (((fj) arrayList.get(i7)).e1() == ((fj) arrayList3.get(i11)).e1() && fj.B0(((fj) arrayList3.get(i11)).f23965k) == fj.B0(((fj) arrayList.get(i7)).f23965k)) {
                             arrayList3.remove(i11);
                             break;
                         }
@@ -659,8 +659,8 @@ public final class a6 extends c1 implements fs {
             w7.G(this.currentAccount).W(((fj) arrayList.get(i7)).F0(), arrayList.get(i7), 0, 0);
             w7.G(this.currentAccount).f(((fj) arrayList.get(i7)).F0());
         }
-        getNotificationCenter().k(ks.f25105d5, new Object[0]);
-        getMessagesStorage().f27054a.c(new w3(3, this, arrayList));
+        getNotificationCenter().k(ks.f25109e5, new Object[0]);
+        getMessagesStorage().f27052a.c(new w3(3, this, arrayList));
     }
 
     public final int k() {
@@ -674,19 +674,19 @@ public final class a6 extends c1 implements fs {
         int i7;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (!this.O.f28270g) {
+            if (!this.O.f28268g) {
                 return 0;
             }
-            iArr = p().f28265a;
+            iArr = p().f28263a;
         } else if (e10 == 2) {
-            if (!this.P.f28270g) {
+            if (!this.P.f28268g) {
                 return 0;
             }
-            iArr = o().f28265a;
-        } else if (!this.N.f28270g) {
+            iArr = o().f28263a;
+        } else if (!this.N.f28268g) {
             return 0;
         } else {
-            iArr = n().f28265a;
+            iArr = n().f28263a;
         }
         int i10 = 0;
         for (int i11 = 0; i11 < iArr.length; i11++) {
@@ -714,31 +714,31 @@ public final class a6 extends c1 implements fs {
         int e10 = t0.e();
         int i7 = 0;
         if (e10 == 1) {
-            if (!this.O.f28270g) {
+            if (!this.O.f28268g) {
                 return 0;
             }
             int i10 = 0;
             while (i7 < 4) {
-                i10 |= p().f28265a[i7];
+                i10 |= p().f28263a[i7];
                 i7++;
             }
             return i10;
         } else if (e10 == 2) {
-            if (!this.P.f28270g) {
+            if (!this.P.f28268g) {
                 return 0;
             }
             int i11 = 0;
             while (i7 < 4) {
-                i11 |= o().f28265a[i7];
+                i11 |= o().f28263a[i7];
                 i7++;
             }
             return i11;
-        } else if (!this.N.f28270g) {
+        } else if (!this.N.f28268g) {
             return 0;
         } else {
             int i12 = 0;
             while (i7 < 4) {
-                i12 |= n().f28265a[i7];
+                i12 |= n().f28263a[i7];
                 i7++;
             }
             return i12;
@@ -789,7 +789,7 @@ public final class a6 extends c1 implements fs {
 
     public final void s(boolean z10) {
         if (!this.F) {
-            if (z10 || Math.abs(System.currentTimeMillis() - getUserConfig().f24778b0) >= 86400000) {
+            if (z10 || Math.abs(System.currentTimeMillis() - getUserConfig().f24775b0) >= 86400000) {
                 this.F = true;
                 getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new s1(this, 1));
             }
@@ -798,31 +798,31 @@ public final class a6 extends c1 implements fs {
 
     public final void t(int i7) {
         int m10 = m();
-        if ((m10 & 1) != 0 && (i7 & 1) != 0 && this.f22828b.isEmpty()) {
+        if ((m10 & 1) != 0 && (i7 & 1) != 0 && this.f22825b.isEmpty()) {
             tr messagesStorage = getMessagesStorage();
-            messagesStorage.f27054a.c(new rp(messagesStorage, 1, 5));
+            messagesStorage.f27052a.c(new rp(messagesStorage, 1, 5));
         }
-        if ((m10 & 2) != 0 && (i7 & 2) != 0 && this.f22829c.isEmpty()) {
+        if ((m10 & 2) != 0 && (i7 & 2) != 0 && this.f22826c.isEmpty()) {
             tr messagesStorage2 = getMessagesStorage();
-            messagesStorage2.f27054a.c(new rp(messagesStorage2, 2, 5));
+            messagesStorage2.f27052a.c(new rp(messagesStorage2, 2, 5));
         }
-        if ((m10 & 4) != 0 && (i7 & 4) != 0 && this.f22830e.isEmpty()) {
+        if ((m10 & 4) != 0 && (i7 & 4) != 0 && this.f22827e.isEmpty()) {
             tr messagesStorage3 = getMessagesStorage();
-            messagesStorage3.f27054a.c(new rp(messagesStorage3, 4, 5));
+            messagesStorage3.f27052a.c(new rp(messagesStorage3, 4, 5));
         }
         if ((m10 & 8) != 0 && (i7 & 8) != 0 && this.d.isEmpty()) {
             tr messagesStorage4 = getMessagesStorage();
-            messagesStorage4.f27054a.c(new rp(messagesStorage4, 8, 5));
+            messagesStorage4.f27052a.c(new rp(messagesStorage4, 8, 5));
         }
     }
 
     public final void u() {
-        HashMap hashMap = this.f22836x;
+        HashMap hashMap = this.f22833x;
         for (Map.Entry entry : hashMap.entrySet()) {
             a((String) entry.getKey(), null, (y5) entry.getValue());
         }
         hashMap.clear();
-        ArrayList arrayList = this.f22837y;
+        ArrayList arrayList = this.f22834y;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -834,15 +834,15 @@ public final class a6 extends c1 implements fs {
     }
 
     public final void v(y5 y5Var) {
-        if (this.f22835w) {
-            this.f22837y.add(y5Var);
+        if (this.f22832w) {
+            this.f22834y.add(y5Var);
             return;
         }
         int observerTag = y5Var.getObserverTag();
-        SparseArray sparseArray = this.f22834s;
+        SparseArray sparseArray = this.f22831s;
         String str = (String) sparseArray.get(observerTag);
         if (str != null) {
-            HashMap hashMap = this.f22832n;
+            HashMap hashMap = this.f22829n;
             ArrayList arrayList = (ArrayList) hashMap.get(str);
             if (arrayList != null) {
                 int i7 = 0;
@@ -869,21 +869,21 @@ public final class a6 extends c1 implements fs {
         TL_account.saveAutoDownloadSettings saveautodownloadsettings = new TL_account.saveAutoDownloadSettings();
         if (i7 == 0) {
             o4 = n();
-            z10 = this.N.f28270g;
+            z10 = this.N.f28268g;
         } else if (i7 == 1) {
             o4 = p();
-            z10 = this.O.f28270g;
+            z10 = this.O.f28268g;
         } else {
             o4 = o();
-            z10 = this.P.f28270g;
+            z10 = this.P.f28268g;
         }
         TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings = new TLRPC.TL_autoDownloadSettings();
         saveautodownloadsettings.settings = tL_autoDownloadSettings;
         boolean z11 = o4.d;
-        long[] jArr = o4.f28266b;
+        long[] jArr = o4.f28264b;
         tL_autoDownloadSettings.audio_preload_next = z11;
-        tL_autoDownloadSettings.video_preload_large = o4.f28267c;
-        tL_autoDownloadSettings.phonecalls_less_data = o4.f28269f;
+        tL_autoDownloadSettings.video_preload_large = o4.f28265c;
+        tL_autoDownloadSettings.phonecalls_less_data = o4.f28267f;
         tL_autoDownloadSettings.video_upload_maxbitrate = o4.h;
         tL_autoDownloadSettings.disabled = !z10;
         int i10 = 0;
@@ -892,7 +892,7 @@ public final class a6 extends c1 implements fs {
         boolean z13 = false;
         boolean z14 = false;
         while (true) {
-            int[] iArr = o4.f28265a;
+            int[] iArr = o4.f28263a;
             if (i11 >= iArr.length) {
                 break;
             }

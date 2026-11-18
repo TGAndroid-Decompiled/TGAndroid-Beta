@@ -9,18 +9,18 @@ import q6.m;
 import u7.n;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new j7.b(21);
-    public final long f17318a;
-    public final int f17319b;
-    public final boolean f17320c;
+    public final long f17315a;
+    public final int f17316b;
+    public final boolean f17317c;
     public final String d;
-    public final u7.j f17321e;
+    public final u7.j f17318e;
 
     public a(long j3, int i7, boolean z10, String str, u7.j jVar) {
-        this.f17318a = j3;
-        this.f17319b = i7;
-        this.f17320c = z10;
+        this.f17315a = j3;
+        this.f17316b = i7;
+        this.f17317c = z10;
         this.d = str;
-        this.f17321e = jVar;
+        this.f17318e = jVar;
     }
 
     public final boolean equals(Object obj) {
@@ -28,25 +28,25 @@ public final class a extends r6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f17318a != aVar.f17318a || this.f17319b != aVar.f17319b || this.f17320c != aVar.f17320c || !m.l(this.d, aVar.d) || !m.l(this.f17321e, aVar.f17321e)) {
+        if (this.f17315a != aVar.f17315a || this.f17316b != aVar.f17316b || this.f17317c != aVar.f17317c || !m.l(this.d, aVar.d) || !m.l(this.f17318e, aVar.f17318e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f17318a), Integer.valueOf(this.f17319b), Boolean.valueOf(this.f17320c)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f17315a), Integer.valueOf(this.f17316b), Boolean.valueOf(this.f17317c)});
     }
 
     public final String toString() {
         String str;
         StringBuilder m10 = e2.m("LastLocationRequest[");
-        long j3 = this.f17318a;
+        long j3 = this.f17315a;
         if (j3 != Long.MAX_VALUE) {
             m10.append("maxAge=");
             n.a(j3, m10);
         }
-        int i7 = this.f17319b;
+        int i7 = this.f17316b;
         if (i7 != 0) {
             m10.append(", ");
             if (i7 != 0) {
@@ -64,7 +64,7 @@ public final class a extends r6.a {
             }
             m10.append(str);
         }
-        if (this.f17320c) {
+        if (this.f17317c) {
             m10.append(", bypass");
         }
         String str2 = this.d;
@@ -72,7 +72,7 @@ public final class a extends r6.a {
             m10.append(", moduleId=");
             m10.append(str2);
         }
-        u7.j jVar = this.f17321e;
+        u7.j jVar = this.f17318e;
         if (jVar != null) {
             m10.append(", impersonation=");
             m10.append(jVar);
@@ -85,13 +85,13 @@ public final class a extends r6.a {
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
         bc.q(parcel, 1, 8);
-        parcel.writeLong(this.f17318a);
+        parcel.writeLong(this.f17315a);
         bc.q(parcel, 2, 4);
-        parcel.writeInt(this.f17319b);
+        parcel.writeInt(this.f17316b);
         bc.q(parcel, 3, 4);
-        parcel.writeInt(this.f17320c ? 1 : 0);
+        parcel.writeInt(this.f17317c ? 1 : 0);
         bc.l(parcel, 4, this.d);
-        bc.k(parcel, 5, this.f17321e, i7);
+        bc.k(parcel, 5, this.f17318e, i7);
         bc.s(parcel, r10);
     }
 }

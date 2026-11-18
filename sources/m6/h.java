@@ -19,29 +19,29 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.h2;
 public final class h implements Runnable {
-    public final int f20862a = 0;
-    public final boolean f20863b;
-    public final Object f20864c;
+    public final int f20859a = 0;
+    public final boolean f20860b;
+    public final Object f20861c;
     public final Object d;
-    public final Object f20865e;
+    public final Object f20862e;
 
     public h(FirebaseInstanceIdReceiver firebaseInstanceIdReceiver, Intent intent, Context context, boolean z10, BroadcastReceiver.PendingResult pendingResult) {
-        this.f20864c = intent;
+        this.f20861c = intent;
         this.d = context;
-        this.f20863b = z10;
-        this.f20865e = pendingResult;
+        this.f20860b = z10;
+        this.f20862e = pendingResult;
     }
 
     @Override
     public final void run() {
         Intent intent;
         int i7;
-        switch (this.f20862a) {
+        switch (this.f20859a) {
             case 0:
-                Intent intent2 = (Intent) this.f20864c;
+                Intent intent2 = (Intent) this.f20861c;
                 Context context = (Context) this.d;
-                boolean z10 = this.f20863b;
-                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.f20865e;
+                boolean z10 = this.f20860b;
+                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.f20862e;
                 try {
                     Parcelable parcelableExtra = intent2.getParcelableExtra("wrapped_intent");
                     Executor executor = null;
@@ -58,7 +58,7 @@ public final class h implements Runnable {
                             a aVar = new a(intent2);
                             CountDownLatch countDownLatch = new CountDownLatch(1);
                             synchronized (FirebaseInstanceIdReceiver.class) {
-                                SoftReference softReference = FirebaseInstanceIdReceiver.f7557b;
+                                SoftReference softReference = FirebaseInstanceIdReceiver.f7554b;
                                 if (softReference != null) {
                                     executor = (Executor) softReference.get();
                                 }
@@ -66,7 +66,7 @@ public final class h implements Runnable {
                                     ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new s("pscm-ack-executor"));
                                     threadPoolExecutor.allowCoreThreadTimeOut(true);
                                     executor = Executors.unconfigurableExecutorService(threadPoolExecutor);
-                                    FirebaseInstanceIdReceiver.f7557b = new SoftReference(executor);
+                                    FirebaseInstanceIdReceiver.f7554b = new SoftReference(executor);
                                 }
                             }
                             executor.execute(new a9.h(context, aVar, countDownLatch, 7));
@@ -100,15 +100,15 @@ public final class h implements Runnable {
                     throw th2;
                 }
             default:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f20865e;
-                if (actionBarLayout.f28690e == this) {
-                    actionBarLayout.f28690e = null;
-                    h2 h2Var = (h2) this.f20864c;
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f20862e;
+                if (actionBarLayout.f28688e == this) {
+                    actionBarLayout.f28688e = null;
+                    h2 h2Var = (h2) this.f20861c;
                     if (h2Var != null) {
                         h2Var.onTransitionAnimationStart(false, false);
                     }
                     ((h2) this.d).onTransitionAnimationStart(true, false);
-                    actionBarLayout.h0(true, true, this.f20863b);
+                    actionBarLayout.h0(true, true, this.f20860b);
                     return;
                 }
                 return;
@@ -116,9 +116,9 @@ public final class h implements Runnable {
     }
 
     public h(ActionBarLayout actionBarLayout, h2 h2Var, h2 h2Var2, boolean z10) {
-        this.f20865e = actionBarLayout;
-        this.f20864c = h2Var;
+        this.f20862e = actionBarLayout;
+        this.f20861c = h2Var;
         this.d = h2Var2;
-        this.f20863b = z10;
+        this.f20860b = z10;
     }
 }

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.Components.bb0;
 import org.telegram.ui.Components.lr;
 import org.webrtc.RendererCommon;
@@ -337,7 +337,7 @@ public class n2 extends FrameLayout {
                 this.f41079c0.setDuration(350L);
             }
             this.f41079c0.setInterpolator(lr.f37208f);
-            this.f41079c0.addListener(new x9(this, 17));
+            this.f41079c0.addListener(new y9(this, 17));
             this.f41079c0.start();
             ArrayList arrayList = this.H;
             if (!arrayList.isEmpty()) {

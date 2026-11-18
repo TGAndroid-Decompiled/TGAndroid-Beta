@@ -43,7 +43,7 @@ public final class k01 extends Drawable {
     }
 
     public static k01 a(int i7) {
-        k01 k01Var = new k01(org.telegram.messenger.t0.f26915b, null);
+        k01 k01Var = new k01(org.telegram.messenger.t0.f26913b, null);
         k01Var.b(i7);
         k01Var.f36608l = true;
         return k01Var;
@@ -146,7 +146,7 @@ public final class k01 extends Drawable {
             textPaint.setColor(-1);
         } else if (!this.f36608l) {
             if (!this.f36607k) {
-                paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29676s8, i6Var));
+                paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29674s8, i6Var));
             }
             textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.A8, i6Var));
         } else {
@@ -172,7 +172,7 @@ public final class k01 extends Drawable {
             }
         }
         if (this.f36603f != 0 && this.f36601c != null) {
-            if (org.telegram.messenger.g0.f24120p != 3.0f) {
+            if (org.telegram.messenger.g0.f24117p != 3.0f) {
                 i7 = 0;
             }
             canvas.save();

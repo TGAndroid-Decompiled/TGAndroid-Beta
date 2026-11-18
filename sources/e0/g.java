@@ -24,31 +24,31 @@ import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.m6;
 import org.telegram.ui.Components.mc;
 public final class g {
-    public int f10205a;
-    public boolean f10206b;
-    public boolean f10207c;
+    public int f10202a;
+    public boolean f10203b;
+    public boolean f10204c;
     public final Object d;
-    public final Object f10208e;
-    public final Object f10209f;
-    public final Object f10210g;
+    public final Object f10205e;
+    public final Object f10206f;
+    public final Object f10207g;
     public Object h;
 
     public g(View view) {
         this.h = new Paint(1);
         this.d = new c6(view, 350L, lr.h);
-        this.f10209f = new eh0(view);
-        this.f10210g = new mc(view);
+        this.f10206f = new eh0(view);
+        this.f10207g = new mc(view);
         m6 m6Var = new m6(false, false, false);
-        this.f10208e = m6Var;
+        this.f10205e = m6Var;
         m6Var.w(org.telegram.messenger.g0.L(11.0f));
         m6Var.r(true, true);
         m6Var.setCallback(view);
-        m6Var.N = (int) (org.telegram.messenger.g0.f24121q.x * 0.3f);
-        this.f10206b = false;
+        m6Var.N = (int) (org.telegram.messenger.g0.f24118q.x * 0.3f);
+        this.f10203b = false;
         m6Var.t(gd.M0(2131746244, null), false, true);
         String M0 = gd.M0(2131746243, null);
         TextPaint textPaint = m6Var.f37375a;
-        this.f10205a = (int) Math.ceil(Math.max(textPaint.measureText(M0), textPaint.measureText(gd.M0(2131746244, null))));
+        this.f10202a = (int) Math.ceil(Math.max(textPaint.measureText(M0), textPaint.measureText(gd.M0(2131746244, null))));
     }
 
     public void a(l0 l0Var) {
@@ -83,11 +83,11 @@ public final class g {
         if (!arrayList2.isEmpty()) {
             l0VarArr2 = (l0[]) arrayList2.toArray(new l0[arrayList2.size()]);
         }
-        return new h((IconCompat) this.d, (CharSequence) this.f10208e, (PendingIntent) this.f10209f, (Bundle) this.f10210g, l0VarArr2, l0VarArr, this.f10206b, this.f10205a, this.f10207c);
+        return new h((IconCompat) this.d, (CharSequence) this.f10205e, (PendingIntent) this.f10206f, (Bundle) this.f10207g, l0VarArr2, l0VarArr, this.f10203b, this.f10202a, this.f10204c);
     }
 
     public boolean c() {
-        yi.j jVar = (yi.j) this.f10208e;
+        yi.j jVar = (yi.j) this.f10205e;
         jVar.getClass();
         yi.j.q();
         ac.e eVar = null;
@@ -96,17 +96,17 @@ public final class g {
         eVar = null;
         eVar = null;
         eVar = null;
-        if (jVar.G == 5 && jVar.f61338z != null && jVar.f61331r == 0 && jVar.f61332s == jVar.j()) {
+        if (jVar.G == 5 && jVar.f61339z != null && jVar.f61332r == 0 && jVar.f61333s == jVar.j()) {
             jVar.p();
-            yi.h hVar = jVar.f61338z;
+            yi.h hVar = jVar.f61339z;
             long j3 = jVar.j();
-            long length = hVar.f61313b.length();
+            long length = hVar.f61314b.length();
             jVar.a(hVar, length);
-            synchronized (jVar.f61325l) {
-                if (hVar.d && !hVar.f61315e) {
-                    hVar.f61315e = true;
-                    jVar.f61324k.execute(new yi.c(jVar, hVar, length, j3, 0));
-                    File file = hVar.f61313b;
+            synchronized (jVar.f61326l) {
+                if (hVar.d && !hVar.f61316e) {
+                    hVar.f61316e = true;
+                    jVar.f61325k.execute(new yi.c(jVar, hVar, length, j3, 0));
+                    File file = hVar.f61314b;
                     byte[] bArr2 = jVar.B;
                     if (bArr2 != null) {
                         bArr = (byte[]) bArr2.clone();
@@ -123,18 +123,18 @@ public final class g {
         if (eVar == null) {
             return false;
         }
-        ((yi.j) this.f10208e).o();
-        this.f10207c = true;
+        ((yi.j) this.f10205e).o();
+        this.f10204c = true;
         return true;
     }
 
     public void d(Canvas canvas, RectF rectF, float f10, float f11, int i7, boolean z10, boolean z11) {
         int i10;
         Paint paint = (Paint) this.h;
-        eh0 eh0Var = (eh0) this.f10209f;
-        m6 m6Var = (m6) this.f10208e;
-        if (z10 != this.f10206b) {
-            this.f10206b = z10;
+        eh0 eh0Var = (eh0) this.f10206f;
+        m6 m6Var = (m6) this.f10205e;
+        if (z10 != this.f10203b) {
+            this.f10203b = z10;
             if (z10) {
                 i10 = 2131746243;
             } else {
@@ -145,7 +145,7 @@ public final class g {
         float c10 = m6Var.c();
         float L = org.telegram.messenger.g0.L(17.66f);
         rectF.set(f10 - ((int) (c10 + org.telegram.messenger.g0.L(23.66f))), f11 - L, f10, f11);
-        float a10 = ((mc) this.f10210g).a(0.02f) * ((c6) this.d).d(z11);
+        float a10 = ((mc) this.f10207g).a(0.02f) * ((c6) this.d).d(z11);
         if (a10 > 0.0f) {
             paint.setColor(i0.a.o(i7, 30));
             canvas.save();
@@ -172,32 +172,32 @@ public final class g {
     }
 
     public boolean e() {
-        yi.j jVar = (yi.j) this.f10208e;
+        yi.j jVar = (yi.j) this.f10205e;
         jVar.getClass();
         yi.j.q();
-        if (jVar.e().f2960a == 5) {
+        if (jVar.e().f2961a == 5) {
             return true;
         }
         return false;
     }
 
     public void f() {
-        this.f10206b = true;
+        this.f10203b = true;
     }
 
     public void g(boolean z10) {
-        this.f10207c = z10;
-        ((mc) this.f10210g).c(z10);
+        this.f10204c = z10;
+        ((mc) this.f10207g).c(z10);
     }
 
     public boolean h() {
-        yi.j jVar = (yi.j) this.f10208e;
+        yi.j jVar = (yi.j) this.f10205e;
         jVar.getClass();
         yi.j.q();
         if (jVar.G != 1) {
             return false;
         }
-        File file = jVar.f61317b;
+        File file = jVar.f61318b;
         if ((file.isDirectory() || file.mkdirs()) && file.canWrite()) {
             jVar.h.b("start requested");
             jVar.d();
@@ -211,20 +211,20 @@ public final class g {
 
     public g(Context context, File file, ke keVar) {
         this.d = new Handler(Looper.getMainLooper());
-        this.f10209f = new Object();
-        this.f10210g = new HashMap();
+        this.f10206f = new Object();
+        this.f10207g = new HashMap();
         this.h = new HashSet();
-        this.f10205a = 1;
+        this.f10202a = 1;
         y3 y3Var = new y3(context, 3);
-        y3Var.f12775c = file;
-        yi.g gVar = (yi.g) aj.e.f1650c.a();
+        y3Var.f12772c = file;
+        yi.g gVar = (yi.g) aj.e.f1651c.a();
         if (gVar != null) {
             y3Var.d = gVar;
-            y3Var.f12773a = false;
-            y3Var.f12776e = new ji.j(this, keVar, false, 9);
-            y3Var.f12777f = new k8.a(8, this, keVar);
-            y3Var.f12778g = new nb.a(17);
-            this.f10208e = new yi.j(y3Var);
+            y3Var.f12770a = false;
+            y3Var.f12773e = new ji.j(this, keVar, false, 9);
+            y3Var.f12774f = new k8.a(8, this, keVar);
+            y3Var.f12775g = new nb.a(17);
+            this.f10205e = new yi.j(y3Var);
             return;
         }
         throw new IllegalArgumentException("Noise suppression mode is required");
@@ -233,15 +233,15 @@ public final class g {
     public g(int i7, PendingIntent pendingIntent, String str) {
         IconCompat e10 = i7 == 0 ? null : IconCompat.e(null, "", i7);
         Bundle bundle = new Bundle();
-        this.f10206b = true;
-        this.f10207c = true;
+        this.f10203b = true;
+        this.f10204c = true;
         this.d = e10;
-        this.f10208e = q.d(str);
-        this.f10209f = pendingIntent;
-        this.f10210g = bundle;
+        this.f10205e = q.d(str);
+        this.f10206f = pendingIntent;
+        this.f10207g = bundle;
         this.h = null;
-        this.f10206b = true;
-        this.f10205a = 0;
-        this.f10207c = true;
+        this.f10203b = true;
+        this.f10202a = 0;
+        this.f10204c = true;
     }
 }

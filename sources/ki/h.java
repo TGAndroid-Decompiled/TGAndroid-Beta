@@ -17,25 +17,25 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.ActionBar.u6;
 public final class h extends FrameLayout {
-    public final i6 f18703a;
-    public final ImageView f18704b;
-    public final FrameLayout.LayoutParams f18705c;
+    public final i6 f18700a;
+    public final ImageView f18701b;
+    public final FrameLayout.LayoutParams f18702c;
     public final FrameLayout.LayoutParams d;
-    public final TextView f18706e;
-    public final TextView f18707f;
+    public final TextView f18703e;
+    public final TextView f18704f;
     public final TextView h;
 
     public h(Context context, i6 i6Var) {
         super(context);
-        this.f18703a = i6Var;
+        this.f18700a = i6Var;
         ImageView imageView = new ImageView(context);
-        this.f18704b = imageView;
+        this.f18701b = imageView;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         FrameLayout.LayoutParams d = ma.d(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
-        this.f18705c = d;
+        this.f18702c = d;
         addView(imageView, d);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -43,13 +43,13 @@ public final class h extends FrameLayout {
         this.d = d2;
         addView(linearLayout, d2);
         TextView textView = new TextView(context);
-        this.f18706e = textView;
+        this.f18703e = textView;
         n10.p(textView, 1, 15.0f);
         u6.U(textView, n6.G6, i6Var);
         TextView f10 = n10.f(linearLayout, textView, ma.t(-1, -2, 55, 0, 0, 0, 0), context);
-        this.f18707f = f10;
+        this.f18704f = f10;
         f10.setTextSize(1, 14.0f);
-        u6.U(f10, n6.f29807z6, i6Var);
+        u6.U(f10, n6.f29805z6, i6Var);
         linearLayout.addView(f10, ma.t(-1, -2, 55, 0, 3, 0, 0));
         ImageView imageView2 = new ImageView(context);
         u6.s(imageView2, n6.M6, i6Var, mode);
@@ -74,22 +74,22 @@ public final class h extends FrameLayout {
     }
 
     public final void a(int i7, int i10, CharSequence charSequence, CharSequence charSequence2) {
-        ImageView imageView = this.f18704b;
+        ImageView imageView = this.f18701b;
         imageView.setImageResource(i10);
         ShapeDrawable d02 = n6.d0(org.telegram.messenger.g0.L(9.0f), i7);
         int i11 = n6.lk;
-        i6 i6Var = this.f18703a;
+        i6 i6Var = this.f18700a;
         if (i7 == n6.w0(i11, i6Var)) {
             u6.B(imageView, d02, u6.M(i11), i6Var);
         } else {
             imageView.setBackground(d02);
         }
-        TextView textView = this.f18706e;
+        TextView textView = this.f18703e;
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        TextView textView2 = this.f18707f;
+        TextView textView2 = this.f18704f;
         FrameLayout.LayoutParams layoutParams = this.d;
-        FrameLayout.LayoutParams layoutParams2 = this.f18705c;
+        FrameLayout.LayoutParams layoutParams2 = this.f18702c;
         if (isEmpty) {
             layoutParams2.topMargin = org.telegram.messenger.g0.L(10.0f);
             layoutParams2.bottomMargin = org.telegram.messenger.g0.L(10.0f);

@@ -61,7 +61,7 @@ public final class fb0 {
         Matrix matrix = this.f35061i;
         matrix.setRectToRect(rectF2, rectF, scaleToFit);
         ci.b1 b1Var = this.f35057c;
-        eb0 eb0Var = (eb0) b1Var.f5590c;
+        eb0 eb0Var = (eb0) b1Var.f5587c;
         eb0Var.f34662b.set(matrix);
         BitmapShader bitmapShader = eb0Var.d;
         if (bitmapShader != null) {
@@ -87,7 +87,7 @@ public final class fb0 {
         ci.b1 b1Var = this.f35057c;
         float[] fArr = (float[]) b1Var.h;
         a(matrix, fArr);
-        eb0 eb0Var = (eb0) b1Var.f5591e;
+        eb0 eb0Var = (eb0) b1Var.f5588e;
         eb0Var.f34662b.set(matrix);
         BitmapShader bitmapShader = eb0Var.d;
         if (bitmapShader != null) {
@@ -144,22 +144,22 @@ public final class fb0 {
             return db0Var.a(bitmap, bitmap4, bitmap6, i10, i11);
         }
         ci.b1 b1Var = this.f35057c;
-        an anVar = (an) b1Var.f5592f;
-        an anVar2 = (an) b1Var.f5593g;
+        an anVar = (an) b1Var.f5589f;
+        an anVar2 = (an) b1Var.f5590g;
         eb0 eb0Var = (eb0) b1Var.d;
-        Paint paint = (Paint) b1Var.f5589b;
-        eb0 eb0Var2 = (eb0) b1Var.f5590c;
+        Paint paint = (Paint) b1Var.f5586b;
+        eb0 eb0Var2 = (eb0) b1Var.f5587c;
         boolean b10 = eb0Var2.b(bitmap);
-        eb0 eb0Var3 = (eb0) b1Var.f5591e;
+        eb0 eb0Var3 = (eb0) b1Var.f5588e;
         boolean b11 = b10 | eb0Var3.b(bitmap4);
         if (i11 >= 0) {
-            if ((eb0Var.b(bitmap6) | b11) || b1Var.f5588a != 1) {
-                b1Var.f5588a = 1;
+            if ((eb0Var.b(bitmap6) | b11) || b1Var.f5585a != 1) {
+                b1Var.f5585a = 1;
                 paint.setShader(new ComposeShader(eb0Var2.d, new ComposeShader(eb0Var.d, eb0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
                 return paint;
             }
-        } else if ((anVar2.R(i0.a.o(-1, ((-i11) * i10) / 100)) | b11 | anVar.R(-16777216)) || b1Var.f5588a != 2) {
-            b1Var.f5588a = 2;
+        } else if ((anVar2.R(i0.a.o(-1, ((-i11) * i10) / 100)) | b11 | anVar.R(-16777216)) || b1Var.f5585a != 2) {
+            b1Var.f5585a = 2;
             paint.setShader(new ComposeShader((bg.l) anVar.f33367b, new ComposeShader(new ComposeShader(eb0Var2.d, eb0Var3.d, PorterDuff.Mode.DST_IN), (bg.l) anVar2.f33367b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
             return paint;
         }

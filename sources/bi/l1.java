@@ -10,24 +10,24 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class l1 implements x10 {
-    public final int f3832a;
-    public final a2 f3833b;
+    public final int f3803a;
+    public final a2 f3804b;
 
     public l1(a2 a2Var, int i7) {
-        this.f3832a = i7;
-        this.f3833b = a2Var;
+        this.f3803a = i7;
+        this.f3804b = a2Var;
     }
 
     @Override
     public final void a(Object obj) {
         TL_account.TL_birthday tL_birthday;
-        switch (this.f3832a) {
+        switch (this.f3803a) {
             case 0:
                 ((Boolean) obj).booleanValue();
-                this.f3833b.dismiss();
+                this.f3804b.dismiss();
                 return;
             case 1:
-                ArrayList arrayList = this.f3833b.f3387i2;
+                ArrayList arrayList = this.f3804b.f3388i2;
                 arrayList.clear();
                 arrayList.addAll((List) obj);
                 return;
@@ -36,8 +36,8 @@ public final class l1 implements x10 {
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                a2 a2Var = this.f3833b;
-                TLRPC.UserFull d2 = mp.u1(a2Var.f30189a).d2(j10.i(a2Var.f30189a).e());
+                a2 a2Var = this.f3804b;
+                TLRPC.UserFull d2 = mp.u1(a2Var.f30187a).d2(j10.i(a2Var.f30187a).e());
                 if (d2 != null) {
                     tL_birthday = d2.birthday;
                 } else {
@@ -47,11 +47,11 @@ public final class l1 implements x10 {
                     d2.flags2 |= 32;
                     d2.birthday = tL_birthday2;
                 }
-                ConnectionsManager.getInstance(a2Var.f30189a).sendRequest(updatebirthday, new m1(a2Var, d2, tL_birthday, 0), 1024);
-                mp.u1(a2Var.f30189a).o2();
-                mp.u1(a2Var.f30189a).s4(0L, "BIRTHDAY_SETUP");
-                ks.f(a2Var.f30189a).k(107, new Object[0]);
-                a2Var.f3388j2.O(true);
+                ConnectionsManager.getInstance(a2Var.f30187a).sendRequest(updatebirthday, new m1(a2Var, d2, tL_birthday, 0), 1024);
+                mp.u1(a2Var.f30187a).o2();
+                mp.u1(a2Var.f30187a).s4(0L, "BIRTHDAY_SETUP");
+                ks.f(a2Var.f30187a).k(107, new Object[0]);
+                a2Var.f3389j2.O(true);
                 return;
         }
     }

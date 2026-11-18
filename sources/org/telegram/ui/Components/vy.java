@@ -55,19 +55,19 @@ public class vy extends v4.t {
                         v4.f1 f1Var = (v4.f1) sparseArray.get(d, null);
                         if (f1Var == null) {
                             f1Var = adapter.a(ck0Var, d);
-                            View view = f1Var.f59122a;
+                            View view = f1Var.f59123a;
                             sparseArray.put(d, f1Var);
                             if (view.getLayoutParams() == null) {
                                 view.setLayoutParams(n());
                             }
                         }
-                        View view2 = f1Var.f59122a;
+                        View view2 = f1Var.f59123a;
                         if (this.W) {
                             adapter.t(f1Var, i11);
                         }
                         v4.q0 q0Var = (v4.q0) view2.getLayoutParams();
                         ck0Var2 = ck0Var;
-                        view2.measure(v4.p0.s(d(), this.T, this.f59214k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), v4.p0.s(this.X, this.S, this.f59215l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
+                        view2.measure(v4.p0.s(d(), this.T, this.f59215k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), v4.p0.s(this.X, this.S, this.f59216l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
                         i13 += view2.getMeasuredHeight();
                         if (i13 >= (this.S - i7) - ck0Var2.getPaddingBottom()) {
                             break;

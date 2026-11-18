@@ -24,7 +24,7 @@ public final class u6 extends View {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f40217a = imageReceiver;
         imageReceiver.setAlpha(0.0f);
-        imageReceiver.f22642h1 = new b0(this, 11);
+        imageReceiver.f22639h1 = new b0(this, 11);
         this.f40218b = context.getDrawable(2131231495).mutate().getConstantState().newDrawable();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
@@ -67,7 +67,7 @@ public final class u6 extends View {
     public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
         TLRPC.TL_attachMenuBotIcon m0 = org.telegram.messenger.ri.m0(tL_attachMenuBot);
         if (m0 != null) {
-            this.f40217a.q0(org.telegram.messenger.fc.b(m0.icon), "42_42", org.telegram.messenger.u5.f(m0.icon, org.telegram.ui.ActionBar.n6.f29635q5, 1.0f, null), "svg", tL_attachMenuBot, 0);
+            this.f40217a.q0(org.telegram.messenger.fc.b(m0.icon), "42_42", org.telegram.messenger.u5.f(m0.icon, org.telegram.ui.ActionBar.n6.f29633q5, 1.0f, null), "svg", tL_attachMenuBot, 0);
         }
     }
 
@@ -80,6 +80,6 @@ public final class u6 extends View {
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         this.f40218b.setColorFilter(i7, mode);
         this.f40219c.setColor(i7);
-        this.f40217a.f22656p1 = new PorterDuffColorFilter(i7, mode);
+        this.f40217a.f22653p1 = new PorterDuffColorFilter(i7, mode);
     }
 }

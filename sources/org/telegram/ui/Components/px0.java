@@ -53,7 +53,7 @@ public final class px0 {
         int i14;
         int i15;
         int i16;
-        org.telegram.ui.Cells.i9 i9Var;
+        org.telegram.ui.Cells.j9 j9Var;
         Canvas canvas2 = canvas;
         if (this.f38594c != null) {
             int i17 = this.f38605p + this.f38600k;
@@ -135,8 +135,8 @@ public final class px0 {
             if (z10 && this.f38593b != null) {
                 canvas2.save();
                 canvas2.translate(b(), c());
-                if (this.f38607r >= 0 && (i9Var = wx0Var.f41804a) != null) {
-                    i9Var.Z(canvas2, (org.telegram.ui.Cells.h9) wx0Var.getParent().getParent(), this.f38607r);
+                if (this.f38607r >= 0 && (j9Var = wx0Var.f41804a) != null) {
+                    j9Var.Z(canvas2, (org.telegram.ui.Cells.i9) wx0Var.getParent().getParent(), this.f38607r);
                 }
                 this.f38593b.d(canvas2, view);
                 canvas2.restore();

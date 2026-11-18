@@ -167,7 +167,7 @@ public final class cy0 extends TableLayout implements org.telegram.ui.ActionBar.
         k80Var.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
         float f10 = i7;
         k80Var.setTextSize(1, f10);
-        int i10 = org.telegram.ui.ActionBar.n6.f29504j5;
+        int i10 = org.telegram.ui.ActionBar.n6.f29502j5;
         org.telegram.ui.ActionBar.i6 i6Var = this.f34196a;
         org.telegram.ui.ActionBar.u6.U(k80Var, i10, i6Var);
         k80Var.setMaxLines(4);
@@ -208,7 +208,7 @@ public final class cy0 extends TableLayout implements org.telegram.ui.ActionBar.
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(2131232105);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i12 = org.telegram.ui.ActionBar.n6.f29731v6;
+            int i12 = org.telegram.ui.ActionBar.n6.f29729v6;
             org.telegram.ui.ActionBar.u6.s(imageView, i12, i6Var, PorterDuff.Mode.SRC_IN);
             imageView.setOnClickListener(new y7(27, charSequence2, w2Var));
             c8.ra.a(imageView);
@@ -251,7 +251,7 @@ public final class cy0 extends TableLayout implements org.telegram.ui.ActionBar.
         ncVar.setDisablePaddingsOffsetY(true);
         org.telegram.ui.f5 f5Var = new org.telegram.ui.f5(24.0f, i7, ncVar);
         int i11 = (j3 > 2666000L ? 1 : (j3 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = f5Var.f47557b;
+        ImageReceiver imageReceiver = f5Var.f47513b;
         if (i11 == 0) {
             str3 = org.telegram.messenger.gd.M0(2131744714, null);
             mq a10 = di.kb.a(44, "anonymous");
@@ -332,7 +332,7 @@ public final class cy0 extends TableLayout implements org.telegram.ui.ActionBar.
         i80Var.setTextSize(14);
         org.telegram.ui.f5 f5Var = new org.telegram.ui.f5(24.0f, i7, i80Var);
         int i11 = (j3 > 2666000L ? 1 : (j3 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = f5Var.f47557b;
+        ImageReceiver imageReceiver = f5Var.f47513b;
         if (i11 == 0) {
             str3 = org.telegram.messenger.gd.M0(2131744714, null);
             mq a10 = di.kb.a(44, "anonymous");
@@ -396,8 +396,8 @@ public final class cy0 extends TableLayout implements org.telegram.ui.ActionBar.
         };
         x10Var.a(null);
         i80Var.i(m5Var);
-        org.telegram.messenger.ks.f(i7).h(i80Var, org.telegram.messenger.ks.f25179r, x10Var);
-        org.telegram.messenger.ks.f(i7).h(i80Var, org.telegram.messenger.ks.f25166o5, x10Var);
+        org.telegram.messenger.ks.f(i7).h(i80Var, org.telegram.messenger.ks.f25177r, x10Var);
+        org.telegram.messenger.ks.f(i7).h(i80Var, org.telegram.messenger.ks.f25170p5, x10Var);
         i80Var.l(spannableStringBuilder, false);
         return l(i80Var, str);
     }
@@ -417,10 +417,10 @@ public final class cy0 extends TableLayout implements org.telegram.ui.ActionBar.
         Paint.Style style2 = Paint.Style.FILL;
         Paint paint2 = this.d;
         paint2.setStyle(style2);
-        int i13 = org.telegram.ui.ActionBar.n6.f29480hi;
+        int i13 = org.telegram.ui.ActionBar.n6.f29478hi;
         org.telegram.ui.ActionBar.i6 i6Var = this.f34196a;
         paint.setColor(org.telegram.ui.ActionBar.n6.w0(i13, i6Var));
-        paint2.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29463gi, i6Var));
+        paint2.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29461gi, i6Var));
         int childCount = getChildCount();
         for (int i14 = 0; i14 < childCount; i14++) {
             if (getChildAt(i14) instanceof TableRow) {
@@ -497,10 +497,10 @@ public final class cy0 extends TableLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        int i7 = org.telegram.ui.ActionBar.n6.f29480hi;
+        int i7 = org.telegram.ui.ActionBar.n6.f29478hi;
         org.telegram.ui.ActionBar.i6 i6Var = this.f34196a;
         this.f34199e.setColor(org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
-        this.d.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29463gi, i6Var));
+        this.d.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29461gi, i6Var));
         try {
             if (this.f34201n != null && this.f34202r != null) {
                 int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, i6Var);

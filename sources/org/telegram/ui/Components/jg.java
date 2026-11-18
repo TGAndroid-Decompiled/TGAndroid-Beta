@@ -50,7 +50,7 @@ public abstract class jg extends mt {
         } else {
             z10 = false;
         }
-        Utilities.f22782e.c(new k7(this, uri, org.telegram.messenger.g0.q0(MimeTypeMap.getSingleton().getExtensionFromMimeType(str), z10), 3));
+        Utilities.f22779e.c(new k7(this, uri, org.telegram.messenger.g0.q0(MimeTypeMap.getSingleton().getExtensionFromMimeType(str), z10), 3));
     }
 
     public final void K(File file, ArrayList arrayList) {
@@ -73,14 +73,14 @@ public abstract class jg extends mt {
         org.telegram.messenger.fj threadMessage2;
         ChatActivityEnterView chatActivityEnterView = this.f36431f2;
         org.telegram.ui.bn bnVar = chatActivityEnterView.D3;
-        org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
+        org.telegram.ui.fg0 fg0Var = chatActivityEnterView.M0;
         org.telegram.messenger.bw bwVar = null;
-        if (eg0Var != null) {
-            eg0Var.h(true);
+        if (fg0Var != null) {
+            fg0Var.h(true);
             chatActivityEnterView.M0 = null;
         }
         org.telegram.ui.rm rmVar = chatActivityEnterView.J3;
-        if (rmVar != null && bnVar != null && rmVar.f51655f) {
+        if (rmVar != null && bnVar != null && rmVar.f51644f) {
             bnVar.yc();
             return;
         }

@@ -211,7 +211,7 @@ public class x6 extends FrameLayout implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25099c4) {
+        if (i7 == ks.f25102d4) {
             Object obj = objArr[0];
             u0 u0Var = this.f45257a0;
             if (obj == u0Var) {
@@ -358,7 +358,7 @@ public class x6 extends FrameLayout implements fs {
         spannableStringBuilder.append((CharSequence) gd.M0(2131749341, null));
         spannableStringBuilder.setSpan(new oi.v5(this, 5), length, spannableStringBuilder.length(), 33);
         this.O.setText(spannableStringBuilder);
-        long round = Math.round((j3 / 1.0E9d) * ((org.telegram.messenger.i0) mp.u1(i7).A7.f26153l.f15645b).f24535a * 100.0d);
+        long round = Math.round((j3 / 1.0E9d) * ((org.telegram.messenger.i0) mp.u1(i7).A7.f26151l.f15642b).f24532a * 100.0d);
         org.telegram.messenger.r1 i10 = org.telegram.messenger.r1.i();
         if (round % 100 == 0) {
             z10 = true;
@@ -588,7 +588,7 @@ public class x6 extends FrameLayout implements fs {
             }
         }
         if (this.f45257a0 != null) {
-            ks.f(this.W).c(this, ks.f25099c4);
+            ks.f(this.W).c(this, ks.f25102d4);
         }
     }
 
@@ -605,7 +605,7 @@ public class x6 extends FrameLayout implements fs {
         }
         super.onDetachedFromWindow();
         if (this.f45257a0 != null) {
-            ks.f(this.W).n(this, ks.f25099c4);
+            ks.f(this.W).n(this, ks.f25102d4);
         }
     }
 
@@ -706,7 +706,7 @@ public class x6 extends FrameLayout implements fs {
         };
         lr lrVar = lr.h;
         this.L = new org.telegram.ui.Components.c6(runnable, 240L, lrVar, 0);
-        this.W = j10.f24773t0;
+        this.W = j10.f24770t0;
         this.f45267g0 = new org.telegram.ui.Components.c6(new Runnable(this) {
             public final x6 f45071b;
 

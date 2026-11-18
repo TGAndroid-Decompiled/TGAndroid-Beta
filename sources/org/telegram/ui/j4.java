@@ -54,9 +54,9 @@ public class j4 extends FrameLayout {
             int i11 = (Math.abs(f14) > 0.01f ? 1 : (Math.abs(f14) == 0.01f ? 0 : -1));
             i4 i4Var = this.f48868a;
             if (i11 <= 0) {
-                if (!i4Var.f48572b) {
-                    i4Var.f48572b = true;
-                    ((j4) i4Var.f48573c).post(i4Var);
+                if (!i4Var.f48528b) {
+                    i4Var.f48528b = true;
+                    ((j4) i4Var.f48529c).post(i4Var);
                     return;
                 }
                 return;
@@ -93,9 +93,9 @@ public class j4 extends FrameLayout {
                 f10 = this.f48869b;
                 measuredWidth = (int) (f13 * f10);
             }
-            if (!i4Var.f48572b) {
-                i4Var.f48572b = true;
-                ((j4) i4Var.f48573c).post(i4Var);
+            if (!i4Var.f48528b) {
+                i4Var.f48528b = true;
+                ((j4) i4Var.f48529c).post(i4Var);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
             int childCount = getChildCount();

@@ -5,42 +5,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class ib extends v4.i0 {
-    public final Context f48683c;
+    public final Context f48681c;
     public int d;
-    public int f48684e;
-    public int f48685f;
+    public int f48682e;
+    public int f48683f;
     public int h;
-    public final lb f48686n;
+    public final lb f48684n;
 
     public ib(lb lbVar, Context context) {
-        this.f48686n = lbVar;
+        this.f48684n = lbVar;
         new ArrayList();
         new ArrayList();
-        this.f48683c = context;
+        this.f48681c = context;
         C(true);
     }
 
     public final void D(boolean z10) {
         this.d = 0;
-        lb lbVar = this.f48686n;
-        ArrayList arrayList = lbVar.f49546p0;
+        lb lbVar = this.f48684n;
+        ArrayList arrayList = lbVar.f49519p0;
         if (!arrayList.isEmpty()) {
-            if (!lbVar.f49549r0) {
+            if (!lbVar.f49522r0) {
                 int i7 = this.d;
                 this.d = i7 + 1;
-                this.f48684e = i7;
+                this.f48682e = i7;
             } else {
-                this.f48684e = -1;
+                this.f48682e = -1;
             }
             int i10 = this.d;
-            this.f48685f = i10;
+            this.f48683f = i10;
             int size = arrayList.size() + i10;
             this.d = size;
             this.h = size;
             return;
         }
-        this.f48684e = -1;
-        this.f48685f = -1;
+        this.f48682e = -1;
+        this.f48683f = -1;
         this.h = -1;
     }
 
@@ -51,10 +51,10 @@ public final class ib extends v4.i0 {
 
     @Override
     public final long c(int i7) {
-        if (i7 >= this.f48685f && i7 < this.h) {
-            ArrayList arrayList = this.f48686n.f49546p0;
-            return ((org.telegram.messenger.fj) arrayList.get((arrayList.size() - (i7 - this.f48685f)) - 1)).f23978m1;
-        } else if (i7 == this.f48684e) {
+        if (i7 >= this.f48683f && i7 < this.h) {
+            ArrayList arrayList = this.f48684n.f49519p0;
+            return ((org.telegram.messenger.fj) arrayList.get((arrayList.size() - (i7 - this.f48683f)) - 1)).f23975m1;
+        } else if (i7 == this.f48682e) {
             return 2L;
         } else {
             return 5L;
@@ -63,9 +63,9 @@ public final class ib extends v4.i0 {
 
     @Override
     public final int d(int i7) {
-        if (i7 >= this.f48685f && i7 < this.h) {
-            ArrayList arrayList = this.f48686n.f49546p0;
-            return ((org.telegram.messenger.fj) arrayList.get((arrayList.size() - (i7 - this.f48685f)) - 1)).U;
+        if (i7 >= this.f48683f && i7 < this.h) {
+            ArrayList arrayList = this.f48684n.f49519p0;
+            return ((org.telegram.messenger.fj) arrayList.get((arrayList.size() - (i7 - this.f48683f)) - 1)).U;
         }
         return 4;
     }
@@ -138,53 +138,53 @@ public final class ib extends v4.i0 {
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.ActionBar.i6 i6Var;
-        org.telegram.ui.Cells.y1 y1Var;
+        org.telegram.ui.Cells.z1 z1Var;
         int i10;
         View view;
-        lb lbVar = this.f48686n;
+        lb lbVar = this.f48684n;
         ArrayList arrayList = lbVar.h;
-        Context context = this.f48683c;
+        Context context = this.f48681c;
         if (i7 == 0) {
             if (arrayList.isEmpty()) {
                 i10 = ((org.telegram.ui.ActionBar.h2) lbVar).currentAccount;
-                view = new org.telegram.ui.Cells.q1(context, i10);
+                view = new org.telegram.ui.Cells.r1(context, i10);
             } else {
                 arrayList.remove(0);
                 view = (View) arrayList.get(0);
             }
-            org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-            q1Var.setDelegate(new db(this));
-            q1Var.setAllowAssistant(true);
-            y1Var = view;
+            org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) view;
+            r1Var.setDelegate(new db(this));
+            r1Var.setAllowAssistant(true);
+            z1Var = view;
         } else if (i7 == 1) {
-            org.telegram.ui.Cells.u0 u0Var = new org.telegram.ui.Cells.u0(context);
-            u0Var.setDelegate(new gb(this));
-            y1Var = u0Var;
+            org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context);
+            v0Var.setDelegate(new gb(this));
+            z1Var = v0Var;
         } else if (i7 == 2) {
-            y1Var = new org.telegram.ui.Cells.z1(context, null);
+            z1Var = new org.telegram.ui.Cells.a2(context, null);
         } else if (i7 == 10) {
             i6Var = ((org.telegram.ui.ActionBar.h2) lbVar).resourceProvider;
-            org.telegram.ui.Cells.y1 y1Var2 = new org.telegram.ui.Cells.y1(context, i6Var);
-            y1Var2.setDelegate(new f(this, 8));
-            y1Var = y1Var2;
+            org.telegram.ui.Cells.z1 z1Var2 = new org.telegram.ui.Cells.z1(context, i6Var);
+            z1Var2.setDelegate(new f(this, 8));
+            z1Var = z1Var2;
         } else {
-            y1Var = new org.telegram.ui.Cells.x0(context, null);
+            z1Var = new org.telegram.ui.Cells.y0(context, null);
         }
-        return i5.c.q(y1Var, y1Var, -1, -2);
+        return i5.c.q(z1Var, z1Var, -1, -2);
     }
 
     @Override
     public final void y(v4.f1 f1Var) {
-        View view = f1Var.f59122a;
-        if ((view instanceof org.telegram.ui.Cells.q1) || (view instanceof org.telegram.ui.Cells.u0)) {
+        View view = f1Var.f59123a;
+        if ((view instanceof org.telegram.ui.Cells.r1) || (view instanceof org.telegram.ui.Cells.v0)) {
             view.getViewTreeObserver().addOnPreDrawListener(new hb(this, view, f1Var));
         }
-        if (view instanceof org.telegram.ui.Cells.q1) {
-            org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-            q1Var.getMessageObject();
-            q1Var.setBackgroundDrawable(null);
-            q1Var.m3(true, false);
-            q1Var.setHighlighted(false);
+        if (view instanceof org.telegram.ui.Cells.r1) {
+            org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) view;
+            r1Var.getMessageObject();
+            r1Var.setBackgroundDrawable(null);
+            r1Var.m3(true, false);
+            r1Var.setHighlighted(false);
         }
     }
 }

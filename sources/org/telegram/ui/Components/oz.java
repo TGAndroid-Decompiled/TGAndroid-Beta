@@ -21,14 +21,14 @@ public final class oz extends v4.w {
         switch (this.d) {
             case 0:
                 super.a(recyclerView, f1Var);
-                View view = f1Var.f59122a;
+                View view = f1Var.f59123a;
                 view.setPressed(false);
                 view.setBackground(null);
                 view.setTag(2131296419, null);
                 return;
             default:
                 super.a(recyclerView, f1Var);
-                View view2 = f1Var.f59122a;
+                View view2 = f1Var.f59123a;
                 view2.setPressed(false);
                 view2.setTag(2131296419, null);
                 if (view2 instanceof org.telegram.ui.f00) {
@@ -44,12 +44,12 @@ public final class oz extends v4.w {
         switch (this.d) {
             case 0:
                 pz pzVar = (pz) this.f38197f;
-                if (org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).K3() && (!pzVar.f38631n || (f1Var.b() == 0 && ((mz) pzVar.h.get(0)).f37671e && !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q()))) {
+                if (org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).K3() && (!pzVar.f38631n || (f1Var.b() == 0 && ((mz) pzVar.h.get(0)).f37671e && !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q()))) {
                     return v4.w.l(0, 0);
                 }
                 return v4.w.l(12, 0);
             default:
-                if (f1Var.f59126f != 2) {
+                if (f1Var.f59127f != 2) {
                     return v4.w.l(0, 0);
                 }
                 return v4.w.l(3, 0);
@@ -73,23 +73,23 @@ public final class oz extends v4.w {
         switch (this.d) {
             case 0:
                 int i7 = 0;
-                if (org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).K3() && ((f1Var.b() == 0 || f1Var2.b() == 0) && !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q())) {
+                if (org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).K3() && ((f1Var.b() == 0 || f1Var2.b() == 0) && !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q())) {
                     return false;
                 }
                 org.telegram.ui.l4 l4Var = ((pz) this.f38197f).J;
                 int b10 = f1Var.b();
                 int b11 = f1Var2.b();
-                pz pzVar = (pz) l4Var.f49426e;
+                pz pzVar = (pz) l4Var.f49432e;
                 ArrayList arrayList = pzVar.h;
                 SparseIntArray sparseIntArray = pzVar.f38630l0;
                 int size = arrayList.size();
                 if (b10 >= 0 && b11 >= 0 && b10 < size && b11 < size) {
-                    ArrayList V0 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).V0();
+                    ArrayList V0 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).V0();
                     org.telegram.messenger.ro roVar3 = (org.telegram.messenger.ro) V0.get(b10);
                     org.telegram.messenger.ro roVar4 = (org.telegram.messenger.ro) V0.get(b11);
-                    int i10 = roVar3.f26678f;
-                    roVar3.f26678f = roVar4.f26678f;
-                    roVar4.f26678f = i10;
+                    int i10 = roVar3.f26676f;
+                    roVar3.f26676f = roVar4.f26676f;
+                    roVar4.f26676f = i10;
                     V0.set(b10, roVar4);
                     V0.set(b11, roVar3);
                     mz mzVar = (mz) arrayList.get(b10);
@@ -105,7 +105,7 @@ public final class oz extends v4.w {
                     int i14 = mzVar.f37668a;
                     org.telegram.ui.tw twVar = (org.telegram.ui.tw) lzVar;
                     while (true) {
-                        org.telegram.ui.bx[] bxVarArr = twVar.f52368b.f46683f0;
+                        org.telegram.ui.bx[] bxVarArr = twVar.f52363b.f46663f0;
                         if (i7 < bxVarArr.length) {
                             org.telegram.ui.bx bxVar = bxVarArr[i7];
                             int i15 = bxVar.h;
@@ -143,7 +143,7 @@ public final class oz extends v4.w {
                 }
                 return true;
             default:
-                if (f1Var.f59126f != f1Var2.f59126f) {
+                if (f1Var.f59127f != f1Var2.f59127f) {
                     return false;
                 }
                 org.telegram.ui.j00 j00Var = ((FiltersSetupActivity) this.f38197f).f43050b;
@@ -156,9 +156,9 @@ public final class oz extends v4.w {
                     org.telegram.ui.h00 h00Var = (org.telegram.ui.h00) arrayList2.get(b12);
                     org.telegram.ui.h00 h00Var2 = (org.telegram.ui.h00) arrayList2.get(b13);
                     if (h00Var != null && h00Var2 != null && (roVar = h00Var.d) != null && (roVar2 = h00Var2.d) != null) {
-                        int i19 = roVar.f26678f;
-                        roVar.f26678f = roVar2.f26678f;
-                        roVar2.f26678f = i19;
+                        int i19 = roVar.f26676f;
+                        roVar.f26676f = roVar2.f26676f;
+                        roVar2.f26676f = i19;
                         ArrayList arrayList3 = filtersSetupActivity.getMessagesController().Q0;
                         try {
                             arrayList3.set(b12 - filtersSetupActivity.f43055r, h00Var2.d);
@@ -186,14 +186,14 @@ public final class oz extends v4.w {
                 pz pzVar = (pz) obj;
                 if (i7 != 0) {
                     pzVar.G.I0(false);
-                    f1Var.f59122a.setPressed(true);
-                    org.telegram.ui.ActionBar.u6.h(pzVar.f38619c0, f1Var.f59122a, pzVar.f38614a);
+                    f1Var.f59123a.setPressed(true);
+                    org.telegram.ui.ActionBar.u6.h(pzVar.f38619c0, f1Var.f59123a, pzVar.f38614a);
                 } else {
                     org.telegram.messenger.g0.r(moVar);
                     org.telegram.messenger.g0.h3(moVar, 320L);
                 }
                 if (f1Var != null) {
-                    View view = f1Var.f59122a;
+                    View view = f1Var.f59123a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }
@@ -205,13 +205,13 @@ public final class oz extends v4.w {
                 org.telegram.ui.lz lzVar = (org.telegram.ui.lz) runnable;
                 if (i7 != 0) {
                     ((FiltersSetupActivity) obj).f43049a.I0(false);
-                    f1Var.f59122a.setPressed(true);
+                    f1Var.f59123a.setPressed(true);
                 } else {
                     org.telegram.messenger.g0.r(lzVar);
                     org.telegram.messenger.g0.h3(lzVar, 320L);
                 }
                 if (f1Var != null) {
-                    View view2 = f1Var.f59122a;
+                    View view2 = f1Var.f59123a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }

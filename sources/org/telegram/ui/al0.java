@@ -1,23 +1,23 @@
 package org.telegram.ui;
 public final class al0 extends org.telegram.ui.ActionBar.j {
-    public final ml0 f45617a;
+    public final ml0 f45607a;
 
     public al0(ml0 ml0Var) {
-        this.f45617a = ml0Var;
+        this.f45607a = ml0Var;
     }
 
     @Override
     public final void b(int i7) {
-        ml0 ml0Var = this.f45617a;
+        ml0 ml0Var = this.f45607a;
         if (i7 == -1) {
             if (!ml0Var.Q0) {
                 ml0Var.finishFragment();
             }
         } else if (i7 == 1 && !ml0Var.Q0) {
-            if (ml0Var.f49914v0 != 3) {
+            if (ml0Var.f49888v0 != 3) {
                 org.telegram.messenger.g0.v1(ml0Var.getParentActivity().getCurrentFocus());
             }
-            int i10 = ml0Var.f49914v0;
+            int i10 = ml0Var.f49888v0;
             if (i10 != 0) {
                 int i11 = 0;
                 if (i10 != 1) {
@@ -36,10 +36,10 @@ public final class al0 extends org.telegram.ui.ActionBar.j {
                     return;
                 }
                 while (true) {
-                    org.telegram.ui.Cells.i6[] i6VarArr = ml0Var.h;
-                    if (i11 >= i6VarArr.length) {
+                    org.telegram.ui.Cells.j6[] j6VarArr = ml0Var.h;
+                    if (i11 >= j6VarArr.length) {
                         break;
-                    } else if (i6VarArr[i11].f30822b.f33093f) {
+                    } else if (j6VarArr[i11].f30886b.f33093f) {
                         ml0Var.H0 = ml0Var.F0.shipping_options.get(i11);
                         break;
                     } else {

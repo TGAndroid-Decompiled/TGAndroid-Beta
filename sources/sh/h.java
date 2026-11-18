@@ -18,7 +18,7 @@ public abstract class h {
         int i7;
         int i10 = 0;
         if (fjVar.D == 17) {
-            TLRPC.Message message = fjVar.f23968k;
+            TLRPC.Message message = fjVar.f23965k;
             int i11 = fjVar.K1;
             TLRPC.MessageMedia n1 = fj.n1(message);
             if (TLRPC.TL_messageMediaPoll.class.isInstance(n1)) {
@@ -37,7 +37,7 @@ public abstract class h {
                     if (messageFwdHeader != null) {
                         B0 = n5.o(messageFwdHeader.from_id);
                     } else {
-                        B0 = fj.B0(fjVar.f23968k);
+                        B0 = fj.B0(fjVar.f23965k);
                     }
                     TLRPC.Chat O0 = mp.u1(i11).O0(Long.valueOf(-B0));
                     if (O0 != null) {
@@ -57,7 +57,7 @@ public abstract class h {
                 }
                 ArrayList<String> arrayList = tL_messageMediaPoll.poll.countries_iso2;
                 if (arrayList != null && !arrayList.isEmpty()) {
-                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) mp.u1(i11).A7.T.f15539b).f25873c)) {
+                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) mp.u1(i11).A7.T.f15536b).f25871c)) {
                         return i10 | 4;
                     }
                 }
@@ -73,7 +73,7 @@ public abstract class h {
         int i10;
         int i11;
         if (fjVar.D == 17) {
-            TLRPC.Message message = fjVar.f23968k;
+            TLRPC.Message message = fjVar.f23965k;
             int i12 = fjVar.K1;
             TLRPC.MessageMedia n1 = fj.n1(message);
             if (TLRPC.TL_messageMediaPoll.class.isInstance(n1)) {
@@ -125,7 +125,7 @@ public abstract class h {
                     if (messageFwdHeader != null) {
                         B0 = n5.o(messageFwdHeader.from_id);
                     } else {
-                        B0 = fj.B0(fjVar.f23968k);
+                        B0 = fj.B0(fjVar.f23965k);
                     }
                     return g0.W2(gd.a0(null, null, 2131746925, n5.u(mp.u1(i12).O0(Long.valueOf(-B0)))));
                 } else if (dd.a(i7, 2)) {

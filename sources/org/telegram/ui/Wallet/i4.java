@@ -14,9 +14,9 @@ public final class i4 implements Runnable {
     public final void run() {
         switch (this.f44354a) {
             case 0:
-                org.telegram.ui.Cells.u0 u0Var = this.f44355b.f44515a;
-                if (u0Var.getParent() instanceof View) {
-                    ((View) u0Var.getParent()).invalidate();
+                org.telegram.ui.Cells.v0 v0Var = this.f44355b.f44515a;
+                if (v0Var.getParent() instanceof View) {
+                    ((View) v0Var.getParent()).invalidate();
                     return;
                 }
                 return;

@@ -31,7 +31,7 @@ public class ShareActivity extends Activity {
             String uri = data.toString();
             String queryParameter = data.getQueryParameter("hash");
             if ("tgb".equals(scheme) && uri.toLowerCase().startsWith("tgb://share_game_score") && !TextUtils.isEmpty(queryParameter)) {
-                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26915b.getSharedPreferences("botshare", 0);
+                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26913b.getSharedPreferences("botshare", 0);
                 String string = sharedPreferences.getString(queryParameter + "_m", null);
                 if (TextUtils.isEmpty(string)) {
                     finish();
@@ -46,8 +46,8 @@ public class ShareActivity extends Activity {
                 TLdeserialize.readAttachPath(serializedData, 0L);
                 serializedData.cleanup();
                 String string2 = sharedPreferences.getString(queryParameter + "_link", null);
-                org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(org.telegram.messenger.j10.f24773t0, TLdeserialize, false, true);
-                fjVar.f23968k.with_my_score = true;
+                org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(org.telegram.messenger.j10.f24770t0, TLdeserialize, false, true);
+                fjVar.f23965k.with_my_score = true;
                 try {
                     org.telegram.ui.Components.yo0 O0 = org.telegram.ui.Components.yo0.O0(this, fjVar, null, false, string2);
                     this.f43785a = O0;

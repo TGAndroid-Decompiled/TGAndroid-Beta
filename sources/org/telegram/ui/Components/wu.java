@@ -15,7 +15,7 @@ public final class wu extends p41 {
         xu xuVar = this.f41797e;
         bv bvVar = xuVar.f42194y;
         Pattern pattern = bv.Q1;
-        org.telegram.messenger.mp.u1(bvVar.f30189a).F3(getURL(), xuVar.f42194y.n1, 1, null);
+        org.telegram.messenger.mp.u1(bvVar.f30187a).F3(getURL(), xuVar.f42194y.n1, 1, null);
         xuVar.f42194y.M0();
         xuVar.f42194y.dismiss();
     }

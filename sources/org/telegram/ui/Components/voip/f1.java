@@ -48,7 +48,7 @@ public final class f1 extends FrameLayout {
         if (action != 0) {
             if (action != 1) {
                 if (action == 3 && (e1Var = this.f40869e) != null) {
-                    f1[] f1VarArr = (f1[]) ((n4) ((org.telegram.ui.ActionBar.p) e1Var).f29846b).d;
+                    f1[] f1VarArr = (f1[]) ((n4) ((org.telegram.ui.ActionBar.p) e1Var).f29844b).d;
                     int length = f1VarArr.length;
                     while (i10 < length) {
                         f1 f1Var = f1VarArr[i10];
@@ -62,7 +62,7 @@ public final class f1 extends FrameLayout {
             } else {
                 e1 e1Var2 = this.f40869e;
                 if (e1Var2 != null) {
-                    f1[] f1VarArr2 = (f1[]) ((n4) ((org.telegram.ui.ActionBar.p) e1Var2).f29846b).d;
+                    f1[] f1VarArr2 = (f1[]) ((n4) ((org.telegram.ui.ActionBar.p) e1Var2).f29844b).d;
                     for (int i11 = 0; i11 <= this.f40870f; i11++) {
                         f1 f1Var2 = f1VarArr2[i11];
                         ph0 ph0Var3 = f1Var2.f40866a;
@@ -97,16 +97,16 @@ public final class f1 extends FrameLayout {
                         imageView.setOnAnimationEndListener(new d1(n4Var, imageView, 0));
                         imageView.d();
                     }
-                    sb1 sb1Var = (sb1) n4Var.f9375e;
+                    sb1 sb1Var = (sb1) n4Var.f9372e;
                     if (sb1Var != null) {
-                        sb1Var.f51966b.M = i14;
+                        sb1Var.f51962b.M = i14;
                     }
                 }
             }
         } else {
             e1 e1Var3 = this.f40869e;
             if (e1Var3 != null) {
-                f1[] f1VarArr3 = (f1[]) ((n4) ((org.telegram.ui.ActionBar.p) e1Var3).f29846b).d;
+                f1[] f1VarArr3 = (f1[]) ((n4) ((org.telegram.ui.ActionBar.p) e1Var3).f29844b).d;
                 while (true) {
                     i7 = this.f40870f;
                     if (i10 > i7) {

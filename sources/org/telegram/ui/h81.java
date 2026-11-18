@@ -7,15 +7,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-public final class h81 implements org.telegram.ui.Cells.l1 {
-    public final i81 f48307a;
+public final class h81 implements org.telegram.ui.Cells.m1 {
+    public final i81 f48217a;
 
     public h81(i81 i81Var) {
-        this.f48307a = i81Var;
+        this.f48217a = i81Var;
     }
 
     @Override
-    public final boolean H1(org.telegram.ui.Cells.q1 q1Var, TLRPC.Chat chat) {
+    public final boolean H1(org.telegram.ui.Cells.r1 r1Var, TLRPC.Chat chat) {
         return false;
     }
 
@@ -30,18 +30,18 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void Q1(org.telegram.ui.Cells.q1 q1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        vf.c.t(q1Var.getContext(), str);
+    public final void Q1(org.telegram.ui.Cells.r1 r1Var, TLRPC.WebPage webPage, String str, boolean z10) {
+        vf.c.t(r1Var.getContext(), str);
     }
 
     @Override
-    public final CharacterStyle R1(org.telegram.ui.Cells.q1 q1Var) {
+    public final CharacterStyle R1(org.telegram.ui.Cells.r1 r1Var) {
         return null;
     }
 
     @Override
-    public final boolean S(org.telegram.ui.Cells.q1 q1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        i81 i81Var = this.f48307a;
+    public final boolean S(org.telegram.ui.Cells.r1 r1Var, TLRPC.TodoItem todoItem, boolean z10) {
+        i81 i81Var = this.f48217a;
         if (i81Var.L.getDelegate() != null) {
             return i81Var.L.getDelegate().S(i81Var.L, todoItem, z10);
         }
@@ -54,17 +54,17 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean T1(org.telegram.ui.Cells.q1 q1Var, org.telegram.messenger.fj fjVar) {
+    public final boolean T1(org.telegram.ui.Cells.r1 r1Var, org.telegram.messenger.fj fjVar) {
         return false;
     }
 
     @Override
-    public final boolean U(org.telegram.ui.Cells.q1 q1Var) {
+    public final boolean U(org.telegram.ui.Cells.r1 r1Var) {
         return false;
     }
 
     @Override
-    public final boolean V0(org.telegram.ui.Cells.q1 q1Var, boolean z10) {
+    public final boolean V0(org.telegram.ui.Cells.r1 r1Var, boolean z10) {
         return false;
     }
 
@@ -79,7 +79,7 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean Z1(org.telegram.ui.Cells.q1 q1Var, TLRPC.PollAnswer pollAnswer) {
+    public final boolean Z1(org.telegram.ui.Cells.r1 r1Var, TLRPC.PollAnswer pollAnswer) {
         return false;
     }
 
@@ -99,12 +99,12 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean d0(org.telegram.ui.Cells.q1 q1Var) {
+    public final boolean d0(org.telegram.ui.Cells.r1 r1Var) {
         return false;
     }
 
     @Override
-    public final boolean e0(org.telegram.ui.Cells.q1 q1Var, TLRPC.User user) {
+    public final boolean e0(org.telegram.ui.Cells.r1 r1Var, TLRPC.User user) {
         return false;
     }
 
@@ -124,12 +124,12 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean h2(org.telegram.ui.Cells.q1 q1Var, TLRPC.TodoItem todoItem) {
+    public final boolean h2(org.telegram.ui.Cells.r1 r1Var, TLRPC.TodoItem todoItem) {
         return false;
     }
 
     @Override
-    public final String i(org.telegram.ui.Cells.q1 q1Var) {
+    public final String i(org.telegram.ui.Cells.r1 r1Var) {
         return null;
     }
 
@@ -139,7 +139,7 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final int k0(org.telegram.ui.Cells.q1 q1Var) {
+    public final int k0(org.telegram.ui.Cells.r1 r1Var) {
         return 0;
     }
 
@@ -154,7 +154,7 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean p2(org.telegram.ui.Cells.q1 q1Var, TL_iv.PageBlock pageBlock) {
+    public final boolean p2(org.telegram.ui.Cells.r1 r1Var, TL_iv.PageBlock pageBlock) {
         return false;
     }
 
@@ -179,37 +179,37 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean z1(org.telegram.ui.Cells.q1 q1Var, int i7) {
+    public final boolean z1(org.telegram.ui.Cells.r1 r1Var, int i7) {
         return false;
     }
 
     @Override
-    public final org.telegram.ui.Cells.j9 z2() {
+    public final org.telegram.ui.Cells.k9 z2() {
         return null;
     }
 
     @Override
-    public final void B(org.telegram.ui.Cells.q1 q1Var) {
+    public final void B(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void C1(org.telegram.ui.Cells.q1 q1Var) {
+    public final void C1(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void E(org.telegram.ui.Cells.q1 q1Var) {
+    public final void E(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void F0(org.telegram.ui.Cells.q1 q1Var) {
+    public final void F0(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void I0(org.telegram.ui.Cells.q1 q1Var) {
+    public final void I0(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void K(org.telegram.ui.Cells.q1 q1Var) {
+    public final void K(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
@@ -217,11 +217,11 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void L1(org.telegram.ui.Cells.q1 q1Var) {
+    public final void L1(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void N0(org.telegram.ui.Cells.q1 q1Var) {
+    public final void N0(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
@@ -229,7 +229,7 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void P(org.telegram.ui.Cells.q1 q1Var) {
+    public final void P(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
@@ -237,15 +237,15 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void W0(org.telegram.ui.Cells.q1 q1Var) {
+    public final void W0(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void X0(org.telegram.ui.Cells.q1 q1Var) {
+    public final void X0(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void Y(org.telegram.ui.Cells.q1 q1Var) {
+    public final void Y(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
@@ -253,11 +253,11 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void j2(org.telegram.ui.Cells.q1 q1Var) {
+    public final void j2(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void l0(org.telegram.ui.Cells.q1 q1Var) {
+    public final void l0(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
@@ -265,27 +265,27 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void q(org.telegram.ui.Cells.q1 q1Var) {
+    public final void q(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void q2(org.telegram.ui.Cells.q1 q1Var) {
+    public final void q2(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void s(org.telegram.ui.Cells.q1 q1Var) {
+    public final void s(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void w(org.telegram.ui.Cells.q1 q1Var) {
+    public final void w(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void y(org.telegram.ui.Cells.q1 q1Var) {
+    public final void y(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
-    public final void z0(org.telegram.ui.Cells.q1 q1Var) {
+    public final void z0(org.telegram.ui.Cells.r1 r1Var) {
     }
 
     @Override
@@ -321,31 +321,31 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void F1(org.telegram.ui.Cells.q1 q1Var, boolean z10) {
+    public final void F1(org.telegram.ui.Cells.r1 r1Var, boolean z10) {
     }
 
     @Override
-    public final void I(org.telegram.ui.Cells.q1 q1Var, org.telegram.messenger.p2 p2Var) {
+    public final void I(org.telegram.ui.Cells.r1 r1Var, org.telegram.messenger.p2 p2Var) {
     }
 
     @Override
-    public final void I1(org.telegram.ui.Cells.q1 q1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public final void I1(org.telegram.ui.Cells.r1 r1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public final void K1(org.telegram.ui.Cells.q1 q1Var, int i7) {
+    public final void K1(org.telegram.ui.Cells.r1 r1Var, int i7) {
     }
 
     @Override
-    public final void O0(org.telegram.ui.Cells.q1 q1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public final void O0(org.telegram.ui.Cells.r1 r1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     @Override
-    public final void X1(org.telegram.ui.Cells.q1 q1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public final void X1(org.telegram.ui.Cells.r1 r1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
     @Override
-    public final void a2(org.telegram.ui.Cells.q1 q1Var, org.telegram.messenger.i10 i10Var) {
+    public final void a2(org.telegram.ui.Cells.r1 r1Var, org.telegram.messenger.i10 i10Var) {
     }
 
     @Override
@@ -353,87 +353,87 @@ public final class h81 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void k1(org.telegram.ui.Cells.q1 q1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public final void k1(org.telegram.ui.Cells.r1 r1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public final void l2(org.telegram.ui.Cells.q1 q1Var, long j3) {
+    public final void l2(org.telegram.ui.Cells.r1 r1Var, long j3) {
     }
 
     @Override
-    public final void p1(org.telegram.ui.Cells.q1 q1Var, int i7) {
+    public final void p1(org.telegram.ui.Cells.r1 r1Var, int i7) {
     }
 
     @Override
-    public final void B0(org.telegram.ui.Cells.q1 q1Var, TLObject tLObject, boolean z10) {
+    public final void B0(org.telegram.ui.Cells.r1 r1Var, TLObject tLObject, boolean z10) {
     }
 
     @Override
-    public final void B1(org.telegram.ui.Cells.q1 q1Var, boolean z10, boolean z11) {
+    public final void B1(org.telegram.ui.Cells.r1 r1Var, boolean z10, boolean z11) {
     }
 
     @Override
-    public final void C0(org.telegram.ui.Cells.q1 q1Var, float f10, float f11) {
+    public final void C0(org.telegram.ui.Cells.r1 r1Var, float f10, float f11) {
     }
 
     @Override
-    public final void H0(org.telegram.ui.Cells.q1 q1Var, boolean z10, boolean z11) {
+    public final void H0(org.telegram.ui.Cells.r1 r1Var, boolean z10, boolean z11) {
     }
 
     @Override
-    public final void N(org.telegram.ui.Cells.q1 q1Var, TLRPC.Document document, RectF rectF) {
+    public final void N(org.telegram.ui.Cells.r1 r1Var, TLRPC.Document document, RectF rectF) {
     }
 
     @Override
-    public final void T0(org.telegram.ui.Cells.q1 q1Var, CharacterStyle characterStyle, boolean z10) {
+    public final void T0(org.telegram.ui.Cells.r1 r1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
     @Override
-    public final void j0(org.telegram.ui.Cells.q1 q1Var, float f10, float f11) {
+    public final void j0(org.telegram.ui.Cells.r1 r1Var, float f10, float f11) {
     }
 
     @Override
-    public final void q0(org.telegram.ui.Cells.q1 q1Var, float f10, float f11) {
+    public final void q0(org.telegram.ui.Cells.r1 r1Var, float f10, float f11) {
     }
 
     @Override
-    public final void t1(org.telegram.ui.Cells.q1 q1Var, float f10, float f11) {
+    public final void t1(org.telegram.ui.Cells.r1 r1Var, float f10, float f11) {
     }
 
     @Override
-    public final void y2(org.telegram.ui.Cells.q1 q1Var, int i7, int i10) {
+    public final void y2(org.telegram.ui.Cells.r1 r1Var, int i7, int i10) {
     }
 
     @Override
-    public final void Y1(org.telegram.ui.Cells.q1 q1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    public final void Y1(org.telegram.ui.Cells.r1 r1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
-    public final void p(org.telegram.ui.Cells.q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
+    public final void p(org.telegram.ui.Cells.r1 r1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
     }
 
     @Override
-    public final void u0(org.telegram.ui.Cells.q1 q1Var, TLRPC.User user, float f10, float f11) {
+    public final void u0(org.telegram.ui.Cells.r1 r1Var, TLRPC.User user, float f10, float f11) {
     }
 
     @Override
-    public final void w0(org.telegram.ui.Cells.q1 q1Var, float f10, float f11, boolean z10) {
+    public final void w0(org.telegram.ui.Cells.r1 r1Var, float f10, float f11, boolean z10) {
     }
 
     @Override
-    public final void g2(org.telegram.ui.Cells.q1 q1Var, int i7, float f10, float f11, boolean z10) {
+    public final void g2(org.telegram.ui.Cells.r1 r1Var, int i7, float f10, float f11, boolean z10) {
     }
 
     @Override
-    public final void l(org.telegram.ui.Cells.q1 q1Var, ArrayList arrayList, int i7, int i10, int i11) {
+    public final void l(org.telegram.ui.Cells.r1 r1Var, ArrayList arrayList, int i7, int i10, int i11) {
     }
 
     @Override
-    public final void t2(org.telegram.ui.Cells.q1 q1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
+    public final void t2(org.telegram.ui.Cells.r1 r1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
     }
 
     @Override
-    public final void X(org.telegram.ui.Cells.q1 q1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
+    public final void X(org.telegram.ui.Cells.r1 r1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
     }
 
     @Override

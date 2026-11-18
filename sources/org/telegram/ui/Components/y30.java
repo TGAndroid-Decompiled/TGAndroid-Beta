@@ -6,6 +6,6 @@ public final class y30 extends e4.b {
 
     public y30() {
         super(2131624182);
-        this.f42287g = GLES20.glGetUniformLocation(this.f10820a, "texOffset");
+        this.f42287g = GLES20.glGetUniformLocation(this.f10817a, "texOffset");
     }
 }

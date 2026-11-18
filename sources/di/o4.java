@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_stars;
 public final class o4 implements View.OnClickListener {
-    public final int f9430a;
-    public final b5 f9431b;
+    public final int f9427a;
+    public final b5 f9428b;
 
     public o4(b5 b5Var, int i7) {
-        this.f9430a = i7;
-        this.f9431b = b5Var;
+        this.f9427a = i7;
+        this.f9428b = b5Var;
     }
 
     @Override
@@ -21,19 +21,19 @@ public final class o4 implements View.OnClickListener {
         TL_stars.StarGift starGift2;
         TL_stars.StarGift starGift3;
         z4 z4Var;
-        int i7 = this.f9430a;
+        int i7 = this.f9427a;
         boolean z10 = true;
-        b5 b5Var = this.f9431b;
+        b5 b5Var = this.f9428b;
         switch (i7) {
             case 0:
                 if (b5Var.Q.getAlpha() >= 1.0f) {
-                    b5Var.f8549h0.run();
+                    b5Var.f8546h0.run();
                     return;
                 }
                 return;
             case 1:
                 if (b5Var.Q.getAlpha() >= 1.0f) {
-                    b5Var.f8549h0.run();
+                    b5Var.f8546h0.run();
                     return;
                 }
                 return;
@@ -46,12 +46,12 @@ public final class o4 implements View.OnClickListener {
                 b5Var.b((q4) view);
                 return;
             case 4:
-                b5 b5Var2 = this.f9431b;
+                b5 b5Var2 = this.f9428b;
                 LinearLayout linearLayout = b5Var2.H;
-                z4[] z4VarArr = b5Var2.f8554n;
-                if (b5Var2.getAlpha() >= 1.0f && !b5Var2.f8550i0) {
-                    if (b5Var2.f8552k0) {
-                        b5Var2.a(b5Var2.f8538a0, b5Var2.f8540b0, b5Var2.f8542c0, b5Var2.f8543d0);
+                z4[] z4VarArr = b5Var2.f8551n;
+                if (b5Var2.getAlpha() >= 1.0f && !b5Var2.f8547i0) {
+                    if (b5Var2.f8549k0) {
+                        b5Var2.a(b5Var2.f8535a0, b5Var2.f8537b0, b5Var2.f8539c0, b5Var2.f8540d0);
                         return;
                     }
                     ArrayList arrayList = new ArrayList();
@@ -71,10 +71,10 @@ public final class o4 implements View.OnClickListener {
                             }
                         }
                     }
-                    if (!arrayList.isEmpty() && b5Var2.f8547f0 != null) {
+                    if (!arrayList.isEmpty() && b5Var2.f8544f0 != null) {
                         TextView textView = b5Var2.L;
-                        b5Var2.f8550i0 = true;
-                        b5Var2.f8552k0 = false;
+                        b5Var2.f8547i0 = true;
+                        b5Var2.f8549k0 = false;
                         hi.m3 m3Var = b5Var2.U;
                         if (m3Var != null) {
                             m3Var.f(true);
@@ -137,7 +137,7 @@ public final class o4 implements View.OnClickListener {
                                 arrayList2.add(starGift7);
                             }
                         }
-                        b5Var2.f8547f0.a(arrayList2, new bi.m6(3, b5Var2, arrayList2), new ca.r(b5Var2, 18));
+                        b5Var2.f8544f0.a(arrayList2, new bi.l6(3, b5Var2, arrayList2), new ca.r(b5Var2, 18));
                         return;
                     }
                     org.telegram.messenger.g0.F3(linearLayout);
@@ -150,14 +150,14 @@ public final class o4 implements View.OnClickListener {
                 if (starGift8 == null) {
                     starGift8 = null;
                 }
-                if (starGift8 != null && !z4Var7.f10121n) {
+                if (starGift8 != null && !z4Var7.f10118n) {
                     z4Var7.a(null, true);
                     b5Var.d(true);
                     return;
                 }
                 int i12 = 0;
                 while (true) {
-                    z4[] z4VarArr2 = b5Var.f8554n;
+                    z4[] z4VarArr2 = b5Var.f8551n;
                     if (i12 < z4VarArr2.length && (z4Var = z4VarArr2[i12]) != view) {
                         if (z4Var != null) {
                             TL_stars.StarGift starGift9 = z4Var.h;
@@ -171,7 +171,7 @@ public final class o4 implements View.OnClickListener {
                         i12++;
                     }
                 }
-                b5Var.f8548g0.a(new ai.v1(11, b5Var, z4Var7), Boolean.valueOf(z10));
+                b5Var.f8545g0.a(new ai.v1(11, b5Var, z4Var7), Boolean.valueOf(z10));
                 return;
         }
     }

@@ -7,7 +7,7 @@ import android.graphics.RectF;
 public final class ve0 extends yu0 {
     public boolean f40596a = false;
     public final Paint f40597b = new Paint(1);
-    public final int f40598c = org.telegram.messenger.j10.f24773t0;
+    public final int f40598c = org.telegram.messenger.j10.f24770t0;
     public long d = 0;
     public boolean f40599e = false;
     public final RectF f40600f = new RectF();
@@ -45,9 +45,9 @@ public final class ve0 extends yu0 {
         int i11 = L2;
         boolean z10 = this.h;
         if (z10) {
-            i7 = org.telegram.ui.ActionBar.n6.f29619p9;
+            i7 = org.telegram.ui.ActionBar.n6.f29617p9;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.f29620pa;
+            i7 = org.telegram.ui.ActionBar.n6.f29618pa;
         }
         int w02 = org.telegram.ui.ActionBar.n6.w0(i7, this.f40602i);
         Paint paint = this.f40597b;
@@ -86,9 +86,9 @@ public final class ve0 extends yu0 {
         paint.setAlpha(255);
         canvas.drawArc(rectF, i12, 360 - (i12 * 2), true, paint);
         if (z10) {
-            i10 = org.telegram.ui.ActionBar.n6.f29396d6;
+            i10 = org.telegram.ui.ActionBar.n6.f29394d6;
         } else {
-            i10 = org.telegram.ui.ActionBar.n6.f29676s8;
+            i10 = org.telegram.ui.ActionBar.n6.f29674s8;
         }
         paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
         canvas.drawCircle(org.telegram.messenger.g0.L(4.0f), ((L / 2) + i11) - org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(1.0f), paint);

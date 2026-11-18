@@ -32,7 +32,7 @@ public final class ok implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.h1 h1Var = (org.telegram.ui.ActionBar.h1) ((k.a) this.f38119b).f18059b;
+                org.telegram.ui.ActionBar.h1 h1Var = (org.telegram.ui.ActionBar.h1) ((k.a) this.f38119b).f18056b;
                 if (motionEvent.getActionMasked() == 1 && h1Var != null && h1Var.isShowing()) {
                     Rect rect = org.telegram.messenger.g0.Q;
                     view.getHitRect(rect);
@@ -58,7 +58,7 @@ public final class ok implements View.OnTouchListener {
                     y40Var.D0 = false;
                     y40Var.B0 = motionEvent.getPointerId(0);
                     y40Var.C0 = -1;
-                    int i7 = y40Var.R.f62302a;
+                    int i7 = y40Var.R.f62303a;
                     if (i7 == 5) {
                         ImageView imageView = y40Var.I;
                         zi.u0 u0Var = y40Var.P;
@@ -66,7 +66,7 @@ public final class ok implements View.OnTouchListener {
                             boolean z11 = y40Var.f42306k0;
                             y40Var.f42306k0 = !z11;
                             zi.u0.v();
-                            if (u0Var.f62309a0 == 5 && (f0Var = u0Var.W) != null) {
+                            if (u0Var.f62310a0 == 5 && (f0Var = u0Var.W) != null) {
                                 if (!z11) {
                                     f11 = 0.0f;
                                 } else {
@@ -76,7 +76,7 @@ public final class ok implements View.OnTouchListener {
                             }
                             org.telegram.messenger.e20 e20Var = y40Var.U;
                             if (e20Var != null) {
-                                e20Var.f23656t = y40Var.f42306k0;
+                                e20Var.f23653t = y40Var.f42306k0;
                             }
                             imageView.animate().cancel();
                             ViewPropertyAnimator animate = imageView.animate();
@@ -89,7 +89,7 @@ public final class ok implements View.OnTouchListener {
                 } else {
                     if (motionEvent.getActionMasked() == 5 && motionEvent.getPointerCount() == 2) {
                         zi.t0 t0Var = y40Var.R;
-                        if (t0Var.f62302a == 3 && !t0Var.f62306f) {
+                        if (t0Var.f62303a == 3 && !t0Var.f62307f) {
                             y40Var.B0 = motionEvent.getPointerId(0);
                             y40Var.C0 = motionEvent.getPointerId(1);
                             float hypot = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
@@ -110,7 +110,7 @@ public final class ok implements View.OnTouchListener {
                             if (m0Var == null) {
                                 f10 = 1.0f;
                             } else {
-                                f10 = m0Var.f62199c;
+                                f10 = m0Var.f62200c;
                             }
                             float max = (Math.max(0.0f, hypot2 - 1.0f) / 1.5f) + 1.0f;
                             if (f10 > 1.0f) {

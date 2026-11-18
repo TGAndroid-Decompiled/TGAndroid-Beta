@@ -41,7 +41,7 @@ public final class mo0 extends FrameLayout {
         addView(i3Var, c8.ma.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
         org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(context);
         this.f37592c = n5Var;
-        int i10 = org.telegram.ui.ActionBar.n6.f29425eh;
+        int i10 = org.telegram.ui.ActionBar.n6.f29423eh;
         org.telegram.ui.ActionBar.u6.X(n5Var, i10, yo0Var.J0);
         n5Var.setTextSize(13);
         n5Var.setLeftDrawable(2131232398);

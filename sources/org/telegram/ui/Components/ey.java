@@ -45,7 +45,7 @@ public abstract class ey extends FrameLayout implements org.telegram.ui.ActionBa
         this.H = ryVar;
         this.f34835a = new te.a(0, this, lr.f37209g, 200L, false);
         this.f34845y = false;
-        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30084a;
+        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30082a;
         this.f34836b = i7;
         View view = new View(context);
         this.f34838e = view;
@@ -58,7 +58,7 @@ public abstract class ey extends FrameLayout implements org.telegram.ui.ActionBa
         View view2 = new View(context);
         this.f34839f = view2;
         if (ryVar.f39399v0) {
-            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29816zf, view2, i6Var);
+            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29814zf, view2, i6Var);
         }
         addView(view2, new FrameLayout.LayoutParams(-1, ryVar.f39342c1));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -71,7 +71,7 @@ public abstract class ey extends FrameLayout implements org.telegram.ui.ActionBa
         }
         frameLayout.setBackground(org.telegram.ui.ActionBar.n6.d0(L, z10));
         frameLayout.setClipToOutline(true);
-        bg.q0 q0Var = bg.u0.f3342a;
+        bg.q0 q0Var = bg.u0.f3343a;
         frameLayout.setOutlineProvider(new bg.s0(0, org.telegram.messenger.g0.L(18.0f)));
         if (i7 == 2) {
             addView(frameLayout, c8.ma.d(-1, 36.0f, 119, 10.0f, 8.0f, 10.0f, 8.0f));
@@ -175,12 +175,12 @@ public abstract class ey extends FrameLayout implements org.telegram.ui.ActionBa
             View view3 = new View(context);
             this.f34843w = view3;
             Drawable g10 = i5.c.g(context, 2131231227);
-            org.telegram.ui.ActionBar.q6 p10 = org.telegram.ui.ActionBar.u6.p(org.telegram.ui.ActionBar.n6.f29816zf, org.telegram.ui.ActionBar.n6.Af);
+            org.telegram.ui.ActionBar.q6 p10 = org.telegram.ui.ActionBar.u6.p(org.telegram.ui.ActionBar.n6.f29814zf, org.telegram.ui.ActionBar.n6.Af);
             gqVar = gqVar2;
             scaleType = scaleType2;
             i10 = 3;
             f10 = 16.0f;
-            org.telegram.ui.ActionBar.u6.k(this, g10, p10.f29911a, p10.f29912b, 4, 0.0f, i6Var, PorterDuff.Mode.MULTIPLY);
+            org.telegram.ui.ActionBar.u6.k(this, g10, p10.f29909a, p10.f29910b, 4, 0.0f, i6Var, PorterDuff.Mode.MULTIPLY);
             view3.setBackground(g10);
             view3.setAlpha(0.0f);
             k0Var.addView(view3, c8.ma.e(18, -1, 3));
@@ -194,7 +194,7 @@ public abstract class ey extends FrameLayout implements org.telegram.ui.ActionBa
         this.h = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new hi.c2(this));
-        int i13 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i13 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i13, i6Var), 1, org.telegram.messenger.g0.L(15.0f));
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i13);
         imageView2.setBackground(h02);
@@ -249,7 +249,7 @@ public abstract class ey extends FrameLayout implements org.telegram.ui.ActionBa
             }
         });
         frameLayout.addView(imageView2, c8.ma.e(36, 36, 53));
-        if (i7 == 1 && (!ryVar.d2 || !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q())) {
+        if (i7 == 1 && (!ryVar.d2 || !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q())) {
             return;
         }
         if (i7 == 0) {
@@ -263,7 +263,7 @@ public abstract class ey extends FrameLayout implements org.telegram.ui.ActionBa
         TextPaint paint = gqVar.getPaint();
         dyVar.setDontOccupyWidth(org.telegram.messenger.g0.L(f10) + ((int) paint.measureText(((Object) gqVar.getHint()) + "")));
         if (ryVar.f39399v0) {
-            org.telegram.ui.ActionBar.u6.i(dyVar, org.telegram.ui.ActionBar.u6.p(org.telegram.ui.ActionBar.n6.f29816zf, org.telegram.ui.ActionBar.n6.Af), i6Var);
+            org.telegram.ui.ActionBar.u6.i(dyVar, org.telegram.ui.ActionBar.u6.p(org.telegram.ui.ActionBar.n6.f29814zf, org.telegram.ui.ActionBar.n6.Af), i6Var);
         }
         dyVar.setOnScrollIntoOccupiedWidth(new org.telegram.messenger.x10(this) {
             public final ey f34195b;

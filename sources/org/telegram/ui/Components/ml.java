@@ -53,9 +53,9 @@ public final class ml implements z4, qj0, b81 {
                     qiVar.y1(0, false, true, 0, 0, 0L, siVar.g1(), false, 0L);
                 }
                 return true;
-            } else if (view instanceof org.telegram.ui.Cells.r5) {
+            } else if (view instanceof org.telegram.ui.Cells.s5) {
                 gk0 gk0Var = chatAttachAlertPhotoLayout.J;
-                boolean z11 = !((org.telegram.ui.Cells.r5) view).a();
+                boolean z11 = !((org.telegram.ui.Cells.s5) view).a();
                 chatAttachAlertPhotoLayout.L = z11;
                 gk0Var.d(i7, view, z11);
             }

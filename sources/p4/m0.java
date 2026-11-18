@@ -149,10 +149,10 @@ public final class m0 extends android.support.v4.media.session.s {
 
     public static e2.l0 g0(String str, Uri uri, String str2, Bundle bundle) {
         e2.z zVar = new e2.z();
-        h9.g0 g0Var = h9.i0.f14006b;
-        t1 t1Var = t1.f14074e;
+        h9.g0 g0Var = h9.i0.f14003b;
+        t1 t1Var = t1.f14071e;
         List list = Collections.EMPTY_LIST;
-        t1 t1Var2 = t1.f14074e;
+        t1 t1Var2 = t1.f14071e;
         e2.e0 e0Var = new e2.e0();
         e2.h0 h0Var = e2.h0.d;
         if (str == null) {
@@ -160,8 +160,8 @@ public final class m0 extends android.support.v4.media.session.s {
         }
         String str3 = str;
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(21, false);
-        a0Var.f1704b = uri;
-        a0Var.f1705c = str2;
+        a0Var.f1705b = uri;
+        a0Var.f1706c = str2;
         a0Var.d = bundle;
         return new e2.l0(str3, new e2.a0(zVar), null, new e2.f0(e0Var), e2.o0.L, new e2.h0(a0Var));
     }
@@ -406,8 +406,8 @@ public final class m0 extends android.support.v4.media.session.s {
         }
         e2.y0 a10 = jb.a(this.f55342y, i1Var.t());
         long j12 = 128;
-        for (int i16 = 0; i16 < a10.f10810a.f10696a.size(); i16++) {
-            int a11 = a10.f10810a.a(i16);
+        for (int i16 = 0; i16 < a10.f10807a.f10693a.size(); i16++) {
+            int a11 = a10.f10807a.a(i16);
             if (a11 != 1) {
                 if (a11 != 2) {
                     if (a11 != 3) {
@@ -480,14 +480,14 @@ public final class m0 extends android.support.v4.media.session.s {
         } else {
             j3 = -1;
         }
-        float f11 = i1Var.j().f10792a;
+        float f11 = i1Var.j().f10789a;
         if (i1Var.h() && z10) {
             f10 = f11;
         } else {
             f10 = 0.0f;
         }
         if (W != null) {
-            bundle = new Bundle(W.f10785c);
+            bundle = new Bundle(W.f10782c);
         } else {
             bundle = new Bundle();
         }
@@ -495,7 +495,7 @@ public final class m0 extends android.support.v4.media.session.s {
         bundle.putFloat("EXO_SPEED", f11);
         e2.l0 S0 = i1Var.S0();
         if (S0 != null) {
-            String str2 = S0.f10503a;
+            String str2 = S0.f10500a;
             if (!"".equals(str2)) {
                 bundle.putString("androidx.media.PlaybackStateCompat.Extras.KEY_MEDIA_ID", str2);
             }
@@ -548,7 +548,7 @@ public final class m0 extends android.support.v4.media.session.s {
         }
         if (W != null) {
             int i20 = n.f55348a;
-            int i21 = W.f10783a;
+            int i21 = W.f10780a;
             if (i21 != -110) {
                 if (i21 != -109) {
                     if (i21 != -6) {

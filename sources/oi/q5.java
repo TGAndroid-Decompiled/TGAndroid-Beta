@@ -12,31 +12,31 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.y60;
 public final class q5 implements View.OnClickListener {
-    public final int f22259a;
-    public final z5 f22260b;
+    public final int f22256a;
+    public final z5 f22257b;
 
     public q5(z5 z5Var, int i7) {
-        this.f22259a = i7;
-        this.f22260b = z5Var;
+        this.f22256a = i7;
+        this.f22257b = z5Var;
     }
 
     @Override
     public final void onClick(View view) {
         Set set;
-        switch (this.f22259a) {
+        switch (this.f22256a) {
             case 0:
-                z5 z5Var = this.f22260b;
-                a aVar = z5Var.f22568y;
-                if (aVar != null && aVar.f21912e) {
-                    boolean z10 = !aVar.f21913f;
-                    aVar.f21913f = z10;
-                    ((CheckBoxBase) z5Var.f22561e.f3723b).f(-1, z10, true);
+                z5 z5Var = this.f22257b;
+                a aVar = z5Var.f22565y;
+                if (aVar != null && aVar.f21909e) {
+                    boolean z10 = !aVar.f21910f;
+                    aVar.f21910f = z10;
+                    ((CheckBoxBase) z5Var.f22558e.f3688b).f(-1, z10, true);
                     w5 w5Var = z5Var.E;
                     if (w5Var != null) {
-                        a aVar2 = z5Var.f22568y;
-                        boolean z11 = aVar2.f21913f;
-                        s3 s3Var = ((c3) w5Var).f21973a;
-                        aVar2.f21913f = z11;
+                        a aVar2 = z5Var.f22565y;
+                        boolean z11 = aVar2.f21910f;
+                        s3 s3Var = ((c3) w5Var).f21970a;
+                        aVar2.f21910f = z11;
                         e2 e2Var = s3Var.R3;
                         if (e2Var != null) {
                             e2Var.d();
@@ -49,17 +49,17 @@ public final class q5 implements View.OnClickListener {
                 }
                 return;
             default:
-                z5 z5Var2 = this.f22260b;
+                z5 z5Var2 = this.f22257b;
                 w5 w5Var2 = z5Var2.E;
                 if (w5Var2 != null) {
-                    a aVar3 = z5Var2.f22568y;
-                    s3 s3Var2 = ((c3) w5Var2).f21973a;
-                    if (aVar3 != null && (aVar3.f21910b instanceof TL_iv.pageBlockPreformatted) && (set = qi.j.f56187a.f56209y) != null) {
+                    a aVar3 = z5Var2.f22565y;
+                    s3 s3Var2 = ((c3) w5Var2).f21970a;
+                    if (aVar3 != null && (aVar3.f21907b instanceof TL_iv.pageBlockPreformatted) && (set = qi.j.f56187a.f56209y) != null) {
                         ArrayList arrayList = new ArrayList(set);
                         Collections.sort(arrayList);
-                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f21910b;
-                        y60 G0 = s3Var2.f22337p3.G0(view);
-                        G0.X(n6.d0(org.telegram.messenger.g0.L(3.0f), n6.w0(n6.f29396d6, s3Var2.f22336o3)));
+                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f21907b;
+                        y60 G0 = s3Var2.f22334p3.G0(view);
+                        G0.X(n6.d0(org.telegram.messenger.g0.L(3.0f), n6.w0(n6.f29394d6, s3Var2.f22333o3)));
                         G0.f42347c0 = true;
                         G0.f42343a0 = org.telegram.messenger.g0.L(350.0f);
                         G0.i(new l2(s3Var2, aVar3, 25), gd.M0(2131753997, null), TextUtils.isEmpty(pageblockpreformatted.language));

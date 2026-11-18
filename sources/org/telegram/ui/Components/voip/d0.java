@@ -101,7 +101,7 @@ public final class d0 extends ViewGroup {
         addView(textView);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint.setColor(n6.x0(null, n6.f29479hh, false));
+        paint.setColor(n6.x0(null, n6.f29477hh, false));
         setWillNotDraw(false);
         c();
     }
@@ -132,10 +132,10 @@ public final class d0 extends ViewGroup {
     public final void c() {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         u3 u3Var = this.f40805b;
-        if (u3Var != null && this.f40806c != null && this.f40809n == null && sharedInstance != null && sharedInstance.addExtraRemoteSink(u3Var.f27119a, u3Var.f27120b, this.U)) {
+        if (u3Var != null && this.f40806c != null && this.f40809n == null && sharedInstance != null && sharedInstance.addExtraRemoteSink(u3Var.f27117a, u3Var.f27118b, this.U)) {
             u3 u3Var2 = this.f40805b;
-            this.f40809n = u3Var2.f27119a;
-            this.f40810r = u3Var2.f27120b;
+            this.f40809n = u3Var2.f27117a;
+            this.f40810r = u3Var2.f27118b;
         }
     }
 
@@ -154,7 +154,7 @@ public final class d0 extends ViewGroup {
         if (n2Var != null && n2Var.d.isFirstFrameRendered() && (i7 = (m2Var = this.f40806c.d).rotatedFrameWidth) > 0 && (i10 = m2Var.rotatedFrameHeight) > 0) {
             this.K = i7 / i10;
         } else if (z10 && this.K <= 0.0f && (u3Var = this.f40805b) != null) {
-            float f10 = u3Var.f27121c;
+            float f10 = u3Var.f27119c;
             if (f10 > 0.0f) {
                 this.K = f10;
             }

@@ -25,9 +25,9 @@ public final class c extends u implements e {
             return;
         }
         TaskCompletionSource taskCompletionSource = this.d;
-        String str = status.f6198b;
+        String str = status.f6195b;
         str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
-        switch (status.f6197a) {
+        switch (status.f6194a) {
             case 17510:
                 b0Var = new b0(str);
                 break;

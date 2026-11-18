@@ -157,7 +157,7 @@ public final class p9 extends GradientDrawable {
     public final void b() {
         if (!this.f38327g) {
             for (int size = this.f38325e.size() - 1; size >= 0; size--) {
-                org.telegram.messenger.q5 q5Var = Utilities.f22782e;
+                org.telegram.messenger.q5 q5Var = Utilities.f22779e;
                 Runnable[] runnableArr = (Runnable[]) this.f38325e.remove(size);
                 q5Var.getClass();
                 for (Runnable runnable : runnableArr) {
@@ -256,8 +256,8 @@ public final class p9 extends GradientDrawable {
         }
     }
 
-    public final k9 f(org.telegram.ui.Cells.b5 b5Var, c8.ia iaVar, long j3) {
-        f50[] f50VarArr = (f50[]) b5Var.f30431a;
+    public final k9 f(org.telegram.ui.Cells.c5 c5Var, c8.ia iaVar, long j3) {
+        f50[] f50VarArr = (f50[]) c5Var.f30477a;
         if (!this.f38327g) {
             ArrayList arrayList = new ArrayList(f50VarArr.length);
             for (f50 f50Var : f50VarArr) {
@@ -292,7 +292,7 @@ public final class p9 extends GradientDrawable {
         for (int i7 = 0; i7 < f50VarArr.length; i7++) {
             f50 f50Var = f50VarArr[i7];
             if (f50Var.f34946a != 0 && f50Var.f34947b != 0) {
-                org.telegram.messenger.q5 q5Var = Utilities.f22782e;
+                org.telegram.messenger.q5 q5Var = Utilities.f22779e;
                 j9 j9Var = new j9(this, f50Var, runnableArr, i7, iaVarArr);
                 runnableArr[i7] = j9Var;
                 q5Var.d(j9Var, j3);

@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class n extends org.telegram.ui.Components.bk0 {
-    public final Context f50044c;
+    public final Context f50018c;
     public final o d;
 
     public n(o oVar, Context context) {
         this.d = oVar;
-        this.f50044c = context;
+        this.f50018c = context;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             return true;
         }
         return false;
@@ -30,13 +30,13 @@ public final class n extends org.telegram.ui.Components.bk0 {
     @Override
     public final int d(int i7) {
         o oVar = this.d;
-        if (i7 >= oVar.f50388y && i7 < oVar.E) {
+        if (i7 >= oVar.f50372y && i7 < oVar.E) {
             return 0;
         }
         if (i7 == oVar.F) {
             return 1;
         }
-        if (i7 != oVar.G && i7 != oVar.f50387x) {
+        if (i7 != oVar.G && i7 != oVar.f50371x) {
             return 0;
         }
         return 2;
@@ -46,12 +46,12 @@ public final class n extends org.telegram.ui.Components.bk0 {
     public final void t(v4.f1 f1Var, int i7) {
         int i10;
         boolean z10;
-        View view = f1Var.f59122a;
+        View view = f1Var.f59123a;
         o oVar = this.d;
-        a0.h hVar = oVar.f50378a;
+        a0.h hVar = oVar.f50362a;
         ArrayList arrayList = oVar.h;
         if (d(i7) == 0) {
-            int i11 = i7 - oVar.f50388y;
+            int i11 = i7 - oVar.f50372y;
             org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) view;
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i11);
             boolean z11 = true;
@@ -61,16 +61,16 @@ public final class n extends org.telegram.ui.Components.bk0 {
                 z10 = false;
             }
             vVar.b(stickerSetCovered, z10);
-            org.telegram.ui.Components.ng0 ng0Var = vVar.f32144f;
-            boolean E0 = org.telegram.messenger.ri.d0(o.a0(oVar)).E0(stickerSetCovered.set.f28432id, true);
+            org.telegram.ui.Components.ng0 ng0Var = vVar.f32057f;
+            boolean E0 = org.telegram.messenger.ri.d0(o.a0(oVar)).E0(stickerSetCovered.set.f28430id, true);
             vVar.a(E0, false, false);
             if (E0) {
-                hVar.l(stickerSetCovered.set.f28432id);
+                hVar.l(stickerSetCovered.set.f28430id);
                 if (ng0Var != null) {
                     ng0Var.a(false, false);
                 }
             } else {
-                if (hVar.h(stickerSetCovered.set.f28432id) < 0) {
+                if (hVar.h(stickerSetCovered.set.f28430id) < 0) {
                     z11 = false;
                 }
                 if (ng0Var != null) {
@@ -79,39 +79,39 @@ public final class n extends org.telegram.ui.Components.bk0 {
             }
             vVar.setOnCheckedChangeListener(new oi.e0(3, this, stickerSetCovered));
         } else if (d(i7) == 2) {
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-            if (i7 == oVar.f50387x) {
-                z8Var.setTopPadding(17);
-                z8Var.setBottomPadding(10);
+            org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
+            if (i7 == oVar.f50371x) {
+                a9Var.setTopPadding(17);
+                a9Var.setBottomPadding(10);
                 if (oVar.I == 5) {
                     i10 = 2131754133;
                 } else {
                     i10 = 2131754122;
                 }
-                z8Var.setText(org.telegram.messenger.gd.M0(i10, null));
+                a9Var.setText(org.telegram.messenger.gd.M0(i10, null));
                 return;
             }
-            z8Var.setTopPadding(10);
-            z8Var.setBottomPadding(17);
-            z8Var.setText(null);
+            a9Var.setTopPadding(10);
+            a9Var.setBottomPadding(17);
+            a9Var.setText(null);
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        Context context = this.f50044c;
+        Context context = this.f50018c;
         View view = null;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
-                    view = new org.telegram.ui.Cells.z8(context);
+                    view = new org.telegram.ui.Cells.a9(context);
                 }
             } else {
-                view = new org.telegram.ui.Cells.t4(context);
+                view = new org.telegram.ui.Cells.u4(context);
             }
         } else {
             org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(context, true);
-            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, vVar, null);
+            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29394d6, vVar, null);
             view = vVar;
         }
         view.setLayoutParams(new v4.q0(-1, -2));

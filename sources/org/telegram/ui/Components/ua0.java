@@ -43,17 +43,17 @@ public abstract class ua0 extends FrameLayout {
         this.f40280e = sa0Var;
         fh.g c10 = cVar.c(sa0Var, null, false);
         c10.p(c8.i0.l(qa0Var));
-        c10.R.f11642e = true;
+        c10.R.f11639e = true;
         c10.q(org.telegram.messenger.g0.L(8.0f));
         c10.r(org.telegram.messenger.g0.L(16.0f));
         sa0Var.setBackground(c10);
         int i11 = 0;
         for (int i12 = 0; i12 < 3; i12++) {
-            if (i12 == 0 && jjVar.f24867a != null) {
+            if (i12 == 0 && jjVar.f24864a != null) {
                 this.f40280e.a(0, org.telegram.messenger.gd.M0(2131748355, null));
-            } else if (i12 == 1 && jjVar.f24868b != null && !z10) {
+            } else if (i12 == 1 && jjVar.f24865b != null && !z10) {
                 this.f40280e.a(1, org.telegram.messenger.gd.M0(2131748359, null));
-            } else if (i12 == 2 && jjVar.f24869c != null && !z10) {
+            } else if (i12 == 2 && jjVar.f24866c != null && !z10) {
                 this.f40280e.a(2, org.telegram.messenger.gd.M0(2131748358, null));
             }
             if (i12 == i10) {

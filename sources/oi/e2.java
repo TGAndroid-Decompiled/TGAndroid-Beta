@@ -11,16 +11,16 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class e2 {
-    public final h9.g1 f22032a;
-    public boolean f22035e;
-    public boolean f22036f;
-    public final ArrayDeque f22033b = new ArrayDeque();
-    public final ArrayDeque f22034c = new ArrayDeque();
-    public final a2 f22037g = new a2(this, 0);
+    public final h9.g1 f22029a;
+    public boolean f22032e;
+    public boolean f22033f;
+    public final ArrayDeque f22030b = new ArrayDeque();
+    public final ArrayDeque f22031c = new ArrayDeque();
+    public final a2 f22034g = new a2(this, 0);
     public d2 d = b();
 
     public e2(h9.g1 g1Var) {
-        this.f22032a = g1Var;
+        this.f22029a = g1Var;
     }
 
     public static void e(TL_iv.PageBlock pageBlock) {
@@ -162,28 +162,28 @@ public final class e2 {
         int i7;
         ArrayList arrayList;
         c2[] c2VarArr;
-        h9.g1 g1Var = this.f22032a;
-        ArrayList arrayList2 = ((s3) g1Var.f14001b).f22345t3;
+        h9.g1 g1Var = this.f22029a;
+        ArrayList arrayList2 = ((s3) g1Var.f13998b).f22342t3;
         HashMap hashMap = new HashMap();
         d2 d2Var = this.d;
         if (d2Var != null) {
-            for (c2 c2Var : d2Var.f21987a) {
-                hashMap.put(Long.valueOf(c2Var.f21965a), c2Var);
+            for (c2 c2Var : d2Var.f21984a) {
+                hashMap.put(Long.valueOf(c2Var.f21962a), c2Var);
             }
         }
         c2[] c2VarArr2 = new c2[arrayList2.size()];
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             a aVar = (a) arrayList2.get(i10);
-            TL_iv.PageBlock pageBlock = aVar.f21910b;
-            ArrayList arrayList3 = aVar.f21917k;
+            TL_iv.PageBlock pageBlock = aVar.f21907b;
+            ArrayList arrayList3 = aVar.f21914k;
             e(pageBlock);
             SerializedData serializedData = new SerializedData(pageBlock.getObjectSize());
             pageBlock.serializeToStream(serializedData);
             byte[] byteArray = serializedData.toByteArray();
             serializedData.cleanup();
-            c2 c2Var2 = (c2) hashMap.get(Long.valueOf(aVar.f21909a));
-            if (c2Var2 != null && c2Var2.f21967c == aVar.f21911c && c2Var2.d == aVar.d && c2Var2.f21968e == aVar.f21912e && c2Var2.f21969f == aVar.f21913f && c2Var2.f21970g == aVar.f21915i && c2Var2.h == aVar.f21914g) {
-                ArrayList arrayList4 = c2Var2.f21971i;
+            c2 c2Var2 = (c2) hashMap.get(Long.valueOf(aVar.f21906a));
+            if (c2Var2 != null && c2Var2.f21964c == aVar.f21908c && c2Var2.d == aVar.d && c2Var2.f21965e == aVar.f21909e && c2Var2.f21966f == aVar.f21910f && c2Var2.f21967g == aVar.f21912i && c2Var2.h == aVar.f21911g) {
+                ArrayList arrayList4 = c2Var2.f21968i;
                 ArrayList arrayList5 = aVar.h;
                 if (arrayList4 != arrayList5) {
                     if (arrayList4 != null && arrayList5 != null && arrayList4.size() == arrayList5.size()) {
@@ -194,17 +194,17 @@ public final class e2 {
                         }
                     }
                 }
-                if (c2Var2.f21972j.equals(arrayList3) && Arrays.equals(c2Var2.f21966b, byteArray)) {
+                if (c2Var2.f21969j.equals(arrayList3) && Arrays.equals(c2Var2.f21963b, byteArray)) {
                     c2VarArr2[i10] = c2Var2;
                 }
             }
-            long j3 = aVar.f21909a;
-            int i12 = aVar.f21911c;
+            long j3 = aVar.f21906a;
+            int i12 = aVar.f21908c;
             int i13 = aVar.d;
-            boolean z10 = aVar.f21912e;
-            boolean z11 = aVar.f21913f;
-            boolean z12 = aVar.f21915i;
-            r rVar = aVar.f21914g;
+            boolean z10 = aVar.f21909e;
+            boolean z11 = aVar.f21910f;
+            boolean z12 = aVar.f21912i;
+            r rVar = aVar.f21911g;
             if (aVar.h != null) {
                 arrayList = new ArrayList(aVar.h);
             } else {
@@ -212,7 +212,7 @@ public final class e2 {
             }
             c2VarArr2[i10] = new c2(j3, byteArray, i12, i13, z10, z11, z12, rVar, arrayList, new ArrayList(arrayList3));
         }
-        View findFocus = ((s3) g1Var.f14001b).findFocus();
+        View findFocus = ((s3) g1Var.f13998b).findFocus();
         if (findFocus instanceof e1) {
             e1 e1Var = (e1) findFocus;
             int selectionStart = e1Var.getSelectionStart();
@@ -220,15 +220,15 @@ public final class e2 {
             l5 X2 = s3.X2(e1Var);
             if (X2 != null && X2.getRow() != null) {
                 if (e1Var == X2.getTitleEditText()) {
-                    b2Var = new b2(0, selectionStart, selectionEnd, X2.getRow().f21909a);
+                    b2Var = new b2(0, selectionStart, selectionEnd, X2.getRow().f21906a);
                 } else {
                     o5 q10 = X2.q(e1Var);
                     if (q10 != null) {
-                        i7 = X2.l(q10.f22227b);
+                        i7 = X2.l(q10.f22224b);
                     } else {
                         i7 = -1;
                     }
-                    b2Var = new b2(i7, selectionStart, selectionEnd, X2.getRow().f21909a);
+                    b2Var = new b2(i7, selectionStart, selectionEnd, X2.getRow().f21906a);
                 }
             } else {
                 if (e1Var instanceof i0) {
@@ -249,7 +249,7 @@ public final class e2 {
                     }
                 }
                 if (i0Var != null && i0Var.getRow() != null) {
-                    b2Var = new b2(-1, selectionStart, selectionEnd, i0Var.getRow().f21909a);
+                    b2Var = new b2(-1, selectionStart, selectionEnd, i0Var.getRow().f21906a);
                 } else {
                     while (e1Var != 0 && !(e1Var instanceof z5)) {
                         ViewParent parent2 = e1Var.getParent();
@@ -262,26 +262,26 @@ public final class e2 {
                     if (e1Var instanceof z5) {
                         z5 z5Var = (z5) e1Var;
                         if (z5Var.getRow() != null) {
-                            b2Var = new b2(-1, selectionStart, selectionEnd, z5Var.getRow().f21909a);
+                            b2Var = new b2(-1, selectionStart, selectionEnd, z5Var.getRow().f21906a);
                         }
                     }
                 }
             }
             return new d2(c2VarArr2, b2Var);
         }
-        b2Var = b2.f21948e;
+        b2Var = b2.f21945e;
         return new d2(c2VarArr2, b2Var);
     }
 
     public final void c() {
-        org.telegram.messenger.g0.r(this.f22037g);
-        if (this.f22035e && !this.f22036f) {
+        org.telegram.messenger.g0.r(this.f22034g);
+        if (this.f22032e && !this.f22033f) {
             d2 b10 = b();
-            this.f22035e = false;
+            this.f22032e = false;
             d2 d2Var = this.d;
             if (d2Var != null) {
-                c2[] c2VarArr = d2Var.f21987a;
-                c2[] c2VarArr2 = b10.f21987a;
+                c2[] c2VarArr = d2Var.f21984a;
+                c2[] c2VarArr2 = b10.f21984a;
                 if (c2VarArr.length == c2VarArr2.length) {
                     for (int i7 = 0; i7 < c2VarArr.length; i7++) {
                         if (c2VarArr[i7] == c2VarArr2[i7]) {
@@ -291,24 +291,24 @@ public final class e2 {
                 }
             }
             d2 d2Var2 = this.d;
-            ArrayDeque arrayDeque = this.f22033b;
+            ArrayDeque arrayDeque = this.f22030b;
             arrayDeque.addLast(d2Var2);
             while (arrayDeque.size() > 150) {
                 arrayDeque.removeFirst();
             }
-            this.f22034c.clear();
+            this.f22031c.clear();
             this.d = b10;
-            ((s3) this.f22032a.f14001b).f22337p3.j1();
+            ((s3) this.f22029a.f13998b).f22334p3.j1();
         }
     }
 
     public final void d() {
-        org.telegram.messenger.g0.r(this.f22037g);
+        org.telegram.messenger.g0.r(this.f22034g);
         c();
     }
 
     public final void f(int i7, int i10) {
-        if (!this.f22036f) {
+        if (!this.f22033f) {
             if (i7 <= 16 && i10 <= 16) {
                 return;
             }
@@ -317,53 +317,53 @@ public final class e2 {
     }
 
     public final void g() {
-        if (this.f22036f) {
+        if (this.f22033f) {
             return;
         }
-        this.f22035e = true;
-        a2 a2Var = this.f22037g;
+        this.f22032e = true;
+        a2 a2Var = this.f22034g;
         org.telegram.messenger.g0.r(a2Var);
         org.telegram.messenger.g0.h3(a2Var, 800L);
-        ((s3) this.f22032a.f14001b).f22337p3.j1();
+        ((s3) this.f22029a.f13998b).f22334p3.j1();
     }
 
     public final void h() {
-        if (this.f22036f) {
+        if (this.f22033f) {
             return;
         }
-        org.telegram.messenger.g0.r(this.f22037g);
-        this.f22035e = true;
+        org.telegram.messenger.g0.r(this.f22034g);
+        this.f22032e = true;
         c();
     }
 
     public final void i() {
         d();
-        ArrayDeque arrayDeque = this.f22034c;
+        ArrayDeque arrayDeque = this.f22031c;
         if (arrayDeque.isEmpty()) {
             return;
         }
-        this.f22033b.addLast(this.d);
+        this.f22030b.addLast(this.d);
         d2 d2Var = (d2) arrayDeque.removeLast();
         this.d = d2Var;
         a(d2Var);
     }
 
     public final void j() {
-        org.telegram.messenger.g0.r(this.f22037g);
-        this.f22033b.clear();
-        this.f22034c.clear();
+        org.telegram.messenger.g0.r(this.f22034g);
+        this.f22030b.clear();
+        this.f22031c.clear();
         this.d = b();
-        this.f22035e = false;
-        ((s3) this.f22032a.f14001b).f22337p3.j1();
+        this.f22032e = false;
+        ((s3) this.f22029a.f13998b).f22334p3.j1();
     }
 
     public final void k() {
         d();
-        ArrayDeque arrayDeque = this.f22033b;
+        ArrayDeque arrayDeque = this.f22030b;
         if (arrayDeque.isEmpty()) {
             return;
         }
-        this.f22034c.addLast(this.d);
+        this.f22031c.addLast(this.d);
         d2 d2Var = (d2) arrayDeque.removeLast();
         this.d = d2Var;
         a(d2Var);

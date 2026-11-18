@@ -11,7 +11,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-public final class j1 extends View implements Drawable.Callback, org.telegram.ui.Cells.h9 {
+public final class j1 extends View implements Drawable.Callback, org.telegram.ui.Cells.i9 {
     public final p50 f48843a;
     public final e4 f48844b;
     public z2 f48845c;
@@ -24,7 +24,7 @@ public final class j1 extends View implements Drawable.Callback, org.telegram.ui
         super(context);
         this.f48843a = p50Var;
         this.f48844b = e4Var;
-        this.f48847f = new AnimatedArrowDrawable(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29788y6, false), true);
+        this.f48847f = new AnimatedArrowDrawable(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29786y6, false), true);
     }
 
     @Override
@@ -77,7 +77,7 @@ public final class j1 extends View implements Drawable.Callback, org.telegram.ui
             canvas.restore();
         }
         float measuredHeight = getMeasuredHeight() - 1;
-        canvas.drawLine(0.0f, measuredHeight, getMeasuredWidth(), measuredHeight, g4.f47905t1);
+        canvas.drawLine(0.0f, measuredHeight, getMeasuredWidth(), measuredHeight, g4.f47869t1);
     }
 
     @Override
@@ -130,8 +130,8 @@ public final class j1 extends View implements Drawable.Callback, org.telegram.ui
                 int L3 = ((org.telegram.messenger.g0.L(21.0f) + this.f48845c.d.getHeight()) - this.f48845c.d.getHeight()) / 2;
                 this.f48846e = L3;
                 z2 z2Var = this.f48845c;
-                z2Var.f54373s = this.d;
-                z2Var.f54374w = L3;
+                z2Var.f54332s = this.d;
+                z2Var.f54333w = L3;
             }
         }
         setMeasuredDimension(size, L + 1);

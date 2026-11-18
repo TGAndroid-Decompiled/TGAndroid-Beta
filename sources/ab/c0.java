@@ -27,7 +27,7 @@ import org.telegram.messenger.n10;
 import org.telegram.ui.ActionBar.h2;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Cells.t2;
+import org.telegram.ui.Cells.u2;
 import org.telegram.ui.Components.dw;
 import org.telegram.ui.Components.ui0;
 import org.telegram.ui.Components.vy0;
@@ -203,7 +203,7 @@ public final class c0 implements ib.b, ui0, ly0 {
                 if (r10 == null) {
                     ((a0.f) this.f909c).put(obj, vVar);
                     ?? obj2 = new Object();
-                    obj2.f6357c = new Object();
+                    obj2.f6354c = new Object();
                     obj2.d = new a0.l(0);
                     ((a0.f) this.d).put(vVar, new p4.h(obj, obj2, l1Var, y0Var));
                 } else {
@@ -226,7 +226,7 @@ public final class c0 implements ib.b, ui0, ly0 {
                     y0 y0Var = hVar.f55266g;
                     y0Var.getClass();
                     ca.i iVar = new ca.i();
-                    iVar.c(y0Var.f10810a);
+                    iVar.c(y0Var.f10807a);
                     iVar.b(i7);
                     hVar.f55266g = new y0(iVar.d());
                     hVar.f55263c.add(gVar);
@@ -253,7 +253,7 @@ public final class c0 implements ib.b, ui0, ly0 {
         float f10 = i7;
         rectF.set(0.0f, 0.0f, f10, org.telegram.messenger.g0.L(14.66f));
         canvas.saveLayerAlpha(rectF, 255, 31);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             canvas.translate(f10, 0.0f);
         }
         int L = i7 - org.telegram.messenger.g0.L(25.0f);
@@ -264,7 +264,7 @@ public final class c0 implements ib.b, ui0, ly0 {
             if (L < 0) {
                 break;
             }
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 canvas.translate(-zrVar.f42936g, 0.0f);
                 zrVar.a(canvas);
                 canvas.translate(-org.telegram.messenger.g0.L(4.0f), 0.0f);
@@ -281,19 +281,19 @@ public final class c0 implements ib.b, ui0, ly0 {
                 ?? obj = new Object();
                 obj.f42931a = size;
                 vy0 vy0Var = new vy0(i5.c.i(size, "+"), 10.0f, org.telegram.messenger.g0.o());
-                vy0Var.r((t2) this.f908b);
+                vy0Var.r((u2) this.f908b);
                 obj.f42933c = vy0Var;
                 int L2 = org.telegram.messenger.g0.L(9.32f);
                 vy0 vy0Var2 = obj.f42933c;
                 obj.f42936g = L2 + ((int) vy0Var2.f41482c);
                 vy0Var2.i();
-                int i11 = n6.f29580n8;
+                int i11 = n6.f29578n8;
                 obj.f42935f = i11;
                 obj.f42934e = true;
                 obj.d = n6.x0(null, i11, false);
                 this.f910e = obj;
             }
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 canvas.translate(-((zr) this.f910e).f42936g, 0.0f);
                 ((zr) this.f910e).a(canvas);
                 canvas.translate(-org.telegram.messenger.g0.L(4.0f), 0.0f);
@@ -312,7 +312,7 @@ public final class c0 implements ib.b, ui0, ly0 {
 
     @Override
     public Object mo24get() {
-        return new gb.n((o9.g) ((d9.o) this.f908b).f7925a, (jb.l) ((ib.c) this.f909c).mo24get(), (id.h) ((ib.c) this.d).mo24get(), (w0) ((ib.c) this.f910e).mo24get());
+        return new gb.n((o9.g) ((d9.o) this.f908b).f7922a, (jb.l) ((ib.c) this.f909c).mo24get(), (id.h) ((ib.c) this.d).mo24get(), (w0) ((ib.c) this.f910e).mo24get());
     }
 
     @Override
@@ -349,7 +349,7 @@ public final class c0 implements ib.b, ui0, ly0 {
                     return;
                 }
                 final y0 y0Var = hVar.f55266g;
-                hVar.f55266g = y0.f10808b;
+                hVar.f55266g = y0.f10805b;
                 hVar.f55263c.add(new p4.g(vVar, y0Var) {
                     public final v f55216b;
 
@@ -359,7 +359,7 @@ public final class c0 implements ib.b, ui0, ly0 {
                         if (d0Var != null) {
                             d0Var.p(this.f55216b);
                         }
-                        return m9.w.f20960b;
+                        return m9.w.f20957b;
                     }
                 });
                 if (hVar.f55265f) {
@@ -378,7 +378,7 @@ public final class c0 implements ib.b, ui0, ly0 {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             k.e eVar = (k.e) arrayList.get(i7);
-            if (eVar != null && eVar.f18068b == aVar) {
+            if (eVar != null && eVar.f18065b == aVar) {
                 return eVar;
             }
         }
@@ -530,12 +530,12 @@ public final class c0 implements ib.b, ui0, ly0 {
         this.d = obj4;
     }
 
-    public c0(t2 t2Var) {
+    public c0(u2 u2Var) {
         this.f907a = 9;
         this.f909c = new ArrayList();
         this.d = new ArrayList();
         this.f910e = null;
-        this.f908b = t2Var;
+        this.f908b = u2Var;
     }
 
     public c0(p4.d0 d0Var) {
@@ -673,7 +673,7 @@ public final class c0 implements ib.b, ui0, ly0 {
         this.f907a = 15;
         this.f908b = r1Var;
         this.f909c = zArr;
-        int i7 = r1Var.f60212a;
+        int i7 = r1Var.f60213a;
         this.d = new boolean[i7];
         this.f910e = new boolean[i7];
     }

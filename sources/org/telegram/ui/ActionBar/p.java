@@ -36,45 +36,45 @@ import org.telegram.ui.hn0;
 import org.telegram.ui.vp0;
 import org.webrtc.GlGenericDrawer;
 public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, org.telegram.ui.Components.voip.e1, jc, d5.a, c0.j, p4.c0, p4.c1, h2.j, p4.a1, g9.k, ri.m, sg.y, te.b, t0.e, sg.j1, OnSuccessListener {
-    public final int f29845a;
-    public final Object f29846b;
+    public final int f29843a;
+    public final Object f29844b;
 
     public p(Object obj, int i7) {
-        this.f29845a = i7;
-        this.f29846b = obj;
+        this.f29843a = i7;
+        this.f29844b = obj;
     }
 
     @Override
     public void D(float f10, int i7) {
-        int i10 = this.f29845a;
+        int i10 = this.f29843a;
     }
 
     @Override
     public void H(int i7, float f10, float f11, te.c cVar) {
-        switch (this.f29845a) {
+        switch (this.f29843a) {
             case 23:
-                sh.c.a((sh.c) this.f29846b);
+                sh.c.a((sh.c) this.f29844b);
                 return;
             default:
-                ((Switch) this.f29846b).invalidate();
+                ((Switch) this.f29844b).invalidate();
                 return;
         }
     }
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
-        int i7 = this.f29845a;
+        int i7 = this.f29843a;
         int i10 = 0;
-        Object obj = this.f29846b;
+        Object obj = this.f29844b;
         switch (i7) {
             case 0:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                Drawable drawable = ActionBarLayout.f28676w1;
+                Drawable drawable = ActionBarLayout.f28674w1;
                 i0.b I0 = org.telegram.messenger.g0.I0(l1Var, false);
                 i0.b I02 = org.telegram.messenger.g0.I0(l1Var, true);
-                actionBarLayout.f28725u1 = I0;
-                actionBarLayout.f28727v1 = I02;
-                actionBarLayout.f28723t1 = l1Var;
+                actionBarLayout.f28723u1 = I0;
+                actionBarLayout.f28725v1 = I02;
+                actionBarLayout.f28721t1 = l1Var;
                 int childCount = actionBarLayout.getChildCount();
                 while (i10 < childCount) {
                     actionBarLayout.o(actionBarLayout.getChildAt(i10), l1Var);
@@ -83,18 +83,18 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
                 return r0.l1.f56257b;
             case 4:
                 n3 n3Var = (n3) obj;
-                n3Var.f29290s = l1Var.f56258a.f(2).d;
+                n3Var.f29288s = l1Var.f56258a.f(2).d;
                 n3Var.invalidate();
                 return r0.l1.f56257b;
             default:
                 p3 p3Var = (p3) obj;
-                p3Var.f29866e = l1Var;
+                p3Var.f29864e = l1Var;
                 i0.b I03 = org.telegram.messenger.g0.I0(l1Var, false);
                 i0.b I04 = org.telegram.messenger.g0.I0(l1Var, true);
-                if (!p3Var.f29867f.equals(I03) || !p3Var.h.equals(I04)) {
-                    org.telegram.messenger.g0.f24115m = I03.f15893b;
-                    org.telegram.messenger.g0.f24116n = I03.d;
-                    p3Var.f29867f = I03;
+                if (!p3Var.f29865f.equals(I03) || !p3Var.h.equals(I04)) {
+                    org.telegram.messenger.g0.f24112m = I03.f15890b;
+                    org.telegram.messenger.g0.f24113n = I03.d;
+                    p3Var.f29865f = I03;
                     p3Var.h = I04;
                     p3Var.requestLayout();
                 }
@@ -114,30 +114,30 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
     @Override
     public Typeface a() {
         Typeface createFromFile;
-        createFromFile = Typeface.createFromFile(((Font) this.f29846b).getFile());
+        createFromFile = Typeface.createFromFile(((Font) this.f29844b).getFile());
         return createFromFile;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f29845a) {
+        switch (this.f29843a) {
             case 14:
-                ((p4.i1) obj).e((e2.w0) this.f29846b);
+                ((p4.i1) obj).e((e2.w0) this.f29844b);
                 return;
             default:
-                ((q2.j) obj).a((nb.a) this.f29846b);
+                ((q2.j) obj).a((nb.a) this.f29844b);
                 return;
         }
     }
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f29845a) {
+        switch (this.f29843a) {
             case 17:
                 Bitmap bitmap = (Bitmap) obj;
                 int height = bitmap.getHeight();
                 int width = bitmap.getWidth();
-                l9.a aVar = (l9.a) ((ji.j) this.f29846b).f17949c;
+                l9.a aVar = (l9.a) ((ji.j) this.f29844b).f17946c;
                 if (aVar.a(Math.max(height, width))) {
                     if (aVar.a(height)) {
                         height--;
@@ -151,7 +151,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
             default:
                 Bitmap bitmap2 = (Bitmap) obj;
                 int width2 = bitmap2.getWidth();
-                int i7 = ((b3.j) this.f29846b).f2901b;
+                int i7 = ((b3.j) this.f29844b).f2902b;
                 if (width2 > i7 || bitmap2.getHeight() > i7) {
                     float f10 = i7;
                     float width3 = bitmap2.getWidth();
@@ -165,18 +165,18 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
 
     @Override
     public void b(p4.u uVar, int i7) {
-        uVar.e(i7, (e2.y0) this.f29846b);
+        uVar.e(i7, (e2.y0) this.f29844b);
     }
 
     @Override
     public void c(p4.i1 i1Var, p4.v vVar) {
-        ((h2.j) this.f29846b).accept(i1Var);
+        ((h2.j) this.f29844b).accept(i1Var);
     }
 
     @Override
     public boolean d(of ofVar, int i7, Bundle bundle) {
         r0.d dVar;
-        m.s sVar = (m.s) this.f29846b;
+        m.s sVar = (m.s) this.f29844b;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 25 && (i7 & 1) != 0) {
             try {
@@ -213,16 +213,16 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
 
     @Override
     public Object e(c0.i iVar) {
-        p4.d0 d0Var = (p4.d0) this.f29846b;
+        p4.d0 d0Var = (p4.d0) this.f29844b;
         d0Var.f55190o.post(new org.telegram.ui.Wallet.c5(28, d0Var, iVar));
         return "onPlayRequested";
     }
 
     @Override
     public void h(u1 u1Var, int i7) {
-        switch (this.f29845a) {
+        switch (this.f29843a) {
             case 2:
-                u1 u1Var2 = (u1) this.f29846b;
+                u1 u1Var2 = (u1) this.f29844b;
                 DialogInterface.OnCancelListener onCancelListener = u1Var2.K;
                 if (onCancelListener != null) {
                     onCancelListener.onCancel(u1Var2);
@@ -230,13 +230,13 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
                 u1Var2.dismiss();
                 return;
             case 10:
-                ((org.telegram.ui.web.x) this.f29846b).run();
+                ((org.telegram.ui.web.x) this.f29844b).run();
                 return;
             case 27:
-                ((hn0) this.f29846b).run();
+                ((hn0) this.f29844b).run();
                 return;
             default:
-                ((tg.a0) this.f29846b).f57725a.P1.r();
+                ((tg.a0) this.f29844b).f57725a.P1.r();
                 return;
         }
     }
@@ -244,17 +244,17 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
     @Override
     public void i(WebView webView, xa xaVar, Uri uri, boolean z10, e5.f fVar) {
         String uri2;
-        org.telegram.ui.web.s0 s0Var = (org.telegram.ui.web.s0) this.f29846b;
+        org.telegram.ui.web.s0 s0Var = (org.telegram.ui.web.s0) this.f29844b;
         org.telegram.ui.web.v0 v0Var = s0Var.R;
         if (webView == s0Var && v0Var != null) {
-            if (webView == v0Var.f53343a && xaVar.f713b == 0) {
+            if (webView == v0Var.f53294a && xaVar.f713b == 0) {
                 if (uri == null) {
                     uri2 = null;
                 } else {
                     uri2 = uri.toString();
                 }
                 String k10 = org.telegram.ui.web.v0.k(uri2);
-                if (v0Var.f53370u0 && (TextUtils.isEmpty(v0Var.H0) || !TextUtils.equals(v0Var.H0, k10) || !TextUtils.equals(v0Var.H0, v0Var.getOriginHost()))) {
+                if (v0Var.f53321u0 && (TextUtils.isEmpty(v0Var.H0) || !TextUtils.equals(v0Var.H0, k10) || !TextUtils.equals(v0Var.H0, v0Var.getOriginHost()))) {
                     v0Var.g("onBotWebMessage ignored: untrusted origin");
                     return;
                 }
@@ -286,7 +286,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
     @Override
     public void j(KeyEvent keyEvent) {
         h1 h1Var;
-        r0 r0Var = (r0) this.f29846b;
+        r0 r0Var = (r0) this.f29844b;
         r0Var.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (h1Var = r0Var.d) != null && h1Var.isShowing()) {
             r0Var.d.d(true);
@@ -295,19 +295,19 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
 
     @Override
     public Object k(p4.d0 d0Var, p4.v vVar, int i7) {
-        int i10 = this.f29845a;
-        Object obj = this.f29846b;
+        int i10 = this.f29843a;
+        Object obj = this.f29844b;
         switch (i10) {
             case 13:
                 return d0Var.l(vVar, (h9.i0) obj);
             default:
                 p4.a1 a1Var = (p4.a1) obj;
-                m9.w wVar = m9.w.f20960b;
+                m9.w wVar = m9.w.f20957b;
                 if (!d0Var.j()) {
                     a1Var.c(d0Var.f55195t, vVar);
                     p4.e1.r1(d0Var, vVar, i7, new p4.o1(0));
                 }
-                return m9.w.f20960b;
+                return m9.w.f20957b;
         }
     }
 
@@ -315,7 +315,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
     public void l(int i7) {
         boolean z10;
         int i10;
-        ri.a aVar = (ri.a) this.f29846b;
+        ri.a aVar = (ri.a) this.f29844b;
         ri.q qVar = aVar.f56614a;
         ri.d dVar = aVar.f56619g;
         if (Build.VERSION.SDK_INT >= 31 && dVar != null) {
@@ -327,7 +327,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
                     if (viewGroup != null) {
                         e10.b(viewGroup.getY(), aVar.f56624m.getWidth(), aVar.f56625n.getY() + aVar.f56625n.getHeight());
                     }
-                    dVar.f56651b = e10.f58229b;
+                    dVar.f56651b = e10.f58230b;
                     while (dVar.f56651b > arrayList.size()) {
                         arrayList.add(new ri.b(arrayList.size()));
                     }
@@ -389,7 +389,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
 
     @Override
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) this.f29846b;
+        org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) this.f29844b;
         if (z10 && !z11) {
             h1Var.a();
         }
@@ -397,7 +397,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
 
     @Override
     public void onSuccess(Object obj) {
-        tg.n1 n1Var = (tg.n1) this.f29846b;
+        tg.n1 n1Var = (tg.n1) this.f29844b;
         zb.b bVar = (zb.b) obj;
         n1Var.D0 = true;
         n1Var.C0 = false;
@@ -405,7 +405,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
 
     @Override
     public void run(Bitmap bitmap, int i7) {
-        org.telegram.ui.Components.voip.y yVar = (org.telegram.ui.Components.voip.y) this.f29846b;
+        org.telegram.ui.Components.voip.y yVar = (org.telegram.ui.Components.voip.y) this.f29844b;
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             Utilities.stackBlurBitmap(bitmap, Math.max(7, Math.max(bitmap.getWidth(), bitmap.getHeight()) / 180));
             org.telegram.messenger.g0.g3(new org.telegram.ui.Components.hn0(25, yVar, bitmap));
@@ -415,7 +415,7 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
     @Override
     public void u() {
         float f10;
-        vp0 vp0Var = (vp0) this.f29846b;
+        vp0 vp0Var = (vp0) this.f29844b;
         TextView textView = vp0Var.f57858i1;
         boolean a10 = vp0Var.f57867p0.a();
         ImageView imageView = vp0Var.f57856g1;
@@ -439,8 +439,8 @@ public final class p implements r0.m, f1, r1, GlGenericDrawer.TextureCallback, o
     }
 
     public p(qe.h hVar, s4.r0 r0Var) {
-        this.f29845a = 21;
-        this.f29846b = hVar;
+        this.f29843a = 21;
+        this.f29844b = hVar;
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public abstract class b {
-    public static boolean f45710a;
+    public static boolean f45700a;
 
     public static boolean a(int i7, TLRPC.User user) {
         String o4;
@@ -31,10 +31,10 @@ public abstract class b {
 
     public static void b(int i7) {
         org.telegram.ui.ActionBar.i6 i6Var;
-        if (!f45710a && org.telegram.messenger.j10.f24773t0 == i7) {
+        if (!f45700a && org.telegram.messenger.j10.f24770t0 == i7) {
             Context context = LaunchActivity.H1;
             if (context == null) {
-                context = org.telegram.messenger.t0.f26915b;
+                context = org.telegram.messenger.t0.f26913b;
             }
             if (context == null) {
                 return;
@@ -50,7 +50,7 @@ public abstract class b {
     }
 
     public static void c(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        if (f45710a) {
+        if (f45700a) {
             return;
         }
         org.telegram.ui.ActionBar.x2 j3 = org.telegram.messenger.f3.j(1, context, i6Var, false);
@@ -89,7 +89,7 @@ public abstract class b {
         org.telegram.ui.ActionBar.x2[] x2VarArr = {j3};
         j3.U0 = false;
         j3.O();
-        f45710a = true;
+        f45700a = true;
         x2VarArr[0].show();
         x2VarArr[0].setOnDismissListener(new hi.f1(1));
     }

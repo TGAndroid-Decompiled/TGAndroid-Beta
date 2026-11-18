@@ -6,13 +6,13 @@ import org.telegram.messenger.rr;
 import org.telegram.messenger.v10;
 import org.telegram.ui.Components.l41;
 public final class b implements v10, rr {
-    public final g f19892a;
+    public final g f19889a;
 
     @Override
     public void a(String str) {
-        g gVar = this.f19892a;
-        gVar.getMessagesController().O0(Long.valueOf(-gVar.f19932b));
-        gVar.showDialog(new ni.a(gVar.getParentActivity(), null, gVar.f19932b, new d(1, gVar, str)));
+        g gVar = this.f19889a;
+        gVar.getMessagesController().O0(Long.valueOf(-gVar.f19929b));
+        gVar.showDialog(new ni.a(gVar.getParentActivity(), null, gVar.f19929b, new d(1, gVar, str)));
     }
 
     @Override
@@ -21,6 +21,6 @@ public final class b implements v10, rr {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        g.Z(this.f19892a, (l41) obj);
+        g.Z(this.f19889a, (l41) obj);
     }
 }

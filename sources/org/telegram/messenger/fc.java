@@ -4,27 +4,27 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fc {
-    public int f23867a;
-    public byte[] f23868b;
-    public byte[] f23869c;
+    public int f23864a;
+    public byte[] f23865b;
+    public byte[] f23866c;
     public byte[] d;
-    public long f23870e;
-    public TLRPC.TL_fileLocationToBeDeprecated f23871f;
-    public String f23872g;
+    public long f23867e;
+    public TLRPC.TL_fileLocationToBeDeprecated f23868f;
+    public String f23869g;
     public yv h;
-    public TLRPC.Document f23873i;
-    public long f23874j;
-    public TLRPC.PhotoSize f23875k;
-    public TLRPC.Photo f23876l;
-    public int f23877m;
-    public TLRPC.InputPeer f23878n;
-    public TLRPC.InputStickerSet f23879o;
-    public int f23880p;
-    public int f23881q;
-    public long f23882r;
-    public long f23883s;
-    public long f23884t;
-    public String f23885u;
+    public TLRPC.Document f23870i;
+    public long f23871j;
+    public TLRPC.PhotoSize f23872k;
+    public TLRPC.Photo f23873l;
+    public int f23874m;
+    public TLRPC.InputPeer f23875n;
+    public TLRPC.InputStickerSet f23876o;
+    public int f23877p;
+    public int f23878q;
+    public long f23879r;
+    public long f23880s;
+    public long f23881t;
+    public String f23882u;
     public h20 v;
 
     public static fc a(int i7, TLRPC.Chat chat) {
@@ -36,7 +36,7 @@ public final class fc {
                 if (chatPhoto.stripped_thumb != null) {
                     ?? obj = new Object();
                     TLRPC.TL_photoStrippedSize tL_photoStrippedSize = new TLRPC.TL_photoStrippedSize();
-                    obj.f23875k = tL_photoStrippedSize;
+                    obj.f23872k = tL_photoStrippedSize;
                     tL_photoStrippedSize.type = "s";
                     tL_photoStrippedSize.bytes = chat.photo.stripped_thumb;
                     return obj;
@@ -53,14 +53,14 @@ public final class fc {
                 if (v3.T(chat)) {
                     if (chat.access_hash != 0) {
                         tL_inputPeerChat = new TLRPC.TL_inputPeerChannel();
-                        tL_inputPeerChat.channel_id = chat.f28405id;
+                        tL_inputPeerChat.channel_id = chat.f28403id;
                         tL_inputPeerChat.access_hash = chat.access_hash;
                     } else {
                         return null;
                     }
                 } else {
                     tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
-                    tL_inputPeerChat.chat_id = chat.f28405id;
+                    tL_inputPeerChat.chat_id = chat.f28403id;
                 }
                 TLRPC.InputPeer inputPeer = tL_inputPeerChat;
                 int i10 = chat.photo.dc_id;
@@ -68,7 +68,7 @@ public final class fc {
                     i10 = fileLocation2.dc_id;
                 }
                 fc h = h(fileLocation2, 0, null, null, inputPeer, i7, i10, null, null);
-                h.f23883s = chat.photo.photo_id;
+                h.f23880s = chat.photo.photo_id;
                 return h;
             }
             return null;
@@ -81,10 +81,10 @@ public final class fc {
             return null;
         }
         ?? obj = new Object();
-        obj.f23873i = document;
-        obj.f23869c = document.key;
+        obj.f23870i = document;
+        obj.f23866c = document.key;
         obj.d = document.iv;
-        obj.f23882r = document.size;
+        obj.f23879r = document.size;
         return obj;
     }
 
@@ -96,7 +96,7 @@ public final class fc {
             return null;
         }
         ?? obj = new Object();
-        obj.f23875k = photoSize;
+        obj.f23872k = photoSize;
         return obj;
     }
 
@@ -104,10 +104,10 @@ public final class fc {
         if (videoSize != null && document != null) {
             fc h = h(videoSize.location, videoSize.size, null, document, null, 1, document.dc_id, null, videoSize.type);
             if ("f".equals(videoSize.type)) {
-                h.f23880p = 1;
+                h.f23877p = 1;
                 return h;
             }
-            h.f23880p = 2;
+            h.f23877p = 2;
             return h;
         }
         return null;
@@ -119,7 +119,7 @@ public final class fc {
         }
         ?? obj = new Object();
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
-        obj.f23871f = tL_fileLocationToBeDeprecated;
+        obj.f23868f = tL_fileLocationToBeDeprecated;
         tL_fileLocationToBeDeprecated.local_id = fileLocation.local_id;
         tL_fileLocationToBeDeprecated.volume_id = fileLocation.volume_id;
         tL_fileLocationToBeDeprecated.secret = fileLocation.secret;
@@ -141,7 +141,7 @@ public final class fc {
             return null;
         }
         ?? obj = new Object();
-        obj.f23875k = photoSize;
+        obj.f23872k = photoSize;
         return obj;
     }
 
@@ -150,7 +150,7 @@ public final class fc {
             return null;
         }
         ?? obj = new Object();
-        obj.f23872g = str;
+        obj.f23869g = str;
         return obj;
     }
 
@@ -158,39 +158,39 @@ public final class fc {
         if (fileLocation != null) {
             if (photo != null || inputPeer != null || inputStickerSet != null || document != null) {
                 ?? obj = new Object();
-                obj.f23867a = i11;
-                obj.f23876l = photo;
-                obj.f23882r = i7;
-                obj.f23878n = inputPeer;
-                obj.f23877m = i10;
-                obj.f23879o = inputStickerSet;
+                obj.f23864a = i11;
+                obj.f23873l = photo;
+                obj.f23879r = i7;
+                obj.f23875n = inputPeer;
+                obj.f23874m = i10;
+                obj.f23876o = inputStickerSet;
                 if (fileLocation instanceof TLRPC.TL_fileLocationToBeDeprecated) {
-                    obj.f23871f = (TLRPC.TL_fileLocationToBeDeprecated) fileLocation;
+                    obj.f23868f = (TLRPC.TL_fileLocationToBeDeprecated) fileLocation;
                     if (photo != null) {
-                        obj.f23868b = photo.file_reference;
-                        obj.f23870e = photo.access_hash;
-                        obj.f23883s = photo.f28429id;
-                        obj.f23885u = str;
+                        obj.f23865b = photo.file_reference;
+                        obj.f23867e = photo.access_hash;
+                        obj.f23880s = photo.f28427id;
+                        obj.f23882u = str;
                         return obj;
                     }
                     if (document != null) {
-                        obj.f23868b = document.file_reference;
-                        obj.f23870e = document.access_hash;
-                        obj.f23884t = document.f28411id;
-                        obj.f23885u = str;
+                        obj.f23865b = document.file_reference;
+                        obj.f23867e = document.access_hash;
+                        obj.f23881t = document.f28409id;
+                        obj.f23882u = str;
                     }
                     return obj;
                 }
                 TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
-                obj.f23871f = tL_fileLocationToBeDeprecated;
+                obj.f23868f = tL_fileLocationToBeDeprecated;
                 tL_fileLocationToBeDeprecated.local_id = fileLocation.local_id;
                 tL_fileLocationToBeDeprecated.volume_id = fileLocation.volume_id;
                 tL_fileLocationToBeDeprecated.secret = fileLocation.secret;
-                obj.f23867a = fileLocation.dc_id;
-                obj.f23868b = fileLocation.file_reference;
-                obj.f23869c = fileLocation.key;
+                obj.f23864a = fileLocation.dc_id;
+                obj.f23865b = fileLocation.file_reference;
+                obj.f23866c = fileLocation.key;
                 obj.d = fileLocation.iv;
-                obj.f23870e = fileLocation.secret;
+                obj.f23867e = fileLocation.secret;
                 return obj;
             }
             return null;
@@ -210,16 +210,16 @@ public final class fc {
             return null;
         }
         ?? obj = new Object();
-        obj.f23875k = photoSize;
+        obj.f23872k = photoSize;
         return obj;
     }
 
     public static fc j(TLRPC.VideoSize videoSize, TLRPC.Photo photo) {
         if (videoSize != null && photo != null) {
             fc h = h(videoSize.location, videoSize.size, photo, null, null, 1, photo.dc_id, null, videoSize.type);
-            h.f23880p = 2;
+            h.f23877p = 2;
             if ((videoSize.flags & 1) != 0) {
-                h.f23874j = (int) (videoSize.video_start_ts * 1000.0d);
+                h.f23871j = (int) (videoSize.video_start_ts * 1000.0d);
             }
             return h;
         }
@@ -254,15 +254,15 @@ public final class fc {
             }
             fc h = h(photoSize.location, photoSize.size, null, null, null, 1, document.dc_id, inputStickerSet, photoSize.type);
             if (photoSize.type.equalsIgnoreCase("a")) {
-                h.f23880p = 1;
+                h.f23877p = 1;
             } else if (photoSize.type.equalsIgnoreCase("v")) {
-                h.f23880p = 2;
+                h.f23877p = 2;
             }
-            h.f23881q = i7;
+            h.f23878q = i7;
             return h;
         }
         ?? obj = new Object();
-        obj.f23875k = photoSize;
+        obj.f23872k = photoSize;
         return obj;
     }
 
@@ -281,7 +281,7 @@ public final class fc {
     }
 
     public static fc n(TLRPC.User user) {
-        return m(j10.f24773t0, 2, user);
+        return m(j10.f24770t0, 2, user);
     }
 
     public static fc o(String str) {
@@ -289,8 +289,8 @@ public final class fc {
             return null;
         }
         ?? obj = new Object();
-        obj.f23872g = str;
-        obj.f23880p = 2;
+        obj.f23869g = str;
+        obj.f23877p = 2;
         return obj;
     }
 
@@ -299,12 +299,12 @@ public final class fc {
             return null;
         }
         ?? obj = new Object();
-        if (h20Var.f24380f) {
-            obj.f23872g = h20Var.f24376a;
+        if (h20Var.f24377f) {
+            obj.f23869g = h20Var.f24373a;
             return obj;
         }
         obj.v = h20Var;
-        obj.f23882r = h20Var.d;
+        obj.f23879r = h20Var.d;
         return obj;
     }
 
@@ -315,26 +315,26 @@ public final class fc {
     public final String q(Object obj, fc fcVar, boolean z10) {
         int i7;
         if (this.h != null) {
-            return this.h.f28190b.dc_id + "_" + this.h.f28190b.f28542id;
+            return this.h.f28188b.dc_id + "_" + this.h.f28188b.f28540id;
         }
-        TLRPC.PhotoSize photoSize = this.f23875k;
+        TLRPC.PhotoSize photoSize = this.f23872k;
         if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
-            if (this.f23871f != null) {
-                return this.f23871f.volume_id + "_" + this.f23871f.local_id;
+            if (this.f23868f != null) {
+                return this.f23868f.volume_id + "_" + this.f23868f.local_id;
             }
             h20 h20Var = this.v;
             if (h20Var != null) {
-                return Utilities.a(h20Var.f24376a);
+                return Utilities.a(h20Var.f24373a);
             }
-            TLRPC.Document document = this.f23873i;
+            TLRPC.Document document = this.f23870i;
             if (document != null) {
                 if (!z10 && (document instanceof t5)) {
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.append(this.f23873i.dc_id);
+                    sb2.append(this.f23870i.dc_id);
                     sb2.append("_");
-                    sb2.append(this.f23873i.f28411id);
+                    sb2.append(this.f23870i.f28409id);
                     sb2.append("_");
-                    TLRPC.ThemeSettings themeSettings = ((t5) document).f26962a;
+                    TLRPC.ThemeSettings themeSettings = ((t5) document).f26960a;
                     sb2.append(org.telegram.ui.ActionBar.n6.r0(themeSettings));
                     sb2.append("_");
                     sb2.append(themeSettings.accent_color);
@@ -352,13 +352,13 @@ public final class fc {
                     }
                     sb2.append(i10);
                     return sb2.toString();
-                } else if (document.f28411id != 0 && document.dc_id != 0) {
-                    return this.f23873i.dc_id + "_" + this.f23873i.f28411id;
+                } else if (document.f28409id != 0 && document.dc_id != 0) {
+                    return this.f23870i.dc_id + "_" + this.f23870i.f28409id;
                 } else {
                     return null;
                 }
             }
-            String str = this.f23872g;
+            String str = this.f23869g;
             if (str != null) {
                 return Utilities.a(str);
             }
@@ -375,18 +375,18 @@ public final class fc {
 
     public final long r() {
         int i7;
-        TLRPC.PhotoSize photoSize = this.f23875k;
+        TLRPC.PhotoSize photoSize = this.f23872k;
         if (photoSize != null) {
             i7 = photoSize.size;
         } else {
             yv yvVar = this.h;
             if (yvVar != null) {
-                TLRPC.TL_secureFile tL_secureFile = yvVar.f28190b;
+                TLRPC.TL_secureFile tL_secureFile = yvVar.f28188b;
                 if (tL_secureFile != null) {
                     return tL_secureFile.size;
                 }
             } else {
-                TLRPC.Document document = this.f23873i;
+                TLRPC.Document document = this.f23870i;
                 if (document != null) {
                     return document.size;
                 }
@@ -395,7 +395,7 @@ public final class fc {
                     i7 = h20Var.d;
                 }
             }
-            return this.f23882r;
+            return this.f23879r;
         }
         return i7;
     }

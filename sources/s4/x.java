@@ -10,7 +10,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import org.telegram.ui.Components.of;
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 public final class x {
     public static e f57062c;
     public final Context f57063a;
@@ -70,17 +70,17 @@ public final class x {
     public static MediaSessionCompat$Token e() {
         e eVar = f57062c;
         if (eVar != null) {
-            md0 md0Var = eVar.C;
-            if (md0Var != null) {
-                android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) md0Var.f49838b;
+            nd0 nd0Var = eVar.C;
+            if (nd0Var != null) {
+                android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) nd0Var.f50148b;
                 if (a0Var != null) {
-                    return ((android.support.v4.media.session.u) a0Var.f1704b).f1736c;
+                    return ((android.support.v4.media.session.u) a0Var.f1705b).f1737c;
                 }
                 return null;
             }
             android.support.v4.media.session.a0 a0Var2 = eVar.D;
             if (a0Var2 != null) {
-                return ((android.support.v4.media.session.u) a0Var2.f1704b).f1736c;
+                return ((android.support.v4.media.session.u) a0Var2.f1705b).f1737c;
             }
             return null;
         }
@@ -128,9 +128,9 @@ public final class x {
             if (z10 != zVar.d) {
                 k kVar2 = c10.f56942r;
                 kVar2.h = c10.A;
-                if (!kVar2.f7210b) {
-                    kVar2.f7210b = true;
-                    ((android.support.v4.media.session.q) kVar2.f7212e).sendEmptyMessage(2);
+                if (!kVar2.f7207b) {
+                    kVar2.f7207b = true;
+                    ((android.support.v4.media.session.q) kVar2.f7209e).sendEmptyMessage(2);
                 }
             }
         } else {
@@ -139,7 +139,7 @@ public final class x {
                 u d = c10.d(kVar3);
                 if (d != null) {
                     b();
-                    kVar3.f7213f = null;
+                    kVar3.f7210f = null;
                     kVar3.h(null);
                     c10.m(d, null);
                     bVar.b(514, d);

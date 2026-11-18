@@ -43,19 +43,19 @@ public class s0 extends FrameLayout implements n80 {
     public float P;
     public boolean Q;
     public ValueAnimator R;
-    public final Paint f58859a;
-    public final boolean f58860b;
-    public final i6 f58861c;
+    public final Paint f58860a;
+    public final boolean f58861b;
+    public final i6 f58862c;
     public float d;
-    public boolean f58862e;
-    public final r0 f58863f;
+    public boolean f58863e;
+    public final r0 f58864f;
     public final r0 h;
-    public final int f58864n;
-    public boolean f58865r;
-    public float f58866s;
-    public final w01 f58867w;
-    public ValueAnimator f58868x;
-    public final Path f58869y;
+    public final int f58865n;
+    public boolean f58866r;
+    public float f58867s;
+    public final w01 f58868w;
+    public ValueAnimator f58869x;
+    public final Path f58870y;
 
     public s0(Context context, i6 i6Var, boolean z10) {
         this(org.telegram.messenger.g0.L(8.0f), context, i6Var, z10);
@@ -71,12 +71,12 @@ public class s0 extends FrameLayout implements n80 {
             z10 = true;
         }
         this.H = true;
-        r0 r0Var = this.f58863f;
+        r0 r0Var = this.f58864f;
         if (z10 && r0Var.f37737c.h()) {
             r0Var.a();
         }
         r0Var.c(str, z10, true);
-        w01 w01Var = this.f58867w;
+        w01 w01Var = this.f58868w;
         w01Var.setContentDescription(str);
         if (!this.L) {
             w01Var.setOnClickListener(onClickListener);
@@ -84,7 +84,7 @@ public class s0 extends FrameLayout implements n80 {
     }
 
     public final void c(CharSequence charSequence, boolean z10, boolean z11) {
-        this.f58865r = true;
+        this.f58866r = true;
         this.F = z10;
         r0 r0Var = this.h;
         r0Var.c(charSequence, z11, true);
@@ -93,31 +93,31 @@ public class s0 extends FrameLayout implements n80 {
     }
 
     public final void d(boolean z10) {
-        ValueAnimator valueAnimator = this.f58868x;
+        ValueAnimator valueAnimator = this.f58869x;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f58868x.cancel();
+            this.f58869x.cancel();
         }
         float f10 = 0.0f;
         if (!z10) {
-            if (this.f58865r) {
+            if (this.f58866r) {
                 f10 = 1.0f;
             }
-            this.f58866s = f10;
+            this.f58867s = f10;
             e();
             return;
         }
-        float f11 = this.f58866s;
-        if (this.f58865r) {
+        float f11 = this.f58867s;
+        if (this.f58866r) {
             f10 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-        this.f58868x = ofFloat;
+        this.f58869x = ofFloat;
         ofFloat.addUpdateListener(new d4(this, 12));
-        this.f58868x.addListener(new k71(this, 19));
-        this.f58868x.setDuration(250L);
-        this.f58868x.setInterpolator(lr.f37208f);
-        this.f58868x.start();
+        this.f58869x.addListener(new k71(this, 19));
+        this.f58869x.setDuration(250L);
+        this.f58869x.setInterpolator(lr.f37208f);
+        this.f58869x.start();
     }
 
     @Override
@@ -144,23 +144,23 @@ public class s0 extends FrameLayout implements n80 {
         }
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        int i7 = (this.f58866s > 1.0f ? 1 : (this.f58866s == 1.0f ? 0 : -1));
-        i6 i6Var = this.f58861c;
-        boolean z10 = this.f58860b;
-        int i10 = this.f58864n;
-        Paint paint = this.f58859a;
+        int i7 = (this.f58867s > 1.0f ? 1 : (this.f58867s == 1.0f ? 0 : -1));
+        i6 i6Var = this.f58862c;
+        boolean z10 = this.f58861b;
+        int i10 = this.f58865n;
+        Paint paint = this.f58860a;
         if (i7 != 0 || !this.F) {
-            if (this.f58862e) {
+            if (this.f58863e) {
                 float f10 = this.d + 0.016f;
                 this.d = f10;
                 if (f10 > 3.0f) {
-                    this.f58862e = false;
+                    this.f58863e = false;
                 }
             } else {
                 float f11 = this.d - 0.016f;
                 this.d = f11;
                 if (f11 < 1.0f) {
-                    this.f58862e = true;
+                    this.f58863e = true;
                 }
             }
             if (this.K) {
@@ -177,22 +177,22 @@ public class s0 extends FrameLayout implements n80 {
             }
             invalidate();
         }
-        boolean z11 = s2.f26723a;
+        boolean z11 = s2.f26721a;
         if (!this.I) {
             int measuredWidth = getMeasuredWidth();
             org.telegram.ui.Components.voip.n nVar = this.E;
             nVar.f41050f = measuredWidth;
             nVar.a(i10, canvas, rectF, null);
         }
-        if (this.f58866s != 0.0f && this.F) {
+        if (this.f58867s != 0.0f && this.F) {
             if (z10) {
                 paint.setColor(n6.w0(n6.Fi, i6Var));
             }
-            paint.setAlpha((int) (this.f58866s * 255.0f));
-            if (this.f58866s != 1.0f) {
-                Path path = this.f58869y;
+            paint.setAlpha((int) (this.f58867s * 255.0f));
+            if (this.f58867s != 1.0f) {
+                Path path = this.f58870y;
                 path.rewind();
-                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.f58866s, Path.Direction.CW);
+                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.f58867s, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
                 float f14 = i10;
@@ -208,21 +208,21 @@ public class s0 extends FrameLayout implements n80 {
 
     public final void e() {
         int i7;
-        float f10 = this.f58866s;
+        float f10 = this.f58867s;
         r0 r0Var = this.h;
         r0Var.setAlpha(f10);
-        r0Var.setTranslationY((1.0f - this.f58866s) * org.telegram.messenger.g0.L(12.0f));
-        w01 w01Var = this.f58867w;
-        w01Var.setAlpha(1.0f - this.f58866s);
-        w01Var.setTranslationY((-org.telegram.messenger.g0.L(12.0f)) * this.f58866s);
+        r0Var.setTranslationY((1.0f - this.f58867s) * org.telegram.messenger.g0.L(12.0f));
+        w01 w01Var = this.f58868w;
+        w01Var.setAlpha(1.0f - this.f58867s);
+        w01Var.setTranslationY((-org.telegram.messenger.g0.L(12.0f)) * this.f58867s);
         int i10 = 0;
-        if (this.f58866s == 1.0f) {
+        if (this.f58867s == 1.0f) {
             i7 = 4;
         } else {
             i7 = 0;
         }
         w01Var.setVisibility(i7);
-        if (this.f58866s == 0.0f) {
+        if (this.f58867s == 0.0f) {
             i10 = 4;
         }
         r0Var.setVisibility(i10);
@@ -234,12 +234,12 @@ public class s0 extends FrameLayout implements n80 {
     }
 
     public org.telegram.ui.Components.n6 getTextView() {
-        return this.f58863f;
+        return this.f58864f;
     }
 
     @Override
     public final boolean isEnabled() {
-        return this.f58867w.isEnabled();
+        return this.f58868w.isEnabled();
     }
 
     @Override
@@ -250,7 +250,7 @@ public class s0 extends FrameLayout implements n80 {
     @Override
     public void setEnabled(boolean z10) {
         super.setEnabled(z10);
-        this.f58867w.setEnabled(z10);
+        this.f58868w.setEnabled(z10);
     }
 
     public void setFlickerDisabled(boolean z10) {
@@ -297,13 +297,13 @@ public class s0 extends FrameLayout implements n80 {
     public s0(int i7, Context context, i6 i6Var, boolean z10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f58859a = paint;
-        this.f58869y = new Path();
+        this.f58860a = paint;
+        this.f58870y = new Path();
         this.K = true;
         this.M = new c6(this);
         this.N = new c6(this);
         this.P = 0.0f;
-        this.f58864n = i7;
+        this.f58865n = i7;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.E = nVar;
         nVar.f41057n = 1.2f;
@@ -311,7 +311,7 @@ public class s0 extends FrameLayout implements n80 {
         nVar.f41056m = 4.0f;
         LinearLayout g10 = f3.g(context, 0);
         r0 r0Var = new r0(this, context, 0);
-        this.f58863f = r0Var;
+        this.f58864f = r0Var;
         r0Var.b(0.35f, 350L, lr.h);
         r0Var.setGravity(17);
         r0Var.setTextColor(-1);
@@ -322,14 +322,14 @@ public class s0 extends FrameLayout implements n80 {
         imageView.setColorFilter(-1);
         imageView.setVisibility(8);
         w01 w01Var = new w01(10, context, this);
-        this.f58867w = w01Var;
+        this.f58868w = w01Var;
         w01Var.addView(g10, ma.e(-2, -2, 17));
         int o4 = i0.a.o(-1, 120);
         w01Var.setBackground(n6.k0(i7, i7, i7, i7, 0, o4, o4));
         g10.addView(r0Var, ma.r(-2, -2, 16));
         g10.addView((View) imageView, ma.q(24, 24, 0.0f, 16, 4, 0, 0, 0));
         addView(w01Var);
-        setOutlineProvider(bg.u0.f3343b);
+        setOutlineProvider(bg.u0.f3344b);
         setClipToOutline(true);
         ra.b(this, 0.02f, 1.2f);
         if (z10) {
@@ -346,8 +346,8 @@ public class s0 extends FrameLayout implements n80 {
             r0Var2.setBackground(n6.k0(L, L, L, L, 0, o10, o10));
             addView(r0Var2);
             paint.setColor(n6.w0(n6.Fi, i6Var));
-            this.f58860b = true;
-            this.f58861c = i6Var;
+            this.f58861b = true;
+            this.f58862c = i6Var;
             e();
         }
     }

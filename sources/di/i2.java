@@ -18,31 +18,31 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.f40;
-import org.telegram.ui.o80;
 import org.telegram.ui.p80;
-import org.telegram.ui.ve0;
+import org.telegram.ui.q80;
+import org.telegram.ui.we0;
 public final class i2 implements Runnable {
-    public final int f9002a;
-    public final Object f9003b;
-    public final long f9004c;
+    public final int f8999a;
+    public final Object f9000b;
+    public final long f9001c;
     public final Object d;
-    public final Object f9005e;
+    public final Object f9002e;
 
     public i2(x8 x8Var, Object obj, long j3, Object obj2, int i7) {
-        this.f9002a = i7;
+        this.f8999a = i7;
         this.d = x8Var;
-        this.f9003b = obj;
-        this.f9004c = j3;
-        this.f9005e = obj2;
+        this.f9000b = obj;
+        this.f9001c = j3;
+        this.f9002e = obj2;
     }
 
     private final void a() {
-        f40 f40Var = (f40) this.f9003b;
+        f40 f40Var = (f40) this.f9000b;
         org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) this.d;
-        TLRPC.User user = (TLRPC.User) this.f9005e;
+        TLRPC.User user = (TLRPC.User) this.f9002e;
         org.telegram.messenger.t3 t3Var = f40Var.V2;
-        if (t3Var != null && !f40Var.f47494n2) {
-            t3Var.a(this.f9004c);
+        if (t3Var != null && !f40Var.f47450n2) {
+            t3Var.a(this.f9001c);
             f40Var.R0(true);
             s20 s20Var = f40Var.D3;
             if (s20Var != null) {
@@ -58,21 +58,21 @@ public final class i2 implements Runnable {
     }
 
     private final void b() {
-        p80 p80Var = (p80) this.f9003b;
-        LaunchActivity launchActivity = p80Var.h;
+        q80 q80Var = (q80) this.f9000b;
+        LaunchActivity launchActivity = q80Var.h;
         String str = (String) this.d;
-        org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f9005e;
+        org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f9002e;
         if (str != null) {
             org.telegram.messenger.c a10 = org.telegram.messenger.c.a(launchActivity.P);
-            int i7 = a10.f23221a;
+            int i7 = a10.f23218a;
             mp u12 = mp.u1(i7);
-            long j3 = this.f9004c;
+            long j3 = this.f9001c;
             long j10 = -j3;
             org.telegram.messenger.t3 i12 = u12.i1(j10, false, null);
             if (i12 != null) {
                 TLRPC.Chat O0 = mp.u1(i7).O0(Long.valueOf(j10));
                 mp.u1(i7).l1(j3);
-                org.telegram.ui.Components.voip.b2.l(O0, null, false, Boolean.valueOf(!i12.f26937b.rtmp_stream), launchActivity, h2Var, a10);
+                org.telegram.ui.Components.voip.b2.l(O0, null, false, Boolean.valueOf(!i12.f26935b.rtmp_stream), launchActivity, h2Var, a10);
                 return;
             }
             TLRPC.ChatFull P0 = mp.u1(i7).P0(j10);
@@ -84,21 +84,21 @@ public final class i2 implements Runnable {
                     }
                     return;
                 }
-                mp.u1(i7).i1(j10, true, new o80(p80Var, a10, j3, h2Var, 0));
+                mp.u1(i7).i1(j10, true, new p80(q80Var, a10, j3, h2Var, 0));
             }
         }
     }
 
     private final void c() {
-        PhotoViewer photoViewer = (PhotoViewer) this.f9003b;
+        PhotoViewer photoViewer = (PhotoViewer) this.f9000b;
         String str = (String) this.d;
-        ef efVar = (ef) this.f9005e;
+        ef efVar = (ef) this.f9002e;
         Drawable[] drawableArr = PhotoViewer.Z8;
-        long j3 = this.f9004c;
+        long j3 = this.f9001c;
         bi.e2 e2Var = new bi.e2(photoViewer, str, efVar, j3, 7);
         if (photoViewer.E2) {
             Bitmap createBitmap = Bitmap.createBitmap(photoViewer.D2.getWidth(), photoViewer.D2.getHeight(), Bitmap.Config.ARGB_8888);
-            org.telegram.messenger.g0.A0(photoViewer.D2, createBitmap, new ve0(20, e2Var, createBitmap));
+            org.telegram.messenger.g0.A0(photoViewer.D2, createBitmap, new we0(20, e2Var, createBitmap));
             return;
         }
         TextureView textureView = photoViewer.C2;
@@ -117,10 +117,10 @@ public final class i2 implements Runnable {
         TL_wallet.mnemonic_decryptedKeyPart mnemonic_decryptedkeypart;
         byte[] bArr2;
         byte[] bArr3;
-        org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.f9003b;
+        org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.f9000b;
         TL_wallet.encryptedSecretPhrasePart[] encryptedsecretphrasepartArr = (TL_wallet.encryptedSecretPhrasePart[]) this.d;
-        long j3 = this.f9004c;
-        org.telegram.ui.Wallet.j jVar = (org.telegram.ui.Wallet.j) this.f9005e;
+        long j3 = this.f9001c;
+        org.telegram.ui.Wallet.j jVar = (org.telegram.ui.Wallet.j) this.f9002e;
         byte[] bArr4 = null;
         for (int i7 = 0; i7 < encryptedsecretphrasepartArr.length; i7++) {
             try {
@@ -248,11 +248,11 @@ public final class i2 implements Runnable {
     }
 
     private final void f() {
-        org.telegram.ui.Wallet.z0 z0Var = (org.telegram.ui.Wallet.z0) this.f9003b;
-        x10 x10Var = (x10) this.f9005e;
+        org.telegram.ui.Wallet.z0 z0Var = (org.telegram.ui.Wallet.z0) this.f9000b;
+        x10 x10Var = (x10) this.f9002e;
         String str = (String) this.d;
         if (x10Var != null) {
-            if (this.f9004c != z0Var.l()) {
+            if (this.f9001c != z0Var.l()) {
                 str = "STORAGE_CANCELED";
             }
             x10Var.a(str);
@@ -263,11 +263,11 @@ public final class i2 implements Runnable {
 
     private final void g() {
         org.telegram.ui.Wallet.r0 r0Var;
-        org.telegram.ui.Wallet.z0 z0Var = (org.telegram.ui.Wallet.z0) this.f9003b;
+        org.telegram.ui.Wallet.z0 z0Var = (org.telegram.ui.Wallet.z0) this.f9000b;
         org.telegram.ui.Wallet.r0 r0Var2 = (org.telegram.ui.Wallet.r0) this.d;
-        x10 x10Var = (x10) this.f9005e;
+        x10 x10Var = (x10) this.f9002e;
         try {
-            if (this.f9004c == z0Var.l()) {
+            if (this.f9001c == z0Var.l()) {
                 r0Var = r0Var2;
             } else {
                 r0Var = null;
@@ -286,34 +286,34 @@ public final class i2 implements Runnable {
     }
 
     public i2(Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f9002a = i7;
-        this.f9003b = obj;
-        this.f9004c = j3;
+        this.f8999a = i7;
+        this.f9000b = obj;
+        this.f9001c = j3;
         this.d = obj2;
-        this.f9005e = obj3;
+        this.f9002e = obj3;
     }
 
     public i2(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f9002a = i7;
-        this.f9003b = obj;
+        this.f8999a = i7;
+        this.f9000b = obj;
         this.d = obj2;
-        this.f9004c = j3;
-        this.f9005e = obj3;
+        this.f9001c = j3;
+        this.f9002e = obj3;
     }
 
     public i2(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f9002a = i7;
-        this.f9003b = obj;
+        this.f8999a = i7;
+        this.f9000b = obj;
         this.d = obj2;
-        this.f9005e = obj3;
-        this.f9004c = j3;
+        this.f9002e = obj3;
+        this.f9001c = j3;
     }
 
     public i2(org.telegram.ui.Wallet.z0 z0Var, x10 x10Var, long j3, String str) {
-        this.f9002a = 24;
-        this.f9003b = z0Var;
-        this.f9005e = x10Var;
-        this.f9004c = j3;
+        this.f8999a = 24;
+        this.f9000b = z0Var;
+        this.f9002e = x10Var;
+        this.f9001c = j3;
         this.d = str;
     }
 }

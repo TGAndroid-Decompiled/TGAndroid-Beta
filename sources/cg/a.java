@@ -9,12 +9,12 @@ import org.telegram.messenger.j10;
 import org.telegram.messenger.mp;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a {
-    public final b f5274a;
-    public final long f5275b;
+    public final b f5271a;
+    public final long f5272b;
 
     public a(long j3, b bVar) {
-        this.f5274a = bVar;
-        this.f5275b = j3;
+        this.f5271a = bVar;
+        this.f5272b = j3;
     }
 
     public static a h(long j3, b bVar) {
@@ -44,23 +44,23 @@ public final class a {
     }
 
     public static a k(double d, b bVar) {
-        b bVar2 = b.f5277b;
+        b bVar2 = b.f5274b;
         if (bVar == bVar2) {
-            return new a((long) ((d / ((i0) mp.u1(j10.f24773t0).A7.f26153l.f15645b).f24535a) * 1000000000), bVar2).o(2);
+            return new a((long) ((d / ((i0) mp.u1(j10.f24770t0).A7.f26151l.f15642b).f24532a) * 1000000000), bVar2).o(2);
         }
-        b bVar3 = b.f5276a;
+        b bVar3 = b.f5273a;
         if (bVar == bVar3) {
-            return new a((long) (((d * 100000.0d) / mp.u1(j10.f24773t0).f25640e6) * 1000000000), bVar3).o(0);
+            return new a((long) (((d * 100000.0d) / mp.u1(j10.f24770t0).f25638e6) * 1000000000), bVar3).o(0);
         }
         return h(0L, bVar);
     }
 
     public static a m(TL_stars.StarsAmount starsAmount) {
         if (starsAmount instanceof TL_stars.TL_starsAmount) {
-            return j((starsAmount.amount * 1000000000) + starsAmount.nanos, b.f5276a);
+            return j((starsAmount.amount * 1000000000) + starsAmount.nanos, b.f5273a);
         }
         if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
-            return j(starsAmount.amount, b.f5277b);
+            return j(starsAmount.amount, b.f5274b);
         }
         return null;
     }
@@ -70,16 +70,16 @@ public final class a {
         if (m10 != null) {
             return m10;
         }
-        return j(0L, b.f5276a);
+        return j(0L, b.f5273a);
     }
 
     public final long a() {
-        return this.f5275b / 1000000000;
+        return this.f5272b / 1000000000;
     }
 
     public final String b() {
         BigDecimal stripTrailingZeros;
-        BigDecimal divide = new BigDecimal(this.f5275b).divide(BigDecimal.valueOf(1000000000L), MathContext.UNLIMITED);
+        BigDecimal divide = new BigDecimal(this.f5272b).divide(BigDecimal.valueOf(1000000000L), MathContext.UNLIMITED);
         if (divide.signum() == 0) {
             stripTrailingZeros = new BigDecimal(BigInteger.ZERO, 0);
         } else {
@@ -89,12 +89,12 @@ public final class a {
     }
 
     public final double c() {
-        return this.f5275b / 1000000000;
+        return this.f5272b / 1000000000;
     }
 
     public final String d() {
         StringBuilder sb2 = new StringBuilder(gd.E(a(), ','));
-        long j3 = this.f5275b % 1000000000;
+        long j3 = this.f5272b % 1000000000;
         if (j3 == 0) {
             return sb2.toString();
         }
@@ -113,7 +113,7 @@ public final class a {
     }
 
     public final a e(b bVar) {
-        if (this.f5274a == bVar) {
+        if (this.f5271a == bVar) {
             return this;
         }
         return k(f(), bVar);
@@ -124,27 +124,27 @@ public final class a {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof a) && (this == (aVar = (a) obj) || (this.f5274a == aVar.f5274a && this.f5275b == aVar.f5275b))) {
+        if ((obj instanceof a) && (this == (aVar = (a) obj) || (this.f5271a == aVar.f5271a && this.f5272b == aVar.f5272b))) {
             return true;
         }
         return false;
     }
 
     public final double f() {
-        b bVar = b.f5276a;
-        b bVar2 = this.f5274a;
+        b bVar = b.f5273a;
+        b bVar2 = this.f5271a;
         if (bVar2 == bVar) {
-            return ((c() / 1000.0d) * mp.u1(j10.f24773t0).f25640e6) / 100.0d;
+            return ((c() / 1000.0d) * mp.u1(j10.f24770t0).f25638e6) / 100.0d;
         }
-        if (bVar2 == b.f5277b) {
-            return c() * ((i0) mp.u1(j10.f24773t0).A7.f26153l.f15645b).f24535a;
+        if (bVar2 == b.f5274b) {
+            return c() * ((i0) mp.u1(j10.f24770t0).A7.f26151l.f15642b).f24532a;
         }
         return 0.0d;
     }
 
     public final String g() {
-        int i7 = ((this.f5275b % 1000000000) > 0L ? 1 : ((this.f5275b % 1000000000) == 0L ? 0 : -1));
-        b bVar = this.f5274a;
+        int i7 = ((this.f5272b % 1000000000) > 0L ? 1 : ((this.f5272b % 1000000000) == 0L ? 0 : -1));
+        b bVar = this.f5271a;
         if (i7 == 0) {
             int ordinal = bVar.ordinal();
             if (ordinal != 0) {
@@ -166,7 +166,7 @@ public final class a {
     }
 
     public final boolean l() {
-        if (this.f5275b == 0) {
+        if (this.f5272b == 0) {
             return true;
         }
         return false;
@@ -181,31 +181,31 @@ public final class a {
         for (int i10 = 0; i10 < j3; i10++) {
             j10 *= 10;
         }
-        return j((this.f5275b / j10) * j10, this.f5274a);
+        return j((this.f5272b / j10) * j10, this.f5271a);
     }
 
     public final a p() {
         a o4 = o(2);
-        if (o4.f5275b == this.f5275b) {
+        if (o4.f5272b == this.f5272b) {
             return this;
         }
         long j3 = 1;
         for (int i7 = 0; i7 < 7; i7++) {
             j3 *= 10;
         }
-        return j(o4.f5275b + j3, this.f5274a);
+        return j(o4.f5272b + j3, this.f5271a);
     }
 
     public final TL_stars.StarsAmount q() {
-        b bVar = b.f5276a;
-        long j3 = this.f5275b;
-        b bVar2 = this.f5274a;
+        b bVar = b.f5273a;
+        long j3 = this.f5272b;
+        b bVar2 = this.f5271a;
         if (bVar2 == bVar) {
             TL_stars.TL_starsAmount tL_starsAmount = new TL_stars.TL_starsAmount();
             tL_starsAmount.amount = j3 / 1000000000;
             tL_starsAmount.nanos = (int) (j3 % 1000000000);
             return tL_starsAmount;
-        } else if (bVar2 == b.f5277b) {
+        } else if (bVar2 == b.f5274b) {
             TL_stars.TL_starsTonAmount tL_starsTonAmount = new TL_stars.TL_starsTonAmount();
             tL_starsTonAmount.amount = j3;
             return tL_starsTonAmount;

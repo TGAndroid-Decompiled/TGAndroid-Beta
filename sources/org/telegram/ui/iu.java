@@ -32,14 +32,14 @@ public final class iu implements View.OnClickListener {
                     if (nvVar != null) {
                         charSequence = nvVar.getFieldText();
                     } else {
-                        charSequence = efVar.f27848a;
+                        charSequence = efVar.f27846a;
                     }
                     ArrayList arrayList2 = cxVar.F2;
                     int size = arrayList2.size();
                     while (i10 < size) {
                         Object obj = arrayList2.get(i10);
                         i10++;
-                        ((org.telegram.messenger.ef) obj).f27848a = charSequence;
+                        ((org.telegram.messenger.ef) obj).f27846a = charSequence;
                     }
                     PhotoViewer.p1().I2(null, cxVar, cxVar.getResourceProvider());
                     PhotoViewer.p1().f43299p7 = true;
@@ -86,7 +86,7 @@ public final class iu implements View.OnClickListener {
             case 4:
                 cxVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("community_id", cxVar.f46658a3);
+                bundle.putLong("community_id", cxVar.f46638a3);
                 cxVar.presentFragment(new li.s(bundle));
                 return;
             case 5:
@@ -134,7 +134,7 @@ public final class iu implements View.OnClickListener {
                 cx.u0(cxVar);
                 return;
             case 15:
-                cxVar.showDialog((org.telegram.ui.ActionBar.x2) org.telegram.ui.Components.b5.l(cxVar.getParentActivity(), org.telegram.messenger.gd.M0(2131751227, null), org.telegram.messenger.gd.M0(2131751232, null), null, new hu(cxVar, 1), new zu(cxVar, 12), false, false, cxVar.getResourceProvider()).f15645b);
+                cxVar.showDialog((org.telegram.ui.ActionBar.x2) org.telegram.ui.Components.b5.l(cxVar.getParentActivity(), org.telegram.messenger.gd.M0(2131751227, null), org.telegram.messenger.gd.M0(2131751232, null), null, new hu(cxVar, 1), new zu(cxVar, 12), false, false, cxVar.getResourceProvider()).f15642b);
                 return;
             case 16:
                 cx.B0(cxVar);

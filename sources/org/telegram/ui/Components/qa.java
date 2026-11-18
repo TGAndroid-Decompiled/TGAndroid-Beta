@@ -35,7 +35,7 @@ public final class qa extends bk0 {
             case 0:
                 return ((bk0) this.f38754e).D(f1Var);
             default:
-                if (f1Var.f59126f == 0) {
+                if (f1Var.f59127f == 0) {
                     return true;
                 }
                 return false;
@@ -89,10 +89,10 @@ public final class qa extends bk0 {
                 }
                 return;
             default:
-                org.telegram.ui.Cells.ua uaVar = (org.telegram.ui.Cells.ua) f1Var.f59122a;
-                uaVar.d(1, false, false);
-                uaVar.setSize(((fj) this.f38755f).f35115r);
-                uaVar.e(1, ((ArrayList) this.f38754e).get(i7), null, 0);
+                org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) f1Var.f59123a;
+                vaVar.d(1, false, false);
+                vaVar.setSize(((fj) this.f38755f).f35115r);
+                vaVar.e(1, ((ArrayList) this.f38754e).get(i7), null, 0);
                 return;
         }
     }
@@ -107,7 +107,7 @@ public final class qa extends bk0 {
                 return ((bk0) this.f38754e).x(viewGroup, i7);
             default:
                 ej ejVar = new ej(this, this.d);
-                ejVar.f32132b = false;
+                ejVar.f32189b = false;
                 return new v4.f1(ejVar);
         }
     }

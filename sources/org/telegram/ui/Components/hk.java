@@ -19,7 +19,7 @@ public final class hk extends AnimatorListenerAdapter {
                 return;
             default:
                 org.telegram.ui.yp ypVar = this.f35920b;
-                View view = ypVar.f54264b;
+                View view = ypVar.f54223b;
                 view.setAlpha(1.0f);
                 v4.p0.x0(view);
                 ((jk) ypVar.d).Y.f36781r.removeView(view);

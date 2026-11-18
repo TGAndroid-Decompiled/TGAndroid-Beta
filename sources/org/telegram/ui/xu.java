@@ -1,20 +1,20 @@
 package org.telegram.ui;
 public final class xu implements org.telegram.messenger.nr {
-    public final int f53945a;
-    public final cx f53946b;
+    public final int f53913a;
+    public final cx f53914b;
 
     public xu(cx cxVar, int i7) {
-        this.f53945a = i7;
-        this.f53946b = cxVar;
+        this.f53913a = i7;
+        this.f53914b = cxVar;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
         boolean z11;
-        switch (this.f53945a) {
+        switch (this.f53913a) {
             case 0:
-                cx cxVar = this.f53946b;
+                cx cxVar = this.f53914b;
                 cxVar.getClass();
                 if (i7 != 0) {
                     z10 = true;
@@ -26,7 +26,7 @@ public final class xu implements org.telegram.messenger.nr {
                 cxVar.u3(false);
                 return;
             default:
-                cx cxVar2 = this.f53946b;
+                cx cxVar2 = this.f53914b;
                 cxVar2.getClass();
                 if (i7 != 0) {
                     z11 = true;

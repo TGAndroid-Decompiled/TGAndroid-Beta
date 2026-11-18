@@ -53,13 +53,13 @@ public final class h70 implements View.OnClickListener {
             case 5:
                 org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) obj;
                 l4Var.getClass();
-                org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-                int intValue = ((Integer) s5Var.getTag()).intValue();
-                de0 de0Var = (de0) l4Var.f49426e;
+                org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+                int intValue = ((Integer) t5Var.getTag()).intValue();
+                de0 de0Var = (de0) l4Var.f49432e;
                 if (intValue == de0Var.E) {
-                    de0Var.O = s5Var.getCurrentColor();
+                    de0Var.O = t5Var.getCurrentColor();
                 } else {
-                    de0Var.P = s5Var.getCurrentColor();
+                    de0Var.P = t5Var.getCurrentColor();
                 }
                 cz czVar = de0Var.m0;
                 if (czVar != null) {
@@ -97,16 +97,16 @@ public final class h70 implements View.OnClickListener {
                 int i11 = org.telegram.ui.o6.n1;
                 if (h2Var != null && activity != null) {
                     final org.telegram.ui.o6 o6Var = new org.telegram.ui.o6(1, activity, false);
-                    o6Var.f30230w0 = false;
-                    o6Var.f30228v0 = false;
-                    int i12 = org.telegram.ui.ActionBar.n6.f29396d6;
+                    o6Var.f30228w0 = false;
+                    o6Var.f30226v0 = false;
+                    int i12 = org.telegram.ui.ActionBar.n6.f29394d6;
                     o6Var.Q(i12);
                     LinearLayout linearLayout = new LinearLayout(activity);
                     linearLayout.setOrientation(1);
                     FrameLayout frameLayout = new FrameLayout(activity);
                     frameLayout.addView(linearLayout);
                     ImageView imageView = new ImageView(activity);
-                    imageView.setBackground(org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29488i6, o6Var.J0), 1, -1));
+                    imageView.setBackground(org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29486i6, o6Var.J0), 1, -1));
                     org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.Aj, o6Var.J0, PorterDuff.Mode.SRC_ATOP);
                     imageView.setImageResource(2131231309);
                     imageView.setOnClickListener(new View.OnClickListener() {
@@ -119,10 +119,10 @@ public final class h70 implements View.OnClickListener {
                                 default:
                                     org.telegram.ui.o6 o6Var2 = o6Var;
                                     o6Var2.dismiss();
-                                    org.telegram.messenger.a6 q10 = org.telegram.messenger.a6.q(o6Var2.f30189a);
+                                    org.telegram.messenger.a6 q10 = org.telegram.messenger.a6.q(o6Var2.f30187a);
                                     q10.I.clear();
-                                    q10.getNotificationCenter().k(306, new Object[0]);
-                                    q10.getMessagesStorage().f27054a.c(new org.telegram.messenger.x5(q10, 2));
+                                    q10.getNotificationCenter().k(307, new Object[0]);
+                                    q10.getMessagesStorage().f27052a.c(new org.telegram.messenger.x5(q10, 2));
                                     return;
                             }
                         }
@@ -130,13 +130,13 @@ public final class h70 implements View.OnClickListener {
                     int L = org.telegram.messenger.g0.L(8.0f);
                     imageView.setPadding(L, L, L, L);
                     frameLayout.addView(imageView, c8.ma.d(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
-                    lv0 lv0Var = new lv0(activity, o6Var.f30189a);
+                    lv0 lv0Var = new lv0(activity, o6Var.f30187a);
                     lv0Var.setStickerNum(9);
                     lv0Var.getImageReceiver().W(1);
                     linearLayout.addView(lv0Var, c8.ma.t(110, 110, 1, 0, 26, 0, 0));
                     TextView textView = new TextView(activity);
                     textView.setGravity(1);
-                    int i13 = org.telegram.ui.ActionBar.n6.f29504j5;
+                    int i13 = org.telegram.ui.ActionBar.n6.f29502j5;
                     org.telegram.ui.ActionBar.u6.U(textView, i13, null);
                     i5.c.r(20.0f, 1, 2131751335, textView, null);
                     linearLayout.addView(textView, c8.ma.d(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
@@ -196,10 +196,10 @@ public final class h70 implements View.OnClickListener {
                                 default:
                                     org.telegram.ui.o6 o6Var2 = o6Var;
                                     o6Var2.dismiss();
-                                    org.telegram.messenger.a6 q10 = org.telegram.messenger.a6.q(o6Var2.f30189a);
+                                    org.telegram.messenger.a6 q10 = org.telegram.messenger.a6.q(o6Var2.f30187a);
                                     q10.I.clear();
-                                    q10.getNotificationCenter().k(306, new Object[0]);
-                                    q10.getMessagesStorage().f27054a.c(new org.telegram.messenger.x5(q10, 2));
+                                    q10.getNotificationCenter().k(307, new Object[0]);
+                                    q10.getMessagesStorage().f27052a.c(new org.telegram.messenger.x5(q10, 2));
                                     return;
                             }
                         }
@@ -222,7 +222,7 @@ public final class h70 implements View.OnClickListener {
                 ((rm0) obj).N(false);
                 return;
             case 13:
-                cp0 cp0Var = (cp0) ((hi.k1) obj).f14859w;
+                cp0 cp0Var = (cp0) ((hi.k1) obj).f14856w;
                 ArrayList arrayList = cp0Var.f34155s;
                 if (!arrayList.isEmpty()) {
                     cp0Var.f34154r = TextUtils.join(" ", arrayList).toString();
@@ -271,13 +271,13 @@ public final class h70 implements View.OnClickListener {
                 return;
             case 21:
                 org.telegram.ui.bn bnVar = ((org.telegram.ui.ck) obj).E;
-                if (!bnVar.getUserConfig().q() && ((chat = bnVar.f45987e) == null || !chat.autotranslation)) {
+                if (!bnVar.getUserConfig().q() && ((chat = bnVar.f45978e) == null || !chat.autotranslation)) {
                     i7 = ((org.telegram.ui.ActionBar.h2) bnVar).currentAccount;
-                    SharedPreferences.Editor edit = org.telegram.messenger.mp.u1(i7).f25660g7.edit();
+                    SharedPreferences.Editor edit = org.telegram.messenger.mp.u1(i7).f25658g7.edit();
                     edit.putInt("dialog_show_translate_count" + bnVar.a(), 14).commit();
                     bnVar.showDialog(new ug.z0((org.telegram.ui.ActionBar.h2) bnVar, 13, false));
                 } else {
-                    org.telegram.messenger.z00 z00Var = bnVar.getMessagesController().f25789v7;
+                    org.telegram.messenger.z00 z00Var = bnVar.getMessagesController().f25787v7;
                     long a10 = bnVar.a();
                     z00Var.K(a10, !z00Var.B(a10));
                 }

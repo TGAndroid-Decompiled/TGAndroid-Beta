@@ -60,7 +60,7 @@ public final class db extends FrameLayout {
         this.O = new TextView[3];
         this.f44087e = i6Var;
         int L = org.telegram.messenger.g0.L(16.0f);
-        int i10 = org.telegram.ui.ActionBar.n6.f29339a7;
+        int i10 = org.telegram.ui.ActionBar.n6.f29337a7;
         Drawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.r1(0.5f, org.telegram.ui.ActionBar.n6.w0(i10, i6Var)));
         org.telegram.ui.ActionBar.q6 K = org.telegram.ui.ActionBar.u6.K(0.5f, i10);
         setBackground(d02);
@@ -85,7 +85,7 @@ public final class db extends FrameLayout {
         editText.setSingleLine(true);
         editText.setImeOptions(5);
         editText.setTypeface(Typeface.DEFAULT);
-        org.telegram.ui.ActionBar.u6.D(editText, org.telegram.ui.ActionBar.n6.f29807z6, i6Var);
+        org.telegram.ui.ActionBar.u6.D(editText, org.telegram.ui.ActionBar.n6.f29805z6, i6Var);
         org.telegram.ui.ActionBar.u6.U(editText, org.telegram.ui.ActionBar.n6.G6, i6Var);
         editText.setHint("");
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -126,10 +126,10 @@ public final class db extends FrameLayout {
             textView2.setTextSize(14.0f);
             textView2.setTypeface(org.telegram.messenger.g0.o());
             textView2.setGravity(17);
-            n10.r(textView2, org.telegram.ui.ActionBar.n6.f29636q6, i6Var, null, 2131742797);
+            n10.r(textView2, org.telegram.ui.ActionBar.n6.f29634q6, i6Var, null, 2131742797);
             textView2.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
             int L2 = org.telegram.messenger.g0.L(28.0f);
-            int i11 = org.telegram.ui.ActionBar.n6.f29396d6;
+            int i11 = org.telegram.ui.ActionBar.n6.f29394d6;
             ShapeDrawable d03 = org.telegram.ui.ActionBar.n6.d0(L2, org.telegram.ui.ActionBar.n6.w0(i11, i6Var));
             org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i11);
             textView2.setBackground(d03);
@@ -179,9 +179,9 @@ public final class db extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29788y6, i6Var, PorterDuff.Mode.SRC_IN);
+        org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29786y6, i6Var, PorterDuff.Mode.SRC_IN);
         imageView.setImageResource(2131231241);
-        int i12 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i12 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i12, i6Var), 3, -1);
         org.telegram.ui.ActionBar.q6 M2 = org.telegram.ui.ActionBar.u6.M(i12);
         imageView.setBackground(h02);
@@ -334,7 +334,7 @@ public final class db extends FrameLayout {
             z10 = true;
         }
         if (this.f44092w) {
-            i7 = org.telegram.ui.ActionBar.n6.f29637q7;
+            i7 = org.telegram.ui.ActionBar.n6.f29635q7;
         } else if (z10) {
             i7 = org.telegram.ui.ActionBar.n6.G6;
         } else {
@@ -476,12 +476,12 @@ public final class db extends FrameLayout {
             org.telegram.ui.ActionBar.i6 i6Var = this.f44087e;
             if (z10) {
                 int L = org.telegram.messenger.g0.L(16.0f);
-                int i7 = org.telegram.ui.ActionBar.n6.f29656r7;
+                int i7 = org.telegram.ui.ActionBar.n6.f29654r7;
                 ShapeDrawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.r1(0.24f, org.telegram.ui.ActionBar.n6.w0(i7, i6Var)));
                 org.telegram.ui.ActionBar.q6 K = org.telegram.ui.ActionBar.u6.K(0.24f, i7);
                 setBackground(d02);
                 org.telegram.ui.ActionBar.u6.j(this, d02, K, null, i6Var);
-                int i10 = org.telegram.ui.ActionBar.n6.f29637q7;
+                int i10 = org.telegram.ui.ActionBar.n6.f29635q7;
                 org.telegram.ui.ActionBar.u6.U(this.f44085b, i10, i6Var);
                 org.telegram.ui.ActionBar.u6.U(editText, i10, i6Var);
                 if (imageView != null) {
@@ -490,14 +490,14 @@ public final class db extends FrameLayout {
                 org.telegram.messenger.g0.F3(this);
             } else {
                 int L2 = org.telegram.messenger.g0.L(16.0f);
-                int i11 = org.telegram.ui.ActionBar.n6.f29339a7;
+                int i11 = org.telegram.ui.ActionBar.n6.f29337a7;
                 ShapeDrawable d03 = org.telegram.ui.ActionBar.n6.d0(L2, org.telegram.ui.ActionBar.n6.r1(0.5f, org.telegram.ui.ActionBar.n6.w0(i11, i6Var)));
                 org.telegram.ui.ActionBar.q6 K2 = org.telegram.ui.ActionBar.u6.K(0.5f, i11);
                 setBackground(d03);
                 org.telegram.ui.ActionBar.u6.j(this, d03, K2, null, i6Var);
                 org.telegram.ui.ActionBar.u6.U(editText, org.telegram.ui.ActionBar.n6.G6, i6Var);
                 if (imageView != null) {
-                    org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29788y6, i6Var, PorterDuff.Mode.SRC_IN);
+                    org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29786y6, i6Var, PorterDuff.Mode.SRC_IN);
                 }
                 e();
                 d();

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import r0.f1;
 public final class d implements b3.k {
     public static final f1 K = new f1(16);
@@ -26,7 +26,7 @@ public final class d implements b3.k {
     public Uri G;
     public m H;
     public boolean I;
-    public final b5 f56757a;
+    public final c5 f56757a;
     public final t f56758b;
     public final qb.a f56759c;
     public xa f56761f;
@@ -41,8 +41,8 @@ public final class d implements b3.k {
     public final HashMap d = new HashMap();
     public long J = -9223372036854775807L;
 
-    public d(b5 b5Var, qb.a aVar, t tVar) {
-        this.f56757a = b5Var;
+    public d(c5 c5Var, qb.a aVar, t tVar) {
+        this.f56757a = c5Var;
         this.f56758b = tVar;
         this.f56759c = aVar;
     }
@@ -201,17 +201,17 @@ public final class d implements b3.k {
         boolean z10;
         long min;
         b3.s sVar = (b3.s) mVar;
-        long j11 = sVar.f2916a;
-        j2.m mVar2 = sVar.f2917b;
+        long j11 = sVar.f2917a;
+        j2.m mVar2 = sVar.f2918b;
         b0 b0Var = sVar.d;
-        x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
-        int i10 = sVar.f2918c;
+        x2.u uVar = new x2.u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
+        int i10 = sVar.f2919c;
         this.f56759c.getClass();
         Throwable th2 = iOException;
         while (true) {
             z10 = true;
             if (th2 != null) {
-                if ((th2 instanceof t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.u) || (th2 instanceof b3.o) || ((th2 instanceof j2.j) && ((j2.j) th2).f17176a == 2008)) {
+                if ((th2 instanceof t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.u) || (th2 instanceof b3.o) || ((th2 instanceof j2.j) && ((j2.j) th2).f17173a == 2008)) {
                     break;
                 }
                 th2 = th2.getCause();
@@ -226,7 +226,7 @@ public final class d implements b3.k {
         }
         this.f56761f.r(uVar, i10, iOException, z10);
         if (z10) {
-            return b3.p.f2912f;
+            return b3.p.f2913f;
         }
         return new b3.i(0, min, false);
     }
@@ -234,10 +234,10 @@ public final class d implements b3.k {
     @Override
     public final void p(b3.m mVar, long j3, long j10, boolean z10) {
         b3.s sVar = (b3.s) mVar;
-        long j11 = sVar.f2916a;
-        j2.m mVar2 = sVar.f2917b;
+        long j11 = sVar.f2917a;
+        j2.m mVar2 = sVar.f2918b;
         b0 b0Var = sVar.d;
-        x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+        x2.u uVar = new x2.u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
         this.f56759c.getClass();
         this.f56761f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
@@ -247,30 +247,30 @@ public final class d implements b3.k {
         x2.u uVar;
         b3.s sVar = (b3.s) mVar;
         if (i7 == 0) {
-            long j11 = sVar.f2916a;
-            uVar = new x2.u(sVar.f2917b, j3);
+            long j11 = sVar.f2917a;
+            uVar = new x2.u(sVar.f2918b, j3);
         } else {
-            long j12 = sVar.f2916a;
-            j2.m mVar2 = sVar.f2917b;
+            long j12 = sVar.f2917a;
+            j2.m mVar2 = sVar.f2918b;
             b0 b0Var = sVar.d;
-            uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+            uVar = new x2.u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
         }
-        this.f56761f.u(uVar, sVar.f2918c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+        this.f56761f.u(uVar, sVar.f2919c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
     }
 
     @Override
     public final void z(b3.m mVar, long j3, long j10) {
         p pVar;
         b3.s sVar = (b3.s) mVar;
-        q qVar = (q) sVar.f2920f;
+        q qVar = (q) sVar.f2921f;
         boolean z10 = qVar instanceof m;
         if (z10) {
             String str = qVar.f56863a;
             p pVar2 = p.f56854n;
             Uri parse = Uri.parse(str);
             e2.t tVar = new e2.t();
-            tVar.f10702a = "0";
-            tVar.f10716q = s0.n("application/x-mpegURL");
+            tVar.f10699a = "0";
+            tVar.f10713q = s0.n("application/x-mpegURL");
             List singletonList = Collections.singletonList(new o(parse, new e2.u(tVar), null, null, null, null, null, null));
             List list = Collections.EMPTY_LIST;
             pVar = new p("", list, singletonList, list, list, list, list, null, null, false, Collections.EMPTY_MAP, list);
@@ -289,13 +289,13 @@ public final class d implements b3.k {
             a(this.f56767y);
             a(this.E);
             a(this.F);
-            j2.m mVar2 = sVar.f2917b;
+            j2.m mVar2 = sVar.f2918b;
             b0 b0Var = sVar.d;
-            x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+            x2.u uVar = new x2.u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
             c cVar = (c) this.d.get(this.G);
             cVar.getClass();
             if (z10) {
-                Uri uri = sVar.d.f17156c;
+                Uri uri = sVar.d.f17153c;
                 b bVar = (b) p5.c.i(cVar.f56755b, uri, uri);
                 bVar.getClass();
                 bVar.d((m) qVar, uVar);

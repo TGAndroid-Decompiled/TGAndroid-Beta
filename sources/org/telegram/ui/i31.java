@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class i31 extends org.telegram.ui.Components.k41 {
-    public static final int f48570b = 0;
+    public static final int f48526b = 0;
 
     static {
         org.telegram.ui.Components.k41.h(new org.telegram.ui.Components.k41());

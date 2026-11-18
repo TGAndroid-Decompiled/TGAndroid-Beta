@@ -11,7 +11,7 @@ public final class w00 implements we.a {
         nh.c cVar = new nh.c(p2Var.getContext());
         this.f41514b = cVar;
         cVar.setBackgroundColor(i0.a.o(-16777216, 34));
-        xh.l lVar = cVar.f21536w;
+        xh.l lVar = cVar.f21533w;
         lVar.setMaxLines(1);
         lVar.setSingleLine(true);
         lVar.setEllipsize(TextUtils.TruncateAt.END);

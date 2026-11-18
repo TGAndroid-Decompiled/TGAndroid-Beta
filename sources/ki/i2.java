@@ -9,32 +9,32 @@ import org.telegram.ui.Components.bs0;
 import org.telegram.ui.Components.gt0;
 import org.telegram.ui.Components.r10;
 public final class i2 extends AnimatorListenerAdapter {
-    public final int f18721a;
-    public final int f18722b;
-    public final int f18723c;
+    public final int f18718a;
+    public final int f18719b;
+    public final int f18720c;
     public final KeyEvent.Callback d;
 
     public i2(KeyEvent.Callback callback, int i7, int i10, int i11) {
-        this.f18721a = i11;
+        this.f18718a = i11;
         this.d = callback;
-        this.f18722b = i7;
-        this.f18723c = i10;
+        this.f18719b = i7;
+        this.f18720c = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
         v4.i0 adapter;
-        switch (this.f18721a) {
+        switch (this.f18718a) {
             case 0:
                 t2 t2Var = (t2) this.d;
-                t2Var.T = i0.a.f(1.0f, this.f18722b, this.f18723c);
+                t2Var.T = i0.a.f(1.0f, this.f18719b, this.f18720c);
                 t2Var.l();
                 return;
             case 1:
                 r10 r10Var = (r10) this.d;
-                r10Var.M = this.f18722b;
-                r10Var.N = this.f18723c;
+                r10Var.M = this.f18719b;
+                r10Var.N = this.f18720c;
                 r10Var.G.setColorFilter(new PorterDuffColorFilter(r10Var.M, PorterDuff.Mode.MULTIPLY));
                 r10Var.F.setColor(r10Var.M);
                 r10Var.f38977r.setColor(r10Var.N);
@@ -46,8 +46,8 @@ public final class i2 extends AnimatorListenerAdapter {
                 gt0Var.M1.e();
                 gt0Var.f35622r1 = false;
                 int[] iArr = gt0Var.f35615p1;
-                int i10 = this.f18723c;
-                int i11 = this.f18722b;
+                int i10 = this.f18720c;
+                int i11 = this.f18719b;
                 iArr[i11] = i10;
                 for (int i12 = 0; i12 < bs0VarArr.length; i12++) {
                     bs0 bs0Var = bs0VarArr[i12];
@@ -70,10 +70,10 @@ public final class i2 extends AnimatorListenerAdapter {
                 return;
             default:
                 org.telegram.ui.Components.voip.y yVar = (org.telegram.ui.Components.voip.y) this.d;
-                int i13 = this.f18722b;
+                int i13 = this.f18719b;
                 yVar.E0 = i13;
                 yVar.F0 = i13;
-                int i14 = this.f18723c;
+                int i14 = this.f18720c;
                 yVar.G0 = i14;
                 yVar.U.setColor(i14);
                 if (yVar.T > 0.0f) {

@@ -5,16 +5,16 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.camera.Size;
 import org.telegram.ui.Components.AnimatedFileNative;
 public final class eq0 implements Runnable {
-    public final String f47338a;
-    public final long f47339b;
-    public final int f47340c;
+    public final String f47294a;
+    public final long f47295b;
+    public final int f47296c;
     public final PhotoViewer d;
 
     public eq0(PhotoViewer photoViewer, String str, long j3, int i7) {
         this.d = photoViewer;
-        this.f47338a = str;
-        this.f47339b = j3;
-        this.f47340c = i7;
+        this.f47294a = str;
+        this.f47295b = j3;
+        this.f47296c = i7;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class eq0 implements Runnable {
         boolean z10;
         boolean z11;
         if (this.d.f43374x8 == this) {
-            int E = MediaController.E(this.f47338a);
+            int E = MediaController.E(this.f47294a);
             int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f47338a, iArr, this.f47339b);
+            AnimatedFileNative.d(this.f47294a, iArr, this.f47295b);
             boolean z12 = false;
             if (iArr[10] != 0) {
                 z10 = true;
@@ -65,7 +65,7 @@ public final class eq0 implements Runnable {
                     photoViewer5.Z7 = 1;
                 }
                 PhotoViewer photoViewer6 = this.d;
-                int i11 = this.f47340c;
+                int i11 = this.f47296c;
                 if (i11 == -1) {
                     i11 = photoViewer6.t2();
                 }
@@ -80,7 +80,7 @@ public final class eq0 implements Runnable {
                     }
                 }
                 PhotoViewer photoViewer8 = this.d;
-                String str = this.f47338a;
+                String str = this.f47294a;
                 MediaExtractor mediaExtractor = new MediaExtractor();
                 try {
                     try {
@@ -102,7 +102,7 @@ public final class eq0 implements Runnable {
             if (this.d.f43374x8 != this) {
                 return;
             }
-            org.telegram.messenger.g0.g3(new lc0(this, this, iArr, 22));
+            org.telegram.messenger.g0.g3(new mc0(this, this, iArr, 22));
         }
     }
 }

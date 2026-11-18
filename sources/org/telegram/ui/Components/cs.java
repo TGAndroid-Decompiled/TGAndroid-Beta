@@ -72,11 +72,11 @@ public class cs extends e6 implements org.telegram.ui.ActionBar.c6 {
                 View view4 = ((d6) i13.f57666a).f34281a;
                 float min = Math.min(1.0f, i13.f57668c.f57683a) * i13.c();
                 if (min > 0.0f && view3 != view4) {
-                    int alpha = org.telegram.ui.ActionBar.n6.f29519k0.getAlpha();
-                    org.telegram.ui.ActionBar.n6.f29519k0.setAlpha((int) (alpha * min));
+                    int alpha = org.telegram.ui.ActionBar.n6.f29517k0.getAlpha();
+                    org.telegram.ui.ActionBar.n6.f29517k0.setAlpha((int) (alpha * min));
                     float f10 = 1.0f - min;
-                    canvas2.drawLine(getPaddingLeft() + (org.telegram.messenger.g0.L(16.0f) * f10), paddingTop2, getWidth() - ((org.telegram.messenger.g0.L(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.n6.f29519k0);
-                    org.telegram.ui.ActionBar.n6.f29519k0.setAlpha(alpha);
+                    canvas2.drawLine(getPaddingLeft() + (org.telegram.messenger.g0.L(16.0f) * f10), paddingTop2, getWidth() - ((org.telegram.messenger.g0.L(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.n6.f29517k0);
+                    org.telegram.ui.ActionBar.n6.f29517k0.setAlpha(alpha);
                 }
                 i12++;
                 canvas2 = canvas;

@@ -38,7 +38,7 @@ public final class y01 extends v4.u0 {
                 org.telegram.messenger.mp.u1(i11).I1().g(false);
                 return;
             }
-            org.telegram.messenger.e00 e00Var = org.telegram.messenger.mp.u1(i11).f25771t7;
+            org.telegram.messenger.e00 e00Var = org.telegram.messenger.mp.u1(i11).f25769t7;
             long j3 = -this.f42242b;
             if (!e00Var.e(j3)) {
                 e00Var.o(j3);

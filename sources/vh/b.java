@@ -8,17 +8,17 @@ import r0.l1;
 import r0.m;
 import v4.p;
 public final class b implements d10, m {
-    public final g f59553a;
+    public final g f59554a;
 
     public b(g gVar) {
-        this.f59553a = gVar;
+        this.f59554a = gVar;
     }
 
     @Override
     public l1 P0(View view, l1 l1Var) {
         boolean z10;
         WindowInsets g10 = l1Var.g();
-        g gVar = this.f59553a;
+        g gVar = this.f59554a;
         gVar.t0(g10);
         te.a aVar = gVar.U1;
         if (l1Var.f56258a.f(8).d > 0) {
@@ -36,9 +36,9 @@ public final class b implements d10, m {
         if (i7 > 0) {
             min -= g0.L(8.0f);
         }
-        g gVar = this.f59553a;
-        if (gVar.f59570h2 != min) {
-            gVar.f59570h2 = min;
+        g gVar = this.f59554a;
+        if (gVar.f59571h2 != min) {
+            gVar.f59571h2 = min;
             gVar.T1.a(min);
             gVar.d2.postOnAnimation(new p(gVar, 4));
         }

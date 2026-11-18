@@ -22,11 +22,11 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.o80;
 public final class j1 extends LinearLayout implements c6 {
-    public final i6 f18361a;
-    public final o80 f18362b;
-    public final ImageReceiver f18363c;
+    public final i6 f18358a;
+    public final o80 f18359b;
+    public final ImageReceiver f18360c;
     public final TextView d;
-    public boolean f18364e;
+    public boolean f18361e;
 
     public j1(Context context, i6 i6Var) {
         super(context);
@@ -36,11 +36,11 @@ public final class j1 extends LinearLayout implements c6 {
         int i12;
         int i13;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f18363c = imageReceiver;
-        this.f18361a = i6Var;
+        this.f18360c = imageReceiver;
+        this.f18358a = i6Var;
         setOrientation(1);
         o80 o80Var = new o80();
-        this.f18362b = o80Var;
+        this.f18359b = o80Var;
         int i14 = n6.G6;
         int w02 = n6.w0(i14, i6Var);
         o80Var.g(n6.r1(0.05f, w02), n6.r1(0.15f, w02), n6.r1(0.1f, w02), n6.r1(0.3f, w02));
@@ -49,7 +49,7 @@ public final class j1 extends LinearLayout implements c6 {
         imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -57,7 +57,7 @@ public final class j1 extends LinearLayout implements c6 {
         textView.setGravity(i7);
         u6.U(textView, i14, i6Var);
         textView.setTextSize(1, 16.0f);
-        boolean z10 = gd.f24216a0;
+        boolean z10 = gd.f24213a0;
         if (z10) {
             i10 = 70;
         } else {
@@ -70,10 +70,10 @@ public final class j1 extends LinearLayout implements c6 {
         }
         addView(textView, ma.t(-1, -2, 55, i10, 10, i11, 4));
         TextView textView2 = new TextView(context);
-        textView2.setGravity(gd.f24216a0 ? 5 : 3);
-        n10.r(textView2, n6.f29807z6, i6Var, null, 2131752678);
+        textView2.setGravity(gd.f24213a0 ? 5 : 3);
+        n10.r(textView2, n6.f29805z6, i6Var, null, 2131752678);
         textView2.setTextSize(1, 13.0f);
-        boolean z11 = gd.f24216a0;
+        boolean z11 = gd.f24213a0;
         if (z11) {
             i12 = 70;
         } else {
@@ -92,12 +92,12 @@ public final class j1 extends LinearLayout implements c6 {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f18363c.p0(fc.p(h20.b(tL_businessLocation.geo_point, org.telegram.messenger.g0.L(44.0f), org.telegram.messenger.g0.L(44.0f), 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f24120p)))), "44_44", this.f18362b, 0L, null, null, 0);
+                this.f18360c.p0(fc.p(h20.b(tL_businessLocation.geo_point, org.telegram.messenger.g0.L(44.0f), org.telegram.messenger.g0.L(44.0f), 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f24117p)))), "44_44", this.f18359b, 0L, null, null, 0);
             } else {
-                this.f18363c.w0(null);
+                this.f18360c.w0(null);
             }
         }
-        this.f18364e = z10;
+        this.f18361e = z10;
         setPadding(0, 0, 0, z10 ? 1 : 0);
         invalidate();
     }
@@ -106,24 +106,24 @@ public final class j1 extends LinearLayout implements c6 {
     public final void onDraw(Canvas canvas) {
         int width;
         float f10;
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             width = org.telegram.messenger.g0.L(16.0f);
         } else {
             width = getWidth() - org.telegram.messenger.g0.L(60.0f);
         }
         float f11 = width;
-        ImageReceiver imageReceiver = this.f18363c;
+        ImageReceiver imageReceiver = this.f18360c;
         imageReceiver.y0(f11, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(44.0f), org.telegram.messenger.g0.L(44.0f));
         imageReceiver.h(canvas, null);
         super.onDraw(canvas);
-        if (this.f18364e) {
-            Paint W0 = n6.W0("paintDivider", this.f18361a);
+        if (this.f18361e) {
+            Paint W0 = n6.W0("paintDivider", this.f18358a);
             if (W0 == null) {
-                W0 = n6.f29519k0;
+                W0 = n6.f29517k0;
             }
             Paint paint = W0;
             float f12 = 21.33f;
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 21.33f;
@@ -131,7 +131,7 @@ public final class j1 extends LinearLayout implements c6 {
             float L = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width2 = getWidth();
-            if (!gd.f24216a0) {
+            if (!gd.f24213a0) {
                 f12 = 0.0f;
             }
             canvas.drawRect(L, measuredHeight, width2 - org.telegram.messenger.g0.L(f12), getMeasuredHeight(), paint);
@@ -145,10 +145,10 @@ public final class j1 extends LinearLayout implements c6 {
 
     @Override
     public final void updateColors() {
-        o80 o80Var = this.f18362b;
+        o80 o80Var = this.f18359b;
         if (o80Var != null) {
             try {
-                int w02 = n6.w0(n6.G6, this.f18361a);
+                int w02 = n6.w0(n6.G6, this.f18358a);
                 o80Var.g(n6.r1(0.05f, w02), n6.r1(0.15f, w02), n6.r1(0.1f, w02), n6.r1(0.3f, w02));
                 invalidate();
             } catch (Exception e10) {
@@ -159,7 +159,7 @@ public final class j1 extends LinearLayout implements c6 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f18362b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f18359b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

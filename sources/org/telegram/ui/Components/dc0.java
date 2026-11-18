@@ -95,17 +95,17 @@ public final class dc0 extends FrameLayout {
                     int measuredHeight3 = childAt.getMeasuredHeight();
                     if (childAt instanceof tg.b) {
                         if (c20Var.A) {
-                            i13 = ((int) (((c20Var.f23236f / 2.0f) + c20Var.f23234c) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
-                            i15 = (int) (((c20Var.f23237g / 2.0f) + c20Var.d) * measuredHeight2);
+                            i13 = ((int) (((c20Var.f23233f / 2.0f) + c20Var.f23231c) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
+                            i15 = (int) (((c20Var.f23234g / 2.0f) + c20Var.d) * measuredHeight2);
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         } else {
-                            i13 = ((int) (measuredWidth * c20Var.f23253y)) - (childAt.getMeasuredWidth() / 2);
-                            i15 = (int) (measuredHeight2 * c20Var.f23254z);
+                            i13 = ((int) (measuredWidth * c20Var.f23250y)) - (childAt.getMeasuredWidth() / 2);
+                            i15 = (int) (measuredHeight2 * c20Var.f23251z);
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         }
                         i14 = i15 - measuredHeight;
                     } else {
-                        i13 = (int) (measuredWidth * c20Var.f23234c);
+                        i13 = (int) (measuredWidth * c20Var.f23231c);
                         i14 = (int) (measuredHeight2 * c20Var.d);
                     }
                     childAt.layout(i13, i14, measuredWidth2 + i13, measuredHeight3 + i14);
@@ -128,16 +128,16 @@ public final class dc0 extends FrameLayout {
                 org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34374b.get(childAt);
                 if (c20Var != null) {
                     if (childAt instanceof tg.b) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(c20Var.f23246q, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(c20Var.f23243q, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
                         if (c20Var.A) {
-                            f10 = (c20Var.f23236f * getMeasuredWidth()) / c20Var.f23246q;
+                            f10 = (c20Var.f23233f * getMeasuredWidth()) / c20Var.f23243q;
                         } else {
-                            f10 = c20Var.v * ((c20Var.f23251w * measuredWidth) / c20Var.f23246q);
+                            f10 = c20Var.v * ((c20Var.f23248w * measuredWidth) / c20Var.f23243q);
                         }
                         childAt.setScaleX(f10);
                         childAt.setScaleY(f10);
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * c20Var.f23236f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * c20Var.f23237g), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * c20Var.f23233f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * c20Var.f23234g), 1073741824));
                     }
                 }
             }

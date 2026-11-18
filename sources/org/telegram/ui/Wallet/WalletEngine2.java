@@ -272,7 +272,7 @@ public class WalletEngine2 implements AutoCloseable {
             TL_wallet.sendTransfer sendtransfer = new TL_wallet.sendTransfer();
             this.transfer = sendtransfer;
             sendtransfer.user_id = new TLRPC.TL_inputUserEmpty();
-            sendtransfer.random_id = Utilities.f22780b.nextLong();
+            sendtransfer.random_id = Utilities.f22777b.nextLong();
             sendtransfer.data_normal = decodeTransferBoc(str);
             sendtransfer.normalMessageBodyHash = WalletEngine2.nativeMessageBodyHash(str);
             if (str2 == null) {
@@ -471,7 +471,7 @@ public class WalletEngine2 implements AutoCloseable {
         this.publicKey = bArr2;
         HttpTransport httpTransport = new HttpTransport(i7);
         this.transport = httpTransport;
-        this.ptr = nativeCreate(i7, str, bArr2, httpTransport, org.telegram.messenger.t0.f26915b.getNoBackupFilesDir().getAbsolutePath() + "/wallet-engine");
+        this.ptr = nativeCreate(i7, str, bArr2, httpTransport, org.telegram.messenger.t0.f26913b.getNoBackupFilesDir().getAbsolutePath() + "/wallet-engine");
     }
 
     public static ImportedWalletProof createImportProof(r0 r0Var, String str, String str2, int i7) {
@@ -1575,7 +1575,7 @@ public class WalletEngine2 implements AutoCloseable {
             str = ":out:0";
         }
         sb2.append(str);
-        createTransaction.f28668id = sb2.toString();
+        createTransaction.f28666id = sb2.toString();
         long j3 = jSONObject2.getLong("now");
         int i7 = (int) j3;
         if (j3 == i7) {

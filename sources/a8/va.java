@@ -181,7 +181,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
 
     @Override
     public long a(long j3) {
-        return ((f3.j) this.f694c).f11170e[(int) j3] - this.f693b;
+        return ((f3.j) this.f694c).f11167e[(int) j3] - this.f693b;
     }
 
     @Override
@@ -253,7 +253,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
     public p2.j k(long j3) {
         f3.j jVar = (f3.j) this.f694c;
         int i7 = (int) j3;
-        return new p2.j(jVar.f11169c[i7], null, jVar.f11168b[i7]);
+        return new p2.j(jVar.f11166c[i7], null, jVar.f11165b[i7]);
     }
 
     @Override
@@ -273,7 +273,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
 
     @Override
     public long o(long j3, long j10) {
-        return h2.l0.f(((f3.j) this.f694c).f11170e, j3 + this.f693b, true);
+        return h2.l0.f(((f3.j) this.f694c).f11167e, j3 + this.f693b, true);
     }
 
     @Override
@@ -289,7 +289,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
             case 2:
             case 3:
             default:
-                ((AtomicLong) ((tg.x) this.f694c).f58165c).set(this.f693b);
+                ((AtomicLong) ((tg.x) this.f694c).f58166c).set(this.f693b);
                 return;
             case 4:
                 if (exc instanceof com.google.android.gms.common.api.f) {
@@ -298,7 +298,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
                     i7 = 13;
                 }
                 long j3 = this.f693b;
-                for (j6.p pVar : ((h6.h) ((h6.m) this.f694c).d).f13924c.d) {
+                for (j6.p pVar : ((h6.h) ((h6.m) this.f694c).d).f13921c.d) {
                     pVar.b(j3, i7, null);
                 }
                 return;
@@ -311,9 +311,9 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
         bundle.putLong("dialog_id", this.f693b);
         ?? h2Var = new org.telegram.ui.ActionBar.h2(bundle);
         h2Var.d = new ArrayList();
-        h2Var.f47192e = new HashSet();
+        h2Var.f47148e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f694c;
-        h2Var.f47192e = profileActivity.f43605n5;
+        h2Var.f47148e = profileActivity.f43605n5;
         profileActivity.presentFragment((org.telegram.ui.ActionBar.h2) h2Var);
     }
 
@@ -391,7 +391,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
     @Override
     public void w() {
         ProfileActivity profileActivity = (ProfileActivity) this.f694c;
-        SharedPreferences sharedPreferences = mp.u1(ProfileActivity.k1(profileActivity)).f25660g7;
+        SharedPreferences sharedPreferences = mp.u1(ProfileActivity.k1(profileActivity)).f25658g7;
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j3 = this.f693b;
         sb2.append(xs.v(j3, profileActivity.f43555g1, false));
@@ -411,12 +411,12 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, oo, zi.x0 
 
     @Override
     public long y(long j3) {
-        return ((f3.j) this.f694c).f11167a;
+        return ((f3.j) this.f694c).f11164a;
     }
 
     @Override
     public long z(long j3, long j10) {
-        return ((f3.j) this.f694c).f11167a;
+        return ((f3.j) this.f694c).f11164a;
     }
 
     public va(Object obj, long j3, int i7) {

@@ -5,17 +5,17 @@ import android.util.LongSparseArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class si extends c1 {
-    public static final si[] f26815b = new si[4];
-    public final LongSparseArray f26816a;
+    public static final si[] f26813b = new si[4];
+    public final LongSparseArray f26814a;
 
     public si(int i7) {
         super(i7);
-        this.f26816a = new LongSparseArray();
+        this.f26814a = new LongSparseArray();
     }
 
     public static si b(int i7) {
         si siVar;
-        si[] siVarArr = f26815b;
+        si[] siVarArr = f26813b;
         si siVar2 = siVarArr[i7];
         if (siVar2 == null) {
             synchronized (si.class) {
@@ -41,7 +41,7 @@ public final class si extends c1 {
         tL_messages_getChatInviteImporters.requested = true;
         tL_messages_getChatInviteImporters.limit = 30;
         if (!isEmpty) {
-            tL_messages_getChatInviteImporters.f28494q = str;
+            tL_messages_getChatInviteImporters.f28492q = str;
             tL_messages_getChatInviteImporters.flags |= 4;
         }
         if (tL_chatInviteImporter == null) {
@@ -55,7 +55,7 @@ public final class si extends c1 {
 
     public final void c(TL_update.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {
         long j3 = -fj.B1(tL_updatePendingJoinRequests.peer);
-        this.f26816a.put(j3, null);
+        this.f26814a.put(j3, null);
         TLRPC.ChatFull P0 = getMessagesController().P0(j3);
         if (P0 != null) {
             P0.requests_pending = tL_updatePendingJoinRequests.requests_pending;

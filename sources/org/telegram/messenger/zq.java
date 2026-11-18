@@ -4,32 +4,32 @@ import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 public final class zq implements Runnable {
-    public final int f28344a;
-    public final tr f28345b;
-    public final long f28346c;
+    public final int f28342a;
+    public final tr f28343b;
+    public final long f28344c;
     public final nr d;
 
     public zq(tr trVar, long j3, nr nrVar, int i7) {
-        this.f28344a = i7;
-        this.f28345b = trVar;
-        this.f28346c = j3;
+        this.f28342a = i7;
+        this.f28343b = trVar;
+        this.f28344c = j3;
         this.d = nrVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f28344a;
+        int i7 = this.f28342a;
         SQLiteCursor sQLiteCursor = null;
         final nr nrVar = this.d;
-        long j3 = this.f28346c;
-        tr trVar = this.f28345b;
+        long j3 = this.f28344c;
+        tr trVar = this.f28343b;
         final int i10 = 0;
         try {
             switch (i7) {
                 case 0:
                     try {
                         try {
-                            SQLiteDatabase sQLiteDatabase = trVar.f27056b;
+                            SQLiteDatabase sQLiteDatabase = trVar.f27054b;
                             Locale locale = Locale.US;
                             sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT COUNT(mid) FROM messages_v2 WHERE uid = " + j3, new Object[0]);
                             if (sQLiteCursor.next()) {
@@ -63,7 +63,7 @@ public final class zq implements Runnable {
                     try {
                         final int i11 = -1;
                         if (trVar.K.f(j3) == null) {
-                            sQLiteCursor = trVar.f27056b.queryFinalized("SELECT folder_id FROM dialogs WHERE did = ?", Long.valueOf(j3));
+                            sQLiteCursor = trVar.f27054b.queryFinalized("SELECT folder_id FROM dialogs WHERE did = ?", Long.valueOf(j3));
                             if (sQLiteCursor.next()) {
                                 i11 = sQLiteCursor.intValue(0);
                             }

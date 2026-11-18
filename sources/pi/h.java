@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import java.util.ArrayList;
-import org.telegram.ui.Cells.q1;
+import org.telegram.ui.Cells.r1;
 import v4.f1;
 public final class h extends AnimatorListenerAdapter {
     public final int f55669a;
@@ -31,8 +31,8 @@ public final class h extends AnimatorListenerAdapter {
                 view.setAlpha(1.0f);
                 view.setScaleX(1.0f);
                 view.setScaleX(1.0f);
-                if (view instanceof q1) {
-                    ((q1) view).setAnimationOffsetX(0.0f);
+                if (view instanceof r1) {
+                    ((r1) view).setAnimationOffsetX(0.0f);
                 } else {
                     view.setTranslationX(0.0f);
                 }
@@ -40,8 +40,8 @@ public final class h extends AnimatorListenerAdapter {
                 k kVar = this.f55672e;
                 ArrayList arrayList = kVar.B;
                 v4.i iVar = this.f55670b;
-                if (arrayList.remove(iVar.f59153a)) {
-                    kVar.d(iVar.f59153a);
+                if (arrayList.remove(iVar.f59154a)) {
+                    kVar.d(iVar.f59154a);
                     kVar.G();
                     return;
                 }
@@ -52,8 +52,8 @@ public final class h extends AnimatorListenerAdapter {
                 view2.setAlpha(1.0f);
                 view2.setScaleX(1.0f);
                 view2.setScaleX(1.0f);
-                if (view2 instanceof q1) {
-                    ((q1) view2).setAnimationOffsetX(0.0f);
+                if (view2 instanceof r1) {
+                    ((r1) view2).setAnimationOffsetX(0.0f);
                 } else {
                     view2.setTranslationX(0.0f);
                 }
@@ -61,8 +61,8 @@ public final class h extends AnimatorListenerAdapter {
                 k kVar2 = this.f55672e;
                 ArrayList arrayList2 = kVar2.B;
                 v4.i iVar2 = this.f55670b;
-                if (arrayList2.remove(iVar2.f59154b)) {
-                    kVar2.d(iVar2.f59154b);
+                if (arrayList2.remove(iVar2.f59155b)) {
+                    kVar2.d(iVar2.f59155b);
                     kVar2.G();
                     return;
                 }
@@ -74,11 +74,11 @@ public final class h extends AnimatorListenerAdapter {
     public final void onAnimationStart(Animator animator) {
         switch (this.f55669a) {
             case 0:
-                f1 f1Var = this.f55670b.f59153a;
+                f1 f1Var = this.f55670b.f59154a;
                 this.f55672e.getClass();
                 return;
             default:
-                f1 f1Var2 = this.f55670b.f59154b;
+                f1 f1Var2 = this.f55670b.f59155b;
                 this.f55672e.getClass();
                 return;
         }

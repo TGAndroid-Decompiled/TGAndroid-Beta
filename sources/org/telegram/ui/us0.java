@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ViewGroup;
 public final class us0 extends org.telegram.ui.Components.bk0 {
-    public final Context f52619c;
+    public final Context f52604c;
     public final vs0 d;
 
     public us0(vs0 vs0Var, Context context) {
         this.d = vs0Var;
-        this.f52619c = context;
+        this.f52604c = context;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        return !((xs0) this.d.f52855n.d.get(f1Var.b())).f53926a.current;
+        return !((xs0) this.d.f52845n.d.get(f1Var.b())).f53894a.current;
     }
 
     @Override
     public final int b() {
-        return this.d.f52855n.d.size();
+        return this.d.f52845n.d.size();
     }
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         boolean z10;
-        ug.o1 o1Var = (ug.o1) f1Var.f59122a;
-        PremiumPreviewFragment premiumPreviewFragment = this.d.f52855n;
+        ug.o1 o1Var = (ug.o1) f1Var.f59123a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f52845n;
         xs0 xs0Var = (xs0) premiumPreviewFragment.d.get(i7);
         boolean z11 = true;
         if (i7 != b() - 1) {
@@ -42,7 +42,7 @@ public final class us0 extends org.telegram.ui.Components.bk0 {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        ts0 ts0Var = new ts0(this, this.f52619c);
+        ts0 ts0Var = new ts0(this, this.f52604c);
         ts0Var.setCirclePaintProvider(new aj0(10, this, ts0Var));
         return new v4.f1(ts0Var);
     }

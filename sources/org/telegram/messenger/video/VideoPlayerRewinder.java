@@ -28,7 +28,7 @@ public class VideoPlayerRewinder {
     private boolean wasMuted;
     private boolean wasPaused;
     private ke0 webView;
-    private float f27377x;
+    private float f27375x;
     private long rewindBackSeekPlayerPosition = -1;
     private float playSpeed = 1.0f;
     private final Runnable backSeek = new Runnable() {
@@ -261,8 +261,8 @@ public class VideoPlayerRewinder {
     }
 
     public void setX(float f10) {
-        this.value -= (this.f27377x - f10) / g0.L(40.0f);
-        this.f27377x = f10;
+        this.value -= (this.f27375x - f10) / g0.L(40.0f);
+        this.f27375x = f10;
         cn0 cn0Var = this.seekSpeedDrawable;
         if (cn0Var != null) {
             cn0Var.c(true, getRewindSpeed());
@@ -288,7 +288,7 @@ public class VideoPlayerRewinder {
         this.wasPaused = (ke0Var == null || ke0Var.H) ? false : true;
         this.fastSeeking = false;
         this.rewindLastUpdatePlayerTime = 0L;
-        this.f27377x = f10;
+        this.f27375x = f10;
         this.value = getValueBySpeed(z10 ? 2.0f : -2.0f);
         this.rewindBackSeekLastPlayerPosition = -100L;
         if (cn0Var != null) {
@@ -387,7 +387,7 @@ public class VideoPlayerRewinder {
         this.wasPaused = (f61Var == null || f61Var.d0()) ? false : true;
         this.fastSeeking = false;
         this.rewindLastUpdatePlayerTime = 0L;
-        this.f27377x = f10;
+        this.f27375x = f10;
         this.value = getValueBySpeed(z10 ? 2.0f : -2.0f);
         this.rewindBackSeekLastPlayerPosition = -100L;
         if (cn0Var != null) {

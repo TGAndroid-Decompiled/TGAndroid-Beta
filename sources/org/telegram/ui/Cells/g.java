@@ -7,16 +7,16 @@ import org.telegram.ui.Components.o80;
 import org.telegram.ui.ProfileActivity;
 public final class g extends vf.b {
     public o80 d;
-    public final Layout f30628e;
-    public final ClickableSpan f30629f;
-    public final float f30630g;
+    public final Layout f30629e;
+    public final ClickableSpan f30630f;
+    public final float f30631g;
     public final j h;
 
     public g(j jVar, Layout layout, ClickableSpan clickableSpan, float f10) {
         this.h = jVar;
-        this.f30628e = layout;
-        this.f30629f = clickableSpan;
-        this.f30630g = f10;
+        this.f30629e = layout;
+        this.f30630f = clickableSpan;
+        this.f30631g = f10;
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class g extends vf.b {
         if (o80Var != null) {
             o0Var.n(o80Var, true);
         }
-        o80 k10 = n2.o0.k(this.f30628e, this.f30629f, this.f30630g);
+        o80 k10 = n2.o0.k(this.f30629e, this.f30630f, this.f30631g);
         this.d = k10;
         jVar.H = k10;
         int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Ce, jVar.J);

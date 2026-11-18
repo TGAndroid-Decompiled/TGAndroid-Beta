@@ -34,9 +34,9 @@ public class PipRoundVideoView implements org.telegram.messenger.fs {
         int i11;
         int round;
         if (z10) {
-            i11 = org.telegram.messenger.g0.f24121q.x;
+            i11 = org.telegram.messenger.g0.f24118q.x;
         } else {
-            i11 = org.telegram.messenger.g0.f24121q.y - i10;
+            i11 = org.telegram.messenger.g0.f24118q.y - i10;
             i10 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         }
         int i12 = i11 - i10;
@@ -91,7 +91,7 @@ public class PipRoundVideoView implements org.telegram.messenger.fs {
         if (G == this) {
             G = null;
         }
-        org.telegram.messenger.ks.f(this.f33002b).n(this, org.telegram.messenger.ks.f25108e2);
+        org.telegram.messenger.ks.f(this.f33002b).n(this, org.telegram.messenger.ks.f25106e2);
     }
 
     public final void c(boolean z10) {
@@ -165,7 +165,7 @@ public class PipRoundVideoView implements org.telegram.messenger.fs {
         this.f33004e.addView(imageView, c8.ma.c(-1.0f, -1));
         this.d.setVisibility(4);
         this.f33010x = (WindowManager) launchActivity.getSystemService("window");
-        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26915b.getSharedPreferences("pipconfig", 0);
+        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26913b.getSharedPreferences("pipconfig", 0);
         this.f33011y = sharedPreferences;
         int i7 = sharedPreferences.getInt("sidex", 1);
         int i10 = this.f33011y.getInt("sidey", 0);
@@ -186,9 +186,9 @@ public class PipRoundVideoView implements org.telegram.messenger.fs {
             layoutParams2.flags = 16777736;
             org.telegram.messenger.g0.w3(this.f33010x, this.f33001a, layoutParams2);
             this.f33010x.addView(this.f33001a, this.f33009w);
-            int i12 = org.telegram.messenger.j10.f24773t0;
+            int i12 = org.telegram.messenger.j10.f24770t0;
             this.f33002b = i12;
-            org.telegram.messenger.ks.f(i12).c(this, org.telegram.messenger.ks.f25108e2);
+            org.telegram.messenger.ks.f(i12).c(this, org.telegram.messenger.ks.f25106e2);
             c(true);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
@@ -198,7 +198,7 @@ public class PipRoundVideoView implements org.telegram.messenger.fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         se0 se0Var;
-        if (i7 == org.telegram.messenger.ks.f25108e2 && (se0Var = this.f33004e) != null) {
+        if (i7 == org.telegram.messenger.ks.f25106e2 && (se0Var = this.f33004e) != null) {
             se0Var.invalidate();
         }
     }

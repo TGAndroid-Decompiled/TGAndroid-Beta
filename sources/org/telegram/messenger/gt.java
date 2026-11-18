@@ -8,43 +8,43 @@ import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ud0;
+import org.telegram.ui.vd0;
 public final class gt implements v0.g {
-    public final ud0 f24303a;
-    public final Context f24304b;
-    public final int f24305c;
+    public final vd0 f24300a;
+    public final Context f24301b;
+    public final int f24302c;
 
-    public gt(ud0 ud0Var, Context context, int i7) {
-        this.f24303a = ud0Var;
-        this.f24304b = context;
-        this.f24305c = i7;
+    public gt(vd0 vd0Var, Context context, int i7) {
+        this.f24300a = vd0Var;
+        this.f24301b = context;
+        this.f24302c = i7;
     }
 
     @Override
     public final void a(Object obj) {
         w0.i iVar = (w0.i) obj;
         boolean z10 = iVar instanceof w0.k;
-        ud0 ud0Var = this.f24303a;
+        vd0 vd0Var = this.f24300a;
         if (z10) {
-            ud0Var.a(0L, null, "EMPTY");
+            vd0Var.a(0L, null, "EMPTY");
         } else if (iVar instanceof w0.g) {
-            ud0Var.a(0L, null, "CANCELLED");
+            vd0Var.a(0L, null, "CANCELLED");
         } else if (iVar instanceof w0.j) {
-            ud0Var.a(0L, null, "CANCELLED");
+            vd0Var.a(0L, null, "CANCELLED");
         } else if (iVar != null) {
-            ud0Var.a(0L, null, iVar.getMessage());
+            vd0Var.a(0L, null, iVar.getMessage());
         }
     }
 
     @Override
     public final void onResult(Object obj) {
-        final ud0 ud0Var = this.f24303a;
-        com.google.android.gms.common.api.q qVar = ((v0.n) obj).f59025a;
+        final vd0 vd0Var = this.f24300a;
+        com.google.android.gms.common.api.q qVar = ((v0.n) obj).f59026a;
         TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
         finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
         try {
-            JSONObject jSONObject = new JSONObject(((Bundle) qVar.f6398a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-            finishpasskeylogin.credential.f28616id = jSONObject.getString("id");
+            JSONObject jSONObject = new JSONObject(((Bundle) qVar.f6395a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
+            finishpasskeylogin.credential.f28614id = jSONObject.getString("id");
             finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
             JSONObject jSONObject2 = jSONObject.getJSONObject("response");
             TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
@@ -58,9 +58,9 @@ public final class gt implements v0.g {
             int parseInt = Integer.parseInt(str.split(":")[0]);
             final long parseLong = Long.parseLong(inputpasskeyresponselogin.user_handle.split(":")[1]);
             finishpasskeylogin.credential.response = inputpasskeyresponselogin;
-            org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, this.f24304b, null);
+            org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, this.f24301b, null);
             u1Var.r(500L);
-            int i7 = this.f24305c;
+            int i7 = this.f24302c;
             if (parseInt != ConnectionsManager.getInstance(i7).getCurrentDatacenterId()) {
                 int currentDatacenterId = ConnectionsManager.getInstance(i7).getCurrentDatacenterId();
                 long currentAuthKeyId = ConnectionsManager.getInstance(i7).getCurrentAuthKeyId();
@@ -69,18 +69,18 @@ public final class gt implements v0.g {
                 finishpasskeylogin.from_dc_id = currentDatacenterId;
                 finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
             }
-            final int sendRequestTyped = ConnectionsManager.getInstance(i7).sendRequestTyped(finishpasskeylogin, new d3.b(1), new o9(u1Var, ud0Var, parseLong, 3), parseInt, 72);
-            final int i10 = this.f24305c;
+            final int sendRequestTyped = ConnectionsManager.getInstance(i7).sendRequestTyped(finishpasskeylogin, new d3.b(1), new o9(u1Var, vd0Var, parseLong, 3), parseInt, 72);
+            final int i10 = this.f24302c;
             u1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
                     ConnectionsManager.getInstance(i10).cancelRequest(sendRequestTyped, true);
-                    ud0Var.a(Long.valueOf(parseLong), null, "CANCELLED");
+                    vd0Var.a(Long.valueOf(parseLong), null, "CANCELLED");
                 }
             });
         } catch (Exception e10) {
             a8.g(e10, true);
-            ud0Var.a(0L, null, e10.getMessage());
+            vd0Var.a(0L, null, e10.getMessage());
         }
     }
 }

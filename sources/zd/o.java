@@ -2,17 +2,17 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class o extends e1 {
-    public final int f61874e;
-    public final m f61875f;
+    public final int f61875e;
+    public final m f61876f;
 
     public o(m mVar, int i7) {
-        this.f61874e = i7;
-        this.f61875f = mVar;
+        this.f61875e = i7;
+        this.f61876f = mVar;
     }
 
     @Override
     public final boolean i() {
-        switch (this.f61874e) {
+        switch (this.f61875e) {
             case 0:
                 return true;
             default:
@@ -22,17 +22,17 @@ public final class o extends e1 {
 
     @Override
     public final void j(Throwable th2) {
-        switch (this.f61874e) {
+        switch (this.f61875e) {
             case 0:
                 n1 h = h();
-                m mVar = this.f61875f;
+                m mVar = this.f61876f;
                 Throwable q10 = mVar.q(h);
                 if (mVar.x()) {
                     ee.f fVar = (ee.f) mVar.d;
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.f.f10928n;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.f.f10925n;
                     while (true) {
                         Object obj = atomicReferenceFieldUpdater.get(fVar);
-                        ee.t tVar = ee.a.f10919c;
+                        ee.t tVar = ee.a.f10916c;
                         if (kotlin.jvm.internal.j.a(obj, tVar)) {
                             while (!atomicReferenceFieldUpdater.compareAndSet(fVar, tVar, q10)) {
                                 if (atomicReferenceFieldUpdater.get(fVar) != tVar) {
@@ -58,7 +58,7 @@ public final class o extends e1 {
                 }
                 return;
             default:
-                this.f61875f.resumeWith(gd.k.f13488a);
+                this.f61876f.resumeWith(gd.k.f13485a);
                 return;
         }
     }

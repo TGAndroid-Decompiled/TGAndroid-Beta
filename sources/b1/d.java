@@ -15,9 +15,9 @@ import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
 import rd.l;
 public abstract class d {
-    public static final a f2845a = new Object();
-    public static final Set f2846b;
-    public static final int f2847c;
+    public static final a f2846a = new Object();
+    public static final Set f2847b;
+    public static final int f2848c;
     public static final int d = 0;
 
     static {
@@ -35,16 +35,16 @@ public abstract class d {
                 j.d(set, "singleton(...)");
             }
         } else {
-            set = p.f14150a;
+            set = p.f14147a;
         }
-        f2846b = set;
-        f2847c = 1;
+        f2847b = set;
+        f2848c = 1;
     }
 
     public static void a(ResultReceiver resultReceiver, Intent intent, String str) {
         j.e(resultReceiver, "resultReceiver");
         intent.putExtra("TYPE", str);
-        intent.putExtra("ACTIVITY_REQUEST_CODE", f2847c);
+        intent.putExtra("ACTIVITY_REQUEST_CODE", f2848c);
         intent.putExtra("RESULT_RECEIVER", d(resultReceiver));
         intent.setFlags(65536);
     }
@@ -62,9 +62,9 @@ public abstract class d {
     public static final boolean c(int i7, rd.p pVar, l lVar, CancellationSignal cancellationSignal) {
         if (i7 != -1) {
             ?? obj = new Object();
-            obj.f19124a = new w0.c(2, i5.c.j(i7, "activity with result code: ", " indicating not RESULT_OK"));
+            obj.f19121a = new w0.c(2, i5.c.j(i7, "activity with result code: ", " indicating not RESULT_OK"));
             if (i7 == 0) {
-                obj.f19124a = new w0.b("activity is cancelled by the user.");
+                obj.f19121a = new w0.b("activity is cancelled by the user.");
             }
             pVar.invoke(cancellationSignal, new c(lVar, obj, 0));
             return true;

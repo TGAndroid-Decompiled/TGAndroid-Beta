@@ -2,14 +2,14 @@ package x2;
 
 import a8.la;
 public final class b0 extends t1 {
-    public final boolean f60032l;
-    public final e2.k1 f60033m;
-    public final e2.i1 f60034n;
-    public z f60035o;
-    public y f60036p;
-    public boolean f60037q;
-    public boolean f60038r;
-    public boolean f60039s;
+    public final boolean f60033l;
+    public final e2.k1 f60034m;
+    public final e2.i1 f60035n;
+    public z f60036o;
+    public y f60037p;
+    public boolean f60038q;
+    public boolean f60039r;
+    public boolean f60040s;
 
     public b0(a aVar, boolean z10) {
         super(aVar);
@@ -19,16 +19,16 @@ public final class b0 extends t1 {
         } else {
             z11 = false;
         }
-        this.f60032l = z11;
-        this.f60033m = new e2.k1();
-        this.f60034n = new e2.i1();
+        this.f60033l = z11;
+        this.f60034m = new e2.k1();
+        this.f60035n = new e2.i1();
         e2.l1 h = aVar.h();
         if (h != null) {
-            this.f60035o = new z(h, null, null);
-            this.f60039s = true;
+            this.f60036o = new z(h, null, null);
+            this.f60040s = true;
             return;
         }
-        this.f60035o = new z(new a0(aVar.i()), e2.k1.f10469q, z.h);
+        this.f60036o = new z(new a0(aVar.i()), e2.k1.f10466q, z.h);
     }
 
     @Override
@@ -38,8 +38,8 @@ public final class b0 extends t1 {
 
     @Override
     public final void C() {
-        if (!this.f60032l) {
-            this.f60037q = true;
+        if (!this.f60033l) {
+            this.f60038q = true;
             B();
         }
     }
@@ -54,31 +54,31 @@ public final class b0 extends t1 {
             z10 = false;
         }
         la.p(z10);
-        yVar.d = this.f60235k;
-        if (this.f60038r) {
-            Object obj = g0Var.f60087a;
-            if (this.f60035o.f60297g != null && obj.equals(z.h)) {
-                obj = this.f60035o.f60297g;
+        yVar.d = this.f60236k;
+        if (this.f60039r) {
+            Object obj = g0Var.f60088a;
+            if (this.f60036o.f60298g != null && obj.equals(z.h)) {
+                obj = this.f60036o.f60298g;
             }
             yVar.a(g0Var.a(obj));
             return yVar;
         }
-        this.f60036p = yVar;
-        if (!this.f60037q) {
-            this.f60037q = true;
+        this.f60037p = yVar;
+        if (!this.f60038q) {
+            this.f60038q = true;
             B();
         }
         return yVar;
     }
 
     public final boolean E(long j3) {
-        y yVar = this.f60036p;
-        int b10 = this.f60035o.b(yVar.f60279a.f60087a);
+        y yVar = this.f60037p;
+        int b10 = this.f60036o.b(yVar.f60280a.f60088a);
         if (b10 == -1) {
             return false;
         }
-        z zVar = this.f60035o;
-        e2.i1 i1Var = this.f60034n;
+        z zVar = this.f60036o;
+        e2.i1 i1Var = this.f60035n;
         zVar.f(b10, i1Var, false);
         long j10 = i1Var.d;
         if (j10 != -9223372036854775807L && j3 >= j10) {
@@ -90,51 +90,51 @@ public final class b0 extends t1 {
 
     @Override
     public final boolean a(e2.l0 l0Var) {
-        return this.f60235k.a(l0Var);
+        return this.f60236k.a(l0Var);
     }
 
     @Override
     public final void o(e0 e0Var) {
         y yVar = (y) e0Var;
-        if (yVar.f60282e != null) {
+        if (yVar.f60283e != null) {
             a aVar = yVar.d;
             aVar.getClass();
-            aVar.o(yVar.f60282e);
+            aVar.o(yVar.f60283e);
         }
-        if (e0Var == this.f60036p) {
-            this.f60036p = null;
+        if (e0Var == this.f60037p) {
+            this.f60037p = null;
         }
     }
 
     @Override
     public final void q() {
-        this.f60038r = false;
-        this.f60037q = false;
+        this.f60039r = false;
+        this.f60038q = false;
         super.q();
     }
 
     @Override
     public final void t(e2.l0 l0Var) {
         q1 q1Var;
-        if (this.f60039s) {
-            z zVar = this.f60035o;
-            e2.l1 l1Var = zVar.f60215e;
+        if (this.f60040s) {
+            z zVar = this.f60036o;
+            e2.l1 l1Var = zVar.f60216e;
             if (l1Var instanceof q1) {
-                q1Var = new q1(((q1) l1Var).f60215e, l0Var);
+                q1Var = new q1(((q1) l1Var).f60216e, l0Var);
             } else {
                 q1Var = new q1(l1Var, l0Var);
             }
-            this.f60035o = new z(q1Var, zVar.f60296f, zVar.f60297g);
+            this.f60036o = new z(q1Var, zVar.f60297f, zVar.f60298g);
         } else {
-            this.f60035o = new z(new a0(l0Var), e2.k1.f10469q, z.h);
+            this.f60036o = new z(new a0(l0Var), e2.k1.f10466q, z.h);
         }
-        this.f60235k.t(l0Var);
+        this.f60236k.t(l0Var);
     }
 
     @Override
     public final g0 z(g0 g0Var) {
-        Object obj = g0Var.f60087a;
-        Object obj2 = this.f60035o.f60297g;
+        Object obj = g0Var.f60088a;
+        Object obj2 = this.f60036o.f60298g;
         if (obj2 != null && obj2.equals(obj)) {
             obj = z.h;
         }

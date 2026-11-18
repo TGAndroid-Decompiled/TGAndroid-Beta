@@ -7,7 +7,7 @@ import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.hc1;
 import org.webrtc.OrientationHelper;
@@ -42,25 +42,25 @@ public abstract class r2 extends FrameLayout {
     public final void c(long j3) {
         if (!this.f41194f) {
             this.f41194f = true;
-            if (hc1.f48331m1 != null) {
+            if (hc1.f48251m1 != null) {
                 if (VoIPService.getSharedInstance() != null) {
-                    int measuredHeight = hc1.f48331m1.f48370u0.getMeasuredHeight();
-                    if (hc1.f48331m1.D0 && !VoIPService.getSharedInstance().isConverting()) {
-                        hc1 hc1Var = hc1.f48331m1;
-                        h2.f(hc1Var.f48335b, hc1Var.f48332a, hc1Var.f48370u0.getMeasuredWidth(), measuredHeight, 0);
-                        WindowInsets windowInsets = hc1.f48331m1.f48366r0;
+                    int measuredHeight = hc1.f48251m1.f48290u0.getMeasuredHeight();
+                    if (hc1.f48251m1.D0 && !VoIPService.getSharedInstance().isConverting()) {
+                        hc1 hc1Var = hc1.f48251m1;
+                        h2.f(hc1Var.f48255b, hc1Var.f48252a, hc1Var.f48290u0.getMeasuredWidth(), measuredHeight, 0);
+                        WindowInsets windowInsets = hc1.f48251m1.f48286r0;
                         if (windowInsets != null) {
                             h2.W = windowInsets.getSystemWindowInsetTop();
-                            hc1.f48331m1.f48366r0.getSystemWindowInsetBottom();
+                            hc1.f48251m1.f48286r0.getSystemWindowInsetBottom();
                         }
                     }
                 }
-                hc1.f48331m1.f48341d0.d.release();
-                hc1.f48331m1.f48344e0.d.release();
-                hc1.f48331m1.f48339c0.release();
-                hc1.f48331m1.c();
+                hc1.f48251m1.f48261d0.d.release();
+                hc1.f48251m1.f48264e0.d.release();
+                hc1.f48251m1.f48259c0.release();
+                hc1.f48251m1.c();
             }
-            hc1.f48331m1 = null;
+            hc1.f48251m1 = null;
             i2.g();
             if (this.f41191b) {
                 try {
@@ -71,7 +71,7 @@ public abstract class r2 extends FrameLayout {
                 }
             }
             this.f41192c.d();
-            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new x9(this, 19)).setDuration(j3).setInterpolator(lr.f37208f).start();
+            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new y9(this, 19)).setDuration(j3).setInterpolator(lr.f37208f).start();
         }
     }
 

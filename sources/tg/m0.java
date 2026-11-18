@@ -93,7 +93,7 @@ public class m0 extends View {
     public static l3 c(String str) {
         f6 f10 = j6.f(str);
         if (f10 instanceof i6) {
-            ((i6) f10).f23851a = false;
+            ((i6) f10).f23848a = false;
         }
         if (f10 == null) {
             return null;

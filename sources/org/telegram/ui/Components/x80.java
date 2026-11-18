@@ -36,10 +36,10 @@ public final class x80 extends c8.f1 {
     public static int B(kf.p pVar) {
         kf.s sVar;
         String str;
-        kf.p pVar2 = (kf.p) pVar.f18236c;
+        kf.p pVar2 = (kf.p) pVar.f18233c;
         if (pVar2 instanceof kf.r) {
-            kf.p pVar3 = (kf.p) pVar2.f18236c;
-            if ((pVar3 instanceof kf.s) && (str = (sVar = (kf.s) pVar3).f18240g) != null) {
+            kf.p pVar3 = (kf.p) pVar2.f18233c;
+            if ((pVar3 instanceof kf.s) && (str = (sVar = (kf.s) pVar3).f18237g) != null) {
                 int i7 = 3;
                 if (str.length() >= 3) {
                     int i10 = 0;
@@ -55,7 +55,7 @@ public final class x80 extends c8.f1 {
                         if (str.length() > 3 && str.charAt(3) == ' ') {
                             i7 = 4;
                         }
-                        sVar.f18240g = str.substring(i7);
+                        sVar.f18237g = str.substring(i7);
                         return i10;
                     }
                     return -1;
@@ -228,7 +228,7 @@ public final class x80 extends c8.f1 {
     @Override
     public final void b(kf.c cVar) {
         TL_iv.pageBlockList pageblocklist = new TL_iv.pageBlockList();
-        for (kf.p pVar = (kf.p) cVar.f18236c; pVar != null; pVar = (kf.p) pVar.f18238f) {
+        for (kf.p pVar = (kf.p) cVar.f18233c; pVar != null; pVar = (kf.p) pVar.f18235f) {
             if (pVar instanceof kf.o) {
                 int B = B(pVar);
                 TL_iv.TL_pageListItemText tL_pageListItemText = new TL_iv.TL_pageListItemText();
@@ -250,8 +250,8 @@ public final class x80 extends c8.f1 {
     @Override
     public final void f(kf.h hVar) {
         TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-        pageblockpreformatted.text = b90.e(b90.n(hVar.f18226k));
-        String str = hVar.f18225j;
+        pageblockpreformatted.text = b90.e(b90.n(hVar.f18223k));
+        String str = hVar.f18222j;
         if (str == null) {
             str = "";
         }
@@ -265,7 +265,7 @@ public final class x80 extends c8.f1 {
         if (this.f41950c.isEmpty()) {
             this.f41949b = e10;
         }
-        switch (iVar.f18227g) {
+        switch (iVar.f18224g) {
             case 1:
                 TL_iv.pageBlockHeading1 pageblockheading1 = new TL_iv.pageBlockHeading1();
                 pageblockheading1.text = e10;
@@ -307,7 +307,7 @@ public final class x80 extends c8.f1 {
     @Override
     public final void h(kf.j jVar) {
         StringBuilder sb2 = this.d;
-        String str = jVar.f18228g;
+        String str = jVar.f18225g;
         if (str == null) {
             return;
         }
@@ -322,7 +322,7 @@ public final class x80 extends c8.f1 {
     @Override
     public final void j(kf.l lVar) {
         TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-        pageblockpreformatted.text = b90.e(b90.n(lVar.f18231g));
+        pageblockpreformatted.text = b90.e(b90.n(lVar.f18228g));
         pageblockpreformatted.language = "";
         x(pageblockpreformatted);
     }
@@ -334,28 +334,28 @@ public final class x80 extends c8.f1 {
             TL_iv.pageBlockTable pageblocktable = new TL_iv.pageBlockTable();
             pageblocktable.bordered = true;
             pageblocktable.title = new TL_iv.textEmpty();
-            for (kf.p pVar = (kf.p) ((ef.a) nVar).f18236c; pVar != null; pVar = (kf.p) pVar.f18238f) {
+            for (kf.p pVar = (kf.p) ((ef.a) nVar).f18233c; pVar != null; pVar = (kf.p) pVar.f18235f) {
                 boolean z11 = pVar instanceof ef.e;
                 if (z11 || (pVar instanceof ef.b)) {
-                    for (kf.p pVar2 = (kf.p) pVar.f18236c; pVar2 != null; pVar2 = (kf.p) pVar2.f18238f) {
+                    for (kf.p pVar2 = (kf.p) pVar.f18233c; pVar2 != null; pVar2 = (kf.p) pVar2.f18235f) {
                         if (pVar2 instanceof ef.f) {
                             ArrayList<TL_iv.pageTableRow> arrayList = pageblocktable.rows;
                             TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
-                            for (kf.p pVar3 = (kf.p) ((ef.f) pVar2).f18236c; pVar3 != null; pVar3 = (kf.p) pVar3.f18238f) {
+                            for (kf.p pVar3 = (kf.p) ((ef.f) pVar2).f18233c; pVar3 != null; pVar3 = (kf.p) pVar3.f18235f) {
                                 if (pVar3 instanceof ef.d) {
                                     ArrayList<TL_iv.pageTableCell> arrayList2 = pagetablerow.cells;
                                     ef.d dVar = (ef.d) pVar3;
                                     TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
-                                    if (!z11 && !dVar.f10960g) {
+                                    if (!z11 && !dVar.f10957g) {
                                         z10 = false;
                                     } else {
                                         z10 = true;
                                     }
                                     pagetablecell.header = z10;
                                     ef.c cVar = dVar.h;
-                                    if (cVar == ef.c.f10958b) {
+                                    if (cVar == ef.c.f10955b) {
                                         pagetablecell.align_center = true;
-                                    } else if (cVar == ef.c.f10959c) {
+                                    } else if (cVar == ef.c.f10956c) {
                                         pagetablecell.align_right = true;
                                     }
                                     pagetablecell.text = b90.e(b90.a(dVar, null));
@@ -371,7 +371,7 @@ public final class x80 extends c8.f1 {
             x(pageblocktable);
         } else if (nVar instanceof zc.a) {
             TL_iv.PageBlock pageblockparagraph = new TL_iv.pageBlockParagraph();
-            pageblockparagraph.text = b90.c(((zc.a) nVar).f61804g);
+            pageblockparagraph.text = b90.c(((zc.a) nVar).f61805g);
             x(pageblockparagraph);
         } else {
             v(nVar);

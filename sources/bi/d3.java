@@ -9,42 +9,42 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 public final class d3 extends View {
-    public final f3 f3542a;
-    public CharSequence f3543b;
+    public final f3 f3515a;
+    public CharSequence f3516b;
 
     public d3(Context context) {
         super(context);
         f3 f3Var = new f3(this, 1.0f);
-        this.f3542a = f3Var;
+        this.f3515a = f3Var;
         f3Var.setCallback(this);
     }
 
     public final void a(int i7, int i10) {
-        ((Paint) this.f3542a.f220b).setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(48.0f), org.telegram.messenger.g0.L(48.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        ((Paint) this.f3515a.f220b).setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(48.0f), org.telegram.messenger.g0.L(48.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     public final void b(String str, boolean z10) {
         int i7;
-        this.f3543b = str;
+        this.f3516b = str;
         if (z10) {
             i7 = 10;
         } else {
             i7 = 11;
         }
-        this.f3542a.g(i7, str, z10);
+        this.f3515a.g(i7, str, z10);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int width = getWidth();
         int height = getHeight();
-        f3 f3Var = this.f3542a;
+        f3 f3Var = this.f3515a;
         f3Var.setBounds(0, 0, width, height);
         f3Var.draw(canvas);
     }
 
     public CharSequence getText() {
-        return this.f3543b;
+        return this.f3516b;
     }
 
     @Override
@@ -53,21 +53,21 @@ public final class d3 extends View {
     }
 
     public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f3542a.e(stargiftattributebackdrop, false, false);
+        this.f3515a.e(stargiftattributebackdrop, false, false);
         invalidate();
     }
 
     public void setColor(int i7) {
-        this.f3542a.f(i7);
+        this.f3515a.f(i7);
     }
 
     public void setStrokeColor(int i7) {
-        this.f3542a.f3602r.setColor(i7);
+        this.f3515a.f3569r.setColor(i7);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f3542a != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f3515a != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

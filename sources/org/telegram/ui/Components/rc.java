@@ -106,7 +106,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.c6 {
         this.f39103w = new pc[i7];
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29488i6, false));
+        paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29486i6, false));
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(200.0f), new int[]{7263574, -9513642, -12469647, 4307569}, new float[]{0.0f, 0.07f, 0.93f, 1.0f}, tileMode);
@@ -128,7 +128,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.c6 {
         m6Var.f37377b = 17;
         m6Var2.n(0.6f, 450L, lrVar);
         m6Var2.B = 0.6f;
-        m6Var2.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29788y6, false));
+        m6Var2.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29786y6, false));
         m6Var2.w(org.telegram.messenger.g0.L(12.0f));
         m6Var2.f37377b = 17;
         m6Var3.n(0.2f, 450L, lrVar);
@@ -275,9 +275,9 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.c6 {
         this.K.setLocalMatrix(matrix2);
         ug.t1 t1Var = this.R;
         if (t1Var != null) {
-            t1Var.f58892a.set(0.0f, 0.0f, org.telegram.messenger.g0.L(140.0f), org.telegram.messenger.g0.L(140.0f));
-            this.R.f58892a.offset((getMeasuredWidth() - this.R.f58892a.width()) / 2.0f, (getMeasuredHeight() - this.R.f58892a.height()) / 2.0f);
-            this.R.f58893b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            t1Var.f58893a.set(0.0f, 0.0f, org.telegram.messenger.g0.L(140.0f), org.telegram.messenger.g0.L(140.0f));
+            this.R.f58893a.offset((getMeasuredWidth() - this.R.f58893a.width()) / 2.0f, (getMeasuredHeight() - this.R.f58893a.height()) / 2.0f);
+            this.R.f58894b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.R.f();
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(L, 1073741824));
@@ -318,7 +318,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void updateColors() {
         try {
-            this.E.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29488i6, false));
+            this.E.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29486i6, false));
             try {
                 m6 m6Var = this.N;
                 if (m6Var != null) {
@@ -326,7 +326,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.c6 {
                 }
                 m6 m6Var2 = this.O;
                 if (m6Var2 != null) {
-                    m6Var2.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29788y6, false));
+                    m6Var2.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29786y6, false));
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);

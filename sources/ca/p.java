@@ -1,16 +1,16 @@
 package ca;
 
 import org.json.JSONObject;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 public abstract class p {
-    public static final b5 f5143a;
+    public static final c5 f5140a;
 
     static {
         pa.d dVar = new pa.d();
-        a aVar = a.f5104a;
+        a aVar = a.f5101a;
         dVar.b(p.class, aVar);
         dVar.b(b.class, aVar);
-        f5143a = new b5(dVar);
+        f5140a = new c5(dVar);
     }
 
     public static b a(String str) {

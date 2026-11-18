@@ -49,7 +49,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
     }
 
     public final float a(float f10) {
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             return getMeasuredWidth() - f10;
         }
         return f10;
@@ -62,7 +62,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
     }
 
     public final void b(RectF rectF) {
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             rectF.left = getMeasuredWidth() - rectF.left;
             rectF.right = getMeasuredWidth() - rectF.right;
         }
@@ -86,7 +86,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
             case 18:
                 return org.telegram.messenger.g0.L(64.0f);
             case 7:
-                if (org.telegram.messenger.bz.f23190p1) {
+                if (org.telegram.messenger.bz.f23187p1) {
                     i10 = 78;
                 } else {
                     i10 = 72;
@@ -121,7 +121,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
             case 22:
                 return org.telegram.messenger.g0.L(60.0f);
             case 24:
-                if (org.telegram.messenger.bz.f23190p1) {
+                if (org.telegram.messenger.bz.f23187p1) {
                     i11 = 76;
                 } else {
                     i11 = 64;
@@ -191,7 +191,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
         }
         int i10 = this.F;
         if (i10 == 34 || i10 == 35 || i10 == 36) {
-            i7 = Math.max(i7, org.telegram.messenger.g0.f24121q.x);
+            i7 = Math.max(i7, org.telegram.messenger.g0.f24118q.x);
         }
         int i11 = this.Q;
         if (i11 == 0) {
@@ -324,7 +324,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
                 rectF.set(org.telegram.messenger.g0.L(76.0f), org.telegram.messenger.g0.L(38.0f) + i12, org.telegram.messenger.g0.L(268.0f), org.telegram.messenger.g0.L(46.0f) + i12);
                 b(rectF);
                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
-                if (org.telegram.messenger.bz.f23190p1) {
+                if (org.telegram.messenger.bz.f23187p1) {
                     rectF.set(org.telegram.messenger.g0.L(76.0f), org.telegram.messenger.g0.L(54.0f) + i12, org.telegram.messenger.g0.L(220.0f), org.telegram.messenger.g0.L(62.0f) + i12);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
@@ -352,7 +352,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
                 rectF.set(org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(38.0f) + i12, org.telegram.messenger.g0.L(268.0f), org.telegram.messenger.g0.L(46.0f) + i12);
                 b(rectF);
                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
-                if (org.telegram.messenger.bz.f23190p1) {
+                if (org.telegram.messenger.bz.f23187p1) {
                     rectF.set(org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(54.0f) + i12, org.telegram.messenger.g0.L(220.0f), org.telegram.messenger.g0.L(62.0f) + i12);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
@@ -770,7 +770,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
                                     } else if (i40 == 26) {
                                         while (i12 <= getMeasuredHeight()) {
                                             int L26 = org.telegram.messenger.g0.L(21.0f) >> 1;
-                                            if (org.telegram.messenger.gd.f24216a0) {
+                                            if (org.telegram.messenger.gd.f24213a0) {
                                                 L7 = org.telegram.messenger.f3.z(21.0f, getMeasuredWidth(), L26);
                                             } else {
                                                 L7 = org.telegram.messenger.g0.L(21.0f) + L26;
@@ -885,7 +885,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
                                     if (this.O == null) {
                                         this.O = new Paint(i15);
                                     }
-                                    this.O.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, this.M));
+                                    this.O.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, this.M));
                                     RectF rectF4 = org.telegram.messenger.g0.P;
                                     int i49 = L27 + L28;
                                     int i50 = i15;
@@ -1106,7 +1106,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
                 this.f41820a = org.telegram.messenger.g0.L(200.0f);
             }
         } else {
-            this.f41820a = org.telegram.messenger.g0.f24121q.x;
+            this.f41820a = org.telegram.messenger.g0.f24118q.x;
         }
         if (!this.E && (i7 = this.F) != 13 && i7 != 14 && i7 != 17) {
             this.f41821b = new LinearGradient(0.0f, 0.0f, 0.0f, this.f41820a, new int[]{w03, w02, w02, w03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
@@ -1123,7 +1123,7 @@ public class wz extends View implements org.telegram.ui.ActionBar.c6 {
         this.f41825n = new RectF();
         this.f41829x = true;
         this.I = org.telegram.ui.ActionBar.n6.G8;
-        this.J = org.telegram.ui.ActionBar.n6.f29488i6;
+        this.J = org.telegram.ui.ActionBar.n6.f29486i6;
         this.K = -1;
         this.L = 1;
         this.M = i6Var;

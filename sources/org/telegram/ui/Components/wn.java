@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.ui.y91;
 public final class wn extends q9 {
-    public final org.telegram.ui.Cells.k6 H;
+    public final org.telegram.ui.Cells.l6 H;
     public final org.telegram.ui.ActionBar.h2 I;
     public final boolean J;
     public final org.telegram.ui.ActionBar.i6 K;
@@ -18,7 +18,7 @@ public final class wn extends q9 {
         this.I = h2Var;
         this.J = z10;
         this.K = i6Var;
-        this.H = new org.telegram.ui.Cells.k6(this);
+        this.H = new org.telegram.ui.Cells.l6(this);
     }
 
     @Override
@@ -26,14 +26,14 @@ public final class wn extends q9 {
         long j3;
         ao aoVar = this.L;
         if (aoVar.f33376b && this.f38745e == null) {
-            org.telegram.ui.Cells.k6 k6Var = this.H;
-            k6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            k6Var.f11892a = true;
-            k6Var.v = true;
-            k6Var.J = this.K;
+            org.telegram.ui.Cells.l6 l6Var = this.H;
+            l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            l6Var.f11889a = true;
+            l6Var.v = true;
+            l6Var.J = this.K;
             Integer num = aoVar.f33378c;
             if (num != null) {
-                k6Var.f11914z = num.intValue();
+                l6Var.f11911z = num.intValue();
             }
             org.telegram.ui.bn bnVar = aoVar.H;
             if (bnVar != null) {
@@ -41,12 +41,12 @@ public final class wn extends q9 {
             } else {
                 org.telegram.ui.ActionBar.h2 h2Var = this.I;
                 if (h2Var instanceof y91) {
-                    j3 = -((y91) h2Var).f54109a;
+                    j3 = -((y91) h2Var).f54050a;
                 } else {
                     j3 = 0;
                 }
             }
-            fi.i7.h(j3, canvas, this.f38742a, k6Var);
+            fi.i7.h(j3, canvas, this.f38742a, l6Var);
             return;
         }
         super.onDraw(canvas);

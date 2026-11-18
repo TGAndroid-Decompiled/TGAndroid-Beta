@@ -27,7 +27,7 @@ public final class gj0 extends Drawable {
         View view = this.f35509b;
         canvas.translate(-view.getX(), -view.getY());
         canvas.clipPath(this.f35510c);
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f35511e.f34074o2);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f35511e.f34074o2);
         Paint paint = this.f35508a;
         paint.setColor(i0.a.o(w02, paint.getAlpha()));
         canvas.drawRect(this.d, paint);

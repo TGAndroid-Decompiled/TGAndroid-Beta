@@ -44,7 +44,7 @@ public final class j3 implements org.telegram.ui.web.c0 {
                 t3Var.release();
                 t3Var.L.q();
             }
-        } else if (g4Var.f47935v0[0] == k3Var) {
+        } else if (g4Var.f47899v0[0] == k3Var) {
             g4Var.E();
         }
     }
@@ -58,7 +58,7 @@ public final class j3 implements org.telegram.ui.web.c0 {
     public final void z() {
         k3 k3Var = this.f48857a;
         g4 g4Var = k3Var.M;
-        if (g4Var.f47935v0[0] == k3Var) {
+        if (g4Var.f47899v0[0] == k3Var) {
             g4Var.E();
         }
     }

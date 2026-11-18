@@ -24,7 +24,7 @@ public final class r7 extends ck0 {
         super.onLayout(z10, i7, i10, i11, i12);
         g8 g8Var = this.f39056g3;
         int i13 = g8Var.f35398m2;
-        if (i13 != -1 && !g8Var.n1.f29088o0) {
+        if (i13 != -1 && !g8Var.n1.f29086o0) {
             this.f39055f3 = true;
             g8Var.f35410t1.h1(i13, g8Var.f35399n2 - g8Var.f35408s1.getPaddingTop());
             super.onLayout(false, i7, i10, i11, i12);

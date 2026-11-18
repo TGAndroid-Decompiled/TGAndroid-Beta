@@ -18,21 +18,21 @@ import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.o5;
 public final class m1 extends FrameLayout implements c6 {
-    public final ImageView f53245a;
-    public final TextView f53246b;
-    public final o2 f53247c;
+    public final ImageView f53196a;
+    public final TextView f53197b;
+    public final o2 f53198c;
     public o5 d;
-    public String f53248e;
-    public boolean f53249f;
+    public String f53199e;
+    public boolean f53200f;
     public ShapeDrawable h;
 
     public m1(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f53245a = imageView;
+        this.f53196a = imageView;
         addView(imageView, ma.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f53246b = textView;
+        this.f53197b = textView;
         u6.U(textView, n6.G6, null);
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
@@ -40,8 +40,8 @@ public final class m1 extends FrameLayout implements c6 {
         textView.setEllipsize(truncateAt);
         addView(textView, ma.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
         o2 o2Var = new o2(11, context, this);
-        this.f53247c = o2Var;
-        u6.U(o2Var, n6.f29788y6, null);
+        this.f53198c = o2Var;
+        u6.U(o2Var, n6.f29786y6, null);
         o2Var.setTextSize(1, 13.0f);
         o2Var.setMaxLines(1);
         o2Var.setEllipsize(truncateAt);
@@ -57,8 +57,8 @@ public final class m1 extends FrameLayout implements c6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f53249f) {
-            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - 1, getWidth(), getHeight(), n6.f29519k0);
+        if (this.f53200f) {
+            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - 1, getWidth(), getHeight(), n6.f29517k0);
         }
     }
 
@@ -73,7 +73,7 @@ public final class m1 extends FrameLayout implements c6 {
             ShapeDrawable shapeDrawable = this.h;
             if (shapeDrawable != null) {
                 n6.C1(n6.r1(0.1f, n6.x0(null, n6.G6, false)), shapeDrawable);
-                ImageView imageView = this.f53245a;
+                ImageView imageView = this.f53196a;
                 if (imageView != null) {
                     imageView.invalidate();
                 }

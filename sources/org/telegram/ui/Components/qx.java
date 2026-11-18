@@ -56,7 +56,7 @@ public final class qx extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59126f;
+        int i7 = f1Var.f59127f;
         if (i7 != 0 && i7 != 4) {
             return false;
         }
@@ -178,7 +178,7 @@ public final class qx extends bk0 {
                         a3Var = view2;
                     }
                 } else {
-                    a3Var = new org.telegram.ui.Cells.j8(ryVar.getContext(), true, false, ryVar.f39335a2, ryVar.f39365j2);
+                    a3Var = new org.telegram.ui.Cells.k8(ryVar.getContext(), true, false, ryVar.f39335a2, ryVar.f39365j2);
                 }
             } else {
                 View view3 = new View(ryVar.getContext());

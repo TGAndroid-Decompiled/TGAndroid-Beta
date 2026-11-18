@@ -89,9 +89,9 @@ public class o5 extends Drawable {
             sparseArray.put(hash, longSparseArray2);
             longSparseArray = longSparseArray2;
         }
-        o5 o5Var = (o5) longSparseArray.get(document.f28411id);
+        o5 o5Var = (o5) longSparseArray.get(document.f28409id);
         if (o5Var == null) {
-            long j3 = document.f28411id;
+            long j3 = document.f28409id;
             o5 o5Var2 = new o5(i10, i7, document);
             longSparseArray.put(j3, o5Var2);
             return o5Var2;
@@ -140,12 +140,12 @@ public class o5 extends Drawable {
                     o5 o5Var = (o5) longSparseArray.valueAt(i10);
                     if (o5Var != null && (s2Var = o5Var.f37976k) != null) {
                         if (z10) {
-                            s2Var.f22669v0 = true;
-                            s2Var.f22667u0 = true;
+                            s2Var.f22666v0 = true;
+                            s2Var.f22664u0 = true;
                             s2Var.W(1);
                             b6 m10 = s2Var.m();
                             if (m10 != null) {
-                                boolean z12 = s2Var.f22672w0;
+                                boolean z12 = s2Var.f22669w0;
                                 if (!m10.f33552o0) {
                                     m10.f33563w0 = z12;
                                 }
@@ -157,8 +157,8 @@ public class o5 extends Drawable {
                                 }
                             }
                         } else {
-                            s2Var.f22667u0 = false;
-                            s2Var.f22669v0 = false;
+                            s2Var.f22664u0 = false;
+                            s2Var.f22666v0 = false;
                             s2Var.W(0);
                             s2Var.Q0();
                         }
@@ -288,7 +288,7 @@ public class o5 extends Drawable {
     public final long h() {
         TLRPC.Document document = this.f37971e;
         if (document != null) {
-            return document.f28411id;
+            return document.f28409id;
         }
         return this.f37972f;
     }
@@ -344,7 +344,7 @@ public class o5 extends Drawable {
             if (this.f37973g == 8) {
                 j3 = 0;
             }
-            s2Var.f22662s = j3;
+            s2Var.f22659s = j3;
         }
     }
 
@@ -360,7 +360,7 @@ public class o5 extends Drawable {
             s2Var2.d = this.h;
             s2Var2.A1 = true;
             if (i7 == 12) {
-                s2Var2.f22677y = true;
+                s2Var2.f22674y = true;
             }
         }
         this.f37975j = true;
@@ -398,7 +398,7 @@ public class o5 extends Drawable {
         this.f37982q = colorFilter;
         if (this.f37976k != null && this.f37971e != null) {
             if (c()) {
-                this.f37976k.f22656p1 = colorFilter;
+                this.f37976k.f22653p1 = colorFilter;
                 return;
             }
             return;
@@ -463,12 +463,12 @@ public class o5 extends Drawable {
     public final void x() {
         int i7 = this.f37973g;
         if (i7 != 0 && i7 != 26) {
-            TextPaint[] textPaintArr = org.telegram.ui.ActionBar.n6.f29784y2;
+            TextPaint[] textPaintArr = org.telegram.ui.ActionBar.n6.f29782y2;
             if (textPaintArr != null && (i7 == 1 || i7 == 4 || i7 == 19 || i7 == 20)) {
-                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.n6.f29784y2[2].descent()) + Math.abs(textPaintArr[2].ascent())) * 1.15f) / org.telegram.messenger.g0.f24120p);
+                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.n6.f29782y2[2].descent()) + Math.abs(textPaintArr[2].ascent())) * 1.15f) / org.telegram.messenger.g0.f24117p);
                 return;
             } else if (textPaintArr != null && i7 == 8) {
-                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.n6.f29784y2[0].descent()) + Math.abs(textPaintArr[0].ascent())) * 1.15f) / org.telegram.messenger.g0.f24120p);
+                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.n6.f29782y2[0].descent()) + Math.abs(textPaintArr[0].ascent())) * 1.15f) / org.telegram.messenger.g0.f24117p);
                 return;
             } else if (i7 != 14 && i7 != 15 && i7 != 17) {
                 if (i7 != 11 && i7 != 22) {
@@ -496,7 +496,7 @@ public class o5 extends Drawable {
                 return;
             }
         }
-        this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.n6.f29593o2.descent()) + Math.abs(org.telegram.ui.ActionBar.n6.f29593o2.ascent())) * 1.15f) / org.telegram.messenger.g0.f24120p);
+        this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.n6.f29591o2.descent()) + Math.abs(org.telegram.ui.ActionBar.n6.f29591o2.ascent())) * 1.15f) / org.telegram.messenger.g0.f24117p);
     }
 
     public o5(int i7, int i10, TLRPC.Document document) {

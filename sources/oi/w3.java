@@ -4,20 +4,20 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import org.telegram.ui.Cells.i9;
+import org.telegram.ui.Cells.j9;
 public final class w3 extends HorizontalScrollView {
-    public final int f22440a;
-    public final FrameLayout f22441b;
+    public final int f22437a;
+    public final FrameLayout f22438b;
 
     public w3(FrameLayout frameLayout, Context context, int i7) {
         super(context);
-        this.f22440a = i7;
-        this.f22441b = frameLayout;
+        this.f22437a = i7;
+        this.f22438b = frameLayout;
     }
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f22440a) {
+        switch (this.f22437a) {
             case 0:
                 int mode = View.MeasureSpec.getMode(i7);
                 if (mode == 1073741824) {
@@ -26,7 +26,7 @@ public final class w3 extends HorizontalScrollView {
                 }
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 0), i10);
                 int measuredWidth = getMeasuredWidth();
-                int i11 = ((x3) this.f22441b).L;
+                int i11 = ((x3) this.f22438b).L;
                 if (mode == Integer.MIN_VALUE) {
                     i11 = Math.min(i11, View.MeasureSpec.getSize(i7));
                 }
@@ -40,12 +40,12 @@ public final class w3 extends HorizontalScrollView {
 
     @Override
     public void onScrollChanged(int i7, int i10, int i11, int i12) {
-        i9 textSelectionHelper;
-        switch (this.f22440a) {
+        j9 textSelectionHelper;
+        switch (this.f22437a) {
             case 1:
                 super.onScrollChanged(i7, i10, i11, i12);
-                a3 a3Var = ((l5) this.f22441b).F;
-                if (a3Var != null && (textSelectionHelper = a3Var.f21935a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
+                a3 a3Var = ((l5) this.f22438b).F;
+                if (a3Var != null && (textSelectionHelper = a3Var.f21932a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                     textSelectionHelper.w();
                 }
                 invalidate();

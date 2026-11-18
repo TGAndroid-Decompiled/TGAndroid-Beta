@@ -28,7 +28,7 @@ public final class a implements Runnable {
                     m0Var.f37305z2.s(20.0f);
                     m0Var.f37305z2.u(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.ui.ActionBar.n6.r1(0.25f, -16777216));
                     m0Var.f37305z2.v(org.telegram.messenger.gd.M0(2131755000, null));
-                    if (i0.a.h(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, m0Var.J0)) < 0.5d) {
+                    if (i0.a.h(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, m0Var.J0)) < 0.5d) {
                         m0Var.f37305z2.j(956301311);
                         hi.m3 m3Var3 = m0Var.f37305z2;
                         m3Var3.I.u(-1);
@@ -38,7 +38,7 @@ public final class a implements Runnable {
                     m0Var.f37305z2.o(0.5f, 0.0f);
                     hi.m3 m3Var4 = m0Var.f37305z2;
                     m3Var4.d = 8000L;
-                    m0Var.f30192b.addView(m3Var4, c8.ma.d(-1, 200.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
+                    m0Var.f30190b.addView(m3Var4, c8.ma.d(-1, 200.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
                     m0Var.f37305z2.x();
                     m0Var.D1();
                     return;

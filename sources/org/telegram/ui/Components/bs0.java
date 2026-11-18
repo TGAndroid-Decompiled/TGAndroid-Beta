@@ -108,7 +108,7 @@ public abstract class bs0 extends FrameLayout {
             this.P.draw(canvas);
             canvas.restore();
         } else if (this.M) {
-            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, this.O);
+            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, this.O);
             Paint paint = this.N;
             paint.setColor(w02);
             canvas.drawRect(-L, min, getWidth() + L, max, paint);

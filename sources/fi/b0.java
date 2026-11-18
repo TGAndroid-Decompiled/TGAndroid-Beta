@@ -27,14 +27,14 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.p51;
 import org.telegram.ui.rn;
 public final class b0 implements s10 {
-    public final int f11761a;
-    public final Object f11762b;
-    public final Object f11763c;
+    public final int f11758a;
+    public final Object f11759b;
+    public final Object f11760c;
 
     public b0(int i7, Object obj, Object obj2) {
-        this.f11761a = i7;
-        this.f11762b = obj;
-        this.f11763c = obj2;
+        this.f11758a = i7;
+        this.f11759b = obj;
+        this.f11760c = obj2;
     }
 
     @Override
@@ -43,33 +43,33 @@ public final class b0 implements s10 {
         float f10;
         boolean z10;
         String str;
-        switch (this.f11761a) {
+        switch (this.f11758a) {
             case 0:
-                a2 a2Var = (a2) this.f11762b;
-                r0 r0Var = (r0) this.f11763c;
+                a2 a2Var = (a2) this.f11759b;
+                r0 r0Var = (r0) this.f11760c;
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj3;
                 int i7 = a2Var.O;
                 if (((Boolean) obj2).booleanValue()) {
                     TL_phone.deleteGroupCallParticipantMessages deletegroupcallparticipantmessages = new TL_phone.deleteGroupCallParticipantMessages();
                     deletegroupcallparticipantmessages.call = a2Var.P;
-                    deletegroupcallparticipantmessages.participant = mp.u1(i7).l1(r0Var.f12488c);
+                    deletegroupcallparticipantmessages.participant = mp.u1(i7).l1(r0Var.f12485c);
                     deletegroupcallparticipantmessages.report_spam = bool.booleanValue();
                     ConnectionsManager.getInstance(i7).sendRequest(deletegroupcallparticipantmessages, null);
-                    long j3 = r0Var.f12488c;
-                    ArrayList arrayList = a2Var.f12571r;
-                    ArrayList arrayList2 = a2Var.f12572s;
+                    long j3 = r0Var.f12485c;
+                    ArrayList arrayList = a2Var.f12568r;
+                    ArrayList arrayList2 = a2Var.f12569s;
                     int i10 = 0;
                     boolean z11 = false;
                     while (i10 < arrayList.size()) {
-                        if (((r0) arrayList.get(i10)).f12488c == j3) {
+                        if (((r0) arrayList.get(i10)).f12485c == j3) {
                             r0 r0Var2 = (r0) arrayList.get(i10);
                             int i11 = 0;
                             while (true) {
                                 if (i11 < arrayList2.size()) {
-                                    if (((s0) arrayList2.get(i11)).f12518f.contains(r0Var2)) {
-                                        ((s0) arrayList2.get(i11)).f12518f.remove(r0Var2);
-                                        if (((s0) arrayList2.get(i11)).f12518f.isEmpty()) {
+                                    if (((s0) arrayList2.get(i11)).f12515f.contains(r0Var2)) {
+                                        ((s0) arrayList2.get(i11)).f12515f.remove(r0Var2);
+                                        if (((s0) arrayList2.get(i11)).f12515f.isEmpty()) {
                                             arrayList2.remove(i11);
                                             z11 = true;
                                         } else {
@@ -81,7 +81,7 @@ public final class b0 implements s10 {
                                 }
                             }
                             arrayList.remove(i10);
-                            a2Var.f12564e.O(true);
+                            a2Var.f12561e.O(true);
                             i10--;
                         }
                         i10++;
@@ -89,29 +89,29 @@ public final class b0 implements s10 {
                     if (z11) {
                         ConnectionsManager.getInstance(i7).getCurrentTime();
                         Collections.sort(arrayList2, new a3.c(a2Var, 22));
-                        a2Var.f12570n.O(true);
+                        a2Var.f12567n.O(true);
                         a2Var.t();
                     }
                 } else {
                     TL_phone.deleteGroupCallMessages deletegroupcallmessages = new TL_phone.deleteGroupCallMessages();
                     deletegroupcallmessages.call = a2Var.P;
-                    deletegroupcallmessages.messages.add(Integer.valueOf(r0Var.f12486a));
+                    deletegroupcallmessages.messages.add(Integer.valueOf(r0Var.f12483a));
                     ConnectionsManager.getInstance(i7).sendRequest(deletegroupcallmessages, null);
-                    a2Var.c(r0Var.f12486a);
+                    a2Var.c(r0Var.f12483a);
                 }
                 if (bool2.booleanValue()) {
                     if (a2Var.N >= 0) {
                         mp.u1(i7).w(a2Var.N);
                         return;
                     } else {
-                        mp.u1(i7).e0(-a2Var.N, mp.u1(i7).l1(r0Var.f12488c), true, null);
+                        mp.u1(i7).e0(-a2Var.N, mp.u1(i7).l1(r0Var.f12485c), true, null);
                         return;
                     }
                 }
                 return;
             case 1:
-                ja jaVar = (ja) this.f11762b;
-                hi.q qVar = (hi.q) this.f11763c;
+                ja jaVar = (ja) this.f11759b;
+                hi.q qVar = (hi.q) this.f11760c;
                 File file = (File) obj;
                 String str2 = (String) obj2;
                 Long l10 = (Long) obj3;
@@ -129,21 +129,21 @@ public final class b0 implements s10 {
                 }
                 hi.d7 d7Var = taVar.L1;
                 if (d7Var != null) {
-                    d7Var.f14419o0 = file;
-                    d7Var.f14421p0 = str2;
-                    d7Var.f14423q0 = l10.longValue();
+                    d7Var.f14416o0 = file;
+                    d7Var.f14418p0 = str2;
+                    d7Var.f14420q0 = l10.longValue();
                     hi.d7 d7Var2 = taVar.L1;
-                    d7Var2.f14427s0 = 0.0f;
-                    d7Var2.f14429t0 = 1.0f;
-                    d7Var2.f14425r0 = 0L;
-                    d7Var2.f14431u0 = 1.0f;
+                    d7Var2.f14424s0 = 0.0f;
+                    d7Var2.f14426t0 = 1.0f;
+                    d7Var2.f14422r0 = 0L;
+                    d7Var2.f14428u0 = 1.0f;
                     taVar.t();
-                    if (taVar.Y0 != null && (v9Var = taVar.f15495w1) != null) {
-                        tg.r1 j02 = v9Var.j0(taVar.L1.f14421p0, true);
+                    if (taVar.Y0 != null && (v9Var = taVar.f15492w1) != null) {
+                        tg.r1 j02 = v9Var.j0(taVar.L1.f14418p0, true);
                         jaVar.setHasRoundVideo(true);
                         taVar.Y0.s(taVar.L1, j02, true);
                         org.telegram.messenger.g0.r(qVar.h);
-                        qVar.f14813a.destroy(true, null);
+                        qVar.f14810a.destroy(true, null);
                         j02.setDraw(false);
                         qVar.post(new hi.r1(9, qVar, j02));
                         return;
@@ -153,8 +153,8 @@ public final class b0 implements s10 {
                 }
                 return;
             case 2:
-                ki.q qVar2 = (ki.q) this.f11762b;
-                q10 q10Var = (q10) this.f11763c;
+                ki.q qVar2 = (ki.q) this.f11759b;
+                q10 q10Var = (q10) this.f11760c;
                 Boolean bool3 = (Boolean) obj;
                 androidx.biometric.u uVar = (androidx.biometric.u) obj2;
                 androidx.biometric.v vVar = (androidx.biometric.v) obj3;
@@ -166,8 +166,8 @@ public final class b0 implements s10 {
                             vVar = qVar2.i(true);
                         }
                         if (vVar != null) {
-                            str3 = !TextUtils.isEmpty(qVar2.f18841g) ? new String(vVar.f1966b.doFinal(Utilities.v(qVar2.f18841g)), StandardCharsets.UTF_8) : qVar2.f18841g;
-                        } else if (!TextUtils.isEmpty(qVar2.f18841g)) {
+                            str3 = !TextUtils.isEmpty(qVar2.f18838g) ? new String(vVar.f1967b.doFinal(Utilities.v(qVar2.f18838g)), StandardCharsets.UTF_8) : qVar2.f18838g;
+                        } else if (!TextUtils.isEmpty(qVar2.f18838g)) {
                             throw new RuntimeException("No cryptoObject found");
                         }
                     } catch (Exception e10) {
@@ -178,12 +178,12 @@ public final class b0 implements s10 {
                 q10Var.a(bool3, str3);
                 return;
             case 3:
-                rn rnVar = (rn) this.f11762b;
-                View view = (View) this.f11763c;
+                rn rnVar = (rn) this.f11759b;
+                View view = (View) this.f11760c;
                 rnVar.F0 = ((Boolean) obj).booleanValue();
                 rnVar.H0 = ((Boolean) obj2).booleanValue();
                 rnVar.I0 = ((Boolean) obj3).booleanValue();
-                t3 t3Var = rnVar.f51682e;
+                t3 t3Var = rnVar.f51671e;
                 if (rnVar.F0) {
                     f10 = 16.0f;
                 } else {
@@ -202,10 +202,10 @@ public final class b0 implements s10 {
                     t3Var.f38752y.setDuration(200L);
                     t3Var.f38752y.start();
                 }
-                ((org.telegram.ui.Cells.m8) view).setChecked(rnVar.F0);
+                ((org.telegram.ui.Cells.n8) view).setChecked(rnVar.F0);
                 rnVar.u0(false, true);
                 if (!rnVar.O0) {
-                    TLRPC.Chat chat = rnVar.f51707x0;
+                    TLRPC.Chat chat = rnVar.f51696x0;
                     if (chat.forum != rnVar.F0 || chat.forum_tabs != rnVar.H0 || chat.forum_sidebar != rnVar.I0) {
                         if (!org.telegram.messenger.v3.T(chat) && rnVar.F0) {
                             Context parentActivity = rnVar.getParentActivity();
@@ -213,18 +213,18 @@ public final class b0 implements s10 {
                                 parentActivity = LaunchActivity.H1;
                             }
                             if (parentActivity == null) {
-                                parentActivity = org.telegram.messenger.t0.f26915b;
+                                parentActivity = org.telegram.messenger.t0.f26913b;
                             }
                             if (parentActivity != null) {
                                 org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, parentActivity, null);
                                 rnVar.O0 = true;
                                 u1Var.r(250L);
-                                rnVar.getMessagesController().T(rnVar.getParentActivity(), rnVar.f51705w0, rnVar, new oi.e0(19, rnVar, u1Var), null);
+                                rnVar.getMessagesController().T(rnVar.getParentActivity(), rnVar.f51694w0, rnVar, new oi.e0(19, rnVar, u1Var), null);
                                 return;
                             }
                             return;
                         }
-                        TLRPC.Chat chat2 = rnVar.f51707x0;
+                        TLRPC.Chat chat2 = rnVar.f51696x0;
                         if (chat2.forum_tabs != rnVar.H0) {
                             z10 = true;
                         } else {
@@ -233,8 +233,8 @@ public final class b0 implements s10 {
                         if (chat2.forum_sidebar != rnVar.I0) {
                             z12 = true;
                         }
-                        rnVar.getMessagesController().m5(rnVar.f51705w0, rnVar.F0, rnVar.H0, rnVar.I0);
-                        TLRPC.Chat chat3 = rnVar.f51707x0;
+                        rnVar.getMessagesController().m5(rnVar.f51694w0, rnVar.F0, rnVar.H0, rnVar.I0);
+                        TLRPC.Chat chat3 = rnVar.f51696x0;
                         chat3.forum = rnVar.F0;
                         chat3.forum_tabs = rnVar.H0;
                         chat3.forum_sidebar = rnVar.I0;
@@ -248,8 +248,8 @@ public final class b0 implements s10 {
                 }
                 return;
             case 4:
-                final org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.f11762b;
-                q10 q10Var2 = (q10) this.f11763c;
+                final org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.f11759b;
+                q10 q10Var2 = (q10) this.f11760c;
                 TL_wallet.secretPhraseParts secretphraseparts = (TL_wallet.secretPhraseParts) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -345,8 +345,8 @@ public final class b0 implements s10 {
                 }
                 return;
             case 5:
-                org.telegram.ui.Wallet.u0 u0Var2 = (org.telegram.ui.Wallet.u0) this.f11762b;
-                org.telegram.ui.Wallet.z8 z8Var = (org.telegram.ui.Wallet.z8) this.f11763c;
+                org.telegram.ui.Wallet.u0 u0Var2 = (org.telegram.ui.Wallet.u0) this.f11759b;
+                org.telegram.ui.Wallet.z8 z8Var = (org.telegram.ui.Wallet.z8) this.f11760c;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP2 = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -368,8 +368,8 @@ public final class b0 implements s10 {
                 z8Var.a(null);
                 return;
             default:
-                org.telegram.ui.Wallet.u0 u0Var3 = (org.telegram.ui.Wallet.u0) this.f11762b;
-                p51 p51Var = (p51) this.f11763c;
+                org.telegram.ui.Wallet.u0 u0Var3 = (org.telegram.ui.Wallet.u0) this.f11759b;
+                p51 p51Var = (p51) this.f11760c;
                 TL_wallet.WalletState walletState2 = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP3 = (TLRPC.InputCheckPasswordSRP) obj3;

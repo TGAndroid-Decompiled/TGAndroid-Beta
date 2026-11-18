@@ -35,9 +35,9 @@ public final class c implements View.OnClickListener {
                 m0Var.dismiss();
                 return;
             case 1:
-                org.telegram.ui.Cells.k3 k3Var = m0Var.f37304y2;
-                org.telegram.messenger.g0.v1(k3Var.d);
-                m0Var.G2 = k3Var.getText().toString();
+                org.telegram.ui.Cells.l3 l3Var = m0Var.f37304y2;
+                org.telegram.messenger.g0.v1(l3Var.d);
+                m0Var.G2 = l3Var.getText().toString();
                 m0Var.C1();
                 m0Var.B1(true);
                 m0Var.t1();
@@ -57,15 +57,15 @@ public final class c implements View.OnClickListener {
                 m0Var.dismiss();
                 return;
             case 4:
-                if (r0.b(m0Var.f30189a, m0Var.f37287h2) != null) {
-                    r0.e(m0Var.f30189a, m0Var.f37287h2, null);
+                if (r0.b(m0Var.f30187a, m0Var.f37287h2) != null) {
+                    r0.e(m0Var.f30187a, m0Var.f37287h2, null);
                 } else {
                     q0 k12 = m0Var.k1();
                     if (k12 == null) {
                         org.telegram.messenger.g0.E3(4.0f, m0Var.R2, null);
                         return;
                     }
-                    r0.e(m0Var.f30189a, m0Var.f37287h2, k12);
+                    r0.e(m0Var.f30187a, m0Var.f37287h2, k12);
                 }
                 m0Var.A1();
                 dd ddVar = m0Var.S2;
@@ -82,7 +82,7 @@ public final class c implements View.OnClickListener {
                 return;
             case 6:
                 final m0 m0Var2 = this.f33822b;
-                y60 G = y60.G(m0Var2.f30195c, m0Var2.J0, view);
+                y60 G = y60.G(m0Var2.f30193c, m0Var2.J0, view);
                 G.f42343a0 = org.telegram.messenger.g0.L(450.0f);
                 G.f42377t = false;
                 G.f42345b0 = true;
@@ -94,7 +94,7 @@ public final class c implements View.OnClickListener {
                 LinearLayout linearLayout2 = new LinearLayout(m0Var2.getContext());
                 linearLayout2.setOrientation(1);
                 scrollView.addView(linearLayout2);
-                int min = Math.min(org.telegram.messenger.g0.L(468.0f), org.telegram.messenger.g0.L(48.0f) + (org.telegram.messenger.g0.f24121q.y / 2));
+                int min = Math.min(org.telegram.messenger.g0.L(468.0f), org.telegram.messenger.g0.L(48.0f) + (org.telegram.messenger.g0.f24118q.y / 2));
                 G.U = true;
                 int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.E8, m0Var2.J0);
                 int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.F8, m0Var2.J0);
@@ -149,7 +149,7 @@ public final class c implements View.OnClickListener {
                 G.r(linearLayout3, new LinearLayout.LayoutParams(org.telegram.messenger.g0.L(196.0f), min));
                 G.f42369p = new i(editTextBoldCursor, 0);
                 G.o(false);
-                l0 l0Var = new l0(m0Var2.getContext(), m0Var2.f30189a, 1, true, m0Var2.J0);
+                l0 l0Var = new l0(m0Var2.getContext(), m0Var2.f30187a, 1, true, m0Var2.J0);
                 l0Var.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f));
                 l0Var.setRoundRadius(12);
                 String M0 = org.telegram.messenger.gd.M0(2131754955, null);
@@ -172,7 +172,7 @@ public final class c implements View.OnClickListener {
                     i10 = -1;
                 }
                 j0Var.addView(k0Var, c8.ma.p(i7, i10, 1.0f, 119));
-                ArrayList arrayList = m0Var2.f37298s2.f23614b;
+                ArrayList arrayList = m0Var2.f37298s2.f23611b;
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
@@ -218,21 +218,21 @@ public final class c implements View.OnClickListener {
                     Object obj2 = o4.get(i13);
                     i13++;
                     final org.telegram.messenger.s00 s00Var = (org.telegram.messenger.s00) obj2;
-                    if (!TextUtils.equals(s00Var.f26718a, m0Var2.f37294o2)) {
-                        m0Var2.h1(G, linearLayout, false, s00Var.f26719b, new Runnable() {
+                    if (!TextUtils.equals(s00Var.f26716a, m0Var2.f37294o2)) {
+                        m0Var2.h1(G, linearLayout, false, s00Var.f26717b, new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
                                         m0 m0Var3 = m0Var2;
                                         m0Var3.j1();
-                                        m0Var3.f37294o2 = s00Var.f26718a;
+                                        m0Var3.f37294o2 = s00Var.f26716a;
                                         m0Var3.t1();
                                         return;
                                     default:
                                         m0 m0Var4 = m0Var2;
                                         m0Var4.j1();
-                                        m0Var4.f37294o2 = s00Var.f26718a;
+                                        m0Var4.f37294o2 = s00Var.f26716a;
                                         m0Var4.t1();
                                         return;
                                 }
@@ -249,8 +249,8 @@ public final class c implements View.OnClickListener {
                 while (i14 < size3) {
                     int i15 = i14 + 1;
                     final org.telegram.messenger.s00 s00Var2 = (org.telegram.messenger.s00) n10.get(i14);
-                    boolean equals = TextUtils.equals(s00Var2.f26718a, m0Var2.f37294o2);
-                    String str = s00Var2.f26719b;
+                    boolean equals = TextUtils.equals(s00Var2.f26716a, m0Var2.f37294o2);
+                    String str = s00Var2.f26717b;
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
@@ -258,13 +258,13 @@ public final class c implements View.OnClickListener {
                                 case 0:
                                     m0 m0Var3 = m0Var2;
                                     m0Var3.j1();
-                                    m0Var3.f37294o2 = s00Var2.f26718a;
+                                    m0Var3.f37294o2 = s00Var2.f26716a;
                                     m0Var3.t1();
                                     return;
                                 default:
                                     m0 m0Var4 = m0Var2;
                                     m0Var4.j1();
-                                    m0Var4.f37294o2 = s00Var2.f26718a;
+                                    m0Var4.f37294o2 = s00Var2.f26716a;
                                     m0Var4.t1();
                                     return;
                             }

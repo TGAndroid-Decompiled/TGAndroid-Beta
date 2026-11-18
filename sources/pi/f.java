@@ -41,7 +41,7 @@ public final class f extends AnimatorListenerAdapter {
                 view.setTranslationY(0.0f);
                 view.setTranslationY(0.0f);
                 k kVar = this.d;
-                ArrayList arrayList = kVar.f59178y;
+                ArrayList arrayList = kVar.f59179y;
                 f1 f1Var = this.f55665c;
                 if (arrayList.remove(f1Var)) {
                     kVar.u(f1Var);

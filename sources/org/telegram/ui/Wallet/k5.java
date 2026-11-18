@@ -35,9 +35,9 @@ public final class k5 extends FrameLayout {
             case 0:
                 n6 n6Var = this.f44448b;
                 if (n6Var.f44639q0) {
-                    bi.d6 d6Var = n6Var.f33530a;
-                    if (d6Var != null) {
-                        i11 = d6Var.getPaddingTop();
+                    bi.c6 c6Var = n6Var.f33530a;
+                    if (c6Var != null) {
+                        i11 = c6Var.getPaddingTop();
                     } else {
                         i11 = 0;
                     }
@@ -48,9 +48,9 @@ public final class k5 extends FrameLayout {
                 canvas.save();
                 int width = getWidth();
                 int height = getHeight();
-                bi.d6 d6Var2 = n6Var.f33530a;
-                if (d6Var2 != null) {
-                    i10 = d6Var2.getPaddingBottom();
+                bi.c6 c6Var2 = n6Var.f33530a;
+                if (c6Var2 != null) {
+                    i10 = c6Var2.getPaddingBottom();
                 } else {
                     i10 = 0;
                 }
@@ -87,18 +87,18 @@ public final class k5 extends FrameLayout {
             case 0:
                 n6 n6Var = this.f44448b;
                 hi.i1 i1Var = n6Var.f44643s0;
-                bi.d6 d6Var = n6Var.f33530a;
-                if (d6Var != null) {
-                    i13 = d6Var.getPaddingTop();
+                bi.c6 c6Var = n6Var.f33530a;
+                if (c6Var != null) {
+                    i13 = c6Var.getPaddingTop();
                 } else {
                     i13 = 0;
                 }
                 int i15 = -i13;
                 int i16 = i11 - i7;
                 int i17 = i12 - i10;
-                bi.d6 d6Var2 = n6Var.f33530a;
-                if (d6Var2 != null) {
-                    i14 = d6Var2.getPaddingBottom();
+                bi.c6 c6Var2 = n6Var.f33530a;
+                if (c6Var2 != null) {
+                    i14 = c6Var2.getPaddingBottom();
                 } else {
                     i14 = 0;
                 }
@@ -121,17 +121,17 @@ public final class k5 extends FrameLayout {
                 n6 n6Var = this.f44448b;
                 hi.i1 i1Var = n6Var.f44643s0;
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-                bi.d6 d6Var = n6Var.f33530a;
+                bi.c6 c6Var = n6Var.f33530a;
                 int i12 = 0;
-                if (d6Var != null) {
-                    i11 = d6Var.getPaddingTop();
+                if (c6Var != null) {
+                    i11 = c6Var.getPaddingTop();
                 } else {
                     i11 = 0;
                 }
                 int i13 = i11 + size2;
-                bi.d6 d6Var2 = n6Var.f33530a;
-                if (d6Var2 != null) {
-                    i12 = d6Var2.getPaddingBottom();
+                bi.c6 c6Var2 = n6Var.f33530a;
+                if (c6Var2 != null) {
+                    i12 = c6Var2.getPaddingBottom();
                 }
                 i1Var.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i12 + i13, 1073741824));
                 return;

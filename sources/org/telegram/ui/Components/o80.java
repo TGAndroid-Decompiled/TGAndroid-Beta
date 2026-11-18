@@ -202,8 +202,8 @@ public class o80 extends Drawable {
         this.f38014c = -1L;
         this.f38016f = new Matrix();
         this.f38017g = new Matrix();
-        this.f38021l = org.telegram.ui.ActionBar.n6.f29469h5;
-        this.f38022m = org.telegram.ui.ActionBar.n6.f29487i5;
+        this.f38021l = org.telegram.ui.ActionBar.n6.f29467h5;
+        this.f38022m = org.telegram.ui.ActionBar.n6.f29485i5;
         this.f38029t = 1.0f;
         this.f38030u = 1.0f;
         this.f38031w = new Paint(1);
@@ -213,6 +213,6 @@ public class o80 extends Drawable {
         this.B = new float[8];
         this.C = new RectF();
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.g0.f24120p > 2.0f ? 2.0f : 1.0f);
+        paint.setStrokeWidth(org.telegram.messenger.g0.f24117p > 2.0f ? 2.0f : 1.0f);
     }
 }

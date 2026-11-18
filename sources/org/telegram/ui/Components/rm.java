@@ -41,13 +41,13 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
         int size = arrayList.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
-            org.telegram.messenger.mp.u1(yrVar.f30189a).h0(-yrVar.U1.f28405id, ((Integer) arrayList.get(i11)).intValue(), d);
+            org.telegram.messenger.mp.u1(yrVar.f30187a).h0(-yrVar.U1.f28403id, ((Integer) arrayList.get(i11)).intValue(), d);
         }
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj = arrayList2.get(i10);
             i10++;
-            org.telegram.messenger.mp.u1(yrVar.f30189a).h0(yrVar.Y1, ((Integer) obj).intValue(), d);
+            org.telegram.messenger.mp.u1(yrVar.f30187a).h0(yrVar.Y1, ((Integer) obj).intValue(), d);
         }
     }
 
@@ -89,7 +89,7 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 if (lyVar.f37268x.N == lyVar.f37260b) {
                     int size = arrayList.size();
                     for (int i7 = 0; i7 < size; i7++) {
-                        String str2 = ((org.telegram.messenger.ni) arrayList.get(i7)).f25929a;
+                        String str2 = ((org.telegram.messenger.ni) arrayList.get(i7)).f25927a;
                         ArrayList arrayList2 = (ArrayList) hashMap.get(str2);
                         if (arrayList2 != null && !arrayList2.isEmpty() && !hashMap2.containsKey(arrayList2)) {
                             hashMap2.put(arrayList2, str2);
@@ -113,7 +113,7 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
         }
         m9.w n10 = d0Var.n(vVar);
         if (resultReceiver != null) {
-            n10.b(new org.telegram.ui.Wallet.c5(29, n10, resultReceiver), m9.r.f20955a);
+            n10.b(new org.telegram.ui.Wallet.c5(29, n10, resultReceiver), m9.r.f20952a);
         }
     }
 
@@ -124,9 +124,9 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
         o5.h hVar = (o5.h) this.d;
         v5.g gVar = (v5.g) aVar.d;
         gVar.getClass();
-        l5.d dVar = iVar.f21716c;
-        String str = hVar.f21706a;
-        String str2 = iVar.f21714a;
+        l5.d dVar = iVar.f21713c;
+        String str = hVar.f21703a;
+        String str2 = iVar.f21711a;
         String c10 = c8.gc.c("SQLiteEventStore");
         if (Log.isLoggable(c10, 3)) {
             StringBuilder sb2 = new StringBuilder("Storing event with priority=");
@@ -153,7 +153,7 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 View view = (View) obj2;
                 rnVar.getClass();
                 view.setTag(null);
-                rnVar.c0(view, (org.telegram.ui.Cells.a6) obj, false);
+                rnVar.c0(view, (org.telegram.ui.Cells.b6) obj, false);
                 return;
             case 5:
                 gt0 gt0Var = (gt0) obj3;
@@ -179,8 +179,8 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 l0Var.dismiss();
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i11);
-                    org.telegram.messenger.mp.u1(l0Var.f30189a).X3(chat, false);
-                    org.telegram.messenger.mp.u1(l0Var.f30189a).f0(chat.f28405id, user);
+                    org.telegram.messenger.mp.u1(l0Var.f30187a).X3(chat, false);
+                    org.telegram.messenger.mp.u1(l0Var.f30187a).f0(chat.f28403id, user);
                 }
                 return;
         }
@@ -194,7 +194,7 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
         kp kpVar = (kp) this.f39178c;
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         org.telegram.messenger.hc p10 = imageReceiver.p();
-        if (z10 && p10 != null && (bitmap = p10.f24426c) != null) {
+        if (z10 && p10 != null && (bitmap = p10.f24423c) != null) {
             Drawable drawable = kpVar.f36838b;
             if (drawable instanceof bb0) {
                 bb0 bb0Var = (bb0) drawable;
@@ -238,7 +238,7 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 Handler handler = d0Var.f55187l;
                 org.telegram.ui.Wallet.c5 c5Var = new org.telegram.ui.Wallet.c5(d0Var, (p4.v) obj3, new sv0(d0Var, (p4.r0) obj2, (p4.w) obj, 20));
                 p4.o1 o1Var = new p4.o1(0);
-                String str = h2.l0.f13786a;
+                String str = h2.l0.f13783a;
                 ?? obj5 = new Object();
                 h2.l0.W(handler, new di.ga(obj5, c5Var, o1Var, 10));
                 return obj5;
@@ -249,7 +249,7 @@ public final class rm implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 Handler handler2 = d0Var2.f55187l;
                 org.telegram.ui.Wallet.c5 c5Var2 = new org.telegram.ui.Wallet.c5(d0Var2, vVar, new p4.s0(d0Var2, (Object) ((p4.b1) obj2), (Object) vVar, (Object) list, 2));
                 p4.o1 o1Var2 = new p4.o1(0);
-                String str2 = h2.l0.f13786a;
+                String str2 = h2.l0.f13783a;
                 ?? obj6 = new Object();
                 h2.l0.W(handler2, new di.ga(obj6, c5Var2, o1Var2, 10));
                 return obj6;

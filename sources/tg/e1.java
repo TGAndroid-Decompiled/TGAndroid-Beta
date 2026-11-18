@@ -289,7 +289,7 @@ public final class e1 extends FrameLayout implements fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         String str;
-        if (i7 == ks.E5 && (str = this.f57799w) != null) {
+        if (i7 == ks.F5 && (str = this.f57799w) != null) {
             setTypeface(str);
             this.f57799w = null;
         }
@@ -337,13 +337,13 @@ public final class e1 extends FrameLayout implements fs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ks.e().c(this, ks.E5);
+        ks.e().c(this, ks.F5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.e().n(this, ks.E5);
+        ks.e().n(this, ks.F5);
     }
 
     @Override

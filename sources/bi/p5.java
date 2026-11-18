@@ -1,87 +1,59 @@
 package bi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
+import android.content.Context;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.eq0;
-import org.telegram.ui.Components.gq0;
-public final class p5 extends Drawable {
-    public final int f3973a;
-    public final ShapeDrawable f3974b;
-    public final Rect f3975c;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.yo0;
+public final class p5 extends yo0 {
+    public final org.telegram.ui.ActionBar.h2 V2;
+    public final eq0 W2;
 
-    public p5(eq0 eq0Var) {
-        this.f3973a = 0;
-        this.f3974b = org.telegram.ui.ActionBar.n6.e0(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), 0);
-        this.f3975c = new Rect();
+    public p5(eq0 eq0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.ActionBar.h2 h2Var) {
+        super(context, null, str, false, str2, false, i6Var);
+        this.W2 = eq0Var;
+        this.V2 = h2Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f3973a) {
-            case 0:
-                Rect bounds = getBounds();
-                Rect rect = this.f3975c;
-                rect.set(bounds);
-                rect.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
-                ShapeDrawable shapeDrawable = this.f3974b;
-                shapeDrawable.setBounds(rect);
-                shapeDrawable.draw(canvas);
-                return;
-            default:
-                Rect bounds2 = getBounds();
-                Rect rect2 = this.f3975c;
-                rect2.set(bounds2);
-                rect2.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
-                ShapeDrawable shapeDrawable2 = this.f3974b;
-                shapeDrawable2.setBounds(rect2);
-                shapeDrawable2.draw(canvas);
-                return;
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        lc b02;
+        String str;
+        if (z10 && (b02 = lc.b0(this.V2)) != null) {
+            if (hVar.m() == 1) {
+                long j3 = hVar.j(0);
+                if (j3 == j10.i(this.f30187a).f24789n) {
+                    gc G = b02.G(2131624191, 5000, org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749786, new Object[0])));
+                    G.f35469r = false;
+                    G.j();
+                } else if (j3 < 0) {
+                    TLRPC.Chat O0 = mp.u1(this.f30187a).O0(Long.valueOf(-j3));
+                    if (tL_forumTopic != null) {
+                        str = tL_forumTopic.title;
+                    } else {
+                        str = O0.title;
+                    }
+                    gc G2 = b02.G(2131624029, 5000, org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749790, str)));
+                    G2.f35469r = false;
+                    G2.j();
+                } else {
+                    gc G3 = b02.G(2131624029, 5000, org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749790, mp.u1(this.f30187a).c2(Long.valueOf(j3)).first_name)));
+                    G3.f35469r = false;
+                    G3.j();
+                }
+            } else {
+                gc Q = b02.Q(2131624029, 36, org.telegram.messenger.g0.W2(gd.G(hVar.m(), "GiftCollectionSharedToManyChats", Integer.valueOf(hVar.m()))));
+                Q.f35469r = false;
+                Q.j();
+            }
+            try {
+                this.W2.performHapticFeedback(3);
+            } catch (Exception unused) {
+            }
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f3973a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        switch (this.f3973a) {
-            case 0:
-                this.f3974b.setAlpha(i7);
-                return;
-            default:
-                this.f3974b.setAlpha(i7);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f3973a;
-    }
-
-    public p5(gq0 gq0Var) {
-        this.f3973a = 1;
-        int L = org.telegram.messenger.g0.L(16.0f);
-        int L2 = org.telegram.messenger.g0.L(16.0f);
-        int i7 = org.telegram.ui.ActionBar.n6.f29396d6;
-        org.telegram.ui.ActionBar.i6 i6Var = gq0Var.f35551c;
-        this.f3974b = org.telegram.ui.ActionBar.n6.e0(L, L2, org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.w0(i7, i6Var), org.telegram.ui.ActionBar.n6.r1(0.04f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, i6Var))));
-        this.f3975c = new Rect();
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
     }
 }

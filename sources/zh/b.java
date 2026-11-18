@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import bi.e6;
-import bi.i8;
+import bi.d6;
+import bi.h8;
 import c8.ma;
 import di.b1;
 import org.telegram.messenger.g0;
@@ -35,7 +35,7 @@ public final class b extends o51 {
         super(h2Var.getCurrentAccount(), h2Var.getParentActivity(), h2Var.getResourceProvider());
         this.W1 = dVar;
         this.O1 = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i7 = n6.f29339a7;
+        int i7 = n6.f29337a7;
         v0(n6.w0(i7, this.J0));
         this.G1 = i7;
         this.F1 = i7;
@@ -43,35 +43,35 @@ public final class b extends o51 {
         Q(i7);
         this.B1 = false;
         this.C1 = false;
-        j90 j90Var = new j90(this, h2Var, this.f30195c, j3);
+        j90 j90Var = new j90(this, h2Var, this.f30193c, j3);
         this.P1 = j90Var;
         j90Var.B = false;
-        this.f30221q0 = 75;
+        this.f30219q0 = 75;
         this.f37992w1.K.setHint(gd.M0(2131745563, null));
-        g gVar = j90Var.f62012f;
+        g gVar = j90Var.f62013f;
         this.f37986q1 = gVar;
         this.f37985p1 = gVar;
         this.f37984o1.setAdapter(gVar);
         this.f37984o1.r1();
         b1 b1Var = this.f37984o1;
-        j90Var.f62021p = b1Var;
-        b1Var.setOnItemClickListener(new i8(j90Var, 24));
+        j90Var.f62022p = b1Var;
+        b1Var.setOnItemClickListener(new h8(j90Var, 24));
         u0 onScrollListener = b1Var.getOnScrollListener();
         if (onScrollListener == null) {
             b1Var.setOnScrollListener(j90Var.D);
         } else {
-            b1Var.setOnScrollListener(new e6(11, j90Var, onScrollListener));
+            b1Var.setOnScrollListener(new d6(11, j90Var, onScrollListener));
         }
         int indexOfChild = ((ViewGroup) this.f37984o1.getParent()).indexOfChild(this.f37984o1);
         wz b10 = j90Var.b();
         this.Q1 = b10;
-        this.f30192b.addView(b10, indexOfChild, ma.c(-1.0f, -1));
+        this.f30190b.addView(b10, indexOfChild, ma.c(-1.0f, -1));
         kv0 a10 = j90Var.a();
         this.R1 = a10;
-        this.f30192b.addView(a10, indexOfChild, ma.c(-1.0f, -1));
+        this.f30190b.addView(a10, indexOfChild, ma.c(-1.0f, -1));
         kv0 c10 = j90Var.c();
         this.S1 = c10;
-        this.f30192b.addView(c10, indexOfChild, ma.c(-1.0f, -1));
+        this.f30190b.addView(c10, indexOfChild, ma.c(-1.0f, -1));
         j90Var.e();
     }
 
@@ -152,16 +152,16 @@ public final class b extends o51 {
     @Override
     public final void dismiss() {
         d dVar = this.W1;
-        b bVar = dVar.f61982i;
-        if (bVar != null && !bVar.P1.f62009b) {
-            dVar.f61982i = null;
+        b bVar = dVar.f61983i;
+        if (bVar != null && !bVar.P1.f62010b) {
+            dVar.f61983i = null;
         }
         super.dismiss();
     }
 
     @Override
     public final void onBackPressed() {
-        k kVar = this.P1.f62024s;
+        k kVar = this.P1.f62025s;
         if (kVar != null) {
             kVar.e(false);
         } else {
@@ -172,7 +172,7 @@ public final class b extends o51 {
     @Override
     public final void s0() {
         super.s0();
-        int w02 = n6.w0(n6.f29339a7, this.J0);
+        int w02 = n6.w0(n6.f29337a7, this.J0);
         if (w02 != this.V1) {
             this.V1 = w02;
             v0(w02);
@@ -182,10 +182,10 @@ public final class b extends o51 {
     @Override
     public final void show() {
         j90 j90Var = this.P1;
-        if (j90Var.f62009b && this.f37994y1 == 0) {
+        if (j90Var.f62010b && this.f37994y1 == 0) {
             this.f37994y1 = g0.L(8.0f);
         }
         super.show();
-        j90Var.f62009b = false;
+        j90Var.f62010b = false;
     }
 }

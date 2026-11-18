@@ -12,7 +12,7 @@ public final class b0 extends s0 {
 
     @Override
     public final void invalidate() {
-        if (this.S.f58729b2) {
+        if (this.S.f58730b2) {
             return;
         }
         super.invalidate();

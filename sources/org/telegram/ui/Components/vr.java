@@ -37,7 +37,7 @@ public final class vr implements Predicate {
         switch (this.f41399a) {
             case 0:
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.f41400b;
-                TLRPC.Peer peer = ((org.telegram.messenger.fj) obj).f23968k.from_id;
+                TLRPC.Peer peer = ((org.telegram.messenger.fj) obj).f23965k.from_id;
                 if ((inputPeer == null && peer == null) || (inputPeer != null && peer != null && (!(inputPeer instanceof TLRPC.TL_inputPeerChat) || !(peer instanceof TLRPC.TL_peerChat) ? !(!(inputPeer instanceof TLRPC.TL_inputPeerChannel) || !(peer instanceof TLRPC.TL_peerChannel) ? !(inputPeer instanceof TLRPC.TL_inputPeerUser) || !(peer instanceof TLRPC.TL_peerUser) || inputPeer.user_id != peer.user_id : inputPeer.channel_id != peer.channel_id) : inputPeer.chat_id == peer.chat_id))) {
                     return true;
                 }
@@ -45,7 +45,7 @@ public final class vr implements Predicate {
             default:
                 org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) obj;
                 TLObject tLObject = this.f41400b;
-                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || fjVar.f23968k.from_id.user_id != ((TLRPC.Chat) tLObject).f28405id) : fjVar.f23968k.from_id.user_id == ((TLRPC.User) tLObject).f28554id) {
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || fjVar.f23965k.from_id.user_id != ((TLRPC.Chat) tLObject).f28403id) : fjVar.f23965k.from_id.user_id == ((TLRPC.User) tLObject).f28552id) {
                     return true;
                 }
                 return false;

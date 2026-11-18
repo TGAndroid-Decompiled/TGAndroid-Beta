@@ -175,10 +175,10 @@ public class VideoPlayerHolderBase {
     }
 
     public VideoPlayerHolderBase() {
-        if (Utilities.f22787k == null) {
-            Utilities.f22787k = new r5("playerQueue", true);
+        if (Utilities.f22784k == null) {
+            Utilities.f22784k = new r5("playerQueue", true);
         }
-        this.dispatchQueue = Utilities.f22787k;
+        this.dispatchQueue = Utilities.f22784k;
         this.progressRunnable = new Runnable() {
             {
                 VideoPlayerHolderBase.this = this;
@@ -631,14 +631,14 @@ public class VideoPlayerHolderBase {
         TLRPC.Document document = this.document;
         if (document != null) {
             ConcurrentHashMap concurrentHashMap = s8.J;
-            Integer num = (Integer) concurrentHashMap.get(Long.valueOf(document.f28411id));
+            Integer num = (Integer) concurrentHashMap.get(Long.valueOf(document.f28409id));
             if (num == null) {
                 intValue = 3;
             } else {
                 intValue = num.intValue();
             }
             if (intValue != 0) {
-                concurrentHashMap.put(Long.valueOf(document.f28411id), 0);
+                concurrentHashMap.put(Long.valueOf(document.f28409id), 0);
                 w7.G(this.currentAccount).h(0, document, null, null, null, null);
             }
         }

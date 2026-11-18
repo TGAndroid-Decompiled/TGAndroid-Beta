@@ -4,38 +4,38 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 public final class m1 extends WebChromeClient {
-    public final int f49727a;
-    public final KeyEvent.Callback f49728b;
+    public final int f49686a;
+    public final KeyEvent.Callback f49687b;
 
     public m1(KeyEvent.Callback callback, int i7) {
-        this.f49727a = i7;
-        this.f49728b = callback;
+        this.f49686a = i7;
+        this.f49687b = callback;
     }
 
     @Override
     public final void onHideCustomView() {
-        switch (this.f49727a) {
+        switch (this.f49686a) {
             case 0:
                 super.onHideCustomView();
-                q1 q1Var = (q1) this.f49728b;
-                g4 g4Var = q1Var.f51061y;
+                q1 q1Var = (q1) this.f49687b;
+                g4 g4Var = q1Var.f50982y;
                 if (g4Var.P != null) {
                     g4Var.Q.setVisibility(4);
-                    g4 g4Var2 = q1Var.f51061y;
+                    g4 g4Var2 = q1Var.f50982y;
                     g4Var2.Q.removeView(g4Var2.P);
-                    WebChromeClient.CustomViewCallback customViewCallback = q1Var.f51061y.T;
+                    WebChromeClient.CustomViewCallback customViewCallback = q1Var.f50982y.T;
                     if (customViewCallback != null && !customViewCallback.getClass().getName().contains(".chromium.")) {
-                        q1Var.f51061y.T.onCustomViewHidden();
+                        q1Var.f50982y.T.onCustomViewHidden();
                     }
-                    q1Var.f51061y.P = null;
+                    q1Var.f50982y.P = null;
                     return;
                 }
                 return;
             default:
                 super.onHideCustomView();
-                org.telegram.ui.Components.gu guVar = (org.telegram.ui.Components.gu) this.f49728b;
+                org.telegram.ui.Components.gu guVar = (org.telegram.ui.Components.gu) this.f49687b;
                 if (guVar.f35646o1 != null) {
-                    guVar.f30192b.setVisibility(0);
+                    guVar.f30190b.setVisibility(0);
                     guVar.f35647p1.setVisibility(4);
                     guVar.f35647p1.removeView(guVar.f35646o1);
                     WebChromeClient.CustomViewCallback customViewCallback2 = guVar.f35648q1;
@@ -51,7 +51,7 @@ public final class m1 extends WebChromeClient {
 
     @Override
     public final void onShowCustomView(View view, int i7, WebChromeClient.CustomViewCallback customViewCallback) {
-        switch (this.f49727a) {
+        switch (this.f49686a) {
             case 0:
                 onShowCustomView(view, customViewCallback);
                 return;
@@ -63,9 +63,9 @@ public final class m1 extends WebChromeClient {
 
     @Override
     public final void onShowCustomView(View view, WebChromeClient.CustomViewCallback customViewCallback) {
-        switch (this.f49727a) {
+        switch (this.f49686a) {
             case 0:
-                g4 g4Var = ((q1) this.f49728b).f51061y;
+                g4 g4Var = ((q1) this.f49687b).f50982y;
                 if (g4Var.P != null) {
                     customViewCallback.onCustomViewHidden();
                     return;
@@ -75,11 +75,11 @@ public final class m1 extends WebChromeClient {
                 org.telegram.messenger.g0.h3(new hq0(this, 7), 100L);
                 return;
             default:
-                org.telegram.ui.Components.gu guVar = (org.telegram.ui.Components.gu) this.f49728b;
+                org.telegram.ui.Components.gu guVar = (org.telegram.ui.Components.gu) this.f49687b;
                 if (guVar.f35646o1 == null && !guVar.N0()) {
                     guVar.M0();
                     guVar.f35646o1 = view;
-                    guVar.f30192b.setVisibility(4);
+                    guVar.f30190b.setVisibility(4);
                     guVar.f35647p1.setVisibility(0);
                     guVar.f35647p1.addView(view, c8.ma.c(-1.0f, -1));
                     guVar.f35648q1 = customViewCallback;

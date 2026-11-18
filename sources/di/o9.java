@@ -22,30 +22,30 @@ import org.telegram.ui.Components.mv0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.n60;
+import org.telegram.ui.o60;
 public final class o9 implements x10 {
-    public final int f9476a;
-    public final int f9477b;
-    public final Object f9478c;
+    public final int f9473a;
+    public final int f9474b;
+    public final Object f9475c;
     public final Object d;
-    public final Object f9479e;
+    public final Object f9476e;
 
     public o9(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f9476a = i10;
-        this.f9478c = obj;
-        this.f9477b = i7;
+        this.f9473a = i10;
+        this.f9475c = obj;
+        this.f9474b = i7;
         this.d = obj2;
-        this.f9479e = obj3;
+        this.f9476e = obj3;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f9476a;
+        int i7 = this.f9473a;
         boolean z10 = false;
-        int i10 = this.f9477b;
-        Object obj2 = this.f9479e;
+        int i10 = this.f9474b;
+        Object obj2 = this.f9476e;
         Object obj3 = this.d;
-        Object obj4 = this.f9478c;
+        Object obj4 = this.f9475c;
         switch (i7) {
             case 0:
                 org.telegram.ui.Components.nc ncVar = (org.telegram.ui.Components.nc) obj4;
@@ -54,22 +54,22 @@ public final class o9 implements x10 {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ncVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.oc.b(gd.M0(2131744984, null), new bi.u4(this.f9477b, context, i6Var, savedStarGift, 3), i6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.oc.b(gd.M0(2131744984, null), new bi.t4(this.f9474b, context, i6Var, savedStarGift, 3), i6Var, null));
                     ncVar.setText(spannableStringBuilder);
                     return;
                 }
                 return;
             case 1:
                 org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) obj3;
-                bi.t4 t4Var = (bi.t4) obj2;
+                bi.s4 s4Var = (bi.s4) obj2;
                 ((ai.v1) obj4).a(Boolean.FALSE);
                 if (!((Boolean) obj).booleanValue()) {
                     org.telegram.ui.Components.gc Q = org.telegram.ui.Components.lc.Y().Q(2131624012, 36, gd.M0(2131749334, null));
                     Q.f35461j = 5000;
                     Q.j();
                     return;
-                } else if (LaunchActivity.T() == h2Var && j10.f24773t0 == i10) {
-                    t4Var.run();
+                } else if (LaunchActivity.T() == h2Var && j10.f24770t0 == i10) {
+                    s4Var.run();
                     return;
                 } else {
                     org.telegram.ui.Components.gc Q2 = org.telegram.ui.Components.lc.Y().Q(2131623990, 36, gd.M0(2131749335, null));
@@ -80,17 +80,17 @@ public final class o9 implements x10 {
             case 2:
                 org.telegram.ui.ActionBar.h2 h2Var2 = (org.telegram.ui.ActionBar.h2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f28405id;
+                long j3 = ((TLRPC.Chat) obj2).f28403id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean T = org.telegram.messenger.v3.T(chat);
-                int i11 = this.f9477b;
+                int i11 = this.f9474b;
                 if (!T) {
                     org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, h2Var2.getContext(), null);
                     u1Var.r(250L);
-                    mp.u1(i11).T(h2Var2.getParentActivity(), chat.f28405id, h2Var2, new li.f0(u1Var, h2Var2, i11, j3, booleanValue), null);
+                    mp.u1(i11).T(h2Var2.getParentActivity(), chat.f28403id, h2Var2, new li.f0(u1Var, h2Var2, i11, j3, booleanValue), null);
                     return;
                 }
-                long j10 = chat.f28405id;
+                long j10 = chat.f28403id;
                 mp.u1(i11).W2(-j10, j3, false, booleanValue, new bi.n(h2Var2, j10, 1));
                 return;
             case 3:
@@ -98,8 +98,8 @@ public final class o9 implements x10 {
                 oi.a aVar = (oi.a) obj3;
                 String str = (String) obj2;
                 SpannableString spannableString = (SpannableString) obj;
-                if (i10 == z5Var.J && z5Var.f22568y == aVar) {
-                    Editable text = z5Var.f22562f.getText();
+                if (i10 == z5Var.J && z5Var.f22565y == aVar) {
+                    Editable text = z5Var.f22559f.getText();
                     if (TextUtils.equals(str, text)) {
                         for (qi.c cVar : (qi.c[]) text.getSpans(0, text.length(), qi.c.class)) {
                             text.removeSpan(cVar);
@@ -136,12 +136,12 @@ public final class o9 implements x10 {
                 return;
             case 5:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
-                n60 n60Var = (n60) obj3;
+                o60 o60Var = (o60) obj3;
                 Long l10 = (Long) obj2;
                 TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
                 String str2 = LaunchActivity.C1;
                 try {
-                    n60Var.run();
+                    o60Var.run();
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
@@ -193,18 +193,18 @@ public final class o9 implements x10 {
     }
 
     public o9(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f9476a = i10;
-        this.f9478c = obj;
+        this.f9473a = i10;
+        this.f9475c = obj;
         this.d = obj2;
-        this.f9477b = i7;
-        this.f9479e = obj3;
+        this.f9474b = i7;
+        this.f9476e = obj3;
     }
 
-    public o9(LaunchActivity launchActivity, n60 n60Var, Long l10, int i7) {
-        this.f9476a = 5;
-        this.f9478c = launchActivity;
-        this.d = n60Var;
-        this.f9479e = l10;
-        this.f9477b = i7;
+    public o9(LaunchActivity launchActivity, o60 o60Var, Long l10, int i7) {
+        this.f9473a = 5;
+        this.f9475c = launchActivity;
+        this.d = o60Var;
+        this.f9476e = l10;
+        this.f9474b = i7;
     }
 }

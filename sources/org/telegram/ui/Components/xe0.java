@@ -16,7 +16,7 @@ public final class xe0 extends ck0 {
 
     @Override
     public final boolean E0(float f10) {
-        if (f10 >= this.f41993h3.f34432z1 + org.telegram.messenger.g0.f24115m) {
+        if (f10 >= this.f41993h3.f34432z1 + org.telegram.messenger.g0.f24112m) {
             return true;
         }
         return false;
@@ -48,12 +48,12 @@ public final class xe0 extends ck0 {
             invalidate();
         }
         super.dispatchDraw(canvas);
-        int measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.f24116n;
+        int measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.f24113n;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight2 = getMeasuredHeight();
         bg.d0 d0Var = this.f41991f3;
         d0Var.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        d0Var.b(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29487i5, this.f34074o2));
+        d0Var.b(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29485i5, this.f34074o2));
         d0Var.draw(canvas);
     }
 }

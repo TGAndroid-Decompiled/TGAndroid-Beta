@@ -27,7 +27,7 @@ public final class wl0 extends EditTextBoldCursor {
         int i7;
         super.dispatchDraw(canvas);
         if (this.N1 < 0) {
-            i7 = org.telegram.ui.ActionBar.n6.f29617p7;
+            i7 = org.telegram.ui.ActionBar.n6.f29615p7;
         } else {
             i7 = org.telegram.ui.ActionBar.n6.P5;
         }

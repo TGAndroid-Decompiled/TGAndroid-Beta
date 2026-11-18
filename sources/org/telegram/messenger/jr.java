@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class jr implements Runnable {
-    public final tr f24915a;
-    public final String f24916b;
-    public final long f24917c;
+    public final tr f24912a;
+    public final String f24913b;
+    public final long f24914c;
     public final TLRPC.Reaction d;
-    public final int f24918e;
-    public final int f24919f;
+    public final int f24915e;
+    public final int f24916f;
     public final boolean h;
-    public final u10 f24920n;
+    public final u10 f24917n;
 
     public jr(tr trVar, String str, long j3, TLRPC.Reaction reaction, int i7, int i10, boolean z10, u10 u10Var) {
-        this.f24915a = trVar;
-        this.f24916b = str;
-        this.f24917c = j3;
+        this.f24912a = trVar;
+        this.f24913b = str;
+        this.f24914c = j3;
         this.d = reaction;
-        this.f24918e = i7;
-        this.f24919f = i10;
+        this.f24915e = i7;
+        this.f24916f = i10;
         this.h = z10;
-        this.f24920n = u10Var;
+        this.f24917n = u10Var;
     }
 
     @Override

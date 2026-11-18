@@ -13,33 +13,33 @@ import org.telegram.ui.Components.lc;
 import org.telegram.ui.j91;
 import org.telegram.ui.y91;
 public final class w3 implements x10 {
-    public final int f4176a = 1;
-    public final int f4177b;
-    public final Object f4178c;
+    public final int f4144a = 1;
+    public final int f4145b;
+    public final Object f4146c;
     public final long d;
-    public final Object f4179e;
-    public final Object f4180f;
-    public final Object f4181g;
+    public final Object f4147e;
+    public final Object f4148f;
+    public final Object f4149g;
 
     public w3(int i7, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.x2 x2Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f4177b = i7;
-        this.f4180f = connectedbotstarref;
-        this.f4181g = x2Var;
-        this.f4178c = context;
+        this.f4145b = i7;
+        this.f4148f = connectedbotstarref;
+        this.f4149g = x2Var;
+        this.f4146c = context;
         this.d = j3;
-        this.f4179e = i6Var;
+        this.f4147e = i6Var;
     }
 
     @Override
     public final void a(Object obj) {
         int i7;
         SpannableStringBuilder W2;
-        int i10 = this.f4176a;
+        int i10 = this.f4144a;
         long j3 = this.d;
-        Object obj2 = this.f4181g;
-        Object obj3 = this.f4179e;
-        Object obj4 = this.f4178c;
-        Object obj5 = this.f4180f;
+        Object obj2 = this.f4149g;
+        Object obj3 = this.f4147e;
+        Object obj4 = this.f4146c;
+        Object obj5 = this.f4148f;
         switch (i10) {
             case 0:
                 aa.r rVar = (aa.r) obj5;
@@ -48,9 +48,9 @@ public final class w3 implements x10 {
                 lc lcVar = (lc) obj2;
                 String str = (String) obj;
                 if (str != null) {
-                    f4.f(j3);
+                    e4.g(j3);
                     rVar.run();
-                    v4.q(context, this.f4177b, i6Var, lcVar, str, null);
+                    u4.q(context, this.f4145b, i6Var, lcVar, str, null);
                     return;
                 }
                 return;
@@ -60,7 +60,7 @@ public final class w3 implements x10 {
                 Context context2 = (Context) obj4;
                 org.telegram.ui.ActionBar.i6 i6Var2 = (org.telegram.ui.ActionBar.i6) obj3;
                 TL_payments.connectedBotStarRef connectedbotstarref2 = (TL_payments.connectedBotStarRef) obj;
-                int i11 = this.f4177b;
+                int i11 = this.f4145b;
                 long j10 = this.d;
                 if (connectedbotstarref2 == null) {
                     TLRPC.User c22 = mp.u1(i11).c2(Long.valueOf(connectedbotstarref.bot_id));
@@ -78,13 +78,13 @@ public final class w3 implements x10 {
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                y91 y91Var = ((j91) obj5).f48928b;
+                y91 y91Var = ((j91) obj5).f48916b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
                 int i12 = iArr[0] + 1;
                 iArr[0] = i12;
-                if (i12 == this.f4177b) {
+                if (i12 == this.f4145b) {
                     if (tL_messages_invitedUsers.missing_invitees.isEmpty()) {
                         lc b02 = lc.b0(y91Var);
                         TLRPC.Chat O0 = y91Var.getMessagesController().O0(Long.valueOf(j3));
@@ -116,19 +116,19 @@ public final class w3 implements x10 {
 
     public w3(long j3, aa.r rVar, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var, lc lcVar) {
         this.d = j3;
-        this.f4180f = rVar;
-        this.f4178c = context;
-        this.f4177b = i7;
-        this.f4179e = i6Var;
-        this.f4181g = lcVar;
+        this.f4148f = rVar;
+        this.f4146c = context;
+        this.f4145b = i7;
+        this.f4147e = i6Var;
+        this.f4149g = lcVar;
     }
 
     public w3(j91 j91Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, ArrayList arrayList, long j3) {
-        this.f4180f = j91Var;
-        this.f4178c = tL_messages_invitedUsers;
-        this.f4179e = iArr;
-        this.f4177b = i7;
-        this.f4181g = arrayList;
+        this.f4148f = j91Var;
+        this.f4146c = tL_messages_invitedUsers;
+        this.f4147e = iArr;
+        this.f4145b = i7;
+        this.f4149g = arrayList;
         this.d = j3;
     }
 }

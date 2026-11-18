@@ -21,7 +21,7 @@ public final class il extends jg.s0 {
                 il ilVar = klVar.O;
                 org.telegram.ui.ActionBar.r0 r0Var = klVar.f36819x;
                 if (r0Var != null) {
-                    r0Var.setShowSearchProgress(ilVar.f17413w);
+                    r0Var.setShowSearchProgress(ilVar.f17410w);
                 }
                 TextView textView = klVar.f36817w;
                 if (textView != null) {
@@ -30,22 +30,22 @@ public final class il extends jg.s0 {
                 super.f();
                 return;
             default:
-                org.telegram.ui.pa0 pa0Var = (org.telegram.ui.pa0) fsVar;
-                org.telegram.ui.ActionBar.h5 h5Var = pa0Var.f50852r;
+                org.telegram.ui.qa0 qa0Var = (org.telegram.ui.qa0) fsVar;
+                org.telegram.ui.ActionBar.h5 h5Var = qa0Var.f51128r;
                 if (h5Var != null) {
-                    h5Var.setShowSearchProgress(pa0Var.T.f17413w);
+                    h5Var.setShowSearchProgress(qa0Var.T.f17410w);
                 }
-                TextView textView2 = pa0Var.f50847n;
+                TextView textView2 = qa0Var.f51123n;
                 if (textView2 != null) {
-                    textView2.setText(org.telegram.messenger.gd.a0(null, null, 2131747973, pa0Var.T.h));
+                    textView2.setText(org.telegram.messenger.gd.a0(null, null, 2131747973, qa0Var.T.h));
                 }
                 super.f();
                 return;
         }
     }
 
-    public il(org.telegram.ui.pa0 pa0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+    public il(org.telegram.ui.qa0 qa0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
         super(context, i6Var, false, z10);
-        this.F = pa0Var;
+        this.F = qa0Var;
     }
 }

@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import bi.e8;
+import bi.d8;
 import c8.ma;
 import c8.ra;
 import fi.g4;
@@ -44,7 +44,7 @@ public final class i3 extends s00 implements fs {
     public FrameLayout T;
     public vg.m U;
     public jn V;
-    public e8 W;
+    public d8 W;
 
     public i3(long j3) {
         this.S = j3;
@@ -55,7 +55,7 @@ public final class i3 extends s00 implements fs {
     public static void A0(i3 i3Var, Context context, TLRPC.User user, TL_payments.connectedBotStarRef connectedbotstarref) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i3Var.resourceProvider);
         String M0 = gd.M0(2131748815, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         u1Var.U = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131748814, o10.q(user)));
         alertDialog$Builder.k(gd.M0(2131748813, null), new ab.g(24, i3Var, connectedbotstarref));
@@ -75,9 +75,9 @@ public final class i3 extends s00 implements fs {
     }
 
     public static void C0(i3 i3Var, Context context, int i7) {
-        e8 e8Var = i3Var.W;
-        if (e8Var != null) {
-            Object obj = e8Var.G(i7).H;
+        d8 d8Var = i3Var.W;
+        if (d8Var != null) {
+            Object obj = d8Var.G(i7).H;
             if (obj instanceof TL_payments.starRefProgram) {
                 J0(context, i3Var.currentAccount, (TL_payments.starRefProgram) obj, i3Var.S, i3Var.resourceProvider, false);
             } else if (obj instanceof TL_payments.connectedBotStarRef) {
@@ -91,8 +91,8 @@ public final class i3 extends s00 implements fs {
         if (tLObject instanceof TL_payments.connectedStarRefBots) {
             TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
             di.b0 d = di.e0.g(i3Var.currentAccount).d(j3);
-            ArrayList arrayList = d.f8519e;
-            int i7 = d.f8516a;
+            ArrayList arrayList = d.f8516e;
+            int i7 = d.f8513a;
             mp.u1(i7).f4(connectedstarrefbots.users, false);
             for (int i10 = 0; i10 < connectedstarrefbots.connected_bots.size(); i10++) {
                 TL_payments.connectedBotStarRef connectedbotstarref = connectedstarrefbots.connected_bots.get(i10);
@@ -103,7 +103,7 @@ public final class i3 extends s00 implements fs {
                     } else if (((TL_payments.connectedBotStarRef) arrayList.get(i11)).bot_id == connectedbotstarref.bot_id) {
                         if (connectedbotstarref.revoked) {
                             arrayList.remove(i11);
-                            d.f8518c = Math.max(d.f8518c - 1, 0);
+                            d.f8515c = Math.max(d.f8515c - 1, 0);
                         } else {
                             arrayList.set(i11, connectedbotstarref);
                         }
@@ -112,14 +112,14 @@ public final class i3 extends s00 implements fs {
                     }
                 }
             }
-            ks.f(i7).k(ks.N3, Long.valueOf(d.f8517b));
+            ks.f(i7).k(ks.O3, Long.valueOf(d.f8514b));
             d.a();
             di.c0 e10 = di.e0.g(i3Var.currentAccount).e(j3);
-            e10.f8585c = 0;
+            e10.f8582c = 0;
             e10.d = false;
-            e10.f8589i = false;
-            e10.f8587f = 0L;
-            e10.f8590j = null;
+            e10.f8586i = false;
+            e10.f8584f = 0L;
+            e10.f8587j = null;
             e10.h = false;
             e10.a();
             i3Var.W.O(true);
@@ -128,9 +128,9 @@ public final class i3 extends s00 implements fs {
     }
 
     public static boolean E0(i3 i3Var, Context context, View view, int i7) {
-        e8 e8Var = i3Var.W;
-        if (e8Var != null) {
-            Object obj = e8Var.G(i7).H;
+        d8 d8Var = i3Var.W;
+        if (d8Var != null) {
+            Object obj = d8Var.G(i7).H;
             if (obj instanceof TL_payments.connectedBotStarRef) {
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
                 TLRPC.User c22 = mp.u1(i3Var.currentAccount).c2(Long.valueOf(connectedbotstarref.bot_id));
@@ -233,7 +233,7 @@ public final class i3 extends s00 implements fs {
         if (connectedbotstarref.participants > 0) {
             FrameLayout frameLayout2 = new FrameLayout(context);
             int L3 = org.telegram.messenger.g0.L(50.0f);
-            int i17 = n6.f29469h5;
+            int i17 = n6.f29467h5;
             Drawable d02 = n6.d0(L3, n6.w0(i17, i6Var));
             q6 M2 = u6.M(i17);
             frameLayout2.setBackground(d02);
@@ -288,7 +288,7 @@ public final class i3 extends s00 implements fs {
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
         int L5 = org.telegram.messenger.g0.L(28.0f);
-        int i19 = n6.f29339a7;
+        int i19 = n6.f29337a7;
         ShapeDrawable d04 = n6.d0(L5, n6.w0(i19, i6Var));
         q6 M4 = u6.M(i19);
         linearLayout3.setBackground(d04);
@@ -307,7 +307,7 @@ public final class i3 extends s00 implements fs {
         ImageView imageView2 = new ImageView(context);
         ImageView.ScaleType scaleType3 = scaleType;
         imageView2.setScaleType(scaleType3);
-        int i20 = n6.f29654r5;
+        int i20 = n6.f29652r5;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         u6.s(imageView2, i20, i6Var, mode);
         imageView2.setImageResource(2131232699);
@@ -429,7 +429,7 @@ public final class i3 extends s00 implements fs {
         int i23 = i14;
         int w02 = n6.w0(i23, i6Var);
         int w03 = n6.w0(i23, i6Var);
-        int i24 = n6.f29488i6;
+        int i24 = n6.f29486i6;
         int w10 = n6.w(w03, n6.w0(i24, i6Var));
         org.telegram.ui.Cells.y k02 = n6.k0(L6, L6, L6, L6, w02, w10, w10);
         q6 M6 = u6.M(i23);
@@ -491,7 +491,7 @@ public final class i3 extends s00 implements fs {
             connectedbotstarref2 = connectedbotstarref;
         }
         linearLayout.setOnClickListener(new ai.v2(29, x2Var3, connectedbotstarref2));
-        x2Var3.Q(n6.f29469h5);
+        x2Var3.Q(n6.f29467h5);
         org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
         if (!org.telegram.messenger.g0.Q1() && T != null && !org.telegram.messenger.g0.u1(T)) {
             x2Var3.a0(T);
@@ -510,54 +510,54 @@ public final class i3 extends s00 implements fs {
         this.F = org.telegram.messenger.g0.L(238.0f);
         jn jnVar = new jn(context, 6);
         this.V = jnVar;
-        u6.h(n6.f29487i5, jnVar, null);
+        u6.h(n6.f29485i5, jnVar, null);
         super.createView(context);
         this.T = new FrameLayout(context);
         vg.m mVar = new vg.m(context, 1, 3);
         this.U = mVar;
         mVar.setImportantForAccessibility(4);
-        vg.f fVar = this.U.f59462b;
-        fVar.f59446z = n6.Wk;
+        vg.f fVar = this.U.f59463b;
+        fVar.f59447z = n6.Wk;
         fVar.A = n6.Xk;
         fVar.b();
-        this.U.setStarParticlesView(this.f51835e);
+        this.U.setStarParticlesView(this.f51824e);
         this.T.addView(this.U, ma.d(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         j0(gd.M0(2131752461, null), org.telegram.messenger.g0.W2(gd.M0(2131752462, null)), this.T, null);
-        this.f51834c.setOnItemClickListener(new g4(2, this, context));
-        this.f51834c.setOnItemLongClickListener(new ab.g(25, this, context));
+        this.f51823c.setOnItemClickListener(new g4(2, this, context));
+        this.f51823c.setOnItemLongClickListener(new ab.g(25, this, context));
         v4.k kVar = new v4.k();
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         kVar.C = false;
         kVar.o(lr.h);
         kVar.n(350L);
-        this.f51834c.setItemAnimator(kVar);
-        this.f51834c.setOnScrollListener(new bi.q1(this, 22));
+        this.f51823c.setItemAnimator(kVar);
+        this.f51823c.setOnScrollListener(new bi.q1(this, 22));
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        e8 e8Var;
-        int i11 = ks.N3;
+        d8 d8Var;
+        int i11 = ks.O3;
         long j3 = this.S;
         if (i7 == i11) {
             if (((Long) objArr[0]).longValue() == j3) {
-                e8 e8Var2 = this.W;
-                if (e8Var2 != null) {
-                    e8Var2.O(true);
+                d8 d8Var2 = this.W;
+                if (d8Var2 != null) {
+                    d8Var2.O(true);
                 }
                 di.e0.g(this.currentAccount).d(j3).a();
             }
-        } else if (i7 == ks.M3 && ((Long) objArr[0]).longValue() == j3 && (e8Var = this.W) != null) {
-            e8Var.O(true);
+        } else if (i7 == ks.N3 && ((Long) objArr[0]).longValue() == j3 && (d8Var = this.W) != null) {
+            d8Var.O(true);
         }
     }
 
     @Override
     public final v4.i0 k0() {
-        e8 e8Var = new e8(this, this.f51834c, getParentActivity(), this.currentAccount, this.classGuid, new e7(this, 21), getResourceProvider(), 5);
-        this.W = e8Var;
-        return e8Var;
+        d8 d8Var = new d8(this, this.f51823c, getParentActivity(), this.currentAccount, this.classGuid, new e7(this, 21), getResourceProvider(), 5);
+        this.W = d8Var;
+        return d8Var;
     }
 
     @Override
@@ -569,16 +569,16 @@ public final class i3 extends s00 implements fs {
 
     @Override
     public final boolean onFragmentCreate() {
+        ks.f(this.currentAccount).c(this, ks.O3);
         ks.f(this.currentAccount).c(this, ks.N3);
-        ks.f(this.currentAccount).c(this, ks.M3);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
+        ks.f(this.currentAccount).n(this, ks.O3);
         ks.f(this.currentAccount).n(this, ks.N3);
-        ks.f(this.currentAccount).n(this, ks.M3);
     }
 
     @Override

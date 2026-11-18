@@ -12,7 +12,7 @@ public final class od implements Runnable {
 
     @Override
     public final void run() {
-        org.telegram.ui.eg0 eg0Var;
+        org.telegram.ui.fg0 fg0Var;
         int i7 = this.f38065a;
         ChatActivityEnterView chatActivityEnterView = this.f38066b;
         boolean z10 = this.f38067c;
@@ -38,8 +38,8 @@ public final class od implements Runnable {
                 td tdVar = chatActivityEnterView2.f32571d6;
                 chatActivityEnterView2.N0 = System.currentTimeMillis();
                 boolean s12 = chatActivityEnterView2.s1(false, 0, 0, 0L, true);
-                if (!z10 && (eg0Var = chatActivityEnterView2.M0) != null) {
-                    eg0Var.h(!s12);
+                if (!z10 && (fg0Var = chatActivityEnterView2.M0) != null) {
+                    fg0Var.h(!s12);
                     chatActivityEnterView2.M0 = null;
                     return;
                 }

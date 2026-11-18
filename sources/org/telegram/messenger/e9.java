@@ -2,21 +2,21 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.ConnectionsManager;
 public final class e9 implements Runnable {
-    public final int f23675a;
-    public final int f23676b;
-    public final int f23677c;
+    public final int f23672a;
+    public final int f23673b;
+    public final int f23674c;
 
     public e9(int i7, int i10, int i11) {
-        this.f23675a = i11;
-        this.f23676b = i7;
-        this.f23677c = i10;
+        this.f23672a = i11;
+        this.f23673b = i7;
+        this.f23674c = i10;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f23675a;
-        int i10 = this.f23677c;
-        int i11 = this.f23676b;
+        int i7 = this.f23672a;
+        int i10 = this.f23674c;
+        int i11 = this.f23673b;
         switch (i7) {
             case 0:
                 ConnectionsManager.getInstance(i11).cancelRequest(i10, true);

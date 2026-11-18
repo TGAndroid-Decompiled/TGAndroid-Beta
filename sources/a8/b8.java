@@ -63,7 +63,7 @@ public class b8 {
 
     public static ColorStateList e(Context context, int i7) {
         int c10 = m.z2.c(context, 2130968728);
-        return new ColorStateList(new int[][]{m.z2.f20281b, m.z2.d, m.z2.f20282c, m.z2.f20284f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
+        return new ColorStateList(new int[][]{m.z2.f20278b, m.z2.d, m.z2.f20279c, m.z2.f20281f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
     }
 
     public static x2.g0 f(e2.c1 c1Var, h9.i0 i0Var, x2.g0 g0Var, e2.i1 i1Var) {
@@ -77,7 +77,7 @@ public class b8 {
             l10 = y02.l(B);
         }
         if (!c1Var.p() && !y02.p()) {
-            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10437e);
+            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10434e);
         } else {
             i7 = -1;
         }
@@ -130,13 +130,13 @@ public class b8 {
     }
 
     public static boolean i(x2.g0 g0Var, Object obj, boolean z10, int i7, int i10, int i11) {
-        Object obj2 = g0Var.f60087a;
-        int i12 = g0Var.f60088b;
+        Object obj2 = g0Var.f60088a;
+        int i12 = g0Var.f60089b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i12 != i7 || g0Var.f60089c != i10) {
-            if (z10 || i12 != -1 || g0Var.f60090e != i11) {
+        if (!z10 || i12 != i7 || g0Var.f60090c != i10) {
+            if (z10 || i12 != -1 || g0Var.f60091e != i11) {
                 return false;
             }
             return true;
@@ -146,12 +146,12 @@ public class b8 {
 
     public static void n(Drawable drawable, int i7, PorterDuff.Mode mode) {
         PorterDuffColorFilter h;
-        int[] iArr = m.l1.f20119a;
+        int[] iArr = m.l1.f20116a;
         Drawable mutate = drawable.mutate();
         if (mode == null) {
-            mode = m.q.f20182b;
+            mode = m.q.f20179b;
         }
-        PorterDuff.Mode mode2 = m.q.f20182b;
+        PorterDuff.Mode mode2 = m.q.f20179b;
         synchronized (m.q.class) {
             h = m.m2.h(i7, mode);
         }
@@ -160,7 +160,7 @@ public class b8 {
 
     public void a(xa xaVar, x2.g0 g0Var, e2.l1 l1Var) {
         if (g0Var != null) {
-            if (l1Var.b(g0Var.f60087a) != -1) {
+            if (l1Var.b(g0Var.f60088a) != -1) {
                 xaVar.w(g0Var, l1Var);
                 return;
             }
@@ -227,19 +227,19 @@ public class b8 {
             int[] iArr2 = new int[3];
             ColorStateList d = m.z2.d(context, 2130968734);
             if (d != null && d.isStateful()) {
-                int[] iArr3 = m.z2.f20281b;
+                int[] iArr3 = m.z2.f20278b;
                 iArr[0] = iArr3;
                 iArr2[0] = d.getColorForState(iArr3, 0);
-                iArr[1] = m.z2.f20283e;
+                iArr[1] = m.z2.f20280e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20284f;
+                iArr[2] = m.z2.f20281f;
                 iArr2[2] = d.getDefaultColor();
             } else {
-                iArr[0] = m.z2.f20281b;
+                iArr[0] = m.z2.f20278b;
                 iArr2[0] = m.z2.b(context, 2130968734);
-                iArr[1] = m.z2.f20283e;
+                iArr[1] = m.z2.f20280e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20284f;
+                iArr[2] = m.z2.f20281f;
                 iArr2[2] = m.z2.c(context, 2130968734);
             }
             return new ColorStateList(iArr, iArr2);
@@ -346,7 +346,7 @@ public class b8 {
 
     public void o() {
         if (((LocationManager) this.f342b) == null) {
-            this.f342b = (LocationManager) org.telegram.messenger.t0.f26915b.getSystemService("location");
+            this.f342b = (LocationManager) org.telegram.messenger.t0.f26913b.getSystemService("location");
         }
         try {
             ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (od) this.f343c);

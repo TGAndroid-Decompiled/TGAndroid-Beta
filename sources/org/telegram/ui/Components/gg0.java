@@ -62,16 +62,16 @@ public final class gg0 implements ig0 {
                     this.f35494b.save();
                     this.f35494b.translate(f10, org.telegram.messenger.g0.L(32.0f));
                     bi.y1 y1Var = jg0Var2.f36437n;
-                    if (y1Var.f4250c) {
+                    if (y1Var.f4218c) {
                         Canvas canvas3 = this.f35494b;
-                        float centerX = ((RectF) jg0Var2.f36437n.f4251e).centerX();
-                        RectF rectF = (RectF) jg0Var2.f36437n.f4251e;
-                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(((RectF) y1Var.f4251e).width(), ((RectF) jg0Var2.f36437n.f4251e).height()) / 2.0f, paint);
-                    } else if (y1Var.f4249b) {
+                        float centerX = ((RectF) jg0Var2.f36437n.f4219e).centerX();
+                        RectF rectF = (RectF) jg0Var2.f36437n.f4219e;
+                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(((RectF) y1Var.f4219e).width(), ((RectF) jg0Var2.f36437n.f4219e).height()) / 2.0f, paint);
+                    } else if (y1Var.f4217b) {
                         this.f35494b.drawPath((Path) y1Var.d, paint);
                     } else {
-                        float max = Math.max(((RectF) y1Var.f4251e).width(), ((RectF) jg0Var2.f36437n.f4251e).height()) / 2.0f;
-                        this.f35494b.drawRoundRect((RectF) jg0Var2.f36437n.f4251e, max, max, paint);
+                        float max = Math.max(((RectF) y1Var.f4219e).width(), ((RectF) jg0Var2.f36437n.f4219e).height()) / 2.0f;
+                        this.f35494b.drawRoundRect((RectF) jg0Var2.f36437n.f4219e, max, max, paint);
                     }
                     this.f35494b.restore();
                 } else {

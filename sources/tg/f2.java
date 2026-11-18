@@ -46,7 +46,7 @@ public class f2 extends j {
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
                 if (tL_maskCoords != null) {
-                    this.f57842t0 = tL_maskCoords.f28480n;
+                    this.f57842t0 = tL_maskCoords.f28478n;
                 }
             } else {
                 i7++;
@@ -61,7 +61,7 @@ public class f2 extends j {
         imageReceiver.K0 = true;
         imageReceiver.H0(w01Var);
         this.f57847y0.t0(fc.b(document), null, fc.c(w7.w(document.thumbs, 90, false, null, false), document), null, "webp", obj, 1);
-        this.f57847y0.f22642h1 = new z1(this, 2);
+        this.f57847y0.f22639h1 = new z1(this, 2);
         k();
     }
 

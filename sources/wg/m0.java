@@ -15,22 +15,22 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.i2;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Cells.y6;
+import org.telegram.ui.Cells.o4;
+import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.k80;
 import org.telegram.ui.jw0;
 import v4.f1;
 public final class m0 extends bk0 {
-    public final q0 f59792c;
+    public final q0 f59793c;
 
     public m0(q0 q0Var) {
-        this.f59792c = q0Var;
+        this.f59793c = q0Var;
     }
 
     @Override
     public final boolean D(f1 f1Var) {
-        if (f1Var.f59126f == 3) {
+        if (f1Var.f59127f == 3) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class m0 extends bk0 {
 
     @Override
     public final int b() {
-        return this.f59792c.U1.size() + 3;
+        return this.f59793c.U1.size() + 3;
     }
 
     @Override
@@ -59,26 +59,26 @@ public final class m0 extends bk0 {
     @Override
     public final void t(f1 f1Var, int i7) {
         String str;
-        int i10 = f1Var.f59126f;
-        View view = f1Var.f59122a;
-        q0 q0Var = this.f59792c;
+        int i10 = f1Var.f59127f;
+        View view = f1Var.f59123a;
+        q0 q0Var = this.f59793c;
         if (i10 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) q0Var.U1.get(i7 - 3);
             ah.r rVar = (ah.r) view;
             rVar.setBoost(tL_myBoost);
             rVar.c(q0Var.T1.contains(tL_myBoost), false);
         } else if (i10 == 2) {
-            n4 n4Var = (n4) view;
-            n4Var.setTextSize(15.0f);
-            n4Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(2.0f));
-            n4Var.setText(gd.M0(2131753293, null));
+            o4 o4Var = (o4) view;
+            o4Var.setTextSize(15.0f);
+            o4Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(2.0f));
+            o4Var.setText(gd.M0(2131753293, null));
         } else if (i10 == 0) {
             p0 p0Var = (p0) view;
             q0Var.X1 = p0Var;
             TLRPC.Chat chat = q0Var.V1;
-            k80 k80Var = p0Var.f59809e;
+            k80 k80Var = p0Var.f59810e;
             try {
-                int i11 = (int) mp.u1(j10.f24773t0).f25757s0;
+                int i11 = (int) mp.u1(j10.f24770t0).f25755s0;
                 if (chat == null) {
                     str = "";
                 } else {
@@ -100,7 +100,7 @@ public final class m0 extends bk0 {
     public final f1 x(ViewGroup viewGroup, int i7) {
         View view;
         Context context = viewGroup.getContext();
-        q0 q0Var = this.f59792c;
+        q0 q0Var = this.f59793c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -110,11 +110,11 @@ public final class m0 extends bk0 {
                         view = new ah.r(context, true, false, q0Var.J0, true);
                     }
                 } else {
-                    view = new n4(context, 22);
+                    view = new o4(context, 22);
                 }
             } else {
-                int i10 = n6.f29339a7;
-                view = new y6(context, n6.x0(null, i10, false), 0);
+                int i10 = n6.f29337a7;
+                view = new z6(context, n6.x0(null, i10, false), 0);
                 u6.h(i10, view, null);
             }
         } else {

@@ -14,38 +14,38 @@ public final class a61 extends l2.j {
     public final n2.r0 a(Context context) {
         fi.y3 y3Var = new fi.y3(context, 1);
         ?? obj = new Object();
-        obj.f21943f = this.d;
+        obj.f21940f = this.d;
         ?? obj2 = new Object();
-        obj2.f5591e = new float[0];
-        obj2.f5588a = 3;
+        obj2.f5588e = new float[0];
+        obj2.f5585a = 3;
         obj2.d = new float[513];
-        obj2.f5589b = new float[1024];
-        obj2.f5590c = new float[1024];
+        obj2.f5586b = new float[1024];
+        obj2.f5587c = new float[1024];
         int[] iArr = new int[1024];
-        obj2.f5592f = iArr;
+        obj2.f5589f = iArr;
         iArr[0] = 0;
         int i7 = 512;
         int i10 = 1;
         while (i10 < 1024) {
             for (int i11 = 0; i11 < i10; i11++) {
-                int[] iArr2 = (int[]) obj2.f5592f;
+                int[] iArr2 = (int[]) obj2.f5589f;
                 iArr2[i11 + i10] = iArr2[i11] + i7;
             }
             i10 <<= 1;
             i7 >>= 1;
         }
-        obj2.f5593g = new float[1024];
+        obj2.f5590g = new float[1024];
         obj2.h = new float[1024];
         for (int i12 = 0; i12 < 1024; i12++) {
             double d = (-3.1415927f) / i12;
-            ((float[]) obj2.f5593g)[i12] = (float) Math.sin(d);
+            ((float[]) obj2.f5590g)[i12] = (float) Math.sin(d);
             ((float[]) obj2.h)[i12] = (float) Math.cos(d);
         }
-        obj.f21941c = obj2;
+        obj.f21938c = obj2;
         obj.d = new float[1024];
-        obj.f21939a = 0;
+        obj.f21936a = 0;
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-        obj.f21942e = allocateDirect;
+        obj.f21939e = allocateDirect;
         allocateDirect.position(0);
         y3Var.d = new h6.m(new f2.n[]{new n2.y0(obj)});
         return y3Var.a();

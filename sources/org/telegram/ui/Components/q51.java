@@ -32,7 +32,7 @@ public final class q51 extends Drawable implements u5, v6, org.telegram.messenge
         this.f38701a = p10Var;
         this.f38705f = new HashSet();
         this.f38707r = new ImageReceiver(null);
-        this.f38708s = org.telegram.messenger.j10.f24773t0;
+        this.f38708s = org.telegram.messenger.j10.f24770t0;
         this.f38702b = i7;
         this.d = z10;
         int o4 = i0.a.o(videoSize.background_colors.get(0).intValue(), 255);
@@ -56,7 +56,7 @@ public final class q51 extends Drawable implements u5, v6, org.telegram.messenge
             } else {
                 i12 = 8;
             }
-            o5 o5Var = new o5(i12, org.telegram.messenger.j10.f24773t0, tL_videoSizeEmojiMarkup.emoji_id);
+            o5 o5Var = new o5(i12, org.telegram.messenger.j10.f24770t0, tL_videoSizeEmojiMarkup.emoji_id);
             this.h = o5Var;
             o5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (videoSize instanceof TLRPC.TL_videoSizeStickerMarkup) {
@@ -186,7 +186,7 @@ public final class q51 extends Drawable implements u5, v6, org.telegram.messenge
                             return false;
                         }
                         TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.f38710x;
-                        if (tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = q51Var.f38710x) != null && tL_videoSizeStickerMarkup2.stickerset.f28425id == tL_videoSizeStickerMarkup.stickerset.f28425id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id) {
+                        if (tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = q51Var.f38710x) != null && tL_videoSizeStickerMarkup2.stickerset.f28423id == tL_videoSizeStickerMarkup.stickerset.f28423id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id) {
                             return true;
                         }
                         return false;

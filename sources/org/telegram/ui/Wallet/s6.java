@@ -43,7 +43,7 @@ public final class s6 extends FrameLayout implements SensorEventListener {
     public ValueAnimator f44999c0;
     public q3 d;
     public float f45000d0;
-    public final org.telegram.ui.Cells.w0 f45001e;
+    public final org.telegram.ui.Cells.x0 f45001e;
     public float f45002e0;
     public final w01 f45003f;
     public float f45004f0;
@@ -84,16 +84,16 @@ public final class s6 extends FrameLayout implements SensorEventListener {
         setWillNotDraw(false);
         setCameraDistance(org.telegram.messenger.g0.L(4800.0f));
         c8.ra.b(this, 0.02f, 1.2f);
-        org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(this, context);
-        this.f45001e = w0Var;
-        addView(w0Var, c8.ma.e(-1, -1, 17));
+        org.telegram.ui.Cells.x0 x0Var = new org.telegram.ui.Cells.x0(this, context);
+        this.f45001e = x0Var;
+        addView(x0Var, c8.ma.e(-1, -1, 17));
         w01 w01Var = new w01(context, 4);
         this.f45003f = w01Var;
         w01Var.setPadding(2, 2, 2, 2);
         w01Var.setLayerType(2, null);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
         layoutParams.setMargins(-2, -2, -2, -2);
-        w0Var.addView(w01Var, layoutParams);
+        x0Var.addView(w01Var, layoutParams);
         hi.m5 m5Var = new hi.m5(this, context);
         this.h = m5Var;
         w01Var.addView(m5Var, c8.ma.e(-1, -1, 17));
@@ -124,7 +124,7 @@ public final class s6 extends FrameLayout implements SensorEventListener {
             this.f44996b = new p6(context.getApplicationContext(), i7, i10, q6Var);
             return;
         }
-        w0Var.setVisibility(4);
+        x0Var.setVisibility(4);
         p6.f44754l0.postRunnable(new jg.o1(this, context, i7, i10, q6Var));
     }
 
@@ -237,11 +237,11 @@ public final class s6 extends FrameLayout implements SensorEventListener {
                     iArr2[i15 + 1] = i14;
                 }
             }
-            org.telegram.ui.Cells.w0 w0Var = this.f45001e;
-            int width2 = w0Var.getWidth();
-            int height2 = w0Var.getHeight();
+            org.telegram.ui.Cells.x0 x0Var = this.f45001e;
+            int width2 = x0Var.getWidth();
+            int height2 = x0Var.getHeight();
             if (width2 != 0 && height2 != 0) {
-                float[] fArr9 = (float[]) w0Var.f32228b;
+                float[] fArr9 = (float[]) x0Var.f32281b;
                 fArr9[0] = 0.0f;
                 fArr9[1] = 0.0f;
                 float f16 = width2;
@@ -252,8 +252,8 @@ public final class s6 extends FrameLayout implements SensorEventListener {
                 fArr9[5] = f17;
                 fArr9[6] = 0.0f;
                 fArr9[7] = f17;
-                w0Var.f32229c = ((Matrix) w0Var.d).setPolyToPoly(fArr9, 0, this.f45015w, 0, 4);
-                w0Var.invalidate();
+                x0Var.f32282c = ((Matrix) x0Var.d).setPolyToPoly(fArr9, 0, this.f45015w, 0, 4);
+                x0Var.invalidate();
             }
         }
         p6 p6Var2 = this.f44996b;
@@ -536,7 +536,7 @@ public final class s6 extends FrameLayout implements SensorEventListener {
 
     public void setStickerStyle(float[] fArr) {
         hi.m5 m5Var = this.h;
-        m5Var.f15031b = fArr;
+        m5Var.f15028b = fArr;
         this.f45001e.invalidate();
         m5Var.invalidate();
         this.f45011n.invalidate();

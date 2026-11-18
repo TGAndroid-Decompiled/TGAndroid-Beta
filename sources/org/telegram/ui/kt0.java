@@ -8,12 +8,12 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class kt0 extends org.telegram.ui.Components.bk0 {
-    public final Context f49334c;
+    public final Context f49340c;
     public final PrivacyControlActivity d;
 
     public kt0(PrivacyControlActivity privacyControlActivity, Context context) {
         this.d = privacyControlActivity;
-        this.f49334c = context;
+        this.f49340c = context;
     }
 
     @Override
@@ -160,52 +160,52 @@ public final class kt0 extends org.telegram.ui.Components.bk0 {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View z8Var;
+        View a9Var;
         int i10;
         int i11;
         org.telegram.ui.ActionBar.i6 i6Var;
         org.telegram.ui.ActionBar.i6 i6Var2;
-        org.telegram.ui.Cells.w9 w9Var;
+        org.telegram.ui.Cells.x9 x9Var;
         org.telegram.ui.ActionBar.i6 i6Var3;
-        Context context = this.f49334c;
+        Context context = this.f49340c;
         PrivacyControlActivity privacyControlActivity = this.d;
         switch (i7) {
             case 0:
-                org.telegram.ui.Cells.w9 w9Var2 = new org.telegram.ui.Cells.w9(context);
-                w9Var2.setCanDisable(true);
-                w9Var = w9Var2;
-                z8Var = w9Var;
+                org.telegram.ui.Cells.x9 x9Var2 = new org.telegram.ui.Cells.x9(context);
+                x9Var2.setCanDisable(true);
+                x9Var = x9Var2;
+                a9Var = x9Var;
                 break;
             case 1:
-                z8Var = new org.telegram.ui.Cells.z8(context);
+                a9Var = new org.telegram.ui.Cells.a9(context);
                 break;
             case 2:
-                z8Var = new org.telegram.ui.Cells.n4(context);
+                a9Var = new org.telegram.ui.Cells.o4(context);
                 break;
             case 3:
-                z8Var = new org.telegram.ui.Cells.i6(context, null);
+                a9Var = new org.telegram.ui.Cells.j6(context, null);
                 break;
             case 4:
-                z8Var = privacyControlActivity.d;
+                a9Var = privacyControlActivity.d;
                 break;
             case 5:
             default:
-                z8Var = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.c0) null);
+                a9Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c0) null);
                 break;
             case 6:
-                org.telegram.ui.Cells.m8 m8Var = new org.telegram.ui.Cells.m8(privacyControlActivity.getParentActivity());
-                privacyControlActivity.f43486w0 = m8Var;
+                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(privacyControlActivity.getParentActivity());
+                privacyControlActivity.f43486w0 = n8Var;
                 if (privacyControlActivity.f43491z0 == null) {
-                    m8Var.o(2131232049, org.telegram.messenger.gd.a0(null, null, 2131745322, new Object[0]), false);
+                    n8Var.o(2131232049, org.telegram.messenger.gd.a0(null, null, 2131745322, new Object[0]), false);
                 } else {
-                    m8Var.o(2131232049, org.telegram.messenger.gd.a0("UpdatePhotoForRest", null, 2131743580, new Object[0]), true);
+                    n8Var.o(2131232049, org.telegram.messenger.gd.a0("UpdatePhotoForRest", null, 2131743580, new Object[0]), true);
                 }
                 privacyControlActivity.f43486w0.setBackgroundDrawable(org.telegram.ui.ActionBar.n6.N0(false));
-                privacyControlActivity.f43486w0.g(org.telegram.ui.ActionBar.n6.f29731v6, org.telegram.ui.ActionBar.n6.f29712u6);
+                privacyControlActivity.f43486w0.g(org.telegram.ui.ActionBar.n6.f29729v6, org.telegram.ui.ActionBar.n6.f29710u6);
                 privacyControlActivity.f43484v0 = new org.telegram.ui.Components.mh0(2131623965, org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f), false, null);
-                privacyControlActivity.f43486w0.f31082e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
-                privacyControlActivity.f43486w0.f31082e.setAnimation(privacyControlActivity.f43484v0);
-                z8Var = privacyControlActivity.f43486w0;
+                privacyControlActivity.f43486w0.f31137e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
+                privacyControlActivity.f43486w0.f31137e.setAnimation(privacyControlActivity.f43484v0);
+                a9Var = privacyControlActivity.f43486w0;
                 break;
             case 7:
                 privacyControlActivity.f43488x0 = new org.telegram.ui.Components.q9(privacyControlActivity.getParentActivity());
@@ -230,17 +230,17 @@ public final class kt0 extends org.telegram.ui.Components.bk0 {
                 privacyControlActivity.f43490y0.getImageView().setVisibility(0);
                 privacyControlActivity.f43490y0.setBackgroundDrawable(org.telegram.ui.ActionBar.n6.N0(false));
                 or orVar = privacyControlActivity.f43490y0;
-                int i13 = org.telegram.ui.ActionBar.n6.f29617p7;
+                int i13 = org.telegram.ui.ActionBar.n6.f29615p7;
                 orVar.g(i13, i13);
-                z8Var = privacyControlActivity.f43490y0;
+                a9Var = privacyControlActivity.f43490y0;
                 break;
             case 8:
                 i6Var = ((org.telegram.ui.ActionBar.h2) privacyControlActivity).resourceProvider;
-                z8Var = new org.telegram.ui.Cells.r8(context, i6Var);
+                a9Var = new org.telegram.ui.Cells.s8(context, i6Var);
                 break;
             case 9:
                 i6Var2 = ((org.telegram.ui.ActionBar.h2) privacyControlActivity).resourceProvider;
-                z8Var = new org.telegram.ui.Cells.t7(context, i6Var2);
+                a9Var = new org.telegram.ui.Cells.u7(context, i6Var2);
                 break;
             case 10:
                 ?? frameLayout = new FrameLayout(context);
@@ -254,10 +254,10 @@ public final class kt0 extends org.telegram.ui.Components.bk0 {
                 dVar.i(spannableStringBuilder, false, true);
                 dVar.setOnClickListener(new j40(this, 26));
                 frameLayout.addView(dVar, c8.ma.d(-1, 48.0f, 119, 18.0f, 0.0f, 18.0f, 16.0f));
-                w9Var = frameLayout;
-                z8Var = w9Var;
+                x9Var = frameLayout;
+                a9Var = x9Var;
                 break;
         }
-        return new v4.f1(z8Var);
+        return new v4.f1(a9Var);
     }
 }

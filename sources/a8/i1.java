@@ -11,7 +11,7 @@ public abstract class i1 {
     public static FrameLayout a(Activity activity, org.telegram.ui.ActionBar.i6 i6Var, int i7, String str, String str2) {
         FrameLayout frameLayout = new FrameLayout(activity);
         ImageView imageView = new ImageView(activity);
-        int i10 = org.telegram.ui.ActionBar.n6.f29504j5;
+        int i10 = org.telegram.ui.ActionBar.n6.f29502j5;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.w0(i10, i6Var), PorterDuff.Mode.SRC_IN));
         imageView.setImageResource(i7);
         frameLayout.addView(imageView, c8.ma.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
@@ -24,7 +24,7 @@ public abstract class i1 {
         textView.setText(str);
         linearLayout.addView(textView, c8.ma.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
         TextView textView2 = new TextView(activity);
-        textView2.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29807z6, i6Var));
+        textView2.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29805z6, i6Var));
         textView2.setTextSize(0, org.telegram.messenger.g0.L(14.0f));
         textView2.setText(str2);
         linearLayout.addView(textView2, c8.ma.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));

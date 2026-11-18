@@ -26,7 +26,7 @@ public final class jw0 extends bk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) f1Var.f59122a;
+        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) f1Var.f59123a;
         ArrayList arrayList = this.d.f36906c;
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
         boolean z10 = true;

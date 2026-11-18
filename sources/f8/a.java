@@ -2,7 +2,7 @@ package f8;
 
 import java.io.Closeable;
 public final class a implements Closeable {
-    public static final a f11600a = new Object();
+    public static final a f11597a = new Object();
 
     @Override
     public final void close() {

@@ -34,19 +34,19 @@ public final class d1 extends h2 implements fs {
     public boolean E;
     public int F;
     public boolean G;
-    public e51 f18279a;
-    public d5 f18280b;
-    public boolean f18281c;
+    public e51 f18276a;
+    public d5 f18277b;
+    public boolean f18278c;
     public FrameLayout d;
-    public a1 f18282e;
-    public FrameLayout f18283f;
+    public a1 f18279e;
+    public FrameLayout f18280f;
     public c1 h;
-    public cq f18284n;
-    public t3 f18285r;
-    public boolean f18286s;
-    public TLRPC.TL_businessLocation f18287w;
-    public TLRPC.GeoPoint f18288x;
-    public String f18289y;
+    public cq f18281n;
+    public t3 f18282r;
+    public boolean f18283s;
+    public TLRPC.TL_businessLocation f18284w;
+    public TLRPC.GeoPoint f18285x;
+    public String f18286y;
 
     public d1() {
         super(null);
@@ -55,18 +55,18 @@ public final class d1 extends h2 implements fs {
 
     public final void Z(boolean z10) {
         boolean z11;
-        if (this.f18280b != null) {
-            this.f18280b.a(a0(), z10);
-            e51 e51Var = this.f18279a;
+        if (this.f18277b != null) {
+            this.f18277b.a(a0(), z10);
+            e51 e51Var = this.f18276a;
             if (e51Var != null && e51Var.f34607g3 != null) {
                 boolean z12 = this.G;
-                if (this.f18287w != null && (this.f18288x != null || !TextUtils.isEmpty(this.f18289y))) {
+                if (this.f18284w != null && (this.f18285x != null || !TextUtils.isEmpty(this.f18286y))) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (z12 != z11) {
-                    this.f18279a.f34607g3.O(true);
+                    this.f18276a.f34607g3.O(true);
                 }
             }
         }
@@ -81,12 +81,12 @@ public final class d1 extends h2 implements fs {
         boolean z14;
         boolean z15;
         TLRPC.GeoPoint geoPoint;
-        if (this.f18288x == null && TextUtils.isEmpty(this.f18289y)) {
+        if (this.f18285x == null && TextUtils.isEmpty(this.f18286y)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        if (this.f18287w != null) {
+        if (this.f18284w != null) {
             z11 = true;
         } else {
             z11 = false;
@@ -94,12 +94,12 @@ public final class d1 extends h2 implements fs {
         if (z10 != z11) {
             return true;
         }
-        if (this.f18288x == null && TextUtils.isEmpty(this.f18289y)) {
+        if (this.f18285x == null && TextUtils.isEmpty(this.f18286y)) {
             z12 = false;
         } else {
             z12 = true;
         }
-        TLRPC.TL_businessLocation tL_businessLocation = this.f18287w;
+        TLRPC.TL_businessLocation tL_businessLocation = this.f18284w;
         if (tL_businessLocation != null && !(tL_businessLocation.geo_point instanceof TLRPC.TL_geoPointEmpty)) {
             z13 = true;
         } else {
@@ -108,7 +108,7 @@ public final class d1 extends h2 implements fs {
         if (z12 != z13) {
             return true;
         }
-        String str2 = this.f18289y;
+        String str2 = this.f18286y;
         if (tL_businessLocation != null) {
             str = tL_businessLocation.address;
         } else {
@@ -117,13 +117,13 @@ public final class d1 extends h2 implements fs {
         if (!TextUtils.equals(str2, str)) {
             return true;
         }
-        TLRPC.GeoPoint geoPoint2 = this.f18288x;
+        TLRPC.GeoPoint geoPoint2 = this.f18285x;
         if (geoPoint2 != null) {
             z14 = true;
         } else {
             z14 = false;
         }
-        TLRPC.TL_businessLocation tL_businessLocation2 = this.f18287w;
+        TLRPC.TL_businessLocation tL_businessLocation2 = this.f18284w;
         if (tL_businessLocation2 != null && tL_businessLocation2.geo_point != null) {
             z15 = true;
         } else {
@@ -141,10 +141,10 @@ public final class d1 extends h2 implements fs {
     public final void b0() {
         boolean z10;
         String trim;
-        if (this.f18280b.f28873y.f57658f) {
+        if (this.f18277b.f28871y.f57658f) {
             return;
         }
-        if (this.f18288x == null && TextUtils.isEmpty(this.f18289y)) {
+        if (this.f18285x == null && TextUtils.isEmpty(this.f18286y)) {
             z10 = true;
         } else {
             z10 = false;
@@ -154,7 +154,7 @@ public final class d1 extends h2 implements fs {
                 finishFragment();
                 return;
             }
-            String str = this.f18289y;
+            String str = this.f18286y;
             if (str == null) {
                 trim = "";
             } else {
@@ -162,37 +162,37 @@ public final class d1 extends h2 implements fs {
             }
             if (TextUtils.isEmpty(trim) || trim.length() > 96) {
                 q2.APP_ERROR.a();
-                a1 a1Var = this.f18282e;
+                a1 a1Var = this.f18279e;
                 int i7 = -this.F;
                 this.F = i7;
                 org.telegram.messenger.g0.E3(i7, a1Var, null);
                 return;
             }
         }
-        this.f18280b.b(true);
+        this.f18277b.b(true);
         TLRPC.UserFull d2 = getMessagesController().d2(getUserConfig().e());
         TL_account.updateBusinessLocation updatebusinesslocation = new TL_account.updateBusinessLocation();
         if (!z10) {
-            if (this.f18288x != null) {
+            if (this.f18285x != null) {
                 updatebusinesslocation.flags |= 2;
                 TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
                 updatebusinesslocation.geo_point = tL_inputGeoPoint;
-                TLRPC.GeoPoint geoPoint = this.f18288x;
+                TLRPC.GeoPoint geoPoint = this.f18285x;
                 tL_inputGeoPoint.lat = geoPoint.lat;
                 tL_inputGeoPoint._long = geoPoint._long;
             }
             updatebusinesslocation.flags |= 1;
-            updatebusinesslocation.address = this.f18289y;
+            updatebusinesslocation.address = this.f18286y;
             if (d2 != null) {
                 d2.flags2 |= 2;
                 TLRPC.TL_businessLocation tL_businessLocation = new TLRPC.TL_businessLocation();
                 d2.business_location = tL_businessLocation;
-                tL_businessLocation.address = this.f18289y;
-                if (this.f18288x != null) {
+                tL_businessLocation.address = this.f18286y;
+                if (this.f18285x != null) {
                     tL_businessLocation.flags = 1 | tL_businessLocation.flags;
                     tL_businessLocation.geo_point = new TLRPC.TL_geoPoint();
                     TLRPC.GeoPoint geoPoint2 = d2.business_location.geo_point;
-                    TLRPC.GeoPoint geoPoint3 = this.f18288x;
+                    TLRPC.GeoPoint geoPoint3 = this.f18285x;
                     geoPoint2.lat = geoPoint3.lat;
                     geoPoint2._long = geoPoint3._long;
                 }
@@ -207,7 +207,7 @@ public final class d1 extends h2 implements fs {
 
     public final void c0() {
         z41 z41Var;
-        if (this.f18286s) {
+        if (this.f18283s) {
             return;
         }
         TLRPC.UserFull d2 = getMessagesController().d2(getUserConfig().e());
@@ -216,28 +216,28 @@ public final class d1 extends h2 implements fs {
             return;
         }
         TLRPC.TL_businessLocation tL_businessLocation = d2.business_location;
-        this.f18287w = tL_businessLocation;
+        this.f18284w = tL_businessLocation;
         if (tL_businessLocation != null) {
-            this.f18288x = tL_businessLocation.geo_point;
-            this.f18289y = tL_businessLocation.address;
+            this.f18285x = tL_businessLocation.geo_point;
+            this.f18286y = tL_businessLocation.address;
         } else {
-            this.f18288x = null;
-            this.f18289y = "";
+            this.f18285x = null;
+            this.f18286y = "";
         }
-        a1 a1Var = this.f18282e;
+        a1 a1Var = this.f18279e;
         if (a1Var != null) {
-            this.f18281c = true;
-            a1Var.setText(this.f18289y);
-            a1 a1Var2 = this.f18282e;
+            this.f18278c = true;
+            a1Var.setText(this.f18286y);
+            a1 a1Var2 = this.f18279e;
             a1Var2.setSelection(a1Var2.getText().length());
-            this.f18281c = false;
+            this.f18278c = false;
         }
         d0();
-        e51 e51Var = this.f18279a;
+        e51 e51Var = this.f18276a;
         if (e51Var != null && (z41Var = e51Var.f34607g3) != null) {
             z41Var.O(true);
         }
-        this.f18286s = true;
+        this.f18283s = true;
     }
 
     @Override
@@ -246,69 +246,69 @@ public final class d1 extends h2 implements fs {
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setTitle(gd.M0(2131752687, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.r1(this, 10));
-        this.f18280b = this.simpleActionBar.s(gd.M0(2131745751, null));
+        this.f18277b = this.simpleActionBar.s(gd.M0(2131745751, null));
         Z(false);
         FrameLayout frameLayout = new FrameLayout(context);
         a1 a1Var = new a1(this, getParentActivity());
-        this.f18282e = a1Var;
+        this.f18279e = a1Var;
         a1Var.setTextSize(1, 17.0f);
-        u6.D(this.f18282e, n6.H6, null);
-        a1 a1Var2 = this.f18282e;
+        u6.D(this.f18279e, n6.H6, null);
+        a1 a1Var2 = this.f18279e;
         int i7 = n6.G6;
         u6.U(a1Var2, i7, null);
-        this.f18282e.setBackgroundDrawable(null);
+        this.f18279e.setBackgroundDrawable(null);
         int i10 = 5;
-        this.f18282e.setMaxLines(5);
-        this.f18282e.setSingleLine(false);
-        this.f18282e.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
-        a1 a1Var3 = this.f18282e;
-        if (!gd.f24216a0) {
+        this.f18279e.setMaxLines(5);
+        this.f18279e.setSingleLine(false);
+        this.f18279e.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
+        a1 a1Var3 = this.f18279e;
+        if (!gd.f24213a0) {
             i10 = 3;
         }
         a1Var3.setGravity(i10 | 48);
-        this.f18282e.setInputType(180225);
-        this.f18282e.setHint(gd.M0(2131752686, null));
-        u6.v(this.f18282e, i7, null);
-        this.f18282e.setCursorSize(org.telegram.messenger.g0.L(19.0f));
-        this.f18282e.setCursorWidth(1.5f);
-        this.f18282e.addTextChangedListener(new ah.j(this, 12));
-        this.f18282e.setFilters(new InputFilter[]{new b1(0)});
+        this.f18279e.setInputType(180225);
+        this.f18279e.setHint(gd.M0(2131752686, null));
+        u6.v(this.f18279e, i7, null);
+        this.f18279e.setCursorSize(org.telegram.messenger.g0.L(19.0f));
+        this.f18279e.setCursorWidth(1.5f);
+        this.f18279e.addTextChangedListener(new ah.j(this, 12));
+        this.f18279e.setFilters(new InputFilter[]{new b1(0)});
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.d = frameLayout2;
-        frameLayout2.addView(this.f18282e, ma.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
+        frameLayout2.addView(this.f18279e, ma.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.d;
-        int i11 = n6.f29396d6;
+        int i11 = n6.f29394d6;
         u6.h(i11, frameLayout3, getResourceProvider());
-        a1 a1Var4 = this.f18282e;
+        a1 a1Var4 = this.f18279e;
         if (a1Var4 != null) {
-            this.f18281c = true;
-            a1Var4.setText(this.f18289y);
-            a1 a1Var5 = this.f18282e;
+            this.f18278c = true;
+            a1Var4.setText(this.f18286y);
+            a1 a1Var5 = this.f18279e;
             a1Var5.setSelection(a1Var5.getText().length());
-            this.f18281c = false;
+            this.f18278c = false;
         }
-        this.f18285r = new t3(1, context, this);
+        this.f18282r = new t3(1, context, this);
         lz c10 = u5.c(0.2f, n6.Gc);
         i6 resourceProvider = getResourceProvider();
-        c10.f25495m = i7;
-        c10.f25497o = resourceProvider;
-        c10.f25502t = true;
-        c10.f25493k = this.f18285r.getImageReceiver();
+        c10.f25493m = i7;
+        c10.f25495o = resourceProvider;
+        c10.f25500t = true;
+        c10.f25491k = this.f18282r.getImageReceiver();
         cq cqVar = new cq(c10);
-        this.f18284n = cqVar;
-        cqVar.setCallback(this.f18285r);
-        u6.h(i11, this.f18285r, getResourceProvider());
+        this.f18281n = cqVar;
+        cqVar.setCallback(this.f18282r);
+        u6.h(i11, this.f18282r, getResourceProvider());
         this.h = new c1(this, context);
         FrameLayout frameLayout4 = new FrameLayout(context);
-        this.f18283f = frameLayout4;
-        frameLayout4.addView(this.f18285r, ma.c(-1.0f, -1));
-        this.f18283f.addView(this.h, ma.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
+        this.f18280f = frameLayout4;
+        frameLayout4.addView(this.f18282r, ma.c(-1.0f, -1));
+        this.f18280f.addView(this.h, ma.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
         d0();
         e51 e51Var = new e51(this, new e7(this, 12), new y0(this, 0), null);
-        this.f18279a = e51Var;
+        this.f18276a = e51Var;
         e51Var.r1();
-        this.f18279a.setSectionsDrawBackground(true);
-        e51 e51Var2 = this.f18279a;
+        this.f18276a.setSectionsDrawBackground(true);
+        e51 e51Var2 = this.f18276a;
         e51Var2.f34607g3.f42809r = false;
         frameLayout.addView(e51Var2, ma.c(-1.0f, -1));
         c0();
@@ -320,21 +320,21 @@ public final class d1 extends h2 implements fs {
         t3 t3Var;
         int measuredWidth;
         c1 c1Var = this.h;
-        if (c1Var != null && (t3Var = this.f18285r) != null) {
-            if (this.f18288x != null) {
+        if (c1Var != null && (t3Var = this.f18282r) != null) {
+            if (this.f18285x != null) {
                 c1Var.setAlpha(0.0f);
                 this.h.setTranslationY(-org.telegram.messenger.g0.L(12.0f));
-                if (this.f18285r.getMeasuredWidth() <= 0) {
-                    measuredWidth = org.telegram.messenger.g0.f24121q.x;
+                if (this.f18282r.getMeasuredWidth() <= 0) {
+                    measuredWidth = org.telegram.messenger.g0.f24118q.x;
                 } else {
-                    measuredWidth = this.f18285r.getMeasuredWidth();
+                    measuredWidth = this.f18282r.getMeasuredWidth();
                 }
-                float f10 = org.telegram.messenger.g0.f24120p;
+                float f10 = org.telegram.messenger.g0.f24117p;
                 int i7 = (int) (measuredWidth / f10);
                 int min = Math.min(2, (int) Math.ceil(f10));
-                t3 t3Var2 = this.f18285r;
-                TLRPC.GeoPoint geoPoint = this.f18288x;
-                t3Var2.p(fc.p(h20.a(geoPoint.lat, geoPoint._long, 0L, min * i7, min * 240, 15, min)), e2.i(i7, "_240"), this.f18284n, null);
+                t3 t3Var2 = this.f18282r;
+                TLRPC.GeoPoint geoPoint = this.f18285x;
+                t3Var2.p(fc.p(h20.a(geoPoint.lat, geoPoint._long, 0L, min * i7, min * 240, 15, min)), e2.i(i7, "_240"), this.f18281n, null);
                 return;
             }
             t3Var.setImageBitmap(null);
@@ -350,7 +350,7 @@ public final class d1 extends h2 implements fs {
 
     @Override
     public final ck0 getListViewForSimpleGlass() {
-        return this.f18279a;
+        return this.f18276a;
     }
 
     @Override
@@ -366,7 +366,7 @@ public final class d1 extends h2 implements fs {
     @Override
     public final boolean onBackPressed(boolean z10) {
         boolean z11;
-        if (this.f18288x == null && TextUtils.isEmpty(this.f18289y)) {
+        if (this.f18285x == null && TextUtils.isEmpty(this.f18286y)) {
             z11 = true;
         } else {
             z11 = false;
@@ -375,7 +375,7 @@ public final class d1 extends h2 implements fs {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 String M0 = gd.M0(2131743598, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = gd.M0(2131752679, null);
                 alertDialog$Builder.k(gd.M0(2131754214, null), new y0(this, 1));

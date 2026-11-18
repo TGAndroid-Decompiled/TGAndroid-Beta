@@ -1,9 +1,9 @@
 package gb;
 public final class u implements ib.b {
-    public final int f13421a;
+    public final int f13418a;
 
     public u(int i7) {
-        this.f13421a = i7;
+        this.f13418a = i7;
     }
 
     public java.lang.Object a(va.d r9, kd.c r10) {
@@ -12,11 +12,11 @@ public final class u implements ib.b {
 
     @Override
     public Object mo24get() {
-        switch (this.f13421a) {
+        switch (this.f13418a) {
             case 0:
-                return h1.f13356a;
+                return h1.f13353a;
             default:
-                return i1.f13371a;
+                return i1.f13368a;
         }
     }
 }

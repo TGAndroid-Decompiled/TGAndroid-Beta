@@ -15,37 +15,37 @@ import org.telegram.ui.Components.mh0;
 import org.telegram.ui.Components.o5;
 import org.telegram.ui.nx;
 public final class d {
-    public static int f5332m;
-    public o5 f5333a;
-    public Rect f5334b;
-    public ArrayList f5335c;
+    public static int f5329m;
+    public o5 f5330a;
+    public Rect f5331b;
+    public ArrayList f5332c;
     public View d;
-    public long f5336e;
-    public boolean f5337f;
-    public boolean f5338g;
+    public long f5333e;
+    public boolean f5334f;
+    public boolean f5335g;
     public int h;
-    public boolean f5339i;
-    public ImageReceiver f5340j;
-    public int f5341k;
-    public long f5342l;
+    public boolean f5336i;
+    public ImageReceiver f5337j;
+    public int f5338k;
+    public long f5339l;
 
     public static d a(o5 o5Var, boolean z10, boolean z11) {
-        int i7 = j10.f24773t0;
+        int i7 = j10.f24770t0;
         ?? obj = new Object();
-        obj.f5334b = new Rect();
-        obj.f5335c = new ArrayList();
-        obj.f5338g = true;
-        obj.f5341k = -1;
-        obj.f5333a = o5Var;
-        obj.f5337f = z10;
+        obj.f5331b = new Rect();
+        obj.f5332c = new ArrayList();
+        obj.f5335g = true;
+        obj.f5338k = -1;
+        obj.f5330a = o5Var;
+        obj.f5334f = z10;
         obj.h = i7;
-        obj.f5339i = z11;
-        obj.f5336e = System.currentTimeMillis();
+        obj.f5336i = z11;
+        obj.f5333e = System.currentTimeMillis();
         if (z11 && pc.e(4112)) {
             ImageReceiver imageReceiver = new ImageReceiver(null);
-            obj.f5340j = imageReceiver;
+            obj.f5337j = imageReceiver;
             if (z10) {
-                imageReceiver.f22625b = true;
+                imageReceiver.f22622b = true;
             }
         }
         return obj;
@@ -56,15 +56,15 @@ public final class d {
     }
 
     public final boolean c() {
-        if (System.currentTimeMillis() - this.f5336e > 2500) {
+        if (System.currentTimeMillis() - this.f5333e > 2500) {
             return true;
         }
         return false;
     }
 
     public final void d(View view) {
-        this.f5333a.n(view);
-        ImageReceiver imageReceiver = this.f5340j;
+        this.f5330a.n(view);
+        ImageReceiver imageReceiver = this.f5337j;
         if (imageReceiver != null) {
             imageReceiver.R();
             imageReceiver.f();
@@ -72,9 +72,9 @@ public final class d {
     }
 
     public final void e(int i7, int i10, int i11, int i12) {
-        Rect rect = this.f5334b;
+        Rect rect = this.f5331b;
         rect.set(i7, i10, i11, i12);
-        ImageReceiver imageReceiver = this.f5340j;
+        ImageReceiver imageReceiver = this.f5337j;
         if (imageReceiver != null) {
             imageReceiver.z0(rect);
         }
@@ -85,23 +85,23 @@ public final class d {
         boolean z11;
         TLRPC.TL_availableReaction tL_availableReaction;
         TLRPC.Document document;
-        boolean z12 = this.f5337f;
+        boolean z12 = this.f5334f;
         int i7 = this.h;
-        o5 o5Var = this.f5333a;
+        o5 o5Var = this.f5330a;
         o5Var.a(view);
         this.d = view;
-        ImageReceiver imageReceiver = this.f5340j;
-        if (imageReceiver != null && this.f5339i) {
+        ImageReceiver imageReceiver = this.f5337j;
+        if (imageReceiver != null && this.f5336i) {
             imageReceiver.P();
             TLRPC.Document document2 = o5Var.f37971e;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
             String V = fj.V(document2, null, null);
-            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ri.d0(i7).f26635r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
+            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ri.d0(i7).f26633r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
                 if (z12) {
                     StringBuilder sb2 = new StringBuilder();
-                    int i10 = f5332m;
-                    f5332m = i10 + 1;
-                    imageReceiver.f22673w1 = a8.p0.n(i10, " ", sb2);
+                    int i10 = f5329m;
+                    f5329m = i10 + 1;
+                    imageReceiver.f22670w1 = a8.p0.n(i10, " ", sb2);
                     int f10 = nx.f();
                     TLRPC.Document document3 = tL_availableReaction.around_animation;
                     z10 = true;
@@ -119,23 +119,23 @@ public final class d {
                 z11 = false;
             }
             if (!z11) {
-                String str = j10.i(i7).f24783e0;
+                String str = j10.i(i7).f24780e0;
                 if (str != null && (tL_messages_stickerSet = ri.d0(i7).r0(str)) == null) {
                     tL_messages_stickerSet = ri.d0(i7).p0(str);
                 }
                 if (tL_messages_stickerSet != null) {
-                    if (this.f5341k < 0) {
-                        this.f5341k = Math.abs(((int) Utilities.f22781c.nextLong()) % tL_messages_stickerSet.documents.size());
+                    if (this.f5338k < 0) {
+                        this.f5338k = Math.abs(((int) Utilities.f22778c.nextLong()) % tL_messages_stickerSet.documents.size());
                     }
                     if (z12) {
                         StringBuilder sb3 = new StringBuilder();
-                        int i11 = f5332m;
-                        f5332m = i11 + 1;
-                        imageReceiver.f22673w1 = a8.p0.n(i11, " ", sb3);
+                        int i11 = f5329m;
+                        f5329m = i11 + 1;
+                        imageReceiver.f22670w1 = a8.p0.n(i11, " ", sb3);
                         int f11 = nx.f();
-                        imageReceiver.q0(fc.b(tL_messages_stickerSet.documents.get(this.f5341k)), f11 + "_" + f11 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f5341k), 0);
+                        imageReceiver.q0(fc.b(tL_messages_stickerSet.documents.get(this.f5338k)), f11 + "_" + f11 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f5338k), 0);
                     } else {
-                        imageReceiver.q0(fc.b(tL_messages_stickerSet.documents.get(this.f5341k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f5341k), 0);
+                        imageReceiver.q0(fc.b(tL_messages_stickerSet.documents.get(this.f5338k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f5338k), 0);
                     }
                     z11 = z10;
                 }

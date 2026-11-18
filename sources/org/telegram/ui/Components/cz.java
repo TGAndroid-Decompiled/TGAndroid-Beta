@@ -187,7 +187,7 @@ public final class cz extends org.telegram.messenger.r5 {
             EGL10 egl10 = this.f34205b;
             EGLDisplay eGLDisplay = this.f34207c;
             EGLSurface eGLSurface = this.f34210e;
-            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d) && org.telegram.messenger.s2.f26723a) {
+            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d) && org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.n10.v(this.f34205b, new StringBuilder("eglMakeCurrent failed "));
             }
         }
@@ -321,12 +321,12 @@ public final class cz extends org.telegram.messenger.r5 {
         this.f34207c = eglGetDisplay;
         boolean z10 = false;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.n10.v(this.f34205b, new StringBuilder("eglGetDisplay failed "));
             }
             finish();
         } else if (!this.f34205b.eglInitialize(eglGetDisplay, new int[2])) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.n10.v(this.f34205b, new StringBuilder("eglInitialize failed "));
             }
             finish();
@@ -334,7 +334,7 @@ public final class cz extends org.telegram.messenger.r5 {
             int[] iArr = new int[1];
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
             if (!this.f34205b.eglChooseConfig(this.f34207c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
-                if (org.telegram.messenger.s2.f26723a) {
+                if (org.telegram.messenger.s2.f26721a) {
                     org.telegram.messenger.n10.v(this.f34205b, new StringBuilder("eglChooseConfig failed "));
                 }
                 finish();
@@ -358,7 +358,7 @@ public final class cz extends org.telegram.messenger.r5 {
                 EGLContext eglCreateContext = this.f34205b.eglCreateContext(this.f34207c, eGLConfig, eGLContext, iArr2);
                 this.d = eglCreateContext;
                 if (eglCreateContext == null) {
-                    if (org.telegram.messenger.s2.f26723a) {
+                    if (org.telegram.messenger.s2.f26721a) {
                         org.telegram.messenger.n10.v(this.f34205b, new StringBuilder("eglCreateContext failed "));
                     }
                     finish();
@@ -373,7 +373,7 @@ public final class cz extends org.telegram.messenger.r5 {
                         this.f34210e = eglCreateWindowSurface;
                         if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
                             if (!this.f34205b.eglMakeCurrent(this.f34207c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
-                                if (org.telegram.messenger.s2.f26723a) {
+                                if (org.telegram.messenger.s2.f26721a) {
                                     org.telegram.messenger.n10.v(this.f34205b, new StringBuilder("eglMakeCurrent failed "));
                                 }
                                 finish();
@@ -443,7 +443,7 @@ public final class cz extends org.telegram.messenger.r5 {
                                 }
                             }
                         } else {
-                            if (org.telegram.messenger.s2.f26723a) {
+                            if (org.telegram.messenger.s2.f26721a) {
                                 org.telegram.messenger.n10.v(this.f34205b, new StringBuilder("createWindowSurface failed "));
                             }
                             finish();
@@ -453,7 +453,7 @@ public final class cz extends org.telegram.messenger.r5 {
                     }
                 }
             } else {
-                if (org.telegram.messenger.s2.f26723a) {
+                if (org.telegram.messenger.s2.f26721a) {
                     org.telegram.messenger.a8.d("eglConfig not initialized");
                 }
                 finish();

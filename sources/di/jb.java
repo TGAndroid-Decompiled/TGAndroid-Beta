@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.ui.Components.ck0;
 import org.telegram.ui.Components.k41;
 public final class jb extends k41 {
-    public static final int f9107b = 0;
+    public static final int f9104b = 0;
 
     static {
         k41.h(new k41());

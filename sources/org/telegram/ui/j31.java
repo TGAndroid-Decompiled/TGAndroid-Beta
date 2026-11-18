@@ -53,8 +53,8 @@ public final class j31 extends LinearLayout implements org.telegram.ui.ActionBar
         this.f48865f = imageView;
         imageView.setImageResource(2131232061);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29561m6, i6Var, PorterDuff.Mode.SRC_IN);
-        if (org.telegram.messenger.gd.f24216a0) {
+        org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29559m6, i6Var, PorterDuff.Mode.SRC_IN);
+        if (org.telegram.messenger.gd.f24213a0) {
             n5Var.setGravity(21);
             imageView.setScaleX(-1.0f);
             addView(imageView, c8.ma.q(24, 24, 0.0f, 19, 12, 0, 0, 0));
@@ -72,7 +72,7 @@ public final class j31 extends LinearLayout implements org.telegram.ui.ActionBar
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29647qi));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29645qi));
     }
 
     @Override
@@ -94,14 +94,14 @@ public final class j31 extends LinearLayout implements org.telegram.ui.ActionBar
         TextView textView = this.f48864e;
         org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, i6Var), textView.getBackground());
         textView.invalidate();
-        int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29561m6, i6Var);
+        int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29559m6, i6Var);
         int i10 = this.f48867r;
         ImageView imageView = this.f48865f;
         if (w03 != i10 || imageView.getColorFilter() == null) {
             this.f48867r = w03;
             imageView.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
         }
-        int i11 = org.telegram.ui.ActionBar.n6.f29647qi;
+        int i11 = org.telegram.ui.ActionBar.n6.f29645qi;
         this.f48866n.k(Integer.valueOf(org.telegram.ui.ActionBar.n6.w0(i11, i6Var)));
         try {
             org.telegram.ui.Components.m5 m5Var = this.h;

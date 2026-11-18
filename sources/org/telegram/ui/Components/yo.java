@@ -38,7 +38,7 @@ public final class yo implements org.telegram.ui.ActionBar.v6 {
         int w02 = org.telegram.ui.ActionBar.n6.w0(i11, lpVar.J0);
         lpVar.f37172e2 = w02;
         mh0Var.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
-        lpVar.E0(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, lpVar.J0));
+        lpVar.E0(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, lpVar.J0));
         if (lpVar.J1) {
             for (int i12 = 0; i12 < jpVar.b(); i12++) {
                 ((kp) jpVar.d.get(i12)).getClass();
@@ -52,7 +52,7 @@ public final class yo implements org.telegram.ui.ActionBar.v6 {
         ai.k0 k0Var = lpVar.T1;
         if (k0Var != null) {
             int L = org.telegram.messenger.g0.L(0.0f);
-            int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, lpVar.J0);
+            int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, lpVar.J0);
             int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.w0(i11, lpVar.J0), 76);
             k0Var.setBackground(org.telegram.ui.ActionBar.n6.k0(L, L, L, L, w03, o4, o4));
         }
@@ -60,7 +60,7 @@ public final class yo implements org.telegram.ui.ActionBar.v6 {
         if (n6Var != null) {
             n6Var.setTextColor(org.telegram.ui.ActionBar.n6.w0(i11, lpVar.J0));
         }
-        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, lpVar.J0);
+        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, lpVar.J0);
         lpVar.f37173f2 = w04;
         lpVar.v0(w04);
     }

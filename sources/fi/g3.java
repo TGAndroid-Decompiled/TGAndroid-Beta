@@ -35,14 +35,14 @@ import org.telegram.ui.Components.y60;
 import org.telegram.ui.bn;
 public final class g3 extends x7 {
     public final z3 A0;
-    public final f9 f12012y0;
-    public final org.telegram.ui.ActionBar.i6 f12013z0;
+    public final f9 f12009y0;
+    public final org.telegram.ui.ActionBar.i6 f12010z0;
 
     public g3(z3 z3Var, Context context, b bVar, f9 f9Var, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context, bVar);
         this.A0 = z3Var;
-        this.f12012y0 = f9Var;
-        this.f12013z0 = i6Var;
+        this.f12009y0 = f9Var;
+        this.f12010z0 = i6Var;
     }
 
     @Override
@@ -52,12 +52,12 @@ public final class g3 extends x7 {
             if (z3Var.A1 != null) {
                 TLRPC.Document document = x5Var.document;
                 if (document == null) {
-                    document = org.telegram.ui.Components.o5.e(z3Var.f12850m2, x5Var.documentId);
+                    document = org.telegram.ui.Components.o5.e(z3Var.f12847m2, x5Var.documentId);
                 }
                 if (document != null) {
                     c3 c3Var = z3Var.M0;
-                    org.telegram.ui.ActionBar.i6 i6Var = this.f12013z0;
-                    gc h = new lc(c3Var, i6Var).h(document, 2, new bi.j(this, this.f12012y0, i6Var, 6));
+                    org.telegram.ui.ActionBar.i6 i6Var = this.f12010z0;
+                    gc h = new lc(c3Var, i6Var).h(document, 2, new bi.j(this, this.f12009y0, i6Var, 6));
                     if (h != null) {
                         h.f35454a = 1;
                         h.k(true);
@@ -69,14 +69,14 @@ public final class g3 extends x7 {
 
     @Override
     public final void G(CharacterStyle characterStyle, View view) {
-        f9 f9Var = this.f12012y0;
-        org.telegram.ui.ActionBar.h2 h2Var = f9Var.f11969f;
+        f9 f9Var = this.f12009y0;
+        org.telegram.ui.ActionBar.h2 h2Var = f9Var.f11966f;
         boolean z10 = characterStyle instanceof s41;
         z3 z3Var = this.A0;
         if (z10) {
-            TLRPC.User c22 = mp.u1(z3Var.f12850m2).c2(Utilities.A(((s41) characterStyle).getURL()));
+            TLRPC.User c22 = mp.u1(z3Var.f12847m2).c2(Utilities.A(((s41) characterStyle).getURL()));
             if (c22 != null) {
-                mp.u1(z3Var.f12850m2).G3(c22, null, h2Var, 0);
+                mp.u1(z3Var.f12847m2).G3(c22, null, h2Var, 0);
             }
         } else if (characterStyle instanceof p41) {
             String url = ((p41) characterStyle).getURL();
@@ -95,7 +95,7 @@ public final class g3 extends x7 {
             if (c10 != null) {
                 String lowerCase = c10.toLowerCase();
                 if (url.startsWith("@")) {
-                    mp.u1(z3Var.f12850m2).F3(lowerCase, h2Var, 0, null);
+                    mp.u1(z3Var.f12847m2).F3(lowerCase, h2Var, 0, null);
                     return;
                 } else {
                     M(0, url, characterStyle, false);
@@ -108,7 +108,7 @@ public final class g3 extends x7 {
         } else if (characterStyle instanceof o41) {
             o41 o41Var = (o41) characterStyle;
             org.telegram.messenger.g0.g(o41Var.f37958a.subSequence(o41Var.f37959b, o41Var.f37960c).toString());
-            n10.t(null, 2131743959, new lc(z3Var.M0, this.f12013z0));
+            n10.t(null, 2131743959, new lc(z3Var.M0, this.f12010z0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
         }
@@ -136,15 +136,15 @@ public final class g3 extends x7 {
         } catch (Exception unused) {
         }
         Context context = getContext();
-        org.telegram.ui.ActionBar.i6 i6Var = this.f12013z0;
+        org.telegram.ui.ActionBar.i6 i6Var = this.f12010z0;
         org.telegram.ui.ActionBar.x2 j3 = org.telegram.messenger.f3.j(1, context, i6Var, false);
         j3.P = str;
         j3.Q = false;
         j3.R = true;
         z3 z3Var = this.A0;
-        x3 x3Var = z3Var.f12896y1;
+        x3 x3Var = z3Var.f12893y1;
         CharSequence[] charSequenceArr = (x3Var == null || x3Var.d()) ? new CharSequence[]{gd.M0(2131747624, null), gd.M0(2131751756, null)} : new CharSequence[]{gd.M0(2131747624, null)};
-        final org.telegram.ui.ActionBar.i6 i6Var2 = this.f12013z0;
+        final org.telegram.ui.ActionBar.i6 i6Var2 = this.f12010z0;
         DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i7) {
@@ -160,7 +160,7 @@ public final class g3 extends x7 {
         j3.M = charSequenceArr;
         j3.L = onClickListener;
         j3.I0 = new t9(aVar, 3);
-        j3.P(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, i6Var));
+        j3.P(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, i6Var));
         ((w8) z3Var.A1).h(j3);
     }
 
@@ -169,19 +169,19 @@ public final class g3 extends x7 {
         if (s7Var == null) {
             return;
         }
-        final TLRPC.Document document = s7Var.f12539g;
+        final TLRPC.Document document = s7Var.f12536g;
         z3 z3Var = this.A0;
-        f9 f9Var = this.f12012y0;
-        final org.telegram.ui.ActionBar.i6 i6Var = this.f12013z0;
+        f9 f9Var = this.f12009y0;
+        final org.telegram.ui.ActionBar.i6 i6Var = this.f12010z0;
         if (document != null) {
-            y60 G = y60.G(f9Var.f12004w, i6Var, z3Var.f12879u0);
+            y60 G = y60.G(f9Var.f12001w, i6Var, z3Var.f12876u0);
             G.f42356i = 3;
             G.b0(-org.telegram.messenger.g0.L(8.0f), 0.0f);
             G.l(2131232353, gd.M0(2131744487, null), new Runnable(this) {
-                public final g3 f11847b;
+                public final g3 f11844b;
 
                 {
-                    this.f11847b = this;
+                    this.f11844b = this;
                 }
 
                 @Override
@@ -190,16 +190,16 @@ public final class g3 extends x7 {
                     int i7 = r4;
                     org.telegram.ui.ActionBar.i6 i6Var2 = i6Var;
                     TLRPC.Document document2 = document;
-                    g3 g3Var = this.f11847b;
+                    g3 g3Var = this.f11844b;
                     switch (i7) {
                         case 0:
                             z3 z3Var2 = g3Var.A0;
-                            zy C = zy.C(z3Var2.f12850m2);
+                            zy C = zy.C(z3Var2.f12847m2);
                             TLRPC.TL_document tL_document = (TLRPC.TL_document) document2;
-                            long e10 = j10.i(z3Var2.f12850m2).e();
-                            x3 x3Var = z3Var2.f12896y1;
+                            long e10 = j10.i(z3Var2.f12847m2).e();
+                            x3 x3Var = z3Var2.f12893y1;
                             if (x3Var != null) {
-                                storyItem = x3Var.f12723a;
+                                storyItem = x3Var.f12720a;
                             } else {
                                 storyItem = null;
                             }
@@ -210,26 +210,26 @@ public final class g3 extends x7 {
                             z3 z3Var3 = g3Var.A0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f28433id = tL_inputDocument;
-                            tL_inputDocument.f28417id = document2.f28411id;
+                            tL_account_saveMusic.f28431id = tL_inputDocument;
+                            tL_inputDocument.f28415id = document2.f28409id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.B().R0 != null && MediaController.B().R0.f24293b == j10.i(z3Var3.f12850m2).e()) {
+                            if (MediaController.B().R0 != null && MediaController.B().R0.f24290b == j10.i(z3Var3.f12847m2).e()) {
                                 gp gpVar = MediaController.B().R0;
-                                gpVar.f24294c.add(0, gpVar.d(document2));
+                                gpVar.f24291c.add(0, gpVar.d(document2));
                                 gpVar.e();
                             }
-                            ConnectionsManager.getInstance(z3Var3.f12850m2).sendRequest(tL_account_saveMusic, null);
+                            ConnectionsManager.getInstance(z3Var3.f12847m2).sendRequest(tL_account_saveMusic, null);
                             new lc(z3Var3.M0, i6Var2).Q(2131624058, 36, gd.M0(2131744488, null)).k(true);
                             return;
                     }
                 }
             }, document instanceof TLRPC.TL_document);
             G.c(2131232403, gd.M0(2131744489, null), new Runnable(this) {
-                public final g3 f11847b;
+                public final g3 f11844b;
 
                 {
-                    this.f11847b = this;
+                    this.f11844b = this;
                 }
 
                 @Override
@@ -238,16 +238,16 @@ public final class g3 extends x7 {
                     int i7 = r4;
                     org.telegram.ui.ActionBar.i6 i6Var2 = i6Var;
                     TLRPC.Document document2 = document;
-                    g3 g3Var = this.f11847b;
+                    g3 g3Var = this.f11844b;
                     switch (i7) {
                         case 0:
                             z3 z3Var2 = g3Var.A0;
-                            zy C = zy.C(z3Var2.f12850m2);
+                            zy C = zy.C(z3Var2.f12847m2);
                             TLRPC.TL_document tL_document = (TLRPC.TL_document) document2;
-                            long e10 = j10.i(z3Var2.f12850m2).e();
-                            x3 x3Var = z3Var2.f12896y1;
+                            long e10 = j10.i(z3Var2.f12847m2).e();
+                            x3 x3Var = z3Var2.f12893y1;
                             if (x3Var != null) {
-                                storyItem = x3Var.f12723a;
+                                storyItem = x3Var.f12720a;
                             } else {
                                 storyItem = null;
                             }
@@ -258,33 +258,33 @@ public final class g3 extends x7 {
                             z3 z3Var3 = g3Var.A0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f28433id = tL_inputDocument;
-                            tL_inputDocument.f28417id = document2.f28411id;
+                            tL_account_saveMusic.f28431id = tL_inputDocument;
+                            tL_inputDocument.f28415id = document2.f28409id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.B().R0 != null && MediaController.B().R0.f24293b == j10.i(z3Var3.f12850m2).e()) {
+                            if (MediaController.B().R0 != null && MediaController.B().R0.f24290b == j10.i(z3Var3.f12847m2).e()) {
                                 gp gpVar = MediaController.B().R0;
-                                gpVar.f24294c.add(0, gpVar.d(document2));
+                                gpVar.f24291c.add(0, gpVar.d(document2));
                                 gpVar.e();
                             }
-                            ConnectionsManager.getInstance(z3Var3.f12850m2).sendRequest(tL_account_saveMusic, null);
+                            ConnectionsManager.getInstance(z3Var3.f12847m2).sendRequest(tL_account_saveMusic, null);
                             new lc(z3Var3.M0, i6Var2).Q(2131624058, 36, gd.M0(2131744488, null)).k(true);
                             return;
                     }
                 }
             }, false);
             G.a0();
-        } else if (s7Var.f12537e && s7Var.f12535b != null && s7Var.d != null) {
+        } else if (s7Var.f12534e && s7Var.f12532b != null && s7Var.d != null) {
             Bundle bundle = new Bundle();
-            if (s7Var.f12535b.longValue() >= 0) {
-                bundle.putLong("user_id", s7Var.f12535b.longValue());
+            if (s7Var.f12532b.longValue() >= 0) {
+                bundle.putLong("user_id", s7Var.f12532b.longValue());
             } else {
-                bundle.putLong("chat_id", -s7Var.f12535b.longValue());
+                bundle.putLong("chat_id", -s7Var.f12532b.longValue());
             }
             bundle.putInt("message_id", s7Var.d.intValue());
             f9Var.N(new bn(bundle));
-        } else if (s7Var.f12535b != null && s7Var.f12536c != null) {
-            mp.u1(z3Var.f12850m2).R1().g0(s7Var.f12536c.intValue(), s7Var.f12535b.longValue(), new bi.i2(this, s7Var, f9Var, i6Var, 2));
+        } else if (s7Var.f12532b != null && s7Var.f12533c != null) {
+            mp.u1(z3Var.f12847m2).R1().g0(s7Var.f12533c.intValue(), s7Var.f12532b.longValue(), new bi.i2(this, s7Var, f9Var, i6Var, 2));
         } else {
             gc Q = new lc(z3Var.M0, i6Var).Q(2131624012, 36, gd.M0(2131744429, null));
             Q.f35454a = 3;
@@ -309,10 +309,10 @@ public final class g3 extends x7 {
                 return;
             }
         }
-        f9 f9Var = this.f12012y0;
+        f9 f9Var = this.f12009y0;
         if (i7 != 0 && i7 != 2) {
             if (i7 == 1) {
-                org.telegram.ui.Components.b5.o0(f9Var.f11969f, str, true, true, false, false, null, null, this.f12013z0);
+                org.telegram.ui.Components.b5.o0(f9Var.f11966f, str, true, true, false, false, null, null, this.f12010z0);
                 return;
             }
             return;
@@ -322,6 +322,6 @@ public final class g3 extends x7 {
         } else {
             z11 = false;
         }
-        org.telegram.ui.Components.b5.o0(f9Var.f11969f, str, true, true, true, z11, null, null, this.f12013z0);
+        org.telegram.ui.Components.b5.o0(f9Var.f11966f, str, true, true, true, z11, null, null, this.f12010z0);
     }
 }

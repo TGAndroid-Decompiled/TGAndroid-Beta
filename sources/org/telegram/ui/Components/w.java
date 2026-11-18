@@ -142,7 +142,7 @@ public final class w implements ValueAnimator.AnimatorUpdateListener {
                 bvVar.f33788r1.setAlpha(floatValue4);
                 bvVar.f33792v1.setAlpha(bvVar.E1);
                 bvVar.f33793w1.setAlpha(bvVar.E1);
-                bvVar.f30192b.invalidate();
+                bvVar.f30190b.invalidate();
                 return;
             case 18:
                 uu uuVar = (uu) this.f41511b;
@@ -253,7 +253,7 @@ public final class w implements ValueAnimator.AnimatorUpdateListener {
                 j60 j60Var = (j60) this.f41511b;
                 j60Var.getClass();
                 j60Var.f36354c2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j60Var.f30192b.invalidate();
+                j60Var.f30190b.invalidate();
                 return;
         }
     }

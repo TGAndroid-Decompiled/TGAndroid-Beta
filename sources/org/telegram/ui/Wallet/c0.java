@@ -66,7 +66,7 @@ public final class c0 implements q10 {
                     TL_wallet.tonConnectSession tonconnectsession = h2Var.f44289a;
                     if ("sendTransaction".equals(str3)) {
                         SharedPreferences sharedPreferences = mp.u1(l2Var.f44479a).h7;
-                        if (sharedPreferences.contains(l2.l(tonconnectsession.f28667id, h2Var.f44290b) + ".transfer")) {
+                        if (sharedPreferences.contains(l2.l(tonconnectsession.f28665id, h2Var.f44290b) + ".transfer")) {
                             l2Var.B(h2Var, b10, p51Var);
                             return;
                         }
@@ -77,7 +77,7 @@ public final class c0 implements q10 {
                         return;
                     }
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession.f28667id;
+                    tonconnectregisterkey.session_id = tonconnectsession.f28665id;
                     tonconnectregisterkey.client_id = tonconnectsession.client_id;
                     l2Var.f44483f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new s(p51Var, b10, h2Var, x2Var, 6));
                     return;

@@ -6,24 +6,24 @@ import android.text.TextWatcher;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class u11 implements TextWatcher {
-    public final ru0 f52416a = new ru0(this, 18);
-    public final b21 f52417b;
+    public final ru0 f52411a = new ru0(this, 18);
+    public final b21 f52412b;
 
     public u11(b21 b21Var) {
-        this.f52417b = b21Var;
+        this.f52412b = b21Var;
     }
 
     public final void a() {
         boolean z10;
         boolean z11;
         TLRPC.TL_channelParticipantsSearch tL_channelParticipantsSearch = new TLRPC.TL_channelParticipantsSearch();
-        b21 b21Var = this.f52417b;
+        b21 b21Var = this.f52412b;
         String obj = b21Var.Y1.getText().toString();
-        tL_channelParticipantsSearch.f28404q = obj;
-        a21 a21Var = b21Var.f45735c2;
+        tL_channelParticipantsSearch.f28402q = obj;
+        a21 a21Var = b21Var.f45725c2;
         TLRPC.ChannelParticipantsFilter channelParticipantsFilter = a21Var.f45433c;
         if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) {
-            z10 = !TextUtils.equals(channelParticipantsFilter.f28404q, obj);
+            z10 = !TextUtils.equals(channelParticipantsFilter.f28402q, obj);
             z11 = false;
         } else {
             z10 = true;
@@ -46,7 +46,7 @@ public final class u11 implements TextWatcher {
             }
             a21Var.b();
         }
-        org.telegram.ui.Components.z41 z41Var = b21Var.f45736e2;
+        org.telegram.ui.Components.z41 z41Var = b21Var.f45726e2;
         if (z41Var != null) {
             z41Var.O(true);
         }
@@ -55,7 +55,7 @@ public final class u11 implements TextWatcher {
     @Override
     public final void afterTextChanged(Editable editable) {
         int length = editable.length();
-        ru0 ru0Var = this.f52416a;
+        ru0 ru0Var = this.f52411a;
         if (length <= 0) {
             org.telegram.messenger.g0.r(ru0Var);
             a();

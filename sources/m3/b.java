@@ -12,51 +12,51 @@ import h9.i0;
 import h9.t1;
 import java.util.List;
 public final class b implements o {
-    public final o f20532a;
-    public final boolean f20533b;
+    public final o f20529a;
+    public final boolean f20530b;
 
     public b(int i7) {
         boolean z10 = (i7 & 1) != 0;
-        this.f20533b = z10;
+        this.f20530b = z10;
         if (z10) {
-            this.f20532a = new d0(-1, -1, "image/heif");
+            this.f20529a = new d0(-1, -1, "image/heif");
         } else {
-            this.f20532a = new a();
+            this.f20529a = new a();
         }
     }
 
     @Override
     public final boolean b(p pVar) {
-        if (this.f20533b) {
+        if (this.f20530b) {
             return n9.a((l) pVar, false);
         }
-        return this.f20532a.b(pVar);
+        return this.f20529a.b(pVar);
     }
 
     @Override
     public final void c(q qVar) {
-        this.f20532a.c(qVar);
+        this.f20529a.c(qVar);
     }
 
     @Override
     public final void d(long j3, long j10) {
-        this.f20532a.d(j3, j10);
+        this.f20529a.d(j3, j10);
     }
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14006b;
-        return t1.f14074e;
+        g0 g0Var = i0.f14003b;
+        return t1.f14071e;
     }
 
     @Override
     public final int f(p pVar, s sVar) {
-        return this.f20532a.f(pVar, sVar);
+        return this.f20529a.f(pVar, sVar);
     }
 
     @Override
     public final void release() {
-        this.f20532a.release();
+        this.f20529a.release();
     }
 
     @Override

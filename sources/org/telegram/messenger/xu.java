@@ -11,15 +11,15 @@ public final class xu extends zt implements Drawable.Callback {
     public final h51 X;
     public final int Y;
     public final int Z;
-    public final int f28004a0;
-    public final int f28005b0;
-    public w7.s f28006c0;
-    public Bitmap f28007d0;
+    public final int f28002a0;
+    public final int f28003b0;
+    public w7.s f28004c0;
+    public Bitmap f28005d0;
 
     public xu(ev evVar, Rect rect, int i7, int i10, int i11) {
         super(evVar, rect, i7);
-        this.f28004a0 = i10;
-        this.f28005b0 = i11;
+        this.f28002a0 = i10;
+        this.f28003b0 = i11;
         h51 h51Var = new h51();
         this.X = h51Var;
         h51Var.setCallback(this);
@@ -27,14 +27,14 @@ public final class xu extends zt implements Drawable.Callback {
         h51Var.f35745o = gd.M0(2131743595, null);
         h51Var.f35746p = gd.M0(2131743589, null);
         h51Var.f35740j = new xr(evVar, 7);
-        int i12 = this.f28353c;
+        int i12 = this.f28351c;
         this.Y = i12;
         this.Z = h51Var.a(i12);
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         return rect.top + this.Z + rect.bottom;
     }
 
@@ -47,12 +47,12 @@ public final class xu extends zt implements Drawable.Callback {
         return false;
     }
 
-    public final float i0(org.telegram.ui.Cells.x1 x1Var) {
+    public final float i0(org.telegram.ui.Cells.y1 y1Var) {
         int i7;
-        if (x1Var != null) {
-            ev evVar = this.f28351a;
-            if (evVar.f23786s || evVar.f23788u) {
-                i7 = g0.W1(Math.max(0.0f, Math.min(1.0f, x1Var.L1)), this.Q, this.O);
+        if (y1Var != null) {
+            ev evVar = this.f28349a;
+            if (evVar.f23783s || evVar.f23785u) {
+                i7 = g0.W1(Math.max(0.0f, Math.min(1.0f, y1Var.L1)), this.Q, this.O);
                 return i7;
             }
         }
@@ -68,11 +68,11 @@ public final class xu extends zt implements Drawable.Callback {
         }
     }
 
-    public final float j0(org.telegram.ui.Cells.x1 x1Var) {
-        if (x1Var != null) {
-            ev evVar = this.f28351a;
-            if (evVar.f23786s || evVar.f23788u) {
-                return g0.T1(this.P, this.N, Math.max(0.0f, Math.min(1.0f, x1Var.L1)));
+    public final float j0(org.telegram.ui.Cells.y1 y1Var) {
+        if (y1Var != null) {
+            ev evVar = this.f28349a;
+            if (evVar.f23783s || evVar.f23785u) {
+                return g0.T1(this.P, this.N, Math.max(0.0f, Math.min(1.0f, y1Var.L1)));
             }
         }
         return this.N;
@@ -80,7 +80,7 @@ public final class xu extends zt implements Drawable.Callback {
 
     @Override
     public final void q(Canvas canvas) {
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         int i7 = rect.left;
         int i10 = rect.top;
         h51 h51Var = this.X;

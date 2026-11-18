@@ -12,28 +12,28 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.i6;
 public final class a0 extends View {
-    public final au f21927a;
-    public final int f21928b;
-    public boolean f21929c;
+    public final au f21924a;
+    public final int f21925b;
+    public boolean f21926c;
     public boolean d;
-    public final ai.w0 f21930e;
-    public final d0 f21931f;
+    public final ai.w0 f21927e;
+    public final d0 f21928f;
 
     public a0(d0 d0Var, Context context, TL_keyboard.PageButton pageButton, int i7) {
         super(context);
-        this.f21931f = d0Var;
-        this.f21928b = i7;
-        int i10 = d0Var.f21981n;
-        int d = i5.c.d(32.0f, org.telegram.messenger.g0.f24121q.x, org.telegram.messenger.g0.L(240.0f));
-        i6 i6Var = d0Var.f21982r;
+        this.f21928f = d0Var;
+        this.f21925b = i7;
+        int i10 = d0Var.f21978n;
+        int d = i5.c.d(32.0f, org.telegram.messenger.g0.f24118q.x, org.telegram.messenger.g0.L(240.0f));
+        i6 i6Var = d0Var.f21979r;
         kg.j0 j0Var = new kg.j0(this, 27);
         ev evVar = new ev(i10, d, i6Var);
         SpannableStringBuilder l10 = evVar.l(pageButton.text, ev.R(16, 13));
         TL_keyboard.InlineButtonType inlineButtonType = pageButton.type;
         au auVar = new au(evVar, d, l10, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, j0Var);
-        this.f21927a = auVar;
-        this.f21930e = new ai.w0(this, i7, 19);
-        auVar.f22952e = auVar.h();
+        this.f21924a = auVar;
+        this.f21927e = new ai.w0(this, i7, 19);
+        auVar.f22949e = auVar.h();
         setContentDescription(b6.l(pageButton.text));
         setClickable(true);
         setLongClickable(true);
@@ -42,13 +42,13 @@ public final class a0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f21927a.f22949a.i(this);
+        this.f21924a.f22946a.i(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        org.telegram.messenger.g0.r(this.f21930e);
-        this.f21927a.f22949a.f(this);
+        org.telegram.messenger.g0.r(this.f21927e);
+        this.f21924a.f22946a.f(this);
         super.onDetachedFromWindow();
     }
 
@@ -57,7 +57,7 @@ public final class a0 extends View {
         super.onDraw(canvas);
         canvas.save();
         int height = getHeight();
-        au auVar = this.f21927a;
+        au auVar = this.f21924a;
         canvas.translate(0.0f, (height - auVar.c()) / 2.0f);
         auVar.a(canvas);
         canvas.restore();
@@ -65,8 +65,8 @@ public final class a0 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        au auVar = this.f21927a;
-        setMeasuredDimension(auVar.f22952e, org.telegram.messenger.g0.L(8.0f) + auVar.c());
+        au auVar = this.f21924a;
+        setMeasuredDimension(auVar.f22949e, org.telegram.messenger.g0.L(8.0f) + auVar.c());
     }
 
     @Override
@@ -80,39 +80,39 @@ public final class a0 extends View {
         boolean z13;
         boolean z14;
         int actionMasked = motionEvent.getActionMasked();
-        ai.w0 w0Var = this.f21930e;
-        au auVar = this.f21927a;
+        ai.w0 w0Var = this.f21927e;
+        au auVar = this.f21924a;
         if (actionMasked != 0) {
             if (actionMasked != 1) {
                 if (actionMasked != 2) {
                     if (actionMasked != 3) {
                         return super.onTouchEvent(motionEvent);
                     }
-                    this.f21929c = false;
+                    this.f21926c = false;
                     auVar.m(false);
                     org.telegram.messenger.g0.r(w0Var);
                     return true;
                 } else if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
-                    this.f21929c = false;
+                    this.f21926c = false;
                     auVar.m(false);
                     org.telegram.messenger.g0.r(w0Var);
                     return true;
                 }
             } else {
-                if (this.f21929c && !this.d) {
+                if (this.f21926c && !this.d) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f21929c = false;
+                this.f21926c = false;
                 auVar.m(false);
                 org.telegram.messenger.g0.r(w0Var);
-                if (z10 && (b0Var = (d0Var = this.f21931f).F) != null && (aVar = d0Var.f22442a) != null) {
-                    s3 s3Var = ((k3) b0Var).f22137a;
-                    TL_iv.PageBlock pageBlock = aVar.f21910b;
+                if (z10 && (b0Var = (d0Var = this.f21928f).F) != null && (aVar = d0Var.f22439a) != null) {
+                    s3 s3Var = ((k3) b0Var).f22134a;
+                    TL_iv.PageBlock pageBlock = aVar.f21907b;
                     if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
                         TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
-                        int i7 = this.f21928b;
+                        int i7 = this.f21925b;
                         if (i7 >= 0 && i7 < pageblockbuttonrow.buttons.size()) {
                             e2 e2Var = s3Var.R3;
                             if (e2Var != null) {
@@ -160,14 +160,14 @@ public final class a0 extends View {
                             if (e2Var2 != null) {
                                 e2Var2.h();
                             }
-                            s3Var.f22337p3.onContentChanged();
+                            s3Var.f22334p3.onContentChanged();
                         }
                     }
                 }
             }
             return true;
         }
-        this.f21929c = true;
+        this.f21926c = true;
         this.d = false;
         auVar.m(true);
         org.telegram.messenger.g0.h3(w0Var, ViewConfiguration.getLongPressTimeout());

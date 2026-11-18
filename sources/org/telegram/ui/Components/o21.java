@@ -38,7 +38,7 @@ public final class o21 extends Thread {
                 httpURLConnection.setRequestProperty("User-Agent", y21.S1[(int) Math.round(Math.random() * 5)]);
                 httpURLConnection.setRequestProperty("Content-Type", "application/json");
                 StringBuilder sb2 = new StringBuilder();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), g9.j.f13255a));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), g9.j.f13252a));
                 while (true) {
                     int read = bufferedReader.read();
                     if (read == -1) {

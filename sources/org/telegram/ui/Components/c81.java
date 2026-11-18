@@ -17,7 +17,7 @@ public final class c81 extends View {
     public AnimatorSet L;
     public b81 M;
     public boolean N;
-    public final org.telegram.ui.Cells.f2 O;
+    public final org.telegram.ui.Cells.g2 O;
     public final Drawable f33914a;
     public final Drawable f33915b;
     public final Drawable f33916c;
@@ -35,7 +35,7 @@ public final class c81 extends View {
     public c81(Context context) {
         super(context);
         this.N = true;
-        this.O = new org.telegram.ui.Cells.f2(this);
+        this.O = new org.telegram.ui.Cells.g2(this);
         this.f33914a = context.getResources().getDrawable(2131232867);
         this.f33915b = context.getResources().getDrawable(2131232868);
         this.f33916c = context.getResources().getDrawable(2131232871);

@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-public final class am0 extends org.telegram.ui.Cells.aa {
+public final class am0 extends org.telegram.ui.Cells.ba {
     public final int I = 1;
 
     public am0(Context context, org.telegram.ui.ActionBar.s4 s4Var, int i7) {

@@ -10,18 +10,18 @@ import android.view.View;
 import org.telegram.messenger.n10;
 import org.telegram.ui.Components.lr;
 public final class hb extends View {
-    public final Paint f14739a;
-    public final org.telegram.ui.Components.m6 f14740b;
-    public boolean f14741c;
+    public final Paint f14736a;
+    public final org.telegram.ui.Components.m6 f14737b;
+    public boolean f14738c;
 
     public hb(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f14739a = paint;
-        this.f14741c = true;
+        this.f14736a = paint;
+        this.f14738c = true;
         paint.setColor(Integer.MIN_VALUE);
         org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, true, true);
-        this.f14740b = m6Var;
+        this.f14737b = m6Var;
         m6Var.n(0.2f, 200L, lr.h);
         m6Var.w(org.telegram.messenger.g0.L(13.0f));
         m6Var.u(-1);
@@ -37,10 +37,10 @@ public final class hb extends View {
     }
 
     public final void a(boolean z10) {
-        if (!this.f14741c && z10) {
+        if (!this.f14738c && z10) {
             return;
         }
-        this.f14741c = false;
+        this.f14738c = false;
         animate().cancel();
         if (z10) {
             n10.o(animate().translationY(org.telegram.messenger.g0.L(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), lr.h, 220L);
@@ -55,11 +55,11 @@ public final class hb extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        org.telegram.ui.Components.m6 m6Var = this.f14740b;
+        org.telegram.ui.Components.m6 m6Var = this.f14737b;
         float c10 = m6Var.c();
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(((getWidth() - c10) / 2.0f) - org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(2.0f), ((getWidth() + c10) / 2.0f) + org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(23.0f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(5.0f), this.f14739a);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(5.0f), this.f14736a);
         m6Var.setBounds((int) rectF.left, ((int) rectF.top) - org.telegram.messenger.g0.L(1.0f), (int) rectF.right, (int) rectF.bottom);
         m6Var.draw(canvas);
     }
@@ -71,7 +71,7 @@ public final class hb extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f14740b != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f14737b != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

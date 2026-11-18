@@ -2,14 +2,14 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class y4 implements Runnable {
-    public final int f28079a;
-    public final i5 f28080b;
-    public final ArrayList f28081c;
+    public final int f28077a;
+    public final i5 f28078b;
+    public final ArrayList f28079c;
 
     public y4(i5 i5Var, ArrayList arrayList, int i7) {
-        this.f28079a = i7;
-        this.f28080b = i5Var;
-        this.f28081c = arrayList;
+        this.f28077a = i7;
+        this.f28078b = i5Var;
+        this.f28079c = arrayList;
     }
 
     @Override

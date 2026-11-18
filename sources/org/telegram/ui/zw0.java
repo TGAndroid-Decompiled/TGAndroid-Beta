@@ -24,28 +24,28 @@ public final class zw0 extends FrameLayout {
     public final RectF O;
     public boolean P;
     public final ProfileActivity Q;
-    public int f54598a;
-    public final Paint f54599b;
-    public boolean f54600c;
+    public int f54599a;
+    public final Paint f54600b;
+    public boolean f54601c;
     public final org.telegram.ui.Components.c6 d;
-    public int f54601e;
-    public int f54602f;
+    public int f54602e;
+    public int f54603f;
     public final org.telegram.ui.Components.f5 h;
-    public final org.telegram.ui.Components.f5 f54603n;
-    public int f54604r;
-    public int f54605s;
-    public int f54606w;
-    public float f54607x;
-    public float f54608y;
+    public final org.telegram.ui.Components.f5 f54604n;
+    public int f54605r;
+    public int f54606s;
+    public int f54607w;
+    public float f54608x;
+    public float f54609y;
 
     public zw0(ProfileActivity profileActivity, Context context) {
         super(context);
         this.Q = profileActivity;
-        this.f54599b = new Paint();
+        this.f54600b = new Paint();
         org.telegram.ui.Components.lr lrVar = org.telegram.ui.Components.lr.h;
         this.d = new org.telegram.ui.Components.c6(this, 350L, lrVar);
         this.h = new org.telegram.ui.Components.f5(this, 350L, lrVar);
-        this.f54603n = new org.telegram.ui.Components.f5(this, 350L, lrVar);
+        this.f54604n = new org.telegram.ui.Components.f5(this, 350L, lrVar);
         this.F = new Matrix();
         this.G = new Paint(1);
         this.J = new org.telegram.ui.Components.m5(org.telegram.messenger.g0.L(20.0f), 13, this, false);
@@ -59,23 +59,23 @@ public final class zw0 extends FrameLayout {
     public final void a(org.telegram.messenger.bp bpVar, boolean z10) {
         ProfileActivity profileActivity = this.Q;
         if (bpVar != null) {
-            this.f54600c = true;
-            this.f54601e = bpVar.c(org.telegram.ui.ActionBar.n6.I.q());
+            this.f54601c = true;
+            this.f54602e = bpVar.c(org.telegram.ui.ActionBar.n6.I.q());
             int d = bpVar.d(org.telegram.ui.ActionBar.n6.I.q());
-            this.f54602f = d;
-            profileActivity.f43526c1 = i0.a.f(0.25f, this.f54601e, d);
-            int i7 = bpVar.f23114a;
+            this.f54603f = d;
+            profileActivity.f43526c1 = i0.a.f(0.25f, this.f54602e, d);
+            int i7 = bpVar.f23111a;
             if (i7 != 0) {
                 this.H = i7;
                 this.I = org.telegram.ui.ActionBar.n6.r1(0.45f, i7);
             } else {
-                this.H = lm0.B0(this.f54601e);
-                this.I = org.telegram.ui.ActionBar.n6.r1(0.15f, lm0.B0(this.f54601e));
+                this.H = lm0.B0(this.f54602e);
+                this.I = org.telegram.ui.ActionBar.n6.r1(0.15f, lm0.B0(this.f54602e));
             }
         } else {
-            profileActivity.f43526c1 = this.f54598a;
-            this.f54600c = false;
-            int i10 = org.telegram.ui.ActionBar.n6.f29676s8;
+            profileActivity.f43526c1 = this.f54599a;
+            this.f54601c = false;
+            int i10 = org.telegram.ui.ActionBar.n6.f29674s8;
             if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.w0(i10, profileActivity.A0)) > 0.8f) {
                 this.H = -1;
                 this.I = -1;
@@ -88,8 +88,8 @@ public final class zw0 extends FrameLayout {
             }
         }
         if (!z10) {
-            this.h.a(this.f54601e, true);
-            this.f54603n.a(this.f54602f, true);
+            this.h.a(this.f54602e, true);
+            this.f54604n.a(this.f54603f, true);
         }
         invalidate();
     }
@@ -148,7 +148,7 @@ public final class zw0 extends FrameLayout {
         int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         kVar = ((org.telegram.ui.ActionBar.h2) profileActivity).actionBar;
         if (kVar.getOccupyStatusBar()) {
-            i7 = org.telegram.messenger.g0.f24115m;
+            i7 = org.telegram.messenger.g0.f24112m;
         } else {
             i7 = 0;
         }
@@ -164,15 +164,15 @@ public final class zw0 extends FrameLayout {
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), i11, (int) ((1.0f - profileActivity.G5) * 255.0f));
         }
         if (i11 != 0) {
-            int i12 = this.f54598a;
-            Paint paint = this.f54599b;
+            int i12 = this.f54599a;
+            Paint paint = this.f54600b;
             paint.setColor(i12);
-            int a10 = this.h.a(this.f54601e, false);
-            int a11 = this.f54603n.a(this.f54602f, false);
+            int a10 = this.h.a(this.f54602e, false);
+            int a11 = this.f54604n.a(this.f54603f, false);
             org.telegram.ui.Components.rf0 rf0Var = profileActivity.f43509a0;
             if (rf0Var != null) {
                 int i13 = this.I;
-                boolean z13 = this.f54600c;
+                boolean z13 = this.f54601c;
                 f11 = 1.0f;
                 if (rf0Var.Q == null || rf0Var.O != i13 || rf0Var.P != z13) {
                     rf0Var.O = i13;
@@ -184,12 +184,12 @@ public final class zw0 extends FrameLayout {
             }
             org.telegram.ui.Components.mg0 mg0Var = profileActivity.f43525c0;
             if (mg0Var != null) {
-                mg0Var.d(this.I, this.f54600c);
+                mg0Var.d(this.I, this.f54601c);
             }
             org.telegram.ui.Components.vf0 vf0Var = profileActivity.O5;
             if (vf0Var != null) {
                 int i14 = this.I;
-                boolean z14 = this.f54600c;
+                boolean z14 = this.f54601c;
                 if (vf0Var.f40614i != i14 || vf0Var.f40615j != z14) {
                     vf0Var.f40614i = i14;
                     vf0Var.f40615j = z14;
@@ -200,24 +200,24 @@ public final class zw0 extends FrameLayout {
             RadialGradient radialGradient = this.E;
             f10 = 0.0f;
             Paint paint2 = this.G;
-            if (radialGradient != null && this.f54604r == a10 && this.f54605s == a11 && this.f54606w == width) {
+            if (radialGradient != null && this.f54605r == a10 && this.f54606s == a11 && this.f54607w == width) {
                 f12 = 2.0f;
             } else {
-                this.f54607x = org.telegram.messenger.g0.L(96.0f) * 2;
+                this.f54608x = org.telegram.messenger.g0.L(96.0f) * 2;
                 kVar2 = ((org.telegram.ui.ActionBar.h2) profileActivity).actionBar;
                 if (kVar2.getOccupyStatusBar()) {
-                    i10 = org.telegram.messenger.g0.f24115m;
+                    i10 = org.telegram.messenger.g0.f24112m;
                 } else {
                     i10 = 0;
                 }
                 kVar3 = ((org.telegram.ui.ActionBar.h2) profileActivity).actionBar;
-                this.f54608y = kVar3.getTranslationY() + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10) - (org.telegram.messenger.g0.f24120p * 21.0f));
-                this.f54606w = width;
-                float f18 = this.f54608y;
+                this.f54609y = kVar3.getTranslationY() + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10) - (org.telegram.messenger.g0.f24117p * 21.0f));
+                this.f54607w = width;
+                float f18 = this.f54609y;
                 f12 = 2.0f;
-                float f19 = this.f54607x;
-                this.f54605s = a11;
-                this.f54604r = a10;
+                float f19 = this.f54608x;
+                this.f54606s = a11;
+                this.f54605r = a10;
                 RadialGradient radialGradient2 = new RadialGradient(width, (f19 / 2.0f) + f18, f19, new int[]{a11, a10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 this.E = radialGradient2;
                 radialGradient2.setLocalMatrix(this.F);
@@ -228,7 +228,7 @@ public final class zw0 extends FrameLayout {
             } else {
                 f13 = profileActivity.T1;
             }
-            float d = this.d.d(this.f54600c) * f13;
+            float d = this.d.d(this.f54601c) * f13;
             if (d < f11) {
                 f14 = 255.0f;
                 f15 = f12;
@@ -262,7 +262,7 @@ public final class zw0 extends FrameLayout {
                     canvas2.clipRect(0, 0, getMeasuredWidth(), i11);
                     kVar4 = ((org.telegram.ui.ActionBar.h2) profileActivity).actionBar;
                     if (kVar4.getOccupyStatusBar()) {
-                        f16 = org.telegram.messenger.g0.f24115m;
+                        f16 = org.telegram.messenger.g0.f24112m;
                     } else {
                         f16 = 0.0f;
                     }
@@ -271,7 +271,7 @@ public final class zw0 extends FrameLayout {
                     int measuredWidth = getMeasuredWidth();
                     float L3 = profileActivity.L3();
                     k0 k0Var = profileActivity.Y;
-                    float[][] fArr = di.v0.f9899a;
+                    float[][] fArr = di.v0.f9896a;
                     RectF rectF = org.telegram.messenger.g0.P;
                     rectF.set(k0Var.getX(), k0Var.getY(), (k0Var.getScaleX() * k0Var.getWidth()) + k0Var.getX(), (k0Var.getScaleY() * k0Var.getHeight()) + k0Var.getY());
                     canvas2 = canvas;
@@ -307,7 +307,7 @@ public final class zw0 extends FrameLayout {
             if (f20 < f17 && (vv0Var = profileActivity.O) != null && vv0Var.isAttachedToWindow()) {
                 float y10 = (profileActivity.O.getY() + profileActivity.f43508a.getY()) - profileActivity.f43515a6;
                 if (y10 > f20) {
-                    int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, profileActivity.A0);
+                    int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, profileActivity.A0);
                     Paint paint3 = this.N;
                     paint3.setColor(w02);
                     canvas2.drawRect(0.0f, f20, getMeasuredWidth(), Math.min(f17, y10), paint3);
@@ -318,12 +318,12 @@ public final class zw0 extends FrameLayout {
 
     @Override
     public final void setBackgroundColor(int i7) {
-        if (i7 != this.f54598a) {
-            this.f54598a = i7;
-            this.f54599b.setColor(i7);
+        if (i7 != this.f54599a) {
+            this.f54599a = i7;
+            this.f54600b.setColor(i7);
             invalidate();
-            if (!this.f54600c) {
-                this.Q.f43526c1 = this.f54598a;
+            if (!this.f54601c) {
+                this.Q.f43526c1 = this.f54599a;
             }
         }
     }

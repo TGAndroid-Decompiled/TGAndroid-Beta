@@ -97,9 +97,9 @@ public class xb0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.H6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.I6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29637q7));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29525k6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29543l6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29635q7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29523k6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29541l6));
     }
 
     public final void b(float f10, float f11, boolean z10) {
@@ -150,10 +150,10 @@ public class xb0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
             f10 = this.f41967n;
         }
         int f12 = i0.a.f(f10, w02, w03);
-        int i10 = org.telegram.ui.ActionBar.n6.f29637q7;
+        int i10 = org.telegram.ui.ActionBar.n6.f29635q7;
         this.d.setColor(i0.a.f(this.f41969s, f12, org.telegram.ui.ActionBar.n6.w0(i10, i6Var)));
-        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29525k6, i6Var);
-        int w05 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29543l6, i6Var);
+        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29523k6, i6Var);
+        int w05 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29541l6, i6Var);
         if (!this.E || this.G) {
             f11 = this.f41966f;
         }
@@ -183,12 +183,12 @@ public class xb0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
             f10 = this.f41967n;
         }
         int f15 = i0.a.f(f10, w02, w03);
-        int i10 = org.telegram.ui.ActionBar.n6.f29637q7;
+        int i10 = org.telegram.ui.ActionBar.n6.f29635q7;
         int f16 = i0.a.f(this.f41969s, f15, org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
         TextPaint textPaint = this.d;
         textPaint.setColor(f16);
-        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29525k6, i6Var);
-        int w05 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29543l6, i6Var);
+        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29523k6, i6Var);
+        int w05 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29541l6, i6Var);
         if (this.E && !this.G) {
             f11 = 0.0f;
         } else {

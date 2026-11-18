@@ -2,34 +2,34 @@ package hi;
 
 import java.util.List;
 public final class i4 implements Runnable {
-    public final int f14761a;
-    public final l5 f14762b;
+    public final int f14758a;
+    public final l5 f14759b;
 
     public i4(l5 l5Var, int i7) {
-        this.f14761a = i7;
-        this.f14762b = l5Var;
+        this.f14758a = i7;
+        this.f14759b = l5Var;
     }
 
     @Override
     public final void run() {
         int e10;
-        switch (this.f14761a) {
+        switch (this.f14758a) {
             case 0:
-                tg.m1 m1Var = this.f14762b.N0;
+                tg.m1 m1Var = this.f14759b.N0;
                 if (m1Var != null) {
                     m1Var.invalidate();
                     return;
                 }
                 return;
             case 1:
-                new ug.z0((org.telegram.ui.ActionBar.h2) new bi.z8(this.f14762b, 5), 14, true).show();
+                new ug.z0((org.telegram.ui.ActionBar.h2) new bi.y8(this.f14759b, 5), 14, true).show();
                 return;
             case 2:
-                this.f14762b.w0(false);
+                this.f14759b.w0(false);
                 return;
             default:
-                l5 l5Var = this.f14762b;
-                boolean z10 = sg.k0.e(l5Var.f14922p1).f57269k;
+                l5 l5Var = this.f14759b;
+                boolean z10 = sg.k0.e(l5Var.f14919p1).f57269k;
                 int i7 = 0;
                 while (true) {
                     List list = sg.g.f57196c;
@@ -48,7 +48,7 @@ public final class i4 implements Runnable {
                         i5Var.setSelected(false);
                         i5Var.setOnClickListener(new o0(a1Var, 1));
                         i5Var.setOnLongClickListener(new o4(l5Var, 0));
-                        l5Var.f14928s1.a(i5Var, c8.ma.o(-1, 48));
+                        l5Var.f14925s1.a(i5Var, c8.ma.o(-1, 48));
                         i7++;
                     } else {
                         return;

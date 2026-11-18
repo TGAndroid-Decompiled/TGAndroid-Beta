@@ -50,7 +50,7 @@ public final class u70 extends Drawable {
                 f40240n = new TextPaint(1);
             }
             f40240n.setColor(-1);
-            f40240n.setTextSize(org.telegram.ui.ActionBar.n6.f29393d3.getTextSize() * 0.75f);
+            f40240n.setTextSize(org.telegram.ui.ActionBar.n6.f29391d3.getTextSize() * 0.75f);
             f40240n.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
             this.h = f40240n;
         }

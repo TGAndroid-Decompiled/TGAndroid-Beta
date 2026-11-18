@@ -7,7 +7,7 @@ public final class t5 extends ia {
     @Override
     public final void b(int i7, int i10) {
         boolean z10;
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         boolean z11 = true;
         if (point.x <= point.y) {
             z10 = true;
@@ -18,7 +18,7 @@ public final class t5 extends ia {
             z11 = false;
         }
         if (z10 == z11) {
-            ks.e().k(ks.B4, new Object[0]);
+            ks.e().k(ks.C4, new Object[0]);
         }
     }
 }

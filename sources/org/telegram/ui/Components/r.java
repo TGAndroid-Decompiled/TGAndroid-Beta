@@ -71,9 +71,9 @@ public final class r implements TextWatcher {
             org.telegram.messenger.s00 s00Var = (org.telegram.messenger.s00) arrayList.get(i15);
             String str2 = s00Var.d;
             if (str2 == null) {
-                str2 = (s00Var.f26719b + " " + s00Var.f26720c).toLowerCase();
+                str2 = (s00Var.f26717b + " " + s00Var.f26718c).toLowerCase();
             }
-            if (!isEmpty && !str2.contains(lowerCase) && ((str = s00Var.f26718a) == null || !str.toLowerCase().startsWith(lowerCase))) {
+            if (!isEmpty && !str2.contains(lowerCase) && ((str = s00Var.f26716a) == null || !str.toLowerCase().startsWith(lowerCase))) {
                 z10 = false;
             } else {
                 z10 = true;

@@ -3,21 +3,21 @@ package u7;
 import a8.l8;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class h extends v {
-    public final TaskCompletionSource f58444b;
-    public final i f58445c;
+    public final TaskCompletionSource f58445b;
+    public final i f58446c;
 
     public h(TaskCompletionSource taskCompletionSource, i iVar) {
-        this.f58444b = taskCompletionSource;
-        this.f58445c = iVar;
+        this.f58445b = taskCompletionSource;
+        this.f58446c = iVar;
     }
 
     @Override
     public final void P0(t tVar) {
-        l8.a(tVar.f58465a, null, this.f58444b);
+        l8.a(tVar.f58466a, null, this.f58445b);
     }
 
     @Override
     public final void zze() {
-        this.f58445c.m1();
+        this.f58446c.m1();
     }
 }

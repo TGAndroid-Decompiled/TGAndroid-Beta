@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-public final class yr0 extends org.telegram.ui.Cells.q1 {
+public final class yr0 extends org.telegram.ui.Cells.r1 {
     public final Paint Ad;
     public final byte[] Bd;
     public final int Cd;
     public final int Dd;
     public final as0 Ed;
-    public final Path f54273zd;
+    public final Path f54232zd;
 
     public yr0(as0 as0Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var, byte[] bArr, int i10, int i11) {
         super(context, i7, false, null, i6Var);
@@ -19,7 +19,7 @@ public final class yr0 extends org.telegram.ui.Cells.q1 {
         this.Bd = bArr;
         this.Cd = i10;
         this.Dd = i11;
-        this.f54273zd = new Path();
+        this.f54232zd = new Path();
         this.Ad = new Paint(1);
     }
 
@@ -56,7 +56,7 @@ public final class yr0 extends org.telegram.ui.Cells.q1 {
             L2 = org.telegram.messenger.g0.T1(L2, 0.0f, as0Var.E);
         }
         rectF.bottom = f12 + L2;
-        Path path = this.f54273zd;
+        Path path = this.f54232zd;
         path.rewind();
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
         Paint paint = this.Ad;

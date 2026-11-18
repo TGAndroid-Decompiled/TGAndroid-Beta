@@ -10,19 +10,19 @@ import e5.m;
 import java.util.Set;
 import java.util.WeakHashMap;
 public abstract class b {
-    public static final boolean f7856a;
-    public static final WeakHashMap f7857b;
+    public static final boolean f7853a;
+    public static final WeakHashMap f7854b;
 
     static {
         Uri.parse("*");
         Uri.parse("");
-        f7856a = true;
-        f7857b = new WeakHashMap();
+        f7853a = true;
+        f7854b = new WeakHashMap();
     }
 
     public static void a(WebView webView, String str, Set set, a aVar) {
-        if (k.f10866c.b()) {
-            c(webView).f10869a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new af.a(new i(aVar, 15)));
+        if (k.f10863c.b()) {
+            c(webView).f10866a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new af.a(new i(aVar, 15)));
             return;
         }
         throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
@@ -33,16 +33,16 @@ public abstract class b {
     }
 
     public static m c(WebView webView) {
-        if (k.f10867e.b() && f7856a) {
-            WeakHashMap weakHashMap = f7857b;
+        if (k.f10864e.b() && f7853a) {
+            WeakHashMap weakHashMap = f7854b;
             m mVar = (m) weakHashMap.get(webView);
             if (mVar == null) {
-                m mVar2 = new m(l.f10868a.createWebView(webView));
+                m mVar2 = new m(l.f10865a.createWebView(webView));
                 weakHashMap.put(webView, mVar2);
                 return mVar2;
             }
             return mVar;
         }
-        return new m(l.f10868a.createWebView(webView));
+        return new m(l.f10865a.createWebView(webView));
     }
 }

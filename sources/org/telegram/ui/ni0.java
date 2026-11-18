@@ -3,24 +3,24 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class ni0 implements TextWatcher {
-    public final int f50206a;
-    public final PasscodeActivity f50207b;
+    public final int f50190a;
+    public final PasscodeActivity f50191b;
 
     public ni0(PasscodeActivity passcodeActivity, int i7) {
-        this.f50206a = i7;
-        this.f50207b = passcodeActivity;
+        this.f50190a = i7;
+        this.f50191b = passcodeActivity;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        int i7 = this.f50206a;
+        int i7 = this.f50190a;
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f50206a) {
+        switch (this.f50190a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f50207b;
+                PasscodeActivity passcodeActivity = this.f50191b;
                 ii0 ii0Var = passcodeActivity.T;
                 if (passcodeActivity.S) {
                     passcodeActivity.f43143n.removeCallbacks(ii0Var);
@@ -29,7 +29,7 @@ public final class ni0 implements TextWatcher {
                 }
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f50207b;
+                PasscodeActivity passcodeActivity2 = this.f50191b;
                 ii0 ii0Var2 = passcodeActivity2.T;
                 if (passcodeActivity2.S) {
                     passcodeActivity2.f43143n.removeCallbacks(ii0Var2);
@@ -42,7 +42,7 @@ public final class ni0 implements TextWatcher {
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f50206a;
+        int i12 = this.f50190a;
     }
 
     private final void a(Editable editable) {

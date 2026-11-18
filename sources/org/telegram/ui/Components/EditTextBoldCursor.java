@@ -419,13 +419,13 @@ public class EditTextBoldCursor extends pt {
     public final void m() {
         org.telegram.ui.ActionBar.m4 m4Var = this.Y0;
         if (m4Var != null) {
-            m4Var.f29236a.removeOnLayoutChangeListener(m4Var.f29245l);
-            org.telegram.ui.ActionBar.k4 k4Var = m4Var.f29237b;
+            m4Var.f29234a.removeOnLayoutChangeListener(m4Var.f29243l);
+            org.telegram.ui.ActionBar.k4 k4Var = m4Var.f29235b;
             if (!k4Var.F) {
                 k4Var.G = false;
                 k4Var.F = true;
-                k4Var.f29144x.cancel();
-                k4Var.f29143w.start();
+                k4Var.f29142x.cancel();
+                k4Var.f29141w.start();
                 k4Var.D.setEmpty();
             }
             this.Y0 = null;
@@ -616,7 +616,7 @@ public class EditTextBoldCursor extends pt {
         CharSequence charSequence4 = charSequence;
         et etVar = this.f32940u0;
         if (etVar != null) {
-            etVar.t(charSequence4, !org.telegram.messenger.gd.f24216a0, true);
+            etVar.t(charSequence4, !org.telegram.messenger.gd.f24213a0, true);
             return;
         }
         if (charSequence4 == null) {
@@ -946,14 +946,14 @@ public class EditTextBoldCursor extends pt {
         }
         org.telegram.ui.ActionBar.m4 m4Var = new org.telegram.ui.ActionBar.m4(context, view, getActionModeStyle(), getResourcesProvider(), this.f32937s1);
         this.Y0 = m4Var;
-        m4Var.f29243j = this.f32949y1;
-        m4Var.f29244k = new dt(this, 0);
-        org.telegram.ui.ActionBar.y3 y3Var2 = new org.telegram.ui.ActionBar.y3(getContext(), new org.telegram.ui.Cells.g9(this, callback), this, this.Y0);
+        m4Var.f29241j = this.f32949y1;
+        m4Var.f29242k = new dt(this, 0);
+        org.telegram.ui.ActionBar.y3 y3Var2 = new org.telegram.ui.ActionBar.y3(getContext(), new org.telegram.ui.Cells.h9(this, callback), this, this.Y0);
         this.Z0 = y3Var2;
         this.f32904a1 = new fl(1, this);
-        callback.onCreateActionMode(y3Var2, y3Var2.f30276c);
+        callback.onCreateActionMode(y3Var2, y3Var2.f30274c);
         org.telegram.ui.ActionBar.y3 y3Var3 = this.Z0;
-        o(y3Var3, y3Var3.f30276c);
+        o(y3Var3, y3Var3.f30274c);
         this.Z0.invalidate();
         getViewTreeObserver().addOnPreDrawListener(this.f32904a1);
         invalidate();

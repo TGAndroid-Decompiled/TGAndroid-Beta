@@ -3,16 +3,16 @@ package oi;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class b3 {
-    public final s3 f21952a;
+    public final s3 f21949a;
 
     public b3(s3 s3Var) {
-        this.f21952a = s3Var;
+        this.f21949a = s3Var;
     }
 
     public final void a(a aVar) {
         a aVar2;
-        s3 s3Var = this.f21952a;
-        ArrayList arrayList = s3Var.f22345t3;
+        s3 s3Var = this.f21949a;
+        ArrayList arrayList = s3Var.f22342t3;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0 && s3.A3(aVar)) {
             int S3 = s3Var.S3(indexOf);
@@ -33,7 +33,7 @@ public final class b3 {
             } else {
                 aVar2 = null;
             }
-            if (aVar2 != null && !aVar2.f21915i && !s3.A3(aVar2) && !s3.H3(aVar2.f21910b)) {
+            if (aVar2 != null && !aVar2.f21912i && !s3.A3(aVar2) && !s3.H3(aVar2.f21907b)) {
                 aVar3 = aVar2;
             }
             if (arrayList.isEmpty()) {

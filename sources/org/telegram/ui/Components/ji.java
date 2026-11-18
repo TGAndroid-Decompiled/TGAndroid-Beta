@@ -19,7 +19,7 @@ public final class ji extends org.telegram.ui.oq0 {
             return;
         }
         final org.telegram.messenger.ef efVar = this.f36442a;
-        efVar.f27864s = e20Var;
+        efVar.f27862s = e20Var;
         b5.X(siVar.H3, siVar.Y0() + 1, 0L, new org.telegram.messenger.x10() {
             @Override
             public final void a(Object obj) {

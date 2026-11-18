@@ -34,7 +34,7 @@ public final class u50 extends FrameLayout implements org.telegram.ui.ActionBar.
         TextView textView2 = new TextView(context);
         this.f40214c = textView2;
         textView2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29788y6, null);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29786y6, null);
         addView(textView2, c8.ma.d(-1, -2.0f, 51, 72.0f, 32.0f, 0.0f, 0.0f));
     }
 

@@ -50,19 +50,19 @@ public final class wr0 extends bk0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         char c10;
-        if (f1Var.f59126f == 12) {
+        if (f1Var.f59127f == 12) {
             gt0 gt0Var = this.d;
             org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) gt0Var.f35636w1[5].f41412a.get(i7);
             TLRPC.Document F0 = fjVar.F0();
             if (F0 != null) {
-                View view = f1Var.f59122a;
-                if (view instanceof org.telegram.ui.Cells.h2) {
-                    org.telegram.ui.Cells.h2 h2Var = (org.telegram.ui.Cells.h2) view;
-                    h2Var.d(fjVar.f23968k.date, fjVar, F0);
+                View view = f1Var.f59123a;
+                if (view instanceof org.telegram.ui.Cells.i2) {
+                    org.telegram.ui.Cells.i2 i2Var = (org.telegram.ui.Cells.i2) view;
+                    i2Var.d(fjVar.f23965k.date, fjVar, F0);
                     boolean z10 = false;
                     if (gt0Var.F1) {
                         SparseArray[] sparseArrayArr = gt0Var.f35577c1;
-                        if (org.telegram.messenger.fj.B0(fjVar.f23968k) == gt0Var.f35606m1) {
+                        if (org.telegram.messenger.fj.B0(fjVar.f23965k) == gt0Var.f35606m1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -70,10 +70,10 @@ public final class wr0 extends bk0 {
                         if (sparseArrayArr[c10].indexOfKey(fjVar.e1()) >= 0) {
                             z10 = true;
                         }
-                        h2Var.c(z10, !gt0Var.f35583e1);
+                        i2Var.c(z10, !gt0Var.f35583e1);
                         return;
                     }
-                    h2Var.c(false, !gt0Var.f35583e1);
+                    i2Var.c(false, !gt0Var.f35583e1);
                 }
             }
         }
@@ -89,22 +89,22 @@ public final class wr0 extends bk0 {
             X.setLayoutParams(new v4.q0(-1, -1));
             return new v4.f1(X);
         }
-        org.telegram.ui.Cells.h2 h2Var = new org.telegram.ui.Cells.h2(context, i6Var, true);
-        h2Var.setCanPreviewGif(true);
-        return new v4.f1(h2Var);
+        org.telegram.ui.Cells.i2 i2Var = new org.telegram.ui.Cells.i2(context, i6Var, true);
+        i2Var.setCanPreviewGif(true);
+        return new v4.f1(i2Var);
     }
 
     @Override
     public final void y(v4.f1 f1Var) {
-        View view = f1Var.f59122a;
-        if (view instanceof org.telegram.ui.Cells.h2) {
-            ImageReceiver photoImage = ((org.telegram.ui.Cells.h2) view).getPhotoImage();
+        View view = f1Var.f59123a;
+        if (view instanceof org.telegram.ui.Cells.i2) {
+            ImageReceiver photoImage = ((org.telegram.ui.Cells.i2) view).getPhotoImage();
             if (this.d.f35609n0[0].F == 5) {
-                photoImage.f22667u0 = true;
+                photoImage.f22664u0 = true;
                 photoImage.P0(false);
                 return;
             }
-            photoImage.f22667u0 = false;
+            photoImage.f22664u0 = false;
             photoImage.Q0();
         }
     }

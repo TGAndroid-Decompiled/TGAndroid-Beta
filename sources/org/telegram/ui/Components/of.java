@@ -159,7 +159,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
     @Override
     public org.telegram.ui.ActionBar.z0 K(String str) {
         org.telegram.ui.ActionBar.h5 h5Var = ((gt0) this.f38076b).J;
-        return h5Var.d(0, 0, null, str, true, true, h5Var.f29934n0);
+        return h5Var.d(0, 0, null, str, true, true, h5Var.f29932n0);
     }
 
     @Override
@@ -199,7 +199,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
     public r0.l1 P0(View view, r0.l1 l1Var) {
         i0.b I0 = org.telegram.messenger.g0.I0(l1Var, false);
         wk0 wk0Var = (wk0) this.f38076b;
-        wk0Var.f41732w.setPadding(I0.f15892a, I0.f15893b, I0.f15894c, I0.d);
+        wk0Var.f41732w.setPadding(I0.f15889a, I0.f15890b, I0.f15891c, I0.d);
         wk0Var.f41731s.requestLayout();
         return r0.l1.f56257b;
     }
@@ -224,7 +224,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
     @Override
     public int R() {
         v4.p0 p0Var = (v4.p0) this.f38076b;
-        return p0Var.f59216m - p0Var.E();
+        return p0Var.f59217m - p0Var.E();
     }
 
     @Override
@@ -303,19 +303,19 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                     Bundle B = bVar.B();
                     Parcel obtain = Parcel.obtain();
                     obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-                    int i10 = h8.c.f13953a;
+                    int i10 = h8.c.f13950a;
                     obtain.writeInt(1);
                     eVar.writeToParcel(obtain, 0);
                     obtain.writeInt(1);
                     B.writeToParcel(obtain, 0);
                     obtain.writeStrongBinder(aVar);
-                    iVar.f13961a.transact(14, obtain, null, 1);
+                    iVar.f13958a.transact(14, obtain, null, 1);
                     obtain.recycle();
                     return;
                 } catch (RemoteException e10) {
                     Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e10);
                     Bundle bundle = Bundle.EMPTY;
-                    a8.l8.a(Status.h, Boolean.FALSE, aVar.f13952b);
+                    a8.l8.a(Status.h, Boolean.FALSE, aVar.f13949b);
                     return;
                 }
         }
@@ -387,7 +387,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
     public Object mo24get() {
         switch (this.f38075a) {
             case 9:
-                return new org.telegram.ui.md0((Context) ((e.a) this.f38076b).f10180a, new qb.a(28), new pb.b(28), 5);
+                return new org.telegram.ui.nd0((Context) ((e.a) this.f38076b).f10177a, new qb.a(28), new pb.b(28), 5);
             default:
                 return new v5.i(Integer.valueOf(v5.i.d).intValue(), (Context) ((fd.a) this.f38076b).mo24get(), "com.google.android.datatransport.events");
         }
@@ -413,7 +413,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
         gt0 gt0Var = (gt0) this.f38076b;
         org.telegram.ui.ActionBar.z0 e10 = gt0Var.J.e(0, i7, str);
         if (z10) {
-            int i10 = org.telegram.ui.ActionBar.n6.f29617p7;
+            int i10 = org.telegram.ui.ActionBar.n6.f29615p7;
             e10.d(gt0Var.s0(i10), gt0Var.s0(i10));
         }
         e10.setOnClickListener(new wa0(this, z11, runnable));
@@ -478,7 +478,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
     @Override
     public boolean p() {
         gu guVar = (gu) this.f38076b;
-        if (guVar.O1 == guVar.f35645m1 && guVar.f35656y1 && "inapp".equals(org.telegram.messenger.mp.u1(guVar.f30189a).D3)) {
+        if (guVar.O1 == guVar.f35645m1 && guVar.f35656y1 && "inapp".equals(org.telegram.messenger.mp.u1(guVar.f30187a).D3)) {
             return false;
         }
         return true;
@@ -488,10 +488,10 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
     public void q(Object obj) {
         com.google.android.gms.common.api.internal.m mVar;
         org.telegram.messenger.x9 x9Var = (org.telegram.messenger.x9) obj;
-        androidx.activity.n nVar = ((u7.i) this.f38076b).f58447b;
+        androidx.activity.n nVar = ((u7.i) this.f38076b).f58448b;
         synchronized (nVar) {
-            nVar.f1787b = false;
-            mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1788c).f6338b;
+            nVar.f1788b = false;
+            mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1789c).f6335b;
         }
         if (mVar != null) {
             ((u7.c) nVar.d).c(mVar, 2441);
@@ -520,10 +520,10 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
         byte[] bArr;
         int i20;
         x3.f fVar = (x3.f) this.f38076b;
-        x3.g gVar = fVar.f60346b;
-        SparseArray sparseArray = fVar.f60348c;
-        h2.x xVar = fVar.f60362k;
-        h2.x xVar2 = fVar.f60358i;
+        x3.g gVar = fVar.f60347b;
+        SparseArray sparseArray = fVar.f60349c;
+        h2.x xVar = fVar.f60363k;
+        h2.x xVar2 = fVar.f60359i;
         int i21 = 2;
         int i22 = 0;
         int i23 = 1;
@@ -537,7 +537,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                     if (i7 == 30322) {
                                         fVar.h(i7);
                                         byte[] bArr2 = new byte[i10];
-                                        fVar.f60375y.f60336x = bArr2;
+                                        fVar.f60376y.f60337x = bArr2;
                                         pVar.readFully(bArr2, 0, i10);
                                         return;
                                     }
@@ -545,12 +545,12 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 }
                                 fVar.h(i7);
                                 byte[] bArr3 = new byte[i10];
-                                fVar.f60375y.f60325l = bArr3;
+                                fVar.f60376y.f60326l = bArr3;
                                 pVar.readFully(bArr3, 0, i10);
                                 return;
                             }
-                            Arrays.fill(xVar.f13836a, (byte) 0);
-                            pVar.readFully(xVar.f13836a, 4 - i10, i10);
+                            Arrays.fill(xVar.f13833a, (byte) 0);
+                            pVar.readFully(xVar.f13833a, 4 - i10, i10);
                             xVar.N(0);
                             fVar.A = (int) xVar.C();
                             return;
@@ -558,17 +558,17 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                         byte[] bArr4 = new byte[i10];
                         pVar.readFully(bArr4, 0, i10);
                         fVar.h(i7);
-                        fVar.f60375y.f60324k = new f3.h0(1, 0, 0, bArr4);
+                        fVar.f60376y.f60325k = new f3.h0(1, 0, 0, bArr4);
                         return;
                     }
                     fVar.h(i7);
                     byte[] bArr5 = new byte[i10];
-                    fVar.f60375y.f60323j = bArr5;
+                    fVar.f60376y.f60324j = bArr5;
                     pVar.readFully(bArr5, 0, i10);
                     return;
                 }
                 fVar.h(i7);
-                x3.e eVar = fVar.f60375y;
+                x3.e eVar = fVar.f60376y;
                 int i24 = eVar.h;
                 if (i24 != 1685485123 && i24 != 1685480259) {
                     pVar.r(i10);
@@ -581,10 +581,10 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
             } else if (fVar.O == 2) {
                 x3.e eVar2 = (x3.e) sparseArray.get(fVar.U);
                 int i25 = fVar.X;
-                h2.x xVar3 = fVar.f60367p;
-                if (i25 == 4 && "V_VP9".equals(eVar2.f60317c)) {
+                h2.x xVar3 = fVar.f60368p;
+                if (i25 == 4 && "V_VP9".equals(eVar2.f60318c)) {
                     xVar3.K(i10);
-                    pVar.readFully(xVar3.f13836a, 0, i10);
+                    pVar.readFully(xVar3.f13833a, 0, i10);
                     return;
                 }
                 pVar.r(i10);
@@ -595,7 +595,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
         }
         if (fVar.O == 0) {
             fVar.U = (int) gVar.b(pVar, false, true, 8);
-            fVar.V = gVar.f60379c;
+            fVar.V = gVar.f60380c;
             fVar.Q = -9223372036854775807L;
             fVar.O = 1;
             xVar2.K(0);
@@ -606,10 +606,10 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
             fVar.O = 0;
             return;
         }
-        eVar3.f60314a0.getClass();
+        eVar3.f60315a0.getClass();
         if (fVar.O == 1) {
             fVar.l(pVar, 3);
-            int i26 = (xVar2.f13836a[2] & 6) >> 1;
+            int i26 = (xVar2.f13833a[2] & 6) >> 1;
             byte b10 = 255;
             if (i26 == 0) {
                 fVar.S = 1;
@@ -623,7 +623,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                 iArr[0] = (i10 - fVar.V) - 3;
             } else {
                 fVar.l(pVar, 4);
-                int i27 = (xVar2.f13836a[3] & 255) + 1;
+                int i27 = (xVar2.f13833a[3] & 255) + 1;
                 fVar.S = i27;
                 int[] iArr2 = fVar.T;
                 if (iArr2 == null) {
@@ -648,7 +648,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                         while (true) {
                             i18 = i31 + 1;
                             fVar.l(pVar, i18);
-                            int i32 = xVar2.f13836a[i31] & 255;
+                            int i32 = xVar2.f13833a[i31] & 255;
                             int[] iArr3 = fVar.T;
                             i19 = iArr3[i29] + i32;
                             iArr3[i29] = i19;
@@ -672,19 +672,19 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                             fVar.T[i33] = i22;
                             int i37 = i35 + 1;
                             fVar.l(pVar, i37);
-                            if (xVar2.f13836a[i35] != 0) {
+                            if (xVar2.f13833a[i35] != 0) {
                                 int i38 = i22;
                                 while (true) {
                                     if (i38 < 8) {
                                         int i39 = i23 << (7 - i38);
                                         i14 = i21;
-                                        if ((xVar2.f13836a[i35] & i39) != 0) {
+                                        if ((xVar2.f13833a[i35] & i39) != 0) {
                                             int i40 = i37 + i38;
                                             fVar.l(pVar, i40);
                                             i15 = i23;
-                                            j3 = xVar2.f13836a[i35] & b10 & (~i39);
+                                            j3 = xVar2.f13833a[i35] & b10 & (~i39);
                                             while (i37 < i40) {
-                                                j3 = (j3 << 8) | (xVar2.f13836a[i37] & b10);
+                                                j3 = (j3 << 8) | (xVar2.f13833a[i37] & b10);
                                                 i37++;
                                                 i40 = i40;
                                                 b10 = 255;
@@ -741,9 +741,9 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
             i11 = 2;
             i12 = 0;
             i13 = 1;
-            int i42 = xVar2.f13836a[i13] & 255;
+            int i42 = xVar2.f13833a[i13] & 255;
             fVar.P = fVar.n(i42 | (bArr[i12] << 8)) + fVar.M;
-            if (eVar3.f60319e != i13 && (i7 != 163 || (xVar2.f13836a[i11] & 128) != 128)) {
+            if (eVar3.f60320e != i13 && (i7 != 163 || (xVar2.f13833a[i11] & 128) != 128)) {
                 i20 = i12;
             } else {
                 i20 = 1;
@@ -756,7 +756,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
             while (true) {
                 int i43 = fVar.R;
                 if (i43 < fVar.S) {
-                    fVar.i(eVar3, ((fVar.R * eVar3.f60320f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i43], false), 0);
+                    fVar.i(eVar3, ((fVar.R * eVar3.f60321f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i43], false), 0);
                     fVar.R++;
                 } else {
                     fVar.O = 0;
@@ -811,27 +811,27 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                         if (i10 != 17) {
                                             if (i10 != 33) {
                                                 fVar.h(i7);
-                                                fVar.f60375y.f60319e = -1;
+                                                fVar.f60376y.f60320e = -1;
                                                 return;
                                             }
                                             fVar.h(i7);
-                                            fVar.f60375y.f60319e = 5;
+                                            fVar.f60376y.f60320e = 5;
                                             return;
                                         }
                                         fVar.h(i7);
-                                        fVar.f60375y.f60319e = 3;
+                                        fVar.f60376y.f60320e = 3;
                                         return;
                                     }
                                     fVar.h(i7);
-                                    fVar.f60375y.f60319e = 1;
+                                    fVar.f60376y.f60320e = 1;
                                     return;
                                 }
                                 fVar.h(i7);
-                                fVar.f60375y.f60319e = 2;
+                                fVar.f60376y.f60320e = 2;
                                 return;
                             case 136:
                                 fVar.h(i7);
-                                x3.e eVar = fVar.f60375y;
+                                x3.e eVar = fVar.f60376y;
                                 if (j3 == 1) {
                                     z10 = true;
                                 }
@@ -842,14 +842,14 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 159:
                                 fVar.h(i7);
-                                fVar.f60375y.Q = (int) j3;
+                                fVar.f60376y.Q = (int) j3;
                                 return;
                             case 176:
                                 fVar.h(i7);
-                                fVar.f60375y.f60327n = (int) j3;
+                                fVar.f60376y.f60328n = (int) j3;
                                 return;
                             case 179:
-                                if (!fVar.f60376z) {
+                                if (!fVar.f60377z) {
                                     fVar.g(i7);
                                     fVar.E = fVar.n(j3);
                                     return;
@@ -857,11 +857,11 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 186:
                                 fVar.h(i7);
-                                fVar.f60375y.f60328o = (int) j3;
+                                fVar.f60376y.f60329o = (int) j3;
                                 return;
                             case 215:
                                 fVar.h(i7);
-                                fVar.f60375y.d = (int) j3;
+                                fVar.f60376y.d = (int) j3;
                                 return;
                             case 231:
                                 fVar.M = fVar.n(j3);
@@ -870,7 +870,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 fVar.X = (int) j3;
                                 return;
                             case 247:
-                                if (!fVar.f60376z) {
+                                if (!fVar.f60377z) {
                                     fVar.g(i7);
                                     fVar.F = (int) j3;
                                     return;
@@ -881,7 +881,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 16871:
                                 fVar.h(i7);
-                                fVar.f60375y.h = (int) j3;
+                                fVar.f60376y.h = (int) j3;
                                 return;
                             case 16980:
                                 if (j3 != 3) {
@@ -909,7 +909,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 }
                                 return;
                             case 21420:
-                                fVar.B = j3 + fVar.f60370s;
+                                fVar.B = j3 + fVar.f60371s;
                                 return;
                             case 21432:
                                 int i11 = (int) j3;
@@ -918,34 +918,34 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                     if (i11 != 1) {
                                         if (i11 != 3) {
                                             if (i11 == 15) {
-                                                fVar.f60375y.f60337y = 3;
+                                                fVar.f60376y.f60338y = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f60375y.f60337y = 1;
+                                        fVar.f60376y.f60338y = 1;
                                         return;
                                     }
-                                    fVar.f60375y.f60337y = 2;
+                                    fVar.f60376y.f60338y = 2;
                                     return;
                                 }
-                                fVar.f60375y.f60337y = 0;
+                                fVar.f60376y.f60338y = 0;
                                 return;
                             case 21680:
                                 fVar.h(i7);
-                                fVar.f60375y.f60330q = (int) j3;
+                                fVar.f60376y.f60331q = (int) j3;
                                 return;
                             case 21682:
                                 fVar.h(i7);
-                                fVar.f60375y.f60332s = (int) j3;
+                                fVar.f60376y.f60333s = (int) j3;
                                 return;
                             case 21690:
                                 fVar.h(i7);
-                                fVar.f60375y.f60331r = (int) j3;
+                                fVar.f60376y.f60332r = (int) j3;
                                 return;
                             case 21930:
                                 fVar.h(i7);
-                                x3.e eVar2 = fVar.f60375y;
+                                x3.e eVar2 = fVar.f60376y;
                                 if (j3 == 1) {
                                     z10 = true;
                                 }
@@ -953,25 +953,25 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 21938:
                                 fVar.h(i7);
-                                x3.e eVar3 = fVar.f60375y;
-                                eVar3.f60338z = true;
-                                eVar3.f60329p = (int) j3;
+                                x3.e eVar3 = fVar.f60376y;
+                                eVar3.f60339z = true;
+                                eVar3.f60330p = (int) j3;
                                 return;
                             case 21998:
                                 fVar.h(i7);
-                                fVar.f60375y.f60321g = (int) j3;
+                                fVar.f60376y.f60322g = (int) j3;
                                 return;
                             case 22186:
                                 fVar.h(i7);
-                                fVar.f60375y.T = j3;
+                                fVar.f60376y.T = j3;
                                 return;
                             case 22203:
                                 fVar.h(i7);
-                                fVar.f60375y.U = j3;
+                                fVar.f60376y.U = j3;
                                 return;
                             case 25188:
                                 fVar.h(i7);
-                                fVar.f60375y.R = (int) j3;
+                                fVar.f60376y.R = (int) j3;
                                 return;
                             case 30114:
                                 fVar.Z = j3;
@@ -983,25 +983,25 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                     if (i12 != 1) {
                                         if (i12 != 2) {
                                             if (i12 == 3) {
-                                                fVar.f60375y.f60333t = 3;
+                                                fVar.f60376y.f60334t = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f60375y.f60333t = 2;
+                                        fVar.f60376y.f60334t = 2;
                                         return;
                                     }
-                                    fVar.f60375y.f60333t = 1;
+                                    fVar.f60376y.f60334t = 1;
                                     return;
                                 }
-                                fVar.f60375y.f60333t = 0;
+                                fVar.f60376y.f60334t = 0;
                                 return;
                             case 2352003:
                                 fVar.h(i7);
-                                fVar.f60375y.f60320f = (int) j3;
+                                fVar.f60376y.f60321f = (int) j3;
                                 return;
                             case 2807729:
-                                fVar.f60371t = j3;
+                                fVar.f60372t = j3;
                                 return;
                             default:
                                 switch (i7) {
@@ -1010,37 +1010,37 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                         int i13 = (int) j3;
                                         if (i13 != 1) {
                                             if (i13 == 2) {
-                                                fVar.f60375y.C = 1;
+                                                fVar.f60376y.C = 1;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f60375y.C = 2;
+                                        fVar.f60376y.C = 2;
                                         return;
                                     case 21946:
                                         fVar.h(i7);
                                         int g10 = e2.m.g((int) j3);
                                         if (g10 != -1) {
-                                            fVar.f60375y.B = g10;
+                                            fVar.f60376y.B = g10;
                                             return;
                                         }
                                         return;
                                     case 21947:
                                         fVar.h(i7);
-                                        fVar.f60375y.f60338z = true;
+                                        fVar.f60376y.f60339z = true;
                                         int f10 = e2.m.f((int) j3);
                                         if (f10 != -1) {
-                                            fVar.f60375y.A = f10;
+                                            fVar.f60376y.A = f10;
                                             return;
                                         }
                                         return;
                                     case 21948:
                                         fVar.h(i7);
-                                        fVar.f60375y.D = (int) j3;
+                                        fVar.f60376y.D = (int) j3;
                                         return;
                                     case 21949:
                                         fVar.h(i7);
-                                        fVar.f60375y.E = (int) j3;
+                                        fVar.f60376y.E = (int) j3;
                                         return;
                                     default:
                                         return;
@@ -1052,13 +1052,13 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                 } else if (j3 != 0) {
                     throw e2.t0.a(null, "ContentEncodingOrder " + j3 + " not supported");
                 }
-            } else if (!fVar.f60376z) {
+            } else if (!fVar.f60377z) {
                 fVar.g(i7);
                 if (fVar.G == -1) {
                     fVar.G = j3;
                 }
             }
-        } else if (!fVar.f60376z) {
+        } else if (!fVar.f60377z) {
             fVar.g(i7);
             if (fVar.H == -1) {
                 fVar.H = j3;
@@ -1083,13 +1083,13 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
         int i10 = 0;
         for (r2.p pVar : jVar.K) {
             pVar.h();
-            i10 += pVar.Z.f60212a;
+            i10 += pVar.Z.f60213a;
         }
         e2.m1[] m1VarArr = new e2.m1[i10];
         int i11 = 0;
         for (r2.p pVar2 : jVar.K) {
             pVar2.h();
-            int i12 = pVar2.Z.f60212a;
+            int i12 = pVar2.Z.f60213a;
             int i13 = 0;
             while (i13 < i12) {
                 pVar2.h();
@@ -1128,7 +1128,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
 
     public void y0(long j3, int i7, long j10) {
         x3.f fVar = (x3.f) this.f38076b;
-        fVar.f60361j0.getClass();
+        fVar.f60362j0.getClass();
         if (i7 != 160) {
             if (i7 != 174) {
                 if (i7 != 183) {
@@ -1138,50 +1138,50 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                                 if (i7 != 21968) {
                                     if (i7 != 408125543) {
                                         if (i7 != 475249515) {
-                                            if (i7 == 524531317 && !fVar.f60376z) {
+                                            if (i7 == 524531317 && !fVar.f60377z) {
                                                 if (fVar.d && fVar.K != -1) {
                                                     fVar.J = true;
                                                     return;
                                                 }
-                                                fVar.f60361j0.j(new f3.t(fVar.v));
-                                                fVar.f60376z = true;
+                                                fVar.f60362j0.j(new f3.t(fVar.v));
+                                                fVar.f60377z = true;
                                                 return;
                                             }
                                             return;
-                                        } else if (!fVar.f60376z) {
+                                        } else if (!fVar.f60377z) {
                                             fVar.D = true;
                                             return;
                                         } else {
                                             return;
                                         }
                                     }
-                                    long j11 = fVar.f60370s;
+                                    long j11 = fVar.f60371s;
                                     if (j11 != -1 && j11 != j3) {
                                         throw e2.t0.a(null, "Multiple Segment elements not supported");
                                     }
-                                    fVar.f60370s = j3;
-                                    fVar.f60369r = j10;
+                                    fVar.f60371s = j3;
+                                    fVar.f60370r = j10;
                                     return;
                                 }
                                 fVar.h(i7);
-                                fVar.f60375y.f60338z = true;
+                                fVar.f60376y.f60339z = true;
                                 return;
                             }
                             fVar.h(i7);
-                            fVar.f60375y.f60322i = true;
+                            fVar.f60376y.f60323i = true;
                             return;
                         }
                         fVar.A = -1;
                         fVar.B = -1L;
                         return;
-                    } else if (!fVar.f60376z) {
+                    } else if (!fVar.f60377z) {
                         fVar.g(i7);
                         fVar.E = -9223372036854775807L;
                         return;
                     } else {
                         return;
                     }
-                } else if (!fVar.f60376z) {
+                } else if (!fVar.f60377z) {
                     fVar.g(i7);
                     fVar.F = -1;
                     fVar.G = -1L;
@@ -1192,19 +1192,19 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                 }
             }
             ?? obj = new Object();
-            obj.f60327n = -1;
-            obj.f60328o = -1;
-            obj.f60329p = -1;
-            obj.f60330q = -1;
-            obj.f60331r = -1;
-            obj.f60332s = 0;
-            obj.f60333t = -1;
-            obj.f60334u = 0.0f;
+            obj.f60328n = -1;
+            obj.f60329o = -1;
+            obj.f60330p = -1;
+            obj.f60331q = -1;
+            obj.f60332r = -1;
+            obj.f60333s = 0;
+            obj.f60334t = -1;
+            obj.f60335u = 0.0f;
             obj.v = 0.0f;
-            obj.f60335w = 0.0f;
-            obj.f60336x = null;
-            obj.f60337y = -1;
-            obj.f60338z = false;
+            obj.f60336w = 0.0f;
+            obj.f60337x = null;
+            obj.f60338y = -1;
+            obj.f60339z = false;
             obj.A = -1;
             obj.B = -1;
             obj.C = -1;
@@ -1228,8 +1228,8 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
             obj.W = false;
             obj.Y = true;
             obj.Z = "eng";
-            fVar.f60375y = obj;
-            obj.f60313a = fVar.f60373w;
+            fVar.f60376y = obj;
+            obj.f60314a = fVar.f60374w;
             return;
         }
         fVar.Y = false;
@@ -1259,21 +1259,21 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
                         return;
                     }
                     fVar.h(i7);
-                    fVar.f60375y.Z = str;
+                    fVar.f60376y.Z = str;
                     return;
                 }
                 fVar.h(i7);
-                fVar.f60375y.f60315b = str;
+                fVar.f60376y.f60316b = str;
                 return;
             } else if (!"webm".equals(str) && !"matroska".equals(str)) {
                 throw e2.t0.a(null, "DocType " + str + " not supported");
             } else {
-                fVar.f60373w = str.equals("webm");
+                fVar.f60374w = str.equals("webm");
                 return;
             }
         }
         fVar.h(i7);
-        fVar.f60375y.f60317c = str;
+        fVar.f60376y.f60318c = str;
     }
 
     public of(boolean z10) {
@@ -1298,7 +1298,7 @@ public final class of implements me0, q90, wi.l, r0.m, fs0, ue.a, jg.y1, q5.b, x
         if (Build.VERSION.SDK_INT >= 25) {
             this.f38076b = new t0.g(uri, clipDescription, uri2);
         } else {
-            this.f38076b = new org.telegram.ui.md0(uri, clipDescription, uri2, 16);
+            this.f38076b = new org.telegram.ui.nd0(uri, clipDescription, uri2, 16);
         }
     }
 

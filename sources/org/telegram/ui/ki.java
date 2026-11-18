@@ -4,16 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class ki extends AnimatorListenerAdapter {
-    public final int f49274a = 1;
-    public final boolean f49275b;
-    public int f49276c;
+    public final int f49280a = 1;
+    public final boolean f49281b;
+    public int f49282c;
     public final Object d;
-    public final org.telegram.messenger.fs f49277e;
+    public final org.telegram.messenger.fs f49283e;
 
     public ki(org.telegram.ui.Components.gt0 gt0Var, boolean z10, int i7, org.telegram.ui.Components.bs0 bs0Var) {
-        this.f49277e = gt0Var;
-        this.f49275b = z10;
-        this.f49276c = i7;
+        this.f49283e = gt0Var;
+        this.f49281b = z10;
+        this.f49282c = i7;
         this.d = bs0Var;
     }
 
@@ -23,28 +23,28 @@ public final class ki extends AnimatorListenerAdapter {
         View m10;
         int i7;
         v4.i0 adapter;
-        switch (this.f49274a) {
+        switch (this.f49280a) {
             case 0:
-                bn bnVar = (bn) this.f49277e;
-                bnVar.f46020g6 = true;
+                bn bnVar = (bn) this.f49283e;
+                bnVar.f46011g6 = true;
                 ((org.telegram.ui.ActionBar.h2) bnVar).fragmentBeginToShow = true;
-                bnVar.f46177sa = null;
-                if (this.f49275b) {
+                bnVar.f46168sa = null;
+                if (this.f49281b) {
                     bnVar.Ha = false;
                 }
                 kVar = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
                 kVar.invalidate();
-                bnVar.f46093m1.invalidate();
+                bnVar.f46084m1.invalidate();
                 org.telegram.messenger.g0.h3(new bh(this, 2), 32L);
                 ((Runnable) this.d).run();
                 return;
             default:
-                int i10 = this.f49276c;
-                org.telegram.ui.Components.gt0 gt0Var = (org.telegram.ui.Components.gt0) this.f49277e;
+                int i10 = this.f49282c;
+                org.telegram.ui.Components.gt0 gt0Var = (org.telegram.ui.Components.gt0) this.f49283e;
                 int[] iArr = gt0Var.f35615p1;
                 org.telegram.ui.Components.bs0[] bs0VarArr = gt0Var.f35609n0;
                 gt0Var.f35622r1 = false;
-                boolean z10 = this.f49275b;
+                boolean z10 = this.f49281b;
                 if (z10) {
                     int i11 = gt0Var.f35629t1;
                     iArr[i10] = i11;
@@ -95,11 +95,11 @@ public final class ki extends AnimatorListenerAdapter {
     @Override
     public void onAnimationStart(Animator animator) {
         int i7;
-        switch (this.f49274a) {
+        switch (this.f49280a) {
             case 0:
                 super.onAnimationStart(animator);
-                i7 = ((org.telegram.ui.ActionBar.h2) ((bn) this.f49277e)).currentAccount;
-                this.f49276c = org.telegram.messenger.ks.f(i7).q(null, this.f49276c, true);
+                i7 = ((org.telegram.ui.ActionBar.h2) ((bn) this.f49283e)).currentAccount;
+                this.f49282c = org.telegram.messenger.ks.f(i7).q(null, this.f49282c, true);
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -108,8 +108,8 @@ public final class ki extends AnimatorListenerAdapter {
     }
 
     public ki(bn bnVar, boolean z10, Runnable runnable) {
-        this.f49277e = bnVar;
-        this.f49275b = z10;
+        this.f49283e = bnVar;
+        this.f49281b = z10;
         this.d = runnable;
     }
 }

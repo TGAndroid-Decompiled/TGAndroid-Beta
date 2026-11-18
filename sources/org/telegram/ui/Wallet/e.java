@@ -118,8 +118,8 @@ public final class e implements q10 {
                 if (password != null) {
                     n6Var.V0 = true;
                     n6Var.W0 = password.has_password;
-                    bi.d6 d6Var = n6Var.f33530a;
-                    if (d6Var != null && (z41Var = d6Var.f34607g3) != null) {
+                    bi.c6 c6Var = n6Var.f33530a;
+                    if (c6Var != null && (z41Var = c6Var.f34607g3) != null) {
                         z41Var.O(true);
                         return;
                     }

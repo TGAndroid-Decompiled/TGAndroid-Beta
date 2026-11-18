@@ -23,21 +23,21 @@ public final class k1 implements View.OnClickListener {
         switch (this.f36611a) {
             case 0:
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", this.f36612b.f28554id);
+                bundle.putLong("user_id", this.f36612b.f28552id);
                 org.telegram.ui.ActionBar.h2 h2Var = this.f36613c;
                 if (h2Var.getMessagesController().E(bundle, h2Var, null, null)) {
                     h2Var.presentFragment(new ProfileActivity(bundle, null));
                 }
-                this.d.f28746a.M0.run();
+                this.d.f28744a.M0.run();
                 return;
             default:
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("user_id", this.f36612b.f28554id);
+                bundle2.putLong("user_id", this.f36612b.f28552id);
                 org.telegram.ui.ActionBar.h2 h2Var2 = this.f36613c;
                 if (h2Var2.getMessagesController().E(bundle2, h2Var2, null, null)) {
                     h2Var2.presentFragment(new ProfileActivity(bundle2, null));
                 }
-                this.d.f28746a.M0.run();
+                this.d.f28744a.M0.run();
                 return;
         }
     }

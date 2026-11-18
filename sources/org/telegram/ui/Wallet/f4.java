@@ -213,7 +213,7 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
 
     public void setPendingProgress(float f10) {
         this.G = f10;
-        this.F.setColor(org.telegram.ui.ActionBar.n6.r1(this.G, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f44179b)));
+        this.F.setColor(org.telegram.ui.ActionBar.n6.r1(this.G, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f44179b)));
         d();
         setElevation(org.telegram.messenger.g0.L(8.0f) * f10);
         if (Build.VERSION.SDK_INT >= 28) {
@@ -245,9 +245,9 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29396d6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29394d6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29339a7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29337a7));
     }
 
     public final CharSequence b(e4 e4Var, String str) {
@@ -297,7 +297,7 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
                         float centerY = a10.centerY();
                         fa faVar = this.J;
                         faVar.getClass();
-                        float f12 = org.telegram.messenger.g0.f24120p;
+                        float f12 = org.telegram.messenger.g0.f24117p;
                         for (int i10 = 0; i10 < 56; i10++) {
                             int i11 = i10 % 10;
                             if (i11 <= 6) {
@@ -373,7 +373,7 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
             Paint paint = this.f44195y;
             paint.setShader(null);
             paint.setStyle(Paint.Style.FILL);
-            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var));
+            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var));
             float f11 = 255.0f * f10;
             paint.setAlpha(Math.round(f11));
             canvas.drawCircle(org.telegram.messenger.g0.L(52.0f), org.telegram.messenger.g0.L(51.0f), org.telegram.messenger.g0.L(8.0f) * f10, paint);
@@ -492,9 +492,9 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
             Paint.Style style = Paint.Style.FILL;
             Paint paint = this.f44195y;
             paint.setStyle(style);
-            paint.setColor(org.telegram.ui.ActionBar.n6.f29519k0.getColor());
-            paint.setAlpha(Math.round((1.0f - this.G) * org.telegram.ui.ActionBar.n6.f29519k0.getAlpha()));
-            if (gd.f24216a0) {
+            paint.setColor(org.telegram.ui.ActionBar.n6.f29517k0.getColor());
+            paint.setAlpha(Math.round((1.0f - this.G) * org.telegram.ui.ActionBar.n6.f29517k0.getAlpha()));
+            if (gd.f24213a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(71.0f);
@@ -502,7 +502,7 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
             float f10 = L;
             float height = getHeight() - 1;
             int width = getWidth();
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 i7 = org.telegram.messenger.g0.L(71.0f);
             } else {
                 i7 = 0;
@@ -533,13 +533,13 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
     @Override
     public final void updateColors() {
         int w02;
-        int i7 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29394d6;
         org.telegram.ui.ActionBar.i6 i6Var = this.f44179b;
         this.F.setColor(org.telegram.ui.ActionBar.n6.r1(this.G, org.telegram.ui.ActionBar.n6.w0(i7, i6Var)));
         int i10 = org.telegram.ui.ActionBar.n6.G6;
         this.f44186f.setTextColor(org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
         this.h.setTextColor(org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
-        int i11 = org.telegram.ui.ActionBar.n6.f29807z6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29805z6;
         this.f44190n.setTextColor(org.telegram.ui.ActionBar.n6.w0(i11, i6Var));
         if (this.f44182c0 && !this.O) {
             w02 = org.telegram.ui.ActionBar.n6.w0(i11, i6Var);
@@ -550,7 +550,7 @@ public final class f4 extends FrameLayout implements org.telegram.ui.ActionBar.c
         }
         this.f44194x.f45368a.setTextColor(w02);
         this.f44193w.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-        int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, i6Var);
+        int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, i6Var);
         LinearLayout linearLayout = this.T;
         if (linearLayout.getBackground() instanceof ShapeDrawable) {
             ShapeDrawable shapeDrawable = (ShapeDrawable) linearLayout.getBackground();

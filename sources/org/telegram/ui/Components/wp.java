@@ -17,9 +17,9 @@ public final class wp extends NestedScrollView {
     @Override
     public final void onDraw(Canvas canvas) {
         aq aqVar = this.f41749b0;
-        int scrollY = (int) ((getScrollY() + (aqVar.f33421r1 - aqVar.f30226t0)) - getTranslationY());
+        int scrollY = (int) ((getScrollY() + (aqVar.f33421r1 - aqVar.f30224t0)) - getTranslationY());
         Drawable drawable = aqVar.f33417m1;
-        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.g0.L(19.0f) + aqVar.f33418o1.getMeasuredHeight() + scrollY + aqVar.f30226t0);
+        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.g0.L(19.0f) + aqVar.f33418o1.getMeasuredHeight() + scrollY + aqVar.f30224t0);
         drawable.draw(canvas);
     }
 

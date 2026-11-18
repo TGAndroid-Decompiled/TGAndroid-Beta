@@ -27,13 +27,13 @@ public final class j30 implements org.telegram.ui.Components.ui0 {
     @Override
     public final void g(View view, ch.p0 p0Var, boolean z10, boolean z11) {
         TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-        String str = p0Var.f5478f;
+        String str = p0Var.f5475f;
         if (str == null) {
             str = "👍";
         }
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         tL_textWithEntities.text = str;
-        long j3 = p0Var.f5479g;
+        long j3 = p0Var.f5476g;
         if (j3 != 0) {
             tL_messageEntityCustomEmoji.document_id = j3;
             tL_messageEntityCustomEmoji.offset = 0;
@@ -49,7 +49,7 @@ public final class j30 implements org.telegram.ui.Components.ui0 {
             k20Var.d();
         }
         ch.b0 reactionsWindow = f40Var.F1.getReactionsWindow();
-        if (reactionsWindow != null && !reactionsWindow.f5311q) {
+        if (reactionsWindow != null && !reactionsWindow.f5308q) {
             f40Var.F1.getReactionsWindow().e();
             f40Var.F1.n();
         }

@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class jw0 implements Runnable {
-    public final int f49097a;
-    public final int f49098b;
-    public final Object f49099c;
+    public final int f49074a;
+    public final int f49075b;
+    public final Object f49076c;
 
     public jw0(int i7, Object obj, int i10) {
-        this.f49097a = i10;
-        this.f49098b = i7;
-        this.f49099c = obj;
+        this.f49074a = i10;
+        this.f49075b = i7;
+        this.f49076c = obj;
     }
 
     @Override
@@ -21,14 +21,14 @@ public final class jw0 implements Runnable {
         String str;
         CharSequence text;
         int i7;
-        int i10 = this.f49097a;
+        int i10 = this.f49074a;
         int i11 = 0;
-        int i12 = this.f49098b;
-        Object obj = this.f49099c;
+        int i12 = this.f49075b;
+        Object obj = this.f49076c;
         switch (i10) {
             case 0:
                 kw0 kw0Var = (kw0) obj;
-                ProfileActivity profileActivity = kw0Var.h.f49704e;
+                ProfileActivity profileActivity = kw0Var.h.f49663e;
                 profileActivity.getNotificationCenter().n(profileActivity, 107);
                 if (i12 == 2) {
                     profileActivity.getMessagesController().s4(0L, "PREMIUM_GRACE");
@@ -49,7 +49,7 @@ public final class jw0 implements Runnable {
                 yx0 yx0Var = (yx0) obj;
                 org.telegram.messenger.g0.v1(yx0Var.d.findFocus());
                 while (true) {
-                    EditTextBoldCursor[] editTextBoldCursorArr = yx0Var.f54318a;
+                    EditTextBoldCursor[] editTextBoldCursorArr = yx0Var.f54277a;
                     if (i11 < editTextBoldCursorArr.length) {
                         if (i11 != 0 && ((i12 != 3 || i11 != 4) && ((i12 != 2 || (i11 != 4 && i11 != 1)) && (i12 != 1 || (i11 != 1 && i11 != 2 && i11 != 3))))) {
                             editTextBoldCursorArr[i11].setText((CharSequence) null);
@@ -74,7 +74,7 @@ public final class jw0 implements Runnable {
                 hc1 hc1Var = (hc1) obj;
                 hc1Var.G.setSignalBarCount(i12);
                 if (i12 <= 1) {
-                    org.telegram.ui.Components.voip.x2 x2Var = hc1Var.f48372w;
+                    org.telegram.ui.Components.voip.x2 x2Var = hc1Var.f48292w;
                     if (x2Var.W != 3) {
                         x2Var.W = 3;
                         ValueAnimator ofInt = ValueAnimator.ofInt(x2Var.I, 255);
@@ -86,7 +86,7 @@ public final class jw0 implements Runnable {
                     hc1Var.G.c(true);
                     return;
                 }
-                org.telegram.ui.Components.voip.x2 x2Var2 = hc1Var.f48372w;
+                org.telegram.ui.Components.voip.x2 x2Var2 = hc1Var.f48292w;
                 if (x2Var2.W != 2) {
                     x2Var2.W = 2;
                     x2Var2.c();
@@ -106,8 +106,8 @@ public final class jw0 implements Runnable {
             case 4:
                 org.telegram.ui.Wallet.u0 D = org.telegram.ui.Wallet.u0.D(i12);
                 org.telegram.messenger.ks f10 = org.telegram.messenger.ks.f(i12);
-                org.telegram.ui.Wallet.h0 h0Var = new org.telegram.ui.Wallet.h0(f10, (n60) obj, D);
-                f10.b(h0Var, 253);
+                org.telegram.ui.Wallet.h0 h0Var = new org.telegram.ui.Wallet.h0(f10, (o60) obj, D);
+                f10.b(h0Var, 254);
                 org.telegram.messenger.g0.h3(h0Var, 10000L);
                 if (D.f45086e == null && D.C < 0) {
                     D.h0();
@@ -125,7 +125,7 @@ public final class jw0 implements Runnable {
                 }
                 return;
             case 6:
-                org.telegram.messenger.ks.f(i12).n((org.telegram.ui.Wallet.m2) obj, 253);
+                org.telegram.messenger.ks.f(i12).n((org.telegram.ui.Wallet.m2) obj, 254);
                 return;
             case 7:
                 org.telegram.ui.Wallet.p6 p6Var = (org.telegram.ui.Wallet.p6) obj;
@@ -214,7 +214,7 @@ public final class jw0 implements Runnable {
                 }
                 return;
             case 16:
-                org.telegram.ui.Components.k80 k80Var = ((wg.p0) obj).f59809e;
+                org.telegram.ui.Components.k80 k80Var = ((wg.p0) obj).f59810e;
                 try {
                     if (k80Var.getLayout().getLineForOffset(i12) == 0) {
                         k80Var.getEditableText().insert(i12, "\n");
@@ -227,8 +227,8 @@ public final class jw0 implements Runnable {
                 }
             default:
                 zi.d0 d0Var = ((zi.t) obj).N;
-                if (d0Var != null && d0Var.f62068s != (i7 = ((i12 % 360) + 360) % 360)) {
-                    d0Var.f62068s = i7;
+                if (d0Var != null && d0Var.f62069s != (i7 = ((i12 % 360) + 360) % 360)) {
+                    d0Var.f62069s = i7;
                     d0Var.v();
                     return;
                 }
@@ -237,8 +237,8 @@ public final class jw0 implements Runnable {
     }
 
     public jw0(Object obj, int i7, int i10) {
-        this.f49097a = i10;
-        this.f49099c = obj;
-        this.f49098b = i7;
+        this.f49074a = i10;
+        this.f49076c = obj;
+        this.f49075b = i7;
     }
 }

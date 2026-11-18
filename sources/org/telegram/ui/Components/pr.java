@@ -125,7 +125,7 @@ public final class pr extends ViewGroup {
         if (i7 <= 8) {
             z13 = false;
         }
-        int i11 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29486i6;
         int x02 = org.telegram.ui.ActionBar.n6.x0(null, i11, false);
         int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, i11, false), 30);
         float f13 = 12.0f;

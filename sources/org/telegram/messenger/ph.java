@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class ph implements Runnable {
-    public final int f26250a;
-    public final ri f26251b;
-    public final boolean f26252c;
+    public final int f26248a;
+    public final ri f26249b;
+    public final boolean f26250c;
 
     public ph(ri riVar, boolean z10, int i7) {
-        this.f26250a = i7;
-        this.f26251b = riVar;
-        this.f26252c = z10;
+        this.f26248a = i7;
+        this.f26249b = riVar;
+        this.f26250c = z10;
     }
 
     @Override

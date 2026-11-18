@@ -121,7 +121,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.c6
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29807z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29805z6));
     }
 
     @Override
@@ -130,7 +130,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.c6
         int i7;
         int w02;
         super.onDraw(canvas);
-        if (this.h != null && this.f43979n != null && (w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29788y6, this.f43974a)) != this.f43980r) {
+        if (this.h != null && this.f43979n != null && (w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, this.f43974a)) != this.f43980r) {
             this.f43980r = w02;
             this.h.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.r1(0.1f, w02), this.f43979n);
@@ -140,7 +140,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.c6
             }
         }
         if (this.f43977e) {
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(71.0f);
@@ -148,12 +148,12 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.c6
             float f10 = L;
             float height = getHeight() - 1;
             int width = getWidth();
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 i7 = org.telegram.messenger.g0.L(71.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawRect(f10, height, width - i7, getHeight(), org.telegram.ui.ActionBar.n6.f29519k0);
+            canvas.drawRect(f10, height, width - i7, getHeight(), org.telegram.ui.ActionBar.n6.f29517k0);
         }
     }
 
@@ -175,6 +175,6 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.c6
         int i7 = org.telegram.ui.ActionBar.n6.G6;
         org.telegram.ui.ActionBar.i6 i6Var = this.f43974a;
         this.f43976c.setTextColor(org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29807z6, i6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29805z6, i6Var));
     }
 }

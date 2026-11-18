@@ -36,9 +36,9 @@ public final class l1 {
     }
 
     public static i0.b e(i0.b bVar, int i7, int i10, int i11, int i12) {
-        int max = Math.max(0, bVar.f15892a - i7);
-        int max2 = Math.max(0, bVar.f15893b - i10);
-        int max3 = Math.max(0, bVar.f15894c - i11);
+        int max = Math.max(0, bVar.f15889a - i7);
+        int max2 = Math.max(0, bVar.f15890b - i10);
+        int max3 = Math.max(0, bVar.f15891c - i11);
         int max4 = Math.max(0, bVar.d - i12);
         if (max == i7 && max2 == i10 && max3 == i11 && max4 == i12) {
             return bVar;
@@ -65,15 +65,15 @@ public final class l1 {
     }
 
     public final int b() {
-        return this.f56258a.k().f15892a;
+        return this.f56258a.k().f15889a;
     }
 
     public final int c() {
-        return this.f56258a.k().f15894c;
+        return this.f56258a.k().f15891c;
     }
 
     public final int d() {
-        return this.f56258a.k().f15893b;
+        return this.f56258a.k().f15890b;
     }
 
     public final boolean equals(Object obj) {

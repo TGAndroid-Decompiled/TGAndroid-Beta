@@ -57,17 +57,17 @@ public final class ap0 implements Runnable {
                     rs0Var.h = false;
                     ArrayList arrayList4 = new ArrayList();
                     for (int i11 = 0; i11 < arrayList3.size(); i11++) {
-                        if (((org.telegram.messenger.ov) arrayList3.get(i11)).f26107b) {
-                            arrayList4.add(Long.valueOf(((org.telegram.messenger.ov) arrayList3.get(i11)).f26106a));
+                        if (((org.telegram.messenger.ov) arrayList3.get(i11)).f26105b) {
+                            arrayList4.add(Long.valueOf(((org.telegram.messenger.ov) arrayList3.get(i11)).f26104a));
                         }
                     }
                     org.telegram.messenger.pv I1 = rs0Var.f39300y.f35642y1.getMessagesController().I1();
-                    ArrayList d = org.telegram.messenger.pv.d(I1.f26302j);
-                    int i12 = I1.f26295a;
+                    ArrayList d = org.telegram.messenger.pv.d(I1.f26300j);
+                    int i12 = I1.f26293a;
                     if (org.telegram.messenger.j10.i(i12).q()) {
-                        i7 = org.telegram.messenger.mp.u1(i12).f25743q6;
+                        i7 = org.telegram.messenger.mp.u1(i12).f25741q6;
                     } else {
-                        i7 = org.telegram.messenger.mp.u1(i12).f25734p6;
+                        i7 = org.telegram.messenger.mp.u1(i12).f25732p6;
                     }
                     if (arrayList4.size() <= i7 && !org.telegram.messenger.pv.k(d, arrayList4)) {
                         I1.p(arrayList4);
@@ -278,9 +278,9 @@ public final class ap0 implements Runnable {
                 ArrayList arrayList7 = ((jz0) obj).f36562a;
                 for (int i16 = 0; i16 < arrayList7.size(); i16++) {
                     ((View) arrayList7.get(i16)).setVisibility(8);
-                    if (arrayList7.get(i16) instanceof org.telegram.ui.Cells.q1) {
-                        ((org.telegram.ui.Cells.q1) arrayList7.get(i16)).l3(false, false);
-                        ((org.telegram.ui.Cells.q1) arrayList7.get(i16)).n3(false, false, false);
+                    if (arrayList7.get(i16) instanceof org.telegram.ui.Cells.r1) {
+                        ((org.telegram.ui.Cells.r1) arrayList7.get(i16)).l3(false, false);
+                        ((org.telegram.ui.Cells.r1) arrayList7.get(i16)).n3(false, false, false);
                     }
                 }
                 return;
@@ -304,7 +304,7 @@ public final class ap0 implements Runnable {
                 }
                 return;
             case 20:
-                z11 z11Var = (z11) ((org.telegram.ui.on) obj).f50637c;
+                z11 z11Var = (z11) ((org.telegram.ui.on) obj).f50593c;
                 if (z11Var.l()) {
                     z11Var.m();
                     return;

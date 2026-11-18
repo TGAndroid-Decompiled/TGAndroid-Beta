@@ -38,11 +38,11 @@ public final class ps0 extends bk0 {
         for (int i10 = 0; i10 < c10.size(); i10++) {
             org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) c10.get(i10);
             if (fjVar.X != i7) {
-                int i11 = fjVar.f23968k.date;
+                int i11 = fjVar.f23965k.date;
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 long j3 = i11;
                 tL_message.message = org.telegram.messenger.gd.u(j3, false);
-                tL_message.f28426id = 0;
+                tL_message.f28424id = 0;
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(j3 * 1000);
                 calendar.set(11, 0);
@@ -53,7 +53,7 @@ public final class ps0 extends bk0 {
                 org.telegram.messenger.fj fjVar2 = new org.telegram.messenger.fj(this.d, tL_message, false, false);
                 fjVar2.D = 10;
                 fjVar2.U = 1;
-                fjVar2.f23974l0 = true;
+                fjVar2.f23971l0 = true;
                 arrayList.add(fjVar2);
                 i7 = fjVar.X;
             }
@@ -90,12 +90,12 @@ public final class ps0 extends bk0 {
             ArrayList arrayList = this.f38546n;
             if (i7 < arrayList.size()) {
                 org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) arrayList.get(i7);
-                int i10 = f1Var.f59126f;
-                View view = f1Var.f59122a;
+                int i10 = f1Var.f59127f;
+                View view = f1Var.f59123a;
                 if (i10 == 0) {
-                    ((org.telegram.ui.Cells.q1) view).y3(fjVar, null, false, false, false, false);
+                    ((org.telegram.ui.Cells.r1) view).y3(fjVar, null, false, false, false, false);
                 } else {
-                    ((org.telegram.ui.Cells.u0) view).setMessageObject(fjVar);
+                    ((org.telegram.ui.Cells.v0) view).setMessageObject(fjVar);
                 }
             }
         }
@@ -108,6 +108,6 @@ public final class ps0 extends bk0 {
             os0Var.setDelegate(this.f38545f);
             return new v4.f1(os0Var);
         }
-        return new v4.f1(new org.telegram.ui.Cells.u0(this.f38543c, this.f38544e, false));
+        return new v4.f1(new org.telegram.ui.Cells.v0(this.f38543c, this.f38544e, false));
     }
 }

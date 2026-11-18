@@ -1,44 +1,161 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.GradientDrawable;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.text.StaticLayout;
-import org.telegram.ui.Components.bb0;
+import org.telegram.messenger.aj;
+import org.telegram.messenger.xi;
+import org.telegram.ui.Components.l80;
 import org.telegram.ui.Components.mc;
-import org.telegram.ui.Components.o80;
+import org.telegram.ui.Components.mk0;
+import org.telegram.ui.Components.vy0;
 public final class t1 {
-    public final q1 f31822a;
-    public GradientDrawable f31823b;
-    public int f31824c;
-    public int d;
-    public int f31825e;
-    public int f31826f;
-    public int f31827g;
+    public final r1 f31804a;
+    public boolean f31805b;
+    public vy0 f31806c;
+    public vy0 d;
+    public mc f31807e;
+    public mc f31808f;
+    public StaticLayout f31809g;
     public StaticLayout h;
-    public StaticLayout f31828i;
-    public int f31829j;
-    public float f31830k;
-    public int f31831l;
-    public int f31832m;
-    public int f31833n;
-    public int f31834o = 45;
-    public LinearGradient f31835p;
-    public bb0 f31836q;
-    public int f31837r;
-    public o80 f31838s;
-    public Path f31839t;
-    public Paint f31840u;
+    public n2.o0 f31810i;
+    public l80 f31811j;
+    public boolean f31812k;
+    public Drawable f31813l;
+    public int f31814m;
+    public boolean f31815n;
+    public int f31816o;
+    public int f31817p;
+    public int f31818q;
+    public int f31819r;
+    public int f31820s;
+    public mk0 f31821t;
+    public boolean f31822u;
     public boolean v;
-    public mc f31841w;
-    public y f31842x;
 
-    public t1(q1 q1Var) {
-        this.f31822a = q1Var;
+    public t1(r1 r1Var) {
+        this.f31804a = r1Var;
     }
 
-    public final void a(android.graphics.Canvas r60, float r61) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.t1.a(android.graphics.Canvas, float):void");
+    public final boolean a(android.view.MotionEvent r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.t1.a(android.view.MotionEvent):boolean");
+    }
+
+    public final void b(Canvas canvas) {
+        float f10;
+        float f11;
+        int i7;
+        float f12;
+        int L;
+        int extraTextX;
+        int i10;
+        float f13;
+        int L2;
+        r1 r1Var = this.f31804a;
+        y1 y1Var = r1Var.f31440ib;
+        xi xiVar = r1Var.M;
+        if (xiVar == null || xiVar.h) {
+            float f14 = 1.0f;
+            if (this.f31805b) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            if (y1Var.S2) {
+                f10 = org.telegram.messenger.g0.T1(1.0f - f10, f10, y1Var.L1);
+            }
+            float f15 = 1.0f * f10;
+            if (f15 <= 0.0f) {
+                return;
+            }
+            float backgroundDrawableRight = r1Var.getBackgroundDrawableRight();
+            if (y1Var != null) {
+                f11 = y1Var.f32382i0;
+            } else {
+                f11 = 0.0f;
+            }
+            float f16 = backgroundDrawableRight + f11;
+            if (r1Var.Q5.P3() && !r1Var.C6 && !r1Var.K) {
+                i7 = 6;
+            } else {
+                i7 = 0;
+            }
+            float L3 = (f16 - org.telegram.messenger.g0.L(10 + i7)) - r1Var.getExtraTextX();
+            aj ajVar = r1Var.L;
+            if (ajVar != null && !ajVar.f22901i) {
+                i10 = (int) r1Var.f31567s3;
+            } else if (r1Var.Q5.P3()) {
+                i10 = r1Var.getExtraTextX() + org.telegram.messenger.g0.L(12.0f) + r1Var.N6;
+                if (r1Var.Q5.D == 19) {
+                    i10 -= Math.max(0, (org.telegram.messenger.g0.L(14.0f) + (Math.max(r1Var.X7, r1Var.Z7) + i10)) - org.telegram.messenger.g0.f24118q.x);
+                }
+            } else {
+                if (r1Var.C6) {
+                    L = org.telegram.messenger.g0.L(12.0f) + r1Var.N6;
+                    extraTextX = r1Var.getExtraTextX();
+                } else {
+                    int i11 = r1Var.N6;
+                    if (r1Var.K) {
+                        f12 = 12.0f;
+                    } else {
+                        f12 = 18.0f;
+                    }
+                    L = org.telegram.messenger.g0.L(f12) + i11;
+                    extraTextX = r1Var.getExtraTextX();
+                }
+                i10 = extraTextX + L;
+            }
+            int L4 = ((int) (i10 + y1Var.f32377h0)) - org.telegram.messenger.g0.L(1.33f);
+            int i12 = r1Var.f31549r0;
+            float f17 = L4;
+            int i13 = (int) (L3 - f17);
+            int i14 = this.f31819r;
+            if (y1Var.Y2) {
+                i14 = org.telegram.messenger.g0.W1(y1Var.L1, y1Var.U2, i14);
+            }
+            if (this.f31815n && r1Var.getPrimaryMessageObject() != null) {
+                boolean z10 = r1Var.getPrimaryMessageObject().f23933c3;
+            }
+            boolean z11 = y1Var.f32348a3;
+            if (this.f31821t == null) {
+                this.f31821t = new mk0(r1Var);
+            }
+            int p10 = this.f31821t.p(r1Var.Qb);
+            canvas.save();
+            canvas.translate(f17, i12);
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(0.0f, 0.0f, i13, i14);
+            mc mcVar = this.f31808f;
+            if (mcVar != null) {
+                f13 = mcVar.a(0.01f);
+            } else {
+                f13 = 1.0f;
+            }
+            canvas.scale(f13, f13, rectF.centerX(), rectF.centerY());
+            this.f31821t.d(canvas, rectF, 5.0f, 5.0f, 5.0f, f15, false, false);
+            this.f31821t.f(canvas, rectF, f15);
+            vy0 vy0Var = this.f31806c;
+            if (vy0Var != null) {
+                vy0Var.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(12.0f), f15, p10, canvas);
+                if (this.d != null) {
+                    rectF.set((int) (org.telegram.messenger.g0.L(10.0f) + this.f31806c.f41482c + org.telegram.messenger.g0.L(4.0f)), org.telegram.messenger.g0.L(4.33f), org.telegram.messenger.g0.L(10.0f) + L2 + this.d.f41482c, org.telegram.messenger.g0.L(21.66f));
+                    mc mcVar2 = this.f31807e;
+                    if (mcVar2 != null) {
+                        f14 = mcVar2.a(0.1f);
+                    }
+                    canvas.save();
+                    canvas.scale(f14, f14, rectF.centerX(), rectF.centerY());
+                    canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(17.0f), org.telegram.messenger.g0.L(17.0f), this.f31821t.f37533g);
+                    this.d.c(org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(12.0f), f15, p10, canvas);
+                    canvas.restore();
+                }
+            }
+            canvas.restore();
+        }
+    }
+
+    public final void c(android.graphics.Canvas r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.t1.c(android.graphics.Canvas):void");
     }
 }

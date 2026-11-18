@@ -3,19 +3,19 @@ package fi;
 import android.content.Context;
 import android.view.View;
 public final class u extends org.telegram.ui.Components.e9 {
-    public final int f12608e;
+    public final int f12605e;
 
     public u(int i7, Context context, boolean z10) {
         super(context, z10);
-        this.f12608e = i7;
+        this.f12605e = i7;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f12608e) {
+        switch (this.f12605e) {
             case 0:
-                if (v.f12629c) {
-                    v.f12628b.add(this);
+                if (v.f12626c) {
+                    v.f12625b.add(this);
                     return;
                 } else {
                     super.invalidate();
@@ -30,7 +30,7 @@ public final class u extends org.telegram.ui.Components.e9 {
     @Override
     public void onMeasure(int i7, int i10) {
         int v;
-        switch (this.f12608e) {
+        switch (this.f12605e) {
             case 1:
                 int i11 = this.f34650a.f34314n;
                 if (i11 == 0) {
@@ -48,10 +48,10 @@ public final class u extends org.telegram.ui.Components.e9 {
 
     @Override
     public void invalidate(int i7, int i10, int i11, int i12) {
-        switch (this.f12608e) {
+        switch (this.f12605e) {
             case 0:
-                if (v.f12629c) {
-                    v.f12628b.add(this);
+                if (v.f12626c) {
+                    v.f12625b.add(this);
                     return;
                 } else {
                     super.invalidate(i7, i10, i11, i12);

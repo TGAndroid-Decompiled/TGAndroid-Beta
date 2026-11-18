@@ -3,10 +3,10 @@ package id;
 import c8.p0;
 import rd.p;
 public abstract class a implements f {
-    public final g f16225a;
+    public final g f16222a;
 
     public a(g gVar) {
-        this.f16225a = gVar;
+        this.f16222a = gVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class a implements f {
 
     @Override
     public final g getKey() {
-        return this.f16225a;
+        return this.f16222a;
     }
 
     @Override

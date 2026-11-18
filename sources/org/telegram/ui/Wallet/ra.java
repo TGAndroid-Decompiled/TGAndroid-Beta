@@ -233,9 +233,9 @@ public final class ra {
         animatorSet.addListener(new qa(this, siVar, m7Var));
         n6Var.T0();
         n6Var.c1(false);
-        bi.d6 d6Var = n6Var.f33530a;
-        if (d6Var != null) {
-            d6Var.C0();
+        bi.c6 c6Var = n6Var.f33530a;
+        if (c6Var != null) {
+            c6Var.C0();
             n6Var.f33530a.f34606f3.h1(0, 0);
             e51 e51Var = n6Var.f44645u0[0];
             if (e51Var != null) {
@@ -319,7 +319,7 @@ public final class ra {
             this.f44958p.g(false);
             RectF rectF = this.f44957o;
             if (!rectF.isEmpty()) {
-                float centerY = (((rectF.centerY() - (Math.min(this.f44956n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f24120p;
+                float centerY = (((rectF.centerY() - (Math.min(this.f44956n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f24117p;
                 f4 f4Var2 = this.f44958p;
                 f4Var2.e();
                 r1.g gVar = new r1.g(new r1.f(0.0f));

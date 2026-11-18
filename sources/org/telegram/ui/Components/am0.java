@@ -12,7 +12,7 @@ public final class am0 extends ch.n0 {
 
     @Override
     public final boolean e() {
-        if (this.v <= 0 && !this.f5453t && this.E.f38872l == 1.0f) {
+        if (this.v <= 0 && !this.f5450t && this.E.f38872l == 1.0f) {
             return false;
         }
         return true;
@@ -41,7 +41,7 @@ public final class am0 extends ch.n0 {
             i7 = org.telegram.ui.ActionBar.n6.mb;
         }
         this.M = i0.a.f(f10, i11, org.telegram.ui.ActionBar.n6.w0(i7, bm0Var.f33723s.f34105c));
-        int i12 = this.f5439f;
+        int i12 = this.f5436f;
         if (bm0Var.f33719e) {
             i10 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.tk, bm0Var.f33723s.f34105c);
         } else {
@@ -50,11 +50,11 @@ public final class am0 extends ch.n0 {
         int f11 = i0.a.f(f10, i12, i10);
         this.N = f11;
         this.M = org.telegram.ui.ActionBar.n6.w(f11, this.M);
-        int i13 = this.f5441g;
+        int i13 = this.f5438g;
         if (bm0Var.f33719e) {
             w02 = 1526726655;
         } else {
-            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29583nb, bm0Var.f33723s.f34105c);
+            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29581nb, bm0Var.f33723s.f34105c);
         }
         this.O = i0.a.f(f10, i13, w02);
     }

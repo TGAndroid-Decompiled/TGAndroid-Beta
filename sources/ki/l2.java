@@ -28,7 +28,7 @@ public final class l2 extends org.telegram.ui.web.v0 {
                     t2Var.m();
                     org.telegram.ui.b3 b3Var = t2Var.Z0;
                     if (t2Var.q()) {
-                        q10 = t2Var.f18953x0.f18669e;
+                        q10 = t2Var.f18950x0.f18666e;
                     } else {
                         q10 = o10.q(mp.u1(t2Var.I).c2(Long.valueOf(t2Var.J)));
                     }
@@ -58,12 +58,12 @@ public final class l2 extends org.telegram.ui.web.v0 {
         switch (this.U0) {
             case 0:
                 t2 t2Var = (t2) this.V0;
-                t2Var.f18952x.setWebView(s0Var);
+                t2Var.f18949x.setWebView(s0Var);
                 w0 w0Var = t2Var.D0;
                 if (w0Var != null) {
-                    w0Var.f19014k = s0Var;
+                    w0Var.f19011k = s0Var;
                 }
-                t2Var.f18940o0.setWebView(s0Var);
+                t2Var.f18937o0.setWebView(s0Var);
                 t2Var.K();
                 return;
             default:
@@ -78,11 +78,11 @@ public final class l2 extends org.telegram.ui.web.v0 {
             case 0:
                 t2 t2Var = (t2) this.V0;
                 w0 w0Var = t2Var.D0;
-                if (w0Var != null && w0Var.f19014k == s0Var) {
-                    w0Var.f19014k = null;
+                if (w0Var != null && w0Var.f19011k == s0Var) {
+                    w0Var.f19011k = null;
                     w0Var.b();
                 }
-                t2Var.f18940o0.setWebView(null);
+                t2Var.f18937o0.setWebView(null);
                 return;
             default:
                 return;
@@ -97,7 +97,7 @@ public final class l2 extends org.telegram.ui.web.v0 {
                     t3 t3Var = (t3) this.V0;
                     if (!t3Var.Q) {
                         t3Var.Q = true;
-                        t3Var.f18958n.R();
+                        t3Var.f18955n.R();
                     }
                 }
                 return super.dispatchTouchEvent(motionEvent);

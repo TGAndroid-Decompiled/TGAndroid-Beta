@@ -5,12 +5,12 @@ import android.view.ViewGroup;
 import org.telegram.ui.Components.mp;
 public final class z2 extends mp {
     public final int d;
-    public final ViewGroup f15809e;
+    public final ViewGroup f15806e;
 
     public z2(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
         super(21, context, i6Var);
         this.d = i7;
-        this.f15809e = viewGroup;
+        this.f15806e = viewGroup;
     }
 
     @Override
@@ -18,15 +18,15 @@ public final class z2 extends mp {
         switch (this.d) {
             case 0:
                 super.invalidate();
-                ((a3) this.f15809e).invalidate();
+                ((a3) this.f15806e).invalidate();
                 return;
             case 1:
                 super.invalidate();
-                ((org.telegram.ui.Cells.t2) this.f15809e).invalidate();
+                ((org.telegram.ui.Cells.u2) this.f15806e).invalidate();
                 return;
             default:
                 super.invalidate();
-                ((org.telegram.ui.web.h) this.f15809e).invalidate();
+                ((org.telegram.ui.web.h) this.f15806e).invalidate();
                 return;
         }
     }
@@ -34,6 +34,6 @@ public final class z2 extends mp {
     public z2(a3 a3Var, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(24, context, i6Var);
         this.d = 0;
-        this.f15809e = a3Var;
+        this.f15806e = a3Var;
     }
 }

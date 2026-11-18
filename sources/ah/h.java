@@ -10,13 +10,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import bi.h0;
+import bi.j6;
 import bi.k1;
-import bi.k6;
 import bi.m0;
-import bi.q6;
+import bi.p6;
 import bi.y;
-import bi.z5;
-import bi.z8;
+import bi.y5;
+import bi.y8;
 import di.d7;
 import di.e8;
 import di.gb;
@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import kg.l0;
 import oi.j0;
+import oi.z5;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.bz;
 import org.telegram.messenger.ef;
@@ -69,7 +70,6 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.x2;
 import org.telegram.ui.ActionBar.z0;
 import org.telegram.ui.Cells.w;
-import org.telegram.ui.Cells.x8;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.ai;
 import org.telegram.ui.Components.b5;
@@ -135,14 +135,14 @@ public final class h implements View.OnClickListener {
                 i6 i6Var = (i6) obj;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    u9.c(yVar.f30189a).e(yVar.T1, new bi.j(yVar, zArr, i6Var, 0));
+                    u9.c(yVar.f30187a).e(yVar.T1, new bi.j(yVar, zArr, i6Var, 0));
                     return;
                 }
                 return;
             case 3:
                 m0 m0Var = (m0) obj3;
-                int i10 = m0Var.f30189a;
-                q9 q9Var = m0Var.f3866i2;
+                int i10 = m0Var.f30187a;
+                q9 q9Var = m0Var.f3837i2;
                 new h1((Context) obj2, (i6) obj, i10, q9Var.d.title, q9Var.h, false).show();
                 m0Var.dismiss();
                 return;
@@ -152,22 +152,22 @@ public final class h implements View.OnClickListener {
                 i6 i6Var2 = (i6) obj;
                 if (!zArr2[0]) {
                     zArr2[0] = true;
-                    u9.c(m0Var2.f30189a).e(m0Var2.U1, new bi.j(m0Var2, zArr2, i6Var2, 1));
+                    u9.c(m0Var2.f30187a).e(m0Var2.U1, new bi.j(m0Var2, zArr2, i6Var2, 1));
                     return;
                 }
                 return;
             case 5:
-                k6 k6Var = (k6) obj3;
+                j6 j6Var = (j6) obj3;
                 ((y60) obj2).v();
-                eq0 eq0Var = k6Var.f3813a;
-                z5 z5Var = new z5(k6Var, (TL_stars.SavedStarGift) obj, 0);
-                HashMap hashMap = q6.V;
-                eq0Var.h(null, z5Var);
+                eq0 eq0Var = j6Var.f3756a;
+                y5 y5Var = new y5(j6Var, (TL_stars.SavedStarGift) obj, 0);
+                HashMap hashMap = p6.V;
+                eq0Var.h(null, y5Var);
                 return;
             case 6:
                 Context context = (Context) obj2;
                 i6 i6Var3 = (i6) obj;
-                if (((o0) obj3).B1.f5274a == cg.b.f5276a) {
+                if (((o0) obj3).B1.f5271a == cg.b.f5273a) {
                     new gb(context, i6Var3).show();
                     return;
                 }
@@ -175,7 +175,7 @@ public final class h implements View.OnClickListener {
             case 7:
                 final x2 x2Var = (x2) obj2;
                 final hi.d dVar = (hi.d) obj;
-                x2Var.f30196c0 = false;
+                x2Var.f30194c0 = false;
                 dVar.setLoading(true);
                 ((h8) obj3).a(new x10() {
                     @Override
@@ -195,11 +195,11 @@ public final class h implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                x2Var2.f30196c0 = false;
+                                                x2Var2.f30194c0 = false;
                                                 dVar2.setLoading(false);
                                                 return;
                                             default:
-                                                x2Var2.f30196c0 = false;
+                                                x2Var2.f30194c0 = false;
                                                 dVar2.setLoading(false);
                                                 return;
                                         }
@@ -219,11 +219,11 @@ public final class h implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                x2Var3.f30196c0 = false;
+                                                x2Var3.f30194c0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                             default:
-                                                x2Var3.f30196c0 = false;
+                                                x2Var3.f30194c0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                         }
@@ -237,7 +237,7 @@ public final class h implements View.OnClickListener {
             case 8:
                 final x2 x2Var2 = (x2) obj2;
                 final hi.d dVar2 = (hi.d) obj;
-                x2Var2.f30196c0 = false;
+                x2Var2.f30194c0 = false;
                 dVar2.setLoading(true);
                 ((e8) obj3).a(new x10() {
                     @Override
@@ -257,11 +257,11 @@ public final class h implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                x2Var22.f30196c0 = false;
+                                                x2Var22.f30194c0 = false;
                                                 dVar22.setLoading(false);
                                                 return;
                                             default:
-                                                x2Var22.f30196c0 = false;
+                                                x2Var22.f30194c0 = false;
                                                 dVar22.setLoading(false);
                                                 return;
                                         }
@@ -281,11 +281,11 @@ public final class h implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                x2Var3.f30196c0 = false;
+                                                x2Var3.f30194c0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                             default:
-                                                x2Var3.f30196c0 = false;
+                                                x2Var3.f30194c0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                         }
@@ -301,9 +301,9 @@ public final class h implements View.OnClickListener {
                 ((x2) obj).dismiss();
                 return;
             case 10:
-                z3 z3Var = ((r3) obj3).f12501x;
+                z3 z3Var = ((r3) obj3).f12498x;
                 z3Var.D0((o8) obj2, (TL_stories.StoryItem) obj);
-                r3 r3Var = z3Var.f12819d1;
+                r3 r3Var = z3Var.f12816d1;
                 if (r3Var != null) {
                     r3Var.a();
                     return;
@@ -321,9 +321,9 @@ public final class h implements View.OnClickListener {
                 return;
             case 12:
                 k4 k4Var = (k4) obj3;
-                z8 z8Var = new z8(k4Var, 3);
-                a5 a5Var = k4Var.f12185b;
-                new bv(z8Var, a5Var.getContext(), a5Var.f11735s, (ArrayList) obj2).show();
+                y8 y8Var = new y8(k4Var, 3);
+                a5 a5Var = k4Var.f12182b;
+                new bv(y8Var, a5Var.getContext(), a5Var.f11732s, (ArrayList) obj2).show();
                 ((y60) obj).v();
                 return;
             case 13:
@@ -381,8 +381,8 @@ public final class h implements View.OnClickListener {
             case 14:
                 ef efVar = (ef) obj2;
                 a3 a3Var = (a3) obj;
-                e3 e3Var = ((y2) obj3).f15762c;
-                ArrayList arrayList = e3Var.f14549i0;
+                e3 e3Var = ((y2) obj3).f15759c;
+                ArrayList arrayList = e3Var.f14546i0;
                 if (arrayList.contains(efVar)) {
                     arrayList.remove(efVar);
                 } else if (arrayList.size() + 1 > e3Var.S) {
@@ -402,15 +402,15 @@ public final class h implements View.OnClickListener {
                 Context context2 = (Context) obj2;
                 k0 k0Var = (k0) obj;
                 if (v9Var.l1) {
-                    sg.q qVar = new sg.q(context2, v9Var.f14924q1);
+                    sg.q qVar = new sg.q(context2, v9Var.f14921q1);
                     v9Var.D1 = qVar;
-                    qVar.J0(v9Var.f14915k1.f57218a, 2);
+                    qVar.J0(v9Var.f14912k1.f57218a, 2);
                     qVar.f57323s1 = new androidx.activity.n(v9Var, k0Var, 1);
                     qVar.f57322r1 = new d7(2, v9Var, k0Var);
                     qVar.show();
                     return;
                 }
-                Runnable runnable = v9Var.f14932u1;
+                Runnable runnable = v9Var.f14929u1;
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -418,10 +418,10 @@ public final class h implements View.OnClickListener {
                 return;
             case 16:
                 kg.e eVar = (kg.e) obj3;
-                y60 G3 = y60.G(((bn) obj2).getLayoutContainer(), (i6) obj, eVar.f18295n);
+                y60 G3 = y60.G(((bn) obj2).getLayoutContainer(), (i6) obj, eVar.f18292n);
                 G3.c(2131232089, gd.M0(2131753700, null), new kg.d(eVar, 1), true);
                 G3.F();
-                if (eVar.f18300y != null) {
+                if (eVar.f18297y != null) {
                     G3.c(2131232362, gd.M0(2131753701, null), new kg.d(eVar, 2), false);
                 }
                 G3.b0(g0.L(10.0f), g0.L(7.0f));
@@ -437,9 +437,9 @@ public final class h implements View.OnClickListener {
                     dVar3.setLoading(true);
                     TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
                     updateconnectedbot.deleted = true;
-                    updateconnectedbot.bot = mp.u1(l0Var.f30189a).q1(tL_connectedBot.bot_id);
+                    updateconnectedbot.bot = mp.u1(l0Var.f30187a).q1(tL_connectedBot.bot_id);
                     updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-                    ConnectionsManager.getInstance(l0Var.f30189a).sendRequest(updateconnectedbot, new k1(21, l0Var, jw0Var));
+                    ConnectionsManager.getInstance(l0Var.f30187a).sendRequest(updateconnectedbot, new k1(21, l0Var, jw0Var));
                     return;
                 }
                 return;
@@ -455,14 +455,14 @@ public final class h implements View.OnClickListener {
                 return;
             case 19:
                 ((ga.d) obj3).c();
-                ((oi.z5) obj2).D((j0) obj);
+                ((z5) obj2).D((j0) obj);
                 return;
             case 20:
                 v vVar = (v) obj3;
                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj2;
                 i6 i6Var4 = (i6) obj;
                 hi.d dVar4 = vVar.f40455b2;
-                if (dVar4.f14342e0 && !dVar4.R) {
+                if (dVar4.f14339e0 && !dVar4.R) {
                     if (vVar.e1()) {
                         vVar.dismiss();
                         return;
@@ -470,14 +470,14 @@ public final class h implements View.OnClickListener {
                     dVar4.setLoading(true);
                     TL_aicompose.saveTone savetone = new TL_aicompose.saveTone();
                     savetone.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
-                    ConnectionsManager.getInstance(vVar.f30189a).sendRequestTyped(savetone, new d3.b(1), new h0(vVar, i6Var4, aiComposeTone, 7));
+                    ConnectionsManager.getInstance(vVar.f30187a).sendRequestTyped(savetone, new d3.b(1), new h0(vVar, i6Var4, aiComposeTone, 7));
                     return;
                 }
                 return;
             case 21:
                 ((boolean[]) obj3)[0] = false;
                 ((z4) obj2).O(-1, 0, true);
-                ((x2) ((w4) obj).f15645b).f30234y0.run();
+                ((x2) ((w4) obj).f15642b).f30232y0.run();
                 return;
             case 22:
                 Runnable runnable2 = (Runnable) obj;
@@ -490,12 +490,12 @@ public final class h implements View.OnClickListener {
                 x4Var.a(((org.telegram.ui.Cells.k) view).getAccountNumber());
                 return;
             case 23:
-                bz.f23186o0 = ((Integer) ((ArrayList) obj3).get(((Integer) view.getTag()).intValue())).intValue();
+                bz.f23183o0 = ((Integer) ((ArrayList) obj3).get(((Integer) view.getTag()).intValue())).intValue();
                 SharedPreferences.Editor edit = mp.g1().edit();
-                edit.putInt("mapPreviewType", bz.f23186o0);
+                edit.putInt("mapPreviewType", bz.f23183o0);
                 edit.apply();
                 ((Runnable) obj).run();
-                ((AlertDialog$Builder) obj2).f28746a.M0.run();
+                ((AlertDialog$Builder) obj2).f28744a.M0.run();
                 return;
             case 24:
                 ((f8) obj3).f35022n.Y0((w) obj2, (fj) obj);
@@ -516,7 +516,7 @@ public final class h implements View.OnClickListener {
                 long j10 = j3;
                 siVar2.L2 = j10;
                 aiVar.setEffect(j10);
-                siVar2.f30207g1 = true;
+                siVar2.f30205g1 = true;
                 if (siVar2.F1 - siVar2.G1 < 0) {
                     g0.D3(siVar2.f39723u1);
                     g0.D3(siVar2.f39727v1);
@@ -567,7 +567,7 @@ public final class h implements View.OnClickListener {
                 si siVar3 = (si) obj3;
                 fj fjVar = (fj) obj2;
                 siVar3.w1(!siVar3.X1, true);
-                TLRPC.Message message = fjVar.f23968k;
+                TLRPC.Message message = fjVar.f23965k;
                 boolean z12 = siVar3.X1;
                 message.invert_media = z12;
                 ((ta0) obj).a(!z12, true);
@@ -585,7 +585,7 @@ public final class h implements View.OnClickListener {
             case 28:
                 Context context3 = (Context) obj2;
                 ((gr) obj3).getClass();
-                g0.g(((x8) obj).f32437a.getText().toString());
+                g0.g(((org.telegram.ui.Cells.y8) obj).f32484a.getText().toString());
                 if (g0.G3()) {
                     Toast.makeText(context3, gd.M0(2131743959, null), 0).show();
                     return;

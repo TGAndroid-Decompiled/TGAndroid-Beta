@@ -32,6 +32,6 @@ public class TLParseException extends RuntimeException {
     }
 
     public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        ks.e().k(ks.O5, tLParseException);
+        ks.e().k(ks.P5, tLParseException);
     }
 }

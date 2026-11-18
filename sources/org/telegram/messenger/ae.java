@@ -2,18 +2,18 @@ package org.telegram.messenger;
 
 import android.content.DialogInterface;
 public final class ae implements DialogInterface.OnCancelListener {
-    public final int f22864a;
-    public final Object f22865b;
+    public final int f22861a;
+    public final Object f22862b;
 
     public ae(Object obj, int i7) {
-        this.f22864a = i7;
-        this.f22865b = obj;
+        this.f22861a = i7;
+        this.f22862b = obj;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        int i7 = this.f22864a;
-        Object obj = this.f22865b;
+        int i7 = this.f22861a;
+        Object obj = this.f22862b;
         switch (i7) {
             case 0:
                 String[] strArr = MediaController.W1;
@@ -27,7 +27,7 @@ public final class ae implements DialogInterface.OnCancelListener {
                 ((boolean[]) obj)[0] = true;
                 return;
             default:
-                ((af) obj).f22870f = true;
+                ((af) obj).f22867f = true;
                 return;
         }
     }

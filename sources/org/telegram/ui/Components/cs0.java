@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
-public final class cs0 extends org.telegram.ui.Cells.g7 {
+public final class cs0 extends org.telegram.ui.Cells.h7 {
     public final int m0;
     public final bk0 f34174n0;
 
@@ -23,7 +23,7 @@ public final class cs0 extends org.telegram.ui.Cells.g7 {
         switch (this.m0) {
             case 0:
                 ds0 ds0Var = (ds0) this.f34174n0;
-                if (!org.telegram.messenger.fj.R4(fjVar.f23968k) && !fjVar.h4()) {
+                if (!org.telegram.messenger.fj.R4(fjVar.f23965k) && !fjVar.h4()) {
                     if (!fjVar.I3()) {
                         return false;
                     }
@@ -50,7 +50,7 @@ public final class cs0 extends org.telegram.ui.Cells.g7 {
                 ts0 ts0Var = (ts0) this.f34174n0;
                 int i7 = ts0Var.d;
                 gt0 gt0Var2 = ts0Var.f40096f;
-                if (!org.telegram.messenger.fj.R4(fjVar.f23968k) && !fjVar.h4()) {
+                if (!org.telegram.messenger.fj.R4(fjVar.f23965k) && !fjVar.h4()) {
                     if (!fjVar.I3()) {
                         return false;
                     }
@@ -70,8 +70,8 @@ public final class cs0 extends org.telegram.ui.Cells.g7 {
                 B4.r0(arrayList2, false);
                 return S2;
             default:
-                org.telegram.ui.c00 c00Var = ((org.telegram.ui.xz) this.f34174n0).f53969w;
-                if (!org.telegram.messenger.fj.R4(fjVar.f23968k) && !fjVar.h4()) {
+                org.telegram.ui.c00 c00Var = ((org.telegram.ui.xz) this.f34174n0).f53937w;
+                if (!org.telegram.messenger.fj.R4(fjVar.f23965k) && !fjVar.h4()) {
                     if (!fjVar.I3()) {
                         return false;
                     }
@@ -79,16 +79,16 @@ public final class cs0 extends org.telegram.ui.Cells.g7 {
                     long j11 = c00Var.F;
                     long j12 = c00Var.I;
                     h2.a0 a0Var = new h2.a0(str, j11, j12, j12, c00Var.E);
-                    a0Var.f13719e = c00Var.O;
-                    a0Var.f13720f = c00Var.f46355w;
+                    a0Var.f13716e = c00Var.O;
+                    a0Var.f13717f = c00Var.f46346w;
                     a0Var.d = c00Var.P;
-                    a0Var.f13721g = c00Var.K ? 1 : 0;
-                    return MediaController.B().o0(c00Var.f46338f, fjVar, 0L, true, a0Var, 0L);
+                    a0Var.f13718g = c00Var.K ? 1 : 0;
+                    return MediaController.B().o0(c00Var.f46329f, fjVar, 0L, true, a0Var, 0L);
                 }
                 boolean S3 = MediaController.B().S(fjVar);
                 MediaController B5 = MediaController.B();
                 if (S3) {
-                    arrayList3 = c00Var.f46338f;
+                    arrayList3 = c00Var.f46329f;
                 } else {
                     arrayList3 = null;
                 }

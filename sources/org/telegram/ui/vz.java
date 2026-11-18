@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class vz {
-    public long f52886a;
-    public int f52887b;
+    public long f52876a;
+    public int f52877b;
 
     public vz(int i7, long j3) {
-        this.f52886a = j3;
-        this.f52887b = i7;
+        this.f52876a = j3;
+        this.f52877b = i7;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class vz {
         }
         if (obj != null && vz.class == obj.getClass()) {
             vz vzVar = (vz) obj;
-            if (this.f52886a == vzVar.f52886a && this.f52887b == vzVar.f52887b) {
+            if (this.f52876a == vzVar.f52876a && this.f52877b == vzVar.f52877b) {
                 return true;
             }
         }
@@ -22,6 +22,6 @@ public final class vz {
     }
 
     public final int hashCode() {
-        return this.f52887b;
+        return this.f52877b;
     }
 }

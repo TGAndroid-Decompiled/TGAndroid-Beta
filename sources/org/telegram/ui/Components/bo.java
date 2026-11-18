@@ -33,7 +33,7 @@ public final class bo extends LinearLayout {
             paint = null;
         }
         paint = paint == null ? org.telegram.ui.ActionBar.n6.V0("paintChatActionBackground") : paint;
-        int i14 = org.telegram.ui.ActionBar.n6.f29331a;
+        int i14 = org.telegram.ui.ActionBar.n6.f29329a;
         setBackground(new org.telegram.ui.ActionBar.y5(this, view, L, paint));
         setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f));
         setOrientation(1);
@@ -78,7 +78,7 @@ public final class bo extends LinearLayout {
         float f10 = 260.0f;
         textView3.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
         if (i7 != 2) {
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 i10 = 5;
             } else {
                 i10 = 3;
@@ -96,7 +96,7 @@ public final class bo extends LinearLayout {
         int i16 = 0;
         while (i16 < 4) {
             LinearLayout f11 = org.telegram.messenger.f3.f(activity, 0);
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 i12 = 5;
             } else {
                 i12 = 3;
@@ -118,7 +118,7 @@ public final class bo extends LinearLayout {
             textView4.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.u6.U(textView4, i17, i6Var);
             this.f33751c.add(textView4);
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 i13 = 5;
             } else {
                 i13 = 3;
@@ -158,7 +158,7 @@ public final class bo extends LinearLayout {
             } else {
                 textView4.setText(org.telegram.messenger.gd.M0(2131749256, null));
             }
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 f11.addView(textView4, c8.ma.o(-2, -2));
                 if (i7 == 0) {
                     f11.addView(imageView2, c8.ma.k(8.0f, 3.0f, 0.0f, 0.0f, -2, -2));

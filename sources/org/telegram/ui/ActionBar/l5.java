@@ -18,27 +18,27 @@ import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.ck0;
 import org.telegram.ui.Components.dj0;
 public class l5 implements u4 {
-    public final int f29200a;
-    public int f29201b;
-    public boolean f29202c;
+    public final int f29198a;
+    public int f29199b;
+    public boolean f29200c;
     public boolean d;
-    public final Object f29203e;
-    public final Object f29204f;
+    public final Object f29201e;
+    public final Object f29202f;
     public Object h;
-    public Object f29205n;
-    public Object f29206r;
-    public final Object f29207s;
-    public Object f29208w;
+    public Object f29203n;
+    public Object f29204r;
+    public final Object f29205s;
+    public Object f29206w;
 
     public l5(k5 k5Var, ri.a aVar, i6 i6Var) {
-        this.f29200a = 0;
-        this.f29201b = 0;
-        this.f29207s = new int[2];
-        this.f29208w = new Rect();
-        this.f29203e = k5Var;
-        this.f29204f = aVar;
+        this.f29198a = 0;
+        this.f29199b = 0;
+        this.f29205s = new int[2];
+        this.f29206w = new Rect();
+        this.f29201e = k5Var;
+        this.f29202f = aVar;
         this.h = i6Var;
-        this.f29205n = c8.i0.m(i6Var);
+        this.f29203n = c8.i0.m(i6Var);
     }
 
     @Override
@@ -48,18 +48,18 @@ public class l5 implements u4 {
 
     @Override
     public boolean b(r0 r0Var, RectF rectF) {
-        rectF.set(0.0f, 0.0f, ((View) this.f29206r).getWidth(), ((View) this.f29206r).getHeight());
+        rectF.set(0.0f, 0.0f, ((View) this.f29204r).getWidth(), ((View) this.f29204r).getHeight());
         return true;
     }
 
     public void c() {
-        switch (this.f29200a) {
+        switch (this.f29198a) {
             case 1:
                 ValueAnimator valueAnimator = (ValueAnimator) this.h;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                ck0 ck0Var = (ck0) this.f29203e;
+                ck0 ck0Var = (ck0) this.f29201e;
                 ck0Var.setVerticalScrollBarEnabled(true);
                 ck0Var.W1 = false;
                 v4.i0 adapter = ck0Var.getAdapter();
@@ -71,14 +71,14 @@ public class l5 implements u4 {
                 for (int i7 = 0; i7 < childCount; i7++) {
                     View childAt = ck0Var.getChildAt(i7);
                     childAt.setTranslationY(0.0f);
-                    if (childAt instanceof org.telegram.ui.Cells.p4) {
-                        ((org.telegram.ui.Cells.p4) childAt).c(false, false);
+                    if (childAt instanceof org.telegram.ui.Cells.q4) {
+                        ((org.telegram.ui.Cells.q4) childAt).c(false, false);
                     }
                 }
                 return;
             default:
-                s4.q qVar = (s4.q) this.f29203e;
-                if (!this.f29202c && !this.d) {
+                s4.q qVar = (s4.q) this.f29201e;
+                if (!this.f29200c && !this.d) {
                     this.d = true;
                     if (qVar != null) {
                         qVar.h(0);
@@ -104,18 +104,18 @@ public class l5 implements u4 {
     @Override
     public boolean f() {
         int i7;
-        int[] iArr = (int[]) this.f29207s;
-        Rect rect = (Rect) this.f29208w;
-        View view = (View) this.f29206r;
+        int[] iArr = (int[]) this.f29205s;
+        Rect rect = (Rect) this.f29206w;
+        View view = (View) this.f29204r;
         if (view != null && !this.d) {
             view.getLocationOnScreen(iArr);
-            ((View) this.f29206r).getWindowVisibleDisplayFrame(rect);
+            ((View) this.f29204r).getWindowVisibleDisplayFrame(rect);
             if (rect.height() > 0) {
                 i7 = rect.centerY();
             } else {
-                i7 = org.telegram.messenger.g0.f24121q.y / 2;
+                i7 = org.telegram.messenger.g0.f24118q.y / 2;
             }
-            if ((((View) this.f29206r).getHeight() / 2) + iArr[1] > i7) {
+            if ((((View) this.f29204r).getHeight() / 2) + iArr[1] > i7) {
                 return true;
             }
             return false;
@@ -125,21 +125,21 @@ public class l5 implements u4 {
 
     @Override
     public fh.g g(k5 k5Var) {
-        fh.g c10 = ((ri.a) this.f29204f).d.c(k5Var, null, false);
-        c10.p((gh.e) this.f29205n);
+        fh.g c10 = ((ri.a) this.f29202f).d.c(k5Var, null, false);
+        c10.p((gh.e) this.f29203n);
         n10.s(c10, org.telegram.messenger.g0.L(21.0f), 6.0f);
         return c10;
     }
 
     @Override
     public int getButtonsGlassBackgroundColor() {
-        gh.e eVar = (gh.e) this.f29205n;
-        return eVar.a(eVar.f13628e);
+        gh.e eVar = (gh.e) this.f29203n;
+        return eVar.a(eVar.f13625e);
     }
 
     @Override
     public gh.a getButtonsGlassColorProvider() {
-        return (gh.e) this.f29205n;
+        return (gh.e) this.f29203n;
     }
 
     @Override
@@ -159,12 +159,12 @@ public class l5 implements u4 {
 
     @Override
     public gh.a getMenuGlassColorProvider() {
-        return (gh.e) this.f29205n;
+        return (gh.e) this.f29203n;
     }
 
     @Override
     public View getMenuHostView() {
-        return (View) this.f29206r;
+        return (View) this.f29204r;
     }
 
     @Override
@@ -184,13 +184,13 @@ public class l5 implements u4 {
 
     @Override
     public View getMenuView() {
-        return (View) this.f29206r;
+        return (View) this.f29204r;
     }
 
     @Override
     public k5 getOpenMenuOverlay() {
-        if (this.f29202c) {
-            return (k5) this.f29203e;
+        if (this.f29200c) {
+            return (k5) this.f29201e;
         }
         return null;
     }
@@ -203,27 +203,27 @@ public class l5 implements u4 {
         } else {
             z10 = false;
         }
-        if (this.f29202c != z10) {
-            this.f29202c = z10;
+        if (this.f29200c != z10) {
+            this.f29200c = z10;
             if (z10) {
-                this.f29201b = ((View) this.f29206r).getVisibility();
-                ((View) this.f29206r).setVisibility(4);
-            } else if (((View) this.f29206r).getVisibility() == 4) {
-                ((View) this.f29206r).setVisibility(this.f29201b);
+                this.f29199b = ((View) this.f29204r).getVisibility();
+                ((View) this.f29204r).setVisibility(4);
+            } else if (((View) this.f29204r).getVisibility() == 4) {
+                ((View) this.f29204r).setVisibility(this.f29199b);
             }
         }
     }
 
     public void i() {
         c0.l lVar;
-        s4.v vVar = (s4.v) this.f29204f;
-        int i7 = this.f29201b;
-        WeakReference weakReference = (WeakReference) this.f29207s;
+        s4.v vVar = (s4.v) this.f29202f;
+        int i7 = this.f29199b;
+        WeakReference weakReference = (WeakReference) this.f29205s;
         s4.x.b();
-        if (!this.f29202c && !this.d) {
+        if (!this.f29200c && !this.d) {
             s4.e eVar = (s4.e) weakReference.get();
-            if (eVar != null && eVar.f56932g == this && ((lVar = (c0.l) this.f29208w) == null || !lVar.isCancelled())) {
-                this.f29202c = true;
+            if (eVar != null && eVar.f56932g == this && ((lVar = (c0.l) this.f29206w) == null || !lVar.isCancelled())) {
+                this.f29200c = true;
                 eVar.f56932g = null;
                 s4.e eVar2 = (s4.e) weakReference.get();
                 if (eVar2 != null) {
@@ -252,8 +252,8 @@ public class l5 implements u4 {
                     s4.b bVar = eVar3.f56927a;
                     s4.v vVar2 = (s4.v) this.h;
                     eVar3.d = vVar2;
-                    eVar3.f56930e = (s4.q) this.f29203e;
-                    s4.v vVar3 = (s4.v) this.f29205n;
+                    eVar3.f56930e = (s4.q) this.f29201e;
+                    s4.v vVar3 = (s4.v) this.f29203n;
                     if (vVar3 == null) {
                         Message obtainMessage2 = bVar.obtainMessage(262, new q0.b(vVar, vVar2));
                         obtainMessage2.arg1 = i7;
@@ -266,7 +266,7 @@ public class l5 implements u4 {
                     eVar3.f56928b.clear();
                     eVar3.g();
                     eVar3.l();
-                    ArrayList arrayList = (ArrayList) this.f29206r;
+                    ArrayList arrayList = (ArrayList) this.f29204r;
                     if (arrayList != null) {
                         eVar3.d.n(arrayList);
                         return;
@@ -288,10 +288,10 @@ public class l5 implements u4 {
         dj0 dj0Var;
         v4.i0 i0Var;
         long j3;
-        HashMap hashMap = (HashMap) this.f29208w;
-        SparseArray sparseArray = (SparseArray) this.f29207s;
-        v4.c0 c0Var = (v4.c0) this.f29204f;
-        ck0 ck0Var = (ck0) this.f29203e;
+        HashMap hashMap = (HashMap) this.f29206w;
+        SparseArray sparseArray = (SparseArray) this.f29205s;
+        v4.c0 c0Var = (v4.c0) this.f29202f;
+        ck0 ck0Var = (ck0) this.f29201e;
         if (!ck0Var.W1) {
             if (ck0Var.getItemAnimator() != null) {
                 if (z11) {
@@ -301,7 +301,7 @@ public class l5 implements u4 {
                     if (!k10) {
                         k(i7, i10, z10, false);
                     } else {
-                        itemAnimator.f59194b.add(aj0Var);
+                        itemAnimator.f59195b.add(aj0Var);
                     }
                     if (k10) {
                         return;
@@ -310,13 +310,13 @@ public class l5 implements u4 {
                     return;
                 }
             }
-            if (this.f29201b == -1) {
+            if (this.f29199b == -1) {
                 c0Var.i1(i7, i10, z10);
                 return;
             }
             int childCount = ck0Var.getChildCount();
             if (childCount != 0 && ck0Var.getVisibility() == 0 && mp.g1().getBoolean("view_animations", true)) {
-                if (this.f29201b == 0) {
+                if (this.f29199b == 0) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -332,11 +332,11 @@ public class l5 implements u4 {
                     arrayList.add(childAt);
                     c0Var.getClass();
                     sparseArray.put(v4.p0.H(childAt), childAt);
-                    if (adapter == null || (!adapter.f59159b && !this.f29202c)) {
+                    if (adapter == null || (!adapter.f59160b && !this.f29200c)) {
                         i0Var = adapter;
                     } else {
-                        if (this.f29202c) {
-                            int b10 = ((v4.q0) childAt.getLayoutParams()).f59222a.b();
+                        if (this.f29200c) {
+                            int b10 = ((v4.q0) childAt.getLayoutParams()).f59223a.b();
                             if (b10 < 0) {
                                 i0Var = adapter;
                                 i11++;
@@ -347,12 +347,12 @@ public class l5 implements u4 {
                             }
                         } else {
                             i0Var = adapter;
-                            j3 = ((v4.q0) childAt.getLayoutParams()).f59222a.f59125e;
+                            j3 = ((v4.q0) childAt.getLayoutParams()).f59223a.f59126e;
                         }
                         hashMap.put(Long.valueOf(j3), childAt);
                     }
-                    if (childAt instanceof org.telegram.ui.Cells.p4) {
-                        ((org.telegram.ui.Cells.p4) childAt).c(true, true);
+                    if (childAt instanceof org.telegram.ui.Cells.q4) {
+                        ((org.telegram.ui.Cells.q4) childAt).c(true, true);
                     }
                     i11++;
                     adapter = i0Var;
@@ -362,13 +362,13 @@ public class l5 implements u4 {
                 ck0Var.p0();
                 ug.n0 n0Var = ck0Var.d;
                 n0Var.l((ArrayList) n0Var.d);
-                n0Var.l((ArrayList) n0Var.f58781e);
-                n0Var.f58779b = 0;
-                v4.x0 x0Var = ck0Var.f2790b;
-                v4.i0 i0Var3 = ck0Var.f2819x;
+                n0Var.l((ArrayList) n0Var.f58782e);
+                n0Var.f58780b = 0;
+                v4.x0 x0Var = ck0Var.f2791b;
+                v4.i0 i0Var3 = ck0Var.f2820x;
                 x0Var.d(i0Var3, i0Var3);
-                ck0Var.f2816v0.f59089f = true;
-                ck0Var.f2795e.E();
+                ck0Var.f2817v0.f59090f = true;
+                ck0Var.f2796e.E();
                 x0Var.l();
                 if (i0Var2 instanceof dj0) {
                     dj0Var = (dj0) i0Var2;
@@ -382,7 +382,7 @@ public class l5 implements u4 {
                 }
                 ck0Var.C0();
                 ck0Var.setVerticalScrollBarEnabled(false);
-                oa oaVar = (oa) this.f29206r;
+                oa oaVar = (oa) this.f29204r;
                 if (oaVar != null) {
                     oaVar.c();
                 }
@@ -401,37 +401,37 @@ public class l5 implements u4 {
     }
 
     public void l(oa oaVar) {
-        this.f29206r = oaVar;
+        this.f29204r = oaVar;
     }
 
     @Override
     public void setMenuGlassFrostedProgress(float f10) {
-        ui.d dVar = ((ri.a) this.f29204f).f56617e;
+        ui.d dVar = ((ri.a) this.f29202f).f56617e;
         if (dVar != null) {
             dVar.j(f10);
         }
     }
 
     public l5(ck0 ck0Var, v4.c0 c0Var) {
-        this.f29200a = 1;
-        this.f29207s = new SparseArray();
-        this.f29208w = new HashMap();
-        this.f29203e = ck0Var;
-        this.f29204f = c0Var;
+        this.f29198a = 1;
+        this.f29205s = new SparseArray();
+        this.f29206w = new HashMap();
+        this.f29201e = ck0Var;
+        this.f29202f = c0Var;
     }
 
     public l5(s4.e eVar, s4.v vVar, s4.q qVar, int i7, s4.v vVar2, Collection collection) {
-        this.f29200a = 2;
-        this.f29208w = null;
-        this.f29202c = false;
+        this.f29198a = 2;
+        this.f29206w = null;
+        this.f29200c = false;
         this.d = false;
-        this.f29207s = new WeakReference(eVar);
+        this.f29205s = new WeakReference(eVar);
         this.h = vVar;
-        this.f29203e = qVar;
-        this.f29201b = i7;
-        this.f29204f = eVar.d;
-        this.f29205n = vVar2;
-        this.f29206r = collection != null ? new ArrayList(collection) : null;
+        this.f29201e = qVar;
+        this.f29199b = i7;
+        this.f29202f = eVar.d;
+        this.f29203n = vVar2;
+        this.f29204r = collection != null ? new ArrayList(collection) : null;
         eVar.f56927a.postDelayed(new org.telegram.ui.web.z0(this, 10), 15000L);
     }
 }

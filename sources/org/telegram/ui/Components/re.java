@@ -39,8 +39,8 @@ public final class re extends sg {
     public final boolean d() {
         switch (this.f39110y0) {
             case 0:
-                org.telegram.ui.eg0 eg0Var = this.f39111z0.M0;
-                if ((eg0Var != null && !eg0Var.f47250u0) || this.f39647w > 0) {
+                org.telegram.ui.fg0 fg0Var = this.f39111z0.M0;
+                if ((fg0Var != null && !fg0Var.f47645u0) || this.f39647w > 0) {
                     return true;
                 }
                 return false;

@@ -1,49 +1,45 @@
 package org.telegram.ui;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-public final class jg0 implements Runnable {
-    public final int f48977a;
-    public final Object f48978b;
-    public final Object f48979c;
-    public final Object d;
-    public final Object f48980e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class jg0 extends org.telegram.ui.Components.ao {
+    public final og0 B0;
 
-    public jg0(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f48977a = i7;
-        this.f48978b = obj;
-        this.f48979c = obj2;
-        this.d = obj3;
-        this.f48980e = obj4;
+    public jg0(og0 og0Var, Context context) {
+        super(context, null, false, null);
+        this.B0 = og0Var;
     }
 
-    private final void a() {
-        ab.c0 c0Var = (ab.c0) this.f48978b;
-        AtomicBoolean atomicBoolean = (AtomicBoolean) this.f48979c;
-        p4.h hVar = (p4.h) this.d;
-        AtomicBoolean atomicBoolean2 = (AtomicBoolean) this.f48980e;
-        synchronized (c0Var.f908b) {
-            try {
-                if (!atomicBoolean.get()) {
-                    c0Var.k(hVar);
-                } else {
-                    atomicBoolean2.set(true);
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        og0 og0Var = this.B0;
+        og0Var.X.y0(og0Var.f50556c0.getAvatarImageView().getX(), og0Var.f50556c0.getAvatarImageView().getY(), og0Var.f50556c0.getAvatarImageView().getWidth(), og0Var.f50556c0.getAvatarImageView().getHeight());
+        if (og0Var.Z) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, og0Var.X.r(), og0Var.X.s());
+            og0Var.X.h(canvas, null);
+            canvas.restore();
+        }
+        if (og0Var.Y) {
+            int r10 = (int) (og0Var.X.r() - (org.telegram.ui.ActionBar.n6.U0.getIntrinsicWidth() / 2));
+            int s5 = (int) (og0Var.X.s() - (org.telegram.ui.ActionBar.n6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.n6.U0;
+            drawable.setBounds(r10, s5, drawable.getIntrinsicWidth() + r10, org.telegram.ui.ActionBar.n6.U0.getIntrinsicHeight() + s5);
+            org.telegram.ui.ActionBar.n6.U0.draw(canvas);
         }
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.jg0.run():void");
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.B0.X.P();
     }
 
-    public jg0(org.telegram.messenger.fs fsVar, Object obj, Object obj2, String str, int i7) {
-        this.f48977a = i7;
-        this.f48978b = fsVar;
-        this.f48979c = obj;
-        this.f48980e = obj2;
-        this.d = str;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.B0.X.R();
     }
 }

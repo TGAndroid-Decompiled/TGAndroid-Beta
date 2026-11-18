@@ -1,34 +1,168 @@
 package bi;
 
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.dq0;
+import org.telegram.ui.Components.eq0;
+import org.telegram.ui.Components.f71;
+import org.telegram.ui.Components.g71;
+import org.telegram.ui.Components.gq0;
+import org.telegram.ui.Components.gt0;
+import org.telegram.ui.Components.hq0;
+import org.telegram.ui.Components.lq;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.vv0;
-public final class m5 implements Runnable {
-    public final int f3882a;
-    public final ProfileActivity f3883b;
+public final class m5 extends g71 {
+    public final int W;
+    public Object f3853a0;
+    public final FrameLayout f3854b0;
 
-    public m5(ProfileActivity profileActivity, int i7) {
-        this.f3882a = i7;
-        this.f3883b = profileActivity;
+    public m5(FrameLayout frameLayout, Context context, Object obj, int i7) {
+        super(context, null);
+        this.W = i7;
+        this.f3854b0 = frameLayout;
+        this.f3853a0 = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3882a) {
+    public void a() {
+        switch (this.W) {
             case 0:
-                this.f3883b.X4(true);
-                return;
-            case 1:
-                this.f3883b.X4(true);
-                return;
-            default:
-                ProfileActivity profileActivity = this.f3883b;
-                vv0 vv0Var = profileActivity.O;
-                if (vv0Var != null) {
-                    vv0Var.k1(14);
-                    profileActivity.X4(false);
+                eq0 eq0Var = (eq0) this.f3854b0;
+                f71 f71Var = eq0Var.f3946n;
+                if (eq0Var.b() && f71Var != null) {
+                    if (eq0Var.K == null) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(i5.c.k(2131750082, null, new StringBuilder("+ ")));
+                        lq lqVar = new lq(2131232562, 0);
+                        lqVar.H = 0.8f;
+                        spannableStringBuilder.setSpan(lqVar, 0, 1, 33);
+                        eq0Var.K = spannableStringBuilder;
+                    }
+                    f71Var.a(-1, eq0Var.K);
                     return;
                 }
                 return;
+            default:
+                return;
         }
+    }
+
+    @Override
+    public boolean b(MotionEvent motionEvent) {
+        boolean g10;
+        switch (this.W) {
+            case 0:
+                g10 = ((eq0) this.f3854b0).g();
+                break;
+            case 1:
+                g10 = ((dq0) this.f3854b0).H.F1;
+                break;
+            default:
+                return super.b(motionEvent);
+        }
+        return !g10;
+    }
+
+    @Override
+    public final void s(boolean z10) {
+        switch (this.W) {
+            case 0:
+                eq0 eq0Var = (eq0) this.f3854b0;
+                eq0Var.l();
+                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f3853a0;
+                if (h2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) h2Var).W();
+                    View fragmentView = h2Var.getFragmentView();
+                    if (fragmentView != null) {
+                        fragmentView.invalidate();
+                    }
+                }
+                eq0Var.p();
+                return;
+            case 1:
+                dq0 dq0Var = (dq0) this.f3854b0;
+                String currentLang = dq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f3853a0, currentLang)) {
+                    this.f3853a0 = currentLang;
+                    dq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                ((gq0) this.f3853a0).d.V0(((hq0) this.f3854b0).f50337b.getAnimatingIndicatorProgress());
+                return;
+        }
+    }
+
+    @Override
+    public void u(int i7) {
+        switch (this.W) {
+            case 1:
+                dq0 dq0Var = (dq0) this.f3854b0;
+                String currentLang = dq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f3853a0, currentLang)) {
+                    this.f3853a0 = currentLang;
+                    dq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void v(int i7, boolean z10) {
+        switch (this.W) {
+            case 2:
+                int i10 = ((hq0) this.f3854b0).f50337b.f34995c0.get(i7, -1);
+                gt0 gt0Var = ((gq0) this.f3853a0).d;
+                if (i10 <= 0) {
+                    gt0.t(gt0Var, 8, z10);
+                    return;
+                } else {
+                    gt0.t(gt0Var, gt0Var.x1(i10).f35164a, z10);
+                    return;
+                }
+            default:
+                super.v(i7, z10);
+                return;
+        }
+    }
+
+    @Override
+    public final void w(int i7) {
+        switch (this.W) {
+            case 0:
+                ((eq0) this.f3854b0).l();
+                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f3853a0;
+                if (h2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) h2Var).W();
+                    return;
+                }
+                return;
+            case 1:
+                dq0 dq0Var = (dq0) this.f3854b0;
+                String currentLang = dq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f3853a0, currentLang)) {
+                    this.f3853a0 = currentLang;
+                    dq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                ((hq0) this.f3854b0).f50337b.f34995c0.get(i7, -1);
+                ((gq0) this.f3853a0).d.V0(1.0f);
+                return;
+        }
+    }
+
+    public m5(dq0 dq0Var, Context context) {
+        super(context, null);
+        this.W = 1;
+        this.f3854b0 = dq0Var;
     }
 }

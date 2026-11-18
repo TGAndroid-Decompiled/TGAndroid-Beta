@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class q50 implements org.telegram.ui.i90 {
+public final class q50 implements org.telegram.ui.j90 {
     public final r50 f38700a;
 
     public q50(r50 r50Var) {
@@ -20,10 +20,10 @@ public final class q50 implements org.telegram.ui.i90 {
             tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
             tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
             tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.lb lbVar = abVar.f45523a;
-            tL_channelAdminLogEvent.user_id = org.telegram.messenger.j10.i(lbVar.getAccountInstance().f23221a).f24792n;
+            org.telegram.ui.lb lbVar = abVar.f45517a;
+            tL_channelAdminLogEvent.user_id = org.telegram.messenger.j10.i(lbVar.getAccountInstance().f23218a).f24789n;
             i7 = ((org.telegram.ui.ActionBar.h2) lbVar).currentAccount;
-            if (new org.telegram.messenger.fj(i7, tL_channelAdminLogEvent, lbVar.f49545o0, lbVar.f49544n0, lbVar.f49535f, lbVar.U, true).U >= 0) {
+            if (new org.telegram.messenger.fj(i7, tL_channelAdminLogEvent, lbVar.f49518o0, lbVar.f49517n0, lbVar.f49508f, lbVar.U, true).U >= 0) {
                 lbVar.W0();
                 lbVar.F.f();
                 org.telegram.ui.lb.P0(lbVar);

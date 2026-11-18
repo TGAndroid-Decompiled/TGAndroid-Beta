@@ -63,7 +63,7 @@ public final class j9 extends FrameLayout {
         View view2 = new View(context);
         this.f44417c = view2;
         view2.setContentDescription(gd.M0(2131745641, null));
-        int i10 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29486i6;
         Drawable h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i10, i6Var), 1, -1);
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i10);
         view2.setBackground(h02);
@@ -220,7 +220,7 @@ public final class j9 extends FrameLayout {
                 this.f44425y.draw(canvas2);
             } else {
                 paint.setStyle(Paint.Style.FILL);
-                paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var));
+                paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var));
                 canvas2.drawRoundRect(rectF, f11, f11, paint);
             }
             paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, i6Var));

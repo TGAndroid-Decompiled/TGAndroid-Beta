@@ -4,18 +4,18 @@ import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class gn0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f48143a;
-    public final PhotoViewer f48144b;
+    public final int f48071a;
+    public final PhotoViewer f48072b;
 
     public gn0(PhotoViewer photoViewer, int i7) {
-        this.f48143a = i7;
-        this.f48144b = photoViewer;
+        this.f48071a = i7;
+        this.f48072b = photoViewer;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f48143a;
-        PhotoViewer photoViewer = this.f48144b;
+        int i7 = this.f48071a;
+        PhotoViewer photoViewer = this.f48072b;
         switch (i7) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.Z8;
@@ -23,7 +23,7 @@ public final class gn0 implements ValueAnimator.AnimatorUpdateListener {
                 photoViewer.f43237i3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21896a;
+                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21893a;
                 float T1 = org.telegram.messenger.g0.T1(photoViewer.f43166a6, photoViewer.f43204e6, photoViewer.f43264l6);
                 float T12 = org.telegram.messenger.g0.T1(photoViewer.X5, photoViewer.f43186c6, photoViewer.f43264l6);
                 float T13 = org.telegram.messenger.g0.T1(photoViewer.Y5, photoViewer.f43194d6, photoViewer.f43264l6);

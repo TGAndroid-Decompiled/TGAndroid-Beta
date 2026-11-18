@@ -162,7 +162,7 @@ public class RadialProgressView extends View implements org.telegram.ui.ActionBa
         super(context);
         this.f33079f = new RectF();
         this.K = true;
-        int i7 = org.telegram.ui.ActionBar.n6.f29470h6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29468h6;
         this.M = i7;
         this.L = i6Var;
         this.f33085y = org.telegram.messenger.g0.L(40.0f);

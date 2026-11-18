@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.LaunchActivity;
 public final class bt implements q10 {
-    public final int f23130a = 0;
-    public final int f23131b;
-    public final Object f23132c;
+    public final int f23127a = 0;
+    public final int f23128b;
+    public final Object f23129c;
     public final Object d;
 
     public bt(int i7, Context context, q10 q10Var) {
-        this.f23132c = q10Var;
+        this.f23129c = q10Var;
         this.d = context;
-        this.f23131b = i7;
+        this.f23128b = i7;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         org.telegram.ui.ActionBar.h2 T;
-        int i7 = this.f23130a;
+        int i7 = this.f23127a;
         Object obj3 = this.d;
-        Object obj4 = this.f23132c;
+        Object obj4 = this.f23129c;
         switch (i7) {
             case 0:
                 final q10 q10Var = (q10) obj4;
@@ -55,10 +55,10 @@ public final class bt implements q10 {
                     } else {
                         TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
                         try {
-                            JSONObject jSONObject = new JSONObject(cVar.f59016a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                            JSONObject jSONObject = new JSONObject(cVar.f59017a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
                             TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
                             registerpasskey.credential = inputpasskeycredentialpublickey;
-                            inputpasskeycredentialpublickey.f28616id = jSONObject.getString("id");
+                            inputpasskeycredentialpublickey.f28614id = jSONObject.getString("id");
                             registerpasskey.credential.raw_id = jSONObject.getString("rawId");
                             JSONObject jSONObject2 = jSONObject.getJSONObject("response");
                             TL_account.inputPasskeyResponseRegister inputpasskeyresponseregister = new TL_account.inputPasskeyResponseRegister();
@@ -77,7 +77,7 @@ public final class bt implements q10 {
                             sb2.append(sb3.toString());
                             a8.b(sb2.toString());
                             registerpasskey.credential.response = inputpasskeyresponseregister;
-                            g0.g3(new dg(context, this.f23131b, registerpasskey, q10Var, 15));
+                            g0.g3(new dg(context, this.f23128b, registerpasskey, q10Var, 15));
                             return;
                         } catch (Exception e10) {
                             a8.g(e10, true);
@@ -105,7 +105,7 @@ public final class bt implements q10 {
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 HashSet hashSet = ((z00) obj4).G;
-                int i11 = this.f23131b;
+                int i11 = this.f23128b;
                 if (tL_textWithEntities != null) {
                     hashSet.remove(Integer.valueOf(i11));
                     x10Var.a(tL_textWithEntities);
@@ -126,8 +126,8 @@ public final class bt implements q10 {
     }
 
     public bt(z00 z00Var, int i7, x10 x10Var) {
-        this.f23132c = z00Var;
-        this.f23131b = i7;
+        this.f23129c = z00Var;
+        this.f23128b = i7;
         this.d = x10Var;
     }
 }

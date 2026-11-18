@@ -56,7 +56,7 @@ public final class ag0 extends q9 implements xt0 {
         ArrayList arrayList = fg0Var.f35080c1;
         RectF rectF = fg0Var.O0;
         org.telegram.ui.fr0 fr0Var = fg0Var.f35086i1;
-        if (fr0Var == null || !fr0Var.f47797n) {
+        if (fr0Var == null || !fr0Var.f47761n) {
             if (this.I != null) {
                 int k10 = fg0Var.E0.k(this.N);
                 if (fg0Var.f35087j1) {
@@ -147,7 +147,7 @@ public final class ag0 extends q9 implements xt0 {
         super.onSizeChanged(i7, i10, i11, i12);
         if (this.I != null) {
             if (this.Q.A0.getOccupyStatusBar()) {
-                i13 = org.telegram.messenger.g0.f24115m;
+                i13 = org.telegram.messenger.g0.f24112m;
             } else {
                 i13 = 0;
             }

@@ -6,31 +6,31 @@ import j$.util.Objects;
 import ji.j;
 import q6.m;
 public final class i {
-    public final String f21775a;
-    public final String f21776b;
-    public final String f21777c;
+    public final String f21772a;
+    public final String f21773b;
+    public final String f21774c;
     public final String d;
-    public final String f21778e;
-    public final String f21779f;
-    public final String f21780g;
+    public final String f21775e;
+    public final String f21776f;
+    public final String f21777g;
     public final String h;
 
     public i(String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8) {
         boolean z10;
-        int i7 = x6.e.f60402a;
+        int i7 = x6.e.f60403a;
         if (str != null && !str.trim().isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
         }
         m.j("ApplicationId must be set.", true ^ z10);
-        this.f21776b = str;
-        this.f21775a = str2;
-        this.f21777c = str3;
+        this.f21773b = str;
+        this.f21772a = str2;
+        this.f21774c = str3;
         this.d = str4;
-        this.f21778e = str5;
-        this.f21779f = str6;
-        this.f21780g = str7;
+        this.f21775e = str5;
+        this.f21776f = str6;
+        this.f21777g = str7;
         this.h = str8;
     }
 
@@ -48,24 +48,24 @@ public final class i {
             return false;
         }
         i iVar = (i) obj;
-        if (!Objects.equals(this.f21776b, iVar.f21776b) || !Objects.equals(this.f21775a, iVar.f21775a) || !Objects.equals(this.f21777c, iVar.f21777c) || !Objects.equals(this.d, iVar.d) || !Objects.equals(this.f21778e, iVar.f21778e) || !Objects.equals(this.f21779f, iVar.f21779f) || !Objects.equals(this.f21780g, iVar.f21780g) || !Objects.equals(this.h, iVar.h)) {
+        if (!Objects.equals(this.f21773b, iVar.f21773b) || !Objects.equals(this.f21772a, iVar.f21772a) || !Objects.equals(this.f21774c, iVar.f21774c) || !Objects.equals(this.d, iVar.d) || !Objects.equals(this.f21775e, iVar.f21775e) || !Objects.equals(this.f21776f, iVar.f21776f) || !Objects.equals(this.f21777g, iVar.f21777g) || !Objects.equals(this.h, iVar.h)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f21776b, this.f21775a, this.f21777c, this.d, this.f21778e, this.f21779f, this.f21780g, this.h);
+        return Objects.hash(this.f21773b, this.f21772a, this.f21774c, this.d, this.f21775e, this.f21776f, this.f21777g, this.h);
     }
 
     public final String toString() {
         j jVar = new j(this);
-        jVar.E(this.f21776b, "applicationId");
-        jVar.E(this.f21775a, "apiKey");
-        jVar.E(this.f21777c, "databaseUrl");
-        jVar.E(this.f21778e, "gcmSenderId");
-        jVar.E(this.f21779f, "storageBucket");
-        jVar.E(this.f21780g, "recaptchaSiteKey");
+        jVar.E(this.f21773b, "applicationId");
+        jVar.E(this.f21772a, "apiKey");
+        jVar.E(this.f21774c, "databaseUrl");
+        jVar.E(this.f21775e, "gcmSenderId");
+        jVar.E(this.f21776f, "storageBucket");
+        jVar.E(this.f21777g, "recaptchaSiteKey");
         jVar.E(this.h, "projectId");
         return jVar.toString();
     }

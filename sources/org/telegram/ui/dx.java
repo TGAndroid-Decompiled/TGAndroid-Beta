@@ -1,13 +1,13 @@
 package org.telegram.ui;
 public final class dx implements org.telegram.messenger.y5 {
-    public long f47065a;
-    public long f47066b;
-    public final String f47067c;
+    public long f46988a;
+    public long f46989b;
+    public final String f46990c;
     public final ex d;
 
     public dx(ex exVar, String str) {
         this.d = exVar;
-        this.f47067c = str;
+        this.f46990c = str;
     }
 
     @Override
@@ -17,8 +17,8 @@ public final class dx implements org.telegram.messenger.y5 {
 
     @Override
     public final void i(long j3, long j10) {
-        this.f47066b = j3;
-        this.f47065a = j10;
+        this.f46989b = j3;
+        this.f46988a = j10;
         this.d.b();
     }
 

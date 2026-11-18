@@ -30,14 +30,14 @@ public final class j11 implements Runnable {
                     } catch (Exception unused) {
                     }
                     h01 h01Var = (h01) n11Var;
-                    r11 r11Var = h01Var.T.f48558e;
-                    List list = r11.f51413b2;
+                    r11 r11Var = h01Var.T.f48514e;
+                    List list = r11.f51373b2;
                     r11Var.l();
                     TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
                     View view = h01Var.R;
-                    long j3 = ((b11) view).f45724e.documentId;
+                    long j3 = ((b11) view).f45714e.documentId;
                     tL_emojiStatus.document_id = j3;
-                    r11Var.p(view, Long.valueOf(j3), ((b11) h01Var.R).f45724e.document, h01Var.S, num);
+                    r11Var.p(view, Long.valueOf(j3), ((b11) h01Var.R).f45714e.document, h01Var.S, num);
                     if (h01Var.S == null) {
                         org.telegram.messenger.ri.d0(r11Var.W).G1(tL_emojiStatus);
                         return;

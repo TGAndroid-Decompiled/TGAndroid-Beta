@@ -266,7 +266,7 @@ public final class i1 implements e2.c1 {
                 }
                 la.p(z12);
                 e2.k1 m10 = y02.m(i7, new e2.k1(), 0L);
-                if (i10 == h2.l0.i(i10, m10.f10489n, m10.f10490o)) {
+                if (i10 == h2.l0.i(i10, m10.f10486n, m10.f10487o)) {
                     z13 = true;
                 }
                 la.p(z13);
@@ -381,7 +381,7 @@ public final class i1 implements e2.c1 {
         if (S0() != null) {
             return new h1(this);
         }
-        return e2.l1.f10508a;
+        return e2.l1.f10505a;
     }
 
     @Override

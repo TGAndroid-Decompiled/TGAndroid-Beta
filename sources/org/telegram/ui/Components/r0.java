@@ -15,14 +15,14 @@ public abstract class r0 {
         if (inputAiComposeTone == null) {
             return null;
         }
-        ArrayList arrayList = org.telegram.messenger.mp.u1(i7).T1().f23614b;
+        ArrayList arrayList = org.telegram.messenger.mp.u1(i7).T1().f23611b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-            if ((inputAiComposeTone instanceof TL_aicompose.inputAiComposeToneID) && (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.inputAiComposeToneID) inputAiComposeTone).f28619id == ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f28618id) {
+            if ((inputAiComposeTone instanceof TL_aicompose.inputAiComposeToneID) && (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.inputAiComposeToneID) inputAiComposeTone).f28617id == ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f28616id) {
                 return aiComposeTone;
             }
             if ((inputAiComposeTone instanceof TL_aicompose.inputAiComposeToneSlug) && (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) && TextUtils.equals(((TL_aicompose.inputAiComposeToneSlug) inputAiComposeTone).slug, ((TL_aicompose.TL_aiComposeTone) aiComposeTone).slug)) {
@@ -48,7 +48,7 @@ public abstract class r0 {
         if (!org.telegram.messenger.n5.C(j3)) {
             org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(i7);
             d02.k();
-            TL_aicompose.inputAiComposeStyle inputaicomposestyle = (TL_aicompose.inputAiComposeStyle) d02.f26637r1.f(j3);
+            TL_aicompose.inputAiComposeStyle inputaicomposestyle = (TL_aicompose.inputAiComposeStyle) d02.f26635r1.f(j3);
             if (inputaicomposestyle != null) {
                 ?? obj = new Object();
                 if (TextUtils.isEmpty(inputaicomposestyle.to_lang)) {
@@ -95,7 +95,7 @@ public abstract class r0 {
         if (longSparseArray2.get(j10) != null) {
             q0Var2 = (q0) longSparseArray.get(j10);
         } else {
-            String string = org.telegram.messenger.t0.f26915b.getSharedPreferences("anim_ai_always", 0).getString(c(i7, j3), null);
+            String string = org.telegram.messenger.t0.f26913b.getSharedPreferences("anim_ai_always", 0).getString(c(i7, j3), null);
             if (string != null) {
                 try {
                     SerializedData serializedData = new SerializedData(Base64.decode(string, 2));
@@ -173,7 +173,7 @@ public abstract class r0 {
                 longSparseArray.put(j10, q0Var2);
                 longSparseArray2.put(j10, Boolean.TRUE);
                 if (q0Var2 == null) {
-                    org.telegram.messenger.t0.f26915b.getSharedPreferences("anim_ai_always", 0).edit().remove(c(i7, j3)).apply();
+                    org.telegram.messenger.t0.f26913b.getSharedPreferences("anim_ai_always", 0).edit().remove(c(i7, j3)).apply();
                 } else {
                     SerializedData serializedData = new SerializedData();
                     serializedData.writeInt32(1);
@@ -203,7 +203,7 @@ public abstract class r0 {
                     if (d != null) {
                         d.serializeToStream(serializedData);
                     }
-                    org.telegram.messenger.t0.f26915b.getSharedPreferences("anim_ai_always", 0).edit().putString(c(i7, j3), Base64.encodeToString(serializedData.toByteArray(), 2)).apply();
+                    org.telegram.messenger.t0.f26913b.getSharedPreferences("anim_ai_always", 0).edit().putString(c(i7, j3), Base64.encodeToString(serializedData.toByteArray(), 2)).apply();
                     serializedData.cleanup();
                 }
             }
@@ -225,7 +225,7 @@ public abstract class r0 {
                 if (!org.telegram.messenger.n5.C(j3)) {
                     TLRPC.InputPeer l1 = d02.getMessagesController().l1(j3);
                     d02.k();
-                    final TL_aicompose.inputAiComposeStyle inputaicomposestyle3 = (TL_aicompose.inputAiComposeStyle) d02.f26637r1.f(j3);
+                    final TL_aicompose.inputAiComposeStyle inputaicomposestyle3 = (TL_aicompose.inputAiComposeStyle) d02.f26635r1.f(j3);
                     if (org.telegram.messenger.ri.B0(inputaicomposestyle)) {
                         inputaicomposestyle2 = null;
                     } else {
@@ -245,7 +245,7 @@ public abstract class r0 {
                                     a8.d("aicompose.setChatStyle failed: " + tL_error.text);
                                     ri riVar = ri.this;
                                     riVar.k();
-                                    a0.h hVar = riVar.f26637r1;
+                                    a0.h hVar = riVar.f26635r1;
                                     long j11 = j3;
                                     if (ri.j((TL_aicompose.inputAiComposeStyle) hVar.f(j11), inputaicomposestyle2)) {
                                         riVar.H1(j11, inputaicomposestyle3);

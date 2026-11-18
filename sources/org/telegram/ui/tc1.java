@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class tc1 extends org.telegram.ui.Components.bk0 {
-    public final Context f52256c;
+    public final Context f52250c;
     public final WallpapersListActivity d;
 
     public tc1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f52256c = context;
+        this.f52250c = context;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             return true;
         }
         return false;
@@ -46,18 +46,18 @@ public final class tc1 extends org.telegram.ui.Components.bk0 {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View m8Var;
-        Context context = this.f52256c;
+        View n8Var;
+        Context context = this.f52250c;
         if (i7 != 0) {
             if (i7 != 3) {
-                m8Var = new org.telegram.ui.Components.ej(this, context, 1);
-                m8Var.setTag(-33024);
+                n8Var = new org.telegram.ui.Components.ej(this, context, 1);
+                n8Var.setTag(-33024);
             } else {
-                m8Var = new org.telegram.ui.Cells.z8(context);
+                n8Var = new org.telegram.ui.Cells.a9(context);
             }
         } else {
-            m8Var = new org.telegram.ui.Cells.m8(context);
+            n8Var = new org.telegram.ui.Cells.n8(context);
         }
-        return new v4.f1(m8Var);
+        return new v4.f1(n8Var);
     }
 }

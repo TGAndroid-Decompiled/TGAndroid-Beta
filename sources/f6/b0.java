@@ -5,15 +5,15 @@ import android.os.RemoteException;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.HashMap;
 public final class b0 implements com.google.android.gms.common.api.internal.q {
-    public final int f11362a;
-    public final e0 f11363b;
-    public final String f11364c;
+    public final int f11359a;
+    public final e0 f11360b;
+    public final String f11361c;
     public final String d;
 
     public b0(e0 e0Var, String str, String str2, int i7) {
-        this.f11362a = i7;
-        this.f11363b = e0Var;
-        this.f11364c = str;
+        this.f11359a = i7;
+        this.f11360b = e0Var;
+        this.f11361c = str;
         this.d = str2;
     }
 
@@ -21,10 +21,10 @@ public final class b0 implements com.google.android.gms.common.api.internal.q {
     public final void accept(Object obj, Object obj2) {
         boolean z10 = false;
         boolean z11 = true;
-        switch (this.f11362a) {
+        switch (this.f11359a) {
             case 0:
-                e0 e0Var = this.f11363b;
-                String str = this.f11364c;
+                e0 e0Var = this.f11360b;
+                String str = this.f11361c;
                 String str2 = this.d;
                 j6.x xVar = (j6.x) obj;
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
@@ -36,28 +36,28 @@ public final class b0 implements com.google.android.gms.common.api.internal.q {
                 Parcel p12 = fVar.p1();
                 p12.writeString(str);
                 p12.writeString(str2);
-                int i7 = com.google.android.gms.internal.cast.t.f6666a;
+                int i7 = com.google.android.gms.internal.cast.t.f6663a;
                 p12.writeInt(0);
                 fVar.u1(p12, 14);
-                synchronized (e0Var.f11391s) {
+                synchronized (e0Var.f11388s) {
                     try {
-                        if (e0Var.f11388p != null) {
+                        if (e0Var.f11385p != null) {
                             e0Var.i(2477);
                         }
-                        e0Var.f11388p = taskCompletionSource;
+                        e0Var.f11385p = taskCompletionSource;
                     } catch (Throwable th2) {
                         throw th2;
                     }
                 }
                 return;
             default:
-                e0 e0Var2 = this.f11363b;
-                String str3 = this.f11364c;
+                e0 e0Var2 = this.f11360b;
+                String str3 = this.f11361c;
                 String str4 = this.d;
                 j6.x xVar2 = (j6.x) obj;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) obj2;
                 HashMap hashMap = e0Var2.C;
-                long incrementAndGet = e0Var2.f11390r.incrementAndGet();
+                long incrementAndGet = e0Var2.f11387r.incrementAndGet();
                 if (e0Var2.G == 2) {
                     z10 = true;
                 }

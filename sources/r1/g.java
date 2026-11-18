@@ -6,7 +6,7 @@ import android.view.Choreographer;
 import java.util.ArrayList;
 import org.telegram.ui.Components.gz0;
 import org.telegram.ui.Components.h6;
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 public final class g {
     public static final b f56306o = new b(1);
     public static final b f56307p = new b(2);
@@ -169,10 +169,10 @@ public final class g {
                                 ArrayList arrayList = aVar.f56301b;
                                 if (arrayList.size() == 0) {
                                     if (aVar.d == null) {
-                                        aVar.d = new md0(aVar.f56302c);
+                                        aVar.d = new nd0(aVar.f56302c);
                                     }
-                                    md0 md0Var = aVar.d;
-                                    ((Choreographer) md0Var.f49839c).postFrameCallback((gz0) md0Var.d);
+                                    nd0 nd0Var = aVar.d;
+                                    ((Choreographer) nd0Var.f50149c).postFrameCallback((gz0) nd0Var.d);
                                 }
                                 if (!arrayList.contains(this)) {
                                     arrayList.add(this);

@@ -12,18 +12,18 @@ import org.telegram.messenger.o10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.lr;
 public final class w6 extends FrameLayout {
-    public final int f15682a;
-    public final org.telegram.ui.Components.b9 f15683b;
-    public final org.telegram.ui.Components.q9 f15684c;
+    public final int f15679a;
+    public final org.telegram.ui.Components.b9 f15680b;
+    public final org.telegram.ui.Components.q9 f15681c;
     public final TextView d;
-    public ViewPropertyAnimator f15685e;
+    public ViewPropertyAnimator f15682e;
 
     public w6(Activity activity, int i7) {
         super(activity);
-        this.f15682a = i7;
-        this.f15683b = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
+        this.f15679a = i7;
+        this.f15680b = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
         org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(activity);
-        this.f15684c = q9Var;
+        this.f15681c = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(15.0f));
         addView(q9Var, c8.ma.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(activity);
@@ -44,10 +44,10 @@ public final class w6 extends FrameLayout {
     }
 
     public final void a(boolean z10, boolean z11) {
-        ViewPropertyAnimator viewPropertyAnimator = this.f15685e;
+        ViewPropertyAnimator viewPropertyAnimator = this.f15682e;
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
-            this.f15685e = null;
+            this.f15682e = null;
         }
         float f10 = 0.0f;
         int i7 = 0;
@@ -58,7 +58,7 @@ public final class w6 extends FrameLayout {
                 f10 = 1.0f;
             }
             ViewPropertyAnimator duration = animate.alpha(f10).setInterpolator(lr.h).withEndAction(new ch.k(8, this, z10)).setDuration(320L);
-            this.f15685e = duration;
+            this.f15682e = duration;
             duration.start();
             return;
         }
@@ -75,7 +75,7 @@ public final class w6 extends FrameLayout {
     public void set(TLRPC.InputPeer inputPeer) {
         long n10;
         String str;
-        int i7 = this.f15682a;
+        int i7 = this.f15679a;
         if (inputPeer == null) {
             n10 = j10.i(i7).e();
         } else {
@@ -83,8 +83,8 @@ public final class w6 extends FrameLayout {
         }
         int i10 = (n10 > 0L ? 1 : (n10 == 0L ? 0 : -1));
         TextView textView = this.d;
-        org.telegram.ui.Components.q9 q9Var = this.f15684c;
-        org.telegram.ui.Components.b9 b9Var = this.f15683b;
+        org.telegram.ui.Components.q9 q9Var = this.f15681c;
+        org.telegram.ui.Components.b9 b9Var = this.f15680b;
         if (i10 >= 0) {
             TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(n10));
             b9Var.r(c22);

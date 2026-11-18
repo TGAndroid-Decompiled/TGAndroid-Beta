@@ -7,31 +7,31 @@ import org.telegram.ui.ActionBar.s4;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class m2 implements Runnable {
-    public final int f18789a;
-    public final o2 f18790b;
+    public final int f18786a;
+    public final o2 f18787b;
 
     public m2(o2 o2Var, int i7) {
-        this.f18789a = i7;
-        this.f18790b = o2Var;
+        this.f18786a = i7;
+        this.f18787b = o2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f18789a) {
+        switch (this.f18786a) {
             case 0:
                 TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
-                o2 o2Var = this.f18790b;
+                o2 o2Var = this.f18787b;
                 t2 t2Var = o2Var.d;
                 toggleuseremojistatuspermission.bot = mp.u1(t2Var.I).q1(t2Var.J);
                 toggleuseremojistatuspermission.enabled = false;
                 ConnectionsManager.getInstance(t2Var.I).sendRequest(toggleuseremojistatuspermission, new n2(o2Var, 1));
                 return;
             case 1:
-                t2 t2Var2 = this.f18790b.d;
+                t2 t2Var2 = this.f18787b.d;
                 s0.e(t2Var2.getContext(), t2Var2.I, t2Var2.J).l(false, null);
                 return;
             default:
-                t2 t2Var3 = this.f18790b.d;
+                t2 t2Var3 = this.f18787b.d;
                 org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
                 if (T != null && T.getParentLayout() != null) {
                     s4 parentLayout = T.getParentLayout();

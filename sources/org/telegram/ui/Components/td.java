@@ -30,9 +30,9 @@ public final class td implements Runnable {
                 chatActivityEnterView.P(true);
                 return;
             case 2:
-                org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
-                if (eg0Var != null) {
-                    eg0Var.h(false);
+                org.telegram.ui.fg0 fg0Var = chatActivityEnterView.M0;
+                if (fg0Var != null) {
+                    fg0Var.h(false);
                     chatActivityEnterView.M0 = null;
                 }
                 org.telegram.messenger.g0.h3(new dd(chatActivityEnterView, 5), 600L);
@@ -44,9 +44,9 @@ public final class td implements Runnable {
                 int i10 = ChatActivityEnterView.f32538n7;
                 ChatActivityEnterView chatActivityEnterView2 = this.f39983b;
                 chatActivityEnterView2.s1(true, 2147483646, 0, 0L, true);
-                org.telegram.ui.eg0 eg0Var2 = chatActivityEnterView2.M0;
-                if (eg0Var2 != null) {
-                    eg0Var2.h(false);
+                org.telegram.ui.fg0 fg0Var2 = chatActivityEnterView2.M0;
+                if (fg0Var2 != null) {
+                    fg0Var2.h(false);
                     chatActivityEnterView2.M0 = null;
                     return;
                 }
@@ -56,13 +56,13 @@ public final class td implements Runnable {
                 TL_iv.RichMessage richMessage = chatActivityEnterView.f32680s2;
                 if (richMessage != null && chatActivityEnterView.F0 != null && bnVar != null) {
                     org.telegram.messenger.mp.u1(chatActivityEnterView.R);
-                    boolean z10 = org.telegram.messenger.s2.f26723a;
+                    boolean z10 = org.telegram.messenger.s2.f26721a;
                     oi.z1 z1Var = new oi.z1(richMessage);
-                    z1Var.f22522e = true;
+                    z1Var.f22519e = true;
                     z1Var.setResourceProvider(chatActivityEnterView.K4);
                     z1Var.K = bnVar;
-                    z1Var.f22539s = bnVar.U;
-                    z1Var.f22544w = bnVar.f45932a0;
+                    z1Var.f22536s = bnVar.U;
+                    z1Var.f22541w = bnVar.f45923a0;
                     z1Var.M = new td(chatActivityEnterView, 11);
                     z1Var.L = new td(chatActivityEnterView, 13);
                     bnVar.presentFragment(z1Var);
@@ -103,9 +103,9 @@ public final class td implements Runnable {
                 }
                 return;
             case 12:
-                org.telegram.ui.eg0 eg0Var3 = chatActivityEnterView.M0;
-                if (eg0Var3 != null) {
-                    eg0Var3.h(chatActivityEnterView.f32564c6);
+                org.telegram.ui.fg0 fg0Var3 = chatActivityEnterView.M0;
+                if (fg0Var3 != null) {
+                    fg0Var3.h(chatActivityEnterView.f32564c6);
                     chatActivityEnterView.M0 = null;
                     return;
                 }

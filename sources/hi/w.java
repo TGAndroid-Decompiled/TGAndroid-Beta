@@ -13,21 +13,21 @@ import org.telegram.ui.Components.bv;
 import org.telegram.ui.Components.ck0;
 import org.telegram.ui.ns;
 public final class w extends ck0 {
-    public final int f15620f3 = 0;
-    public final Object f15621g3;
-    public final KeyEvent.Callback f15622h3;
+    public final int f15617f3 = 0;
+    public final Object f15618g3;
+    public final KeyEvent.Callback f15619h3;
 
     public w(z zVar, Context context) {
         super(context, null);
-        this.f15622h3 = zVar;
-        this.f15621g3 = new h6.m(29);
+        this.f15619h3 = zVar;
+        this.f15618g3 = new h6.m(29);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i7 = this.f15620f3;
-        KeyEvent.Callback callback = this.f15622h3;
-        Object obj = this.f15621g3;
+        int i7 = this.f15617f3;
+        KeyEvent.Callback callback = this.f15619h3;
+        Object obj = this.f15618g3;
         switch (i7) {
             case 0:
                 z zVar = (z) callback;
@@ -50,7 +50,7 @@ public final class w extends ck0 {
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.g4.f47891d1;
+                HashSet hashSet = org.telegram.ui.g4.f47855d1;
                 ((org.telegram.ui.g4) obj).l();
                 super.dispatchDraw(canvas);
                 return;
@@ -85,7 +85,7 @@ public final class w extends ck0 {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 0:
                 if (motionEvent.getX() > getPaddingLeft() && motionEvent.getX() < getWidth() - getPaddingRight()) {
                     return super.dispatchTouchEvent(motionEvent);
@@ -98,7 +98,7 @@ public final class w extends ck0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 2:
                 return false;
             default:
@@ -109,18 +109,18 @@ public final class w extends ck0 {
     @Override
     public void l0(int i7) {
         org.telegram.ui.s3 s3Var;
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 1:
-                org.telegram.ui.t3 t3Var = ((org.telegram.ui.g4) this.f15621g3).L;
-                if (t3Var != null && (s3Var = t3Var.f52138c) != null) {
+                org.telegram.ui.t3 t3Var = ((org.telegram.ui.g4) this.f15618g3).L;
+                if (t3Var != null && (s3Var = t3Var.f52140c) != null) {
                     s3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
-                bv bvVar = (bv) this.f15622h3;
+                bv bvVar = (bv) this.f15619h3;
                 bvVar.f33787q1.a();
-                bvVar.f30192b.invalidate();
+                bvVar.f30190b.invalidate();
                 return;
             default:
                 return;
@@ -129,11 +129,11 @@ public final class w extends ck0 {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 2:
                 super.onDetachedFromWindow();
-                bv bvVar = (bv) this.f15622h3;
-                org.telegram.ui.Components.x5.release(bvVar.f30192b, bvVar.f33784m1);
+                bv bvVar = (bv) this.f15619h3;
+                org.telegram.ui.Components.x5.release(bvVar.f30190b, bvVar.f33784m1);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -145,7 +145,7 @@ public final class w extends ck0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         MotionEvent motionEvent2;
         org.telegram.ui.ActionBar.h1 h1Var;
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 0:
                 if (motionEvent.getX() > getPaddingLeft() && motionEvent.getX() < getWidth() - getPaddingRight()) {
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -153,21 +153,21 @@ public final class w extends ck0 {
                 }
                 return false;
             case 1:
-                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15621g3;
-                if (g4Var.d != null && g4Var.f50751b == null && (((h1Var = g4Var.I) == null || !h1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    g4Var.f50751b = null;
+                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15618g3;
+                if (g4Var.d != null && g4Var.f50707b == null && (((h1Var = g4Var.I) == null || !h1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    g4Var.f50707b = null;
                     g4Var.d = null;
-                    g4Var.f50754f = null;
-                } else if (g4Var.d != null && g4Var.f50751b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.e4)) {
+                    g4Var.f50710f = null;
+                } else if (g4Var.d != null && g4Var.f50707b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.e4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.g4.j(g4Var, (org.telegram.ui.e4) getAdapter(), motionEvent2, g4Var.f50754f, g4Var.d, 0, 0);
+                    org.telegram.ui.g4.j(g4Var, (org.telegram.ui.e4) getAdapter(), motionEvent2, g4Var.f50710f, g4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
                 return super.onInterceptTouchEvent(motionEvent2);
             default:
                 ns p10 = ns.p();
-                bv bvVar = (bv) this.f15622h3;
+                bv bvVar = (bv) this.f15619h3;
                 boolean q10 = p10.q(motionEvent, bvVar.f33788r1, bvVar.I1, this.f34074o2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
                     return false;
@@ -178,14 +178,14 @@ public final class w extends ck0 {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 1:
                 z1(z10, i7, i10, i11, i12);
-                ((org.telegram.ui.k3) this.f15622h3).K = -1.0f;
+                ((org.telegram.ui.k3) this.f15619h3).K = -1.0f;
                 return;
             case 2:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ((bv) this.f15622h3).f33787q1.a();
+                ((bv) this.f15619h3).f33787q1.a();
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -195,10 +195,10 @@ public final class w extends ck0 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 2:
                 View.MeasureSpec.getSize(i7);
-                ((bv) this.f15622h3).f33795y1.y1(40);
+                ((bv) this.f15619h3).f33795y1.y1(40);
                 super.onMeasure(i7, i10);
                 return;
             default:
@@ -210,13 +210,13 @@ public final class w extends ck0 {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.h1 h1Var;
-        switch (this.f15620f3) {
+        switch (this.f15617f3) {
             case 1:
-                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15621g3;
-                if (g4Var.d != null && g4Var.f50751b == null && (((h1Var = g4Var.I) == null || !h1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    g4Var.f50751b = null;
+                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15618g3;
+                if (g4Var.d != null && g4Var.f50707b == null && (((h1Var = g4Var.I) == null || !h1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    g4Var.f50707b = null;
                     g4Var.d = null;
-                    g4Var.f50754f = null;
+                    g4Var.f50710f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:
@@ -239,13 +239,13 @@ public final class w extends ck0 {
 
     public w(bv bvVar, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context, i6Var);
-        this.f15622h3 = bvVar;
-        this.f15621g3 = new Paint(1);
+        this.f15619h3 = bvVar;
+        this.f15618g3 = new Paint(1);
     }
 
     public w(org.telegram.ui.k3 k3Var, Context context) {
         super(context, null);
-        this.f15622h3 = k3Var;
-        this.f15621g3 = k3Var.M;
+        this.f15619h3 = k3Var;
+        this.f15618g3 = k3Var.M;
     }
 }

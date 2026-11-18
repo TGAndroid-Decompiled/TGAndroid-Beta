@@ -14,7 +14,7 @@ public final class h71 extends View {
     public ObjectAnimator E;
     public final View F;
     public int[] G;
-    public final org.telegram.ui.Cells.f2 H;
+    public final org.telegram.ui.Cells.g2 H;
     public final Paint I;
     public float J;
     public final org.telegram.ui.ActionBar.i6 f35789a;
@@ -34,7 +34,7 @@ public final class h71 extends View {
     public h71(Context context, boolean z10, View view, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
         this.G = new int[4];
-        this.H = new org.telegram.ui.Cells.f2(this);
+        this.H = new org.telegram.ui.Cells.g2(this);
         this.I = new Paint(1);
         this.f35789a = i6Var;
         this.f35795r = new RectF();

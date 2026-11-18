@@ -49,7 +49,7 @@ public abstract class c0 {
     }
 
     public static boolean a(fj fjVar) {
-        if (fjVar != null && fj.B0(fjVar.f23968k) == 1271266957) {
+        if (fjVar != null && fj.B0(fjVar.f23965k) == 1271266957) {
             return true;
         }
         return false;
@@ -153,7 +153,7 @@ public abstract class c0 {
     }
 
     public static void r(int i7, String str, ArrayList arrayList) {
-        arrayList.add(new p6(i7, str));
+        arrayList.add(new q6(i7, str));
     }
 
     public static void s(int i7, ArrayList arrayList, ArrayList arrayList2, Integer num) {

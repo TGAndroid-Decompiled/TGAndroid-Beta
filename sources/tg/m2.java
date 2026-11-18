@@ -8,7 +8,7 @@ import android.os.Build;
 import android.text.Editable;
 import android.view.View;
 import android.view.ViewGroup;
-import bi.t5;
+import bi.s5;
 import c8.ma;
 import java.util.Iterator;
 import org.telegram.messenger.g6;
@@ -69,7 +69,7 @@ public final class m2 extends j {
         setSwatch(h1Var);
         setType(i10);
         k();
-        l2Var.addTextChangedListener(new t5(3, this));
+        l2Var.addTextChangedListener(new s5(3, this));
     }
 
     @Override
@@ -250,15 +250,15 @@ public final class m2 extends j {
             for (int i10 = 0; i10 < g6VarArr.length; i10++) {
                 g6 g6Var = g6VarArr[i10];
                 Paint.FontMetricsInt fontMetricsInt = getFontMetricsInt();
-                g6Var.f24175a = fontMetricsInt;
+                g6Var.f24172a = fontMetricsInt;
                 if (fontMetricsInt != null) {
-                    int abs = Math.abs(g6Var.f24175a.ascent) + Math.abs(fontMetricsInt.descent);
-                    g6Var.f24177c = abs;
+                    int abs = Math.abs(g6Var.f24172a.ascent) + Math.abs(fontMetricsInt.descent);
+                    g6Var.f24174c = abs;
                     if (abs == 0) {
-                        g6Var.f24177c = org.telegram.messenger.g0.L(20.0f);
+                        g6Var.f24174c = org.telegram.messenger.g0.L(20.0f);
                     }
                 }
-                g6VarArr[i10].f24176b = 0.85f;
+                g6VarArr[i10].f24173b = 0.85f;
             }
             for (x5 x5Var : (x5[]) text.getSpans(0, text.length(), x5.class)) {
                 x5Var.replaceFontMetrics(getFontMetricsInt());
@@ -323,7 +323,7 @@ public final class m2 extends j {
         int align2 = getAlign();
         if (align2 == 1) {
             i7 = 4;
-        } else if (align2 == 2 ? !gd.f24216a0 : gd.f24216a0) {
+        } else if (align2 == 2 ? !gd.f24213a0 : gd.f24213a0) {
             i7 = 3;
         }
         this.f58027r0.setTextAlignment(i7);

@@ -67,7 +67,7 @@ public final class n31 implements Runnable {
                     while (i7 < size) {
                         int i10 = i7 + 1;
                         org.telegram.messenger.s00 s00Var = (org.telegram.messenger.s00) arrayList.get(i7);
-                        final String str4 = s00Var.f26718a;
+                        final String str4 = s00Var.f26716a;
                         if (TextUtils.equals(str4, str3)) {
                             i7 = i10;
                         } else {
@@ -79,7 +79,7 @@ public final class n31 implements Runnable {
                                 z11 = z12 ? 1 : 0;
                             }
                             z0Var2.setChecked(z12);
-                            z0Var2.setText(s00Var.f26719b);
+                            z0Var2.setText(s00Var.f26717b);
                             if (!z12) {
                                 view = z0Var2;
                                 view.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +116,7 @@ public final class n31 implements Runnable {
                     while (i12 < size2) {
                         int i13 = i12 + 1;
                         org.telegram.messenger.s00 s00Var2 = (org.telegram.messenger.s00) arrayList2.get(i12);
-                        final String str5 = s00Var2.f26718a;
+                        final String str5 = s00Var2.f26716a;
                         if (!TextUtils.equals(str5, str3)) {
                             if (str2 != null && str2.equals(str5)) {
                                 z10 = 1;
@@ -125,7 +125,7 @@ public final class n31 implements Runnable {
                             }
                             org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(2, ckVar.getContext(), ckVar.d, false, false);
                             z0Var3.setChecked(z10);
-                            z0Var3.setText(s00Var2.f26719b);
+                            z0Var3.setText(s00Var2.f26717b);
                             if (z10 == 0) {
                                 z0Var3.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -189,13 +189,13 @@ public final class n31 implements Runnable {
                 TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f37721r;
                 bg.m0 m0Var = (bg.m0) this.f37722s;
                 if (!tL_urlAuthResultRequest.request_wallet) {
-                    org.telegram.ui.gi0.f48115a = x2Var;
+                    org.telegram.ui.gi0.f48043a = x2Var;
                     x2Var.show();
                     return;
                 }
-                org.telegram.ui.Wallet.e3 D = org.telegram.ui.Wallet.l2.D(context, iArr[0], null, tL_urlAuthResultRequest, i6Var, new org.telegram.ui.t60(x2VarArr, zArr2, inputtonconnectoauthsessionArr, tL_urlAuthResultRequest, x2Var, m0Var, 2), new org.telegram.ui.ve0(6, x2VarArr, zArr2));
+                org.telegram.ui.Wallet.e3 D = org.telegram.ui.Wallet.l2.D(context, iArr[0], null, tL_urlAuthResultRequest, i6Var, new org.telegram.ui.u60(x2VarArr, zArr2, inputtonconnectoauthsessionArr, tL_urlAuthResultRequest, x2Var, m0Var, 2), new org.telegram.ui.we0(6, x2VarArr, zArr2));
                 x2VarArr[0] = D;
-                org.telegram.ui.gi0.f48115a = D;
+                org.telegram.ui.gi0.f48043a = D;
                 return;
             case 3:
                 org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) this.d;
@@ -228,7 +228,7 @@ public final class n31 implements Runnable {
                 org.telegram.ui.Wallet.u0 u0Var = l2Var2.f44480b;
                 if (TextUtils.equals(str7, u0Var.y()) && Arrays.equals(bArr2, u0Var.E()) && ((str = tonconnectsession2.client_id) == null || str8.equalsIgnoreCase(str))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession2.f28667id;
+                    tonconnectregisterkey.session_id = tonconnectsession2.f28665id;
                     tonconnectregisterkey.client_id = str8;
                     l2Var2.f44483f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new org.telegram.messenger.q10() {
                         @Override
@@ -245,7 +245,7 @@ public final class n31 implements Runnable {
                             TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                             l2Var3.getClass();
                             if (tL_error == null && tonconnectchallenge2 != null) {
-                                Utilities.f22782e.c(new n31(l2Var3, r0Var3, tonconnectsession3, str9, bArr3, jSONArray3, tL_urlAuthResultRequest4, tonconnectchallenge2, e0Var3));
+                                Utilities.f22779e.c(new n31(l2Var3, r0Var3, tonconnectsession3, str9, bArr3, jSONArray3, tL_urlAuthResultRequest4, tonconnectchallenge2, e0Var3));
                             } else {
                                 e0Var3.a(null, l2.z(tL_error, "registerKey"));
                             }

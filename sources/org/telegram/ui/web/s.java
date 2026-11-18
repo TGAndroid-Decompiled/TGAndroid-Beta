@@ -16,35 +16,35 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.zq;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ug0;
+import org.telegram.ui.vg0;
 public final class s implements q10 {
-    public final int f53295a;
-    public final v0 f53296b;
-    public final f7 f53297c;
+    public final int f53246a;
+    public final v0 f53247b;
+    public final f7 f53248c;
     public final String d;
 
     public s(v0 v0Var, f7 f7Var, String str, int i7) {
-        this.f53295a = i7;
-        this.f53296b = v0Var;
-        this.f53297c = f7Var;
+        this.f53246a = i7;
+        this.f53247b = v0Var;
+        this.f53248c = f7Var;
         this.d = str;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         int i7;
-        ug0 ug0Var;
-        int i10 = this.f53295a;
+        vg0 vg0Var;
+        int i10 = this.f53246a;
         String str = this.d;
-        f7 f7Var = this.f53297c;
-        v0 v0Var = this.f53296b;
+        f7 f7Var = this.f53248c;
+        v0 v0Var = this.f53247b;
         switch (i10) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                v0 v0Var2 = this.f53296b;
-                i6 i6Var = v0Var2.f53350e;
+                v0 v0Var2 = this.f53247b;
+                i6 i6Var = v0Var2.f53301e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) cg.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                f7 f7Var2 = this.f53297c;
+                f7 f7Var2 = this.f53248c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -53,7 +53,7 @@ public final class s implements q10 {
                         int i11 = v0Var2.N;
                         TLRPC.User user = v0Var2.V;
                         i2 i2Var = new i2(v0Var2, f7Var2, str2, tL_buttonTypeRequestPeer, 15);
-                        i6 i6Var2 = v0Var2.f53350e;
+                        i6 i6Var2 = v0Var2.f53301e;
                         zq.e(context, i11, user, (TLRPC.TL_requestPeerTypeCreateBot) requestPeerType, false, i2Var, i6Var2, new lc(v0Var2, i6Var2));
                         return;
                     } else if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i7 = tL_buttonTypeRequestPeer.max_quantity) > 1) {
@@ -62,27 +62,27 @@ public final class s implements q10 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         y yVar = new y(v0Var2, zArr, str2, tL_buttonTypeRequestPeer, f7Var2);
-                        ug0 ug0Var2 = ug0.f52551q2;
+                        vg0 vg0Var2 = vg0.f52771q2;
                         h2 Q = LaunchActivity.Q();
                         if (Q == null) {
-                            ug0Var = null;
+                            vg0Var = null;
                         } else {
-                            ug0Var = ug0.f52551q2;
-                            if (ug0Var == null) {
-                                ug0 ug0Var3 = new ug0(Q, i7, bool, bool2, yVar);
-                                ug0Var3.show();
-                                ug0.f52551q2 = ug0Var3;
-                                ug0Var = ug0Var3;
+                            vg0Var = vg0.f52771q2;
+                            if (vg0Var == null) {
+                                vg0 vg0Var3 = new vg0(Q, i7, bool, bool2, yVar);
+                                vg0Var3.show();
+                                vg0.f52771q2 = vg0Var3;
+                                vg0Var = vg0Var3;
                             }
                         }
-                        if (ug0Var != null) {
-                            ug0Var.setOnDismissListener(new n6(v0Var2, zArr, f7Var2, str2));
+                        if (vg0Var != null) {
+                            vg0Var.setOnDismissListener(new n6(v0Var2, zArr, f7Var2, str2));
                             return;
                         }
                         return;
                     } else {
                         Bundle l10 = org.telegram.ui.Cells.c0.l(15, "onlySelect", "dialogsType", true);
-                        l10.putLong("requestPeerBotId", v0Var2.V.f28554id);
+                        l10.putLong("requestPeerBotId", v0Var2.V.f28552id);
                         try {
                             SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
                             tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
@@ -97,7 +97,7 @@ public final class s implements q10 {
                         h2 T = LaunchActivity.T();
                         if (T != 0) {
                             ?? obj3 = new Object();
-                            obj3.f28923a = true;
+                            obj3.f28921a = true;
                             T.showAsSheet(b0Var, obj3);
                             return;
                         }
@@ -115,7 +115,7 @@ public final class s implements q10 {
             case 1:
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                i6 i6Var3 = v0Var.f53350e;
+                i6 i6Var3 = v0Var.f53301e;
                 if (updates != null) {
                     mp.u1(v0Var.N).V3(updates, false);
                     v0Var.x(f7Var, "requested_chat_sent", v0.A(str, "req_id"));
@@ -132,7 +132,7 @@ public final class s implements q10 {
             default:
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                i6 i6Var4 = v0Var.f53350e;
+                i6 i6Var4 = v0Var.f53301e;
                 if (updates2 != null) {
                     mp.u1(v0Var.N).V3(updates2, false);
                     v0Var.x(f7Var, "requested_chat_sent", v0.A(str, "req_id"));

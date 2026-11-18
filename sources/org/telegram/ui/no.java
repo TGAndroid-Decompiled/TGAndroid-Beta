@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class no implements e50 {
-    public final vo f50236a;
+    public final vo f50220a;
 
     public no(vo voVar) {
-        this.f50236a = voVar;
+        this.f50220a = voVar;
     }
 
     @Override
     public final void c(f50 f50Var, long j3) {
-        vo voVar = this.f50236a;
+        vo voVar = this.f50220a;
         voVar.d0(voVar.getMessagesController().O0(Long.valueOf(j3)), f50Var);
     }
 }

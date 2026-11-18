@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class yk extends oq0 {
-    public final org.telegram.messenger.fj f54218a;
-    public final org.telegram.messenger.ef f54219b;
-    public final bn f54220c;
+    public final org.telegram.messenger.fj f54177a;
+    public final org.telegram.messenger.ef f54178b;
+    public final bn f54179c;
 
     public yk(bn bnVar, org.telegram.messenger.fj fjVar, org.telegram.messenger.ef efVar) {
-        this.f54220c = bnVar;
-        this.f54218a = fjVar;
-        this.f54219b = efVar;
+        this.f54179c = bnVar;
+        this.f54177a = fjVar;
+        this.f54178b = efVar;
     }
 
     @Override
     public final wq0 E(org.telegram.messenger.fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
-        return bn.P1(this.f54220c, this.f54218a, null, i7, z10, true);
+        return bn.P1(this.f54179c, this.f54177a, null, i7, z10, true);
     }
 
     @Override
     public final boolean P() {
-        bn bnVar = this.f54220c;
-        if (bnVar.f45932a0 != null && bnVar.V9()) {
-            bnVar.f45932a0.U();
+        bn bnVar = this.f54179c;
+        if (bnVar.f45923a0 != null && bnVar.V9()) {
+            bnVar.f45923a0.U();
             return true;
         }
         return false;
@@ -29,8 +29,8 @@ public final class yk extends oq0 {
 
     @Override
     public final org.telegram.messenger.fj V() {
-        org.telegram.messenger.fj fjVar = this.f54220c.H5;
-        org.telegram.messenger.fj fjVar2 = this.f54218a;
+        org.telegram.messenger.fj fjVar = this.f54179c.H5;
+        org.telegram.messenger.fj fjVar2 = this.f54177a;
         if (fjVar == fjVar2) {
             return fjVar2;
         }
@@ -39,7 +39,7 @@ public final class yk extends oq0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        this.f54220c.f45932a0.D1(charSequence, false);
+        this.f54179c.f45923a0.D1(charSequence, false);
     }
 
     @Override
@@ -49,13 +49,13 @@ public final class yk extends oq0 {
 
     @Override
     public final void o(int i7, org.telegram.messenger.e20 e20Var, boolean z10, int i10, int i11, boolean z11) {
-        bn bnVar = this.f54220c;
-        if (bnVar.H5 != this.f54218a) {
+        bn bnVar = this.f54179c;
+        if (bnVar.H5 != this.f54177a) {
             return;
         }
-        org.telegram.messenger.ef efVar = this.f54219b;
-        if (!efVar.f27867w && !efVar.v && !efVar.f27866u && e20Var == null) {
-            bnVar.f45932a0.q0();
+        org.telegram.messenger.ef efVar = this.f54178b;
+        if (!efVar.f27865w && !efVar.v && !efVar.f27864u && e20Var == null) {
+            bnVar.f45923a0.q0();
         } else {
             bnVar.u(efVar, e20Var, z10, i10, 0, z11, 0L);
         }

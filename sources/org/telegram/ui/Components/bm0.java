@@ -32,8 +32,8 @@ public final class bm0 extends View {
             fh.g c10 = cVar.c(this, null, false);
             c10.p(cm0Var.f34112x);
             c10.u(org.telegram.messenger.g0.L(5.0f));
-            c10.f11673s = false;
-            fh.e eVar = c10.f11670g0;
+            c10.f11670s = false;
+            fh.e eVar = c10.f11667g0;
             if (eVar != null) {
                 eVar.g(false);
             }
@@ -49,12 +49,12 @@ public final class bm0 extends View {
         this.f33719e = z10;
         am0 am0Var = this.f33716a;
         if (am0Var != null) {
-            am0Var.f5448o = z10;
+            am0Var.f5445o = z10;
             c6 c6Var = this.f33717b;
             if (z11) {
                 am0Var.h = am0Var.M;
-                am0Var.f5439f = am0Var.N;
-                am0Var.f5441g = am0Var.O;
+                am0Var.f5436f = am0Var.N;
+                am0Var.f5438g = am0Var.O;
                 c6Var.e(true, 0.0f);
             } else {
                 c6Var.e(true, 1.0f);
@@ -92,7 +92,7 @@ public final class bm0 extends View {
         int i7;
         cm0 cm0Var = this.f33723s;
         Paint paint = cm0Var.f34113y;
-        int width = (getWidth() - this.f33716a.f5458z) / 2;
+        int width = (getWidth() - this.f33716a.f5455z) / 2;
         int height = getHeight();
         am0 am0Var = this.f33716a;
         int i10 = am0Var.A;
@@ -100,7 +100,7 @@ public final class bm0 extends View {
         fh.g gVar = this.f33718c;
         if (gVar != null) {
             Rect rect = org.telegram.messenger.g0.Q;
-            rect.set(width, i11, am0Var.f5458z + width, i10 + i11);
+            rect.set(width, i11, am0Var.f5455z + width, i10 + i11);
             RectF rectF = this.f33721n;
             rectF.set(rect);
             RectF rectF2 = this.h;
@@ -135,7 +135,7 @@ public final class bm0 extends View {
         int L2 = org.telegram.messenger.g0.L(8.67f);
         am0 am0Var = this.f33716a;
         if (am0Var != null) {
-            L = am0Var.f5458z;
+            L = am0Var.f5455z;
         } else {
             L = org.telegram.messenger.g0.L(44.33f);
         }

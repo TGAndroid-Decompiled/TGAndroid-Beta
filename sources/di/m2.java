@@ -29,20 +29,20 @@ import org.telegram.ui.gg;
 import org.telegram.ui.hq0;
 import org.telegram.ui.ww;
 public final class m2 implements x10 {
-    public final int f9298a;
-    public final Object f9299b;
-    public final Object f9300c;
+    public final int f9295a;
+    public final Object f9296b;
+    public final Object f9297c;
     public final Object d;
-    public final Object f9301e;
-    public final Object f9302f;
+    public final Object f9298e;
+    public final Object f9299f;
 
     public m2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f9298a = i7;
-        this.f9299b = obj;
-        this.f9300c = obj2;
+        this.f9295a = i7;
+        this.f9296b = obj;
+        this.f9297c = obj2;
         this.d = obj3;
-        this.f9301e = obj4;
-        this.f9302f = obj5;
+        this.f9298e = obj4;
+        this.f9299f = obj5;
     }
 
     @Override
@@ -50,13 +50,13 @@ public final class m2 implements x10 {
         boolean z10;
         final TLRPC.UserFull userFull;
         ?? r15;
-        int i7 = this.f9298a;
+        int i7 = this.f9295a;
         String str = "";
-        Object obj2 = this.f9301e;
-        Object obj3 = this.f9302f;
+        Object obj2 = this.f9298e;
+        Object obj3 = this.f9299f;
         Object obj4 = this.d;
-        Object obj5 = this.f9300c;
-        Object obj6 = this.f9299b;
+        Object obj5 = this.f9297c;
+        Object obj6 = this.f9296b;
         int i10 = 0;
         switch (i7) {
             case 0:
@@ -67,7 +67,7 @@ public final class m2 implements x10 {
                 boolean[] zArr = (boolean[]) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 if (arrayList != null) {
-                    new h1(f6Var.getContext(), f6Var.J0, f6Var.f30189a, starGift.title, arrayList, false).show();
+                    new h1(f6Var.getContext(), f6Var.J0, f6Var.f30187a, starGift.title, arrayList, false).show();
                     z10 = false;
                 } else {
                     z10 = false;
@@ -80,17 +80,17 @@ public final class m2 implements x10 {
                 return;
             case 2:
                 final bn bnVar = (bn) obj6;
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) obj5;
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) obj5;
                 String str2 = (String) obj4;
                 TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) obj2;
                 CharacterStyle characterStyle = (CharacterStyle) obj3;
                 final TLRPC.User user = (TLRPC.User) obj;
                 if (user != null) {
-                    userFull = bnVar.getMessagesController().d2(user.f28554id);
+                    userFull = bnVar.getMessagesController().d2(user.f28552id);
                 } else {
                     userFull = null;
                 }
-                y60 J = y60.J(bnVar, q1Var);
+                y60 J = y60.J(bnVar, r1Var);
                 wk0 wk0Var = new wk0(bnVar.getParentActivity(), bnVar.Ba);
                 J.f42369p = new fe(wk0Var, 1);
                 org.telegram.ui.x xVar = new org.telegram.ui.x(bnVar, user, str2, 3);
@@ -99,8 +99,8 @@ public final class m2 implements x10 {
                 K.k();
                 K.c(2131232046, gd.M0(2131751706, null), new org.telegram.ui.o1(bnVar, J, str2), false);
                 K.c(2131231781, gd.M0(2131754373, null), new hq0(xVar, 28), false);
-                if (tL_contact == null && (user == null || !bnVar.getContactsController().f24571g0.containsKey(Long.valueOf(user.f28554id)))) {
-                    J.c(2131232101, gd.M0(2131754375, null), new bi.v5(J, K, 5), false);
+                if (tL_contact == null && (user == null || !bnVar.getContactsController().f24568g0.containsKey(Long.valueOf(user.f28552id)))) {
+                    J.c(2131232101, gd.M0(2131754375, null), new bi.u5(J, K, 5), false);
                     J.k();
                 }
                 if (user == null) {
@@ -221,9 +221,9 @@ public final class m2 implements x10 {
                     }
                     SpannableString spannableString = new SpannableString(trim);
                     spannableString.setSpan(characterStyle, r15, spannableString.length(), 33);
-                    wk0Var.f(q1Var, characterStyle, spannableString, r15);
+                    wk0Var.f(r1Var, characterStyle, spannableString, r15);
                 } else {
-                    wk0Var.f(q1Var, characterStyle, null, false);
+                    wk0Var.f(r1Var, characterStyle, null, false);
                 }
                 bnVar.showDialog(wk0Var);
                 return;
@@ -233,17 +233,17 @@ public final class m2 implements x10 {
                 String str3 = (String) obj4;
                 bj bjVar = (bj) obj3;
                 Long l10 = (Long) obj;
-                int i11 = bnVar2.f46018g4;
-                Object obj7 = this.f9301e;
+                int i11 = bnVar2.f46009g4;
+                Object obj7 = this.f9298e;
                 if (i11 == 1) {
-                    org.telegram.ui.Components.b5.J(bnVar2.getParentActivity(), bnVar2.f46085l6, new a1.d(bnVar2, tL_document, str3, obj7, 7), bnVar2.Ba);
+                    org.telegram.ui.Components.b5.J(bnVar2.getParentActivity(), bnVar2.f46076l6, new a1.d(bnVar2, tL_document, str3, obj7, 7), bnVar2.Ba);
                 } else {
-                    bnVar2.getSendMessagesHelper().v0(tL_document, str3, bnVar2.f46085l6, bnVar2.F5, bnVar2.f46096m4, null, bnVar2.D5, bjVar, true, 0, 0, false, obj7, bnVar2.Y8(), l10.longValue(), bnVar2.j9(), bnVar2.f46250y5);
+                    bnVar2.getSendMessagesHelper().v0(tL_document, str3, bnVar2.f46076l6, bnVar2.F5, bnVar2.f46087m4, null, bnVar2.D5, bjVar, true, 0, 0, false, obj7, bnVar2.Y8(), l10.longValue(), bnVar2.j9(), bnVar2.f46241y5);
                     tL_document = tL_document;
                 }
                 bnVar2.D9(false);
-                bnVar2.f45932a0.n(tL_document);
-                bnVar2.f45932a0.setFieldText("");
+                bnVar2.f45923a0.n(tL_document);
+                bnVar2.f45923a0.setFieldText("");
                 return;
             case 4:
                 ArrayList arrayList2 = (ArrayList) obj4;
@@ -278,8 +278,8 @@ public final class m2 implements x10 {
                         Object obj8 = arrayList3.get(i12);
                         i12++;
                         kx kxVar = (kx) obj8;
-                        if (longSparseIntArray.indexOfKey(kxVar.f36910c.f28432id) < 0) {
-                            longSparseIntArray.append(kxVar.f36910c.f28432id, 1);
+                        if (longSparseIntArray.indexOfKey(kxVar.f36910c.f28430id) < 0) {
+                            longSparseIntArray.append(kxVar.f36910c.f28430id, 1);
                             arrayList7.add(kxVar);
                         }
                     }
@@ -288,8 +288,8 @@ public final class m2 implements x10 {
                         Object obj9 = arrayList4.get(i10);
                         i10++;
                         kx kxVar2 = (kx) obj9;
-                        if (longSparseIntArray.indexOfKey(kxVar2.f36910c.f28432id) < 0) {
-                            longSparseIntArray.append(kxVar2.f36910c.f28432id, 1);
+                        if (longSparseIntArray.indexOfKey(kxVar2.f36910c.f28430id) < 0) {
+                            longSparseIntArray.append(kxVar2.f36910c.f28430id, 1);
                             arrayList7.add(kxVar2);
                         }
                     }

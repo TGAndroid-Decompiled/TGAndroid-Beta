@@ -111,7 +111,7 @@ public final class va extends org.telegram.ui.ActionBar.h2 {
                 vaVar.onInsets(vaVar.f45183r, vaVar.f45184s, vaVar.f45185w, vaVar.f45186x);
             }
         });
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, au0Var, this.resourceProvider);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29394d6, au0Var, this.resourceProvider);
         this.fragmentView = au0Var;
         ScrollView scrollView = new ScrollView(context);
         this.f45180e = scrollView;
@@ -133,7 +133,7 @@ public final class va extends org.telegram.ui.ActionBar.h2 {
         org.telegram.ui.ActionBar.u6.s(imageView2, i10, this.resourceProvider, PorterDuff.Mode.SRC_IN);
         this.f45181f.setImageResource(2131231241);
         ImageView imageView3 = this.f45181f;
-        int i11 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.ActionBar.u6.Q(imageView3, org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i11, this.resourceProvider), 3, -1), null, org.telegram.ui.ActionBar.u6.M(i11), this.resourceProvider);
         this.f45181f.setOnClickListener(new View.OnClickListener(this) {
             public final va f45150b;
@@ -154,7 +154,7 @@ public final class va extends org.telegram.ui.ActionBar.h2 {
                         int[] iArr = vaVar.f45178b;
                         ArrayList arrayList = vaVar.d;
                         if (!vaVar.f45187y && arrayList.size() == iArr.length) {
-                            boolean z10 = org.telegram.messenger.s2.f26723a;
+                            boolean z10 = org.telegram.messenger.s2.f26721a;
                             int size = arrayList.size();
                             int i13 = 0;
                             while (i13 < size) {
@@ -206,7 +206,7 @@ public final class va extends org.telegram.ui.ActionBar.h2 {
         TextView f10 = n10.f(linearLayout, textView, c8.ma.t(-1, -2, 1, 32, 0, 32, 10), context);
         f10.setTextSize(1, 14.0f);
         f10.setGravity(1);
-        org.telegram.ui.ActionBar.u6.U(f10, org.telegram.ui.ActionBar.n6.f29807z6, this.resourceProvider);
+        org.telegram.ui.ActionBar.u6.U(f10, org.telegram.ui.ActionBar.n6.f29805z6, this.resourceProvider);
         int[] iArr = this.f45178b;
         org.telegram.messenger.f3.q(null, null, 2131742746, new Object[]{Integer.valueOf(iArr[0] + 1), Integer.valueOf(iArr[1] + 1), Integer.valueOf(iArr[2] + 1)}, f10);
         linearLayout.addView(f10, c8.ma.t(-1, -2, 1, 32, 0, 32, 8));
@@ -264,7 +264,7 @@ public final class va extends org.telegram.ui.ActionBar.h2 {
                         int[] iArr2 = vaVar.f45178b;
                         ArrayList arrayList3 = vaVar.d;
                         if (!vaVar.f45187y && arrayList3.size() == iArr2.length) {
-                            boolean z10 = org.telegram.messenger.s2.f26723a;
+                            boolean z10 = org.telegram.messenger.s2.f26721a;
                             int size2 = arrayList3.size();
                             int i132 = 0;
                             while (i132 < size2) {

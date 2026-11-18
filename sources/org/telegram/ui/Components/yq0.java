@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
-public final class yq0 extends org.telegram.ui.Cells.g7 {
+public final class yq0 extends org.telegram.ui.Cells.h7 {
     public final gt0 m0;
 
     public yq0(gt0 gt0Var, Context context) {
@@ -17,7 +17,7 @@ public final class yq0 extends org.telegram.ui.Cells.g7 {
         long playlistTopicId;
         gt0 gt0Var = this.m0;
         vs0[] vs0VarArr = gt0Var.f35636w1;
-        if (!org.telegram.messenger.fj.R4(fjVar.f23968k) && !fjVar.h4()) {
+        if (!org.telegram.messenger.fj.R4(fjVar.f23965k) && !fjVar.h4()) {
             if (!fjVar.I3()) {
                 return false;
             }

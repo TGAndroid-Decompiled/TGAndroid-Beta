@@ -16,7 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import java.util.Arrays;
 public final class g01 extends ImageView {
-    public static final org.telegram.ui.Cells.g1 f35274x = new org.telegram.ui.Cells.g1(Float.class, "radius", 3);
+    public static final org.telegram.ui.Cells.h1 f35274x = new org.telegram.ui.Cells.h1(Float.class, "radius", 3);
     public final Paint f35275a;
     public final Matrix f35276b;
     public RadialGradient f35277c;

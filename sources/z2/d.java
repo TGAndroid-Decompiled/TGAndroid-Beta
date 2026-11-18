@@ -6,7 +6,7 @@ public interface d {
 
     static {
         ?? obj = new Object();
-        obj.f59120a = new nb.a(6);
+        obj.f59121a = new nb.a(6);
         D = obj;
     }
 }

@@ -48,19 +48,19 @@ public final class fm extends v4.o0 implements eh.a {
         if (!chatAttachAlertPhotoLayout.f32775e0 && !chatAttachAlertPhotoLayout.f32771c0 && chatAttachAlertPhotoLayout.H.f35925e && !chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.Q0) {
             v4.f1 K = recyclerView.K(0);
             if (K != null) {
-                top = K.f59122a.getTop();
+                top = K.f59123a.getTop();
             } else {
                 K = recyclerView.K(chatAttachAlertPhotoLayout.N0);
                 if (K != null) {
-                    top = (K.f59122a.getTop() - org.telegram.messenger.g0.L(2.0f)) - chatAttachAlertPhotoLayout.L0;
+                    top = (K.f59123a.getTop() - org.telegram.messenger.g0.L(2.0f)) - chatAttachAlertPhotoLayout.L0;
                 } else if (aVar != null) {
-                    aVar.f8372a = true;
+                    aVar.f8369a = true;
                     return;
                 } else {
                     return;
                 }
             }
-            int left = K.f59122a.getLeft();
+            int left = K.f59123a.getLeft();
             int i7 = chatAttachAlertPhotoLayout.L0;
             int i10 = left + i7;
             int L = org.telegram.messenger.g0.L(2.0f) + (i7 * 2) + top;
@@ -127,7 +127,7 @@ public final class fm extends v4.o0 implements eh.a {
                 }
             }
         } else if (aVar != null) {
-            aVar.f8372a = true;
+            aVar.f8369a = true;
         }
     }
 

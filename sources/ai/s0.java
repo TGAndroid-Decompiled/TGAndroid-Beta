@@ -33,57 +33,57 @@ public final class s0 {
     public final boolean[] R;
     public final boolean[] S;
     public float T;
-    public final Paint f1493a;
-    public final Object f1494b;
-    public final Paint f1495c;
+    public final Paint f1494a;
+    public final Object f1495b;
+    public final Paint f1496c;
     public final Paint d;
-    public final Matrix f1496e;
-    public final Paint f1497f;
-    public final RectF f1498g;
+    public final Matrix f1497e;
+    public final Paint f1498f;
+    public final RectF f1499g;
     public boolean h;
-    public final long f1499i;
-    public final float[] f1500j;
-    public final float[] f1501k;
-    public final float[] f1502l;
-    public final float[] f1503m;
-    public final float[] f1504n;
-    public final float[] f1505o;
-    public final float[] f1506p;
-    public final float[] f1507q;
-    public final int[] f1508r;
-    public final boolean[] f1509s;
-    public final Random f1510t;
-    public long f1511u;
+    public final long f1500i;
+    public final float[] f1501j;
+    public final float[] f1502k;
+    public final float[] f1503l;
+    public final float[] f1504m;
+    public final float[] f1505n;
+    public final float[] f1506o;
+    public final float[] f1507p;
+    public final float[] f1508q;
+    public final int[] f1509r;
+    public final boolean[] f1510s;
+    public final Random f1511t;
+    public long f1512u;
     public float v;
-    public float f1512w;
-    public final Path f1513x;
-    public final RectF f1514y;
-    public final float[] f1515z;
+    public float f1513w;
+    public final Path f1514x;
+    public final RectF f1515y;
+    public final float[] f1516z;
 
     public s0() {
         Paint paint = new Paint(1);
-        this.f1493a = paint;
-        this.f1495c = new Paint(1);
+        this.f1494a = paint;
+        this.f1496c = new Paint(1);
         this.d = new Paint(1);
-        this.f1496e = new Matrix();
-        this.f1497f = new Paint(1);
-        this.f1498g = new RectF();
+        this.f1497e = new Matrix();
+        this.f1498f = new Paint(1);
+        this.f1499g = new RectF();
         this.h = true;
-        this.f1499i = SystemClock.uptimeMillis();
-        this.f1500j = new float[140];
-        this.f1501k = new float[140];
-        this.f1502l = new float[140];
-        this.f1503m = new float[140];
-        this.f1504n = new float[140];
-        this.f1505o = new float[140];
-        this.f1506p = new float[140];
-        this.f1507q = new float[140];
-        this.f1508r = new int[140];
-        this.f1509s = new boolean[140];
-        this.f1510t = new Random();
-        this.f1513x = new Path();
-        this.f1514y = new RectF();
-        this.f1515z = new float[]{0.08f, 0.73f, 0.76f, 0.1f, 0.74f, 0.52f, 0.19f, 0.6f, 0.93f, 0.72f, 0.98f, 0.9f};
+        this.f1500i = SystemClock.uptimeMillis();
+        this.f1501j = new float[140];
+        this.f1502k = new float[140];
+        this.f1503l = new float[140];
+        this.f1504m = new float[140];
+        this.f1505n = new float[140];
+        this.f1506o = new float[140];
+        this.f1507p = new float[140];
+        this.f1508q = new float[140];
+        this.f1509r = new int[140];
+        this.f1510s = new boolean[140];
+        this.f1511t = new Random();
+        this.f1514x = new Path();
+        this.f1515y = new RectF();
+        this.f1516z = new float[]{0.08f, 0.73f, 0.76f, 0.1f, 0.74f, 0.52f, 0.19f, 0.6f, 0.93f, 0.72f, 0.98f, 0.9f};
         this.A = new int[]{-15420490, -14699385, -13787165};
         this.B = new int[7];
         this.C = -1.0f;
@@ -105,13 +105,13 @@ public final class s0 {
             try {
                 r0.c();
                 RuntimeShader a10 = r0.a();
-                this.f1494b = a10;
+                this.f1495b = a10;
                 paint.setShader(a10);
             } catch (Throwable unused) {
-                this.f1494b = null;
+                this.f1495b = null;
             }
         }
-        Paint paint2 = this.f1495c;
+        Paint paint2 = this.f1496c;
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         this.d.setStyle(style);
@@ -193,7 +193,7 @@ public final class s0 {
         if (rectF == null || rectF.width() <= 0.0f || rectF.height() <= 0.0f) {
             return 0;
         }
-        float uptimeMillis = ((float) ((SystemClock.uptimeMillis() - this.f1499i) % 3600000)) / 1000.0f;
+        float uptimeMillis = ((float) ((SystemClock.uptimeMillis() - this.f1500i) % 3600000)) / 1000.0f;
         if (this.h) {
             c10 = 1.0f;
         } else {
@@ -213,7 +213,7 @@ public final class s0 {
             f17 = 1.0f;
             f13 = 1.0f;
         } else {
-            float[] fArr = this.f1515z;
+            float[] fArr = this.f1516z;
             float f22 = fArr[0];
             f12 = fArr[1];
             f13 = fArr[2];
@@ -248,7 +248,7 @@ public final class s0 {
             this.R[i7] = false;
         }
         for (int i10 = 0; i10 < 140; i10++) {
-            this.f1509s[i10] = false;
+            this.f1510s[i10] = false;
         }
     }
 
@@ -265,7 +265,7 @@ public final class s0 {
         float f15;
         float f16;
         t0.f();
-        float[] fArr = t0.f1542f;
+        float[] fArr = t0.f1543f;
         float f17 = fArr[2];
         float f18 = fArr[1];
         float f19 = t0.i(i7)[0];
@@ -276,7 +276,7 @@ public final class s0 {
         } else {
             z10 = false;
         }
-        int i12 = t0.f1541e;
+        int i12 = t0.f1542e;
         if (i12 != 1) {
             if (i12 != 2) {
                 if (i12 != 3) {
@@ -331,13 +331,13 @@ public final class s0 {
         iArr[c10] = t0.a(f17, f18, f11);
         iArr[2] = t0.a(f17, f18, f12);
         iArr[3] = t0.g(Math.min(0.98f, f17 + 0.12f), 0.5f * f18, f10);
-        if (t0.f1541e != 0) {
+        if (t0.f1542e != 0) {
             f13 = Math.min(0.62f, f17 - 0.1f);
         } else {
             f18 = 0.2f;
             f13 = 0.55f;
             if (!z10) {
-                int i13 = t0.f1540c;
+                int i13 = t0.f1541c;
                 if (i13 == 0) {
                     f10 = fArr[0] + h;
                 } else if (i13 != 2) {
@@ -354,7 +354,7 @@ public final class s0 {
         iArr[6] = t0.g(0.58f, 0.18f, max + 4.0f);
         int i14 = 0;
         while (true) {
-            float[] fArr2 = this.f1515z;
+            float[] fArr2 = this.f1516z;
             if (i14 < 3) {
                 int i15 = i14 * 3;
                 fArr2[i15] = Color.red(iArr[i14]) / 255.0f;
@@ -385,9 +385,9 @@ public final class s0 {
         float f16 = -1.0f;
         int i10 = 0;
         while (true) {
-            fArr = this.f1504n;
-            fArr2 = this.f1505o;
-            zArr = this.f1509s;
+            fArr = this.f1505n;
+            fArr2 = this.f1506o;
+            zArr = this.f1510s;
             if (i7 < 140) {
                 if (!zArr[i7]) {
                     break;
@@ -403,16 +403,16 @@ public final class s0 {
                 break;
             }
         }
-        this.f1500j[i7] = f10;
-        this.f1501k[i7] = f11;
-        this.f1502l[i7] = f12;
-        this.f1503m[i7] = f13;
+        this.f1501j[i7] = f10;
+        this.f1502k[i7] = f11;
+        this.f1503l[i7] = f12;
+        this.f1504m[i7] = f13;
         fArr[i7] = f14;
         fArr2[i7] = 0.0f;
-        this.f1506p[i7] = org.telegram.messenger.g0.L(f15);
-        Random random = this.f1510t;
-        this.f1507q[i7] = random.nextFloat() * 6.28f;
-        this.f1508r[i7] = random.nextInt(3);
+        this.f1507p[i7] = org.telegram.messenger.g0.L(f15);
+        Random random = this.f1511t;
+        this.f1508q[i7] = random.nextFloat() * 6.28f;
+        this.f1509r[i7] = random.nextInt(3);
         zArr[i7] = true;
     }
 }

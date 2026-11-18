@@ -29,7 +29,7 @@ public final class e30 extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(activity);
         this.d = frameLayout;
         ImageView imageView = new ImageView(activity);
-        int i10 = org.telegram.ui.ActionBar.n6.f29561m6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29559m6;
         org.telegram.ui.ActionBar.u6.s(imageView, i10, i6Var, PorterDuff.Mode.MULTIPLY);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131231608);

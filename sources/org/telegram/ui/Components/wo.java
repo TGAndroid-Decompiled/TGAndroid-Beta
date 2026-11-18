@@ -25,7 +25,7 @@ public final class wo implements org.telegram.messenger.x10 {
                 lp lpVar2 = this.f41744b;
                 if (lpVar2.getContext() != null) {
                     org.telegram.ui.bn bnVar = lpVar2.f37182v1;
-                    ug.l0 l0Var = new ug.l0(22, lpVar2.f30189a, lpVar2.getContext(), bnVar, lpVar2.J0);
+                    ug.l0 l0Var = new ug.l0(22, lpVar2.f30187a, lpVar2.getContext(), bnVar, lpVar2.J0);
                     l0Var.B1(g3Var);
                     l0Var.A1(lpVar2.Z1, true);
                     l0Var.C1(lpVar2.f37182v1.a());

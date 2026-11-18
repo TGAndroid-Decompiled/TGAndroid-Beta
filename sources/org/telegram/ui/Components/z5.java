@@ -73,7 +73,7 @@ public final class z5 implements Runnable {
                 b6 b6Var4 = this.f42815b;
                 b6Var4.k();
                 if (b6Var4.f33561v0 != null && b6Var4.O) {
-                    org.telegram.messenger.w7.G(b6Var4.K).Z(b6Var4.f33561v0.f22601c, false, false);
+                    org.telegram.messenger.w7.G(b6Var4.K).Z(b6Var4.f33561v0.f22598c, false, false);
                 }
                 int i10 = b6Var4.P;
                 if (i10 <= 0) {
@@ -185,23 +185,23 @@ public final class z5 implements Runnable {
                     }
                     System.currentTimeMillis();
                     b7.l lVar = b6Var5.B0;
-                    int i12 = lVar.f2960a;
+                    int i12 = lVar.f2961a;
                     bg.i iVar2 = b6Var5.A0;
-                    int f11 = iVar2.f(iVar2.f3254i, b6Var5.f33562w.f42330b);
-                    lVar.f2960a = iVar2.f3254i;
-                    if (iVar2.f3262q && !iVar2.f3251e.isEmpty()) {
-                        int i13 = iVar2.f3254i + 1;
-                        iVar2.f3254i = i13;
-                        if (i13 >= iVar2.f3251e.size()) {
-                            iVar2.f3254i = 0;
+                    int f11 = iVar2.f(iVar2.f3255i, b6Var5.f33562w.f42330b);
+                    lVar.f2961a = iVar2.f3255i;
+                    if (iVar2.f3263q && !iVar2.f3252e.isEmpty()) {
+                        int i13 = iVar2.f3255i + 1;
+                        iVar2.f3255i = i13;
+                        if (i13 >= iVar2.f3252e.size()) {
+                            iVar2.f3255i = 0;
                         }
                     }
-                    if (f11 != -1 && b6Var5.B0.f2960a < i12) {
+                    if (f11 != -1 && b6Var5.B0.f2961a < i12) {
                         b6Var5.Q = true;
                     }
                     int[] iArr2 = b6Var5.d;
                     y5 y5Var2 = b6Var5.f33562w;
-                    int max = b6Var5.B0.f2960a * Math.max(16, iArr2[4] / Math.max(1, b6Var5.A0.f3251e.size()));
+                    int max = b6Var5.B0.f2961a * Math.max(16, iArr2[4] / Math.max(1, b6Var5.A0.f3252e.size()));
                     y5Var2.f42332e = max;
                     iArr2[3] = max;
                     b6Var5.f33562w.f42333f = false;

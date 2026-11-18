@@ -31,7 +31,7 @@ public final class yy implements Runnable {
                         if (o4 != 2) {
                             i12 = 720;
                         } else {
-                            Point point = org.telegram.messenger.g0.f24121q;
+                            Point point = org.telegram.messenger.g0.f24118q;
                             i12 = Math.min(1920, Math.max(point.x, point.y));
                         }
                     }

@@ -157,7 +157,7 @@ public final class fz {
         int[] iArr = new int[1];
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
         if (iArr[0] == 0) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.a8.d(GLES20.glGetShaderInfoLog(glCreateShader));
                 org.telegram.messenger.a8.d("shader code:\n " + str);
             }

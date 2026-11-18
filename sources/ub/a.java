@@ -17,24 +17,24 @@ import z7.ma;
 import z7.oa;
 import z7.z6;
 public final class a {
-    public volatile Bitmap f58562a;
-    public final int f58563b;
-    public final int f58564c;
+    public volatile Bitmap f58563a;
+    public final int f58564b;
+    public final int f58565c;
     public final int d;
-    public final int f58565e;
+    public final int f58566e;
 
     public a(int i7, Bitmap bitmap) {
         m.h(bitmap);
-        this.f58562a = bitmap;
-        this.f58563b = bitmap.getWidth();
-        this.f58564c = bitmap.getHeight();
+        this.f58563a = bitmap;
+        this.f58564b = bitmap.getWidth();
+        this.f58565c = bitmap.getHeight();
         boolean z10 = true;
         if (i7 != 0 && i7 != 90 && i7 != 180 && i7 != 270) {
             z10 = false;
         }
         m.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z10);
         this.d = i7;
-        this.f58565e = -1;
+        this.f58566e = -1;
     }
 
     public static a a(int i7, Bitmap bitmap) {
@@ -64,9 +64,9 @@ public final class a {
         }
         long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
         k7 k7Var = k7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a10.f61668e;
+        Task task2 = a10.f61669e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a10.f61671i;
+        HashMap hashMap = a10.f61672i;
         if (hashMap.get(k7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -79,21 +79,21 @@ public final class a {
         }
         hashMap.put(k7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f20163c = z6.BITMAP;
-        obj.f20162b = e7.BITMAP;
+        obj.f20160c = z6.BITMAP;
+        obj.f20159b = e7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f20165f = Integer.valueOf(height & Integer.MAX_VALUE);
-        obj.f20164e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f20161a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
-        obj.f20166g = Integer.valueOf(i7 & Integer.MAX_VALUE);
+        obj.f20162f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f20161e = Integer.valueOf(width & Integer.MAX_VALUE);
+        obj.f20158a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f20163g = Integer.valueOf(i7 & Integer.MAX_VALUE);
         f7 f7Var = new f7(obj);
         ?? obj2 = new Object();
-        obj2.f60812c = f7Var;
+        obj2.f60813c = f7Var;
         h0 h0Var = new h0((y7.f7) obj2);
         if (task.isSuccessful()) {
             a11 = (String) task.getResult();
         } else {
-            a11 = j.f55914c.a(a10.f61670g);
+            a11 = j.f55914c.a(a10.f61671g);
         }
         n.f55540a.execute(new h(a10, h0Var, a11));
         return aVar;

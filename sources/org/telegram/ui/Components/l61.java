@@ -83,16 +83,16 @@ public abstract class l61 extends View implements org.telegram.messenger.fs {
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.R = imageReceiver;
         imageReceiver.H0(this);
-        imageReceiver.f22642h1 = new iy(this, 26);
+        imageReceiver.f22639h1 = new iy(this, 26);
     }
 
     public final void a() {
         if (this.f37047e != null) {
-            Utilities.f22782e.a(this.f37047e);
+            Utilities.f22779e.a(this.f37047e);
             this.f37047e = null;
         }
         if (this.f37049f != null) {
-            Utilities.f22782e.a(this.f37049f);
+            Utilities.f22779e.a(this.f37049f);
             this.f37049f = null;
         }
         b6 b6Var = this.f37042b;
@@ -105,7 +105,7 @@ public abstract class l61 extends View implements org.telegram.messenger.fs {
                 b6Var.f33541e0.h();
             }
         }
-        Utilities.f22782e.c(new i61(this, 0));
+        Utilities.f22779e.c(new i61(this, 0));
         setVisibility(4);
         this.f37057x = null;
         this.H = null;

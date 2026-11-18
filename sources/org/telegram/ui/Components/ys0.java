@@ -175,12 +175,12 @@ public final class ys0 implements org.telegram.messenger.fs {
         eVar.c(1);
         eVar.c(org.telegram.messenger.ks.K);
         eVar.c(org.telegram.messenger.ks.V);
-        eVar.c(org.telegram.messenger.ks.f25212w);
+        eVar.c(org.telegram.messenger.ks.f25210w);
         eVar.c(org.telegram.messenger.ks.m0);
         eVar.c(org.telegram.messenger.ks.T);
         eVar.c(org.telegram.messenger.ks.Y1);
-        eVar.c(org.telegram.messenger.ks.f25239z5);
-        eVar.c(org.telegram.messenger.ks.f25133i3);
+        eVar.c(org.telegram.messenger.ks.A5);
+        eVar.c(org.telegram.messenger.ks.f25131i3);
         this.F = eVar;
     }
 

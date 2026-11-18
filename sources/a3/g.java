@@ -144,7 +144,7 @@ public final class g implements p, ai.f, l5.g, or, r1, xo {
         e eVar = new e(sVar, nVar);
         int i10 = ((int[]) this.f86e)[i7];
         h9.f0 p10 = i0.p();
-        for (int i11 = 0; i11 < m1Var.f10527a; i11++) {
+        for (int i11 = 0; i11 < m1Var.f10524a; i11++) {
             p10.c(new i(i7, m1Var, i11, nVar, iArr[i11], this.f84b, eVar, i10));
         }
         return p10.f();
@@ -162,7 +162,7 @@ public final class g implements p, ai.f, l5.g, or, r1, xo {
                 c0 c0Var = (c0) this.f85c;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
                 p3 p3Var = (p3) this.f86e;
-                int i10 = p3Var.f22242b;
+                int i10 = p3Var.f22239b;
                 if (!z10) {
                     c0Var.run();
                     return;
@@ -224,7 +224,7 @@ public final class g implements p, ai.f, l5.g, or, r1, xo {
                 if (z12) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + t0.f26915b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + t0.f26913b.getPackageName()));
                         context.startActivity(intent);
                         return;
                     } catch (Exception e10) {
@@ -269,8 +269,8 @@ public final class g implements p, ai.f, l5.g, or, r1, xo {
         if (j3 == 0) {
             return;
         }
-        gVar.f19932b = -j3;
-        gVar.f19933c = gVar.getMessagesController().O0(Long.valueOf(j3));
+        gVar.f19929b = -j3;
+        gVar.f19930c = gVar.getMessagesController().O0(Long.valueOf(j3));
         gVar.a0(str, this.f84b);
     }
 

@@ -14,29 +14,29 @@ import org.telegram.ui.Components.ei0;
 import org.telegram.ui.Components.qb0;
 import org.telegram.ui.Components.sb0;
 public final class w3 implements org.telegram.ui.ActionBar.r1, ci0, qb0 {
-    public final int f19031a;
-    public final int f19032b;
-    public final Object f19033c;
+    public final int f19028a;
+    public final int f19029b;
+    public final Object f19030c;
     public final Object d;
-    public final Object f19034e;
-    public final Object f19035f;
+    public final Object f19031e;
+    public final Object f19032f;
 
     public w3(int i7, boolean[] zArr, TLRPC.Document document, int i10, boolean[] zArr2, x10 x10Var) {
-        this.f19031a = i7;
-        this.f19033c = zArr;
-        this.f19034e = document;
-        this.f19032b = i10;
+        this.f19028a = i7;
+        this.f19030c = zArr;
+        this.f19031e = document;
+        this.f19029b = i10;
         this.d = zArr2;
-        this.f19035f = x10Var;
+        this.f19032f = x10Var;
     }
 
     @Override
     public void b(ei0 ei0Var, int i7) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f19034e;
-        int[] iArr = (int[]) this.f19035f;
-        int i10 = this.f19032b + i7;
-        int i11 = this.f19031a;
-        ((SparseIntArray) this.f19033c).put(i11, i10);
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f19031e;
+        int[] iArr = (int[]) this.f19032f;
+        int i10 = this.f19029b + i7;
+        int i11 = this.f19028a;
+        ((SparseIntArray) this.f19030c).put(i11, i10);
         if (((c5.l) this.d).getCurrentItem() == i11) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f(iArr[0], i10, true);
         }
@@ -44,11 +44,11 @@ public final class w3 implements org.telegram.ui.ActionBar.r1, ci0, qb0 {
 
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        boolean[] zArr = (boolean[]) this.f19033c;
-        TLRPC.Document document = (TLRPC.Document) this.f19034e;
+        boolean[] zArr = (boolean[]) this.f19030c;
+        TLRPC.Document document = (TLRPC.Document) this.f19031e;
         boolean[] zArr2 = (boolean[]) this.d;
-        x10 x10Var = (x10) this.f19035f;
-        int i10 = this.f19031a;
+        x10 x10Var = (x10) this.f19032f;
+        int i10 = this.f19028a;
         if (!j10.i(i10).q()) {
             new ug.z0(new org.telegram.ui.ActionBar.h2(null), 12, false).show();
             return;
@@ -56,8 +56,8 @@ public final class w3 implements org.telegram.ui.ActionBar.r1, ci0, qb0 {
         zArr[0] = true;
         TL_account.updateEmojiStatus updateemojistatus = new TL_account.updateEmojiStatus();
         TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-        tL_emojiStatus.document_id = document.f28411id;
-        int i11 = this.f19032b;
+        tL_emojiStatus.document_id = document.f28409id;
+        int i11 = this.f19029b;
         if (i11 > 0) {
             tL_emojiStatus.flags = 1 | tL_emojiStatus.flags;
             tL_emojiStatus.until = ConnectionsManager.getInstance(i10).getCurrentTime() + i11;
@@ -68,10 +68,10 @@ public final class w3 implements org.telegram.ui.ActionBar.r1, ci0, qb0 {
 
     @Override
     public void n(sb0 sb0Var, int i7) {
-        org.telegram.ui.Components.e4 e4Var = (org.telegram.ui.Components.e4) this.f19033c;
+        org.telegram.ui.Components.e4 e4Var = (org.telegram.ui.Components.e4) this.f19030c;
         wg.f fVar = (wg.f) this.d;
-        wg.g gVar = (wg.g) this.f19034e;
-        sb0 sb0Var2 = (sb0) this.f19035f;
+        wg.g gVar = (wg.g) this.f19031e;
+        sb0 sb0Var2 = (sb0) this.f19032f;
         try {
             e4Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {
@@ -95,8 +95,8 @@ public final class w3 implements org.telegram.ui.ActionBar.r1, ci0, qb0 {
                     gVar.setMinValue(i11);
                 }
             } else if (sb0Var.getValue() == sb0Var.getMaxValue()) {
-                fVar.setMaxValue(this.f19031a);
-                gVar.setMaxValue(Math.min(this.f19032b / 5, 11));
+                fVar.setMaxValue(this.f19028a);
+                gVar.setMaxValue(Math.min(this.f19029b / 5, 11));
             } else {
                 fVar.setMinValue(0);
                 gVar.setMinValue(0);
@@ -123,20 +123,20 @@ public final class w3 implements org.telegram.ui.ActionBar.r1, ci0, qb0 {
     }
 
     public w3(SparseIntArray sparseIntArray, int i7, int i10, c5.l lVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f19033c = sparseIntArray;
-        this.f19031a = i7;
-        this.f19032b = i10;
+        this.f19030c = sparseIntArray;
+        this.f19028a = i7;
+        this.f19029b = i10;
         this.d = lVar;
-        this.f19034e = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f19035f = iArr;
+        this.f19031e = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f19032f = iArr;
     }
 
     public w3(org.telegram.ui.Components.e4 e4Var, wg.f fVar, wg.g gVar, int i7, int i10, sb0 sb0Var) {
-        this.f19033c = e4Var;
+        this.f19030c = e4Var;
         this.d = fVar;
-        this.f19034e = gVar;
-        this.f19031a = i7;
-        this.f19032b = i10;
-        this.f19035f = sb0Var;
+        this.f19031e = gVar;
+        this.f19028a = i7;
+        this.f19029b = i10;
+        this.f19032f = sb0Var;
     }
 }

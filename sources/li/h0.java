@@ -9,8 +9,8 @@ import org.telegram.messenger.qo;
 import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Cells.p2;
-import org.telegram.ui.Cells.t2;
+import org.telegram.ui.Cells.q2;
+import org.telegram.ui.Cells.u2;
 import org.telegram.ui.Components.ck0;
 import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.k41;
@@ -21,68 +21,68 @@ public final class h0 extends k41 {
         k41.h(new k41());
     }
 
-    public static l41 i(qo qoVar, p2 p2Var) {
+    public static l41 i(qo qoVar, q2 q2Var) {
         long j3;
-        TLRPC.User user = qoVar.f26433c;
+        TLRPC.User user = qoVar.f26431c;
         if (user != null) {
             l41 K = l41.K(h0.class);
-            long j10 = user.f28554id;
+            long j10 = user.f28552id;
             K.C = j10;
             K.d = (int) (j10 ^ (j10 >>> 32));
             K.H = user;
-            K.I = p2Var;
+            K.I = q2Var;
             return K;
         }
-        TLRPC.Chat chat = qoVar.f26432b;
+        TLRPC.Chat chat = qoVar.f26430b;
         l41 K2 = l41.K(h0.class);
         if (chat != null) {
-            j3 = -chat.f28405id;
+            j3 = -chat.f28403id;
         } else {
             j3 = 0;
         }
         K2.C = j3;
         K2.d = (int) (j3 ^ (j3 >>> 32));
         K2.H = chat;
-        K2.I = p2Var;
+        K2.I = q2Var;
         return K2;
     }
 
     @Override
     public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        t2 t2Var = (t2) view;
-        t2Var.setDialogCellDelegate((p2) l41Var.I);
+        u2 u2Var = (u2) view;
+        u2Var.setDialogCellDelegate((q2) l41Var.I);
         Object obj = l41Var.H;
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            t2Var.R0 = v3.e0(j10.f24773t0, chat);
-            TLRPC.Dialog U0 = mp.u1(j10.f24773t0).U0(-chat.f28405id);
+            u2Var.R0 = v3.e0(j10.f24770t0, chat);
+            TLRPC.Dialog U0 = mp.u1(j10.f24770t0).U0(-chat.f28403id);
             if (U0 != null) {
                 z11 = false;
             }
-            t2Var.Q0 = z11;
+            u2Var.Q0 = z11;
             if (U0 != null) {
-                t2Var.setCustomMessageWithoutRebuild(null);
-                t2Var.e0(U0, 0, 0);
+                u2Var.setCustomMessageWithoutRebuild(null);
+                u2Var.e0(U0, 0, 0);
                 return;
             }
-            t2Var.setCustomMessageWithoutRebuild(gd.G(chat.participants_count, "Members", new Object[0]));
-            t2Var.d0(-chat.f28405id, null, 0, false, false);
+            u2Var.setCustomMessageWithoutRebuild(gd.G(chat.participants_count, "Members", new Object[0]));
+            u2Var.d0(-chat.f28403id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
-            t2Var.R0 = v3.f0(j10.f24773t0, user);
-            TLRPC.Dialog U02 = mp.u1(j10.f24773t0).U0(user.f28554id);
+            u2Var.R0 = v3.f0(j10.f24770t0, user);
+            TLRPC.Dialog U02 = mp.u1(j10.f24770t0).U0(user.f28552id);
             if (U02 != null) {
                 z11 = false;
             }
-            t2Var.Q0 = z11;
+            u2Var.Q0 = z11;
             if (U02 != null) {
-                t2Var.setCustomMessageWithoutRebuild(null);
-                t2Var.e0(U02, 0, 0);
+                u2Var.setCustomMessageWithoutRebuild(null);
+                u2Var.e0(U02, 0, 0);
                 return;
             }
-            t2Var.setCustomMessageWithoutRebuild(gd.M0(2131753154, null));
-            t2Var.d0(user.f28554id, null, 0, false, false);
+            u2Var.setCustomMessageWithoutRebuild(gd.M0(2131753154, null));
+            u2Var.d0(user.f28552id, null, 0, false, false);
         }
     }
 
@@ -96,9 +96,9 @@ public final class h0 extends k41 {
 
     @Override
     public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
-        t2 t2Var = new t2(null, context, false, i7, i6Var);
-        t2Var.P0 = true;
-        return t2Var;
+        u2 u2Var = new u2(null, context, false, i7, i6Var);
+        u2Var.P0 = true;
+        return u2Var;
     }
 
     @Override

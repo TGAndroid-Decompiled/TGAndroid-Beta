@@ -1,10 +1,10 @@
 package da;
 public final class z implements na.d {
-    public static final z f8241a = new Object();
-    public static final na.c f8242b = na.c.c("assignments");
+    public static final z f8238a = new Object();
+    public static final na.c f8239b = na.c.c("assignments");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((na.e) obj2).a(f8242b, ((l1) ((p2) obj)).f8084a);
+        ((na.e) obj2).a(f8239b, ((l1) ((p2) obj)).f8081a);
     }
 }

@@ -1,37 +1,37 @@
 package org.telegram.messenger;
 public final class pl implements Runnable {
-    public final int f26262a;
-    public final mp f26263b;
-    public final bg.v f26264c;
+    public final int f26260a;
+    public final mp f26261b;
+    public final bg.v f26262c;
 
     public pl(mp mpVar, bg.v vVar, int i7) {
-        this.f26262a = i7;
-        this.f26263b = mpVar;
-        this.f26264c = vVar;
+        this.f26260a = i7;
+        this.f26261b = mpVar;
+        this.f26262c = vVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26262a;
-        bg.v vVar = this.f26264c;
-        mp mpVar = this.f26263b;
+        int i7 = this.f26260a;
+        bg.v vVar = this.f26262c;
+        mp mpVar = this.f26261b;
         switch (i7) {
             case 0:
-                a0.h hVar = vVar.f3341c;
+                a0.h hVar = vVar.f3342c;
                 int m10 = hVar.m();
                 for (int i10 = 0; i10 < m10; i10++) {
                     mpVar.getNotificationCenter().k(49, Long.valueOf(hVar.j(i10)), hVar.n(i10), Boolean.FALSE);
                 }
                 return;
             case 1:
-                a0.h hVar2 = vVar.f3341c;
+                a0.h hVar2 = vVar.f3342c;
                 int m11 = hVar2.m();
                 for (int i11 = 0; i11 < m11; i11++) {
                     mpVar.getNotificationCenter().k(49, Long.valueOf(hVar2.j(i11)), hVar2.n(i11), Boolean.FALSE);
                 }
                 return;
             default:
-                a0.h hVar3 = vVar.f3341c;
+                a0.h hVar3 = vVar.f3342c;
                 if (!hVar3.i()) {
                     int m12 = hVar3.m();
                     for (int i12 = 0; i12 < m12; i12++) {

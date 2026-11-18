@@ -48,7 +48,7 @@ public final class l implements Function {
             case 1:
                 File file = (File) obj;
                 try {
-                    ea.a aVar = ga.b.f13273g;
+                    ea.a aVar = ga.b.f13270g;
                     String f10 = ga.b.f(file);
                     aVar.getClass();
                     try {
@@ -76,7 +76,7 @@ public final class l implements Function {
                 return Integer.valueOf(Integer.bitCount(((Integer) obj).intValue()));
             case 3:
                 String str = (String) obj;
-                Pattern pattern = Utilities.f22779a;
+                Pattern pattern = Utilities.f22776a;
                 try {
                     j3 = Long.parseLong(str);
                 } catch (Exception unused) {
@@ -91,7 +91,7 @@ public final class l implements Function {
             case 6:
                 return mp.a((int[]) obj);
             case 7:
-                return ((s00) obj).f26719b;
+                return ((s00) obj).f26717b;
             case 8:
                 return Long.valueOf(n5.o((TLRPC.Peer) obj));
             case 9:
@@ -109,9 +109,9 @@ public final class l implements Function {
             case 13:
                 return Long.valueOf(n5.o(((TLRPC.GroupCallParticipant) obj).peer));
             case 14:
-                return ((ps) obj).f50999a;
+                return ((ps) obj).f50920a;
             default:
-                return ((ps) obj).f50999a;
+                return ((ps) obj).f50920a;
         }
     }
 

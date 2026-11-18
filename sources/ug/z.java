@@ -25,12 +25,12 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.ob;
 import org.telegram.ui.LaunchActivity;
 public final class z implements x10 {
-    public final int f58955a;
-    public final Object f58956b;
+    public final int f58956a;
+    public final Object f58957b;
 
     public z(Object obj, int i7) {
-        this.f58955a = i7;
-        this.f58956b = obj;
+        this.f58956a = i7;
+        this.f58957b = obj;
     }
 
     @Override
@@ -39,8 +39,8 @@ public final class z implements x10 {
         boolean z10;
         float f10;
         float f11;
-        int i7 = this.f58955a;
-        Object obj2 = this.f58956b;
+        int i7 = this.f58956a;
+        Object obj2 = this.f58957b;
         switch (i7) {
             case 0:
                 ((l0) obj2).z1((HashMap) obj);
@@ -49,8 +49,8 @@ public final class z implements x10 {
                 u1 u1Var = (u1) obj2;
                 Boolean bool = (Boolean) obj;
                 boolean e10 = pc.e(131072);
-                if (u1Var.f58922e != e10) {
-                    u1Var.f58922e = e10;
+                if (u1Var.f58923e != e10) {
+                    u1Var.f58923e = e10;
                     u1Var.invalidate();
                     return;
                 }
@@ -61,7 +61,7 @@ public final class z implements x10 {
             case 3:
                 fj fjVar = (fj) obj2;
                 TLRPC.payments_GiveawayInfo payments_giveawayinfo = (TLRPC.payments_GiveawayInfo) obj;
-                TLRPC.MessageMedia messageMedia = fjVar.f23968k.media;
+                TLRPC.MessageMedia messageMedia = fjVar.f23965k.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaGiveawayResults) {
                     TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageMedia;
                     tL_messageMediaGiveaway = new TLRPC.TL_messageMediaGiveaway();
@@ -78,11 +78,11 @@ public final class z implements x10 {
                     tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) messageMedia;
                 }
                 TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
-                long j3 = 1000 * fjVar.f23968k.date;
+                long j3 = 1000 * fjVar.f23965k.date;
                 h2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     String b10 = wg.h.b(fjVar);
-                    TLRPC.Chat O0 = mp.u1(j10.f24773t0).O0(Long.valueOf(-fjVar.Z0()));
+                    TLRPC.Chat O0 = mp.u1(j10.f24770t0).O0(Long.valueOf(-fjVar.Z0()));
                     if (O0 != null && v3.V(O0)) {
                         z10 = true;
                     } else {
@@ -150,7 +150,7 @@ public final class z implements x10 {
                 hVar.K.setLocalMatrix(matrix);
                 return;
             case 6:
-                HashMap hashMap = ((xg.b) obj2).f60478x;
+                HashMap hashMap = ((xg.b) obj2).f60479x;
                 hashMap.clear();
                 hashMap.putAll((HashMap) obj);
                 return;
@@ -158,7 +158,7 @@ public final class z implements x10 {
                 ((xg.e) obj2).F((TLObject) obj);
                 return;
             default:
-                HashMap hashMap2 = ((xg.h) obj2).f60504r;
+                HashMap hashMap2 = ((xg.h) obj2).f60505r;
                 hashMap2.clear();
                 hashMap2.putAll((HashMap) obj);
                 return;

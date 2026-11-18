@@ -16,18 +16,18 @@ public final class uy0 extends FrameLayout {
     public final void a() {
         ty0 ty0Var = this.f40439b;
         int i7 = this.d;
-        org.telegram.ui.m80 m80Var = (org.telegram.ui.m80) ty0Var;
-        m80Var.getClass();
-        org.telegram.messenger.j10.i(i7).f24776a0 = null;
+        org.telegram.ui.n80 n80Var = (org.telegram.ui.n80) ty0Var;
+        n80Var.getClass();
+        org.telegram.messenger.j10.i(i7).f24773a0 = null;
         org.telegram.messenger.j10.i(i7).v(false);
-        LaunchActivity launchActivity = m80Var.f49804a;
+        LaunchActivity launchActivity = n80Var.f50119a;
         ArrayList arrayList = launchActivity.f43075e0;
         if (!arrayList.isEmpty()) {
             ((org.telegram.ui.ActionBar.h2) i5.c.h(1, arrayList)).onResume();
         }
-        launchActivity.B0.animate().alpha(0.0f).setDuration(150L).setInterpolator(org.telegram.messenger.g0.G).withEndAction(new org.telegram.ui.lz(m80Var, 17)).start();
+        launchActivity.B0.animate().alpha(0.0f).setDuration(150L).setInterpolator(org.telegram.messenger.g0.G).withEndAction(new org.telegram.ui.lz(n80Var, 17)).start();
         TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
-        tL_help_acceptTermsOfService.f28460id = this.f40440c.f28462id;
+        tL_help_acceptTermsOfService.f28458id = this.f40440c.f28460id;
         ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new fi.k5(22));
     }
 

@@ -81,7 +81,7 @@ public abstract class o extends ScrollView implements c6 {
         paint2.setXfermode(new PorterDuffXfermode(mode));
         this.f1093a = i6Var;
         setVerticalScrollBarEnabled(false);
-        int x02 = n6.x0(null, n6.f29396d6, false);
+        int x02 = n6.x0(null, n6.f29394d6, false);
         this.f1099r = x02;
         g0.x3(this, x02);
         n nVar = new n(this, context);
@@ -107,7 +107,7 @@ public abstract class o extends ScrollView implements c6 {
         iVar.setTextIsSelectable(false);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setImeOptions(268435462);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -172,7 +172,7 @@ public abstract class o extends ScrollView implements c6 {
         mp mpVar;
         TLRPC.TL_help_country tL_help_country;
         ArrayList arrayList3 = arrayList;
-        mp u12 = mp.u1(j10.f24773t0);
+        mp u12 = mp.u1(j10.f24770t0);
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
         int i10 = 0;
@@ -370,7 +370,7 @@ public abstract class o extends ScrollView implements c6 {
     @Override
     public final void updateColors() {
         try {
-            int x02 = n6.x0(null, n6.f29396d6, false);
+            int x02 = n6.x0(null, n6.f29394d6, false);
             int i7 = this.f1099r;
             if (i7 != 0 && x02 != i7) {
                 this.f1099r = x02;

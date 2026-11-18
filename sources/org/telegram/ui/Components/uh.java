@@ -38,7 +38,7 @@ public final class uh extends View {
                 int measuredWidth = getMeasuredWidth() / 2;
                 int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.C5, siVar.J0);
                 siVar.H2.setColor(i0.a.o(w02, (int) (((siVar.T2 * 0.42d) + 0.58d) * Color.alpha(w02))));
-                siVar.J2.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, siVar.J0));
+                siVar.J2.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, siVar.J0));
                 int i7 = max / 2;
                 int i10 = measuredWidth - i7;
                 int i11 = i7 + measuredWidth;
@@ -60,7 +60,7 @@ public final class uh extends View {
         switch (this.f40352a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                this.f40353b.W1.setBounds(0, (i10 - org.telegram.messenger.g0.f24116n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
+                this.f40353b.W1.setBounds(0, (i10 - org.telegram.messenger.g0.f24113n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);

@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 import org.telegram.ui.Components.m5;
 public final class y0 {
-    public m5 f5843a;
-    public long f5844b;
-    public Bitmap f5845c;
+    public m5 f5840a;
+    public long f5841b;
+    public Bitmap f5842c;
     public Paint d;
-    public int f5846e;
+    public int f5843e;
 }

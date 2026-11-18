@@ -9,12 +9,12 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class pq implements Runnable {
-    public final int f26289a;
-    public final tr f26290b;
+    public final int f26287a;
+    public final tr f26288b;
 
     public pq(tr trVar, int i7) {
-        this.f26289a = i7;
-        this.f26290b = trVar;
+        this.f26287a = i7;
+        this.f26288b = trVar;
     }
 
     private final void a() {
@@ -32,13 +32,13 @@ public final class pq implements Runnable {
         boolean z10;
         SQLiteCursor sQLiteCursor = null;
         int i7 = 0;
-        switch (this.f26289a) {
+        switch (this.f26287a) {
             case 0:
-                tr trVar = this.f26290b;
+                tr trVar = this.f26288b;
                 trVar.getClass();
                 try {
                     a0.h hVar = new a0.h();
-                    Map<String, ?> all = mp.u1(trVar.currentAccount).f25660g7.getAll();
+                    Map<String, ?> all = mp.u1(trVar.currentAccount).f25658g7.getAll();
                     for (Map.Entry<String, ?> entry : all.entrySet()) {
                         String key = entry.getKey();
                         if (key.startsWith("notify2_")) {
@@ -60,8 +60,8 @@ public final class pq implements Runnable {
                         }
                     }
                     try {
-                        trVar.f27056b.beginTransaction();
-                        SQLitePreparedStatement executeFast = trVar.f27056b.executeFast("REPLACE INTO dialog_settings VALUES(?, ?)");
+                        trVar.f27054b.beginTransaction();
+                        SQLitePreparedStatement executeFast = trVar.f27054b.executeFast("REPLACE INTO dialog_settings VALUES(?, ?)");
                         while (i7 < hVar.m()) {
                             executeFast.requery();
                             executeFast.bindLong(1, hVar.j(i7));
@@ -70,7 +70,7 @@ public final class pq implements Runnable {
                             i7++;
                         }
                         executeFast.dispose();
-                        trVar.f27056b.commitTransaction();
+                        trVar.f27054b.commitTransaction();
                         return;
                     } catch (Exception e11) {
                         trVar.o(e11, true);
@@ -81,64 +81,64 @@ public final class pq implements Runnable {
                     return;
                 }
             case 1:
-                tr trVar2 = this.f26290b;
+                tr trVar2 = this.f26288b;
                 try {
-                    trVar2.f27056b.executeFast("DELETE FROM widget_heights").stepThis().dispose();
+                    trVar2.f27054b.executeFast("DELETE FROM widget_heights").stepThis().dispose();
                 } catch (Exception e12) {
                     trVar2.o(e12, true);
                 }
                 int i10 = trVar2.currentAccount;
-                ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f54845a;
+                ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f54846a;
                 g0.g3(new jg.x(i10, 14));
                 return;
             case 2:
-                tr trVar3 = this.f26290b;
+                tr trVar3 = this.f26288b;
                 if (trVar3.R) {
                     trVar3.R = false;
-                    ks.f(trVar3.currentAccount).k(297, Boolean.FALSE);
+                    ks.f(trVar3.currentAccount).k(298, Boolean.FALSE);
                     return;
                 }
                 return;
             case 3:
-                ks.f(this.f26290b.currentAccount).k(305, new Object[0]);
+                ks.f(this.f26288b.currentAccount).k(306, new Object[0]);
                 return;
             case 4:
-                tr trVar4 = this.f26290b;
+                tr trVar4 = this.f26288b;
                 trVar4.R = true;
-                ks.f(trVar4.currentAccount).k(297, Boolean.TRUE);
+                ks.f(trVar4.currentAccount).k(298, Boolean.TRUE);
                 return;
             case 5:
-                tr trVar5 = this.f26290b;
+                tr trVar5 = this.f26288b;
                 trVar5.R = false;
-                ks.f(trVar5.currentAccount).k(297, Boolean.FALSE);
+                ks.f(trVar5.currentAccount).k(298, Boolean.FALSE);
                 return;
             case 6:
                 try {
-                    this.f26290b.f27056b.executeFast("DELETE FROM fact_checks WHERE expires > " + System.currentTimeMillis()).stepThis().dispose();
+                    this.f26288b.f27054b.executeFast("DELETE FROM fact_checks WHERE expires > " + System.currentTimeMillis()).stepThis().dispose();
                     return;
                 } catch (Exception e13) {
                     a8.g(e13, true);
                     return;
                 }
             case 7:
-                tr trVar6 = this.f26290b;
+                tr trVar6 = this.f26288b;
                 ArrayList arrayList = trVar6.getMessagesController().Q0;
                 int size = arrayList.size();
                 while (i7 < size) {
-                    ((ro) arrayList.get(i7)).d = ((ro) arrayList.get(i7)).f26677e;
+                    ((ro) arrayList.get(i7)).d = ((ro) arrayList.get(i7)).f26675e;
                     i7++;
                 }
                 trVar6.L = trVar6.N;
                 trVar6.M = trVar6.O;
                 return;
             case 8:
-                this.f26290b.getNotificationCenter().k(78, new Object[0]);
+                this.f26288b.getNotificationCenter().k(78, new Object[0]);
                 return;
             case 9:
-                this.f26290b.V0(1);
+                this.f26288b.V0(1);
                 return;
             case 10:
-                tr trVar7 = this.f26290b;
+                tr trVar7 = this.f26288b;
                 for (int i11 = 0; i11 < 2; i11++) {
                     trVar7.getUserConfig().x(i11, 0, 0, 0L, 0L, 0L, 0L);
                     trVar7.getUserConfig().z(i11, 0);
@@ -154,47 +154,47 @@ public final class pq implements Runnable {
                     }
                 }
                 edit.apply();
-                trVar7.getNotificationCenter().k(290, new Object[0]);
+                trVar7.getNotificationCenter().k(291, new Object[0]);
                 trVar7.getMediaDataController().H0(false, true, null);
-                trVar7.getNotificationCenter().k(324, new Object[0]);
+                trVar7.getNotificationCenter().k(325, new Object[0]);
                 trVar7.getMessagesController().R1().q();
                 return;
             case 11:
-                tr trVar8 = this.f26290b;
+                tr trVar8 = this.f26288b;
                 trVar8.getClass();
                 try {
-                    trVar8.f27056b.executeFast("DELETE FROM sent_files_v2 WHERE 1").stepThis().dispose();
+                    trVar8.f27054b.executeFast("DELETE FROM sent_files_v2 WHERE 1").stepThis().dispose();
                     return;
                 } catch (Exception e14) {
                     trVar8.o(e14, true);
                     return;
                 }
             case 12:
-                tr trVar9 = this.f26290b;
+                tr trVar9 = this.f26288b;
                 trVar9.p(true);
                 trVar9.s();
                 trVar9.V0(1);
                 g0.g3(new pq(trVar9, 20));
                 return;
             case 13:
-                this.f26290b.getNotificationCenter().k(121, new Object[0]);
+                this.f26288b.getNotificationCenter().k(121, new Object[0]);
                 return;
             case 14:
-                tr trVar10 = this.f26290b;
+                tr trVar10 = this.f26288b;
                 trVar10.getClass();
                 try {
-                    trVar10.f27056b.executeFast("DELETE FROM story_pushes").stepThis().dispose();
+                    trVar10.f27054b.executeFast("DELETE FROM story_pushes").stepThis().dispose();
                     return;
                 } catch (Exception e15) {
                     trVar10.o(e15, true);
                     return;
                 }
             case 15:
-                tr trVar11 = this.f26290b;
+                tr trVar11 = this.f26288b;
                 ArrayList arrayList2 = trVar11.getMessagesController().Q0;
                 int size2 = arrayList2.size();
                 for (int i12 = 0; i12 < size2; i12++) {
-                    ((ro) arrayList2.get(i12)).d = ((ro) arrayList2.get(i12)).f26677e;
+                    ((ro) arrayList2.get(i12)).d = ((ro) arrayList2.get(i12)).f26675e;
                 }
                 trVar11.L = trVar11.N;
                 trVar11.M = trVar11.O;
@@ -203,18 +203,18 @@ public final class pq implements Runnable {
                 notificationCenter.k(2, 256);
                 return;
             case 16:
-                this.f26290b.z0();
+                this.f26288b.z0();
                 return;
             case 17:
-                this.f26290b.getMessagesController().I1().a();
+                this.f26288b.getMessagesController().I1().a();
                 return;
             case 18:
-                tr trVar12 = this.f26290b;
+                tr trVar12 = this.f26288b;
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
                 try {
                     try {
-                        queryFinalized = trVar12.f27056b.queryFinalized("SELECT * FROM contacts WHERE 1", new Object[0]);
+                        queryFinalized = trVar12.f27054b.queryFinalized("SELECT * FROM contacts WHERE 1", new Object[0]);
                     } catch (Exception e16) {
                         e = e16;
                     }
@@ -266,32 +266,32 @@ public final class pq implements Runnable {
                 g0.g3(new dg(contactsController2, arrayList4, 1, arrayList3, 3));
                 return;
             case 19:
-                tr trVar13 = this.f26290b;
+                tr trVar13 = this.f26288b;
                 trVar13.getClass();
                 try {
-                    trVar13.f27056b.executeFast("DELETE FROM unread_push_messages WHERE is_reaction = 2").stepThis().dispose();
+                    trVar13.f27054b.executeFast("DELETE FROM unread_push_messages WHERE is_reaction = 2").stepThis().dispose();
                     return;
                 } catch (Exception e18) {
                     trVar13.o(e18, true);
                     return;
                 }
             case 20:
-                tr trVar14 = this.f26290b;
-                trVar14.getNotificationCenter().k(324, new Object[0]);
-                trVar14.getNotificationCenter().k(290, new Object[0]);
+                tr trVar14 = this.f26288b;
+                trVar14.getNotificationCenter().k(325, new Object[0]);
+                trVar14.getNotificationCenter().k(291, new Object[0]);
                 trVar14.getMessagesController().I1().a();
                 return;
             case 21:
-                this.f26290b.D0();
+                this.f26288b.D0();
                 return;
             case 22:
-                this.f26290b.C0();
+                this.f26288b.C0();
                 return;
             case 23:
-                tr trVar15 = this.f26290b;
+                tr trVar15 = this.f26288b;
                 try {
                     try {
-                        sQLiteCursor = trVar15.f27056b.queryFinalized("SELECT data FROM wallpapers2 WHERE 1 ORDER BY num ASC", new Object[0]);
+                        sQLiteCursor = trVar15.f27054b.queryFinalized("SELECT data FROM wallpapers2 WHERE 1 ORDER BY num ASC", new Object[0]);
                         ArrayList arrayList6 = new ArrayList();
                         while (sQLiteCursor.next()) {
                             NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
@@ -319,14 +319,14 @@ public final class pq implements Runnable {
                 sQLiteCursor.dispose();
                 return;
             case 24:
-                this.f26290b.getNotificationCenter().k(324, new Object[0]);
+                this.f26288b.getNotificationCenter().k(325, new Object[0]);
                 return;
             case 25:
-                tr trVar16 = this.f26290b;
+                tr trVar16 = this.f26288b;
                 ArrayList arrayList7 = trVar16.getMessagesController().Q0;
                 int size3 = arrayList7.size();
                 for (int i14 = 0; i14 < size3; i14++) {
-                    ((ro) arrayList7.get(i14)).d = ((ro) arrayList7.get(i14)).f26677e;
+                    ((ro) arrayList7.get(i14)).d = ((ro) arrayList7.get(i14)).f26675e;
                 }
                 trVar16.L = trVar16.N;
                 trVar16.M = trVar16.O;
@@ -335,7 +335,7 @@ public final class pq implements Runnable {
                 notificationCenter2.k(2, 256);
                 return;
             case 26:
-                this.f26290b.t1(true);
+                this.f26288b.t1(true);
                 return;
             case 27:
                 a();
@@ -344,7 +344,7 @@ public final class pq implements Runnable {
                 b();
                 return;
             default:
-                this.f26290b.getMessagesController().Z0();
+                this.f26288b.getMessagesController().Z0();
                 return;
         }
     }

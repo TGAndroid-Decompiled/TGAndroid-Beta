@@ -23,10 +23,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Cells.j8;
-import org.telegram.ui.Cells.m3;
-import org.telegram.ui.Cells.u3;
-import org.telegram.ui.Cells.z7;
+import org.telegram.ui.Cells.a8;
+import org.telegram.ui.Cells.k8;
+import org.telegram.ui.Cells.n3;
+import org.telegram.ui.Cells.v3;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.v31;
 public final class c2 extends bk0 {
@@ -40,16 +40,16 @@ public final class c2 extends bk0 {
     public String S;
     public final i6 U;
     public final Context d;
-    public final v31 f17423e;
-    public final TLRPC.StickerSetCovered[] f17424f;
+    public final v31 f17420e;
+    public final TLRPC.StickerSetCovered[] f17421f;
     public final LongSparseArray h;
-    public final LongSparseArray f17425n;
-    public final int f17422c = j10.f24773t0;
-    public final SparseArray f17426r = new SparseArray();
-    public final SparseArray f17427s = new SparseArray();
-    public final SparseArray f17428w = new SparseArray();
-    public final SparseIntArray f17429x = new SparseIntArray();
-    public final SparseArray f17430y = new SparseArray();
+    public final LongSparseArray f17422n;
+    public final int f17419c = j10.f24770t0;
+    public final SparseArray f17423r = new SparseArray();
+    public final SparseArray f17424s = new SparseArray();
+    public final SparseArray f17425w = new SparseArray();
+    public final SparseIntArray f17426x = new SparseIntArray();
+    public final SparseArray f17427y = new SparseArray();
     public final ArrayList F = new ArrayList();
     public final ArrayList G = new ArrayList();
     public final HashMap H = new HashMap();
@@ -61,10 +61,10 @@ public final class c2 extends bk0 {
 
     public c2(Context context, v31 v31Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, i6 i6Var) {
         this.d = context;
-        this.f17423e = v31Var;
-        this.f17424f = stickerSetCoveredArr;
+        this.f17420e = v31Var;
+        this.f17421f = stickerSetCoveredArr;
         this.h = longSparseArray;
-        this.f17425n = longSparseArray2;
+        this.f17422n = longSparseArray2;
         this.U = i6Var;
     }
 
@@ -73,34 +73,34 @@ public final class c2 extends bk0 {
         return false;
     }
 
-    public final void E(u3 u3Var, int i7, boolean z10) {
+    public final void E(v3 v3Var, int i7, boolean z10) {
         boolean z11;
         boolean z12;
         int A1;
-        u3 u3Var2;
+        v3 v3Var2;
         boolean z13;
         boolean z14;
         boolean z15;
         boolean z16;
-        int i10 = this.f17422c;
+        int i10 = this.f17419c;
         ri d02 = ri.d0(i10);
         boolean z17 = false;
-        ArrayList arrayList = d02.f26645v0[0];
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f17427s.get(i7);
-        if (arrayList != null && arrayList.contains(Long.valueOf(stickerSetCovered.set.f28432id))) {
+        ArrayList arrayList = d02.f26643v0[0];
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f17424s.get(i7);
+        if (arrayList != null && arrayList.contains(Long.valueOf(stickerSetCovered.set.f28430id))) {
             z11 = true;
         } else {
             z11 = false;
         }
         int i11 = 0;
         while (true) {
-            TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f17424f;
+            TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f17421f;
             if (i11 < stickerSetCoveredArr.length) {
                 if (stickerSetCoveredArr[i11] != null) {
-                    TLRPC.TL_messages_stickerSet q02 = ri.d0(i10).q0(stickerSetCoveredArr[i11].set.f28432id);
+                    TLRPC.TL_messages_stickerSet q02 = ri.d0(i10).q0(stickerSetCoveredArr[i11].set.f28430id);
                     if (q02 != null && !q02.set.archived) {
                         stickerSetCoveredArr[i11] = null;
-                    } else if (stickerSetCoveredArr[i11].set.f28432id == stickerSetCovered.set.f28432id) {
+                    } else if (stickerSetCoveredArr[i11].set.f28430id == stickerSetCovered.set.f28430id) {
                         z12 = true;
                         break;
                     }
@@ -118,40 +118,40 @@ public final class c2 extends bk0 {
         }
         int i12 = A1;
         if (i12 >= 0) {
-            u3Var2 = u3Var;
+            v3Var2 = v3Var;
             z13 = z10;
-            u3Var2.c(stickerSetCovered, z11, z13, i12, this.S.length(), z12);
+            v3Var2.c(stickerSetCovered, z11, z13, i12, this.S.length(), z12);
         } else {
-            u3Var2 = u3Var;
+            v3Var2 = v3Var;
             z13 = z10;
-            u3Var2.c(stickerSetCovered, z11, z13, 0, 0, z12);
+            v3Var2.c(stickerSetCovered, z11, z13, 0, 0, z12);
             if (!TextUtils.isEmpty(this.S) && org.telegram.messenger.g0.A1(stickerSetCovered.set.short_name, this.S) == 0) {
-                u3Var2.d(this.S.length(), stickerSetCovered.set.short_name);
+                v3Var2.d(this.S.length(), stickerSetCovered.set.short_name);
             }
         }
         if (z11) {
-            d02.h1(stickerSetCovered.set.f28432id);
+            d02.h1(stickerSetCovered.set.f28430id);
         }
-        long j3 = stickerSetCovered.set.f28432id;
+        long j3 = stickerSetCovered.set.f28430id;
         LongSparseArray longSparseArray = this.h;
         if (longSparseArray.indexOfKey(j3) >= 0) {
             z14 = true;
         } else {
             z14 = false;
         }
-        long j10 = stickerSetCovered.set.f28432id;
-        LongSparseArray longSparseArray2 = this.f17425n;
+        long j10 = stickerSetCovered.set.f28430id;
+        LongSparseArray longSparseArray2 = this.f17422n;
         if (longSparseArray2.indexOfKey(j10) >= 0) {
             z15 = true;
         } else {
             z15 = false;
         }
         if (z14 || z15) {
-            if (z14 && u3Var2.f32105r) {
-                longSparseArray.remove(stickerSetCovered.set.f28432id);
+            if (z14 && v3Var2.f32162r) {
+                longSparseArray.remove(stickerSetCovered.set.f28430id);
                 z14 = false;
-            } else if (z15 && !u3Var2.f32105r) {
-                longSparseArray2.remove(stickerSetCovered.set.f28432id);
+            } else if (z15 && !v3Var2.f32162r) {
+                longSparseArray2.remove(stickerSetCovered.set.f28430id);
             }
         }
         if (!z12 && z14) {
@@ -159,16 +159,16 @@ public final class c2 extends bk0 {
         } else {
             z16 = false;
         }
-        u3Var2.b(z16, z13);
+        v3Var2.b(z16, z13);
         d02.s1(stickerSetCovered);
         if (i7 > 0) {
             z17 = true;
         }
-        u3Var2.setNeedDivider(z17);
+        v3Var2.setNeedDivider(z17);
     }
 
-    public final void F(org.telegram.tgnet.TLRPC.StickerSetCovered r8, org.telegram.ui.Cells.u3 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.c2.F(org.telegram.tgnet.TLRPC$StickerSetCovered, org.telegram.ui.Cells.u3):void");
+    public final void F(org.telegram.tgnet.TLRPC.StickerSetCovered r8, org.telegram.ui.Cells.v3 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: jg.c2.F(org.telegram.tgnet.TLRPC$StickerSetCovered, org.telegram.ui.Cells.v3):void");
     }
 
     @Override
@@ -184,7 +184,7 @@ public final class c2 extends bk0 {
         if (i7 == b() - 1) {
             return 4;
         }
-        Object obj = this.f17427s.get(i7);
+        Object obj = this.f17424s.get(i7);
         if (obj == null) {
             return 1;
         }
@@ -208,15 +208,15 @@ public final class c2 extends bk0 {
         ArrayList<TLRPC.Document> arrayList3;
         ArrayList arrayList4;
         TLRPC.StickerSetCovered stickerSetCovered;
-        SparseArray sparseArray2 = this.f17426r;
+        SparseArray sparseArray2 = this.f17423r;
         sparseArray2.clear();
-        SparseIntArray sparseIntArray = this.f17429x;
+        SparseIntArray sparseIntArray = this.f17426x;
         sparseIntArray.clear();
-        SparseArray sparseArray3 = this.f17427s;
+        SparseArray sparseArray3 = this.f17424s;
         sparseArray3.clear();
         SparseArray sparseArray4 = this.L;
         sparseArray4.clear();
-        SparseArray sparseArray5 = this.f17430y;
+        SparseArray sparseArray5 = this.f17427y;
         sparseArray5.clear();
         this.E = 0;
         ArrayList arrayList5 = this.F;
@@ -228,8 +228,8 @@ public final class c2 extends bk0 {
         int i12 = 0;
         int i13 = 0;
         while (i12 < size + size2 + i11) {
-            SparseArray sparseArray6 = this.f17428w;
-            v31 v31Var2 = this.f17423e;
+            SparseArray sparseArray6 = this.f17425w;
+            v31 v31Var2 = this.f17420e;
             if (i12 < size2) {
                 v31Var = v31Var2;
                 ?? r62 = (TLRPC.TL_messages_stickerSet) arrayList6.get(i12);
@@ -273,7 +273,7 @@ public final class c2 extends bk0 {
                             sparseArray3.put(i20, document);
                             ArrayList arrayList9 = arrayList7;
                             int i23 = i16;
-                            TLRPC.TL_messages_stickerSet q02 = ri.d0(this.f17422c).q0(ri.s0(document));
+                            TLRPC.TL_messages_stickerSet q02 = ri.d0(this.f17419c).q0(ri.s0(document));
                             if (q02 != null) {
                                 sparseArray6.put(i20, q02);
                             }
@@ -370,28 +370,28 @@ public final class c2 extends bk0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         int i10;
-        int i11 = f1Var.f59126f;
-        View view = f1Var.f59122a;
-        SparseArray sparseArray = this.f17427s;
+        int i11 = f1Var.f59127f;
+        View view = f1Var.f59123a;
+        SparseArray sparseArray = this.f17424s;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
                     if (i11 == 3) {
-                        E((u3) view, i7, false);
+                        E((v3) view, i7, false);
                         return;
                     }
                     return;
                 }
-                j8 j8Var = (j8) view;
+                k8 k8Var = (k8) view;
                 Object obj = sparseArray.get(i7);
                 if (obj instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
                     if (!TextUtils.isEmpty(this.S) && this.H.containsKey(tL_messages_stickerSet)) {
                         TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                         if (stickerSet != null) {
-                            j8Var.a(0, stickerSet.title);
+                            k8Var.a(0, stickerSet.title);
                         }
-                        j8Var.c(this.S.length(), tL_messages_stickerSet.set.short_name);
+                        k8Var.c(this.S.length(), tL_messages_stickerSet.set.short_name);
                         return;
                     }
                     Integer num = (Integer) this.I.get(tL_messages_stickerSet);
@@ -404,23 +404,23 @@ public final class c2 extends bk0 {
                         } else {
                             i10 = 0;
                         }
-                        j8Var.b(str, 0, null, intValue, i10);
+                        k8Var.b(str, 0, null, intValue, i10);
                     }
-                    j8Var.c(0, null);
+                    k8Var.c(0, null);
                     return;
                 }
                 return;
             }
-            ((m3) view).setHeight(0);
+            ((n3) view).setHeight(0);
             return;
         }
-        ((z7) view).d((TLRPC.Document) sparseArray.get(i7), null, this.f17428w.get(i7), (String) this.f17430y.get(i7), false, false);
+        ((a8) view).d((TLRPC.Document) sparseArray.get(i7), null, this.f17425w.get(i7), (String) this.f17427y.get(i7), false, false);
     }
 
     @Override
     public final void v(v4.f1 f1Var, int i7, List list) {
-        if (list.contains(0) && f1Var.f59126f == 3) {
-            E((u3) f1Var.f59122a, i7, true);
+        if (list.contains(0) && f1Var.f59127f == 3) {
+            E((v3) f1Var.f59123a, i7, true);
         } else {
             t(f1Var, i7);
         }
@@ -428,7 +428,7 @@ public final class c2 extends bk0 {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        u3 u3Var;
+        v3 v3Var;
         i6 i6Var = this.U;
         Context context = this.d;
         if (i7 != 0) {
@@ -436,7 +436,7 @@ public final class c2 extends bk0 {
                 if (i7 != 2) {
                     if (i7 != 3) {
                         if (i7 != 4) {
-                            u3Var = null;
+                            v3Var = null;
                             if (i7 == 5) {
                                 ?? linearLayout = new LinearLayout(context);
                                 linearLayout.setOrientation(1);
@@ -458,27 +458,27 @@ public final class c2 extends bk0 {
                                 linearLayout.addView(this.N, ma.o(-2, -2));
                                 linearLayout.setMinimumHeight(org.telegram.messenger.g0.L(112.0f));
                                 linearLayout.setLayoutParams(ma.c(-1.0f, -1));
-                                u3Var = linearLayout;
+                                v3Var = linearLayout;
                             }
                         } else {
-                            u3Var = new View(context);
+                            v3Var = new View(context);
                         }
                     } else {
-                        u3 u3Var2 = new u3(17, this.d, this.U, true, true);
-                        u3Var2.setAddOnClickListener(new hi.o0(this, 7));
-                        u3Var = u3Var2;
+                        v3 v3Var2 = new v3(17, this.d, this.U, true, true);
+                        v3Var2.setAddOnClickListener(new hi.o0(this, 7));
+                        v3Var = v3Var2;
                     }
                 } else {
-                    u3Var = new j8(this.d, false, true, this.U, false);
+                    v3Var = new k8(this.d, false, true, this.U, false);
                 }
             } else {
-                u3Var = new m3(context);
+                v3Var = new n3(context);
             }
         } else {
             b2 b2Var = new b2(0, context, i6Var, false);
             b2Var.getImageView().E0(3);
-            u3Var = b2Var;
+            v3Var = b2Var;
         }
-        return new v4.f1(u3Var);
+        return new v4.f1(v3Var);
     }
 }

@@ -1,9 +1,9 @@
 package org.telegram.messenger;
 public final class l10 {
-    public final long f25322a;
-    public final long f25323b = System.currentTimeMillis();
+    public final long f25320a;
+    public final long f25321b = System.currentTimeMillis();
 
     public l10(long j3) {
-        this.f25322a = j3;
+        this.f25320a = j3;
     }
 }

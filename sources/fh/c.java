@@ -7,37 +7,37 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import org.telegram.ui.ActionBar.n6;
 public final class c extends ea {
-    public final Paint f11621a = new Paint(1);
-    public final Paint f11622b;
-    public final g f11623c;
+    public final Paint f11618a = new Paint(1);
+    public final Paint f11619b;
+    public final g f11620c;
 
     public c(g gVar) {
-        this.f11623c = gVar;
+        this.f11620c = gVar;
         Paint paint = new Paint(1);
-        this.f11622b = paint;
+        this.f11619b = paint;
         paint.setColor(0);
     }
 
     @Override
     public final void b(Canvas canvas, ui.a aVar) {
         boolean z10;
-        g gVar = this.f11623c;
+        g gVar = this.f11620c;
         f fVar = gVar.R;
         int i7 = gVar.f56671c;
         if (i7 != 0) {
-            int r12 = n6.r1(i7 / 255.0f, gVar.f11676y);
-            if (Color.alpha(gVar.f11675x) > 0 && i7 == 255) {
+            int r12 = n6.r1(i7 / 255.0f, gVar.f11673y);
+            if (Color.alpha(gVar.f11672x) > 0 && i7 == 255) {
                 float f10 = gVar.W;
                 if (f10 > 0.0f) {
                     float f11 = gVar.U;
                     float f12 = gVar.V;
-                    int r13 = n6.r1(f10, gVar.f11675x);
-                    Paint paint = this.f11622b;
+                    int r13 = n6.r1(f10, gVar.f11672x);
+                    Paint paint = this.f11619b;
                     paint.setShadowLayer(f11, 0.0f, f12, r13);
                     fVar.d(canvas, paint, gVar.T);
                 }
             }
-            Rect rect = fVar.f11649m;
+            Rect rect = fVar.f11646m;
             float f13 = rect.left;
             float f14 = gVar.d;
             float f15 = f13 + f14;
@@ -58,13 +58,13 @@ public final class c extends ea {
                 canvas.saveLayerAlpha(f13, f16, f19, f21, i7);
             }
             canvas.save();
-            canvas.clipPath(fVar.f11647k);
+            canvas.clipPath(fVar.f11644k);
             canvas.translate(rect.left, rect.top);
             canvas.translate(-f15, -f18);
             aVar.o(f15, f18, f20, f22, canvas);
             canvas.restore();
             if (Color.alpha(r12) > 0) {
-                Paint paint2 = this.f11621a;
+                Paint paint2 = this.f11618a;
                 paint2.setColor(r12);
                 fVar.c(canvas, paint2);
             }

@@ -39,12 +39,12 @@ public final class hi implements org.telegram.ui.bn0 {
                         org.telegram.messenger.hf hfVar = (org.telegram.messenger.hf) obj;
                         String str2 = hfVar.h;
                         if (str2 != null) {
-                            obj2.f28213c = str2;
+                            obj2.f28211c = str2;
                         } else {
-                            obj2.f28220l = hfVar;
+                            obj2.f28218l = hfVar;
                         }
-                        obj2.f28214e = hfVar.f27850c;
-                        obj2.f28219k = hfVar.f27864s;
+                        obj2.f28212e = hfVar.f27848c;
+                        obj2.f28217k = hfVar.f27862s;
                         CharSequence charSequence = hfVar.I;
                         if (charSequence != null) {
                             str = charSequence.toString();
@@ -52,13 +52,13 @@ public final class hi implements org.telegram.ui.bn0 {
                             str = null;
                         }
                         obj2.d = str;
-                        obj2.f28217i = hfVar.f27859n;
-                        obj2.f28218j = hfVar.f27863r;
-                        obj2.h = hfVar.f27868x;
+                        obj2.f28215i = hfVar.f27857n;
+                        obj2.f28216j = hfVar.f27861r;
+                        obj2.h = hfVar.f27866x;
                         TLRPC.BotInlineResult botInlineResult = hfVar.N;
                         if (botInlineResult != null && hfVar.H == 1) {
-                            obj2.f28221m = botInlineResult;
-                            obj2.f28222n = hfVar.O;
+                            obj2.f28219m = botInlineResult;
+                            obj2.f28220n = hfVar.O;
                         }
                         System.currentTimeMillis();
                         i10++;

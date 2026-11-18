@@ -27,7 +27,7 @@ public final class t extends Thread {
         boolean z10;
         synchronized (this.f56537a) {
             try {
-                if (((CountDownLatch) this.f56541f.f2902c).getCount() == 0) {
+                if (((CountDownLatch) this.f56541f.f2903c).getCount() == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -36,7 +36,7 @@ public final class t extends Thread {
                     return;
                 }
                 this.f56537a.a(exc);
-                ((CountDownLatch) this.f56541f.f2902c).countDown();
+                ((CountDownLatch) this.f56541f.f2903c).countDown();
             } finally {
             }
         }
@@ -46,7 +46,7 @@ public final class t extends Thread {
         boolean z10;
         synchronized (this.f56537a) {
             try {
-                if (((CountDownLatch) this.f56541f.f2902c).getCount() == 0) {
+                if (((CountDownLatch) this.f56541f.f2903c).getCount() == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -55,7 +55,7 @@ public final class t extends Thread {
                     return;
                 }
                 this.f56537a.b(this, socket);
-                ((CountDownLatch) this.f56541f.f2902c).countDown();
+                ((CountDownLatch) this.f56541f.f2903c).countDown();
             } finally {
             }
         }
@@ -68,7 +68,7 @@ public final class t extends Thread {
         try {
             b3.j jVar = this.f56540e;
             if (jVar != null) {
-                ((CountDownLatch) jVar.f2902c).await(jVar.f2901b, TimeUnit.MILLISECONDS);
+                ((CountDownLatch) jVar.f2903c).await(jVar.f2902b, TimeUnit.MILLISECONDS);
             }
             h hVar = this.f56537a;
             synchronized (hVar) {

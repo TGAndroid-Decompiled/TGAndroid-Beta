@@ -16,7 +16,7 @@ public final class iz extends v4.k {
     @Override
     public final void C(v4.f1 f1Var, v4.j jVar) {
         super.C(f1Var, jVar);
-        View view = f1Var.f59122a;
+        View view = f1Var.f59123a;
         if (view instanceof nz) {
             nz nzVar = (nz) view;
             if (nzVar.f37908x) {
@@ -30,7 +30,7 @@ public final class iz extends v4.k {
                 ofFloat.addUpdateListener(new hz(nzVar, 0));
                 ofFloat.addListener(new x(nzVar, 27));
                 nzVar.f37886a = ofFloat;
-                ofFloat.setDuration(this.f59196e);
+                ofFloat.setDuration(this.f59197e);
                 ofFloat.start();
             }
         }
@@ -39,7 +39,7 @@ public final class iz extends v4.k {
     @Override
     public final void f(v4.f1 f1Var) {
         super.f(f1Var);
-        View view = f1Var.f59122a;
+        View view = f1Var.f59123a;
         view.setTranslationX(0.0f);
         if (view instanceof nz) {
             ((nz) view).a();
@@ -48,14 +48,14 @@ public final class iz extends v4.k {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f59170p.isEmpty();
-        boolean isEmpty2 = this.f59172r.isEmpty();
-        boolean isEmpty3 = this.f59173s.isEmpty();
-        boolean isEmpty4 = this.f59171q.isEmpty();
+        boolean isEmpty = this.f59171p.isEmpty();
+        boolean isEmpty2 = this.f59173r.isEmpty();
+        boolean isEmpty3 = this.f59174s.isEmpty();
+        boolean isEmpty4 = this.f59172q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
             ofFloat.addUpdateListener(new w(this, 25));
-            ofFloat.setDuration(this.f59196e);
+            ofFloat.setDuration(this.f59197e);
             ofFloat.start();
         }
         super.m();
@@ -89,7 +89,7 @@ public final class iz extends v4.k {
         boolean z17;
         boolean z18;
         int i23;
-        View view = f1Var.f59122a;
+        View view = f1Var.f59123a;
         if (view instanceof nz) {
             int translationX = i7 + ((int) view.getTranslationX());
             int translationY = i10 + ((int) view.getTranslationY());
@@ -333,7 +333,7 @@ public final class iz extends v4.k {
                 v(f1Var);
                 return z12;
             }
-            this.f59172r.add(new v4.j(f1Var, i13, i14, i11, i12));
+            this.f59173r.add(new v4.j(f1Var, i13, i14, i11, i12));
             return z13;
         }
         return super.r(f1Var, r0Var, i7, i10, i11, i12);
@@ -341,8 +341,8 @@ public final class iz extends v4.k {
 
     @Override
     public final void x(v4.f1 f1Var) {
-        f1Var.f59122a.setTranslationX(0.0f);
-        View view = f1Var.f59122a;
+        f1Var.f59123a.setTranslationX(0.0f);
+        View view = f1Var.f59123a;
         if (view instanceof nz) {
             ((nz) view).a();
         }

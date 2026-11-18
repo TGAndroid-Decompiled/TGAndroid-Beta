@@ -1,25 +1,16 @@
 package org.telegram.ui;
+public final class dd0 implements Runnable {
+    public final int f46862a;
 
-import android.content.Context;
-public final class dd0 extends br {
-    public final int h;
-    public final gd0 f46929n;
-
-    public dd0(gd0 gd0Var, Context context, int i7) {
-        super(context);
-        this.h = i7;
-        this.f46929n = gd0Var;
+    public dd0(int i7) {
+        this.f46862a = i7;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
-            case 0:
-                this.f46929n.h(null);
-                return;
-            default:
-                this.f46929n.h(null);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dd0.run():void");
+    }
+
+    private final void a() {
     }
 }

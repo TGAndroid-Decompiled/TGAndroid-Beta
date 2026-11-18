@@ -2,11 +2,11 @@ package b7;
 
 import java.util.Random;
 public final class j extends ThreadLocal {
-    public final int f2958a;
+    public final int f2959a;
 
     @Override
     public final Object initialValue() {
-        switch (this.f2958a) {
+        switch (this.f2959a) {
             case 0:
                 return 0L;
             case 1:

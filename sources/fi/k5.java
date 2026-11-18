@@ -17,22 +17,22 @@ import org.telegram.ui.Components.pz;
 import org.telegram.ui.Components.uy0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.dk0;
-import org.telegram.ui.gd0;
-import org.telegram.ui.hf0;
+import org.telegram.ui.hd0;
+import org.telegram.ui.if0;
 import org.telegram.ui.io;
 import org.telegram.ui.la;
 import org.telegram.ui.m21;
 import org.telegram.ui.ml0;
 public final class k5 implements RequestDelegate {
-    public final int f12186a;
+    public final int f12183a;
 
     public k5(int i7) {
-        this.f12186a = i7;
+        this.f12183a = i7;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f12186a) {
+        switch (this.f12183a) {
             case 0:
                 org.telegram.messenger.g0.g3(new ai.o(14));
                 return;
@@ -46,7 +46,7 @@ public final class k5 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new org.telegram.messenger.j2(0));
                 return;
             case 4:
-                int[] iArr = hi.d1.f14359b0;
+                int[] iArr = hi.d1.f14356b0;
                 return;
             case 5:
                 org.telegram.messenger.g0.g3(new ai.o(21));
@@ -58,12 +58,12 @@ public final class k5 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new ai.o(21));
                 return;
             case 8:
-                org.telegram.messenger.q5 q5Var = org.telegram.messenger.f4.f23831s;
+                org.telegram.messenger.q5 q5Var = org.telegram.messenger.f4.f23828s;
                 return;
             case 9:
                 return;
             case 10:
-                int i7 = zb.f28277i;
+                int i7 = zb.f28275i;
                 return;
             case 11:
                 Pattern pattern = ri.U1;
@@ -75,7 +75,7 @@ public final class k5 implements RequestDelegate {
                 int i10 = mp.I8;
                 return;
             case 14:
-                String str = xs.f27958k0;
+                String str = xs.f27956k0;
                 return;
             case 15:
                 Paint paint = la.I;
@@ -102,22 +102,22 @@ public final class k5 implements RequestDelegate {
                 int i14 = uy0.f40437e;
                 return;
             case 23:
-                int i15 = gd0.f48051w0;
+                int i15 = hd0.f48302w0;
                 return;
             case 24:
-                org.telegram.messenger.g0.g3(new hf0(tLObject, 5));
+                org.telegram.messenger.g0.g3(new if0(tLObject, 5));
                 return;
             case 25:
                 int i16 = dk0.S;
                 return;
             case 26:
-                List list = ml0.f49877h1;
+                List list = ml0.f49851h1;
                 return;
             case 27:
                 RectF rectF = ProfileActivity.Z6;
                 return;
             default:
-                int i17 = m21.f49739p1;
+                int i17 = m21.f49698p1;
                 return;
         }
     }

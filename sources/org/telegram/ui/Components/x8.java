@@ -66,7 +66,7 @@ public abstract class x8 extends FrameLayout {
         }
         this.h = u8Var;
         this.f41942n = z10;
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25197t4, new Object[0]);
+        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25202u4, new Object[0]);
         invalidate();
     }
 
@@ -129,7 +129,7 @@ public abstract class x8 extends FrameLayout {
             }
             t3Var.f38742a.P0(false);
         }
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25197t4, new Object[0]);
+        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25202u4, new Object[0]);
         invalidate();
     }
 }

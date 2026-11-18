@@ -21,7 +21,7 @@ public final class xh extends wt {
             emojiView.f39407x0 = false;
             emojiView.f39413y2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(org.telegram.messenger.g0.f24116n);
+            emojiView.setBottomInset(org.telegram.messenger.g0.f24113n);
         }
     }
 

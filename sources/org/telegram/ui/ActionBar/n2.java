@@ -39,7 +39,7 @@ public final class n2 extends u2 {
     public final void onConfigurationChanged(Configuration configuration) {
         x2 x2Var = this.I;
         x2Var.h = null;
-        x2Var.f30195c.requestApplyInsets();
+        x2Var.f30193c.requestApplyInsets();
     }
 
     @Override

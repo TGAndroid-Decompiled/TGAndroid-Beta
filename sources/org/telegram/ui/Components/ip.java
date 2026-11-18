@@ -18,14 +18,14 @@ public final class ip implements ResultCallback {
         int i7;
         Void r62 = (Void) obj;
         org.telegram.messenger.f4 f4Var = this.f36161a;
-        if (f4Var.f23837f.f19535c) {
+        if (f4Var.f23834f.f19532c) {
             i7 = 2;
         } else {
             i7 = 0;
         }
         ArrayList e10 = f4Var.e(i7 | 5);
         lp lpVar = this.f36162b;
-        org.telegram.messenger.ks.f(lpVar.f30189a).d(new mg(19, this, e10));
+        org.telegram.messenger.ks.f(lpVar.f30187a).d(new mg(19, this, e10));
         lpVar.V1 = false;
     }
 

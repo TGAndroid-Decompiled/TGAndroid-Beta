@@ -6,21 +6,21 @@ import org.telegram.messenger.gd;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Cells.n4;
+import org.telegram.ui.Cells.o4;
 import org.telegram.ui.Components.k80;
-public final class h3 extends n4 {
-    public final k80 f18718r;
+public final class h3 extends o4 {
+    public final k80 f18715r;
 
     public h3(Context context, i6 i6Var) {
         super(context, i6Var);
         int i7;
         k80 k80Var = new k80(context, i6Var);
-        this.f18718r = k80Var;
+        this.f18715r = k80Var;
         k80Var.setTextSize(1, 14.0f);
-        u6.U(k80Var, n6.f29807z6, i6Var);
+        u6.U(k80Var, n6.f29805z6, i6Var);
         u6.G(k80Var, n6.L6, i6Var);
         k80Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i7 = 3;
         } else {
             i7 = 5;

@@ -61,7 +61,7 @@ public final class h {
         char c10 = f10.f56129a;
         ca.i iVar = (ca.i) this.f56118b;
         iVar.j(c10);
-        iVar.f5125b = true;
+        iVar.f5122b = true;
         String str = (String) this.f56122g;
         if (str != null) {
             String str2 = (String) this.h;
@@ -92,7 +92,7 @@ public final class h {
         if (ordinal != 1) {
             if (ordinal != 2) {
                 if (ordinal != 3) {
-                    if (!iVar.f5125b) {
+                    if (!iVar.f5122b) {
                         iVar.j(',');
                     }
                     iVar.i();
@@ -112,7 +112,7 @@ public final class h {
                     return;
                 }
                 return;
-            } else if (!iVar.f5125b) {
+            } else if (!iVar.f5122b) {
                 if (i7 % 2 == 0) {
                     iVar.j(',');
                     iVar.i();
@@ -129,7 +129,7 @@ public final class h {
                 return;
             }
         }
-        if (!iVar.f5125b) {
+        if (!iVar.f5122b) {
             iVar.j(',');
         }
         iVar.i();
@@ -139,7 +139,7 @@ public final class h {
         if (this.f56117a) {
             j(String.valueOf(i7));
         } else {
-            ((mc.a) ((ca.i) this.f56118b).f5126c).c(String.valueOf(i7));
+            ((mc.a) ((ca.i) this.f56118b).f5123c).c(String.valueOf(i7));
         }
     }
 
@@ -147,7 +147,7 @@ public final class h {
         if (this.f56117a) {
             j(String.valueOf(j3));
         } else {
-            ((mc.a) ((ca.i) this.f56118b).f5126c).c(String.valueOf(j3));
+            ((mc.a) ((ca.i) this.f56118b).f5123c).c(String.valueOf(j3));
         }
     }
 
@@ -161,13 +161,13 @@ public final class h {
         ca.i iVar = (ca.i) this.f56118b;
         iVar.getClass();
         kotlin.jvm.internal.j.e("null", "v");
-        ((mc.a) iVar.f5126c).c("null");
+        ((mc.a) iVar.f5123c).c("null");
     }
 
     public void g(me.d descriptor, int i7, ke.a serializer, Object obj) {
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         kotlin.jvm.internal.j.e(serializer, "serializer");
-        if (obj == null && !((o0) this.f56121f).f13806b) {
+        if (obj == null && !((o0) this.f56121f).f13803b) {
             return;
         }
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
@@ -199,10 +199,10 @@ public final class h {
         ca.i iVar = (ca.i) this.f56118b;
         iVar.getClass();
         kotlin.jvm.internal.j.e(value, "value");
-        mc.a aVar = (mc.a) iVar.f5126c;
-        aVar.a(aVar.f20966c, value.length() + 2);
-        char[] cArr = aVar.f20965b;
-        int i10 = aVar.f20966c;
+        mc.a aVar = (mc.a) iVar.f5123c;
+        aVar.a(aVar.f20963c, value.length() + 2);
+        char[] cArr = aVar.f20962b;
+        int i10 = aVar.f20963c;
         int i11 = i10 + 1;
         cArr[i10] = '\"';
         int length = value.length();
@@ -222,39 +222,39 @@ public final class h {
                         byte b10 = bArr2[charAt];
                         if (b10 == 0) {
                             i7 = i13 + 1;
-                            aVar.f20965b[i13] = charAt;
+                            aVar.f20962b[i13] = charAt;
                         } else {
                             if (b10 == 1) {
                                 String str = i.f56123a[charAt];
                                 kotlin.jvm.internal.j.b(str);
                                 aVar.a(i13, str.length());
-                                str.getChars(0, str.length(), aVar.f20965b, i13);
+                                str.getChars(0, str.length(), aVar.f20962b, i13);
                                 int length3 = str.length() + i13;
-                                aVar.f20966c = length3;
+                                aVar.f20963c = length3;
                                 i13 = length3;
                             } else {
-                                char[] cArr2 = aVar.f20965b;
+                                char[] cArr2 = aVar.f20962b;
                                 cArr2[i13] = '\\';
                                 cArr2[i13 + 1] = (char) b10;
                                 i13 += 2;
-                                aVar.f20966c = i13;
+                                aVar.f20963c = i13;
                             }
                         }
                     } else {
                         i7 = i13 + 1;
-                        aVar.f20965b[i13] = charAt;
+                        aVar.f20962b[i13] = charAt;
                     }
                     i13 = i7;
                 }
                 aVar.a(i13, 1);
-                aVar.f20965b[i13] = '\"';
-                aVar.f20966c = i13 + 1;
+                aVar.f20962b[i13] = '\"';
+                aVar.f20963c = i13 + 1;
                 return;
             }
             i13++;
         }
         cArr[i12] = '\"';
-        aVar.f20966c = i12 + 1;
+        aVar.f20963c = i12 + 1;
     }
 
     public void k(me.d descriptor, int i7, String value) {
@@ -268,7 +268,7 @@ public final class h {
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         ca.i iVar = (ca.i) this.f56118b;
         iVar.getClass();
-        iVar.f5125b = false;
+        iVar.f5122b = false;
         iVar.j(((j) this.d).f56130b);
     }
 
@@ -384,7 +384,7 @@ public final class h {
                     if (d != null) {
                         r0Var3.getClass();
                         x.b();
-                        r0Var3.f7213f = null;
+                        r0Var3.f7210f = null;
                         r0Var3.h(null);
                         eVar.m(d, null);
                         eVar.f56927a.b(514, d);
@@ -431,15 +431,15 @@ public final class h {
                     bArr = u4.d.h;
                     break;
                 case 26:
-                    bArr = u4.d.f58405g;
+                    bArr = u4.d.f58406g;
                     break;
                 case 27:
-                    bArr = u4.d.f58404f;
+                    bArr = u4.d.f58405f;
                     break;
                 case 28:
                 case 29:
                 case 30:
-                    bArr = u4.d.f58403e;
+                    bArr = u4.d.f58404e;
                     break;
                 case 31:
                 case 32:

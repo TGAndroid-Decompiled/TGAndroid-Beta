@@ -5,10 +5,10 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 public final class l60 implements org.telegram.messenger.h9, org.telegram.messenger.i9, org.telegram.messenger.cb, org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.ob0, org.telegram.messenger.r10, org.telegram.ui.Components.du0, org.telegram.ui.ActionBar.r6, org.telegram.ui.ActionBar.s6 {
-    public final int f49459a;
+    public final int f49465a;
 
     public l60(int i7) {
-        this.f49459a = i7;
+        this.f49465a = i7;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class l60 implements org.telegram.messenger.h9, org.telegram.messen
 
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f49459a) {
+        switch (this.f49465a) {
             case 4:
                 u1Var.dismiss();
                 return;
@@ -110,7 +110,7 @@ public final class l60 implements org.telegram.messenger.h9, org.telegram.messen
 
     @Override
     public void k(int i7) {
-        org.telegram.messenger.bz.f23153b1 = i7;
+        org.telegram.messenger.bz.f23150b1 = i7;
         org.telegram.messenger.bz.y();
     }
 
@@ -118,13 +118,13 @@ public final class l60 implements org.telegram.messenger.h9, org.telegram.messen
     public Object m(Object obj) {
         Void r12 = (Void) obj;
         String str = LaunchActivity.C1;
-        return new le0();
+        return new me0();
     }
 
     @Override
     public boolean run() {
         String str = LaunchActivity.C1;
-        if (org.telegram.messenger.bz.f23197s.length() > 0 && !org.telegram.messenger.bz.A) {
+        if (org.telegram.messenger.bz.f23194s.length() > 0 && !org.telegram.messenger.bz.A) {
             return true;
         }
         return false;

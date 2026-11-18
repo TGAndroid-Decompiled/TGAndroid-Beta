@@ -23,14 +23,14 @@ public final class u1 implements View.OnClickListener {
                 int childCount = linearLayout.getChildCount();
                 for (int i7 = 0; i7 < childCount; i7++) {
                     View childAt = linearLayout.getChildAt(i7);
-                    if (childAt instanceof org.telegram.ui.Cells.j6) {
-                        org.telegram.ui.Cells.j6 j6Var = (org.telegram.ui.Cells.j6) childAt;
+                    if (childAt instanceof org.telegram.ui.Cells.k6) {
+                        org.telegram.ui.Cells.k6 k6Var = (org.telegram.ui.Cells.k6) childAt;
                         if (childAt == view) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        j6Var.f30875c.a(z10, true);
+                        k6Var.f30927c.a(z10, true);
                     }
                 }
                 return;
@@ -38,15 +38,15 @@ public final class u1 implements View.OnClickListener {
                 LinearLayout linearLayout2 = this.f40164b;
                 int childCount2 = linearLayout2.getChildCount();
                 for (int i10 = 0; i10 < childCount2; i10++) {
-                    org.telegram.ui.Cells.j6 j6Var2 = (org.telegram.ui.Cells.j6) linearLayout2.getChildAt(i10);
-                    if (j6Var2 == view) {
+                    org.telegram.ui.Cells.k6 k6Var2 = (org.telegram.ui.Cells.k6) linearLayout2.getChildAt(i10);
+                    if (k6Var2 == view) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    j6Var2.f30875c.a(z11, true);
+                    k6Var2.f30927c.a(z11, true);
                 }
-                this.f40165c[0] = org.telegram.ui.Cells.t8.f31993f[((Integer) view.getTag()).intValue()];
+                this.f40165c[0] = org.telegram.ui.Cells.u8.f32041f[((Integer) view.getTag()).intValue()];
                 return;
         }
     }

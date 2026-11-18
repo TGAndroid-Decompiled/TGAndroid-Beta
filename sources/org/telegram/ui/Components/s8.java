@@ -42,7 +42,7 @@ public final class s8 extends org.telegram.ui.r11 {
         long j10 = 0;
         if (tL_emojiList != null) {
             if (document != null) {
-                j3 = document.f28411id;
+                j3 = document.f28409id;
             } else if (l10 != null) {
                 j3 = l10.longValue();
             } else {

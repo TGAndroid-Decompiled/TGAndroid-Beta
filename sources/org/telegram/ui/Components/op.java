@@ -52,9 +52,9 @@ public final class op extends ReplacementSpan {
             case 1:
                 return ((y90) this.f38148b).f42432y;
             case 2:
-                return (int) ((org.telegram.ui.ug0) this.f38148b).f52560j2;
+                return (int) ((org.telegram.ui.vg0) this.f38148b).f52780j2;
             case 3:
-                return (int) ((wg.d1) this.f38148b).f59750o2;
+                return (int) ((wg.d1) this.f38148b).f59751o2;
             default:
                 return ((org.telegram.messenger.g6) this.f38148b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
         }

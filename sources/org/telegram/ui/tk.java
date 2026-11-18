@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class tk implements org.telegram.ui.Components.qi {
-    public final bn f52301a;
+    public final bn f52296a;
 
     public tk(bn bnVar) {
-        this.f52301a = bnVar;
+        this.f52296a = bnVar;
     }
 
     @Override
     public final void K0() {
-        this.f52301a.f45932a0.U();
+        this.f52296a.f45923a0.U();
     }
 
     @Override
@@ -23,22 +23,22 @@ public final class tk implements org.telegram.ui.Components.qi {
 
     @Override
     public final void f0(org.telegram.ui.Components.eh ehVar) {
-        this.f52301a.y8(ehVar);
+        this.f52296a.y8(ehVar);
     }
 
     @Override
     public final boolean g0() {
-        return this.f52301a.sa();
+        return this.f52296a.sa();
     }
 
     @Override
     public final void h1(TLRPC.User user) {
         String o4 = org.telegram.messenger.o10.o(user);
-        bn bnVar = this.f52301a;
-        if (bnVar.f45932a0 != null && user != null && !TextUtils.isEmpty(o4)) {
-            rj rjVar = bnVar.f45932a0;
+        bn bnVar = this.f52296a;
+        if (bnVar.f45923a0 != null && user != null && !TextUtils.isEmpty(o4)) {
+            rj rjVar = bnVar.f45923a0;
             rjVar.setFieldText("@" + o4 + " ");
-            bnVar.f45932a0.e1();
+            bnVar.f45923a0.e1();
         }
     }
 
@@ -60,12 +60,12 @@ public final class tk implements org.telegram.ui.Components.qi {
         boolean z18;
         String str2;
         TLRPC.Message message;
-        bn bnVar = this.f52301a;
+        bn bnVar = this.f52296a;
         if (bnVar.getParentActivity() != null && (n2Var = bnVar.Y1) != null) {
             boolean z19 = n2Var.B1;
             org.telegram.messenger.fj fjVar = n2Var.F3;
             bnVar.H5 = fjVar;
-            if (fjVar != null && (message = fjVar.f23968k) != null) {
+            if (fjVar != null && (message = fjVar.f23965k) != null) {
                 message.invert_media = z12;
             }
             if (i7 != 8 && i7 != 7 && (i7 != 4 || n2Var.f39670e2.getSelectedPhotos().isEmpty())) {
@@ -98,55 +98,55 @@ public final class tk implements org.telegram.ui.Components.qi {
                         } else {
                             org.telegram.messenger.ef efVar = (org.telegram.messenger.ef) selectedPhotos.get(selectedPhotosOrder.get(i17));
                             ?? obj = new Object();
-                            obj.f28212b = efVar.h;
+                            obj.f28210b = efVar.h;
                             boolean d = efVar.d();
-                            obj.f28224p = d;
-                            boolean z20 = efVar.f27849b;
+                            obj.f28222p = d;
+                            boolean z20 = efVar.f27847b;
                             if (z19 && d) {
-                                obj.f28224p = false;
+                                obj.f28222p = false;
                                 z20 = false;
                             }
                             if (!z20 && (str2 = efVar.h) != null) {
-                                obj.f28213c = str2;
+                                obj.f28211c = str2;
                                 if (!z19 && efVar.c()) {
-                                    obj.f28232y = efVar.clone();
+                                    obj.f28230y = efVar.clone();
                                 }
                             } else {
                                 String str3 = efVar.I;
                                 if (str3 != null) {
-                                    obj.f28213c = str3;
+                                    obj.f28211c = str3;
                                 }
                             }
-                            obj.f28214e = efVar.f27850c;
-                            obj.f28215f = efVar.f27853g;
-                            obj.f28216g = efVar.f27851e;
-                            obj.f28223o = z20;
-                            obj.f28225q = efVar.j();
+                            obj.f28212e = efVar.f27848c;
+                            obj.f28213f = efVar.f27851g;
+                            obj.f28214g = efVar.f27849e;
+                            obj.f28221o = z20;
+                            obj.f28223q = efVar.j();
                             hashMap2 = selectedPhotos;
                             z17 = z19;
-                            obj.f28233z = efVar.f27858m;
+                            obj.f28231z = efVar.f27856m;
                             obj.A = efVar.P;
-                            CharSequence charSequence = efVar.f27848a;
+                            CharSequence charSequence = efVar.f27846a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
                             } else {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f28217i = efVar.f27859n;
-                            obj.f28218j = efVar.f27863r;
-                            obj.h = efVar.f27868x;
-                            obj.f28219k = efVar.f27864s;
-                            obj.f28226r = efVar.L;
-                            obj.f28228t = org.telegram.messenger.zy.h(efVar.f27848a);
-                            obj.f28229u = efVar.M;
-                            obj.f28230w = efVar.N;
+                            obj.f28215i = efVar.f27857n;
+                            obj.f28216j = efVar.f27861r;
+                            obj.h = efVar.f27866x;
+                            obj.f28217k = efVar.f27862s;
+                            obj.f28224r = efVar.L;
+                            obj.f28226t = org.telegram.messenger.zy.h(efVar.f27846a);
+                            obj.f28227u = efVar.M;
+                            obj.f28228w = efVar.N;
                             if (!z17 && efVar.c()) {
                                 z18 = true;
                             } else {
                                 z18 = false;
                             }
-                            obj.f28231x = z18;
+                            obj.f28229x = z18;
                             arrayList2.add(obj);
                             efVar.e();
                         }
@@ -157,24 +157,24 @@ public final class tk implements org.telegram.ui.Components.qi {
                     HashMap<Object, Object> hashMap3 = selectedPhotos;
                     boolean z21 = z19;
                     if (i14 == 0) {
-                        bnVar.D8(((org.telegram.messenger.yy) arrayList2.get(0)).d, ((org.telegram.messenger.yy) arrayList2.get(0)).f28217i);
-                        z14 = ((org.telegram.messenger.yy) arrayList2.get(0)).f28228t;
+                        bnVar.D8(((org.telegram.messenger.yy) arrayList2.get(0)).d, ((org.telegram.messenger.yy) arrayList2.get(0)).f28215i);
+                        z14 = ((org.telegram.messenger.yy) arrayList2.get(0)).f28226t;
                     } else {
                         z14 = false;
                     }
                     org.telegram.messenger.fj fjVar2 = bnVar.H5;
                     if (fjVar2 != null && fjVar2.p5()) {
-                        org.telegram.messenger.kj kjVar = bnVar.f46250y5;
+                        org.telegram.messenger.kj kjVar = bnVar.f46241y5;
                         if (kjVar == null) {
-                            kjVar = org.telegram.messenger.kj.b(bnVar.H5.f23968k.suggested_post);
+                            kjVar = org.telegram.messenger.kj.b(bnVar.H5.f23965k.suggested_post);
                         }
                         org.telegram.messenger.kj kjVar2 = kjVar;
                         org.telegram.messenger.c accountInstance = bnVar.getAccountInstance();
                         int i18 = ceil;
-                        long j11 = bnVar.f46085l6;
+                        long j11 = bnVar.f46076l6;
                         org.telegram.messenger.fj fjVar3 = bnVar.H5;
                         int i19 = i14;
-                        org.telegram.messenger.fj fjVar4 = bnVar.f46096m4;
+                        org.telegram.messenger.fj fjVar4 = bnVar.f46087m4;
                         rm rmVar = bnVar.D5;
                         if (i7 != 4 && !z13) {
                             c11 = 4;
@@ -194,16 +194,16 @@ public final class tk implements org.telegram.ui.Components.qi {
                         i13 = i14;
                         c10 = 4;
                         org.telegram.messenger.c accountInstance2 = bnVar.getAccountInstance();
-                        long j12 = bnVar.f46085l6;
+                        long j12 = bnVar.f46076l6;
                         org.telegram.messenger.fj fjVar5 = bnVar.F5;
-                        org.telegram.messenger.fj fjVar6 = bnVar.f46096m4;
+                        org.telegram.messenger.fj fjVar6 = bnVar.f46087m4;
                         rm rmVar2 = bnVar.D5;
                         if (i7 != 4 && !z13) {
                             z15 = false;
                         } else {
                             z15 = true;
                         }
-                        org.telegram.messenger.zy.X(accountInstance2, arrayList2, j12, fjVar5, fjVar6, null, rmVar2, z15, z10, bnVar.H5, null, z11, i10, i11, z14, null, bnVar.Y8(), j3, z12, j10, bnVar.j9(), bnVar.f46250y5, null, false);
+                        org.telegram.messenger.zy.X(accountInstance2, arrayList2, j12, fjVar5, fjVar6, null, rmVar2, z15, z10, bnVar.H5, null, z11, i10, i11, z14, null, bnVar.Y8(), j3, z12, j10, bnVar.j9(), bnVar.f46241y5, null, false);
                     }
                     i14 = i13 + 1;
                     ceil = i12;
@@ -212,15 +212,15 @@ public final class tk implements org.telegram.ui.Components.qi {
                 }
                 hashMap = selectedPhotos;
                 bnVar.L6();
-                bnVar.f45932a0.setFieldText("");
+                bnVar.f45923a0.setFieldText("");
             } else {
                 hashMap = selectedPhotos;
             }
             if (i10 != 0) {
-                if (bnVar.f46032h4 == -1) {
-                    bnVar.f46032h4 = 0;
+                if (bnVar.f46023h4 == -1) {
+                    bnVar.f46023h4 = 0;
                 }
-                bnVar.f46032h4 += hashMap.size();
+                bnVar.f46023h4 += hashMap.size();
                 bnVar.md(true);
             }
         }

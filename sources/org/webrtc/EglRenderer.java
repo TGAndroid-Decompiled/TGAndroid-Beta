@@ -16,7 +16,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.a8;
 import org.telegram.ui.Components.sv0;
-import org.telegram.ui.a80;
+import org.telegram.ui.b80;
 import org.webrtc.EglBase;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.GlUtil;
@@ -592,7 +592,7 @@ public class EglRenderer implements VideoSink {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
                     handler.removeCallbacks(this.eglSurfaceCreationRunnable);
-                    this.renderThreadHandler.postAtFrontOfQueue(new a80(this, z10, runnable, 15));
+                    this.renderThreadHandler.postAtFrontOfQueue(new b80(this, z10, runnable, 15));
                 } else if (runnable != null) {
                     runnable.run();
                 }

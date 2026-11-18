@@ -11,12 +11,12 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.z41;
 public final class j implements q10 {
-    public final int f19948a;
-    public final p f19949b;
+    public final int f19945a;
+    public final p f19946b;
 
     public j(p pVar, int i7) {
-        this.f19948a = i7;
-        this.f19949b = pVar;
+        this.f19945a = i7;
+        this.f19946b = pVar;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class j implements q10 {
         String str2;
         int i7;
         TLRPC.ChatPhoto chatPhoto;
-        int i10 = this.f19948a;
+        int i10 = this.f19945a;
         int i11 = 0;
-        p pVar = this.f19949b;
+        p pVar = this.f19946b;
         switch (i10) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
@@ -42,7 +42,7 @@ public final class j implements q10 {
             default:
                 ArrayList arrayList2 = (ArrayList) obj;
                 z41 z41Var = (z41) obj2;
-                arrayList2.add(l41.l(140, pVar.f19987s));
+                arrayList2.add(l41.l(140, pVar.f19984s));
                 if (v3.y(1, pVar.J)) {
                     TLRPC.Chat chat = pVar.J;
                     if (chat != null && (chatPhoto = chat.photo) != null && !(chatPhoto instanceof TLRPC.TL_chatPhotoEmpty)) {
@@ -55,16 +55,16 @@ public final class j implements q10 {
                     arrayList2.add(c10);
                     arrayList2.add(l41.E(2, org.telegram.messenger.g0.L(14.0f)));
                     arrayList2.add(l41.t(0, gd.M0(2131751863, null)));
-                    arrayList2.add(l41.j(7, pVar.f19986r));
+                    arrayList2.add(l41.j(7, pVar.f19983r));
                     arrayList2.add(l41.E(1, org.telegram.messenger.g0.L(14.0f)));
                 }
                 if (v3.w(2, pVar.J)) {
                     arrayList2.add(l41.t(3, gd.M0(2131751861, null)));
                     l41 y10 = l41.y(150, gd.M0(2131751832, null), gd.M0(2131751831, null));
-                    y10.L(pVar.f19985n);
+                    y10.L(pVar.f19982n);
                     arrayList2.add(y10);
                     l41 y11 = l41.y(151, gd.M0(2131751830, null), gd.M0(2131751829, null));
-                    y11.L(!pVar.f19985n);
+                    y11.L(!pVar.f19982n);
                     arrayList2.add(y11);
                     arrayList2.add(l41.E(4, org.telegram.messenger.g0.L(14.0f)));
                 }

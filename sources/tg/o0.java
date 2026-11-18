@@ -100,7 +100,7 @@ public abstract class o0 extends FrameLayout {
         TextView m10 = org.telegram.ui.Cells.c0.m(frameLayout, textView, ma.d(-2, 44.0f, 3, -8.0f, 0.0f, 0.0f, 0.0f), context);
         this.f58068w = m10;
         i5.c.x(m10, 1, 15.0f);
-        int i11 = n6.f29645qg;
+        int i11 = n6.f29643qg;
         org.telegram.ui.Cells.y h02 = n6.h0(n6.r1(0.15f, n6.x0(null, i11, false)), 3, -1);
         q6 K = u6.K(0.15f, i11);
         m10.setBackground(h02);
@@ -161,21 +161,21 @@ public abstract class o0 extends FrameLayout {
         sg.u0 u0Var = this.f58063e;
         we weVar = this.d;
         if (weVar != null) {
-            float f22 = weVar.f27678c * 1.0f;
+            float f22 = weVar.f27676c * 1.0f;
             int measuredWidth = u0Var.getMeasuredWidth();
             int measuredHeight = u0Var.getMeasuredHeight();
             if (measuredWidth != 0 && measuredHeight != 0) {
-                int i7 = weVar.f27683k;
+                int i7 = weVar.f27681k;
                 if (i7 == 90 || i7 == 270) {
                     measuredHeight = measuredWidth;
                     measuredWidth = measuredHeight;
                 }
-                float max = Math.max(f14 / ((int) (weVar.f27679e * f18)), f15 / ((int) (weVar.f27680f * f19)));
+                float max = Math.max(f14 / ((int) (weVar.f27677e * f18)), f15 / ((int) (weVar.f27678f * f19)));
                 f16 = f22 * max;
-                float D = com.google.android.gms.internal.vision.e2.D(weVar.f27676a, measuredWidth, f10, max);
-                float f23 = weVar.f27678c;
+                float D = com.google.android.gms.internal.vision.e2.D(weVar.f27674a, measuredWidth, f10, max);
+                float f23 = weVar.f27676c;
                 f11 += D * f23;
-                f20 += weVar.f27677b * measuredHeight * f10 * max * f23;
+                f20 += weVar.f27675b * measuredHeight * f10 * max * f23;
                 f17 = weVar.d + i7 + f13;
             } else {
                 return;
@@ -204,18 +204,18 @@ public abstract class o0 extends FrameLayout {
         if (view == this.f58063e && (weVar = this.d) != null) {
             canvas.save();
             if (!this.f58065n) {
-                i7 = org.telegram.messenger.g0.f24115m;
+                i7 = org.telegram.messenger.g0.f24112m;
             }
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i7;
             int measuredWidth = view.getMeasuredWidth();
             int measuredHeight = view.getMeasuredHeight();
-            int i10 = weVar.f27683k;
+            int i10 = weVar.f27681k;
             if (i10 == 90 || i10 == 270) {
                 measuredHeight = measuredWidth;
                 measuredWidth = measuredHeight;
             }
-            int scaleX = (int) ((view.getScaleX() * (measuredWidth * weVar.f27679e)) / weVar.f27678c);
-            int scaleY = (int) ((view.getScaleY() * (measuredHeight * weVar.f27680f)) / weVar.f27678c);
+            int scaleX = (int) ((view.getScaleX() * (measuredWidth * weVar.f27677e)) / weVar.f27676c);
+            int scaleY = (int) ((view.getScaleY() * (measuredHeight * weVar.f27678f)) / weVar.f27676c);
             float ceil = ((float) Math.ceil((getMeasuredWidth() - scaleX) / 2.0f)) + this.F;
             float additionalBottom = (((getAdditionalBottom() + ((getMeasuredHeight() - currentActionBarHeight) - org.telegram.messenger.g0.L(48.0f))) - scaleY) / 2.0f) + org.telegram.messenger.g0.L(8.0f) + i7 + this.G;
             canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, additionalBottom), Math.min(ceil + scaleX, getMeasuredWidth()), Math.min(getMeasuredHeight(), additionalBottom + scaleY));
@@ -269,7 +269,7 @@ public abstract class o0 extends FrameLayout {
         int i13 = i11 - i7;
         int i14 = i12 - i10;
         if (!this.f58065n) {
-            Typeface typeface = org.telegram.messenger.g0.f24093a;
+            Typeface typeface = org.telegram.messenger.g0.f24090a;
         }
         sg.u0 u0Var = this.f58063e;
         int ceil = (int) Math.ceil((i13 - u0Var.getMeasuredWidth()) / 2.0f);
@@ -287,7 +287,7 @@ public abstract class o0 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
         setMeasuredDimension(size, size2);
-        int i11 = org.telegram.messenger.g0.f24121q.y;
+        int i11 = org.telegram.messenger.g0.f24118q.y;
         Bitmap bitmap = this.f58064f;
         if (bitmap != null) {
             f11 = bitmap.getWidth();

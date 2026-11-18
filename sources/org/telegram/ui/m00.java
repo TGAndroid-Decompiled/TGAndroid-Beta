@@ -27,7 +27,7 @@ public abstract class m00 {
         org.telegram.ui.Components.kp0 kp0Var;
         int i12;
         org.telegram.ui.ActionBar.x2 x2Var = new org.telegram.ui.ActionBar.x2(1, (Context) activity, i6Var, false);
-        x2Var.Q(org.telegram.ui.ActionBar.n6.f29469h5);
+        x2Var.Q(org.telegram.ui.ActionBar.n6.f29467h5);
         LinearLayout linearLayout = new LinearLayout(activity);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
@@ -78,7 +78,7 @@ public abstract class m00 {
                 str5 = a8.p0.p("(", f10, ")");
             }
             str3 = org.telegram.messenger.gd.a0(null, null, 2131750498, Q, f11, str5);
-            b10 = p5.c.m(org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).X2, "/", str, new StringBuilder());
+            b10 = p5.c.m(org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).X2, "/", str, new StringBuilder());
             str4 = a02;
         } else if (i7 == 1) {
             pf.b c10 = pf.b.c();
@@ -110,9 +110,9 @@ public abstract class m00 {
         org.telegram.ui.Components.k80 k80Var = new org.telegram.ui.Components.k80(activity, null);
         k80Var.setTypeface(org.telegram.messenger.g0.o());
         k80Var.setGravity(17);
-        int i14 = org.telegram.ui.ActionBar.n6.f29504j5;
+        int i14 = org.telegram.ui.ActionBar.n6.f29502j5;
         org.telegram.ui.ActionBar.u6.U(k80Var, i14, i6Var);
-        org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.f29596o6, i6Var);
+        org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.f29594o6, i6Var);
         k80Var.setTextSize(1, 16.0f);
         k80Var.setText(T2);
         linearLayout.addView(k80Var, c8.ma.t(-1, -2, 1, 42, 0, 42, 0));

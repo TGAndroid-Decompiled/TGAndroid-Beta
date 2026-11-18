@@ -60,7 +60,7 @@ public final class r80 extends View implements org.telegram.ui.ActionBar.c6 {
 
     @Override
     public final void updateColors() {
-        this.f39062a.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29788y6, false));
+        this.f39062a.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29786y6, false));
         this.f39063b.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.zj, false));
         invalidate();
     }

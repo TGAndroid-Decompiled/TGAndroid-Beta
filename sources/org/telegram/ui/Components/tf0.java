@@ -20,12 +20,12 @@ public final class tf0 implements ui.a, si.a {
         boolean z10 = f10.f56717a;
         dh.c cVar = this.f39990a;
         if (!z10) {
-            return cVar.f8376c;
+            return cVar.f8373c;
         }
         if (f10.f56718b && Build.VERSION.SDK_INT >= 33) {
-            return cVar.f8374a;
+            return cVar.f8371a;
         }
-        return cVar.f8375b;
+        return cVar.f8372b;
     }
 
     @Override

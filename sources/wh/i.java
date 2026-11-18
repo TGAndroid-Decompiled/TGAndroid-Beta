@@ -10,23 +10,23 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.fj;
 import org.telegram.messenger.j10;
-import org.telegram.ui.Cells.q1;
+import org.telegram.ui.Cells.r1;
 public final class i extends View {
-    public final HashMap f59927a;
-    public final ArrayList f59928b;
-    public final ArrayList f59929c;
+    public final HashMap f59928a;
+    public final ArrayList f59929b;
+    public final ArrayList f59930c;
     public final int d;
 
     public i(Activity activity) {
         super(activity);
-        this.f59927a = new HashMap();
-        this.f59928b = new ArrayList();
-        this.f59929c = new ArrayList();
-        this.d = j10.f24773t0;
+        this.f59928a = new HashMap();
+        this.f59929b = new ArrayList();
+        this.f59930c = new ArrayList();
+        this.d = j10.f24770t0;
     }
 
-    public static String b(q1 q1Var) {
-        fj messageObject = q1Var.getMessageObject();
+    public static String b(r1 r1Var) {
+        fj messageObject = r1Var.getMessageObject();
         if (messageObject == null) {
             return null;
         }
@@ -34,7 +34,7 @@ public final class i extends View {
     }
 
     public final boolean a() {
-        for (Map.Entry entry : this.f59927a.entrySet()) {
+        for (Map.Entry entry : this.f59928a.entrySet()) {
             if (!((h) entry.getValue()).P) {
                 return true;
             }
@@ -53,22 +53,22 @@ public final class i extends View {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        HashMap hashMap = this.f59927a;
+        HashMap hashMap = this.f59928a;
         for (Map.Entry entry : hashMap.entrySet()) {
             ((h) entry.getValue()).d();
         }
         hashMap.clear();
-        this.f59928b.clear();
+        this.f59929b.clear();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        HashMap hashMap = this.f59927a;
+        HashMap hashMap = this.f59928a;
         for (Map.Entry entry : hashMap.entrySet()) {
             ((h) entry.getValue()).draw(canvas);
         }
-        ArrayList arrayList = this.f59928b;
+        ArrayList arrayList = this.f59929b;
         if (!arrayList.isEmpty()) {
             int size = arrayList.size();
             int i7 = 0;
@@ -87,7 +87,7 @@ public final class i extends View {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        for (Map.Entry entry : this.f59927a.entrySet()) {
+        for (Map.Entry entry : this.f59928a.entrySet()) {
             ((h) entry.getValue()).setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
     }

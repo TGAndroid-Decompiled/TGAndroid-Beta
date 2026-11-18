@@ -8,15 +8,15 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 public abstract class j0 extends FrameLayout {
-    public final int f30856a;
-    public final ImageView f30857b;
-    public final ImageView f30858c;
+    public final int f30865a;
+    public final ImageView f30866b;
+    public final ImageView f30867c;
     public final i0 d;
 
     public j0(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f30857b = imageView;
+        this.f30866b = imageView;
         addView(imageView, c8.ma.d(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
         i0 i0Var = new i0(0, context, null, true);
         this.d = i0Var;
@@ -25,20 +25,20 @@ public abstract class j0 extends FrameLayout {
         i0Var.setImportantForAccessibility(2);
         addView(i0Var, c8.ma.d(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f30858c = imageView2;
+        this.f30867c = imageView2;
         addView(imageView2, c8.ma.d(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
         imageView.setImageResource(2131232077);
         imageView2.setImageResource(2131232076);
-        this.f30856a = 48;
+        this.f30865a = 48;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i7 = org.telegram.ui.ActionBar.n6.f29561m6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29559m6;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        org.telegram.ui.ActionBar.u6.s(this.f30857b, i7, null, mode);
-        org.telegram.ui.ActionBar.u6.s(this.f30858c, i7, null, mode);
+        org.telegram.ui.ActionBar.u6.s(this.f30866b, i7, null, mode);
+        org.telegram.ui.ActionBar.u6.s(this.f30867c, i7, null, mode);
     }
 
     @Override
@@ -49,7 +49,7 @@ public abstract class j0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f30856a), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f30865a), 1073741824));
     }
 
     @Override

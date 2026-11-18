@@ -50,7 +50,7 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.s4;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.x2;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.PollVotesAlert$UserCell;
 import org.telegram.ui.Components.cf0;
@@ -78,7 +78,7 @@ import org.telegram.ui.p40;
 import org.telegram.ui.p50;
 import org.telegram.ui.qr;
 import org.telegram.ui.wc1;
-import org.telegram.ui.wf0;
+import org.telegram.ui.xf0;
 import org.telegram.ui.xs0;
 import p4.e1;
 import p4.i1;
@@ -86,21 +86,21 @@ import p4.k1;
 import p4.o1;
 import v4.f1;
 public final class m0 implements Runnable {
-    public final int f3311a;
-    public final Object f3312b;
-    public final int f3313c;
+    public final int f3312a;
+    public final Object f3313b;
+    public final int f3314c;
     public final Object d;
-    public final Object f3314e;
-    public final Object f3315f;
+    public final Object f3315e;
+    public final Object f3316f;
     public final Object h;
 
     public m0(int i7, int i10, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject) {
-        this.f3311a = i10;
-        this.f3312b = tLObject;
-        this.f3313c = i7;
+        this.f3312a = i10;
+        this.f3313b = tLObject;
+        this.f3314c = i7;
         this.d = obj;
-        this.f3314e = obj2;
-        this.f3315f = obj3;
+        this.f3315e = obj2;
+        this.f3316f = obj3;
         this.h = obj4;
     }
 
@@ -109,19 +109,19 @@ public final class m0 implements Runnable {
         ?? r82;
         boolean z10;
         f1 T;
-        int i7 = this.f3311a;
+        int i7 = this.f3312a;
         char c10 = 2;
-        final int i10 = this.f3313c;
+        final int i10 = this.f3314c;
         int i11 = 0;
         boolean z11 = false;
         r7 = false;
         boolean z12 = false;
         int i12 = 0;
-        Object obj = this.f3314e;
+        Object obj = this.f3315e;
         Object obj2 = this.h;
-        Object obj3 = this.f3315f;
+        Object obj3 = this.f3316f;
         Object obj4 = this.d;
-        Object obj5 = this.f3312b;
+        Object obj5 = this.f3313b;
         switch (i7) {
             case 0:
                 TLObject tLObject = (TLObject) obj5;
@@ -132,7 +132,7 @@ public final class m0 implements Runnable {
                 if (tLObject instanceof TLRPC.TL_photos_photo) {
                     TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
                     mp.u1(i10).f4(tL_photos_photo.users, false);
-                    TLRPC.User c22 = mp.u1(i10).c2(Long.valueOf(j10.i(i10).f24792n));
+                    TLRPC.User c22 = mp.u1(i10).c2(Long.valueOf(j10.i(i10).f24789n));
                     TLRPC.Photo photo = tL_photos_photo.photo;
                     if ((photo instanceof TLRPC.TL_photo) && c22 != null) {
                         TLRPC.PhotoSize w10 = w7.w(photo.sizes, 100, false, null, false);
@@ -199,7 +199,7 @@ public final class m0 implements Runnable {
                 new lc(x2VarArr[0].F, i6Var).t(gd.M0(2131748721, null), null).k(false);
                 return;
             case 2:
-                a8.a((a8) obj4, (TLObject) obj5, this.f3314e, (ArrayList) obj3, (boolean[]) obj2, this.f3313c);
+                a8.a((a8) obj4, (TLObject) obj5, this.f3315e, (ArrayList) obj3, (boolean[]) obj2, this.f3314c);
                 return;
             case 3:
                 t3 t3Var = (t3) obj4;
@@ -207,13 +207,13 @@ public final class m0 implements Runnable {
                 di.h hVar = (di.h) obj;
                 ArrayList arrayList = (ArrayList) obj3;
                 HashSet hashSet = (HashSet) obj2;
-                HashSet hashSet2 = t3Var.f26947n;
-                ArrayList arrayList2 = t3Var.f26939e;
+                HashSet hashSet2 = t3Var.f26945n;
+                ArrayList arrayList2 = t3Var.f26937e;
                 if (t3Var.G.remove(Integer.valueOf(i10))) {
                     if (tLObject3 != null) {
                         TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject3;
-                        mp.u1(t3Var.C.f23221a).f4(groupparticipants.users, false);
-                        mp.u1(t3Var.C.f23221a).Z3(groupparticipants.chats, false);
+                        mp.u1(t3Var.C.f23218a).f4(groupparticipants.users, false);
+                        mp.u1(t3Var.C.f23218a).Z3(groupparticipants.chats, false);
                         int size = groupparticipants.participants.size();
                         int i13 = 0;
                         while (i13 < size) {
@@ -231,26 +231,26 @@ public final class m0 implements Runnable {
                             if (hashSet2.contains(Long.valueOf(B1))) {
                                 Long valueOf = Long.valueOf(B1);
                                 hashSet2.remove(valueOf);
-                                t3Var.f26943j.remove(valueOf);
+                                t3Var.f26941j.remove(valueOf);
                             }
                             i13++;
                             c10 = c11;
                         }
                         char c12 = c10;
-                        if (t3Var.f26937b.participants_count < t3Var.d.m()) {
-                            t3Var.f26937b.participants_count = t3Var.d.m();
+                        if (t3Var.f26935b.participants_count < t3Var.d.m()) {
+                            t3Var.f26935b.participants_count = t3Var.d.m();
                         }
                         t3Var.z();
-                        ks f10 = ks.f(t3Var.C.f23221a);
-                        Long valueOf2 = Long.valueOf(t3Var.f26938c);
-                        Long valueOf3 = Long.valueOf(t3Var.f26937b.f28415id);
+                        ks f10 = ks.f(t3Var.C.f23218a);
+                        Long valueOf2 = Long.valueOf(t3Var.f26936c);
+                        Long valueOf3 = Long.valueOf(t3Var.f26935b.f28413id);
                         Object[] objArr = new Object[3];
                         objArr[0] = valueOf2;
                         objArr[1] = valueOf3;
                         objArr[c12] = Boolean.FALSE;
                         f10.k(166, objArr);
                         if (hVar != null) {
-                            ((VoIPService) hVar.f8892c).lambda$createGroupInstance$69(hVar.f8891b, (int[]) hVar.d, arrayList);
+                            ((VoIPService) hVar.f8889c).lambda$createGroupInstance$69(hVar.f8888b, (int[]) hVar.d, arrayList);
                         } else {
                             t3Var.w();
                         }
@@ -271,7 +271,7 @@ public final class m0 implements Runnable {
                     while (i11 < arrayList3.size()) {
                         Context context2 = context;
                         ri riVar2 = riVar;
-                        riVar2.m2(context2, 0, h2Var, null, true, (TLObject) arrayList3.get(i11), ((TLRPC.TL_messages_stickerSet) arrayList3.get(i11)).set, null, this.f3313c, false);
+                        riVar2.m2(context2, 0, h2Var, null, true, (TLObject) arrayList3.get(i11), ((TLRPC.TL_messages_stickerSet) arrayList3.get(i11)).set, null, this.f3314c, false);
                         i11++;
                         riVar = riVar2;
                         context = context2;
@@ -284,8 +284,8 @@ public final class m0 implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                 TLObject tLObject4 = (TLObject) obj5;
                 a1 a1Var = (a1) obj2;
-                p50Var.f50756r = false;
-                if (!((e4) obj).f47126e.isEmpty()) {
+                p50Var.f50712r = false;
+                if (!((e4) obj).f47049e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject4;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -293,7 +293,7 @@ public final class m0 implements Runnable {
                             mp.u1(i10).Z3(tL_contacts_resolvedPeer.chats, false);
                             tr.a0(i10).m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            p50Var.f50755n = chat;
+                            p50Var.f50711n = chat;
                             if (chat.left && !chat.kicked) {
                                 a1Var.a(0, false);
                                 return;
@@ -316,7 +316,7 @@ public final class m0 implements Runnable {
                 i6 i6Var2 = (i6) obj3;
                 p40 p40Var = (p40) obj2;
                 boolean z13 = tLObject5 instanceof TLRPC.Updates;
-                int i14 = this.f3313c;
+                int i14 = this.f3314c;
                 if (z13) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject5;
                     mp.u1(i14).f4(updates.users, false);
@@ -332,7 +332,7 @@ public final class m0 implements Runnable {
                     u1Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f28422id = groupCall.f28415id;
+                        tL_inputGroupCall.f28420id = groupCall.f28413id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         i9.n0(context3, i14, tL_inputGroupCall, groupCall.invite_link, i6Var2, true, true);
                         org.telegram.messenger.g0.g3(p40Var);
@@ -347,7 +347,7 @@ public final class m0 implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f28422id = groupCall2.f28415id;
+                    tL_inputGroupCall2.f28420id = groupCall2.f28413id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                     ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new gx(u1Var, context3, i14, exportgroupcallinvite, i6Var2, p40Var));
                     return;
@@ -360,14 +360,14 @@ public final class m0 implements Runnable {
                 new b21((Context) obj5, (TLRPC.Chat) obj4, (TLRPC.User) obj, new ii(i10, (lr) obj3, 3), (i6) obj2).show();
                 return;
             case 8:
-                p9.a((p9) obj5, (Runnable[]) obj4, (Bitmap) obj, (f50) obj3, this.f3313c, (ia[]) obj2);
+                p9.a((p9) obj5, (Runnable[]) obj4, (Bitmap) obj, (f50) obj3, this.f3314c, (ia[]) obj2);
                 return;
             case 9:
                 ji.n nVar = (ji.n) obj4;
                 ArrayList arrayList4 = (ArrayList) obj3;
                 ji.g gVar = (ji.g) obj2;
                 ChatActivityEnterView chatActivityEnterView = ((pf) obj5).f38384a;
-                ne0 a82 = chatActivityEnterView.D3.a8(nVar, (b5) obj);
+                ne0 a82 = chatActivityEnterView.D3.a8(nVar, (c5) obj);
                 if (a82 == null) {
                     org.telegram.messenger.g0.E2(nVar);
                     return;
@@ -403,7 +403,7 @@ public final class m0 implements Runnable {
                 arrayList7.remove(((Integer[]) obj)[i10]);
                 if (tLObject6 != null) {
                     TLRPC.TL_messages_votesList tL_messages_votesList = (TLRPC.TL_messages_votesList) tLObject6;
-                    mp.u1(df0Var.f30189a).f4(tL_messages_votesList.users, false);
+                    mp.u1(df0Var.f30187a).f4(tL_messages_votesList.users, false);
                     if (!tL_messages_votesList.votes.isEmpty()) {
                         arrayList5.add(new cf0(tL_messages_votesList, pollAnswerVoters.option));
                     }
@@ -473,7 +473,7 @@ public final class m0 implements Runnable {
                 df0Var.dismiss();
                 return;
             case 11:
-                qr.c0((qr) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, (TLObject) obj5, (TLRPC.FileLocation) obj2, this.f3313c);
+                qr.c0((qr) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, (TLObject) obj5, (TLRPC.FileLocation) obj2, this.f3314c);
                 return;
             case 12:
                 TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) obj5;
@@ -482,7 +482,7 @@ public final class m0 implements Runnable {
                 ei0 ei0Var = (ei0) obj3;
                 h2 h2Var2 = (h2) obj2;
                 if (!tL_urlAuthResultRequest.match_codes.isEmpty() && TextUtils.isEmpty(strArr[0])) {
-                    gi0.c(context5, this.f3313c, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new ph(22, strArr, ei0Var), true, new j2(0), h2Var2.getResourceProvider());
+                    gi0.c(context5, this.f3314c, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new ph(22, strArr, ei0Var), true, new j2(0), h2Var2.getResourceProvider());
                     return;
                 } else {
                     ei0Var.run();
@@ -493,28 +493,28 @@ public final class m0 implements Runnable {
                 List<Purchase> list = (List) obj;
                 y0 y0Var = (y0) obj3;
                 xs0 xs0Var = (xs0) obj2;
-                if (((f5.f) obj5).f11286a == 0) {
-                    wf0 wf0Var = new wf0(1, h2Var3);
-                    int i19 = this.f3313c;
+                if (((f5.f) obj5).f11283a == 0) {
+                    xf0 xf0Var = new xf0(1, h2Var3);
+                    int i19 = this.f3314c;
                     if (list != null && !list.isEmpty() && !j10.i(i19).q()) {
                         for (Purchase purchase : list) {
                             if (purchase.b().contains("telegram_premium")) {
                                 TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
                                 TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
                                 tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
-                                tL_dataJSON.data = purchase.f6115a;
+                                tL_dataJSON.data = purchase.f6112a;
                                 TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription = new TLRPC.TL_inputStorePaymentPremiumSubscription();
                                 tL_inputStorePaymentPremiumSubscription.restore = true;
                                 if (y0Var != null) {
                                     tL_inputStorePaymentPremiumSubscription.upgrade = true;
                                 }
                                 tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentPremiumSubscription;
-                                ConnectionsManager.getInstance(i19).sendRequest(tL_payments_assignPlayMarketTransaction, new y7(i19, wf0Var, h2Var3, tL_payments_assignPlayMarketTransaction), 66);
+                                ConnectionsManager.getInstance(i19).sendRequest(tL_payments_assignPlayMarketTransaction, new y7(i19, xf0Var, h2Var3, tL_payments_assignPlayMarketTransaction), 66);
                                 return;
                             }
                         }
                     }
-                    r1.i().d("telegram_premium", new f3(wf0Var, 5));
+                    r1.i().d("telegram_premium", new f3(xf0Var, 5));
                     TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
                     TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription2 = new TLRPC.TL_inputStorePaymentPremiumSubscription();
                     if (y0Var != null) {
@@ -531,7 +531,7 @@ public final class m0 implements Runnable {
                 f7 f7Var = (f7) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 boolean z15 = ((TLObject) obj5) instanceof TLRPC.TL_boolTrue;
-                int i20 = this.f3313c;
+                int i20 = this.f3314c;
                 if (z15) {
                     try {
                         JSONObject jSONObject = new JSONObject();
@@ -549,7 +549,7 @@ public final class m0 implements Runnable {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(v0Var.getContext());
                     String M0 = gd.M0(2131752887, null);
-                    u1 u1Var2 = alertDialog$Builder.f28746a;
+                    u1 u1Var2 = alertDialog$Builder.f28744a;
                     u1Var2.S = M0;
                     u1Var2.U = gd.M0(2131752888, null);
                     alertDialog$Builder.k(gd.M0(2131752898, null), new wc1(2, v0Var, strArr2));
@@ -563,7 +563,7 @@ public final class m0 implements Runnable {
                 k1 k1Var = (k1) obj;
                 String str = k1Var.f55321b;
                 p4.d0 d0Var = (p4.d0) obj3;
-                int i21 = this.f3313c;
+                int i21 = this.f3314c;
                 p4.l lVar = (p4.l) obj2;
                 ab.c0 c0Var = e1Var.f55210b;
                 if (c0Var.A(vVar)) {
@@ -616,102 +616,102 @@ public final class m0 implements Runnable {
     }
 
     public m0(a8 a8Var, TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i7) {
-        this.f3311a = 2;
+        this.f3312a = 2;
         this.d = a8Var;
-        this.f3312b = tLObject;
-        this.f3314e = obj;
-        this.f3315f = arrayList;
+        this.f3313b = tLObject;
+        this.f3315e = obj;
+        this.f3316f = arrayList;
         this.h = zArr;
-        this.f3313c = i7;
+        this.f3314c = i7;
     }
 
     public m0(hi.d dVar, TLObject tLObject, x2[] x2VarArr, i6 i6Var, int i7, TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite) {
-        this.f3311a = 1;
+        this.f3312a = 1;
         this.d = dVar;
-        this.f3312b = tLObject;
-        this.f3314e = x2VarArr;
-        this.f3315f = i6Var;
-        this.f3313c = i7;
+        this.f3313b = tLObject;
+        this.f3315e = x2VarArr;
+        this.f3316f = i6Var;
+        this.f3314c = i7;
         this.h = tL_messages_checkChatInvite;
     }
 
     public m0(Object obj, Object obj2, Object obj3, int i7, Object obj4, Object obj5, int i10) {
-        this.f3311a = i10;
-        this.f3312b = obj;
+        this.f3312a = i10;
+        this.f3313b = obj;
         this.d = obj2;
-        this.f3314e = obj3;
-        this.f3313c = i7;
-        this.f3315f = obj4;
+        this.f3315e = obj3;
+        this.f3314c = i7;
+        this.f3316f = obj4;
         this.h = obj5;
     }
 
     public m0(Object obj, Object obj2, Object obj3, Object obj4, int i7, Object obj5, int i10) {
-        this.f3311a = i10;
-        this.f3312b = obj;
+        this.f3312a = i10;
+        this.f3313b = obj;
         this.d = obj2;
-        this.f3314e = obj3;
-        this.f3315f = obj4;
-        this.f3313c = i7;
+        this.f3315e = obj3;
+        this.f3316f = obj4;
+        this.f3314c = i7;
         this.h = obj5;
     }
 
     public m0(t3 t3Var, int i7, TLObject tLObject, di.h hVar, ArrayList arrayList, HashSet hashSet) {
-        this.f3311a = 3;
+        this.f3312a = 3;
         this.d = t3Var;
-        this.f3313c = i7;
-        this.f3312b = tLObject;
-        this.f3314e = hVar;
-        this.f3315f = arrayList;
+        this.f3314c = i7;
+        this.f3313b = tLObject;
+        this.f3315e = hVar;
+        this.f3316f = arrayList;
         this.h = hashSet;
     }
 
     public m0(ri riVar, boolean[] zArr, ArrayList arrayList, Context context, h2 h2Var, int i7) {
-        this.f3311a = 4;
-        this.f3312b = riVar;
+        this.f3312a = 4;
+        this.f3313b = riVar;
         this.d = zArr;
-        this.f3314e = arrayList;
-        this.f3315f = context;
+        this.f3315e = arrayList;
+        this.f3316f = context;
         this.h = h2Var;
-        this.f3313c = i7;
+        this.f3314c = i7;
     }
 
     public m0(df0 df0Var, Integer[] numArr, int i7, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
-        this.f3311a = 10;
+        this.f3312a = 10;
         this.d = df0Var;
-        this.f3314e = numArr;
-        this.f3313c = i7;
-        this.f3312b = tLObject;
-        this.f3315f = arrayList;
+        this.f3315e = numArr;
+        this.f3314c = i7;
+        this.f3313b = tLObject;
+        this.f3316f = arrayList;
         this.h = pollAnswerVoters;
     }
 
     public m0(qr qrVar, TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i7) {
-        this.f3311a = 11;
+        this.f3312a = 11;
         this.d = qrVar;
-        this.f3314e = fileLocation;
-        this.f3315f = inputFile;
-        this.f3312b = tLObject;
+        this.f3315e = fileLocation;
+        this.f3316f = inputFile;
+        this.f3313b = tLObject;
         this.h = fileLocation2;
-        this.f3313c = i7;
+        this.f3314c = i7;
     }
 
     public m0(p50 p50Var, e4 e4Var, TLRPC.TL_error tL_error, TLObject tLObject, int i7, a1 a1Var) {
-        this.f3311a = 5;
+        this.f3312a = 5;
         this.d = p50Var;
-        this.f3314e = e4Var;
-        this.f3315f = tL_error;
-        this.f3312b = tLObject;
-        this.f3313c = i7;
+        this.f3315e = e4Var;
+        this.f3316f = tL_error;
+        this.f3313b = tLObject;
+        this.f3314c = i7;
         this.h = a1Var;
     }
 
     public m0(org.telegram.ui.web.v0 v0Var, TLObject tLObject, int i7, org.telegram.ui.web.s0 s0Var, f7 f7Var, TLRPC.TL_error tL_error) {
-        this.f3311a = 14;
+        this.f3312a = 14;
         this.d = v0Var;
-        this.f3312b = tLObject;
-        this.f3313c = i7;
-        this.f3314e = s0Var;
-        this.f3315f = f7Var;
+        this.f3313b = tLObject;
+        this.f3314c = i7;
+        this.f3315e = s0Var;
+        this.f3316f = f7Var;
         this.h = tL_error;
     }
 }

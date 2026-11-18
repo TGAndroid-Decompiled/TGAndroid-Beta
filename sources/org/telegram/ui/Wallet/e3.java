@@ -20,7 +20,7 @@ public class e3 extends org.telegram.ui.Components.sa implements org.telegram.ui
         this.f39541v1 = 0.1f;
         this.U1 = viewGroup;
         ck0 ck0Var = this.f39534o1;
-        int i7 = this.f30227u0;
+        int i7 = this.f30225u0;
         ck0Var.setPadding(i7, 0, i7, 0);
         updateColors();
         this.T1.O(false);
@@ -34,7 +34,7 @@ public class e3 extends org.telegram.ui.Components.sa implements org.telegram.ui
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(ck0Var, getContext(), this.f30189a, 0, true, new e(this, 5), this.J0);
+        z41 z41Var = new z41(ck0Var, getContext(), this.f30187a, 0, true, new e(this, 5), this.J0);
         this.T1 = z41Var;
         return z41Var;
     }
@@ -48,7 +48,7 @@ public class e3 extends org.telegram.ui.Components.sa implements org.telegram.ui
     public void U0(float f10) {
         this.W1 = f10;
         if (this.F != null) {
-            this.F.setTranslationY(Math.max((this.f30192b.getY() + f10) + this.f30226t0, this.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f24115m)) - this.F.getBottom());
+            this.F.setTranslationY(Math.max((this.f30190b.getY() + f10) + this.f30224t0, this.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f24112m)) - this.F.getBottom());
         }
     }
 
@@ -57,25 +57,25 @@ public class e3 extends org.telegram.ui.Components.sa implements org.telegram.ui
         boolean z10;
         float f10;
         float width;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f30195c;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f30193c;
         float height = n2Var.getHeight();
-        float max = Math.max(height - org.telegram.messenger.g0.f24116n, this.f30192b.getY() + this.W1 + this.f30226t0);
+        float max = Math.max(height - org.telegram.messenger.g0.f24113n, this.f30190b.getY() + this.W1 + this.f30224t0);
         if (max >= height) {
             return;
         }
-        if (this.f30192b.getWidth() < n2Var.getWidth()) {
+        if (this.f30190b.getWidth() < n2Var.getWidth()) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            f10 = this.f30192b.getX() + this.f30227u0;
+            f10 = this.f30190b.getX() + this.f30225u0;
         } else {
             f10 = 0.0f;
         }
         float f11 = f10;
         if (z10) {
-            width = (this.f30192b.getX() + this.f30192b.getWidth()) - this.f30227u0;
+            width = (this.f30190b.getX() + this.f30190b.getWidth()) - this.f30225u0;
         } else {
             width = n2Var.getWidth();
         }
@@ -84,11 +84,11 @@ public class e3 extends org.telegram.ui.Components.sa implements org.telegram.ui
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29339a7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29337a7));
     }
 
     public int e1() {
-        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, this.J0);
+        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, this.J0);
     }
 
     @Override

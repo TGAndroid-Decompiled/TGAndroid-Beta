@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import org.telegram.ui.Components.e51;
 public final class j6 extends v4.s0 {
     public RecyclerView f44402a;
-    public bi.d6 f44404c;
+    public bi.c6 f44404c;
     public boolean d;
     public boolean f44405e;
     public boolean f44406f;
@@ -29,25 +29,25 @@ public final class j6 extends v4.s0 {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.j6.a(int, int):boolean");
     }
 
-    public final void b(bi.d6 d6Var) {
-        bi.d6 d6Var2 = this.f44404c;
-        if (d6Var2 != null) {
-            d6Var2.removeCallbacks(this.f44408i);
+    public final void b(bi.c6 c6Var) {
+        bi.c6 c6Var2 = this.f44404c;
+        if (c6Var2 != null) {
+            c6Var2.removeCallbacks(this.f44408i);
         }
-        this.f44404c = d6Var;
+        this.f44404c = c6Var;
         RecyclerView recyclerView = this.f44402a;
-        if (recyclerView != d6Var) {
+        if (recyclerView != c6Var) {
             hi.f8 f8Var = this.f44403b;
             if (recyclerView != null) {
-                ArrayList arrayList = recyclerView.f2820x0;
+                ArrayList arrayList = recyclerView.f2821x0;
                 if (arrayList != null) {
                     arrayList.remove(f8Var);
                 }
                 this.f44402a.setOnFlingListener(null);
             }
-            this.f44402a = d6Var;
-            if (d6Var != null) {
-                if (d6Var.getOnFlingListener() == null) {
+            this.f44402a = c6Var;
+            if (c6Var != null) {
+                if (c6Var.getOnFlingListener() == null) {
                     this.f44402a.j(f8Var);
                     this.f44402a.setOnFlingListener(this);
                     new Scroller(this.f44402a.getContext(), new DecelerateInterpolator());
@@ -63,15 +63,15 @@ public final class j6 extends v4.s0 {
         this.f44405e = false;
         this.f44406f = false;
         this.d = false;
-        bi.d6 d6Var = this.f44404c;
-        if (d6Var != null) {
-            d6Var.removeCallbacks(this.f44408i);
+        bi.c6 c6Var = this.f44404c;
+        if (c6Var != null) {
+            c6Var.removeCallbacks(this.f44408i);
         }
     }
 
     public final View d(v4.p0 p0Var) {
-        bi.d6 d6Var;
-        if (!this.f44405e && (d6Var = this.f44404c) != null && d6Var.getScrollState() == 0) {
+        bi.c6 c6Var;
+        if (!this.f44405e && (c6Var = this.f44404c) != null && c6Var.getScrollState() == 0) {
             n6 n6Var = this.f44409j;
             e51 B0 = n6Var.B0();
             if ((B0 == null || B0.getScrollState() == 0) && this.d) {

@@ -15,15 +15,15 @@ import org.telegram.ui.cw;
 import org.telegram.ui.cx;
 import org.telegram.ui.ve;
 public final class x3 implements x10 {
-    public final int f4209a;
-    public final long f4210b;
-    public final Object f4211c;
+    public final int f4177a;
+    public final long f4178b;
+    public final Object f4179c;
     public final Object d;
 
     public x3(aa.r rVar, long j3, TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer) {
-        this.f4209a = 0;
-        this.f4211c = rVar;
-        this.f4210b = j3;
+        this.f4177a = 0;
+        this.f4179c = rVar;
+        this.f4178b = j3;
         this.d = tL_messageActionStarGiftOnchainOffer;
     }
 
@@ -31,18 +31,18 @@ public final class x3 implements x10 {
     public final void a(Object obj) {
         String a02;
         int i7;
-        int i10 = this.f4209a;
+        int i10 = this.f4177a;
         boolean z10 = true;
-        long j3 = this.f4210b;
+        long j3 = this.f4178b;
         Object obj2 = this.d;
-        Object obj3 = this.f4211c;
+        Object obj3 = this.f4179c;
         switch (i10) {
             case 0:
                 TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer = (TLRPC.TL_messageActionStarGiftOnchainOffer) obj2;
                 ((aa.r) obj3).run();
                 if (!((Boolean) obj).booleanValue()) {
-                    f4.f(j3);
-                    f4.r(2131749551, tL_messageActionStarGiftOnchainOffer.gift);
+                    e4.g(j3);
+                    e4.t(2131749551, tL_messageActionStarGiftOnchainOffer.gift);
                     return;
                 }
                 return;
@@ -50,23 +50,23 @@ public final class x3 implements x10 {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj3;
                 String str = (String) obj2;
                 if (((Boolean) obj).booleanValue()) {
-                    a02 = gd.a0(null, null, 2131749543, str, v4.k(j3));
+                    a02 = gd.a0(null, null, 2131749543, str, u4.k(j3));
                 } else {
                     a02 = gd.a0(null, null, 2131749620, str);
                 }
-                v4.s(tL_starGiftUnique, a02);
+                u4.s(tL_starGiftUnique, a02);
                 return;
             case 2:
                 di.f6 f6Var = (di.f6) obj3;
                 mp mpVar = (mp) obj2;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < mpVar.f25787v5) {
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < mpVar.f25785v5) {
                     org.telegram.messenger.h3 I0 = mpVar.I0();
-                    long j10 = this.f4210b;
+                    long j10 = this.f4178b;
                     I0.b(j10, tL_premium_boostsStatus, new e2(f6Var, tL_premium_boostsStatus, j10, mpVar, 1));
                     return;
                 }
-                f6Var.f8782g2.setLoading(false);
+                f6Var.f8779g2.setLoading(false);
                 f6Var.I2(true);
                 return;
             case 3:
@@ -87,10 +87,10 @@ public final class x3 implements x10 {
             case 4:
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.u1) obj2).r(150L);
-                cx cxVar = ((cw) obj3).f46651b;
+                cx cxVar = ((cw) obj3).f46631b;
                 Boolean bool = cxVar.H.bot_participant;
                 if (bool != null && bool.booleanValue()) {
-                    cxVar.getMessagesController().m(this.f4210b, cxVar.getMessagesController().c2(Long.valueOf(cxVar.I)), 0, null, cxVar, false, runnable, new ve(6, runnable), null);
+                    cxVar.getMessagesController().m(this.f4178b, cxVar.getMessagesController().c2(Long.valueOf(cxVar.I)), 0, null, cxVar, false, runnable, new ve(6, runnable), null);
                     return;
                 } else {
                     runnable.run();
@@ -103,9 +103,9 @@ public final class x3 implements x10 {
     }
 
     public x3(Object obj, Object obj2, long j3, int i7) {
-        this.f4209a = i7;
-        this.f4211c = obj;
+        this.f4177a = i7;
+        this.f4179c = obj;
         this.d = obj2;
-        this.f4210b = j3;
+        this.f4178b = j3;
     }
 }

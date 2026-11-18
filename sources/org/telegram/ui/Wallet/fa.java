@@ -48,7 +48,7 @@ public final class fa {
     }
 
     public final void b(float f10, float f11) {
-        float f12 = org.telegram.messenger.g0.f24120p;
+        float f12 = org.telegram.messenger.g0.f24117p;
         for (int i7 = 0; i7 < 28; i7++) {
             a(f10, f11, e(0.0f, 6.2831855f), e(60.0f, 300.0f) * f12, e(2.5f, 6.0f) * f12, e(0.5f, 0.9f), 3.0f);
         }
@@ -107,7 +107,7 @@ public final class fa {
     public final void f() {
         float f10;
         this.f44229a.clear();
-        float f11 = org.telegram.messenger.g0.f24120p;
+        float f11 = org.telegram.messenger.g0.f24117p;
         for (int i7 = 0; i7 < 48; i7++) {
             for (int i10 = -1; i10 <= 1; i10 += 2) {
                 if (i10 < 0) {
@@ -124,7 +124,7 @@ public final class fa {
     }
 
     public final void g(float f10, float f11) {
-        float f12 = org.telegram.messenger.g0.f24120p;
+        float f12 = org.telegram.messenger.g0.f24117p;
         a(f10, f11, e(0.0f, 6.2831855f), e(0.0f, 28.0f) * f12, e(1.5f, 3.5f) * f12, e(0.35f, 0.6f), 2.0f);
     }
 }

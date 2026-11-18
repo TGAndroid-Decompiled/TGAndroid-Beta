@@ -19,14 +19,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import org.telegram.ui.Components.hn;
 import s2.w;
 public final class h {
     public final c f56352a;
     public final j2.h f56353b;
     public final j2.h f56354c;
-    public final b5 d;
+    public final c5 d;
     public final w[] f56355e;
     public final u[] f56356f;
     public final s2.d f56357g;
@@ -40,27 +40,27 @@ public final class h {
     public boolean f56366q;
     public a3.u f56367r;
     public final hn f56359j = new hn();
-    public byte[] f56362m = l0.f13787b;
+    public byte[] f56362m = l0.f13784b;
     public long f56368s = -9223372036854775807L;
 
-    public h(c cVar, s2.d dVar, w[] wVarArr, u[] uVarArr, b5 b5Var, c0 c0Var, b5 b5Var2, List list, m2.i iVar) {
+    public h(c cVar, s2.d dVar, w[] wVarArr, u[] uVarArr, c5 c5Var, c0 c0Var, c5 c5Var2, List list, m2.i iVar) {
         this.f56352a = cVar;
         this.f56357g = dVar;
         this.f56355e = wVarArr;
         this.f56356f = uVarArr;
-        this.d = b5Var2;
+        this.d = c5Var2;
         this.f56358i = list;
         this.f56360k = iVar;
-        j2.h createDataSource = ((j2.g) b5Var.f30431a).createDataSource();
+        j2.h createDataSource = ((j2.g) c5Var.f30477a).createDataSource();
         this.f56353b = createDataSource;
         if (c0Var != null) {
             createDataSource.addTransferListener(c0Var);
         }
-        this.f56354c = ((j2.g) b5Var.f30431a).createDataSource();
+        this.f56354c = ((j2.g) c5Var.f30477a).createDataSource();
         this.h = new m1("", uVarArr);
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < wVarArr.length; i7++) {
-            if ((uVarArr[i7].f10757f & 16384) == 0) {
+            if ((uVarArr[i7].f10754f & 16384) == 0) {
                 arrayList.add(Integer.valueOf(i7));
             }
         }
@@ -194,8 +194,8 @@ public final class h {
                     }
                     list = DesugarCollections.unmodifiableList(arrayList);
                 } else {
-                    g0 g0Var = i0.f14006b;
-                    list = t1.f14074e;
+                    g0 g0Var = i0.f14003b;
+                    list = t1.f14071e;
                 }
                 mVarArr[i7] = new e(j10, list);
             }
@@ -214,7 +214,7 @@ public final class h {
             s2.m b10 = this.f56357g.b(iVar.f56375y, false);
             b10.getClass();
             i0 i0Var2 = b10.f56839r;
-            int i10 = (int) (iVar.f60706s - b10.f56832k);
+            int i10 = (int) (iVar.f60707s - b10.f56832k);
             if (i10 >= 0) {
                 if (i10 < i0Var2.size()) {
                     i0Var = ((s2.j) i0Var2.get(i10)).f56813y;
@@ -226,7 +226,7 @@ public final class h {
                     if (hVar.f56808y) {
                         return 0;
                     }
-                    if (Objects.equals(Uri.parse(h2.e.f(b10.f56863a, hVar.f56814a)), iVar.f60681b.f17188a)) {
+                    if (Objects.equals(Uri.parse(h2.e.f(b10.f56863a, hVar.f56814a)), iVar.f60682b.f17185a)) {
                         return 1;
                     }
                     return 2;
@@ -274,7 +274,7 @@ public final class h {
         byte[] bArr3 = this.f56362m;
         ?? fVar = new y2.f(this.f56354c, mVar, 3, uVar, o4, r10, -9223372036854775807L, -9223372036854775807L);
         if (bArr3 == null) {
-            bArr3 = l0.f13787b;
+            bArr3 = l0.f13784b;
         }
         fVar.f56344s = bArr3;
         return fVar;

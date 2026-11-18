@@ -33,7 +33,7 @@ public final class q {
     public int f56716z;
     public final h f56695b = new h(this);
     public final ArrayList f56696c = new ArrayList();
-    public ti.b d = ti.b.f58230c;
+    public ti.b d = ti.b.f58231c;
     public final RectF f56697e = new RectF();
     public final xe.b f56705n = new xe.b();
     public final ArrayList f56706o = new ArrayList();
@@ -112,10 +112,10 @@ public final class q {
             aVar.getClass();
             return aVar;
         }
-        aVar.f58229b = 0;
-        int i7 = aVar2.f58229b;
+        aVar.f58230b = 0;
+        int i7 = aVar2.f58230b;
         for (int i10 = 0; i10 < i7; i10++) {
-            RectF rectF = (RectF) aVar2.f58228a.get(i10);
+            RectF rectF = (RectF) aVar2.f58229a.get(i10);
             aVar.a(rectF.left, rectF.top, rectF.right, rectF.bottom);
         }
         return aVar;
@@ -141,15 +141,15 @@ public final class q {
         if (view2 != view) {
             h hVar = this.f56695b;
             if (view2 != null && (cVar = (xf.c) view2.getTag(2131296697)) != null) {
-                ArrayList arrayList = cVar.f60460a;
+                ArrayList arrayList = cVar.f60461a;
                 if (arrayList.remove(hVar)) {
-                    xf.a aVar = cVar.f60461b;
+                    xf.a aVar = cVar.f60462b;
                     if (aVar != null) {
-                        ((xe.b) aVar.f60459a.f12614b).remove(hVar);
+                        ((xe.b) aVar.f60460a.f12611b).remove(hVar);
                     }
                     if (arrayList.isEmpty()) {
-                        cVar.f60461b = null;
-                        view2.removeOnAttachStateChangeListener(cVar.f60462c);
+                        cVar.f60462b = null;
+                        view2.removeOnAttachStateChangeListener(cVar.f60463c);
                         view2.setTag(2131296697, null);
                     }
                 }
@@ -162,13 +162,13 @@ public final class q {
                 if (cVar2 == null) {
                     cVar2 = new xf.c();
                     view.setTag(2131296697, cVar2);
-                    view.addOnAttachStateChangeListener(cVar2.f60462c);
+                    view.addOnAttachStateChangeListener(cVar2.f60463c);
                 }
-                ArrayList arrayList2 = cVar2.f60460a;
+                ArrayList arrayList2 = cVar2.f60461a;
                 if (!arrayList2.contains(hVar)) {
                     arrayList2.add(hVar);
                     if (view.isAttachedToWindow() && (a10 = xd.a(view, cVar2)) != null) {
-                        ((xe.b) a10.f60459a.f12614b).add(hVar);
+                        ((xe.b) a10.f60460a.f12611b).add(hVar);
                     }
                 }
             }

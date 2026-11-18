@@ -21,7 +21,7 @@ import java.util.HashSet;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class a1 extends FrameLayout implements org.telegram.ui.Cells.h9, org.telegram.ui.ActionBar.c6 {
+public final class a1 extends FrameLayout implements org.telegram.ui.Cells.i9, org.telegram.ui.ActionBar.c6 {
     public AnimatorSet E;
     public final int F;
     public TL_iv.pageBlockChannel G;
@@ -219,7 +219,7 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.h9, o
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.M6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.J6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29788y6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29786y6));
     }
 
     @Override
@@ -330,8 +330,8 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.h9, o
             }
             z2 z2Var = this.f45410n;
             if (z2Var != null) {
-                z2Var.f54373s = i11;
-                z2Var.f54374w = this.f45413w;
+                z2Var.f54332s = i11;
+                z2Var.f54333w = this.f45413w;
             }
         }
     }
@@ -366,16 +366,16 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.h9, o
             textView.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.J6, false));
             paint.setColor(Color.argb(34, red, green, blue));
             g4Var.getClass();
-            this.f45405a = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29788y6, false);
+            this.f45405a = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29786y6, false);
             imageView.setColorFilter(new PorterDuffColorFilter(this.f45405a, PorterDuff.Mode.MULTIPLY));
         } else {
             textView.setTextColor(-1);
             paint.setColor(2130706432);
             imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
         }
-        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(((g4) p50Var).Y).O0(Long.valueOf(pageblockchannel.channel.f28405id));
+        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(((g4) p50Var).Y).O0(Long.valueOf(pageblockchannel.channel.f28403id));
         if (O0 != null && !O0.min) {
-            p50Var.f50755n = O0;
+            p50Var.f50711n = O0;
             if (O0.left && !O0.kicked) {
                 a(0, false);
             } else {
@@ -383,8 +383,8 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.h9, o
             }
         } else {
             TLRPC.Chat chat = pageblockchannel.channel;
-            if (!p50Var.f50756r && org.telegram.messenger.v3.t0(chat)) {
-                p50Var.f50756r = true;
+            if (!p50Var.f50712r && org.telegram.messenger.v3.t0(chat)) {
+                p50Var.f50712r = true;
                 int i11 = ((g4) p50Var).Y;
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 tL_contacts_resolveUsername.username = chat.username;
@@ -405,7 +405,7 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.h9, o
                 int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.M6, false);
                 textView.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.J6, false));
                 paint.setColor(Color.argb(34, Color.red(x02), Color.green(x02), Color.blue(x02)));
-                int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29788y6, false);
+                int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29786y6, false);
                 if (x03 != this.f45405a) {
                     this.f45405a = x03;
                     imageView.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.MULTIPLY));

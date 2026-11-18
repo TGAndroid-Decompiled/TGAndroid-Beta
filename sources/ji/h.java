@@ -15,12 +15,12 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.o5;
 import org.telegram.ui.Components.pf;
 public final class h implements x10 {
-    public final int f17943a;
-    public final m f17944b;
+    public final int f17940a;
+    public final m f17941b;
 
     public h(m mVar, int i7) {
-        this.f17943a = i7;
-        this.f17944b = mVar;
+        this.f17940a = i7;
+        this.f17941b = mVar;
     }
 
     @Override
@@ -28,14 +28,14 @@ public final class h implements x10 {
         p pVar;
         String str;
         int C0;
-        switch (this.f17943a) {
+        switch (this.f17940a) {
             case 0:
-                m mVar = this.f17944b;
+                m mVar = this.f17941b;
                 String str2 = (String) obj;
-                if (mVar.f17966c == 3 && (pVar = mVar.h) != null) {
+                if (mVar.f17963c == 3 && (pVar = mVar.h) != null) {
                     pVar.setBusy(false);
                     if (str2 != null && !str2.trim().isEmpty()) {
-                        mVar.f17979n = str2;
+                        mVar.f17976n = str2;
                         mVar.h.r(str2);
                         return;
                     }
@@ -43,29 +43,29 @@ public final class h implements x10 {
                 }
                 return;
             default:
-                m mVar2 = this.f17944b;
-                if (!mVar2.f17979n.trim().isEmpty()) {
-                    pf pfVar = mVar2.f17964b;
-                    String trim = mVar2.f17979n.trim();
+                m mVar2 = this.f17941b;
+                if (!mVar2.f17976n.trim().isEmpty()) {
+                    pf pfVar = mVar2.f17961b;
+                    String trim = mVar2.f17976n.trim();
                     if (!trim.isEmpty() && mVar2.h != null) {
-                        g0.r(mVar2.f17977k0);
-                        g0.r(mVar2.f17976j0);
+                        g0.r(mVar2.f17974k0);
+                        g0.r(mVar2.f17973j0);
                         Drawable drawable = null;
-                        if (vr.f27593k == mVar2) {
-                            vr.f27593k = null;
+                        if (vr.f27591k == mVar2) {
+                            vr.f27591k = null;
                         }
-                        c2 c2Var = mVar2.f17971f;
+                        c2 c2Var = mVar2.f17968f;
                         if (c2Var != null) {
                             c2Var.c();
-                            mVar2.f17971f = null;
+                            mVar2.f17968f = null;
                         }
                         z zVar = mVar2.d;
                         if (zVar != null) {
                             zVar.d();
                             mVar2.d = null;
                         }
-                        mVar2.f17969e = null;
-                        mVar2.f17966c = 3;
+                        mVar2.f17966e = null;
+                        mVar2.f17963c = 3;
                         Log.d("VoiceLive", "review: voice paused, restyling " + trim.length() + " chars");
                         mVar2.h.setListening(false);
                         pfVar.e();

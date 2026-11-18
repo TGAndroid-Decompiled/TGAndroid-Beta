@@ -62,25 +62,25 @@ public final class q30 implements qi {
                     org.telegram.messenger.ef efVar = (org.telegram.messenger.ef) obj;
                     String str2 = efVar.h;
                     if (str2 != null) {
-                        obj2.f28213c = str2;
+                        obj2.f28211c = str2;
                     } else {
-                        obj2.f28213c = efVar.I;
+                        obj2.f28211c = efVar.I;
                     }
-                    obj2.f28214e = efVar.f27850c;
-                    obj2.f28215f = efVar.f27853g;
-                    obj2.f28219k = efVar.f27864s;
-                    obj2.f28224p = efVar.d();
-                    obj2.f28223o = efVar.f27849b;
-                    obj2.f28233z = efVar.f27858m;
-                    obj2.f28225q = true;
-                    CharSequence charSequence = efVar.f27848a;
+                    obj2.f28212e = efVar.f27848c;
+                    obj2.f28213f = efVar.f27851g;
+                    obj2.f28217k = efVar.f27862s;
+                    obj2.f28222p = efVar.d();
+                    obj2.f28221o = efVar.f27847b;
+                    obj2.f28231z = efVar.f27856m;
+                    obj2.f28223q = true;
+                    CharSequence charSequence = efVar.f27846a;
                     if (charSequence != null) {
                         str = charSequence.toString();
                     }
                     obj2.d = str;
-                    obj2.f28217i = efVar.f27859n;
-                    obj2.f28218j = efVar.f27863r;
-                    obj2.h = efVar.f27868x;
+                    obj2.f28215i = efVar.f27857n;
+                    obj2.f28216j = efVar.f27861r;
+                    obj2.h = efVar.f27866x;
                     TLRPC.VideoSize videoSize = efVar.S;
                     obj2.v = videoSize;
                     z14 = videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup;
@@ -88,25 +88,25 @@ public final class q30 implements qi {
                     org.telegram.messenger.hf hfVar = (org.telegram.messenger.hf) obj;
                     String str3 = hfVar.h;
                     if (str3 != null) {
-                        obj2.f28213c = str3;
+                        obj2.f28211c = str3;
                     } else {
-                        obj2.f28220l = hfVar;
+                        obj2.f28218l = hfVar;
                     }
-                    obj2.f28214e = hfVar.f27850c;
-                    obj2.f28215f = hfVar.f27853g;
-                    obj2.f28219k = hfVar.f27864s;
+                    obj2.f28212e = hfVar.f27848c;
+                    obj2.f28213f = hfVar.f27851g;
+                    obj2.f28217k = hfVar.f27862s;
                     CharSequence charSequence2 = hfVar.I;
                     if (charSequence2 != null) {
                         str = charSequence2.toString();
                     }
                     obj2.d = str;
-                    obj2.f28217i = hfVar.f27859n;
-                    obj2.f28218j = hfVar.f27863r;
-                    obj2.h = hfVar.f27868x;
+                    obj2.f28215i = hfVar.f27857n;
+                    obj2.f28216j = hfVar.f27861r;
+                    obj2.h = hfVar.f27866x;
                     TLRPC.BotInlineResult botInlineResult = hfVar.N;
                     if (botInlineResult != null && hfVar.H == 1) {
-                        obj2.f28221m = botInlineResult;
-                        obj2.f28222n = hfVar.O;
+                        obj2.f28219m = botInlineResult;
+                        obj2.f28220n = hfVar.O;
                     }
                     System.currentTimeMillis();
                 }

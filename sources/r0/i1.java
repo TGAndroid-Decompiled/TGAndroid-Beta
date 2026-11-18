@@ -57,12 +57,12 @@ public class i1 {
     }
 
     public i0.b f(int i7) {
-        return i0.b.f15891e;
+        return i0.b.f15888e;
     }
 
     public i0.b g(int i7) {
         if ((i7 & 8) == 0) {
-            return i0.b.f15891e;
+            return i0.b.f15888e;
         }
         throw new IllegalArgumentException("Unable to query the maximum insets for IME");
     }
@@ -76,7 +76,7 @@ public class i1 {
     }
 
     public i0.b i() {
-        return i0.b.f15891e;
+        return i0.b.f15888e;
     }
 
     public i0.b j() {
@@ -84,7 +84,7 @@ public class i1 {
     }
 
     public i0.b k() {
-        return i0.b.f15891e;
+        return i0.b.f15888e;
     }
 
     public i0.b l() {

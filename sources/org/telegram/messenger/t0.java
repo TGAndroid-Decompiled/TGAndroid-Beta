@@ -24,7 +24,7 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.y80;
+import org.telegram.ui.z80;
 import org.telegram.utils.twidget.WidgetEngineService;
 public abstract class t0 extends Application {
     public static volatile boolean E = true;
@@ -34,22 +34,22 @@ public abstract class t0 extends Application {
     public static nt I = null;
     public static pb.b J = null;
     public static h6.m K = null;
-    public static t0 f26914a = null;
-    public static volatile Context f26915b = null;
-    public static volatile NetworkInfo f26916c = null;
+    public static t0 f26912a = null;
+    public static volatile Context f26913b = null;
+    public static volatile NetworkInfo f26914c = null;
     public static volatile Handler d = null;
-    public static ConnectivityManager f26917e = null;
-    public static volatile boolean f26918f = false;
+    public static ConnectivityManager f26915e = null;
+    public static volatile boolean f26916f = false;
     public static volatile s0 h = null;
-    public static long f26919n = 0;
-    public static int f26920r = -1;
-    public static long f26921s = 0;
-    public static volatile boolean f26922w = false;
-    public static volatile boolean f26923x = true;
-    public static volatile boolean f26924y = true;
+    public static long f26917n = 0;
+    public static int f26918r = -1;
+    public static long f26919s = 0;
+    public static volatile boolean f26920w = false;
+    public static volatile boolean f26921x = true;
+    public static volatile boolean f26922y = true;
 
     public static void a(Throwable th2) {
-        ((ApplicationLoaderImpl) f26914a).getClass();
+        ((ApplicationLoaderImpl) f26912a).getClass();
         try {
             w9.b bVar = (w9.b) o9.g.c().b(w9.b.class);
             if (bVar != null) {
@@ -57,9 +57,9 @@ public abstract class t0 extends Application {
                     Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
                     return;
                 }
-                aa.t tVar = bVar.f59638a;
+                aa.t tVar = bVar.f59639a;
                 Map map = Collections.EMPTY_MAP;
-                tVar.f864n.f3087a.a(new a1.e(tVar, th2));
+                tVar.f864n.f3088a.a(new a1.e(tVar, th2));
                 return;
             }
             throw new NullPointerException("FirebaseCrashlytics component is not present.");
@@ -69,15 +69,15 @@ public abstract class t0 extends Application {
     }
 
     public static void c(boolean z10) {
-        if (z10 || f26916c == null) {
+        if (z10 || f26914c == null) {
             try {
-                if (f26917e == null) {
-                    f26917e = (ConnectivityManager) f26915b.getSystemService("connectivity");
+                if (f26915e == null) {
+                    f26915e = (ConnectivityManager) f26913b.getSystemService("connectivity");
                 }
-                f26916c = f26917e.getActiveNetworkInfo();
+                f26914c = f26915e.getActiveNetworkInfo();
                 if (Build.VERSION.SDK_INT >= 24 && h == null) {
                     h = new ConnectivityManager.NetworkCallback();
-                    f26917e.registerDefaultNetworkCallback(h);
+                    f26915e.registerDefaultNetworkCallback(h);
                 }
             } catch (Throwable unused) {
             }
@@ -85,29 +85,29 @@ public abstract class t0 extends Application {
     }
 
     public static void d() {
-        f26914a.getClass();
+        f26912a.getClass();
     }
 
     public static int e() {
         int i7;
         try {
             c(false);
-            if (f26916c != null) {
-                if (f26916c.getType() != 1 && f26916c.getType() != 9) {
-                    if (f26916c.isRoaming()) {
+            if (f26914c != null) {
+                if (f26914c.getType() != 1 && f26914c.getType() != 9) {
+                    if (f26914c.isRoaming()) {
                         return 2;
                     }
                 }
-                if (Build.VERSION.SDK_INT >= 24 && (((i7 = f26920r) == 0 || i7 == 1) && System.currentTimeMillis() - f26919n < 5000)) {
-                    return f26920r;
+                if (Build.VERSION.SDK_INT >= 24 && (((i7 = f26918r) == 0 || i7 == 1) && System.currentTimeMillis() - f26917n < 5000)) {
+                    return f26918r;
                 }
-                if (f26917e.isActiveNetworkMetered()) {
-                    f26920r = 0;
+                if (f26915e.isActiveNetworkMetered()) {
+                    f26918r = 0;
                 } else {
-                    f26920r = 1;
+                    f26918r = 1;
                 }
-                f26919n = System.currentTimeMillis();
-                return f26920r;
+                f26917n = System.currentTimeMillis();
+                return f26918r;
             }
             return 0;
         } catch (Exception e10) {
@@ -128,13 +128,13 @@ public abstract class t0 extends Application {
 
     public static File h() {
         for (int i7 = 0; i7 < 10; i7++) {
-            File filesDir = f26915b.getFilesDir();
+            File filesDir = f26913b.getFilesDir();
             if (filesDir != null) {
                 return filesDir;
             }
         }
         try {
-            File file = new File(f26915b.getApplicationInfo().dataDir, "files");
+            File file = new File(f26913b.getApplicationInfo().dataDir, "files");
             file.mkdirs();
             return file;
         } catch (Exception e10) {
@@ -156,17 +156,17 @@ public abstract class t0 extends Application {
 
     public static ILocationServiceProvider j() {
         if (K == null) {
-            f26914a.getClass();
+            f26912a.getClass();
             h6.m mVar = new h6.m(20);
             K = mVar;
-            mVar.init(f26915b);
+            mVar.init(f26913b);
         }
         return K;
     }
 
     public static IMapsProvider k() {
         if (J == null) {
-            f26914a.getClass();
+            f26912a.getClass();
             J = new pb.b(17);
         }
         return J;
@@ -174,29 +174,29 @@ public abstract class t0 extends Application {
 
     public static PushListenerController.IPushListenerServiceProvider l() {
         if (I == null) {
-            f26914a.getClass();
-            I = nt.f25968b;
+            f26912a.getClass();
+            I = nt.f25966b;
         }
         return I;
     }
 
     public static void m() {
-        f26914a.getClass();
+        f26912a.getClass();
     }
 
     public static void n() {
-        f26914a.getClass();
+        f26912a.getClass();
     }
 
     public static boolean o() {
         try {
             c(false);
-            if (f26916c != null) {
-                if (f26916c.getType() != 1) {
-                    if (f26916c.getType() == 9) {
+            if (f26914c != null) {
+                if (f26914c.getType() != 1) {
+                    if (f26914c.getType() == 9) {
                     }
                 }
-                NetworkInfo.State state = f26916c.getState();
+                NetworkInfo.State state = f26914c.getState();
                 if (state != NetworkInfo.State.CONNECTED && state != NetworkInfo.State.CONNECTING) {
                     if (state == NetworkInfo.State.SUSPENDED) {
                     }
@@ -213,8 +213,8 @@ public abstract class t0 extends Application {
     public static boolean p() {
         try {
             c(false);
-            if (f26916c != null && f26916c.getType() == 0) {
-                int subtype = f26916c.getSubtype();
+            if (f26914c != null && f26914c.getType() == 0) {
+                int subtype = f26914c.getSubtype();
                 if (subtype == 1 || subtype == 2 || subtype == 4 || subtype == 7 || subtype == 11) {
                     return true;
                 }
@@ -225,7 +225,7 @@ public abstract class t0 extends Application {
     }
 
     public static void r() {
-        f26914a.getClass();
+        f26912a.getClass();
     }
 
     public static boolean s() {
@@ -235,8 +235,8 @@ public abstract class t0 extends Application {
     public static boolean t() {
         try {
             c(false);
-            if (f26916c != null) {
-                if (f26916c.isRoaming()) {
+            if (f26914c != null) {
+                if (f26914c.isRoaming()) {
                     return true;
                 }
             }
@@ -248,46 +248,46 @@ public abstract class t0 extends Application {
     }
 
     public static void u() {
-        f26914a.getClass();
+        f26912a.getClass();
     }
 
     public static void w() {
-        if (!f26918f && f26915b != null) {
-            f26918f = true;
-            vr.f(f26915b);
+        if (!f26916f && f26913b != null) {
+            f26916f = true;
+            vr.f(f26913b);
             try {
                 gd.E0();
             } catch (Exception e10) {
                 e10.printStackTrace();
             }
             try {
-                f26917e = (ConnectivityManager) f26915b.getSystemService("connectivity");
-                f26915b.registerReceiver(new q0(0), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+                f26915e = (ConnectivityManager) f26913b.getSystemService("connectivity");
+                f26913b.registerReceiver(new q0(0), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
             } catch (Exception e11) {
                 e11.printStackTrace();
             }
             try {
                 IntentFilter intentFilter = new IntentFilter("android.intent.action.SCREEN_ON");
                 intentFilter.addAction("android.intent.action.SCREEN_OFF");
-                f26915b.registerReceiver(new q0(3), intentFilter);
+                f26913b.registerReceiver(new q0(3), intentFilter);
             } catch (Exception e12) {
                 e12.printStackTrace();
             }
             try {
-                pc.h(f26915b.registerReceiver(new q0(1), new IntentFilter("android.intent.action.BATTERY_CHANGED")));
+                pc.h(f26913b.registerReceiver(new q0(1), new IntentFilter("android.intent.action.BATTERY_CHANGED")));
             } catch (Throwable th2) {
                 a8.g(th2, true);
             }
             try {
-                f26922w = ((PowerManager) f26915b.getSystemService("power")).isScreenOn();
-                if (s2.f26723a) {
-                    a8.b("screen state = " + f26922w);
+                f26920w = ((PowerManager) f26913b.getSystemService("power")).isScreenOn();
+                if (s2.f26721a) {
+                    a8.b("screen state = " + f26920w);
                 }
             } catch (Exception e13) {
                 e13.printStackTrace();
             }
             bz.t();
-            c6.f23271g = f26915b.getSharedPreferences("webview_bots", 0);
+            c6.f23268g = f26913b.getSharedPreferences("webview_bots", 0);
             for (int i7 = 0; i7 < 4; i7++) {
                 j10.i(i7).s();
                 mp.u1(i7);
@@ -300,19 +300,19 @@ public abstract class t0 extends Application {
                 if (f10 != null) {
                     mp.u1(i7).e4(f10, true, false);
                     tr messagesStorage = zy.C(i7).getMessagesStorage();
-                    messagesStorage.f27054a.c(new pq(messagesStorage, 22));
+                    messagesStorage.f27052a.c(new pq(messagesStorage, 22));
                 }
             }
-            ((t0) f26915b).getClass();
+            ((t0) f26913b).getClass();
             g0.h3(new ai.o(29), 1000L);
-            if (s2.f26723a) {
+            if (s2.f26721a) {
                 a8.b("app initied");
             }
             MediaController.B();
             for (int i10 = 0; i10 < 4; i10++) {
                 i5 r10 = i5.r(i10);
-                r10.f24560a = null;
-                Utilities.f22782e.c(new m4(r10, 0));
+                r10.f24557a = null;
+                Utilities.f22779e.c(new m4(r10, 0));
                 a6.q(i10);
             }
             r1.i().q();
@@ -326,17 +326,17 @@ public abstract class t0 extends Application {
         if (h12.contains("pushService")) {
             z10 = h12.getBoolean("pushService", true);
         } else {
-            z10 = mp.u1(j10.f24773t0).h7.getBoolean("keepAliveService", false);
+            z10 = mp.u1(j10.f24770t0).h7.getBoolean("keepAliveService", false);
         }
         if (z10) {
             try {
-                f26915b.startService(new Intent(f26915b, NotificationsService.class));
+                f26913b.startService(new Intent(f26913b, NotificationsService.class));
                 return;
             } catch (Throwable unused) {
                 return;
             }
         }
-        f26915b.stopService(new Intent(f26915b, NotificationsService.class));
+        f26913b.stopService(new Intent(f26913b, NotificationsService.class));
     }
 
     @Override
@@ -353,7 +353,7 @@ public abstract class t0 extends Application {
         super.onConfigurationChanged(configuration);
         try {
             gd.E0().W0(configuration);
-            g0.v(f26915b, configuration);
+            g0.v(f26913b, configuration);
             VideoCapturerDevice.checkScreenCapturerSize();
             g0.c3();
         } catch (Exception e10) {
@@ -364,24 +364,24 @@ public abstract class t0 extends Application {
     @Override
     public final void onCreate() {
         String str;
-        f26914a = this;
+        f26912a = this;
         try {
-            f26915b = getApplicationContext();
+            f26913b = getApplicationContext();
         } catch (Throwable unused) {
         }
         super.onCreate();
         if (WidgetEngineService.b()) {
             return;
         }
-        Typeface typeface = g0.f24093a;
-        if (s2.f26723a) {
+        Typeface typeface = g0.f24090a;
+        if (s2.f26721a) {
             a8.b("Hello World!");
             StringBuilder sb2 = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            f26921s = elapsedRealtime;
+            f26919s = elapsedRealtime;
             i5.c.v(elapsedRealtime, sb2);
             try {
-                PackageInfo packageInfo = f26915b.getPackageManager().getPackageInfo(f26915b.getPackageName(), 0);
+                PackageInfo packageInfo = f26913b.getPackageManager().getPackageInfo(f26913b.getPackageName(), 0);
                 int i7 = packageInfo.versionCode % 10;
                 if (i7 != 1 && i7 != 2) {
                     u();
@@ -405,20 +405,20 @@ public abstract class t0 extends Application {
             sb3.append(", product=");
             p5.c.s(Build.PRODUCT, sb3);
         }
-        if (f26915b == null) {
-            f26915b = getApplicationContext();
+        if (f26913b == null) {
+            f26913b = getApplicationContext();
         }
-        vr.f(f26915b);
+        vr.f(f26913b);
         try {
             ConnectionsManager.native_setJava(false);
             new r0(this);
             new b(new ai.o(26));
-            if (s2.f26723a) {
-                a8.b("load libs time = " + (SystemClock.elapsedRealtime() - f26921s));
+            if (s2.f26721a) {
+                a8.b("load libs time = " + (SystemClock.elapsedRealtime() - f26919s));
             }
-            d = new Handler(f26915b.getMainLooper());
+            d = new Handler(f26913b.getMainLooper());
             g0.g3(new ai.o(27));
-            y80[] values = y80.values();
+            z80[] values = z80.values();
             int length = values.length;
             int i11 = 0;
             while (true) {
@@ -428,16 +428,16 @@ public abstract class t0 extends Application {
                     }
                     i11++;
                 } else {
-                    c8.ya.b(y80.DEFAULT);
+                    c8.ya.b(z80.DEFAULT);
                     break;
                 }
             }
-            kt ktVar = kt.f25255c;
+            kt ktVar = kt.f25253c;
             for (int i12 = 0; i12 < 4; i12++) {
                 ks.f(i12).b(ktVar, ks.T1);
             }
+            ks.e().b(ktVar, ks.E4);
             ks.e().b(ktVar, ks.D4);
-            ks.e().b(ktVar, ks.C4);
         } catch (UnsatisfiedLinkError unused2) {
             throw new RuntimeException("can't load native libraries " + Build.CPU_ABI + " lookup folder " + vr.d());
         }

@@ -80,7 +80,7 @@ public final class rt0 extends View {
         canvas.save();
         float f10 = (this.d * 0.1f) + 0.9f;
         canvas.scale(f10, f10);
-        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29560m5, false);
+        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29558m5, false);
         Paint paint = this.f39306c;
         paint.setColor(x02);
         paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));

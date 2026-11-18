@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.view.View;
 import android.view.WindowInsets;
 public final class gz0 implements View.OnApplyWindowInsetsListener {
-    public final int f48177a;
-    public final Object f48178b;
+    public final int f48105a;
+    public final Object f48106b;
 
     public gz0(Object obj, int i7) {
-        this.f48177a = i7;
-        this.f48178b = obj;
+        this.f48105a = i7;
+        this.f48106b = obj;
     }
 
     @Override
     public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f48177a) {
+        switch (this.f48105a) {
             case 0:
-                return SecretMediaViewer.a((SecretMediaViewer) this.f48178b, windowInsets);
+                return SecretMediaViewer.a((SecretMediaViewer) this.f48106b, windowInsets);
             default:
-                return n11.b((h01) this.f48178b, view, windowInsets);
+                return n11.b((h01) this.f48106b, view, windowInsets);
         }
     }
 }

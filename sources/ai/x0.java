@@ -11,33 +11,33 @@ import org.telegram.ui.Dictation.DictationLid;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cx;
 public final class x0 implements Runnable {
-    public final int f1605a = 0;
-    public final int f1606b;
-    public final long f1607c;
+    public final int f1606a = 0;
+    public final int f1607b;
+    public final long f1608c;
     public final boolean d;
-    public final Object f1608e;
-    public final Object f1609f;
+    public final Object f1609e;
+    public final Object f1610f;
 
     public x0(c1 c1Var, boolean z10, float[] fArr, long j3, int i7) {
-        this.f1608e = c1Var;
+        this.f1609e = c1Var;
         this.d = z10;
-        this.f1609f = fArr;
-        this.f1607c = j3;
-        this.f1606b = i7;
+        this.f1610f = fArr;
+        this.f1608c = j3;
+        this.f1607b = i7;
     }
 
     @Override
     public final void run() {
         TL_stories.StoryItem storyItem;
-        int i7 = this.f1605a;
+        int i7 = this.f1606a;
         float[] fArr = null;
         r2 = null;
         y6 a10 = null;
         boolean z10 = this.d;
-        long j3 = this.f1607c;
-        int i10 = this.f1606b;
-        Object obj = this.f1609f;
-        Object obj2 = this.f1608e;
+        long j3 = this.f1608c;
+        int i10 = this.f1607b;
+        Object obj = this.f1610f;
+        Object obj2 = this.f1609e;
         switch (i7) {
             case 0:
                 c1 c1Var = (c1) obj2;
@@ -57,7 +57,7 @@ public final class x0 implements Runnable {
                     int i11 = 0;
                     while (true) {
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f28644id == i10) {
+                            if (tL_stories_stories.stories.get(i11).f28642id == i10) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -81,7 +81,7 @@ public final class x0 implements Runnable {
                             ArrayList arrayList = new ArrayList();
                             arrayList.add(Long.valueOf(j3));
                             if (z10) {
-                                Q.getOrCreateStoryViewer().f12006w1 = true;
+                                Q.getOrCreateStoryViewer().f12003w1 = true;
                             }
                             Q.getOrCreateStoryViewer().M(launchActivity, storyItem, arrayList, 0, null, null, y6Var, false);
                             return;
@@ -95,10 +95,10 @@ public final class x0 implements Runnable {
     }
 
     public x0(LaunchActivity launchActivity, TLObject tLObject, int i7, long j3, boolean z10) {
-        this.f1608e = launchActivity;
-        this.f1609f = tLObject;
-        this.f1606b = i7;
-        this.f1607c = j3;
+        this.f1609e = launchActivity;
+        this.f1610f = tLObject;
+        this.f1607b = i7;
+        this.f1608c = j3;
         this.d = z10;
     }
 }

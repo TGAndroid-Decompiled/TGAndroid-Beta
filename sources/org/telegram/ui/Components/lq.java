@@ -100,7 +100,7 @@ public class lq extends ReplacementSpan {
     }
 
     public lq(int i7, int i10) {
-        this(i10, org.telegram.messenger.t0.f26915b.getDrawable(i7).mutate());
+        this(i10, org.telegram.messenger.t0.f26913b.getDrawable(i7).mutate());
     }
 
     public lq(int i7, Drawable drawable) {

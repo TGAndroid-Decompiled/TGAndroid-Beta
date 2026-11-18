@@ -1,8 +1,8 @@
 package m;
 public final class e extends l.c {
-    public final h f20050a;
+    public final h f20047a;
 
     public e(h hVar) {
-        this.f20050a = hVar;
+        this.f20047a = hVar;
     }
 }

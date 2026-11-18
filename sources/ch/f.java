@@ -13,17 +13,17 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.q6;
 import org.telegram.ui.ActionBar.u6;
 public final class f extends FrameLayout {
-    public static final int f5349e = 0;
-    public final e f5350a;
-    public boolean f5351b;
-    public boolean f5352c;
+    public static final int f5346e = 0;
+    public final e f5347a;
+    public boolean f5348b;
+    public boolean f5349c;
     public x10 d;
 
     public f(Activity activity, i6 i6Var) {
         super(activity);
         int x02;
         e eVar = new e(this, activity);
-        this.f5350a = eVar;
+        this.f5347a = eVar;
         eVar.setHapticFeedbackEnabled(true);
         eVar.setImageResource(2131232741);
         u6.s(eVar, n6.Jf, i6Var, PorterDuff.Mode.MULTIPLY);
@@ -32,9 +32,9 @@ public final class f extends FrameLayout {
         eVar.setFocusable(true);
         eVar.setOnClickListener(new bi.o(5));
         addView(eVar, ma.e(36, 36, 17));
-        int x03 = n6.x0(null, n6.f29488i6, false);
+        int x03 = n6.x0(null, n6.f29486i6, false);
         int L = org.telegram.messenger.g0.L(36.0f);
-        int i7 = n6.f29396d6;
+        int i7 = n6.f29394d6;
         if (i6Var != null) {
             x02 = i6Var.k(i7);
         } else {

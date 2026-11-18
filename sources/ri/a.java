@@ -40,36 +40,36 @@ public final class a {
             d dVar = new d();
             this.f56619g = dVar;
             ui.f fVar = new ui.f(cVar);
-            fVar.f59007f = cVar;
+            fVar.f59008f = cVar;
             fVar.h = dVar.d(2);
             this.h = fVar;
             ui.f fVar2 = new ui.f(cVar);
             this.f56620i = fVar2;
-            fVar2.f59007f = cVar;
+            fVar2.f59008f = cVar;
             fVar2.h = dVar.d(3);
             dh.c cVar2 = new dh.c(fVar, fVar2, cVar);
             this.f56616c = cVar2;
-            cVar2.f8381j = qVar;
-            cVar2.f8382k = true;
+            cVar2.f8378j = qVar;
+            cVar2.f8379k = true;
             ui.d dVar2 = new ui.d(fVar, fVar2);
             this.f56617e = dVar2;
             dh.c cVar3 = new dh.c(fVar2, fVar2, cVar);
             this.f56618f = cVar3;
-            cVar3.f8381j = qVar;
+            cVar3.f8378j = qVar;
             dh.c cVar4 = new dh.c(dVar2, fVar2, cVar);
             this.d = cVar4;
-            cVar4.f8381j = qVar;
-            cVar4.f8382k = true;
+            cVar4.f8378j = qVar;
+            cVar4.f8379k = true;
             this.f56622k = dVar.d(1);
             return;
         }
-        this.f56622k = ui.e.f59002a;
+        this.f56622k = ui.e.f59003a;
         this.f56619g = null;
         this.h = null;
         this.f56620i = null;
         dh.c cVar5 = new dh.c(cVar, cVar, cVar);
         this.f56616c = cVar5;
-        cVar5.f8381j = qVar;
+        cVar5.f8378j = qVar;
         this.f56617e = null;
         this.d = cVar5;
         this.f56618f = cVar5;
@@ -109,7 +109,7 @@ public final class a {
         fVar.J = 160;
         ui.c cVar = fVar.H;
         if (cVar != null) {
-            fVar.I = n6.r1(160 / 255.0f, cVar.f58998b);
+            fVar.I = n6.r1(160 / 255.0f, cVar.f58999b);
         }
         fVar.f57506w = true;
         fVar.invalidateSelf();
@@ -122,7 +122,7 @@ public final class a {
         fVar.L = 210;
         ui.c cVar2 = fVar.H;
         if (cVar2 != null) {
-            fVar.K = n6.r1(210 / 255.0f, cVar2.f58998b);
+            fVar.K = n6.r1(210 / 255.0f, cVar2.f58999b);
         }
         fVar.f57507x = true;
         fVar.invalidateSelf();
@@ -151,7 +151,7 @@ public final class a {
         fVar.J = 160;
         ui.c cVar = fVar.H;
         if (cVar != null) {
-            fVar.I = n6.r1(160 / 255.0f, cVar.f58998b);
+            fVar.I = n6.r1(160 / 255.0f, cVar.f58999b);
         }
         fVar.f57506w = true;
         fVar.invalidateSelf();
@@ -164,7 +164,7 @@ public final class a {
         fVar.L = 210;
         ui.c cVar2 = fVar.H;
         if (cVar2 != null) {
-            fVar.K = n6.r1(210 / 255.0f, cVar2.f58998b);
+            fVar.K = n6.r1(210 / 255.0f, cVar2.f58999b);
         }
         fVar.f57507x = true;
         fVar.invalidateSelf();
@@ -198,8 +198,8 @@ public final class a {
                 a5Var.M = cVar;
                 a5Var.N = m10;
                 a5Var.r();
-                a5Var.f28779o0 = this.d;
-                a5Var.f28780p0 = this.f56617e;
+                a5Var.f28777o0 = this.d;
+                a5Var.f28778p0 = this.f56617e;
             } else if (view instanceof org.telegram.ui.ActionBar.k) {
                 org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) view;
                 kVar.setAddToContainer(false);

@@ -2,10 +2,10 @@ package kg;
 
 import android.content.Context;
 import android.text.Editable;
-import bi.d6;
+import bi.c6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Cells.k3;
-public final class l extends k3 {
+import org.telegram.ui.Cells.l3;
+public final class l extends l3 {
     public final int F;
     public final n G;
 
@@ -25,18 +25,18 @@ public final class l extends k3 {
 
     @Override
     public final void a(boolean z10) {
-        d6 d6Var;
-        d6 d6Var2;
+        c6 c6Var;
+        c6 c6Var2;
         switch (this.F) {
             case 0:
-                if (z10 && (d6Var = this.G.f33530a) != null) {
-                    d6Var.y0(2);
+                if (z10 && (c6Var = this.G.f33530a) != null) {
+                    c6Var.y0(2);
                     return;
                 }
                 return;
             default:
-                if (z10 && (d6Var2 = this.G.f33530a) != null) {
-                    d6Var2.y0(3);
+                if (z10 && (c6Var2 = this.G.f33530a) != null) {
+                    c6Var2.y0(3);
                     return;
                 }
                 return;
@@ -48,12 +48,12 @@ public final class l extends k3 {
         switch (this.F) {
             case 0:
                 n nVar = this.G;
-                nVar.f18391n.d(nVar.f18393s.getText().toString(), nVar.f18394w.getText().toString());
+                nVar.f18388n.d(nVar.f18390s.getText().toString(), nVar.f18391w.getText().toString());
                 nVar.j0(true);
                 return;
             default:
                 n nVar2 = this.G;
-                nVar2.f18391n.d(nVar2.f18393s.getText().toString(), nVar2.f18394w.getText().toString());
+                nVar2.f18388n.d(nVar2.f18390s.getText().toString(), nVar2.f18391w.getText().toString());
                 nVar2.j0(true);
                 return;
         }

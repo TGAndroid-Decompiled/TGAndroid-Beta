@@ -39,7 +39,7 @@ public final class nv implements ri.m, qj0, cl0, te.b {
                     ryVar.f39360i0.C0();
                     ryVar.f39382q0.k(i7, 0);
                     if (i7 != ryVar.f39390s0 && i7 != ryVar.f39393t0) {
-                        ArrayList arrayList = org.telegram.messenger.mp.u1(i15).f25638e4;
+                        ArrayList arrayList = org.telegram.messenger.mp.u1(i15).f25636e4;
                         ryVar.f39366k0.H((String) arrayList.get(i7 - ryVar.f39396u0));
                         int i16 = i7 - ryVar.f39396u0;
                         if (i16 > 0) {
@@ -62,7 +62,7 @@ public final class nv implements ri.m, qj0, cl0, te.b {
                             wxVar.h1(i10, 0);
                         }
                         if (i7 == ryVar.f39393t0) {
-                            ArrayList arrayList2 = org.telegram.messenger.mp.u1(i15).f25638e4;
+                            ArrayList arrayList2 = org.telegram.messenger.mp.u1(i15).f25636e4;
                             if (!arrayList2.isEmpty()) {
                                 yxVar.a((String) arrayList2.get(0), true);
                             }
@@ -187,7 +187,7 @@ public final class nv implements ri.m, qj0, cl0, te.b {
             } else if (zxVar.getSpan() == null && (str = (String) zxVar.getTag()) != null) {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
                 if (!zxVar.f42962c) {
-                    str2 = (String) org.telegram.messenger.j6.f24820j.get(replace);
+                    str2 = (String) org.telegram.messenger.j6.f24817j.get(replace);
                 } else {
                     str2 = null;
                 }
@@ -196,14 +196,14 @@ public final class nv implements ri.m, qj0, cl0, te.b {
                 } else {
                     z10 = false;
                 }
-                if (z10 || org.telegram.messenger.k6.f24999l.contains(replace)) {
+                if (z10 || org.telegram.messenger.k6.f24996l.contains(replace)) {
                     ryVar.S1 = zxVar;
                     ryVar.V1 = ryVar.T1;
                     ryVar.W1 = ryVar.U1;
                     if (z10) {
                         replace = ry.g(replace, str2);
                     } else {
-                        int indexOf = org.telegram.messenger.j4.f24809a.indexOf(str2) + 1;
+                        int indexOf = org.telegram.messenger.j4.f24806a.indexOf(str2) + 1;
                         hu huVar = iuVar.f36199c;
                         int[] iArr2 = huVar.f35974n;
                         if (iArr2[0] != indexOf) {
@@ -261,7 +261,7 @@ public final class nv implements ri.m, qj0, cl0, te.b {
                     } else {
                         for (int i19 = 0; i19 < 6; i19++) {
                             if (i19 != 0) {
-                                str3 = ry.g(replace, (String) org.telegram.messenger.j4.f24809a.get(i19 - 1));
+                                str3 = ry.g(replace, (String) org.telegram.messenger.j4.f24806a.get(i19 - 1));
                             } else {
                                 str3 = replace;
                             }
@@ -320,7 +320,7 @@ public final class nv implements ri.m, qj0, cl0, te.b {
                         i13 = org.telegram.ui.Cells.c0.i(5.0f, iArr[0] - i13, i13);
                     } else {
                         int i26 = (iArr[0] - i13) + L2;
-                        Point point = org.telegram.messenger.g0.f24121q;
+                        Point point = org.telegram.messenger.g0.f24118q;
                         if (i26 > point.x - org.telegram.messenger.g0.L(5.0f)) {
                             i13 += ((iArr[0] - i13) + L2) - (point.x - org.telegram.messenger.g0.L(5.0f));
                         }

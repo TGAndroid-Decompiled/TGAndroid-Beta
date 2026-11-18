@@ -16,32 +16,32 @@ import org.telegram.ui.Components.au0;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.vi0;
 public final class t8 extends au0 {
-    public float f12596g0;
-    public float f12597h0;
-    public float f12598i0;
-    public final float[] f12599j0;
-    public final Path f12600k0;
-    public final RectF f12601l0;
+    public float f12593g0;
+    public float f12594h0;
+    public float f12595i0;
+    public final float[] f12596j0;
+    public final Path f12597k0;
+    public final RectF f12598l0;
     public final RectF m0;
-    public final RectF f12602n0;
-    public final RectF f12603o0;
-    public final RectF f12604p0;
-    public final SparseArray f12605q0;
-    public final org.telegram.ui.ActionBar.h2 f12606r0;
-    public final f9 f12607s0;
+    public final RectF f12599n0;
+    public final RectF f12600o0;
+    public final RectF f12601p0;
+    public final SparseArray f12602q0;
+    public final org.telegram.ui.ActionBar.h2 f12603r0;
+    public final f9 f12604s0;
 
     public t8(f9 f9Var, Context context, org.telegram.ui.ActionBar.h2 h2Var) {
         super(context, null);
-        this.f12607s0 = f9Var;
-        this.f12606r0 = h2Var;
-        this.f12599j0 = new float[8];
-        this.f12600k0 = new Path();
-        this.f12601l0 = new RectF();
+        this.f12604s0 = f9Var;
+        this.f12603r0 = h2Var;
+        this.f12596j0 = new float[8];
+        this.f12597k0 = new Path();
+        this.f12598l0 = new RectF();
         this.m0 = new RectF();
-        this.f12602n0 = new RectF();
-        this.f12603o0 = new RectF();
-        this.f12604p0 = new RectF();
-        this.f12605q0 = new SparseArray();
+        this.f12599n0 = new RectF();
+        this.f12600o0 = new RectF();
+        this.f12601p0 = new RectF();
+        this.f12602q0 = new SparseArray();
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class t8 extends au0 {
     @Override
     public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
         int keyCode = keyEvent.getKeyCode();
-        f9 f9Var = this.f12607s0;
+        f9 f9Var = this.f12604s0;
         if (keyCode != 24 && keyEvent.getKeyCode() != 25) {
             if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
                 f9Var.p();
@@ -75,31 +75,31 @@ public final class t8 extends au0 {
         v8 v8Var;
         int i10;
         vi0 vi0Var;
-        f9 f9Var = this.f12607s0;
-        float[] fArr = f9Var.f11988p0;
-        z3 currentPeerView = f9Var.f11986o0.getCurrentPeerView();
+        f9 f9Var = this.f12604s0;
+        float[] fArr = f9Var.f11985p0;
+        z3 currentPeerView = f9Var.f11983o0.getCurrentPeerView();
         if (currentPeerView != null) {
-            g3 g3Var = currentPeerView.f12879u0;
-            if (g3Var.f12738a0.x()) {
+            g3 g3Var = currentPeerView.f12876u0;
+            if (g3Var.f12735a0.x()) {
                 float x10 = currentPeerView.getX();
                 float y10 = ((View) currentPeerView.getParent()).getY() + currentPeerView.getY();
                 motionEvent.offsetLocation(-x10, -y10);
-                if (!g3Var.f12738a0.n(currentPeerView.getContext()).onTouchEvent(motionEvent)) {
+                if (!g3Var.f12735a0.n(currentPeerView.getContext()).onTouchEvent(motionEvent)) {
                     motionEvent.offsetLocation(x10, y10);
                 }
                 return true;
             }
         }
         float f10 = 0.0f;
-        if (f9Var.f11989p1 && currentPeerView != null && (vi0Var = currentPeerView.f12815b3) != null) {
+        if (f9Var.f11986p1 && currentPeerView != null && (vi0Var = currentPeerView.f12812b3) != null) {
             float f11 = 0.0f;
             for (View view = currentPeerView; view != null && (view.getParent() instanceof View); view = (View) view.getParent()) {
                 f10 += view.getX();
                 f11 += view.getY();
             }
-            if (currentPeerView.f12815b3.getReactionsWindow() != null && currentPeerView.f12815b3.getReactionsWindow().f5299c != null) {
-                motionEvent.offsetLocation(-f10, (-f11) - currentPeerView.f12815b3.getReactionsWindow().f5299c.getTranslationY());
-                currentPeerView.f12815b3.getReactionsWindow().f5299c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f12812b3.getReactionsWindow() != null && currentPeerView.f12812b3.getReactionsWindow().f5296c != null) {
+                motionEvent.offsetLocation(-f10, (-f11) - currentPeerView.f12812b3.getReactionsWindow().f5296c.getTranslationY());
+                currentPeerView.f12812b3.getReactionsWindow().f5296c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = org.telegram.messenger.g0.Q;
@@ -116,8 +116,8 @@ public final class t8 extends au0 {
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             z10 = false;
         } else {
-            f9Var.f11980k0 = false;
-            org.telegram.messenger.g0.r(f9Var.f11960b1);
+            f9Var.f11977k0 = false;
+            org.telegram.messenger.g0.r(f9Var.f11957b1);
             float f12 = f9Var.Y;
             if (f12 != 0.0f) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f12, 0.0f);
@@ -136,32 +136,32 @@ public final class t8 extends au0 {
             z10 = true;
         }
         if (motionEvent.getAction() == 0) {
-            f9Var.f11959b0 = false;
+            f9Var.f11956b0 = false;
             if (currentPeerView != null) {
-                bi.p2 p2Var = currentPeerView.f12835i0;
+                bi.p2 p2Var = currentPeerView.f12832i0;
                 k8 k8Var = currentPeerView.m0;
                 c3 c3Var = currentPeerView.M0;
-                hi.m3 m3Var = currentPeerView.f12859p0;
+                hi.m3 m3Var = currentPeerView.f12856p0;
                 if (m3Var != null && m3Var.W && k8Var != null) {
-                    if (!m3Var.D0.contains(motionEvent.getX() - (currentPeerView.f12859p0.getX() + (c3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.f12859p0.getY() + (c3Var.getY() + currentPeerView.getY()))) && !currentPeerView.F0(k8Var, motionEvent)) {
-                        currentPeerView.f12859p0.f(true);
+                    if (!m3Var.D0.contains(motionEvent.getX() - (currentPeerView.f12856p0.getX() + (c3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.f12856p0.getY() + (c3Var.getY() + currentPeerView.getY()))) && !currentPeerView.F0(k8Var, motionEvent)) {
+                        currentPeerView.f12856p0.f(true);
                     }
                 }
-                hi.m3 m3Var2 = currentPeerView.f12863q0;
-                if (m3Var2 != null && m3Var2.W && p2Var != null && !m3Var2.D0.contains(motionEvent.getX() - (currentPeerView.f12863q0.getX() + (c3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.f12863q0.getY() + (c3Var.getY() + currentPeerView.getY()))) && !currentPeerView.F0(p2Var, motionEvent)) {
-                    currentPeerView.f12863q0.f(true);
+                hi.m3 m3Var2 = currentPeerView.f12860q0;
+                if (m3Var2 != null && m3Var2.W && p2Var != null && !m3Var2.D0.contains(motionEvent.getX() - (currentPeerView.f12860q0.getX() + (c3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.f12860q0.getY() + (c3Var.getY() + currentPeerView.getY()))) && !currentPeerView.F0(p2Var, motionEvent)) {
+                    currentPeerView.f12860q0.f(true);
                 }
             }
-            f9Var.f11986o0.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+            f9Var.f11983o0.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
         }
-        if (!f9Var.f12009y && !f9Var.H0 && !f9Var.I0) {
+        if (!f9Var.f12006y && !f9Var.H0 && !f9Var.I0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        int i11 = (f9Var.f11970f0 > 0.0f ? 1 : (f9Var.f11970f0 == 0.0f ? 0 : -1));
-        SparseArray sparseArray = this.f12605q0;
-        if (i11 == 0 && !f9Var.f11980k0 && f9Var.f11986o0.G0 == 1 && motionEvent.getAction() == 2 && z11 && (((((Float) sparseArray.get(motionEvent.getPointerId(0), Float.valueOf(0.0f))).floatValue() - motionEvent.getX(0)) != 0.0f && (((i10 = (v8Var = f9Var.f11986o0).J0) == 0 && v8Var.L0 == 0.0f && floatValue < 0.0f) || (i10 == v8Var.getAdapter().b() - 1 && v8Var.L0 == 0.0f && i7 > 0))) || f9Var.Y != 0.0f)) {
+        int i11 = (f9Var.f11967f0 > 0.0f ? 1 : (f9Var.f11967f0 == 0.0f ? 0 : -1));
+        SparseArray sparseArray = this.f12602q0;
+        if (i11 == 0 && !f9Var.f11977k0 && f9Var.f11983o0.G0 == 1 && motionEvent.getAction() == 2 && z11 && (((((Float) sparseArray.get(motionEvent.getPointerId(0), Float.valueOf(0.0f))).floatValue() - motionEvent.getX(0)) != 0.0f && (((i10 = (v8Var = f9Var.f11983o0).J0) == 0 && v8Var.L0 == 0.0f && floatValue < 0.0f) || (i10 == v8Var.getAdapter().b() - 1 && v8Var.L0 == 0.0f && i7 > 0))) || f9Var.Y != 0.0f)) {
             float f13 = f9Var.Y;
             if (f13 == 0.0f) {
                 f9Var.Z = -floatValue;
@@ -179,10 +179,10 @@ public final class t8 extends au0 {
         } else {
             z12 = false;
         }
-        if (currentPeerView != null && f9Var.f11970f0 == 0.0f && !f9Var.f11980k0 && !f9Var.L0 && !f9Var.I0 && f9Var.f11986o0.G0 != 1) {
+        if (currentPeerView != null && f9Var.f11967f0 == 0.0f && !f9Var.f11977k0 && !f9Var.L0 && !f9Var.I0 && f9Var.f11983o0.G0 != 1) {
             org.telegram.messenger.g0.r1(currentPeerView.M0, this, fArr);
             motionEvent.offsetLocation(-fArr[0], -fArr[1]);
-            z3 currentPeerView2 = f9Var.f11986o0.getCurrentPeerView();
+            z3 currentPeerView2 = f9Var.f11983o0.getCurrentPeerView();
             currentPeerView2.H2.a(motionEvent, currentPeerView2.M0, null, null, 0);
             motionEvent.offsetLocation(fArr[0], fArr[1]);
         }
@@ -196,8 +196,8 @@ public final class t8 extends au0 {
         if (!z12) {
             boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
             if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (f9Var.f11970f0 != 0.0f && !f9Var.f11973g1 && f9Var.f11990q0 < org.telegram.messenger.g0.L(20.0f)) {
-                    if (f9Var.f12007x.f12105f > 0.5f) {
+                if (f9Var.f11967f0 != 0.0f && !f9Var.f11970g1 && f9Var.f11987q0 < org.telegram.messenger.g0.L(20.0f)) {
+                    if (f9Var.f12004x.f12102f > 0.5f) {
                         z13 = true;
                     } else {
                         z13 = false;
@@ -206,13 +206,13 @@ public final class t8 extends au0 {
                 }
                 z3 z14 = f9Var.z();
                 if (z14 != null) {
-                    z14.f12879u0.f12760x0 = false;
+                    z14.f12876u0.f12757x0 = false;
                 }
             }
-            if (z10 && !f9Var.f11959b0) {
+            if (z10 && !f9Var.f11956b0) {
                 f9Var.m();
             }
-            if (!dispatchTouchEvent && (!f9.f11952x1 || !f9Var.f11993r0)) {
+            if (!dispatchTouchEvent && (!f9.f11949x1 || !f9Var.f11990r0)) {
                 return false;
             }
         }
@@ -221,7 +221,7 @@ public final class t8 extends au0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f12607s0.f12011z0) {
+        if (view == this.f12604s0.f12008z0) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
@@ -230,29 +230,29 @@ public final class t8 extends au0 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        f9 f9Var = this.f12607s0;
-        if (f9Var.f11958b && !f9Var.f11961c) {
-            org.telegram.ui.ActionBar.h2 h2Var = this.f12606r0;
+        f9 f9Var = this.f12604s0;
+        if (f9Var.f11955b && !f9Var.f11958c) {
+            org.telegram.ui.ActionBar.h2 h2Var = this.f12603r0;
             org.telegram.messenger.g0.Z2(h2Var.getParentActivity(), h2Var.getClassGuid());
         }
         setTag(2131296351, new s8(this));
-        ks.f(f9Var.h).c(f9Var, ks.f25239z5);
-        ks.f(f9Var.h).c(f9Var, ks.f25225x5);
-        ks.f(f9Var.h).c(f9Var, ks.f25102d1);
-        ks.f(f9Var.h).c(f9Var, ks.f25096c1);
-        ks.f(f9Var.h).c(f9Var, ks.f25232y5);
+        ks.f(f9Var.h).c(f9Var, ks.A5);
+        ks.f(f9Var.h).c(f9Var, ks.f25230y5);
+        ks.f(f9Var.h).c(f9Var, ks.f25100d1);
+        ks.f(f9Var.h).c(f9Var, ks.f25094c1);
+        ks.f(f9Var.h).c(f9Var, ks.f25237z5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         setTag(2131296351, null);
-        f9 f9Var = this.f12607s0;
-        ks.f(f9Var.h).n(f9Var, ks.f25239z5);
-        ks.f(f9Var.h).n(f9Var, ks.f25225x5);
-        ks.f(f9Var.h).n(f9Var, ks.f25102d1);
-        ks.f(f9Var.h).n(f9Var, ks.f25096c1);
-        ks.f(f9Var.h).n(f9Var, ks.f25232y5);
+        f9 f9Var = this.f12604s0;
+        ks.f(f9Var.h).n(f9Var, ks.A5);
+        ks.f(f9Var.h).n(f9Var, ks.f25230y5);
+        ks.f(f9Var.h).n(f9Var, ks.f25100d1);
+        ks.f(f9Var.h).n(f9Var, ks.f25094c1);
+        ks.f(f9Var.h).n(f9Var, ks.f25237z5);
     }
 
     @Override
@@ -262,9 +262,9 @@ public final class t8 extends au0 {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        f9 f9Var = this.f12607s0;
-        ((FrameLayout.LayoutParams) f9Var.f11965d1.getLayoutParams()).topMargin = org.telegram.messenger.g0.f24115m - org.telegram.messenger.g0.L(2.0f);
-        f9Var.f11965d1.getLayoutParams().height = org.telegram.messenger.g0.L(2.0f);
+        f9 f9Var = this.f12604s0;
+        ((FrameLayout.LayoutParams) f9Var.f11962d1.getLayoutParams()).topMargin = org.telegram.messenger.g0.f24112m - org.telegram.messenger.g0.L(2.0f);
+        f9Var.f11962d1.getLayoutParams().height = org.telegram.messenger.g0.L(2.0f);
         super.onMeasure(i7, i10);
     }
 
@@ -272,9 +272,9 @@ public final class t8 extends au0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         a2 a2Var;
         int action = motionEvent.getAction();
-        f9 f9Var = this.f12607s0;
+        f9 f9Var = this.f12604s0;
         if (action == 1 || motionEvent.getAction() == 3) {
-            f9Var.f11980k0 = false;
+            f9Var.f11977k0 = false;
             f9Var.Q(false);
             if (f9Var.W >= 1.0f) {
                 f9Var.u(true);
@@ -288,20 +288,20 @@ public final class t8 extends au0 {
                 f9Var.H.start();
             }
             z3 z10 = f9Var.z();
-            if (z10 != null && (a2Var = z10.f12883v0) != null) {
+            if (z10 != null && (a2Var = z10.f12880v0) != null) {
                 a2Var.setAllowTouches(true);
             }
         }
-        if (!f9Var.f11980k0 && !f9Var.f12009y && f9Var.f11956a0 == 0.0f && ((f9Var.f11970f0 == 0.0f || (!f9Var.f11972g0 && !f9Var.f11974h0)) && !f9Var.f11979j1)) {
+        if (!f9Var.f11977k0 && !f9Var.f12006y && f9Var.f11953a0 == 0.0f && ((f9Var.f11967f0 == 0.0f || (!f9Var.f11969g0 && !f9Var.f11971h0)) && !f9Var.f11976j1)) {
             return false;
         }
-        f9Var.f11978j0.onTouchEvent(motionEvent);
+        f9Var.f11975j0.onTouchEvent(motionEvent);
         return true;
     }
 
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
         super.requestDisallowInterceptTouchEvent(z10);
-        this.f12607s0.f11972g0 = false;
+        this.f12604s0.f11969g0 = false;
     }
 }

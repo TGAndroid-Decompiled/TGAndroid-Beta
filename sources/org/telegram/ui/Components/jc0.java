@@ -50,9 +50,9 @@ public final class jc0 implements ViewTreeObserver.OnGlobalLayoutListener {
             AnimatorSet animatorSet2 = new AnimatorSet();
             pc0Var.R = animatorSet2;
             ArrayList arrayList2 = new ArrayList();
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             int i10 = point.x;
-            int i11 = point.y + org.telegram.messenger.g0.f24115m;
+            int i11 = point.y + org.telegram.messenger.g0.f24112m;
             int i12 = this.f36404a;
             int i13 = i10 - i12;
             int i14 = i13 * i13;
@@ -184,7 +184,7 @@ public final class jc0 implements ViewTreeObserver.OnGlobalLayoutListener {
             pc0Var.S = animatorSet5;
             animatorSet5.setDuration(332L);
             if (!org.telegram.messenger.g0.Q1() && pc0Var.getContext().getResources().getConfiguration().orientation == 2) {
-                if (org.telegram.messenger.bz.f23194r == 0) {
+                if (org.telegram.messenger.bz.f23191r == 0) {
                     f11 = i24 / 2.0f;
                 } else {
                     f11 = i24;

@@ -5,15 +5,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.k61;
 public final class w0 implements ToDoubleFunction {
-    public final int f9958a;
+    public final int f9955a;
 
     public w0(int i7) {
-        this.f9958a = i7;
+        this.f9955a = i7;
     }
 
     @Override
     public final double applyAsDouble(Object obj) {
-        switch (this.f9958a) {
+        switch (this.f9955a) {
             case 0:
                 return h1.f1((TL_stars.starGiftAttributeBackdrop) obj);
             case 1:

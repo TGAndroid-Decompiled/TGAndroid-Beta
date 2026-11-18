@@ -7,13 +7,13 @@ import android.widget.ImageView;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
 public final class q1 {
-    public final SparseIntArray f18847a = new SparseIntArray();
-    public final SparseIntArray f18848b = new SparseIntArray();
-    public final int[] f18849c = {n6.G6, n6.f29714u8, n6.G8, n6.E8, n6.F8, n6.I5, n6.zj};
+    public final SparseIntArray f18844a = new SparseIntArray();
+    public final SparseIntArray f18845b = new SparseIntArray();
+    public final int[] f18846c = {n6.G6, n6.f29712u8, n6.G8, n6.E8, n6.F8, n6.I5, n6.zj};
     public float d;
 
     public final int a(int i7) {
-        return i0.a.f(this.d, this.f18847a.get(i7), this.f18848b.get(i7));
+        return i0.a.f(this.d, this.f18844a.get(i7), this.f18845b.get(i7));
     }
 
     public final void b(org.telegram.ui.ActionBar.k kVar, float f10) {
@@ -22,17 +22,17 @@ public final class q1 {
         kVar.setTitleColor(a(i7));
         kVar.setSubtitleColor(n6.r1(0.45f, a(i7)));
         kVar.I(a(i7), false);
-        ImageView imageView = kVar.f29068e;
+        ImageView imageView = kVar.f29066e;
         if (imageView != null) {
             imageView.setColorFilter(new PorterDuffColorFilter(a(i7), PorterDuff.Mode.SRC_IN));
         }
-        kVar.G(a(n6.f29714u8), false);
+        kVar.G(a(n6.f29712u8), false);
     }
 
     public final void c(SparseIntArray sparseIntArray, int i7, i6 i6Var) {
         int i10;
         int i11;
-        int[] iArr = this.f18849c;
+        int[] iArr = this.f18846c;
         int i12 = 0;
         if (i7 == 0) {
             while (i12 < iArr.length) {
@@ -53,7 +53,7 @@ public final class q1 {
             if (i14 != n6.G8 && i14 != n6.E8 && i14 != n6.F8 && i14 != (i11 = n6.I5)) {
                 if (i14 == n6.zj) {
                     sparseIntArray.put(i14, i0.a.f(0.5f, i7, i10));
-                } else if (i14 != n6.f29714u8 && i14 != i11) {
+                } else if (i14 != n6.f29712u8 && i14 != i11) {
                     sparseIntArray.put(i14, i10);
                 } else {
                     sparseIntArray.put(i14, o4);

@@ -7,16 +7,16 @@ import org.telegram.ui.Components.du0;
 import org.telegram.ui.Components.n6;
 import org.telegram.ui.Components.z4;
 public final class u implements z4, du0, yg.f, yg.k {
-    public final a0 f59825a;
+    public final a0 f59826a;
 
     public u(a0 a0Var) {
-        this.f59825a = a0Var;
+        this.f59826a = a0Var;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        a0 a0Var = this.f59825a;
-        a0Var.f59702i2 = i7 * 1000;
+        a0 a0Var = this.f59826a;
+        a0Var.f59703i2 = i7 * 1000;
         a0Var.l1(false, true);
     }
 
@@ -27,26 +27,26 @@ public final class u implements z4, du0, yg.f, yg.k {
         String M0;
         String str2;
         String G;
-        a0 a0Var = this.f59825a;
+        a0 a0Var = this.f59826a;
         int i11 = a0Var.d2;
-        int i12 = yg.d.f61228w;
+        int i12 = yg.d.f61229w;
         if (i11 == 2) {
-            a0Var.f59703j2 = i7;
+            a0Var.f59704j2 = i7;
         } else {
-            a0Var.f59704k2 = i7;
+            a0Var.f59705k2 = i7;
         }
-        a0Var.f59706m2.f61199a.c(a0Var.g1(), true);
+        a0Var.f59707m2.f61200a.c(a0Var.g1(), true);
         if (a0Var.d2 == 3) {
             a0Var.l1(true, true);
         } else {
             a0Var.l1(false, false);
         }
-        xg.b bVar = a0Var.f59697c2;
+        xg.b bVar = a0Var.f59698c2;
         int g12 = a0Var.g1();
-        for (int i13 = 0; i13 < bVar.f60473f.getChildCount(); i13++) {
-            View childAt = bVar.f60473f.getChildAt(i13);
+        for (int i13 = 0; i13 < bVar.f60474f.getChildCount(); i13++) {
+            View childAt = bVar.f60474f.getChildAt(i13);
             if (childAt instanceof yg.x) {
-                n6 n6Var = ((yg.x) childAt).f61281r;
+                n6 n6Var = ((yg.x) childAt).f61282r;
                 if (g12 <= 0) {
                     G = "";
                 } else {
@@ -58,8 +58,8 @@ public final class u implements z4, du0, yg.f, yg.k {
             if (childAt instanceof yg.g) {
                 yg.g gVar = (yg.g) childAt;
                 int F = bVar.F(gVar.getChat());
-                boolean V = v3.V(gVar.f61234x);
-                if (gVar.f61235y) {
+                boolean V = v3.V(gVar.f61235x);
+                if (gVar.f61236y) {
                     if (F >= 1) {
                         if (V) {
                             str2 = "Subscribers";
@@ -87,7 +87,7 @@ public final class u implements z4, du0, yg.f, yg.k {
             }
         }
         bVar.g(8);
-        bVar.k(bVar.f60472e.size() - 12, 12);
+        bVar.k(bVar.f60473e.size() - 12, 12);
     }
 
     @Override

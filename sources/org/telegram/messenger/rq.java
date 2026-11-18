@@ -9,26 +9,26 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.nu0;
 public final class rq implements Runnable {
-    public final int f26691a;
-    public final Object f26692b;
-    public final Object f26693c;
+    public final int f26689a;
+    public final Object f26690b;
+    public final Object f26691c;
 
     public rq(int i7, Object obj, Object obj2) {
-        this.f26691a = i7;
-        this.f26692b = obj;
-        this.f26693c = obj2;
+        this.f26689a = i7;
+        this.f26690b = obj;
+        this.f26691c = obj2;
     }
 
     private final void a() {
-        ((nu0) this.f26692b).accept((HashSet) this.f26693c);
+        ((nu0) this.f26690b).accept((HashSet) this.f26691c);
     }
 
     private final void b() {
         long j3;
-        xs xsVar = (xs) this.f26692b;
-        a0.h hVar = (a0.h) this.f26693c;
-        ArrayList arrayList = xsVar.f27968b;
-        ArrayList arrayList2 = xsVar.f27966a;
+        xs xsVar = (xs) this.f26690b;
+        a0.h hVar = (a0.h) this.f26691c;
+        ArrayList arrayList = xsVar.f27966b;
+        ArrayList arrayList2 = xsVar.f27964a;
         int m10 = hVar.m();
         boolean z10 = false;
         for (int i7 = 0; i7 < m10; i7++) {
@@ -38,16 +38,16 @@ public final class rq implements Runnable {
             for (int i10 = 0; i10 < size; i10++) {
                 fj fjVar = (fj) arrayList3.get(i10);
                 if (fjVar.J) {
-                    j3 = fj.B0(fjVar.f23968k);
+                    j3 = fj.B0(fjVar.f23965k);
                 } else {
-                    long j10 = fjVar.f23968k.peer_id.channel_id;
+                    long j10 = fjVar.f23965k.peer_id.channel_id;
                     if (j10 != 0) {
                         j3 = -j10;
                     } else {
                         j3 = 0;
                     }
                 }
-                SparseArray sparseArray = (SparseArray) xsVar.f27970c.f(j3);
+                SparseArray sparseArray = (SparseArray) xsVar.f27968c.f(j3);
                 if (sparseArray == null) {
                     break;
                 }
@@ -75,13 +75,13 @@ public final class rq implements Runnable {
     }
 
     private final void c() {
-        ((q10) this.f26692b).a(null, ((Throwable) this.f26693c).getMessage());
+        ((q10) this.f26690b).a(null, ((Throwable) this.f26691c).getMessage());
     }
 
     private final void d() {
-        pv pvVar = (pv) this.f26693c;
+        pv pvVar = (pv) this.f26691c;
         try {
-            SQLitePreparedStatement executeFast = ((tr) this.f26692b).f27056b.executeFast("DELETE FROM saved_dialogs WHERE forumChatId = ?");
+            SQLitePreparedStatement executeFast = ((tr) this.f26690b).f27054b.executeFast("DELETE FROM saved_dialogs WHERE forumChatId = ?");
             executeFast.requery();
             executeFast.bindLong(1, 0L);
             executeFast.step();
@@ -93,47 +93,47 @@ public final class rq implements Runnable {
     }
 
     private final void f() {
-        xv xvVar = (xv) this.f26692b;
-        TLRPC.Message message = (TLRPC.Message) this.f26693c;
+        xv xvVar = (xv) this.f26690b;
+        TLRPC.Message message = (TLRPC.Message) this.f26691c;
         message.send_state = 2;
-        xvVar.getNotificationCenter().k(ks.M, Integer.valueOf(message.f28426id));
-        xvVar.getSendMessagesHelper().d0(message.f28426id);
-        xvVar.getSendMessagesHelper().i0(message.f28426id, false);
+        xvVar.getNotificationCenter().k(ks.M, Integer.valueOf(message.f28424id));
+        xvVar.getSendMessagesHelper().d0(message.f28424id);
+        xvVar.getSendMessagesHelper().i0(message.f28424id, false);
     }
 
     private final void g() {
         TLRPC.Message message;
-        zy zyVar = (zy) this.f26692b;
-        fj fjVar = (fj) this.f26693c;
-        if (fjVar != null && (message = fjVar.f23968k) != null) {
+        zy zyVar = (zy) this.f26690b;
+        fj fjVar = (fj) this.f26691c;
+        if (fjVar != null && (message = fjVar.f23965k) != null) {
             message.reqId = 0;
             if (message.send_state == 3) {
                 message.send_state = 0;
-                zyVar.getNotificationCenter().k(ks.m0, Long.valueOf(fj.B0(fjVar.f23968k)), f3.i(fjVar));
+                zyVar.getNotificationCenter().k(ks.m0, Long.valueOf(fj.B0(fjVar.f23965k)), f3.i(fjVar));
             }
         }
     }
 
     private final void h() {
-        TLRPC.TL_updateShortSentMessage tL_updateShortSentMessage = (TLRPC.TL_updateShortSentMessage) this.f26693c;
-        ((zy) this.f26692b).getMessagesController().T3(tL_updateShortSentMessage.pts, tL_updateShortSentMessage.date, tL_updateShortSentMessage.pts_count);
+        TLRPC.TL_updateShortSentMessage tL_updateShortSentMessage = (TLRPC.TL_updateShortSentMessage) this.f26691c;
+        ((zy) this.f26690b).getMessagesController().T3(tL_updateShortSentMessage.pts, tL_updateShortSentMessage.date, tL_updateShortSentMessage.pts_count);
     }
 
     private final void i() {
-        qy qyVar = ((oy) this.f26692b).f26127b;
-        HashSet hashSet = qyVar.f26487c;
-        hashSet.remove((String) this.f26693c);
-        qyVar.f26499q.getNotificationCenter().k(ks.f25207v1, Long.valueOf(qyVar.f26492j));
+        qy qyVar = ((oy) this.f26690b).f26125b;
+        HashSet hashSet = qyVar.f26485c;
+        hashSet.remove((String) this.f26691c);
+        qyVar.f26497q.getNotificationCenter().k(ks.f25205v1, Long.valueOf(qyVar.f26490j));
         if (hashSet.isEmpty()) {
             qy.a(qyVar);
         }
     }
 
     private final void j() {
-        uy uyVar = (uy) this.f26692b;
-        HashMap hashMap = uyVar.f27288a;
-        hashMap.remove((String) this.f26693c);
-        uyVar.f27300o.getNotificationCenter().k(ks.f25214w1, uyVar.f27291e);
+        uy uyVar = (uy) this.f26690b;
+        HashMap hashMap = uyVar.f27286a;
+        hashMap.remove((String) this.f26691c);
+        uyVar.f27298o.getNotificationCenter().k(ks.f25212w1, uyVar.f27289e);
         if (hashMap.isEmpty()) {
             uyVar.b();
         }
@@ -141,31 +141,31 @@ public final class rq implements Runnable {
 
     private final void k() {
         long j3;
-        e00 e00Var = (e00) this.f26692b;
-        ArrayList arrayList = (ArrayList) this.f26693c;
+        e00 e00Var = (e00) this.f26690b;
+        ArrayList arrayList = (ArrayList) this.f26691c;
         HashSet hashSet = new HashSet();
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             sr srVar = (sr) arrayList.get(i7);
-            long j10 = -srVar.f26847a;
-            a0.h hVar = (a0.h) e00Var.f23624b.f(j10);
+            long j10 = -srVar.f26845a;
+            a0.h hVar = (a0.h) e00Var.f23621b.f(j10);
             if (hVar != null) {
-                hVar.l(srVar.f26848b);
+                hVar.l(srVar.f26846b);
             }
-            ArrayList arrayList2 = (ArrayList) e00Var.f23623a.f(j10);
+            ArrayList arrayList2 = (ArrayList) e00Var.f23620a.f(j10);
             if (arrayList2 != null) {
                 int i10 = 0;
                 while (true) {
                     if (i10 >= arrayList2.size()) {
                         break;
                     }
-                    if (e00Var.getMessagesController().E2(srVar.f26847a)) {
+                    if (e00Var.getMessagesController().E2(srVar.f26845a)) {
                         j3 = n5.o(((TLRPC.TL_forumTopic) arrayList2.get(i10)).from_id);
                     } else {
-                        j3 = ((TLRPC.TL_forumTopic) arrayList2.get(i10)).f28457id;
+                        j3 = ((TLRPC.TL_forumTopic) arrayList2.get(i10)).f28455id;
                     }
-                    if (j3 == srVar.f26848b) {
+                    if (j3 == srVar.f26846b) {
                         arrayList2.remove(i10);
-                        e00Var.getNotificationCenter().k(ks.f25228y1, Long.valueOf(-j10), Long.valueOf(srVar.f26848b));
+                        e00Var.getNotificationCenter().k(ks.f25226y1, Long.valueOf(-j10), Long.valueOf(srVar.f26846b));
                         hashSet.add(Long.valueOf(j10));
                         break;
                     }
@@ -185,8 +185,8 @@ public final class rq implements Runnable {
     }
 
     public rq(pv pvVar, tr trVar) {
-        this.f26691a = 18;
-        this.f26693c = pvVar;
-        this.f26692b = trVar;
+        this.f26689a = 18;
+        this.f26691c = pvVar;
+        this.f26690b = trVar;
     }
 }

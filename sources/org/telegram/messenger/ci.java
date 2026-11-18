@@ -6,25 +6,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ci implements RequestDelegate {
-    public final int f23358a;
-    public final c1 f23359b;
-    public final Object f23360c;
+    public final int f23355a;
+    public final c1 f23356b;
+    public final Object f23357c;
     public final Object d;
 
     public ci(c1 c1Var, Object obj, Object obj2, int i7) {
-        this.f23358a = i7;
-        this.f23359b = c1Var;
-        this.f23360c = obj;
+        this.f23355a = i7;
+        this.f23356b = c1Var;
+        this.f23357c = obj;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         long j3;
-        int i7 = this.f23358a;
+        int i7 = this.f23355a;
         Object obj = this.d;
-        Object obj2 = this.f23360c;
-        c1 c1Var = this.f23359b;
+        Object obj2 = this.f23357c;
+        c1 c1Var = this.f23356b;
         switch (i7) {
             case 0:
                 ri riVar = (ri) c1Var;
@@ -91,16 +91,16 @@ public final class ci implements RequestDelegate {
                 if (tLObject != null) {
                     TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
                     if (v3.T(chat)) {
-                        mpVar4.S3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f28405id);
+                        mpVar4.S3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f28403id);
                     } else {
                         mpVar4.T3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
                     }
                     new ArrayList();
                     tr messagesStorage = mpVar4.getMessagesStorage();
                     if (chat != null) {
-                        j3 = -chat.f28405id;
+                        j3 = -chat.f28403id;
                     } else {
-                        j3 = user.f28554id;
+                        j3 = user.f28552id;
                     }
                     messagesStorage.c2(j3, null, false, 0, 0, false, null);
                     return;

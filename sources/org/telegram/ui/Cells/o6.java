@@ -1,183 +1,95 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
+import android.graphics.Canvas;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.gd;
-import org.telegram.tgnet.TLRPC;
-public final class o6 extends LinearLayout {
-    public static final int f31172c = 0;
-    public TLRPC.RequestPeerType f31173a;
-    public ArrayList f31174b;
+import org.telegram.ui.Components.CheckBoxSquare;
+import org.telegram.ui.Components.k80;
+public final class o6 extends FrameLayout {
+    public final n2.o0 f31179a;
+    public final k80 f31180b;
+    public final CheckBoxSquare f31181c;
 
-    public final void a(Boolean bool, int i7, int i10) {
-        ArrayList arrayList = this.f31174b;
-        if (bool != null) {
-            if (bool.booleanValue()) {
-                arrayList.add(p6.a(org.telegram.messenger.g0.W2(gd.M0(i7, null))));
-            } else {
-                arrayList.add(p6.a(org.telegram.messenger.g0.W2(gd.M0(i10, null))));
+    public o6(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        int i7;
+        int i10;
+        float f10;
+        float f11;
+        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
+        this.f31181c = checkBoxSquare;
+        checkBoxSquare.setDuplicateParentStateEnabled(false);
+        checkBoxSquare.setFocusable(false);
+        checkBoxSquare.setFocusableInTouchMode(false);
+        checkBoxSquare.setClickable(false);
+        if (gd.f24213a0) {
+            i7 = 5;
+        } else {
+            i7 = 3;
+        }
+        addView(checkBoxSquare, c8.ma.d(18, 18.0f, i7 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
+        n2.o0 o0Var = new n2.o0(this);
+        this.f31179a = o0Var;
+        k80 k80Var = new k80(context, o0Var, i6Var);
+        this.f31180b = k80Var;
+        org.telegram.ui.ActionBar.u6.U(k80Var, org.telegram.ui.ActionBar.n6.G6, i6Var);
+        org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.J6, i6Var);
+        k80Var.setTextSize(1, 15.0f);
+        k80Var.setMaxLines(2);
+        if (gd.f24213a0) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        k80Var.setGravity(i10 | 16);
+        k80Var.setEllipsize(TextUtils.TruncateAt.END);
+        boolean z10 = gd.f24213a0;
+        int i11 = (z10 ? 5 : 3) | 48;
+        if (z10) {
+            f10 = 16.0f;
+        } else {
+            f10 = 58.0f;
+        }
+        if (z10) {
+            f11 = 58.0f;
+        } else {
+            f11 = 16.0f;
+        }
+        addView(k80Var, c8.ma.d(-1, -1.0f, i11, f10, 21.0f, f11, 21.0f));
+        setWillNotDraw(false);
+    }
+
+    public CheckBoxSquare getCheckBox() {
+        return this.f31181c;
+    }
+
+    public TextView getTextView() {
+        return this.f31180b;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        n2.o0 o0Var = this.f31179a;
+        if (o0Var != null) {
+            canvas.save();
+            k80 k80Var = this.f31180b;
+            canvas.translate(k80Var.getLeft(), k80Var.getTop());
+            if (o0Var.h(canvas)) {
+                invalidate();
             }
+            canvas.restore();
         }
     }
 
-    public void set(TLRPC.RequestPeerType requestPeerType) {
-        int i7;
-        String M0;
-        int i10;
-        ArrayList arrayList = this.f31174b;
-        if (this.f31173a != requestPeerType) {
-            this.f31173a = requestPeerType;
-            removeAllViews();
-            arrayList.clear();
-            if (requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) {
-                a(((TLRPC.TL_requestPeerTypeUser) requestPeerType).premium, 2131747146, 2131747147);
-            } else {
-                boolean z10 = requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast;
-                if (z10) {
-                    a(requestPeerType.has_username, 2131747154, 2131747155);
-                    Boolean bool = requestPeerType.bot_participant;
-                    if (bool != null && bool.booleanValue()) {
-                        arrayList.add(p6.a(org.telegram.messenger.g0.W2(gd.M0(2131747157, null))));
-                    }
-                    Boolean bool2 = requestPeerType.creator;
-                    if (bool2 != null && bool2.booleanValue()) {
-                        arrayList.add(p6.a(org.telegram.messenger.g0.W2(gd.M0(2131747156, null))));
-                    }
-                } else {
-                    a(requestPeerType.has_username, 2131747148, 2131747149);
-                    a(requestPeerType.forum, 2131747152, 2131747153);
-                    Boolean bool3 = requestPeerType.bot_participant;
-                    if (bool3 != null && bool3.booleanValue()) {
-                        arrayList.add(p6.a(org.telegram.messenger.g0.W2(gd.M0(2131747151, null))));
-                    }
-                    Boolean bool4 = requestPeerType.creator;
-                    if (bool4 != null && bool4.booleanValue()) {
-                        arrayList.add(p6.a(org.telegram.messenger.g0.W2(gd.M0(2131747150, null))));
-                    }
-                }
-                Boolean bool5 = requestPeerType.creator;
-                if (bool5 == null || !bool5.booleanValue()) {
-                    TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.user_admin_rights;
-                    SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(gd.M0(2131747144, null));
-                    SpannableStringBuilder W22 = org.telegram.messenger.g0.W2(gd.M0(2131747145, null));
-                    if (tL_chatAdminRights != null) {
-                        ArrayList arrayList2 = new ArrayList();
-                        if (tL_chatAdminRights.change_info) {
-                            if (z10) {
-                                M0 = gd.M0(2131751313, null);
-                            } else {
-                                M0 = gd.M0(2131751312, null);
-                            }
-                            c0.r(1, M0, arrayList2);
-                        }
-                        if (tL_chatAdminRights.post_messages && z10) {
-                            c0.r(1, gd.M0(2131751301, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.edit_messages && z10) {
-                            c0.r(1, gd.M0(2131751308, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.delete_messages) {
-                            if (z10) {
-                                i7 = 2131751310;
-                            } else {
-                                i7 = 2131751305;
-                            }
-                            c0.r(1, gd.M0(i7, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.ban_users && !z10) {
-                            c0.r(1, gd.M0(2131751317, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.invite_users) {
-                            c0.r(1, gd.M0(2131751319, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.pin_messages && !z10) {
-                            c0.r(1, gd.M0(2131751302, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.add_admins) {
-                            c0.r(1, gd.M0(2131751320, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.anonymous && !z10) {
-                            c0.r(1, gd.M0(2131751292, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.manage_call) {
-                            c0.r(1, gd.M0(2131744666, null), arrayList2);
-                        }
-                        if (tL_chatAdminRights.manage_topics && !z10) {
-                            c0.r(1, gd.M0(2131748500, null), arrayList2);
-                        }
-                        if (arrayList2.size() == 1) {
-                            arrayList.add(p6.a(TextUtils.concat(W22, " ", ((p6) arrayList2.get(0)).f31240b)));
-                        } else if (!arrayList2.isEmpty()) {
-                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(W2);
-                            valueOf.append((CharSequence) " ");
-                            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                                if (i11 > 0) {
-                                    valueOf.append((CharSequence) ", ");
-                                }
-                                valueOf.append((CharSequence) ((p6) arrayList2.get(i11)).f31240b.toString().toLowerCase());
-                            }
-                            valueOf.append((CharSequence) ".");
-                            arrayList.add(p6.a(valueOf));
-                        }
-                    }
-                }
-            }
-            if (!arrayList.isEmpty()) {
-                n4 n4Var = new n4(getContext(), 20);
-                n4Var.setText(gd.M0(2131747143, null));
-                int i12 = org.telegram.ui.ActionBar.n6.f29396d6;
-                org.telegram.ui.ActionBar.u6.h(i12, n4Var, null);
-                addView(n4Var, c8.ma.o(-1, -2));
-                View v3Var = new v3(getContext(), 9, 1);
-                v3Var.setBackground(null);
-                org.telegram.ui.ActionBar.u6.h(i12, v3Var, null);
-                addView(v3Var, c8.ma.o(-1, -2));
-                int size = arrayList.size();
-                int i13 = 0;
-                while (i13 < size) {
-                    Object obj = arrayList.get(i13);
-                    i13++;
-                    p6 p6Var = (p6) obj;
-                    Context context = getContext();
-                    ai.r2 r2Var = new ai.r2(context, 3);
-                    org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, r2Var, null);
-                    r2Var.setOrientation(0);
-                    ImageView imageView = new ImageView(context);
-                    imageView.setScaleType(ImageView.ScaleType.CENTER);
-                    if (p6Var.f31239a <= 0) {
-                        i10 = 2131231623;
-                    } else {
-                        i10 = 2131231624;
-                    }
-                    imageView.setImageResource(i10);
-                    org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.L6, null, PorterDuff.Mode.MULTIPLY);
-                    r2Var.addView(imageView, c8.ma.q(20, 20, 0.0f, 51, (p6Var.f31239a * 16) + 17, -1, 0, 0));
-                    TextView textView = new TextView(context);
-                    textView.setTextSize(1, 14.0f);
-                    org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29807z6, null);
-                    textView.setSingleLine(false);
-                    textView.setText(p6Var.f31240b);
-                    r2Var.addView(textView, c8.ma.t(-1, -2, 1, 6, 4, 24, 4));
-                    addView(r2Var, c8.ma.o(-1, -2));
-                }
-                int i14 = org.telegram.ui.ActionBar.n6.f29396d6;
-                View v3Var2 = new v3(getContext(), 12, 1);
-                v3Var2.setBackground(null);
-                org.telegram.ui.ActionBar.u6.h(i14, v3Var2, null);
-                addView(v3Var2, c8.ma.o(-1, -2));
-                Drawable Y0 = org.telegram.ui.ActionBar.n6.Y0(getContext(), 2131231230, org.telegram.ui.ActionBar.n6.f29360b7);
-                View v3Var3 = new v3(getContext(), 12, 1);
-                v3Var3.setBackground(Y0);
-                addView(v3Var3, c8.ma.o(-1, -2));
-            }
-        }
+    public void setChecked(boolean z10) {
+        this.f31181c.a(z10, true);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f31180b.setText(charSequence);
     }
 }

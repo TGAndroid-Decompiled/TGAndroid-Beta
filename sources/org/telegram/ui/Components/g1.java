@@ -26,7 +26,7 @@ public final class g1 implements org.telegram.ui.ActionBar.r1 {
                 LaunchActivity launchActivity = this.f35285b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26915b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26913b.getPackageName()));
                     launchActivity.startActivity(intent);
                     return;
                 } catch (Exception e10) {

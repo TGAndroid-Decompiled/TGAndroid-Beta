@@ -9,68 +9,68 @@ import org.telegram.messenger.n10;
 import org.telegram.messenger.x10;
 import org.telegram.ui.Components.lr;
 public final class p5 extends FrameLayout {
-    public View f15231a;
-    public ArrayList f15232b;
-    public o5 f15233c;
+    public View f15228a;
+    public ArrayList f15229b;
+    public o5 f15230c;
     public String d;
-    public boolean f15234e;
-    public x10 f15235f;
+    public boolean f15231e;
+    public x10 f15232f;
     public boolean h;
-    public float f15236n;
-    public boolean f15237r;
-    public ValueAnimator f15238s;
+    public float f15233n;
+    public boolean f15234r;
+    public ValueAnimator f15235s;
 
     public final void a(int i7, int i10, String str) {
         n5 n5Var = new n5(this, getContext(), i7, i10);
         n5Var.setContentDescription(str);
-        this.f15232b.add(n5Var);
+        this.f15229b.add(n5Var);
         addView(n5Var);
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (this.f15237r == z10) {
+        if (this.f15234r == z10) {
             return;
         }
-        ValueAnimator valueAnimator = this.f15238s;
+        ValueAnimator valueAnimator = this.f15235s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f15237r = z10;
+        this.f15234r = z10;
         float f10 = 0.0f;
         if (z11) {
-            float f11 = this.f15236n;
+            float f11 = this.f15233n;
             if (z10) {
                 f10 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f15238s = ofFloat;
+            this.f15235s = ofFloat;
             ofFloat.addUpdateListener(new k3(this, 2));
-            if (this.f15237r) {
-                this.f15238s.setDuration(450L);
-                this.f15238s.setInterpolator(new LinearInterpolator());
+            if (this.f15234r) {
+                this.f15235s.setDuration(450L);
+                this.f15235s.setInterpolator(new LinearInterpolator());
             } else {
-                this.f15238s.setDuration(350L);
-                this.f15238s.setInterpolator(lr.h);
+                this.f15235s.setDuration(350L);
+                this.f15235s.setInterpolator(lr.h);
             }
-            this.f15238s.start();
+            this.f15235s.start();
             return;
         }
         if (z10) {
             f10 = 1.0f;
         }
-        this.f15236n = f10;
+        this.f15233n = f10;
         e();
     }
 
     public final boolean c() {
-        ArrayList arrayList = this.f15232b;
+        ArrayList arrayList = this.f15229b;
         int i7 = 0;
         while (true) {
             if (i7 >= arrayList.size()) {
                 break;
             }
             n5 n5Var = (n5) arrayList.get(i7);
-            if (n5Var.f15101a == 4) {
+            if (n5Var.f15098a == 4) {
                 if (n5Var.getVisibility() == 0) {
                     return true;
                 }
@@ -83,10 +83,10 @@ public final class p5 extends FrameLayout {
 
     public final void d(int i7, boolean z10) {
         int i10;
-        ArrayList arrayList = this.f15232b;
+        ArrayList arrayList = this.f15229b;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             n5 n5Var = (n5) arrayList.get(i11);
-            if (n5Var.f15101a == i7) {
+            if (n5Var.f15098a == i7) {
                 if (z10) {
                     i10 = 0;
                 } else {
@@ -98,13 +98,13 @@ public final class p5 extends FrameLayout {
     }
 
     public final void e() {
-        View view = this.f15231a;
-        view.setAlpha(this.f15236n);
-        view.setTranslationY((1.0f - this.f15236n) * org.telegram.messenger.g0.L(16.0f));
+        View view = this.f15228a;
+        view.setAlpha(this.f15233n);
+        view.setTranslationY((1.0f - this.f15233n) * org.telegram.messenger.g0.L(16.0f));
         for (int i7 = 1; i7 < getChildCount(); i7++) {
             View childAt = getChildAt(i7);
-            float f10 = this.f15236n;
-            if (this.f15237r) {
+            float f10 = this.f15233n;
+            if (this.f15234r) {
                 f10 = lr.h.getInterpolation(org.telegram.messenger.g0.s(f10, i7 - 1, getChildCount() - 1, 3.0f));
             }
             childAt.setAlpha(f10);
@@ -117,13 +117,13 @@ public final class p5 extends FrameLayout {
         int B;
         float f10;
         int i13;
-        ArrayList arrayList = this.f15232b;
+        ArrayList arrayList = this.f15229b;
         int i14 = i11 - i7;
         int i15 = i12 - i10;
-        this.f15231a.layout(0, 0, i14, i15);
-        o5 o5Var = this.f15233c;
-        o5Var.layout(i14 - o5Var.getMeasuredWidth(), (i15 - this.f15233c.getMeasuredHeight()) / 2, i14, (this.f15233c.getMeasuredHeight() + i15) / 2);
-        int L = (i14 - org.telegram.messenger.g0.L(32.33f)) - this.f15233c.getMeasuredWidth();
+        this.f15228a.layout(0, 0, i14, i15);
+        o5 o5Var = this.f15230c;
+        o5Var.layout(i14 - o5Var.getMeasuredWidth(), (i15 - this.f15230c.getMeasuredHeight()) / 2, i14, (this.f15230c.getMeasuredHeight() + i15) / 2);
+        int L = (i14 - org.telegram.messenger.g0.L(32.33f)) - this.f15230c.getMeasuredWidth();
         int i16 = 0;
         for (int i17 = 0; i17 < arrayList.size(); i17++) {
             if (((n5) arrayList.get(i17)).getVisibility() == 0) {
@@ -164,14 +164,14 @@ public final class p5 extends FrameLayout {
     }
 
     public void setOnClickListener(x10 x10Var) {
-        this.f15235f = x10Var;
+        this.f15232f = x10Var;
     }
 
     public void setShareEnabled(boolean z10) {
         if (this.h != z10) {
             this.h = z10;
-            o5 o5Var = this.f15233c;
-            o5Var.f15169s = z10;
+            o5 o5Var = this.f15230c;
+            o5Var.f15166s = z10;
             o5Var.invalidate();
         }
     }

@@ -18,7 +18,7 @@ public final class xu extends FrameLayout {
     public final ug.s0 f42187e;
     public final org.telegram.ui.ActionBar.r0 f42188f;
     public final boolean h;
-    public final bi.z8 f42189n;
+    public final bi.y8 f42189n;
     public TLRPC.TL_messages_stickerSet f42190r;
     public boolean f42191s;
     public float f42192w;
@@ -31,14 +31,14 @@ public final class xu extends FrameLayout {
         float f11;
         float f12;
         this.f42194y = bvVar;
-        this.f42189n = new bi.z8(this, 7);
+        this.f42189n = new bi.y8(this, 7);
         this.f42191s = false;
         this.f42192w = 0.0f;
         this.h = z10;
         if (!z10) {
             Pattern pattern = bv.Q1;
             float f13 = 8.0f;
-            if (!org.telegram.messenger.j10.i(bvVar.f30189a).q()) {
+            if (!org.telegram.messenger.j10.i(bvVar.f30187a).q()) {
                 f12 = 16.0f;
                 f11 = 28.0f;
                 ug.s0 s0Var = new ug.s0(org.telegram.messenger.g0.L(4.0f), context, bvVar.J0, false);
@@ -65,12 +65,12 @@ public final class xu extends FrameLayout {
                                 xuVar.a(true, true);
                                 return;
                             case 2:
-                                bi.z8 z8Var = xuVar.f42189n;
+                                bi.y8 y8Var = xuVar.f42189n;
                                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = xuVar.f42190r;
                                 mo moVar = new mo(xuVar, 13);
                                 Pattern pattern2 = bv.Q1;
-                                if (z8Var != null && tL_messages_stickerSet != null && z8Var.getFragmentView() != null) {
-                                    org.telegram.messenger.ri.d0(z8Var.getCurrentAccount()).l2(z8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, z8Var, null, true, true, moVar, true);
+                                if (y8Var != null && tL_messages_stickerSet != null && y8Var.getFragmentView() != null) {
+                                    org.telegram.messenger.ri.d0(y8Var.getCurrentAccount()).l2(y8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, y8Var, null, true, true, moVar, true);
                                 }
                                 xuVar.a(false, true);
                                 return;
@@ -91,7 +91,7 @@ public final class xu extends FrameLayout {
                 s0Var.getChildAt(0).setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
                 addView(s0Var, c8.ma.i(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
                 s0Var.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824));
-                f13 = (org.telegram.messenger.g0.L(16.0f) + s0Var.getMeasuredWidth()) / org.telegram.messenger.g0.f24120p;
+                f13 = (org.telegram.messenger.g0.L(16.0f) + s0Var.getMeasuredWidth()) / org.telegram.messenger.g0.f24117p;
             } else {
                 f11 = 28.0f;
                 f12 = 16.0f;
@@ -133,12 +133,12 @@ public final class xu extends FrameLayout {
                             xuVar.a(true, true);
                             return;
                         case 2:
-                            bi.z8 z8Var = xuVar.f42189n;
+                            bi.y8 y8Var = xuVar.f42189n;
                             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = xuVar.f42190r;
                             mo moVar = new mo(xuVar, 13);
                             Pattern pattern2 = bv.Q1;
-                            if (z8Var != null && tL_messages_stickerSet != null && z8Var.getFragmentView() != null) {
-                                org.telegram.messenger.ri.d0(z8Var.getCurrentAccount()).l2(z8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, z8Var, null, true, true, moVar, true);
+                            if (y8Var != null && tL_messages_stickerSet != null && y8Var.getFragmentView() != null) {
+                                org.telegram.messenger.ri.d0(y8Var.getCurrentAccount()).l2(y8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, y8Var, null, true, true, moVar, true);
                             }
                             xuVar.a(false, true);
                             return;
@@ -150,7 +150,7 @@ public final class xu extends FrameLayout {
             });
             addView(textView, c8.ma.i(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
             textView.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f11), 1073741824));
-            float max = Math.max(f14, (org.telegram.messenger.g0.L(f12) + textView.getMeasuredWidth()) / org.telegram.messenger.g0.f24120p);
+            float max = Math.max(f14, (org.telegram.messenger.g0.L(f12) + textView.getMeasuredWidth()) / org.telegram.messenger.g0.f24117p);
             TextView textView2 = new TextView(context);
             this.d = textView2;
             textView2.setTypeface(org.telegram.messenger.g0.o());
@@ -185,12 +185,12 @@ public final class xu extends FrameLayout {
                             xuVar.a(true, true);
                             return;
                         case 2:
-                            bi.z8 z8Var = xuVar.f42189n;
+                            bi.y8 y8Var = xuVar.f42189n;
                             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = xuVar.f42190r;
                             mo moVar = new mo(xuVar, 13);
                             Pattern pattern2 = bv.Q1;
-                            if (z8Var != null && tL_messages_stickerSet != null && z8Var.getFragmentView() != null) {
-                                org.telegram.messenger.ri.d0(z8Var.getCurrentAccount()).l2(z8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, z8Var, null, true, true, moVar, true);
+                            if (y8Var != null && tL_messages_stickerSet != null && y8Var.getFragmentView() != null) {
+                                org.telegram.messenger.ri.d0(y8Var.getCurrentAccount()).l2(y8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, y8Var, null, true, true, moVar, true);
                             }
                             xuVar.a(false, true);
                             return;
@@ -206,7 +206,7 @@ public final class xu extends FrameLayout {
             textView2.setScaleY(0.0f);
             textView2.setAlpha(0.0f);
             textView2.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f11), 1073741824));
-            f10 = Math.max(max, (org.telegram.messenger.g0.L(f12) + textView2.getMeasuredWidth()) / org.telegram.messenger.g0.f24120p);
+            f10 = Math.max(max, (org.telegram.messenger.g0.L(f12) + textView2.getMeasuredWidth()) / org.telegram.messenger.g0.f24117p);
         } else {
             f10 = 32.0f;
         }
@@ -221,7 +221,7 @@ public final class xu extends FrameLayout {
         k80Var.setSingleLine(true);
         k80Var.setLines(1);
         org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.J6, bvVar.J0);
-        org.telegram.ui.ActionBar.u6.U(k80Var, org.telegram.ui.ActionBar.n6.f29504j5, bvVar.J0);
+        org.telegram.ui.ActionBar.u6.U(k80Var, org.telegram.ui.ActionBar.n6.f29502j5, bvVar.J0);
         if (z10) {
             k80Var.setTextSize(1, 20.0f);
             addView(k80Var, c8.ma.i(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f15, 0.0f));
@@ -233,7 +233,7 @@ public final class xu extends FrameLayout {
             TextView textView3 = new TextView(context);
             this.f42185b = textView3;
             textView3.setTextSize(1, 13.0f);
-            org.telegram.ui.ActionBar.u6.U(textView3, org.telegram.ui.ActionBar.n6.f29635q5, bvVar.J0);
+            org.telegram.ui.ActionBar.u6.U(textView3, org.telegram.ui.ActionBar.n6.f29633q5, bvVar.J0);
             textView3.setEllipsize(truncateAt);
             textView3.setSingleLine(true);
             textView3.setLines(1);
@@ -251,7 +251,7 @@ public final class xu extends FrameLayout {
             org.telegram.ui.ActionBar.i6 i6Var3 = bvVar.J0;
             r0Var.setBackground(h02);
             org.telegram.ui.ActionBar.u6.j(r0Var, h02, null, M2, i6Var3);
-            addView(r0Var, c8.ma.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (bvVar.f30227u0 / org.telegram.messenger.g0.f24120p), 0.0f));
+            addView(r0Var, c8.ma.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (bvVar.f30225u0 / org.telegram.messenger.g0.f24117p), 0.0f));
             r0Var.e(1, 2131232365, org.telegram.messenger.gd.M0(2131744611, null));
             r0Var.e(2, 2131232205, org.telegram.messenger.gd.M0(2131751751, null));
             r0Var.setOnClickListener(new View.OnClickListener(this) {
@@ -276,12 +276,12 @@ public final class xu extends FrameLayout {
                             xuVar.a(true, true);
                             return;
                         case 2:
-                            bi.z8 z8Var = xuVar.f42189n;
+                            bi.y8 y8Var = xuVar.f42189n;
                             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = xuVar.f42190r;
                             mo moVar = new mo(xuVar, 13);
                             Pattern pattern22 = bv.Q1;
-                            if (z8Var != null && tL_messages_stickerSet != null && z8Var.getFragmentView() != null) {
-                                org.telegram.messenger.ri.d0(z8Var.getCurrentAccount()).l2(z8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, z8Var, null, true, true, moVar, true);
+                            if (y8Var != null && tL_messages_stickerSet != null && y8Var.getFragmentView() != null) {
+                                org.telegram.messenger.ri.d0(y8Var.getCurrentAccount()).l2(y8Var.getFragmentView().getContext(), tL_messages_stickerSet, null, 0, y8Var, null, true, true, moVar, true);
                             }
                             xuVar.a(false, true);
                             return;

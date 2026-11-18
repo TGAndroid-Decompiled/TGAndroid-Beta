@@ -30,8 +30,8 @@ public final class oj implements Runnable {
                 String str2 = this.f38117c;
                 int i10 = this.d;
                 pjVar2.getClass();
-                int i11 = org.telegram.messenger.j10.f24773t0;
-                Utilities.f22784g.c(new bi.p3(pjVar2, str2, new ArrayList(org.telegram.messenger.i5.r(i11).Z.values()), new ArrayList(org.telegram.messenger.i5.r(i11).f24570f0), i11, i10));
+                int i11 = org.telegram.messenger.j10.f24770t0;
+                Utilities.f22781g.c(new bi.p3(pjVar2, str2, new ArrayList(org.telegram.messenger.i5.r(i11).Z.values()), new ArrayList(org.telegram.messenger.i5.r(i11).f24567f0), i11, i10));
                 return;
         }
     }

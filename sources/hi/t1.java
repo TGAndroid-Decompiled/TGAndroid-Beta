@@ -29,7 +29,7 @@ public final class t1 extends uy {
         int i11;
         vt0 vt0Var = this.X;
         vt0Var.f41435c = false;
-        Object F = this.Y.f15525c.F(i7);
+        Object F = this.Y.f15522c.F(i7);
         if (F instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) F;
             document = botInlineResult.document;
@@ -58,7 +58,7 @@ public final class t1 extends uy {
         vt0Var.f41434b = 100.0f;
         vt0Var.f41433a = 100.0f;
         vt0Var.f41435c = false;
-        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i10 = w10.f28430w) != 0 && (i11 = w10.h) != 0) {
+        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i10 = w10.f28428w) != 0 && (i11 = w10.h) != 0) {
             vt0Var.f41433a = i10;
             vt0Var.f41434b = i11;
         }
@@ -66,7 +66,7 @@ public final class t1 extends uy {
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    vt0Var.f41433a = documentAttribute.f28412w;
+                    vt0Var.f41433a = documentAttribute.f28410w;
                     vt0Var.f41434b = documentAttribute.h;
                     break;
                 }

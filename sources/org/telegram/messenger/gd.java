@@ -26,13 +26,13 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.i41;
 public final class gd {
-    public static boolean f24216a0 = false;
-    public static int f24217b0 = 1;
-    public static boolean f24218c0 = false;
-    public static volatile gd f24219d0;
-    public static final char[] f24220e0 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    public static final char[][] f24221f0 = {new char[]{1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641}, new char[]{1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785}, new char[]{2406, 2407, 2408, 2409, 2410, 2411, 2412, 2413, 2414, 2415}, new char[]{2790, 2791, 2792, 2793, 2794, 2795, 2796, 2797, 2798, 2799}, new char[]{2662, 2663, 2664, 2665, 2666, 2667, 2668, 2669, 2670, 2671}, new char[]{2534, 2535, 2536, 2537, 2538, 2539, 2540, 2541, 2542, 2543}, new char[]{3302, 3303, 3304, 3305, 3306, 3307, 3308, 3309, 3310, 3311}, new char[]{2918, 2919, 2920, 2921, 2922, 2923, 2924, 2925, 2926, 2927}, new char[]{3430, 3431, 3432, 3433, 3434, 3435, 3436, 3437, 3438, 3439}, new char[]{3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055}, new char[]{3174, 3175, 3176, 3177, 3178, 3179, 3180, 3181, 3182, 3183}, new char[]{4160, 4161, 4162, 4163, 4164, 4165, 4166, 4167, 4168, 4169}, new char[]{3872, 3873, 3874, 3875, 3876, 3877, 3878, 3879, 3880, 3881}, new char[]{6160, 6161, 6162, 6163, 6164, 6165, 6166, 6167, 6168, 6169}, new char[]{6112, 6113, 6114, 6115, 6116, 6117, 6118, 6119, 6120, 6121}, new char[]{3664, 3665, 3666, 3667, 3668, 3669, 3670, 3671, 3672, 3673}, new char[]{3792, 3793, 3794, 3795, 3796, 3797, 3798, 3799, 3800, 3801}, new char[]{43472, 43473, 43474, 43475, 43476, 43477, 43478, 43479, 43480, 43481}};
-    public static Boolean f24222g0;
+    public static boolean f24213a0 = false;
+    public static int f24214b0 = 1;
+    public static boolean f24215c0 = false;
+    public static volatile gd f24216d0;
+    public static final char[] f24217e0 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    public static final char[][] f24218f0 = {new char[]{1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641}, new char[]{1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785}, new char[]{2406, 2407, 2408, 2409, 2410, 2411, 2412, 2413, 2414, 2415}, new char[]{2790, 2791, 2792, 2793, 2794, 2795, 2796, 2797, 2798, 2799}, new char[]{2662, 2663, 2664, 2665, 2666, 2667, 2668, 2669, 2670, 2671}, new char[]{2534, 2535, 2536, 2537, 2538, 2539, 2540, 2541, 2542, 2543}, new char[]{3302, 3303, 3304, 3305, 3306, 3307, 3308, 3309, 3310, 3311}, new char[]{2918, 2919, 2920, 2921, 2922, 2923, 2924, 2925, 2926, 2927}, new char[]{3430, 3431, 3432, 3433, 3434, 3435, 3436, 3437, 3438, 3439}, new char[]{3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055}, new char[]{3174, 3175, 3176, 3177, 3178, 3179, 3180, 3181, 3182, 3183}, new char[]{4160, 4161, 4162, 4163, 4164, 4165, 4166, 4167, 4168, 4169}, new char[]{3872, 3873, 3874, 3875, 3876, 3877, 3878, 3879, 3880, 3881}, new char[]{6160, 6161, 6162, 6163, 6164, 6165, 6166, 6167, 6168, 6169}, new char[]{6112, 6113, 6114, 6115, 6116, 6117, 6118, 6119, 6120, 6121}, new char[]{3664, 3665, 3666, 3667, 3668, 3669, 3670, 3671, 3672, 3673}, new char[]{3792, 3793, 3794, 3795, 3796, 3797, 3798, 3799, 3800, 3801}, new char[]{43472, 43473, 43474, 43475, 43476, 43477, 43478, 43479, 43480, 43481}};
+    public static Boolean f24219g0;
     public dd A;
     public cd B;
     public String C;
@@ -58,32 +58,32 @@ public final class gd {
     public volatile boolean X;
     public vi.b Y;
     public int Z;
-    public volatile FastDateFormat f24223a;
-    public volatile FastDateFormat f24224b;
-    public volatile FastDateFormat f24225c;
+    public volatile FastDateFormat f24220a;
+    public volatile FastDateFormat f24221b;
+    public volatile FastDateFormat f24222c;
     public volatile FastDateFormat d;
-    public volatile FastDateFormat f24226e;
-    public volatile FastDateFormat f24227f;
-    public volatile FastDateFormat f24228g;
+    public volatile FastDateFormat f24223e;
+    public volatile FastDateFormat f24224f;
+    public volatile FastDateFormat f24225g;
     public volatile FastDateFormat h;
-    public volatile FastDateFormat f24229i;
-    public volatile FastDateFormat f24230j;
-    public volatile FastDateFormat f24231k;
-    public volatile FastDateFormat f24232l;
-    public volatile FastDateFormat f24233m;
-    public volatile FastDateFormat f24234n;
-    public volatile FastDateFormat f24235o;
-    public volatile FastDateFormat f24236p;
-    public volatile FastDateFormat f24237q;
-    public volatile FastDateFormat f24238r;
-    public volatile FastDateFormat f24239s;
-    public volatile FastDateFormat f24240t;
-    public volatile FastDateFormat f24241u;
+    public volatile FastDateFormat f24226i;
+    public volatile FastDateFormat f24227j;
+    public volatile FastDateFormat f24228k;
+    public volatile FastDateFormat f24229l;
+    public volatile FastDateFormat f24230m;
+    public volatile FastDateFormat f24231n;
+    public volatile FastDateFormat f24232o;
+    public volatile FastDateFormat f24233p;
+    public volatile FastDateFormat f24234q;
+    public volatile FastDateFormat f24235r;
+    public volatile FastDateFormat f24236s;
+    public volatile FastDateFormat f24237t;
+    public volatile FastDateFormat f24238u;
     public volatile FastDateFormat v;
-    public Locale f24244y;
-    public Locale f24245z;
-    public final FastDateFormat[] f24242w = new FastDateFormat[18];
-    public final HashMap f24243x = new HashMap();
+    public Locale f24241y;
+    public Locale f24242z;
+    public final FastDateFormat[] f24239w = new FastDateFormat[18];
+    public final HashMap f24240x = new HashMap();
     public boolean D = false;
 
     public gd() {
@@ -99,7 +99,7 @@ public final class gd {
         this.Q = false;
         this.S = new HashMap();
         this.T = new HashMap();
-        vi.b bVar = vi.b.f59578c;
+        vi.b bVar = vi.b.f59579c;
         this.W = bVar;
         this.Y = bVar;
         b(new String[]{"bem", "brx", "da", "de", "el", "en", "eo", "es", "et", "fi", "fo", "gl", "he", "iw", "it", "nb", "nl", "nn", "no", "sv", "af", "bg", "bn", "ca", "eu", "fur", "fy", "gu", "ha", "is", "ku", "lb", "ml", "mr", "nah", "ne", "om", "or", "pa", "pap", "ps", "so", "sq", "sw", "ta", "te", "tk", "ur", "zu", "mn", "gsw", "chr", "rm", "pt", "an", "ast"}, new dd(11));
@@ -123,97 +123,97 @@ public final class gd {
         b(new String[]{"ak", "am", "bh", "fil", "tl", "guw", "hi", "ln", "mg", "nso", "ti", "wa"}, new dd(19));
         b(new String[]{"az", "bm", "fa", "ig", "hu", "ja", "kde", "kea", "ko", "my", "ses", "sg", "to", "tr", "vi", "wo", "yo", "zh", "bo", "dz", "id", "jv", "jw", "ka", "km", "kn", "ms", "th", "in"}, new dd(10));
         ?? obj = new Object();
-        obj.f23331a = "English";
-        obj.f23332b = "English";
-        obj.f23335f = "en";
-        obj.f23333c = "en";
+        obj.f23328a = "English";
+        obj.f23329b = "English";
+        obj.f23332f = "en";
+        obj.f23330c = "en";
         cd cdVar = null;
         obj.d = null;
-        obj.f23338j = true;
+        obj.f23335j = true;
         arrayList.add(obj);
-        hashMap.put(obj.f23333c, obj);
+        hashMap.put(obj.f23330c, obj);
         ?? obj2 = new Object();
-        obj2.f23331a = "Italiano";
-        obj2.f23332b = "Italian";
-        obj2.f23335f = "it";
-        obj2.f23333c = "it";
+        obj2.f23328a = "Italiano";
+        obj2.f23329b = "Italian";
+        obj2.f23332f = "it";
+        obj2.f23330c = "it";
         obj2.d = null;
-        obj2.f23338j = true;
+        obj2.f23335j = true;
         arrayList.add(obj2);
-        hashMap.put(obj2.f23333c, obj2);
+        hashMap.put(obj2.f23330c, obj2);
         ?? obj3 = new Object();
-        obj3.f23331a = "Español";
-        obj3.f23332b = "Spanish";
-        obj3.f23335f = "es";
-        obj3.f23333c = "es";
-        obj3.f23338j = true;
+        obj3.f23328a = "Español";
+        obj3.f23329b = "Spanish";
+        obj3.f23332f = "es";
+        obj3.f23330c = "es";
+        obj3.f23335j = true;
         arrayList.add(obj3);
-        hashMap.put(obj3.f23333c, obj3);
+        hashMap.put(obj3.f23330c, obj3);
         ?? obj4 = new Object();
-        obj4.f23331a = "Deutsch";
-        obj4.f23332b = "German";
-        obj4.f23335f = "de";
-        obj4.f23333c = "de";
+        obj4.f23328a = "Deutsch";
+        obj4.f23329b = "German";
+        obj4.f23332f = "de";
+        obj4.f23330c = "de";
         obj4.d = null;
-        obj4.f23338j = true;
+        obj4.f23335j = true;
         arrayList.add(obj4);
-        hashMap.put(obj4.f23333c, obj4);
+        hashMap.put(obj4.f23330c, obj4);
         ?? obj5 = new Object();
-        obj5.f23331a = "Nederlands";
-        obj5.f23332b = "Dutch";
-        obj5.f23335f = "nl";
-        obj5.f23333c = "nl";
+        obj5.f23328a = "Nederlands";
+        obj5.f23329b = "Dutch";
+        obj5.f23332f = "nl";
+        obj5.f23330c = "nl";
         obj5.d = null;
-        obj5.f23338j = true;
+        obj5.f23335j = true;
         arrayList.add(obj5);
-        hashMap.put(obj5.f23333c, obj5);
+        hashMap.put(obj5.f23330c, obj5);
         ?? obj6 = new Object();
-        obj6.f23331a = "العربية";
-        obj6.f23332b = "Arabic";
-        obj6.f23335f = "ar";
-        obj6.f23333c = "ar";
+        obj6.f23328a = "العربية";
+        obj6.f23329b = "Arabic";
+        obj6.f23332f = "ar";
+        obj6.f23330c = "ar";
         obj6.d = null;
-        obj6.f23338j = true;
-        obj6.f23336g = true;
+        obj6.f23335j = true;
+        obj6.f23333g = true;
         arrayList.add(obj6);
-        hashMap.put(obj6.f23333c, obj6);
+        hashMap.put(obj6.f23330c, obj6);
         ?? obj7 = new Object();
-        obj7.f23331a = "Português (Brasil)";
-        obj7.f23332b = "Portuguese (Brazil)";
-        obj7.f23335f = "pt_br";
-        obj7.f23333c = "pt_br";
+        obj7.f23328a = "Português (Brasil)";
+        obj7.f23329b = "Portuguese (Brazil)";
+        obj7.f23332f = "pt_br";
+        obj7.f23330c = "pt_br";
         obj7.d = null;
-        obj7.f23338j = true;
+        obj7.f23335j = true;
         arrayList.add(obj7);
-        hashMap.put(obj7.f23333c, obj7);
+        hashMap.put(obj7.f23330c, obj7);
         ?? obj8 = new Object();
-        obj8.f23331a = "한국어";
-        obj8.f23332b = "Korean";
-        obj8.f23335f = "ko";
-        obj8.f23333c = "ko";
+        obj8.f23328a = "한국어";
+        obj8.f23329b = "Korean";
+        obj8.f23332f = "ko";
+        obj8.f23330c = "ko";
         obj8.d = null;
-        obj8.f23338j = true;
+        obj8.f23335j = true;
         arrayList.add(obj8);
-        hashMap.put(obj8.f23333c, obj8);
+        hashMap.put(obj8.f23330c, obj8);
         ?? obj9 = new Object();
-        obj9.f23331a = "Українська";
-        obj9.f23332b = "Ukrainian";
-        obj9.f23335f = "uk";
-        obj9.f23333c = "uk";
+        obj9.f23328a = "Українська";
+        obj9.f23329b = "Ukrainian";
+        obj9.f23332f = "uk";
+        obj9.f23330c = "uk";
         obj9.d = null;
-        obj9.f23338j = true;
+        obj9.f23335j = true;
         arrayList.add(obj9);
-        hashMap.put(obj9.f23333c, obj9);
+        hashMap.put(obj9.f23330c, obj9);
         ?? obj10 = new Object();
-        obj10.f23331a = "Русский";
-        obj10.f23332b = "Russian";
-        obj10.f23335f = "ru";
-        obj10.f23333c = "ru";
+        obj10.f23328a = "Русский";
+        obj10.f23329b = "Russian";
+        obj10.f23332f = "ru";
+        obj10.f23330c = "ru";
         obj10.d = null;
-        obj10.f23338j = true;
+        obj10.f23335j = true;
         arrayList.add(obj10);
-        hashMap.put(obj10.f23333c, obj10);
-        SharedPreferences sharedPreferences = t0.f26915b.getSharedPreferences("langconfig", 0);
+        hashMap.put(obj10.f23330c, obj10);
+        SharedPreferences sharedPreferences = t0.f26913b.getSharedPreferences("langconfig", 0);
         String string = sharedPreferences.getString("locales", null);
         if (!TextUtils.isEmpty(string)) {
             for (String str : string.split("&")) {
@@ -227,7 +227,7 @@ public final class gd {
         if (!TextUtils.isEmpty(string2)) {
             for (String str2 : string2.split("&")) {
                 cd a11 = cd.a(str2);
-                a11.f23333c = a11.f23333c.replace("-", "_");
+                a11.f23330c = a11.f23330c.replace("-", "_");
                 if (!this.M.containsKey(a11.b())) {
                     this.L.add(a11);
                     this.M.put(a11.b(), a11);
@@ -239,27 +239,27 @@ public final class gd {
             for (String str3 : string3.split("&")) {
                 cd a12 = cd.a(str3);
                 if (a12 != null) {
-                    a12.f23333c = a12.f23333c.replace("-", "_");
+                    a12.f23330c = a12.f23330c.replace("-", "_");
                     this.K.add(a12);
                 }
             }
         }
         if (this.L.isEmpty()) {
             g0.g3(new Runnable(this) {
-                public final gd f26380b;
+                public final gd f26378b;
 
                 {
-                    this.f26380b = this;
+                    this.f26378b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f26380b.V0(j10.f24773t0, true);
+                            this.f26378b.V0(j10.f24770t0, true);
                             return;
                         default:
-                            gd gdVar = this.f26380b;
+                            gd gdVar = this.f26378b;
                             gdVar.getClass();
                             gdVar.F = gd.Q0();
                             return;
@@ -278,8 +278,8 @@ public final class gd {
             if (G0 != null) {
                 G0.d = cdVar3.d;
                 G0.h = cdVar3.h;
-                G0.f23337i = cdVar3.f23337i;
-                G0.f23339k = cdVar3.f23339k;
+                G0.f23334i = cdVar3.f23334i;
+                G0.f23336k = cdVar3.f23336k;
                 this.L.set(i10, G0);
             } else {
                 this.J.add(cdVar3);
@@ -292,55 +292,55 @@ public final class gd {
             if (G02 != null) {
                 G02.d = cdVar4.d;
                 G02.h = cdVar4.h;
-                G02.f23337i = cdVar4.f23337i;
-                G02.f23339k = cdVar4.f23339k;
+                G02.f23334i = cdVar4.f23334i;
+                G02.f23336k = cdVar4.f23336k;
                 this.K.set(i11, G02);
             } else {
                 this.N.put(cdVar4.b(), cdVar4);
             }
         }
-        this.f24245z = Locale.getDefault();
-        f24218c0 = DateFormat.is24HourFormat(t0.f26915b);
+        this.f24242z = Locale.getDefault();
+        f24215c0 = DateFormat.is24HourFormat(t0.f26913b);
         try {
             String string4 = mp.g1().getString("language", null);
             if (string4 != null && (cdVar = G0(string4)) != null) {
                 z10 = true;
             }
-            if (cdVar == null && this.f24245z.getLanguage() != null) {
-                cdVar = G0(this.f24245z.getLanguage());
+            if (cdVar == null && this.f24242z.getLanguage() != null) {
+                cdVar = G0(this.f24242z.getLanguage());
             }
-            if (cdVar == null && (cdVar = G0(I0(this.f24245z))) == null) {
+            if (cdVar == null && (cdVar = G0(I0(this.f24242z))) == null) {
                 cdVar = G0("en");
             }
-            d(cdVar, z10, true, j10.f24773t0);
+            d(cdVar, z10, true, j10.f24770t0);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
         try {
             IntentFilter intentFilter = new IntentFilter("android.intent.action.TIMEZONE_CHANGED");
             if (Build.VERSION.SDK_INT >= 33) {
-                t0.f26915b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter, 4);
+                t0.f26913b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter, 4);
             } else {
-                t0.f26915b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter);
+                t0.f26913b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter);
             }
         } catch (Exception e11) {
             a8.g(e11, true);
         }
         g0.g3(new Runnable(this) {
-            public final gd f26380b;
+            public final gd f26378b;
 
             {
-                this.f26380b = this;
+                this.f26378b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f26380b.V0(j10.f24773t0, true);
+                        this.f26378b.V0(j10.f24770t0, true);
                         return;
                     default:
-                        gd gdVar = this.f26380b;
+                        gd gdVar = this.f26378b;
                         gdVar.getClass();
                         gdVar.F = gd.Q0();
                         return;
@@ -470,7 +470,7 @@ public final class gd {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
-                int currentTime = ((int) (ConnectionsManager.getInstance(j10.f24773t0).getCurrentTime() - (j10 / 1000))) / 60;
+                int currentTime = ((int) (ConnectionsManager.getInstance(j10.f24770t0).getCurrentTime() - (j10 / 1000))) / 60;
                 if (currentTime < 1) {
                     return M0(2131748553, null);
                 }
@@ -505,14 +505,14 @@ public final class gd {
 
     public static gd E0() {
         gd gdVar;
-        gd gdVar2 = f24219d0;
+        gd gdVar2 = f24216d0;
         if (gdVar2 == null) {
             synchronized (gd.class) {
                 try {
-                    gdVar = f24219d0;
+                    gdVar = f24216d0;
                     if (gdVar == null) {
                         gdVar = new gd();
-                        f24219d0 = gdVar;
+                        f24216d0 = gdVar;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -605,7 +605,7 @@ public final class gd {
         if (cdVar != null) {
             return cdVar.c();
         }
-        Locale locale = E0().f24244y;
+        Locale locale = E0().f24241y;
         if (locale == null) {
             return "en";
         }
@@ -638,7 +638,7 @@ public final class gd {
                 for (int length = sb3.length() - 3; length > 0; length -= 3) {
                     sb3.insert(length, c10);
                 }
-                boolean z10 = s2.f26723a;
+                boolean z10 = s2.f26721a;
                 String b10 = E0().Y.b(str2);
                 if (b10 == null) {
                     b10 = E0().Y.b(str + "_other");
@@ -667,8 +667,8 @@ public final class gd {
                     }
                     objArr2[i10] = sb2;
                 }
-                if (E0().f24244y != null) {
-                    return String.format(E0().f24244y, replace, objArr2);
+                if (E0().f24241y != null) {
+                    return String.format(E0().f24241y, replace, objArr2);
                 }
                 return String.format(replace, objArr2);
             }
@@ -867,7 +867,7 @@ public final class gd {
     }
 
     public static String Q0() {
-        Locale locale = E0().f24245z;
+        Locale locale = E0().f24242z;
         if (locale == null) {
             return "en";
         }
@@ -1126,7 +1126,7 @@ public final class gd {
     }
 
     public static void X0(String str) {
-        if (s2.f26723a) {
+        if (s2.f26721a) {
             a8.b("set as patched " + str + " langpack");
         }
         SharedPreferences.Editor edit = mp.g1().edit();
@@ -1150,8 +1150,8 @@ public final class gd {
             String P0 = E0().P0(i7, str, str2);
             if (P0 == null) {
                 return "LOC_ERR: " + str;
-            } else if (E0().f24244y != null) {
-                return String.format(E0().f24244y, P0, objArr);
+            } else if (E0().f24241y != null) {
+                return String.format(E0().f24241y, P0, objArr);
             } else {
                 return String.format(P0, objArr);
             }
@@ -1159,7 +1159,7 @@ public final class gd {
             a8.g(e10, true);
             if (i7 != 0) {
                 try {
-                    return String.format(t0.f26915b.getString(i7), objArr);
+                    return String.format(t0.f26913b.getString(i7), objArr);
                 } catch (Exception unused) {
                     return p5.c.k("LOC_ERR: ", str);
                 }
@@ -1170,8 +1170,8 @@ public final class gd {
 
     public static String b0(String str, Object... objArr) {
         try {
-            if (E0().f24244y != null) {
-                return String.format(E0().f24244y, str, objArr);
+            if (E0().f24241y != null) {
+                return String.format(E0().f24241y, str, objArr);
             }
             return String.format(str, objArr);
         } catch (Exception e10) {
@@ -1237,7 +1237,7 @@ public final class gd {
                 userStatus3.expires = i10;
             }
         }
-        if (user != null && (userStatus2 = user.status) != null && userStatus2.expires <= 0 && mp.u1(i7).f25596a0.containsKey(Long.valueOf(user.f28554id))) {
+        if (user != null && (userStatus2 = user.status) != null && userStatus2.expires <= 0 && mp.u1(i7).f25594a0.containsKey(Long.valueOf(user.f28552id))) {
             if (zArr != null) {
                 zArr[0] = true;
             }
@@ -1390,7 +1390,7 @@ public final class gd {
             return M0(i7, null);
         }
         try {
-            return new Locale("", str).getDisplayCountry(E0().f24244y);
+            return new Locale("", str).getDisplayCountry(E0().f24241y);
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -1399,8 +1399,8 @@ public final class gd {
 
     public static String j0() {
         cd cdVar = E0().B;
-        if (cdVar != null && !TextUtils.isEmpty(cdVar.f23331a)) {
-            return cdVar.f23331a;
+        if (cdVar != null && !TextUtils.isEmpty(cdVar.f23328a)) {
+            return cdVar.f23328a;
         }
         return M0(2131748857, "LanguageName");
     }
@@ -1417,12 +1417,12 @@ public final class gd {
     }
 
     public static void l() {
-        if (f24222g0 == null) {
-            int i7 = bz.f23199s1;
+        if (f24219g0 == null) {
+            int i7 = bz.f23196s1;
             boolean z10 = false;
             if (i7 == 0) {
                 try {
-                    TelephonyManager telephonyManager = (TelephonyManager) t0.f26915b.getSystemService("phone");
+                    TelephonyManager telephonyManager = (TelephonyManager) t0.f26913b.getSystemService("phone");
                     if (telephonyManager != null) {
                         String upperCase = telephonyManager.getSimCountryIso().toUpperCase();
                         if (!"US".equals(upperCase)) {
@@ -1430,18 +1430,18 @@ public final class gd {
                                 if (!"MM".equals(upperCase)) {
                                     if ("LR".equals(upperCase)) {
                                     }
-                                    f24222g0 = Boolean.valueOf(z10);
+                                    f24219g0 = Boolean.valueOf(z10);
                                     return;
                                 }
                             }
                         }
                         z10 = true;
-                        f24222g0 = Boolean.valueOf(z10);
+                        f24219g0 = Boolean.valueOf(z10);
                         return;
                     }
                     return;
                 } catch (Exception e10) {
-                    f24222g0 = Boolean.FALSE;
+                    f24219g0 = Boolean.FALSE;
                     a8.g(e10, true);
                     return;
                 }
@@ -1449,16 +1449,16 @@ public final class gd {
             if (i7 == 2) {
                 z10 = true;
             }
-            f24222g0 = Boolean.valueOf(z10);
+            f24219g0 = Boolean.valueOf(z10);
         }
     }
 
     public static int l0(cd cdVar, TLRPC.TL_langPackDifference tL_langPackDifference) {
         String lowerCase = tL_langPackDifference.lang_code.replace('-', '_').toLowerCase();
-        if (lowerCase.equals(cdVar.f23333c)) {
+        if (lowerCase.equals(cdVar.f23330c)) {
             return 0;
         }
-        if (lowerCase.equals(cdVar.f23334e)) {
+        if (lowerCase.equals(cdVar.f23331e)) {
             return 1;
         }
         return -1;
@@ -1478,11 +1478,11 @@ public final class gd {
                 while (i10 < 18) {
                     int i11 = 0;
                     while (true) {
-                        char[] cArr = f24221f0[i10];
+                        char[] cArr = f24218f0[i10];
                         if (i11 >= cArr.length) {
                             break;
                         } else if (charAt == cArr[i11]) {
-                            sb2.setCharAt(i7, f24220e0[i11]);
+                            sb2.setCharAt(i7, f24217e0[i11]);
                             i10 = 18;
                             break;
                         } else {
@@ -1586,18 +1586,18 @@ public final class gd {
             }
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
                 gd E0 = E0();
-                if (E0.f24233m == null) {
+                if (E0.f24230m == null) {
                     synchronized (E0) {
-                        if (E0.f24233m == null) {
-                            Locale locale = E0.f24244y;
+                        if (E0.f24230m == null) {
+                            Locale locale = E0.f24241y;
                             if (locale == null) {
                                 locale = Locale.getDefault();
                             }
-                            E0.f24233m = k(locale, E0.O0(2131742527, "chatDateShort", null), "d MMM");
+                            E0.f24230m = k(locale, E0.O0(2131742527, "chatDateShort", null), "d MMM");
                         }
                     }
                 }
-                return a0(null, null, 2131742525, E0.f24233m.format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742525, E0.f24230m.format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
             return a0(null, null, 2131742525, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
@@ -1661,7 +1661,7 @@ public final class gd {
             if (i12 + 1 == i7 && i10 == i13) {
                 if (zArr != null) {
                     zArr[0] = true;
-                    if (i11 <= 6 && i14 > 18 && f24218c0) {
+                    if (i11 <= 6 && i14 > 18 && f24215c0) {
                         return a0(null, null, 2131748825, E0().p0().format(new Date(j10)));
                     }
                     return a0(null, null, 2131742585, E0().p0().format(new Date(j10)));
@@ -1707,7 +1707,7 @@ public final class gd {
         String format;
         String format2;
         l();
-        if ((bool != null && bool.booleanValue()) || (bool == null && f24222g0.booleanValue())) {
+        if ((bool != null && bool.booleanValue()) || (bool == null && f24219g0.booleanValue())) {
             float f11 = f10 * 3.28084f;
             if (f11 < 1000.0f) {
                 if (i7 != 0) {
@@ -1785,7 +1785,7 @@ public final class gd {
             synchronized (this) {
                 try {
                     if (this.d == null) {
-                        Locale locale = this.f24244y;
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -1799,39 +1799,39 @@ public final class gd {
     }
 
     public final FastDateFormat B0() {
-        if (this.f24226e == null) {
+        if (this.f24223e == null) {
             synchronized (this) {
                 try {
-                    if (this.f24226e == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24223e == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24226e = k(locale, O0(2131742502, "formatterWeekLong", null), "EEEE");
+                        this.f24223e = k(locale, O0(2131742502, "formatterWeekLong", null), "EEEE");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24226e;
+        return this.f24223e;
     }
 
     public final FastDateFormat C0() {
-        if (this.f24228g == null) {
+        if (this.f24225g == null) {
             synchronized (this) {
                 try {
-                    if (this.f24228g == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24225g == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24228g = k(locale, O0(2131742501, "formatterYear", null), "dd.MM.yy");
+                        this.f24225g = k(locale, O0(2131742501, "formatterYear", null), "dd.MM.yy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24228g;
+        return this.f24225g;
     }
 
     public final FastDateFormat D0() {
@@ -1839,7 +1839,7 @@ public final class gd {
             synchronized (this) {
                 try {
                     if (this.h == null) {
-                        Locale locale = this.f24244y;
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -1872,8 +1872,8 @@ public final class gd {
     }
 
     public final String P0(int i7, String str, String str2) {
-        Context context = t0.f26915b;
-        boolean z10 = s2.f26723a;
+        Context context = t0.f26913b;
+        boolean z10 = s2.f26721a;
         String c10 = this.Y.c(i7, context, str);
         if (c10 != null) {
             return c10;
@@ -2518,29 +2518,29 @@ public final class gd {
         if (this.D) {
             return;
         }
-        f24218c0 = DateFormat.is24HourFormat(t0.f26915b);
+        f24215c0 = DateFormat.is24HourFormat(t0.f26913b);
         Locale locale = configuration.locale;
-        this.f24245z = locale;
+        this.f24242z = locale;
         if (this.C != null) {
             cd cdVar = this.B;
             this.B = null;
-            d(cdVar, false, false, j10.f24773t0);
+            d(cdVar, false, false, j10.f24770t0);
         } else if (locale != null) {
             String displayName = locale.getDisplayName();
-            String displayName2 = this.f24244y.getDisplayName();
+            String displayName2 = this.f24241y.getDisplayName();
             if (displayName != null && displayName2 != null && !displayName.equals(displayName2)) {
                 Y0();
             }
-            this.f24244y = locale;
+            this.f24241y = locale;
             cd cdVar2 = this.B;
-            if (cdVar2 != null && !TextUtils.isEmpty(cdVar2.f23335f)) {
-                this.A = (dd) this.f24243x.get(this.B.f23335f);
+            if (cdVar2 != null && !TextUtils.isEmpty(cdVar2.f23332f)) {
+                this.A = (dd) this.f24240x.get(this.B.f23332f);
             }
             if (this.A == null) {
-                dd ddVar = (dd) this.f24243x.get(this.f24244y.getLanguage());
+                dd ddVar = (dd) this.f24240x.get(this.f24241y.getLanguage());
                 this.A = ddVar;
                 if (ddVar == null) {
-                    this.A = (dd) this.f24243x.get("en");
+                    this.A = (dd) this.f24240x.get("en");
                 }
             }
         }
@@ -2556,7 +2556,7 @@ public final class gd {
     public final void Y0() {
         cd cdVar;
         boolean z10;
-        Locale locale = this.f24244y;
+        Locale locale = this.f24241y;
         if (locale == null) {
             locale = Locale.getDefault();
         }
@@ -2567,39 +2567,39 @@ public final class gd {
         String lowerCase = language.toLowerCase();
         int i7 = 0;
         int i10 = 2;
-        if ((lowerCase.length() != 2 || (!lowerCase.equals("ar") && !lowerCase.equals("fa") && !lowerCase.equals("he") && !lowerCase.equals("iw"))) && !lowerCase.startsWith("ar_") && !lowerCase.startsWith("fa_") && !lowerCase.startsWith("he_") && !lowerCase.startsWith("iw_") && ((cdVar = this.B) == null || !cdVar.f23336g)) {
+        if ((lowerCase.length() != 2 || (!lowerCase.equals("ar") && !lowerCase.equals("fa") && !lowerCase.equals("he") && !lowerCase.equals("iw"))) && !lowerCase.startsWith("ar_") && !lowerCase.startsWith("fa_") && !lowerCase.startsWith("he_") && !lowerCase.startsWith("iw_") && ((cdVar = this.B) == null || !cdVar.f23333g)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        f24216a0 = z10;
+        f24213a0 = z10;
         if (!lowerCase.equals("ko")) {
             i10 = 1;
         }
-        f24217b0 = i10;
-        this.f24240t = null;
-        this.f24239s = null;
-        this.f24241u = null;
+        f24214b0 = i10;
+        this.f24237t = null;
+        this.f24236s = null;
+        this.f24238u = null;
         this.v = null;
-        this.f24237q = null;
-        this.f24238r = null;
-        this.f24227f = null;
-        this.f24228g = null;
+        this.f24234q = null;
+        this.f24235r = null;
+        this.f24224f = null;
+        this.f24225g = null;
         this.h = null;
-        this.f24232l = null;
-        this.f24234n = null;
+        this.f24229l = null;
+        this.f24231n = null;
         this.d = null;
-        this.f24226e = null;
-        this.f24235o = null;
-        this.f24236p = null;
-        this.f24223a = null;
-        this.f24224b = null;
-        this.f24225c = null;
-        this.f24229i = null;
-        this.f24230j = null;
-        this.f24231k = null;
+        this.f24223e = null;
+        this.f24232o = null;
+        this.f24233p = null;
+        this.f24220a = null;
+        this.f24221b = null;
+        this.f24222c = null;
+        this.f24226i = null;
+        this.f24227j = null;
+        this.f24228k = null;
         while (true) {
-            FastDateFormat[] fastDateFormatArr = this.f24242w;
+            FastDateFormat[] fastDateFormatArr = this.f24239w;
             if (i7 < fastDateFormatArr.length) {
                 fastDateFormatArr[i7] = null;
                 i7++;
@@ -2617,7 +2617,7 @@ public final class gd {
         if (str2 != null) {
             cd cdVar = this.B;
             if (cdVar != null) {
-                if (!str2.equals(cdVar.f23333c) && !str2.equals(this.B.f23334e)) {
+                if (!str2.equals(cdVar.f23330c) && !str2.equals(this.B.f23331e)) {
                     return;
                 }
             } else {
@@ -2628,7 +2628,7 @@ public final class gd {
     }
 
     public final void a1() {
-        SharedPreferences.Editor edit = t0.f26915b.getSharedPreferences("langconfig", 0).edit();
+        SharedPreferences.Editor edit = t0.f26913b.getSharedPreferences("langconfig", 0).edit();
         StringBuilder sb2 = new StringBuilder();
         for (int i7 = 0; i7 < this.O.size(); i7++) {
             String f10 = ((cd) this.O.get(i7)).f();
@@ -2667,7 +2667,7 @@ public final class gd {
 
     public final void b(String[] strArr, dd ddVar) {
         for (String str : strArr) {
-            this.f24243x.put(str, ddVar);
+            this.f24240x.put(str, ddVar);
         }
     }
 
@@ -2683,7 +2683,7 @@ public final class gd {
         if (tL_langPackDifference != null && !tL_langPackDifference.strings.isEmpty() && cdVar != null && !cdVar.h()) {
             final int l02 = l0(cdVar, tL_langPackDifference);
             if (l02 == -1) {
-                a8.b("saveRemoteLocaleStrings: unknown language " + tL_langPackDifference.lang_code + " (locale short=" + cdVar.f23333c + ", base=" + cdVar.f23334e + ")");
+                a8.b("saveRemoteLocaleStrings: unknown language " + tL_langPackDifference.lang_code + " (locale short=" + cdVar.f23330c + ", base=" + cdVar.f23331e + ")");
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -2691,15 +2691,15 @@ public final class gd {
                 return;
             }
             if (l02 == 0) {
-                str = cdVar.f23333c;
+                str = cdVar.f23330c;
             } else {
-                str = cdVar.f23334e;
+                str = cdVar.f23331e;
             }
             final String str2 = str;
             if (l02 == 0) {
                 i12 = cdVar.h;
             } else {
-                i12 = cdVar.f23337i;
+                i12 = cdVar.f23334i;
             }
             final int i13 = i12;
             if (l02 == 0) {
@@ -2752,19 +2752,19 @@ public final class gd {
             if (l03 == 0) {
                 i10 = cdVar.h;
             } else {
-                i10 = cdVar.f23337i;
+                i10 = cdVar.f23334i;
             }
             if (l03 != -1 && tL_langPackDifference.from_version <= i10 && i10 < (i11 = tL_langPackDifference.version)) {
                 if (l03 == 0) {
                     cdVar.h = i11;
                 } else {
-                    cdVar.f23337i = i11;
+                    cdVar.f23334i = i11;
                 }
                 a1();
             }
         }
         Y0();
-        ks.e().k(ks.f25238z4, new Object[0]);
+        ks.e().k(ks.A4, new Object[0]);
         if (runnable != null) {
             runnable.run();
         }
@@ -2776,7 +2776,7 @@ public final class gd {
 
     public final boolean c1(String str) {
         int i7;
-        int i10 = mp.u1(j10.f24773t0).C7;
+        int i10 = mp.u1(j10.f24770t0).C7;
         if (i10 > 0) {
             SharedPreferences g12 = mp.g1();
             if (!g12.getBoolean("lngpack_patched_" + str, false) && (i7 = this.Z) < i10) {
@@ -2798,14 +2798,14 @@ public final class gd {
         HashMap hashMap = this.T;
         bd bdVar = (bd) hashMap.get(str);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (bdVar != null && elapsedRealtime - bdVar.f23058b >= 300000) {
+        if (bdVar != null && elapsedRealtime - bdVar.f23055b >= 300000) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (bdVar != null && !z11 && (bdVar.f23057a || !z10)) {
+        if (bdVar != null && !z11 && (bdVar.f23054a || !z10)) {
             StringBuilder u10 = a8.p0.u("applyRemoteLanguage ", str, " is already loading");
-            if (bdVar.f23057a) {
+            if (bdVar.f23054a) {
                 str2 = " the whole langpack";
             } else {
                 str2 = "";
@@ -2813,18 +2813,18 @@ public final class gd {
             u10.append(str2);
             u10.append(", wait for it");
             a8.b(u10.toString());
-            bdVar.f23060e.add(yfVar);
+            bdVar.f23057e.add(yfVar);
             return null;
         }
         ?? obj = new Object();
         ArrayList arrayList = new ArrayList();
-        obj.f23060e = arrayList;
-        obj.f23057a = z10;
-        obj.f23058b = elapsedRealtime;
+        obj.f23057e = arrayList;
+        obj.f23054a = z10;
+        obj.f23055b = elapsedRealtime;
         obj.d = i7;
         if (z11) {
-            arrayList.addAll(bdVar.f23060e);
-            bdVar.f23060e.clear();
+            arrayList.addAll(bdVar.f23057e);
+            bdVar.f23057e.clear();
         }
         hashMap.put(str, obj);
         return obj;
@@ -2843,11 +2843,11 @@ public final class gd {
                     cd cdVar = G0;
                     if (G0 == null) {
                         ?? obj = new Object();
-                        obj.f23331a = str;
-                        obj.f23332b = str2;
+                        obj.f23328a = str;
+                        obj.f23329b = str2;
                         String lowerCase = str3.toLowerCase();
-                        obj.f23333c = lowerCase;
-                        obj.f23335f = lowerCase;
+                        obj.f23330c = lowerCase;
+                        obj.f23332f = lowerCase;
                         obj.d = file2.getAbsolutePath();
                         this.J.add(obj);
                         this.N.put(obj.b(), obj);
@@ -2876,39 +2876,39 @@ public final class gd {
     }
 
     public final FastDateFormat g0() {
-        if (this.f24232l == null) {
+        if (this.f24229l == null) {
             synchronized (this) {
                 try {
-                    if (this.f24232l == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24229l == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24232l = k(locale, O0(2131742528, "chatDate", null), "d MMMM");
+                        this.f24229l = k(locale, O0(2131742528, "chatDate", null), "d MMMM");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24232l;
+        return this.f24229l;
     }
 
     public final FastDateFormat h0() {
-        if (this.f24234n == null) {
+        if (this.f24231n == null) {
             synchronized (this) {
                 try {
-                    if (this.f24234n == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24231n == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24234n = k(locale, O0(2131742526, "chatFullDate", null), "d MMMM yyyy");
+                        this.f24231n = k(locale, O0(2131742526, "chatFullDate", null), "d MMMM yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24234n;
+        return this.f24231n;
     }
 
     public final void i() {
@@ -2917,8 +2917,8 @@ public final class gd {
 
     public final void j(int i7) {
         cd cdVar = this.B;
-        if (cdVar != null && !this.P && c1(cdVar.f23333c)) {
-            if (s2.f26723a) {
+        if (cdVar != null && !this.P && c1(cdVar.f23330c)) {
+            if (s2.f26721a) {
                 a8.b("reload locale because locale file is not enough");
             }
             g0.g3(new tc(this, i7, 2));
@@ -2926,85 +2926,85 @@ public final class gd {
     }
 
     public final Locale k0() {
-        return this.f24244y;
+        return this.f24241y;
     }
 
     public final FastDateFormat m0() {
         String O0;
         String str;
-        if (this.f24230j == null) {
+        if (this.f24227j == null) {
             synchronized (this) {
                 try {
-                    if (this.f24230j == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24227j == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             O0 = O0(2131742521, "formatterBannedUntil24H", null);
                         } else {
                             O0 = O0(2131742522, "formatterBannedUntil12H", null);
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             str = "MMM dd yyyy, HH:mm";
                         } else {
                             str = "MMM dd yyyy, h:mm a";
                         }
-                        this.f24230j = k(locale, O0, str);
+                        this.f24227j = k(locale, O0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24230j;
+        return this.f24227j;
     }
 
     public final FastDateFormat n0() {
         String O0;
         String str;
-        if (this.f24231k == null) {
+        if (this.f24228k == null) {
             synchronized (this) {
                 try {
-                    if (this.f24231k == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24228k == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             O0 = O0(2131742519, "formatterBannedUntilThisYear24H", null);
                         } else {
                             O0 = O0(2131742520, "formatterBannedUntilThisYear12H", null);
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             str = "MMM dd, HH:mm";
                         } else {
                             str = "MMM dd, h:mm a";
                         }
-                        this.f24231k = k(locale, O0, str);
+                        this.f24228k = k(locale, O0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24231k;
+        return this.f24228k;
     }
 
     public final FastDateFormat o0() {
-        if (this.f24240t == null) {
+        if (this.f24237t == null) {
             synchronized (this) {
                 try {
-                    if (this.f24240t == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24237t == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24240t = k(locale, O0(2131742518, "formatterBoostExpired", null), "MMM dd, yyyy");
+                        this.f24237t = k(locale, O0(2131742518, "formatterBoostExpired", null), "MMM dd, yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24240t;
+        return this.f24237t;
     }
 
     public final String p(long j3, String str) {
@@ -3014,11 +3014,11 @@ public final class gd {
     public final FastDateFormat p0() {
         String O0;
         String str;
-        if (this.f24223a == null) {
+        if (this.f24220a == null) {
             synchronized (this) {
                 try {
-                    if (this.f24223a == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24220a == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -3030,23 +3030,23 @@ public final class gd {
                         if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
                             locale = Locale.US;
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             O0 = O0(2131742516, "formatterDay24H", null);
                         } else {
                             O0 = O0(2131742517, "formatterDay12H", null);
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             str = "HH:mm";
                         } else {
                             str = "h:mm a";
                         }
-                        this.f24223a = k(locale, O0, str);
+                        this.f24220a = k(locale, O0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24223a;
+        return this.f24220a;
     }
 
     public final String q(long j3, boolean z10, boolean z11, boolean z12, String str) {
@@ -3312,9 +3312,9 @@ public final class gd {
         }
         String str4 = "";
         if (currency != null) {
-            Locale locale = this.f24244y;
+            Locale locale = this.f24241y;
             if (locale == null) {
-                locale = this.f24245z;
+                locale = this.f24242z;
             }
             NumberFormat currencyInstance = NumberFormat.getCurrencyInstance(locale);
             currencyInstance.setCurrency(currency);
@@ -3344,31 +3344,31 @@ public final class gd {
     }
 
     public final FastDateFormat q0() {
-        if (this.f24227f == null) {
+        if (this.f24224f == null) {
             synchronized (this) {
                 try {
-                    if (this.f24227f == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24224f == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24227f = k(locale, O0(2131742510, "formatterMonth", null), "dd MMM");
+                        this.f24224f = k(locale, O0(2131742510, "formatterMonth", null), "dd MMM");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24227f;
+        return this.f24224f;
     }
 
     public final FastDateFormat r0() {
         String O0;
         String str;
-        if (this.f24224b == null) {
+        if (this.f24221b == null) {
             synchronized (this) {
                 try {
-                    if (this.f24224b == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24221b == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -3380,59 +3380,59 @@ public final class gd {
                         if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
                             locale = Locale.US;
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             O0 = O0(2131742514, "formatterDayWithSeconds24H", null);
                         } else {
                             O0 = O0(2131742515, "formatterDayWithSeconds12H", null);
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             str = "HH:mm:ss";
                         } else {
                             str = "h:mm:ss a";
                         }
-                        this.f24224b = k(locale, O0, str);
+                        this.f24221b = k(locale, O0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24224b;
+        return this.f24221b;
     }
 
     public final FastDateFormat s0() {
-        if (this.f24239s == null) {
+        if (this.f24236s == null) {
             synchronized (this) {
                 try {
-                    if (this.f24239s == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24236s == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24239s = k(locale, O0(2131742513, "formatterGiveawayCard", null), "dd MMM yyyy");
+                        this.f24236s = k(locale, O0(2131742513, "formatterGiveawayCard", null), "dd MMM yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24239s;
+        return this.f24236s;
     }
 
     public final FastDateFormat t0() {
-        if (this.f24241u == null) {
+        if (this.f24238u == null) {
             synchronized (this) {
                 try {
-                    if (this.f24241u == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24238u == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24241u = k(locale, O0(2131742512, "formatterGiveawayMonthDay", null), "MMMM dd");
+                        this.f24238u = k(locale, O0(2131742512, "formatterGiveawayMonthDay", null), "MMMM dd");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24241u;
+        return this.f24238u;
     }
 
     public final FastDateFormat u0() {
@@ -3440,7 +3440,7 @@ public final class gd {
             synchronized (this) {
                 try {
                     if (this.v == null) {
-                        Locale locale = this.f24244y;
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -3454,47 +3454,47 @@ public final class gd {
     }
 
     public final FastDateFormat v0() {
-        if (this.f24237q == null) {
+        if (this.f24234q == null) {
             synchronized (this) {
                 try {
-                    if (this.f24237q == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24234q == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24237q = k(locale, O0(2131742507, "formatterMonthYear", null), "MMM yyyy");
+                        this.f24234q = k(locale, O0(2131742507, "formatterMonthYear", null), "MMM yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24237q;
+        return this.f24234q;
     }
 
     public final FastDateFormat w0() {
-        if (this.f24235o == null) {
+        if (this.f24232o == null) {
             synchronized (this) {
                 try {
-                    if (this.f24235o == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24232o == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24235o = k(locale, O0(2131742524, "formatDateSchedule", null), "MMM d");
+                        this.f24232o = k(locale, O0(2131742524, "formatDateSchedule", null), "MMM d");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24235o;
+        return this.f24232o;
     }
 
     public final FastDateFormat x0(int i7) {
         if (i7 >= 0) {
-            FastDateFormat[] fastDateFormatArr = this.f24242w;
+            FastDateFormat[] fastDateFormatArr = this.f24239w;
             if (i7 < fastDateFormatArr.length) {
                 if (fastDateFormatArr[i7] == null) {
-                    Locale locale = this.f24244y;
+                    Locale locale = this.f24241y;
                     if (locale == null) {
                         locale = Locale.getDefault();
                     }
@@ -3562,50 +3562,50 @@ public final class gd {
     }
 
     public final FastDateFormat y0() {
-        if (this.f24236p == null) {
+        if (this.f24233p == null) {
             synchronized (this) {
                 try {
-                    if (this.f24236p == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24233p == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24236p = k(locale, O0(2131742523, "formatDateScheduleYear", null), "MMM d yyyy");
+                        this.f24233p = k(locale, O0(2131742523, "formatDateScheduleYear", null), "MMM d yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24236p;
+        return this.f24233p;
     }
 
     public final FastDateFormat z0() {
         String O0;
         String str;
-        if (this.f24229i == null) {
+        if (this.f24226i == null) {
             synchronized (this) {
                 try {
-                    if (this.f24229i == null) {
-                        Locale locale = this.f24244y;
+                    if (this.f24226i == null) {
+                        Locale locale = this.f24241y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             O0 = O0(2131742504, "formatterStats24H", null);
                         } else {
                             O0 = O0(2131742505, "formatterStats12H", null);
                         }
-                        if (f24218c0) {
+                        if (f24215c0) {
                             str = "MMM dd yyyy, HH:mm";
                         } else {
                             str = "MMM dd yyyy, h:mm a";
                         }
-                        this.f24229i = k(locale, O0, str);
+                        this.f24226i = k(locale, O0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24229i;
+        return this.f24226i;
     }
 }

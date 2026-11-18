@@ -12,7 +12,7 @@ import android.view.ViewParent;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class ch0 extends Path {
-    public final org.telegram.ui.Cells.q1 f33996a;
+    public final org.telegram.ui.Cells.r1 f33996a;
     public final int f33997b;
     public final int f33998c;
     public final int d;
@@ -30,11 +30,11 @@ public final class ch0 extends Path {
     public final float f34009p;
     public bh0 f34010q;
     public final int f34011r;
-    public final org.telegram.ui.Cells.t9 f34012s;
+    public final org.telegram.ui.Cells.u9 f34012s;
     public final int f34013t;
     public final ArrayList f34014u;
 
-    public ch0(final org.telegram.ui.Cells.q1 q1Var, int i7, int i10) {
+    public ch0(final org.telegram.ui.Cells.r1 r1Var, int i7, int i10) {
         Paint paint = new Paint(1);
         this.f34002i = paint;
         this.f34003j = new pq();
@@ -42,28 +42,28 @@ public final class ch0 extends Path {
         this.f34006m = new ArrayList();
         this.f34013t = 1;
         this.f34014u = new ArrayList();
-        this.f33996a = q1Var;
+        this.f33996a = r1Var;
         this.f34004k = new c6(0.0f, new Runnable() {
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Cells.q1 q1Var2 = q1Var;
-                        if (q1Var2 != null) {
-                            q1Var2.invalidate();
+                        org.telegram.ui.Cells.r1 r1Var2 = r1Var;
+                        if (r1Var2 != null) {
+                            r1Var2.invalidate();
                         }
-                        if (q1Var2.getParent() instanceof View) {
-                            ((View) q1Var2.getParent()).invalidate();
+                        if (r1Var2.getParent() instanceof View) {
+                            ((View) r1Var2.getParent()).invalidate();
                             return;
                         }
                         return;
                     default:
-                        org.telegram.ui.Cells.q1 q1Var3 = q1Var;
-                        if (q1Var3 != null) {
-                            q1Var3.invalidate();
+                        org.telegram.ui.Cells.r1 r1Var3 = r1Var;
+                        if (r1Var3 != null) {
+                            r1Var3.invalidate();
                         }
-                        if (q1Var3.getParent() instanceof View) {
-                            ((View) q1Var3.getParent()).invalidate();
+                        if (r1Var3.getParent() instanceof View) {
+                            ((View) r1Var3.getParent()).invalidate();
                             return;
                         }
                         return;
@@ -82,19 +82,19 @@ public final class ch0 extends Path {
     }
 
     public static void b(pq pqVar, bh0 bh0Var, float f10, float f11, Rect rect, float f12) {
-        org.telegram.ui.Cells.t9 t9Var;
+        org.telegram.ui.Cells.u9 u9Var;
         float f13;
-        org.telegram.ui.Cells.t9 t9Var2;
+        org.telegram.ui.Cells.u9 u9Var2;
         float f14;
         float f15;
         float f16 = 0.0f;
         if (bh0Var.f33695j != null) {
-            f13 = t9Var.getX() - bh0Var.f33696k;
+            f13 = u9Var.getX() - bh0Var.f33696k;
         } else {
             f13 = 0.0f;
         }
         if (bh0Var.f33695j != null) {
-            f16 = t9Var2.getY() - bh0Var.f33697l;
+            f16 = u9Var2.getY() - bh0Var.f33697l;
         }
         float T1 = org.telegram.messenger.g0.T1(rect.left - f10, bh0Var.f33688a + f13, f12);
         if (bh0Var.f33691e) {
@@ -130,11 +130,11 @@ public final class ch0 extends Path {
         obj.f33690c = f18;
         obj.d = f13 + f17;
         obj.f33694i = this.f34011r;
-        org.telegram.ui.Cells.t9 t9Var = this.f34012s;
-        obj.f33695j = t9Var;
-        if (t9Var != null) {
-            obj.f33696k = t9Var.getX();
-            obj.f33697l = t9Var.getY();
+        org.telegram.ui.Cells.u9 u9Var = this.f34012s;
+        obj.f33695j = u9Var;
+        if (u9Var != null) {
+            obj.f33696k = u9Var.getX();
+            obj.f33697l = u9Var.getY();
         }
         bh0 bh0Var = this.f34010q;
         if (bh0Var != null) {
@@ -159,7 +159,7 @@ public final class ch0 extends Path {
         canvas.save();
         boolean z10 = this.f34000f;
         pq pqVar = this.f34003j;
-        org.telegram.ui.Cells.q1 q1Var = this.f33996a;
+        org.telegram.ui.Cells.r1 r1Var = this.f33996a;
         Paint paint = this.f34002i;
         if (z10) {
             int W1 = org.telegram.messenger.g0.W1(e10, org.telegram.messenger.g0.L(4.0f), 0);
@@ -168,9 +168,9 @@ public final class ch0 extends Path {
                 paint.setPathEffect(new CornerPathEffect(W1));
             }
             pqVar.rewind();
-            int W12 = q1Var.W1(this.f34001g);
+            int W12 = r1Var.W1(this.f34001g);
             RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(q1Var.getBackgroundDrawableLeft(), q1Var.V1(W12), q1Var.getBackgroundDrawableRight(), q1Var.U1(W12));
+            rectF.set(r1Var.getBackgroundDrawableLeft(), r1Var.V1(W12), r1Var.getBackgroundDrawableRight(), r1Var.U1(W12));
             org.telegram.messenger.g0.Y1(rect2, rectF, e10, rectF);
             pqVar.addRect(rectF, Path.Direction.CW);
             pqVar.a();
@@ -181,9 +181,9 @@ public final class ch0 extends Path {
                 paint.setPathEffect(new CornerPathEffect(W13));
             }
             pqVar.rewind();
-            int c22 = q1Var.c2(-this.f33998c);
+            int c22 = r1Var.c2(-this.f33998c);
             RectF rectF2 = org.telegram.messenger.g0.P;
-            rectF2.set(q1Var.getBackgroundDrawableLeft(), q1Var.V1(c22), q1Var.getBackgroundDrawableRight(), q1Var.U1(c22));
+            rectF2.set(r1Var.getBackgroundDrawableLeft(), r1Var.V1(c22), r1Var.getBackgroundDrawableRight(), r1Var.U1(c22));
             org.telegram.messenger.g0.Y1(rect2, rectF2, e10, rectF2);
             pqVar.addRect(rectF2, Path.Direction.CW);
             pqVar.a();
@@ -300,7 +300,7 @@ public final class ch0 extends Path {
         }
     }
 
-    public ch0(final org.telegram.ui.Cells.q1 q1Var, int i7, byte[] bArr) {
+    public ch0(final org.telegram.ui.Cells.r1 r1Var, int i7, byte[] bArr) {
         Paint paint = new Paint(1);
         this.f34002i = paint;
         this.f34003j = new pq();
@@ -308,28 +308,28 @@ public final class ch0 extends Path {
         this.f34006m = new ArrayList();
         this.f34013t = 1;
         this.f34014u = new ArrayList();
-        this.f33996a = q1Var;
+        this.f33996a = r1Var;
         this.f34004k = new c6(0.0f, new Runnable() {
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Cells.q1 q1Var2 = q1Var;
-                        if (q1Var2 != null) {
-                            q1Var2.invalidate();
+                        org.telegram.ui.Cells.r1 r1Var2 = r1Var;
+                        if (r1Var2 != null) {
+                            r1Var2.invalidate();
                         }
-                        if (q1Var2.getParent() instanceof View) {
-                            ((View) q1Var2.getParent()).invalidate();
+                        if (r1Var2.getParent() instanceof View) {
+                            ((View) r1Var2.getParent()).invalidate();
                             return;
                         }
                         return;
                     default:
-                        org.telegram.ui.Cells.q1 q1Var3 = q1Var;
-                        if (q1Var3 != null) {
-                            q1Var3.invalidate();
+                        org.telegram.ui.Cells.r1 r1Var3 = r1Var;
+                        if (r1Var3 != null) {
+                            r1Var3.invalidate();
                         }
-                        if (q1Var3.getParent() instanceof View) {
-                            ((View) q1Var3.getParent()).invalidate();
+                        if (r1Var3.getParent() instanceof View) {
+                            ((View) r1Var3.getParent()).invalidate();
                             return;
                         }
                         return;
@@ -347,7 +347,7 @@ public final class ch0 extends Path {
         paint.setPathEffect(new CornerPathEffect(L));
     }
 
-    public ch0(final org.telegram.ui.Cells.q1 q1Var, final ViewParent viewParent, int i7, ArrayList arrayList, int i10, int i11, float f10) {
+    public ch0(final org.telegram.ui.Cells.r1 r1Var, final ViewParent viewParent, int i7, ArrayList arrayList, int i10, int i11, float f10) {
         int i12;
         Paint paint = new Paint(1);
         this.f34002i = paint;
@@ -362,7 +362,7 @@ public final class ch0 extends Path {
             public final void run() {
                 switch (r3) {
                     case 0:
-                        q1Var.invalidate();
+                        r1Var.invalidate();
                         ViewParent viewParent2 = viewParent;
                         if (viewParent2 instanceof View) {
                             ((View) viewParent2).invalidate();
@@ -370,7 +370,7 @@ public final class ch0 extends Path {
                         }
                         return;
                     default:
-                        q1Var.invalidate();
+                        r1Var.invalidate();
                         ViewParent viewParent3 = viewParent;
                         if (viewParent3 instanceof View) {
                             ((View) viewParent3).invalidate();
@@ -394,32 +394,32 @@ public final class ch0 extends Path {
         boolean z10 = false;
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
             org.telegram.messenger.cj cjVar = (org.telegram.messenger.cj) arrayList.get(i13);
-            if (cjVar != null && i10 <= cjVar.f23367r && i11 >= (i12 = cjVar.f23366n)) {
+            if (cjVar != null && i10 <= cjVar.f23364r && i11 >= (i12 = cjVar.f23363n)) {
                 int max = Math.max(0, i10 - i12);
-                int i14 = cjVar.f23366n;
-                int min = Math.min(i11 - i14, cjVar.f23367r - i14);
+                int i14 = cjVar.f23363n;
+                int min = Math.min(i11 - i14, cjVar.f23364r - i14);
                 float f11 = -f10;
                 this.f34007n = f11;
                 if (cjVar.I && !cjVar.J) {
                     this.f34007n = f11 + (cjVar.V ? org.telegram.messenger.g0.L(14.0f) : org.telegram.messenger.g0.L(10.0f));
                 }
-                this.f34008o = cjVar.o(arrayList) + cjVar.f23365f;
+                this.f34008o = cjVar.o(arrayList) + cjVar.f23362f;
                 this.f34009p = cjVar.J ? org.telegram.messenger.g0.L(10.0f) : 0.0f;
-                z10 = z10 || org.telegram.messenger.g0.L1(cjVar.f23364e.getText());
+                z10 = z10 || org.telegram.messenger.g0.L1(cjVar.f23361e.getText());
                 if (z10) {
-                    cjVar.f23364e.getSelectionPath(max, min, this);
+                    cjVar.f23361e.getSelectionPath(max, min, this);
                 } else {
-                    e(cjVar.f23364e, max, min);
+                    e(cjVar.f23361e, max, min);
                 }
                 if (cjVar.K && cjVar.f()) {
-                    this.f34006m.add(Integer.valueOf(cjVar.f23363c));
+                    this.f34006m.add(Integer.valueOf(cjVar.f23360c));
                 }
             }
         }
         d();
     }
 
-    public ch0(final org.telegram.ui.Cells.q1 q1Var, final ViewParent viewParent, int i7, org.telegram.messenger.ev evVar, int i10, int i11) {
+    public ch0(final org.telegram.ui.Cells.r1 r1Var, final ViewParent viewParent, int i7, org.telegram.messenger.ev evVar, int i10, int i11) {
         Paint paint = new Paint(1);
         this.f34002i = paint;
         this.f34003j = new pq();
@@ -433,7 +433,7 @@ public final class ch0 extends Path {
             public final void run() {
                 switch (r3) {
                     case 0:
-                        q1Var.invalidate();
+                        r1Var.invalidate();
                         ViewParent viewParent2 = viewParent;
                         if (viewParent2 instanceof View) {
                             ((View) viewParent2).invalidate();
@@ -441,7 +441,7 @@ public final class ch0 extends Path {
                         }
                         return;
                     default:
-                        q1Var.invalidate();
+                        r1Var.invalidate();
                         ViewParent viewParent3 = viewParent;
                         if (viewParent3 instanceof View) {
                             ((View) viewParent3).invalidate();
@@ -459,23 +459,23 @@ public final class ch0 extends Path {
         if (evVar == null) {
             return;
         }
-        ArrayList arrayList = evVar.f23781n;
+        ArrayList arrayList = evVar.f23778n;
         int L = org.telegram.messenger.g0.L(4.0f);
         this.h = L;
         paint.setPathEffect(new CornerPathEffect(L));
         this.f34009p = -3.4028235E38f;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) arrayList.get(i12);
-            Layout a10 = t9Var == null ? null : t9Var.a();
+            org.telegram.ui.Cells.u9 u9Var = (org.telegram.ui.Cells.u9) arrayList.get(i12);
+            Layout a10 = u9Var == null ? null : u9Var.a();
             if (a10 != null && a10.getText() != null) {
-                int intValue = ((Integer) evVar.f23782o.get(i12)).intValue();
+                int intValue = ((Integer) evVar.f23779o.get(i12)).intValue();
                 int length = a10.getText().length();
                 int j3 = Utilities.j(i10 - intValue, length, 0);
                 int j10 = Utilities.j(i11 - intValue, length, 0);
                 if (j3 < j10) {
-                    this.f34007n = t9Var.getX();
-                    this.f34008o = t9Var.getY();
-                    this.f34012s = t9Var;
+                    this.f34007n = u9Var.getX();
+                    this.f34008o = u9Var.getY();
+                    this.f34012s = u9Var;
                     this.f34010q = null;
                     int size = this.f34005l.size();
                     if (org.telegram.messenger.g0.L1(a10.getText())) {

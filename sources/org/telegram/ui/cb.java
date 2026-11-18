@@ -32,7 +32,7 @@ public final class cb extends pi.k {
             org.telegram.messenger.g0.r(hq0Var);
             this.X = null;
         }
-        if (org.telegram.messenger.s2.f26723a) {
+        if (org.telegram.messenger.s2.f26721a) {
             org.telegram.messenger.a8.b("admin logs chatItemAnimator disable notifications");
         }
     }

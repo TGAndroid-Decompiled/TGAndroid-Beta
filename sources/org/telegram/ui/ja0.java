@@ -1,32 +1,65 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class ja0 extends org.telegram.ui.Components.gt0 {
-    public final pa0 f48933x2;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class ja0 implements org.telegram.ui.Components.vr0 {
+    public final qa0 f48921a;
 
-    public ja0(pa0 pa0Var, Context context, org.telegram.ui.Components.ys0 ys0Var, pa0 pa0Var2, ia0 ia0Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, 0L, ys0Var, 0, null, null, null, 8, 0, pa0Var2, ia0Var, 0, i6Var, null);
-        this.f48933x2 = pa0Var;
+    public ja0(qa0 qa0Var) {
+        this.f48921a = qa0Var;
     }
 
     @Override
-    public final int O0() {
-        return 32;
+    public final void W() {
+        int m0;
+        boolean z10;
+        qa0 qa0Var = this.f48921a;
+        ka0 ka0Var = qa0Var.R0;
+        if (ka0Var == null) {
+            m0 = 0;
+        } else {
+            m0 = ka0Var.m0(8);
+        }
+        qa0Var.S0.setText(org.telegram.messenger.gd.G(m0, "LocationStories", new Object[0]));
+        ia0 ia0Var = qa0Var.Q;
+        if (m0 > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (ia0Var.f17639a0 != z10) {
+            ia0Var.f17639a0 = z10;
+            ia0Var.f();
+            qa0Var.R.w0(0, org.telegram.messenger.g0.L(200.0f), null);
+        }
     }
 
     @Override
     public final boolean Y() {
+        return false;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.ck0 f() {
+        return this.f48921a.R;
+    }
+
+    @Override
+    public final TLRPC.Chat g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
+        return false;
+    }
+
+    @Override
+    public final boolean t() {
         return true;
     }
 
     @Override
-    public final int e1() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.f48933x2.T0;
+    public final void J() {
     }
 }

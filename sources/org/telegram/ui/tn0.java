@@ -7,20 +7,20 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Collections;
 public final class tn0 implements Runnable {
-    public final int f52313a = 0;
-    public final boolean f52314b;
-    public final boolean f52315c;
+    public final int f52308a = 0;
+    public final boolean f52309b;
+    public final boolean f52310c;
     public final boolean d;
-    public final Object f52316e;
-    public final Serializable f52317f;
+    public final Object f52311e;
+    public final Serializable f52312f;
     public final Object h;
 
     public tn0(ro0 ro0Var, int[] iArr, int[] iArr2, boolean z10, boolean z11, boolean z12) {
-        this.f52316e = ro0Var;
-        this.f52317f = iArr;
+        this.f52311e = ro0Var;
+        this.f52312f = iArr;
         this.h = iArr2;
-        this.f52314b = z10;
-        this.f52315c = z11;
+        this.f52309b = z10;
+        this.f52310c = z11;
         this.d = z12;
     }
 
@@ -31,10 +31,10 @@ public final class tn0 implements Runnable {
         float f11;
         org.telegram.ui.Components.v7 v7Var;
         org.telegram.ui.Components.kc kcVar;
-        int i7 = this.f52313a;
+        int i7 = this.f52308a;
         Object obj = this.h;
-        Serializable serializable = this.f52317f;
-        Object obj2 = this.f52316e;
+        Serializable serializable = this.f52312f;
+        Object obj2 = this.f52311e;
         switch (i7) {
             case 0:
                 PhotoViewer photoViewer = (PhotoViewer) obj2;
@@ -45,7 +45,7 @@ public final class tn0 implements Runnable {
                 int i10 = photoViewer.V3;
                 photoViewer.V3 = i10 - 1;
                 String absolutePath = file.getAbsolutePath();
-                boolean z10 = this.f52314b;
+                boolean z10 = this.f52309b;
                 if (z10) {
                     intValue = 0;
                 } else {
@@ -55,7 +55,7 @@ public final class tn0 implements Runnable {
                 efVar.n(L0);
                 photoViewer.d2 = 2;
                 photoViewer.f43348v2 = false;
-                photoViewer.d = new zp0(photoViewer, photoViewer.d, fjVar, efVar, this.f52315c, this.d);
+                photoViewer.d = new zp0(photoViewer, photoViewer.d, fjVar, efVar, this.f52310c, this.d);
                 photoViewer.f43302q1.f();
                 if (photoViewer.U6 == null) {
                     photoViewer.U6 = VelocityTracker.obtain();
@@ -64,8 +64,8 @@ public final class tn0 implements Runnable {
                 photoViewer.n3(false, false);
                 photoViewer.h3(true, false);
                 bn bnVar = photoViewer.f43262l4;
-                if (bnVar != null && bnVar.f45932a0 != null && bnVar.V9()) {
-                    photoViewer.f43262l4.f45932a0.U();
+                if (bnVar != null && bnVar.f45923a0 != null && bnVar.V9()) {
+                    photoViewer.f43262l4.f45923a0.U();
                 } else {
                     photoViewer.Q1();
                 }
@@ -104,9 +104,9 @@ public final class tn0 implements Runnable {
                 iArr[0] = i11;
                 int i12 = ((int[]) obj)[0];
                 if (i11 == i12) {
-                    qq0 qq0Var = ro0Var.f51721b.f43208f0;
-                    boolean z11 = this.f52314b;
-                    boolean z12 = this.f52315c;
+                    qq0 qq0Var = ro0Var.f51710b.f43208f0;
+                    boolean z11 = this.f52309b;
+                    boolean z12 = this.f52310c;
                     int i13 = z11 ? 1 : 0;
                     boolean z13 = this.d;
                     if ((z12 ? 1 : 0) + i13 + (z13 ? 1 : 0) > 1) {
@@ -136,11 +136,11 @@ public final class tn0 implements Runnable {
     }
 
     public tn0(PhotoViewer photoViewer, File file, boolean z10, org.telegram.messenger.fj fjVar, boolean z11, boolean z12) {
-        this.f52316e = photoViewer;
-        this.f52317f = file;
-        this.f52314b = z10;
+        this.f52311e = photoViewer;
+        this.f52312f = file;
+        this.f52309b = z10;
         this.h = fjVar;
-        this.f52315c = z11;
+        this.f52310c = z11;
         this.d = z12;
     }
 }

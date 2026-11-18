@@ -35,8 +35,8 @@ public final class bt0 extends fi.o9 {
         if (lq0Var != null) {
             for (int i10 = 0; i10 < lq0Var.getChildCount(); i10++) {
                 View childAt = lq0Var.getChildAt(i10);
-                if ((childAt instanceof org.telegram.ui.Cells.o7) && (messageObject = ((org.telegram.ui.Cells.o7) childAt).getMessageObject()) != null && messageObject.x4()) {
-                    arrayList.add(Integer.valueOf(messageObject.f23973l.f28644id));
+                if ((childAt instanceof org.telegram.ui.Cells.p7) && (messageObject = ((org.telegram.ui.Cells.p7) childAt).getMessageObject()) != null && messageObject.x4()) {
+                    arrayList.add(Integer.valueOf(messageObject.f23970l.f28642id));
                 }
             }
         }
@@ -57,8 +57,8 @@ public final class bt0 extends fi.o9 {
                     break;
                 }
                 TL_stories.StoryViews storyViews = arrayList2.get(i7);
-                org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) h6Var.f12049j.get(num);
-                if (fjVar != null && (storyItem = fjVar.f23973l) != null) {
+                org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) h6Var.f12046j.get(num);
+                if (fjVar != null && (storyItem = fjVar.f23970l) != null) {
                     storyItem.views = storyViews;
                     z10 = true;
                 }

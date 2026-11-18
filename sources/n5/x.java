@@ -1,14 +1,14 @@
 package n5;
 public final class x {
-    public static final x f21416a;
-    public static final x[] f21417b;
+    public static final x f21413a;
+    public static final x[] f21414b;
     x EF0;
 
     static {
         Enum r02 = new Enum("UNKNOWN", 0);
         ?? r12 = new Enum("ANDROID_FIREBASE", 1);
-        f21416a = r12;
-        f21417b = new x[]{r02, r12};
+        f21413a = r12;
+        f21414b = new x[]{r02, r12};
     }
 
     public static x valueOf(String str) {
@@ -16,6 +16,6 @@ public final class x {
     }
 
     public static x[] values() {
-        return (x[]) f21417b.clone();
+        return (x[]) f21414b.clone();
     }
 }

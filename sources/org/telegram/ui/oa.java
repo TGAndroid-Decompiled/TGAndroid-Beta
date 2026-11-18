@@ -4,38 +4,38 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 public final class oa implements eh.a {
-    public final int f50539a;
-    public final Object f50540b;
+    public final int f50502a;
+    public final Object f50503b;
 
     public oa(Object obj, int i7) {
-        this.f50539a = i7;
-        this.f50540b = obj;
+        this.f50502a = i7;
+        this.f50503b = obj;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f50539a) {
+        switch (this.f50502a) {
             case 0:
             case 1:
             case 2:
             case 3:
             case 4:
             default:
-                aVar.f8372a = true;
+                aVar.f8369a = true;
                 return;
         }
     }
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
-        int i7 = this.f50539a;
-        Object obj = this.f50540b;
+        int i7 = this.f50502a;
+        Object obj = this.f50503b;
         switch (i7) {
             case 0:
                 ((jb) obj).X(canvas, rectF);
                 return;
             case 1:
-                pa0.Z((pa0) obj, canvas, rectF);
+                qa0.Z((qa0) obj, canvas, rectF);
                 return;
             case 2:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;

@@ -41,7 +41,7 @@ public final class j0 implements ServiceConnection {
                     this.f55918c = c10;
                     if (c10) {
                         l0Var.f55933c.sendMessageDelayed(l0Var.f55933c.obtainMessage(1, i0Var), l0Var.f55935f);
-                        n6.a aVar2 = n6.a.f21420f;
+                        n6.a aVar2 = n6.a.f21417f;
                         StrictMode.setVmPolicy(vmPolicy);
                         return aVar2;
                     }

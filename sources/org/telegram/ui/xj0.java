@@ -4,15 +4,15 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class xj0 extends ClickableSpan {
-    public final hk0 f53872a;
+    public final hk0 f53840a;
 
     public xj0(hk0 hk0Var) {
-        this.f53872a = hk0Var;
+        this.f53840a = hk0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        hk0 hk0Var = this.f53872a;
+        hk0 hk0Var = this.f53840a;
         vf.c.t(hk0Var.getParentActivity(), hk0Var.E.privacy_policy_url);
     }
 

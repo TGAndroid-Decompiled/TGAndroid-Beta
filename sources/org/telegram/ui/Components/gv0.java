@@ -5,7 +5,7 @@ import org.telegram.tgnet.TLRPC;
 public final class gv0 extends org.telegram.messenger.y2 {
     @Override
     public final void e(int i7, Object obj, org.telegram.messenger.q10 q10Var) {
-        org.telegram.messenger.tr.a0(i7).f27054a.c(new org.telegram.ui.b0(i7, (Integer) obj, (org.telegram.messenger.w2) q10Var, 25));
+        org.telegram.messenger.tr.a0(i7).f27052a.c(new org.telegram.ui.b0(i7, (Integer) obj, (org.telegram.messenger.w2) q10Var, 25));
     }
 
     @Override
@@ -34,6 +34,6 @@ public final class gv0 extends org.telegram.messenger.y2 {
 
     @Override
     public final void g(int i7, Object obj, Object obj2) {
-        org.telegram.messenger.tr.a0(i7).f27054a.c(new org.telegram.ui.b0(i7, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 26));
+        org.telegram.messenger.tr.a0(i7).f27052a.c(new org.telegram.ui.b0(i7, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 26));
     }
 }

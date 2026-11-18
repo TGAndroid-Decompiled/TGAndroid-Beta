@@ -113,7 +113,7 @@ public abstract class pt extends EditText {
                         gVar.g(z11);
                     }
                 } else if (motionEvent.getAction() == 1) {
-                    if (gVar != null && gVar.f10207c && z11) {
+                    if (gVar != null && gVar.f10204c && z11) {
                         dh0Var.f34443e.f35874e = !hh0Var.f35874e;
                         g(true);
                         z10 = true;
@@ -124,7 +124,7 @@ public abstract class pt extends EditText {
                 } else if (motionEvent.getAction() == 3 && gVar != null) {
                     gVar.g(false);
                 }
-                if ((gVar != null && gVar.f10207c) || z10) {
+                if ((gVar != null && gVar.f10204c) || z10) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -282,7 +282,7 @@ public abstract class pt extends EditText {
             this.f38560y = false;
             removeCallbacks(this.K);
             j(true, false);
-            fVar.f60560q = new nt(this, 0);
+            fVar.f60561q = new nt(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
             ArrayList arrayList = this.f38550a;
             int size = arrayList.size();
@@ -411,7 +411,7 @@ public abstract class pt extends EditText {
         canvas.restore();
         if (!arrayList.isEmpty()) {
             xh.f fVar = (xh.f) arrayList.get(0);
-            if (fVar.f60556m > 0.0f && fVar.f60557n > 0.0f) {
+            if (fVar.f60557m > 0.0f && fVar.f60558n > 0.0f) {
                 canvas.save();
                 canvas.clipPath(path);
                 path.rewind();
@@ -443,7 +443,7 @@ public abstract class pt extends EditText {
                 int i14 = rect.top;
                 int i15 = bounds2.bottom;
                 if ((i14 <= i15 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i15 >= i14)) {
-                    if (fVar2.f60567y) {
+                    if (fVar2.f60568y) {
                         color = this.E;
                     } else {
                         color = getPaint().getColor();

@@ -33,56 +33,56 @@ public final class a extends FrameLayout {
     public boolean I;
     public String J;
     public final TextPaint K;
-    public final i6 f61285a;
-    public final ke f61286b;
-    public final i f61287c;
+    public final i6 f61286a;
+    public final ke f61287b;
+    public final i f61288c;
     public final Paint d;
-    public final Paint f61288e;
-    public final Paint f61289f;
+    public final Paint f61289e;
+    public final Paint f61290f;
     public final TextPaint h;
-    public final m6 f61290n;
-    public final ue0 f61291r;
-    public LinearGradient f61292s;
-    public final Matrix f61293w;
-    public final c6 f61294x;
-    public final c6 f61295y;
+    public final m6 f61291n;
+    public final ue0 f61292r;
+    public LinearGradient f61293s;
+    public final Matrix f61294w;
+    public final c6 f61295x;
+    public final c6 f61296y;
 
     public a(Context context, i6 i6Var, ke keVar) {
         super(context);
         this.d = new Paint(1);
-        this.f61288e = new Paint(1);
-        this.f61289f = new Paint(1);
+        this.f61289e = new Paint(1);
+        this.f61290f = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
         this.h = textPaint;
-        this.f61293w = new Matrix();
+        this.f61294w = new Matrix();
         lr lrVar = lr.h;
-        this.f61294x = new c6(this, 0L, 420L, lrVar);
-        this.f61295y = new c6(this, 0L, 200L, lrVar);
+        this.f61295x = new c6(this, 0L, 420L, lrVar);
+        this.f61296y = new c6(this, 0L, 200L, lrVar);
         this.F = -1.0f;
         this.G = 1.0f;
         this.H = new RectF();
         this.J = "0:01";
         this.K = new TextPaint(1);
-        this.f61285a = i6Var;
-        this.f61286b = keVar;
+        this.f61286a = i6Var;
+        this.f61287b = keVar;
         setWillNotDraw(false);
         setClipChildren(false);
         setClipToPadding(false);
         m6 m6Var = new m6(false, false, false);
-        this.f61290n = m6Var;
+        this.f61291n = m6Var;
         m6Var.n(0.35f, 260L, lrVar);
         m6Var.setCallback(this);
         m6Var.w(g0.L(14.0f));
         m6Var.x(g0.o1("fonts/rmedium.ttf"));
-        m6Var.N = g0.f24121q.x;
+        m6Var.N = g0.f24118q.x;
         ue0 ue0Var = new ue0(10);
-        this.f61291r = ue0Var;
+        this.f61292r = ue0Var;
         ue0Var.f40322f = this;
         ue0Var.setCallback(this);
         ue0Var.h = 260;
         textPaint.setTextSize(g0.L(15.0f));
         i iVar = new i(12, context, this);
-        this.f61287c = iVar;
+        this.f61288c = iVar;
         iVar.setBackground(null);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setTextSize(1, bz.W0);
@@ -104,13 +104,13 @@ public final class a extends FrameLayout {
         iVar.setHandlesColor(w02);
         iVar.setHighlightColor(n6.r1(0.25f, w02));
         textPaint.setColor(n6.r1(0.5f, n6.w0(i7, i6Var)));
-        this.f61292s = null;
+        this.f61293s = null;
         invalidate();
         setMinimumHeight(g0.L(44.0f));
     }
 
     public final float a() {
-        ke keVar = this.f61286b;
+        ke keVar = this.f61287b;
         if (keVar != null) {
             float W0 = keVar.f36742b.W0(this);
             if (!Float.isNaN(W0)) {
@@ -147,14 +147,14 @@ public final class a extends FrameLayout {
         boolean z10;
         xi0 xi0Var;
         int i7 = n6.Uf;
-        i6 i6Var = this.f61285a;
+        i6 i6Var = this.f61286a;
         int w02 = n6.w0(i7, i6Var);
-        c6 c6Var = this.f61294x;
+        c6 c6Var = this.f61295x;
         c6Var.getClass();
         float e10 = c6Var.e(false, 0.0f);
         float a10 = a();
-        float d = this.f61295y.d(this.I);
-        i iVar = this.f61287c;
+        float d = this.f61296y.d(this.I);
+        i iVar = this.f61288c;
         iVar.setTranslationY(a10);
         if (iVar.getVisibility() == 0) {
             L = g0.L(11.0f) + iVar.getBottom();
@@ -196,13 +196,13 @@ public final class a extends FrameLayout {
         paint2.setColor(r12);
         canvas.drawRoundRect(rectF, L3, L3, paint2);
         int L4 = g0.L(10.0f);
-        ke keVar = this.f61286b;
+        ke keVar = this.f61287b;
         if (keVar != null && (xi0Var = keVar.f36742b.f32607i1) != null && xi0Var.g()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        ue0 ue0Var = this.f61291r;
+        ue0 ue0Var = this.f61292r;
         ue0Var.a(z10, true);
         ue0Var.f40318a.setColor(w02);
         ue0Var.f40323g = (int) (f12 * 255.0f);
@@ -225,25 +225,25 @@ public final class a extends FrameLayout {
             float L6 = a10 + g0.L(28.0f) + f18;
             int w03 = n6.w0(i10, i6Var);
             int r13 = n6.r1(0.08f * f17, w03);
-            Paint paint4 = this.f61288e;
+            Paint paint4 = this.f61289e;
             paint4.setColor(r13);
             RectF rectF2 = g0.P;
             rectF2.set(L5, L6, width, g0.L(6.0f) + L6);
             canvas.drawRoundRect(rectF2, g0.L(3.0f), g0.L(3.0f), paint4);
             float f19 = width - L5;
             if (f19 > 0.0f) {
-                LinearGradient linearGradient = this.f61292s;
-                Paint paint5 = this.f61289f;
+                LinearGradient linearGradient = this.f61293s;
+                Paint paint5 = this.f61290f;
                 if (linearGradient == null) {
                     LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, g0.L(90.0f), 0.0f, new int[]{0, n6.r1(0.14f, w03), 0}, (float[]) null, Shader.TileMode.CLAMP);
-                    this.f61292s = linearGradient2;
+                    this.f61293s = linearGradient2;
                     paint5.setShader(linearGradient2);
                 }
                 float L7 = f19 + g0.L(90.0f);
                 lr lrVar = lr.f37211j;
-                Matrix matrix = this.f61293w;
+                Matrix matrix = this.f61294w;
                 matrix.setTranslate((lrVar.getInterpolation(((float) (SystemClock.elapsedRealtime() % 1300)) / 1300.0f) * L7) + (L5 - g0.L(90.0f)), 0.0f);
-                this.f61292s.setLocalMatrix(matrix);
+                this.f61293s.setLocalMatrix(matrix);
                 paint5.setAlpha((int) (f17 * 255.0f));
                 canvas.drawRoundRect(rectF2, g0.L(3.0f), g0.L(3.0f), paint5);
                 invalidate();
@@ -253,7 +253,7 @@ public final class a extends FrameLayout {
     }
 
     public String getText() {
-        i iVar = this.f61287c;
+        i iVar = this.f61288c;
         if (iVar.getText() == null) {
             return "";
         }
@@ -271,7 +271,7 @@ public final class a extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f61287c.setTranslationY(a());
+        this.f61288c.setTranslationY(a());
     }
 
     @Override
@@ -293,7 +293,7 @@ public final class a extends FrameLayout {
             return true;
         } else if ((actionMasked == 1 || actionMasked == 3) && this.I) {
             this.I = false;
-            if (actionMasked == 1 && (keVar = this.f61286b) != null) {
+            if (actionMasked == 1 && (keVar = this.f61287b) != null) {
                 ChatActivityEnterView chatActivityEnterView = keVar.f36742b;
                 xi0 xi0Var = chatActivityEnterView.f32607i1;
                 if (xi0Var != null) {
@@ -326,14 +326,14 @@ public final class a extends FrameLayout {
     public void setVisibleHeight(float f10) {
         if (this.F != f10) {
             this.F = f10;
-            this.f61287c.setTranslationY(a());
+            this.f61288c.setTranslationY(a());
             invalidate();
         }
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f61290n && drawable != this.f61291r && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f61291n && drawable != this.f61292r && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

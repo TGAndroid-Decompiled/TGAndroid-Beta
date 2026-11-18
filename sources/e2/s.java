@@ -4,14 +4,14 @@ import a8.la;
 import android.os.Build;
 import android.util.SparseBooleanArray;
 public final class s {
-    public final SparseBooleanArray f10696a;
+    public final SparseBooleanArray f10693a;
 
     public s(SparseBooleanArray sparseBooleanArray) {
-        this.f10696a = sparseBooleanArray;
+        this.f10693a = sparseBooleanArray;
     }
 
     public final int a(int i7) {
-        SparseBooleanArray sparseBooleanArray = this.f10696a;
+        SparseBooleanArray sparseBooleanArray = this.f10693a;
         la.j(i7, sparseBooleanArray.size());
         return sparseBooleanArray.keyAt(i7);
     }
@@ -24,9 +24,9 @@ public final class s {
             return false;
         }
         s sVar = (s) obj;
-        SparseBooleanArray sparseBooleanArray = sVar.f10696a;
+        SparseBooleanArray sparseBooleanArray = sVar.f10693a;
         int i7 = Build.VERSION.SDK_INT;
-        SparseBooleanArray sparseBooleanArray2 = this.f10696a;
+        SparseBooleanArray sparseBooleanArray2 = this.f10693a;
         if (i7 < 24) {
             if (sparseBooleanArray2.size() != sparseBooleanArray.size()) {
                 return false;
@@ -43,7 +43,7 @@ public final class s {
 
     public final int hashCode() {
         int i7 = Build.VERSION.SDK_INT;
-        SparseBooleanArray sparseBooleanArray = this.f10696a;
+        SparseBooleanArray sparseBooleanArray = this.f10693a;
         if (i7 < 24) {
             int size = sparseBooleanArray.size();
             for (int i10 = 0; i10 < sparseBooleanArray.size(); i10++) {

@@ -53,7 +53,7 @@ public final class hh0 implements LeadingMarginSpan {
         this.f35871a = z10;
         this.f35878s = gh0Var;
         this.f35874e = z11;
-        this.f35880x = i5.c.g(org.telegram.messenger.t0.f26915b, 2131231967);
+        this.f35880x = i5.c.g(org.telegram.messenger.t0.f26913b, 2131231967);
         paint2.setColor(this.J);
         paint.setColor(i0.a.o(this.J, 30));
     }

@@ -6,31 +6,31 @@ import di.o9;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.wc1;
 public final class h2 implements Runnable {
-    public final int f22085a;
-    public final z5 f22086b;
+    public final int f22082a;
+    public final z5 f22083b;
 
     public h2(z5 z5Var, int i7) {
-        this.f22085a = i7;
-        this.f22086b = z5Var;
+        this.f22082a = i7;
+        this.f22083b = z5Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f22085a) {
+        switch (this.f22082a) {
             case 0:
-                this.f22086b.x();
+                this.f22083b.x();
                 return;
             default:
-                z5 z5Var = this.f22086b;
+                z5 z5Var = this.f22083b;
                 z5Var.H = null;
-                a aVar = z5Var.f22568y;
+                a aVar = z5Var.f22565y;
                 if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f21910b;
+                    TL_iv.PageBlock pageBlock = aVar.f21907b;
                     if ((pageBlock instanceof TL_iv.pageBlockPreformatted) && !TextUtils.isEmpty(((TL_iv.pageBlockPreformatted) pageBlock).language)) {
-                        String obj = z5Var.f22562f.getText().toString();
+                        String obj = z5Var.f22559f.getText().toString();
                         if (!obj.equals(z5Var.I)) {
-                            a aVar2 = z5Var.f22568y;
-                            String str = ((TL_iv.pageBlockPreformatted) aVar2.f21910b).language;
+                            a aVar2 = z5Var.f22565y;
+                            String str = ((TL_iv.pageBlockPreformatted) aVar2.f21907b).language;
                             int i7 = z5Var.J + 1;
                             z5Var.J = i7;
                             o9 o9Var = new o9(z5Var, i7, aVar2, obj, 3);

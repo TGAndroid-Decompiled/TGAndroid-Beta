@@ -72,7 +72,7 @@ public final class wc extends Drawable {
                 if (i7 != 3) {
                     return org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Sh, false);
                 }
-                return i0.a.f(0.5f, i0.a.f(0.5f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Zh, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29350ai, false)), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29370bi, false));
+                return i0.a.f(0.5f, i0.a.f(0.5f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Zh, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29348ai, false)), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29368bi, false));
             }
             return i0.a.f(0.5f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Qh, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Rh, false));
         }
@@ -390,7 +390,7 @@ public final class wc extends Drawable {
         org.telegram.messenger.t3 t3Var = sharedInstance.groupCall;
         if (t3Var != null) {
             TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) t3Var.d.f(sharedInstance.getSelfId());
-            if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.v3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f26937b.rtmp_stream) {
+            if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.v3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f26935b.rtmp_stream) {
                 sharedInstance.setMicMute(true, false, false);
                 g(3, z10);
                 return;

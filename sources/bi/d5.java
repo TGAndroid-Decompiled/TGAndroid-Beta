@@ -1,202 +1,104 @@
 package bi;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.io.Serializable;
+import android.util.SparseIntArray;
+import c8.l9;
+import di.o9;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.JSONObject;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.ue;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.gd;
 import org.telegram.messenger.x10;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.k80;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.cx;
-import org.telegram.ui.ld0;
-import org.telegram.ui.n60;
-import org.telegram.ui.p40;
-public final class d5 implements Runnable {
-    public final int f3550a;
-    public final int f3551b;
-    public final Object f3552c;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.g00;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.on0;
+public final class d5 implements x10 {
+    public final int f3522a;
+    public final int f3523b;
+    public final Object f3524c;
     public final Object d;
-    public final Object f3553e;
-    public final Object f3554f;
-    public final Object h;
-    public final Object f3555n;
 
-    public d5(int i7, FrameLayout frameLayout, TLRPC.InputGroupCall inputGroupCall, org.telegram.ui.ActionBar.x2 x2Var, org.telegram.ui.ActionBar.i6 i6Var, k80 k80Var, String[] strArr) {
-        this.f3550a = 5;
-        this.f3552c = inputGroupCall;
-        this.f3551b = i7;
-        this.d = strArr;
-        this.f3553e = frameLayout;
-        this.f3554f = k80Var;
-        this.f3555n = x2Var;
-        this.h = i6Var;
+    public d5(int i7, oi.a2 a2Var, aa.c0 c0Var) {
+        this.f3522a = 3;
+        this.f3523b = i7;
+        this.f3524c = a2Var;
+        this.d = c0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.d5.run():void");
+    public final void a(Object obj) {
+        switch (this.f3522a) {
+            case 0:
+                p6 p6Var = (p6) this.f3524c;
+                int i7 = this.f3523b;
+                ArrayList arrayList = (ArrayList) obj;
+                org.telegram.ui.ActionBar.h2 h2Var = p6Var.f3941a;
+                di.m8 m8Var = p6Var.f3944e;
+                m8Var.a(i7, arrayList);
+                ((j6) this.d).f(true);
+                p6Var.f(true);
+                p6Var.o();
+                TL_stars.TL_starGiftCollection c10 = m8Var.c(i7);
+                if (c10 != null) {
+                    if (arrayList.size() > 1) {
+                        gc R = lc.b0(h2Var).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), org.telegram.messenger.g0.W2(gd.K("Gift2AddedToCollectionMany", arrayList.size(), ',', c10.title)));
+                        R.f35469r = false;
+                        R.j();
+                        return;
+                    } else if (arrayList.size() == 1) {
+                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
+                        gc R2 = lc.b0(h2Var).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(gd.a0(null, null, 2131750377, di.f6.F1(savedStarGift.gift), c10.title)));
+                        R2.f35469r = false;
+                        R2.j();
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                org.telegram.messenger.g0.g3(new t4((TLRPC.UserFull) obj, (org.telegram.ui.web.o) this.f3524c, this.f3523b, (TLRPC.User) this.d, 10));
+                return;
+            case 2:
+                org.telegram.ui.ActionBar.h2 h2Var2 = (org.telegram.ui.ActionBar.h2) this.f3524c;
+                TLRPC.Chat chat = (TLRPC.Chat) this.d;
+                TLRPC.Chat chat2 = (TLRPC.Chat) obj;
+                h2Var2.showDialog(new ni.a(h2Var2.getContext(), chat, -chat2.f28403id, new o9(h2Var2, this.f3523b, chat2, chat, 2)));
+                return;
+            case 3:
+                org.telegram.messenger.g0.g3(new t4(this.f3523b, (oi.a2) this.f3524c, (SparseIntArray) obj, (aa.c0) this.d, 13));
+                return;
+            case 4:
+                float f10 = this.f3523b;
+                ((org.telegram.ui.m6) this.f3524c).a(Float.valueOf((l9.a(((Float) obj).floatValue(), 0.0f, 1.0f) * (1.0f / f10)) + (((int[]) this.d)[0] / f10)), Boolean.FALSE);
+                return;
+            case 5:
+                g00 g00Var = (g00) this.f3524c;
+                int i10 = this.f3523b;
+                g00Var.getClass();
+                g00Var.f35270w2 = ((Boolean) obj).booleanValue();
+                g00Var.dismiss();
+                ((x10) this.d).a(Integer.valueOf(i10));
+                return;
+            default:
+                Utilities.f22782i.c(new ai.g1((tg.e2) this.f3524c, this.f3523b, (List) obj, new ArrayList(), (on0) this.d, 27));
+                return;
+        }
     }
 
-    public d5(int i7, ArrayList arrayList, ArrayList arrayList2, Integer num, ue ueVar, ue ueVar2, ue ueVar3) {
-        this.f3550a = 2;
-        this.f3551b = i7;
-        this.f3552c = arrayList;
-        this.d = arrayList2;
-        this.f3553e = num;
-        this.f3554f = ueVar;
-        this.h = ueVar2;
-        this.f3555n = ueVar3;
-    }
-
-    public d5(Object obj, int i7, Serializable serializable, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f3550a = i10;
-        this.f3552c = obj;
-        this.f3551b = i7;
-        this.d = serializable;
-        this.f3553e = obj2;
-        this.f3554f = obj3;
-        this.h = obj4;
-        this.f3555n = obj5;
-    }
-
-    public d5(Object obj, Object obj2, Object obj3, int i7, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f3550a = i10;
-        this.f3552c = obj;
+    public d5(Object obj, int i7, Object obj2, int i10) {
+        this.f3522a = i10;
+        this.f3524c = obj;
+        this.f3523b = i7;
         this.d = obj2;
-        this.f3553e = obj3;
-        this.f3551b = i7;
-        this.f3554f = obj4;
-        this.h = obj5;
-        this.f3555n = obj6;
     }
 
-    public d5(fs fsVar, TLObject tLObject, Object obj, TLObject tLObject2, Object obj2, int i7, String str, int i10) {
-        this.f3550a = i10;
-        this.f3552c = fsVar;
-        this.f3553e = tLObject;
-        this.f3554f = obj;
-        this.h = tLObject2;
-        this.f3555n = obj2;
-        this.f3551b = i7;
-        this.d = str;
-    }
-
-    public d5(TLObject tLObject, org.telegram.ui.ActionBar.u1 u1Var, Context context, int i7, TL_phone.exportGroupCallInvite exportgroupcallinvite, org.telegram.ui.ActionBar.i6 i6Var, p40 p40Var) {
-        this.f3550a = 6;
-        this.f3552c = tLObject;
-        this.d = u1Var;
-        this.f3554f = context;
-        this.f3551b = i7;
-        this.f3553e = exportgroupcallinvite;
-        this.h = i6Var;
-        this.f3555n = p40Var;
-    }
-
-    public d5(org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, int i7, TLRPC.Document document, TLRPC.TL_error tL_error, Object obj, TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet) {
-        this.f3550a = 8;
-        this.f3552c = u1Var;
-        this.d = tLObject;
-        this.f3551b = i7;
-        this.f3553e = document;
-        this.f3554f = tL_error;
-        this.h = obj;
-        this.f3555n = tL_stickers_addStickerToSet;
-    }
-
-    public d5(org.telegram.ui.g4 g4Var, int i7, vf.b bVar, TLObject tLObject, String str, org.telegram.ui.f0 f0Var, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
-        this.f3550a = 4;
-        this.f3552c = g4Var;
-        this.f3551b = i7;
-        this.f3553e = bVar;
-        this.f3554f = tLObject;
-        this.d = str;
-        this.h = f0Var;
-        this.f3555n = tL_messages_getWebPage;
-    }
-
-    public d5(LaunchActivity launchActivity, TLObject tLObject, int i7, cx cxVar, org.telegram.ui.ActionBar.h2 h2Var, TLRPC.User user, String str) {
-        this.f3550a = 12;
-        this.f3552c = launchActivity;
-        this.f3553e = tLObject;
-        this.f3551b = i7;
-        this.f3554f = cxVar;
-        this.f3555n = h2Var;
-        this.h = user;
-        this.d = str;
-    }
-
-    public d5(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i7, org.telegram.ui.ActionBar.u1 u1Var, n60 n60Var, String str) {
-        this.f3550a = 10;
-        this.f3552c = launchActivity;
-        this.f3553e = tL_error;
-        this.f3554f = tLObject;
-        this.f3551b = i7;
-        this.h = u1Var;
-        this.f3555n = n60Var;
-        this.d = str;
-    }
-
-    public d5(ld0 ld0Var, String str, f5.f fVar, List list, String str2, String str3, int i7) {
-        this.f3550a = 14;
-        this.f3552c = ld0Var;
-        this.d = str;
-        this.f3553e = fVar;
-        this.f3554f = list;
-        this.h = str2;
-        this.f3555n = str3;
-        this.f3551b = i7;
-    }
-
-    public d5(ProfileActivity profileActivity, View view, String str, int i7, boolean[] zArr, String[] strArr, String str2) {
-        this.f3550a = 15;
-        this.f3552c = profileActivity;
-        this.f3553e = view;
-        this.d = str;
-        this.f3551b = i7;
-        this.f3554f = zArr;
-        this.h = strArr;
-        this.f3555n = str2;
-    }
-
-    public d5(org.telegram.ui.Wallet.l2 l2Var, org.telegram.ui.Wallet.h2 h2Var, int i7, Object obj, String str, org.telegram.ui.Wallet.r0 r0Var, x10 x10Var) {
-        this.f3550a = 16;
-        this.f3552c = l2Var;
-        this.f3553e = h2Var;
-        this.f3551b = i7;
-        this.f3554f = obj;
-        this.d = str;
-        this.h = r0Var;
-        this.f3555n = x10Var;
-    }
-
-    public d5(org.telegram.ui.web.v0 v0Var, String str, TLObject tLObject, TLRPC.TL_error tL_error, int i7, org.telegram.ui.web.s0 s0Var, fi.f7 f7Var) {
-        this.f3550a = 18;
-        this.f3552c = v0Var;
-        this.d = str;
-        this.f3553e = tLObject;
-        this.f3554f = tL_error;
-        this.f3551b = i7;
-        this.h = s0Var;
-        this.f3555n = f7Var;
-    }
-
-    public d5(boolean[] zArr, Context context, int i7, TLRPC.User user, JSONObject jSONObject, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.Wallet.w2 w2Var) {
-        this.f3550a = 17;
-        this.f3552c = zArr;
-        this.f3554f = context;
-        this.f3551b = i7;
-        this.d = user;
-        this.f3553e = jSONObject;
-        this.h = i6Var;
-        this.f3555n = w2Var;
+    public d5(Object obj, Object obj2, int i7, int i10) {
+        this.f3522a = i10;
+        this.f3524c = obj;
+        this.d = obj2;
+        this.f3523b = i7;
     }
 }

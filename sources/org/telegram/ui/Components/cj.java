@@ -59,7 +59,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
     public boolean f34029n0;
     public final FrameLayout f34030r;
     public final oi f34031s;
-    public final bi.d6 f34032w;
+    public final bi.c6 f34032w;
     public final ri f34033x;
     public final cs f34034y;
 
@@ -87,14 +87,14 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.d6 d6Var = this.f40008b.f34032w;
+                        bi.c6 c6Var = this.f40008b.f34032w;
                         int i7 = -1;
-                        boolean canScrollVertically = d6Var.canScrollVertically(-1);
+                        boolean canScrollVertically = c6Var.canScrollVertically(-1);
                         int i10 = -1;
                         int i11 = 0;
                         while (true) {
-                            if (i11 < d6Var.getChildCount()) {
-                                View childAt = d6Var.getChildAt(i11);
+                            if (i11 < c6Var.getChildCount()) {
+                                View childAt = c6Var.getChildAt(i11);
                                 int R = RecyclerView.R(childAt);
                                 int top = childAt.getTop();
                                 if (R >= 0) {
@@ -107,12 +107,12 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 }
                             }
                         }
-                        d6Var.f34607g3.O(true);
+                        c6Var.f34607g3.O(true);
                         if (!canScrollVertically) {
-                            d6Var.f34606f3.h1(0, 0);
+                            c6Var.f34606f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            d6Var.f34606f3.h1(i7, i10 - d6Var.getPaddingTop());
+                            c6Var.f34606f3.h1(i7, i10 - c6Var.getPaddingTop());
                             return;
                         } else {
                             return;
@@ -133,20 +133,20 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
-                            Cursor query = org.telegram.messenger.t0.f26915b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+                            Cursor query = org.telegram.messenger.t0.f26913b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
                             int i12 = -2000000000;
                             while (query.moveToNext()) {
                                 ?? obj = new Object();
                                 query.getInt(0);
-                                obj.f27357a = query.getString(1);
-                                obj.f27358b = query.getString(2);
+                                obj.f27355a = query.getString(1);
+                                obj.f27356b = query.getString(2);
                                 obj.d = query.getString(3);
-                                obj.f27359c = (int) (query.getLong(4) / 1000);
+                                obj.f27357c = (int) (query.getLong(4) / 1000);
                                 query.getString(5);
                                 File file = new File(obj.d);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f28426id = i12;
+                                tL_message.f28424id = i12;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -164,7 +164,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.flags |= 768;
                                 String D = org.telegram.messenger.w7.D(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f28411id = 0L;
+                                document.f28409id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -178,25 +178,25 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.media.document.size = (int) file.length();
                                 tL_message.media.document.dc_id = 0;
                                 TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                                tL_documentAttributeAudio.duration = obj.f27359c;
-                                tL_documentAttributeAudio.title = obj.f27358b;
-                                tL_documentAttributeAudio.performer = obj.f27357a;
+                                tL_documentAttributeAudio.duration = obj.f27357c;
+                                tL_documentAttributeAudio.title = obj.f27356b;
+                                tL_documentAttributeAudio.performer = obj.f27355a;
                                 tL_documentAttributeAudio.flags |= 3;
                                 tL_message.media.document.attributes.add(tL_documentAttributeAudio);
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27360e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
+                                obj.f27358e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56584o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
                                     Bitmap bitmap = a10.f56584o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
-                                        obj.f27360e.J1 = bitmap;
+                                        obj.f27358e.J1 = bitmap;
                                     }
                                     float f10 = L;
                                     float min = Math.min(f10 / bitmap.getWidth(), f10 / bitmap.getHeight());
-                                    obj.f27360e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
+                                    obj.f27358e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
                                 }
                                 arrayList.add(obj);
                                 i12--;
@@ -222,14 +222,14 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.d6 d6Var = this.f40008b.f34032w;
+                        bi.c6 c6Var = this.f40008b.f34032w;
                         int i7 = -1;
-                        boolean canScrollVertically = d6Var.canScrollVertically(-1);
+                        boolean canScrollVertically = c6Var.canScrollVertically(-1);
                         int i10 = -1;
                         int i11 = 0;
                         while (true) {
-                            if (i11 < d6Var.getChildCount()) {
-                                View childAt = d6Var.getChildAt(i11);
+                            if (i11 < c6Var.getChildCount()) {
+                                View childAt = c6Var.getChildAt(i11);
                                 int R = RecyclerView.R(childAt);
                                 int top = childAt.getTop();
                                 if (R >= 0) {
@@ -242,12 +242,12 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 }
                             }
                         }
-                        d6Var.f34607g3.O(true);
+                        c6Var.f34607g3.O(true);
                         if (!canScrollVertically) {
-                            d6Var.f34606f3.h1(0, 0);
+                            c6Var.f34606f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            d6Var.f34606f3.h1(i7, i10 - d6Var.getPaddingTop());
+                            c6Var.f34606f3.h1(i7, i10 - c6Var.getPaddingTop());
                             return;
                         } else {
                             return;
@@ -268,20 +268,20 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
-                            Cursor query = org.telegram.messenger.t0.f26915b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+                            Cursor query = org.telegram.messenger.t0.f26913b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
                             int i12 = -2000000000;
                             while (query.moveToNext()) {
                                 ?? obj = new Object();
                                 query.getInt(0);
-                                obj.f27357a = query.getString(1);
-                                obj.f27358b = query.getString(2);
+                                obj.f27355a = query.getString(1);
+                                obj.f27356b = query.getString(2);
                                 obj.d = query.getString(3);
-                                obj.f27359c = (int) (query.getLong(4) / 1000);
+                                obj.f27357c = (int) (query.getLong(4) / 1000);
                                 query.getString(5);
                                 File file = new File(obj.d);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f28426id = i12;
+                                tL_message.f28424id = i12;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -299,7 +299,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.flags |= 768;
                                 String D = org.telegram.messenger.w7.D(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f28411id = 0L;
+                                document.f28409id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -313,25 +313,25 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.media.document.size = (int) file.length();
                                 tL_message.media.document.dc_id = 0;
                                 TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                                tL_documentAttributeAudio.duration = obj.f27359c;
-                                tL_documentAttributeAudio.title = obj.f27358b;
-                                tL_documentAttributeAudio.performer = obj.f27357a;
+                                tL_documentAttributeAudio.duration = obj.f27357c;
+                                tL_documentAttributeAudio.title = obj.f27356b;
+                                tL_documentAttributeAudio.performer = obj.f27355a;
                                 tL_documentAttributeAudio.flags |= 3;
                                 tL_message.media.document.attributes.add(tL_documentAttributeAudio);
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27360e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
+                                obj.f27358e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56584o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
                                     Bitmap bitmap = a10.f56584o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
-                                        obj.f27360e.J1 = bitmap;
+                                        obj.f27358e.J1 = bitmap;
                                     }
                                     float f10 = L;
                                     float min = Math.min(f10 / bitmap.getWidth(), f10 / bitmap.getHeight());
-                                    obj.f27360e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
+                                    obj.f27358e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
                                 }
                                 arrayList.add(obj);
                                 i12--;
@@ -357,14 +357,14 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.d6 d6Var = this.f40008b.f34032w;
+                        bi.c6 c6Var = this.f40008b.f34032w;
                         int i7 = -1;
-                        boolean canScrollVertically = d6Var.canScrollVertically(-1);
+                        boolean canScrollVertically = c6Var.canScrollVertically(-1);
                         int i10 = -1;
                         int i11 = 0;
                         while (true) {
-                            if (i11 < d6Var.getChildCount()) {
-                                View childAt = d6Var.getChildAt(i11);
+                            if (i11 < c6Var.getChildCount()) {
+                                View childAt = c6Var.getChildAt(i11);
                                 int R = RecyclerView.R(childAt);
                                 int top = childAt.getTop();
                                 if (R >= 0) {
@@ -377,12 +377,12 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 }
                             }
                         }
-                        d6Var.f34607g3.O(true);
+                        c6Var.f34607g3.O(true);
                         if (!canScrollVertically) {
-                            d6Var.f34606f3.h1(0, 0);
+                            c6Var.f34606f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            d6Var.f34606f3.h1(i7, i10 - d6Var.getPaddingTop());
+                            c6Var.f34606f3.h1(i7, i10 - c6Var.getPaddingTop());
                             return;
                         } else {
                             return;
@@ -403,20 +403,20 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
-                            Cursor query = org.telegram.messenger.t0.f26915b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+                            Cursor query = org.telegram.messenger.t0.f26913b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
                             int i12 = -2000000000;
                             while (query.moveToNext()) {
                                 ?? obj = new Object();
                                 query.getInt(0);
-                                obj.f27357a = query.getString(1);
-                                obj.f27358b = query.getString(2);
+                                obj.f27355a = query.getString(1);
+                                obj.f27356b = query.getString(2);
                                 obj.d = query.getString(3);
-                                obj.f27359c = (int) (query.getLong(4) / 1000);
+                                obj.f27357c = (int) (query.getLong(4) / 1000);
                                 query.getString(5);
                                 File file = new File(obj.d);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f28426id = i12;
+                                tL_message.f28424id = i12;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -434,7 +434,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.flags |= 768;
                                 String D = org.telegram.messenger.w7.D(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f28411id = 0L;
+                                document.f28409id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -448,25 +448,25 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.media.document.size = (int) file.length();
                                 tL_message.media.document.dc_id = 0;
                                 TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                                tL_documentAttributeAudio.duration = obj.f27359c;
-                                tL_documentAttributeAudio.title = obj.f27358b;
-                                tL_documentAttributeAudio.performer = obj.f27357a;
+                                tL_documentAttributeAudio.duration = obj.f27357c;
+                                tL_documentAttributeAudio.title = obj.f27356b;
+                                tL_documentAttributeAudio.performer = obj.f27355a;
                                 tL_documentAttributeAudio.flags |= 3;
                                 tL_message.media.document.attributes.add(tL_documentAttributeAudio);
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27360e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
+                                obj.f27358e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56584o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
                                     Bitmap bitmap = a10.f56584o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
-                                        obj.f27360e.J1 = bitmap;
+                                        obj.f27358e.J1 = bitmap;
                                     }
                                     float f10 = L;
                                     float min = Math.min(f10 / bitmap.getWidth(), f10 / bitmap.getHeight());
-                                    obj.f27360e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
+                                    obj.f27358e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
                                 }
                                 arrayList.add(obj);
                                 i12--;
@@ -481,12 +481,12 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             }
         };
         this.m0 = -1000000000;
-        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.f25114f2);
-        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.f25126h2);
-        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.f25120g2);
-        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.V3);
+        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.f25112f2);
+        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.f25124h2);
+        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.f25118g2);
+        org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.W3);
         this.H = true;
-        Utilities.f22782e.c(new Runnable(this) {
+        Utilities.f22779e.c(new Runnable(this) {
             public final cj f40008b;
 
             {
@@ -497,14 +497,14 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.d6 d6Var = this.f40008b.f34032w;
+                        bi.c6 c6Var = this.f40008b.f34032w;
                         int i7 = -1;
-                        boolean canScrollVertically = d6Var.canScrollVertically(-1);
+                        boolean canScrollVertically = c6Var.canScrollVertically(-1);
                         int i10 = -1;
                         int i11 = 0;
                         while (true) {
-                            if (i11 < d6Var.getChildCount()) {
-                                View childAt = d6Var.getChildAt(i11);
+                            if (i11 < c6Var.getChildCount()) {
+                                View childAt = c6Var.getChildAt(i11);
                                 int R = RecyclerView.R(childAt);
                                 int top = childAt.getTop();
                                 if (R >= 0) {
@@ -517,12 +517,12 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 }
                             }
                         }
-                        d6Var.f34607g3.O(true);
+                        c6Var.f34607g3.O(true);
                         if (!canScrollVertically) {
-                            d6Var.f34606f3.h1(0, 0);
+                            c6Var.f34606f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            d6Var.f34606f3.h1(i7, i10 - d6Var.getPaddingTop());
+                            c6Var.f34606f3.h1(i7, i10 - c6Var.getPaddingTop());
                             return;
                         } else {
                             return;
@@ -543,20 +543,20 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
-                            Cursor query = org.telegram.messenger.t0.f26915b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+                            Cursor query = org.telegram.messenger.t0.f26913b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
                             int i12 = -2000000000;
                             while (query.moveToNext()) {
                                 ?? obj = new Object();
                                 query.getInt(0);
-                                obj.f27357a = query.getString(1);
-                                obj.f27358b = query.getString(2);
+                                obj.f27355a = query.getString(1);
+                                obj.f27356b = query.getString(2);
                                 obj.d = query.getString(3);
-                                obj.f27359c = (int) (query.getLong(4) / 1000);
+                                obj.f27357c = (int) (query.getLong(4) / 1000);
                                 query.getString(5);
                                 File file = new File(obj.d);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f28426id = i12;
+                                tL_message.f28424id = i12;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -574,7 +574,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.flags |= 768;
                                 String D = org.telegram.messenger.w7.D(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f28411id = 0L;
+                                document.f28409id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -588,25 +588,25 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.media.document.size = (int) file.length();
                                 tL_message.media.document.dc_id = 0;
                                 TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                                tL_documentAttributeAudio.duration = obj.f27359c;
-                                tL_documentAttributeAudio.title = obj.f27358b;
-                                tL_documentAttributeAudio.performer = obj.f27357a;
+                                tL_documentAttributeAudio.duration = obj.f27357c;
+                                tL_documentAttributeAudio.title = obj.f27356b;
+                                tL_documentAttributeAudio.performer = obj.f27355a;
                                 tL_documentAttributeAudio.flags |= 3;
                                 tL_message.media.document.attributes.add(tL_documentAttributeAudio);
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27360e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
+                                obj.f27358e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56584o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
                                     Bitmap bitmap = a10.f56584o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
-                                        obj.f27360e.J1 = bitmap;
+                                        obj.f27358e.J1 = bitmap;
                                     }
                                     float f10 = L;
                                     float min = Math.min(f10 / bitmap.getWidth(), f10 / bitmap.getHeight());
-                                    obj.f27360e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
+                                    obj.f27358e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
                                 }
                                 arrayList.add(obj);
                                 i12--;
@@ -620,7 +620,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                 }
             }
         });
-        ri riVar = new ri(org.telegram.ui.ActionBar.n6.f29396d6, context, i6Var);
+        ri riVar = new ri(org.telegram.ui.ActionBar.n6.f29394d6, context, i6Var);
         this.f34033x = riVar;
         riVar.setVisibility(4);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -632,7 +632,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
         oiVar.f33845r.setHint(org.telegram.messenger.gd.M0(2131745545, null));
         frameLayout2.addView(riVar, c8.ma.g());
         FrameLayout.LayoutParams d = c8.ma.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
-        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f24115m;
+        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f24112m;
         frameLayout2.addView(oiVar, d);
         ?? csVar = new cs(context);
         this.f34034y = csVar;
@@ -648,14 +648,14 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.d6 d6Var = this.f40008b.f34032w;
+                        bi.c6 c6Var = this.f40008b.f34032w;
                         int i7 = -1;
-                        boolean canScrollVertically = d6Var.canScrollVertically(-1);
+                        boolean canScrollVertically = c6Var.canScrollVertically(-1);
                         int i10 = -1;
                         int i11 = 0;
                         while (true) {
-                            if (i11 < d6Var.getChildCount()) {
-                                View childAt = d6Var.getChildAt(i11);
+                            if (i11 < c6Var.getChildCount()) {
+                                View childAt = c6Var.getChildAt(i11);
                                 int R = RecyclerView.R(childAt);
                                 int top = childAt.getTop();
                                 if (R >= 0) {
@@ -668,12 +668,12 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 }
                             }
                         }
-                        d6Var.f34607g3.O(true);
+                        c6Var.f34607g3.O(true);
                         if (!canScrollVertically) {
-                            d6Var.f34606f3.h1(0, 0);
+                            c6Var.f34606f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            d6Var.f34606f3.h1(i7, i10 - d6Var.getPaddingTop());
+                            c6Var.f34606f3.h1(i7, i10 - c6Var.getPaddingTop());
                             return;
                         } else {
                             return;
@@ -694,20 +694,20 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
-                            Cursor query = org.telegram.messenger.t0.f26915b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+                            Cursor query = org.telegram.messenger.t0.f26913b.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
                             int i12 = -2000000000;
                             while (query.moveToNext()) {
                                 ?? obj = new Object();
                                 query.getInt(0);
-                                obj.f27357a = query.getString(1);
-                                obj.f27358b = query.getString(2);
+                                obj.f27355a = query.getString(1);
+                                obj.f27356b = query.getString(2);
                                 obj.d = query.getString(3);
-                                obj.f27359c = (int) (query.getLong(4) / 1000);
+                                obj.f27357c = (int) (query.getLong(4) / 1000);
                                 query.getString(5);
                                 File file = new File(obj.d);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f28426id = i12;
+                                tL_message.f28424id = i12;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -725,7 +725,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.flags |= 768;
                                 String D = org.telegram.messenger.w7.D(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f28411id = 0L;
+                                document.f28409id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -739,25 +739,25 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                                 tL_message.media.document.size = (int) file.length();
                                 tL_message.media.document.dc_id = 0;
                                 TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                                tL_documentAttributeAudio.duration = obj.f27359c;
-                                tL_documentAttributeAudio.title = obj.f27358b;
-                                tL_documentAttributeAudio.performer = obj.f27357a;
+                                tL_documentAttributeAudio.duration = obj.f27357c;
+                                tL_documentAttributeAudio.title = obj.f27356b;
+                                tL_documentAttributeAudio.performer = obj.f27355a;
                                 tL_documentAttributeAudio.flags |= 3;
                                 tL_message.media.document.attributes.add(tL_documentAttributeAudio);
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27360e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
+                                obj.f27358e = new org.telegram.messenger.fj(cjVar2.f36766b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56584o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
                                     Bitmap bitmap = a10.f56584o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
-                                        obj.f27360e.J1 = bitmap;
+                                        obj.f27358e.J1 = bitmap;
                                     }
                                     float f10 = L;
                                     float min = Math.min(f10 / bitmap.getWidth(), f10 / bitmap.getHeight());
-                                    obj.f27360e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
+                                    obj.f27358e.J1 = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
                                 }
                                 arrayList.add(obj);
                                 i12--;
@@ -783,24 +783,24 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             frameLayout = frameLayout2;
         }
         FrameLayout.LayoutParams d2 = c8.ma.d(-1, -2.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f);
-        ((ViewGroup.MarginLayoutParams) d2).topMargin = org.telegram.messenger.f3.C(27.0f, org.telegram.messenger.g0.f24115m, ((ViewGroup.MarginLayoutParams) d2).topMargin);
+        ((ViewGroup.MarginLayoutParams) d2).topMargin = org.telegram.messenger.f3.C(27.0f, org.telegram.messenger.g0.f24112m, ((ViewGroup.MarginLayoutParams) d2).topMargin);
         frameLayout.addView(csVar, d2);
-        bi.d6 d6Var = new bi.d6((cj) this, context, siVar.H3, new d(this, 6), new wi(this), new wi(this), i6Var);
-        this.f34032w = d6Var;
-        d6Var.f34607g3.f42809r = false;
-        d6Var.r1();
-        setBlur3Capture(d6Var);
-        this.d = d6Var;
+        bi.c6 c6Var = new bi.c6((cj) this, context, siVar.H3, new d(this, 6), new wi(this), new wi(this), i6Var);
+        this.f34032w = c6Var;
+        c6Var.f34607g3.f42809r = false;
+        c6Var.r1();
+        setBlur3Capture(c6Var);
+        this.d = c6Var;
         this.h = true;
         this.f36769f = true;
-        d6Var.setClipToPadding(false);
-        d6Var.setHorizontalScrollBarEnabled(false);
-        d6Var.setVerticalScrollBarEnabled(false);
-        addView(d6Var, c8.ma.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        org.telegram.ui.ActionBar.u6.l(d6Var, 21, org.telegram.ui.ActionBar.n6.A5, i6Var);
-        d6Var.setOnScrollListener(new oa(this, 1));
+        c6Var.setClipToPadding(false);
+        c6Var.setHorizontalScrollBarEnabled(false);
+        c6Var.setVerticalScrollBarEnabled(false);
+        addView(c6Var, c8.ma.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        org.telegram.ui.ActionBar.u6.l(c6Var, 21, org.telegram.ui.ActionBar.n6.A5, i6Var);
+        c6Var.setOnScrollListener(new oa(this, 1));
         addView(frameLayout, c8.ma.e(-1, 200, 51));
-        d6Var.f34607g3.O(false);
+        c6Var.f34607g3.O(false);
         Q();
         int i7 = this.f36766b.H3;
         this.K = new org.telegram.messenger.gp(i7, org.telegram.messenger.j10.i(i7).e());
@@ -836,9 +836,9 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
     public final void I(ki kiVar) {
         S();
         this.K.b();
-        bi.d6 d6Var = this.f34032w;
-        d6Var.f34606f3.h1(0, 0);
-        d6Var.f34607g3.O(false);
+        bi.c6 c6Var = this.f34032w;
+        c6Var.f34606f3.h1(0, 0);
+        c6Var.f34607g3.O(false);
     }
 
     @Override
@@ -854,7 +854,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             final ArrayList arrayList = new ArrayList();
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
-                arrayList.add(((org.telegram.messenger.ve) it.next()).f27360e);
+                arrayList.add(((org.telegram.messenger.ve) it.next()).f27358e);
             }
             si siVar = this.f36766b;
             return b5.Y(siVar.H3, siVar.c1(), siVar.Y0() + arrayList.size(), new org.telegram.messenger.x10() {
@@ -876,19 +876,19 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
         si siVar = this.f36766b;
         if (siVar.f39705p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i7 = org.telegram.messenger.g0.L(8.0f);
-            siVar.f30223r0 = false;
+            siVar.f30221r0 = false;
         } else {
             if (!org.telegram.messenger.g0.Q1()) {
-                Point point = org.telegram.messenger.g0.f24121q;
+                Point point = org.telegram.messenger.g0.f24118q;
                 if (point.x > point.y) {
                     i7 = (int) (this.U / 3.5f);
-                    siVar.f30223r0 = true;
+                    siVar.f30221r0 = true;
                 }
             }
             i7 = (this.U / 5) * 2;
-            siVar.f30223r0 = true;
+            siVar.f30221r0 = true;
         }
-        int i10 = i7 + org.telegram.messenger.g0.f24115m;
+        int i10 = i7 + org.telegram.messenger.g0.f24112m;
         this.f34032w.setPadding(0, (int) (this.f34034y.d(0.0f) + org.telegram.messenger.g0.L(56.0f) + i10), 0, this.f36768e);
     }
 
@@ -899,24 +899,24 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
             S();
         } else if (l41Var != null && l41Var.d == this.R) {
             T();
-        } else if (!(view instanceof org.telegram.ui.Cells.g7)) {
+        } else if (!(view instanceof org.telegram.ui.Cells.h7)) {
         } else {
-            org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
-            org.telegram.messenger.ve veVar = (org.telegram.messenger.ve) g7Var.getTag();
+            org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
+            org.telegram.messenger.ve veVar = (org.telegram.messenger.ve) h7Var.getTag();
             si siVar = this.f36766b;
             siVar.getClass();
             int i7 = 1;
             if (siVar.C1) {
                 this.G = true;
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(veVar.f27360e);
+                arrayList.add(veVar.f27358e);
                 this.O.i(arrayList, siVar.b1().getText(), false, 0, 0, 0L, false, 0L);
             } else {
                 HashSet hashSet = this.J;
                 if (hashSet.contains(veVar)) {
                     hashSet.remove(veVar);
                     l41Var.f37011e = false;
-                    g7Var.e(false, true);
+                    h7Var.e(false, true);
                     i7 = 2;
                 } else {
                     if (this.F >= 0) {
@@ -926,7 +926,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                             String a02 = org.telegram.messenger.gd.a0(null, null, 2131747258, org.telegram.messenger.gd.G(i10, "Files", new Object[0]));
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f36765a);
                             String M0 = org.telegram.messenger.gd.M0(2131689472, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                             u1Var.S = M0;
                             u1Var.U = a02;
                             org.telegram.messenger.f3.m(null, 2131747638, alertDialog$Builder, null);
@@ -935,7 +935,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                     }
                     l41Var.f37011e = true;
                     hashSet.add(veVar);
-                    g7Var.e(true, true);
+                    h7Var.e(true, true);
                 }
             }
             siVar.L1(i7);
@@ -984,16 +984,16 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
         if (str2 == null) {
             str2 = "";
         }
-        tL_messages_searchGlobal.f28518q = str2;
+        tL_messages_searchGlobal.f28516q = str2;
         if (!arrayList.isEmpty()) {
             i7 = 15;
         }
         tL_messages_searchGlobal.limit = i7;
         if (arrayList.size() > 0) {
-            org.telegram.messenger.fj fjVar = ((org.telegram.messenger.ve) i5.c.h(1, arrayList)).f27360e;
+            org.telegram.messenger.fj fjVar = ((org.telegram.messenger.ve) i5.c.h(1, arrayList)).f27358e;
             tL_messages_searchGlobal.offset_id = fjVar.e1();
             tL_messages_searchGlobal.offset_rate = this.f34018c0;
-            tL_messages_searchGlobal.offset_peer = u12.l1(org.telegram.messenger.fj.B1(fjVar.f23968k.peer_id));
+            tL_messages_searchGlobal.offset_peer = u12.l1(org.telegram.messenger.fj.B1(fjVar.f23965k.peer_id));
         } else {
             tL_messages_searchGlobal.offset_rate = 0;
             tL_messages_searchGlobal.offset_id = 0;
@@ -1021,7 +1021,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                 connectionsManager.cancelRequest(i10, true);
                 this.f34020e0 = -1;
             }
-            String str = ((org.telegram.messenger.n0) u12.A7.K.f15539b).f25873c;
+            String str = ((org.telegram.messenger.n0) u12.A7.K.f15536b).f25871c;
             if (!TextUtils.isEmpty(str)) {
                 if (this.f34024i0 == null) {
                     TLObject h22 = u12.h2(str);
@@ -1069,35 +1069,35 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = org.telegram.messenger.ks.f25120g2;
-        int i12 = org.telegram.messenger.ks.f25126h2;
-        bi.d6 d6Var = this.f34032w;
-        int i13 = org.telegram.messenger.ks.f25114f2;
+        int i11 = org.telegram.messenger.ks.f25118g2;
+        int i12 = org.telegram.messenger.ks.f25124h2;
+        bi.c6 c6Var = this.f34032w;
+        int i13 = org.telegram.messenger.ks.f25112f2;
         if (i7 != i13 && i7 != i12 && i7 != i11) {
-            if (i7 == org.telegram.messenger.ks.V3 && objArr[0] == this.K && d6Var != null) {
-                d6Var.f34607g3.O(true);
+            if (i7 == org.telegram.messenger.ks.W3 && objArr[0] == this.K && c6Var != null) {
+                c6Var.f34607g3.O(true);
             }
         } else if (i7 != i13 && i7 != i11) {
             if (i7 == i12 && ((org.telegram.messenger.fj) objArr[0]).T == 0) {
-                int childCount = d6Var.getChildCount();
+                int childCount = c6Var.getChildCount();
                 for (int i14 = 0; i14 < childCount; i14++) {
-                    View childAt = d6Var.getChildAt(i14);
-                    if (childAt instanceof org.telegram.ui.Cells.g7) {
-                        org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) childAt;
-                        if (g7Var.getMessage() != null) {
-                            g7Var.g(false, true);
+                    View childAt = c6Var.getChildAt(i14);
+                    if (childAt instanceof org.telegram.ui.Cells.h7) {
+                        org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) childAt;
+                        if (h7Var.getMessage() != null) {
+                            h7Var.g(false, true);
                         }
                     }
                 }
             }
         } else {
-            int childCount2 = d6Var.getChildCount();
+            int childCount2 = c6Var.getChildCount();
             for (int i15 = 0; i15 < childCount2; i15++) {
-                View childAt2 = d6Var.getChildAt(i15);
-                if (childAt2 instanceof org.telegram.ui.Cells.g7) {
-                    org.telegram.ui.Cells.g7 g7Var2 = (org.telegram.ui.Cells.g7) childAt2;
-                    if (g7Var2.getMessage() != null) {
-                        g7Var2.g(false, true);
+                View childAt2 = c6Var.getChildAt(i15);
+                if (childAt2 instanceof org.telegram.ui.Cells.h7) {
+                    org.telegram.ui.Cells.h7 h7Var2 = (org.telegram.ui.Cells.h7) childAt2;
+                    if (h7Var2.getMessage() != null) {
+                        h7Var2.g(false, true);
                     }
                 }
             }
@@ -1107,12 +1107,12 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
     @Override
     public int getCurrentItemTop() {
         int i7;
-        bi.d6 d6Var = this.f34032w;
-        if (d6Var.getChildCount() > 0) {
+        bi.c6 c6Var = this.f34032w;
+        if (c6Var.getChildCount() > 0) {
             boolean z10 = false;
             int i10 = Integer.MAX_VALUE;
-            for (int i11 = 0; i11 < d6Var.getChildCount(); i11++) {
-                View childAt = d6Var.getChildAt(i11);
+            for (int i11 = 0; i11 < c6Var.getChildCount(); i11++) {
+                View childAt = c6Var.getChildAt(i11);
                 int R = RecyclerView.R(childAt);
                 if (R == 0) {
                     z10 = true;
@@ -1122,7 +1122,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
                 }
             }
             if (i10 != Integer.MAX_VALUE) {
-                int L = (((i10 - org.telegram.messenger.g0.L(56.0f)) - ((int) this.f34034y.d(0.0f))) - org.telegram.messenger.g0.f24115m) - org.telegram.messenger.g0.L(8.0f);
+                int L = (((i10 - org.telegram.messenger.g0.L(56.0f)) - ((int) this.f34034y.d(0.0f))) - org.telegram.messenger.g0.f24112m) - org.telegram.messenger.g0.L(8.0f);
                 if (L > 0 && z10) {
                     i7 = L;
                 } else {
@@ -1156,7 +1156,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
         ArrayList<org.telegram.messenger.fj> arrayList = new ArrayList<>();
         Iterator it = this.J.iterator();
         while (it.hasNext()) {
-            arrayList.add(((org.telegram.messenger.ve) it.next()).f27360e);
+            arrayList.add(((org.telegram.messenger.ve) it.next()).f27358e);
         }
         return arrayList;
     }
@@ -1170,14 +1170,14 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
     public ArrayList<org.telegram.ui.ActionBar.w6> getThemeDescriptions() {
         ArrayList<org.telegram.ui.ActionBar.w6> arrayList = new ArrayList<>();
         int i7 = org.telegram.ui.ActionBar.n6.A5;
-        bi.d6 d6Var = this.f34032w;
-        arrayList.add(new org.telegram.ui.ActionBar.w6(d6Var, 32768, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, i7));
-        arrayList.add(new org.telegram.ui.ActionBar.w6(d6Var, 4096, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29488i6));
-        arrayList.add(new org.telegram.ui.ActionBar.w6(d6Var, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.n6.f29519k0, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29397d7));
-        arrayList.add(new org.telegram.ui.ActionBar.w6(d6Var, 8192, new Class[]{org.telegram.ui.Cells.g7.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.i7));
-        arrayList.add(new org.telegram.ui.ActionBar.w6(d6Var, 16384, new Class[]{org.telegram.ui.Cells.g7.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29526k7));
-        arrayList.add(new org.telegram.ui.ActionBar.w6(d6Var, 4, new Class[]{org.telegram.ui.Cells.g7.class}, org.telegram.ui.ActionBar.n6.f29431f3, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.w6(d6Var, 4, new Class[]{org.telegram.ui.Cells.g7.class}, org.telegram.ui.ActionBar.n6.f29448g3, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29807z6));
+        bi.c6 c6Var = this.f34032w;
+        arrayList.add(new org.telegram.ui.ActionBar.w6(c6Var, 32768, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, i7));
+        arrayList.add(new org.telegram.ui.ActionBar.w6(c6Var, 4096, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29486i6));
+        arrayList.add(new org.telegram.ui.ActionBar.w6(c6Var, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.n6.f29517k0, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29395d7));
+        arrayList.add(new org.telegram.ui.ActionBar.w6(c6Var, 8192, new Class[]{org.telegram.ui.Cells.h7.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.i7));
+        arrayList.add(new org.telegram.ui.ActionBar.w6(c6Var, 16384, new Class[]{org.telegram.ui.Cells.h7.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29524k7));
+        arrayList.add(new org.telegram.ui.ActionBar.w6(c6Var, 4, new Class[]{org.telegram.ui.Cells.h7.class}, org.telegram.ui.ActionBar.n6.f29429f3, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.G6));
+        arrayList.add(new org.telegram.ui.ActionBar.w6(c6Var, 4, new Class[]{org.telegram.ui.Cells.h7.class}, org.telegram.ui.ActionBar.n6.f29446g3, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29805z6));
         return arrayList;
     }
 
@@ -1185,11 +1185,11 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
     public final void p() {
         u();
         si siVar = this.f36766b;
-        org.telegram.messenger.ks.f(siVar.H3).n(this, org.telegram.messenger.ks.f25114f2);
+        org.telegram.messenger.ks.f(siVar.H3).n(this, org.telegram.messenger.ks.f25112f2);
         int i7 = siVar.H3;
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25126h2);
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25120g2);
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.V3);
+        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25124h2);
+        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25118g2);
+        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.W3);
     }
 
     @Override
@@ -1211,7 +1211,7 @@ public final class cj extends ki implements org.telegram.messenger.fs, te.b {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f36766b.f30192b.invalidate();
+        this.f36766b.f30190b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {

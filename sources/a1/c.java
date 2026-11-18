@@ -52,7 +52,7 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Cells.u0;
+import org.telegram.ui.Cells.v0;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.Dictation.DictationAsr;
@@ -73,9 +73,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
 
     @Override
     public void H(int i7, float f10, float f11, te.c cVar) {
-        View view = ((h6) this.f38b).f8943b;
-        if (view instanceof u0) {
-            ((u0) view).X();
+        View view = ((h6) this.f38b).f8940b;
+        if (view instanceof v0) {
+            ((v0) view).U();
         } else {
             view.invalidate();
         }
@@ -88,7 +88,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
             long j3 = i7;
             if (r0Var.D1 != j3) {
                 r0Var.D1 = j3;
-                r0Var.f9615t1.setText(r0.L0(j3));
+                r0Var.f9612t1.setText(r0.L0(j3));
             }
             r0Var.K0(true);
         }
@@ -96,7 +96,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
 
     @Override
     public l1 P0(View view, l1 l1Var) {
-        ((g1) this.f38b).f3625r1.j(l1Var);
+        ((g1) this.f38b).f3594r1.j(l1Var);
         return l1.f56257b;
     }
 
@@ -104,7 +104,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     public void a(k2.j jVar) {
         d4.i iVar = (d4.i) jVar;
         iVar.clear();
-        ((d4.j) this.f38b).f7851b.add(iVar);
+        ((d4.j) this.f38b).f7848b.add(iVar);
     }
 
     @Override
@@ -113,11 +113,11 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         kotlin.jvm.internal.j.e(clientImpl, "clientImpl");
         u uVar = new u((TaskCompletionSource) obj2);
         com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new h(-1, -1, 0, true), false);
-        gVar.f6206c = false;
+        gVar.f6203c = false;
         r rVar = (r) ((t) clientImpl.n());
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.firebase.pnv.internal.IFpnvService");
-        int i7 = db.e.f8250a;
+        int i7 = db.e.f8247a;
         obtain.writeStrongBinder(uVar);
         obtain.writeInt(1);
         ((db.q) this.f38b).writeToParcel(obtain, 0);
@@ -125,7 +125,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         gVar.writeToParcel(obtain, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            rVar.f8265a.transact(3, obtain, obtain2, 0);
+            rVar.f8262a.transact(3, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -183,14 +183,14 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     public int e() {
         a2 a2Var = (a2) this.f38b;
         a2Var.getClass();
-        return n6.w0(n6.f29339a7, a2Var.J0);
+        return n6.w0(n6.f29337a7, a2Var.J0);
     }
 
     @Override
     public t1 f(int i7, m1 m1Var, int[] iArr) {
         a3.n nVar = (a3.n) this.f38b;
         f0 p10 = i0.p();
-        for (int i10 = 0; i10 < m1Var.f10527a; i10++) {
+        for (int i10 = 0; i10 < m1Var.f10524a; i10++) {
             p10.c(new a3.j(i7, m1Var, i10, nVar, iArr[i10]));
         }
         return p10.f();
@@ -230,9 +230,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                di.t tVar = sVar.f9688r;
+                di.t tVar = sVar.f9685r;
                 if (l41Var.H instanceof TL_stars.StarsTransaction) {
-                    pb.l1(sVar.getContext(), true, tVar.f9752b, di.t.q0(tVar), (TL_stars.StarsTransaction) l41Var.H, di.t.r0(tVar));
+                    pb.l1(sVar.getContext(), true, tVar.f9749b, di.t.q0(tVar), (TL_stars.StarsTransaction) l41Var.H, di.t.r0(tVar));
                     return;
                 } else if (sVar.h) {
                     sVar.h = false;
@@ -292,7 +292,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f59341c.c().delete();
+                    ((va.c) ((va.d) r7Var.d)).f59342c.c().delete();
                     return r7Var.J();
                 }
                 return task;
@@ -321,21 +321,21 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 db.n this$0 = (db.n) this.f38b;
                 kotlin.jvm.internal.j.e(this$0, "this$0");
                 kotlin.jvm.internal.j.e(task, "task");
-                d1 d1Var = db.n.f8261b;
+                d1 d1Var = db.n.f8258b;
                 if (task.isSuccessful()) {
                     d1Var.a("Successfully completed the operation", new Object[0]);
-                    Task forResult = Tasks.forResult(db.m.f8260b.invoke(task.getResult()));
+                    Task forResult = Tasks.forResult(db.m.f8257b.invoke(task.getResult()));
                     kotlin.jvm.internal.j.d(forResult, "{\n      logger.d(\"Succes…ccess(task.result))\n    }");
                     return forResult;
                 }
-                Log.e(d1Var.f23461b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
+                Log.e(d1Var.f23458b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
                 Exception exception2 = task.getException();
                 if (exception2 != null && (message = exception2.getMessage()) != null && xd.d.e(message, "test_number_token is invalid")) {
                     d1Var.a("Backend rejected the test number token.", new Object[0]);
                     forException = Tasks.forException(new db.b(55507, "Invalid test number ID(s) - might be empty, expired or duplicated."));
                 } else {
                     if (exception2 instanceof com.google.android.gms.common.api.f) {
-                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6197a;
+                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6194a;
                     } else {
                         i7 = 55501;
                     }
@@ -352,9 +352,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
             case 16:
                 c4.h hVar = (c4.h) this.f38b;
                 c4.a aVar = (c4.a) obj;
-                c4.g gVar = new c4.g(aVar.f4376b, w7.s.a0(aVar.f4375a, aVar.f4377c));
-                hVar.f4386c.add(gVar);
-                long j3 = hVar.f4391j;
+                c4.g gVar = new c4.g(aVar.f4373b, w7.s.a0(aVar.f4372a, aVar.f4374c));
+                hVar.f4383c.add(gVar);
+                long j3 = hVar.f4388j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.g(gVar);
                     return;

@@ -16,7 +16,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class j5 extends k41 {
-    public static final int f22128b = 0;
+    public static final int f22125b = 0;
 
     static {
         k41.h(new k41());
@@ -28,18 +28,18 @@ public final class j5 extends k41 {
         l5 l5Var = (l5) view;
         a aVar = (a) l41Var.H;
         a3 a3Var = (a3) l41Var.I;
-        n5 n5Var = l5Var.f22168w;
+        n5 n5Var = l5Var.f22165w;
         boolean z12 = true;
-        if (l5Var.f22442a != aVar) {
+        if (l5Var.f22439a != aVar) {
             z11 = true;
         } else {
             z11 = false;
         }
-        l5Var.f22442a = aVar;
+        l5Var.f22439a = aVar;
         l5Var.F = a3Var;
-        l5Var.E = gd.f24216a0;
+        l5Var.E = gd.f24213a0;
         l5Var.c(aVar);
-        TL_iv.PageBlock pageBlock = aVar.f21910b;
+        TL_iv.PageBlock pageBlock = aVar.f21907b;
         if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
             return;
         }
@@ -50,10 +50,10 @@ public final class j5 extends k41 {
         Objects.requireNonNull(linkedHashSet);
         n5Var.setSelectionProvider(new ki.e(linkedHashSet, 26));
         l5Var.A();
-        e1 e1Var = l5Var.f22166r;
-        a aVar2 = l5Var.f22442a;
+        e1 e1Var = l5Var.f22163r;
+        a aVar2 = l5Var.f22439a;
         if (aVar2 != null) {
-            TL_iv.PageBlock pageBlock2 = aVar2.f21910b;
+            TL_iv.PageBlock pageBlock2 = aVar2.f21907b;
             if (pageBlock2 instanceof TL_iv.pageBlockTable) {
                 TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
                 if (pageblocktable.title == null) {
@@ -61,15 +61,15 @@ public final class j5 extends k41 {
                 }
                 String l10 = b6.l(pageblocktable.title);
                 SpannableStringBuilder r10 = b6.r(pageblocktable.title, null, true);
-                a aVar3 = l5Var.f22442a;
-                if (!aVar3.f21925s) {
-                    aVar3.f21925s = true;
+                a aVar3 = l5Var.f22439a;
+                if (!aVar3.f21922s) {
+                    aVar3.f21922s = true;
                     if (r10.length() != 0 && (b6.q(0, r10.length(), r10) & 1) == 0) {
                         z12 = false;
                     }
-                    aVar3.f21924r = z12;
+                    aVar3.f21921r = z12;
                 }
-                e1Var.setAutoBold(l5Var.f22442a.f21924r);
+                e1Var.setAutoBold(l5Var.f22439a.f21921r);
                 if (z11 || !String.valueOf(e1Var.getText()).equals(l10)) {
                     e1Var.setTextSilently(j6.m(r10, e1Var.getPaint().getFontMetricsInt(), false, null, 0));
                     e1Var.f();
@@ -77,13 +77,13 @@ public final class j5 extends k41 {
             }
         }
         l5Var.updateColors();
-        l5Var.f22169x.requestLayout();
+        l5Var.f22166x.requestLayout();
     }
 
     @Override
     public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
         l5 l5Var = new l5(context, i6Var);
-        l5Var.setBackground(new w1(n6.w0(n6.f29396d6, i6Var)));
+        l5Var.setBackground(new w1(n6.w0(n6.f29394d6, i6Var)));
         return l5Var;
     }
 

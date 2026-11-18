@@ -30,17 +30,17 @@ public final class q5 extends a5.h {
     public final Paint J;
     public int K;
     public int L;
-    public final Path f9574c;
+    public final Path f9571c;
     public final RectF d;
-    public final ec f9575e;
-    public final int f9576f;
+    public final ec f9572e;
+    public final int f9573f;
     public final View h;
-    public final ImageReceiver f9577n;
-    public final org.telegram.ui.Components.m5 f9578r;
-    public RadialGradient f9579s;
-    public final Matrix f9580w;
-    public final vy0 f9581x;
-    public final vy0 f9582y;
+    public final ImageReceiver f9574n;
+    public final org.telegram.ui.Components.m5 f9575r;
+    public RadialGradient f9576s;
+    public final Matrix f9577w;
+    public final vy0 f9578x;
+    public final vy0 f9579y;
 
     public q5(View view, TL_stars.StarGift starGift, int i7, float f10) {
         super(view);
@@ -53,30 +53,30 @@ public final class q5 extends a5.h {
         int i12;
         int i13;
         int i14;
-        this.f9574c = new Path();
+        this.f9571c = new Path();
         this.d = new RectF();
-        this.f9580w = new Matrix();
+        this.f9577w = new Matrix();
         this.J = new Paint(1);
         this.K = org.telegram.messenger.g0.L(16.0f);
         this.L = 0;
         this.h = view;
         this.F = f10;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f9577n = imageReceiver;
+        this.f9574n = imageReceiver;
         if (i7 > 180) {
             f11 = 24.0f;
         } else {
             f11 = 18.0f;
         }
         org.telegram.ui.Components.m5 m5Var = new org.telegram.ui.Components.m5(org.telegram.messenger.g0.L(f11), view, false);
-        this.f9578r = m5Var;
-        this.f9576f = i7;
+        this.f9575r = m5Var;
+        this.f9573f = i7;
         if (starGift instanceof TL_stars.TL_starGift) {
             float f14 = i7;
             pb.d1(imageReceiver, starGift.sticker, (int) (0.75f * f14));
             String str = starGift.title;
             vy0 vy0Var = new vy0(str == null ? "Gift" : str, 16.0f, org.telegram.messenger.g0.o());
-            this.f9581x = vy0Var;
+            this.f9578x = vy0Var;
             vy0Var.n(-1);
             float f15 = i7 - 30;
             vy0Var.p(org.telegram.messenger.g0.L(f15));
@@ -89,21 +89,21 @@ public final class q5 extends a5.h {
                 G = gd.G(starGift.availability_total, "Gift2SoldAuctionPreviewGifts", new Object[0]);
             }
             vy0 vy0Var2 = new vy0(G, 13.0f, null);
-            this.f9582y = vy0Var2;
+            this.f9579y = vy0Var2;
             vy0Var2.p(org.telegram.messenger.g0.L(f15));
             vy0Var2.a();
             vy0Var2.m(1);
             ec ecVar = new ec(1, 40);
-            this.f9575e = ecVar;
+            this.f9572e = ecVar;
             float f16 = 0.45f * f14;
             ecVar.f(-org.telegram.messenger.g0.L(f16), -org.telegram.messenger.g0.L(f16), org.telegram.messenger.g0.L(f16), org.telegram.messenger.g0.L(f14 * 0.25f));
             float L = org.telegram.messenger.g0.L(30.0f);
-            RectF rectF = ecVar.f8735c;
+            RectF rectF = ecVar.f8732c;
             int width = (int) rectF.width();
             int height = (int) rectF.height();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            g5.a aVar = Utilities.f22781c;
+            g5.a aVar = Utilities.f22778c;
             PointF pointF = new PointF(org.telegram.messenger.g0.W1(aVar.nextFloat(), 0, width), org.telegram.messenger.g0.W1(aVar.nextFloat(), 0, height));
             int i15 = 1;
             int i16 = 0;
@@ -124,7 +124,7 @@ public final class q5 extends a5.h {
             while (!arrayList2.isEmpty()) {
                 int i21 = i15;
                 if (arrayList2.size() > i21) {
-                    i10 = Utilities.f22781c.nextInt(arrayList2.size() - i21);
+                    i10 = Utilities.f22778c.nextInt(arrayList2.size() - i21);
                 } else {
                     i10 = i16;
                 }
@@ -132,7 +132,7 @@ public final class q5 extends a5.h {
                 int i22 = i16;
                 while (true) {
                     if (i22 < 15) {
-                        g5.a aVar2 = Utilities.f22781c;
+                        g5.a aVar2 = Utilities.f22778c;
                         f12 = L;
                         f13 = floor;
                         int i23 = i22;
@@ -208,16 +208,16 @@ public final class q5 extends a5.h {
                 i16 = 0;
             }
             int size = arrayList.size();
-            ArrayList arrayList3 = ecVar.f8734b;
+            ArrayList arrayList3 = ecVar.f8731b;
             int size2 = size - arrayList3.size();
             for (int i28 = 0; i28 < size2; i28++) {
                 arrayList3.add(new dc(ecVar));
             }
             int size3 = arrayList.size();
-            ecVar.f8740j = size3;
-            if (ecVar.f8742l != null) {
+            ecVar.f8737j = size3;
+            if (ecVar.f8739l != null) {
                 a4.k kVar = new a4.k(size3);
-                ecVar.f8742l = kVar;
+                ecVar.f8739l = kVar;
                 Bitmap bitmap = ecVar.d;
                 float width2 = bitmap.getWidth();
                 float height2 = bitmap.getHeight();
@@ -229,14 +229,14 @@ public final class q5 extends a5.h {
                 }
             }
             long currentTimeMillis = System.currentTimeMillis();
-            for (int i31 = 0; i31 < ecVar.f8740j; i31++) {
+            for (int i31 = 0; i31 < ecVar.f8737j; i31++) {
                 dc dcVar = (dc) arrayList3.get(i31);
                 PointF pointF5 = (PointF) arrayList.get(i31);
                 ecVar.c(dcVar, currentTimeMillis, true);
-                dcVar.f8673a = pointF5.x + rectF.left;
-                dcVar.f8674b = pointF5.y + rectF.top;
-                dcVar.h = org.telegram.messenger.g0.T1(0.4f, 1.0f, Utilities.f22781c.nextFloat());
-                dcVar.f8676e *= 1.25f;
+                dcVar.f8670a = pointF5.x + rectF.left;
+                dcVar.f8671b = pointF5.y + rectF.top;
+                dcVar.h = org.telegram.messenger.g0.T1(0.4f, 1.0f, Utilities.f22778c.nextFloat());
+                dcVar.f8673e *= 1.25f;
             }
         } else if (starGift != null) {
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) x8.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
@@ -246,14 +246,14 @@ public final class q5 extends a5.h {
                 m5Var.i(stargiftattributepattern.document, false);
             }
             if (stargiftattributebackdrop != null) {
-                this.f9579s = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.N(i7) / 2.0f, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                this.f9576s = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.N(i7) / 2.0f, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 m5Var.k(Integer.valueOf(stargiftattributebackdrop.pattern_color | (-16777216)));
             }
             if (stargiftattributemodel != null) {
                 pb.d1(imageReceiver, stargiftattributemodel.document, (int) (i7 * 0.75f));
             }
         }
-        ((Paint) this.f220b).setShader(this.f9579s);
+        ((Paint) this.f220b).setShader(this.f9576s);
         if (view.isAttachedToWindow()) {
             a();
         }
@@ -261,10 +261,10 @@ public final class q5 extends a5.h {
 
     @Override
     public final void a() {
-        this.f9578r.a();
-        this.f9577n.P();
+        this.f9575r.a();
+        this.f9574n.P();
         if (this.G != null) {
-            int currentTime = ConnectionsManager.getInstance(j10.f24773t0).getCurrentTime();
+            int currentTime = ConnectionsManager.getInstance(j10.f24770t0).getCurrentTime();
             int i7 = this.I;
             if (currentTime >= i7) {
                 i7 = this.H;
@@ -275,8 +275,8 @@ public final class q5 extends a5.h {
 
     @Override
     public final void b() {
-        this.f9578r.b();
-        this.f9577n.R();
+        this.f9575r.b();
+        this.f9574n.R();
         bg.r rVar = this.G;
         if (rVar != null) {
             rVar.b();
@@ -284,7 +284,7 @@ public final class q5 extends a5.h {
     }
 
     public final void c(int i7) {
-        vy0 vy0Var = this.f9582y;
+        vy0 vy0Var = this.f9579y;
         if (vy0Var != null) {
             vy0Var.n(i7 | (-16777216));
         }
@@ -297,7 +297,7 @@ public final class q5 extends a5.h {
         if (this.G == null) {
             this.G = new bg.r(new a1.c(this, 25));
         }
-        int currentTime = ConnectionsManager.getInstance(j10.f24773t0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(j10.f24770t0).getCurrentTime();
         if (currentTime < i7) {
             i11 = i7 - currentTime;
         } else {
@@ -322,30 +322,30 @@ public final class q5 extends a5.h {
         RectF rectF = this.d;
         rectF.set(bounds);
         canvas.save();
-        Path path = this.f9574c;
+        Path path = this.f9571c;
         path.rewind();
         float f10 = this.K;
         path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
         canvas.clipPath(path);
-        if (this.f9579s != null) {
-            Matrix matrix = this.f9580w;
+        if (this.f9576s != null) {
+            Matrix matrix = this.f9577w;
             matrix.reset();
             matrix.postTranslate(rectF.centerX(), rectF.centerY());
-            this.f9579s.setLocalMatrix(matrix);
-            paint.setShader(this.f9579s);
+            this.f9576s.setLocalMatrix(matrix);
+            paint.setShader(this.f9576s);
         }
         canvas.drawPaint(paint);
         canvas.save();
         canvas.translate(rectF.centerX(), rectF.centerY());
-        v0.a(canvas, this.L, this.f9578r, rectF.width(), rectF.height(), 1.0f, this.F);
-        ec ecVar = this.f9575e;
+        v0.a(canvas, this.L, this.f9575r, rectF.width(), rectF.height(), 1.0f, this.F);
+        ec ecVar = this.f9572e;
         if (ecVar != null) {
             ecVar.b(canvas, -1, 1.0f);
         }
         canvas.restore();
-        vy0 vy0Var2 = this.f9581x;
-        ImageReceiver imageReceiver = this.f9577n;
-        if (vy0Var2 != null && (vy0Var = this.f9582y) != null) {
+        vy0 vy0Var2 = this.f9578x;
+        ImageReceiver imageReceiver = this.f9574n;
+        if (vy0Var2 != null && (vy0Var = this.f9579y) != null) {
             if (this.E != null) {
                 Paint paint2 = this.J;
                 paint2.setColor(1342177280);
@@ -370,8 +370,8 @@ public final class q5 extends a5.h {
     }
 
     public final void e(int i7, int i10) {
-        RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.N(this.f9576f) / 2.0f, new int[]{i7 | (-16777216), i10 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f9579s = radialGradient;
+        RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.N(this.f9573f) / 2.0f, new int[]{i7 | (-16777216), i10 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f9576s = radialGradient;
         ((Paint) this.f220b).setShader(radialGradient);
     }
 
@@ -385,17 +385,17 @@ public final class q5 extends a5.h {
 
     @Override
     public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(this.f9576f);
+        return org.telegram.messenger.g0.L(this.f9573f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(this.f9576f);
+        return org.telegram.messenger.g0.L(this.f9573f);
     }
 
     public final void h() {
         vy0 vy0Var;
-        int currentTime = ConnectionsManager.getInstance(j10.f24773t0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(j10.f24770t0).getCurrentTime();
         int i7 = this.H;
         if (currentTime > i7) {
             this.E.t(gd.M0(2131750350, null), true, true);
@@ -407,7 +407,7 @@ public final class q5 extends a5.h {
                 this.E.t(org.telegram.messenger.g0.g0(i7 - currentTime, true, false), true, true);
             }
         }
-        if (currentTime > this.H && (vy0Var = this.f9582y) != null) {
+        if (currentTime > this.H && (vy0Var = this.f9579y) != null) {
             vy0Var.q(gd.M0(2131749951, null));
         }
     }

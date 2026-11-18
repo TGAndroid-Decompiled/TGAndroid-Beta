@@ -13,13 +13,13 @@ public final class bi implements kj {
     public final void a(TLRPC.User user, boolean z10, int i7, long j3) {
         org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f33698a.f39659a2;
         if (bnVar.u7()) {
-            org.telegram.messenger.xy g10 = org.telegram.messenger.xy.g(user, bnVar.f46085l6, bnVar.F5, bnVar.f46096m4, null, null, z10, i7, 0);
+            org.telegram.messenger.xy g10 = org.telegram.messenger.xy.g(user, bnVar.f46076l6, bnVar.F5, bnVar.f46087m4, null, null, z10, i7, 0);
             g10.K = bnVar.Y8();
             g10.O = 0L;
             g10.L = false;
             g10.Q = j3;
             g10.R = bnVar.j9();
-            g10.T = bnVar.f46250y5;
+            g10.T = bnVar.f46241y5;
             bnVar.getSendMessagesHelper().r0(g10);
             bnVar.L6();
         }

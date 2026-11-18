@@ -46,7 +46,7 @@ public final class b extends l {
     public final k2.f i(h hVar, j jVar, boolean z10) {
         boolean z11;
         a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f18127c;
+        ByteBuffer byteBuffer = hVar.f18124c;
         byteBuffer.getClass();
         la.p(byteBuffer.hasArray());
         if (byteBuffer.arrayOffset() == 0) {
@@ -63,7 +63,7 @@ public final class b extends l {
                     Point y10 = l0.y(context);
                     int i10 = y10.x;
                     int i11 = y10.y;
-                    u uVar = hVar.f18125a;
+                    u uVar = hVar.f18122a;
                     if (uVar != null) {
                         int i12 = uVar.R;
                         if (i12 != -1) {
@@ -80,7 +80,7 @@ public final class b extends l {
                 }
             }
             aVar.f57541a = o0.b(byteBuffer.remaining(), i7, byteBuffer.array());
-            aVar.timeUs = hVar.f18128e;
+            aVar.timeUs = hVar.f18125e;
             return null;
         } catch (t0 e10) {
             return new Exception("Could not decode image data with BitmapFactory.", e10);

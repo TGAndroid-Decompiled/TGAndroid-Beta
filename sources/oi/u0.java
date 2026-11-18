@@ -15,7 +15,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class u0 extends k41 {
-    public static final int f22386b = 0;
+    public static final int f22383b = 0;
 
     static {
         k41.h(new k41());
@@ -27,9 +27,9 @@ public final class u0 extends k41 {
         r rVar;
         v0 v0Var = (v0) view;
         a aVar = (a) l41Var.H;
-        v0Var.f22442a = aVar;
+        v0Var.f22439a = aVar;
         v0Var.T = (n3) l41Var.I;
-        v0Var.N = gd.f24216a0;
+        v0Var.N = gd.f24213a0;
         v0Var.c(aVar);
         v0Var.G.b();
         TLRPC.Document h = v0Var.h();
@@ -40,12 +40,12 @@ public final class u0 extends k41 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f28426id = -Long.valueOf(h.f28411id).hashCode();
+                tL_message.f28424id = -Long.valueOf(h.f28409id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
                 TLRPC.Peer peer = tL_message.peer_id;
-                int i7 = v0Var.f22400n;
+                int i7 = v0Var.f22397n;
                 long e10 = j10.i(i7).e();
                 peer.user_id = e10;
                 tL_peerUser.user_id = e10;
@@ -56,9 +56,9 @@ public final class u0 extends k41 {
                 tL_messageMediaDocument.flags |= 3;
                 tL_messageMediaDocument.document = h;
                 tL_message.flags |= 768;
-                a aVar2 = v0Var.f22442a;
-                if (aVar2 != null && (rVar = aVar2.f21914g) != null && !TextUtils.isEmpty(rVar.f22264e)) {
-                    tL_message.attachPath = v0Var.f22442a.f21914g.f22264e;
+                a aVar2 = v0Var.f22439a;
+                if (aVar2 != null && (rVar = aVar2.f21911g) != null && !TextUtils.isEmpty(rVar.f22261e)) {
+                    tL_message.attachPath = v0Var.f22439a.f21911g.f22261e;
                 }
                 fjVar = new fj(i7, tL_message, false, true);
             }
@@ -76,8 +76,8 @@ public final class u0 extends k41 {
     @Override
     public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
         v0 v0Var = new v0(i7, context, i6Var);
-        v0Var.setBackground(new w1(n6.w0(n6.f29396d6, i6Var)));
-        v0Var.f22398a0 = true;
+        v0Var.setBackground(new w1(n6.w0(n6.f29394d6, i6Var)));
+        v0Var.f22395a0 = true;
         return v0Var;
     }
 

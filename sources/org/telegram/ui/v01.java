@@ -4,14 +4,14 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class v01 extends FrameLayout {
-    public FrameLayout f52654a;
-    public org.telegram.ui.Cells.w3 f52655b;
-    public ug.s0 f52656c;
+    public FrameLayout f52639a;
+    public org.telegram.ui.Cells.x3 f52640b;
+    public ug.s0 f52641c;
     public String d;
-    public ValueAnimator f52657e;
-    public float f52658f;
+    public ValueAnimator f52642e;
+    public float f52643f;
     public Boolean h;
-    public ValueAnimator f52659n;
+    public ValueAnimator f52644n;
 
     @Override
     public final void onMeasure(int i7, int i10) {

@@ -30,7 +30,7 @@ public final class f8 extends bk0 {
 
     public final void E(String str) {
         if (this.f35021f != null) {
-            Utilities.f22784g.a(this.f35021f);
+            Utilities.f22781g.a(this.f35021f);
             this.f35021f = null;
         }
         if (str == null) {
@@ -39,7 +39,7 @@ public final class f8 extends bk0 {
             f();
             return;
         }
-        org.telegram.messenger.q5 q5Var = Utilities.f22784g;
+        org.telegram.messenger.q5 q5Var = Utilities.f22781g;
         d8 d8Var = new d8(this, str, 0);
         this.f35021f = d8Var;
         q5Var.d(d8Var, 300L);
@@ -92,7 +92,7 @@ public final class f8 extends bk0 {
             this.h = z11;
             if (z11) {
                 r7Var.setVisibility(0);
-                r7Var.setTranslationY(org.telegram.messenger.g0.f24121q.y);
+                r7Var.setTranslationY(org.telegram.messenger.g0.f24118q.y);
                 r7Var.animate().translationY(0.0f).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
                     public final f8 f33912b;
 
@@ -104,16 +104,16 @@ public final class f8 extends bk0 {
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                         switch (r2) {
                             case 0:
-                                this.f33912b.f35022n.f30192b.invalidate();
+                                this.f33912b.f35022n.f30190b.invalidate();
                                 return;
                             default:
-                                this.f33912b.f35022n.f30192b.invalidate();
+                                this.f33912b.f35022n.f30190b.invalidate();
                                 return;
                         }
                     }
                 }).setDuration(420L).setInterpolator(lr.h).start();
             } else {
-                r7Var.animate().translationY(org.telegram.messenger.g0.f24121q.y).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                r7Var.animate().translationY(org.telegram.messenger.g0.f24118q.y).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
                     public final f8 f33912b;
 
                     {
@@ -124,10 +124,10 @@ public final class f8 extends bk0 {
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                         switch (r2) {
                             case 0:
-                                this.f33912b.f35022n.f30192b.invalidate();
+                                this.f33912b.f35022n.f30190b.invalidate();
                                 return;
                             default:
-                                this.f33912b.f35022n.f30192b.invalidate();
+                                this.f33912b.f35022n.f30190b.invalidate();
                                 return;
                         }
                     }

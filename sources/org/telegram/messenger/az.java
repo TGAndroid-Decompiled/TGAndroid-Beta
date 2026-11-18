@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import org.telegram.tgnet.SerializedData;
 public final class az {
-    public xi.a f22988a;
-    public long f22989b;
-    public boolean f22990c;
+    public xi.a f22985a;
+    public long f22986b;
+    public boolean f22987c;
     public boolean d;
-    public long f22991e;
+    public long f22988e;
 
     public az(xi.a aVar) {
-        this.f22988a = aVar;
+        this.f22985a = aVar;
     }
 
     public static az a(int i7, SerializedData serializedData) {
@@ -23,8 +23,8 @@ public final class az {
         if (readString == null) {
             readString = "";
         }
-        a10.f21195c = readString;
-        a10.f21194b = serializedData.readInt32(false);
+        a10.f21192c = readString;
+        a10.f21191b = serializedData.readInt32(false);
         String readString2 = serializedData.readString(false);
         if (readString2 == null) {
             readString2 = "";
@@ -34,12 +34,12 @@ public final class az {
         if (readString3 == null) {
             readString3 = "";
         }
-        a10.f21196e = readString3;
+        a10.f21193e = readString3;
         String readString4 = serializedData.readString(false);
         if (readString4 != null) {
             str = readString4;
         }
-        a10.f21197f = str;
+        a10.f21194f = str;
         int i10 = 2;
         if (i7 >= 2) {
             j3 = serializedData.readInt64(false);
@@ -57,8 +57,8 @@ public final class az {
             a10.p(i10);
         }
         az azVar = new az(a10.d());
-        azVar.f22991e = j10;
-        azVar.f22989b = j3;
+        azVar.f22988e = j10;
+        azVar.f22986b = j3;
         if (j3 > 0) {
             z10 = true;
         }

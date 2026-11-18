@@ -2,15 +2,15 @@ package oi;
 
 import android.view.View;
 public final class n2 implements Runnable {
-    public final int f22188a;
-    public final s3 f22189b;
-    public final a f22190c;
+    public final int f22185a;
+    public final s3 f22186b;
+    public final a f22187c;
     public final int d;
 
     public n2(s3 s3Var, a aVar, int i7, int i10) {
-        this.f22188a = i10;
-        this.f22189b = s3Var;
-        this.f22190c = aVar;
+        this.f22185a = i10;
+        this.f22186b = s3Var;
+        this.f22187c = aVar;
         this.d = i7;
     }
 
@@ -18,10 +18,10 @@ public final class n2 implements Runnable {
     public final void run() {
         View C1;
         View C12;
-        switch (this.f22188a) {
+        switch (this.f22185a) {
             case 0:
-                s3 s3Var = this.f22189b;
-                a aVar = this.f22190c;
+                s3 s3Var = this.f22186b;
+                a aVar = this.f22187c;
                 if (aVar == null) {
                     s3Var.getClass();
                     C1 = null;
@@ -36,8 +36,8 @@ public final class n2 implements Runnable {
                 }
                 return;
             case 1:
-                s3 s3Var2 = this.f22189b;
-                a aVar2 = this.f22190c;
+                s3 s3Var2 = this.f22186b;
+                a aVar2 = this.f22187c;
                 if (aVar2 == null) {
                     s3Var2.getClass();
                     C12 = null;
@@ -52,7 +52,7 @@ public final class n2 implements Runnable {
                 }
                 return;
             case 2:
-                View C13 = this.f22189b.C1(this.f22190c);
+                View C13 = this.f22186b.C1(this.f22187c);
                 if (C13 instanceof z5) {
                     z5 z5Var3 = (z5) C13;
                     z5Var3.B();
@@ -61,7 +61,7 @@ public final class n2 implements Runnable {
                 }
                 return;
             case 3:
-                View C14 = this.f22189b.C1(this.f22190c);
+                View C14 = this.f22186b.C1(this.f22187c);
                 if (C14 instanceof z5) {
                     z5 z5Var4 = (z5) C14;
                     z5Var4.B();
@@ -70,7 +70,7 @@ public final class n2 implements Runnable {
                 }
                 return;
             case 4:
-                View C15 = this.f22189b.C1(this.f22190c);
+                View C15 = this.f22186b.C1(this.f22187c);
                 if (C15 instanceof z5) {
                     z5 z5Var5 = (z5) C15;
                     z5Var5.B();
@@ -79,7 +79,7 @@ public final class n2 implements Runnable {
                 }
                 return;
             default:
-                View C16 = this.f22189b.C1(this.f22190c);
+                View C16 = this.f22186b.C1(this.f22187c);
                 if (C16 instanceof z5) {
                     z5 z5Var6 = (z5) C16;
                     z5Var6.B();

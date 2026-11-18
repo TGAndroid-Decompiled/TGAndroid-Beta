@@ -8,12 +8,12 @@ import android.util.Log;
 import java.util.IllegalFormatException;
 import java.util.Locale;
 public final class g0 {
-    public final String f7909a;
+    public final String f7906a;
 
     public g0(String str) {
         int myUid = Process.myUid();
         int myPid = Process.myPid();
-        this.f7909a = ("UID: [" + myUid + "]  PID: [" + myPid + "] ").concat(str);
+        this.f7906a = ("UID: [" + myUid + "]  PID: [" + myPid + "] ").concat(str);
     }
 
     public static String d(String str, String str2, Object... objArr) {
@@ -30,19 +30,19 @@ public final class g0 {
 
     public final void a(RemoteException remoteException, String str, Object... objArr) {
         if (Log.isLoggable("PlayCore", 6)) {
-            Log.e("PlayCore", d(this.f7909a, str, objArr), remoteException);
+            Log.e("PlayCore", d(this.f7906a, str, objArr), remoteException);
         }
     }
 
     public final void b(String str, Object... objArr) {
         if (Log.isLoggable("PlayCore", 4)) {
-            Log.i("PlayCore", d(this.f7909a, str, objArr));
+            Log.i("PlayCore", d(this.f7906a, str, objArr));
         }
     }
 
     public final void c(String str, Object... objArr) {
         if (Log.isLoggable("PlayCore", 5)) {
-            Log.w("PlayCore", d(this.f7909a, str, objArr));
+            Log.w("PlayCore", d(this.f7906a, str, objArr));
         }
     }
 }

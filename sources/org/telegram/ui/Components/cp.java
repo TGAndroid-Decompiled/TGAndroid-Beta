@@ -33,13 +33,13 @@ public final class cp implements qi {
     public final void R0(Object obj) {
         bp bpVar = new bp(obj, null, true, 1);
         bpVar.X1 = this.f34144b;
-        bpVar.f53682a.f52981a = this.f34145c;
-        bpVar.f53732r1 = this.d;
+        bpVar.f53670a.f52942a = this.f34145c;
+        bpVar.f53720r1 = this.d;
         bpVar.h1(this.f34146e);
         bpVar.K1 = new ap(this.f34143a, this.f34147f, 1);
         ?? obj2 = new Object();
-        obj2.f28923a = true;
-        obj2.f28926e = true;
+        obj2.f28921a = true;
+        obj2.f28924e = true;
         this.h.showAsSheet(bpVar, obj2);
     }
 
@@ -72,22 +72,22 @@ public final class cp implements qi {
                 }
                 if (str != null) {
                     File z14 = org.telegram.messenger.w7.z(4);
-                    File file = new File(z14, Utilities.f22780b.nextInt() + ".jpg");
+                    File file = new File(z14, Utilities.f22777b.nextInt() + ".jpg");
                     Point c12 = org.telegram.messenger.g0.c1();
                     Bitmap K = org.telegram.messenger.ec.K(str, null, (float) c12.x, (float) c12.y, true);
                     K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     bp bpVar = new bp(new sc1(file, file, ""), K, false, 0);
                     bpVar.X1 = this.f34144b;
-                    bpVar.f53682a.f52981a = this.f34145c;
-                    bpVar.f53732r1 = this.d;
+                    bpVar.f53670a.f52942a = this.f34145c;
+                    bpVar.f53720r1 = this.d;
                     bpVar.H1 = false;
                     bpVar.G1 = false;
-                    bpVar.f53727p1 = 0.2f;
+                    bpVar.f53715p1 = 0.2f;
                     bpVar.h1(this.f34146e);
                     bpVar.K1 = new ap(siVar, this.f34147f, 0);
                     ?? obj = new Object();
-                    obj.f28923a = true;
-                    obj.f28926e = true;
+                    obj.f28921a = true;
+                    obj.f28924e = true;
                     this.h.showAsSheet(bpVar, obj);
                     siVar.dismiss();
                 }

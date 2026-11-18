@@ -7,7 +7,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.y91;
-public final class ed implements org.telegram.ui.tg0, org.telegram.ui.ww {
+public final class ed implements org.telegram.ui.ug0, org.telegram.ui.ww {
     public final ChatActivityEnterView f34673a;
     public final org.telegram.messenger.fj f34674b;
     public final TL_keyboard.TL_buttonTypeRequestPeer f34675c;
@@ -36,7 +36,7 @@ public final class ed implements org.telegram.ui.tg0, org.telegram.ui.ww {
             ChatActivityEnterView chatActivityEnterView = this.f34673a;
             org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(chatActivityEnterView.R);
             org.telegram.messenger.fj fjVar = this.f34674b;
-            tL_messages_sendBotRequestedPeer.peer = u12.o1(fjVar.f23968k.peer_id);
+            tL_messages_sendBotRequestedPeer.peer = u12.o1(fjVar.f23965k.peer_id);
             tL_messages_sendBotRequestedPeer.flags |= 1;
             tL_messages_sendBotRequestedPeer.msg_id = fjVar.e1();
             tL_messages_sendBotRequestedPeer.button_id = this.f34675c.button_id;
@@ -59,7 +59,7 @@ public final class ed implements org.telegram.ui.tg0, org.telegram.ui.ww {
             ChatActivityEnterView chatActivityEnterView = this.f34673a;
             org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(chatActivityEnterView.R);
             org.telegram.messenger.fj fjVar = this.f34674b;
-            tL_messages_sendBotRequestedPeer.peer = u12.o1(fjVar.f23968k.peer_id);
+            tL_messages_sendBotRequestedPeer.peer = u12.o1(fjVar.f23965k.peer_id);
             tL_messages_sendBotRequestedPeer.flags |= 1;
             tL_messages_sendBotRequestedPeer.msg_id = fjVar.e1();
             tL_messages_sendBotRequestedPeer.button_id = this.f34675c.button_id;
@@ -69,7 +69,7 @@ public final class ed implements org.telegram.ui.tg0, org.telegram.ui.ww {
             while (i12 < size) {
                 Object obj = arrayList.get(i12);
                 i12++;
-                hashSet.add(Long.valueOf(((org.telegram.messenger.sr) obj).f26847a));
+                hashSet.add(Long.valueOf(((org.telegram.messenger.sr) obj).f26845a));
             }
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {

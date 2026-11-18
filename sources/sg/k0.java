@@ -48,7 +48,7 @@ public final class k0 {
         this.f57263c = hashMap;
         this.d = new ArrayList(i10);
         int i11 = 0;
-        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26915b.getSharedPreferences("photo_color_palette_" + i7, 0);
+        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26913b.getSharedPreferences("photo_color_palette_" + i7, 0);
         this.f57261a = sharedPreferences;
         this.f57265f = sharedPreferences.getInt("brush", 0);
         this.f57267i = sharedPreferences.getFloat("weight", 0.5f);

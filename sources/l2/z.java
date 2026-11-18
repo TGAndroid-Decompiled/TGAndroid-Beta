@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.y51;
 public final class z implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final f0 f19600a;
+    public final f0 f19597a;
 
     public z(f0 f0Var) {
-        this.f19600a = f0Var;
+        this.f19597a = f0Var;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        f0 f0Var = this.f19600a;
-        y51 y51Var = f0Var.f19348s0;
+        f0 f0Var = this.f19597a;
+        y51 y51Var = f0Var.f19345s0;
         if (y51Var != null) {
             y51Var.execute(new x(this, surfaceTexture, i7, i10, 0));
             return;
@@ -31,8 +31,8 @@ public final class z implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f19600a;
-        ArrayList arrayList = f0Var.f19350t0;
+        f0 f0Var = this.f19597a;
+        ArrayList arrayList = f0Var.f19347t0;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -42,7 +42,7 @@ public final class z implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView
                 return false;
             }
         }
-        y51 y51Var = f0Var.f19348s0;
+        y51 y51Var = f0Var.f19345s0;
         if (y51Var != null) {
             y51Var.execute(new kg.j0(this, surfaceTexture));
             return true;
@@ -54,8 +54,8 @@ public final class z implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        f0 f0Var = this.f19600a;
-        y51 y51Var = f0Var.f19348s0;
+        f0 f0Var = this.f19597a;
+        y51 y51Var = f0Var.f19345s0;
         if (y51Var != null) {
             y51Var.execute(new jg.q(this, surfaceTexture, i7, i10));
         } else {
@@ -65,13 +65,13 @@ public final class z implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f19600a;
-        y51 y51Var = f0Var.f19348s0;
+        f0 f0Var = this.f19597a;
+        y51 y51Var = f0Var.f19345s0;
         if (y51Var != null) {
             y51Var.execute(new kg.h0(15, this, surfaceTexture));
             return;
         }
-        ArrayList arrayList = f0Var.f19350t0;
+        ArrayList arrayList = f0Var.f19347t0;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -83,12 +83,12 @@ public final class z implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView
 
     @Override
     public final void surfaceChanged(SurfaceHolder surfaceHolder, int i7, int i10, int i11) {
-        this.f19600a.q1(i10, i11);
+        this.f19597a.q1(i10, i11);
     }
 
     @Override
     public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f19600a;
+        f0 f0Var = this.f19597a;
         if (f0Var.W) {
             f0Var.x1(surfaceHolder.getSurface());
         }
@@ -96,7 +96,7 @@ public final class z implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView
 
     @Override
     public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f19600a;
+        f0 f0Var = this.f19597a;
         if (f0Var.W) {
             f0Var.x1(null);
         }

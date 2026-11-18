@@ -3,14 +3,14 @@ package org.telegram.ui;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 public final class he implements Runnable {
-    public final int f48384a;
-    public final bn f48385b;
-    public final org.telegram.messenger.fj f48386c;
+    public final int f48335a;
+    public final bn f48336b;
+    public final org.telegram.messenger.fj f48337c;
 
     public he(bn bnVar, org.telegram.messenger.fj fjVar, int i7) {
-        this.f48384a = i7;
-        this.f48385b = bnVar;
-        this.f48386c = fjVar;
+        this.f48335a = i7;
+        this.f48336b = bnVar;
+        this.f48337c = fjVar;
     }
 
     @Override
@@ -21,12 +21,12 @@ public final class he implements Runnable {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f48384a;
-        bn bnVar = this.f48385b;
-        org.telegram.messenger.fj fjVar = this.f48386c;
+        int i13 = this.f48335a;
+        bn bnVar = this.f48336b;
+        org.telegram.messenger.fj fjVar = this.f48337c;
         switch (i13) {
             case 0:
-                TLRPC.MessageMedia messageMedia = fjVar.f23968k.media;
+                TLRPC.MessageMedia messageMedia = fjVar.f23965k.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.H1;
                     if (launchActivity == null || launchActivity.N() == null || LaunchActivity.H1.N().l(fjVar) == null) {
@@ -38,7 +38,7 @@ public final class he implements Runnable {
                 return;
             case 1:
                 bnVar.getClass();
-                TLRPC.Message message = fjVar.f23968k;
+                TLRPC.Message message = fjVar.f23965k;
                 int i14 = message.ttl;
                 if (i14 != Integer.MAX_VALUE) {
                     z10 = true;
@@ -51,43 +51,43 @@ public final class he implements Runnable {
                     i7 = i14;
                 }
                 message.destroyTime = bnVar.getConnectionsManager().getCurrentTime() + i7;
-                fjVar.f23968k.destroyTimeMillis = bnVar.getConnectionsManager().getCurrentTimeMillis() + (i7 * 1000);
+                fjVar.f23965k.destroyTimeMillis = bnVar.getConnectionsManager().getCurrentTimeMillis() + (i7 * 1000);
                 if (bnVar.h != null) {
-                    bnVar.getMessagesController().w3(bnVar.f46085l6, i7, fjVar.f23968k.random_id);
+                    bnVar.getMessagesController().w3(bnVar.f46076l6, i7, fjVar.f23965k.random_id);
                     return;
                 } else {
-                    bnVar.getMessagesController().x3(bnVar.f46085l6, fjVar.e1(), null, i7, 0L, z10);
+                    bnVar.getMessagesController().x3(bnVar.f46076l6, fjVar.e1(), null, i7, 0L, z10);
                     return;
                 }
             case 2:
                 int e12 = fjVar.e1();
-                bn bnVar2 = this.f48385b;
+                bn bnVar2 = this.f48336b;
                 bnVar2.Bb(e12, 0, true, 0, true, 0, null, null, new vf(bnVar2, 11));
-                if (bnVar2.f46263z6.isEmpty()) {
+                if (bnVar2.f46254z6.isEmpty()) {
                     bnVar2.sc(false);
                     return;
                 }
                 return;
             case 3:
-                bn bnVar3 = this.f48385b;
+                bn bnVar3 = this.f48336b;
                 bnVar3.getClass();
                 int N1 = fjVar.N1();
-                TLRPC.Message message2 = fjVar.f23968k;
-                int i15 = message2.f28426id;
-                if (org.telegram.messenger.fj.B0(message2) == bnVar3.f45981d7) {
+                TLRPC.Message message2 = fjVar.f23965k;
+                int i15 = message2.f28424id;
+                if (org.telegram.messenger.fj.B0(message2) == bnVar3.f45972d7) {
                     i10 = 1;
                 } else {
                     i10 = 0;
                 }
-                bnVar3.Bb(N1, i15, true, i10, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) fjVar.f23968k.action).answer.option, null);
+                bnVar3.Bb(N1, i15, true, i10, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) fjVar.f23965k.action).answer.option, null);
                 return;
             case 4:
-                bn bnVar4 = this.f48385b;
+                bn bnVar4 = this.f48336b;
                 bnVar4.getClass();
                 int N12 = fjVar.N1();
-                TLRPC.Message message3 = fjVar.f23968k;
-                int i16 = message3.f28426id;
-                if (org.telegram.messenger.fj.B0(message3) == bnVar4.f45981d7) {
+                TLRPC.Message message3 = fjVar.f23965k;
+                int i16 = message3.f28424id;
+                if (org.telegram.messenger.fj.B0(message3) == bnVar4.f45972d7) {
                     i11 = 1;
                 } else {
                     i11 = 0;
@@ -95,12 +95,12 @@ public final class he implements Runnable {
                 bnVar4.Bb(N12, i16, true, i11, false, 0, null, null, null);
                 return;
             case 5:
-                bn bnVar5 = this.f48385b;
+                bn bnVar5 = this.f48336b;
                 bnVar5.getClass();
                 int N13 = fjVar.N1();
-                TLRPC.Message message4 = fjVar.f23968k;
-                int i17 = message4.f28426id;
-                if (org.telegram.messenger.fj.B0(message4) == bnVar5.f45981d7) {
+                TLRPC.Message message4 = fjVar.f23965k;
+                int i17 = message4.f28424id;
+                if (org.telegram.messenger.fj.B0(message4) == bnVar5.f45972d7) {
                     i12 = 1;
                 } else {
                     i12 = 0;
@@ -108,11 +108,11 @@ public final class he implements Runnable {
                 bnVar5.l(N13, i17, true, i12, false, 0);
                 return;
             case 6:
-                bnVar.getMessagesController().J3(bnVar.f45987e, bnVar.f46001f, fjVar.e1(), true, false, false);
+                bnVar.getMessagesController().J3(bnVar.f45978e, bnVar.f45992f, fjVar.e1(), true, false, false);
                 bnVar.P3 = null;
                 return;
             case 7:
-                if (org.telegram.messenger.fj.L4(fjVar.f23968k)) {
+                if (org.telegram.messenger.fj.L4(fjVar.f23965k)) {
                     bnVar.Ka(null, fjVar);
                     return;
                 } else {

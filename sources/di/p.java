@@ -20,16 +20,16 @@ public final class p extends xb0 {
         switch (this.M) {
             case 0:
                 t tVar = (t) this.N;
-                q qVar = tVar.f9751a0;
+                q qVar = tVar.f9748a0;
                 if (qVar != null && !qVar.isFocusable()) {
-                    tVar.f9751a0.setFocusable(true);
-                    tVar.f9751a0.setFocusableInTouchMode(true);
-                    int A1 = tVar.f9757e.A1(1);
-                    if (A1 >= 0 && A1 < tVar.f9757e.f34607g3.E.size()) {
-                        tVar.f9757e.C0();
-                        tVar.f9757e.y0(A1);
+                    tVar.f9748a0.setFocusable(true);
+                    tVar.f9748a0.setFocusableInTouchMode(true);
+                    int A1 = tVar.f9754e.A1(1);
+                    if (A1 >= 0 && A1 < tVar.f9754e.f34607g3.E.size()) {
+                        tVar.f9754e.C0();
+                        tVar.f9754e.y0(A1);
                     }
-                    tVar.f9751a0.requestFocus();
+                    tVar.f9748a0.requestFocus();
                 }
                 return super.dispatchTouchEvent(motionEvent);
             default:

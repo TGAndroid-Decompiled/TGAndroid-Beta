@@ -1,21 +1,21 @@
 package ze;
 public final class c {
-    public static final c f61915e;
-    public boolean f61916a;
-    public boolean f61917b;
-    public boolean f61918c;
+    public static final c f61916e;
+    public boolean f61917a;
+    public boolean f61918b;
+    public boolean f61919c;
     public boolean d;
 
     static {
         ?? obj = new Object();
-        obj.f61916a = true;
-        obj.f61917b = true;
-        obj.f61918c = false;
+        obj.f61917a = true;
+        obj.f61918b = true;
+        obj.f61919c = false;
         obj.d = false;
-        f61915e = obj;
-        obj.f61916a = true;
-        obj.f61917b = true;
-        obj.f61918c = false;
+        f61916e = obj;
+        obj.f61917a = true;
+        obj.f61918b = true;
+        obj.f61919c = false;
         obj.d = false;
     }
 

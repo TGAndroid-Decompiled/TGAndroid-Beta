@@ -14,10 +14,10 @@ public abstract class e50 extends FrameLayout {
     public static boolean e(int i7) {
         aj.a aVar = aj.e.d;
         aVar.a();
-        if (aVar.f1641c) {
+        if (aVar.f1642c) {
             aVar.a();
             return aVar.d;
-        } else if (!((org.telegram.messenger.h0) org.telegram.messenger.mp.u1(i7).A7.m0.f14001b).f24339c) {
+        } else if (!((org.telegram.messenger.h0) org.telegram.messenger.mp.u1(i7).A7.m0.f13998b).f24336c) {
             return true;
         } else {
             return false;
@@ -68,7 +68,7 @@ public abstract class e50 extends FrameLayout {
         this.f34605c = c50Var;
         if (c50Var != null) {
             boolean z10 = this.d;
-            org.telegram.ui.rj rjVar = ((org.telegram.ui.xi) c50Var).f53868a.f45932a0;
+            org.telegram.ui.rj rjVar = ((org.telegram.ui.xi) c50Var).f53836a.f45923a0;
             if (rjVar != null) {
                 rjVar.setRoundVideoUiFrameClockActive(z10);
             }

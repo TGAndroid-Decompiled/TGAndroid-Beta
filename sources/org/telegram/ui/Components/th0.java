@@ -11,9 +11,9 @@ public final class th0 {
         this.f40004a = tLObject;
         this.f40006c = i7;
         if (tLObject instanceof TLRPC.User) {
-            this.f40005b = ((TLRPC.User) tLObject).f28554id;
+            this.f40005b = ((TLRPC.User) tLObject).f28552id;
         } else if (tLObject instanceof TLRPC.Chat) {
-            this.f40005b = -((TLRPC.Chat) tLObject).f28405id;
+            this.f40005b = -((TLRPC.Chat) tLObject).f28403id;
         }
     }
 }

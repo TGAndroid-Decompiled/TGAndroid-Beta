@@ -94,7 +94,7 @@ public class m5 extends Drawable implements u5 {
         lg lgVar = this.M;
         if (i7 > 0) {
             di.ec ecVar = this.F;
-            ecVar.f8735c.set(rect);
+            ecVar.f8732c.set(rect);
             ecVar.e();
             this.F.d();
             di.ec ecVar2 = this.F;
@@ -268,7 +268,7 @@ public class m5 extends Drawable implements u5 {
         int i11;
         Drawable[] drawableArr = this.f37361f;
         Drawable drawable = drawableArr[0];
-        if ((drawable instanceof o5) && document != null && ((o5) drawable).h() == document.f28411id) {
+        if ((drawable instanceof o5) && document != null && ((o5) drawable).h() == document.f28409id) {
             return;
         }
         c6 c6Var = this.d;
@@ -287,7 +287,7 @@ public class m5 extends Drawable implements u5 {
                 if (num != null) {
                     i11 = num.intValue();
                 } else {
-                    i11 = org.telegram.messenger.j10.f24773t0;
+                    i11 = org.telegram.messenger.j10.f24770t0;
                 }
                 o5 l10 = o5.l(i11, i7, document);
                 drawableArr[0] = l10;
@@ -308,7 +308,7 @@ public class m5 extends Drawable implements u5 {
                 if (num2 != null) {
                     i10 = num2.intValue();
                 } else {
-                    i10 = org.telegram.messenger.j10.f24773t0;
+                    i10 = org.telegram.messenger.j10.f24770t0;
                 }
                 drawableArr[0] = o5.l(i10, i7, document);
             } else {
@@ -369,7 +369,7 @@ public class m5 extends Drawable implements u5 {
             if (num != null) {
                 i10 = num.intValue();
             } else {
-                i10 = org.telegram.messenger.j10.f24773t0;
+                i10 = org.telegram.messenger.j10.f24770t0;
             }
             o5 m10 = o5.m(i10, j3, null, i11);
             drawableArr[0] = m10;
@@ -386,7 +386,7 @@ public class m5 extends Drawable implements u5 {
             if (num2 != null) {
                 i7 = num2.intValue();
             } else {
-                i7 = org.telegram.messenger.j10.f24773t0;
+                i7 = org.telegram.messenger.j10.f24770t0;
             }
             drawableArr[0] = o5.m(i7, j3, null, i11);
             if (z11) {

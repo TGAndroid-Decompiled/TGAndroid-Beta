@@ -23,10 +23,10 @@ public final class ir implements Runnable {
                     if (user.phone == null && (str = qrVar.M) != null) {
                         user.phone = pf.b.d(str, false);
                     }
-                    qrVar.f51319b.setText(user.first_name);
-                    org.telegram.ui.Cells.i3 i3Var = qrVar.f51319b.d;
-                    i3Var.setSelection(i3Var.length());
-                    qrVar.f51320c.setText(user.last_name);
+                    qrVar.f51279b.setText(user.first_name);
+                    org.telegram.ui.Cells.j3 j3Var = qrVar.f51279b.d;
+                    j3Var.setSelection(j3Var.length());
+                    qrVar.f51280c.setText(user.last_name);
                 }
                 TLRPC.UserFull d2 = qrVar.getMessagesController().d2(qrVar.I);
                 if (d2 != null) {

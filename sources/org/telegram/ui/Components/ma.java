@@ -29,7 +29,7 @@ public final class ma extends au0 {
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
             sa saVar = this.f37426i0;
-            if (y10 < saVar.f30225s0.getBounds().top) {
+            if (y10 < saVar.f30223s0.getBounds().top) {
                 saVar.dismiss();
             }
         }
@@ -101,9 +101,9 @@ public final class ma extends au0 {
                             } else {
                                 f10 = 320.0f;
                             }
-                            childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size3 - org.telegram.messenger.g0.f24115m)), 1073741824));
+                            childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size3 - org.telegram.messenger.g0.f24112m)), 1073741824));
                         } else {
-                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size3 - org.telegram.messenger.g0.f24115m), 1073741824));
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size3 - org.telegram.messenger.g0.f24112m), 1073741824));
                         }
                     } else {
                         i11 = i7;

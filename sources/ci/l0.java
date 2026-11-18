@@ -6,38 +6,38 @@ import org.telegram.messenger.fs;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.q10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.m8;
+import org.telegram.ui.Cells.n8;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.rq;
 public final class l0 implements q10 {
-    public final int f5712a;
-    public final boolean f5713b;
-    public final fs f5714c;
+    public final int f5709a;
+    public final boolean f5710b;
+    public final fs f5711c;
     public final Object d;
 
     public l0(fs fsVar, Object obj, boolean z10, int i7) {
-        this.f5712a = i7;
-        this.f5714c = fsVar;
+        this.f5709a = i7;
+        this.f5711c = fsVar;
         this.d = obj;
-        this.f5713b = z10;
+        this.f5710b = z10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String str;
-        int i7 = this.f5712a;
+        int i7 = this.f5709a;
         boolean z10 = false;
-        boolean z11 = this.f5713b;
+        boolean z11 = this.f5710b;
         Object obj3 = this.d;
-        fs fsVar = this.f5714c;
+        fs fsVar = this.f5711c;
         switch (i7) {
             case 0:
                 o0 o0Var = (o0) fsVar;
                 TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                z0 z0Var = o0Var.f5732b;
-                if (o0Var.f5736n == ((int[]) obj3)[0] && !o0Var.F) {
-                    o0Var.f5736n = 0;
+                z0 z0Var = o0Var.f5729b;
+                if (o0Var.f5733n == ((int[]) obj3)[0] && !o0Var.F) {
+                    o0Var.f5733n = 0;
                     boolean z12 = true;
                     if (tL_exportedNoPaidMessagesToken == null) {
                         String str2 = null;
@@ -47,7 +47,7 @@ public final class l0 implements q10 {
                             str = null;
                         }
                         a8.d("QrShare: exportNoPaidMessagesToken " + str);
-                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = o0Var.f5735f;
+                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = o0Var.f5732f;
                         if (tL_exportedNoPaidMessagesToken2 != null) {
                             if (tL_exportedNoPaidMessagesToken2.expires == 0) {
                                 z12 = false;
@@ -63,7 +63,7 @@ public final class l0 implements q10 {
                         }
                         o0Var.d = 0;
                         o0Var.f().edit().putBoolean("qrNoPaidPermanent", false).apply();
-                        if (z0Var.f6068w0) {
+                        if (z0Var.f6065w0) {
                             if (str != null) {
                                 str2 = gd.M0(2131751094, null);
                             }
@@ -85,7 +85,7 @@ public final class l0 implements q10 {
                             if (tL_exportedNoPaidMessagesToken.expires == 0) {
                                 o0Var.f().edit().putString("qrNoPaidToken", tL_exportedNoPaidMessagesToken.token).putString("qrNoPaidUrl", tL_exportedNoPaidMessagesToken.url).apply();
                             }
-                            o0Var.f5735f = tL_exportedNoPaidMessagesToken;
+                            o0Var.f5732f = tL_exportedNoPaidMessagesToken;
                             o0Var.h = SystemClock.elapsedRealtime();
                             z0Var.setFreeLink(o0Var.d(tL_exportedNoPaidMessagesToken));
                             return;
@@ -97,7 +97,7 @@ public final class l0 implements q10 {
                 return;
             default:
                 rq rqVar = (rq) fsVar;
-                m8 m8Var = (m8) obj3;
+                n8 n8Var = (n8) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (updates != null) {
@@ -106,7 +106,7 @@ public final class l0 implements q10 {
                 }
                 rqVar.getClass();
                 if (tL_error2 != null) {
-                    m8Var.setChecked(z11);
+                    n8Var.setChecked(z11);
                     lc.b0(rqVar).g0(tL_error2, false);
                     return;
                 }

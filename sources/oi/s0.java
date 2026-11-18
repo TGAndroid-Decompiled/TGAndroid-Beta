@@ -10,7 +10,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class s0 extends k41 {
-    public static final int f22316b = 0;
+    public static final int f22313b = 0;
 
     static {
         k41.h(new k41());
@@ -20,9 +20,9 @@ public final class s0 extends k41 {
     public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
         t0 t0Var = (t0) view;
         a aVar = (a) l41Var.H;
-        t0Var.f22442a = aVar;
-        t0Var.f22365w = (p2) l41Var.I;
-        t0Var.f22366x = gd.f24216a0;
+        t0Var.f22439a = aVar;
+        t0Var.f22362w = (p2) l41Var.I;
+        t0Var.f22363x = gd.f24213a0;
         t0Var.c(aVar);
     }
 

@@ -42,7 +42,7 @@ public final class a extends LinearLayout {
                 c6 c6Var = (c6) this.f1056e;
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.d;
-                paint.setColor(n6.w0(n6.f29339a7, (i6) this.f1054b));
+                paint.setColor(n6.w0(n6.f29337a7, (i6) this.f1054b));
                 ck0 ck0Var = (ck0) this.f1055c;
                 float f10 = 1.0f;
                 if (ck0Var != null) {
@@ -93,7 +93,7 @@ public final class a extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f1054b = textView;
-        int i7 = n6.f29788y6;
+        int i7 = n6.f29786y6;
         u6.U(textView, i7, i6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
@@ -129,8 +129,8 @@ public final class a extends LinearLayout {
         frameLayout.addView(uaVar, ma.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
         this.f1054b = mVar;
-        vg.f fVar = mVar.f59462b;
-        fVar.f59446z = n6.Wk;
+        vg.f fVar = mVar.f59463b;
+        fVar.f59447z = n6.Wk;
         fVar.A = n6.Xk;
         fVar.b();
         mVar.setStarParticlesView(uaVar);
@@ -145,7 +145,7 @@ public final class a extends LinearLayout {
         TextView textView = new TextView(context);
         this.d = textView;
         i5.c.x(textView, 1, 20.0f);
-        int i10 = n6.f29504j5;
+        int i10 = n6.f29502j5;
         u6.U(textView, i10, i6Var);
         textView.setGravity(17);
         addView(textView, ma.t(-2, -2, 1, 0, 2, 0, 0));

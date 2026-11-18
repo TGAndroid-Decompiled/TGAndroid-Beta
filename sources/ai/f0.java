@@ -1,6 +1,6 @@
 package ai;
 
-import bi.d6;
+import bi.c6;
 import java.util.HashMap;
 import org.telegram.messenger.ep;
 import org.telegram.messenger.mp;
@@ -63,9 +63,9 @@ public final class f0 implements Runnable {
                 long j13 = this.f1192b;
                 long j14 = this.f1193c;
                 n1Var.h = j13;
-                n1Var.f53259n = j14;
-                d6 d6Var = n1Var.f33530a;
-                if (d6Var != null && (z41Var = d6Var.f34607g3) != null && d6Var.H) {
+                n1Var.f53210n = j14;
+                c6 c6Var = n1Var.f33530a;
+                if (c6Var != null && (z41Var = c6Var.f34607g3) != null && c6Var.H) {
                     z41Var.O(true);
                     return;
                 }
@@ -76,9 +76,9 @@ public final class f0 implements Runnable {
                 long j16 = this.f1193c;
                 if (jVar.G == 7) {
                     long j17 = ((j15 - j16) * 48000) / 1000;
-                    jVar.f61329p = j17;
-                    jVar.f61331r = 0L;
-                    jVar.f61332s = yi.j.r(j17);
+                    jVar.f61330p = j17;
+                    jVar.f61332r = 0L;
+                    jVar.f61333s = yi.j.r(j17);
                     jVar.i();
                     return;
                 }
@@ -87,11 +87,11 @@ public final class f0 implements Runnable {
                 long j18 = this.f1192b;
                 long j19 = this.f1193c;
                 yi.j jVar2 = (yi.j) ((ac.e) this.d).f1022c;
-                if (j18 == jVar2.f61328o) {
-                    jVar2.f61327n = null;
-                    jVar2.f61329p += j19;
-                    jVar2.f61330q = 0L;
-                    jVar2.f61322i.removeCallbacks(jVar2.D);
+                if (j18 == jVar2.f61329o) {
+                    jVar2.f61328n = null;
+                    jVar2.f61330p += j19;
+                    jVar2.f61331q = 0L;
+                    jVar2.f61323i.removeCallbacks(jVar2.D);
                     int i7 = jVar2.G;
                     if (i7 == 10) {
                         jVar2.c();
@@ -107,15 +107,15 @@ public final class f0 implements Runnable {
                         jVar2.i();
                         return;
                     } else if (i7 == 4) {
-                        yi.h hVar2 = jVar2.f61338z;
+                        yi.h hVar2 = jVar2.f61339z;
                         if (hVar2 == null) {
                             jVar2.g(new IllegalStateException("Output generation is missing"));
                             return;
                         }
                         long j20 = jVar2.j();
-                        jVar2.f61331r = 0L;
-                        jVar2.f61332s = j20;
-                        jVar2.f61323j.execute(new org.telegram.utils.recorder.audio.c(1, jVar2, hVar2));
+                        jVar2.f61332r = 0L;
+                        jVar2.f61333s = j20;
+                        jVar2.f61324j.execute(new org.telegram.utils.recorder.audio.c(1, jVar2, hVar2));
                         return;
                     } else {
                         return;

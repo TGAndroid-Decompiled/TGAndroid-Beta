@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class al implements q10 {
-    public final int f22921a;
-    public final mp f22922b;
+    public final int f22918a;
+    public final mp f22919b;
 
     public al(mp mpVar, int i7) {
-        this.f22921a = i7;
-        this.f22922b = mpVar;
+        this.f22918a = i7;
+        this.f22919b = mpVar;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f22921a) {
+        switch (this.f22918a) {
             case 0:
                 Long l10 = (Long) obj;
-                g0.g3(new jl(this.f22922b, (TL_account.TL_webBrowserSettings) obj2, 0));
+                g0.g3(new jl(this.f22919b, (TL_account.TL_webBrowserSettings) obj2, 0));
                 return;
             case 1:
                 TL_account.WebBrowserSettings webBrowserSettings = (TL_account.WebBrowserSettings) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 boolean z10 = webBrowserSettings instanceof TL_account.TL_webBrowserSettings;
-                mp mpVar = this.f22922b;
+                mp mpVar = this.f22919b;
                 if (z10) {
                     mpVar.c5((TL_account.TL_webBrowserSettings) webBrowserSettings);
                     return;
@@ -34,7 +34,7 @@ public final class al implements q10 {
             case 2:
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                mp mpVar2 = this.f22922b;
+                mp mpVar2 = this.f22919b;
                 if (updates != null) {
                     mpVar2.V3(updates, false);
                     return;
@@ -45,7 +45,7 @@ public final class al implements q10 {
             case 3:
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                mp mpVar3 = this.f22922b;
+                mp mpVar3 = this.f22919b;
                 if (updates2 != null) {
                     mpVar3.V3(updates2, false);
                 }
@@ -54,7 +54,7 @@ public final class al implements q10 {
             case 4:
                 TLRPC.Updates updates3 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                mp mpVar4 = this.f22922b;
+                mp mpVar4 = this.f22919b;
                 if (updates3 != null) {
                     mpVar4.V3(updates3, false);
                 }
@@ -63,7 +63,7 @@ public final class al implements q10 {
             case 5:
                 TLRPC.EmojiGameInfo emojiGameInfo = (TLRPC.EmojiGameInfo) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
-                mp mpVar5 = this.f22922b;
+                mp mpVar5 = this.f22919b;
                 if (emojiGameInfo != null) {
                     mpVar5.C8 = emojiGameInfo;
                 }
@@ -81,7 +81,7 @@ public final class al implements q10 {
                 TL_account.WebBrowserSettings webBrowserSettings2 = (TL_account.WebBrowserSettings) obj;
                 TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj2;
                 boolean z11 = webBrowserSettings2 instanceof TL_account.TL_webBrowserSettings;
-                mp mpVar6 = this.f22922b;
+                mp mpVar6 = this.f22919b;
                 if (z11) {
                     mpVar6.c5((TL_account.TL_webBrowserSettings) webBrowserSettings2);
                     return;

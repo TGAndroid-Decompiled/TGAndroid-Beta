@@ -28,7 +28,7 @@ public final class al0 extends Transition {
                 transitionValues.values.put("start", Boolean.FALSE);
                 Map map = transitionValues.values;
                 iw0 iw0Var = (iw0) this.f33363b;
-                map.put("offset", Integer.valueOf(iw0Var.f30192b.getTop() + iw0Var.Z1));
+                map.put("offset", Integer.valueOf(iw0Var.f30190b.getTop() + iw0Var.Z1));
                 return;
             case 2:
                 View view = transitionValues.view;
@@ -58,7 +58,7 @@ public final class al0 extends Transition {
                 transitionValues.values.put("start", Boolean.TRUE);
                 Map map = transitionValues.values;
                 iw0 iw0Var = (iw0) this.f33363b;
-                map.put("offset", Integer.valueOf(iw0Var.f30192b.getTop() + iw0Var.Z1));
+                map.put("offset", Integer.valueOf(iw0Var.f30190b.getTop() + iw0Var.Z1));
                 return;
             case 2:
                 View view = transitionValues.view;

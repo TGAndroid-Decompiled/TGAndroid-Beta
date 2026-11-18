@@ -69,7 +69,7 @@ public final class ei0 extends FrameLayout {
         v4.c0 c0Var = new v4.c0();
         wh0Var.setLayoutManager(c0Var);
         if (Build.VERSION.SDK_INT >= 29) {
-            wh0Var.setVerticalScrollbarThumbDrawable(new ColorDrawable(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29488i6, false)));
+            wh0Var.setVerticalScrollbarThumbDrawable(new ColorDrawable(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29486i6, false)));
         }
         xh0 xh0Var = new xh0(this, i7, context, i6Var, z10);
         this.f34714f = xh0Var;
@@ -82,7 +82,7 @@ public final class ei0 extends FrameLayout {
         addView(wh0Var, c8.ma.c(-1.0f, -1));
         zh0 zh0Var = new zh0(this, context, i6Var);
         this.h = zh0Var;
-        zh0Var.e(org.telegram.ui.ActionBar.n6.G8, org.telegram.ui.ActionBar.n6.f29488i6, -1);
+        zh0Var.e(org.telegram.ui.ActionBar.n6.G8, org.telegram.ui.ActionBar.n6.f29486i6, -1);
         zh0Var.setIsSingleCell(true);
         zh0Var.setItemsCount(this.f34710a);
         addView(zh0Var, c8.ma.c(-1.0f, -1));
@@ -125,7 +125,7 @@ public final class ei0 extends FrameLayout {
                     i11++;
                 }
                 ch.p0 d = ch.p0.d(tL_messages_messageReactionsList.reactions.get(i10).reaction);
-                if (d.f5479g != 0) {
+                if (d.f5476g != 0) {
                     hashSet.add(d);
                 }
                 arrayList3.add(tL_messages_messageReactionsList.reactions.get(i10));
@@ -171,8 +171,8 @@ public final class ei0 extends FrameLayout {
         org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(i7);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
         org.telegram.messenger.fj fjVar = this.f34712c;
-        tL_messages_getMessageReactionsList.peer = u12.l1(org.telegram.messenger.fj.B0(fjVar.f23968k));
-        tL_messages_getMessageReactionsList.f28500id = fjVar.e1();
+        tL_messages_getMessageReactionsList.peer = u12.l1(org.telegram.messenger.fj.B0(fjVar.f23965k));
+        tL_messages_getMessageReactionsList.f28498id = fjVar.e1();
         tL_messages_getMessageReactionsList.limit = getLoadCount();
         TLRPC.Reaction reaction = this.d;
         tL_messages_getMessageReactionsList.reaction = reaction;
@@ -241,11 +241,11 @@ public final class ei0 extends FrameLayout {
                 if (tLObject2 instanceof TLRPC.User) {
                     TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                     tL_messagePeerReaction.peer_id = tL_peerUser;
-                    tL_peerUser.user_id = ((TLRPC.User) tLObject2).f28554id;
+                    tL_peerUser.user_id = ((TLRPC.User) tLObject2).f28552id;
                 } else if (tLObject2 instanceof TLRPC.Chat) {
                     TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
                     tL_messagePeerReaction.peer_id = tL_peerChat;
-                    tL_peerChat.chat_id = ((TLRPC.Chat) tLObject2).f28405id;
+                    tL_peerChat.chat_id = ((TLRPC.Chat) tLObject2).f28403id;
                 }
                 tL_messagePeerReaction.date = th0Var2.f40006c;
                 tL_messagePeerReaction.dateIsSeen = true;
@@ -276,10 +276,10 @@ public final class ei0 extends FrameLayout {
             if (i10 >= size) {
                 break;
             }
-            TLRPC.InputStickerSet i12 = org.telegram.messenger.fj.i1(o5.e(i7, ((ch.p0) arrayList3.get(i10)).f5479g));
-            if (i12 != null && !hashSet.contains(Long.valueOf(i12.f28425id))) {
+            TLRPC.InputStickerSet i12 = org.telegram.messenger.fj.i1(o5.e(i7, ((ch.p0) arrayList3.get(i10)).f5476g));
+            if (i12 != null && !hashSet.contains(Long.valueOf(i12.f28423id))) {
                 arrayList2.add(i12);
-                hashSet.add(Long.valueOf(i12.f28425id));
+                hashSet.add(Long.valueOf(i12.f28423id));
             }
             i10++;
         }

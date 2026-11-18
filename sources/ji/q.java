@@ -14,24 +14,24 @@ import java.util.HashMap;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.mz;
 public final class q {
-    public float[] f18052a;
-    public int f18053b;
-    public int f18054c;
+    public float[] f18049a;
+    public int f18050b;
+    public int f18051c;
     public int d;
-    public int f18055e;
-    public Object f18056f;
-    public Object f18057g;
+    public int f18052e;
+    public Object f18053f;
+    public Object f18054g;
 
     public q(int i7) {
         switch (i7) {
             case 1:
-                this.f18052a = new float[8];
+                this.f18049a = new float[8];
                 return;
             default:
-                this.f18053b = -1;
-                this.f18054c = 1;
-                this.f18056f = new float[126];
-                this.f18057g = new byte[4096];
+                this.f18050b = -1;
+                this.f18051c = 1;
+                this.f18053f = new float[126];
+                this.f18054g = new byte[4096];
                 return;
         }
     }
@@ -56,26 +56,26 @@ public final class q {
         int i16;
         Bitmap bitmap2;
         Paint paint;
-        float[] fArr = this.f18052a;
+        float[] fArr = this.f18049a;
         if (!str.isEmpty()) {
             if (i7 >= 0 && i10 >= 0) {
-                bc.b bVar2 = bc.b.f3110a;
+                bc.b bVar2 = bc.b.f3111a;
                 if (hashMap.containsKey(bVar2)) {
                     bVar = gc.b.valueOf(hashMap.get(bVar2).toString());
                 } else {
                     bVar = gc.b.L;
                 }
-                bc.b bVar3 = bc.b.f3112c;
+                bc.b bVar3 = bc.b.f3113c;
                 if (hashMap.containsKey(bVar3)) {
                     i13 = Integer.parseInt(hashMap.get(bVar3).toString());
                 } else {
                     i13 = 4;
                 }
                 cc.c cVar = (cc.c) ic.b.b(str, bVar, hashMap).f194f;
-                this.f18056f = cVar;
+                this.f18053f = cVar;
                 if (cVar != null) {
-                    int i17 = cVar.f5162b;
-                    int i18 = cVar.f5163c;
+                    int i17 = cVar.f5159b;
+                    int i18 = cVar.f5160c;
                     for (int i19 = 0; i19 < i17 && b(i19, 0); i19++) {
                         this.d++;
                     }
@@ -99,15 +99,15 @@ public final class q {
                     gradientDrawable.setCornerRadii(fArr);
                     float f15 = min;
                     int round = Math.round((i23 / 4.65f) / f15);
-                    this.f18053b = round;
+                    this.f18050b = round;
                     int i25 = 1;
                     if (round % 2 != i17 % 2) {
-                        this.f18053b = round + 1;
+                        this.f18050b = round + 1;
                     }
-                    int i26 = this.f18053b;
-                    this.f18054c = (i17 - i26) / 2;
+                    int i26 = this.f18050b;
+                    this.f18051c = (i17 - i26) / 2;
                     int i27 = (i26 * min) - 24;
-                    this.f18055e = i27;
+                    this.f18052e = i27;
                     int i28 = (i24 - i27) / 2;
                     paint2.setColor(i12);
                     float f16 = this.d;
@@ -297,14 +297,14 @@ public final class q {
                         i31 += min;
                         i14 = 16;
                     }
-                    Drawable drawable = (Drawable) this.f18057g;
+                    Drawable drawable = (Drawable) this.f18054g;
                     if (drawable != null) {
-                        int i41 = i30 + this.f18055e;
+                        int i41 = i30 + this.f18052e;
                         drawable.setBounds(i30, i30, i41, i41);
-                        ((Drawable) this.f18057g).draw(canvas);
+                        ((Drawable) this.f18054g).draw(canvas);
                     } else {
                         String y22 = g0.y2(null, 2131624171);
-                        int i42 = this.f18055e;
+                        int i42 = this.f18052e;
                         Bitmap e10 = mz.e(i42, i42, y22);
                         float f29 = i30;
                         canvas.drawBitmap(e10, f29, f29, (Paint) null);
@@ -321,20 +321,20 @@ public final class q {
     }
 
     public boolean b(int i7, int i10) {
-        int i11 = this.f18054c;
+        int i11 = this.f18051c;
         if (i7 >= i11) {
-            int i12 = this.f18053b;
+            int i12 = this.f18050b;
             if (i7 < i11 + i12 && i10 >= i11 && i10 < i11 + i12) {
                 return false;
             }
         }
         int i13 = this.d;
-        if ((i7 < i13 || i7 >= ((cc.c) this.f18056f).f5162b - i13) && i10 < i13) {
+        if ((i7 < i13 || i7 >= ((cc.c) this.f18053f).f5159b - i13) && i10 < i13) {
             return false;
         }
-        if ((i7 >= i13 || i10 < ((cc.c) this.f18056f).f5163c - i13) && i7 >= 0 && i10 >= 0) {
-            cc.c cVar = (cc.c) this.f18056f;
-            if (i7 < cVar.f5162b && i10 < cVar.f5163c && cVar.e(i7, i10) == 1) {
+        if ((i7 >= i13 || i10 < ((cc.c) this.f18053f).f5160c - i13) && i7 >= 0 && i10 >= 0) {
+            cc.c cVar = (cc.c) this.f18053f;
+            if (i7 < cVar.f5159b && i10 < cVar.f5160c && cVar.e(i7, i10) == 1) {
                 return true;
             }
         }

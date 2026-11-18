@@ -41,9 +41,9 @@ public final class se0 extends org.telegram.ui.j4 {
             case 0:
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f39615n;
-                if (view == pipRoundVideoView.f33003c && (fjVar = MediaController.B().f22743v0) != null) {
+                if (view == pipRoundVideoView.f33003c && (fjVar = MediaController.B().f22740v0) != null) {
                     pipRoundVideoView.F.set(org.telegram.messenger.g0.N(1.5f), org.telegram.messenger.g0.N(1.5f), getMeasuredWidth() - org.telegram.messenger.g0.N(1.5f), getMeasuredHeight() - org.telegram.messenger.g0.N(1.5f));
-                    canvas.drawArc(pipRoundVideoView.F, -90.0f, fjVar.f23928b0 * 360.0f, false, org.telegram.ui.ActionBar.n6.f29521k2);
+                    canvas.drawArc(pipRoundVideoView.F, -90.0f, fjVar.f23925b0 * 360.0f, false, org.telegram.ui.ActionBar.n6.f29519k2);
                 }
                 return drawChild;
             case 1:

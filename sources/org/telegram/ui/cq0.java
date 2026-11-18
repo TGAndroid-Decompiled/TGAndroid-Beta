@@ -7,19 +7,19 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 public final class cq0 implements ViewTreeObserver.OnPreDrawListener {
-    public final uq0 f46615a;
-    public final Integer f46616b;
-    public final PhotoViewer f46617c;
+    public final uq0 f46595a;
+    public final Integer f46596b;
+    public final PhotoViewer f46597c;
 
     public cq0(PhotoViewer photoViewer, uq0 uq0Var, Integer num) {
-        this.f46617c = photoViewer;
-        this.f46615a = uq0Var;
-        this.f46616b = num;
+        this.f46597c = photoViewer;
+        this.f46595a = uq0Var;
+        this.f46596b = num;
     }
 
     @Override
     public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f46617c;
+        PhotoViewer photoViewer = this.f46597c;
         photoViewer.f43226h0.getViewTreeObserver().removeOnPreDrawListener(this);
         photoViewer.G.setTranslationY(-org.telegram.messenger.g0.L(32.0f));
         ViewPropertyAnimator duration = photoViewer.G.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);

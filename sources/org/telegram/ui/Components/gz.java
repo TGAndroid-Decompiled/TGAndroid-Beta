@@ -23,7 +23,7 @@ public final class gz implements pj0, qj0 {
     public void f(float f10, float f11, int i7, View view) {
         pz pzVar = this.f35667a;
         lz lzVar = pzVar.K;
-        if (!((org.telegram.ui.tw) lzVar).f52368b.f46713l2) {
+        if (!((org.telegram.ui.tw) lzVar).f52363b.f46693l2) {
             nz nzVar = (nz) view;
             if (pzVar.f38631n) {
                 if (i7 != 0) {
@@ -32,11 +32,11 @@ public final class gz implements pj0, qj0 {
                     float f12 = L;
                     if (rectF.left - f12 < f10 && rectF.right + f12 > f10) {
                         org.telegram.ui.tw twVar = (org.telegram.ui.tw) pzVar.K;
-                        twVar.d((org.telegram.messenger.ro) twVar.f52368b.getMessagesController().V0().get(nzVar.f37888b.f37668a));
+                        twVar.d((org.telegram.messenger.ro) twVar.f52363b.getMessagesController().V0().get(nzVar.f37888b.f37668a));
                     }
                 }
             } else if (i7 == pzVar.L && lzVar != null) {
-                ((org.telegram.ui.tw) lzVar).f52368b.R4(true, false);
+                ((org.telegram.ui.tw) lzVar).f52363b.R4(true, false);
             } else {
                 pzVar.g(nzVar.f37888b, i7);
             }

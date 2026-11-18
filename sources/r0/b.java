@@ -11,7 +11,7 @@ import android.view.accessibility.AccessibilityNodeProvider;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.List;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 public class b {
     public static final View.AccessibilityDelegate f56215c = new View.AccessibilityDelegate();
     public final View.AccessibilityDelegate f56216a;
@@ -21,10 +21,10 @@ public class b {
         this(f56215c);
     }
 
-    public b5 a(View view) {
+    public c5 a(View view) {
         AccessibilityNodeProvider accessibilityNodeProvider = this.f56216a.getAccessibilityNodeProvider(view);
         if (accessibilityNodeProvider != null) {
-            return new b5(accessibilityNodeProvider);
+            return new c5(accessibilityNodeProvider);
         }
         return null;
     }

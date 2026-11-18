@@ -26,26 +26,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ng0;
 public final class v extends FrameLayout implements Checkable {
-    public final boolean f32140a;
-    public final TextView f32141b;
-    public final TextView f32142c;
+    public final boolean f32053a;
+    public final TextView f32054b;
+    public final TextView f32055c;
     public final org.telegram.ui.Components.q9 d;
-    public final ng0 f32143e;
-    public final ng0 f32144f;
+    public final ng0 f32056e;
+    public final ng0 f32057f;
     public boolean h;
-    public Button f32145n;
-    public AnimatorSet f32146r;
-    public TLRPC.StickerSetCovered f32147s;
-    public u f32148w;
-    public boolean f32149x;
+    public Button f32058n;
+    public AnimatorSet f32059r;
+    public TLRPC.StickerSetCovered f32060s;
+    public u f32061w;
+    public boolean f32062x;
 
     public v(Context context, boolean z10) {
         super(context);
-        this.f32140a = z10;
+        this.f32053a = z10;
         if (z10) {
             ng0 ng0Var = new ng0(context);
-            this.f32144f = ng0Var;
-            this.f32145n = ng0Var;
+            this.f32057f = ng0Var;
+            this.f32058n = ng0Var;
             ng0Var.setText(gd.M0(2131754484, null));
             org.telegram.ui.ActionBar.u6.U(ng0Var, org.telegram.ui.ActionBar.n6.Ji, null);
             ng0Var.setProgressColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ei, false));
@@ -60,7 +60,7 @@ public final class v extends FrameLayout implements Checkable {
             addView(ng0Var, c8.ma.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
             int L = org.telegram.messenger.g0.L(60.0f);
             ng0 ng0Var2 = new ng0(context);
-            this.f32143e = ng0Var2;
+            this.f32056e = ng0Var2;
             ng0Var2.setAllCaps(false);
             ng0Var2.setMinWidth(L);
             ng0Var2.setMinimumWidth(L);
@@ -81,11 +81,11 @@ public final class v extends FrameLayout implements Checkable {
             ng0Var2.setOnClickListener(aVar);
             c(false);
         } else {
-            this.f32144f = null;
-            this.f32143e = null;
+            this.f32057f = null;
+            this.f32056e = null;
         }
         TextView textView = new TextView(context);
-        this.f32141b = textView;
+        this.f32054b = textView;
         org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, null);
         n10.q(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
@@ -93,8 +93,8 @@ public final class v extends FrameLayout implements Checkable {
         textView.setGravity(c8.ma.y());
         addView(textView, c8.ma.i(-2.0f, -2.0f, 8388611, 71.0f, 10.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f32142c = textView2;
-        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29807z6, null);
+        this.f32055c = textView2;
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29805z6, null);
         n10.q(textView2, 1, 13.0f, 1, 1);
         textView2.setSingleLine(true);
         textView2.setGravity(c8.ma.y());
@@ -109,23 +109,23 @@ public final class v extends FrameLayout implements Checkable {
     public final void a(boolean z10, boolean z11, boolean z12) {
         u uVar;
         int i7;
-        if (this.f32140a && this.f32149x != z10) {
-            this.f32149x = z10;
+        if (this.f32053a && this.f32062x != z10) {
+            this.f32062x = z10;
             c(z11);
-            if (z12 && (uVar = this.f32148w) != null) {
+            if (z12 && (uVar = this.f32061w) != null) {
                 oi.e0 e0Var = (oi.e0) uVar;
-                org.telegram.ui.o oVar = ((org.telegram.ui.n) e0Var.f22008b).d;
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) e0Var.f22009c;
-                a0.h hVar = oVar.f50378a;
+                org.telegram.ui.o oVar = ((org.telegram.ui.n) e0Var.f22005b).d;
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) e0Var.f22006c;
+                a0.h hVar = oVar.f50362a;
                 int i10 = 1;
                 if (z10) {
                     a(false, false, false);
-                    if (hVar.h(stickerSetCovered.set.f28432id) < 0) {
-                        ng0 ng0Var = this.f32144f;
+                    if (hVar.h(stickerSetCovered.set.f28430id) < 0) {
+                        ng0 ng0Var = this.f32057f;
                         if (ng0Var != null) {
                             ng0Var.a(true, true);
                         }
-                        hVar.k(stickerSetCovered, stickerSetCovered.set.f28432id);
+                        hVar.k(stickerSetCovered, stickerSetCovered.set.f28430id);
                     } else {
                         return;
                     }
@@ -145,12 +145,12 @@ public final class v extends FrameLayout implements Checkable {
         TLRPC.Document document;
         fc k10;
         this.h = z10;
-        this.f32147s = stickerSetCovered;
+        this.f32060s = stickerSetCovered;
         setWillNotDraw(!z10);
-        this.f32141b.setText(this.f32147s.set.title);
+        this.f32054b.setText(this.f32060s.set.title);
         TLRPC.StickerSet stickerSet = stickerSetCovered.set;
         boolean z11 = stickerSet.emojis;
-        TextView textView = this.f32142c;
+        TextView textView = this.f32055c;
         if (z11) {
             textView.setText(gd.G(stickerSet.count, "EmojiCount", new Object[0]));
         } else {
@@ -166,7 +166,7 @@ public final class v extends FrameLayout implements Checkable {
             while (true) {
                 if (i7 < arrayList.size()) {
                     document = arrayList.get(i7);
-                    if (document != null && document.f28411id == j3) {
+                    if (document != null && document.f28409id == j3) {
                         break;
                     }
                     i7++;
@@ -194,7 +194,7 @@ public final class v extends FrameLayout implements Checkable {
             if (w10 == null) {
                 w10 = document;
             }
-            lz d = org.telegram.messenger.u5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.n6.f29339a7, 1.0f, false);
+            lz d = org.telegram.messenger.u5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.n6.f29337a7, 1.0f, false);
             boolean z12 = w10 instanceof TLRPC.Document;
             if (z12) {
                 k10 = fc.c(org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false), document);
@@ -210,7 +210,7 @@ public final class v extends FrameLayout implements Checkable {
                     q9Var.l(fc.b(document), "50_50", fcVar, null, 0, stickerSetCovered);
                     return;
                 }
-            } else if (fcVar != null && fcVar.f23880p == 1) {
+            } else if (fcVar != null && fcVar.f23877p == 1) {
                 q9Var.k(fcVar, "50_50", "tgs", d, stickerSetCovered);
                 return;
             } else {
@@ -225,12 +225,12 @@ public final class v extends FrameLayout implements Checkable {
         float f10;
         int i7;
         ng0 ng0Var;
-        if (this.f32140a) {
-            AnimatorSet animatorSet = this.f32146r;
+        if (this.f32053a) {
+            AnimatorSet animatorSet = this.f32059r;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            boolean z11 = this.f32149x;
+            boolean z11 = this.f32062x;
             float f11 = 0.0f;
             if (z11) {
                 f10 = 1.0f;
@@ -241,21 +241,21 @@ public final class v extends FrameLayout implements Checkable {
                 f11 = 1.0f;
             }
             int i10 = 4;
-            ng0 ng0Var2 = this.f32144f;
-            ng0 ng0Var3 = this.f32143e;
+            ng0 ng0Var2 = this.f32057f;
+            ng0 ng0Var3 = this.f32056e;
             if (z10) {
                 if (z11) {
                     ng0Var = ng0Var3;
                 } else {
                     ng0Var = ng0Var2;
                 }
-                this.f32145n = ng0Var;
+                this.f32058n = ng0Var;
                 ng0Var2.setVisibility(0);
                 ng0Var3.setVisibility(0);
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f32146r = animatorSet2;
+                this.f32059r = animatorSet2;
                 animatorSet2.setDuration(250L);
-                AnimatorSet animatorSet3 = this.f32146r;
+                AnimatorSet animatorSet3 = this.f32059r;
                 Property property = View.ALPHA;
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ng0Var3, property, f10);
                 Property property2 = View.SCALE_X;
@@ -263,9 +263,9 @@ public final class v extends FrameLayout implements Checkable {
                 float[] fArr = {f10};
                 Property property3 = View.SCALE_Y;
                 animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(ng0Var3, property3, fArr), ObjectAnimator.ofFloat(ng0Var2, property, f11), ObjectAnimator.ofFloat(ng0Var2, property2, f11), ObjectAnimator.ofFloat(ng0Var2, property3, f11));
-                this.f32146r.addListener(new ki.n3(this, 22));
-                this.f32146r.setInterpolator(new OvershootInterpolator(1.02f));
-                this.f32146r.start();
+                this.f32059r.addListener(new ki.n3(this, 22));
+                this.f32059r.setInterpolator(new OvershootInterpolator(1.02f));
+                this.f32059r.start();
                 return;
             }
             if (z11) {
@@ -277,7 +277,7 @@ public final class v extends FrameLayout implements Checkable {
             ng0Var3.setAlpha(f10);
             ng0Var3.setScaleX(f10);
             ng0Var3.setScaleY(f10);
-            if (!this.f32149x) {
+            if (!this.f32062x) {
                 i10 = 0;
             }
             ng0Var2.setVisibility(i10);
@@ -288,18 +288,18 @@ public final class v extends FrameLayout implements Checkable {
     }
 
     public TLRPC.StickerSetCovered getStickersSet() {
-        return this.f32147s;
+        return this.f32060s;
     }
 
     @Override
     public final boolean isChecked() {
-        return this.f32149x;
+        return this.f32062x;
     }
 
     @Override
     public final void measureChildWithMargins(View view, int i7, int i10, int i11, int i12) {
-        if (this.f32140a && view == this.f32141b) {
-            i10 += Math.max(this.f32144f.getMeasuredWidth(), this.f32143e.getMeasuredWidth());
+        if (this.f32053a && view == this.f32054b) {
+            i10 += Math.max(this.f32057f.getMeasuredWidth(), this.f32056e.getMeasuredWidth());
         }
         super.measureChildWithMargins(view, i7, i10, i11, i12);
     }
@@ -307,7 +307,7 @@ public final class v extends FrameLayout implements Checkable {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.h) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.n6.f29519k0);
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.n6.f29517k0);
         }
     }
 
@@ -322,13 +322,13 @@ public final class v extends FrameLayout implements Checkable {
     }
 
     public void setOnCheckedChangeListener(u uVar) {
-        this.f32148w = uVar;
+        this.f32061w = uVar;
     }
 
     @Override
     public final void toggle() {
-        if (this.f32140a) {
-            setChecked(!this.f32149x);
+        if (this.f32053a) {
+            setChecked(!this.f32062x);
         }
     }
 }

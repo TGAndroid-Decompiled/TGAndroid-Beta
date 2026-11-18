@@ -27,7 +27,7 @@ public final class r61 extends View {
 
     public final void b() {
         Drawable drawable = this.f39049b;
-        this.d.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29461gg, false));
+        this.d.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29459gg, false));
         ShapeDrawable shapeDrawable = this.f39048a;
         if (shapeDrawable != null) {
             org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.hg, false), shapeDrawable);

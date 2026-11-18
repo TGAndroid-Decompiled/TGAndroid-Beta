@@ -13,23 +13,23 @@ import c8.ma;
 import org.telegram.messenger.a8;
 import org.telegram.ui.LaunchActivity;
 public final class b3 extends Dialog {
-    public final k3 f28803a;
-    public final a3 f28804b;
-    public final z2 f28805c;
+    public final k3 f28801a;
+    public final a3 f28802b;
+    public final z2 f28803c;
     public final Paint d;
-    public boolean f28806e;
+    public boolean f28804e;
 
     public b3(k3 k3Var) {
         super(k3Var.mo25d().getContext(), 2131755352);
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f28803a = k3Var;
+        this.f28801a = k3Var;
         l3 mo25d = k3Var.mo25d();
         z2 z2Var = new z2(this, getContext());
-        this.f28805c = z2Var;
-        paint.setColor(n6.x0(null, n6.f29339a7, false));
+        this.f28803c = z2Var;
+        paint.setColor(n6.x0(null, n6.f29337a7, false));
         a3 a3Var = new a3(mo25d);
-        this.f28804b = a3Var;
+        this.f28802b = a3Var;
         setContentView(a3Var, new ViewGroup.LayoutParams(-1, -1));
         a3Var.addView(z2Var, ma.e(-1, -2, 80));
         a3Var.setClipToPadding(false);
@@ -49,8 +49,8 @@ public final class b3 extends Dialog {
             if (org.telegram.messenger.g0.Q1() || k3Var.g() || org.telegram.messenger.g0.u1(T)) {
                 b3 b3Var = new b3(k3Var);
                 if (k3Var.i(b3Var)) {
-                    a3 a3Var = b3Var.f28804b;
-                    View view = (View) a3Var.f28756a;
+                    a3 a3Var = b3Var.f28802b;
+                    View view = (View) a3Var.f28754a;
                     org.telegram.messenger.g0.E2(view);
                     a3Var.addView(view, ma.e(-1, -1, 119));
                 }
@@ -59,11 +59,11 @@ public final class b3 extends Dialog {
     }
 
     public final void c() {
-        this.f28803a.i(null);
-        if (!this.f28806e) {
+        this.f28801a.i(null);
+        if (!this.f28804e) {
             return;
         }
-        this.f28806e = false;
+        this.f28804e = false;
         try {
             super.dismiss();
         } catch (Exception e10) {
@@ -73,7 +73,7 @@ public final class b3 extends Dialog {
 
     @Override
     public final void dismiss() {
-        this.f28803a.a(false);
+        this.f28801a.a(false);
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class b3 extends Dialog {
         org.telegram.messenger.g0.m(attributes);
         window.setAttributes(attributes);
         window.setStatusBarColor(0);
-        a3 a3Var = this.f28804b;
+        a3 a3Var = this.f28802b;
         a3Var.setFitsSystemWindows(true);
         a3Var.setSystemUiVisibility(1792);
         a3Var.setPadding(0, 0, 0, 0);

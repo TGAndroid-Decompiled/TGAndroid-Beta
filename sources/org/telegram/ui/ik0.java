@@ -19,7 +19,7 @@ public final class ik0 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new lk0(this.f48746b, tLObject, 0));
                 return;
             case 1:
-                org.telegram.messenger.g0.g3(new ve0(15, this.f48746b, tL_error));
+                org.telegram.messenger.g0.g3(new we0(15, this.f48746b, tL_error));
                 return;
             case 2:
                 org.telegram.messenger.g0.g3(new lk0(this.f48746b, tLObject, 2));

@@ -28,7 +28,7 @@ public final class e0 implements wi.l {
 
     public static ArrayList a(long j3, t3 t3Var) {
         b20 b20Var;
-        ArrayList arrayList = t3Var.f26940f;
+        ArrayList arrayList = t3Var.f26938f;
         ArrayList arrayList2 = new ArrayList();
         f40 f40Var = f40.C5;
         u3 u3Var = null;
@@ -50,13 +50,13 @@ public final class e0 implements wi.l {
     public static boolean g(t3 t3Var, u3 u3Var, long j3) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo;
-        if (u3Var != t3Var.f26958z && (groupCallParticipant = u3Var.f27119a) != null && !groupCallParticipant.self) {
+        if (u3Var != t3Var.f26956z && (groupCallParticipant = u3Var.f27117a) != null && !groupCallParticipant.self) {
             long B1 = fj.B1(groupCallParticipant.peer);
             if (B1 != j3 && t3Var.d.f(B1) != null) {
-                if (u3Var.f27120b) {
-                    tL_groupCallParticipantVideo = u3Var.f27119a.presentation;
+                if (u3Var.f27118b) {
+                    tL_groupCallParticipantVideo = u3Var.f27117a.presentation;
                 } else {
-                    tL_groupCallParticipantVideo = u3Var.f27119a.video;
+                    tL_groupCallParticipantVideo = u3Var.f27117a.video;
                 }
                 if (tL_groupCallParticipantVideo != null && j(u3Var) != null) {
                     return true;
@@ -69,8 +69,8 @@ public final class e0 implements wi.l {
     }
 
     public static String j(u3 u3Var) {
-        boolean z10 = u3Var.f27120b;
-        TLRPC.GroupCallParticipant groupCallParticipant = u3Var.f27119a;
+        boolean z10 = u3Var.f27118b;
+        TLRPC.GroupCallParticipant groupCallParticipant = u3Var.f27117a;
         if (z10) {
             return groupCallParticipant.presentationEndpoint;
         }
@@ -93,16 +93,16 @@ public final class e0 implements wi.l {
             if (z10Var != null && z10Var.f42723r) {
                 z10 = true;
             }
-            int i7 = nVar2.f59988c;
+            int i7 = nVar2.f59989c;
             if (i7 != 3) {
-                nVar2.f59990f = r42;
-                nVar2.f59991g = z10;
+                nVar2.f59991f = r42;
+                nVar2.f59992g = z10;
                 if (i7 == 2) {
                     nVar2.d = r42;
                 } else {
-                    nVar2.f59988c = r42;
+                    nVar2.f59989c = r42;
                 }
-                nVar2.f59987b.f();
+                nVar2.f59988b.f();
             }
         }
     }
@@ -139,12 +139,12 @@ public final class e0 implements wi.l {
                     StringBuilder sb2 = new StringBuilder();
                     for (int i7 = 0; i7 < a10.size(); i7++) {
                         u3 u3Var = (u3) a10.get(i7);
-                        float f11 = u3Var.f27121c;
+                        float f11 = u3Var.f27119c;
                         if (f11 <= 0.0f) {
                             f11 = 0.0f;
                         }
                         fArr[i7] = f11;
-                        if (u3Var.f27120b) {
+                        if (u3Var.f27118b) {
                             f10 = 2.0f;
                         } else {
                             f10 = 1.0f;
@@ -158,7 +158,7 @@ public final class e0 implements wi.l {
                     String sb3 = sb2.toString();
                     if (!sb3.equals(e0Var.d)) {
                         e0Var.d = sb3;
-                        e0Var.f40853c = md.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f59976a;
+                        e0Var.f40853c = md.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f59977a;
                     }
                 }
             }
@@ -217,7 +217,7 @@ public final class e0 implements wi.l {
             t3Var = null;
         }
         if (sharedInstance != null && t3Var != null && !sharedInstance.isHangingUp() && !t3Var.j()) {
-            TLRPC.GroupCall groupCall = t3Var.f26937b;
+            TLRPC.GroupCall groupCall = t3Var.f26935b;
             if (groupCall == null || !groupCall.rtmp_stream) {
                 return true;
             }

@@ -5,9 +5,9 @@ import h9.i0;
 import h9.t1;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class d {
-    public static final String[] f21308a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
-    public static final String[] f21309b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
-    public static final String[] f21310c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
+    public static final String[] f21305a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f21306b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f21307c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
     public static a8.va a(java.lang.String r21) {
         throw new UnsupportedOperationException("Method not decompiled: n3.d.a(java.lang.String):a8.va");
@@ -41,7 +41,7 @@ public abstract class d {
                     }
                     p10.c(new c(f10, f11, j3, j10));
                 } else {
-                    return t1.f14074e;
+                    return t1.f14071e;
                 }
             }
         } while (!h2.a.h(xmlPullParser, concat2));

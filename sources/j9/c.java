@@ -5,7 +5,7 @@ import c8.t0;
 import c8.w0;
 import java.math.RoundingMode;
 public abstract class c {
-    public static final int f17339a = 0;
+    public static final int f17336a = 0;
 
     static {
         Math.log(2.0d);
@@ -44,7 +44,7 @@ public abstract class c {
         la.e("x must be positive and finite", z10);
         int exponent = Math.getExponent(d);
         if (Math.getExponent(d) >= -1022) {
-            switch (b.f17338a[roundingMode.ordinal()]) {
+            switch (b.f17335a[roundingMode.ordinal()]) {
                 case 1:
                     w0.b(b(d));
                     break;

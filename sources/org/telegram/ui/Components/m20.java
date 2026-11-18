@@ -280,9 +280,9 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
                 if (i7 == 1) {
                     b9Var.h(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Hk, i6Var));
                 } else if (i7 == 2) {
-                    b9Var.i(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.T7, i6Var), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29340a8, i6Var));
+                    b9Var.i(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.T7, i6Var), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29338a8, i6Var));
                 } else if (i7 == 3) {
-                    b9Var.h(org.telegram.ui.ActionBar.n6.r1(0.7f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29617p7, i6Var)));
+                    b9Var.h(org.telegram.ui.ActionBar.n6.r1(0.7f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29615p7, i6Var)));
                 }
             }
             c();
@@ -334,7 +334,7 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
                 case -1359418551:
                     if (str3.equals("miniapps")) {
                         this.d = true;
-                        b9Var2.i(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.T7, i6Var), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29340a8, i6Var));
+                        b9Var2.i(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.T7, i6Var), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29338a8, i6Var));
                         i10 = 2;
                         this.K = 2;
                         str2 = org.telegram.messenger.gd.M0(2131746613, null);
@@ -492,7 +492,7 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                this.f37332b = user.f28554id;
+                this.f37332b = user.f28552id;
                 if (org.telegram.messenger.o10.A(user)) {
                     str2 = org.telegram.messenger.gd.M0(2131746071, null);
                     b9Var2.f33601p = 0.8f;
@@ -507,7 +507,7 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
                     c10 = ' ';
                     int indexOf = k10.indexOf(32);
                     k10 = indexOf >= 0 ? k10.substring(0, indexOf) : k10;
-                    m10 = org.telegram.messenger.fc.m(org.telegram.messenger.j10.f24773t0, 1, user);
+                    m10 = org.telegram.messenger.fc.m(org.telegram.messenger.j10.f24770t0, 1, user);
                     String str4 = k10;
                     chat = user;
                     str2 = str4;
@@ -520,9 +520,9 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
                 if (obj instanceof TLRPC.Chat) {
                     chat = (TLRPC.Chat) obj;
                     b9Var2.q(chat);
-                    this.f37332b = -chat.f28405id;
+                    this.f37332b = -chat.f28403id;
                     str2 = chat.title;
-                    m10 = org.telegram.messenger.fc.m(org.telegram.messenger.j10.f24773t0, 1, chat);
+                    m10 = org.telegram.messenger.fc.m(org.telegram.messenger.j10.f24770t0, 1, chat);
                 } else {
                     if (obj instanceof TLRPC.TL_help_country) {
                         TLRPC.TL_help_country tL_help_country = (TLRPC.TL_help_country) obj;
@@ -533,7 +533,7 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
                         i7 = 2;
                         str = "premium";
                         b9Var2.k(0L, F0, null, null);
-                        b9Var2.h(org.telegram.ui.ActionBar.n6.r1(0.7f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29617p7, i6Var)));
+                        b9Var2.h(org.telegram.ui.ActionBar.n6.r1(0.7f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29615p7, i6Var)));
                         this.K = 3;
                         this.J = false;
                         b9Var2.f33607w = false;
@@ -545,14 +545,14 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
                     } else {
                         i7 = 2;
                         str = "premium";
-                        b9Var2.k(f5Var.f23840a, f5Var.f23846i, f5Var.f23847j, null);
+                        b9Var2.k(f5Var.f23837a, f5Var.f23843i, f5Var.f23844j, null);
                         b9Var = b9Var2;
-                        this.f37332b = f5Var.f23840a;
-                        this.f37333c = f5Var.f23841b;
-                        if (!TextUtils.isEmpty(f5Var.f23846i)) {
-                            str2 = f5Var.f23846i;
+                        this.f37332b = f5Var.f23837a;
+                        this.f37333c = f5Var.f23838b;
+                        if (!TextUtils.isEmpty(f5Var.f23843i)) {
+                            str2 = f5Var.f23843i;
                         } else {
-                            str2 = f5Var.f23847j;
+                            str2 = f5Var.f23844j;
                         }
                         fcVar = null;
                     }
@@ -573,7 +573,7 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
         if (org.telegram.messenger.g0.Q1()) {
             z11 = org.telegram.messenger.g0.L(398 - (z10 ? (char) 28 : c10)) / i7;
         } else {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             z11 = org.telegram.messenger.n10.z((z10 ? (char) 28 : c10) + 132, Math.min(point.x, point.y), i7);
         }
         StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(org.telegram.messenger.j6.m(str2.replace('\n', c10), textPaint.getFontMetricsInt(), false, null, 0), textPaint, z11, TextUtils.TruncateAt.END), textPaint, 1000, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
@@ -583,10 +583,10 @@ public final class m20 extends View implements org.telegram.ui.ActionBar.c6 {
             this.f37340x = -staticLayout.getLineLeft(0);
         }
         if (z12 && str.equals((String) obj)) {
-            imageReceiver.w0(org.telegram.ui.Cells.h4.b(getContext(), true));
+            imageReceiver.w0(org.telegram.ui.Cells.i4.b(getContext(), true));
         } else if (z12 && "miniapps".equals((String) obj)) {
             getContext();
-            imageReceiver.w0(org.telegram.ui.Cells.h4.a(true));
+            imageReceiver.w0(org.telegram.ui.Cells.i4.a(true));
         } else {
             imageReceiver.p0(fcVar, "50_50", b9Var, 0L, null, fcVar2, 1);
         }

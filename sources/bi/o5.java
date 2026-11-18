@@ -1,185 +1,87 @@
 package bi;
 
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.gd;
-import org.telegram.tgnet.tl.TL_stars;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import org.telegram.ui.Components.eq0;
-import org.telegram.ui.Components.y61;
-public final class o5 extends y61 {
-    public final int f3951a;
-    public final org.telegram.ui.ActionBar.i6 f3952b;
-    public final eq0 f3953c;
+import org.telegram.ui.Components.gq0;
+public final class o5 extends Drawable {
+    public final int f3917a;
+    public final ShapeDrawable f3918b;
+    public final Rect f3919c;
 
-    public o5(eq0 eq0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f3953c = eq0Var;
-        this.f3951a = i7;
-        this.f3952b = i6Var;
+    public o5(eq0 eq0Var) {
+        this.f3917a = 0;
+        this.f3918b = org.telegram.ui.ActionBar.n6.e0(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), 0);
+        this.f3919c = new Rect();
     }
 
     @Override
-    public final void a(ArrayList arrayList) {
-        eq0 eq0Var = this.f3953c;
-        c5 c5Var = eq0Var.R;
-        di.m8 m8Var = eq0Var.f4006e;
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i7 = 0;
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            Integer num = (Integer) obj;
-            int intValue = num.intValue();
-            if (intValue != -1 && intValue != -2) {
-                arrayList2.add(num);
-            }
+    public final void draw(Canvas canvas) {
+        switch (this.f3917a) {
+            case 0:
+                Rect bounds = getBounds();
+                Rect rect = this.f3919c;
+                rect.set(bounds);
+                rect.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
+                ShapeDrawable shapeDrawable = this.f3918b;
+                shapeDrawable.setBounds(rect);
+                shapeDrawable.draw(canvas);
+                return;
+            default:
+                Rect bounds2 = getBounds();
+                Rect rect2 = this.f3919c;
+                rect2.set(bounds2);
+                rect2.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
+                ShapeDrawable shapeDrawable2 = this.f3918b;
+                shapeDrawable2.setBounds(rect2);
+                shapeDrawable2.draw(canvas);
+                return;
         }
-        m8Var.getClass();
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = m8Var.f9325e;
-        int size2 = arrayList3.size();
-        int i11 = 0;
-        while (i11 < size2) {
-            Object obj2 = arrayList3.get(i11);
-            i11++;
-            TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj2;
-            hashMap.put(Integer.valueOf(tL_starGiftCollection.collection_id), tL_starGiftCollection);
-        }
-        ArrayList arrayList4 = new ArrayList();
-        int size3 = arrayList2.size();
-        int i12 = 0;
-        while (i12 < size3) {
-            Object obj3 = arrayList2.get(i12);
-            i12++;
-            Integer num2 = (Integer) obj3;
-            num2.getClass();
-            TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) hashMap.get(num2);
-            if (tL_starGiftCollection2 != null) {
-                arrayList4.add(tL_starGiftCollection2);
-            }
-        }
-        arrayList3.clear();
-        arrayList3.addAll(arrayList4);
-        m8Var.j();
-        k6 currentPage = eq0Var.getCurrentPage();
-        if (currentPage != null) {
-            if (currentPage.d) {
-                i7 = m8Var.f(currentPage.f3816e.d) + 1;
-            }
-            eq0Var.f4008n.f(0.0f, i7, i7);
-        }
-        org.telegram.messenger.g0.r(c5Var);
-        org.telegram.messenger.g0.h3(c5Var, 1000L);
     }
 
     @Override
-    public final void b(View view, int i7, int i10) {
-        di.o8 o8Var;
-        boolean z10;
-        eq0 eq0Var = this.f3953c;
-        di.m8 m8Var = eq0Var.f4006e;
-        k6 k6Var = (k6) view;
-        int i11 = 0;
-        if (i10 == 0) {
-            o8Var = eq0Var.d;
-            z10 = false;
-        } else {
-            int i12 = i7 - 1;
-            if (i12 >= 0) {
-                if (i12 < m8Var.d().size()) {
-                    o8Var = m8Var.e(((TL_stars.TL_starGiftCollection) m8Var.d().get(i12)).collection_id);
-                    z10 = true;
-                }
-            } else {
-                m8Var.getClass();
-            }
-            o8Var = null;
-            z10 = true;
+    public final int getOpacity() {
+        switch (this.f3917a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
         }
-        k6Var.d = z10;
-        k6Var.f3816e = o8Var;
-        if (o8Var != null) {
-            o8Var.a();
-        }
-        k6Var.f(false);
-        LinearLayout linearLayout = k6Var.E;
-        if (linearLayout != null) {
-            if (!k6Var.f3813a.f4006e.h()) {
-                i11 = 8;
-            }
-            linearLayout.setVisibility(i11);
-        }
-        k6Var.setVisibleHeight(eq0Var.U);
-        k6Var.setHasTabs(!m8Var.d().isEmpty());
     }
 
     @Override
-    public final boolean c(int i7) {
-        if (i7 == 0) {
-            return false;
+    public final void setAlpha(int i7) {
+        switch (this.f3917a) {
+            case 0:
+                this.f3918b.setAlpha(i7);
+                return;
+            default:
+                this.f3918b.setAlpha(i7);
+                return;
         }
-        return true;
     }
 
     @Override
-    public final View d(int i7) {
-        if (i7 == -1) {
-            return null;
-        }
-        int i10 = this.f3951a;
-        org.telegram.ui.ActionBar.i6 i6Var = this.f3952b;
-        eq0 eq0Var = this.f3953c;
-        k6 k6Var = new k6(eq0Var, i10, i6Var);
-        ri.q qVar = eq0Var.O;
-        if (qVar != null) {
-            qVar.b(k6Var.f3817f);
-        }
-        return k6Var;
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i7 = this.f3917a;
     }
 
-    @Override
-    public final int e() {
-        return this.f3953c.f4006e.d().size() + 1;
+    public o5(gq0 gq0Var) {
+        this.f3917a = 1;
+        int L = org.telegram.messenger.g0.L(16.0f);
+        int L2 = org.telegram.messenger.g0.L(16.0f);
+        int i7 = org.telegram.ui.ActionBar.n6.f29394d6;
+        org.telegram.ui.ActionBar.i6 i6Var = gq0Var.f35551c;
+        this.f3918b = org.telegram.ui.ActionBar.n6.e0(L, L2, org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.w0(i7, i6Var), org.telegram.ui.ActionBar.n6.r1(0.04f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, i6Var))));
+        this.f3919c = new Rect();
     }
 
-    @Override
-    public final int f(int i7) {
-        if (i7 == 0) {
-            return -2;
-        }
-        return ((TL_stars.TL_starGiftCollection) this.f3953c.f4006e.d().get(i7 - 1)).collection_id;
+    private final void a(ColorFilter colorFilter) {
     }
 
-    @Override
-    public final CharSequence g(int i7) {
-        if (i7 == 0) {
-            return gd.M0(2131750232, null);
-        }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f3953c.f4006e.d().get(i7 - 1);
-        if (tL_starGiftCollection == null) {
-            return null;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_starGiftCollection.title);
-        if (tL_starGiftCollection.icon != null) {
-            TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
-            spannableStringBuilder2.setSpan(new org.telegram.ui.Components.x5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
-            spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
-        }
-        return spannableStringBuilder;
-    }
-
-    @Override
-    public final int h(int i7) {
-        if (i7 == 0) {
-            return 0;
-        }
-        return 1;
+    private final void b(ColorFilter colorFilter) {
     }
 }

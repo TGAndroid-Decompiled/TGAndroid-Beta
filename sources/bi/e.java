@@ -25,7 +25,7 @@ public final class e extends sa {
         this.F1 = org.telegram.messenger.g0.L(12.0f);
         this.f39535p1.setTitle(P0());
         O();
-        this.f39534o1.setPadding(this.f30227u0, org.telegram.messenger.g0.L(9.0f), this.f30227u0, org.telegram.messenger.g0.L(64.0f));
+        this.f39534o1.setPadding(this.f30225u0, org.telegram.messenger.g0.L(9.0f), this.f30225u0, org.telegram.messenger.g0.L(64.0f));
         this.f39534o1.setOnItemClickListener(new a(0));
         this.f39534o1.setOverScrollMode(2);
         hi.d dVar = new hi.d(context, i6Var, true);
@@ -33,16 +33,16 @@ public final class e extends sa {
         dVar.i(gd.M0(2131747638, null), false, true);
         FrameLayout.LayoutParams d = ma.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i7 = d.leftMargin;
-        int i10 = this.f30227u0;
+        int i10 = this.f30225u0;
         d.leftMargin = i7 + i10;
         d.rightMargin += i10;
-        this.f30192b.addView(dVar, d);
+        this.f30190b.addView(dVar, d);
         this.V1.O(false);
     }
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30189a, 0, true, new b(this, 0), this.J0);
+        z41 z41Var = new z41(this.f39534o1, getContext(), this.f30187a, 0, true, new b(this, 0), this.J0);
         this.V1 = z41Var;
         z41Var.f42809r = false;
         return z41Var;

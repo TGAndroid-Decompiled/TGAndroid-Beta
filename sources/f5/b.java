@@ -38,74 +38,74 @@ import org.telegram.messenger.r1;
 public class b extends ba {
     public final Long A;
     public final com.google.android.gms.internal.play_billing.h B;
-    public final String f11254c;
+    public final String f11251c;
     public final String d;
-    public volatile e f11256f;
-    public final Context f11257g;
+    public volatile e f11253f;
+    public final Context f11254g;
     public final wf.b h;
-    public volatile com.google.android.gms.internal.play_billing.c f11258i;
-    public volatile t f11259j;
-    public boolean f11260k;
-    public boolean f11262m;
-    public boolean f11263n;
-    public boolean f11264o;
-    public boolean f11265p;
-    public boolean f11266q;
-    public boolean f11267r;
-    public boolean f11268s;
-    public boolean f11269t;
-    public boolean f11270u;
+    public volatile com.google.android.gms.internal.play_billing.c f11255i;
+    public volatile t f11256j;
+    public boolean f11257k;
+    public boolean f11259m;
+    public boolean f11260n;
+    public boolean f11261o;
+    public boolean f11262p;
+    public boolean f11263q;
+    public boolean f11264r;
+    public boolean f11265s;
+    public boolean f11266t;
+    public boolean f11267u;
     public boolean v;
-    public boolean f11271w;
-    public final w7.s f11272x;
-    public final boolean f11273y;
-    public ExecutorService f11274z;
-    public final Object f11252a = new Object();
-    public volatile int f11253b = 0;
-    public final Handler f11255e = new Handler(Looper.getMainLooper());
-    public int f11261l = 0;
+    public boolean f11268w;
+    public final w7.s f11269x;
+    public final boolean f11270y;
+    public ExecutorService f11271z;
+    public final Object f11249a = new Object();
+    public volatile int f11250b = 0;
+    public final Handler f11252e = new Handler(Looper.getMainLooper());
+    public int f11258l = 0;
 
     public b(w7.s sVar, Context context, o oVar, androidx.emoji2.text.f fVar) {
         long nextLong = new Random().nextLong();
         this.A = Long.valueOf(nextLong);
-        this.B = com.google.android.gms.internal.play_billing.i.f7039a;
-        this.f11254c = "8.0.0";
+        this.B = com.google.android.gms.internal.play_billing.i.f7036a;
+        this.f11251c = "8.0.0";
         String x10 = x();
         this.d = x10;
-        this.f11257g = context.getApplicationContext();
+        this.f11254g = context.getApplicationContext();
         o3 x11 = p3.x();
         x11.c();
-        p3.v((p3) x11.f7142b);
+        p3.v((p3) x11.f7139b);
         if (x10 != null) {
             x11.c();
-            p3.w((p3) x11.f7142b, x10);
+            p3.w((p3) x11.f7139b, x10);
         }
-        String packageName = this.f11257g.getPackageName();
+        String packageName = this.f11254g.getPackageName();
         x11.c();
-        p3.t((p3) x11.f7142b, packageName);
+        p3.t((p3) x11.f7139b, packageName);
         x11.c();
-        p3.q((p3) x11.f7142b, nextLong);
+        p3.q((p3) x11.f7139b, nextLong);
         x11.c();
-        p3.u((p3) x11.f7142b);
+        p3.u((p3) x11.f7139b);
         int i7 = Build.VERSION.SDK_INT;
         x11.c();
-        p3.n((p3) x11.f7142b, i7);
+        p3.n((p3) x11.f7139b, i7);
         x11.d();
         try {
-            int i10 = this.f11257g.getPackageManager().getPackageInfo(this.f11257g.getPackageName(), 0).versionCode;
+            int i10 = this.f11254g.getPackageManager().getPackageInfo(this.f11254g.getPackageName(), 0).versionCode;
             x11.c();
-            p3.o((p3) x11.f7142b, i10);
+            p3.o((p3) x11.f7139b, i10);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Error getting app version code.", th2);
         }
-        this.h = new wf.b(this.f11257g, (p3) x11.a());
+        this.h = new wf.b(this.f11254g, (p3) x11.a());
         if (oVar == null) {
             com.google.android.gms.internal.play_billing.u.h("BillingClient", "Billing client should have a valid listener but the provided is null.");
         }
-        this.f11256f = new e(this.f11257g, oVar, this.h);
-        this.f11272x = sVar;
-        this.f11273y = false;
-        this.f11257g.getPackageName();
+        this.f11253f = new e(this.f11254g, oVar, this.h);
+        this.f11269x = sVar;
+        this.f11270y = false;
+        this.f11254g.getPackageName();
     }
 
     public static Future f(Callable callable, long j3, Runnable runnable, Handler handler, ExecutorService executorService) {
@@ -122,27 +122,27 @@ public class b extends ba {
     public static void p(b bVar, int i7) {
         e eVar;
         if (i7 == 0) {
-            synchronized (bVar.f11252a) {
+            synchronized (bVar.f11249a) {
                 try {
-                    if (bVar.f11253b == 3) {
+                    if (bVar.f11250b == 3) {
                         return;
                     }
                     bVar.k(2);
-                    if (bVar.f11256f != null) {
-                        eVar = bVar.f11256f;
+                    if (bVar.f11253f != null) {
+                        eVar = bVar.f11253f;
                     } else {
                         eVar = null;
                     }
                     if (eVar != null) {
-                        boolean z10 = bVar.f11270u;
-                        a0 a0Var = (a0) eVar.f11284e;
+                        boolean z10 = bVar.f11267u;
+                        a0 a0Var = (a0) eVar.f11281e;
                         IntentFilter intentFilter = new IntentFilter("com.android.vending.billing.PURCHASES_UPDATED");
                         IntentFilter intentFilter2 = new IntentFilter("com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED");
                         intentFilter2.addAction("com.android.vending.billing.ALTERNATIVE_BILLING");
-                        eVar.f11281a = z10;
-                        Context context = (Context) eVar.f11282b;
-                        ((a0) eVar.f11285f).a(context, intentFilter2);
-                        if (eVar.f11281a) {
+                        eVar.f11278a = z10;
+                        Context context = (Context) eVar.f11279b;
+                        ((a0) eVar.f11282f).a(context, intentFilter2);
+                        if (eVar.f11278a) {
                             a0Var.b(context, intentFilter);
                             return;
                         } else {
@@ -161,9 +161,9 @@ public class b extends ba {
 
     public static boolean q(b bVar) {
         boolean z10;
-        synchronized (bVar.f11252a) {
+        synchronized (bVar.f11249a) {
             z10 = true;
-            if (bVar.f11253b != 1) {
+            if (bVar.f11250b != 1) {
                 z10 = false;
             }
         }
@@ -180,8 +180,8 @@ public class b extends ba {
 
     public final void A(int i7, f fVar, long j3) {
         try {
-            int i10 = x.f11327a;
-            this.h.X(x.b(i7, 2, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED), this.f11261l, j3);
+            int i10 = x.f11324a;
+            this.h.X(x.b(i7, 2, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED), this.f11258l, j3);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
         }
@@ -189,7 +189,7 @@ public class b extends ba {
 
     public final void B(int i7, int i10, f fVar, String str) {
         try {
-            int i11 = x.f11327a;
+            int i11 = x.f11324a;
             h(x.b(i7, i10, fVar, str, m3.BROADCAST_ACTION_UNSPECIFIED));
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -198,8 +198,8 @@ public class b extends ba {
 
     public final void C(int i7, f fVar, long j3, boolean z10) {
         try {
-            int i10 = x.f11327a;
-            this.h.Z(x.b(i7, 2, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED), this.f11261l, j3, z10);
+            int i10 = x.f11324a;
+            this.h.Z(x.b(i7, 2, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED), this.f11258l, j3, z10);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
         }
@@ -207,8 +207,8 @@ public class b extends ba {
 
     public final void D(int i7, f fVar, String str, long j3, boolean z10) {
         try {
-            int i10 = x.f11327a;
-            this.h.Z(x.b(i7, 2, fVar, str, m3.BROADCAST_ACTION_UNSPECIFIED), this.f11261l, j3, z10);
+            int i10 = x.f11324a;
+            this.h.Z(x.b(i7, 2, fVar, str, m3.BROADCAST_ACTION_UNSPECIFIED), this.f11258l, j3, z10);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
         }
@@ -218,7 +218,7 @@ public class b extends ba {
         if (Thread.interrupted()) {
             return;
         }
-        this.f11255e.post(new m9.u(13, this, fVar));
+        this.f11252e.post(new m9.u(13, this, fVar));
     }
 
     public void a(g gVar, h hVar) {
@@ -237,8 +237,8 @@ public class b extends ba {
         if (f(new r(this, j1Var, iVar, 1), 30000L, new m9.u(16, this, j1Var), r(), e()) == null) {
             f u10 = u();
             z(25, 7, u10);
-            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7117b;
-            ((q1) j1Var.f24772b).a(u10, com.google.android.gms.internal.play_billing.v.f7144e);
+            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7114b;
+            ((q1) j1Var.f24769b).a(u10, com.google.android.gms.internal.play_billing.v.f7141e);
         }
     }
 
@@ -248,13 +248,13 @@ public class b extends ba {
 
     public final synchronized ExecutorService e() {
         try {
-            if (this.f11274z == null) {
-                this.f11274z = Executors.newFixedThreadPool(com.google.android.gms.internal.play_billing.u.f7139a, new s(this));
+            if (this.f11271z == null) {
+                this.f11271z = Executors.newFixedThreadPool(com.google.android.gms.internal.play_billing.u.f7136a, new s(this));
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return this.f11274z;
+        return this.f11271z;
     }
 
     public final void g(h hVar, String str, f fVar, int i7, String str2, Exception exc) {
@@ -266,12 +266,12 @@ public class b extends ba {
     public final void h(g3 g3Var) {
         try {
             wf.b bVar = this.h;
-            int i7 = this.f11261l;
+            int i7 = this.f11258l;
             bVar.getClass();
-            o3 o3Var = (o3) ((p3) bVar.f59672b).g();
+            o3 o3Var = (o3) ((p3) bVar.f59673b).g();
             o3Var.c();
-            p3.p((p3) o3Var.f7142b, i7);
-            bVar.f59672b = (p3) o3Var.a();
+            p3.p((p3) o3Var.f7139b, i7);
+            bVar.f59673b = (p3) o3Var.a();
             bVar.W(g3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -281,13 +281,13 @@ public class b extends ba {
     public final void i(i3 i3Var) {
         try {
             wf.b bVar = this.h;
-            int i7 = this.f11261l;
+            int i7 = this.f11258l;
             bVar.getClass();
-            o3 o3Var = (o3) ((p3) bVar.f59672b).g();
+            o3 o3Var = (o3) ((p3) bVar.f59673b).g();
             o3Var.c();
-            p3.p((p3) o3Var.f7142b, i7);
+            p3.p((p3) o3Var.f7139b, i7);
             p3 p3Var = (p3) o3Var.a();
-            bVar.f59672b = p3Var;
+            bVar.f59673b = p3Var;
             bVar.e0(i3Var, p3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -297,7 +297,7 @@ public class b extends ba {
     public final void j(int i7, int i10, f fVar) {
         boolean z10;
         try {
-            int i11 = x.f11327a;
+            int i11 = x.f11324a;
             f3 f3Var = (f3) x.b(i7, 6, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED).g();
             c4 r10 = d4.r();
             if (i10 > 0) {
@@ -317,12 +317,12 @@ public class b extends ba {
     public final void k(int i7) {
         String str;
         String str2;
-        synchronized (this.f11252a) {
+        synchronized (this.f11249a) {
             try {
-                if (this.f11253b == 3) {
+                if (this.f11250b == 3) {
                     return;
                 }
-                int i10 = this.f11253b;
+                int i10 = this.f11250b;
                 if (i10 != 0) {
                     if (i10 != 1) {
                         if (i10 != 2) {
@@ -350,7 +350,7 @@ public class b extends ba {
                     str2 = "DISCONNECTED";
                 }
                 com.google.android.gms.internal.play_billing.u.g("BillingClient", "Setting clientState from " + str + " to " + str2);
-                this.f11253b = i7;
+                this.f11250b = i7;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -362,16 +362,16 @@ public class b extends ba {
         f fVar;
         boolean bindService;
         f fVar2;
-        synchronized (this.f11252a) {
+        synchronized (this.f11249a) {
             try {
                 if (o()) {
                     fVar = t(i7);
                 } else {
-                    if (this.f11253b == 1) {
+                    if (this.f11250b == 1) {
                         com.google.android.gms.internal.play_billing.u.h("BillingClient", "Client is already in the process of connecting to billing service.");
-                        fVar2 = z.f11331c;
+                        fVar2 = z.f11328c;
                         j(37, i7, fVar2);
-                    } else if (this.f11253b == 3) {
+                    } else if (this.f11250b == 3) {
                         com.google.android.gms.internal.play_billing.u.h("BillingClient", "Client was already closed and can't be reused. Please create another instance.");
                         fVar2 = z.h;
                         j(38, i7, fVar2);
@@ -382,14 +382,14 @@ public class b extends ba {
                         }
                         m();
                         com.google.android.gms.internal.play_billing.u.g("BillingClient", "Starting in-app billing setup.");
-                        this.f11259j = new t(this, cVar, i7);
-                        com.google.android.gms.internal.play_billing.m mVar = this.f11259j.f11321b;
-                        mVar.f7075c = 0L;
-                        mVar.f7074b = false;
+                        this.f11256j = new t(this, cVar, i7);
+                        com.google.android.gms.internal.play_billing.m mVar = this.f11256j.f11318b;
+                        mVar.f7072c = 0L;
+                        mVar.f7071b = false;
                         mVar.a();
                         Intent intent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
                         intent.setPackage("com.android.vending");
-                        List<ResolveInfo> queryIntentServices = this.f11257g.getPackageManager().queryIntentServices(intent, 0);
+                        List<ResolveInfo> queryIntentServices = this.f11254g.getPackageManager().queryIntentServices(intent, 0);
                         if (queryIntentServices != null && !queryIntentServices.isEmpty()) {
                             ServiceInfo serviceInfo = queryIntentServices.get(0).serviceInfo;
                             i10 = 40;
@@ -400,21 +400,21 @@ public class b extends ba {
                                     ComponentName componentName = new ComponentName(str, str2);
                                     Intent intent2 = new Intent(intent);
                                     intent2.setComponent(componentName);
-                                    intent2.putExtra("playBillingLibraryVersion", this.f11254c);
-                                    synchronized (this.f11252a) {
+                                    intent2.putExtra("playBillingLibraryVersion", this.f11251c);
+                                    synchronized (this.f11249a) {
                                         try {
-                                            if (this.f11253b == 2) {
+                                            if (this.f11250b == 2) {
                                                 fVar = t(i7);
-                                            } else if (this.f11253b != 1) {
+                                            } else if (this.f11250b != 1) {
                                                 com.google.android.gms.internal.play_billing.u.h("BillingClient", "Client state no longer CONNECTING, returning service disconnected.");
                                                 fVar2 = z.h;
                                                 j(105, i7, fVar2);
                                             } else {
-                                                t tVar = this.f11259j;
+                                                t tVar = this.f11256j;
                                                 if (i7 > 0 && Build.VERSION.SDK_INT >= 29) {
-                                                    bindService = this.f11257g.bindService(intent2, 1, e(), tVar);
+                                                    bindService = this.f11254g.bindService(intent2, 1, e(), tVar);
                                                 } else {
-                                                    bindService = this.f11257g.bindService(intent2, tVar, 1);
+                                                    bindService = this.f11254g.bindService(intent2, tVar, 1);
                                                 }
                                                 if (bindService) {
                                                     com.google.android.gms.internal.play_billing.u.g("BillingClient", "Service was bonded successfully.");
@@ -438,7 +438,7 @@ public class b extends ba {
                         }
                         k(0);
                         com.google.android.gms.internal.play_billing.u.g("BillingClient", "Billing service unavailable on device.");
-                        f fVar3 = z.f11329a;
+                        f fVar3 = z.f11326a;
                         j(i10, i7, fVar3);
                         fVar = fVar3;
                     }
@@ -453,11 +453,11 @@ public class b extends ba {
     }
 
     public final void m() {
-        synchronized (this.f11252a) {
-            if (this.f11259j != null) {
-                this.f11257g.unbindService(this.f11259j);
-                this.f11258i = null;
-                this.f11259j = null;
+        synchronized (this.f11249a) {
+            if (this.f11256j != null) {
+                this.f11254g.unbindService(this.f11256j);
+                this.f11255i = null;
+                this.f11256j = null;
             }
         }
     }
@@ -483,7 +483,7 @@ public class b extends ba {
                 }
                 t0 v = v(i7);
                 TimeUnit.MILLISECONDS.getClass();
-                int i10 = ((f) ((r0) v).f7119a).f11286a;
+                int i10 = ((f) ((r0) v).f7116a).f11283a;
                 if (i10 == 0) {
                     com.google.android.gms.internal.play_billing.u.g("BillingClient", "Reconnection succeeded with result: " + i10);
                     return o();
@@ -518,10 +518,10 @@ public class b extends ba {
 
     public final boolean o() {
         boolean z10;
-        synchronized (this.f11252a) {
+        synchronized (this.f11249a) {
             try {
                 z10 = false;
-                if (this.f11253b == 2 && this.f11258i != null && this.f11259j != null) {
+                if (this.f11250b == 2 && this.f11255i != null && this.f11256j != null) {
                     z10 = true;
                 }
             } finally {
@@ -532,7 +532,7 @@ public class b extends ba {
 
     public final Handler r() {
         if (Looper.myLooper() == null) {
-            return this.f11255e;
+            return this.f11252e;
         }
         return new Handler(Looper.myLooper());
     }
@@ -540,7 +540,7 @@ public class b extends ba {
     public final xa s(f fVar, int i7, String str, Exception exc) {
         com.google.android.gms.internal.play_billing.u.i("BillingClient", str, exc);
         B(i7, 7, fVar, x.a(exc));
-        return new xa(fVar.f11286a, fVar.f11288c, new ArrayList(), new ArrayList());
+        return new xa(fVar.f11283a, fVar.f11285c, new ArrayList(), new ArrayList());
     }
 
     public final f t(int i7) {
@@ -548,10 +548,10 @@ public class b extends ba {
         com.google.android.gms.internal.play_billing.u.g("BillingClient", "Service connection is valid. No need to re-initialize.");
         h3 s5 = i3.s();
         s5.c();
-        i3.r((i3) s5.f7142b, 6);
+        i3.r((i3) s5.f7139b, 6);
         c4 r10 = d4.r();
         r10.c();
-        d4.q((d4) r10.f7142b);
+        d4.q((d4) r10.f7139b);
         if (i7 > 0) {
             z10 = true;
         } else {
@@ -560,33 +560,33 @@ public class b extends ba {
         r10.d(z10);
         r10.e(i7);
         s5.c();
-        i3.q((i3) s5.f7142b, (d4) r10.a());
+        i3.q((i3) s5.f7139b, (d4) r10.a());
         i((i3) s5.a());
-        return z.f11334g;
+        return z.f11331g;
     }
 
     public final f u() {
         int[] iArr = {0, 3};
-        synchronized (this.f11252a) {
+        synchronized (this.f11249a) {
             for (int i7 = 0; i7 < 2; i7++) {
-                if (this.f11253b == iArr[i7]) {
+                if (this.f11250b == iArr[i7]) {
                     return z.h;
                 }
             }
-            return z.f11333f;
+            return z.f11330f;
         }
     }
 
     public final t0 v(int i7) {
         com.google.android.gms.internal.play_billing.u.g("BillingClient", "Already connected or not opted into auto reconnection.");
-        return new r0(z.f11334g);
+        return new r0(z.f11331g);
     }
 
     public final void w() {
         if (!TextUtils.isEmpty(null)) {
             return;
         }
-        this.f11257g.getPackageName();
+        this.f11254g.getPackageName();
     }
 
     public final q4.q y(f fVar, int i7, String str, Exception exc) {
@@ -597,7 +597,7 @@ public class b extends ba {
 
     public final void z(int i7, int i10, f fVar) {
         try {
-            int i11 = x.f11327a;
+            int i11 = x.f11324a;
             h(x.b(i7, i10, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED));
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -607,40 +607,40 @@ public class b extends ba {
     public b(w7.s sVar, Context context, androidx.emoji2.text.f fVar) {
         long nextLong = new Random().nextLong();
         this.A = Long.valueOf(nextLong);
-        this.B = com.google.android.gms.internal.play_billing.i.f7039a;
-        this.f11254c = "8.0.0";
+        this.B = com.google.android.gms.internal.play_billing.i.f7036a;
+        this.f11251c = "8.0.0";
         String x10 = x();
         this.d = x10;
-        this.f11257g = context.getApplicationContext();
+        this.f11254g = context.getApplicationContext();
         o3 x11 = p3.x();
         x11.c();
-        p3.v((p3) x11.f7142b);
+        p3.v((p3) x11.f7139b);
         if (x10 != null) {
             x11.c();
-            p3.w((p3) x11.f7142b, x10);
+            p3.w((p3) x11.f7139b, x10);
         }
-        String packageName = this.f11257g.getPackageName();
+        String packageName = this.f11254g.getPackageName();
         x11.c();
-        p3.t((p3) x11.f7142b, packageName);
+        p3.t((p3) x11.f7139b, packageName);
         x11.c();
-        p3.q((p3) x11.f7142b, nextLong);
+        p3.q((p3) x11.f7139b, nextLong);
         x11.c();
-        p3.u((p3) x11.f7142b);
+        p3.u((p3) x11.f7139b);
         int i7 = Build.VERSION.SDK_INT;
         x11.c();
-        p3.n((p3) x11.f7142b, i7);
+        p3.n((p3) x11.f7139b, i7);
         x11.d();
         try {
-            int i10 = this.f11257g.getPackageManager().getPackageInfo(this.f11257g.getPackageName(), 0).versionCode;
+            int i10 = this.f11254g.getPackageManager().getPackageInfo(this.f11254g.getPackageName(), 0).versionCode;
             x11.c();
-            p3.o((p3) x11.f7142b, i10);
+            p3.o((p3) x11.f7139b, i10);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Error getting app version code.", th2);
         }
-        this.h = new wf.b(this.f11257g, (p3) x11.a());
+        this.h = new wf.b(this.f11254g, (p3) x11.a());
         com.google.android.gms.internal.play_billing.u.h("BillingClient", "Billing client should have a valid listener but the provided is null.");
-        this.f11256f = new e(this.f11257g, null, this.h);
-        this.f11272x = sVar;
-        this.f11257g.getPackageName();
+        this.f11253f = new e(this.f11254g, null, this.h);
+        this.f11269x = sVar;
+        this.f11254g.getPackageName();
     }
 }

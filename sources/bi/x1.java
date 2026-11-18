@@ -11,7 +11,7 @@ import org.telegram.ui.Components.mp;
 import org.telegram.ui.Components.q9;
 import org.telegram.ui.Components.z41;
 public final class x1 extends k41 {
-    public static final int f4208b = 0;
+    public static final int f4176b = 0;
 
     static {
         k41.h(new k41());
@@ -27,7 +27,7 @@ public final class x1 extends k41 {
         rVar.f1109x.setVisibility(8);
         rVar.I = null;
         rVar.J = null;
-        q9 q9Var = rVar.f61212c;
+        q9 q9Var = rVar.f61213c;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
         q9Var.setImageDrawable(drawable);
         fi.u3 u3Var = rVar.d;
@@ -35,13 +35,13 @@ public final class x1 extends k41 {
         boolean[] zArr = rVar.f1107s;
         zArr[0] = false;
         rVar.setSubtitle(charSequence2);
-        org.telegram.ui.ActionBar.n5 n5Var = rVar.f61213e;
+        org.telegram.ui.ActionBar.n5 n5Var = rVar.f61214e;
         if (zArr[0]) {
-            i7 = org.telegram.ui.ActionBar.n6.f29577n5;
+            i7 = org.telegram.ui.ActionBar.n6.f29575n5;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.f29654r5;
+            i7 = org.telegram.ui.ActionBar.n6.f29652r5;
         }
-        org.telegram.ui.ActionBar.u6.X(n5Var, i7, rVar.f61210a);
+        org.telegram.ui.ActionBar.u6.X(n5Var, i7, rVar.f61211a);
         mp mpVar = rVar.f1108w;
         if (mpVar != null) {
             mpVar.setAlpha(1.0f);

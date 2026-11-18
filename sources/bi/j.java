@@ -27,16 +27,16 @@ import org.telegram.ui.Components.rn;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 public final class j implements x10 {
-    public final int f3734a;
-    public final Object f3735b;
-    public final Object f3736c;
+    public final int f3714a;
+    public final Object f3715b;
+    public final Object f3716c;
     public final Object d;
 
     public j(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3734a = i7;
+        this.f3714a = i7;
         this.d = obj;
-        this.f3735b = obj2;
-        this.f3736c = obj3;
+        this.f3715b = obj2;
+        this.f3716c = obj3;
     }
 
     @Override
@@ -47,18 +47,18 @@ public final class j implements x10 {
         ArrayList<TLRPC.Document> arrayList;
         String str;
         TLRPC.ChatFull P0;
-        int i10 = this.f3734a;
+        int i10 = this.f3714a;
         int i11 = 0;
         boolean z10 = false;
-        Object obj2 = this.f3736c;
-        Object obj3 = this.f3735b;
+        Object obj2 = this.f3716c;
+        Object obj3 = this.f3715b;
         Object obj4 = this.d;
         switch (i10) {
             case 0:
                 y yVar = (y) obj4;
                 yVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                new e(yVar.getContext(), (org.telegram.ui.ActionBar.i6) obj2, yVar.f4231h2, (List) obj).show();
+                new e(yVar.getContext(), (org.telegram.ui.ActionBar.i6) obj2, yVar.f4199h2, (List) obj).show();
                 return;
             case 1:
                 m0 m0Var = (m0) obj4;
@@ -66,8 +66,8 @@ public final class j implements x10 {
                 List list = (List) obj;
                 m0Var.getClass();
                 ((boolean[]) obj3)[0] = false;
-                if (m0Var.f3866i2 != null) {
-                    new e(m0Var.getContext(), i6Var, m0Var.f3866i2, list).show();
+                if (m0Var.f3837i2 != null) {
+                    new e(m0Var.getContext(), i6Var, m0Var.f3837i2, list).show();
                     m0Var.dismiss();
                     return;
                 }
@@ -83,7 +83,7 @@ public final class j implements x10 {
                 } else {
                     i7 = 2131749618;
                 }
-                v4.s(tL_starGiftUnique, gd.a0(null, null, i7, str2));
+                u4.s(tL_starGiftUnique, gd.a0(null, null, i7, str2));
                 return;
             case 3:
                 di.f6 f6Var = (di.f6) obj4;
@@ -99,7 +99,7 @@ public final class j implements x10 {
                 if (!org.telegram.ui.Wallet.u0.L(str3)) {
                     if (str3 != null) {
                         if (a2Var != null) {
-                            k10 = new lc(a2Var.f30195c, f6Var2.J0);
+                            k10 = new lc(a2Var.f30193c, f6Var2.J0);
                         } else {
                             k10 = f6Var2.k();
                         }
@@ -135,7 +135,7 @@ public final class j implements x10 {
                 g3Var.getClass();
                 ArrayList arrayList2 = new ArrayList(1);
                 arrayList2.add((TLRPC.InputStickerSet) obj);
-                bv bvVar = new bv(((f9) obj3).f11969f, g3Var.getContext(), (org.telegram.ui.ActionBar.i6) obj2, arrayList2);
+                bv bvVar = new bv(((f9) obj3).f11966f, g3Var.getContext(), (org.telegram.ui.ActionBar.i6) obj2, arrayList2);
                 fi.s3 s3Var = g3Var.A0.A1;
                 if (s3Var != null) {
                     ((fi.w8) s3Var).h(bvVar);
@@ -147,11 +147,11 @@ public final class j implements x10 {
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj3;
                 TL_stories.StoryItem storyItem2 = (TL_stories.StoryItem) obj2;
                 x10 x10Var = (x10) obj;
-                fi.z3 z3Var = r3Var.f12501x;
-                if ((storyItem instanceof fi.y5) && (z5Var = ((fi.y5) storyItem).f12783a) != null) {
+                fi.z3 z3Var = r3Var.f12498x;
+                if ((storyItem instanceof fi.y5) && (z5Var = ((fi.y5) storyItem).f12780a) != null) {
                     ga gaVar = new ga(z5Var, storyItem2, x10Var, 3);
                     if (z5Var.F != 0) {
-                        ConnectionsManager.getInstance(z5Var.f12044c).cancelRequest(z5Var.F, true);
+                        ConnectionsManager.getInstance(z5Var.f12041c).cancelRequest(z5Var.F, true);
                         z5Var.F = 0;
                     }
                     z5Var.C = false;
@@ -160,15 +160,15 @@ public final class j implements x10 {
                     return;
                 }
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-                tL_stories_getStoriesByID.peer = mp.u1(z3Var.f12850m2).l1(storyItem.dialogId);
-                tL_stories_getStoriesByID.f28651id.add(Integer.valueOf(storyItem.f28644id));
-                ConnectionsManager.getInstance(z3Var.f12850m2).sendRequest(tL_stories_getStoriesByID, new m1(r3Var, storyItem, x10Var, 8));
+                tL_stories_getStoriesByID.peer = mp.u1(z3Var.f12847m2).l1(storyItem.dialogId);
+                tL_stories_getStoriesByID.f28649id.add(Integer.valueOf(storyItem.f28642id));
+                ConnectionsManager.getInstance(z3Var.f12847m2).sendRequest(tL_stories_getStoriesByID, new m1(r3Var, storyItem, x10Var, 8));
                 return;
             case 8:
                 fi.i6 i6Var2 = (fi.i6) obj;
-                fi.z3 z3Var2 = ((fi.r3) obj4).f12501x;
-                z3Var2.C1.c(i6Var2.f12112a, z3Var2.l1, (TL_stories.StoryItem) obj3);
-                n10.u(gd.a0(null, null, 2131744496, i6Var2.f12113b), new lc(z3Var2.M0, (org.telegram.ui.ActionBar.i6) obj2), 2131623990, 36);
+                fi.z3 z3Var2 = ((fi.r3) obj4).f12498x;
+                z3Var2.C1.c(i6Var2.f12109a, z3Var2.l1, (TL_stories.StoryItem) obj3);
+                n10.u(gd.a0(null, null, 2131744496, i6Var2.f12110b), new lc(z3Var2.M0, (org.telegram.ui.ActionBar.i6) obj2), 2131623990, 36);
                 return;
             case 9:
                 hi.k6 k6Var = (hi.k6) obj4;
@@ -208,13 +208,13 @@ public final class j implements x10 {
                     return;
                 }
                 TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
-                tL_messages_uploadMedia.peer = mp.u1(g8Var.f30189a).l1(j10.i(g8Var.f30189a).e());
+                tL_messages_uploadMedia.peer = mp.u1(g8Var.f30187a).l1(j10.i(g8Var.f30187a).e());
                 TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
                 tL_inputMediaUploadedDocument.file = inputFile;
                 tL_inputMediaUploadedDocument.mime_type = document.mime_type;
                 tL_inputMediaUploadedDocument.attributes.addAll(document.attributes);
-                ConnectionsManager.getInstance(g8Var.f30189a).sendRequest(tL_messages_uploadMedia, new org.telegram.ui.u7(12, g8Var, u1Var));
+                ConnectionsManager.getInstance(g8Var.f30187a).sendRequest(tL_messages_uploadMedia, new org.telegram.ui.u7(12, g8Var, u1Var));
                 return;
             case 12:
                 rn rnVar = (rn) obj4;
@@ -299,17 +299,17 @@ public final class j implements x10 {
                 ((n80) obj3).setLoading(false);
                 if (tL_premium_boostsStatus != null) {
                     l0Var.X1.boosts++;
-                    if (l0Var.d2 == 32 && (P0 = mp.u1(l0Var.f30189a).P0(-l0Var.W1)) != null) {
+                    if (l0Var.d2 == 32 && (P0 = mp.u1(l0Var.f30187a).P0(-l0Var.W1)) != null) {
                         P0.boosts_applied++;
                     }
                     l0Var.u1();
-                    l0Var.A1(tL_premium_boostsStatus, l0Var.f58728a2);
+                    l0Var.A1(tL_premium_boostsStatus, l0Var.f58729a2);
                     org.telegram.messenger.g3 g3Var2 = l0Var.Y1;
                     if (l0Var.X1.next_level_boosts <= 0) {
                         z10 = true;
                     }
-                    g3Var2.f24165m = z10;
-                    g3Var2.f24164l = true;
+                    g3Var2.f24162m = z10;
+                    g3Var2.f24161l = true;
                     g3Var2.a(tL_premium_myBoosts);
                     l0Var.w1();
                     return;

@@ -10,15 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.lr;
 public final class j0 extends Visibility {
-    public final int f29018a;
+    public final int f29016a;
 
     public j0(int i7) {
-        this.f29018a = i7;
+        this.f29016a = i7;
     }
 
     @Override
     public final Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f29018a) {
+        switch (this.f29016a) {
             case 0:
                 if (view instanceof q0) {
                     AnimatorSet animatorSet = new AnimatorSet();
@@ -73,7 +73,7 @@ public final class j0 extends Visibility {
 
     @Override
     public final Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f29018a) {
+        switch (this.f29016a) {
             case 0:
                 if (view instanceof q0) {
                     AnimatorSet animatorSet = new AnimatorSet();

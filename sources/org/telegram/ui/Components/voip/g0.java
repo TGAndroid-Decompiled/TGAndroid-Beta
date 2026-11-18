@@ -28,7 +28,7 @@ public final class g0 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 k0Var2.f40975c = floatValue;
                 f40 f40Var = k0Var2.f40986k0;
-                f40Var.f47548y3.setAlpha(1.0f - floatValue);
+                f40Var.f47504y3.setAlpha(1.0f - floatValue);
                 d30 d30Var = f40Var.J1;
                 if (d30Var.getTag() != null) {
                     f10 = 1.0f;
@@ -36,7 +36,7 @@ public final class g0 implements ValueAnimator.AnimatorUpdateListener {
                     f10 = 0.0f;
                 }
                 d30Var.setAlpha((1.0f - f40Var.Z3.f40975c) * f10);
-                f40Var.K1(f40Var.f47522t2);
+                f40Var.K1(f40Var.f47478t2);
                 k0Var2.l();
                 return;
         }

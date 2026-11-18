@@ -5,29 +5,29 @@ import android.view.View;
 import android.view.Window;
 import org.telegram.ui.Components.f61;
 public final class q implements ValueAnimator.AnimatorUpdateListener {
-    public final int f26326a;
-    public final Object f26327b;
-    public final Object f26328c;
+    public final int f26324a;
+    public final Object f26325b;
+    public final Object f26326c;
 
     public q(int i7, Object obj, Object obj2) {
-        this.f26326a = i7;
-        this.f26327b = obj;
-        this.f26328c = obj2;
+        this.f26324a = i7;
+        this.f26325b = obj;
+        this.f26326c = obj2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
-        switch (this.f26326a) {
+        switch (this.f26324a) {
             case 0:
-                org.telegram.ui.Components.bh bhVar = (org.telegram.ui.Components.bh) this.f26327b;
-                Window window = (Window) this.f26328c;
+                org.telegram.ui.Components.bh bhVar = (org.telegram.ui.Components.bh) this.f26325b;
+                Window window = (Window) this.f26326c;
                 int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 if (bhVar != null) {
                     org.telegram.ui.Components.si siVar = bhVar.f33687b;
                     siVar.G0 = -1;
                     siVar.H0 = intValue;
-                    siVar.f30192b.invalidate();
+                    siVar.f30190b.invalidate();
                 }
                 try {
                     window.setNavigationBarColor(intValue);
@@ -36,8 +36,8 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                     return;
                 }
             case 1:
-                f61 f61Var = (f61) this.f26328c;
-                if (((MediaController) this.f26327b).Y != 1) {
+                f61 f61Var = (f61) this.f26326c;
+                if (((MediaController) this.f26325b).Y != 1) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.2f;
@@ -45,10 +45,10 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                 f61Var.B0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f10);
                 return;
             default:
-                zu zuVar = (zu) this.f26327b;
-                View view = (View) this.f26328c;
+                zu zuVar = (zu) this.f26325b;
+                View view = (View) this.f26326c;
                 zuVar.getClass();
-                zuVar.f28362a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zuVar.f28360a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (view != null) {
                     view.invalidate();
                     return;

@@ -328,7 +328,7 @@ public final class k extends h3 {
         int i10 = 0;
         m w10 = g0.f.w(f1.d(selectedRoutes.get(0)));
         Bundle controlHints = routingController.getControlHints();
-        String string = this.f7209a.getString(2131689663);
+        String string = this.f7206a.getString(2131689663);
         m mVar = null;
         if (controlHints != null) {
             try {
@@ -379,13 +379,13 @@ public final class k extends h3 {
         m b10 = lVar.b();
         ArrayList h7 = g0.f.h(routingController.getSelectableRoutes());
         ArrayList h10 = g0.f.h(routingController.getDeselectableRoutes());
-        ca.i iVar = (ca.i) this.f7214n;
+        ca.i iVar = (ca.i) this.f7211n;
         if (iVar == null) {
             Log.w("MR2Provider", "setDynamicRouteDescriptors: providerDescriptor is not set.");
             return;
         }
         ArrayList arrayList2 = new ArrayList();
-        List<m> list = (List) iVar.f5126c;
+        List<m> list = (List) iVar.f5123c;
         if (!list.isEmpty()) {
             for (m mVar2 : list) {
                 String d = mVar2.d();

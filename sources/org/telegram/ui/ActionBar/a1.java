@@ -6,19 +6,19 @@ import java.lang.reflect.Method;
 import org.telegram.ui.Components.iu;
 import org.telegram.ui.i11;
 public final class a1 implements ViewTreeObserver.OnScrollChangedListener {
-    public final int f28752a;
+    public final int f28750a;
 
     @Override
     public final void onScrollChanged() {
-        switch (this.f28752a) {
+        switch (this.f28750a) {
             case 0:
-                Method method = h1.f28986k;
+                Method method = h1.f28984k;
                 return;
             case 1:
                 Field field = iu.f36195f;
                 return;
             default:
-                Field field2 = i11.f48560c;
+                Field field2 = i11.f48516c;
                 return;
         }
     }

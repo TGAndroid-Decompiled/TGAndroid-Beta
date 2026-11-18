@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 public class NotificationBadge$SamsungHomeBadger implements wr {
-    public static final String[] f22766a = {"_id", "class"};
-    public static NotificationBadge$DefaultBadger f22767b;
+    public static final String[] f22763a = {"_id", "class"};
+    public static NotificationBadge$DefaultBadger f22764b;
 
     public static ContentValues c(ComponentName componentName, int i7, boolean z10) {
         ContentValues contentValues = new ContentValues();
@@ -25,17 +25,17 @@ public class NotificationBadge$SamsungHomeBadger implements wr {
     @Override
     public final void a(int i7) {
         try {
-            if (f22767b == null) {
-                f22767b = new NotificationBadge$DefaultBadger();
+            if (f22764b == null) {
+                f22764b = new NotificationBadge$DefaultBadger();
             }
-            f22767b.a(i7);
+            f22764b.a(i7);
         } catch (Exception unused) {
         }
         Uri parse = Uri.parse("content://com.sec.badge/apps?notify=true");
-        ContentResolver contentResolver = t0.f26915b.getContentResolver();
+        ContentResolver contentResolver = t0.f26913b.getContentResolver();
         Cursor cursor = null;
         try {
-            cursor = contentResolver.query(parse, f22766a, "package=?", new String[]{zr.d.getPackageName()}, null);
+            cursor = contentResolver.query(parse, f22763a, "package=?", new String[]{zr.d.getPackageName()}, null);
             if (cursor != null) {
                 String className = zr.d.getClassName();
                 boolean z10 = false;
@@ -53,7 +53,7 @@ public class NotificationBadge$SamsungHomeBadger implements wr {
                 cursor.close();
             }
         } catch (Throwable th2) {
-            LinkedList linkedList = zr.f28347a;
+            LinkedList linkedList = zr.f28345a;
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }

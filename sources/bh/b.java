@@ -15,32 +15,32 @@ import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Cells.qa;
+import org.telegram.ui.Cells.ra;
 import org.telegram.ui.Components.b9;
-public final class b extends qa {
-    public final TextView f3364c0;
-    public final FrameLayout f3365d0;
-    public Drawable f3366e0;
-    public Drawable f3367f0;
-    public TL_stories.Boost f3368g0;
-    public final a f3369h0;
+public final class b extends ra {
+    public final TextView f3365c0;
+    public final FrameLayout f3366d0;
+    public Drawable f3367e0;
+    public Drawable f3368f0;
+    public TL_stories.Boost f3369g0;
+    public final a f3370h0;
 
     public b(Context context) {
         super(context, 0, 0, false);
         int i7;
         int i10;
-        this.f3369h0 = new a(getContext());
-        this.f3365d0 = new FrameLayout(getContext());
+        this.f3370h0 = new a(getContext());
+        this.f3366d0 = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
-        this.f3364c0 = textView;
+        this.f3365c0 = textView;
         textView.setTextColor(n6.w0(n6.G6, this.E));
-        this.f3364c0.setTypeface(g0.o());
-        this.f3364c0.setTextSize(12.0f);
-        this.f3364c0.setGravity(17);
-        this.f3365d0.addView(this.f3364c0, ma.c(22.0f, -2));
-        this.f3365d0.setPadding(g0.L(8.0f), 0, g0.L(8.0f), 0);
-        FrameLayout frameLayout = this.f3365d0;
-        boolean z10 = gd.f24216a0;
+        this.f3365c0.setTypeface(g0.o());
+        this.f3365c0.setTextSize(12.0f);
+        this.f3365c0.setGravity(17);
+        this.f3366d0.addView(this.f3365c0, ma.c(22.0f, -2));
+        this.f3366d0.setPadding(g0.L(8.0f), 0, g0.L(8.0f), 0);
+        FrameLayout frameLayout = this.f3366d0;
+        boolean z10 = gd.f24213a0;
         if (z10) {
             i7 = 3;
         } else {
@@ -67,7 +67,7 @@ public final class b extends qa {
     }
 
     public TL_stories.Boost getBoost() {
-        return this.f3368g0;
+        return this.f3369g0;
     }
 
     @Override
@@ -75,7 +75,7 @@ public final class b extends qa {
         float L;
         int i7;
         if (this.T) {
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 L = 0.0f;
             } else {
                 L = g0.L(70.0f);
@@ -83,23 +83,23 @@ public final class b extends qa {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 i7 = g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, n6.f29519k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, n6.f29517k0);
         }
     }
 
     public void setStatus(TL_stories.Boost boost) {
         int i7;
-        this.f3368g0 = boost;
+        this.f3369g0 = boost;
         boolean z10 = boost.gift;
-        FrameLayout frameLayout = this.f3365d0;
-        TextView textView = this.f3364c0;
+        FrameLayout frameLayout = this.f3366d0;
+        TextView textView = this.f3365c0;
         int i10 = 0;
-        n5 n5Var = this.f31674b;
+        n5 n5Var = this.f31724b;
         if (!z10 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
@@ -107,7 +107,7 @@ public final class b extends qa {
             int i11 = ((boost.expires - boost.date) / 30) / 86400;
             long j3 = boost.stars;
             int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-            t3 t3Var = this.f31672a;
+            t3 t3Var = this.f31722a;
             b9 b9Var = this.F;
             if (i12 > 0) {
                 n5Var.l(gd.G((int) j3, "BoostingBoostStars", new Object[0]), false);
@@ -129,32 +129,32 @@ public final class b extends qa {
             }
             String format = gd.E0().o0().format(new Date(boost.expires * 1000));
             int i13 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
-            n5 n5Var2 = this.f31676c;
+            n5 n5Var2 = this.f31726c;
             if (i13 > 0) {
                 n5Var2.l(gd.a0(null, null, 2131753242, format), false);
             } else {
                 n5Var2.l(gd.a0(null, null, 2131753522, format), false);
             }
             if (boost.gift) {
-                if (this.f3367f0 == null) {
+                if (this.f3368f0 == null) {
                     Drawable drawable = getResources().getDrawable(2131231948);
-                    this.f3367f0 = drawable;
+                    this.f3368f0 = drawable;
                     drawable.setColorFilter(new PorterDuffColorFilter(-3240417, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-3240417);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3367f0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3368f0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(g0.L(4.0f));
                 textView.setText(gd.M0(2131753499, null));
                 frameLayout.setBackground(n6.e0(g0.L(12.0f), g0.L(12.0f), n6.r1(0.2f, -3240417)));
             }
             if (boost.giveaway) {
-                if (this.f3366e0 == null) {
+                if (this.f3367e0 == null) {
                     Drawable drawable2 = getResources().getDrawable(2131231954);
-                    this.f3366e0 = drawable2;
+                    this.f3367e0 = drawable2;
                     drawable2.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-13397548);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3366e0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3367e0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(g0.L(4.0f));
                 textView.setText(gd.M0(2131753490, null));
                 frameLayout.setBackground(n6.e0(g0.L(12.0f), g0.L(12.0f), n6.r1(0.2f, -13397548)));
@@ -163,9 +163,9 @@ public final class b extends qa {
         int i14 = boost.multiplier;
         if (i14 > 0) {
             String valueOf = String.valueOf(i14);
-            a aVar = this.f3369h0;
-            aVar.f3363f = valueOf;
-            aVar.f3362e = aVar.f3359a.measureText(valueOf);
+            a aVar = this.f3370h0;
+            aVar.f3364f = valueOf;
+            aVar.f3363e = aVar.f3360a.measureText(valueOf);
             aVar.invalidateSelf();
             n5Var.i(aVar);
         } else {
@@ -173,13 +173,13 @@ public final class b extends qa {
         }
         if (frameLayout.getVisibility() == 0) {
             int L = g0.L(22.0f) + ((int) textView.getPaint().measureText(textView.getText().toString()));
-            if (gd.f24216a0) {
+            if (gd.f24213a0) {
                 i7 = L;
             } else {
                 i7 = 0;
             }
             int paddingTop = n5Var.getPaddingTop();
-            if (!gd.f24216a0) {
+            if (!gd.f24213a0) {
                 i10 = L;
             }
             n5Var.setPadding(i7, paddingTop, i10, n5Var.getPaddingBottom());

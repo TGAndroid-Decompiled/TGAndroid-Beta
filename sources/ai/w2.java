@@ -34,19 +34,19 @@ public final class w2 extends FrameLayout {
     public boolean Q;
     public boolean R;
     public float S;
-    public final String f1588a;
-    public final String f1589b;
-    public final String f1590c;
+    public final String f1589a;
+    public final String f1590b;
+    public final String f1591c;
     public final boolean d;
-    public final t f1591e;
-    public final mp f1592f;
+    public final t f1592e;
+    public final mp f1593f;
     public final TextPaint h;
-    public final TextPaint f1593n;
-    public final Paint f1594r;
-    public final Paint f1595s;
-    public final TextPaint f1596w;
-    public final String f1597x;
-    public final String f1598y;
+    public final TextPaint f1594n;
+    public final Paint f1595r;
+    public final Paint f1596s;
+    public final TextPaint f1597w;
+    public final String f1598x;
+    public final String f1599y;
 
     public w2(Context context, String str, String str2, String str3, boolean z10) {
         super(context);
@@ -56,15 +56,15 @@ public final class w2 extends FrameLayout {
         TextPaint textPaint = new TextPaint(1);
         this.h = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f1593n = textPaint2;
+        this.f1594n = textPaint2;
         Paint paint = new Paint(1);
-        this.f1594r = paint;
-        this.f1595s = new Paint(1);
+        this.f1595r = paint;
+        this.f1596s = new Paint(1);
         TextPaint textPaint3 = new TextPaint(1);
-        this.f1596w = textPaint3;
+        this.f1597w = textPaint3;
         String M0 = gd.M0(2131745070, null);
-        this.f1597x = M0;
-        this.f1598y = gd.M0(2131745037, null);
+        this.f1598x = M0;
+        this.f1599y = gd.M0(2131745037, null);
         this.E = M0;
         this.F = new RectF();
         this.G = new RectF();
@@ -78,16 +78,16 @@ public final class w2 extends FrameLayout {
         this.K = c6Var3;
         this.L = new mc(this);
         setWillNotDraw(false);
-        this.f1588a = str;
-        this.f1589b = str2;
-        this.f1590c = str3;
+        this.f1589a = str;
+        this.f1590b = str2;
+        this.f1591c = str3;
         this.d = z10;
         if (str != null) {
             tVar = DictationAsr.H(str);
         } else {
             tVar = null;
         }
-        this.f1591e = tVar;
+        this.f1592e = tVar;
         textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
         textPaint2.setTextSize(org.telegram.messenger.g0.L(14.0f));
         paint.setStyle(Paint.Style.STROKE);
@@ -96,11 +96,11 @@ public final class w2 extends FrameLayout {
         textPaint3.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint3.setTypeface(org.telegram.messenger.g0.o());
         mp mpVar = new mp(26, context, null);
-        this.f1592f = mpVar;
+        this.f1593f = mpVar;
         mpVar.setDrawUnchecked(false);
         mpVar.b(-1, -1, n6.Fi);
         mpVar.setDrawBackgroundAsArc(-1);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i7 = 3;
         } else {
             i7 = 5;
@@ -139,11 +139,11 @@ public final class w2 extends FrameLayout {
         String str;
         t[] I2;
         boolean z15 = true;
-        if (this.f1591e == null) {
+        if (this.f1592e == null) {
             this.O = true;
             z11 = DictationAsr.v();
         } else {
-            String str2 = this.f1588a;
+            String str2 = this.f1589a;
             t[] I3 = DictationAsr.I();
             int length = I3.length;
             int i7 = 0;
@@ -161,14 +161,14 @@ public final class w2 extends FrameLayout {
                 }
             }
             this.O = z10;
-            if (z10 && !DictationAsr.v() && DictationAsr.y(this.f1588a)) {
+            if (z10 && !DictationAsr.v() && DictationAsr.y(this.f1589a)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
         }
-        if (this.f1591e != null) {
-            String str3 = this.f1588a;
+        if (this.f1592e != null) {
+            String str3 = this.f1589a;
             for (t tVar2 : DictationAsr.I()) {
                 if (tVar2.b(str3) && tVar2.h) {
                     z12 = true;
@@ -186,7 +186,7 @@ public final class w2 extends FrameLayout {
             z13 = false;
         }
         this.P = z13;
-        if (this.O && !z13 && DictationAsr.W(this.f1588a) != null) {
+        if (this.O && !z13 && DictationAsr.W(this.f1589a) != null) {
             z14 = true;
         } else {
             z14 = false;
@@ -194,23 +194,23 @@ public final class w2 extends FrameLayout {
         this.Q = z14;
         if (a() && !this.P) {
             if (this.O) {
-                str = this.f1598y;
+                str = this.f1599y;
             } else {
-                str = this.f1597x;
+                str = this.f1598x;
             }
             this.E = str;
         }
         float f10 = 0.0f;
-        if (this.f1591e != null) {
-            String str4 = this.f1588a;
+        if (this.f1592e != null) {
+            String str4 = this.f1589a;
             for (t tVar3 : DictationAsr.I()) {
                 if (tVar3.b(str4) && tVar3.h) {
-                    f10 = Math.max(f10, tVar3.f1536i);
+                    f10 = Math.max(f10, tVar3.f1537i);
                 }
             }
         }
         this.S = f10;
-        this.f1592f.a(z11, isAttachedToWindow());
+        this.f1593f.a(z11, isAttachedToWindow());
         boolean z16 = this.O;
         if (getBackground() == null) {
             z15 = false;
@@ -235,16 +235,16 @@ public final class w2 extends FrameLayout {
         float L2;
         float width;
         float L3;
-        boolean z12 = gd.f24216a0;
-        int x02 = n6.x0(null, n6.f29807z6, false);
+        boolean z12 = gd.f24213a0;
+        int x02 = n6.x0(null, n6.f29805z6, false);
         int x03 = n6.x0(null, n6.Fi, false);
         float L4 = org.telegram.messenger.g0.L(25.0f);
         int x04 = n6.x0(null, n6.G6, false);
         TextPaint textPaint = this.h;
         textPaint.setColor(x04);
-        TextPaint textPaint2 = this.f1593n;
+        TextPaint textPaint2 = this.f1594n;
         textPaint2.setColor(x02);
-        String str = this.f1589b;
+        String str = this.f1590b;
         float measureText = textPaint.measureText(str);
         float L5 = org.telegram.messenger.g0.L(5.5f) + L4;
         if (z12) {
@@ -253,7 +253,7 @@ public final class w2 extends FrameLayout {
             L = org.telegram.messenger.g0.L(21.0f);
         }
         canvas.drawText(str, L, L5, textPaint);
-        String str2 = this.f1590c;
+        String str2 = this.f1591c;
         if (str2 != null) {
             float measureText2 = textPaint2.measureText(str2);
             if (z12) {
@@ -271,10 +271,10 @@ public final class w2 extends FrameLayout {
         }
         float d2 = this.K.d(z10);
         float e10 = this.I.e(false, this.S);
-        this.f1592f.setAlpha(d);
+        this.f1593f.setAlpha(d);
         if (d < 1.0f) {
             String str3 = this.E;
-            TextPaint textPaint3 = this.f1596w;
+            TextPaint textPaint3 = this.f1597w;
             float measureText3 = textPaint3.measureText(str3);
             float L6 = org.telegram.messenger.g0.L(28.0f) + measureText3;
             float L7 = org.telegram.messenger.g0.L(30.0f);
@@ -291,7 +291,7 @@ public final class w2 extends FrameLayout {
             canvas.save();
             canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
             int r12 = n6.r1(f12, x03);
-            Paint paint = this.f1595s;
+            Paint paint = this.f1596s;
             paint.setColor(r12);
             canvas.drawRoundRect(rectF, f11, f11, paint);
             int x05 = n6.x0(null, n6.Ji, false);
@@ -323,7 +323,7 @@ public final class w2 extends FrameLayout {
                 RectF rectF2 = this.F;
                 rectF2.set(rectF.centerX() - L9, z13 - L9, rectF.centerX() + L9, z13 + L9);
                 int r13 = n6.r1(f12 * d2, x05);
-                Paint paint2 = this.f1594r;
+                Paint paint2 = this.f1595r;
                 paint2.setColor(r13);
                 canvas.drawArc(rectF2, this.M - 90.0f, Math.max(0.1f, Math.min(0.9f, e10)) * 360.0f, false, paint2);
             } else {
@@ -351,7 +351,7 @@ public final class w2 extends FrameLayout {
             if (z11) {
                 width2 -= org.telegram.messenger.g0.L(21.0f);
             }
-            canvas.drawLine(L2, height, width2, getHeight() - 1, n6.f29519k0);
+            canvas.drawLine(L2, height, width2, getHeight() - 1, n6.f29517k0);
         }
     }
 
@@ -391,10 +391,10 @@ public final class w2 extends FrameLayout {
                     performHapticFeedback(3);
                     if (!this.P) {
                         if (!this.O) {
-                            DictationAsr.r(this.f1591e);
+                            DictationAsr.r(this.f1592e);
                         } else if (this.Q) {
                             this.R = true;
-                            t W = DictationAsr.W(this.f1588a);
+                            t W = DictationAsr.W(this.f1589a);
                             if (W != null && DictationAsr.w(W)) {
                                 DictationAsr.s(W, true);
                             }

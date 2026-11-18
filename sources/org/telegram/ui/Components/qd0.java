@@ -58,8 +58,8 @@ public final class qd0 extends FrameLayout {
 
     public final void a() {
         og.o oVar = this.f38763b;
-        oVar.f21897b.setVisibility(4);
-        CropAreaView cropAreaView = oVar.f21896a;
+        oVar.f21894b.setVisibility(4);
+        CropAreaView cropAreaView = oVar.f21893a;
         cropAreaView.setDimVisibility(false);
         cropAreaView.f(false, false);
         cropAreaView.invalidate();
@@ -74,13 +74,13 @@ public final class qd0 extends FrameLayout {
         Bitmap bitmap2 = null;
         this.f38765e.w0(null);
         og.o oVar = this.f38763b;
-        ImageView imageView = oVar.f21897b;
-        oVar.f21906y = z10;
+        ImageView imageView = oVar.f21894b;
+        oVar.f21903y = z10;
         oVar.d = v51Var;
-        oVar.f21899e = gVar;
+        oVar.f21896e = gVar;
         oVar.L = i7;
-        oVar.f21905x = bitmap;
-        CropAreaView cropAreaView = oVar.f21896a;
+        oVar.f21902x = bitmap;
+        CropAreaView cropAreaView = oVar.f21893a;
         boolean z13 = true;
         if (v51Var != null) {
             z12 = true;
@@ -98,15 +98,15 @@ public final class qd0 extends FrameLayout {
             og.m mVar = oVar.M;
             if (mVar != null && z11) {
                 float f10 = currentWidth;
-                mVar.f21889e *= mVar.f21886a / f10;
-                mVar.f21886a = f10;
-                mVar.f21887b = currentHeight;
+                mVar.f21886e *= mVar.f21883a / f10;
+                mVar.f21883a = f10;
+                mVar.f21884b = currentHeight;
                 mVar.h();
-                Matrix matrix = mVar.f21894k;
-                og.o oVar2 = mVar.f21895l;
+                Matrix matrix = mVar.f21891k;
+                og.o oVar2 = mVar.f21892l;
                 matrix.getValues(oVar2.I);
                 matrix.reset();
-                float f11 = mVar.f21889e;
+                float f11 = mVar.f21886e;
                 matrix.postScale(f11, f11);
                 float[] fArr = oVar2.I;
                 matrix.postTranslate(fArr[2], fArr[5]);
@@ -118,7 +118,7 @@ public final class qd0 extends FrameLayout {
                 cropAreaView.getViewTreeObserver().addOnPreDrawListener(new og.k(oVar, weVar2, currentHeight, currentWidth, 1));
             }
             if (v51Var == null) {
-                bitmap2 = oVar.f21905x;
+                bitmap2 = oVar.f21902x;
             }
             imageView.setImageBitmap(bitmap2);
         }
@@ -129,11 +129,11 @@ public final class qd0 extends FrameLayout {
         fVar.setRotated(false);
         if (weVar2 != null) {
             fVar.b(weVar2.d);
-            if (weVar2.f27683k == 0) {
+            if (weVar2.f27681k == 0) {
                 z13 = false;
             }
             fVar.setRotated(z13);
-            fVar.setMirrored(weVar2.f27684l);
+            fVar.setMirrored(weVar2.f27682l);
         } else {
             fVar.setRotated(false);
             fVar.setMirrored(false);
@@ -153,7 +153,7 @@ public final class qd0 extends FrameLayout {
             int L = org.telegram.messenger.g0.L(32.0f);
             org.telegram.ui.so0 so0Var = (org.telegram.ui.so0) this.f38762a;
             so0Var.getClass();
-            PhotoViewer photoViewer = so0Var.f52040a;
+            PhotoViewer photoViewer = so0Var.f52042a;
             float measuredWidth = (photoViewer.S7.getMeasuredWidth() - org.telegram.messenger.g0.L(32.0f)) * photoViewer.f43364w8;
             int i7 = L / 2;
             int L2 = org.telegram.messenger.g0.L(2.0f) + (((int) (measuredWidth + org.telegram.messenger.g0.L(16.0f))) - i7);
@@ -176,7 +176,7 @@ public final class qd0 extends FrameLayout {
                 paint.setAlpha((int) (this.f38771x * 255.0f));
                 canvas.drawCircle(actualRect.centerX(), actualRect.centerY(), actualRect.width() / 2.0f, paint);
             }
-            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29645qg, this.E));
+            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29643qg, this.E));
             paint.setAlpha(Math.min(255, (int) (this.f38768r * 255.0f * this.f38767n)));
             canvas.drawCircle(L2 + i7, org.telegram.messenger.g0.L(8.0f) + measuredHeight + L, org.telegram.messenger.g0.L(3.0f), paint);
         }
@@ -199,7 +199,7 @@ public final class qd0 extends FrameLayout {
         int i7;
         float cropTop = this.f38763b.getCropTop() - org.telegram.messenger.g0.L(14.0f);
         if (!this.d) {
-            i7 = org.telegram.messenger.g0.f24115m;
+            i7 = org.telegram.messenger.g0.f24112m;
         } else {
             i7 = 0;
         }
@@ -237,12 +237,12 @@ public final class qd0 extends FrameLayout {
         og.m mVar;
         super.onLayout(z10, i7, i10, i11, i12);
         og.o oVar = this.f38763b;
-        CropAreaView cropAreaView = oVar.f21896a;
+        CropAreaView cropAreaView = oVar.f21893a;
         float cropWidth = cropAreaView.getCropWidth();
         if (cropWidth != 0.0f && (mVar = oVar.M) != null) {
-            cropAreaView.a(oVar.h, mVar.f21886a / mVar.f21887b);
+            cropAreaView.a(oVar.h, mVar.f21883a / mVar.f21884b);
             cropAreaView.setActualRect(cropAreaView.getAspectRatio());
-            cropAreaView.d(oVar.f21900f);
+            cropAreaView.d(oVar.f21897f);
             og.m.g(oVar.M, cropAreaView.getCropWidth() / cropWidth, 0.0f, 0.0f);
             oVar.r(false);
         }

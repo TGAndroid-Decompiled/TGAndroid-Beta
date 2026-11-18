@@ -9,26 +9,26 @@ import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.gt0;
 import org.telegram.ui.Components.lp0;
 public final class de implements RequestDelegate {
-    public final int f23513a;
-    public final int f23514b;
-    public final int f23515c;
+    public final int f23510a;
+    public final int f23511b;
+    public final int f23512c;
     public final fs d;
 
     public de(fs fsVar, int i7, int i10, int i11) {
-        this.f23513a = i11;
+        this.f23510a = i11;
         this.d = fsVar;
-        this.f23514b = i7;
-        this.f23515c = i10;
+        this.f23511b = i7;
+        this.f23512c = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f23513a;
+        int i7 = this.f23510a;
         fs fsVar = this.d;
         switch (i7) {
             case 0:
                 String[] strArr = MediaController.W1;
-                g0.g3(new jg.o1(this.f23514b, this.f23515c, 7, (MediaController) fsVar, tLObject, tL_error));
+                g0.g3(new jg.o1(this.f23511b, this.f23512c, 7, (MediaController) fsVar, tLObject, tL_error));
                 return;
             case 1:
                 mp mpVar = (mp) fsVar;
@@ -37,7 +37,7 @@ public final class de implements RequestDelegate {
                 if (tL_error == null) {
                     TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
                     if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
-                        g0.g3(new l2.x(mpVar, updates_difference, this.f23514b, this.f23515c, 4));
+                        g0.g3(new l2.x(mpVar, updates_difference, this.f23511b, this.f23512c, 4));
                         return;
                     }
                     if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
@@ -48,11 +48,11 @@ public final class de implements RequestDelegate {
                     a0.h hVar2 = new a0.h();
                     for (int i11 = 0; i11 < updates_difference.users.size(); i11++) {
                         TLRPC.User user = updates_difference.users.get(i11);
-                        hVar.k(user, user.f28554id);
+                        hVar.k(user, user.f28552id);
                     }
                     for (int i12 = 0; i12 < updates_difference.chats.size(); i12++) {
                         TLRPC.Chat chat = updates_difference.chats.get(i12);
-                        hVar2.k(chat, chat.f28405id);
+                        hVar2.k(chat, chat.f28403id);
                     }
                     ArrayList arrayList = new ArrayList();
                     if (!updates_difference.other_updates.isEmpty()) {
@@ -79,15 +79,15 @@ public final class de implements RequestDelegate {
                         }
                     }
                     g0.g3(new fi(11, mpVar, updates_difference));
-                    mpVar.getMessagesStorage().f27054a.c(new fn(mpVar, updates_difference, arrayList, hVar, hVar2, 8));
+                    mpVar.getMessagesStorage().f27052a.c(new fn(mpVar, updates_difference, arrayList, hVar, hVar2, 8));
                     return;
                 }
-                mpVar.f25672i2 = false;
+                mpVar.f25670i2 = false;
                 mpVar.getConnectionsManager().setIsUpdating(false);
                 a8.b("received: isUpdating = false");
                 return;
             default:
-                g0.g3(new lp0((gt0) fsVar, tL_error, this.f23514b, this.f23515c, tLObject, 0));
+                g0.g3(new lp0((gt0) fsVar, tL_error, this.f23511b, this.f23512c, tLObject, 0));
                 return;
         }
     }

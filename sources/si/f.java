@@ -103,7 +103,7 @@ public final class f extends ri.e {
         }
         float max2 = (Math.max(max * f16, 0.001f) * f15) + f17;
         int[] iArr = new int[8];
-        d0.a(d0.f3214i, i7, iArr);
+        d0.a(d0.f3215i, i7, iArr);
         int i13 = fVar.f57508y;
         if (i13 != 1 && i13 != 4) {
             return new LinearGradient(max2, 0.0f, f17, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
@@ -195,8 +195,8 @@ public final class f extends ri.e {
     public final void updateColors() {
         ui.c cVar = this.H;
         if (cVar != null) {
-            this.I = n6.r1(this.J / 255.0f, cVar.f58998b);
-            this.K = n6.r1(this.L / 255.0f, this.H.f58998b);
+            this.I = n6.r1(this.J / 255.0f, cVar.f58999b);
+            this.K = n6.r1(this.L / 255.0f, this.H.f58999b);
         }
         this.f57506w = true;
         this.f57507x = true;

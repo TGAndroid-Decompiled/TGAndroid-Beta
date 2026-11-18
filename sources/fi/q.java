@@ -70,53 +70,53 @@ public abstract class q extends FrameLayout implements fs, te.b {
     public final org.telegram.ui.Components.n6 U;
     public final j V;
     public final ImageView W;
-    public final te.a f12412a;
-    public final ImageView f12413a0;
-    public final int f12414b;
-    public final org.telegram.ui.Components.m5 f12415b0;
-    public final Drawable f12416c;
-    public final ArrayList f12417c0;
+    public final te.a f12409a;
+    public final ImageView f12410a0;
+    public final int f12411b;
+    public final org.telegram.ui.Components.m5 f12412b0;
+    public final Drawable f12413c;
+    public final ArrayList f12414c0;
     public final l d;
-    public float f12418d0;
-    public int f12419e;
-    public float f12420e0;
-    public final int f12421f;
-    public final cx f12422f0;
-    public CharSequence f12423g0;
+    public float f12415d0;
+    public int f12416e;
+    public float f12417e0;
+    public final int f12418f;
+    public final cx f12419f0;
+    public CharSequence f12420g0;
     public final i h;
-    public boolean f12424h0;
-    public int f12425i0;
-    public SpannableStringBuilder f12426j0;
-    public ValueAnimator f12427k0;
-    public o f12428l0;
+    public boolean f12421h0;
+    public int f12422i0;
+    public SpannableStringBuilder f12423j0;
+    public ValueAnimator f12424k0;
+    public o f12425l0;
     public boolean m0;
-    public qh0 f12429n;
-    public boolean f12430n0;
-    public float f12431o0;
-    public int f12432p0;
-    public p f12433q0;
-    public final i f12434r;
-    public org.telegram.ui.ActionBar.k f12435r0;
-    public final p6 f12436s;
-    public f7 f12437s0;
-    public float f12438t0;
-    public final float f12439u0;
-    public final float f12440v0;
-    public final ArrayList f12441w;
-    public final float f12442w0;
-    public final ArrayList f12443x;
-    public final a3.c f12444x0;
-    public final ArrayList f12445y;
-    public LinearGradient f12446y0;
-    public Matrix f12447z0;
+    public qh0 f12426n;
+    public boolean f12427n0;
+    public float f12428o0;
+    public int f12429p0;
+    public p f12430q0;
+    public final i f12431r;
+    public org.telegram.ui.ActionBar.k f12432r0;
+    public final p6 f12433s;
+    public f7 f12434s0;
+    public float f12435t0;
+    public final float f12436u0;
+    public final float f12437v0;
+    public final ArrayList f12438w;
+    public final float f12439w0;
+    public final ArrayList f12440x;
+    public final a3.c f12441x0;
+    public final ArrayList f12442y;
+    public LinearGradient f12443y0;
+    public Matrix f12444z0;
 
     public q(Context context, cx cxVar, int i7, int i10) {
         super(context);
         float f10;
-        this.f12412a = new te.a(1, this, lr.h, 380L, false);
-        this.f12441w = new ArrayList();
-        this.f12443x = new ArrayList();
-        this.f12445y = new ArrayList();
+        this.f12409a = new te.a(1, this, lr.h, 380L, false);
+        this.f12438w = new ArrayList();
+        this.f12440x = new ArrayList();
+        this.f12442y = new ArrayList();
         this.E = new ArrayList();
         tv tvVar = (tv) this;
         m mVar = new m(tvVar, false);
@@ -132,24 +132,24 @@ public abstract class q extends FrameLayout implements fs, te.b {
         this.P = -1;
         this.Q = new ArrayList();
         this.R = new ArrayList();
-        this.f12417c0 = new ArrayList();
-        this.f12418d0 = -1.0f;
+        this.f12414c0 = new ArrayList();
+        this.f12415d0 = -1.0f;
         this.m0 = true;
-        this.f12439u0 = 1.0f;
-        this.f12440v0 = 0.95f;
-        this.f12442w0 = 0.9f;
-        this.f12444x0 = new a3.c(19);
+        this.f12436u0 = 1.0f;
+        this.f12437v0 = 0.95f;
+        this.f12439w0 = 0.9f;
+        this.f12441x0 = new a3.c(19);
         this.C0 = 0.3f;
         this.F0 = 1.0f;
         new OvershootInterpolator(0.9f);
         this.K0 = new OvershootInterpolator(0.95f);
         ab.q qVar = new ab.q(this);
         this.M0 = qVar;
-        this.f12414b = i10;
-        this.f12421f = i7;
-        this.f12422f0 = cxVar;
-        this.f12438t0 = org.telegram.messenger.g0.L(68.0f);
-        this.f12436s = mp.u1(i7).R1();
+        this.f12411b = i10;
+        this.f12418f = i7;
+        this.f12419f0 = cxVar;
+        this.f12435t0 = org.telegram.messenger.g0.L(68.0f);
+        this.f12433s = mp.u1(i7).R1();
         i iVar = new i(tvVar, context, 0);
         this.h = iVar;
         iVar.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
@@ -164,12 +164,12 @@ public abstract class q extends FrameLayout implements fs, te.b {
         this.S = kVar;
         kVar.C = false;
         kVar.n(150L);
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         iVar.setItemAnimator(kVar);
         v4.c0 c0Var = new v4.c0(0, false);
         this.T = c0Var;
         iVar.setLayoutManager(c0Var);
-        iVar.setOnItemClickListener(new bi.i8(tvVar, 6));
+        iVar.setOnItemClickListener(new bi.h8(tvVar, 6));
         iVar.setOnItemLongClickListener(new di.c7(tvVar, 4));
         iVar.setAdapter(mVar);
         addView(iVar, ma.d(-1, -2.0f, 0, 0.0f, 4.0f, 0.0f, 0.0f));
@@ -198,11 +198,11 @@ public abstract class q extends FrameLayout implements fs, te.b {
         imageView.setFocusableInTouchMode(true);
         addView(imageView, ma.c(22.0f, 90));
         org.telegram.ui.Components.m5 m5Var = new org.telegram.ui.Components.m5(org.telegram.messenger.g0.L(26.0f), null);
-        this.f12415b0 = m5Var;
+        this.f12412b0 = m5Var;
         m5Var.f37357a = true;
         m5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
-        this.f12413a0 = imageView2;
+        this.f12410a0 = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageDrawable(m5Var);
         addView(imageView2, ma.c(40.0f, 40));
@@ -212,16 +212,16 @@ public abstract class q extends FrameLayout implements fs, te.b {
         paint.setColor(-2762018);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
-        this.f12416c = getContext().getDrawable(2131232229);
+        this.f12413c = getContext().getDrawable(2131232229);
         i iVar2 = new i(tvVar, getContext(), 1);
-        this.f12434r = iVar2;
+        this.f12431r = iVar2;
         getContext();
         iVar2.setLayoutManager(new v4.c0(0, false));
         iVar2.i(new k(0));
         ?? kVar2 = new v4.k();
         this.d = kVar2;
         kVar2.C = false;
-        kVar2.f59151m = false;
+        kVar2.f59152m = false;
         iVar2.setItemAnimator(kVar2);
         iVar2.setAdapter(mVar2);
         iVar2.setClipChildren(false);
@@ -233,7 +233,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public int getTextColor() {
-        if (this.f12414b == 0) {
+        if (this.f12411b == 0) {
             return f(org.telegram.ui.ActionBar.n6.A8);
         }
         return f(org.telegram.ui.ActionBar.n6.P8);
@@ -252,7 +252,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
 
     public final void b() {
         int i7;
-        this.O = 1.0f - org.telegram.messenger.g0.T1(1.0f - this.f12418d0, 1.0f, 1.0f - this.f12420e0);
+        this.O = 1.0f - org.telegram.messenger.g0.T1(1.0f - this.f12415d0, 1.0f, 1.0f - this.f12417e0);
         d();
         float f10 = this.O;
         if (f10 == 1.0f) {
@@ -268,7 +268,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
                 org.telegram.messenger.g0.g3(new d(this, 0));
             }
             int i10 = this.P;
-            i iVar = this.f12434r;
+            i iVar = this.f12431r;
             i iVar2 = this.h;
             if (i10 == 0) {
                 org.telegram.messenger.g0.d0(iVar2, new e(0));
@@ -278,18 +278,18 @@ public abstract class q extends FrameLayout implements fs, te.b {
                     this.N0 = System.currentTimeMillis() + 60000;
                 }
             } else {
-                int i11 = this.f12421f;
+                int i11 = this.f12418f;
                 if (i10 == 1) {
                     ArrayList arrayList = this.R;
                     arrayList.clear();
                     int i12 = 0;
                     while (true) {
-                        ArrayList arrayList2 = this.f12445y;
+                        ArrayList arrayList2 = this.f12442y;
                         if (i12 >= arrayList2.size()) {
                             break;
                         }
-                        if (((n) arrayList2.get(i12)).f12282c != j10.i(i11).e() || m()) {
-                            arrayList.add(Long.valueOf(((n) arrayList2.get(i12)).f12282c));
+                        if (((n) arrayList2.get(i12)).f12279c != j10.i(i11).e() || m()) {
+                            arrayList.add(Long.valueOf(((n) arrayList2.get(i12)).f12279c));
                             if (arrayList.size() == 3) {
                                 break;
                             }
@@ -305,10 +305,10 @@ public abstract class q extends FrameLayout implements fs, te.b {
                     ai.w0 w0Var = mp.u1(i11).R1().K;
                     org.telegram.messenger.g0.r(w0Var);
                     w0Var.run();
-                    f7 f7Var = this.f12437s0;
+                    f7 f7Var = this.f12434s0;
                     if (f7Var != null) {
                         f7Var.a();
-                        this.f12437s0 = null;
+                        this.f12434s0 = null;
                     }
                 }
             }
@@ -321,19 +321,19 @@ public abstract class q extends FrameLayout implements fs, te.b {
         int N0;
         v4.c0 c0Var = this.T;
         int N02 = c0Var.N0() + 10;
-        ArrayList arrayList = this.f12445y;
+        ArrayList arrayList = this.f12442y;
         int size = arrayList.size();
-        p6 p6Var = this.f12436s;
+        p6 p6Var = this.f12433s;
         boolean z10 = false;
-        if (N02 > size || ((N0 = c0Var.N0() + 9) < arrayList.size() && p6Var.E(0, ((n) arrayList.get(N0)).f12282c) == 0)) {
-            if (this.f12414b == 1) {
+        if (N02 > size || ((N0 = c0Var.N0() + 9) < arrayList.size() && p6Var.E(0, ((n) arrayList.get(N0)).f12279c) == 0)) {
+            if (this.f12411b == 1) {
                 z10 = true;
             }
             if (z10) {
-                if (!p6Var.f12407z) {
+                if (!p6Var.f12404z) {
                     return;
                 }
-            } else if (!p6Var.f12398p) {
+            } else if (!p6Var.f12395p) {
                 return;
             }
             p6Var.T(z10);
@@ -344,8 +344,8 @@ public abstract class q extends FrameLayout implements fs, te.b {
         int i7;
         int i10;
         int i11;
-        float a10 = c8.l9.a(Math.min(this.O, this.f12420e0), 0.0f, 1.0f);
-        float f10 = this.f12412a.f57657e;
+        float a10 = c8.l9.a(Math.min(this.O, this.f12417e0), 0.0f, 1.0f);
+        float f10 = this.f12409a.f57657e;
         float f11 = 1.0f - f10;
         float f12 = f10 * a10;
         float f13 = f11 * a10;
@@ -370,7 +370,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
             }
             imageView.setVisibility(i10);
         }
-        ImageView imageView2 = this.f12413a0;
+        ImageView imageView2 = this.f12410a0;
         if (imageView2 != null) {
             imageView2.setAlpha(f13);
             if (f13 > 0.0f) {
@@ -393,7 +393,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         boolean z10;
-        if (i7 == ks.f25225x5 && this.m0) {
+        if (i7 == ks.f25230y5 && this.m0) {
             if (getVisibility() == 0) {
                 z10 = true;
             } else {
@@ -412,7 +412,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
     public final p e(long j3) {
         i iVar;
         if (this.P == 2) {
-            iVar = this.f12434r;
+            iVar = this.f12431r;
         } else {
             iVar = this.h;
         }
@@ -429,7 +429,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public final int f(int i7) {
-        cx cxVar = this.f12422f0;
+        cx cxVar = this.f12419f0;
         if (cxVar != null && cxVar.getResourceProvider() != null) {
             return cxVar.getThemedColor(i7);
         }
@@ -449,7 +449,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public float getOverScrollCoef() {
-        return this.f12439u0;
+        return this.f12436u0;
     }
 
     public hi.m3 getPremiumHint() {
@@ -457,12 +457,12 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public final void h() {
-        if (!this.f12436s.J()) {
+        if (!this.f12433s.J()) {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        arrayList.add(Long.valueOf(j10.i(this.f12421f).f24792n));
-        this.f12422f0.getOrCreateStoryViewer().M(getContext(), null, arrayList, 0, null, null, y6.a(this.f12434r), false);
+        arrayList.add(Long.valueOf(j10.i(this.f12418f).f24789n));
+        this.f12419f0.getOrCreateStoryViewer().M(getContext(), null, arrayList, 0, null, null, y6.a(this.f12431r), false);
     }
 
     public final void i(p pVar, boolean z10) {
@@ -473,9 +473,9 @@ public abstract class q extends FrameLayout implements fs, te.b {
             } catch (Exception unused) {
             }
             boolean z11 = pVar.G;
-            p6 p6Var = this.f12436s;
+            p6 p6Var = this.f12433s;
             if (z11 && !p6Var.J()) {
-                if (!mp.u1(this.f12421f).i5()) {
+                if (!mp.u1(this.f12418f).i5()) {
                     n();
                 } else {
                     j(0L);
@@ -483,10 +483,10 @@ public abstract class q extends FrameLayout implements fs, te.b {
             } else if (p6Var.K(pVar.F) || p6Var.M(pVar.F)) {
                 TL_stories.PeerStories y10 = p6Var.y(pVar.F);
                 long j3 = pVar.F;
-                f7 f7Var = this.f12437s0;
+                f7 f7Var = this.f12434s0;
                 if (f7Var != null) {
                     f7Var.a();
-                    this.f12437s0 = null;
+                    this.f12434s0 = null;
                 }
                 bi.m2 m2Var = new bi.m2(this, pVar, j3, 5);
                 if (z10) {
@@ -494,8 +494,8 @@ public abstract class q extends FrameLayout implements fs, te.b {
                     return;
                 }
                 f7 n10 = i7.n(y10, m2Var);
-                pVar.f12361e = n10;
-                this.f12437s0 = n10;
+                pVar.f12358e = n10;
+                this.f12434s0 = n10;
                 if (n10 != null) {
                     p6Var.h0(pVar.F, true);
                 }
@@ -508,10 +508,10 @@ public abstract class q extends FrameLayout implements fs, te.b {
         p pVar;
         j6 o4;
         int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        cx cxVar = this.f12422f0;
-        int i10 = this.f12421f;
+        cx cxVar = this.f12419f0;
+        int i10 = this.f12418f;
         if (i7 == 0 && (o4 = mp.u1(i10).R1().o()) != null && o4.a(i10, 1)) {
-            cxVar.showDialog(new ug.l0(o4.b(), this.f12421f, getContext(), this.f12422f0, null));
+            cxVar.showDialog(new ug.l0(o4.b(), this.f12418f, getContext(), this.f12419f0, null));
             return;
         }
         int i11 = 0;
@@ -554,9 +554,9 @@ public abstract class q extends FrameLayout implements fs, te.b {
     public final boolean k(long j3) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f12445y;
+            ArrayList arrayList = this.f12442y;
             if (i7 < arrayList.size()) {
-                if (((n) arrayList.get(i7)).f12282c == j3) {
+                if (((n) arrayList.get(i7)).f12279c == j3) {
                     break;
                 }
                 i7++;
@@ -582,8 +582,8 @@ public abstract class q extends FrameLayout implements fs, te.b {
         boolean z11;
         float f11;
         float f12;
-        if (this.f12418d0 != f10) {
-            this.f12418d0 = f10;
+        if (this.f12415d0 != f10) {
+            this.f12415d0 = f10;
             b();
             if (f10 > this.C0) {
                 z11 = true;
@@ -600,7 +600,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
                 }
                 float f13 = 1.0f;
                 if (z10) {
-                    float f14 = this.f12420e0;
+                    float f14 = this.f12417e0;
                     if (z11) {
                         f11 = 1.0f;
                     } else {
@@ -609,33 +609,33 @@ public abstract class q extends FrameLayout implements fs, te.b {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f14, f11);
                     this.D0 = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final q f11790b;
+                        public final q f11787b;
 
                         {
-                            this.f11790b = this;
+                            this.f11787b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    q qVar = this.f11790b;
+                                    q qVar = this.f11787b;
                                     qVar.getClass();
-                                    qVar.f12420e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    qVar.f12417e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qVar.b();
                                     return;
                                 case 1:
-                                    q qVar2 = this.f11790b;
+                                    q qVar2 = this.f11787b;
                                     qVar2.getClass();
                                     qVar2.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 case 2:
-                                    q qVar3 = this.f11790b;
+                                    q qVar3 = this.f11787b;
                                     qVar3.getClass();
                                     qVar3.F0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 default:
-                                    q qVar4 = this.f11790b;
+                                    q qVar4 = this.f11787b;
                                     qVar4.getClass();
                                     qVar4.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qVar4.invalidate();
@@ -644,7 +644,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
                         }
                     });
                     this.D0.setInterpolator(lr.h);
-                    float f15 = this.f12418d0;
+                    float f15 = this.f12415d0;
                     if (z11) {
                         f12 = f15;
                     } else {
@@ -653,33 +653,33 @@ public abstract class q extends FrameLayout implements fs, te.b {
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f15, f12);
                     this.G0 = ofFloat2;
                     ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final q f11790b;
+                        public final q f11787b;
 
                         {
-                            this.f11790b = this;
+                            this.f11787b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    q qVar = this.f11790b;
+                                    q qVar = this.f11787b;
                                     qVar.getClass();
-                                    qVar.f12420e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    qVar.f12417e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qVar.b();
                                     return;
                                 case 1:
-                                    q qVar2 = this.f11790b;
+                                    q qVar2 = this.f11787b;
                                     qVar2.getClass();
                                     qVar2.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 case 2:
-                                    q qVar3 = this.f11790b;
+                                    q qVar3 = this.f11787b;
                                     qVar3.getClass();
                                     qVar3.F0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 default:
-                                    q qVar4 = this.f11790b;
+                                    q qVar4 = this.f11787b;
                                     qVar4.getClass();
                                     qVar4.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     qVar4.invalidate();
@@ -690,46 +690,46 @@ public abstract class q extends FrameLayout implements fs, te.b {
                     this.G0.setDuration(100L);
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     this.L0 = animatorSet2;
-                    animatorSet2.addListener(new bi.e7(2, this, z11));
+                    animatorSet2.addListener(new bi.d7(2, this, z11));
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(this.D0);
                     arrayList.add(this.G0);
                     if (this.B0) {
                         this.L0.setDuration(1000L);
-                        float f16 = this.f12420e0;
+                        float f16 = this.f12417e0;
                         if (!z11) {
                             f13 = 0.0f;
                         }
                         ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f16, f13);
                         this.E0 = ofFloat3;
                         ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final q f11790b;
+                            public final q f11787b;
 
                             {
-                                this.f11790b = this;
+                                this.f11787b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        q qVar = this.f11790b;
+                                        q qVar = this.f11787b;
                                         qVar.getClass();
-                                        qVar.f12420e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        qVar.f12417e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qVar.b();
                                         return;
                                     case 1:
-                                        q qVar2 = this.f11790b;
+                                        q qVar2 = this.f11787b;
                                         qVar2.getClass();
                                         qVar2.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     case 2:
-                                        q qVar3 = this.f11790b;
+                                        q qVar3 = this.f11787b;
                                         qVar3.getClass();
                                         qVar3.F0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     default:
-                                        q qVar4 = this.f11790b;
+                                        q qVar4 = this.f11787b;
                                         qVar4.getClass();
                                         qVar4.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qVar4.invalidate();
@@ -737,47 +737,47 @@ public abstract class q extends FrameLayout implements fs, te.b {
                                 }
                             }
                         });
-                        OvershootInterpolator overshootInterpolator = new OvershootInterpolator(this.f12440v0);
+                        OvershootInterpolator overshootInterpolator = new OvershootInterpolator(this.f12437v0);
                         this.K0 = overshootInterpolator;
                         this.E0.setInterpolator(overshootInterpolator);
                         this.E0.setDuration(750L);
                         arrayList.add(this.E0);
                     } else {
-                        float f17 = this.f12420e0;
+                        float f17 = this.f12417e0;
                         if (!z11) {
                             f13 = 0.0f;
                         }
                         this.I0 = ValueAnimator.ofFloat(f17, f13);
-                        this.I0.setInterpolator(new OvershootInterpolator(this.f12442w0));
+                        this.I0.setInterpolator(new OvershootInterpolator(this.f12439w0));
                         this.I0.setDuration(350L);
                         this.I0.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final q f11790b;
+                            public final q f11787b;
 
                             {
-                                this.f11790b = this;
+                                this.f11787b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        q qVar = this.f11790b;
+                                        q qVar = this.f11787b;
                                         qVar.getClass();
-                                        qVar.f12420e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        qVar.f12417e0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qVar.b();
                                         return;
                                     case 1:
-                                        q qVar2 = this.f11790b;
+                                        q qVar2 = this.f11787b;
                                         qVar2.getClass();
                                         qVar2.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     case 2:
-                                        q qVar3 = this.f11790b;
+                                        q qVar3 = this.f11787b;
                                         qVar3.getClass();
                                         qVar3.F0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     default:
-                                        q qVar4 = this.f11790b;
+                                        q qVar4 = this.f11787b;
                                         qVar4.getClass();
                                         qVar4.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         qVar4.invalidate();
@@ -794,7 +794,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
                 if (!z11) {
                     f13 = 0.0f;
                 }
-                this.f12420e0 = f13;
+                this.f12417e0 = f13;
                 b();
                 org.telegram.messenger.g0.d0(this.h, new e(1));
             }
@@ -802,10 +802,10 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public final boolean m() {
-        long j3 = j10.i(this.f12421f).f24792n;
-        p6 p6Var = this.f12436s;
+        long j3 = j10.i(this.f12418f).f24789n;
+        p6 p6Var = this.f12433s;
         if (!p6Var.L(j3)) {
-            if (!p6Var.J() || p6Var.f12390g.size() > 3) {
+            if (!p6Var.J() || p6Var.f12387g.size() > 3) {
                 return false;
             }
             return true;
@@ -844,15 +844,15 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public final void o() {
-        p10 p10Var = i7.f12116b;
+        p10 p10Var = i7.f12113b;
         if (p10Var != null) {
             p10Var.d(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.cl, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.dl, false), 0, 0);
         }
-        p10 p10Var2 = i7.f12117c;
+        p10 p10Var2 = i7.f12114c;
         if (p10Var2 != null) {
             p10Var2.d(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.el, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.fl, false), 0, 0);
         }
-        p10[] p10VarArr = i7.f12115a;
+        p10[] p10VarArr = i7.f12112a;
         p10 p10Var3 = p10VarArr[0];
         if (p10Var3 != null) {
             p10Var3.d(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.al, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.bl, false), 0, 0);
@@ -863,7 +863,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
         }
         if (i7.d != null) {
             int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.ok, false);
-            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29637q7, false);
+            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29635q7, false);
             i7.d.d(i0.a.f(0.25f, x02, x03), x03, 0, 0);
         }
         int textColor = getTextColor();
@@ -874,13 +874,13 @@ public abstract class q extends FrameLayout implements fs, te.b {
         }
         this.W.setColorFilter(getTextLogoColor(), PorterDuff.Mode.MULTIPLY);
         org.telegram.messenger.g0.d0(this.h, new f(textColor, 0));
-        org.telegram.messenger.g0.d0(this.f12434r, new e(2));
+        org.telegram.messenger.g0.d0(this.f12431r, new e(2));
         try {
-            org.telegram.ui.Components.m5 m5Var = this.f12415b0;
+            org.telegram.ui.Components.m5 m5Var = this.f12412b0;
             if (m5Var != null) {
-                m5Var.k(Integer.valueOf(f(org.telegram.ui.ActionBar.n6.f29647qi)));
+                m5Var.k(Integer.valueOf(f(org.telegram.ui.ActionBar.n6.f29645qi)));
             }
-            ImageView imageView = this.f12413a0;
+            ImageView imageView = this.f12410a0;
             if (imageView != null) {
                 imageView.invalidate();
             }
@@ -893,29 +893,29 @@ public abstract class q extends FrameLayout implements fs, te.b {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         p(false, false);
-        ks.f(this.f12421f).c(this, ks.f25225x5);
+        ks.f(this.f12418f).c(this, ks.f25230y5);
         ab.q qVar = this.M0;
         qVar.f987a = true;
         AnimatorSet animatorSet = (AnimatorSet) qVar.f989c;
         if (!animatorSet.isRunning()) {
             animatorSet.start();
         }
-        this.f12415b0.a();
+        this.f12412b0.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.f(this.f12421f).n(this, ks.f25225x5);
+        ks.f(this.f12418f).n(this, ks.f25230y5);
         ab.q qVar = this.M0;
         qVar.f987a = false;
         ((AnimatorSet) qVar.f989c).cancel();
-        f7 f7Var = this.f12437s0;
+        f7 f7Var = this.f12434s0;
         if (f7Var != null) {
             f7Var.a();
-            this.f12437s0 = null;
+            this.f12434s0 = null;
         }
-        this.f12415b0.b();
+        this.f12412b0.b();
     }
 
     @Override
@@ -937,7 +937,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
         if (this.P == 2) {
             int size = this.E.size();
             int L = org.telegram.messenger.g0.L((size * 26.33f) - (Math.max(0, size - 1) * 16.0f));
-            i iVar = this.f12434r;
+            i iVar = this.f12431r;
             int x10 = (int) (iVar.getX() + L);
             int y10 = (int) (iVar.getY() + iVar.getHeight());
             tc tcVar = this.J;
@@ -963,29 +963,29 @@ public abstract class q extends FrameLayout implements fs, te.b {
         boolean z14;
         boolean z15;
         String M0;
-        if ((this.P == 1 || this.f12431o0 != 0.0f) && !z11) {
+        if ((this.P == 1 || this.f12428o0 != 0.0f) && !z11) {
             this.L = true;
             return;
         }
-        ArrayList arrayList3 = this.f12441w;
+        ArrayList arrayList3 = this.f12438w;
         arrayList3.clear();
-        ArrayList arrayList4 = this.f12445y;
+        ArrayList arrayList4 = this.f12442y;
         arrayList3.addAll(arrayList4);
-        ArrayList arrayList5 = this.f12443x;
+        ArrayList arrayList5 = this.f12440x;
         arrayList5.clear();
         ArrayList arrayList6 = this.E;
         arrayList5.addAll(arrayList6);
         arrayList4.clear();
-        int i7 = this.f12414b;
-        int i10 = this.f12421f;
+        int i7 = this.f12411b;
+        int i10 = this.f12418f;
         if (i7 != 1) {
             arrayList4.add(new n(j10.i(i10).e()));
         }
-        p6 p6Var = this.f12436s;
+        p6 p6Var = this.f12433s;
         if (i7 == 1) {
             arrayList = p6Var.h;
         } else {
-            arrayList = p6Var.f12390g;
+            arrayList = p6Var.f12387g;
         }
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             long o4 = org.telegram.messenger.n5.o(((TL_stories.PeerStories) arrayList.get(i11)).peer);
@@ -1003,7 +1003,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
             z12 = false;
         }
         int max = Math.max(1, Math.max(p6Var.D(z12), size));
-        this.f12423g0 = null;
+        this.f12420g0 = null;
         boolean I = p6Var.I();
         org.telegram.ui.Components.n6 n6Var = this.U;
         if (I) {
@@ -1011,38 +1011,38 @@ public abstract class q extends FrameLayout implements fs, te.b {
             if (p6Var.M(j10.i(i10).e())) {
                 String M02 = gd.M0(2131743563, null);
                 if (M02.indexOf("…") > 0) {
-                    if (this.f12426j0 == null) {
+                    if (this.f12423j0 == null) {
                         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(M02);
                         l9 l9Var = new l9();
                         valueOf.setSpan(l9Var, valueOf.length() - 1, valueOf.length(), 0);
-                        l9Var.f12236a = n6Var;
-                        l9Var.f12241n = true;
-                        this.f12426j0 = valueOf;
+                        l9Var.f12233a = n6Var;
+                        l9Var.f12238n = true;
+                        this.f12423j0 = valueOf;
                     }
-                    this.f12423g0 = this.f12426j0;
+                    this.f12420g0 = this.f12423j0;
                 } else {
-                    this.f12423g0 = M02;
+                    this.f12420g0 = M02;
                 }
             } else {
-                if (this.f12438t0 < org.telegram.messenger.g0.L(50.0f)) {
+                if (this.f12435t0 < org.telegram.messenger.g0.L(50.0f)) {
                     M0 = null;
                 } else {
                     M0 = gd.M0(2131748109, null);
                 }
-                this.f12423g0 = M0;
+                this.f12420g0 = M0;
             }
         } else {
             arrayList2 = arrayList4;
-            if (this.f12438t0 < org.telegram.messenger.g0.L(50.0f)) {
+            if (this.f12435t0 < org.telegram.messenger.g0.L(50.0f)) {
                 G = null;
             } else {
                 G = gd.G(max, "Stories", new Object[0]);
             }
-            this.f12423g0 = G;
+            this.f12420g0 = G;
         }
-        if (!this.f12424h0) {
-            CharSequence charSequence = this.f12423g0;
-            if (z10 && !gd.f24216a0) {
+        if (!this.f12421h0) {
+            CharSequence charSequence = this.f12420g0;
+            if (z10 && !gd.f24213a0) {
                 z15 = true;
             } else {
                 z15 = false;
@@ -1052,15 +1052,15 @@ public abstract class q extends FrameLayout implements fs, te.b {
         } else {
             z13 = true;
         }
-        if (TextUtils.isEmpty(this.f12423g0) && !this.f12424h0) {
+        if (TextUtils.isEmpty(this.f12420g0) && !this.f12421h0) {
             z14 = false;
         } else {
             z14 = z13;
         }
-        this.f12412a.a(z14, z10);
+        this.f12409a.a(z14, z10);
         arrayList6.clear();
         for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-            if (((n) arrayList2.get(i12)).f12282c != j10.i(i10).f24792n || m()) {
+            if (((n) arrayList2.get(i12)).f12279c != j10.i(i10).f24789n || m()) {
                 arrayList6.add((n) arrayList2.get(i12));
                 if (arrayList6.size() >= 3) {
                     break;
@@ -1068,7 +1068,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
             }
         }
         i iVar = this.h;
-        i iVar2 = this.f12434r;
+        i iVar2 = this.f12431r;
         if (z10) {
             if (this.P == 2) {
                 iVar2.setItemAnimator(this.d);
@@ -1088,7 +1088,7 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public void setActionBar(org.telegram.ui.ActionBar.k kVar) {
-        this.f12435r0 = kVar;
+        this.f12432r0 = kVar;
     }
 
     public void setClipTop(int i7) {
@@ -1102,11 +1102,11 @@ public abstract class q extends FrameLayout implements fs, te.b {
     }
 
     public void setMenuItemsOffset(float f10) {
-        this.f12438t0 = f10;
+        this.f12435t0 = f10;
     }
 
     public void setOverscroll(float f10) {
-        this.f12431o0 = f10 / org.telegram.messenger.g0.L(90.0f);
+        this.f12428o0 = f10 / org.telegram.messenger.g0.L(90.0f);
         invalidate();
         this.h.invalidate();
     }

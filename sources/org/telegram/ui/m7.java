@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class m7 extends org.telegram.ui.Cells.o7 {
+public final class m7 extends org.telegram.ui.Cells.p7 {
     public final n7 H0;
 
     public m7(n7 n7Var, Context context, m.o3 o3Var, int i7) {
@@ -11,6 +11,6 @@ public final class m7 extends org.telegram.ui.Cells.o7 {
 
     @Override
     public final void h() {
-        this.H0.f50109w.G.m(null, (ei.b) getTag(), true);
+        this.H0.f50087w.G.m(null, (ei.b) getTag(), true);
     }
 }

@@ -55,12 +55,12 @@ public final class i0 extends v4.c0 {
         switch (this.I) {
             case 6:
                 if (((e51) this.J).f34609i3) {
-                    return org.telegram.messenger.g0.f24121q.y;
+                    return org.telegram.messenger.g0.f24118q.y;
                 }
                 return super.W0(c1Var);
             case 7:
                 if (((m11) this.J).f34609i3) {
-                    return org.telegram.messenger.g0.f24121q.y;
+                    return org.telegram.messenger.g0.f24118q.y;
                 }
                 return super.W0(c1Var);
             default:
@@ -96,7 +96,7 @@ public final class i0 extends v4.c0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                y60 y60Var = ((tw) ((pz) this.J).K).f52368b.M0;
+                y60 y60Var = ((tw) ((pz) this.J).K).f52363b.M0;
                 if (y60Var != null && y60Var.E()) {
                     i7 = 0;
                 }
@@ -222,12 +222,12 @@ public final class i0 extends v4.c0 {
         switch (this.I) {
             case 2:
                 jz jzVar = new jz(this, recyclerView.getContext());
-                jzVar.f59066a = i7;
+                jzVar.f59067a = i7;
                 w0(jzVar);
                 return;
             case 8:
                 a71 a71Var = new a71(this, recyclerView.getContext());
-                a71Var.f59066a = i7;
+                a71Var.f59067a = i7;
                 w0(a71Var);
                 return;
             default:

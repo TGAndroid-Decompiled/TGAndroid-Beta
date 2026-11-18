@@ -3,26 +3,26 @@ package org.telegram.messenger;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.tl.TL_update;
 public final class fk implements Runnable {
-    public final int f24030a;
-    public final mp f24031b;
-    public final TL_update.TL_updatePeerBlocked f24032c;
+    public final int f24027a;
+    public final mp f24028b;
+    public final TL_update.TL_updatePeerBlocked f24029c;
 
     public fk(mp mpVar, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i7) {
-        this.f24030a = i7;
-        this.f24031b = mpVar;
-        this.f24032c = tL_updatePeerBlocked;
+        this.f24027a = i7;
+        this.f24028b = mpVar;
+        this.f24029c = tL_updatePeerBlocked;
     }
 
     @Override
     public final void run() {
-        switch (this.f24030a) {
+        switch (this.f24027a) {
             case 0:
-                g0.g3(new fk(this.f24031b, this.f24032c, 1));
+                g0.g3(new fk(this.f24028b, this.f24029c, 1));
                 return;
             default:
-                mp mpVar = this.f24031b;
+                mp mpVar = this.f24028b;
                 LongSparseIntArray longSparseIntArray = mpVar.H0;
-                TL_update.TL_updatePeerBlocked tL_updatePeerBlocked = this.f24032c;
+                TL_update.TL_updatePeerBlocked tL_updatePeerBlocked = this.f24029c;
                 long B1 = fj.B1(tL_updatePeerBlocked.peer_id);
                 if (tL_updatePeerBlocked.blocked) {
                     if (longSparseIntArray.indexOfKey(B1) < 0) {

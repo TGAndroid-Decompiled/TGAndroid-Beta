@@ -53,7 +53,7 @@ public abstract class vs implements org.telegram.messenger.fs {
 
     public void a(Canvas canvas, long j3, int i7, int i10, float f10) {
         if (this.F) {
-            boolean z10 = org.telegram.messenger.s2.f26723a;
+            boolean z10 = org.telegram.messenger.s2.f26721a;
             return;
         }
         this.f41410x = i10;
@@ -117,7 +117,7 @@ public abstract class vs implements org.telegram.messenger.fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         int i11;
-        if (i7 == org.telegram.messenger.ks.f25137j1) {
+        if (i7 == org.telegram.messenger.ks.f25135j1) {
             Integer num = (Integer) objArr[0];
             if (this.h < num.intValue()) {
                 if (num.intValue() != 512 || org.telegram.messenger.bz.o() < 2) {
@@ -128,7 +128,7 @@ public abstract class vs implements org.telegram.messenger.fs {
                     }
                 }
             }
-        } else if (i7 == org.telegram.messenger.ks.f25142k1) {
+        } else if (i7 == org.telegram.messenger.ks.f25140k1) {
             Integer num2 = (Integer) objArr[0];
             if (this.h < num2.intValue() && (i11 = this.f41406n) != 0) {
                 int i12 = (~num2.intValue()) & i11;
@@ -146,13 +146,13 @@ public abstract class vs implements org.telegram.messenger.fs {
         }
         this.f41401a = true;
         this.F = false;
-        int i7 = org.telegram.messenger.ks.e().f25253p & (~this.h);
+        int i7 = org.telegram.messenger.ks.e().f25251p & (~this.h);
         this.f41406n = i7;
         if (i7 == 0 && this.f41407r) {
             this.f41407r = false;
         }
-        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25137j1);
-        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25142k1);
+        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25135j1);
+        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25140k1);
     }
 
     public final void f() {
@@ -163,8 +163,8 @@ public abstract class vs implements org.telegram.messenger.fs {
             j();
         }
         this.f41401a = false;
-        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25137j1);
-        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25142k1);
+        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25135j1);
+        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25140k1);
     }
 
     public abstract void g();
@@ -202,7 +202,7 @@ public abstract class vs implements org.telegram.messenger.fs {
     public final void l(int i7) {
         this.h = 7;
         if (this.f41401a) {
-            this.f41406n = org.telegram.messenger.ks.e().f25253p & (~this.h);
+            this.f41406n = org.telegram.messenger.ks.e().f25251p & (~this.h);
         }
     }
 

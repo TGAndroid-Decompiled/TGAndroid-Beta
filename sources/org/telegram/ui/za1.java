@@ -4,17 +4,17 @@ import android.widget.TextView;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class za1 extends org.telegram.ui.ActionBar.j {
-    public final bb1 f54469a;
+    public final bb1 f54467a;
 
     public za1(bb1 bb1Var) {
-        this.f54469a = bb1Var;
+        this.f54467a = bb1Var;
     }
 
     @Override
     public final void b(int i7) {
         String M0;
         org.telegram.ui.ActionBar.s4 s4Var;
-        bb1 bb1Var = this.f54469a;
+        bb1 bb1Var = this.f54467a;
         if (i7 == -1) {
             if (bb1Var.H >= 0) {
                 s4Var = ((org.telegram.ui.ActionBar.h2) bb1Var).parentLayout;
@@ -34,7 +34,7 @@ public final class za1 extends org.telegram.ui.ActionBar.j {
             }
             String M02 = org.telegram.messenger.gd.M0(2131752574, null);
             String M03 = org.telegram.messenger.gd.M0(2131754950, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
             u1Var.U = M0;
             u1Var.S = M02;
             alertDialog$Builder.k(M03, new qi0(this, 22));
@@ -42,7 +42,7 @@ public final class za1 extends org.telegram.ui.ActionBar.j {
             bb1Var.showDialog(u1Var);
             TextView textView = (TextView) u1Var.d(-1);
             if (textView != null) {
-                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29637q7, null);
+                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, null);
             }
         }
     }

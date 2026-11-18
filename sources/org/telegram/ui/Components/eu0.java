@@ -193,7 +193,7 @@ public final class eu0 extends View {
                 }
                 int i23 = this.H[i12];
                 String str = this.G[i12];
-                int f23 = i0.a.f(max, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29788y6, i6Var), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29578n6, i6Var));
+                int f23 = i0.a.f(max, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, i6Var), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29576n6, i6Var));
                 TextPaint textPaint = this.d;
                 textPaint.setColor(f23);
                 if (this.I != null) {
@@ -299,7 +299,7 @@ public final class eu0 extends View {
             if (!this.f34805w && Math.abs(this.f34807y - x10) > Math.abs(this.E - y10)) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
-            if (this.f34806x && Math.abs(this.f34807y - x10) >= org.telegram.messenger.g0.f24100e) {
+            if (this.f34806x && Math.abs(this.f34807y - x10) >= org.telegram.messenger.g0.f24097e) {
                 this.f34805w = true;
                 this.f34806x = false;
             }

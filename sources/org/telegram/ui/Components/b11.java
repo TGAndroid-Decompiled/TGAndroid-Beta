@@ -13,7 +13,7 @@ public final class b11 {
     public final long a() {
         org.telegram.messenger.ov ovVar = this.f33506b;
         if (ovVar != null) {
-            return ovVar.f26106a;
+            return ovVar.f26104a;
         }
         TLRPC.TL_forumTopic tL_forumTopic = this.f33505a;
         if (tL_forumTopic == null) {
@@ -22,6 +22,6 @@ public final class b11 {
         if (this.f33507c.f34877c) {
             return org.telegram.messenger.n5.o(tL_forumTopic.from_id);
         }
-        return tL_forumTopic.f28457id;
+        return tL_forumTopic.f28455id;
     }
 }

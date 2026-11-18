@@ -65,16 +65,16 @@ public class kh0 extends mh0 {
                 D(z10);
                 bg.i iVar = this.C0;
                 if (iVar != null) {
-                    RandomAccessFile randomAccessFile = iVar.f3264s;
+                    RandomAccessFile randomAccessFile = iVar.f3265s;
                     if (randomAccessFile != null) {
                         try {
                             randomAccessFile.close();
                         } catch (IOException e10) {
                             e10.printStackTrace();
                         }
-                        iVar.f3264s = null;
+                        iVar.f3265s = null;
                     }
-                    iVar.f3263r = true;
+                    iVar.f3264r = true;
                     this.C0 = null;
                 }
                 E();
@@ -99,7 +99,7 @@ public class kh0 extends mh0 {
         if (z10) {
             org.telegram.messenger.s5.a(dwVar);
         } else {
-            Utilities.f22782e.c(dwVar);
+            Utilities.f22779e.c(dwVar);
         }
     }
 

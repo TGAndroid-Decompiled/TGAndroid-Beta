@@ -36,8 +36,8 @@ import org.telegram.ui.Components.m6;
 import org.telegram.ui.Components.mh0;
 import org.telegram.ui.Components.ph0;
 import org.telegram.ui.Components.q9;
-import org.telegram.ui.me0;
-public final class b extends FrameLayout implements me0, te.b, c6 {
+import org.telegram.ui.ne0;
+public final class b extends FrameLayout implements ne0, te.b, c6 {
     public static final RectF W = new RectF();
     public a E;
     public TLRPC.TL_attachMenuBot F;
@@ -186,15 +186,15 @@ public final class b extends FrameLayout implements me0, te.b, c6 {
                 z13 = false;
             }
             if (tL_attachMenuBotIcon != null && (document = tL_attachMenuBotIcon.icon) != null) {
-                if (this.Q != document.f28411id) {
+                if (this.Q != document.f28409id) {
                     q9 q9Var = this.f56158c;
                     fc b10 = fc.b(document);
                     fc b11 = fc.b(document);
                     if (!z13) {
-                        lzVar = u5.f(document, n6.f29339a7, 1.0f, null);
+                        lzVar = u5.f(document, n6.f29337a7, 1.0f, null);
                     }
                     q9Var.m(b10, "24_24_lastframe", b11, "24_24_lastframe", lzVar, this.F);
-                    this.Q = document.f28411id;
+                    this.Q = document.f28409id;
                 }
             } else {
                 this.f56158c.b();
@@ -373,7 +373,7 @@ public final class b extends FrameLayout implements me0, te.b, c6 {
                 this.M.setBounds(N7, N8, g0.L(14.0f) + N7, g0.L(14.0f) + N8);
                 this.M.draw(canvas);
             } else {
-                paint.setColor(i0.a.f(this.f56162r.f57657e, n6.x0(null, n6.Yl, false), n6.x0(null, n6.f29656r7, false)));
+                paint.setColor(i0.a.f(this.f56162r.f57657e, n6.x0(null, n6.Yl, false), n6.x0(null, n6.f29654r7, false)));
                 canvas.drawRoundRect(rectF, N6, N6, paint);
                 m6Var.p(rectF);
                 m6Var.draw(canvas);

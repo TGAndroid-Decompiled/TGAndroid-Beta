@@ -27,27 +27,27 @@ public final class sb extends FrameLayout {
     public int N;
     public int O;
     public int P;
-    public final long f51951a;
-    public final int f51952b;
-    public final c51 f51953c;
+    public final long f51948a;
+    public final int f51949b;
+    public final c51 f51950c;
     public TL_stories.TL_premium_boostsStatus d;
-    public final org.telegram.ui.ActionBar.i6 f51954e;
-    public ScrollSlidingTextTabStrip f51955f;
+    public final org.telegram.ui.ActionBar.i6 f51951e;
+    public ScrollSlidingTextTabStrip f51952f;
     public final ArrayList h;
-    public final ArrayList f51956n;
-    public boolean f51957r;
-    public int f51958s;
-    public boolean f51959w;
-    public int f51960x;
-    public final ArrayList f51961y;
+    public final ArrayList f51953n;
+    public boolean f51954r;
+    public int f51955s;
+    public boolean f51956w;
+    public int f51957x;
+    public final ArrayList f51958y;
 
     public sb(c51 c51Var, long j3, org.telegram.ui.ActionBar.i6 i6Var) {
         super(c51Var.getParentActivity());
-        int i7 = org.telegram.messenger.j10.f24773t0;
-        this.f51952b = i7;
+        int i7 = org.telegram.messenger.j10.f24770t0;
+        this.f51949b = i7;
         this.h = new ArrayList();
-        this.f51956n = new ArrayList();
-        this.f51961y = new ArrayList();
+        this.f51953n = new ArrayList();
+        this.f51958y = new ArrayList();
         this.E = 0;
         qb qbVar = new qb(this);
         this.F = qbVar;
@@ -55,10 +55,10 @@ public final class sb extends FrameLayout {
         this.L = "";
         this.M = 5;
         this.N = 5;
-        this.f51953c = c51Var;
+        this.f51950c = c51Var;
         Activity parentActivity = c51Var.getParentActivity();
-        this.f51954e = i6Var;
-        this.f51951a = j3;
+        this.f51951e = i6Var;
+        this.f51948a = j3;
         this.J = org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(-j3));
         org.telegram.ui.Components.ck0 ck0Var = new org.telegram.ui.Components.ck0(parentActivity, null);
         this.G = ck0Var;
@@ -66,7 +66,7 @@ public final class sb extends FrameLayout {
         ck0Var.setCaptureSectionsDecoratorAllowed(true);
         ck0Var.setLayoutManager(new v4.c0());
         v4.k kVar = new v4.k();
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         kVar.C = false;
         ck0Var.setItemAnimator(kVar);
         ck0Var.setClipToPadding(false);
@@ -111,8 +111,8 @@ public final class sb extends FrameLayout {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
         tL_premium_getBoostsList.limit = this.N;
         tL_premium_getBoostsList.offset = this.K;
-        int i7 = this.f51952b;
-        tL_premium_getBoostsList.peer = org.telegram.messenger.mp.u1(i7).l1(this.f51951a);
+        int i7 = this.f51949b;
+        tL_premium_getBoostsList.peer = org.telegram.messenger.mp.u1(i7).l1(this.f51948a);
         ConnectionsManager.getInstance(i7).sendRequest(tL_premium_getBoostsList, new pb(this, countDownLatch, obVar, 1), 2);
     }
 
@@ -121,8 +121,8 @@ public final class sb extends FrameLayout {
         tL_premium_getBoostsList.limit = this.M;
         tL_premium_getBoostsList.gifts = true;
         tL_premium_getBoostsList.offset = this.L;
-        int i7 = this.f51952b;
-        tL_premium_getBoostsList.peer = org.telegram.messenger.mp.u1(i7).l1(this.f51951a);
+        int i7 = this.f51949b;
+        tL_premium_getBoostsList.peer = org.telegram.messenger.mp.u1(i7).l1(this.f51948a);
         ConnectionsManager.getInstance(i7).sendRequest(tL_premium_getBoostsList, new pb(this, countDownLatch, obVar, 0), 2);
     }
 
@@ -132,7 +132,7 @@ public final class sb extends FrameLayout {
         }
         this.H = true;
         if (bool == null) {
-            Utilities.f22782e.c(new ob(this, 0));
+            Utilities.f22779e.c(new ob(this, 0));
         } else if (bool.booleanValue()) {
             b(null, new ob(this, 1));
         } else {
@@ -148,7 +148,7 @@ public final class sb extends FrameLayout {
         int i12;
         boolean z12;
         boolean z13;
-        ArrayList arrayList = this.f51961y;
+        ArrayList arrayList = this.f51958y;
         ArrayList arrayList2 = new ArrayList(arrayList);
         arrayList.clear();
         if (this.d != null) {
@@ -166,8 +166,8 @@ public final class sb extends FrameLayout {
                         z13 = false;
                     }
                     ?? aVar = new rg.a(11, true);
-                    aVar.f51556e = prepaidGiveaway;
-                    aVar.f51557f = z13;
+                    aVar.f51541e = prepaidGiveaway;
+                    aVar.f51542f = z13;
                     arrayList.add(aVar);
                 }
                 arrayList.add(new rb(6, org.telegram.messenger.gd.M0(2131753284, null)));
@@ -183,14 +183,14 @@ public final class sb extends FrameLayout {
                 } else {
                     for (int i15 = 0; i15 < arrayList3.size(); i15++) {
                         TL_stories.Boost boost = (TL_stories.Boost) arrayList3.get(i15);
-                        if (i15 == arrayList3.size() - 1 && !this.f51957r) {
+                        if (i15 == arrayList3.size() - 1 && !this.f51954r) {
                             z12 = true;
                         } else {
                             z12 = false;
                         }
                         arrayList.add(new rb(boost, z12, this.E));
                     }
-                    if (this.f51957r) {
+                    if (this.f51954r) {
                         arrayList.add(new rg.a(9, true));
                     } else {
                         arrayList.add(new rg.a(7, false));
@@ -203,21 +203,21 @@ public final class sb extends FrameLayout {
                     arrayList.add(new rb(6, org.telegram.messenger.gd.M0(i12, null)));
                 }
             } else {
-                ArrayList arrayList4 = this.f51956n;
+                ArrayList arrayList4 = this.f51953n;
                 if (arrayList4.isEmpty()) {
                     arrayList.add(new rg.a(8, false));
                     arrayList.add(new rg.a(2, false));
                 } else {
                     for (int i16 = 0; i16 < arrayList4.size(); i16++) {
                         TL_stories.Boost boost2 = (TL_stories.Boost) arrayList4.get(i16);
-                        if (i16 == arrayList4.size() - 1 && !this.f51959w) {
+                        if (i16 == arrayList4.size() - 1 && !this.f51956w) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
                         arrayList.add(new rb(boost2, z11, this.E));
                     }
-                    if (this.f51959w) {
+                    if (this.f51956w) {
                         arrayList.add(new rg.a(9, true));
                     } else {
                         arrayList.add(new rg.a(7, false));
@@ -232,7 +232,7 @@ public final class sb extends FrameLayout {
             }
             arrayList.add(new rb(1, org.telegram.messenger.gd.M0(2131748722, null)));
             arrayList.add(new rb(3, this.d.boost_url));
-            if (org.telegram.messenger.mp.u1(this.f51952b).f25761s4 && org.telegram.messenger.v3.N(chat)) {
+            if (org.telegram.messenger.mp.u1(this.f51949b).f25759s4 && org.telegram.messenger.v3.N(chat)) {
                 if (org.telegram.messenger.v3.V(chat)) {
                     i10 = 2131753267;
                 } else {

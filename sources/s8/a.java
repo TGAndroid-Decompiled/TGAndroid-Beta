@@ -45,7 +45,7 @@ public final class a {
         this.f57115c = 0;
         this.f57117f = new HashSet();
         this.f57118g = true;
-        this.f57119i = x6.a.f60394a;
+        this.f57119i = x6.a.f60395a;
         this.f57121k = new HashMap();
         this.f57122l = new AtomicInteger(0);
         m.g("wake:com.google.firebase.iid.WakeLockHolder", "WakeLock: wakeLockName must not be empty");
@@ -66,11 +66,11 @@ public final class a {
         if (powerManager != null) {
             this.f57114b = powerManager.newWakeLock(1, "wake:com.google.firebase.iid.WakeLockHolder");
             if (f.b(context)) {
-                int i7 = e.f60402a;
+                int i7 = e.f60403a;
                 packageName = (packageName == null || packageName.trim().isEmpty()) ? context.getPackageName() : packageName;
                 if (context.getPackageManager() != null && packageName != null) {
                     try {
-                        ApplicationInfo applicationInfo = z6.b.a(context).f1962a.getPackageManager().getApplicationInfo(packageName, 0);
+                        ApplicationInfo applicationInfo = z6.b.a(context).f1963a.getPackageManager().getApplicationInfo(packageName, 0);
                         if (applicationInfo == null) {
                             Log.e("WorkSourceUtil", "Could not get applicationInfo from package: ".concat(packageName));
                         } else {
@@ -121,7 +121,7 @@ public final class a {
         synchronized (this.f57113a) {
             try {
                 if (!b()) {
-                    this.h = f8.a.f11600a;
+                    this.h = f8.a.f11597a;
                     this.f57114b.acquire();
                     this.f57119i.getClass();
                     SystemClock.elapsedRealtime();

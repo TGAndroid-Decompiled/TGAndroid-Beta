@@ -4,43 +4,43 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import org.telegram.ui.Components.UndoView;
 public final class zu implements Runnable {
-    public final int f54590a;
-    public final cx f54591b;
+    public final int f54591a;
+    public final cx f54592b;
 
     public zu(cx cxVar, int i7) {
-        this.f54590a = i7;
-        this.f54591b = cxVar;
+        this.f54591a = i7;
+        this.f54592b = cxVar;
     }
 
     @Override
     public final void run() {
         y91 y91Var;
-        switch (this.f54590a) {
+        switch (this.f54591a) {
             case 0:
-                this.f54591b.Y3();
+                this.f54592b.Y3();
                 return;
             case 1:
-                this.f54591b.o5();
+                this.f54592b.o5();
                 return;
             case 2:
-                cx.L0(this.f54591b);
+                cx.L0(this.f54592b);
                 return;
             case 3:
-                this.f54591b.getMessagesController().s4(0L, "SETUP_LOGIN_EMAIL");
+                this.f54592b.getMessagesController().s4(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 4:
-                cx cxVar = this.f54591b;
-                hi.m3 m3Var = cxVar.f46740r0;
+                cx cxVar = this.f54592b;
+                hi.m3 m3Var = cxVar.f46720r0;
                 if (m3Var != null) {
                     m3Var.f(true);
                 }
                 cxVar.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 5:
-                this.f54591b.f46683f0[0].d.f();
+                this.f54592b.f46663f0[0].d.f();
                 return;
             case 6:
-                cx cxVar2 = this.f54591b;
+                cx cxVar2 = this.f54592b;
                 cxVar2.getClass();
                 SharedPreferences g12 = org.telegram.messenger.mp.g1();
                 long j3 = g12.getLong("cache_hint_period", 604800000L);
@@ -51,7 +51,7 @@ public final class zu implements Runnable {
                 cxVar2.o5();
                 return;
             case 7:
-                cx cxVar3 = this.f54591b;
+                cx cxVar3 = this.f54592b;
                 UndoView l42 = cxVar3.l4();
                 if (l42 != null) {
                     l42.l(0L, 15, null, new gu(cxVar3, 17));
@@ -59,34 +59,34 @@ public final class zu implements Runnable {
                 }
                 return;
             case 8:
-                cx.c0(this.f54591b);
+                cx.c0(this.f54592b);
                 return;
             case 9:
-                cx cxVar4 = this.f54591b;
+                cx cxVar4 = this.f54592b;
                 cxVar4.getClass();
                 cxVar4.presentFragment(new UserInfoActivity());
                 return;
             case 10:
-                cx.i0(this.f54591b);
+                cx.i0(this.f54592b);
                 return;
             case 11:
-                org.telegram.messenger.mp.u1(this.f54591b.currentAccount).l0(null);
+                org.telegram.messenger.mp.u1(this.f54592b.currentAccount).l0(null);
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f28923a = true;
-                this.f54591b.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                obj.f28921a = true;
+                this.f54592b.showAsSheet(new PrivacyControlActivity(11, false), obj);
                 return;
             case 13:
-                cx cxVar5 = this.f54591b;
+                cx cxVar5 = this.f54592b;
                 cxVar5.U4(false, true);
-                if (cxVar5.f46683f0 != null) {
+                if (cxVar5.f46663f0 != null) {
                     int i7 = 0;
                     while (true) {
-                        bx[] bxVarArr = cxVar5.f46683f0;
+                        bx[] bxVarArr = cxVar5.f46663f0;
                         if (i7 < bxVarArr.length) {
                             if (bxVarArr[i7].getVisibility() == 0) {
-                                bx bxVar = cxVar5.f46683f0[i7];
+                                bx bxVar = cxVar5.f46663f0[i7];
                                 if (!bxVar.d.H) {
                                     bxVar.q(false);
                                 }
@@ -100,20 +100,20 @@ public final class zu implements Runnable {
                     return;
                 }
             case 14:
-                cx cxVar6 = this.f54591b;
+                cx cxVar6 = this.f54592b;
                 cxVar6.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("community_id", cxVar6.f46658a3);
+                bundle.putLong("community_id", cxVar6.f46638a3);
                 cxVar6.presentFragment(new li.p(bundle));
                 return;
             case 15:
-                cx cxVar7 = this.f54591b;
+                cx cxVar7 = this.f54592b;
                 cxVar7.getClass();
                 cxVar7.presentFragment(new org.telegram.ui.Wallet.n6());
                 return;
             case 16:
-                cx cxVar8 = this.f54591b;
-                cxVar8.f46683f0[0].f46307a.requestLayout();
+                cx cxVar8 = this.f54592b;
+                cxVar8.f46663f0[0].f46298a.requestLayout();
                 xv xvVar = cxVar8.H3;
                 if (xvVar != null && (xvVar.getFragment() instanceof y91)) {
                     y91Var = (y91) cxVar8.H3.getFragment();
@@ -132,7 +132,7 @@ public final class zu implements Runnable {
                 }
                 return;
             default:
-                this.f54591b.w5();
+                this.f54592b.w5();
                 return;
         }
     }

@@ -54,7 +54,7 @@ public final class n9 implements Runnable {
                 daVar.w0();
                 return;
             case 5:
-                daVar.presentFragment(bn.ua(daVar.f44059f.f28554id));
+                daVar.presentFragment(bn.ua(daVar.f44059f.f28552id));
                 return;
             default:
                 org.telegram.messenger.f3.n(null, 2131742963, lc.b0(daVar), 2131623994, 36);

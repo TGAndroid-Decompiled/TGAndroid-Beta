@@ -11,28 +11,28 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.lr;
 import v4.f1;
 public abstract class b0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.k f19893a;
-    public final lh.f f19894b;
-    public final FrameLayout f19895c;
+    public org.telegram.ui.ActionBar.k f19890a;
+    public final lh.f f19891b;
+    public final FrameLayout f19892c;
     public e51 d;
-    public boolean f19896e;
-    public final d0 f19897f;
+    public boolean f19893e;
+    public final d0 f19894f;
 
     public b0(d0 d0Var, Context context) {
         super(context);
-        this.f19897f = d0Var;
+        this.f19894f = d0Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f19895c = frameLayout;
+        this.f19892c = frameLayout;
         frameLayout.setPadding(0, 0, 0, 0);
         frameLayout.setClipToPadding(true);
         addView(frameLayout, ma.e(-1, -1, 119));
         lh.f fVar = new lh.f(getContext());
-        this.f19894b = fVar;
-        fVar.setupColorKey(n6.f29339a7);
-        fVar.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f) + org.telegram.messenger.g0.f24116n);
+        this.f19891b = fVar;
+        fVar.setupColorKey(n6.f29337a7);
+        fVar.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f) + org.telegram.messenger.g0.f24113n);
         fVar.setFadeHeightBottom(org.telegram.messenger.g0.L(24.0f));
-        fVar.setFadeZoneTop(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.f24115m);
-        fVar.f19868a.b(-org.telegram.messenger.g0.L(20.0f), false);
+        fVar.setFadeZoneTop(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.f24112m);
+        fVar.f19865a.b(-org.telegram.messenger.g0.L(20.0f), false);
         frameLayout.addView(fVar, ma.g());
     }
 
@@ -42,19 +42,19 @@ public abstract class b0 extends FrameLayout {
         a0Var.n(350L);
         a0Var.o(lr.h);
         a0Var.C = false;
-        a0Var.f59151m = false;
+        a0Var.f59152m = false;
         this.d.setItemAnimator(a0Var);
     }
 
     public float b() {
-        float f10 = org.telegram.messenger.g0.f24121q.y;
+        float f10 = org.telegram.messenger.g0.f24118q.y;
         for (int i7 = 0; i7 < this.d.getChildCount(); i7++) {
             View childAt = this.d.getChildAt(i7);
             f1 T = this.d.T(childAt);
             if (T != null) {
                 l41 G = this.d.f34607g3.G(T.b());
                 if (G != null && G.d != 99) {
-                    f10 = Math.min(childAt.getY() + this.f19895c.getPaddingTop(), f10);
+                    f10 = Math.min(childAt.getY() + this.f19892c.getPaddingTop(), f10);
                 }
             }
         }
@@ -63,9 +63,9 @@ public abstract class b0 extends FrameLayout {
 
     public void c() {
         float b10 = b();
-        org.telegram.ui.ActionBar.k kVar = this.f19893a;
+        org.telegram.ui.ActionBar.k kVar = this.f19890a;
         if (kVar != null) {
-            kVar.setTranslationY(Math.max(org.telegram.messenger.g0.f24115m, b10));
+            kVar.setTranslationY(Math.max(org.telegram.messenger.g0.f24112m, b10));
         }
     }
 }

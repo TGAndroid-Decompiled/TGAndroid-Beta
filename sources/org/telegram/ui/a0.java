@@ -16,7 +16,7 @@ public final class a0 implements Runnable {
     public final void run() {
         switch (this.f45398a) {
             case 0:
-                ((g4) this.f45400c).f47923i0.N.c(true, this.f45399b);
+                ((g4) this.f45400c).f47887i0.N.c(true, this.f45399b);
                 return;
             case 1:
                 org.telegram.ui.Components.za zaVar = (org.telegram.ui.Components.za) this.f45400c;

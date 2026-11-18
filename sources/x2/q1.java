@@ -1,19 +1,19 @@
 package x2;
 public final class q1 extends s {
-    public final e2.l0 f60207f;
+    public final e2.l0 f60208f;
 
     public q1(e2.l1 l1Var, e2.l0 l0Var) {
         super(l1Var);
-        this.f60207f = l0Var;
+        this.f60208f = l0Var;
     }
 
     @Override
     public final e2.k1 m(int i7, e2.k1 k1Var, long j3) {
         super.m(i7, k1Var, j3);
-        e2.l0 l0Var = this.f60207f;
-        k1Var.f10480c = l0Var;
-        e2.g0 g0Var = l0Var.f10504b;
-        k1Var.f10479b = null;
+        e2.l0 l0Var = this.f60208f;
+        k1Var.f10477c = l0Var;
+        e2.g0 g0Var = l0Var.f10501b;
+        k1Var.f10476b = null;
         return k1Var;
     }
 }

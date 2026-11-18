@@ -6,42 +6,42 @@ import java.util.Locale;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class zl implements org.telegram.ui.ActionBar.r1, h2.j {
-    public final int f54526a = 2;
-    public final boolean f54527b;
-    public final Object f54528c;
+    public final int f54527a = 2;
+    public final boolean f54528b;
+    public final Object f54529c;
     public final Object d;
-    public final Object f54529e;
-    public final Object f54530f;
+    public final Object f54530e;
+    public final Object f54531f;
 
     public zl(a8.xa xaVar, x2.u uVar, x2.c0 c0Var, IOException iOException, boolean z10) {
-        this.f54528c = xaVar;
+        this.f54529c = xaVar;
         this.d = uVar;
-        this.f54529e = c0Var;
-        this.f54530f = iOException;
-        this.f54527b = z10;
+        this.f54530e = c0Var;
+        this.f54531f = iOException;
+        this.f54528b = z10;
     }
 
     @Override
     public void accept(Object obj) {
-        a8.xa xaVar = (a8.xa) this.f54528c;
-        ((x2.k0) obj).r(xaVar.f713b, (x2.g0) xaVar.f714c, (x2.u) this.d, (x2.c0) this.f54529e, (IOException) this.f54530f, this.f54527b);
+        a8.xa xaVar = (a8.xa) this.f54529c;
+        ((x2.k0) obj).r(xaVar.f713b, (x2.g0) xaVar.f714c, (x2.u) this.d, (x2.c0) this.f54530e, (IOException) this.f54531f, this.f54528b);
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         int i10;
-        int i11 = this.f54526a;
-        Object obj = this.f54530f;
-        Object obj2 = this.f54529e;
+        int i11 = this.f54527a;
+        Object obj = this.f54531f;
+        Object obj2 = this.f54530e;
         Object obj3 = this.d;
-        Object obj4 = this.f54528c;
-        boolean z10 = this.f54527b;
+        Object obj4 = this.f54529c;
+        boolean z10 = this.f54528b;
         switch (i11) {
             case 0:
                 mm mmVar = (mm) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                bn bnVar = mmVar.f49922a;
-                li.d dVar = new li.d(22, mmVar, (org.telegram.ui.Cells.q1) obj3);
+                bn bnVar = mmVar.f49896a;
+                li.d dVar = new li.d(22, mmVar, (org.telegram.ui.Cells.r1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
                         dVar.a(Boolean.TRUE);
@@ -65,11 +65,11 @@ public final class zl implements org.telegram.ui.ActionBar.r1, h2.j {
                 int value = sb0Var3.getValue();
                 int value2 = sb0Var2.getValue();
                 int value3 = sb0Var.getValue();
-                hk0 hk0Var = (hk0) r1Var.f1487c;
-                int i12 = r1Var.f1486b;
+                hk0 hk0Var = (hk0) r1Var.f1488c;
+                int i12 = r1Var.f1487b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) r1Var.d;
                 if (i12 == 8) {
-                    int[] iArr = hk0Var.f48468y;
+                    int[] iArr = hk0Var.f48424y;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;
@@ -81,19 +81,19 @@ public final class zl implements org.telegram.ui.ActionBar.r1, h2.j {
         }
     }
 
-    public zl(mm mmVar, org.telegram.ui.Cells.q1 q1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
-        this.f54528c = mmVar;
-        this.d = q1Var;
-        this.f54529e = zArr;
-        this.f54527b = z10;
-        this.f54530f = contentsettings;
+    public zl(mm mmVar, org.telegram.ui.Cells.r1 r1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
+        this.f54529c = mmVar;
+        this.d = r1Var;
+        this.f54530e = zArr;
+        this.f54528b = z10;
+        this.f54531f = contentsettings;
     }
 
     public zl(boolean z10, org.telegram.ui.Components.sb0 sb0Var, org.telegram.ui.Components.sb0 sb0Var2, org.telegram.ui.Components.sb0 sb0Var3, ai.r1 r1Var) {
-        this.f54527b = z10;
-        this.f54528c = sb0Var;
+        this.f54528b = z10;
+        this.f54529c = sb0Var;
         this.d = sb0Var2;
-        this.f54529e = sb0Var3;
-        this.f54530f = r1Var;
+        this.f54530e = sb0Var3;
+        this.f54531f = r1Var;
     }
 }

@@ -26,7 +26,7 @@ public abstract class a9 extends FrameLayout {
 
     public a9(Context context) {
         super(context);
-        int i7 = org.telegram.messenger.j10.f24773t0;
+        int i7 = org.telegram.messenger.j10.f24770t0;
         this.f33295r = i7;
         this.f33296s = 0;
         this.f33297w = 0;
@@ -70,16 +70,16 @@ public abstract class a9 extends FrameLayout {
         ArrayList u02 = org.telegram.messenger.ri.d0(i7).u0(5);
         TLRPC.TL_emojiList tL_emojiList2 = new TLRPC.TL_emojiList();
         if (u02.isEmpty()) {
-            ArrayList arrayList = org.telegram.messenger.ri.d0(i7).f26641t0[1];
+            ArrayList arrayList = org.telegram.messenger.ri.d0(i7).f26639t0[1];
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
                 TLRPC.Document document = stickerSetCovered.cover;
                 if (document != null) {
-                    tL_emojiList2.document_id.add(Long.valueOf(document.f28411id));
+                    tL_emojiList2.document_id.add(Long.valueOf(document.f28409id));
                 } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                     TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
                     if (!tL_stickerSetFullCovered.documents.isEmpty()) {
-                        tL_emojiList2.document_id.add(Long.valueOf(tL_stickerSetFullCovered.documents.get(0).f28411id));
+                        tL_emojiList2.document_id.add(Long.valueOf(tL_stickerSetFullCovered.documents.get(0).f28409id));
                     }
                 }
             }
@@ -87,7 +87,7 @@ public abstract class a9 extends FrameLayout {
             for (int i11 = 0; i11 < u02.size(); i11++) {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) u02.get(i11);
                 if (!tL_messages_stickerSet.documents.isEmpty()) {
-                    tL_emojiList2.document_id.add(Long.valueOf(tL_messages_stickerSet.documents.get(Math.abs(((int) Utilities.f22781c.nextLong()) % tL_messages_stickerSet.documents.size())).f28411id));
+                    tL_emojiList2.document_id.add(Long.valueOf(tL_messages_stickerSet.documents.get(Math.abs(((int) Utilities.f22778c.nextLong()) % tL_messages_stickerSet.documents.size())).f28409id));
                 }
             }
         }

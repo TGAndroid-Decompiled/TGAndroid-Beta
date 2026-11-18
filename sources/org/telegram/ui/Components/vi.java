@@ -44,7 +44,7 @@ public final class vi implements org.telegram.messenger.q10 {
                                 tL_message.out = true;
                                 int i10 = cjVar.m0;
                                 cjVar.m0 = i10 - 1;
-                                tL_message.f28426id = i10;
+                                tL_message.f28424id = i10;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -62,7 +62,7 @@ public final class vi implements org.telegram.messenger.q10 {
                                 tL_message.flags |= 768;
                                 ?? obj3 = new Object();
                                 org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(i11, tL_message, false, true);
-                                obj3.f27360e = fjVar;
+                                obj3.f27358e = fjVar;
                                 TLRPC.Document F0 = fjVar.F0();
                                 if (F0 != null) {
                                     int i12 = 0;
@@ -78,9 +78,9 @@ public final class vi implements org.telegram.messenger.q10 {
                                         }
                                     }
                                     if (tL_documentAttributeAudio != null) {
-                                        obj3.f27357a = tL_documentAttributeAudio.performer;
-                                        obj3.f27358b = tL_documentAttributeAudio.title;
-                                        obj3.f27359c = (int) tL_documentAttributeAudio.duration;
+                                        obj3.f27355a = tL_documentAttributeAudio.performer;
+                                        obj3.f27356b = tL_documentAttributeAudio.title;
+                                        obj3.f27357c = (int) tL_documentAttributeAudio.duration;
                                         cjVar.N.add(obj3);
                                     }
                                 }
@@ -114,7 +114,7 @@ public final class vi implements org.telegram.messenger.q10 {
                         i13++;
                         ?? obj4 = new Object();
                         org.telegram.messenger.fj fjVar2 = new org.telegram.messenger.fj(this.d, message, false, true);
-                        obj4.f27360e = fjVar2;
+                        obj4.f27358e = fjVar2;
                         TLRPC.Document F02 = fjVar2.F0();
                         if (F02 != null) {
                             int i14 = 0;
@@ -130,9 +130,9 @@ public final class vi implements org.telegram.messenger.q10 {
                                 }
                             }
                             if (tL_documentAttributeAudio2 != null) {
-                                obj4.f27357a = tL_documentAttributeAudio2.performer;
-                                obj4.f27358b = tL_documentAttributeAudio2.title;
-                                obj4.f27359c = (int) tL_documentAttributeAudio2.duration;
+                                obj4.f27355a = tL_documentAttributeAudio2.performer;
+                                obj4.f27356b = tL_documentAttributeAudio2.title;
+                                obj4.f27357c = (int) tL_documentAttributeAudio2.duration;
                                 arrayList2.add(obj4);
                             }
                         }

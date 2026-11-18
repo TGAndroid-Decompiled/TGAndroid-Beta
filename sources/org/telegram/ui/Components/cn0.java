@@ -150,7 +150,7 @@ public final class cn0 extends Drawable {
             canvas.save();
             float f11 = d * 0.4f;
             float f12 = 0.6f + f11;
-            if (bounds.width() < org.telegram.messenger.g0.f24121q.x * 0.7f) {
+            if (bounds.width() < org.telegram.messenger.g0.f24118q.x * 0.7f) {
                 f12 *= 0.75f;
                 if (this.f34117a) {
                     canvas.translate(-org.telegram.messenger.g0.L(45.0f), 0.0f);

@@ -4,15 +4,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.bk0;
 public final class t7 extends bk0 {
-    public final u7 f15418c;
+    public final u7 f15415c;
 
     public t7(u7 u7Var) {
-        this.f15418c = u7Var;
+        this.f15415c = u7Var;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 2) {
+        if (f1Var.f59127f == 2) {
             return true;
         }
         return false;
@@ -20,7 +20,7 @@ public final class t7 extends bk0 {
 
     @Override
     public final int b() {
-        return this.f15418c.n1.size() + 2;
+        return this.f15415c.n1.size() + 2;
     }
 
     @Override
@@ -43,13 +43,13 @@ public final class t7 extends bk0 {
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         int L;
         View view;
-        u7 u7Var = this.f15418c;
+        u7 u7Var = this.f15415c;
         if (i7 != 0 && i7 != 1) {
             view = new p8(u7Var.getContext(), u7Var.J0);
         } else {
             View view2 = new View(u7Var.getContext());
             if (i7 == 0) {
-                L = (org.telegram.messenger.g0.f24121q.y + org.telegram.messenger.g0.f24115m) - org.telegram.messenger.g0.L(306.0f);
+                L = (org.telegram.messenger.g0.f24118q.y + org.telegram.messenger.g0.f24112m) - org.telegram.messenger.g0.L(306.0f);
             } else {
                 L = org.telegram.messenger.g0.L(54.0f);
             }

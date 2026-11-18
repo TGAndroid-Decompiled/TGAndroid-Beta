@@ -3,28 +3,28 @@ package f2;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public abstract class o implements n {
-    public k f11058b;
-    public k f11059c;
+    public k f11055b;
+    public k f11056c;
     public k d;
-    public k f11060e;
-    public ByteBuffer f11061f;
-    public ByteBuffer f11062g;
+    public k f11057e;
+    public ByteBuffer f11058f;
+    public ByteBuffer f11059g;
     public boolean h;
 
     public o() {
-        ByteBuffer byteBuffer = n.f11057a;
-        this.f11061f = byteBuffer;
-        this.f11062g = byteBuffer;
-        k kVar = k.f11051e;
+        ByteBuffer byteBuffer = n.f11054a;
+        this.f11058f = byteBuffer;
+        this.f11059g = byteBuffer;
+        k kVar = k.f11048e;
         this.d = kVar;
-        this.f11060e = kVar;
-        this.f11058b = kVar;
-        this.f11059c = kVar;
+        this.f11057e = kVar;
+        this.f11055b = kVar;
+        this.f11056c = kVar;
     }
 
     @Override
     public boolean a() {
-        if (this.h && this.f11062g == n.f11057a) {
+        if (this.h && this.f11059g == n.f11054a) {
             return true;
         }
         return false;
@@ -32,28 +32,28 @@ public abstract class o implements n {
 
     @Override
     public ByteBuffer b() {
-        ByteBuffer byteBuffer = this.f11062g;
-        this.f11062g = n.f11057a;
+        ByteBuffer byteBuffer = this.f11059g;
+        this.f11059g = n.f11054a;
         return byteBuffer;
     }
 
     @Override
     public final void d(l lVar) {
-        this.f11062g = n.f11057a;
+        this.f11059g = n.f11054a;
         this.h = false;
-        this.f11058b = this.d;
-        this.f11059c = this.f11060e;
+        this.f11055b = this.d;
+        this.f11056c = this.f11057e;
         i();
     }
 
     @Override
     public final k e(k kVar) {
         this.d = kVar;
-        this.f11060e = h(kVar);
+        this.f11057e = h(kVar);
         if (isActive()) {
-            return this.f11060e;
+            return this.f11057e;
         }
-        return k.f11051e;
+        return k.f11048e;
     }
 
     @Override
@@ -66,34 +66,34 @@ public abstract class o implements n {
 
     @Override
     public boolean isActive() {
-        if (this.f11060e != k.f11051e) {
+        if (this.f11057e != k.f11048e) {
             return true;
         }
         return false;
     }
 
     public final ByteBuffer l(int i7) {
-        if (this.f11061f.capacity() < i7) {
-            this.f11061f = ByteBuffer.allocateDirect(i7).order(ByteOrder.nativeOrder());
+        if (this.f11058f.capacity() < i7) {
+            this.f11058f = ByteBuffer.allocateDirect(i7).order(ByteOrder.nativeOrder());
         } else {
-            this.f11061f.clear();
+            this.f11058f.clear();
         }
-        ByteBuffer byteBuffer = this.f11061f;
-        this.f11062g = byteBuffer;
+        ByteBuffer byteBuffer = this.f11058f;
+        this.f11059g = byteBuffer;
         return byteBuffer;
     }
 
     @Override
     public final void reset() {
-        ByteBuffer byteBuffer = n.f11057a;
-        this.f11062g = byteBuffer;
+        ByteBuffer byteBuffer = n.f11054a;
+        this.f11059g = byteBuffer;
         this.h = false;
-        this.f11061f = byteBuffer;
-        k kVar = k.f11051e;
+        this.f11058f = byteBuffer;
+        k kVar = k.f11048e;
         this.d = kVar;
-        this.f11060e = kVar;
-        this.f11058b = kVar;
-        this.f11059c = kVar;
+        this.f11057e = kVar;
+        this.f11055b = kVar;
+        this.f11056c = kVar;
         k();
     }
 

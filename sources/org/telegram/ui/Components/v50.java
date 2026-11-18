@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-public final class v50 extends org.telegram.ui.Cells.qa {
+public final class v50 extends org.telegram.ui.Cells.ra {
     public final TextView f40498c0;
     public final TextView f40499d0;
 
@@ -16,9 +16,9 @@ public final class v50 extends org.telegram.ui.Cells.qa {
         g10.addView(textView, c8.ma.r(-2, -2, 5));
         TextView textView2 = new TextView(context);
         this.f40499d0 = textView2;
-        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29807z6, null);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29805z6, null);
         textView2.setTextSize(1, 13.0f);
         g10.addView(textView2, c8.ma.t(-2, -2, 5, 0, 1, 0, 0));
-        addView(g10, c8.ma.d(-2, -2.0f, (org.telegram.messenger.gd.f24216a0 ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
+        addView(g10, c8.ma.d(-2, -2.0f, (org.telegram.messenger.gd.f24213a0 ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
     }
 }

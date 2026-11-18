@@ -23,8 +23,8 @@ public final class j20 extends ImageView {
             case 1:
                 super.onDraw(canvas);
                 org.telegram.ui.f00 f00Var = (org.telegram.ui.f00) this.f36303c;
-                o80 o80Var = f00Var.f47415s;
-                if (f00Var.f47414r) {
+                o80 o80Var = f00Var.f47371s;
+                if (f00Var.f47370r) {
                     int i7 = this.f36302b / 2;
                     o80Var.setBounds(i7, i7, getWidth() - i7, getHeight() - i7);
                     o80Var.draw(canvas);
@@ -57,7 +57,7 @@ public final class j20 extends ImageView {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f36301a) {
             case 1:
-                if (drawable != ((org.telegram.ui.f00) this.f36303c).f47415s && !super.verifyDrawable(drawable)) {
+                if (drawable != ((org.telegram.ui.f00) this.f36303c).f47371s && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;

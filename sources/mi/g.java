@@ -23,7 +23,7 @@ import org.telegram.ui.Components.q9;
 import org.telegram.ui.Components.z41;
 import v4.q0;
 public final class g extends k41 {
-    public static final int f21024b = 0;
+    public static final int f21021b = 0;
 
     static {
         k41.h(new k41());
@@ -35,20 +35,20 @@ public final class g extends k41 {
         String o02;
         h hVar = (h) view;
         f fVar = (f) l41Var.H;
-        TLRPC.User user = fVar.f21022b;
-        long j3 = fVar.f21021a;
-        boolean z11 = fVar.f21023c;
+        TLRPC.User user = fVar.f21019b;
+        long j3 = fVar.f21018a;
+        boolean z11 = fVar.f21020c;
         boolean z12 = !l41Var.f37015j;
-        q9 q9Var = hVar.f21027c;
-        TextView textView = hVar.f21030n;
+        q9 q9Var = hVar.f21024c;
+        TextView textView = hVar.f21027n;
         TextView textView2 = hVar.d;
         hVar.F = (e) l41Var.I;
         hVar.G = j3;
-        hVar.H = user.f28554id;
-        int i10 = hVar.f21026b;
+        hVar.H = user.f28552id;
+        int i10 = hVar.f21023b;
         TLRPC.Chat O0 = mp.u1(i10).O0(Long.valueOf(-j3));
         TLRPC.User c22 = mp.u1(i10).c2(Long.valueOf(j3));
-        hVar.f21029f.setText(n5.l(j10.f24773t0, j3));
+        hVar.f21026f.setText(n5.l(j10.f24770t0, j3));
         TextView textView3 = hVar.h;
         if (c22 != null) {
             i7 = 2131751887;
@@ -62,7 +62,7 @@ public final class g extends k41 {
             textView2.setVisibility(8);
         } else if (O0 != null && O0.participants_count > 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(hVar.f21032s, 0, 1, 33);
+            spannableStringBuilder.setSpan(hVar.f21029s, 0, 1, 33);
             long j10 = O0.participants_count;
             if (j10 < 1000000) {
                 o02 = gd.E(j10, ',');
@@ -80,13 +80,13 @@ public final class g extends k41 {
         } else {
             textView.setVisibility(8);
         }
-        hVar.f21035y = z12;
+        hVar.f21032y = z12;
         if (c22 != null) {
             q9Var.f(c22, new b9(0, c22));
         } else {
             q9Var.f(O0, new b9(O0));
         }
-        hVar.f21028e.f(user, new b9(0, user));
+        hVar.f21025e.f(user, new b9(0, user));
     }
 
     @Override
@@ -101,7 +101,7 @@ public final class g extends k41 {
     public final boolean e(l41 l41Var, l41 l41Var2) {
         f fVar = (f) l41Var.H;
         f fVar2 = (f) l41Var2.H;
-        if (fVar.f21021a == fVar2.f21021a && n5.d(fVar.f21022b) == n5.d(fVar2.f21022b)) {
+        if (fVar.f21018a == fVar2.f21018a && n5.d(fVar.f21019b) == n5.d(fVar2.f21019b)) {
             return true;
         }
         return false;

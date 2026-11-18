@@ -1,10 +1,10 @@
 package i5;
 public final class h extends com.googlecode.mp4parser.c {
-    public static final ze.b f16064e;
+    public static final ze.b f16061e;
 
     static {
         ze.a aVar = new ze.a(h.class, "DataEntryUrlBox.java");
-        f16064e = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.DataEntryUrlBox", "", "", "java.lang.String"));
+        f16061e = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.DataEntryUrlBox", "", "", "java.lang.String"));
     }
 
     @Override
@@ -13,7 +13,7 @@ public final class h extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        c.w(ze.a.b(f16064e, this, this));
+        c.w(ze.a.b(f16061e, this, this));
         return "DataEntryUrlBox[]";
     }
 }

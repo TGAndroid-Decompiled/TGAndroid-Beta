@@ -5,32 +5,32 @@ import org.telegram.messenger.zy;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class k3 implements Runnable {
-    public final int f18757a;
-    public final t3 f18758b;
+    public final int f18754a;
+    public final t3 f18755b;
 
     public k3(t3 t3Var, int i7) {
-        this.f18757a = i7;
-        this.f18758b = t3Var;
+        this.f18754a = i7;
+        this.f18755b = t3Var;
     }
 
     @Override
     public final void run() {
         TLRPC.ChatFull P0;
         TLRPC.Peer peer;
-        switch (this.f18757a) {
+        switch (this.f18754a) {
             case 0:
-                this.f18758b.f18958n.R();
+                this.f18755b.f18955n.R();
                 return;
             case 1:
-                this.f18758b.Q();
+                this.f18755b.Q();
                 return;
             case 2:
-                t3 t3Var = this.f18758b;
+                t3 t3Var = this.f18755b;
                 if (!t3Var.U) {
                     TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
-                    tL_messages_prolongWebView.bot = mp.u1(t3Var.G).q1(t3Var.f18961w);
-                    tL_messages_prolongWebView.peer = mp.u1(t3Var.G).l1(t3Var.f18962x);
-                    tL_messages_prolongWebView.query_id = t3Var.f18963y;
+                    tL_messages_prolongWebView.bot = mp.u1(t3Var.G).q1(t3Var.f18958w);
+                    tL_messages_prolongWebView.peer = mp.u1(t3Var.G).l1(t3Var.f18959x);
+                    tL_messages_prolongWebView.query_id = t3Var.f18960y;
                     tL_messages_prolongWebView.silent = false;
                     if (t3Var.E != 0) {
                         zy.C(t3Var.G);
@@ -49,7 +49,7 @@ public final class k3 implements Runnable {
                         tL_inputReplyToMonoForum.monoforum_peer_id = mp.u1(t3Var.G).l1(t3Var.F);
                         tL_messages_prolongWebView.flags |= 1;
                     }
-                    if (t3Var.f18962x < 0 && (P0 = mp.u1(t3Var.G).P0(-t3Var.f18962x)) != null && (peer = P0.default_send_as) != null) {
+                    if (t3Var.f18959x < 0 && (P0 = mp.u1(t3Var.G).P0(-t3Var.f18959x)) != null && (peer = P0.default_send_as) != null) {
                         tL_messages_prolongWebView.send_as = mp.u1(t3Var.G).o1(peer);
                         tL_messages_prolongWebView.flags |= 8192;
                     }
@@ -58,13 +58,13 @@ public final class k3 implements Runnable {
                 }
                 return;
             case 3:
-                t3 t3Var2 = this.f18758b;
+                t3 t3Var2 = this.f18755b;
                 t3Var2.f36766b.N1(t3Var2, 0);
-                t3Var2.f18958n.n(false, false);
+                t3Var2.f18955n.n(false, false);
                 System.currentTimeMillis();
                 return;
             default:
-                this.f18758b.f18958n.n(true, false);
+                this.f18755b.f18955n.n(true, false);
                 return;
         }
     }

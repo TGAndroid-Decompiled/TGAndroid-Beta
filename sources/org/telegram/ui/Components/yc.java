@@ -71,7 +71,7 @@ public abstract class yc extends hi.n {
         this.f42464p1 = new lg(this, 17);
         this.f42455e1 = runnable;
         m6Var.w(org.telegram.messenger.g0.L(14.0f));
-        m6Var.N = org.telegram.messenger.g0.f24121q.x;
+        m6Var.N = org.telegram.messenger.g0.f24118q.x;
         m6Var.u(-1);
         boolean z10 = this instanceof org.telegram.ui.bp0;
         if (z10) {
@@ -165,7 +165,7 @@ public abstract class yc extends hi.n {
         addView(imageView3, c8.ma.d(44, 44.0f, 53, 8.0f, 0.0f, 8.0f, 0.0f));
         imageView3.setContentDescription(org.telegram.messenger.gd.M0(2131755006, null));
         c8.ra.a(imageView3);
-        this.f15051f.getEditText().addTextChangedListener(new ah.j(this, 17));
+        this.f15048f.getEditText().addTextChangedListener(new ah.j(this, 17));
         imageView3.setVisibility(8);
         imageView3.setAlpha(0.0f);
         imageView3.setScaleX(0.6f);
@@ -202,8 +202,8 @@ public abstract class yc extends hi.n {
             f11 = org.telegram.messenger.g0.L(-8.0f);
         }
         imageView.setTranslationX(f11);
-        hi.g gVar = this.f15051f;
-        gVar.getEditText().setTranslationX(org.telegram.messenger.g0.W1(this.f15061o0, getEditTextLeft() + org.telegram.messenger.g0.L(-26.0f), org.telegram.messenger.g0.L(2.0f)));
+        hi.g gVar = this.f15048f;
+        gVar.getEditText().setTranslationX(org.telegram.messenger.g0.W1(this.f15058o0, getEditTextLeft() + org.telegram.messenger.g0.L(-26.0f), org.telegram.messenger.g0.L(2.0f)));
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) gVar.getLayoutParams();
         if (this.S0 && this.U0) {
             i10 = 33;
@@ -258,7 +258,7 @@ public abstract class yc extends hi.n {
             }
             imageView.setTranslationX(f11);
         }
-        hi.g gVar = this.f15051f;
+        hi.g gVar = this.f15048f;
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) gVar.getLayoutParams();
         if (this.S0 && this.U0) {
             i10 = 33;
@@ -312,7 +312,7 @@ public abstract class yc extends hi.n {
                     this.f42451a1.p(1.0f, ((-imageView.getWidth()) / 2.0f) + org.telegram.messenger.g0.L(4.0f));
                     addView(this.f42451a1, c8.ma.d(-1, 200.0f, 48, 0.0f, -196.0f, 0.0f, 0.0f));
                     hi.m3 m3Var3 = this.f42451a1;
-                    m3Var3.f15014r0 = new org.telegram.ui.ci(20, this, m3Var2);
+                    m3Var3.f15011r0 = new org.telegram.ui.ci(20, this, m3Var2);
                     m3Var3.d = 4000L;
                     m3Var3.x();
                     org.telegram.messenger.mp.g1().edit().putInt("aihintshown", org.telegram.messenger.mp.g1().getInt("aihintshown", 0) + 1).apply();
@@ -331,12 +331,12 @@ public abstract class yc extends hi.n {
     public abstract boolean G();
 
     public final void H(org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f15042a = i6Var;
+        this.f15039a = i6Var;
         this.h.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.U5, false), PorterDuff.Mode.SRC_IN));
         int L = org.telegram.messenger.g0.L(16.0f);
-        int i7 = org.telegram.ui.ActionBar.n6.f29645qg;
+        int i7 = org.telegram.ui.ActionBar.n6.f29643qg;
         ShapeDrawable L2 = org.telegram.ui.ActionBar.n6.L(L, org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
-        mq mqVar = this.f15059n;
+        mq mqVar = this.f15056n;
         mqVar.f37607a = L2;
         mqVar.invalidateSelf();
         this.W0.e(-1, org.telegram.ui.ActionBar.n6.w0(i7, i6Var), -1);
@@ -400,7 +400,7 @@ public abstract class yc extends hi.n {
         RectF rectF = this.A0;
         ImageView imageView = this.Z0;
         if (imageView != null) {
-            imageView.setTranslationX(-org.telegram.messenger.g0.L((1.0f - this.f15061o0) * 4.0f));
+            imageView.setTranslationX(-org.telegram.messenger.g0.L((1.0f - this.f15058o0) * 4.0f));
             boolean z10 = this instanceof org.telegram.ui.bp0;
             if (z10) {
                 f11 = rectF.bottom - org.telegram.messenger.g0.L(44.0f);
@@ -412,13 +412,13 @@ public abstract class yc extends hi.n {
             } else {
                 i7 = -1;
             }
-            imageView.setTranslationY((Utilities.l((-this.f42461k1.e(false, this.f15051f.getEditText().getLineCount())) + 4.0f) * org.telegram.messenger.g0.L(3.0f) * i7) + f11);
+            imageView.setTranslationY((Utilities.l((-this.f42461k1.e(false, this.f15048f.getEditText().getLineCount())) + 4.0f) * org.telegram.messenger.g0.L(3.0f) * i7) + f11);
         }
         float f12 = this.l1.f(this.n1, true ^ G());
         float d = this.f42462m1.d(this.f42463o1);
         if (f12 > 0.0f) {
             float a10 = this.f42459i1.a(0.03f);
-            int L = org.telegram.messenger.g0.L((1.0f - this.f15061o0) * 4.0f);
+            int L = org.telegram.messenger.g0.L((1.0f - this.f15058o0) * 4.0f);
             boolean z11 = this instanceof org.telegram.ui.bp0;
             m6 m6Var = this.f42458h1;
             RectF rectF2 = this.f42456f1;
@@ -436,11 +436,11 @@ public abstract class yc extends hi.n {
             }
             canvas.scale(a10, a10, rectF2.centerX(), rectF2.centerY());
             canvas.clipRect(rectF2);
-            dh.c cVar = this.f15054h0;
+            dh.c cVar = this.f15051h0;
             if (cVar != null) {
                 if (this.f42460j1 == null) {
                     fh.g c10 = cVar.c(this, null, false);
-                    c10.p(c8.i0.j(this.f15042a));
+                    c10.p(c8.i0.j(this.f15039a));
                     c10.q(org.telegram.messenger.g0.L(5.0f));
                     c10.r(org.telegram.messenger.g0.L(16.0f));
                     this.f42460j1 = c10;
@@ -649,7 +649,7 @@ public abstract class yc extends hi.n {
         lg lgVar = this.f42464p1;
         org.telegram.messenger.g0.r(lgVar);
         if (org.telegram.messenger.mp.u1(this.V).h7.getInt("movecaptionhint", 0) >= 24) {
-            boolean z11 = org.telegram.messenger.s2.f26723a;
+            boolean z11 = org.telegram.messenger.s2.f26721a;
             z10 = false;
         } else {
             z10 = true;

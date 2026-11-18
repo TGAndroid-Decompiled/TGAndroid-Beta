@@ -157,7 +157,7 @@ public final class q01 {
                 } else {
                     qg.b bVar = this.f38665i;
                     if (bVar != null) {
-                        bVar.a(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29733v8, i6Var));
+                        bVar.a(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29731v8, i6Var));
                     }
                     ImageReceiver imageReceiver = this.f38664g;
                     imageReceiver.y0(org.telegram.messenger.g0.L(2.66f) + f22, org.telegram.messenger.g0.L(6.5f) + f11, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f));
@@ -165,7 +165,7 @@ public final class q01 {
                     imageReceiver.h(canvas, null);
                 }
                 if (org.telegram.ui.ActionBar.n6.i1(i6Var)) {
-                    i10 = org.telegram.ui.ActionBar.n6.f29811za;
+                    i10 = org.telegram.ui.ActionBar.n6.f29809za;
                 } else {
                     i10 = org.telegram.ui.ActionBar.n6.Zc;
                 }
@@ -202,11 +202,11 @@ public final class q01 {
             this.f38676t = 0L;
         } else {
             int i7 = this.f38659a;
-            boolean p02 = org.telegram.messenger.v3.p0(org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(-org.telegram.messenger.fj.B0(fjVar.f23968k))));
+            boolean p02 = org.telegram.messenger.v3.p0(org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(-org.telegram.messenger.fj.B0(fjVar.f23965k))));
             ImageReceiver imageReceiver = this.f38664g;
             if (p02) {
                 imageReceiver.J0(org.telegram.messenger.g0.L(10.0f));
-                long u12 = org.telegram.messenger.fj.u1(fjVar.f23968k);
+                long u12 = org.telegram.messenger.fj.u1(fjVar.f23965k);
                 TLObject g22 = org.telegram.messenger.mp.u1(i7).g2(u12);
                 this.f38676t = u12;
                 if (g22 == null) {
@@ -221,13 +221,13 @@ public final class q01 {
                 imageReceiver.J0(0);
                 long Y1 = fjVar.Y1();
                 this.f38676t = Y1;
-                TLRPC.TL_forumTopic f10 = org.telegram.messenger.mp.u1(i7).f25771t7.f(-org.telegram.messenger.fj.B0(fjVar.f23968k), Y1);
+                TLRPC.TL_forumTopic f10 = org.telegram.messenger.mp.u1(i7).f25769t7.f(-org.telegram.messenger.fj.B0(fjVar.f23965k), Y1);
                 if (f10 == null) {
                     this.f38662e = null;
                     return false;
                 }
                 if (Y1 == 1) {
-                    qg.b d = qg.c.d(view.getContext(), 0.75f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29733v8, this.f38661c), false);
+                    qg.b d = qg.c.d(view.getContext(), 0.75f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29731v8, this.f38661c), false);
                     this.f38665i = d;
                     imageReceiver.w0(d);
                 } else if (f10.icon_emoji_id != 0) {

@@ -20,39 +20,39 @@ public class f3 {
     public org.telegram.ui.g4 J;
     public ki.w0 K;
     public boolean L;
-    public ki.f4 f28927a;
-    public org.telegram.ui.web.s0 f28928b;
-    public org.telegram.ui.k3 f28929c;
+    public ki.f4 f28925a;
+    public org.telegram.ui.web.s0 f28926b;
+    public org.telegram.ui.k3 f28927c;
     public Object d;
-    public boolean f28930e;
-    public String f28931f;
-    public int f28932g;
+    public boolean f28928e;
+    public String f28929f;
+    public int f28930g;
     public int h;
-    public int f28933i;
-    public boolean f28934j;
-    public float f28935k = Float.MAX_VALUE;
-    public boolean f28936l = true;
-    public Bitmap f28937m;
-    public boolean f28938n;
-    public boolean f28939o;
-    public int f28940p;
-    public int f28941q;
-    public int f28942r;
-    public int f28943s;
-    public boolean f28944t;
-    public boolean f28945u;
+    public int f28931i;
+    public boolean f28932j;
+    public float f28933k = Float.MAX_VALUE;
+    public boolean f28934l = true;
+    public Bitmap f28935m;
+    public boolean f28936n;
+    public boolean f28937o;
+    public int f28938p;
+    public int f28939q;
+    public int f28940r;
+    public int f28941s;
+    public boolean f28942t;
+    public boolean f28943u;
     public boolean v;
-    public xa f28946w;
-    public String f28947x;
-    public boolean f28948y;
-    public boolean f28949z;
+    public xa f28944w;
+    public String f28945x;
+    public boolean f28946y;
+    public boolean f28947z;
 
     public final void a() {
         try {
-            org.telegram.ui.web.s0 s0Var = this.f28928b;
+            org.telegram.ui.web.s0 s0Var = this.f28926b;
             if (s0Var != null) {
                 s0Var.destroy();
-                this.f28928b = null;
+                this.f28926b = null;
             }
             org.telegram.ui.g4 g4Var = this.J;
             if (g4Var != null) {
@@ -70,13 +70,13 @@ public class f3 {
             }
             return this.E;
         }
-        ki.f4 f4Var = this.f28927a;
+        ki.f4 f4Var = this.f28925a;
         if (f4Var == null) {
             return "";
         }
-        if (f4Var.f18671g == 6) {
-            return f4Var.f18669e;
+        if (f4Var.f18668g == 6) {
+            return f4Var.f18666e;
         }
-        return o10.q(mp.u1(f4Var.f18666a).c2(Long.valueOf(this.f28927a.f18668c)));
+        return o10.q(mp.u1(f4Var.f18663a).c2(Long.valueOf(this.f28925a.f18665c)));
     }
 }

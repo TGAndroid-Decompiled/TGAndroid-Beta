@@ -89,11 +89,11 @@ public final class u90 implements Menu {
         dt dtVar;
         if (i10 != 2131296502 || (dtVar = this.d) == null || ((Boolean) dtVar.run()).booleanValue()) {
             Runnable runnable = this.f40274c;
-            if ((i10 != 2131296503 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.m4.f29235r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).K3())) {
+            if ((i10 != 2131296503 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.m4.f29233r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).K3())) {
                 org.telegram.ui.ii iiVar = new org.telegram.ui.ii(this, i10, 13);
                 y60 y60Var = this.f40272a;
                 y60Var.c(0, charSequence, iiVar, false);
-                if (runnable != null && org.telegram.ui.ActionBar.m4.f29235r.contains(Integer.valueOf(i10))) {
+                if (runnable != null && org.telegram.ui.ActionBar.m4.f29233r.contains(Integer.valueOf(i10))) {
                     y60Var.N(runnable);
                 }
             }

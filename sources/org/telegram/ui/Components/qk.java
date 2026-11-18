@@ -25,7 +25,7 @@ public final class qk implements org.telegram.messenger.q10 {
                     if (TextUtils.equals(str, "WALLET_USER_UNAVAILABLE")) {
                         xkVar.K = true;
                     }
-                    if (walletuseraddress != null && walletuseraddress.user_id == user.f28554id) {
+                    if (walletuseraddress != null && walletuseraddress.user_id == user.f28552id) {
                         xkVar.H = walletuseraddress.address;
                         xkVar.I = walletuseraddress.public_key;
                     }

@@ -12,7 +12,7 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.z41;
 public final class wa extends k41 {
-    public static final int f9979b = 0;
+    public static final int f9976b = 0;
 
     static {
         k41.h(new k41());
@@ -25,31 +25,31 @@ public final class wa extends k41 {
         int i10;
         int i11;
         xa xaVar = (xa) view;
-        org.telegram.ui.Components.n6 n6Var = xaVar.f10049a;
-        ImageView imageView = xaVar.f10050b;
-        int i12 = xaVar.f10051c;
+        org.telegram.ui.Components.n6 n6Var = xaVar.f10046a;
+        ImageView imageView = xaVar.f10047b;
+        int i12 = xaVar.f10048c;
         int i13 = l41Var.d;
         if (i12 == i13) {
             z11 = true;
         } else {
             z11 = false;
         }
-        xaVar.f10051c = i13;
+        xaVar.f10048c = i13;
         n6Var.c(l41Var.f37018m, z11, true);
         if (l41Var.f37023r) {
-            i7 = org.telegram.ui.ActionBar.n6.f29596o6;
+            i7 = org.telegram.ui.ActionBar.n6.f29594o6;
         } else {
             i7 = org.telegram.ui.ActionBar.n6.G6;
         }
         org.telegram.ui.ActionBar.n6.v0(i7);
         if (l41Var.f37023r) {
-            i10 = org.telegram.ui.ActionBar.n6.f29596o6;
+            i10 = org.telegram.ui.ActionBar.n6.f29594o6;
         } else {
             i10 = org.telegram.ui.ActionBar.n6.G6;
         }
         org.telegram.ui.ActionBar.u6.Y(n6Var, i10, null);
         if (l41Var.f37023r) {
-            i11 = org.telegram.ui.ActionBar.n6.f29596o6;
+            i11 = org.telegram.ui.ActionBar.n6.f29594o6;
         } else {
             i11 = org.telegram.ui.ActionBar.n6.G6;
         }

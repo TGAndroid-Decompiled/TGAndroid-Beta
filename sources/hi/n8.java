@@ -28,32 +28,32 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
     public float K;
     public int L;
     public boolean M;
-    public final org.telegram.ui.ActionBar.i6 f15108a;
-    public final ah.i f15109b;
-    public final int f15110c;
+    public final org.telegram.ui.ActionBar.i6 f15105a;
+    public final ah.i f15106b;
+    public final int f15107c;
     public final ah.n d;
-    public final ArrayList f15111e;
-    public m20 f15112f;
+    public final ArrayList f15108e;
+    public m20 f15109f;
     public final b8 h;
-    public boolean f15113n;
-    public x10 f15114r;
-    public final org.telegram.ui.Components.c6 f15115s;
-    public final LinearGradient f15116w;
-    public final Paint f15117x;
-    public final Matrix f15118y;
+    public boolean f15110n;
+    public x10 f15111r;
+    public final org.telegram.ui.Components.c6 f15112s;
+    public final LinearGradient f15113w;
+    public final Paint f15114x;
+    public final Matrix f15115y;
 
     public n8(Context context, org.telegram.ui.ActionBar.i6 i6Var, b8 b8Var) {
         super(context);
         int i7;
-        this.f15111e = new ArrayList();
+        this.f15108e = new ArrayList();
         lr lrVar = lr.h;
-        this.f15115s = new org.telegram.ui.Components.c6(this, 0L, 300L, lrVar);
+        this.f15112s = new org.telegram.ui.Components.c6(this, 0L, 300L, lrVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f15116w = linearGradient;
+        this.f15113w = linearGradient;
         Paint paint = new Paint(1);
-        this.f15117x = paint;
-        this.f15118y = new Matrix();
+        this.f15114x = paint;
+        this.f15115y = new Matrix();
         this.E = new org.telegram.ui.Components.c6(this, 0L, 300L, lrVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.F = linearGradient2;
@@ -65,15 +65,15 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f15108a = i6Var;
+        this.f15105a = i6Var;
         this.h = b8Var;
         setVerticalScrollBarEnabled(false);
-        org.telegram.messenger.g0.x3(this, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+        org.telegram.messenger.g0.x3(this, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
         ah.n nVar = new ah.n(this, context);
         this.d = nVar;
         addView(nVar, c8.ma.c(-2.0f, -1));
         ah.i iVar = new ah.i(2, context, this);
-        this.f15109b = iVar;
+        this.f15106b = iVar;
         if (Build.VERSION.SDK_INT >= 25) {
             iVar.setRevealOnFocusHint(false);
         }
@@ -92,7 +92,7 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
         iVar.setTextIsSelectable(false);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setImeOptions(268435462);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -100,7 +100,7 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
         iVar.setGravity(i7 | 16);
         nVar.addView(iVar);
         iVar.setHintText(gd.M0(2131745641, null));
-        this.f15110c = (int) iVar.getPaint().measureText(gd.M0(2131745641, null));
+        this.f15107c = (int) iVar.getPaint().measureText(gd.M0(2131745641, null));
         iVar.addTextChangedListener(new ah.j(this, 8));
     }
 
@@ -111,12 +111,12 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
         canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float d = this.f15115s.d(canScrollVertically(-1));
-        Matrix matrix = this.f15118y;
+        float d = this.f15112s.d(canScrollVertically(-1));
+        Matrix matrix = this.f15115y;
         matrix.reset();
         matrix.postTranslate(0.0f, scrollY2);
-        this.f15116w.setLocalMatrix(matrix);
-        Paint paint = this.f15117x;
+        this.f15113w.setLocalMatrix(matrix);
+        Paint paint = this.f15114x;
         paint.setAlpha((int) (d * 255.0f));
         canvas.drawRect(0.0f, scrollY2, getWidth(), org.telegram.messenger.g0.L(8.0f) + scrollY, paint);
         float d2 = this.E.d(canScrollVertically(1));
@@ -157,19 +157,19 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
     }
 
     public void setOnSearchTextChange(x10 x10Var) {
-        this.f15114r = x10Var;
+        this.f15111r = x10Var;
     }
 
     public void setText(CharSequence charSequence) {
-        this.f15113n = true;
-        this.f15109b.setText(charSequence);
-        this.f15113n = false;
+        this.f15110n = true;
+        this.f15106b.setText(charSequence);
+        this.f15110n = false;
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.i6 i6Var = this.f15108a;
-        ah.i iVar = this.f15109b;
+        org.telegram.ui.ActionBar.i6 i6Var = this.f15105a;
+        ah.i iVar = this.f15106b;
         if (iVar != null) {
             try {
                 iVar.setHintColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Oi, i6Var));
@@ -181,7 +181,7 @@ public abstract class n8 extends ScrollView implements org.telegram.ui.ActionBar
                 return;
             }
         }
-        org.telegram.messenger.g0.x3(this, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+        org.telegram.messenger.g0.x3(this, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
     }
 
     @Override

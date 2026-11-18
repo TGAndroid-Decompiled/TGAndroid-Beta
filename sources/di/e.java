@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.ck0;
 import org.telegram.ui.Components.pt0;
 public final class e implements pt0, r0.m {
-    public final int f8681a;
-    public final FrameLayout f8682b;
+    public final int f8678a;
+    public final FrameLayout f8679b;
 
     public e(int i7, FrameLayout frameLayout) {
-        this.f8681a = i7;
-        this.f8682b = frameLayout;
+        this.f8678a = i7;
+        this.f8679b = frameLayout;
     }
 
     @Override
@@ -24,15 +24,15 @@ public final class e implements pt0, r0.m {
         Rect rect = new Rect();
         if (Build.VERSION.SDK_INT >= 30) {
             i0.b f10 = i1Var.f(527);
-            rect.set(f10.f15892a, f10.f15893b, f10.f15894c, f10.d);
+            rect.set(f10.f15889a, f10.f15890b, f10.f15891c, f10.d);
         } else {
-            rect.set(i1Var.i().f15892a, i1Var.i().f15893b, i1Var.i().f15894c, i1Var.i().d);
+            rect.set(i1Var.i().f15889a, i1Var.i().f15890b, i1Var.i().f15891c, i1Var.i().d);
         }
         int i7 = rect.left;
         int i10 = rect.top;
         int i11 = rect.right;
-        int i12 = rect.bottom + org.telegram.messenger.g0.f24116n;
-        FrameLayout frameLayout = this.f8682b;
+        int i12 = rect.bottom + org.telegram.messenger.g0.f24113n;
+        FrameLayout frameLayout = this.f8679b;
         frameLayout.setPadding(i7, i10, i11, i12);
         frameLayout.requestLayout();
         return l1Var;
@@ -40,18 +40,18 @@ public final class e implements pt0, r0.m {
 
     @Override
     public void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
-        switch (this.f8681a) {
+        switch (this.f8678a) {
             case 0:
                 ck0 ck0Var = (ck0) recyclerView;
-                ih.d.a(ck0Var, canvas, rectF, ck0Var, this.f8682b);
+                ih.d.a(ck0Var, canvas, rectF, ck0Var, this.f8679b);
                 return;
             case 1:
                 ck0 ck0Var2 = (ck0) recyclerView;
-                ih.d.a(ck0Var2, canvas, rectF, ck0Var2, this.f8682b);
+                ih.d.a(ck0Var2, canvas, rectF, ck0Var2, this.f8679b);
                 return;
             default:
                 ck0 ck0Var3 = (ck0) recyclerView;
-                ih.d.a(ck0Var3, canvas, rectF, ck0Var3, this.f8682b);
+                ih.d.a(ck0Var3, canvas, rectF, ck0Var3, this.f8679b);
                 return;
         }
     }

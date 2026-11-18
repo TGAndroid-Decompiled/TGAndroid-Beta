@@ -28,7 +28,7 @@ public final class j1 extends ck0 implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.E5) {
+        if (i7 == ks.F5) {
             getAdapter().f();
         }
     }
@@ -51,13 +51,13 @@ public final class j1 extends ck0 implements fs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ks.e().c(this, ks.E5);
+        ks.e().c(this, ks.F5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.e().n(this, ks.E5);
+        ks.e().n(this, ks.F5);
     }
 
     @Override

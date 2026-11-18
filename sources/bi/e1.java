@@ -10,17 +10,17 @@ import org.telegram.ui.Components.i90;
 import org.telegram.ui.Components.iw0;
 import org.telegram.ui.Components.lb;
 public final class e1 implements fb {
-    public final int f3568a;
-    public final Object f3569b;
+    public final int f3536a;
+    public final Object f3537b;
 
     public e1(Object obj, int i7) {
-        this.f3568a = i7;
-        this.f3569b = obj;
+        this.f3536a = i7;
+        this.f3537b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f3568a) {
+        switch (this.f3536a) {
             case 0:
                 return true;
             case 1:
@@ -51,11 +51,11 @@ public final class e1 implements fb {
     @Override
     public final void b(gc gcVar) {
         fi.s3 s3Var;
-        switch (this.f3568a) {
+        switch (this.f3536a) {
             case 0:
                 lb lbVar = gcVar.f35457e;
-                g1 g1Var = (g1) this.f3569b;
-                fh.g c10 = g1Var.f3623p1.c(lbVar, null, true);
+                g1 g1Var = (g1) this.f3537b;
+                fh.g c10 = g1Var.f3592p1.c(lbVar, null, true);
                 c10.p(c8.i0.c(g1Var.J0));
                 c10.r(org.telegram.messenger.g0.L(16.0f));
                 lbVar.setCustomBackground(c10);
@@ -63,7 +63,7 @@ public final class e1 implements fb {
             case 1:
                 return;
             case 2:
-                if (gcVar.f35454a == 2 && (s3Var = ((fi.c3) this.f3569b).f11811y.A1) != null) {
+                if (gcVar.f35454a == 2 && (s3Var = ((fi.c3) this.f3537b).f11808y.A1) != null) {
                     f9 f9Var = ((fi.w8) s3Var).d;
                     f9Var.Y0 = true;
                     f9Var.V();
@@ -85,18 +85,18 @@ public final class e1 implements fb {
 
     @Override
     public final void c(float f10) {
-        int i7 = this.f3568a;
+        int i7 = this.f3536a;
     }
 
     @Override
     public final void d(gc gcVar) {
         fi.s3 s3Var;
-        switch (this.f3568a) {
+        switch (this.f3536a) {
             case 0:
             case 1:
                 return;
             case 2:
-                if (gcVar.f35454a == 2 && (s3Var = ((fi.c3) this.f3569b).f11811y.A1) != null) {
+                if (gcVar.f35454a == 2 && (s3Var = ((fi.c3) this.f3537b).f11808y.A1) != null) {
                     f9 f9Var = ((fi.w8) s3Var).d;
                     f9Var.Y0 = false;
                     f9Var.V();
@@ -118,7 +118,7 @@ public final class e1 implements fb {
 
     @Override
     public final boolean e() {
-        switch (this.f3568a) {
+        switch (this.f3536a) {
             case 0:
                 return true;
             case 1:
@@ -150,48 +150,48 @@ public final class e1 implements fb {
     public final int f(int i7) {
         int editTextHeight;
         int L;
-        switch (this.f3568a) {
+        switch (this.f3536a) {
             case 0:
                 return 0;
             case 1:
-                return (int) ((ch.b0) ((ai.k0) this.f3569b).f1264c).f5315u;
+                return (int) ((ch.b0) ((ai.k0) this.f3537b).f1264c).f5312u;
             case 2:
-                if (((fi.c3) this.f3569b).f11811y.f12833h2) {
+                if (((fi.c3) this.f3537b).f11808y.f12830h2) {
                     return 0;
                 }
                 return org.telegram.messenger.g0.L(64.0f);
             case 3:
-                return ((fi.a5) this.f3569b).f11734r.getPaddingBottom();
+                return ((fi.a5) this.f3537b).f11731r.getPaddingBottom();
             case 4:
                 return 0;
             case 5:
-                editTextHeight = ((ta) this.f3569b).f15436d1.getEditTextHeight();
+                editTextHeight = ((ta) this.f3537b).f15433d1.getEditTextHeight();
                 L = org.telegram.messenger.g0.L(12.0f);
                 break;
             case 6:
-                return ((org.telegram.ui.Components.u7) this.f3569b).f40236e.f35420y1.getHeight();
+                return ((org.telegram.ui.Components.u7) this.f3537b).f40236e.f35420y1.getHeight();
             case 7:
-                fb fbVar = (fb) this.f3569b;
+                fb fbVar = (fb) this.f3537b;
                 if (fbVar == null) {
                     return 0;
                 }
                 return fbVar.f(i7);
             case 8:
                 editTextHeight = org.telegram.messenger.g0.L(126.0f);
-                L = ((em) this.f3569b).f34767c.f36766b.R();
+                L = ((em) this.f3537b).f34767c.f36766b.R();
                 break;
             case 9:
-                editTextHeight = i90.Z((i90) this.f3569b).d;
+                editTextHeight = i90.Z((i90) this.f3537b).d;
                 L = org.telegram.messenger.g0.L(72.0f);
                 break;
             case 10:
-                FrameLayout frameLayout = ((iw0) this.f3569b).f36258w1;
+                FrameLayout frameLayout = ((iw0) this.f3537b).f36258w1;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
                 return 0;
             default:
-                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f3569b;
+                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f3537b;
                 if (v0Var.getParent() instanceof ki.s3) {
                     ki.s3 s3Var = (ki.s3) v0Var.getParent();
                     return (int) ((s3Var.getSwipeOffsetY() + s3Var.getOffsetY()) - s3Var.getTopActionBarOffsetY());
@@ -203,7 +203,7 @@ public final class e1 implements fb {
 
     @Override
     public final boolean g(int i7) {
-        switch (this.f3568a) {
+        switch (this.f3536a) {
             case 0:
                 return false;
             case 1:
@@ -222,7 +222,7 @@ public final class e1 implements fb {
             case 6:
                 return false;
             case 7:
-                fb fbVar = (fb) this.f3569b;
+                fb fbVar = (fb) this.f3537b;
                 if (fbVar != null && fbVar.g(i7)) {
                     return true;
                 }
@@ -240,9 +240,9 @@ public final class e1 implements fb {
 
     @Override
     public final int h(int i7) {
-        switch (this.f3568a) {
+        switch (this.f3536a) {
             case 0:
-                return org.telegram.messenger.g0.f24115m;
+                return org.telegram.messenger.g0.f24112m;
             case 1:
                 return 0;
             case 2:
@@ -250,15 +250,15 @@ public final class e1 implements fb {
             case 3:
                 return 0;
             case 4:
-                return (int) (((fi.l5) this.f3569b).f12221a + org.telegram.messenger.g0.L(58.0f));
+                return (int) (((fi.l5) this.f3537b).f12218a + org.telegram.messenger.g0.L(58.0f));
             case 5:
                 return 0;
             case 6:
                 return 0;
             case 7:
-                fb fbVar = (fb) this.f3569b;
+                fb fbVar = (fb) this.f3537b;
                 if (fbVar == null) {
-                    return org.telegram.messenger.g0.f24115m;
+                    return org.telegram.messenger.g0.f24112m;
                 }
                 return fbVar.h(i7);
             case 8:

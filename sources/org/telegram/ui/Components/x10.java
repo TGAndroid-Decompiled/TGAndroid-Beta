@@ -26,14 +26,14 @@ public final class x10 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         int i11 = point.x;
         z10 z10Var = this.f41863n;
         if (i11 != z10Var.K || z10Var.L != point.y) {
             z10Var.K = i11;
             z10Var.L = point.y;
             if (z10Var.M < 0.0f) {
-                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26915b.getSharedPreferences("groupcallpipconfig", 0);
+                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26913b.getSharedPreferences("groupcallpipconfig", 0);
                 this.f41863n.M = sharedPreferences.getFloat("relativeX", 1.0f);
                 this.f41863n.N = sharedPreferences.getFloat("relativeY", 0.4f);
             }

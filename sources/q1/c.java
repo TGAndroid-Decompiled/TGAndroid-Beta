@@ -45,9 +45,9 @@ public final class c extends j implements p {
         id.c cVar = (id.c) obj2;
         switch (this.f55705a) {
             case 0:
-                return ((c) create(bVar, cVar)).invokeSuspend(k.f13488a);
+                return ((c) create(bVar, cVar)).invokeSuspend(k.f13485a);
             default:
-                return ((c) create(bVar, cVar)).invokeSuspend(k.f13488a);
+                return ((c) create(bVar, cVar)).invokeSuspend(k.f13485a);
         }
     }
 
@@ -55,7 +55,7 @@ public final class c extends j implements p {
     public final Object invokeSuspend(Object obj) {
         switch (this.f55705a) {
             case 0:
-                jd.a aVar = jd.a.f17384a;
+                jd.a aVar = jd.a.f17381a;
                 int i7 = this.f55706b;
                 if (i7 != 0) {
                     if (i7 == 1) {
@@ -76,7 +76,7 @@ public final class c extends j implements p {
                 ((AtomicBoolean) bVar.f55704b.f38076b).set(true);
                 return bVar;
             default:
-                jd.a aVar2 = jd.a.f17384a;
+                jd.a aVar2 = jd.a.f17381a;
                 int i10 = this.f55706b;
                 if (i10 != 0) {
                     if (i10 == 1) {

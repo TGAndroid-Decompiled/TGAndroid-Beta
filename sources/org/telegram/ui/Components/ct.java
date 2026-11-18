@@ -114,7 +114,7 @@ public class ct extends View {
         if (str == null) {
             setImage((Bitmap) null);
         } else {
-            Utilities.f22782e.c(new mg(25, this, str));
+            Utilities.f22779e.c(new mg(25, this, str));
         }
     }
 }

@@ -21,16 +21,16 @@ import org.telegram.ui.Components.gt0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 public final class b9 implements Runnable {
-    public final int f8573a;
-    public final long f8574b;
-    public final int f8575c;
+    public final int f8570a;
+    public final long f8571b;
+    public final int f8572c;
     public final Object d;
 
     public b9(Object obj, int i7, long j3, int i10) {
-        this.f8573a = i10;
+        this.f8570a = i10;
         this.d = obj;
-        this.f8575c = i7;
-        this.f8574b = j3;
+        this.f8572c = i7;
+        this.f8571b = j3;
     }
 
     private final void a() {
@@ -40,9 +40,9 @@ public final class b9 implements Runnable {
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f8573a;
-        long j3 = this.f8574b;
-        int i11 = this.f8575c;
+        int i10 = this.f8570a;
+        long j3 = this.f8571b;
+        int i11 = this.f8572c;
         Object obj = this.d;
         switch (i10) {
             case 0:
@@ -53,7 +53,7 @@ public final class b9 implements Runnable {
                     T.presentFragment(ua2);
                     TLRPC.Chat O0 = mp.u1(i11).O0(Long.valueOf(-l10.longValue()));
                     if (O0 != null) {
-                        org.telegram.messenger.g0.h3(new c9(ua2, this.f8574b, O0, 0), 250L);
+                        org.telegram.messenger.g0.h3(new c9(ua2, this.f8571b, O0, 0), 250L);
                         return;
                     }
                     return;
@@ -61,20 +61,20 @@ public final class b9 implements Runnable {
                 return;
             case 1:
                 fi.p6 p6Var = (fi.p6) obj;
-                int max = Math.max(p6Var.f12389f.get(j3, 0), i11);
-                p6Var.f12389f.put(j3, max);
-                p6Var.f12393k.i(max, j3);
+                int max = Math.max(p6Var.f12386f.get(j3, 0), i11);
+                p6Var.f12386f.put(j3, max);
+                p6Var.f12390k.i(max, j3);
                 TL_stories.PeerStories y10 = p6Var.y(j3);
                 if (y10 != null && i11 > y10.max_read_id) {
                     y10.max_read_id = i11;
-                    Collections.sort(p6Var.f12390g, p6Var.J);
-                    ks.f(p6Var.f12385a).k(326, new Object[0]);
+                    Collections.sort(p6Var.f12387g, p6Var.J);
+                    ks.f(p6Var.f12382a).k(327, new Object[0]);
                     return;
                 }
                 return;
             case 2:
                 try {
-                    SQLitePreparedStatement executeFast = ((qd) obj).getMessagesStorage().f27056b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
+                    SQLitePreparedStatement executeFast = ((qd) obj).getMessagesStorage().f27054b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
                     executeFast.requery();
                     executeFast.bindInteger(1, i11);
                     executeFast.bindLong(2, j3);
@@ -88,12 +88,12 @@ public final class b9 implements Runnable {
             case 3:
                 MediaController mediaController = (MediaController) obj;
                 String[] strArr = MediaController.W1;
-                ri.d0(i11).F1(this.f8574b, mediaController.f22728o1, null);
+                ri.d0(i11).F1(this.f8571b, mediaController.f22725o1, null);
                 mediaController.M1 = null;
                 return;
             case 4:
                 try {
-                    SQLiteDatabase sQLiteDatabase = ((ri) obj).getMessagesStorage().f27056b;
+                    SQLiteDatabase sQLiteDatabase = ((ri) obj).getMessagesStorage().f27054b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM chat_hints WHERE did = " + j3 + " AND type = " + i11).stepThis().dispose();
                     return;
@@ -106,18 +106,18 @@ public final class b9 implements Runnable {
                 return;
             case 6:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
-                zy C = zy.C(cVar.f23221a);
-                ArrayList arrayList = (ArrayList) C.f28387a.get("group_" + j3);
+                zy C = zy.C(cVar.f23218a);
+                ArrayList arrayList = (ArrayList) C.f28385a.get("group_" + j3);
                 if (arrayList != null && !arrayList.isEmpty()) {
                     ly lyVar = (ly) arrayList.get(0);
-                    fj fjVar = (fj) i5.c.h(1, lyVar.f25477x);
+                    fj fjVar = (fj) i5.c.h(1, lyVar.f25475x);
                     lyVar.G = fjVar.e1();
-                    fjVar.f23968k.params.put("final", "1");
+                    fjVar.f23965k.params.put("final", "1");
                     TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
-                    tL_messages_messages.messages.add(fjVar.f23968k);
+                    tL_messages_messages.messages.add(fjVar.f23965k);
                     if (!lyVar.I && !lyVar.J) {
-                        tr a02 = tr.a0(cVar.f23221a);
-                        long j10 = lyVar.f25457a;
+                        tr a02 = tr.a0(cVar.f23218a);
+                        long j10 = lyVar.f25455a;
                         if (i11 != 0) {
                             i7 = 1;
                         } else {
@@ -130,13 +130,13 @@ public final class b9 implements Runnable {
                 }
                 return;
             case 7:
-                k8.a aVar = ((org.telegram.ui.Cells.q1) obj).Xb;
+                k8.a aVar = ((org.telegram.ui.Cells.r1) obj).Xb;
                 if (aVar != null) {
                     if (i11 > 0) {
-                        i11 = ((SparseIntArray) aVar.f18184c).get(i11, 0);
+                        i11 = ((SparseIntArray) aVar.f18181c).get(i11, 0);
                     }
                     if (i11 != 0) {
-                        ((hi.u5) aVar.f18183b).y(this.f8574b, 0L, i11);
+                        ((hi.u5) aVar.f18180b).y(this.f8571b, 0L, i11);
                         return;
                     }
                     return;
@@ -149,9 +149,9 @@ public final class b9 implements Runnable {
     }
 
     public b9(Object obj, long j3, int i7, int i10) {
-        this.f8573a = i10;
+        this.f8570a = i10;
         this.d = obj;
-        this.f8574b = j3;
-        this.f8575c = i7;
+        this.f8571b = j3;
+        this.f8572c = i7;
     }
 }

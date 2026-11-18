@@ -3,36 +3,36 @@ package org.telegram.messenger;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 public final class bo implements Runnable {
-    public final int f23109a;
-    public final mp f23110b;
-    public final long f23111c;
+    public final int f23106a;
+    public final mp f23107b;
+    public final long f23108c;
     public final int d;
-    public final int f23112e;
-    public final boolean f23113f;
+    public final int f23109e;
+    public final boolean f23110f;
 
     public bo(mp mpVar, long j3, int i7, int i10, boolean z10, int i11) {
-        this.f23109a = i11;
-        this.f23110b = mpVar;
-        this.f23111c = j3;
+        this.f23106a = i11;
+        this.f23107b = mpVar;
+        this.f23108c = j3;
         this.d = i7;
-        this.f23112e = i10;
-        this.f23113f = z10;
+        this.f23109e = i10;
+        this.f23110f = z10;
     }
 
     @Override
     public final void run() {
         long j3;
         int i7;
-        switch (this.f23109a) {
+        switch (this.f23106a) {
             case 0:
-                g0.g3(new bo(this.f23110b, this.f23111c, this.d, this.f23112e, this.f23113f, 1));
+                g0.g3(new bo(this.f23107b, this.f23108c, this.d, this.f23109e, this.f23110f, 1));
                 return;
             default:
-                mp mpVar = this.f23110b;
+                mp mpVar = this.f23107b;
                 a0.h hVar = mpVar.R;
-                long j10 = this.f23111c;
+                long j10 = this.f23108c;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j10);
-                int i10 = this.f23112e;
+                int i10 = this.f23109e;
                 if (dialog != null) {
                     int i11 = dialog.unread_count;
                     int i12 = this.d;
@@ -48,7 +48,7 @@ public final class bo implements Runnable {
                     boolean z10 = dialog.unread_mark;
                     if (z10) {
                         dialog.unread_mark = false;
-                        mpVar.getMessagesStorage().F1(dialog.f28409id, false);
+                        mpVar.getMessagesStorage().F1(dialog.f28407id, false);
                     }
                     if ((i11 == 0 && !z10) || dialog.unread_count != 0) {
                         j3 = j10;
@@ -64,7 +64,7 @@ public final class bo implements Runnable {
                 } else {
                     j3 = j10;
                 }
-                if (!this.f23113f) {
+                if (!this.f23110f) {
                     long j11 = j3;
                     mpVar.getNotificationsController().L(null, j11, 0, i10, false);
                     LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);

@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.FrameLayout;
 public final class w4 extends FrameLayout {
-    public final org.telegram.ui.Cells.c2[] f41559a;
+    public final org.telegram.ui.Cells.d2[] f41559a;
 
-    public w4(Context context, org.telegram.ui.Cells.c2[] c2VarArr) {
+    public w4(Context context, org.telegram.ui.Cells.d2[] d2VarArr) {
         super(context);
-        this.f41559a = c2VarArr;
+        this.f41559a = d2VarArr;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        org.telegram.ui.Cells.c2[] c2VarArr = this.f41559a;
-        if (c2VarArr[0] != null) {
+        org.telegram.ui.Cells.d2[] d2VarArr = this.f41559a;
+        if (d2VarArr[0] != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
-            setMeasuredDimension(measuredWidth, org.telegram.messenger.g0.L(7.0f) + c2VarArr[0].getMeasuredHeight() + measuredHeight);
+            setMeasuredDimension(measuredWidth, org.telegram.messenger.g0.L(7.0f) + d2VarArr[0].getMeasuredHeight() + measuredHeight);
         }
     }
 }

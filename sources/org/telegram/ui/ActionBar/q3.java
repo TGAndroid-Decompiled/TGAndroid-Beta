@@ -1,17 +1,17 @@
 package org.telegram.ui.ActionBar;
 public final class q3 {
-    public static final q3 f29900a;
-    public static final q3 f29901b;
-    public static final q3 f29902c;
+    public static final q3 f29898a;
+    public static final q3 f29899b;
+    public static final q3 f29900c;
     public static final q3[] d;
 
     static {
         ?? r02 = new Enum("NONE", 0);
-        f29900a = r02;
+        f29898a = r02;
         ?? r12 = new Enum("VERTICAL", 1);
-        f29901b = r12;
+        f29899b = r12;
         ?? r32 = new Enum("FULL", 2);
-        f29902c = r32;
+        f29900c = r32;
         d = new q3[]{r02, r12, r32};
     }
 

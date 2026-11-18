@@ -6,7 +6,7 @@ public final class b extends k {
 
     static {
         ?? obj = new Object();
-        obj.f2152b = new hd.d();
+        obj.f2153b = new hd.d();
         f56110c = obj;
     }
 }

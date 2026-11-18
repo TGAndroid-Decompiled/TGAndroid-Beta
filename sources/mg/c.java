@@ -1,6 +1,6 @@
 package mg;
 public final class c extends b {
-    public float[] f20993l;
+    public float[] f20990l;
 
     @Override
     public final void e() {
@@ -8,18 +8,18 @@ public final class c extends b {
         int size = this.d.size();
         long j3 = 0;
         for (int i7 = 0; i7 < size; i7++) {
-            long j10 = ((a) this.d.get(i7)).f20980e;
+            long j10 = ((a) this.d.get(i7)).f20977e;
             if (j10 > j3) {
                 j3 = j10;
             }
         }
-        this.f20993l = new float[size];
+        this.f20990l = new float[size];
         for (int i10 = 0; i10 < size; i10++) {
-            long j11 = ((a) this.d.get(i10)).f20980e;
+            long j11 = ((a) this.d.get(i10)).f20977e;
             if (j3 == j11) {
-                this.f20993l[i10] = 1.0f;
+                this.f20990l[i10] = 1.0f;
             } else {
-                this.f20993l[i10] = (float) (j3 / j11);
+                this.f20990l[i10] = (float) (j3 / j11);
             }
         }
     }

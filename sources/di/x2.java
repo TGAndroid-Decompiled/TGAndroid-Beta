@@ -7,34 +7,34 @@ import org.telegram.messenger.x10;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.p51;
 public final class x2 implements x10 {
-    public final int f9989a = 0;
-    public final boolean f9990b;
-    public final Object f9991c;
+    public final int f9986a = 0;
+    public final boolean f9987b;
+    public final Object f9988c;
     public final Object d;
-    public final Object f9992e;
-    public final Object f9993f;
+    public final Object f9989e;
+    public final Object f9990f;
 
     public x2(f6 f6Var, boolean z10, vf.b bVar, Runnable runnable, DialogInterface dialogInterface) {
-        this.f9991c = f6Var;
-        this.f9990b = z10;
+        this.f9988c = f6Var;
+        this.f9987b = z10;
         this.d = bVar;
-        this.f9992e = runnable;
-        this.f9993f = dialogInterface;
+        this.f9989e = runnable;
+        this.f9990f = dialogInterface;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f9989a) {
+        switch (this.f9986a) {
             case 0:
-                f6 f6Var = (f6) this.f9991c;
+                f6 f6Var = (f6) this.f9988c;
                 vf.b bVar = (vf.b) this.d;
-                Runnable runnable = (Runnable) this.f9992e;
-                DialogInterface dialogInterface = (DialogInterface) this.f9993f;
+                Runnable runnable = (Runnable) this.f9989e;
+                DialogInterface dialogInterface = (DialogInterface) this.f9990f;
                 if (((Boolean) obj).booleanValue()) {
-                    j10 i7 = j10.i(f6Var.f30189a);
-                    i7.f24803y = null;
+                    j10 i7 = j10.i(f6Var.f30187a);
+                    i7.f24800y = null;
                     i7.v(false);
-                    f6Var.i2(this.f9990b, bVar, runnable);
+                    f6Var.i2(this.f9987b, bVar, runnable);
                     return;
                 }
                 bVar.c(false);
@@ -42,17 +42,17 @@ public final class x2 implements x10 {
                 runnable.run();
                 return;
             default:
-                org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) this.f9991c;
+                org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) this.f9988c;
                 org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) this.d;
-                p51 p51Var = (p51) this.f9992e;
-                org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f9993f;
+                p51 p51Var = (p51) this.f9989e;
+                org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f9990f;
                 byte[] bArr = (byte[]) obj;
                 if (!l2Var.j(h2Var) && l2Var.A(h2Var)) {
                     TL_wallet.tonConnectClaimRequest tonconnectclaimrequest = new TL_wallet.tonConnectClaimRequest();
-                    tonconnectclaimrequest.session_id = h2Var.f44289a.f28667id;
+                    tonconnectclaimrequest.session_id = h2Var.f44289a.f28665id;
                     tonconnectclaimrequest.msg_id = h2Var.f44290b;
                     tonconnectclaimrequest.app_request_id = h2Var.d;
-                    boolean z10 = this.f9990b;
+                    boolean z10 = this.f9987b;
                     tonconnectclaimrequest.declined = z10;
                     tonconnectclaimrequest.challenge_answer = bArr;
                     l2Var.f44483f.sendRequestTyped(tonconnectclaimrequest, new d3.b(1), new org.telegram.ui.Wallet.c2(l2Var, bArr, h2Var, p51Var, z10, r0Var));
@@ -67,10 +67,10 @@ public final class x2 implements x10 {
     }
 
     public x2(org.telegram.ui.Wallet.l2 l2Var, org.telegram.ui.Wallet.h2 h2Var, p51 p51Var, boolean z10, org.telegram.ui.Wallet.r0 r0Var) {
-        this.f9991c = l2Var;
+        this.f9988c = l2Var;
         this.d = h2Var;
-        this.f9992e = p51Var;
-        this.f9990b = z10;
-        this.f9993f = r0Var;
+        this.f9989e = p51Var;
+        this.f9987b = z10;
+        this.f9990f = r0Var;
     }
 }

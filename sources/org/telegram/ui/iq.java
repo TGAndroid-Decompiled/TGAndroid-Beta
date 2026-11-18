@@ -13,7 +13,7 @@ public final class iq implements u40 {
 
     @Override
     public final void f(TLRPC.User user) {
-        this.f48779b.y0(user.f28554id, null, null, null, "", true, 0, false);
+        this.f48779b.y0(user.f28552id, null, null, null, "", true, 0, false);
     }
 
     @Override
@@ -22,6 +22,6 @@ public final class iq implements u40 {
             return;
         }
         rq rqVar = this.f48779b;
-        rqVar.getMessagesController().o(rqVar.f51756n, rqVar, arrayList, i7, new f3(this, 2), new hq(0), null);
+        rqVar.getMessagesController().o(rqVar.f51745n, rqVar, arrayList, i7, new f3(this, 2), new hq(0), null);
     }
 }

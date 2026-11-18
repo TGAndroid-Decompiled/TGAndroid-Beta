@@ -5,18 +5,18 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class i40 extends org.telegram.ui.Components.bk0 {
-    public org.telegram.messenger.t3 f48574c;
+    public org.telegram.messenger.t3 f48530c;
     public final int d;
-    public ArrayList f48576f;
+    public ArrayList f48532f;
     public b20 h;
-    public final f40 f48577n;
-    public final ArrayList f48575e = new ArrayList();
-    public boolean f48578r = false;
+    public final f40 f48533n;
+    public final ArrayList f48531e = new ArrayList();
+    public boolean f48534r = false;
 
     public i40(org.telegram.messenger.t3 t3Var, int i7, f40 f40Var) {
-        this.f48574c = t3Var;
+        this.f48530c = t3Var;
         this.d = i7;
-        this.f48577n = f40Var;
+        this.f48533n = f40Var;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class i40 extends org.telegram.ui.Components.bk0 {
 
     public final void E(org.telegram.ui.Components.voip.r rVar, boolean z10) {
         if (z10 && rVar.getRenderer() == null) {
-            rVar.setRenderer(org.telegram.ui.Components.voip.y.c(this.f48576f, this.h, null, null, rVar, rVar.getParticipant(), this.f48574c, this.f48577n));
+            rVar.setRenderer(org.telegram.ui.Components.voip.y.c(this.f48532f, this.h, null, null, rVar, rVar.getParticipant(), this.f48530c, this.f48533n));
         } else if (!z10 && rVar.getRenderer() != null) {
             rVar.getRenderer().setTabletGridView(null);
             rVar.setRenderer(null);
@@ -34,8 +34,8 @@ public final class i40 extends org.telegram.ui.Components.bk0 {
     }
 
     public final int F() {
-        org.telegram.ui.Components.ck0 ck0Var = this.f48577n.f47492m4;
-        int size = this.f48575e.size();
+        org.telegram.ui.Components.ck0 ck0Var = this.f48533n.f47448m4;
+        int size = this.f48531e.size();
         if (size <= 1) {
             return ck0Var.getMeasuredHeight();
         }
@@ -46,12 +46,12 @@ public final class i40 extends org.telegram.ui.Components.bk0 {
     }
 
     public final void G(ArrayList arrayList, b20 b20Var) {
-        this.f48576f = arrayList;
+        this.f48532f = arrayList;
         this.h = b20Var;
     }
 
     public final void H(org.telegram.ui.Components.ck0 ck0Var, boolean z10, boolean z11) {
-        this.f48578r = z10;
+        this.f48534r = z10;
         if (z11) {
             for (int i7 = 0; i7 < ck0Var.getChildCount(); i7++) {
                 View childAt = ck0Var.getChildAt(i7);
@@ -66,36 +66,36 @@ public final class i40 extends org.telegram.ui.Components.bk0 {
     }
 
     public final void I(org.telegram.ui.Components.ck0 ck0Var, boolean z10) {
-        if (this.f48574c == null) {
+        if (this.f48530c == null) {
             return;
         }
-        ArrayList arrayList = this.f48575e;
+        ArrayList arrayList = this.f48531e;
         if (z10) {
             ArrayList arrayList2 = new ArrayList();
             arrayList2.addAll(arrayList);
             arrayList.clear();
-            arrayList.addAll(this.f48574c.f26940f);
+            arrayList.addAll(this.f48530c.f26938f);
             v4.o.c(new jg.g(this, arrayList2, 4), true).c(this);
             org.telegram.messenger.g0.Z3(ck0Var);
             return;
         }
         arrayList.clear();
-        arrayList.addAll(this.f48574c.f26940f);
+        arrayList.addAll(this.f48530c.f26938f);
         f();
     }
 
     @Override
     public final int b() {
-        return this.f48575e.size();
+        return this.f48531e.size();
     }
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) f1Var.f59122a;
+        org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) f1Var.f59123a;
         org.telegram.messenger.u3 participant = rVar.getParticipant();
-        ArrayList arrayList = this.f48575e;
+        ArrayList arrayList = this.f48531e;
         org.telegram.messenger.u3 u3Var = (org.telegram.messenger.u3) arrayList.get(i7);
-        TLRPC.GroupCallParticipant groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27119a;
+        TLRPC.GroupCallParticipant groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27117a;
         int size = arrayList.size();
         int i10 = 6;
         if (size > 1 && size != 2 && (size != 3 || i7 == 0 || i7 == 1)) {
@@ -107,7 +107,7 @@ public final class i40 extends org.telegram.ui.Components.bk0 {
             rVar.requestLayout();
         }
         org.telegram.messenger.c.a(this.d);
-        TLRPC.Peer peer = this.f48574c.J;
+        TLRPC.Peer peer = this.f48530c.J;
         rVar.d = u3Var;
         if (participant != null && !participant.equals(u3Var) && rVar.f41176e && rVar.getRenderer() != null) {
             E(rVar, false);

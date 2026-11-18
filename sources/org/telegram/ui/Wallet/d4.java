@@ -20,7 +20,7 @@ public final class d4 extends k41 {
         l41 K = l41.K(d4.class);
         c4 c4Var = new c4(wallettransaction);
         c4Var.set(wallettransaction);
-        c4Var.f28668id = wallettransaction.f28668id;
+        c4Var.f28666id = wallettransaction.f28666id;
         c4Var.random_id = wallettransaction.random_id;
         c4Var.gasless = wallettransaction.gasless;
         c4Var.gaslessMessageBodyHash = wallettransaction.gaslessMessageBodyHash;

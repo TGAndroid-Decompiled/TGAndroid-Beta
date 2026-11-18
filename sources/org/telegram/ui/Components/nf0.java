@@ -15,8 +15,8 @@ public class nf0 extends AccessibilityNodeProvider {
     public final int f37780a = 1;
     public final Object f37781b;
 
-    public nf0(org.telegram.ui.Cells.b5 b5Var) {
-        this.f37781b = b5Var;
+    public nf0(org.telegram.ui.Cells.c5 c5Var) {
+        this.f37781b = c5Var;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class nf0 extends AccessibilityNodeProvider {
                 }
                 return null;
             default:
-                s0.c t6 = ((org.telegram.ui.Cells.b5) this.f37781b).t(i7);
+                s0.c t6 = ((org.telegram.ui.Cells.c5) this.f37781b).t(i7);
                 if (t6 == null) {
                     return null;
                 }
@@ -85,7 +85,7 @@ public class nf0 extends AccessibilityNodeProvider {
     public List findAccessibilityNodeInfosByText(String str, int i7) {
         switch (this.f37780a) {
             case 1:
-                ((org.telegram.ui.Cells.b5) this.f37781b).getClass();
+                ((org.telegram.ui.Cells.c5) this.f37781b).getClass();
                 return null;
             default:
                 return super.findAccessibilityNodeInfosByText(str, i7);
@@ -96,7 +96,7 @@ public class nf0 extends AccessibilityNodeProvider {
     public AccessibilityNodeInfo findFocus(int i7) {
         switch (this.f37780a) {
             case 1:
-                s0.c w10 = ((org.telegram.ui.Cells.b5) this.f37781b).w(i7);
+                s0.c w10 = ((org.telegram.ui.Cells.c5) this.f37781b).w(i7);
                 if (w10 == null) {
                     return null;
                 }
@@ -141,14 +141,14 @@ public class nf0 extends AccessibilityNodeProvider {
                     } else if (i10 == 16) {
                         qf0 qf0Var = rf0Var.f39129y;
                         if (qf0Var != null) {
-                            ProfileActivity.l0(((org.telegram.ui.tt0) qf0Var).f52356b, i7, 0.0f, 0.0f);
+                            ProfileActivity.l0(((org.telegram.ui.tt0) qf0Var).f52351b, i7, 0.0f, 0.0f);
                         }
                     }
                     return true;
                 }
                 return false;
             default:
-                return ((org.telegram.ui.Cells.b5) this.f37781b).z(i7, i10, bundle);
+                return ((org.telegram.ui.Cells.c5) this.f37781b).z(i7, i10, bundle);
         }
     }
 

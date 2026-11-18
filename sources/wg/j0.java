@@ -30,17 +30,17 @@ public final class j0 extends i1 {
         arrayList2.addAll(arrayList);
         l1();
         this.U0 = false;
-        this.f30228v0 = false;
-        this.f30226t0 = 0;
+        this.f30226v0 = false;
+        this.f30224t0 = 0;
         yg.a aVar = new yg.a(getContext(), this.J0);
         aVar.setOnClickListener(new sh.b(this, 6));
         aVar.setCloseStyle(true);
-        this.f30192b.addView(aVar, ma.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        this.f30190b.addView(aVar, ma.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         ck0 ck0Var = this.f39534o1;
-        int i10 = this.f30227u0;
+        int i10 = this.f30225u0;
         ck0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(64.0f));
         Context context = getContext();
-        int i11 = i0.f59768f;
+        int i11 = i0.f59769f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -50,9 +50,9 @@ public final class j0 extends i1 {
             i0 i0Var = new i0(context, 47.0f);
             i0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
-            b9 b9Var = i0Var.f59772e;
+            b9 b9Var = i0Var.f59773e;
             b9Var.r(user);
-            i0Var.f59769a.f(user, b9Var);
+            i0Var.f59770a.f(user, b9Var);
             frameLayout2.addView(i0Var, 0, ma.e(94, 94, 17));
         } else {
             frameLayout.addView(frameLayout2, ma.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -60,15 +60,15 @@ public final class j0 extends i1 {
             for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i13);
                 i0 i0Var2 = new i0(context, 41.5f);
-                b9 b9Var2 = i0Var2.f59772e;
+                b9 b9Var2 = i0Var2.f59773e;
                 b9Var2.r(user2);
-                i0Var2.f59769a.f(user2, b9Var2);
+                i0Var2.f59770a.f(user2, b9Var2);
                 frameLayout2.addView(i0Var2, 0, ma.e(83, 83, 17));
                 i0Var2.setTranslationX(org.telegram.messenger.g0.L(29.0f) * (-i13));
                 if (i13 == 0 && arrayList2.size() > 3) {
-                    h0 h0Var = i0Var2.f59770b;
+                    h0 h0Var = i0Var2.f59771b;
                     h0Var.setAlpha(1.0f);
-                    h0Var.f59765b = arrayList2.size() - 3;
+                    h0Var.f59766b = arrayList2.size() - 3;
                 }
                 i12++;
                 if (i13 == 2) {
@@ -77,7 +77,7 @@ public final class j0 extends i1 {
             }
             frameLayout.setTranslationX((i12 - 1) * org.telegram.messenger.g0.L(14.5f));
         }
-        this.f58699x2 = frameLayout;
+        this.f58700x2 = frameLayout;
         O();
     }
 
@@ -86,7 +86,7 @@ public final class j0 extends i1 {
         if (Q == null) {
             return;
         }
-        j0 j0Var = new j0(Q, j10.f24773t0, arrayList, Q.getResourceProvider());
+        j0 j0Var = new j0(Q, j10.f24770t0, arrayList, Q.getResourceProvider());
         j0Var.F2 = true;
         j0Var.G2 = true;
         j0Var.show();
@@ -97,7 +97,7 @@ public final class j0 extends i1 {
         if (i7 == 0) {
             view.setOutlineProvider(new bg.q0(22));
             view.setClipToOutline(true);
-            u6.h(n6.f29339a7, view, this.J0);
+            u6.h(n6.f29337a7, view, this.J0);
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -org.telegram.messenger.g0.L(6.0f);
         }
     }
@@ -107,7 +107,7 @@ public final class j0 extends i1 {
         int i7;
         float f10;
         float f11;
-        View view = this.f58699x2;
+        View view = this.f58700x2;
         ArrayList arrayList = this.M2;
         if (arrayList.size() == 1) {
             i7 = 94;
@@ -166,13 +166,13 @@ public final class j0 extends i1 {
 
     @Override
     public final void l1() {
-        this.f58678b2 = 1;
-        this.f58679c2 = 0;
-        this.f58681f2 = 1;
+        this.f58679b2 = 1;
+        this.f58680c2 = 0;
+        this.f58682f2 = 1;
         int size = this.T1.size();
         int i7 = 1 + size;
-        this.f58682g2 = i7;
-        this.f58678b2 = size + 2;
-        this.f58685j2 = i7;
+        this.f58683g2 = i7;
+        this.f58679b2 = size + 2;
+        this.f58686j2 = i7;
     }
 }

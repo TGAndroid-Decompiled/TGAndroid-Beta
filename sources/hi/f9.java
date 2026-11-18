@@ -16,10 +16,10 @@ import org.telegram.ui.Components.st0;
 import org.telegram.ui.Components.tt0;
 import org.telegram.ui.Components.ut0;
 public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram.ui.ActionBar.s6, ih.b, g9.k, org.telegram.ui.ActionBar.r1, w10, st0, tt0, org.telegram.messenger.i9, h2.o, h2.p, u9.d {
-    public final int f14662a;
+    public final int f14659a;
 
     public f9(int i7) {
-        this.f14662a = i7;
+        this.f14659a = i7;
     }
 
     @Override
@@ -33,10 +33,10 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
         h9.q1 q1Var;
         int i10 = 0;
         boolean z10 = true;
-        switch (this.f14662a) {
+        switch (this.f14659a) {
             case 10:
                 String str = (String) obj;
-                g9.a aVar = k9.a.f18190g;
+                g9.a aVar = k9.a.f18187g;
                 aVar.getClass();
                 int length = str.length() - 1;
                 while (true) {
@@ -76,39 +76,39 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
                     i7 = 11;
                 }
                 ?? obj2 = new Object();
-                obj2.f14041b = false;
+                obj2.f14038b = false;
                 ?? obj3 = new Object();
                 obj3.d(i7);
-                obj2.f14040a = obj3;
+                obj2.f14037a = obj3;
                 if (z11) {
                     h9.n1 n1Var = (h9.n1) collection;
                     if (n1Var instanceof h9.z1) {
-                        q1Var = ((h9.z1) n1Var).f14100e;
+                        q1Var = ((h9.z1) n1Var).f14097e;
                     } else {
                         q1Var = null;
                     }
                     if (q1Var != null) {
-                        obj3.a(Math.max(obj3.f14050c, q1Var.f14050c));
-                        if (q1Var.f14050c == 0) {
+                        obj3.a(Math.max(obj3.f14047c, q1Var.f14047c));
+                        if (q1Var.f14047c == 0) {
                             i10 = -1;
                         }
                         while (i10 >= 0) {
-                            a8.la.j(i10, q1Var.f14050c);
-                            Object obj4 = q1Var.f14048a[i10];
-                            a8.la.j(i10, q1Var.f14050c);
-                            obj2.c(q1Var.f14049b[i10], obj4);
+                            a8.la.j(i10, q1Var.f14047c);
+                            Object obj4 = q1Var.f14045a[i10];
+                            a8.la.j(i10, q1Var.f14047c);
+                            obj2.c(q1Var.f14046b[i10], obj4);
                             i10++;
-                            if (i10 >= q1Var.f14050c) {
+                            if (i10 >= q1Var.f14047c) {
                                 i10 = -1;
                             }
                         }
                     } else {
                         h9.r0 r0Var = (h9.r0) n1Var;
                         h9.t0 p10 = r0Var.p();
-                        h9.q1 q1Var2 = obj2.f14040a;
-                        q1Var2.a(Math.max(q1Var2.f14050c, p10.size()));
+                        h9.q1 q1Var2 = obj2.f14037a;
+                        q1Var2.a(Math.max(q1Var2.f14047c, p10.size()));
                         for (h9.p1 p1Var : r0Var.p()) {
-                            obj2.c(p1Var.a(), p1Var.f14042a);
+                            obj2.c(p1Var.a(), p1Var.f14039a);
                         }
                     }
                 } else {
@@ -116,12 +116,12 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
                         obj2.a(obj5);
                     }
                 }
-                Objects.requireNonNull(obj2.f14040a);
-                if (obj2.f14040a.f14050c == 0) {
-                    return h9.z1.f14099n;
+                Objects.requireNonNull(obj2.f14037a);
+                if (obj2.f14037a.f14047c == 0) {
+                    return h9.z1.f14096n;
                 }
-                obj2.f14041b = true;
-                return new h9.z1(obj2.f14040a);
+                obj2.f14038b = true;
+                return new h9.z1(obj2.f14037a);
             default:
                 return new m2.d((h2.g0) obj);
         }
@@ -129,7 +129,7 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
 
     @Override
     public Object b(Bitmap bitmap) {
-        switch (this.f14662a) {
+        switch (this.f14659a) {
             case 7:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap E = Utilities.E(Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f), bitmap);
@@ -155,11 +155,11 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
 
     @Override
     public void c(Object obj, float f10) {
-        switch (this.f14662a) {
+        switch (this.f14659a) {
             case 17:
                 ki.t2 t2Var = (ki.t2) obj;
-                t2Var.f18925c = f10;
-                t2Var.f18930f.invalidate();
+                t2Var.f18922c = f10;
+                t2Var.f18927f.invalidate();
                 t2Var.Y.setAlpha(f10);
                 t2Var.J();
                 t2Var.H();
@@ -191,7 +191,7 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
         l5.f lambda$getComponents$0;
         l5.f lambda$getComponents$1;
         l5.f lambda$getComponents$2;
-        switch (this.f14662a) {
+        switch (this.f14659a) {
             case 27:
                 lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(r7Var);
                 return lambda$getComponents$0;
@@ -224,20 +224,20 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
 
     @Override
     public float get(Object obj) {
-        switch (this.f14662a) {
+        switch (this.f14659a) {
             case 16:
-                return ((ki.t2) obj).f18925c;
+                return ((ki.t2) obj).f18922c;
             case 17:
             default:
                 return ((ki.s3) obj).getSwipeOffsetY();
             case 18:
-                return ((ki.o3) obj).f18822c;
+                return ((ki.o3) obj).f18819c;
         }
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f14662a) {
+        switch (this.f14659a) {
             case 12:
                 u1Var.dismiss();
                 return;
@@ -250,7 +250,7 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
     @Override
     public void invoke(Object obj) {
         e2.a1 a1Var = (e2.a1) obj;
-        switch (this.f14662a) {
+        switch (this.f14659a) {
             case 24:
                 a1Var.y(new l2.l(2, new RuntimeException("Player release timed out."), 1003));
                 return;
@@ -263,11 +263,11 @@ public final class f9 implements z10, org.telegram.ui.ActionBar.r6, org.telegram
     @Override
     public Object m(Object obj) {
         Void r12 = (Void) obj;
-        ut0 ut0Var = ki.s3.f18891c0;
+        ut0 ut0Var = ki.s3.f18888c0;
         return Boolean.FALSE;
     }
 
     public f9(Object obj, int i7) {
-        this.f14662a = i7;
+        this.f14659a = i7;
     }
 }

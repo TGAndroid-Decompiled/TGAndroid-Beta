@@ -10,15 +10,15 @@ public final class l {
         long j3;
         this.f56193a = jVar;
         long length2 = ((nVar.f56196b.length() + nVar.f56195a.length()) * 2) + 128;
-        s0 s0Var = (s0) jVar.f17948b;
+        s0 s0Var = (s0) jVar.f17945b;
         if (s0Var == null) {
             j3 = 1024;
         } else {
-            long length3 = (((int[]) s0Var.f7128c).length * 4) + 64;
-            if (((int[]) s0Var.f7127b) == null) {
+            long length3 = (((int[]) s0Var.f7125c).length * 4) + 64;
+            if (((int[]) s0Var.f7124b) == null) {
                 length = 0;
             } else {
-                length = ((int[]) s0Var.f7127b).length * 4;
+                length = ((int[]) s0Var.f7124b).length * 4;
             }
             j3 = length + length3;
         }

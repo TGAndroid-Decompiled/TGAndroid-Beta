@@ -30,8 +30,8 @@ public final class b1 implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 org.telegram.messenger.x10 x10Var = (org.telegram.messenger.x10) this.f33504f;
                 org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.h;
                 f5.i a10 = ((f5.m) list.get(0)).a();
-                tL_inputStorePaymentPremiumGiftCode.currency = a10.f11292c;
-                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f33502c).currency)) * (a10.f11291b / Math.pow(10.0d, 6.0d)));
+                tL_inputStorePaymentPremiumGiftCode.currency = a10.f11289c;
+                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f33502c).currency)) * (a10.f11288b / Math.pow(10.0d, 6.0d)));
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
                 tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
                 ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore, new di.x6((org.telegram.messenger.x10) this.f33503e, list, fVar, x10Var, h2Var, tL_inputStorePaymentPremiumGiftCode, 4));
@@ -41,8 +41,8 @@ public final class b1 implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 wg.v vVar = (wg.v) this.f33504f;
                 org.telegram.ui.ActionBar.h2 h2Var2 = (org.telegram.ui.ActionBar.h2) this.h;
                 f5.i a11 = ((f5.m) list.get(0)).a();
-                tL_inputStorePaymentPremiumGiveaway.currency = a11.f11292c;
-                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f33502c).currency)) * (a11.f11291b / Math.pow(10.0d, 6.0d)));
+                tL_inputStorePaymentPremiumGiveaway.currency = a11.f11289c;
+                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f33502c).currency)) * (a11.f11288b / Math.pow(10.0d, 6.0d)));
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
                 tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
                 ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore2, new di.x6((wg.v) this.f33503e, list, fVar, vVar, h2Var2, tL_inputStorePaymentPremiumGiveaway, 3));
@@ -59,19 +59,19 @@ public final class b1 implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                 org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.d;
                 TLRPC.Chat chat = (TLRPC.Chat) this.f33503e;
                 org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) this.f33504f;
-                org.telegram.ui.Cells.c2[] c2VarArr = (org.telegram.ui.Cells.c2[]) this.h;
+                org.telegram.ui.Cells.d2[] d2VarArr = (org.telegram.ui.Cells.d2[]) this.h;
                 if (user != null) {
-                    org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(cVar.f23221a);
-                    a02.f27054a.c(new org.telegram.messenger.np(3, bnVar.a(), user.f28554id, a02));
+                    org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(cVar.f23218a);
+                    a02.f27052a.c(new org.telegram.messenger.np(3, bnVar.a(), user.f28552id, a02));
                 } else {
-                    org.telegram.messenger.tr a03 = org.telegram.messenger.tr.a0(cVar.f23221a);
-                    a03.f27054a.c(new org.telegram.messenger.np(3, bnVar.a(), -chat.f28405id, a03));
+                    org.telegram.messenger.tr a03 = org.telegram.messenger.tr.a0(cVar.f23218a);
+                    a03.f27052a.c(new org.telegram.messenger.np(3, bnVar.a(), -chat.f28403id, a03));
                 }
                 TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
                 tL_contacts_blockFromReplies.msg_id = fjVar.e1();
                 tL_contacts_blockFromReplies.delete_message = true;
                 tL_contacts_blockFromReplies.delete_history = true;
-                if (c2VarArr[0].b()) {
+                if (d2VarArr[0].b()) {
                     tL_contacts_blockFromReplies.report_spam = true;
                     if (bnVar.getParentActivity() != null) {
                         bnVar.h8();
@@ -81,27 +81,27 @@ public final class b1 implements org.telegram.ui.ActionBar.r1, org.telegram.mess
                         }
                     }
                 }
-                ConnectionsManager.getInstance(cVar.f23221a).sendRequest(tL_contacts_blockFromReplies, new e2(cVar, 0));
+                ConnectionsManager.getInstance(cVar.f23218a).sendRequest(tL_contacts_blockFromReplies, new e2(cVar, 0));
                 return;
             default:
                 org.telegram.ui.qj0 qj0Var = (org.telegram.ui.qj0) this.f33501b;
-                org.telegram.ui.hk0 hk0Var = qj0Var.f51277a;
+                org.telegram.ui.hk0 hk0Var = qj0Var.f51237a;
                 hk0Var.Z[0].setText((String) this.f33502c);
                 hk0Var.Z[1].setText((String) this.d);
                 hk0Var.Z[2].setText((String) this.f33503e);
                 hk0Var.R1(true, true);
-                qj0Var.c((org.telegram.ui.hf0) this.f33504f, (k8.a) this.h);
+                qj0Var.c((org.telegram.ui.if0) this.f33504f, (k8.a) this.h);
                 return;
         }
     }
 
-    public b1(TLRPC.User user, org.telegram.messenger.c cVar, org.telegram.ui.bn bnVar, TLRPC.Chat chat, org.telegram.messenger.fj fjVar, org.telegram.ui.Cells.c2[] c2VarArr, org.telegram.ui.ActionBar.i6 i6Var) {
+    public b1(TLRPC.User user, org.telegram.messenger.c cVar, org.telegram.ui.bn bnVar, TLRPC.Chat chat, org.telegram.messenger.fj fjVar, org.telegram.ui.Cells.d2[] d2VarArr, org.telegram.ui.ActionBar.i6 i6Var) {
         this.f33500a = 0;
         this.f33501b = user;
         this.f33502c = cVar;
         this.d = bnVar;
         this.f33503e = chat;
         this.f33504f = fjVar;
-        this.h = c2VarArr;
+        this.h = d2VarArr;
     }
 }

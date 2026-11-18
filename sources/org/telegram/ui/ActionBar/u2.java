@@ -23,34 +23,34 @@ public abstract class u2 extends FrameLayout implements c6 {
     public boolean F;
     public final Paint G;
     public final x2 H;
-    public VelocityTracker f30072a;
-    public int f30073b;
-    public int f30074c;
+    public VelocityTracker f30070a;
+    public int f30071b;
+    public int f30072c;
     public int d;
-    public boolean f30075e;
-    public boolean f30076f;
+    public boolean f30073e;
+    public boolean f30074f;
     public AnimatorSet h;
-    public final e2.r0 f30077n;
-    public final Rect f30078r;
-    public final Paint f30079s;
-    public boolean f30080w;
-    public int f30081x;
-    public float f30082y;
+    public final e2.r0 f30075n;
+    public final Rect f30076r;
+    public final Paint f30077s;
+    public boolean f30078w;
+    public int f30079x;
+    public float f30080y;
 
     public u2(x2 x2Var, Context context) {
         super(context);
         this.H = x2Var;
-        this.f30072a = null;
+        this.f30070a = null;
         this.d = -1;
-        this.f30075e = false;
-        this.f30076f = false;
+        this.f30073e = false;
+        this.f30074f = false;
         this.h = null;
-        this.f30078r = new Rect();
-        this.f30079s = new Paint();
-        this.f30082y = 0.0f;
+        this.f30076r = new Rect();
+        this.f30077s = new Paint();
+        this.f30080y = 0.0f;
         this.E = 0.0f;
         this.G = new Paint(1);
-        this.f30077n = new Object();
+        this.f30075n = new Object();
         setWillNotDraw(false);
     }
 
@@ -70,24 +70,24 @@ public abstract class u2 extends FrameLayout implements c6 {
 
     public final void b(float f10, float f11) {
         x2 x2Var = this.H;
-        float translationY = x2Var.f30192b.getTranslationY();
+        float translationY = x2Var.f30190b.getTranslationY();
         if ((translationY < org.telegram.messenger.g0.a1(false, 0.8f) && (f11 < 3500.0f || Math.abs(f11) < Math.abs(f10))) || (f11 < 0.0f && Math.abs(f11) >= 3500.0f)) {
-            this.f30075e = false;
+            this.f30073e = false;
             this.h = new AnimatorSet();
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new s2(this, 1));
-            this.h.playTogether(ObjectAnimator.ofFloat(x2Var.f30192b, "translationY", 0.0f), ofFloat);
+            this.h.playTogether(ObjectAnimator.ofFloat(x2Var.f30190b, "translationY", 0.0f), ofFloat);
             this.h.setDuration((int) ((Math.max(0.0f, translationY) / org.telegram.messenger.g0.a1(false, 0.8f)) * 250.0f));
             this.h.setInterpolator(lr.f37208f);
             this.h.addListener(new t2(this, 0));
-            ks.e().k(ks.f25137j1, 512);
+            ks.e().k(ks.f25135j1, 512);
             this.h.start();
             return;
         }
-        boolean z10 = x2Var.f30201e0;
-        x2Var.f30201e0 = false;
+        boolean z10 = x2Var.f30199e0;
+        x2Var.f30199e0 = false;
         x2Var.dismiss();
-        x2Var.f30201e0 = z10;
+        x2Var.f30199e0 = z10;
     }
 
     public final void c(Canvas canvas, float f10) {
@@ -95,7 +95,7 @@ public abstract class u2 extends FrameLayout implements c6 {
         float max;
         int left;
         int i10 = Build.VERSION.SDK_INT;
-        Paint paint = this.f30079s;
+        Paint paint = this.f30077s;
         x2 x2Var = this.H;
         if (i10 >= 26) {
             int i11 = x2Var.G0;
@@ -107,8 +107,8 @@ public abstract class u2 extends FrameLayout implements c6 {
         } else {
             paint.setColor(-16777216);
         }
-        if (!x2Var.W0 || x2Var.f30192b.getVisibility() == 0) {
-            boolean z10 = x2Var.f30217n;
+        if (!x2Var.W0 || x2Var.f30190b.getVisibility() == 0) {
+            boolean z10 = x2Var.f30215n;
             float f11 = 0.0f;
             if ((z10 && x2Var.S != 0) || x2Var.F0 != 0.0f) {
                 if (z10) {
@@ -116,30 +116,30 @@ public abstract class u2 extends FrameLayout implements c6 {
                 } else {
                     i7 = 0;
                 }
-                if (!x2Var.f30229w && (i10 < 29 || x2.B(x2Var) <= 0)) {
+                if (!x2Var.f30227w && (i10 < 29 || x2.B(x2Var) <= 0)) {
                     max = 0.0f;
-                } else if (x2Var.f30224s) {
-                    max = Math.max(0.0f, Math.min(i7 - x2Var.F0, x2Var.f30192b.getTranslationY()));
+                } else if (x2Var.f30222s) {
+                    max = Math.max(0.0f, Math.min(i7 - x2Var.F0, x2Var.f30190b.getTranslationY()));
                 } else {
-                    max = Math.max(0.0f, x2Var.R() - (x2Var.f30192b.getMeasuredHeight() - x2Var.f30192b.getTranslationY()));
+                    max = Math.max(0.0f, x2Var.R() - (x2Var.f30190b.getMeasuredHeight() - x2Var.f30190b.getTranslationY()));
                 }
                 int alpha = paint.getAlpha();
                 if (x2Var.W0) {
-                    f10 *= x2Var.f30192b.getAlpha();
+                    f10 *= x2Var.f30190b.getAlpha();
                 }
                 if (x2Var.W0) {
-                    left = (int) x2Var.f30192b.getX();
+                    left = (int) x2Var.f30190b.getX();
                 } else {
-                    left = x2Var.f30192b.getLeft();
+                    left = x2Var.f30190b.getLeft();
                 }
                 int i12 = left;
                 int i13 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
                 if (i13 < 0) {
                     paint.setAlpha((int) (alpha * f10));
                 }
-                canvas.drawRect(x2Var.f30227u0 + i12, ((getMeasuredHeight() - i7) + max) - x2Var.F0, x2Var.f30192b.getRight() - x2Var.f30227u0, getMeasuredHeight() + max, paint);
+                canvas.drawRect(x2Var.f30225u0 + i12, ((getMeasuredHeight() - i7) + max) - x2Var.F0, x2Var.f30190b.getRight() - x2Var.f30225u0, getMeasuredHeight() + max, paint);
                 paint.setAlpha(alpha);
-                int i14 = x2Var.f30209h1;
+                int i14 = x2Var.f30207h1;
                 if (i14 != 0) {
                     paint.setColor(i14);
                     int alpha2 = paint.getAlpha();
@@ -150,7 +150,7 @@ public abstract class u2 extends FrameLayout implements c6 {
                         f11 = max;
                     }
                     if (paint.getAlpha() > 0) {
-                        canvas.drawRect(i12 + x2Var.f30227u0, ((getMeasuredHeight() - i7) + f11) - x2Var.F0, x2Var.f30192b.getRight() - x2Var.f30227u0, getMeasuredHeight() + f11, paint);
+                        canvas.drawRect(i12 + x2Var.f30225u0, ((getMeasuredHeight() - i7) + f11) - x2Var.F0, x2Var.f30190b.getRight() - x2Var.f30225u0, getMeasuredHeight() + f11, paint);
                     }
                     paint.setAlpha(alpha2);
                 }
@@ -160,98 +160,98 @@ public abstract class u2 extends FrameLayout implements c6 {
 
     public final boolean d(MotionEvent motionEvent, boolean z10) {
         x2 x2Var = this.H;
-        n2 n2Var = x2Var.f30195c;
-        int i7 = x2Var.f30212j0;
+        n2 n2Var = x2Var.f30193c;
+        int i7 = x2Var.f30210j0;
         if (!x2Var.J) {
             if (!x2Var.f0(motionEvent)) {
                 if (!x2Var.J(motionEvent) && !this.F) {
-                    if (x2Var.I() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f30076f && !this.f30075e && motionEvent.getPointerCount() == 1)) {
-                        this.f30073b = (int) motionEvent.getX();
+                    if (x2Var.I() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f30074f && !this.f30073e && motionEvent.getPointerCount() == 1)) {
+                        this.f30071b = (int) motionEvent.getX();
                         int y10 = (int) motionEvent.getY();
-                        this.f30074c = y10;
-                        if (x2Var.Y(this.f30073b, y10)) {
+                        this.f30072c = y10;
+                        if (x2Var.Y(this.f30071b, y10)) {
                             x2Var.o0();
                             return true;
                         }
                         this.d = motionEvent.getPointerId(0);
-                        this.f30075e = true;
+                        this.f30073e = true;
                         a();
-                        VelocityTracker velocityTracker = this.f30072a;
+                        VelocityTracker velocityTracker = this.f30070a;
                         if (velocityTracker != null) {
                             velocityTracker.clear();
                         }
                     } else if (x2Var.G() && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                        if (this.f30072a == null) {
-                            this.f30072a = VelocityTracker.obtain();
+                        if (this.f30070a == null) {
+                            this.f30070a = VelocityTracker.obtain();
                         }
-                        float abs = Math.abs((int) (motionEvent.getX() - this.f30073b));
-                        float y11 = ((int) motionEvent.getY()) - this.f30074c;
-                        this.f30072a.addMovement(motionEvent);
-                        if (!x2Var.E0 && this.f30075e && !this.f30076f && y11 > 0.0f && y11 / 3.0f > Math.abs(abs) && Math.abs(y11) >= i7) {
-                            this.f30074c = (int) motionEvent.getY();
-                            this.f30075e = false;
-                            this.f30076f = true;
+                        float abs = Math.abs((int) (motionEvent.getX() - this.f30071b));
+                        float y11 = ((int) motionEvent.getY()) - this.f30072c;
+                        this.f30070a.addMovement(motionEvent);
+                        if (!x2Var.E0 && this.f30073e && !this.f30074f && y11 > 0.0f && y11 / 3.0f > Math.abs(abs) && Math.abs(y11) >= i7) {
+                            this.f30072c = (int) motionEvent.getY();
+                            this.f30073e = false;
+                            this.f30074f = true;
                             requestDisallowInterceptTouchEvent(true);
-                        } else if (this.f30076f) {
-                            float f10 = this.f30082y + y11;
-                            this.f30082y = f10;
+                        } else if (this.f30074f) {
+                            float f10 = this.f30080y + y11;
+                            this.f30080y = f10;
                             float max = Math.max(f10, 0.0f);
-                            this.f30082y = max;
-                            x2Var.f30192b.setTranslationY(Math.max(max, 0.0f));
+                            this.f30080y = max;
+                            x2Var.f30190b.setTranslationY(Math.max(max, 0.0f));
                             x2Var.h0();
-                            this.f30074c = (int) motionEvent.getY();
+                            this.f30072c = (int) motionEvent.getY();
                             n2Var.invalidate();
                         }
                     } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                        if (this.f30072a == null) {
-                            this.f30072a = VelocityTracker.obtain();
+                        if (this.f30070a == null) {
+                            this.f30070a = VelocityTracker.obtain();
                         }
-                        this.f30072a.computeCurrentVelocity(1000);
-                        if (!this.f30076f && this.f30082y <= 0.0f) {
-                            this.f30075e = false;
+                        this.f30070a.computeCurrentVelocity(1000);
+                        if (!this.f30074f && this.f30080y <= 0.0f) {
+                            this.f30073e = false;
                         } else {
-                            b(this.f30072a.getXVelocity(), this.f30072a.getYVelocity());
+                            b(this.f30070a.getXVelocity(), this.f30070a.getYVelocity());
                         }
-                        this.f30076f = false;
-                        VelocityTracker velocityTracker2 = this.f30072a;
+                        this.f30074f = false;
+                        VelocityTracker velocityTracker2 = this.f30070a;
                         if (velocityTracker2 != null) {
                             velocityTracker2.recycle();
-                            this.f30072a = null;
+                            this.f30070a = null;
                         }
                         this.d = -1;
                     }
-                } else if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f30076f && !this.f30075e && motionEvent.getPointerCount() == 1)) {
+                } else if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f30074f && !this.f30073e && motionEvent.getPointerCount() == 1)) {
                     this.F = true;
-                    this.f30073b = (int) motionEvent.getX();
-                    this.f30074c = (int) motionEvent.getY();
+                    this.f30071b = (int) motionEvent.getX();
+                    this.f30072c = (int) motionEvent.getY();
                     this.d = motionEvent.getPointerId(0);
-                    this.f30075e = true;
+                    this.f30073e = true;
                     a();
                 } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                    float x10 = motionEvent.getX() - this.f30073b;
-                    float y12 = motionEvent.getY() - this.f30074c;
-                    if (this.f30072a == null) {
-                        this.f30072a = VelocityTracker.obtain();
+                    float x10 = motionEvent.getX() - this.f30071b;
+                    float y12 = motionEvent.getY() - this.f30072c;
+                    if (this.f30070a == null) {
+                        this.f30070a = VelocityTracker.obtain();
                     }
-                    this.f30072a.addMovement(motionEvent);
-                    if (!x2Var.E0 && this.f30075e && !this.f30076f && x10 > 0.0f && x10 / 3.0f > Math.abs(y12) && Math.abs(x10) >= i7) {
-                        this.f30073b = (int) motionEvent.getX();
-                        this.f30075e = false;
-                        this.f30076f = true;
-                    } else if (this.f30076f) {
+                    this.f30070a.addMovement(motionEvent);
+                    if (!x2Var.E0 && this.f30073e && !this.f30074f && x10 > 0.0f && x10 / 3.0f > Math.abs(y12) && Math.abs(x10) >= i7) {
+                        this.f30071b = (int) motionEvent.getX();
+                        this.f30073e = false;
+                        this.f30074f = true;
+                    } else if (this.f30074f) {
                         float f11 = this.E + x10;
                         this.E = f11;
-                        x2Var.f30192b.setTranslationX(Math.max(f11, 0.0f));
-                        this.f30073b = (int) motionEvent.getX();
+                        x2Var.f30190b.setTranslationX(Math.max(f11, 0.0f));
+                        this.f30071b = (int) motionEvent.getX();
                         n2Var.invalidate();
                     }
                 } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                    if (this.f30072a == null) {
-                        this.f30072a = VelocityTracker.obtain();
+                    if (this.f30070a == null) {
+                        this.f30070a = VelocityTracker.obtain();
                     }
-                    float xVelocity = this.f30072a.getXVelocity();
-                    float yVelocity = this.f30072a.getYVelocity();
-                    if (this.E < x2Var.f30192b.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
+                    float xVelocity = this.f30070a.getXVelocity();
+                    float yVelocity = this.f30070a.getYVelocity();
+                    if (this.E < x2Var.f30190b.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
                         float max2 = Math.max(this.E, 0.0f);
                         this.E = max2;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 0.0f);
@@ -274,12 +274,12 @@ public abstract class u2 extends FrameLayout implements c6 {
                         ofFloat3.setDuration(320L);
                         ofFloat3.start();
                     }
-                    this.f30075e = false;
-                    this.f30076f = false;
+                    this.f30073e = false;
+                    this.f30074f = false;
                     this.d = -1;
                     this.F = false;
                 }
-                if ((z10 || !this.f30075e) && !this.f30076f && (x2Var.G() || x2Var.J(motionEvent))) {
+                if ((z10 || !this.f30073e) && !this.f30074f && (x2Var.G() || x2Var.J(motionEvent))) {
                 }
             }
             return true;
@@ -305,7 +305,7 @@ public abstract class u2 extends FrameLayout implements c6 {
 
     @Override
     public int getNestedScrollAxes() {
-        return this.f30077n.b();
+        return this.f30075n.b();
     }
 
     @Override
@@ -320,22 +320,22 @@ public abstract class u2 extends FrameLayout implements c6 {
         int i7;
         int i10;
         int i11;
-        Paint paint = this.f30079s;
+        Paint paint = this.f30077s;
         int alpha = paint.getAlpha();
         x2 x2Var = this.H;
         int i12 = 0;
-        if (alpha < 255 && x2Var.f30217n) {
+        if (alpha < 255 && x2Var.f30215n) {
             float f10 = 0.0f;
-            if (x2Var.f30229w || (Build.VERSION.SDK_INT >= 29 && x2.B(x2Var) > 0)) {
-                f10 = Math.max(0.0f, x2Var.R() - (x2Var.f30192b.getMeasuredHeight() - x2Var.f30192b.getTranslationY()));
+            if (x2Var.f30227w || (Build.VERSION.SDK_INT >= 29 && x2.B(x2Var) > 0)) {
+                f10 = Math.max(0.0f, x2Var.R() - (x2Var.f30190b.getMeasuredHeight() - x2Var.f30190b.getTranslationY()));
             }
-            if (x2Var.f30217n) {
+            if (x2Var.f30215n) {
                 i11 = x2Var.R();
             } else {
                 i11 = 0;
             }
             canvas.save();
-            canvas.clipRect(x2Var.f30192b.getLeft() + x2Var.f30227u0, ((getMeasuredHeight() - i11) + f10) - x2Var.F0, x2Var.f30192b.getRight() - x2Var.f30227u0, getMeasuredHeight() + f10, Region.Op.DIFFERENCE);
+            canvas.clipRect(x2Var.f30190b.getLeft() + x2Var.f30225u0, ((getMeasuredHeight() - i11) + f10) - x2Var.F0, x2Var.f30190b.getRight() - x2Var.f30225u0, getMeasuredHeight() + f10, Region.Op.DIFFERENCE);
             canvas2 = canvas;
             z10 = true;
         } else {
@@ -343,25 +343,25 @@ public abstract class u2 extends FrameLayout implements c6 {
             z10 = false;
         }
         super.onDraw(canvas2);
-        if (x2Var.f30217n && x2Var.h != null && x2Var.f30203f != 0) {
-            int i13 = x2Var.f30193b0;
+        if (x2Var.f30215n && x2Var.h != null && x2Var.f30201f != 0) {
+            int i13 = x2Var.f30191b0;
             if (i13 >= 0) {
                 i7 = n6.w0(i13, x2Var.J0);
             } else {
                 i7 = 0;
             }
             paint.setColor(i7);
-            float left = x2Var.f30192b.getLeft() + x2Var.f30227u0;
-            int measuredHeight = getMeasuredHeight() - x2Var.f30203f;
-            if (x2Var.f30217n) {
+            float left = x2Var.f30190b.getLeft() + x2Var.f30225u0;
+            int measuredHeight = getMeasuredHeight() - x2Var.f30201f;
+            if (x2Var.f30215n) {
                 i10 = x2Var.R();
             } else {
                 i10 = 0;
             }
             float f11 = measuredHeight - i10;
-            float right = x2Var.f30192b.getRight() - x2Var.f30227u0;
+            float right = x2Var.f30190b.getRight() - x2Var.f30225u0;
             int measuredHeight2 = getMeasuredHeight();
-            if (x2Var.f30217n) {
+            if (x2Var.f30215n) {
                 i12 = x2Var.R();
             }
             canvas2.drawRect(left, f11, right, measuredHeight2 - i12, paint);
@@ -404,9 +404,9 @@ public abstract class u2 extends FrameLayout implements c6 {
     @Override
     public final void onNestedPreScroll(View view, int i7, int i10, int[] iArr) {
         x2 x2Var = this.H;
-        if (!x2Var.J && x2Var.f30223r0) {
+        if (!x2Var.J && x2Var.f30221r0) {
             a();
-            float translationY = x2Var.f30192b.getTranslationY();
+            float translationY = x2Var.f30190b.getTranslationY();
             float f10 = 0.0f;
             if (translationY > 0.0f && i10 > 0) {
                 float f11 = translationY - i10;
@@ -414,9 +414,9 @@ public abstract class u2 extends FrameLayout implements c6 {
                 if (f11 >= 0.0f) {
                     f10 = f11;
                 }
-                x2Var.f30192b.setTranslationY(f10);
+                x2Var.f30190b.setTranslationY(f10);
                 x2Var.h0();
-                x2Var.f30195c.invalidate();
+                x2Var.f30193c.invalidate();
             }
         }
     }
@@ -424,25 +424,25 @@ public abstract class u2 extends FrameLayout implements c6 {
     @Override
     public final void onNestedScroll(View view, int i7, int i10, int i11, int i12) {
         x2 x2Var = this.H;
-        if (!x2Var.J && x2Var.f30223r0) {
+        if (!x2Var.J && x2Var.f30221r0) {
             a();
             if (i12 != 0) {
-                float translationY = x2Var.f30192b.getTranslationY() - i12;
+                float translationY = x2Var.f30190b.getTranslationY() - i12;
                 if (translationY < 0.0f) {
                     translationY = 0.0f;
                 }
-                x2Var.f30192b.setTranslationY(translationY);
+                x2Var.f30190b.setTranslationY(translationY);
                 x2Var.h0();
-                x2Var.f30195c.invalidate();
+                x2Var.f30193c.invalidate();
             }
         }
     }
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i7) {
-        this.f30077n.f10687a = i7;
+        this.f30075n.f10684a = i7;
         x2 x2Var = this.H;
-        if (!x2Var.J && x2Var.f30223r0) {
+        if (!x2Var.J && x2Var.f30221r0) {
             a();
         }
     }
@@ -450,7 +450,7 @@ public abstract class u2 extends FrameLayout implements c6 {
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i7) {
         x2 x2Var = this.H;
-        if (!x2Var.J && x2Var.f30223r0 && i7 == 2 && !x2Var.G()) {
+        if (!x2Var.J && x2Var.f30221r0 && i7 == 2 && !x2Var.G()) {
             return true;
         }
         return false;
@@ -458,9 +458,9 @@ public abstract class u2 extends FrameLayout implements c6 {
 
     @Override
     public final void onStopNestedScroll(View view) {
-        this.f30077n.f10687a = 0;
+        this.f30075n.f10684a = 0;
         x2 x2Var = this.H;
-        if (!x2Var.J && x2Var.f30223r0) {
+        if (!x2Var.J && x2Var.f30221r0) {
             b(0.0f, 0.0f);
         }
     }
@@ -472,7 +472,7 @@ public abstract class u2 extends FrameLayout implements c6 {
 
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
-        if (this.f30075e && !this.f30076f) {
+        if (this.f30073e && !this.f30074f) {
             d(null, false);
         }
         super.requestDisallowInterceptTouchEvent(z10);

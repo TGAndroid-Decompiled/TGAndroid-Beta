@@ -32,7 +32,7 @@ public final class h1 {
             imageReceiver.d = sharedInstance.getAccount();
         }
         imageReceiver.J0(60);
-        imageReceiver.f22642h1 = new org.telegram.ui.ActionBar.p(this, 8);
+        imageReceiver.f22639h1 = new org.telegram.ui.ActionBar.p(this, 8);
         imageReceiver.P();
         imageReceiver.q0(chat != null ? fc.a(1, chat) : null, "100_100", b9Var, null, chat, 0);
         a();

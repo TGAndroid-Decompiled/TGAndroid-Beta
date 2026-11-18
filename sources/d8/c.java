@@ -4,21 +4,21 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public final class c implements IInterface {
-    public final IBinder f7885a;
+    public final IBinder f7882a;
 
     public c(IBinder iBinder) {
-        this.f7885a = iBinder;
+        this.f7882a = iBinder;
     }
 
     @Override
     public final IBinder asBinder() {
-        return this.f7885a;
+        return this.f7882a;
     }
 
     public final void h1(Parcel parcel, int i7) {
         Parcel obtain = Parcel.obtain();
         try {
-            this.f7885a.transact(i7, parcel, obtain, 0);
+            this.f7882a.transact(i7, parcel, obtain, 0);
             obtain.readException();
         } finally {
             parcel.recycle();

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.j10;
 import org.telegram.messenger.n10;
-import org.telegram.ui.Cells.j8;
+import org.telegram.ui.Cells.k8;
 import org.telegram.ui.Components.av;
 import org.telegram.ui.Components.bv;
 import org.telegram.ui.Components.ck0;
@@ -15,8 +15,8 @@ import org.telegram.ui.Components.jx;
 import org.telegram.ui.Components.q9;
 import org.telegram.ui.Components.ry;
 import org.telegram.ui.fm0;
-import org.telegram.ui.mf0;
-import org.telegram.ui.ug0;
+import org.telegram.ui.nf0;
+import org.telegram.ui.vg0;
 public final class i0 extends v4.o0 {
     public final int f1237a;
     public final Object f1238b;
@@ -44,7 +44,7 @@ public final class i0 extends v4.o0 {
                 }
                 return;
             case 1:
-                if (((hi.u1) this.f1238b).f15526e.E1(RecyclerView.R(view))) {
+                if (((hi.u1) this.f1238b).f15523e.E1(RecyclerView.R(view))) {
                     L = 0;
                 } else {
                     L = org.telegram.messenger.g0.L(4.0f);
@@ -86,7 +86,7 @@ public final class i0 extends v4.o0 {
             case 4:
                 ry ryVar = (ry) this.f1238b;
                 ex exVar = ryVar.Q;
-                if (view instanceof j8) {
+                if (view instanceof k8) {
                     rect.left = org.telegram.messenger.g0.L(5.0f);
                     rect.right = org.telegram.messenger.g0.L(5.0f);
                     if (RecyclerView.R(view) + 1 > ryVar.S.F && !j10.i(ryVar.f39345d1).q() && !ryVar.V0) {
@@ -116,7 +116,7 @@ public final class i0 extends v4.o0 {
                 }
                 return;
             case 6:
-                if (RecyclerView.R(view) == ((mf0) this.f1238b).f49850c.size() - 1) {
+                if (RecyclerView.R(view) == ((nf0) this.f1238b).f50160c.size() - 1) {
                     rect.bottom = org.telegram.messenger.g0.L(4.0f);
                     return;
                 }
@@ -124,18 +124,18 @@ public final class i0 extends v4.o0 {
             case 7:
                 super.e(rect, view, recyclerView, c1Var);
                 int R = RecyclerView.R(view);
-                ug0 ug0Var = (ug0) this.f1238b;
-                if (R == ug0Var.Y1.size()) {
-                    rect.bottom = ug0Var.f52558h2;
+                vg0 vg0Var = (vg0) this.f1238b;
+                if (R == vg0Var.Y1.size()) {
+                    rect.bottom = vg0Var.f52778h2;
                     return;
                 }
                 return;
             case 8:
                 int R2 = RecyclerView.R(view);
                 fm0 fm0Var = (fm0) this.f1238b;
-                int i12 = fm0Var.f47735c0;
+                int i12 = fm0Var.f47699c0;
                 if (R2 >= i12) {
-                    int i13 = fm0Var.f47741g0;
+                    int i13 = fm0Var.f47705g0;
                     if (R2 < i12 + i13) {
                         int i14 = R2 - i12;
                         int i15 = i14 / 3;
@@ -192,7 +192,7 @@ public final class i0 extends v4.o0 {
                 int R3 = RecyclerView.R(view);
                 wg.w0 w0Var = (wg.w0) this.f1238b;
                 if (R3 == w0Var.Z1.size()) {
-                    rect.bottom = w0Var.f59843l2;
+                    rect.bottom = w0Var.f59844l2;
                     return;
                 }
                 return;
@@ -200,8 +200,8 @@ public final class i0 extends v4.o0 {
                 super.e(rect, view, recyclerView, c1Var);
                 int R4 = RecyclerView.R(view);
                 wg.d1 d1Var = (wg.d1) this.f1238b;
-                if (R4 == d1Var.f59738b2.size()) {
-                    rect.bottom = d1Var.f59747l2;
+                if (R4 == d1Var.f59739b2.size()) {
+                    rect.bottom = d1Var.f59748l2;
                     return;
                 }
                 return;

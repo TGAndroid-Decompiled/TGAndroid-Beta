@@ -2,12 +2,12 @@ package fi;
 
 import android.view.View;
 public final class t1 implements View.OnClickListener {
-    public final int f12576a;
-    public final z3 f12577b;
+    public final int f12573a;
+    public final z3 f12574b;
 
     public t1(z3 z3Var, int i7) {
-        this.f12576a = i7;
-        this.f12577b = z3Var;
+        this.f12573a = i7;
+        this.f12574b = z3Var;
     }
 
     @Override

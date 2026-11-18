@@ -19,7 +19,7 @@ public final class pp extends hi.m3 {
         this.Y0 = paint;
         this.Z0 = l1Var;
         l1Var.a(this);
-        paint.setPathEffect(new CornerPathEffect(this.f15020w));
+        paint.setPathEffect(new CornerPathEffect(this.f15017w));
         if (z10) {
             k(true);
         }
@@ -83,9 +83,9 @@ public final class pp extends hi.m3 {
         this.L = Layout.Alignment.ALIGN_NORMAL;
         this.d = 3200L;
         this.U = true;
-        this.f14998e = true;
+        this.f14995e = true;
         n(8.0f, 6.0f, 10.0f, 6.0f);
-        this.f15019v0 = 0.0f;
+        this.f15016v0 = 0.0f;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         while (i7 < 2) {
             ((mh0[]) this.Y0)[i7] = new mh0(i7 == 0 ? 2131624291 : 2131624290, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));

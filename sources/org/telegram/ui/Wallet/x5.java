@@ -11,7 +11,7 @@ public final class x5 extends cs {
     public x5(n6 n6Var, Context context) {
         super(context);
         this.I = n6Var;
-        this.H = org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(22.0f), n6Var.getThemedColor(org.telegram.ui.ActionBar.n6.f29396d6));
+        this.H = org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(22.0f), n6Var.getThemedColor(org.telegram.ui.ActionBar.n6.f29394d6));
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class x5 extends cs {
         int ceil = (int) Math.ceil(getMetadata().f57676g.f57683a);
         if (ceil > 0) {
             ShapeDrawable shapeDrawable = this.H;
-            shapeDrawable.getPaint().setColor(this.I.getThemedColor(org.telegram.ui.ActionBar.n6.f29396d6));
+            shapeDrawable.getPaint().setColor(this.I.getThemedColor(org.telegram.ui.ActionBar.n6.f29394d6));
             shapeDrawable.setBounds(0, 0, getWidth(), ceil);
             shapeDrawable.setAlpha((int) (getMetadata().f57673c.f57683a * 255.0f));
             shapeDrawable.draw(canvas);

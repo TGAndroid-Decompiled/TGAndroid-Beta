@@ -23,23 +23,23 @@ import org.telegram.ui.bb1;
 import org.telegram.ui.bn;
 import org.telegram.ui.ns;
 public final class r0 implements Runnable {
-    public final int f18438a = 1;
-    public final Object f18439b;
-    public final boolean f18440c;
+    public final int f18435a = 1;
+    public final Object f18436b;
+    public final boolean f18437c;
     public final Object d;
-    public final Object f18441e;
-    public final Object f18442f;
+    public final Object f18438e;
+    public final Object f18439f;
     public final Object h;
-    public final TLObject f18443n;
+    public final TLObject f18440n;
 
     public r0(File file, ArrayList arrayList, h2 h2Var, bn bnVar, TLRPC.Document document, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         this.d = file;
-        this.f18439b = arrayList;
-        this.f18441e = h2Var;
-        this.f18442f = bnVar;
+        this.f18436b = arrayList;
+        this.f18438e = h2Var;
+        this.f18439f = bnVar;
         this.h = document;
-        this.f18440c = z10;
-        this.f18443n = tL_messages_stickerSet;
+        this.f18437c = z10;
+        this.f18440n = tL_messages_stickerSet;
     }
 
     @Override
@@ -51,18 +51,18 @@ public final class r0 implements Runnable {
         ?? r82;
         zh.l lVar;
         String a02;
-        int i7 = this.f18438a;
-        boolean z11 = this.f18440c;
+        int i7 = this.f18435a;
+        boolean z11 = this.f18437c;
         int i10 = 0;
-        Object obj = this.f18439b;
-        TLObject tLObject = this.f18443n;
+        Object obj = this.f18436b;
+        TLObject tLObject = this.f18440n;
         Object obj2 = this.h;
-        Object obj3 = this.f18442f;
-        Object obj4 = this.f18441e;
+        Object obj3 = this.f18439f;
+        Object obj4 = this.f18438e;
         Object obj5 = this.d;
         switch (i7) {
             case 0:
-                t0.Z((t0) obj5, (TLRPC.TL_error) obj4, (TLObject) obj3, (int[]) obj2, (ArrayList) obj, this.f18440c, (TLRPC.User) tLObject);
+                t0.Z((t0) obj5, (TLRPC.TL_error) obj4, (TLObject) obj3, (int[]) obj2, (ArrayList) obj, this.f18437c, (TLRPC.User) tLObject);
                 return;
             case 1:
                 ArrayList arrayList2 = (ArrayList) obj;
@@ -88,7 +88,7 @@ public final class r0 implements Runnable {
                 p10.T = tL_messages_stickerSet;
                 return;
             case 2:
-                bb1.i0((bb1) obj5, (TLRPC.TL_error) obj4, this.f18440c, (TLObject) obj3, (byte[]) obj2, (String) obj, (TL_account.passwordInputSettings) tLObject);
+                bb1.i0((bb1) obj5, (TLRPC.TL_error) obj4, this.f18437c, (TLObject) obj3, (byte[]) obj2, (String) obj, (TL_account.passwordInputSettings) tLObject);
                 return;
             default:
                 zh.l lVar2 = (zh.l) obj5;
@@ -97,15 +97,15 @@ public final class r0 implements Runnable {
                 TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) obj2;
                 TLRPC.User user = (TLRPC.User) tLObject;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) obj;
-                int i11 = lVar2.f62016k;
-                ArrayList arrayList3 = lVar2.f62011e;
-                h2 h2Var2 = lVar2.f62013g;
+                int i11 = lVar2.f62017k;
+                ArrayList arrayList3 = lVar2.f62012e;
+                h2 h2Var2 = lVar2.f62014g;
                 if (h2Var2 != null && h2Var2.getParentActivity() != null) {
                     if (tL_error == null) {
                         TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject2;
                         boolean z12 = true;
                         if (!tL_updates.chats.isEmpty()) {
-                            mp.u1(i11).b3(0, tL_updates.chats.get(0).f28405id, true);
+                            mp.u1(i11).b3(0, tL_updates.chats.get(0).f28403id, true);
                         }
                         int i12 = 0;
                         while (true) {
@@ -121,11 +121,11 @@ public final class r0 implements Runnable {
                                 z10 = z11;
                             }
                         }
-                        zh.g gVar = lVar2.f62012f;
-                        zh.l lVar3 = gVar.f61990c;
+                        zh.g gVar = lVar2.f62013f;
+                        zh.l lVar3 = gVar.f61991c;
                         int i13 = 0;
                         while (true) {
-                            arrayList = lVar3.f62010c;
+                            arrayList = lVar3.f62011c;
                             if (i13 < arrayList.size()) {
                                 r82 = z12;
                                 lVar = lVar2;
@@ -142,13 +142,13 @@ public final class r0 implements Runnable {
                         }
                         if (i13 >= 0) {
                             arrayList.remove(i13);
-                            gVar.s(((gVar.f61990c.B ? 1 : 0) ^ r82) + i13);
+                            gVar.s(((gVar.f61991c.B ? 1 : 0) ^ r82) + i13);
                             if (arrayList.isEmpty()) {
                                 gVar.s(r82);
                             }
                         }
                         zh.l lVar4 = lVar;
-                        lVar4.f(lVar4.f62025t, false, r82);
+                        lVar4.f(lVar4.f62026t, false, r82);
                         if (z10) {
                             sb sbVar = new sb(h2Var2.getParentActivity(), h2Var2.getResourceProvider());
                             int L = org.telegram.messenger.g0.L(15.0f);
@@ -156,7 +156,7 @@ public final class r0 implements Runnable {
                             q9Var.setRoundRadius(L);
                             q9Var.f(user, new b9(0, user));
                             String k10 = o10.k(user, true);
-                            if (lVar4.f62008a) {
+                            if (lVar4.f62009a) {
                                 a02 = gd.a0("HasBeenAddedToChannel", null, 2131749172, k10);
                             } else {
                                 a02 = gd.a0("HasBeenAddedToGroup", null, 2131749171, k10);
@@ -172,7 +172,7 @@ public final class r0 implements Runnable {
                             }
                         }
                         org.telegram.ui.ActionBar.z t6 = h2Var2.getActionBar().t();
-                        if (TextUtils.isEmpty(lVar4.f62025t) && lVar4.f62017l) {
+                        if (TextUtils.isEmpty(lVar4.f62026t) && lVar4.f62018l) {
                             org.telegram.ui.ActionBar.r0 j3 = t6.j(0);
                             if (arrayList3.isEmpty()) {
                                 i10 = 8;
@@ -191,31 +191,31 @@ public final class r0 implements Runnable {
 
     public r0(t0 t0Var, TLRPC.TL_error tL_error, TLObject tLObject, int[] iArr, ArrayList arrayList, boolean z10, TLRPC.User user) {
         this.d = t0Var;
-        this.f18441e = tL_error;
-        this.f18442f = tLObject;
+        this.f18438e = tL_error;
+        this.f18439f = tLObject;
         this.h = iArr;
-        this.f18439b = arrayList;
-        this.f18440c = z10;
-        this.f18443n = user;
+        this.f18436b = arrayList;
+        this.f18437c = z10;
+        this.f18440n = user;
     }
 
     public r0(bb1 bb1Var, TLRPC.TL_error tL_error, boolean z10, TLObject tLObject, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
         this.d = bb1Var;
-        this.f18441e = tL_error;
-        this.f18440c = z10;
-        this.f18442f = tLObject;
+        this.f18438e = tL_error;
+        this.f18437c = z10;
+        this.f18439f = tLObject;
         this.h = bArr;
-        this.f18439b = str;
-        this.f18443n = passwordinputsettings;
+        this.f18436b = str;
+        this.f18440n = passwordinputsettings;
     }
 
     public r0(zh.l lVar, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
         this.d = lVar;
-        this.f18441e = tL_error;
-        this.f18442f = tLObject;
+        this.f18438e = tL_error;
+        this.f18439f = tLObject;
         this.h = tL_chatInviteImporter;
-        this.f18440c = z10;
-        this.f18443n = user;
-        this.f18439b = tL_messages_hideChatJoinRequest;
+        this.f18437c = z10;
+        this.f18440n = user;
+        this.f18436b = tL_messages_hideChatJoinRequest;
     }
 }

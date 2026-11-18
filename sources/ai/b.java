@@ -43,16 +43,16 @@ public final class b implements Runnable {
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
         TLObject tLObject = (TLObject) this.f1121e;
         TL_account.checkUsername checkusername = (TL_account.checkUsername) this.f1122f;
-        laVar.f49512e = 0;
-        String str2 = laVar.f49513f;
+        laVar.f49490e = 0;
+        String str2 = laVar.f49491f;
         if (str2 != null && str2.equals(str)) {
             if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                org.telegram.ui.Cells.b2 b2Var = laVar.H;
-                if (b2Var != null) {
-                    b2Var.setText(gd.a0("UsernameAvailable", null, 2131743430, str));
-                    org.telegram.ui.Cells.b2 b2Var2 = laVar.H;
-                    int i7 = n6.f29750w6;
-                    b2Var2.setTag(Integer.valueOf(i7));
+                org.telegram.ui.Cells.c2 c2Var = laVar.H;
+                if (c2Var != null) {
+                    c2Var.setText(gd.a0("UsernameAvailable", null, 2131743430, str));
+                    org.telegram.ui.Cells.c2 c2Var2 = laVar.H;
+                    int i7 = n6.f29748w6;
+                    c2Var2.setTag(Integer.valueOf(i7));
                     u6.U(laVar.H, i7, null);
                     ka kaVar = laVar.G;
                     if (kaVar != null) {
@@ -62,9 +62,9 @@ public final class b implements Runnable {
             } else if (laVar.H != null) {
                 if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && checkusername.username.length() == 4) {
                     laVar.H.setText(gd.M0(2131743417, null));
-                    org.telegram.ui.Cells.b2 b2Var3 = laVar.H;
-                    int i10 = n6.f29617p7;
-                    b2Var3.setTag(Integer.valueOf(i10));
+                    org.telegram.ui.Cells.c2 c2Var3 = laVar.H;
+                    int i10 = n6.f29615p7;
+                    c2Var3.setTag(Integer.valueOf(i10));
                     u6.U(laVar.H, i10, null);
                 } else if (tL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
                     if (checkusername.username.length() == 4) {
@@ -72,15 +72,15 @@ public final class b implements Runnable {
                     } else {
                         laVar.H.setText(gd.M0(2131743420, null));
                     }
-                    org.telegram.ui.Cells.b2 b2Var4 = laVar.H;
+                    org.telegram.ui.Cells.c2 c2Var4 = laVar.H;
                     int i11 = n6.F6;
-                    b2Var4.setTag(Integer.valueOf(i11));
+                    c2Var4.setTag(Integer.valueOf(i11));
                     u6.U(laVar.H, i11, null);
                 } else {
                     laVar.H.setText(gd.M0(2131743421, null));
-                    org.telegram.ui.Cells.b2 b2Var5 = laVar.H;
-                    int i12 = n6.f29617p7;
-                    b2Var5.setTag(Integer.valueOf(i12));
+                    org.telegram.ui.Cells.c2 c2Var5 = laVar.H;
+                    int i12 = n6.f29615p7;
+                    c2Var5.setTag(Integer.valueOf(i12));
                     u6.U(laVar.H, i12, null);
                 }
                 ka kaVar2 = laVar.G;
@@ -103,7 +103,7 @@ public final class b implements Runnable {
             if (tL_error != null) {
                 zArr[0] = true;
                 if ("BOOSTS_REQUIRED".equals(tL_error.text)) {
-                    qcVar.getMessagesController().I0().b(qcVar.f51201a, qcVar.f51205c, new vb(qcVar, 1));
+                    qcVar.getMessagesController().I0().b(qcVar.f51159a, qcVar.f51163c, new vb(qcVar, 1));
                     return;
                 }
                 qcVar.Q.setLoading(false);
@@ -144,16 +144,16 @@ public final class b implements Runnable {
         if (str2 != null && str2.equals(str)) {
             if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
                 adVar.W.setText(gd.a0("LinkAvailable", null, 2131748732, str));
-                org.telegram.ui.Cells.b2 b2Var = adVar.W;
-                int i7 = n6.f29750w6;
-                b2Var.setTag(Integer.valueOf(i7));
+                org.telegram.ui.Cells.c2 c2Var = adVar.W;
+                int i7 = n6.f29748w6;
+                c2Var.setTag(Integer.valueOf(i7));
                 u6.U(adVar.W, i7, null);
-                adVar.f45541b0 = true;
+                adVar.f45535b0 = true;
                 return;
             }
             if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && tL_channels_checkUsername.username.length() == 4) {
                 adVar.W.setText(gd.M0(2131743417, null));
-                u6.U(adVar.W, n6.f29617p7, null);
+                u6.U(adVar.W, n6.f29615p7, null);
             } else if (tL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
                 if (tL_channels_checkUsername.username.length() == 4) {
                     adVar.W.setText(gd.M0(2131743416, null));
@@ -162,14 +162,14 @@ public final class b implements Runnable {
                 }
                 u6.U(adVar.W, n6.F6, null);
             } else if (tL_error != null && "CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tL_error.text)) {
-                u6.U(adVar.W, n6.f29617p7, null);
-                adVar.f45554l0 = false;
+                u6.U(adVar.W, n6.f29615p7, null);
+                adVar.f45548l0 = false;
                 adVar.l0();
             } else {
-                u6.U(adVar.W, n6.f29617p7, null);
+                u6.U(adVar.W, n6.f29615p7, null);
                 adVar.W.setText(gd.M0(2131748720, null));
             }
-            adVar.f45541b0 = false;
+            adVar.f45535b0 = false;
         }
     }
 

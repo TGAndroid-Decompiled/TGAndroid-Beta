@@ -18,7 +18,7 @@ public final class sn0 implements r1.d {
     public final void a(r1.g gVar, float f10, float f11) {
         switch (this.f39793a) {
             case 0:
-                ((yo0) this.f39795c).R0((org.telegram.ui.Cells.d7) this.d, this.f39794b, f10 / 1000.0f);
+                ((yo0) this.f39795c).R0((org.telegram.ui.Cells.e7) this.d, this.f39794b, f10 / 1000.0f);
                 return;
             default:
                 ((ho0) this.f39795c).d.R0(this.d, this.f39794b, f10 / 1000.0f);

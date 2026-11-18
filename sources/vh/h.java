@@ -24,15 +24,15 @@ public final class h extends sa {
 
     public h(Activity activity, i6 i6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, i6Var);
-        v0(n6.w0(n6.f29339a7, i6Var));
-        this.f30231x = true;
-        this.f30217n = false;
+        v0(n6.w0(n6.f29337a7, i6Var));
+        this.f30229x = true;
+        this.f30215n = false;
         this.G1 = false;
         this.F1 = g0.L(12.0f);
         this.U1 = c51.i0(tL_statsPollStats.votes_graph, gd.M0(2131746926, null), 2, false);
         ck0 ck0Var = this.f39534o1;
-        int i7 = this.f30227u0;
-        ck0Var.setPadding(i7, 0, i7, g0.f24116n);
+        int i7 = this.f30225u0;
+        ck0Var.setPadding(i7, 0, i7, g0.f24113n);
         this.f39534o1.setClipToPadding(false);
         this.f39534o1.setSections(true);
         z t6 = this.f39535p1.t();
@@ -50,7 +50,7 @@ public final class h extends sa {
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(ck0Var, getContext(), this.f30189a, 0, true, new org.telegram.ui.web.b(this, 3), this.J0);
+        z41 z41Var = new z41(ck0Var, getContext(), this.f30187a, 0, true, new org.telegram.ui.web.b(this, 3), this.J0);
         this.T1 = z41Var;
         z41Var.f42809r = false;
         return z41Var;
@@ -65,7 +65,7 @@ public final class h extends sa {
     public final void s0() {
         super.s0();
         try {
-            int w02 = n6.w0(n6.f29339a7, this.J0);
+            int w02 = n6.w0(n6.f29337a7, this.J0);
             if (this.V1 && w02 == this.W1) {
                 return;
             }

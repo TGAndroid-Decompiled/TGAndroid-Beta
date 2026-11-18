@@ -75,8 +75,8 @@ public final class n1 extends j {
     }
 
     private String getImageFilter() {
-        Point point = org.telegram.messenger.g0.f24121q;
-        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / org.telegram.messenger.g0.f24120p);
+        Point point = org.telegram.messenger.g0.f24118q;
+        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / org.telegram.messenger.g0.f24117p);
         return com.google.android.gms.internal.vision.e2.j(round, "_", round);
     }
 
@@ -142,8 +142,8 @@ public final class n1 extends j {
         float f11 = vt0Var.f41434b / 2.0f;
         we weVar = this.H0;
         if (weVar != null) {
-            f10 *= weVar.f27679e;
-            f11 *= weVar.f27680f;
+            f10 *= weVar.f27677e;
+            f11 *= weVar.f27678f;
         }
         setX(getPositionX() - f10);
         setY(getPositionY() - f11);
@@ -167,8 +167,8 @@ public final class n1 extends j {
         float f11 = vt0Var.f41434b;
         we weVar = this.H0;
         if (weVar != null) {
-            f10 *= weVar.f27679e;
-            f11 *= weVar.f27680f;
+            f10 *= weVar.f27677e;
+            f11 *= weVar.f27678f;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) f10, 1073741824), View.MeasureSpec.makeMeasureSpec((int) f11, 1073741824));
     }
@@ -201,7 +201,7 @@ public final class n1 extends j {
     public final void s(Bitmap bitmap) {
         if (!this.D0 && !this.C0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
             ia.a aVar = new ia.a();
-            aVar.f16183a = true;
+            aVar.f16180a = true;
             zzd a10 = ne.a(new zb.d(aVar));
             this.C0 = true;
             a10.h(ub.a.a(this.f58050x0, bitmap)).addOnSuccessListener(new org.telegram.ui.ActionBar.p(this, 29)).addOnFailureListener(new wc1(13, this, bitmap));

@@ -198,7 +198,7 @@ public final class h00 extends Drawable {
             Paint paint2 = new Paint(1);
             this.d = paint2;
             paint2.setStyle(Paint.Style.FILL);
-            int[] iArr = org.telegram.ui.ActionBar.n6.f29657r8;
+            int[] iArr = org.telegram.ui.ActionBar.n6.f29655r8;
             paint2.setColor(org.telegram.ui.ActionBar.n6.x0(null, iArr[i10 % iArr.length], false));
             paint2.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(1.0f)));
             return;

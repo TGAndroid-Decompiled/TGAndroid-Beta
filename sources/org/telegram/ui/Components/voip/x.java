@@ -62,7 +62,7 @@ public final class x extends View implements c6 {
         w9Var2.f41628a = org.telegram.messenger.g0.L(80.0f);
         w9Var2.f41629b = org.telegram.messenger.g0.L(95.0f);
         w9Var2.b();
-        paint.setColor(i0.a.f(0.0f, n6.x0(null, n6.f29462gh, false), n6.x0(null, n6.f29479hh, false)));
+        paint.setColor(i0.a.f(0.0f, n6.x0(null, n6.f29460gh, false), n6.x0(null, n6.f29477hh, false)));
         paint.setAlpha(102);
         paint2.setColor(i0.a.o(-16777216, 127));
     }
@@ -89,11 +89,11 @@ public final class x extends View implements c6 {
             e40VarArr[i7] = new e40(i7);
             int i10 = xVar.G;
             if (i10 == 2) {
-                e40VarArr[i10].f47139g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{n6.x0(null, n6.Zh, false), n6.x0(null, n6.f29370bi, false), n6.x0(null, n6.f29350ai, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                e40VarArr[i10].f47062g = new LinearGradient(0.0f, 400.0f, 400.0f, 0.0f, new int[]{n6.x0(null, n6.Zh, false), n6.x0(null, n6.f29368bi, false), n6.x0(null, n6.f29348ai, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else if (i10 == 1) {
-                e40VarArr[i10].f47139g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{n6.x0(null, n6.f29760wh, false), n6.x0(null, n6.f29798yh, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                e40VarArr[i10].f47062g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{n6.x0(null, n6.f29758wh, false), n6.x0(null, n6.f29796yh, false)}, (float[]) null, Shader.TileMode.CLAMP);
             } else {
-                e40VarArr[i10].f47139g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{n6.x0(null, n6.Ah, false), n6.x0(null, n6.f29818zh, false)}, (float[]) null, Shader.TileMode.CLAMP);
+                e40VarArr[i10].f47062g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{n6.x0(null, n6.Ah, false), n6.x0(null, n6.f29816zh, false)}, (float[]) null, Shader.TileMode.CLAMP);
             }
         }
         e40 e40Var = e40VarArr[xVar.G];
@@ -184,11 +184,11 @@ public final class x extends View implements c6 {
         for (int i7 = 0; i7 < 2; i7++) {
             Paint paint = this.f41302f;
             if (i7 == 0 && (e40Var2 = this.F) != null) {
-                paint.setShader(e40Var2.f47139g);
+                paint.setShader(e40Var2.f47062g);
                 f10 = 1.0f - this.H;
             } else {
                 if (i7 == 1 && (e40Var = this.E) != null) {
-                    paint.setShader(e40Var.f47139g);
+                    paint.setShader(e40Var.f47062g);
                     f10 = this.H;
                 }
             }
@@ -227,7 +227,7 @@ public final class x extends View implements c6 {
     @Override
     public final void updateColors() {
         try {
-            this.f41302f.setColor(i0.a.f(0.0f, n6.x0(null, n6.f29462gh, false), n6.x0(null, n6.f29479hh, false)));
+            this.f41302f.setColor(i0.a.f(0.0f, n6.x0(null, n6.f29460gh, false), n6.x0(null, n6.f29477hh, false)));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

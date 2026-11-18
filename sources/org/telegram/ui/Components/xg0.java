@@ -21,7 +21,7 @@ public abstract class xg0 {
     public boolean E;
     public boolean F;
     public boolean G;
-    public org.telegram.ui.Cells.t2 H;
+    public org.telegram.ui.Cells.u2 H;
     public ck0 I;
     public float J;
     public float K;
@@ -76,7 +76,7 @@ public abstract class xg0 {
         TextPaint textPaint = new TextPaint(1);
         this.f42028k = textPaint;
         fi.i0 i0Var = new fi.i0();
-        i0Var.f12084b = new Path();
+        i0Var.f12081b = new Path();
         i0Var.d = new Paint(1);
         i0Var.f();
         this.f42029l = i0Var;
@@ -93,11 +93,11 @@ public abstract class xg0 {
         this.f42023e0 = false;
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
-        this.Z = ViewConfiguration.get(org.telegram.messenger.t0.f26915b).getScaledTouchSlop();
+        this.Z = ViewConfiguration.get(org.telegram.messenger.t0.f26913b).getScaledTouchSlop();
         this.N = charSequence;
         this.S = charSequence2;
         try {
-            this.f42030m = org.telegram.messenger.t0.f26915b.getResources().getDrawable(2131232146).mutate();
+            this.f42030m = org.telegram.messenger.t0.f26913b.getResources().getDrawable(2131232146).mutate();
         } catch (Exception unused) {
         }
     }
@@ -144,9 +144,9 @@ public abstract class xg0 {
         if (valueAnimator2 != null) {
             valueAnimator2.cancel();
         }
-        org.telegram.ui.Cells.t2 t2Var = this.H;
-        if (t2Var != null) {
-            t2Var.removeCallbacks(this.f42021d0);
+        org.telegram.ui.Cells.u2 u2Var = this.H;
+        if (u2Var != null) {
+            u2Var.removeCallbacks(this.f42021d0);
         }
         ValueAnimator valueAnimator3 = this.f42037t;
         if (valueAnimator3 != null) {
@@ -166,7 +166,7 @@ public abstract class xg0 {
     }
 
     public final void c(Canvas canvas, boolean z10) {
-        org.telegram.ui.Cells.t2 t2Var;
+        org.telegram.ui.Cells.u2 u2Var;
         float f10;
         float f11;
         int i7;
@@ -191,8 +191,8 @@ public abstract class xg0 {
         float f18;
         float f19;
         float f20;
-        if (this.X && !this.Y && (t2Var = this.H) != null && this.I != null) {
-            boolean z13 = t2Var instanceof v91;
+        if (this.X && !this.Y && (u2Var = this.H) != null && this.I != null) {
+            boolean z13 = u2Var instanceof v91;
             if (z13) {
                 f10 = 15.0f;
             } else {
@@ -211,7 +211,7 @@ public abstract class xg0 {
             }
             int width = (this.H.getWidth() - (L * 4)) - org.telegram.messenger.g0.L(16.0f);
             if (width != this.f42020c0) {
-                int i19 = org.telegram.messenger.g0.f24121q.x;
+                int i19 = org.telegram.messenger.g0.f24118q.x;
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
                 i10 = 0;
                 CharSequence charSequence = this.N;
@@ -236,7 +236,7 @@ public abstract class xg0 {
                     this.Q = Math.min(this.Q, this.O.getLineLeft(i22));
                     this.R = Math.max(this.R, this.O.getLineWidth(i22));
                 }
-                this.T = new StaticLayout(this.S, textPaint, org.telegram.messenger.g0.f24121q.x, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                this.T = new StaticLayout(this.S, textPaint, org.telegram.messenger.g0.f24118q.x, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
                 float f23 = 0.0f;
                 for (int i23 = 0; i23 < this.T.getLineCount(); i23++) {
                     f23 = Math.max(f23, this.T.getLineWidth(i23));
@@ -490,9 +490,9 @@ public abstract class xg0 {
                     }
                 } else {
                     this.f42023e0 = true;
-                    org.telegram.ui.Cells.t2 t2Var2 = this.H;
+                    org.telegram.ui.Cells.u2 u2Var2 = this.H;
                     gk gkVar = this.f42021d0;
-                    t2Var2.removeCallbacks(gkVar);
+                    u2Var2.removeCallbacks(gkVar);
                     this.H.postDelayed(gkVar, 200L);
                 }
             }
@@ -550,26 +550,26 @@ public abstract class xg0 {
             canvas.restore();
             if (!z12 && this.f42022e && this.C > 0.0f) {
                 canvas.save();
-                float f58 = org.telegram.ui.ActionBar.n6.f29707u1.f37481b;
+                float f58 = org.telegram.ui.ActionBar.n6.f29705u1.f37481b;
                 float L7 = org.telegram.messenger.g0.L(24.0f) / f58;
                 float f59 = this.C;
                 float e10 = p5.c.e(1.0f - L7, f59, L7, f13);
                 float f60 = 1.0f - f59;
                 canvas.translate((i18 - f27) * f60, (((this.H.getHeight() - L2) - i14) - f17) * f60);
                 canvas.scale(e10, e10, f27, f17);
-                org.telegram.ui.ActionBar.n6.f29707u1.T(true, 0.0f);
+                org.telegram.ui.ActionBar.n6.f29705u1.T(true, 0.0f);
                 if (!org.telegram.ui.ActionBar.n6.C1) {
-                    mh0 mh0Var = org.telegram.ui.ActionBar.n6.f29707u1;
+                    mh0 mh0Var = org.telegram.ui.ActionBar.n6.f29705u1;
                     mh0Var.f37480a0 = true;
                     int i31 = this.d;
                     mh0Var.Q(org.telegram.ui.ActionBar.n6.x0(null, i31, true), "Arrow1");
-                    org.telegram.ui.ActionBar.n6.f29707u1.Q(org.telegram.ui.ActionBar.n6.x0(null, i31, true), "Arrow2");
-                    org.telegram.ui.ActionBar.n6.f29707u1.o();
+                    org.telegram.ui.ActionBar.n6.f29705u1.Q(org.telegram.ui.ActionBar.n6.x0(null, i31, true), "Arrow2");
+                    org.telegram.ui.ActionBar.n6.f29705u1.o();
                     org.telegram.ui.ActionBar.n6.C1 = true;
                 }
                 float f61 = f58 / 2.0f;
-                org.telegram.ui.ActionBar.n6.f29707u1.setBounds((int) (f27 - f61), (int) (f17 - f61), (int) (f27 + f61), (int) (f61 + f17));
-                org.telegram.ui.ActionBar.n6.f29707u1.draw(canvas);
+                org.telegram.ui.ActionBar.n6.f29705u1.setBounds((int) (f27 - f61), (int) (f17 - f61), (int) (f27 + f61), (int) (f61 + f17));
+                org.telegram.ui.ActionBar.n6.f29705u1.draw(canvas);
                 canvas.restore();
             }
         }
@@ -582,11 +582,11 @@ public abstract class xg0 {
         int f11 = i0.a.f(1.0f - this.C, org.telegram.ui.ActionBar.n6.x0(null, this.d, true), org.telegram.ui.ActionBar.n6.x0(null, this.f42019c, true));
         this.h.setColor(f11);
         if (this.f42022e && this.X && !this.Y) {
-            mh0 mh0Var = org.telegram.ui.ActionBar.n6.f29707u1;
+            mh0 mh0Var = org.telegram.ui.ActionBar.n6.f29705u1;
             mh0Var.f37480a0 = true;
             mh0Var.Q(f11, "Arrow1");
-            org.telegram.ui.ActionBar.n6.f29707u1.Q(f11, "Arrow2");
-            org.telegram.ui.ActionBar.n6.f29707u1.o();
+            org.telegram.ui.ActionBar.n6.f29705u1.Q(f11, "Arrow2");
+            org.telegram.ui.ActionBar.n6.f29705u1.o();
             org.telegram.ui.ActionBar.n6.C1 = true;
         }
     }
@@ -594,9 +594,9 @@ public abstract class xg0 {
     public final void f(float f10) {
         if (this.J != f10) {
             this.J = f10;
-            org.telegram.ui.Cells.t2 t2Var = this.H;
-            if (t2Var != null) {
-                t2Var.invalidate();
+            org.telegram.ui.Cells.u2 u2Var = this.H;
+            if (u2Var != null) {
+                u2Var.invalidate();
             }
         }
     }

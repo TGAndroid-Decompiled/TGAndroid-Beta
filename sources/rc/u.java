@@ -36,8 +36,8 @@ public final class u {
         String str4;
         this.f56542a = sVar;
         ?? obj = new Object();
-        obj.f10688b = 1;
-        obj.f10687a = 1;
+        obj.f10685b = 1;
+        obj.f10684a = 1;
         this.f56543b = obj;
         ?? obj2 = new Object();
         obj2.f56513a = str;
@@ -93,8 +93,8 @@ public final class u {
         s sVar;
         synchronized (this.f56543b) {
             r0 r0Var = this.f56543b;
-            if (r0Var.f10687a == 1) {
-                r0Var.f10687a = 2;
+            if (r0Var.f10684a == 1) {
+                r0Var.f10684a = 2;
             } else {
                 throw new v(1, "The current state of the WebSocket is not CREATED.");
             }
@@ -124,7 +124,7 @@ public final class u {
                     }
                 }
                 this.f56560u = oVar;
-                this.f56543b.f10687a = 3;
+                this.f56543b.f10684a = 3;
                 this.d.f();
                 i();
             } catch (v e10) {
@@ -145,7 +145,7 @@ public final class u {
                 } catch (Throwable unused2) {
                 }
             }
-            this.f56543b.f10687a = 5;
+            this.f56543b.f10684a = 5;
             this.d.f();
             throw e11;
         }
@@ -154,15 +154,15 @@ public final class u {
     public final void c() {
         synchronized (this.f56543b) {
             try {
-                int c10 = p1.g.c(this.f56543b.f10687a);
+                int c10 = p1.g.c(this.f56543b.f10684a);
                 if (c10 != 0) {
                     if (c10 != 2) {
                         return;
                     }
                     r0 r0Var = this.f56543b;
-                    r0Var.f10687a = 4;
-                    if (r0Var.f10688b == 1) {
-                        r0Var.f10688b = 3;
+                    r0Var.f10684a = 4;
+                    if (r0Var.f10685b == 1) {
+                        r0Var.f10685b = 3;
                     }
                     g(x.a(1000, null));
                     this.d.f();
@@ -208,14 +208,14 @@ public final class u {
             }
         }
         synchronized (this.f56543b) {
-            this.f56543b.f10687a = 5;
+            this.f56543b.f10684a = 5;
         }
         this.d.f();
         ab.q qVar = this.d;
         x xVar = this.f56558s;
         x xVar2 = this.f56559t;
         int i7 = 0;
-        if (this.f56543b.f10688b == 2) {
+        if (this.f56543b.f10685b == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -260,7 +260,7 @@ public final class u {
     public final void finalize() {
         boolean z10;
         synchronized (this.f56543b) {
-            if (this.f56543b.f10687a == 1) {
+            if (this.f56543b.f10684a == 1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -276,7 +276,7 @@ public final class u {
         if (xVar != null) {
             synchronized (this.f56543b) {
                 try {
-                    int i7 = this.f56543b.f10687a;
+                    int i7 = this.f56543b.f10684a;
                     if (i7 != 3 && i7 != 4) {
                         return;
                     }

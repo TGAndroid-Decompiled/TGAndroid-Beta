@@ -5,12 +5,12 @@ import java.util.List;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class e4 implements ResultCallback {
-    public final ig.b f23665a;
-    public final org.telegram.ui.ee f23666b;
+    public final ig.b f23662a;
+    public final org.telegram.ui.ee f23663b;
 
     public e4(ig.b bVar, org.telegram.ui.ee eeVar) {
-        this.f23665a = bVar;
-        this.f23666b = eeVar;
+        this.f23662a = bVar;
+        this.f23663b = eeVar;
     }
 
     @Override
@@ -20,14 +20,14 @@ public final class e4 implements ResultCallback {
         Iterator it = ((List) obj).iterator();
         do {
             boolean hasNext = it.hasNext();
-            eeVar = this.f23666b;
+            eeVar = this.f23663b;
             if (hasNext) {
                 t3Var = (org.telegram.ui.ActionBar.t3) it.next();
             } else {
                 eeVar.onComplete(null);
                 return;
             }
-        } while (!this.f23665a.equals(t3Var.f30001c));
+        } while (!this.f23662a.equals(t3Var.f29999c));
         t3Var.k();
         eeVar.onComplete(t3Var);
     }
@@ -39,6 +39,6 @@ public final class e4 implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        this.f23666b.onComplete(null);
+        this.f23663b.onComplete(null);
     }
 }

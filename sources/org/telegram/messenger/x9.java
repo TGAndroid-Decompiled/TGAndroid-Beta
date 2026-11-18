@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class x9 {
-    public final pa f27832a;
+    public final pa f27830a;
 
     public x9(pa paVar) {
-        this.f27832a = paVar;
+        this.f27830a = paVar;
     }
 }

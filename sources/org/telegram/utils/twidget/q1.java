@@ -11,9 +11,9 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.pk0;
 public abstract class q1 {
-    public static final int[] f54913a = {n6.f29659ra, n6.Vc, n6.f29422ee, n6.Xc, n6.Nd};
-    public static final int[] f54914b = {n6.f29660rb, n6.Wc, n6.f29511jc, n6.Yc, n6.Tb};
-    public static final int[] f54915c = {n6.f29717ub, n6.f29736vb, n6.f29755wb};
+    public static final int[] f54913a = {n6.f29657ra, n6.Vc, n6.f29420ee, n6.Xc, n6.Nd};
+    public static final int[] f54914b = {n6.f29658rb, n6.Wc, n6.f29509jc, n6.Yc, n6.Tb};
+    public static final int[] f54915c = {n6.f29715ub, n6.f29734vb, n6.f29753wb};
 
     public static String a(i6 i6Var, boolean z10) {
         boolean q10;
@@ -56,7 +56,7 @@ public abstract class q1 {
             jSONObject.put("secondary_bg_color", c(w11, w10));
             jSONObject.put("accent_text_color", c(w05, w10));
             jSONObject.put("subtitle_text_color", c(w03, w10));
-            jSONObject.put("destructive_text_color", c(n6.w0(n6.f29617p7, i6Var), w10));
+            jSONObject.put("destructive_text_color", c(n6.w0(n6.f29615p7, i6Var), w10));
             jSONObject.put("section_bg_color", c(w10, w10));
             jSONObject.put("section_header_text_color", c(w05, w10));
             jSONObject.put("section_separator_color", c(n6.r1(0.12f, w02), w10));
@@ -175,8 +175,8 @@ public abstract class q1 {
                 i7 = i14 + i10;
             }
         }
-        int w02 = (((n6.w0(n6.f29617p7, i6Var) + ((n6.w0(n6.Ji, i6Var) + ((n6.w0(n6.Fi, i6Var) + (i7 * 31)) * 31)) * 31)) * 31) + bz.W0) * 31;
-        TextPaint textPaint = n6.f29593o2;
+        int w02 = (((n6.w0(n6.f29615p7, i6Var) + ((n6.w0(n6.Ji, i6Var) + ((n6.w0(n6.Fi, i6Var) + (i7 * 31)) * 31)) * 31)) * 31) + bz.W0) * 31;
+        TextPaint textPaint = n6.f29591o2;
         if (textPaint != null) {
             i11 = Float.floatToIntBits(textPaint.getTextSize());
         }
@@ -186,12 +186,12 @@ public abstract class q1 {
     public static JSONObject f() {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("fontSize", bz.W0);
-        TextPaint textPaint = n6.f29593o2;
+        TextPaint textPaint = n6.f29591o2;
         if (textPaint != null && textPaint.getTextSize() > 0.0f) {
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             jSONObject.put("lineHeight", Math.round(Math.max(1.0f, Math.min(3.0f, ((fontMetrics.descent - fontMetrics.ascent) + fontMetrics.leading) / textPaint.getTextSize())) * 100.0f) / 100.0d);
         }
-        int round = Math.round(pk0.j0() / org.telegram.messenger.g0.f24120p);
+        int round = Math.round(pk0.j0() / org.telegram.messenger.g0.f24117p);
         jSONObject.put("padding", "8px " + round + "px");
         return jSONObject;
     }

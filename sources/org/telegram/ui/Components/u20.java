@@ -38,7 +38,7 @@ public final class u20 extends AnimatorListenerAdapter {
             case 1:
                 v20 v20Var = this.f40191b.f41529a0;
                 if (v20Var != null) {
-                    ((org.telegram.ui.uo0) v20Var).f52609a.f43208f0.requestLayout();
+                    ((org.telegram.ui.uo0) v20Var).f52594a.f43208f0.requestLayout();
                     return;
                 }
                 return;

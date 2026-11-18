@@ -64,7 +64,7 @@ public final class l9 extends org.telegram.ui.ActionBar.h2 {
         this.actionBar.setAddToContainer(false);
         this.actionBar.setOccupyStatusBar(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, frameLayout, this.resourceProvider);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29394d6, frameLayout, this.resourceProvider);
         this.fragmentView = frameLayout;
         ScrollView scrollView = new ScrollView(context);
         this.f44500b = scrollView;
@@ -86,7 +86,7 @@ public final class l9 extends org.telegram.ui.ActionBar.h2 {
         org.telegram.ui.ActionBar.u6.s(imageView2, i11, this.resourceProvider, PorterDuff.Mode.SRC_IN);
         this.f44501c.setImageResource(2131231241);
         ImageView imageView3 = this.f44501c;
-        int i12 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i12 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.ActionBar.u6.Q(imageView3, org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i12, this.resourceProvider), 3, -1), null, org.telegram.ui.ActionBar.u6.M(i12), this.resourceProvider);
         this.f44501c.setOnClickListener(new View.OnClickListener(this) {
             public final l9 f44454b;
@@ -128,7 +128,7 @@ public final class l9 extends org.telegram.ui.ActionBar.h2 {
         TextView f10 = n10.f(linearLayout, textView, c8.ma.t(-1, -2, 1, 32, 0, 32, 10), context);
         f10.setTextSize(1, 14.0f);
         f10.setGravity(1);
-        org.telegram.ui.ActionBar.u6.U(f10, org.telegram.ui.ActionBar.n6.f29807z6, this.resourceProvider);
+        org.telegram.ui.ActionBar.u6.U(f10, org.telegram.ui.ActionBar.n6.f29805z6, this.resourceProvider);
         if (this.h) {
             i10 = 2131742907;
         } else {

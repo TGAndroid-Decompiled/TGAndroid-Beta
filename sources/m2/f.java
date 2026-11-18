@@ -10,38 +10,38 @@ import java.util.Random;
 import x2.g0;
 public final class f {
     public static final p h = new p(4);
-    public static final Random f20501i = new Random();
+    public static final Random f20498i = new Random();
     public g d;
-    public String f20506f;
-    public final k1 f20502a = new k1();
-    public final i1 f20503b = new i1();
-    public final HashMap f20504c = new HashMap();
-    public l1 f20505e = l1.f10508a;
-    public long f20507g = -1;
+    public String f20503f;
+    public final k1 f20499a = new k1();
+    public final i1 f20500b = new i1();
+    public final HashMap f20501c = new HashMap();
+    public l1 f20502e = l1.f10505a;
+    public long f20504g = -1;
 
     public final void a(e eVar) {
-        long j3 = eVar.f20497c;
-        if (j3 != -1 && eVar.f20498e) {
-            this.f20507g = j3;
+        long j3 = eVar.f20494c;
+        if (j3 != -1 && eVar.f20495e) {
+            this.f20504g = j3;
         }
-        this.f20506f = null;
+        this.f20503f = null;
     }
 
     public final synchronized void b(a aVar) {
         g gVar;
         try {
-            String str = this.f20506f;
+            String str = this.f20503f;
             if (str != null) {
-                e eVar = (e) this.f20504c.get(str);
+                e eVar = (e) this.f20501c.get(str);
                 eVar.getClass();
                 a(eVar);
             }
-            Iterator it = this.f20504c.values().iterator();
+            Iterator it = this.f20501c.values().iterator();
             while (it.hasNext()) {
                 e eVar2 = (e) it.next();
                 it.remove();
-                if (eVar2.f20498e && (gVar = this.d) != null) {
-                    gVar.n(aVar, eVar2.f20495a);
+                if (eVar2.f20495e && (gVar = this.d) != null) {
+                    gVar.n(aVar, eVar2.f20492a);
                 }
             }
         } catch (Throwable th2) {
@@ -54,18 +54,18 @@ public final class f {
     }
 
     public final synchronized String d(l1 l1Var, g0 g0Var) {
-        return c(l1Var.g(g0Var.f60087a, this.f20503b).f10436c, g0Var).f20495a;
+        return c(l1Var.g(g0Var.f60088a, this.f20500b).f10433c, g0Var).f20492a;
     }
 
     public final void e(a aVar) {
         g0 g0Var;
-        l1 l1Var = aVar.f20480b;
-        int i7 = aVar.f20481c;
+        l1 l1Var = aVar.f20477b;
+        int i7 = aVar.f20478c;
         g0 g0Var2 = aVar.d;
         boolean p10 = l1Var.p();
-        HashMap hashMap = this.f20504c;
+        HashMap hashMap = this.f20501c;
         if (p10) {
-            String str = this.f20506f;
+            String str = this.f20503f;
             if (str != null) {
                 e eVar = (e) hashMap.get(str);
                 eVar.getClass();
@@ -74,14 +74,14 @@ public final class f {
             }
             return;
         }
-        e eVar2 = (e) hashMap.get(this.f20506f);
-        this.f20506f = c(i7, g0Var2).f20495a;
+        e eVar2 = (e) hashMap.get(this.f20503f);
+        this.f20503f = c(i7, g0Var2).f20492a;
         f(aVar);
         if (g0Var2 != null) {
             long j3 = g0Var2.d;
             if (g0Var2.b()) {
-                if (eVar2 == null || eVar2.f20497c != j3 || (g0Var = eVar2.d) == null || g0Var.f60088b != g0Var2.f60088b || g0Var.f60089c != g0Var2.f60089c) {
-                    c(i7, new g0(g0Var2.f60087a, j3));
+                if (eVar2 == null || eVar2.f20494c != j3 || (g0Var = eVar2.d) == null || g0Var.f60089b != g0Var2.f60089b || g0Var.f60090c != g0Var2.f60090c) {
+                    c(i7, new g0(g0Var2.f60088a, j3));
                     this.d.getClass();
                 }
             }
@@ -101,20 +101,20 @@ public final class f {
             } else {
                 z10 = false;
             }
-            Iterator it = this.f20504c.values().iterator();
+            Iterator it = this.f20501c.values().iterator();
             while (it.hasNext()) {
                 e eVar = (e) it.next();
                 if (eVar.a(aVar)) {
                     it.remove();
-                    boolean equals = eVar.f20495a.equals(this.f20506f);
+                    boolean equals = eVar.f20492a.equals(this.f20503f);
                     if (equals) {
                         a(eVar);
                     }
-                    if (eVar.f20498e) {
+                    if (eVar.f20495e) {
                         if (z10 && equals) {
-                            boolean z11 = eVar.f20499f;
+                            boolean z11 = eVar.f20496f;
                         }
-                        this.d.n(aVar, eVar.f20495a);
+                        this.d.n(aVar, eVar.f20492a);
                     }
                 }
             }

@@ -44,7 +44,7 @@ public final class cb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29339a7, false)) <= 0.721f) {
+            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29337a7, false)) <= 0.721f) {
                 z10 = false;
             }
             org.telegram.messenger.g0.m3(this, z10);

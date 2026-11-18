@@ -1,10 +1,10 @@
 package x2;
 public final class a1 {
-    public final e2.u f60030a;
-    public final q2.l f60031b;
+    public final e2.u f60031a;
+    public final q2.l f60032b;
 
     public a1(e2.u uVar, q2.l lVar) {
-        this.f60030a = uVar;
-        this.f60031b = lVar;
+        this.f60031a = uVar;
+        this.f60032b = lVar;
     }
 }

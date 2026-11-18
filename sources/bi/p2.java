@@ -17,16 +17,16 @@ import org.telegram.ui.Components.k80;
 import org.telegram.ui.Components.mh0;
 import org.telegram.ui.Components.q9;
 public final class p2 extends FrameLayout {
-    public final int f3962a;
+    public final int f3930a;
 
     public p2(Context context, int i7) {
         super(context);
-        this.f3962a = i7;
+        this.f3930a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f3962a) {
+        switch (this.f3930a) {
             case 24:
                 super.dispatchDraw(canvas);
                 return;
@@ -38,7 +38,7 @@ public final class p2 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3962a) {
+        switch (this.f3930a) {
             case 16:
                 return false;
             default:
@@ -48,15 +48,15 @@ public final class p2 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f3962a) {
+        switch (this.f3930a) {
             case 8:
-                int intrinsicHeight = org.telegram.ui.ActionBar.n6.f29485i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.n6.f29485i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
-                org.telegram.ui.ActionBar.n6.f29485i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.n6.f29502j2);
+                int intrinsicHeight = org.telegram.ui.ActionBar.n6.f29483i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.n6.f29483i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                org.telegram.ui.ActionBar.n6.f29483i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.n6.f29500j2);
                 return;
             case 21:
-                canvas.drawLine(0.0f, org.telegram.messenger.g0.L(40.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(40.0f), org.telegram.ui.ActionBar.n6.f29519k0);
+                canvas.drawLine(0.0f, org.telegram.messenger.g0.L(40.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(40.0f), org.telegram.ui.ActionBar.n6.f29517k0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -66,7 +66,7 @@ public final class p2 extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3962a) {
+        switch (this.f3930a) {
             case 22:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 return true;
@@ -78,7 +78,7 @@ public final class p2 extends FrameLayout {
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         float f10;
-        switch (this.f3962a) {
+        switch (this.f3930a) {
             case 7:
                 return;
             case 18:
@@ -120,7 +120,7 @@ public final class p2 extends FrameLayout {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f3962a) {
+        switch (this.f3930a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(120.0f), 1073741824));
                 return;
@@ -216,7 +216,7 @@ public final class p2 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f3962a) {
+        switch (this.f3930a) {
             case 17:
                 super.setTranslationY(f10);
                 setPadding(0, 0, (int) f10, 0);
@@ -229,7 +229,7 @@ public final class p2 extends FrameLayout {
 
     public p2(Context context, int i7, String str, CharSequence charSequence, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f3962a = 11;
+        this.f3930a = 11;
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int i10 = org.telegram.ui.ActionBar.n6.G6;
@@ -249,15 +249,15 @@ public final class p2 extends FrameLayout {
         linearLayout.addView(k80Var, ma.t(-1, -2, 55, 0, 0, 0, 2));
         k80 k80Var2 = new k80(context, null);
         k80Var2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.u6.U(k80Var2, org.telegram.ui.ActionBar.n6.f29788y6, i6Var);
+        org.telegram.ui.ActionBar.u6.U(k80Var2, org.telegram.ui.ActionBar.n6.f29786y6, i6Var);
         org.telegram.ui.ActionBar.u6.G(k80Var2, i11, i6Var);
         k80Var2.setText(charSequence);
         linearLayout.addView(k80Var2, ma.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
-    public p2(Context context, s6 s6Var, org.telegram.ui.ActionBar.i6 i6Var) {
+    public p2(Context context, r6 r6Var, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f3962a = 1;
+        this.f3930a = 1;
         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
         addView(g10, ma.e(-1, -2, 23));
         q9 q9Var = new q9(context);
@@ -289,7 +289,7 @@ public final class p2 extends FrameLayout {
         textView2.setPadding(org.telegram.messenger.g0.L(13.0f), 0, org.telegram.messenger.g0.L(13.0f), 0);
         ra.a(textView2);
         g10.addView(textView2, ma.t(-2, 27, 17, 32, 0, 32, 12));
-        textView2.setOnClickListener(s6Var);
+        textView2.setOnClickListener(r6Var);
     }
 
     private final void a(boolean z10, int i7, int i10, int i11, int i12) {

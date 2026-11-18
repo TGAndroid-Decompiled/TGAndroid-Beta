@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class hb1 extends org.telegram.ui.Components.k41 {
-    public static final int f48324b = 0;
+    public static final int f48235b = 0;
 
     static {
         org.telegram.ui.Components.k41.h(new org.telegram.ui.Components.k41());
@@ -22,11 +22,11 @@ public final class hb1 extends org.telegram.ui.Components.k41 {
         boolean z11 = l41Var.f37023r;
         boolean z12 = l41Var.f37024s;
         int i10 = l41Var.A;
-        TextView textView = ib1Var.f48695e;
-        ImageView imageView = ib1Var.f48696f;
+        TextView textView = ib1Var.f48690e;
+        ImageView imageView = ib1Var.f48691f;
         ib1Var.h = z11;
-        ib1Var.f48697n = z12;
-        ib1Var.f48693b.setImageResource(i7);
+        ib1Var.f48692n = z12;
+        ib1Var.f48688b.setImageResource(i7);
         int i11 = 8;
         if (i10 != 0) {
             imageView.setVisibility(0);
@@ -46,7 +46,7 @@ public final class hb1 extends org.telegram.ui.Components.k41 {
             f10 = 10.0f;
         }
         int L = org.telegram.messenger.g0.L(f10);
-        ib1Var.f48694c.setPadding(0, L, 0, L);
+        ib1Var.f48689c.setPadding(0, L, 0, L);
         ib1Var.updateColors();
     }
 

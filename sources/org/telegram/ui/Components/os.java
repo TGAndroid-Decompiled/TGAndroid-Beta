@@ -35,12 +35,12 @@ public final class os extends AnimatorListenerAdapter {
                 if (this.f38168e != 0) {
                     view.setTranslationY(0.0f);
                 }
-                View view2 = this.f38166b.f59122a;
-                if (view2 instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) view2).setMoving(false);
+                View view2 = this.f38166b.f59123a;
+                if (view2 instanceof org.telegram.ui.Cells.u2) {
+                    ((org.telegram.ui.Cells.u2) view2).setMoving(false);
                     return;
                 } else if (view2 instanceof jg.l) {
-                    ((jg.l) view2).f17564a = false;
+                    ((jg.l) view2).f17561a = false;
                     return;
                 } else {
                     return;
@@ -69,11 +69,11 @@ public final class os extends AnimatorListenerAdapter {
                 rsVar.v(f1Var);
                 rsVar.f39288w.remove(f1Var);
                 rsVar.A();
-                View view = f1Var.f59122a;
-                if (view instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) view).setMoving(false);
+                View view = f1Var.f59123a;
+                if (view instanceof org.telegram.ui.Cells.u2) {
+                    ((org.telegram.ui.Cells.u2) view).setMoving(false);
                 } else if (view instanceof jg.l) {
-                    ((jg.l) view).f17564a = false;
+                    ((jg.l) view).f17561a = false;
                 }
                 View view2 = this.d;
                 view2.setTranslationX(0.0f);
@@ -85,7 +85,7 @@ public final class os extends AnimatorListenerAdapter {
                 v4.f1 f1Var2 = this.f38166b;
                 kVar.P(f1Var2);
                 kVar.v(f1Var2);
-                kVar.f59179z.remove(f1Var2);
+                kVar.f59180z.remove(f1Var2);
                 kVar.G();
                 kVar.z(f1Var2);
                 return;

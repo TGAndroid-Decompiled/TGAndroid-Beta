@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-public final class kr0 implements org.telegram.ui.Cells.j7 {
+public final class kr0 implements org.telegram.ui.Cells.k7 {
     public final gt0 f36866a;
 
     public kr0(gt0 gt0Var) {

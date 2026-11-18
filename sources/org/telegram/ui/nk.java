@@ -5,19 +5,19 @@ import android.content.Context;
 import android.text.style.CharacterStyle;
 import org.telegram.ui.Components.UndoView;
 public final class nk extends UndoView {
-    public final int f50212k0 = 1;
-    public final Object f50213l0;
+    public final int f50196k0 = 1;
+    public final Object f50197l0;
 
     public nk(b20 b20Var, Context context) {
         super(context);
-        this.f50213l0 = b20Var;
+        this.f50197l0 = b20Var;
     }
 
     @Override
     public void b(CharacterStyle characterStyle) {
-        switch (this.f50212k0) {
+        switch (this.f50196k0) {
             case 0:
-                ((bn) this.f50213l0).l8(characterStyle, false, null, null);
+                ((bn) this.f50197l0).l8(characterStyle, false, null, null);
                 return;
             default:
                 return;
@@ -26,10 +26,10 @@ public final class nk extends UndoView {
 
     @Override
     public void invalidate() {
-        switch (this.f50212k0) {
+        switch (this.f50196k0) {
             case 1:
                 super.invalidate();
-                ((b20) this.f50213l0).invalidate();
+                ((b20) this.f50197l0).invalidate();
                 return;
             default:
                 super.invalidate();
@@ -41,9 +41,9 @@ public final class nk extends UndoView {
     public void k(long j3, int i7, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
         float f10;
         int i10;
-        switch (this.f50212k0) {
+        switch (this.f50196k0) {
             case 0:
-                mj mjVar = ((bn) this.f50213l0).f46094m2;
+                mj mjVar = ((bn) this.f50197l0).f46085m2;
                 if (mjVar != null && (((i10 = mjVar.V) == 1 || i10 == 3) && mjVar.U)) {
                     f10 = org.telegram.messenger.g0.L(mjVar.getStyleHeight());
                 } else {
@@ -60,6 +60,6 @@ public final class nk extends UndoView {
 
     public nk(bn bnVar, Activity activity, bn bnVar2, org.telegram.ui.ActionBar.i6 i6Var) {
         super(activity, bnVar2, true, i6Var);
-        this.f50213l0 = bnVar;
+        this.f50197l0 = bnVar;
     }
 }

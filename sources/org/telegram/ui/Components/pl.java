@@ -25,13 +25,13 @@ public final class pl implements q0.a {
                 ArrayList arrayList = (ArrayList) obj2;
                 View view = (View) obj;
                 boolean z12 = ChatAttachAlertPhotoLayout.f32762r1;
-                if (view instanceof org.telegram.ui.Cells.r5) {
-                    org.telegram.ui.Cells.r5 r5Var = (org.telegram.ui.Cells.r5) view;
-                    org.telegram.messenger.ef photoEntry = r5Var.getPhotoEntry();
+                if (view instanceof org.telegram.ui.Cells.s5) {
+                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+                    org.telegram.messenger.ef photoEntry = s5Var.getPhotoEntry();
                     if (photoEntry != null && arrayList.contains(Integer.valueOf(photoEntry.C)) && z11) {
                         z10 = true;
                     }
-                    r5Var.setHasSpoiler(z10);
+                    s5Var.setHasSpoiler(z10);
                     return;
                 }
                 return;
@@ -39,13 +39,13 @@ public final class pl implements q0.a {
                 ArrayList arrayList2 = (ArrayList) obj2;
                 View view2 = (View) obj;
                 boolean z13 = ChatAttachAlertPhotoLayout.f32762r1;
-                if (view2 instanceof org.telegram.ui.Cells.r5) {
-                    org.telegram.ui.Cells.r5 r5Var2 = (org.telegram.ui.Cells.r5) view2;
-                    org.telegram.messenger.ef photoEntry2 = r5Var2.getPhotoEntry();
+                if (view2 instanceof org.telegram.ui.Cells.s5) {
+                    org.telegram.ui.Cells.s5 s5Var2 = (org.telegram.ui.Cells.s5) view2;
+                    org.telegram.messenger.ef photoEntry2 = s5Var2.getPhotoEntry();
                     if (photoEntry2 != null && arrayList2.contains(Integer.valueOf(photoEntry2.C)) && z11) {
                         z10 = true;
                     }
-                    r5Var2.setHighQuality(z10);
+                    s5Var2.setHighQuality(z10);
                     return;
                 }
                 return;

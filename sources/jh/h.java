@@ -16,19 +16,19 @@ import org.telegram.ui.Components.j41;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Wallet.p5;
 public final class h extends View {
-    public final int f17788a = 0;
-    public final Paint f17789b;
-    public final Object f17790c;
+    public final int f17785a = 0;
+    public final Paint f17786b;
+    public final Object f17787c;
     public final Object d;
-    public final Object f17791e;
+    public final Object f17788e;
 
     public h(Activity activity, i6 i6Var) {
         super(activity);
-        this.f17790c = new te.a(this, lr.h, 380L);
-        this.f17789b = new Paint(1);
+        this.f17787c = new te.a(this, lr.h, 380L);
+        this.f17786b = new Paint(1);
         this.d = i6Var;
         j41 j41Var = new j41(true);
-        this.f17791e = j41Var;
+        this.f17788e = j41Var;
         j41Var.setCallback(this);
         j41Var.b(-1);
         j41Var.f36335i = true;
@@ -36,10 +36,10 @@ public final class h extends View {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f17788a) {
+        switch (this.f17785a) {
             case 0:
                 super.onAttachedToWindow();
-                ((j41) this.f17791e).d();
+                ((j41) this.f17788e).d();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -49,10 +49,10 @@ public final class h extends View {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f17788a) {
+        switch (this.f17785a) {
             case 0:
                 super.onDetachedFromWindow();
-                ((j41) this.f17791e).e();
+                ((j41) this.f17788e).e();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -65,19 +65,19 @@ public final class h extends View {
         int i7;
         int i10;
         View[] viewPages;
-        switch (this.f17788a) {
+        switch (this.f17785a) {
             case 0:
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
                 super.onDraw(canvas);
                 int w02 = n6.w0(n6.Pe, (i6) this.d);
-                Paint paint = this.f17789b;
+                Paint paint = this.f17786b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, g0.L(19.0f), paint);
-                float f10 = ((te.a) this.f17790c).f57657e;
+                float f10 = ((te.a) this.f17787c).f57657e;
                 float f11 = 1.0f - f10;
                 if (f11 > 0.0f) {
-                    t.b(canvas, (j41) this.f17791e, f11 * 1.35f);
+                    t.b(canvas, (j41) this.f17788e, f11 * 1.35f);
                     invalidate();
                 }
                 if (f10 > 0.0f) {
@@ -88,12 +88,12 @@ public final class h extends View {
                 }
                 return;
             default:
-                p5 p5Var = (p5) this.f17791e;
+                p5 p5Var = (p5) this.f17788e;
                 int e12 = p5Var.e1();
-                Paint paint2 = this.f17789b;
+                Paint paint2 = this.f17786b;
                 paint2.setColor(e12);
                 ViewGroup viewGroup = p5Var.X1;
-                int[] iArr = (int[]) this.f17790c;
+                int[] iArr = (int[]) this.f17787c;
                 viewGroup.getLocationInWindow(iArr);
                 int[] iArr2 = (int[]) this.d;
                 getLocationInWindow(iArr2);
@@ -127,10 +127,10 @@ public final class h extends View {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f17788a) {
+        switch (this.f17785a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                t.d((j41) this.f17791e, i7 / 2.0f, i10 / 2.0f, 17);
+                t.d((j41) this.f17788e, i7 / 2.0f, i10 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);
@@ -140,9 +140,9 @@ public final class h extends View {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f17788a) {
+        switch (this.f17785a) {
             case 0:
-                if (!super.verifyDrawable(drawable) && (drawable != ((j41) this.f17791e) || ((te.a) this.f17790c).f57658f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((j41) this.f17788e) || ((te.a) this.f17787c).f57658f)) {
                     return false;
                 }
                 return true;
@@ -153,9 +153,9 @@ public final class h extends View {
 
     public h(p5 p5Var, Context context) {
         super(context);
-        this.f17791e = p5Var;
-        this.f17789b = new Paint(1);
-        this.f17790c = new int[2];
+        this.f17788e = p5Var;
+        this.f17786b = new Paint(1);
+        this.f17787c = new int[2];
         this.d = new int[2];
     }
 }

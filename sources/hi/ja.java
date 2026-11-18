@@ -40,11 +40,11 @@ public final class ja extends s {
             int indexOf2 = W2.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 W2.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                W2.setSpan(new i00(org.telegram.ui.ActionBar.n6.Xc, this.f15042a), indexOf, indexOf2, 33);
+                W2.setSpan(new i00(org.telegram.ui.ActionBar.n6.Xc, this.f15039a), indexOf, indexOf2, 33);
                 W2.setSpan(new ia(this, 0), indexOf, indexOf2, 33);
             }
         }
-        gc I = new lc(this.S1.m0, this.f15042a).I(2131623970, gd.M0(2131752545, null), W2);
+        gc I = new lc(this.S1.m0, this.f15039a).I(2131623970, gd.M0(2131752545, null), W2);
         I.f35454a = 2;
         I.f35461j = 5000;
         I.k(false);
@@ -53,15 +53,15 @@ public final class ja extends s {
 
     @Override
     public final boolean g() {
-        return this.S1.f15481s0.c();
+        return this.S1.f15478s0.c();
     }
 
     @Override
     public final int getTimelineHeight() {
         db dbVar;
         ta taVar = this.S1;
-        if (taVar.Z0 != null && (dbVar = taVar.f15425a1) != null && dbVar.getVisibility() == 0) {
-            return taVar.f15425a1.getTimelineHeight();
+        if (taVar.Z0 != null && (dbVar = taVar.f15422a1) != null && dbVar.getVisibility() == 0) {
+            return taVar.f15422a1.getTimelineHeight();
         }
         return 0;
     }
@@ -83,25 +83,25 @@ public final class ja extends s {
 
     @Override
     public final void i(Bitmap bitmap) {
-        this.S1.f15464n.X(12.0f, bitmap);
+        this.S1.f15461n.X(12.0f, bitmap);
         Utilities.stackBlurBitmap(bitmap, (int) 12.0f);
     }
 
     @Override
     public final boolean l(float f10, float f11) {
         ta taVar = this.S1;
-        v9 v9Var = taVar.f15495w1;
+        v9 v9Var = taVar.f15492w1;
         if (v9Var != null && v9Var.B0 != null) {
-            ja jaVar = taVar.f15436d1;
-            if (!jaVar.f15062p0) {
+            ja jaVar = taVar.f15433d1;
+            if (!jaVar.f15059p0) {
                 float x10 = jaVar.getX() + f10;
-                float y10 = taVar.f15436d1.getY() + f11;
+                float y10 = taVar.f15433d1.getY() + f11;
                 float x11 = taVar.m0.getX() + x10;
                 float y11 = taVar.m0.getY() + y10;
-                float x12 = x11 - taVar.f15451i0.getX();
-                float y12 = y11 - taVar.f15451i0.getY();
-                for (int i7 = 0; i7 < taVar.f15495w1.B0.getChildCount(); i7++) {
-                    View childAt = taVar.f15495w1.B0.getChildAt(i7);
+                float x12 = x11 - taVar.f15448i0.getX();
+                float y12 = y11 - taVar.f15448i0.getY();
+                for (int i7 = 0; i7 < taVar.f15492w1.B0.getChildCount(); i7++) {
+                    View childAt = taVar.f15492w1.B0.getChildAt(i7);
                     if (childAt instanceof tg.j) {
                         yi0 selectionBounds = ((tg.j) childAt).getSelectionBounds();
                         RectF rectF = org.telegram.messenger.g0.P;
@@ -120,7 +120,7 @@ public final class ja extends s {
 
     @Override
     public final void n() {
-        bi.i3 i3Var = this.S1.f15487u0;
+        bi.i3 i3Var = this.S1.f15484u0;
         if (i3Var != null) {
             i3Var.invalidate();
         }
@@ -131,12 +131,12 @@ public final class ja extends s {
         boolean z11;
         d7 d7Var;
         ta taVar = this.S1;
-        p5 p5Var = taVar.f15433c1;
+        p5 p5Var = taVar.f15430c1;
         if (!taVar.O1 && !z10) {
             fi.p6 R1 = mp.u1(this.V).R1();
             int A = taVar.A();
             fi.j6 o4 = R1.o();
-            if (o4 == null || !o4.a(R1.f12385a, A) || ((d7Var = taVar.L1) != null && d7Var.f14404g)) {
+            if (o4 == null || !o4.a(R1.f12382a, A) || ((d7Var = taVar.L1) != null && d7Var.f14401g)) {
                 z11 = true;
                 p5Var.setShareEnabled(z11);
             }

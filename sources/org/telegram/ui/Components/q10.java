@@ -38,12 +38,12 @@ public final class q10 extends v4.o {
             return true;
         }
         if (i7 < arrayList.size()) {
-            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27119a;
+            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27117a;
         } else {
             groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
         }
         if (i10 < s10Var.f39443e.size()) {
-            groupCallParticipant2 = ((org.telegram.messenger.u3) s10Var.f39443e.get(i10)).f27119a;
+            groupCallParticipant2 = ((org.telegram.messenger.u3) s10Var.f39443e.get(i10)).f27117a;
         } else {
             groupCallParticipant2 = (TLRPC.GroupCallParticipant) s10Var.f39444f.get(size3);
         }

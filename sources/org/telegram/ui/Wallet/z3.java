@@ -73,15 +73,15 @@ public final class z3 implements ValueAnimator.AnimatorUpdateListener {
                         e7Var.f44115b.setTranslationY(view.getHeight() * interpolation);
                     }
                     if (e7Var.f44127p != null && !rectF2.isEmpty()) {
-                        org.telegram.ui.Cells.u0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
-                        org.telegram.ui.Cells.u0 u0Var = e7Var.f44127p;
-                        if (K8 != u0Var) {
-                            u0Var.J0.i(false);
+                        org.telegram.ui.Cells.v0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
+                        org.telegram.ui.Cells.v0 v0Var = e7Var.f44127p;
+                        if (K8 != v0Var) {
+                            v0Var.J0.i(false);
                             e7Var.f44127p = K8;
                         }
-                        org.telegram.ui.Cells.u0 u0Var2 = e7Var.f44127p;
-                        if (u0Var2 != null && !e7Var.f44130s) {
-                            u0Var2.J0.i(true);
+                        org.telegram.ui.Cells.v0 v0Var2 = e7Var.f44127p;
+                        if (v0Var2 != null && !e7Var.f44130s) {
+                            v0Var2.J0.i(true);
                             l4 l4Var = e7Var.f44127p.J0.f44537m;
                             if (l4Var != null && l4Var.isAttachedToWindow()) {
                                 rectF2.set(e7Var.c(l4Var));

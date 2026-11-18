@@ -5,13 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 public final class f1 {
-    public Canvas f54726a;
-    public int f54727b;
-    public Object f54728c;
+    public Canvas f54727a;
+    public int f54728b;
+    public Object f54729c;
     public int d;
-    public int f54729e;
-    public Bitmap f54730f;
-    public final Matrix f54731g = new Matrix();
+    public int f54730e;
+    public Bitmap f54731f;
+    public final Matrix f54732g = new Matrix();
     public float h;
-    public r7 f54732i;
+    public r7 f54733i;
 }

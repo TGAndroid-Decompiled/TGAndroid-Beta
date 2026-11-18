@@ -2,14 +2,14 @@ package ai;
 
 import android.view.View;
 public final class v2 implements View.OnClickListener {
-    public final int f1566a;
-    public final Object f1567b;
-    public final Object f1568c;
+    public final int f1567a;
+    public final Object f1568b;
+    public final Object f1569c;
 
     public v2(int i7, Object obj, Object obj2) {
-        this.f1566a = i7;
-        this.f1567b = obj;
-        this.f1568c = obj2;
+        this.f1567a = i7;
+        this.f1568b = obj;
+        this.f1569c = obj2;
     }
 
     @Override

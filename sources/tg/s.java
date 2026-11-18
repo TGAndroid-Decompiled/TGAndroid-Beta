@@ -9,21 +9,21 @@ import org.telegram.messenger.gd;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
 public final class s implements Runnable {
-    public final int f58115a;
-    public final g0 f58116b;
-    public final j f58117c;
+    public final int f58116a;
+    public final g0 f58117b;
+    public final j f58118c;
 
     public s(g0 g0Var, j jVar, int i7) {
-        this.f58115a = i7;
-        this.f58116b = g0Var;
-        this.f58117c = jVar;
+        this.f58116a = i7;
+        this.f58117b = g0Var;
+        this.f58118c = jVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f58115a;
-        final j jVar = this.f58117c;
-        final g0 g0Var = this.f58116b;
+        int i7 = this.f58116a;
+        final j jVar = this.f58118c;
+        final g0 g0Var = this.f58117b;
         switch (i7) {
             case 0:
                 g0Var.q0(jVar);

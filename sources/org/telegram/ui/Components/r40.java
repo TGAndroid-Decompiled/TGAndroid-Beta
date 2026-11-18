@@ -154,7 +154,7 @@ public final class r40 implements Runnable {
             AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, i11);
             r40Var.f39037z0 = audioRecord;
             audioRecord.startRecording();
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.a8.b("InstantCamera initied audio record with channels " + r40Var.f39037z0.getChannelCount() + " sample rate = " + r40Var.f39037z0.getSampleRate() + " bufferSize = " + i11);
             }
             r40Var.E0 = false;
@@ -186,7 +186,7 @@ public final class r40 implements Runnable {
             if (!z10) {
                 org.telegram.messenger.ne neVar = r40Var.f39002a;
                 ThreadLocal threadLocal = org.telegram.messenger.ec.I;
-                if (!TextUtils.isEmpty(org.telegram.messenger.bz.f23168h0) && neVar.getAbsolutePath().startsWith(org.telegram.messenger.bz.f23168h0)) {
+                if (!TextUtils.isEmpty(org.telegram.messenger.bz.f23165h0) && neVar.getAbsolutePath().startsWith(org.telegram.messenger.bz.f23165h0)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -236,7 +236,7 @@ public final class r40 implements Runnable {
                             r40Var.E = eglCreateWindowSurface;
                             if (eglCreateWindowSurface != null) {
                                 if (!EGL14.eglMakeCurrent(r40Var.f39026s, eglCreateWindowSurface, eglCreateWindowSurface, r40Var.f39031w)) {
-                                    if (org.telegram.messenger.s2.f26723a) {
+                                    if (org.telegram.messenger.s2.f26721a) {
                                         org.telegram.messenger.a8.d("eglMakeCurrent failed " + GLUtils.getEGLErrorString(EGL14.eglGetError()));
                                     }
                                     throw new RuntimeException("eglMakeCurrent failed");
@@ -249,7 +249,7 @@ public final class r40 implements Runnable {
                                 }
                                 r40Var.f39036y0 = new a40(r40Var.d, r40Var.f39009e);
                                 Size size = r40Var.I0.f42788n0[0];
-                                if (org.telegram.messenger.bz.o() != 0 && z40.m() && (size == null || Math.max(size.getHeight(), size.getWidth()) * 0.7f >= org.telegram.messenger.mp.u1(z40Var.f42770e).f25815y3)) {
+                                if (org.telegram.messenger.bz.o() != 0 && z40.m() && (size == null || Math.max(size.getHeight(), size.getWidth()) * 0.7f >= org.telegram.messenger.mp.u1(z40Var.f42770e).f25813y3)) {
                                     str = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform vec2 resolution;\nuniform vec2 preview;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 c_textureSize = preview;\n   vec2 c_onePixel = (1.0 / c_textureSize);\n   vec2 uv = vTextureCoord;\n   vec2 pixel = uv * c_textureSize + 0.5;\n   vec2 frac = fract(pixel);\n   pixel = (floor(pixel) / c_textureSize) - vec2(c_onePixel);\n   vec4 tl = texture2D(sTexture, pixel + vec2(0.0         , 0.0));\n   vec4 tr = texture2D(sTexture, pixel + vec2(c_onePixel.x, 0.0));\n   vec4 bl = texture2D(sTexture, pixel + vec2(0.0         , c_onePixel.y));\n   vec4 br = texture2D(sTexture, pixel + vec2(c_onePixel.x, c_onePixel.y));\n   vec4 x1 = mix(tl, tr, frac.x);\n   vec4 x2 = mix(bl, br, frac.x);\n   gl_FragColor = mix(x1, x2, frac.y) * alpha;\n}\n";
                                 } else {
                                     str = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   gl_FragColor = vec4(textColor.rgb * alpha, alpha);\n}\n";
@@ -429,12 +429,12 @@ public final class r40 implements Runnable {
     }
 
     public static void g(boolean z10) {
-        AudioManager audioManager = (AudioManager) org.telegram.messenger.t0.f26915b.getSystemService("audio");
-        if (org.telegram.messenger.bz.f23204u0 && !c8.na.d("android.permission.BLUETOOTH_CONNECT")) {
-            org.telegram.messenger.bz.f23204u0 = false;
+        AudioManager audioManager = (AudioManager) org.telegram.messenger.t0.f26913b.getSystemService("audio");
+        if (org.telegram.messenger.bz.f23201u0 && !c8.na.d("android.permission.BLUETOOTH_CONNECT")) {
+            org.telegram.messenger.bz.f23201u0 = false;
             org.telegram.messenger.bz.y();
         }
-        if ((audioManager.isBluetoothScoAvailableOffCall() && org.telegram.messenger.bz.f23204u0) || !z10) {
+        if ((audioManager.isBluetoothScoAvailableOffCall() && org.telegram.messenger.bz.f23201u0) || !z10) {
             BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
             if (defaultAdapter != null) {
                 try {
@@ -670,7 +670,7 @@ public final class r40 implements Runnable {
                     int i7 = this.f39032w0 + 1;
                     this.f39032w0 = i7;
                     if (i7 > 1) {
-                        if (org.telegram.messenger.s2.f26723a) {
+                        if (org.telegram.messenger.s2.f26721a) {
                             org.telegram.messenger.a8.b("InstantCamera fix timestamp enabled");
                         }
                     } else {
@@ -757,7 +757,7 @@ public final class r40 implements Runnable {
         Looper.prepare();
         synchronized (this.V) {
             g.c cVar = new g.c(1);
-            cVar.f12964b = new WeakReference(this);
+            cVar.f12961b = new WeakReference(this);
             this.U = cVar;
             this.W = true;
             this.V.notify();

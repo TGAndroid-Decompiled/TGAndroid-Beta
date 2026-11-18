@@ -24,11 +24,11 @@ public final class d3 extends org.telegram.ui.ActionBar.x2 {
             arrayList.addAll(asList);
         }
         a3 a3Var = new a3(this, context);
-        this.f30192b = a3Var;
+        this.f30190b = a3Var;
         hi.i1 i1Var = new hi.i1(8, context, this);
         this.f44029m1 = i1Var;
-        int i7 = this.f30227u0;
-        i1Var.setPadding(i7, 0, i7, org.telegram.messenger.g0.f24116n);
+        int i7 = this.f30225u0;
+        i1Var.setPadding(i7, 0, i7, org.telegram.messenger.g0.f24113n);
         a3Var.addView(i1Var, c8.ma.e(-1, -1, 119));
     }
 
@@ -61,7 +61,7 @@ public final class d3 extends org.telegram.ui.ActionBar.x2 {
         this.f44032q1 = Integer.valueOf(i7);
         v0(i7);
         P(i7);
-        ((a3) this.f30192b).invalidate();
+        ((a3) this.f30190b).invalidate();
     }
 
     public final void L0(LinearLayout linearLayout) {
@@ -71,15 +71,15 @@ public final class d3 extends org.telegram.ui.ActionBar.x2 {
             this.f44031p1 = frameLayout2;
             frameLayout2.setClipChildren(false);
             this.f44031p1.setClipToPadding(false);
-            this.f30192b.addView(this.f44031p1, c8.ma.e(-1, -2, 80));
+            this.f30190b.addView(this.f44031p1, c8.ma.e(-1, -2, 80));
         } else {
             frameLayout.removeAllViews();
         }
         this.f44031p1.addView(linearLayout, c8.ma.e(-1, -2, 80));
         hi.i1 i1Var = this.f44029m1;
-        int i7 = this.f30227u0;
+        int i7 = this.f30225u0;
         i1Var.setPadding(i7, 0, i7, 0);
-        ((a3) this.f30192b).requestLayout();
+        ((a3) this.f30190b).requestLayout();
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ue;
 public final class h3 extends e3 {
-    public final int f14722l0 = 0;
+    public final int f14719l0 = 0;
     public final Object m0;
 
     public h3(int i7, Context context, fi.b bVar, float f10, String str) {
@@ -15,14 +15,14 @@ public final class h3 extends e3 {
 
     @Override
     public void a() {
-        switch (this.f14722l0) {
+        switch (this.f14719l0) {
             case 1:
                 ta taVar = (ta) this.m0;
-                taVar.N0.setTranslationY(taVar.f15464n.getMeasuredHeight() - taVar.N0.g());
-                c9 c9Var = taVar.f15479r2;
+                taVar.N0.setTranslationY(taVar.f15461n.getMeasuredHeight() - taVar.N0.g());
+                c9 c9Var = taVar.f15476r2;
                 if (c9Var != null) {
                     c9Var.run();
-                    taVar.f15479r2 = null;
+                    taVar.f15476r2 = null;
                     return;
                 }
                 return;
@@ -33,9 +33,9 @@ public final class h3 extends e3 {
 
     @Override
     public void c(boolean z10) {
-        switch (this.f14722l0) {
+        switch (this.f14719l0) {
             case 1:
-                if (((ta) this.m0).f15445g0 == 0 && z10) {
+                if (((ta) this.m0).f15442g0 == 0 && z10) {
                     org.telegram.messenger.g0.g3(new k(this, 18));
                     return;
                 }
@@ -47,7 +47,7 @@ public final class h3 extends e3 {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f14722l0) {
+        switch (this.f14719l0) {
             case 1:
                 if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
                     ta taVar = (ta) this.m0;
@@ -63,7 +63,7 @@ public final class h3 extends e3 {
 
     @Override
     public String getTitle() {
-        switch (this.f14722l0) {
+        switch (this.f14719l0) {
             case 0:
                 return (String) this.m0;
             default:
@@ -73,15 +73,15 @@ public final class h3 extends e3 {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f14722l0) {
+        switch (this.f14719l0) {
             case 1:
                 super.setTranslationY(f10);
                 ta taVar = (ta) this.m0;
-                if (taVar.f15461l2) {
-                    float i7 = Utilities.i(1.0f - (f10 / (taVar.f15464n.getMeasuredHeight() - taVar.N0.g())), 1.0f, 0.0f);
-                    taVar.f15476r.b(org.telegram.messenger.g0.L(-32.0f) * i7);
-                    taVar.f15476r.setAlpha(1.0f - (0.6f * i7));
-                    taVar.f15454j0.setAlpha(1.0f - i7);
+                if (taVar.f15458l2) {
+                    float i7 = Utilities.i(1.0f - (f10 / (taVar.f15461n.getMeasuredHeight() - taVar.N0.g())), 1.0f, 0.0f);
+                    taVar.f15473r.b(org.telegram.messenger.g0.L(-32.0f) * i7);
+                    taVar.f15473r.setAlpha(1.0f - (0.6f * i7));
+                    taVar.f15451j0.setAlpha(1.0f - i7);
                     return;
                 }
                 return;

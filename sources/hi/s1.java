@@ -15,26 +15,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.mc;
 public final class s1 extends bk0 {
-    public String f15370e;
-    public TLRPC.User f15371f;
+    public String f15367e;
+    public TLRPC.User f15368f;
     public String h;
-    public boolean f15372n;
-    public final u1 f15374s;
-    public final k f15369c = new k(this, 5);
+    public boolean f15369n;
+    public final u1 f15371s;
+    public final k f15366c = new k(this, 5);
     public int d = -1;
-    public boolean f15373r = false;
+    public boolean f15370r = false;
 
     public s1(u1 u1Var) {
-        this.f15374s = u1Var;
+        this.f15371s = u1Var;
     }
 
     public static void E(s1 s1Var, boolean z10) {
-        u1 u1Var = s1Var.f15374s;
+        u1 u1Var = s1Var.f15371s;
         ArrayList arrayList = u1Var.h;
         arrayList.clear();
-        j2 j2Var = u1Var.f15529r;
+        j2 j2Var = u1Var.f15526r;
         int i7 = j2.C1;
-        arrayList.addAll(new ArrayList(ri.d0(j2Var.f30189a).f26621j0));
+        arrayList.addAll(new ArrayList(ri.d0(j2Var.f30187a).f26619j0));
         if (z10) {
             s1Var.f();
         }
@@ -42,7 +42,7 @@ public final class s1 extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 2) {
+        if (f1Var.f59127f == 2) {
             return true;
         }
         return false;
@@ -50,19 +50,19 @@ public final class s1 extends bk0 {
 
     public final Object F(int i7) {
         int i10 = i7 - 1;
-        u1 u1Var = this.f15374s;
-        if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15370e)) {
+        u1 u1Var = this.f15371s;
+        if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15367e)) {
             if (i10 >= 0 && i10 < u1Var.h.size()) {
                 return u1Var.h.get(i10);
             }
             i10 -= u1Var.h.size();
         }
-        if (!u1Var.f15528n.isEmpty()) {
-            if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15370e)) {
+        if (!u1Var.f15525n.isEmpty()) {
+            if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15367e)) {
                 i10--;
             }
-            if (i10 >= 0 && i10 < u1Var.f15528n.size()) {
-                return u1Var.f15528n.get(i10);
+            if (i10 >= 0 && i10 < u1Var.f15525n.size()) {
+                return u1Var.f15525n.get(i10);
             }
             return null;
         }
@@ -70,35 +70,35 @@ public final class s1 extends bk0 {
     }
 
     public final void G() {
-        u1 u1Var = this.f15374s;
-        j2 j2Var = u1Var.f15529r;
-        if (!this.f15373r) {
-            this.f15373r = true;
+        u1 u1Var = this.f15371s;
+        j2 j2Var = u1Var.f15526r;
+        if (!this.f15370r) {
+            this.f15370r = true;
             u1Var.d.c(true);
             if (this.d >= 0) {
                 int i7 = j2.C1;
-                ConnectionsManager.getInstance(j2Var.f30189a).cancelRequest(this.d, true);
+                ConnectionsManager.getInstance(j2Var.f30187a).cancelRequest(this.d, true);
                 this.d = -1;
             }
-            if (this.f15371f == null) {
+            if (this.f15368f == null) {
                 int i10 = j2.C1;
-                TLObject h22 = mp.u1(j2Var.f30189a).h2(mp.u1(j2Var.f30189a).N3);
+                TLObject h22 = mp.u1(j2Var.f30187a).h2(mp.u1(j2Var.f30187a).N3);
                 if (h22 instanceof TLRPC.User) {
-                    this.f15371f = (TLRPC.User) h22;
+                    this.f15368f = (TLRPC.User) h22;
                 }
             }
-            TLRPC.User user = this.f15371f;
-            if (user == null && !this.f15372n) {
+            TLRPC.User user = this.f15368f;
+            if (user == null && !this.f15369n) {
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 int i11 = j2.C1;
-                tL_contacts_resolveUsername.username = mp.u1(j2Var.f30189a).N3;
-                this.d = ConnectionsManager.getInstance(j2Var.f30189a).sendRequest(tL_contacts_resolveUsername, new ai.e1(this, 9));
+                tL_contacts_resolveUsername.username = mp.u1(j2Var.f30187a).N3;
+                this.d = ConnectionsManager.getInstance(j2Var.f30187a).sendRequest(tL_contacts_resolveUsername, new ai.e1(this, 9));
             } else if (user == null) {
             } else {
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
                 int i12 = j2.C1;
-                tL_messages_getInlineBotResults.bot = mp.u1(j2Var.f30189a).s1(this.f15371f);
-                String str = this.f15370e;
+                tL_messages_getInlineBotResults.bot = mp.u1(j2Var.f30187a).s1(this.f15368f);
+                String str = this.f15367e;
                 String str2 = "";
                 if (str == null) {
                     str = "";
@@ -112,30 +112,30 @@ public final class s1 extends bk0 {
                 tL_messages_getInlineBotResults.offset = str2;
                 tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
                 String str4 = "gif_search_" + tL_messages_getInlineBotResults.query + "_" + tL_messages_getInlineBotResults.offset;
-                tr.a0(j2Var.f30189a).M(str4, new di.j3(this, isEmpty, tL_messages_getInlineBotResults, str4));
+                tr.a0(j2Var.f30187a).M(str4, new di.j3(this, isEmpty, tL_messages_getInlineBotResults, str4));
             }
         }
     }
 
     public final void H(String str) {
-        u1 u1Var = this.f15374s;
+        u1 u1Var = this.f15371s;
         e2 e2Var = u1Var.d;
-        if (!TextUtils.equals(this.f15370e, str)) {
+        if (!TextUtils.equals(this.f15367e, str)) {
             if (this.d != -1) {
-                j2 j2Var = u1Var.f15529r;
+                j2 j2Var = u1Var.f15526r;
                 int i7 = j2.C1;
-                ConnectionsManager.getInstance(j2Var.f30189a).cancelRequest(this.d, true);
+                ConnectionsManager.getInstance(j2Var.f30187a).cancelRequest(this.d, true);
                 this.d = -1;
             }
-            this.f15373r = false;
+            this.f15370r = false;
             this.h = "";
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f15370e);
-        this.f15370e = str;
-        k kVar = this.f15369c;
+        boolean isEmpty = TextUtils.isEmpty(this.f15367e);
+        this.f15367e = str;
+        k kVar = this.f15366c;
         org.telegram.messenger.g0.r(kVar);
         if (TextUtils.isEmpty(str)) {
-            u1Var.f15528n.clear();
+            u1Var.f15525n.clear();
             e2Var.c(false);
             f();
             return;
@@ -150,19 +150,19 @@ public final class s1 extends bk0 {
     @Override
     public final int b() {
         int i7;
-        u1 u1Var = this.f15374s;
+        u1 u1Var = this.f15371s;
         int i10 = 0;
-        if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15370e)) {
+        if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15367e)) {
             i7 = u1Var.h.size();
         } else {
             i7 = 0;
         }
         int i11 = i7 + 1;
-        if (!u1Var.f15528n.isEmpty()) {
-            if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15370e)) {
+        if (!u1Var.f15525n.isEmpty()) {
+            if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15367e)) {
                 i10 = 1;
             }
-            i10 += u1Var.f15528n.size();
+            i10 += u1Var.f15525n.size();
         }
         return i11 + i10;
     }
@@ -173,11 +173,11 @@ public final class s1 extends bk0 {
             return 0;
         }
         int i10 = i7 - 1;
-        u1 u1Var = this.f15374s;
-        if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15370e)) {
+        u1 u1Var = this.f15371s;
+        if (!u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15367e)) {
             i10 -= u1Var.h.size();
         }
-        if (!u1Var.f15528n.isEmpty() && !u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15370e) && i10 == 0) {
+        if (!u1Var.f15525n.isEmpty() && !u1Var.h.isEmpty() && TextUtils.isEmpty(this.f15367e) && i10 == 0) {
             return 1;
         }
         return 2;
@@ -185,53 +185,53 @@ public final class s1 extends bk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        int i10 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        int i10 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         if (i10 == 0) {
             view.setTag(34);
-            view.setLayoutParams(new v4.q0(-1, (int) this.f15374s.f15529r.f14801s1));
+            view.setLayoutParams(new v4.q0(-1, (int) this.f15371s.f15526r.f14798s1));
         } else if (i10 == 2) {
-            org.telegram.ui.Cells.h2 h2Var = (org.telegram.ui.Cells.h2) view;
+            org.telegram.ui.Cells.i2 i2Var = (org.telegram.ui.Cells.i2) view;
             Object F = F(i7);
             if (F instanceof TLRPC.Document) {
                 TLRPC.Document document = (TLRPC.Document) F;
-                h2Var.getClass();
-                h2Var.d(0, "gif" + document, document);
+                i2Var.getClass();
+                i2Var.d(0, "gif" + document, document);
             } else if (F instanceof TLRPC.BotInlineResult) {
-                h2Var.e((TLRPC.BotInlineResult) F, this.f15371f, true, false, false, true);
+                i2Var.e((TLRPC.BotInlineResult) F, this.f15368f, true, false, false, true);
             }
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.h2 h2Var;
-        u1 u1Var = this.f15374s;
+        org.telegram.ui.Cells.i2 i2Var;
+        u1 u1Var = this.f15371s;
         if (i7 == 0) {
-            h2Var = new View(u1Var.getContext());
+            i2Var = new View(u1Var.getContext());
         } else if (i7 == 1) {
             Context context = u1Var.getContext();
-            j2 j2Var = u1Var.f15529r;
+            j2 j2Var = u1Var.f15526r;
             int i10 = j2.C1;
-            ?? j8Var = new org.telegram.ui.Cells.j8(context, false, false, j2Var.J0, false);
-            j8Var.a(0, gd.M0(2131750823, null));
+            ?? k8Var = new org.telegram.ui.Cells.k8(context, false, false, j2Var.J0, false);
+            k8Var.a(0, gd.M0(2131750823, null));
             v4.q0 q0Var = new v4.q0(-1, -2);
             ((ViewGroup.MarginLayoutParams) q0Var).topMargin = org.telegram.messenger.g0.L(2.5f);
             ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin = org.telegram.messenger.g0.L(5.5f);
-            j8Var.setLayoutParams(q0Var);
-            h2Var = j8Var;
+            k8Var.setLayoutParams(q0Var);
+            i2Var = k8Var;
         } else {
-            org.telegram.ui.Cells.h2 h2Var2 = new org.telegram.ui.Cells.h2(u1Var.getContext());
-            h2Var2.getPhotoImage().E0(7);
-            if (h2Var2.f30738e0 == null) {
-                mc mcVar = new mc(h2Var2, 1.0f, 3.0f);
+            org.telegram.ui.Cells.i2 i2Var2 = new org.telegram.ui.Cells.i2(u1Var.getContext());
+            i2Var2.getPhotoImage().E0(7);
+            if (i2Var2.f30786e0 == null) {
+                mc mcVar = new mc(i2Var2, 1.0f, 3.0f);
                 mcVar.f37431e = 120L;
-                h2Var2.f30738e0 = mcVar;
+                i2Var2.f30786e0 = mcVar;
             }
-            h2Var2.setIsKeyboard(true);
-            h2Var2.setCanPreviewGif(true);
-            h2Var = h2Var2;
+            i2Var2.setIsKeyboard(true);
+            i2Var2.setCanPreviewGif(true);
+            i2Var = i2Var2;
         }
-        return new v4.f1(h2Var);
+        return new v4.f1(i2Var);
     }
 }

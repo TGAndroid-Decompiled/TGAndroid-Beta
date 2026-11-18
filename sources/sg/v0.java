@@ -19,13 +19,13 @@ public final class v0 {
         GLES20.glCompileShader(glCreateShader);
         int[] iArr = new int[1];
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-        if (iArr[0] == 0 && s2.f26723a) {
+        if (iArr[0] == 0 && s2.f26721a) {
             a8.d(GLES20.glGetShaderInfoLog(glCreateShader));
         }
         int i10 = iArr[0];
         ?? obj = new Object();
-        obj.f10687a = glCreateShader;
-        obj.f10688b = i10;
+        obj.f10684a = glCreateShader;
+        obj.f10685b = i10;
         return obj;
     }
 

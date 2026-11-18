@@ -7,21 +7,21 @@ import java.util.WeakHashMap;
 import r0.i0;
 import r0.n0;
 public final class j extends n0 {
-    public final int f12995a;
-    public final Object f12996b;
+    public final int f12992a;
+    public final Object f12993b;
 
     public j(Object obj, int i7) {
-        this.f12995a = i7;
-        this.f12996b = obj;
+        this.f12992a = i7;
+        this.f12993b = obj;
     }
 
     @Override
     public void b() {
-        int i7 = this.f12995a;
-        Object obj = this.f12996b;
+        int i7 = this.f12992a;
+        Object obj = this.f12993b;
         switch (i7) {
             case 0:
-                ((h) obj).f12993b.E.setVisibility(0);
+                ((h) obj).f12990b.E.setVisibility(0);
                 return;
             case 1:
                 s sVar = (s) obj;
@@ -39,11 +39,11 @@ public final class j extends n0 {
 
     @Override
     public final void c() {
-        int i7 = this.f12995a;
-        Object obj = this.f12996b;
+        int i7 = this.f12992a;
+        Object obj = this.f12993b;
         switch (i7) {
             case 0:
-                s sVar = ((h) obj).f12993b;
+                s sVar = ((h) obj).f12990b;
                 sVar.E.setAlpha(1.0f);
                 sVar.H.d(null);
                 sVar.H = null;

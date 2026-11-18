@@ -53,51 +53,51 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public TextureView X;
     public final int Y;
     public h2.y Z;
-    public e2.e f19315a0;
-    public final a3.y f19316b;
-    public float f19317b0;
-    public final e2.y0 f19318c;
-    public float f19319c0;
+    public e2.e f19312a0;
+    public final a3.y f19313b;
+    public float f19314b0;
+    public final e2.y0 f19315c;
+    public float f19316c0;
     public final h2.i d;
-    public boolean f19320d0;
-    public final Context f19321e;
-    public g2.c f19322e0;
-    public final f0 f19323f;
-    public final boolean f19324f0;
-    public final b[] f19325g;
-    public boolean f19326g0;
+    public boolean f19317d0;
+    public final Context f19318e;
+    public g2.c f19319e0;
+    public final f0 f19320f;
+    public final boolean f19321f0;
+    public final b[] f19322g;
+    public boolean f19323g0;
     public final b[] h;
-    public final int f19327h0;
-    public final a3.x f19328i;
-    public boolean f19329i0;
-    public final h2.i0 f19330j;
-    public final e2.o f19331j0;
-    public final u f19332k;
-    public x1 f19333k0;
-    public final o0 f19334l;
-    public final long f19335l0;
-    public final h2.r f19336m;
+    public final int f19324h0;
+    public final a3.x f19325i;
+    public boolean f19326i0;
+    public final h2.i0 f19327j;
+    public final e2.o f19328j0;
+    public final u f19329k;
+    public x1 f19330k0;
+    public final o0 f19331l;
+    public final long f19332l0;
+    public final h2.r f19333m;
     public final long m0;
-    public final CopyOnWriteArraySet f19337n;
-    public final long f19338n0;
-    public final e2.i1 f19339o;
-    public e2.o0 f19340o0;
-    public final ArrayList f19341p;
-    public g1 f19342p0;
-    public final boolean f19343q;
-    public int f19344q0;
-    public final x2.f0 f19345r;
-    public long f19346r0;
-    public final m2.d f19347s;
-    public y51 f19348s0;
-    public final Looper f19349t;
-    public final ArrayList f19350t0;
-    public final b3.d f19351u;
+    public final CopyOnWriteArraySet f19334n;
+    public final long f19335n0;
+    public final e2.i1 f19336o;
+    public e2.o0 f19337o0;
+    public final ArrayList f19338p;
+    public g1 f19339p0;
+    public final boolean f19340q;
+    public int f19341q0;
+    public final x2.f0 f19342r;
+    public long f19343r0;
+    public final m2.d f19344s;
+    public y51 f19345s0;
+    public final Looper f19346t;
+    public final ArrayList f19347t0;
+    public final b3.d f19348u;
     public final h2.g0 v;
-    public final z f19352w;
-    public final a0 f19353x;
-    public final ab.q f19354y;
-    public final h2.o0 f19355z;
+    public final z f19349w;
+    public final a0 f19350x;
+    public final ab.q f19351y;
+    public final h2.o0 f19352z;
 
     static {
         e2.m0.a("media3.exoplayer");
@@ -110,12 +110,12 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public static long m1(g1 g1Var) {
         e2.k1 k1Var = new e2.k1();
         e2.i1 i1Var = new e2.i1();
-        g1Var.f19372a.g(g1Var.f19373b.f60087a, i1Var);
-        long j3 = g1Var.f19374c;
+        g1Var.f19369a.g(g1Var.f19370b.f60088a, i1Var);
+        long j3 = g1Var.f19371c;
         if (j3 == -9223372036854775807L) {
-            return g1Var.f19372a.m(i1Var.f10436c, k1Var, 0L).f10487l;
+            return g1Var.f19369a.m(i1Var.f10433c, k1Var, 0L).f10484l;
         }
-        return i1Var.f10437e + j3;
+        return i1Var.f10434e + j3;
     }
 
     public static g1 n1(g1 g1Var, int i7) {
@@ -128,41 +128,41 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
 
     @Override
     public final Looper A0() {
-        return this.f19349t;
+        return this.f19346t;
     }
 
     public final void A1(l lVar) {
-        g1 g1Var = this.f19342p0;
-        g1 c10 = g1Var.c(g1Var.f19373b);
-        c10.f19386q = c10.f19388s;
-        c10.f19387r = 0L;
+        g1 g1Var = this.f19339p0;
+        g1 c10 = g1Var.c(g1Var.f19370b);
+        c10.f19383q = c10.f19385s;
+        c10.f19384r = 0L;
         g1 n1 = n1(c10, 1);
         if (lVar != null) {
             n1 = n1.f(lVar);
         }
         this.J++;
-        this.f19334l.f19505n.a(6).b();
+        this.f19331l.f19502n.a(6).b();
         D1(n1, 0, false, 5, -9223372036854775807L, -1, false);
     }
 
     @Override
     public final int B() {
         F1();
-        if (this.f19342p0.f19372a.p()) {
-            int i7 = this.f19344q0;
+        if (this.f19339p0.f19369a.p()) {
+            int i7 = this.f19341q0;
             if (i7 == -1) {
                 return 0;
             }
             return i7;
         }
-        g1 g1Var = this.f19342p0;
-        return g1Var.f19372a.b(g1Var.f19373b.f60087a);
+        g1 g1Var = this.f19339p0;
+        return g1Var.f19369a.b(g1Var.f19370b.f60088a);
     }
 
     @Override
     public final void B0() {
         F1();
-        if (this.f19317b0 != 0.0f) {
+        if (this.f19314b0 != 0.0f) {
             T(0.0f);
         }
     }
@@ -175,8 +175,8 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         boolean z14;
         boolean z15;
         e2.y0 y0Var = this.P;
-        String str = h2.l0.f13786a;
-        f0 f0Var = this.f19323f;
+        String str = h2.l0.f13783a;
+        f0 f0Var = this.f19320f;
         boolean p10 = f0Var.p();
         boolean e02 = f0Var.e0();
         boolean T0 = f0Var.T0();
@@ -185,9 +185,9 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         boolean v02 = f0Var.v0();
         boolean p11 = f0Var.y0().p();
         ?? obj = new Object();
-        obj.f10799a = new ca.i();
-        ca.i iVar = (ca.i) obj.f10799a;
-        iVar.c(this.f19318c.f10810a);
+        obj.f10796a = new ca.i();
+        ca.i iVar = (ca.i) obj.f10796a;
+        iVar.c(this.f19315c.f10807a);
         boolean z16 = !p10;
         obj.a(4, z16);
         boolean z17 = false;
@@ -235,14 +235,14 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         e2.y0 y0Var2 = new e2.y0(iVar.d());
         this.P = y0Var2;
         if (!y0Var2.equals(y0Var)) {
-            this.f19336m.c(13, new u(this, 2));
+            this.f19333m.c(13, new u(this, 2));
         }
     }
 
     @Override
     public final x1 C() {
         F1();
-        return this.f19333k0;
+        return this.f19330k0;
     }
 
     @Override
@@ -252,25 +252,25 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
 
     public final void C1(int i7, boolean z10) {
         int i10;
-        g1 g1Var = this.f19342p0;
-        int i11 = g1Var.f19383n;
+        g1 g1Var = this.f19339p0;
+        int i11 = g1Var.f19380n;
         if (i11 == 1 && !z10) {
             i10 = 1;
         } else {
             i10 = 0;
         }
-        if (g1Var.f19381l == z10 && i11 == i10 && g1Var.f19382m == i7) {
+        if (g1Var.f19378l == z10 && i11 == i10 && g1Var.f19379m == i7) {
             return;
         }
         this.J++;
-        if (g1Var.f19385p) {
+        if (g1Var.f19382p) {
             g1Var = g1Var.a();
         }
         g1 e10 = g1Var.e(i7, i10, z10);
-        h2.i0 i0Var = this.f19334l.f19505n;
+        h2.i0 i0Var = this.f19331l.f19502n;
         i0Var.getClass();
         h2.h0 c10 = h2.i0.c();
-        c10.f13767a = i0Var.f13771a.obtainMessage(1, z10 ? 1 : 0, i7 | (i10 << 4));
+        c10.f13764a = i0Var.f13768a.obtainMessage(1, z10 ? 1 : 0, i7 | (i10 << 4));
         c10.b();
         D1(e10, 0, false, 5, -9223372036854775807L, -1, false);
     }
@@ -278,21 +278,21 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final void D(e2.e eVar, boolean z10) {
         F1();
-        if (this.f19329i0) {
+        if (this.f19326i0) {
             return;
         }
-        boolean equals = Objects.equals(this.f19315a0, eVar);
-        h2.r rVar = this.f19336m;
+        boolean equals = Objects.equals(this.f19312a0, eVar);
+        h2.r rVar = this.f19333m;
         if (!equals) {
-            this.f19315a0 = eVar;
+            this.f19312a0 = eVar;
             t1(1, 3, eVar);
             rVar.c(20, new ki.e(eVar, 4));
         }
-        e2.e eVar2 = this.f19315a0;
-        h2.i0 i0Var = this.f19334l.f19505n;
+        e2.e eVar2 = this.f19312a0;
+        h2.i0 i0Var = this.f19331l.f19502n;
         i0Var.getClass();
         h2.h0 c10 = h2.i0.c();
-        c10.f13767a = i0Var.f13771a.obtainMessage(31, z10 ? 1 : 0, 0, eVar2);
+        c10.f13764a = i0Var.f13768a.obtainMessage(31, z10 ? 1 : 0, 0, eVar2);
         c10.b();
         rVar.b();
     }
@@ -326,20 +326,20 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         e2.l0 l0Var3;
         Object obj4;
         long j13;
-        g1 g1Var2 = this.f19342p0;
-        this.f19342p0 = g1Var;
-        boolean equals = g1Var2.f19372a.equals(g1Var.f19372a);
-        e2.k1 k1Var = (e2.k1) this.f6398a;
-        e2.i1 i1Var = this.f19339o;
-        e2.l1 l1Var = g1Var2.f19372a;
-        x2.g0 g0Var = g1Var2.f19373b;
-        e2.l1 l1Var2 = g1Var.f19372a;
-        x2.g0 g0Var2 = g1Var.f19373b;
+        g1 g1Var2 = this.f19339p0;
+        this.f19339p0 = g1Var;
+        boolean equals = g1Var2.f19369a.equals(g1Var.f19369a);
+        e2.k1 k1Var = (e2.k1) this.f6395a;
+        e2.i1 i1Var = this.f19336o;
+        e2.l1 l1Var = g1Var2.f19369a;
+        x2.g0 g0Var = g1Var2.f19370b;
+        e2.l1 l1Var2 = g1Var.f19369a;
+        x2.g0 g0Var2 = g1Var.f19370b;
         if (l1Var2.p() && l1Var.p()) {
             pair = new Pair(Boolean.FALSE, -1);
         } else if (l1Var2.p() != l1Var.p()) {
             pair = new Pair(Boolean.TRUE, 3);
-        } else if (!l1Var.m(l1Var.g(g0Var.f60087a, i1Var).f10436c, k1Var, 0L).f10478a.equals(l1Var2.m(l1Var2.g(g0Var2.f60087a, i1Var).f10436c, k1Var, 0L).f10478a)) {
+        } else if (!l1Var.m(l1Var.g(g0Var.f60088a, i1Var).f10433c, k1Var, 0L).f10475a.equals(l1Var2.m(l1Var2.g(g0Var2.f60088a, i1Var).f10433c, k1Var, 0L).f10475a)) {
             if (z10 && i10 == 0) {
                 i12 = 1;
             } else if (z10 && i10 == 1) {
@@ -360,40 +360,40 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         boolean booleanValue = ((Boolean) pair.first).booleanValue();
         int intValue = ((Integer) pair.second).intValue();
         if (booleanValue) {
-            if (!g1Var.f19372a.p()) {
-                l0Var = g1Var.f19372a.m(g1Var.f19372a.g(g1Var.f19373b.f60087a, this.f19339o).f10436c, (e2.k1) this.f6398a, 0L).f10480c;
+            if (!g1Var.f19369a.p()) {
+                l0Var = g1Var.f19369a.m(g1Var.f19369a.g(g1Var.f19370b.f60088a, this.f19336o).f10433c, (e2.k1) this.f6395a, 0L).f10477c;
             } else {
                 l0Var = null;
             }
-            this.f19340o0 = e2.o0.L;
+            this.f19337o0 = e2.o0.L;
         } else {
             l0Var = null;
         }
-        if (booleanValue || !g1Var2.f19379j.equals(g1Var.f19379j)) {
-            e2.n0 a10 = this.f19340o0.a();
-            List list = g1Var.f19379j;
+        if (booleanValue || !g1Var2.f19376j.equals(g1Var.f19376j)) {
+            e2.n0 a10 = this.f19337o0.a();
+            List list = g1Var.f19376j;
             for (int i15 = 0; i15 < list.size(); i15++) {
                 e2.q0 q0Var = (e2.q0) list.get(i15);
                 int i16 = 0;
                 while (true) {
-                    e2.p0[] p0VarArr = q0Var.f10638a;
+                    e2.p0[] p0VarArr = q0Var.f10635a;
                     if (i16 < p0VarArr.length) {
                         p0VarArr[i16].b(a10);
                         i16++;
                     }
                 }
             }
-            this.f19340o0 = new e2.o0(a10);
+            this.f19337o0 = new e2.o0(a10);
         }
         e2.o0 f12 = f1();
         boolean equals2 = f12.equals(this.Q);
         this.Q = f12;
-        if (g1Var2.f19381l != g1Var.f19381l) {
+        if (g1Var2.f19378l != g1Var.f19378l) {
             z12 = true;
         } else {
             z12 = false;
         }
-        if (g1Var2.f19375e != g1Var.f19375e) {
+        if (g1Var2.f19372e != g1Var.f19372e) {
             z13 = true;
         } else {
             z13 = false;
@@ -401,26 +401,26 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         if (z13 || z12) {
             E1();
         }
-        if (g1Var2.f19377g != g1Var.f19377g) {
+        if (g1Var2.f19374g != g1Var.f19374g) {
             z14 = true;
         } else {
             z14 = false;
         }
         if (!equals) {
-            this.f19336m.c(0, new s1(g1Var, i7, 3));
+            this.f19333m.c(0, new s1(g1Var, i7, 3));
         }
         if (z10) {
             e2.i1 i1Var2 = new e2.i1();
-            if (!g1Var2.f19372a.p()) {
-                Object obj5 = g1Var2.f19373b.f60087a;
-                g1Var2.f19372a.g(obj5, i1Var2);
-                int i17 = i1Var2.f10436c;
-                int b10 = g1Var2.f19372a.b(obj5);
+            if (!g1Var2.f19369a.p()) {
+                Object obj5 = g1Var2.f19370b.f60088a;
+                g1Var2.f19369a.g(obj5, i1Var2);
+                int i17 = i1Var2.f10433c;
+                int b10 = g1Var2.f19369a.b(obj5);
                 z15 = booleanValue;
                 z16 = equals2;
                 z17 = z13;
-                obj = g1Var2.f19372a.m(i17, (e2.k1) this.f6398a, 0L).f10478a;
-                l0Var2 = ((e2.k1) this.f6398a).f10480c;
+                obj = g1Var2.f19369a.m(i17, (e2.k1) this.f6395a, 0L).f10475a;
+                l0Var2 = ((e2.k1) this.f6395a).f10477c;
                 obj2 = obj5;
                 i13 = i17;
                 i14 = b10;
@@ -435,42 +435,42 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
                 obj2 = null;
             }
             if (i10 == 0) {
-                if (g1Var2.f19373b.b()) {
-                    x2.g0 g0Var3 = g1Var2.f19373b;
-                    j12 = i1Var2.a(g0Var3.f60088b, g0Var3.f60089c);
+                if (g1Var2.f19370b.b()) {
+                    x2.g0 g0Var3 = g1Var2.f19370b;
+                    j12 = i1Var2.a(g0Var3.f60089b, g0Var3.f60090c);
                     m12 = m1(g1Var2);
-                } else if (g1Var2.f19373b.f60090e != -1) {
-                    j12 = m1(this.f19342p0);
+                } else if (g1Var2.f19370b.f60091e != -1) {
+                    j12 = m1(this.f19339p0);
                     m12 = j12;
                 } else {
-                    j10 = i1Var2.f10437e;
+                    j10 = i1Var2.f10434e;
                     j11 = i1Var2.d;
                     j12 = j10 + j11;
                     m12 = j12;
                 }
-            } else if (g1Var2.f19373b.b()) {
-                j12 = g1Var2.f19388s;
+            } else if (g1Var2.f19370b.b()) {
+                j12 = g1Var2.f19385s;
                 m12 = m1(g1Var2);
             } else {
-                j10 = i1Var2.f10437e;
-                j11 = g1Var2.f19388s;
+                j10 = i1Var2.f10434e;
+                j11 = g1Var2.f19385s;
                 j12 = j10 + j11;
                 m12 = j12;
             }
             long h02 = h2.l0.h0(j12);
             long h03 = h2.l0.h0(m12);
-            x2.g0 g0Var4 = g1Var2.f19373b;
-            e2.b1 b1Var = new e2.b1(obj, i13, l0Var2, obj2, i14, h02, h03, g0Var4.f60088b, g0Var4.f60089c);
-            e2.k1 k1Var2 = (e2.k1) this.f6398a;
+            x2.g0 g0Var4 = g1Var2.f19370b;
+            e2.b1 b1Var = new e2.b1(obj, i13, l0Var2, obj2, i14, h02, h03, g0Var4.f60089b, g0Var4.f60090c);
+            e2.k1 k1Var2 = (e2.k1) this.f6395a;
             int o02 = o0();
             int B = B();
-            if (!this.f19342p0.f19372a.p()) {
-                g1 g1Var3 = this.f19342p0;
-                Object obj6 = g1Var3.f19373b.f60087a;
-                g1Var3.f19372a.g(obj6, this.f19339o);
-                B = this.f19342p0.f19372a.b(obj6);
-                Object obj7 = this.f19342p0.f19372a.m(o02, k1Var2, 0L).f10478a;
-                l0Var3 = k1Var2.f10480c;
+            if (!this.f19339p0.f19369a.p()) {
+                g1 g1Var3 = this.f19339p0;
+                Object obj6 = g1Var3.f19370b.f60088a;
+                g1Var3.f19369a.g(obj6, this.f19336o);
+                B = this.f19339p0.f19369a.b(obj6);
+                Object obj7 = this.f19339p0.f19369a.m(o02, k1Var2, 0L).f10475a;
+                l0Var3 = k1Var2.f10477c;
                 obj4 = obj6;
                 obj3 = obj7;
             } else {
@@ -480,476 +480,476 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             }
             int i18 = B;
             long h04 = h2.l0.h0(j3);
-            if (this.f19342p0.f19373b.b()) {
-                j13 = h2.l0.h0(m1(this.f19342p0));
+            if (this.f19339p0.f19370b.b()) {
+                j13 = h2.l0.h0(m1(this.f19339p0));
             } else {
                 j13 = h04;
             }
-            x2.g0 g0Var5 = this.f19342p0.f19373b;
-            this.f19336m.c(11, new r1(i10, b1Var, new e2.b1(obj3, o02, l0Var3, obj4, i18, h04, j13, g0Var5.f60088b, g0Var5.f60089c), 4));
+            x2.g0 g0Var5 = this.f19339p0.f19370b;
+            this.f19333m.c(11, new r1(i10, b1Var, new e2.b1(obj3, o02, l0Var3, obj4, i18, h04, j13, g0Var5.f60089b, g0Var5.f60090c), 4));
         } else {
             z15 = booleanValue;
             z16 = equals2;
             z17 = z13;
         }
         if (z15) {
-            this.f19336m.c(1, new s1(l0Var, intValue, 4));
+            this.f19333m.c(1, new s1(l0Var, intValue, 4));
         }
-        if (g1Var2.f19376f != g1Var.f19376f) {
-            this.f19336m.c(10, new h2.o() {
+        if (g1Var2.f19373f != g1Var.f19373f) {
+            this.f19333m.c(10, new h2.o() {
                 @Override
                 public final void invoke(Object obj8) {
                     e2.a1 a1Var = (e2.a1) obj8;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
-            if (g1Var.f19376f != null) {
-                this.f19336m.c(10, new h2.o() {
+            if (g1Var.f19373f != null) {
+                this.f19333m.c(10, new h2.o() {
                     @Override
                     public final void invoke(Object obj8) {
                         e2.a1 a1Var = (e2.a1) obj8;
                         switch (r2) {
                             case 0:
                                 g1 g1Var4 = g1Var;
-                                a1Var.h(g1Var4.f19377g);
-                                a1Var.j(g1Var4.f19377g);
+                                a1Var.h(g1Var4.f19374g);
+                                a1Var.j(g1Var4.f19374g);
                                 return;
                             case 1:
                                 g1 g1Var5 = g1Var;
-                                a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                                a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                                 return;
                             case 2:
-                                a1Var.m(g1Var.f19375e);
+                                a1Var.m(g1Var.f19372e);
                                 return;
                             case 3:
                                 g1 g1Var6 = g1Var;
-                                a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                                a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                                 return;
                             case 4:
-                                a1Var.g(g1Var.f19383n);
+                                a1Var.g(g1Var.f19380n);
                                 return;
                             case 5:
                                 a1Var.P(g1Var.m());
                                 return;
                             case 6:
-                                a1Var.H(g1Var.f19384o);
+                                a1Var.H(g1Var.f19381o);
                                 return;
                             case 7:
-                                a1Var.q(g1Var.f19376f);
+                                a1Var.q(g1Var.f19373f);
                                 return;
                             case 8:
-                                a1Var.y(g1Var.f19376f);
+                                a1Var.y(g1Var.f19373f);
                                 return;
                             default:
-                                a1Var.u(g1Var.f19378i.d);
+                                a1Var.u(g1Var.f19375i.d);
                                 return;
                         }
                     }
                 });
             }
         }
-        a3.y yVar = g1Var2.f19378i;
-        a3.y yVar2 = g1Var.f19378i;
+        a3.y yVar = g1Var2.f19375i;
+        a3.y yVar2 = g1Var.f19375i;
         if (yVar != yVar2) {
-            a3.x xVar = this.f19328i;
+            a3.x xVar = this.f19325i;
             Object obj8 = yVar2.f146e;
             xVar.getClass();
             xVar.f142c = (a3.w) obj8;
-            this.f19336m.c(2, new h2.o() {
+            this.f19333m.c(2, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
         if (!z16) {
-            this.f19336m.c(14, new q(this.Q));
+            this.f19333m.c(14, new q(this.Q));
         }
         if (z14) {
-            this.f19336m.c(3, new h2.o() {
+            this.f19333m.c(3, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
         if (z17 || z12) {
-            this.f19336m.c(-1, new h2.o() {
+            this.f19333m.c(-1, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
         if (z17) {
-            this.f19336m.c(4, new h2.o() {
+            this.f19333m.c(4, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
-        if (z12 || g1Var2.f19382m != g1Var.f19382m) {
-            this.f19336m.c(5, new h2.o() {
+        if (z12 || g1Var2.f19379m != g1Var.f19379m) {
+            this.f19333m.c(5, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
-        if (g1Var2.f19383n != g1Var.f19383n) {
-            this.f19336m.c(6, new h2.o() {
+        if (g1Var2.f19380n != g1Var.f19380n) {
+            this.f19333m.c(6, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
         if (g1Var2.m() != g1Var.m()) {
-            this.f19336m.c(7, new h2.o() {
+            this.f19333m.c(7, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
-        if (!g1Var2.f19384o.equals(g1Var.f19384o)) {
-            this.f19336m.c(12, new h2.o() {
+        if (!g1Var2.f19381o.equals(g1Var.f19381o)) {
+            this.f19333m.c(12, new h2.o() {
                 @Override
                 public final void invoke(Object obj82) {
                     e2.a1 a1Var = (e2.a1) obj82;
                     switch (r2) {
                         case 0:
                             g1 g1Var4 = g1Var;
-                            a1Var.h(g1Var4.f19377g);
-                            a1Var.j(g1Var4.f19377g);
+                            a1Var.h(g1Var4.f19374g);
+                            a1Var.j(g1Var4.f19374g);
                             return;
                         case 1:
                             g1 g1Var5 = g1Var;
-                            a1Var.D(g1Var5.f19375e, g1Var5.f19381l);
+                            a1Var.D(g1Var5.f19372e, g1Var5.f19378l);
                             return;
                         case 2:
-                            a1Var.m(g1Var.f19375e);
+                            a1Var.m(g1Var.f19372e);
                             return;
                         case 3:
                             g1 g1Var6 = g1Var;
-                            a1Var.k(g1Var6.f19382m, g1Var6.f19381l);
+                            a1Var.k(g1Var6.f19379m, g1Var6.f19378l);
                             return;
                         case 4:
-                            a1Var.g(g1Var.f19383n);
+                            a1Var.g(g1Var.f19380n);
                             return;
                         case 5:
                             a1Var.P(g1Var.m());
                             return;
                         case 6:
-                            a1Var.H(g1Var.f19384o);
+                            a1Var.H(g1Var.f19381o);
                             return;
                         case 7:
-                            a1Var.q(g1Var.f19376f);
+                            a1Var.q(g1Var.f19373f);
                             return;
                         case 8:
-                            a1Var.y(g1Var.f19376f);
+                            a1Var.y(g1Var.f19373f);
                             return;
                         default:
-                            a1Var.u(g1Var.f19378i.d);
+                            a1Var.u(g1Var.f19375i.d);
                             return;
                     }
                 }
             });
         }
         B1();
-        this.f19336m.b();
-        if (g1Var2.f19385p != g1Var.f19385p) {
-            Iterator it = this.f19337n.iterator();
+        this.f19333m.b();
+        if (g1Var2.f19382p != g1Var.f19382p) {
+            Iterator it = this.f19334n.iterator();
             while (it.hasNext()) {
-                ((z) it.next()).f19600a.E1();
+                ((z) it.next()).f19597a.E1();
             }
         }
     }
@@ -957,13 +957,13 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final e2.q1 E0() {
         F1();
-        return ((a3.s) this.f19328i).j();
+        return ((a3.s) this.f19325i).j();
     }
 
     public final void E1() {
         int i7 = i();
         ei.a aVar = this.A;
-        h2.o0 o0Var = this.f19355z;
+        h2.o0 o0Var = this.f19352z;
         boolean z10 = false;
         if (i7 != 1) {
             if (i7 != 2 && i7 != 3) {
@@ -972,7 +972,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
                 }
             } else {
                 F1();
-                boolean z11 = this.f19342p0.f19385p;
+                boolean z11 = this.f19339p0.f19382p;
                 if (u() && !z11) {
                     z10 = true;
                 }
@@ -988,54 +988,54 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final float F() {
         F1();
-        return this.f19317b0;
+        return this.f19314b0;
     }
 
     @Override
     public final long F0() {
         F1();
-        if (this.f19342p0.f19372a.p()) {
-            return this.f19346r0;
+        if (this.f19339p0.f19369a.p()) {
+            return this.f19343r0;
         }
-        g1 g1Var = this.f19342p0;
+        g1 g1Var = this.f19339p0;
         long j3 = 0;
-        if (g1Var.f19380k.d != g1Var.f19373b.d) {
-            return h2.l0.h0(g1Var.f19372a.m(o0(), (e2.k1) this.f6398a, 0L).f10488m);
+        if (g1Var.f19377k.d != g1Var.f19370b.d) {
+            return h2.l0.h0(g1Var.f19369a.m(o0(), (e2.k1) this.f6395a, 0L).f10485m);
         }
-        long j10 = g1Var.f19386q;
-        if (this.f19342p0.f19380k.b()) {
-            g1 g1Var2 = this.f19342p0;
-            g1Var2.f19372a.g(g1Var2.f19380k.f60087a, this.f19339o).d(this.f19342p0.f19380k.f60088b);
+        long j10 = g1Var.f19383q;
+        if (this.f19339p0.f19377k.b()) {
+            g1 g1Var2 = this.f19339p0;
+            g1Var2.f19369a.g(g1Var2.f19377k.f60088a, this.f19336o).d(this.f19339p0.f19377k.f60089b);
         } else {
             j3 = j10;
         }
-        g1 g1Var3 = this.f19342p0;
-        e2.l1 l1Var = g1Var3.f19372a;
-        Object obj = g1Var3.f19380k.f60087a;
-        e2.i1 i1Var = this.f19339o;
+        g1 g1Var3 = this.f19339p0;
+        e2.l1 l1Var = g1Var3.f19369a;
+        Object obj = g1Var3.f19377k.f60088a;
+        e2.i1 i1Var = this.f19336o;
         l1Var.g(obj, i1Var);
-        return h2.l0.h0(j3 + i1Var.f10437e);
+        return h2.l0.h0(j3 + i1Var.f10434e);
     }
 
     public final void F1() {
         IllegalStateException illegalStateException;
         this.d.b();
         Thread currentThread = Thread.currentThread();
-        Looper looper = this.f19349t;
+        Looper looper = this.f19346t;
         if (currentThread != looper.getThread()) {
             String name = Thread.currentThread().getName();
             String name2 = looper.getThread().getName();
-            String str = h2.l0.f13786a;
+            String str = h2.l0.f13783a;
             Locale locale = Locale.US;
             String l10 = p5.c.l("Player is accessed on the wrong thread.\nCurrent thread: '", name, "'\nExpected thread: '", name2, "'\nSee https://developer.android.com/guide/topics/media/issues/player-accessed-on-wrong-thread");
-            if (!this.f19324f0) {
-                if (this.f19326g0) {
+            if (!this.f19321f0) {
+                if (this.f19323g0) {
                     illegalStateException = null;
                 } else {
                     illegalStateException = new IllegalStateException();
                 }
                 h2.a.m("ExoPlayerImpl", l10, illegalStateException);
-                this.f19326g0 = true;
+                this.f19323g0 = true;
                 return;
             }
             throw new IllegalStateException(l10);
@@ -1050,13 +1050,13 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final e2.e H() {
         F1();
-        return this.f19315a0;
+        return this.f19312a0;
     }
 
     @Override
     public final void I0(e2.a1 a1Var) {
         a1Var.getClass();
-        this.f19336m.a(a1Var);
+        this.f19333m.a(a1Var);
     }
 
     @Override
@@ -1067,7 +1067,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final e2.o K() {
         F1();
-        return this.f19331j0;
+        return this.f19328j0;
     }
 
     @Override
@@ -1078,7 +1078,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             return;
         }
         this.R = o0Var;
-        this.f19336m.e(15, new u(this, 3));
+        this.f19333m.e(15, new u(this, 3));
     }
 
     @Override
@@ -1114,7 +1114,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final int O() {
         F1();
         if (p()) {
-            return this.f19342p0.f19373b.f60089c;
+            return this.f19339p0.f19370b.f60090c;
         }
         return -1;
     }
@@ -1122,7 +1122,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final long O0() {
         F1();
-        return this.f19335l0;
+        return this.f19332l0;
     }
 
     @Override
@@ -1135,11 +1135,11 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             z10 = false;
         }
         la.f(z10);
-        int size = this.f19341p.size();
+        int size = this.f19338p.size();
         int min = Math.min(i10, size);
         if (i7 < size && i7 != min) {
-            g1 r12 = r1(this.f19342p0, i7, min);
-            D1(r12, 0, !r12.f19373b.f60087a.equals(this.f19342p0.f19373b.f60087a), 4, j1(r12), -1, false);
+            g1 r12 = r1(this.f19339p0, i7, min);
+            D1(r12, 0, !r12.f19370b.f60088a.equals(this.f19339p0.f19370b.f60088a), 4, j1(r12), -1, false);
         }
     }
 
@@ -1156,7 +1156,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         s1();
         this.W = true;
         this.V = surfaceHolder;
-        surfaceHolder.addCallback(this.f19352w);
+        surfaceHolder.addCallback(this.f19349w);
         Surface surface = surfaceHolder.getSurface();
         if (surface != null && surface.isValid()) {
             x1(surface);
@@ -1172,17 +1172,17 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final void T(float f10) {
         F1();
         float h = h2.l0.h(f10, 0.0f, 1.0f);
-        float f11 = this.f19317b0;
+        float f11 = this.f19314b0;
         if (f11 == h) {
             return;
         }
         if (h != 0.0f) {
             f11 = h;
         }
-        this.f19319c0 = f11;
-        this.f19317b0 = h;
-        this.f19334l.f19505n.b(32, Float.valueOf(h)).b();
-        this.f19336m.e(22, new s(h, 0));
+        this.f19316c0 = f11;
+        this.f19314b0 = h;
+        this.f19331l.f19502n.b(32, Float.valueOf(h)).b();
+        this.f19333m.e(22, new s(h, 0));
     }
 
     @Override
@@ -1196,7 +1196,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final e2.v0 W() {
         F1();
-        return this.f19342p0.f19376f;
+        return this.f19339p0.f19373f;
     }
 
     @Override
@@ -1208,55 +1208,55 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final void X0() {
         boolean z10;
-        h2.a.g("ExoPlayerImpl", "Release " + Integer.toHexString(System.identityHashCode(this)) + " [AndroidXMedia3/1.10.1] [" + h2.l0.f13786a + "] [" + e2.m0.b() + "]");
+        h2.a.g("ExoPlayerImpl", "Release " + Integer.toHexString(System.identityHashCode(this)) + " [AndroidXMedia3/1.10.1] [" + h2.l0.f13783a + "] [" + e2.m0.b() + "]");
         F1();
-        this.f19354y.z();
-        this.f19355z.b(false);
+        this.f19351y.z();
+        this.f19352z.b(false);
         this.A.a(false);
         e0 e0Var = this.E;
         if (e0Var != null && Build.VERSION.SDK_INT >= 34) {
             e0.a(e0Var);
         }
         h2.e0 e0Var2 = this.D;
-        ((h2.i0) e0Var2.f13751f).f13771a.removeCallbacksAndMessages(null);
-        ((f0) e0Var2.f13747a).h0((h2.z) e0Var2.f13748b);
-        o0 o0Var = this.f19334l;
-        if (!o0Var.f19489a0 && o0Var.f19512s.getThread().isAlive()) {
-            o0Var.f19489a0 = true;
+        ((h2.i0) e0Var2.f13748f).f13768a.removeCallbacksAndMessages(null);
+        ((f0) e0Var2.f13744a).h0((h2.z) e0Var2.f13745b);
+        o0 o0Var = this.f19331l;
+        if (!o0Var.f19486a0 && o0Var.f19509s.getThread().isAlive()) {
+            o0Var.f19486a0 = true;
             h2.i iVar = new h2.i(o0Var.G);
-            o0Var.f19505n.b(7, iVar).b();
+            o0Var.f19502n.b(7, iVar).b();
             z10 = iVar.c(o0Var.L);
         } else {
             z10 = true;
         }
         if (!z10) {
-            this.f19336m.e(10, new f9(24));
+            this.f19333m.e(10, new f9(24));
         }
-        this.f19336m.d();
-        this.f19330j.f13771a.removeCallbacksAndMessages(null);
-        b3.d dVar = this.f19351u;
-        m2.d dVar2 = this.f19347s;
-        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) ((b3.g) dVar).f2884c.f5154b;
+        this.f19333m.d();
+        this.f19327j.f13768a.removeCallbacksAndMessages(null);
+        b3.d dVar = this.f19348u;
+        m2.d dVar2 = this.f19344s;
+        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) ((b3.g) dVar).f2885c.f5151b;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             b3.c cVar = (b3.c) it.next();
-            if (cVar.f2868b == dVar2) {
-                cVar.f2869c = true;
+            if (cVar.f2869b == dVar2) {
+                cVar.f2870c = true;
                 copyOnWriteArrayList.remove(cVar);
             }
         }
-        g1 g1Var = this.f19342p0;
-        if (g1Var.f19385p) {
-            this.f19342p0 = g1Var.a();
+        g1 g1Var = this.f19339p0;
+        if (g1Var.f19382p) {
+            this.f19339p0 = g1Var.a();
         }
-        g1 n1 = n1(this.f19342p0, 1);
-        this.f19342p0 = n1;
-        g1 c10 = n1.c(n1.f19373b);
-        this.f19342p0 = c10;
-        c10.f19386q = c10.f19388s;
-        this.f19342p0.f19387r = 0L;
-        m2.d dVar3 = this.f19347s;
-        h2.i0 i0Var = dVar3.f20493n;
+        g1 n1 = n1(this.f19339p0, 1);
+        this.f19339p0 = n1;
+        g1 c10 = n1.c(n1.f19370b);
+        this.f19339p0 = c10;
+        c10.f19383q = c10.f19385s;
+        this.f19339p0.f19384r = 0L;
+        m2.d dVar3 = this.f19344s;
+        h2.i0 i0Var = dVar3.f20490n;
         i0Var.getClass();
         i0Var.d(new kg.j0(dVar3, 19));
         s1();
@@ -1265,8 +1265,8 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             surface.release();
             this.U = null;
         }
-        this.f19322e0 = g2.c.d;
-        this.f19329i0 = true;
+        this.f19319e0 = g2.c.d;
+        this.f19326i0 = true;
     }
 
     @Override
@@ -1280,33 +1280,33 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
                 z11 = false;
             }
             la.f(z11);
-            e2.l1 l1Var = this.f19342p0.f19372a;
+            e2.l1 l1Var = this.f19339p0.f19369a;
             if (!l1Var.p() && i7 >= l1Var.o()) {
                 return;
             }
-            m2.d dVar = this.f19347s;
-            if (!dVar.f20494r) {
+            m2.d dVar = this.f19344s;
+            if (!dVar.f20491r) {
                 m2.a Q = dVar.Q();
-                dVar.f20494r = true;
+                dVar.f20491r = true;
                 dVar.V(Q, -1, new ki.e(Q, 11));
             }
             this.J++;
             if (p()) {
                 h2.a.l("ExoPlayerImpl", "seekTo ignored because an ad is playing");
-                l0 l0Var = new l0(this.f19342p0);
+                l0 l0Var = new l0(this.f19339p0);
                 l0Var.f(1);
-                f0 f0Var = this.f19332k.f19550b;
-                f0Var.f19330j.d(new kg.h0(14, f0Var, l0Var));
+                f0 f0Var = this.f19329k.f19547b;
+                f0Var.f19327j.d(new kg.h0(14, f0Var, l0Var));
                 return;
             }
-            g1 g1Var = this.f19342p0;
-            int i10 = g1Var.f19375e;
+            g1 g1Var = this.f19339p0;
+            int i10 = g1Var.f19372e;
             if (i10 == 3 || (i10 == 4 && !l1Var.p())) {
-                g1Var = this.f19342p0.h(2);
+                g1Var = this.f19339p0.h(2);
             }
             int o02 = o0();
             g1 o12 = o1(g1Var, l1Var, p1(l1Var, i7, j3));
-            this.f19334l.f19505n.b(3, new n0(l1Var, i7, h2.l0.S(j3))).b();
+            this.f19331l.f19502n.b(3, new n0(l1Var, i7, h2.l0.S(j3))).b();
             D1(o12, 0, true, 1, j1(o12), o02, z10);
         }
     }
@@ -1321,26 +1321,26 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final void a() {
         int i7;
         F1();
-        g1 g1Var = this.f19342p0;
-        if (g1Var.f19375e != 1) {
+        g1 g1Var = this.f19339p0;
+        if (g1Var.f19372e != 1) {
             return;
         }
         g1 f10 = g1Var.f(null);
-        if (f10.f19372a.p()) {
+        if (f10.f19369a.p()) {
             i7 = 4;
         } else {
             i7 = 2;
         }
         g1 n1 = n1(f10, i7);
         this.J++;
-        this.f19334l.f19505n.a(29).b();
+        this.f19331l.f19502n.a(29).b();
         D1(n1, 1, false, 5, -9223372036854775807L, -1, false);
     }
 
     @Override
     public final long a0() {
         F1();
-        return i1(this.f19342p0);
+        return i1(this.f19339p0);
     }
 
     @Override
@@ -1356,9 +1356,9 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             z10 = false;
         }
         la.f(z10);
-        int min = Math.min(i7, this.f19341p.size());
-        if (this.f19342p0.f19372a.p()) {
-            if (this.f19344q0 == -1) {
+        int min = Math.min(i7, this.f19338p.size());
+        if (this.f19339p0.f19369a.p()) {
+            if (this.f19341q0 == -1) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -1367,14 +1367,14 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             v1(-1, -9223372036854775807L, g12, z11);
             return;
         }
-        D1(e1(this.f19342p0, min, g12), 0, false, 5, -9223372036854775807L, -1, false);
+        D1(e1(this.f19339p0, min, g12), 0, false, 5, -9223372036854775807L, -1, false);
     }
 
     @Override
     public final void c0() {
         F1();
-        if (this.f19317b0 == 0.0f) {
-            float f10 = this.f19319c0;
+        if (this.f19314b0 == 0.0f) {
+            float f10 = this.f19316c0;
             if (f10 != 0.0f) {
                 T(f10);
             }
@@ -1385,9 +1385,9 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final long d0() {
         F1();
         if (p()) {
-            g1 g1Var = this.f19342p0;
-            if (g1Var.f19380k.equals(g1Var.f19373b)) {
-                return h2.l0.h0(this.f19342p0.f19386q);
+            g1 g1Var = this.f19339p0;
+            if (g1Var.f19377k.equals(g1Var.f19370b)) {
+                return h2.l0.h0(this.f19339p0.f19383q);
             }
             return getDuration();
         }
@@ -1397,38 +1397,38 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final void e(e2.w0 w0Var) {
         F1();
-        if (this.f19342p0.f19384o.equals(w0Var)) {
+        if (this.f19339p0.f19381o.equals(w0Var)) {
             return;
         }
-        g1 g10 = this.f19342p0.g(w0Var);
+        g1 g10 = this.f19339p0.g(w0Var);
         this.J++;
-        this.f19334l.f19505n.b(4, w0Var).b();
+        this.f19331l.f19502n.b(4, w0Var).b();
         D1(g10, 0, false, 5, -9223372036854775807L, -1, false);
     }
 
     public final g1 e1(g1 g1Var, int i7, ArrayList arrayList) {
-        e2.l1 l1Var = g1Var.f19372a;
+        e2.l1 l1Var = g1Var.f19369a;
         this.J++;
         ArrayList arrayList2 = new ArrayList();
         int i10 = 0;
         while (true) {
             int size = arrayList.size();
-            ArrayList arrayList3 = this.f19341p;
+            ArrayList arrayList3 = this.f19338p;
             if (i10 < size) {
-                e1 e1Var = new e1((x2.a) arrayList.get(i10), this.f19343q);
+                e1 e1Var = new e1((x2.a) arrayList.get(i10), this.f19340q);
                 arrayList2.add(e1Var);
-                arrayList3.add(i10 + i7, new b0(e1Var.f19300b, e1Var.f19299a));
+                arrayList3.add(i10 + i7, new b0(e1Var.f19297b, e1Var.f19296a));
                 i10++;
             } else {
                 this.O = this.O.f(i7, arrayList2.size());
                 l1 l1Var2 = new l1(arrayList3, this.O);
                 g1 o12 = o1(g1Var, l1Var2, l1(l1Var, l1Var2, k1(g1Var), i1(g1Var)));
                 x2.i1 i1Var = this.O;
-                h2.i0 i0Var = this.f19334l.f19505n;
+                h2.i0 i0Var = this.f19331l.f19502n;
                 j0 j0Var = new j0(arrayList2, i1Var, -1, -9223372036854775807L);
                 i0Var.getClass();
                 h2.h0 c10 = h2.i0.c();
-                c10.f13767a = i0Var.f13771a.obtainMessage(18, i7, 0, j0Var);
+                c10.f13764a = i0Var.f13768a.obtainMessage(18, i7, 0, j0Var);
                 c10.b();
                 return o12;
             }
@@ -1439,41 +1439,41 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         boolean z10;
         e2.l1 y02 = y0();
         if (y02.p()) {
-            return this.f19340o0;
+            return this.f19337o0;
         }
-        e2.l0 l0Var = y02.m(o0(), (e2.k1) this.f6398a, 0L).f10480c;
-        e2.n0 a10 = this.f19340o0.a();
+        e2.l0 l0Var = y02.m(o0(), (e2.k1) this.f6395a, 0L).f10477c;
+        e2.n0 a10 = this.f19337o0.a();
         e2.o0 o0Var = l0Var.d;
         if (o0Var != null) {
             h9.i0 i0Var = o0Var.K;
-            byte[] bArr = o0Var.f10589k;
-            CharSequence charSequence = o0Var.f10581a;
+            byte[] bArr = o0Var.f10586k;
+            CharSequence charSequence = o0Var.f10578a;
             if (charSequence != null) {
-                a10.f10531a = charSequence;
+                a10.f10528a = charSequence;
             }
-            CharSequence charSequence2 = o0Var.f10582b;
+            CharSequence charSequence2 = o0Var.f10579b;
             if (charSequence2 != null) {
-                a10.f10532b = charSequence2;
+                a10.f10529b = charSequence2;
             }
-            CharSequence charSequence3 = o0Var.f10583c;
+            CharSequence charSequence3 = o0Var.f10580c;
             if (charSequence3 != null) {
-                a10.f10533c = charSequence3;
+                a10.f10530c = charSequence3;
             }
             CharSequence charSequence4 = o0Var.d;
             if (charSequence4 != null) {
                 a10.d = charSequence4;
             }
-            CharSequence charSequence5 = o0Var.f10584e;
+            CharSequence charSequence5 = o0Var.f10581e;
             if (charSequence5 != null) {
-                a10.f10534e = charSequence5;
+                a10.f10531e = charSequence5;
             }
-            CharSequence charSequence6 = o0Var.f10585f;
+            CharSequence charSequence6 = o0Var.f10582f;
             if (charSequence6 != null) {
-                a10.f10535f = charSequence6;
+                a10.f10532f = charSequence6;
             }
-            CharSequence charSequence7 = o0Var.f10586g;
+            CharSequence charSequence7 = o0Var.f10583g;
             if (charSequence7 != null) {
-                a10.f10536g = charSequence7;
+                a10.f10533g = charSequence7;
             }
             Long l10 = o0Var.h;
             if (l10 != null) {
@@ -1485,71 +1485,71 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
                 la.f(z10);
                 a10.h = l10;
             }
-            e2.d1 d1Var = o0Var.f10587i;
+            e2.d1 d1Var = o0Var.f10584i;
             if (d1Var != null) {
-                a10.f10537i = d1Var;
+                a10.f10534i = d1Var;
             }
-            e2.d1 d1Var2 = o0Var.f10588j;
+            e2.d1 d1Var2 = o0Var.f10585j;
             if (d1Var2 != null) {
-                a10.f10538j = d1Var2;
+                a10.f10535j = d1Var2;
             }
-            Uri uri = o0Var.f10592n;
+            Uri uri = o0Var.f10589n;
             if (uri != null || bArr != null) {
-                a10.f10542n = uri;
-                a10.b(bArr, o0Var.f10591m);
-                a10.f10540l = o0Var.f10590l;
+                a10.f10539n = uri;
+                a10.b(bArr, o0Var.f10588m);
+                a10.f10537l = o0Var.f10587l;
             }
-            Integer num = o0Var.f10593o;
+            Integer num = o0Var.f10590o;
             if (num != null) {
-                a10.f10543o = num;
+                a10.f10540o = num;
             }
-            Integer num2 = o0Var.f10594p;
+            Integer num2 = o0Var.f10591p;
             if (num2 != null) {
-                a10.f10544p = num2;
+                a10.f10541p = num2;
             }
-            Integer num3 = o0Var.f10595q;
+            Integer num3 = o0Var.f10592q;
             if (num3 != null) {
-                a10.f10545q = num3;
+                a10.f10542q = num3;
             }
-            Boolean bool = o0Var.f10596r;
+            Boolean bool = o0Var.f10593r;
             if (bool != null) {
-                a10.f10546r = bool;
+                a10.f10543r = bool;
             }
-            Boolean bool2 = o0Var.f10597s;
+            Boolean bool2 = o0Var.f10594s;
             if (bool2 != null) {
-                a10.f10547s = bool2;
+                a10.f10544s = bool2;
             }
-            Integer num4 = o0Var.f10598t;
+            Integer num4 = o0Var.f10595t;
             if (num4 != null) {
-                a10.f10548t = num4;
+                a10.f10545t = num4;
             }
-            Integer num5 = o0Var.f10599u;
+            Integer num5 = o0Var.f10596u;
             if (num5 != null) {
-                a10.f10548t = num5;
+                a10.f10545t = num5;
             }
             Integer num6 = o0Var.v;
             if (num6 != null) {
-                a10.f10549u = num6;
+                a10.f10546u = num6;
             }
-            Integer num7 = o0Var.f10600w;
+            Integer num7 = o0Var.f10597w;
             if (num7 != null) {
                 a10.v = num7;
             }
-            Integer num8 = o0Var.f10601x;
+            Integer num8 = o0Var.f10598x;
             if (num8 != null) {
-                a10.f10550w = num8;
+                a10.f10547w = num8;
             }
-            Integer num9 = o0Var.f10602y;
+            Integer num9 = o0Var.f10599y;
             if (num9 != null) {
-                a10.f10551x = num9;
+                a10.f10548x = num9;
             }
-            Integer num10 = o0Var.f10603z;
+            Integer num10 = o0Var.f10600z;
             if (num10 != null) {
-                a10.f10552y = num10;
+                a10.f10549y = num10;
             }
             CharSequence charSequence8 = o0Var.A;
             if (charSequence8 != null) {
-                a10.f10553z = charSequence8;
+                a10.f10550z = charSequence8;
             }
             CharSequence charSequence9 = o0Var.B;
             if (charSequence9 != null) {
@@ -1597,13 +1597,13 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final boolean g() {
         F1();
-        return this.f19342p0.f19377g;
+        return this.f19339p0.f19374g;
     }
 
     public final ArrayList g1(List list) {
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < list.size(); i7++) {
-            arrayList.add(this.f19345r.b((e2.l0) list.get(i7)));
+            arrayList.add(this.f19342r.b((e2.l0) list.get(i7)));
         }
         return arrayList;
     }
@@ -1612,13 +1612,13 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final long getDuration() {
         F1();
         if (p()) {
-            g1 g1Var = this.f19342p0;
-            x2.g0 g0Var = g1Var.f19373b;
-            e2.l1 l1Var = g1Var.f19372a;
-            Object obj = g0Var.f60087a;
-            e2.i1 i1Var = this.f19339o;
+            g1 g1Var = this.f19339p0;
+            x2.g0 g0Var = g1Var.f19370b;
+            e2.l1 l1Var = g1Var.f19369a;
+            Object obj = g0Var.f60088a;
+            e2.i1 i1Var = this.f19336o;
             l1Var.g(obj, i1Var);
-            return h2.l0.h0(i1Var.a(g0Var.f60088b, g0Var.f60089c));
+            return h2.l0.h0(i1Var.a(g0Var.f60089b, g0Var.f60090c));
         }
         return A();
     }
@@ -1628,9 +1628,9 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         boolean z10;
         F1();
         a1Var.getClass();
-        h2.r rVar = this.f19336m;
-        if (rVar.f13819i) {
-            if (Thread.currentThread() == rVar.f13813a) {
+        h2.r rVar = this.f19333m;
+        if (rVar.f13816i) {
+            if (Thread.currentThread() == rVar.f13810a) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1641,12 +1641,12 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         Iterator it = copyOnWriteArraySet.iterator();
         while (it.hasNext()) {
             h2.q qVar = (h2.q) it.next();
-            if (qVar.f13810a.equals(a1Var)) {
-                h2.p pVar = rVar.f13815c;
+            if (qVar.f13807a.equals(a1Var)) {
+                h2.p pVar = rVar.f13812c;
                 qVar.d = true;
-                if (pVar != null && qVar.f13812c) {
-                    qVar.f13812c = false;
-                    pVar.g(qVar.f13810a, qVar.f13811b.d());
+                if (pVar != null && qVar.f13809c) {
+                    qVar.f13809c = false;
+                    pVar.g(qVar.f13807a, qVar.f13808b.d());
                 }
                 copyOnWriteArraySet.remove(qVar);
             }
@@ -1654,19 +1654,19 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     }
 
     public final j1 h1(i1 i1Var) {
-        int k12 = k1(this.f19342p0);
-        e2.l1 l1Var = this.f19342p0.f19372a;
+        int k12 = k1(this.f19339p0);
+        e2.l1 l1Var = this.f19339p0.f19369a;
         if (k12 == -1) {
             k12 = 0;
         }
-        o0 o0Var = this.f19334l;
-        return new j1(o0Var, i1Var, l1Var, k12, o0Var.f19512s);
+        o0 o0Var = this.f19331l;
+        return new j1(o0Var, i1Var, l1Var, k12, o0Var.f19509s);
     }
 
     @Override
     public final int i() {
         F1();
-        return this.f19342p0.f19375e;
+        return this.f19339p0.f19372e;
     }
 
     @Override
@@ -1675,17 +1675,17 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     }
 
     public final long i1(g1 g1Var) {
-        x2.g0 g0Var = g1Var.f19373b;
-        long j3 = g1Var.f19374c;
-        e2.l1 l1Var = g1Var.f19372a;
+        x2.g0 g0Var = g1Var.f19370b;
+        long j3 = g1Var.f19371c;
+        e2.l1 l1Var = g1Var.f19369a;
         if (g0Var.b()) {
-            Object obj = g1Var.f19373b.f60087a;
-            e2.i1 i1Var = this.f19339o;
+            Object obj = g1Var.f19370b.f60088a;
+            e2.i1 i1Var = this.f19336o;
             l1Var.g(obj, i1Var);
             if (j3 == -9223372036854775807L) {
-                return h2.l0.h0(l1Var.m(k1(g1Var), (e2.k1) this.f6398a, 0L).f10487l);
+                return h2.l0.h0(l1Var.m(k1(g1Var), (e2.k1) this.f6395a, 0L).f10484l);
             }
-            return h2.l0.h0(j3) + h2.l0.h0(i1Var.f10437e);
+            return h2.l0.h0(j3) + h2.l0.h0(i1Var.f10434e);
         }
         return h2.l0.h0(j1(g1Var));
     }
@@ -1693,33 +1693,33 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final e2.w0 j() {
         F1();
-        return this.f19342p0.f19384o;
+        return this.f19339p0.f19381o;
     }
 
     @Override
     public final e2.s1 j0() {
         F1();
-        return this.f19342p0.f19378i.d;
+        return this.f19339p0.f19375i.d;
     }
 
     public final long j1(g1 g1Var) {
         long j3;
-        if (g1Var.f19372a.p()) {
-            return h2.l0.S(this.f19346r0);
+        if (g1Var.f19369a.p()) {
+            return h2.l0.S(this.f19343r0);
         }
-        if (g1Var.f19385p) {
+        if (g1Var.f19382p) {
             j3 = g1Var.l();
         } else {
-            j3 = g1Var.f19388s;
+            j3 = g1Var.f19385s;
         }
-        if (g1Var.f19373b.b()) {
+        if (g1Var.f19370b.b()) {
             return j3;
         }
-        e2.l1 l1Var = g1Var.f19372a;
-        Object obj = g1Var.f19373b.f60087a;
-        e2.i1 i1Var = this.f19339o;
+        e2.l1 l1Var = g1Var.f19369a;
+        Object obj = g1Var.f19370b.f60088a;
+        e2.i1 i1Var = this.f19336o;
         l1Var.g(obj, i1Var);
-        return j3 + i1Var.f10437e;
+        return j3 + i1Var.f10434e;
     }
 
     @Override
@@ -1727,13 +1727,13 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         F1();
         if (this.H != i7) {
             this.H = i7;
-            h2.i0 i0Var = this.f19334l.f19505n;
+            h2.i0 i0Var = this.f19331l.f19502n;
             i0Var.getClass();
             h2.h0 c10 = h2.i0.c();
-            c10.f13767a = i0Var.f13771a.obtainMessage(11, i7, 0);
+            c10.f13764a = i0Var.f13768a.obtainMessage(11, i7, 0);
             c10.b();
             t tVar = new t(i7, 0);
-            h2.r rVar = this.f19336m;
+            h2.r rVar = this.f19333m;
             rVar.c(8, tVar);
             B1();
             rVar.b();
@@ -1747,22 +1747,22 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     }
 
     public final int k1(g1 g1Var) {
-        if (g1Var.f19372a.p()) {
-            return this.f19344q0;
+        if (g1Var.f19369a.p()) {
+            return this.f19341q0;
         }
-        return g1Var.f19372a.g(g1Var.f19373b.f60087a, this.f19339o).f10436c;
+        return g1Var.f19369a.g(g1Var.f19370b.f60088a, this.f19336o).f10433c;
     }
 
     @Override
     public final long l() {
         F1();
-        return h2.l0.h0(j1(this.f19342p0));
+        return h2.l0.h0(j1(this.f19339p0));
     }
 
     @Override
     public final g2.c l0() {
         F1();
-        return this.f19322e0;
+        return this.f19319e0;
     }
 
     public final Pair l1(e2.l1 l1Var, l1 l1Var2, int i7, long j3) {
@@ -1770,16 +1770,16 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         long j10 = -9223372036854775807L;
         int i10 = -1;
         if (!l1Var.p() && !l1Var2.p()) {
-            Pair i11 = l1Var.i((e2.k1) this.f6398a, this.f19339o, i7, h2.l0.S(j3));
+            Pair i11 = l1Var.i((e2.k1) this.f6395a, this.f19336o, i7, h2.l0.S(j3));
             Object obj = i11.first;
             if (l1Var2.b(obj) != -1) {
                 return i11;
             }
-            int T = o0.T((e2.k1) this.f6398a, this.f19339o, this.H, this.I, obj, l1Var, l1Var2);
+            int T = o0.T((e2.k1) this.f6395a, this.f19336o, this.H, this.I, obj, l1Var, l1Var2);
             if (T != -1) {
-                e2.k1 k1Var = (e2.k1) this.f6398a;
+                e2.k1 k1Var = (e2.k1) this.f6395a;
                 l1Var2.m(T, k1Var, 0L);
-                return p1(l1Var2, T, h2.l0.h0(k1Var.f10487l));
+                return p1(l1Var2, T, h2.l0.h0(k1Var.f10484l));
             }
             return p1(l1Var2, -1, -9223372036854775807L);
         }
@@ -1813,7 +1813,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final int n0() {
         F1();
         if (p()) {
-            return this.f19342p0.f19373b.f60088b;
+            return this.f19339p0.f19370b.f60089b;
         }
         return -1;
     }
@@ -1821,7 +1821,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final int o0() {
         F1();
-        int k12 = k1(this.f19342p0);
+        int k12 = k1(this.f19339p0);
         if (k12 == -1) {
             return 0;
         }
@@ -1842,29 +1842,29 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             z10 = true;
         }
         la.f(z10);
-        e2.l1 l1Var2 = g1Var.f19372a;
+        e2.l1 l1Var2 = g1Var.f19369a;
         long i12 = i1(g1Var);
         g1 j10 = g1Var.j(l1Var);
         if (l1Var.p()) {
-            x2.g0 g0Var2 = g1.f19371u;
-            long S = h2.l0.S(this.f19346r0);
-            g1 c10 = j10.d(g0Var2, S, S, S, 0L, x2.r1.d, this.f19316b, t1.f14074e).c(g0Var2);
-            c10.f19386q = c10.f19388s;
+            x2.g0 g0Var2 = g1.f19368u;
+            long S = h2.l0.S(this.f19343r0);
+            g1 c10 = j10.d(g0Var2, S, S, S, 0L, x2.r1.d, this.f19313b, t1.f14071e).c(g0Var2);
+            c10.f19383q = c10.f19385s;
             return c10;
         }
-        Object obj = j10.f19373b.f60087a;
-        String str = h2.l0.f13786a;
+        Object obj = j10.f19370b.f60088a;
+        String str = h2.l0.f13783a;
         boolean equals = obj.equals(pair.first);
         if (!equals) {
             g0Var = new x2.g0(pair.first);
         } else {
-            g0Var = j10.f19373b;
+            g0Var = j10.f19370b;
         }
         long longValue = ((Long) pair.second).longValue();
         long S2 = h2.l0.S(i12);
         if (!l1Var2.p()) {
-            S2 -= l1Var2.g(obj, this.f19339o).f10437e;
-            if (equals && S2 - longValue == 1 && S2 == l1Var2.g(obj, this.f19339o).d) {
+            S2 -= l1Var2.g(obj, this.f19336o).f10434e;
+            if (equals && S2 - longValue == 1 && S2 == l1Var2.g(obj, this.f19336o).d) {
                 S2--;
             }
         }
@@ -1878,45 +1878,45 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             }
             x2.r1 r1Var2 = r1Var;
             if (!equals) {
-                yVar = this.f19316b;
+                yVar = this.f19313b;
             } else {
-                yVar = j10.f19378i;
+                yVar = j10.f19375i;
             }
             a3.y yVar2 = yVar;
             if (!equals) {
-                h9.g0 g0Var4 = h9.i0.f14006b;
-                list = t1.f14074e;
+                h9.g0 g0Var4 = h9.i0.f14003b;
+                list = t1.f14071e;
             } else {
-                list = j10.f19379j;
+                list = j10.f19376j;
             }
             g1 c11 = j10.d(g0Var3, longValue, longValue, longValue, 0L, r1Var2, yVar2, list).c(g0Var3);
-            c11.f19386q = longValue;
+            c11.f19383q = longValue;
             return c11;
         } else if (i7 == 0) {
-            int b10 = l1Var.b(j10.f19380k.f60087a);
-            if (b10 != -1 && l1Var.f(b10, this.f19339o, false).f10436c == l1Var.g(g0Var.f60087a, this.f19339o).f10436c) {
+            int b10 = l1Var.b(j10.f19377k.f60088a);
+            if (b10 != -1 && l1Var.f(b10, this.f19336o, false).f10433c == l1Var.g(g0Var.f60088a, this.f19336o).f10433c) {
                 return j10;
             }
-            l1Var.g(g0Var.f60087a, this.f19339o);
+            l1Var.g(g0Var.f60088a, this.f19336o);
             if (g0Var.b()) {
-                j3 = this.f19339o.a(g0Var.f60088b, g0Var.f60089c);
+                j3 = this.f19336o.a(g0Var.f60089b, g0Var.f60090c);
             } else {
-                j3 = this.f19339o.d;
+                j3 = this.f19336o.d;
             }
             x2.g0 g0Var5 = g0Var;
-            g1 c12 = j10.d(g0Var5, j10.f19388s, j10.f19388s, j10.d, j3 - j10.f19388s, j10.h, j10.f19378i, j10.f19379j).c(g0Var5);
-            c12.f19386q = j3;
+            g1 c12 = j10.d(g0Var5, j10.f19385s, j10.f19385s, j10.d, j3 - j10.f19385s, j10.h, j10.f19375i, j10.f19376j).c(g0Var5);
+            c12.f19383q = j3;
             return c12;
         } else {
             x2.g0 g0Var6 = g0Var;
             la.p(!g0Var6.b());
-            long max = Math.max(0L, j10.f19387r - (longValue - S2));
-            long j11 = j10.f19386q;
-            if (j10.f19380k.equals(j10.f19373b)) {
+            long max = Math.max(0L, j10.f19384r - (longValue - S2));
+            long j11 = j10.f19383q;
+            if (j10.f19377k.equals(j10.f19370b)) {
                 j11 = longValue + max;
             }
-            g1 d = j10.d(g0Var6, longValue, longValue, longValue, max, j10.h, j10.f19378i, j10.f19379j);
-            d.f19386q = j11;
+            g1 d = j10.d(g0Var6, longValue, longValue, longValue, max, j10.h, j10.f19375i, j10.f19376j);
+            d.f19383q = j11;
             return d;
         }
     }
@@ -1924,58 +1924,58 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final boolean p() {
         F1();
-        return this.f19342p0.f19373b.b();
+        return this.f19339p0.f19370b.b();
     }
 
     public final Pair p1(e2.l1 l1Var, int i7, long j3) {
         if (l1Var.p()) {
-            this.f19344q0 = i7;
+            this.f19341q0 = i7;
             if (j3 == -9223372036854775807L) {
                 j3 = 0;
             }
-            this.f19346r0 = j3;
+            this.f19343r0 = j3;
             return null;
         }
         if (i7 == -1 || i7 >= l1Var.o()) {
             i7 = l1Var.a(this.I);
-            j3 = h2.l0.h0(l1Var.m(i7, (e2.k1) this.f6398a, 0L).f10487l);
+            j3 = h2.l0.h0(l1Var.m(i7, (e2.k1) this.f6395a, 0L).f10484l);
         }
-        return l1Var.i((e2.k1) this.f6398a, this.f19339o, i7, h2.l0.S(j3));
+        return l1Var.i((e2.k1) this.f6395a, this.f19336o, i7, h2.l0.S(j3));
     }
 
     @Override
     public final void q0(e2.q1 q1Var) {
         F1();
-        a3.x xVar = this.f19328i;
+        a3.x xVar = this.f19325i;
         xVar.getClass();
         e2.q1 E0 = E0();
         if (!q1Var.equals(((a3.s) xVar).j())) {
             xVar.b(q1Var);
         }
         if (!E0.equals(q1Var)) {
-            this.f19336m.e(19, new ki.e(q1Var, 5));
+            this.f19333m.e(19, new ki.e(q1Var, 5));
         }
     }
 
     public final void q1(int i7, int i10) {
         h2.y yVar = this.Z;
-        if (i7 == yVar.f13840a && i10 == yVar.f13841b) {
+        if (i7 == yVar.f13837a && i10 == yVar.f13838b) {
             return;
         }
         this.Z = new h2.y(i7, i10);
-        y51 y51Var = this.f19348s0;
+        y51 y51Var = this.f19345s0;
         if (y51Var != null) {
             y51Var.execute(new jg.q(this, i7, i10, 1));
             return;
         }
-        this.f19336m.e(24, new gh.c(i7, i10, 1));
+        this.f19333m.e(24, new gh.c(i7, i10, 1));
         t1(2, 14, new h2.y(i7, i10));
     }
 
     @Override
     public final long r() {
         F1();
-        return h2.l0.h0(this.f19342p0.f19387r);
+        return h2.l0.h0(this.f19339p0.f19384r);
     }
 
     @Override
@@ -1987,11 +1987,11 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         ArrayList arrayList;
         int k12 = k1(g1Var);
         long i12 = i1(g1Var);
-        e2.l1 l1Var = g1Var.f19372a;
+        e2.l1 l1Var = g1Var.f19369a;
         this.J++;
         int i11 = i10 - 1;
         while (true) {
-            arrayList = this.f19341p;
+            arrayList = this.f19338p;
             if (i11 < i7) {
                 break;
             }
@@ -2001,17 +2001,17 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         this.O = this.O.a(i7, i10);
         l1 l1Var2 = new l1(arrayList, this.O);
         g1 o12 = o1(g1Var, l1Var2, l1(l1Var, l1Var2, k12, i12));
-        int i13 = o12.f19375e;
+        int i13 = o12.f19372e;
         if (i13 != 1 && i13 != 4 && k12 >= i7 && k12 < i10) {
-            if (o0.T((e2.k1) this.f6398a, this.f19339o, this.H, this.I, g1Var.f19373b.f60087a, l1Var, l1Var2) == -1) {
+            if (o0.T((e2.k1) this.f6395a, this.f19336o, this.H, this.I, g1Var.f19370b.f60088a, l1Var, l1Var2) == -1) {
                 o12 = n1(o12, 4);
             }
         }
         x2.i1 i1Var = this.O;
-        h2.i0 i0Var = this.f19334l.f19505n;
+        h2.i0 i0Var = this.f19331l.f19502n;
         i0Var.getClass();
         h2.h0 c10 = h2.i0.c();
-        c10.f13767a = i0Var.f13771a.obtainMessage(20, i7, i10, i1Var);
+        c10.f13764a = i0Var.f13768a.obtainMessage(20, i7, i10, i1Var);
         c10.b();
         return o12;
     }
@@ -2028,7 +2028,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             z10 = false;
         }
         la.f(z10);
-        ArrayList arrayList = this.f19341p;
+        ArrayList arrayList = this.f19338p;
         int size = arrayList.size();
         if (i7 > size) {
             return;
@@ -2036,45 +2036,45 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         int min = Math.min(i10, size);
         if (min - i7 == list.size()) {
             for (int i11 = i7; i11 < min; i11++) {
-                if (((b0) arrayList.get(i11)).f19267b.f60235k.a((e2.l0) list.get(i11 - i7))) {
+                if (((b0) arrayList.get(i11)).f19264b.f60236k.a((e2.l0) list.get(i11 - i7))) {
                 }
             }
             this.J++;
-            h2.i0 i0Var = this.f19334l.f19505n;
+            h2.i0 i0Var = this.f19331l.f19502n;
             i0Var.getClass();
             h2.h0 c10 = h2.i0.c();
-            c10.f13767a = i0Var.f13771a.obtainMessage(27, i7, min, list);
+            c10.f13764a = i0Var.f13768a.obtainMessage(27, i7, min, list);
             c10.b();
             for (int i12 = i7; i12 < min; i12++) {
                 b0 b0Var = (b0) arrayList.get(i12);
-                e2.l1 l1Var = b0Var.f19268c;
+                e2.l1 l1Var = b0Var.f19265c;
                 e2.l0 l0Var = (e2.l0) list.get(i12 - i7);
                 if (l1Var instanceof x2.q1) {
-                    q1Var = new x2.q1(((x2.q1) l1Var).f60215e, l0Var);
+                    q1Var = new x2.q1(((x2.q1) l1Var).f60216e, l0Var);
                 } else {
                     q1Var = new x2.q1(l1Var, l0Var);
                 }
-                b0Var.f19268c = q1Var;
+                b0Var.f19265c = q1Var;
             }
-            D1(this.f19342p0.j(new l1(arrayList, this.O)), 0, false, 4, -9223372036854775807L, -1, false);
+            D1(this.f19339p0.j(new l1(arrayList, this.O)), 0, false, 4, -9223372036854775807L, -1, false);
             return;
         }
         ArrayList g12 = g1(list);
-        if (this.f19342p0.f19372a.p()) {
-            if (this.f19344q0 != -1) {
+        if (this.f19339p0.f19369a.p()) {
+            if (this.f19341q0 != -1) {
                 z11 = false;
             }
             F1();
             v1(-1, -9223372036854775807L, g12, z11);
             return;
         }
-        g1 r12 = r1(e1(this.f19342p0, min, g12), i7, min);
-        D1(r12, 0, !r12.f19373b.f60087a.equals(this.f19342p0.f19373b.f60087a), 4, j1(r12), -1, false);
+        g1 r12 = r1(e1(this.f19339p0, min, g12), i7, min);
+        D1(r12, 0, !r12.f19370b.f60088a.equals(this.f19339p0.f19370b.f60088a), 4, j1(r12), -1, false);
     }
 
     public final void s1() {
         TextureView textureView = this.X;
-        z zVar = this.f19352w;
+        z zVar = this.f19349w;
         if (textureView != null) {
             if (textureView.getSurfaceTextureListener() != zVar) {
                 h2.a.l("ExoPlayerImpl", "SurfaceTextureListener already unset or replaced.");
@@ -2094,7 +2094,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final void stop() {
         F1();
         A1(null);
-        this.f19322e0 = new g2.c(this.f19342p0.f19388s, t1.f14074e);
+        this.f19319e0 = new g2.c(this.f19339p0.f19385s, t1.f14071e);
     }
 
     @Override
@@ -2106,22 +2106,22 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     public final void t1(int i7, int i10, Object obj) {
         b[] bVarArr;
         b[] bVarArr2;
-        for (b bVar : this.f19325g) {
-            if (i7 == -1 || bVar.f19256b == i7) {
+        for (b bVar : this.f19322g) {
+            if (i7 == -1 || bVar.f19253b == i7) {
                 j1 h12 = h1(bVar);
-                la.p(!h12.f19423f);
-                h12.f19421c = i10;
-                la.p(!h12.f19423f);
+                la.p(!h12.f19420f);
+                h12.f19418c = i10;
+                la.p(!h12.f19420f);
                 h12.d = obj;
                 h12.b();
             }
         }
         for (b bVar2 : this.h) {
-            if (bVar2 != null && (i7 == -1 || bVar2.f19256b == i7)) {
+            if (bVar2 != null && (i7 == -1 || bVar2.f19253b == i7)) {
                 j1 h13 = h1(bVar2);
-                la.p(!h13.f19423f);
-                h13.f19421c = i10;
-                la.p(!h13.f19423f);
+                la.p(!h13.f19420f);
+                h13.f19418c = i10;
+                la.p(!h13.f19420f);
                 h13.d = obj;
                 h13.b();
             }
@@ -2131,7 +2131,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final boolean u() {
         F1();
-        return this.f19342p0.f19381l;
+        return this.f19339p0.f19378l;
     }
 
     @Override
@@ -2144,7 +2144,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             z10 = false;
         }
         la.f(z10);
-        ArrayList arrayList = this.f19341p;
+        ArrayList arrayList = this.f19338p;
         int size = arrayList.size();
         int min = Math.min(i10, size);
         int min2 = Math.min(i11, size - (min - i7));
@@ -2154,12 +2154,12 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             h2.l0.R(i7, min, min2, arrayList);
             this.O = this.O.g();
             l1 l1Var = new l1(arrayList, this.O);
-            g1 g1Var = this.f19342p0;
-            g1 o12 = o1(g1Var, l1Var, l1(y02, l1Var, k1(g1Var), i1(this.f19342p0)));
+            g1 g1Var = this.f19339p0;
+            g1 o12 = o1(g1Var, l1Var, l1(y02, l1Var, k1(g1Var), i1(this.f19339p0)));
             x2.i1 i1Var = this.O;
-            o0 o0Var = this.f19334l;
+            o0 o0Var = this.f19331l;
             o0Var.getClass();
-            o0Var.f19505n.b(19, new k0(i7, min, min2, i1Var)).b();
+            o0Var.f19502n.b(19, new k0(i7, min, min2, i1Var)).b();
             D1(o12, 0, false, 5, -9223372036854775807L, -1, false);
         }
     }
@@ -2175,16 +2175,16 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         int i10;
         long j10;
         boolean z11;
-        int k12 = k1(this.f19342p0);
+        int k12 = k1(this.f19339p0);
         long l10 = l();
         this.J++;
-        ArrayList arrayList = this.f19341p;
+        ArrayList arrayList = this.f19338p;
         arrayList.clear();
         ArrayList arrayList2 = new ArrayList();
         for (int i11 = 0; i11 < list.size(); i11++) {
-            e1 e1Var = new e1((x2.a) list.get(i11), this.f19343q);
+            e1 e1Var = new e1((x2.a) list.get(i11), this.f19340q);
             arrayList2.add(e1Var);
-            arrayList.add(i11, new b0(e1Var.f19300b, e1Var.f19299a));
+            arrayList.add(i11, new b0(e1Var.f19297b, e1Var.f19296a));
         }
         this.O = this.O.c(arrayList2.size());
         l1 l1Var = new l1(arrayList, this.O);
@@ -2203,8 +2203,8 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             i10 = i7;
             j10 = j3;
         }
-        g1 o12 = o1(this.f19342p0, l1Var, p1(l1Var, i10, j10));
-        int i13 = o12.f19375e;
+        g1 o12 = o1(this.f19339p0, l1Var, p1(l1Var, i10, j10));
+        int i13 = o12.f19372e;
         if (i13 == 1) {
             i13 = 1;
         } else {
@@ -2218,8 +2218,8 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
             i13 = 4;
         }
         g1 n1 = n1(o12, i13);
-        this.f19334l.f19505n.b(17, new j0(arrayList2, this.O, i10, h2.l0.S(j10))).b();
-        if (!this.f19342p0.f19373b.f60087a.equals(n1.f19373b.f60087a) && !this.f19342p0.f19372a.p()) {
+        this.f19331l.f19502n.b(17, new j0(arrayList2, this.O, i10, h2.l0.S(j10))).b();
+        if (!this.f19339p0.f19370b.f60088a.equals(n1.f19370b.f60088a) && !this.f19339p0.f19369a.p()) {
             z11 = true;
         } else {
             z11 = false;
@@ -2230,17 +2230,17 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final int w0() {
         F1();
-        return this.f19342p0.f19383n;
+        return this.f19339p0.f19380n;
     }
 
     public final void w1(p1 p1Var) {
         F1();
         if (p1Var == null) {
-            p1Var = p1.f19529f;
+            p1Var = p1.f19526f;
         }
         if (!this.N.equals(p1Var)) {
             this.N = p1Var;
-            this.f19334l.f19505n.b(5, p1Var).b();
+            this.f19331l.f19502n.b(5, p1Var).b();
         }
     }
 
@@ -2249,13 +2249,13 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         F1();
         if (this.I != z10) {
             this.I = z10;
-            h2.i0 i0Var = this.f19334l.f19505n;
+            h2.i0 i0Var = this.f19331l.f19502n;
             i0Var.getClass();
             h2.h0 c10 = h2.i0.c();
-            c10.f13767a = i0Var.f13771a.obtainMessage(12, z10 ? 1 : 0, 0);
+            c10.f13764a = i0Var.f13768a.obtainMessage(12, z10 ? 1 : 0, 0);
             c10.b();
             v vVar = new v(0, z10);
-            h2.r rVar = this.f19336m;
+            h2.r rVar = this.f19333m;
             rVar.c(9, vVar);
             B1();
             rVar.b();
@@ -2277,10 +2277,10 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         } else {
             j3 = -9223372036854775807L;
         }
-        o0 o0Var = this.f19334l;
-        if (!o0Var.f19489a0 && o0Var.f19512s.getThread().isAlive()) {
+        o0 o0Var = this.f19331l;
+        if (!o0Var.f19486a0 && o0Var.f19509s.getThread().isAlive()) {
             h2.i iVar = new h2.i(o0Var.G);
-            o0Var.f19505n.b(30, new Pair(surface, iVar)).b();
+            o0Var.f19502n.b(30, new Pair(surface, iVar)).b();
             if (j3 != -9223372036854775807L) {
                 z11 = iVar.c(j3);
             }
@@ -2305,7 +2305,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final e2.l1 y0() {
         F1();
-        return this.f19342p0.f19372a;
+        return this.f19339p0.f19369a;
     }
 
     public final void y1(Surface surface) {
@@ -2324,7 +2324,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
     @Override
     public final long z() {
         F1();
-        return this.f19338n0;
+        return this.f19335n0;
     }
 
     @Override
@@ -2348,7 +2348,7 @@ public final class f0 extends com.google.android.gms.common.api.q implements p {
         if (textureView.getSurfaceTextureListener() != null) {
             h2.a.l("ExoPlayerImpl", "Replacing existing SurfaceTextureListener.");
         }
-        textureView.setSurfaceTextureListener(this.f19352w);
+        textureView.setSurfaceTextureListener(this.f19349w);
         if (textureView.isAvailable()) {
             surfaceTexture = textureView.getSurfaceTexture();
         } else {

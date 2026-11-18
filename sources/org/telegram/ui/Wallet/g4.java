@@ -21,20 +21,20 @@ public final class g4 implements r1.d {
             case 1:
                 m4 m4Var2 = this.f44260b;
                 m4Var2.f44520c0 = f10;
-                org.telegram.ui.Cells.u0 u0Var = m4Var2.f44515a;
-                u0Var.invalidate();
-                if (u0Var.getParent() instanceof View) {
-                    ((View) u0Var.getParent()).invalidate();
+                org.telegram.ui.Cells.v0 v0Var = m4Var2.f44515a;
+                v0Var.invalidate();
+                if (v0Var.getParent() instanceof View) {
+                    ((View) v0Var.getParent()).invalidate();
                     return;
                 }
                 return;
             default:
                 m4 m4Var3 = this.f44260b;
                 m4Var3.f44516a0 = f10;
-                org.telegram.ui.Cells.u0 u0Var2 = m4Var3.f44515a;
-                u0Var2.invalidate();
-                if (u0Var2.getParent() instanceof View) {
-                    ((View) u0Var2.getParent()).invalidate();
+                org.telegram.ui.Cells.v0 v0Var2 = m4Var3.f44515a;
+                v0Var2.invalidate();
+                if (v0Var2.getParent() instanceof View) {
+                    ((View) v0Var2.getParent()).invalidate();
                     return;
                 }
                 return;

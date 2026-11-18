@@ -3,13 +3,13 @@ package l2;
 import android.content.Context;
 import fi.y3;
 public class j {
-    public final Context f19413a;
-    public final androidx.emoji2.text.n f19414b;
-    public int f19415c = 0;
+    public final Context f19410a;
+    public final androidx.emoji2.text.n f19411b;
+    public int f19412c = 0;
 
     public j(Context context) {
-        this.f19413a = context;
-        this.f19414b = new androidx.emoji2.text.n(context, (char) 0);
+        this.f19410a = context;
+        this.f19411b = new androidx.emoji2.text.n(context, (char) 0);
     }
 
     public n2.r0 a(Context context) {

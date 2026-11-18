@@ -32,7 +32,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public j01(r11 r11Var, Context context, boolean z10) {
         super(context);
-        org.telegram.ui.ActionBar.i6 i6Var = r11Var.f51418a1;
+        org.telegram.ui.ActionBar.i6 i6Var = r11Var.f51378a1;
         this.H = r11Var;
         this.G = r11Var;
         this.f48841x = false;
@@ -43,13 +43,13 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
             org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.G8, this, i6Var);
         }
         int L = org.telegram.messenger.g0.L(18.0f);
-        int i7 = org.telegram.ui.ActionBar.n6.f29816zf;
+        int i7 = org.telegram.ui.ActionBar.n6.f29814zf;
         Drawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
         frameLayout.setBackground(d02);
         org.telegram.ui.ActionBar.u6.j(frameLayout, d02, M, null, i6Var);
         frameLayout.setClipToOutline(true);
-        bg.q0 q0Var = bg.u0.f3342a;
+        bg.q0 q0Var = bg.u0.f3343a;
         frameLayout.setOutlineProvider(new bg.s0(0, org.telegram.messenger.g0.L(18.0f)));
         addView(frameLayout, c8.ma.d(-1, 36.0f, 55, 8.0f, 12.0f, 8.0f, 8.0f));
         ImageView imageView = new ImageView(context);
@@ -63,17 +63,17 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
         sl0Var.a(org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
         imageView.setImageDrawable(sl0Var);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final j01 f46823b;
+            public final j01 f46803b;
 
             {
-                this.f46823b = this;
+                this.f46803b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        j01 j01Var = this.f46823b;
+                        j01 j01Var = this.f46803b;
                         bi.u uVar = j01Var.h;
                         if (j01Var.f48836f.f39777k == 1) {
                             uVar.setText("");
@@ -91,7 +91,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
                         }
                         return;
                     case 1:
-                        j01 j01Var2 = this.f46823b;
+                        j01 j01Var2 = this.f46803b;
                         r11 r11Var2 = j01Var2.G;
                         if (!r11Var2.u()) {
                             r11Var2.q();
@@ -101,7 +101,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
                         }
                         return;
                     default:
-                        j01 j01Var3 = this.f46823b;
+                        j01 j01Var3 = this.f46803b;
                         bi.u uVar2 = j01Var3.h;
                         uVar2.setText("");
                         j01Var3.G.v(null, true, false);
@@ -152,17 +152,17 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
             q3Var.addView(view, c8.ma.e(18, -1, 3));
         }
         setOnClickListener(new View.OnClickListener(this) {
-            public final j01 f46823b;
+            public final j01 f46803b;
 
             {
-                this.f46823b = this;
+                this.f46803b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        j01 j01Var = this.f46823b;
+                        j01 j01Var = this.f46803b;
                         bi.u uVar2 = j01Var.h;
                         if (j01Var.f48836f.f39777k == 1) {
                             uVar2.setText("");
@@ -180,7 +180,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
                         }
                         return;
                     case 1:
-                        j01 j01Var2 = this.f46823b;
+                        j01 j01Var2 = this.f46803b;
                         r11 r11Var2 = j01Var2.G;
                         if (!r11Var2.u()) {
                             r11Var2.q();
@@ -190,7 +190,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
                         }
                         return;
                     default:
-                        j01 j01Var3 = this.f46823b;
+                        j01 j01Var3 = this.f46803b;
                         bi.u uVar22 = j01Var3.h;
                         uVar22.setText("");
                         j01Var3.G.v(null, true, false);
@@ -210,24 +210,24 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.f48834c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new hi.c2(this));
-        int i11 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i11, i6Var), 1, org.telegram.messenger.g0.L(15.0f));
         org.telegram.ui.ActionBar.q6 M2 = org.telegram.ui.ActionBar.u6.M(i11);
         imageView2.setBackground(h02);
         org.telegram.ui.ActionBar.u6.j(imageView2, h02, null, M2, i6Var);
         imageView2.setAlpha(0.0f);
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final j01 f46823b;
+            public final j01 f46803b;
 
             {
-                this.f46823b = this;
+                this.f46803b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        j01 j01Var = this.f46823b;
+                        j01 j01Var = this.f46803b;
                         bi.u uVar2 = j01Var.h;
                         if (j01Var.f48836f.f39777k == 1) {
                             uVar2.setText("");
@@ -245,7 +245,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
                         }
                         return;
                     case 1:
-                        j01 j01Var2 = this.f46823b;
+                        j01 j01Var2 = this.f46803b;
                         r11 r11Var2 = j01Var2.G;
                         if (!r11Var2.u()) {
                             r11Var2.q();
@@ -255,7 +255,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
                         }
                         return;
                     default:
-                        j01 j01Var3 = this.f46823b;
+                        j01 j01Var3 = this.f46803b;
                         bi.u uVar22 = j01Var3.h;
                         uVar22.setText("");
                         j01Var3.G.v(null, true, false);
@@ -362,26 +362,26 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void dispatchDraw(Canvas canvas) {
         float y10;
         r11 r11Var = this.H;
-        hh0 hh0Var = r11Var.f51436h0;
-        j01 j01Var = r11Var.f51434g0;
+        ih0 ih0Var = r11Var.f51396h0;
+        j01 j01Var = r11Var.f51394g0;
         s01 s01Var = r11Var.V;
         if (s01Var != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
-            float x10 = hh0Var.getX() + j01Var.getX();
-            float y11 = hh0Var.getY() + j01Var.getY();
+            float x10 = ih0Var.getX() + j01Var.getX();
+            float y11 = ih0Var.getY() + j01Var.getY();
             ab.g gVar = (ab.g) s01Var;
             ch.b0 b0Var = (ch.b0) gVar.f926b;
-            ch.a0 a0Var = b0Var.f5297a;
+            ch.a0 a0Var = b0Var.f5294a;
             RectF rectF = org.telegram.messenger.g0.P;
             float f10 = 0;
             rectF.set(f10, f10, measuredWidth, measuredHeight);
             org.telegram.ui.Components.ui0 delegate = ((org.telegram.ui.Components.vi0) gVar.f927c).getDelegate();
             float x11 = a0Var.getX() + x10;
-            if (b0Var.f5318y == 1) {
-                y10 = a0Var.getY() - org.telegram.messenger.g0.f24115m;
+            if (b0Var.f5315y == 1) {
+                y10 = a0Var.getY() - org.telegram.messenger.g0.f24112m;
             } else {
-                y10 = a0Var.getY() + b0Var.f5299c.getY();
+                y10 = a0Var.getY() + b0Var.f5296c.getY();
             }
             delegate.x(canvas, rectF, 0.0f, x11, y10 + y11, 255, true);
         }
@@ -414,7 +414,7 @@ public final class j01 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void updateColors() {
         FrameLayout frameLayout;
-        org.telegram.ui.ActionBar.i6 i6Var = this.G.f51418a1;
+        org.telegram.ui.ActionBar.i6 i6Var = this.G.f51378a1;
         try {
             org.telegram.ui.Components.sl0 sl0Var = this.f48836f;
             if (sl0Var != null) {

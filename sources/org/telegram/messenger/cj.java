@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.ui.Components.vy0;
-import org.telegram.ui.vg0;
-public final class cj implements vg0 {
+import org.telegram.ui.wg0;
+public final class cj implements wg0 {
     public float E;
     public fj F;
     public int G;
@@ -35,19 +35,19 @@ public final class cj implements vg0 {
     public Paint U;
     public boolean V;
     public Paint W;
-    public boolean f23361a;
-    public boolean f23362b;
-    public int f23363c;
-    public StaticLayout f23364e;
-    public int f23365f;
+    public boolean f23358a;
+    public boolean f23359b;
+    public int f23360c;
+    public StaticLayout f23361e;
+    public int f23362f;
     public int h;
-    public int f23366n;
-    public int f23367r;
-    public int f23368s;
-    public int f23369w;
-    public byte f23370x;
+    public int f23363n;
+    public int f23364r;
+    public int f23365s;
+    public int f23366w;
+    public byte f23367x;
     public final AtomicReference d = new AtomicReference();
-    public final ArrayList f23371y = new ArrayList();
+    public final ArrayList f23368y = new ArrayList();
 
     public static String b(String str) {
         if (str == null) {
@@ -463,7 +463,7 @@ public final class cj implements vg0 {
 
     @Override
     public final Layout a() {
-        return this.f23364e;
+        return this.f23361e;
     }
 
     public final int c() {
@@ -476,13 +476,13 @@ public final class cj implements vg0 {
         return g0.L(f10);
     }
 
-    public final float d(org.telegram.ui.Cells.x1 x1Var) {
+    public final float d(org.telegram.ui.Cells.y1 y1Var) {
         boolean f10;
         float f11;
-        if (x1Var.f32324f3) {
-            HashSet hashSet = x1Var.f32319e3;
+        if (y1Var.f32371f3) {
+            HashSet hashSet = y1Var.f32366e3;
             f10 = true;
-            if (hashSet != null && hashSet.contains(Integer.valueOf(this.f23363c))) {
+            if (hashSet != null && hashSet.contains(Integer.valueOf(this.f23360c))) {
                 f10 = false;
             }
         } else {
@@ -497,7 +497,7 @@ public final class cj implements vg0 {
         if (f()) {
             f12 = 1.0f;
         }
-        return g0.T1(f11, f12, x1Var.L1);
+        return g0.T1(f11, f12, y1Var.L1);
     }
 
     @Override
@@ -508,7 +508,7 @@ public final class cj implements vg0 {
     public final boolean f() {
         HashSet hashSet;
         fj fjVar = this.F;
-        if (fjVar != null && (hashSet = fjVar.K0) != null && hashSet.contains(Integer.valueOf(this.f23363c))) {
+        if (fjVar != null && (hashSet = fjVar.K0) != null && hashSet.contains(Integer.valueOf(this.f23360c))) {
             return false;
         }
         return true;
@@ -526,8 +526,8 @@ public final class cj implements vg0 {
 
     public final int h() {
         StaticLayout staticLayout;
-        if (this.M == null && (staticLayout = this.f23364e) != null && staticLayout.getLineCount() != 0) {
-            return Math.round(((this.f23364e.getLineBottom(0) + this.f23364e.getLineTop(0)) / 2.0f) - (g0.L(18.0f) / 2.0f));
+        if (this.M == null && (staticLayout = this.f23361e) != null && staticLayout.getLineCount() != 0) {
+            return Math.round(((this.f23361e.getLineBottom(0) + this.f23361e.getLineTop(0)) / 2.0f) - (g0.L(18.0f) / 2.0f));
         }
         return g0.L(8.0f) + (-g());
     }
@@ -568,11 +568,11 @@ public final class cj implements vg0 {
         vy0Var.c(intrinsicWidth, L, f10, i7, canvas);
     }
 
-    public final int j(org.telegram.ui.Cells.x1 x1Var) {
+    public final int j(org.telegram.ui.Cells.y1 y1Var) {
         if (!this.K) {
-            return this.f23369w;
+            return this.f23366w;
         }
-        return g0.W1(d(x1Var), this.f23369w, this.G);
+        return g0.W1(d(y1Var), this.f23366w, this.G);
     }
 
     public final boolean k(float f10, float f11, float f12) {
@@ -586,7 +586,7 @@ public final class cj implements vg0 {
     }
 
     public final boolean l() {
-        byte b10 = this.f23370x;
+        byte b10 = this.f23367x;
         if ((b10 & 1) != 0 && (b10 & 2) == 0) {
             return true;
         }
@@ -604,7 +604,7 @@ public final class cj implements vg0 {
         int i10 = 5;
         if (z11) {
             this.R = new vy0(gd.M0(2131751754, null).toUpperCase(), bz.W0 - 3, g0.o());
-            Drawable g10 = i5.c.g(t0.f26915b, 2131232105);
+            Drawable g10 = i5.c.g(t0.f26913b, 2131232105);
             this.Q = g10;
             g10.setColorFilter(new PorterDuffColorFilter(this.P, PorterDuff.Mode.SRC_IN));
             this.T = org.telegram.ui.ActionBar.n6.c0(this.S, 0, 0, Math.min(5, bz.Y0), 0);
@@ -635,7 +635,7 @@ public final class cj implements vg0 {
         this.V = true;
         this.O = !z10;
         if (!z10) {
-            Drawable g10 = i5.c.g(t0.f26915b, 2131232105);
+            Drawable g10 = i5.c.g(t0.f26913b, 2131232105);
             this.Q = g10;
             g10.setColorFilter(new PorterDuffColorFilter(this.P, PorterDuff.Mode.SRC_IN));
             this.T = org.telegram.ui.ActionBar.n6.c0(this.S, 0, 0, Math.min(5, bz.Y0), 0);
@@ -660,25 +660,25 @@ public final class cj implements vg0 {
         }
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size() && (cjVar = (cj) arrayList.get(i11)) != this; i11++) {
-            int i12 = cjVar.f23365f;
+            int i12 = cjVar.f23362f;
             if (cjVar.K && cjVar.f()) {
                 i7 = cjVar.G;
             } else {
-                i7 = cjVar.f23369w;
+                i7 = cjVar.f23366w;
             }
             i10 += i7 + i12 + cjVar.h;
         }
         return i10;
     }
 
-    public final float p(ArrayList arrayList, org.telegram.ui.Cells.x1 x1Var) {
+    public final float p(ArrayList arrayList, org.telegram.ui.Cells.y1 y1Var) {
         cj cjVar;
         if (arrayList == null) {
             return 0.0f;
         }
         int i7 = 0;
         for (int i10 = 0; i10 < arrayList.size() && (cjVar = (cj) arrayList.get(i10)) != this; i10++) {
-            i7 += cjVar.j(x1Var) + cjVar.f23365f + cjVar.h;
+            i7 += cjVar.j(y1Var) + cjVar.f23362f + cjVar.h;
         }
         return i7;
     }

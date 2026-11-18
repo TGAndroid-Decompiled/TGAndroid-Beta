@@ -71,11 +71,11 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                     this.f43047w = z11;
                     this.f43045r = i7;
                     this.f43046s = i10;
-                    de0 de0Var = new de0();
+                    ee0 ee0Var = new ee0();
                     if (org.telegram.messenger.g0.Q1()) {
-                        this.d.c(-1, de0Var);
+                        this.d.c(-1, ee0Var);
                     } else {
-                        this.f43041c.c(-1, de0Var);
+                        this.f43041c.c(-1, ee0Var);
                     }
                     if (!org.telegram.messenger.g0.Q1()) {
                         this.f43042e.setVisibility(8);
@@ -86,7 +86,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
                     String M0 = org.telegram.messenger.gd.M0(2131689472, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                     u1Var.S = M0;
                     u1Var.U = org.telegram.messenger.gd.M0(2131747013, null);
                     org.telegram.messenger.f3.m(null, 2131747638, alertDialog$Builder, null);
@@ -103,12 +103,12 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                             boolean z14 = z11;
                             boolean z15 = z12;
                             ArrayList arrayList = ExternalActionActivity.f43038y;
-                            if (i12 != i14 && i12 != (i13 = org.telegram.messenger.j10.f24773t0)) {
+                            if (i12 != i14 && i12 != (i13 = org.telegram.messenger.j10.f24770t0)) {
                                 ConnectionsManager.getInstance(i13).setAppPaused(true, false);
-                                org.telegram.messenger.j10.f24773t0 = i12;
+                                org.telegram.messenger.j10.f24770t0 = i12;
                                 org.telegram.messenger.j10.i(0).v(false);
-                                if (!org.telegram.messenger.t0.f26923x) {
-                                    ConnectionsManager.getInstance(org.telegram.messenger.j10.f24773t0).setAppPaused(false, false);
+                                if (!org.telegram.messenger.t0.f26921x) {
+                                    ConnectionsManager.getInstance(org.telegram.messenger.j10.f24770t0).setAppPaused(false, false);
                                 }
                             }
                             externalActionActivity.e(intent2, z13, z14, z15, i12, 1);
@@ -159,9 +159,9 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         ActionBarLayout actionBarLayout;
         if (org.telegram.messenger.g0.Q1() && (actionBarLayout = this.d) != null) {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) actionBarLayout.getView().getLayoutParams();
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             layoutParams.leftMargin = (point.x - layoutParams.width) / 2;
-            int i7 = org.telegram.messenger.g0.f24115m;
+            int i7 = org.telegram.messenger.g0.f24112m;
             layoutParams.topMargin = (((point.y - layoutParams.height) - i7) / 2) + i7;
             this.d.getView().setLayoutParams(layoutParams);
             if (org.telegram.messenger.g0.P1() && getResources().getConfiguration().orientation != 2) {
@@ -203,7 +203,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         if (this.f43040b == null) {
             return;
         }
-        org.telegram.messenger.bz.f23211x = true;
+        org.telegram.messenger.bz.f23208x = true;
         if (SecretMediaViewer.g() && SecretMediaViewer.f().f43754s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.A1() && PhotoViewer.p1().P1()) {
@@ -243,7 +243,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.q4 q4Var) {
-        org.telegram.ui.ActionBar.h2 h2Var = q4Var.f29903a;
+        org.telegram.ui.ActionBar.h2 h2Var = q4Var.f29901a;
         return true;
     }
 
@@ -284,8 +284,8 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         org.telegram.messenger.t0.w();
         requestWindowFeature(1);
         setTheme(2131755318);
-        getWindow().setBackgroundDrawable(new org.telegram.ui.Cells.r6(1));
-        if (!org.telegram.messenger.bz.f23197s.isEmpty() && !org.telegram.messenger.bz.A) {
+        getWindow().setBackgroundDrawable(new org.telegram.ui.Cells.s6(1));
+        if (!org.telegram.messenger.bz.f23194s.isEmpty() && !org.telegram.messenger.bz.A) {
             try {
                 getWindow().setFlags(8192, 8192);
                 org.telegram.messenger.g0.h2();
@@ -294,10 +294,10 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             }
         }
         super.onCreate(bundle);
-        if (!org.telegram.messenger.bz.f23197s.isEmpty() && org.telegram.messenger.bz.f23211x) {
+        if (!org.telegram.messenger.bz.f23194s.isEmpty() && org.telegram.messenger.bz.f23208x) {
             org.telegram.messenger.bz.B = (int) (SystemClock.elapsedRealtime() / 1000);
         }
-        Typeface typeface = org.telegram.messenger.g0.f24093a;
+        Typeface typeface = org.telegram.messenger.g0.f24090a;
         org.telegram.ui.ActionBar.n6.T(this);
         org.telegram.ui.ActionBar.n6.K(this, false);
         this.f43041c = new ActionBarLayout(this, false);
@@ -356,7 +356,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         org.telegram.ui.Components.pc0 pc0Var = new org.telegram.ui.Components.pc0(this);
         this.f43040b = pc0Var;
         this.f43043f.addView(pc0Var, c8.ma.c(-1.0f, -1));
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25155m4, this);
+        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25158n4, this);
         this.f43041c.a0();
         ActionBarLayout actionBarLayout2 = this.d;
         if (actionBarLayout2 != null) {
@@ -368,7 +368,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         } else {
             z10 = false;
         }
-        e(intent, false, z10, false, org.telegram.messenger.j10.f24773t0, 0);
+        e(intent, false, z10, false, org.telegram.messenger.j10.f24770t0, 0);
         g();
     }
 
@@ -391,7 +391,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     @Override
     public final void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        e(intent, true, false, false, org.telegram.messenger.j10.f24773t0, 0);
+        e(intent, true, false, false, org.telegram.messenger.j10.f24770t0, 0);
     }
 
     @Override
@@ -408,14 +408,14 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             org.telegram.messenger.g0.r(m4Var);
             this.f43048x = null;
         }
-        if (!org.telegram.messenger.bz.f23197s.isEmpty()) {
+        if (!org.telegram.messenger.bz.f23194s.isEmpty()) {
             org.telegram.messenger.bz.B = (int) (SystemClock.elapsedRealtime() / 1000);
             m4 m4Var2 = new m4(this, 4);
             this.f43048x = m4Var2;
-            if (org.telegram.messenger.bz.f23211x) {
+            if (org.telegram.messenger.bz.f23208x) {
                 org.telegram.messenger.g0.h3(m4Var2, 1000L);
             } else {
-                int i7 = org.telegram.messenger.bz.f23214y;
+                int i7 = org.telegram.messenger.bz.f23211y;
                 if (i7 != 0) {
                     org.telegram.messenger.g0.h3(m4Var2, (i7 * 1000) + 1000);
                 }

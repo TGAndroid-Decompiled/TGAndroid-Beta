@@ -172,7 +172,7 @@ public final class h2 implements VoIPService.StateListener, fs {
             U = h2Var;
             h2Var.f40905e = nd.a(activity);
             if (U.f40905e) {
-                windowManager = (WindowManager) org.telegram.messenger.t0.f26915b.getSystemService("window");
+                windowManager = (WindowManager) org.telegram.messenger.t0.f26913b.getSystemService("window");
             } else {
                 windowManager = (WindowManager) activity.getSystemService("window");
             }
@@ -180,12 +180,12 @@ public final class h2 implements VoIPService.StateListener, fs {
             h2Var2.N = i7;
             h2Var2.f40904c = windowManager;
             h2Var2.d = layoutParams;
-            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26915b.getSharedPreferences("voippipconfig", 0);
+            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26913b.getSharedPreferences("voippipconfig", 0);
             float f14 = sharedPreferences.getFloat("relativeX", 1.0f);
             float f15 = sharedPreferences.getFloat("relativeY", 0.0f);
             h2 h2Var3 = U;
             h2Var3.getClass();
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             float f16 = point.x;
             float f17 = point.y;
             float L = org.telegram.messenger.g0.L(16.0f);
@@ -244,7 +244,7 @@ public final class h2 implements VoIPService.StateListener, fs {
             float[] fArr = this.E;
             int i7 = g2.h;
             g2Var.getClass();
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             h2 h2Var = g2Var.f40883f;
             int i10 = h2Var.d.x;
             g2 g2Var2 = h2Var.f40903b;
@@ -256,7 +256,7 @@ public final class h2 implements VoIPService.StateListener, fs {
             fArr[1] = (top - f11) / (((point.y - f11) - g2Var.f40882e) - g2Var2.getMeasuredHeight());
             fArr[0] = Math.min(1.0f, Math.max(0.0f, fArr[0]));
             fArr[1] = Math.min(1.0f, Math.max(0.0f, fArr[1]));
-            org.telegram.messenger.t0.f26915b.getSharedPreferences("voippipconfig", 0).edit().putFloat("relativeX", Math.min(1.0f, Math.max(0.0f, this.E[0]))).putFloat("relativeY", Math.min(1.0f, Math.max(0.0f, this.E[1]))).apply();
+            org.telegram.messenger.t0.f26913b.getSharedPreferences("voippipconfig", 0).edit().putFloat("relativeX", Math.min(1.0f, Math.max(0.0f, this.E[0]))).putFloat("relativeY", Math.min(1.0f, Math.max(0.0f, this.E[1]))).apply();
             try {
                 this.f40904c.removeView(this.f40902a);
             } catch (Throwable th2) {
@@ -275,7 +275,7 @@ public final class h2 implements VoIPService.StateListener, fs {
 
     public final void e() {
         VoIPService sharedInstance;
-        if (!this.f40905e && !nd.b(org.telegram.messenger.t0.f26915b) && (sharedInstance = VoIPService.getSharedInstance()) != null && this.H) {
+        if (!this.f40905e && !nd.b(org.telegram.messenger.t0.f26913b) && (sharedInstance = VoIPService.getSharedInstance()) != null && this.H) {
             sharedInstance.setVideoState(false, 1);
         }
     }

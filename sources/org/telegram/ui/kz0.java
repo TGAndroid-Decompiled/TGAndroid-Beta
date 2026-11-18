@@ -5,41 +5,41 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
 import java.lang.reflect.Method;
 public final class kz0 extends AnimatorListenerAdapter {
-    public final int f49386a;
-    public final org.telegram.ui.Components.al0 f49387b;
+    public final int f49392a;
+    public final org.telegram.ui.Components.al0 f49393b;
 
     public kz0(org.telegram.ui.Components.al0 al0Var, int i7) {
-        this.f49386a = i7;
-        this.f49387b = al0Var;
+        this.f49392a = i7;
+        this.f49393b = al0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f49386a) {
+        switch (this.f49392a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f49387b.f33363b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f49393b.f33363b;
                 secretMediaViewer.Y.getNextView().setText((CharSequence) null);
                 wp0 wp0Var = secretMediaViewer.Z;
                 wp0Var.m0 = false;
-                if (wp0Var.f49066n0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) wp0Var.f49068p0.getLayoutParams()).topMargin = wp0Var.f49066n0;
-                    wp0Var.f49066n0 = -1;
+                if (wp0Var.f49043n0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) wp0Var.f49045p0.getLayoutParams()).topMargin = wp0Var.f49043n0;
+                    wp0Var.f49043n0 = -1;
                     wp0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f49387b.f33363b).Y.setTranslationY(0.0f);
+                ((SecretMediaViewer) this.f49393b.f33363b).Y.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f49386a) {
+        switch (this.f49392a) {
             case 0:
-                wp0 wp0Var = ((SecretMediaViewer) this.f49387b.f33363b).Z;
-                Method method = wp0Var.f49060g0;
+                wp0 wp0Var = ((SecretMediaViewer) this.f49393b.f33363b).Z;
+                Method method = wp0Var.f49037g0;
                 if (method != null) {
                     try {
                         method.invoke(wp0Var, null);

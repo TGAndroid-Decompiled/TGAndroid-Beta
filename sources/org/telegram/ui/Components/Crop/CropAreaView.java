@@ -127,7 +127,7 @@ public class CropAreaView extends ViewGroup {
         float f14;
         float f15 = this.W;
         if (!this.f32876b0) {
-            i7 = g0.f24115m;
+            i7 = g0.f24112m;
         } else {
             i7 = 0;
         }
@@ -384,7 +384,7 @@ public class CropAreaView extends ViewGroup {
         int x10 = (int) (motionEvent.getX() - ((ViewGroup) getParent()).getX());
         int y10 = (int) (motionEvent.getY() - ((ViewGroup) getParent()).getY());
         if (!this.f32876b0) {
-            i7 = g0.f24115m;
+            i7 = g0.f24112m;
         } else {
             i7 = 0;
         }
@@ -422,8 +422,8 @@ public class CropAreaView extends ViewGroup {
                 a aVar = this.f32881e0;
                 if (aVar != null) {
                     o oVar = (o) aVar;
-                    oVar.f21896a.d(oVar.f21900f);
-                    oVar.f21901n = 0.0f;
+                    oVar.f21893a.d(oVar.f21897f);
+                    oVar.f21898n = 0.0f;
                     n nVar = oVar.N;
                     if (nVar != null) {
                         nVar.D(false);
@@ -596,9 +596,9 @@ public class CropAreaView extends ViewGroup {
                 a aVar2 = this.f32881e0;
                 if (aVar2 != null) {
                     o oVar2 = (o) aVar2;
-                    CropAreaView cropAreaView = oVar2.f21896a;
+                    CropAreaView cropAreaView = oVar2.f21893a;
                     cropAreaView.g(3, false);
-                    RectF rectF2 = oVar2.f21900f;
+                    RectF rectF2 = oVar2.f21897f;
                     float centerX = rectF2.centerX() - cropAreaView.getCropCenterX();
                     float centerY = rectF2.centerY() - cropAreaView.getCropCenterY();
                     m mVar = oVar2.M;
@@ -620,7 +620,7 @@ public class CropAreaView extends ViewGroup {
                 a aVar3 = this.f32881e0;
                 if (aVar3 != null) {
                     o oVar3 = (o) aVar3;
-                    CropAreaView cropAreaView2 = oVar3.f21896a;
+                    CropAreaView cropAreaView2 = oVar3.f21893a;
                     cropAreaView2.g(1, true);
                     oVar3.d(cropAreaView2.getTargetRectToFill());
                 }

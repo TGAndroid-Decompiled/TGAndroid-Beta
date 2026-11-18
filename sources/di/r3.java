@@ -4,19 +4,19 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cx;
 public final class r3 implements Runnable {
-    public final int f9632a;
-    public final f6 f9633b;
+    public final int f9629a;
+    public final f6 f9630b;
 
     public r3(f6 f6Var, int i7) {
-        this.f9632a = i7;
-        this.f9633b = f6Var;
+        this.f9629a = i7;
+        this.f9630b = f6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f9632a) {
+        switch (this.f9629a) {
             case 0:
-                f6 f6Var = this.f9633b;
+                f6 f6Var = this.f9630b;
                 f6Var.dismiss();
                 org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
                 TL_stars.TL_starGiftUnique M1 = f6Var.M1();
@@ -28,10 +28,10 @@ public final class r3 implements Runnable {
                 }
                 return;
             case 1:
-                this.f9633b.j2();
+                this.f9630b.j2();
                 return;
             default:
-                this.f9633b.onBackPressed();
+                this.f9630b.onBackPressed();
                 return;
         }
     }

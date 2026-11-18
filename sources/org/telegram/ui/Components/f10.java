@@ -116,7 +116,7 @@ public final class f10 extends ViewGroup {
         if (org.telegram.messenger.g0.Q1()) {
             z10 = org.telegram.messenger.g0.L(372.0f) / 3;
         } else {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             z10 = org.telegram.messenger.n10.z(158.0f, Math.min(point.x, point.y), 3);
         }
         if (L - i16 < z10) {

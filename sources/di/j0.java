@@ -23,30 +23,30 @@ import org.telegram.ui.PasskeysActivity;
 import org.telegram.ui.PrivacySettingsActivity;
 import org.telegram.ui.hq0;
 public final class j0 implements q10 {
-    public final int f9062a;
-    public final int f9063b;
-    public final Object f9064c;
+    public final int f9059a;
+    public final int f9060b;
+    public final Object f9061c;
     public final Object d;
-    public final Object f9065e;
+    public final Object f9062e;
 
     public j0(int i7, org.telegram.ui.ActionBar.h2 h2Var, vf.b bVar, org.telegram.ui.ActionBar.u1 u1Var) {
-        this.f9062a = 0;
-        this.f9063b = i7;
-        this.f9064c = h2Var;
+        this.f9059a = 0;
+        this.f9060b = i7;
+        this.f9061c = h2Var;
         this.d = bVar;
-        this.f9065e = u1Var;
+        this.f9062e = u1Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z10;
-        int i7 = this.f9062a;
+        int i7 = this.f9059a;
         TLRPC.WebPage webPage = null;
-        int i10 = this.f9063b;
+        int i10 = this.f9060b;
         boolean z11 = false;
-        Object obj3 = this.f9065e;
+        Object obj3 = this.f9062e;
         Object obj4 = this.d;
-        Object obj5 = this.f9064c;
+        Object obj5 = this.f9061c;
         switch (i7) {
             case 0:
                 org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) obj5;
@@ -66,7 +66,7 @@ public final class j0 implements q10 {
                 Long l10 = (Long) obj;
                 String str = (String) obj2;
                 if (l10 != null && l10.longValue() != 0) {
-                    int i11 = this.f9063b;
+                    int i11 = this.f9060b;
                     org.telegram.messenger.u9.c(i11).j(l10.longValue(), new b4(zArr, context, i6Var, i11, str, 0));
                     return;
                 }
@@ -83,8 +83,8 @@ public final class j0 implements q10 {
                     if (!(webPage2 instanceof TLRPC.TL_webPageEmpty)) {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
-                                long j3 = webPage2.f28560id;
-                                int i12 = this.f9063b;
+                                long j3 = webPage2.f28558id;
+                                int i12 = this.f9060b;
                                 ki.a1 a1Var = new ki.a1(j3, fsVarArr, i12, y0Var);
                                 fsVarArr[0] = a1Var;
                                 ks.f(i12).b(a1Var, 59);
@@ -121,7 +121,7 @@ public final class j0 implements q10 {
                         org.telegram.messenger.f3.n(null, 2131751894, org.telegram.ui.Components.lc.b0(h2Var2), 2131624068, 36);
                         return;
                     } else if (!arrayList.isEmpty()) {
-                        h2Var2.showDialog(new li.d0(h2Var2, 0L, arrayList, new bi.e5(h2Var2, chat, i10, 2)));
+                        h2Var2.showDialog(new li.d0(h2Var2, 0L, arrayList, new bi.d5(h2Var2, chat, i10, 2)));
                         return;
                     } else {
                         org.telegram.ui.Components.lc.b0(h2Var2).Q(2131624068, 36, "").j();
@@ -136,9 +136,9 @@ public final class j0 implements q10 {
                 TLRPC.Chat chat2 = (TLRPC.Chat) obj3;
                 TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                int i13 = this.f9063b;
+                int i13 = this.f9060b;
                 if (tL_error4 != null) {
-                    org.telegram.messenger.g0.g3(new bi.u4(a1Var2, i13, tL_error4, tL_channels_joinChannel, 14));
+                    org.telegram.messenger.g0.g3(new bi.t4(a1Var2, i13, tL_error4, tL_channels_joinChannel, 14));
                     return;
                 }
                 if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
@@ -163,12 +163,12 @@ public final class j0 implements q10 {
                     z11 = true;
                 }
                 if (!z11) {
-                    mp.u1(i13).D0(chat2.f28405id, true);
+                    mp.u1(i13).D0(chat2.f28403id, true);
                 }
                 org.telegram.messenger.g0.g3(new hq0(a1Var2, 5));
                 org.telegram.messenger.g0.h3(new ai.w0(i13, chat2, 21), 1000L);
                 tr a02 = tr.a0(i13);
-                long j10 = chat2.f28405id;
+                long j10 = chat2.f28403id;
                 a02.R1(-j10, j10, new ArrayList(), null);
                 return;
             case 5:
@@ -302,7 +302,7 @@ public final class j0 implements q10 {
                     if ("EMPTY".equalsIgnoreCase(str3)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2);
                         String M0 = gd.M0(2131747439, null);
-                        org.telegram.ui.ActionBar.u1 u1Var3 = alertDialog$Builder.f28746a;
+                        org.telegram.ui.ActionBar.u1 u1Var3 = alertDialog$Builder.f28744a;
                         u1Var3.S = M0;
                         u1Var3.U = gd.M0(2131747440, null);
                         alertDialog$Builder.k(gd.M0(2131747638, null), null);
@@ -362,34 +362,34 @@ public final class j0 implements q10 {
     }
 
     public j0(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f9062a = i10;
-        this.f9064c = obj;
-        this.f9063b = i7;
+        this.f9059a = i10;
+        this.f9061c = obj;
+        this.f9060b = i7;
         this.d = obj2;
-        this.f9065e = obj3;
+        this.f9062e = obj3;
     }
 
     public j0(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f9062a = i10;
-        this.f9064c = obj;
+        this.f9059a = i10;
+        this.f9061c = obj;
         this.d = obj2;
-        this.f9063b = i7;
-        this.f9065e = obj3;
+        this.f9060b = i7;
+        this.f9062e = obj3;
     }
 
     public j0(Object obj, Object obj2, Object obj3, int i7, int i10) {
-        this.f9062a = i10;
-        this.f9064c = obj;
+        this.f9059a = i10;
+        this.f9061c = obj;
         this.d = obj2;
-        this.f9065e = obj3;
-        this.f9063b = i7;
+        this.f9062e = obj3;
+        this.f9060b = i7;
     }
 
     public j0(org.telegram.ui.ActionBar.u1[] u1VarArr, org.telegram.ui.ActionBar.h2 h2Var, int i7, TLRPC.Chat chat) {
-        this.f9062a = 3;
+        this.f9059a = 3;
         this.d = u1VarArr;
-        this.f9064c = h2Var;
-        this.f9063b = i7;
-        this.f9065e = chat;
+        this.f9061c = h2Var;
+        this.f9060b = i7;
+        this.f9062e = chat;
     }
 }

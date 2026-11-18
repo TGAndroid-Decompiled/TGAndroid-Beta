@@ -5,11 +5,11 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class pz extends android.support.v4.media.session.s {
-    public final qz f26325g;
+    public final qz f26323g;
 
     public pz(qz qzVar) {
         super(0);
-        this.f26325g = qzVar;
+        this.f26323g = qzVar;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class pz extends android.support.v4.media.session.s {
 
     @Override
     public final void G(long j3) {
-        fj fjVar = MediaController.B().f22743v0;
+        fj fjVar = MediaController.B().f22740v0;
         if (fjVar != null) {
             MediaController.B().i0(fjVar, (float) ((j3 / 1000.0d) / fjVar.L0()));
         }
@@ -36,7 +36,7 @@ public final class pz extends android.support.v4.media.session.s {
             }
         }
         bz.E(i10);
-        this.f26325g.f();
+        this.f26323g.f();
         g0.g3(new xr(this, 16));
     }
 
@@ -54,13 +54,13 @@ public final class pz extends android.support.v4.media.session.s {
             }
             B.l0(i10);
         }
-        this.f26325g.f26502b.x(bz.N0 ? 1 : 0);
+        this.f26323g.f26500b.x(bz.N0 ? 1 : 0);
         g0.g3(new xr(this, 16));
     }
 
     @Override
     public final void S() {
-        fj fjVar = MediaController.B().f22743v0;
+        fj fjVar = MediaController.B().f22740v0;
         if (fjVar != null && fjVar.I3()) {
             MediaController.B().U(false);
         }
@@ -68,7 +68,7 @@ public final class pz extends android.support.v4.media.session.s {
 
     @Override
     public final void V() {
-        fj fjVar = MediaController.B().f22743v0;
+        fj fjVar = MediaController.B().f22740v0;
         if (fjVar != null && fjVar.I3()) {
             MediaController.B().V();
         }
@@ -83,7 +83,7 @@ public final class pz extends android.support.v4.media.session.s {
     public final void f(String str) {
         int i7;
         boolean equals = "org.telegram.android.musicplayer.repeat".equals(str);
-        qz qzVar = this.f26325g;
+        qz qzVar = this.f26323g;
         if (equals) {
             bz.E((bz.S0 + 1) % 3);
             qzVar.f();
@@ -95,20 +95,20 @@ public final class pz extends android.support.v4.media.session.s {
                 i7 = 2;
             }
             B.l0(i7);
-            qzVar.f26502b.x(bz.N0 ? 1 : 0);
+            qzVar.f26500b.x(bz.N0 ? 1 : 0);
         }
     }
 
     @Override
     public final void k() {
-        MediaController.B().R(MediaController.B().f22743v0, true);
+        MediaController.B().R(MediaController.B().f22740v0, true);
     }
 
     @Override
     public final void n() {
-        fj fjVar = MediaController.B().f22743v0;
+        fj fjVar = MediaController.B().f22740v0;
         if (fjVar == null) {
-            qz qzVar = this.f26325g;
+            qz qzVar = this.f26323g;
             if (qzVar.d != 0) {
                 q(a8.p0.r(new StringBuilder(), qzVar.d, "_0"), null);
                 return;
@@ -122,23 +122,23 @@ public final class pz extends android.support.v4.media.session.s {
     public final void q(String str, Bundle bundle) {
         String str2;
         String str3;
-        qz qzVar = this.f26325g;
-        android.support.v4.media.session.a0 a0Var = qzVar.f26502b;
+        qz qzVar = this.f26323g;
+        android.support.v4.media.session.a0 a0Var = qzVar.f26500b;
         if (!TextUtils.isEmpty(str)) {
             String[] split = str.split("_");
             if (split.length == 2) {
                 try {
                     long parseLong = Long.parseLong(split[0]);
                     int parseInt = Integer.parseInt(split[1]);
-                    ArrayList arrayList = (ArrayList) qzVar.f26508j.f(parseLong);
+                    ArrayList arrayList = (ArrayList) qzVar.f26506j.f(parseLong);
                     if (arrayList == null) {
                         qzVar.e(new oz(this, str, bundle, 0), parseLong);
                         return;
                     }
-                    ArrayList arrayList2 = (ArrayList) qzVar.f26509k.f(parseLong);
+                    ArrayList arrayList2 = (ArrayList) qzVar.f26507k.f(parseLong);
                     if (parseInt >= 0 && parseInt < arrayList.size()) {
                         qzVar.d = parseLong;
-                        mp.u1(qzVar.f26503c).f25660g7.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
+                        mp.u1(qzVar.f26501c).f25658g7.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
                         MediaController.B().o0(arrayList, (fj) arrayList.get(parseInt), 0L, false, null, 0L);
                         a0Var.v(arrayList2);
                         if (n5.E(parseLong)) {
@@ -148,16 +148,16 @@ public final class pz extends android.support.v4.media.session.s {
                             } else {
                                 str3 = "DELETED USER";
                             }
-                            ((android.support.v4.media.session.u) a0Var.f1704b).f1734a.setQueueTitle(str3);
+                            ((android.support.v4.media.session.u) a0Var.f1705b).f1735a.setQueueTitle(str3);
                             return;
                         }
-                        TLRPC.Chat chat = (TLRPC.Chat) qzVar.f26507i.f(-parseLong);
+                        TLRPC.Chat chat = (TLRPC.Chat) qzVar.f26505i.f(-parseLong);
                         if (chat != null) {
                             str2 = chat.title;
                         } else {
                             str2 = "DELETED CHAT";
                         }
-                        ((android.support.v4.media.session.u) a0Var.f1704b).f1734a.setQueueTitle(str2);
+                        ((android.support.v4.media.session.u) a0Var.f1705b).f1735a.setQueueTitle(str2);
                     }
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -171,8 +171,8 @@ public final class pz extends android.support.v4.media.session.s {
         String str2;
         String str3;
         String str4;
-        qz qzVar = this.f26325g;
-        ArrayList arrayList = qzVar.f26506g;
+        qz qzVar = this.f26323g;
+        ArrayList arrayList = qzVar.f26504g;
         if (str != null && str.length() != 0) {
             String lowerCase = str.toLowerCase();
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
@@ -200,7 +200,7 @@ public final class pz extends android.support.v4.media.session.s {
                         continue;
                     }
                 } else {
-                    TLRPC.Chat chat = (TLRPC.Chat) qzVar.f26507i.f(-longValue);
+                    TLRPC.Chat chat = (TLRPC.Chat) qzVar.f26505i.f(-longValue);
                     if (chat != null && (str2 = chat.title) != null && str2.toLowerCase().contains(lowerCase)) {
                         q(longValue + "_0", null);
                         return;

@@ -4,26 +4,26 @@ import android.util.LongSparseArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 public final class n9 implements q10 {
-    public final int f25902a = 1;
-    public final long f25903b;
-    public final c1 f25904c;
+    public final int f25900a = 1;
+    public final long f25901b;
+    public final c1 f25902c;
 
     public n9(u9 u9Var, long j3) {
-        this.f25904c = u9Var;
-        this.f25903b = j3;
+        this.f25902c = u9Var;
+        this.f25901b = j3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f25902a;
-        long j3 = this.f25903b;
-        c1 c1Var = this.f25904c;
+        int i7 = this.f25900a;
+        long j3 = this.f25901b;
+        c1 c1Var = this.f25902c;
         switch (i7) {
             case 0:
                 u9 u9Var = (u9) c1Var;
                 TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState = (TL_payments.TL_StarGiftAuctionState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                LongSparseArray longSparseArray = u9Var.f27140e;
+                LongSparseArray longSparseArray = u9Var.f27138e;
                 if (tL_StarGiftAuctionState != null) {
                     u9Var.getMessagesController().f4(tL_StarGiftAuctionState.users, false);
                     u9Var.getMessagesController().Z3(tL_StarGiftAuctionState.chats, false);
@@ -50,7 +50,7 @@ public final class n9 implements q10 {
     }
 
     public n9(mp mpVar, long j3, jh.b bVar) {
-        this.f25904c = mpVar;
-        this.f25903b = j3;
+        this.f25902c = mpVar;
+        this.f25901b = j3;
     }
 }

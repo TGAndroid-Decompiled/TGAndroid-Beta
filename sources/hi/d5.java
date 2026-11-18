@@ -8,17 +8,17 @@ import android.graphics.drawable.Drawable;
 import android.util.SparseIntArray;
 import org.telegram.messenger.bz;
 public class d5 implements org.telegram.ui.ActionBar.i6 {
-    public final int f14382a;
-    public Object f14383b;
-    public Object f14384c;
+    public final int f14379a;
+    public Object f14380b;
+    public Object f14381c;
 
     public d5() {
-        this.f14382a = 1;
+        this.f14379a = 1;
     }
 
     @Override
     public final boolean d() {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 return true;
             case 1:
@@ -29,7 +29,7 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final void e(float f10, float f11, int i7, int i10) {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 org.telegram.ui.ActionBar.n6.r(f10, f11, i7, i10);
                 return;
@@ -37,7 +37,7 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
                 org.telegram.ui.ActionBar.n6.r(f10, f11, i7, i10);
                 return;
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var == null) {
                     org.telegram.ui.ActionBar.n6.r(f10, f11, i7, i10);
                     return;
@@ -50,18 +50,18 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final ColorFilter f() {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
-                if (((PorterDuffColorFilter) this.f14383b) == null) {
-                    this.f14383b = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+                if (((PorterDuffColorFilter) this.f14380b) == null) {
+                    this.f14380b = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
                 }
-                return (PorterDuffColorFilter) this.f14383b;
+                return (PorterDuffColorFilter) this.f14380b;
             case 1:
-                return org.telegram.ui.ActionBar.n6.f29728v3;
+                return org.telegram.ui.ActionBar.n6.f29726v3;
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var == null) {
-                    return org.telegram.ui.ActionBar.n6.f29728v3;
+                    return org.telegram.ui.ActionBar.n6.f29726v3;
                 }
                 return i6Var.f();
         }
@@ -69,13 +69,13 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final Paint g(String str) {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
-                return ((org.telegram.ui.ActionBar.i6) this.f14384c).g(str);
+                return ((org.telegram.ui.ActionBar.i6) this.f14381c).g(str);
             case 1:
                 return org.telegram.ui.ActionBar.n6.V0(str);
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var == null) {
                     return org.telegram.ui.ActionBar.n6.V0(str);
                 }
@@ -85,13 +85,13 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 return null;
             case 1:
                 return null;
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var == null) {
                     return org.telegram.ui.ActionBar.n6.R0(str);
                 }
@@ -101,7 +101,7 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final boolean h() {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 return bz.H0;
             case 1:
@@ -113,13 +113,13 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final int i(int i7) {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 return k(i7);
             case 1:
                 return k(i7);
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var == null) {
                     return org.telegram.ui.ActionBar.n6.x0(null, i7, false);
                 }
@@ -129,13 +129,13 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final boolean j() {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 return false;
             case 1:
                 return false;
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var == null) {
                     return org.telegram.ui.ActionBar.n6.d1();
                 }
@@ -145,22 +145,22 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final int k(int i7) {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 if (i7 == org.telegram.ui.ActionBar.n6.G8) {
                     return -14145495;
                 }
                 if (i7 != org.telegram.ui.ActionBar.n6.E8) {
-                    if (i7 == org.telegram.ui.ActionBar.n6.f29469h5) {
+                    if (i7 == org.telegram.ui.ActionBar.n6.f29467h5) {
                         return -14737633;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.n6.f29504j5) {
+                    if (i7 == org.telegram.ui.ActionBar.n6.f29502j5) {
                         return -592138;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.n6.f29654r5) {
+                    if (i7 == org.telegram.ui.ActionBar.n6.f29652r5) {
                         return -8553091;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.n6.f29816zf) {
+                    if (i7 == org.telegram.ui.ActionBar.n6.f29814zf) {
                         return -16777216;
                     }
                     if (i7 == org.telegram.ui.ActionBar.n6.Cf) {
@@ -174,21 +174,21 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
                         if (i7 == i10) {
                             return -11754001;
                         }
-                        if (i7 == org.telegram.ui.ActionBar.n6.f29488i6) {
+                        if (i7 == org.telegram.ui.ActionBar.n6.f29486i6) {
                             return 536870911;
                         }
-                        if (i7 != org.telegram.ui.ActionBar.n6.f29761wi && i7 != org.telegram.ui.ActionBar.n6.f29742vi && i7 != org.telegram.ui.ActionBar.n6.f29780xi) {
-                            if (i7 == org.telegram.ui.ActionBar.n6.f29799yi) {
+                        if (i7 != org.telegram.ui.ActionBar.n6.f29759wi && i7 != org.telegram.ui.ActionBar.n6.f29740vi && i7 != org.telegram.ui.ActionBar.n6.f29778xi) {
+                            if (i7 == org.telegram.ui.ActionBar.n6.f29797yi) {
                                 return 352321535;
                             }
                             if (i7 != org.telegram.ui.ActionBar.n6.Bf && i7 != i10) {
                                 if (i7 == org.telegram.ui.ActionBar.n6.Af) {
                                     return 780633991;
                                 }
-                                if (i7 == org.telegram.ui.ActionBar.n6.f29339a7) {
+                                if (i7 == org.telegram.ui.ActionBar.n6.f29337a7) {
                                     return -15921907;
                                 }
-                                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                                 if (i6Var != null) {
                                     return i6Var.k(i7);
                                 }
@@ -200,19 +200,19 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
                 }
                 return -1;
             case 1:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f14383b;
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f14380b;
                 int indexOfKey = sparseIntArray.indexOfKey(i7);
                 if (indexOfKey >= 0) {
                     return sparseIntArray.valueAt(indexOfKey);
                 }
                 return org.telegram.ui.ActionBar.n6.v0(i7);
             default:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f14383b;
+                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f14380b;
                 int indexOfKey2 = sparseIntArray2.indexOfKey(i7);
                 if (indexOfKey2 >= 0) {
                     return sparseIntArray2.valueAt(indexOfKey2);
                 }
-                org.telegram.ui.ActionBar.i6 i6Var2 = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var2 = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var2 == null) {
                     return org.telegram.ui.ActionBar.n6.v0(i7);
                 }
@@ -222,12 +222,12 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final void l(int i7, int i10) {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
             case 1:
                 return;
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var != null) {
                     i6Var.l(i7, i10);
                     return;
@@ -238,13 +238,13 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
 
     @Override
     public final int m(int i7) {
-        switch (this.f14382a) {
+        switch (this.f14379a) {
             case 0:
                 return k(i7);
             case 1:
-                return ((SparseIntArray) this.f14383b).get(i7);
+                return ((SparseIntArray) this.f14380b).get(i7);
             default:
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14384c;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) this.f14381c;
                 if (i6Var == null) {
                     return org.telegram.ui.ActionBar.n6.x0(null, i7, false);
                 }
@@ -253,15 +253,15 @@ public class d5 implements org.telegram.ui.ActionBar.i6 {
     }
 
     public d5(int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f14382a = i7;
+        this.f14379a = i7;
         switch (i7) {
             case 2:
-                this.f14383b = new SparseIntArray();
-                this.f14384c = i6Var;
+                this.f14380b = new SparseIntArray();
+                this.f14381c = i6Var;
                 a();
                 return;
             default:
-                this.f14384c = i6Var;
+                this.f14381c = i6Var;
                 return;
         }
     }

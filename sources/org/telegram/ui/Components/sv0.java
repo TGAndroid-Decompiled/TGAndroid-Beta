@@ -35,13 +35,13 @@ public final class sv0 implements Runnable {
 
     private final void c() {
         SpannableString spannableString = (SpannableString) this.f39851b;
-        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.j) this.f39852c).f17948b);
+        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.j) this.f39852c).f17945b);
         ((oi.s2) this.d).run();
     }
 
     private final void d() {
         SpannableString spannableString = (SpannableString) this.f39851b;
-        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.j) this.f39852c).f17948b);
+        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.j) this.f39852c).f17945b);
         ((di.o9) this.d).a(spannableString);
     }
 
@@ -58,7 +58,7 @@ public final class sv0 implements Runnable {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
             mpVar.f4(tL_channels_channelParticipants.users, false);
             mpVar.Z3(tL_channels_channelParticipants.chats, false);
-            long e10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).e();
+            long e10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).e();
             ArrayList arrayList = new ArrayList();
             for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
                 TLRPC.Peer peer = tL_channels_channelParticipants.participants.get(i7).peer;

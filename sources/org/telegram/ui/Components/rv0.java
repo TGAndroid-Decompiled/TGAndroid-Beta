@@ -25,9 +25,9 @@ public final class rv0 implements org.telegram.ui.ActionBar.m0, org.telegram.mes
         if (tL_messages_stickerSet != null) {
             TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
             if (stickerSet != null && stickerSet.emojis) {
-                str = "https://" + org.telegram.messenger.mp.u1(iw0Var.f30189a).X2 + "/addemoji/" + iw0Var.N1.set.short_name;
+                str = "https://" + org.telegram.messenger.mp.u1(iw0Var.f30187a).X2 + "/addemoji/" + iw0Var.N1.set.short_name;
             } else {
-                str = "https://" + org.telegram.messenger.mp.u1(iw0Var.f30189a).X2 + "/addstickers/" + iw0Var.N1.set.short_name;
+                str = "https://" + org.telegram.messenger.mp.u1(iw0Var.f30187a).X2 + "/addstickers/" + iw0Var.N1.set.short_name;
             }
             String str2 = str;
             if (i7 == 1) {
@@ -43,8 +43,8 @@ public final class rv0 implements org.telegram.ui.ActionBar.m0, org.telegram.mes
                     h2Var.showDialog(uv0Var);
                     if (h2Var instanceof org.telegram.ui.bn) {
                         boolean V9 = ((org.telegram.ui.bn) h2Var).V9();
-                        uv0Var.f30210i0 = V9;
-                        uv0Var.f30217n = V9;
+                        uv0Var.f30208i0 = V9;
+                        uv0Var.f30215n = V9;
                         return;
                     }
                     return;
@@ -53,7 +53,7 @@ public final class rv0 implements org.telegram.ui.ActionBar.m0, org.telegram.mes
             } else if (i7 == 2) {
                 try {
                     org.telegram.messenger.g0.g(str2);
-                    new lc((FrameLayout) iw0Var.f30192b, iw0Var.J0).k(false).j();
+                    new lc((FrameLayout) iw0Var.f30190b, iw0Var.J0).k(false).j();
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }

@@ -41,7 +41,7 @@ public final class n2 extends si {
                 }
                 super.L();
                 bnVar.wa(false, true);
-                pl plVar = bnVar.f46093m1;
+                pl plVar = bnVar.f46084m1;
                 if (plVar != null) {
                     WeakHashMap weakHashMap = r0.i0.f56244a;
                     r0.y.c(plVar);
@@ -71,7 +71,7 @@ public final class n2 extends si {
         switch (i10) {
             case 0:
                 z3 z3Var = (z3) obj;
-                n2 n2Var = z3Var.f12873s2;
+                n2 n2Var = z3Var.f12870s2;
                 if (n2Var != null) {
                     n2Var.A0(false);
                 }
@@ -99,13 +99,13 @@ public final class n2 extends si {
                 boolean O = this.f39732w2.O();
                 if (!O) {
                     bnVar.S3 = false;
-                    rj rjVar2 = bnVar.f45932a0;
+                    rj rjVar2 = bnVar.f45923a0;
                     if (rjVar2 != null) {
                         if (!z10) {
                             rjVar2.U();
                         }
-                        if (bnVar.f45932a0.getEditField() != null) {
-                            bnVar.f45932a0.getEditField().clearFocus();
+                        if (bnVar.f45923a0.getEditField() != null) {
+                            bnVar.f45923a0.getEditField().clearFocus();
                         }
                     }
                 }
@@ -114,8 +114,8 @@ public final class n2 extends si {
                     if (n2Var4 != null) {
                         n2Var4.A0(false);
                     }
-                    if (O && (rjVar = bnVar.f45932a0) != null && rjVar.getEditField() != null) {
-                        bnVar.f45932a0.getEditField().requestFocus();
+                    if (O && (rjVar = bnVar.f45923a0) != null && rjVar.getEditField() != null) {
+                        bnVar.f45923a0.getEditField().requestFocus();
                     }
                     n2 n2Var5 = bnVar.Y1;
                     if (n2Var5 != null && n2Var5.isShowing()) {
@@ -124,7 +124,7 @@ public final class n2 extends si {
                         org.telegram.messenger.g0.Z2(parentActivity, i7);
                     }
                     bnVar.wa(false, false);
-                    pl plVar = bnVar.f46093m1;
+                    pl plVar = bnVar.f46084m1;
                     if (plVar != null) {
                         WeakHashMap weakHashMap = r0.i0.f56244a;
                         r0.y.c(plVar);

@@ -77,7 +77,7 @@ public final class k0 extends FrameLayout implements org.telegram.ui.ActionBar.c
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.G6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.Fi));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29488i6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29486i6));
     }
 
     public final void b(boolean z10, float f10) {
@@ -113,7 +113,7 @@ public final class k0 extends FrameLayout implements org.telegram.ui.ActionBar.c
         if (z10) {
             w02 = org.telegram.ui.ActionBar.n6.r1(0.1f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, i6Var));
         } else {
-            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29488i6, i6Var);
+            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29486i6, i6Var);
         }
         int i7 = this.f36590c;
         setBackground(org.telegram.ui.ActionBar.n6.a0(w02, i7, i7));

@@ -144,7 +144,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         super(context);
         Size size;
         float f10;
-        int i7 = org.telegram.messenger.j10.f24773t0;
+        int i7 = org.telegram.messenger.j10.f24770t0;
         this.f42770e = i7;
         this.J = true;
         this.f42762a0 = new int[2];
@@ -152,7 +152,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         this.f42766c0 = new int[1];
         this.f42768d0 = 1.0f;
         this.f42788n0 = new Size[2];
-        if (org.telegram.messenger.bz.f23218z0) {
+        if (org.telegram.messenger.bz.f23215z0) {
             size = new Size(16, 9);
         } else {
             size = new Size(4, 3);
@@ -184,10 +184,10 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         this.f42792r = new RectF();
         hi.o2 o2Var = new hi.o2(getContext(), null, this, null);
         this.f42801x = o2Var;
-        o2Var.f15152o = 0.5f;
-        o2Var.f15151n = hi.o2.f(0.5f);
+        o2Var.f15149o = 0.5f;
+        o2Var.f15148n = hi.o2.f(0.5f);
         o2Var.g();
-        addView(o2Var.f15141b, c8.ma.e(-1, -1, 119));
+        addView(o2Var.f15138b, c8.ma.e(-1, -1, 119));
         f40 f40Var = new f40(this, context);
         this.f42773f = f40Var;
         f40Var.setOutlineProvider(new fh.a(this, 4));
@@ -195,7 +195,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         f40Var.setWillNotDraw(false);
         int i10 = org.telegram.messenger.g0.v;
         addView(f40Var, new FrameLayout.LayoutParams(i10, i10, 17));
-        addView(o2Var.f15142c, c8.ma.e(-1, -1, 119));
+        addView(o2Var.f15139c, c8.ma.e(-1, -1, 119));
         LinearLayout linearLayout = new LinearLayout(context);
         this.f42765b1 = linearLayout;
         linearLayout.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f));
@@ -360,7 +360,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         int[] iArr = new int[1];
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
         if (iArr[0] == 0) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.a8.d(GLES20.glGetShaderInfoLog(glCreateShader));
             }
             GLES20.glDeleteShader(glCreateShader);
@@ -373,10 +373,10 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         int ceil;
         if (!org.telegram.messenger.bz.Y && org.telegram.messenger.bz.o() < 1) {
             int o4 = org.telegram.messenger.bz.o();
-            if (org.telegram.messenger.bz.f23148a == -1) {
+            if (org.telegram.messenger.bz.f23145a == -1) {
                 int i7 = Build.VERSION.SDK_INT;
                 int i10 = ConnectionsManager.CPU_COUNT;
-                int memoryClass = ((ActivityManager) org.telegram.messenger.t0.f26915b.getSystemService("activity")).getMemoryClass();
+                int memoryClass = ((ActivityManager) org.telegram.messenger.t0.f26913b.getSystemService("activity")).getMemoryClass();
                 int i11 = 0;
                 int i12 = 0;
                 for (int i13 = 0; i13 < i10; i13++) {
@@ -399,15 +399,15 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                 }
                 if (i10 > 2 && memoryClass > 100 && ((i10 > 4 || ceil == -1 || ceil > 1250) && (i10 > 4 || ceil > 1300 || memoryClass > 128 || i7 > 24))) {
                     if (i10 >= 8 && memoryClass > 160 && ((ceil == -1 || ceil > 2050) && (ceil != -1 || i10 != 8 || i7 > 23))) {
-                        org.telegram.messenger.bz.f23148a = 2;
+                        org.telegram.messenger.bz.f23145a = 2;
                     } else {
-                        org.telegram.messenger.bz.f23148a = 1;
+                        org.telegram.messenger.bz.f23145a = 1;
                     }
                 } else {
-                    org.telegram.messenger.bz.f23148a = 0;
+                    org.telegram.messenger.bz.f23145a = 0;
                 }
             }
-            if (Math.max(o4, org.telegram.messenger.bz.f23148a) != 2) {
+            if (Math.max(o4, org.telegram.messenger.bz.f23145a) != 2) {
                 int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
                 int i14 = 0;
                 while (true) {
@@ -448,7 +448,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         } else {
             i7 = 6;
         }
-        f10.k(org.telegram.messenger.ks.f25158n2, valueOf, Integer.valueOf(i7));
+        f10.k(org.telegram.messenger.ks.f25156n2, valueOf, Integer.valueOf(i7));
         if (this.m0 != null) {
             r();
             this.m0.a(0, true, 0, 0, 0L);
@@ -460,7 +460,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
             }
         }
         if (this.f42774f0 != null) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 org.telegram.messenger.a8.d("delete camera file by cancel");
             }
             this.f42774f0.delete();
@@ -618,15 +618,15 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                     r40Var.i(1, new o40(i10, i11, j3, j10, z10));
                     return;
                 }
-                boolean z12 = org.telegram.messenger.s2.f26723a;
+                boolean z12 = org.telegram.messenger.s2.f26721a;
                 if (!this.f42774f0.exists()) {
                     org.telegram.messenger.a8.g(new RuntimeException("file not found :( round video"), true);
                 }
                 if (this.S == null) {
                     org.telegram.messenger.e20 e20Var = new org.telegram.messenger.e20();
                     this.S = e20Var;
-                    e20Var.f23637a = -1L;
-                    e20Var.f23639b = -1L;
+                    e20Var.f23634a = -1L;
+                    e20Var.f23636b = -1L;
                 }
                 if (this.S.c()) {
                     this.M = null;
@@ -634,44 +634,44 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                     this.O = null;
                     this.P = null;
                     org.telegram.messenger.e20 e20Var2 = this.S;
-                    long j12 = e20Var2.f23654r;
+                    long j12 = e20Var2.f23651r;
                     double d = j12;
-                    long j13 = e20Var2.f23637a;
+                    long j13 = e20Var2.f23634a;
                     if (j13 >= 0) {
                         j11 = 0;
                     } else {
                         j13 = 0;
                         j11 = 0;
                     }
-                    long j14 = e20Var2.f23639b;
+                    long j14 = e20Var2.f23636b;
                     if (j14 >= j11) {
                         j12 = j14;
                     }
                     long j15 = j12 - j13;
-                    e20Var2.f23654r = j15;
-                    e20Var2.f23653q = Math.max(1L, (long) ((j15 / d) * this.Q));
+                    e20Var2.f23651r = j15;
+                    e20Var2.f23650q = Math.max(1L, (long) ((j15 / d) * this.Q));
                     org.telegram.messenger.e20 e20Var3 = this.S;
-                    e20Var3.f23649m = 1000000;
-                    long j16 = e20Var3.f23637a;
+                    e20Var3.f23646m = 1000000;
+                    long j16 = e20Var3.f23634a;
                     if (j16 > j11) {
-                        e20Var3.f23637a = j16 * 1000;
+                        e20Var3.f23634a = j16 * 1000;
                     }
-                    long j17 = e20Var3.f23639b;
+                    long j17 = e20Var3.f23636b;
                     if (j17 > j11) {
-                        e20Var3.f23639b = j17 * 1000;
+                        e20Var3.f23636b = j17 * 1000;
                     }
                     org.telegram.messenger.w7.G(i15).b(this.f42774f0.getAbsolutePath(), false);
                 } else {
-                    this.S.f23653q = Math.max(1L, this.Q);
+                    this.S.f23650q = Math.max(1L, this.Q);
                 }
                 org.telegram.messenger.e20 e20Var4 = this.S;
-                e20Var4.f23658w = this.M;
-                e20Var4.f23659x = this.N;
-                e20Var4.f23660y = this.O;
-                e20Var4.f23661z = this.P;
+                e20Var4.f23655w = this.M;
+                e20Var4.f23656x = this.N;
+                e20Var4.f23657y = this.O;
+                e20Var4.f23658z = this.P;
                 org.telegram.messenger.ef efVar = new org.telegram.messenger.ef(0, this.f42774f0.getAbsolutePath(), 0, true, 0, 0);
-                efVar.f27868x = i11;
-                efVar.f27869y = j3;
+                efVar.f27866x = i11;
+                efVar.f27867y = j3;
                 this.h.u(efVar, this.S, z10, i10, 0, false, j10);
                 if (i10 != 0) {
                     s(false, false);
@@ -698,7 +698,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
             l40 l40Var = this.m0;
             int i16 = this.V;
             if (l40Var != null) {
-                org.telegram.messenger.ks.f(i15).k(org.telegram.messenger.ks.f25158n2, Integer.valueOf(i16), Integer.valueOf(i14));
+                org.telegram.messenger.ks.f(i15).k(org.telegram.messenger.ks.f25156n2, Integer.valueOf(i16), Integer.valueOf(i14));
                 if (this.f42786l0) {
                     i13 = 0;
                 } else if (i7 == 3) {
@@ -714,7 +714,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                 i12 = i16;
             }
             if (this.f42786l0) {
-                org.telegram.messenger.ks.f(i15).k(org.telegram.messenger.ks.f25195t2, Integer.valueOf(i12), Boolean.TRUE, Integer.valueOf((int) this.f42784k0));
+                org.telegram.messenger.ks.f(i15).k(org.telegram.messenger.ks.f25193t2, Integer.valueOf(i12), Boolean.TRUE, Integer.valueOf((int) this.f42784k0));
                 s(false, false);
                 MediaController.B().Y(false);
             }
@@ -779,9 +779,9 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
             this.P = null;
             this.f42802x0 = true;
             if (p()) {
-                if (MediaController.B().f22743v0 != null) {
-                    if (!org.telegram.messenger.fj.L4(MediaController.B().f22743v0.f23968k) && !MediaController.B().f22743v0.h4()) {
-                        if (org.telegram.messenger.bz.F0 && (f61Var = MediaController.B().f22719j0) != null) {
+                if (MediaController.B().f22740v0 != null) {
+                    if (!org.telegram.messenger.fj.L4(MediaController.B().f22740v0.f23965k) && !MediaController.B().f22740v0.h4()) {
+                        if (org.telegram.messenger.bz.F0 && (f61Var = MediaController.B().f22716j0) != null) {
                             f61Var.g0();
                         }
                     } else {
@@ -793,11 +793,11 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                 }
                 org.telegram.messenger.bz.y();
                 org.telegram.messenger.ne neVar = this.f42774f0;
-                Set set = org.telegram.messenger.z0.f28238a;
+                Set set = org.telegram.messenger.z0.f28236a;
                 if (neVar != null && (absolutePath = neVar.getAbsolutePath()) != null) {
-                    org.telegram.messenger.z0.f28238a.add(absolutePath);
+                    org.telegram.messenger.z0.f28236a.add(absolutePath);
                 }
-                if (org.telegram.messenger.s2.f26723a) {
+                if (org.telegram.messenger.s2.f26721a) {
                     org.telegram.messenger.a8.b("InstantCamera show round camera " + this.f42774f0.getAbsolutePath());
                 }
                 if (this.f42795s0) {
@@ -819,7 +819,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                                 } else {
                                     z14 = false;
                                 }
-                                camera2SessionArr[i10] = Camera2Session.create(z14, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).f25815y3, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).f25815y3);
+                                camera2SessionArr[i10] = Camera2Session.create(z14, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).f25813y3, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).f25813y3);
                                 Camera2Session camera2Session = this.f42798v0[i10];
                                 if (camera2Session != null) {
                                     camera2Session.setRecordingVideo(true);
@@ -835,7 +835,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                         if (camera2Session2 != null && camera2SessionArr2[z16 ? 1 : 0] == null) {
                             this.f42797u0 = false;
                         }
-                        if (org.telegram.messenger.s2.f26723a) {
+                        if (org.telegram.messenger.s2.f26721a) {
                             StringBuilder sb2 = new StringBuilder("InstantCamera legacy switch capability: dual=");
                             sb2.append(this.f42797u0);
                             sb2.append(", initialFacing=");
@@ -868,7 +868,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                         Camera2Session[] camera2SessionArr3 = this.f42798v0;
                         boolean z17 = this.J;
                         int i11 = !z17 ? 1 : 0;
-                        Camera2Session create = Camera2Session.create(z17, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).f25815y3, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).f25815y3);
+                        Camera2Session create = Camera2Session.create(z17, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).f25813y3, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).f25813y3);
                         camera2SessionArr3[i11] = create;
                         this.f42800w0 = create;
                         if (create == null) {
@@ -908,7 +908,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
             w();
             if (this.m0 != null) {
                 org.telegram.messenger.ks f10 = org.telegram.messenger.ks.f(this.f42770e);
-                int i12 = org.telegram.messenger.ks.f25158n2;
+                int i12 = org.telegram.messenger.ks.f25156n2;
                 Integer valueOf = Integer.valueOf(this.V);
                 if (this.f42786l0) {
                     i7 = 4;
@@ -933,7 +933,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                 this.m0 = null;
             }
             if (this.f42786l0) {
-                org.telegram.messenger.ks.f(this.f42770e).k(org.telegram.messenger.ks.f25195t2, Integer.valueOf(this.V), Boolean.TRUE, Integer.valueOf((int) this.f42784k0));
+                org.telegram.messenger.ks.f(this.f42770e).k(org.telegram.messenger.ks.f25193t2, Integer.valueOf(this.V), Boolean.TRUE, Integer.valueOf((int) this.f42784k0));
                 s(false, false);
                 MediaController.B().Y(false);
                 return;
@@ -958,7 +958,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
             }
             org.telegram.messenger.g0.f2(this.h.getParentActivity());
             invalidate();
-            org.telegram.messenger.ks.f(this.f42770e).k(org.telegram.messenger.ks.f25169p2, new Object[0]);
+            org.telegram.messenger.ks.f(this.f42770e).k(org.telegram.messenger.ks.f25167p2, new Object[0]);
         }
     }
 
@@ -1071,7 +1071,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
             if (View.MeasureSpec.getSize(i10) - getPaddingBottom() > View.MeasureSpec.getSize(i7) * 1.3f) {
                 i11 = org.telegram.messenger.g0.v;
             } else {
-                i11 = org.telegram.messenger.g0.f24125u;
+                i11 = org.telegram.messenger.g0.f24122u;
             }
             if (i11 != this.X0) {
                 this.X0 = i11;
@@ -1097,8 +1097,8 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
         hi.o2 o2Var = this.f42801x;
-        o2Var.f15141b.measure(makeMeasureSpec, makeMeasureSpec2);
-        o2Var.f15142c.measure(makeMeasureSpec, makeMeasureSpec2);
+        o2Var.f15138b.measure(makeMeasureSpec, makeMeasureSpec2);
+        o2Var.f15139c.measure(makeMeasureSpec, makeMeasureSpec2);
     }
 
     @Override
@@ -1284,7 +1284,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
                             }
                         }
                     }
-                    if (org.telegram.messenger.s2.f26723a) {
+                    if (org.telegram.messenger.s2.f26721a) {
                         StringBuilder sb2 = new StringBuilder("InstantCamera preview w = ");
                         sb2.append(sizeArr[0].mWidth);
                         sb2.append(" h = ");
@@ -1298,7 +1298,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
     }
 
     public final void q(String str) {
-        if (!org.telegram.messenger.s2.f26723a) {
+        if (!org.telegram.messenger.s2.f26721a) {
             return;
         }
         long j3 = this.f42804y0;
@@ -1341,7 +1341,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
         float measuredHeight;
         a50 a50Var = this.f34603a;
         if (a50Var != null) {
-            ((org.telegram.ui.ee) a50Var).f47210b.f45986dd.a(z10, true);
+            ((org.telegram.ui.ee) a50Var).f47176b.f45977dd.a(z10, true);
         }
         AnimatorSet animatorSet = this.f42771e0;
         if (animatorSet != null) {
@@ -1616,7 +1616,7 @@ public final class z40 extends e50 implements org.telegram.messenger.fs {
             Camera2Session[] camera2SessionArr = this.f42798v0;
             boolean z10 = this.J;
             int i10 = !z10 ? 1 : 0;
-            Camera2Session create = Camera2Session.create(z10, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).f25815y3, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).f25815y3);
+            Camera2Session create = Camera2Session.create(z10, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).f25813y3, org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).f25813y3);
             camera2SessionArr[i10] = create;
             this.f42800w0 = create;
             if (create == null) {

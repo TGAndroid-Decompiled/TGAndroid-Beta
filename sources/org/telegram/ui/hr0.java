@@ -5,10 +5,10 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class hr0 extends org.telegram.ui.ActionBar.j {
-    public final pr0 f48515a;
+    public final pr0 f48471a;
 
     public hr0(pr0 pr0Var) {
-        this.f48515a = pr0Var;
+        this.f48471a = pr0Var;
     }
 
     @Override
@@ -20,17 +20,17 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
         int i14;
         int i15;
         int i16;
-        pr0 pr0Var = this.f48515a;
-        boolean[] zArr = pr0Var.f50994x;
-        CharSequence[] charSequenceArr = pr0Var.f50992w;
-        bn bnVar = pr0Var.f50972f;
+        pr0 pr0Var = this.f48471a;
+        boolean[] zArr = pr0Var.f50915x;
+        CharSequence[] charSequenceArr = pr0Var.f50913w;
+        bn bnVar = pr0Var.f50893f;
         if (i7 == -1) {
             if (pr0Var.m0(true)) {
                 pr0Var.finishFragment();
             }
         } else if (i7 == 1) {
             int i17 = 0;
-            if (pr0Var.f50971e0) {
+            if (pr0Var.f50892e0) {
                 CharSequence[] charSequenceArr2 = {org.telegram.ui.Components.rn.d0(pr0Var.F)};
                 i14 = ((org.telegram.ui.ActionBar.h2) pr0Var).currentAccount;
                 ArrayList<TLRPC.MessageEntity> Y = org.telegram.messenger.ri.d0(i14).Y(charSequenceArr2, true, true);
@@ -50,11 +50,11 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
                 todoList.title = new TLRPC.TL_textWithEntities();
                 tL_messageMediaToDo.todo.title.text = charSequence.toString();
                 tL_messageMediaToDo.todo.title.entities = Y;
-                if (pr0Var.f50985r != null) {
+                if (pr0Var.f50906r != null) {
                     int i19 = 0;
                     i15 = 0;
                     while (true) {
-                        int[] iArr = pr0Var.f50985r;
+                        int[] iArr = pr0Var.f50906r;
                         if (i19 >= iArr.length) {
                             break;
                         }
@@ -82,12 +82,12 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
                         todoItem.title = tL_textWithEntities;
                         tL_textWithEntities.text = charSequence2.toString();
                         todoItem.title.entities = Y2;
-                        int[] iArr2 = pr0Var.f50985r;
+                        int[] iArr2 = pr0Var.f50906r;
                         if (iArr2 != null && i20 < iArr2.length) {
-                            todoItem.f28552id = iArr2[i20];
+                            todoItem.f28550id = iArr2[i20];
                         } else {
                             i15++;
-                            todoItem.f28552id = i15;
+                            todoItem.f28550id = i15;
                         }
                         tL_messageMediaToDo.todo.list.add(todoItem);
                     }
@@ -96,9 +96,9 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
                     org.telegram.ui.Components.b5.I(bnVar.getParentActivity(), bnVar.a(), new aj0(8, this, tL_messageMediaToDo));
                     return;
                 }
-                pr0Var.f50973f0.a(tL_messageMediaToDo);
+                pr0Var.f50894f0.a(tL_messageMediaToDo);
                 pr0Var.finishFragment();
-            } else if (!pr0Var.M || pr0Var.f50963a.getAlpha() == 1.0f) {
+            } else if (!pr0Var.M || pr0Var.f50884a.getAlpha() == 1.0f) {
                 CharSequence[] charSequenceArr4 = {org.telegram.ui.Components.rn.d0(pr0Var.F)};
                 i10 = ((org.telegram.ui.ActionBar.h2) pr0Var).currentAccount;
                 ArrayList<TLRPC.MessageEntity> Y3 = org.telegram.messenger.ri.d0(i10).Y(charSequenceArr4, true, true);
@@ -119,7 +119,7 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
                 tL_poll.question = new TLRPC.TL_textWithEntities();
                 tL_messageMediaPoll.poll.question.text = charSequence3.toString();
                 tL_messageMediaPoll.poll.question.entities = Y3;
-                ArrayList arrayList = new ArrayList(pr0Var.f50980n);
+                ArrayList arrayList = new ArrayList(pr0Var.f50901n);
                 int i23 = 0;
                 while (i23 < charSequenceArr.length) {
                     if (TextUtils.isEmpty(org.telegram.ui.Components.rn.d0(charSequenceArr[i23]))) {
@@ -178,7 +178,7 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
                     org.telegram.ui.Components.b5.I(bnVar.getParentActivity(), bnVar.a(), new aj0(this, tL_messageMediaPoll, arrayList));
                     return;
                 }
-                pr0Var.f50973f0.a(tL_messageMediaPoll);
+                pr0Var.f50894f0.a(tL_messageMediaPoll);
                 pr0Var.finishFragment();
             } else {
                 int i27 = 0;
@@ -189,14 +189,14 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
                     i17++;
                 }
                 if (i27 <= 0) {
-                    for (int i28 = pr0Var.f50982o0; i28 < pr0Var.f50982o0 + pr0Var.E; i28++) {
-                        v4.f1 K = pr0Var.f50967c.K(i28);
+                    for (int i28 = pr0Var.f50903o0; i28 < pr0Var.f50903o0 + pr0Var.E; i28++) {
+                        v4.f1 K = pr0Var.f50888c.K(i28);
                         if (K != null) {
-                            View view = K.f59122a;
-                            if (view instanceof org.telegram.ui.Cells.a6) {
-                                org.telegram.ui.Cells.a6 a6Var = (org.telegram.ui.Cells.a6) view;
-                                if (a6Var.getTop() > org.telegram.messenger.g0.L(40.0f)) {
-                                    pr0Var.h.c(a6Var.getCheckBox());
+                            View view = K.f59123a;
+                            if (view instanceof org.telegram.ui.Cells.b6) {
+                                org.telegram.ui.Cells.b6 b6Var = (org.telegram.ui.Cells.b6) view;
+                                if (b6Var.getTop() > org.telegram.messenger.g0.L(40.0f)) {
+                                    pr0Var.h.c(b6Var.getCheckBox());
                                     return;
                                 }
                             } else {

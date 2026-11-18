@@ -144,27 +144,27 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
         this.G = i14 + 3;
         this.F = i14 + 2;
         if (ffVar != null) {
-            this.H = ffVar.f23889a;
-            this.N = ffVar.f23890b;
-            this.I = ffVar.f23891c;
+            this.H = ffVar.f23886a;
+            this.N = ffVar.f23887b;
+            this.I = ffVar.f23888c;
             this.J = ffVar.d;
-            this.K = ffVar.f23892e;
-            this.L = ffVar.f23893f;
-            this.M = ffVar.f23894g;
+            this.K = ffVar.f23889e;
+            this.L = ffVar.f23890f;
+            this.M = ffVar.f23891g;
             this.O = ffVar.h;
-            this.P = ffVar.f23895i;
-            this.Q = ffVar.f23896j;
-            this.R = ffVar.f23897k;
-            this.S = ffVar.f23898l;
-            this.T = ffVar.f23899m;
-            this.U = ffVar.f23900n;
-            this.V = ffVar.f23901o;
-            this.f34385a0 = ffVar.f23902p;
-            this.f34387b0 = ffVar.f23903q;
-            this.f34389c0 = ffVar.f23904r;
-            this.f34390d0 = ffVar.f23905s;
+            this.P = ffVar.f23892i;
+            this.Q = ffVar.f23893j;
+            this.R = ffVar.f23894k;
+            this.S = ffVar.f23895l;
+            this.T = ffVar.f23896m;
+            this.U = ffVar.f23897n;
+            this.V = ffVar.f23898o;
+            this.f34385a0 = ffVar.f23899p;
+            this.f34387b0 = ffVar.f23900q;
+            this.f34389c0 = ffVar.f23901r;
+            this.f34390d0 = ffVar.f23902s;
             this.W = ffVar.a();
-            this.f34392e0 = ffVar.f23906t;
+            this.f34392e0 = ffVar.f23903t;
             this.f34394f0 = ffVar;
         } else {
             this.f34385a0 = new h2.c();
@@ -268,7 +268,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
         TextView textView2 = new TextView(context);
         this.f34396h0 = textView2;
         textView2.setTextSize(1, 14.0f);
-        int i15 = org.telegram.ui.ActionBar.n6.f29645qg;
+        int i15 = org.telegram.ui.ActionBar.n6.f29643qg;
         org.telegram.ui.ActionBar.u6.U(textView2, i15, i6Var);
         textView2.setGravity(17);
         textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.n6.h0(-12763843, 0, -1));
@@ -299,7 +299,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                     case 0:
                         de0 de0Var = this.f42479b;
                         de0Var.f34419z0 = 0;
-                        org.telegram.ui.ActionBar.u6.s(de0Var.A0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var.A0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var.B0.setColorFilter((ColorFilter) null);
                         de0Var.C0.setColorFilter((ColorFilter) null);
                         de0Var.c();
@@ -308,7 +308,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0 de0Var2 = this.f42479b;
                         de0Var2.f34419z0 = 1;
                         de0Var2.A0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.u6.s(de0Var2.B0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var2.B0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var2.C0.setColorFilter((ColorFilter) null);
                         de0Var2.c();
                         return;
@@ -317,7 +317,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0Var3.f34419z0 = 2;
                         de0Var3.A0.setColorFilter((ColorFilter) null);
                         de0Var3.B0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.u6.s(de0Var3.C0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var3.C0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var3.c();
                         return;
                 }
@@ -342,7 +342,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                     case 0:
                         de0 de0Var = this.f42479b;
                         de0Var.f34419z0 = 0;
-                        org.telegram.ui.ActionBar.u6.s(de0Var.A0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var.A0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var.B0.setColorFilter((ColorFilter) null);
                         de0Var.C0.setColorFilter((ColorFilter) null);
                         de0Var.c();
@@ -351,7 +351,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0 de0Var2 = this.f42479b;
                         de0Var2.f34419z0 = 1;
                         de0Var2.A0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.u6.s(de0Var2.B0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var2.B0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var2.C0.setColorFilter((ColorFilter) null);
                         de0Var2.c();
                         return;
@@ -360,7 +360,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0Var3.f34419z0 = 2;
                         de0Var3.A0.setColorFilter((ColorFilter) null);
                         de0Var3.B0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.u6.s(de0Var3.C0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var3.C0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var3.c();
                         return;
                 }
@@ -388,7 +388,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                     case 0:
                         de0 de0Var = this.f42479b;
                         de0Var.f34419z0 = 0;
-                        org.telegram.ui.ActionBar.u6.s(de0Var.A0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var.A0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var.B0.setColorFilter((ColorFilter) null);
                         de0Var.C0.setColorFilter((ColorFilter) null);
                         de0Var.c();
@@ -397,7 +397,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0 de0Var2 = this.f42479b;
                         de0Var2.f34419z0 = 1;
                         de0Var2.A0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.u6.s(de0Var2.B0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var2.B0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var2.C0.setColorFilter((ColorFilter) null);
                         de0Var2.c();
                         return;
@@ -406,7 +406,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0Var3.f34419z0 = 2;
                         de0Var3.A0.setColorFilter((ColorFilter) null);
                         de0Var3.B0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.u6.s(de0Var3.C0, org.telegram.ui.ActionBar.n6.f29645qg, i6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(de0Var3.C0, org.telegram.ui.ActionBar.n6.f29643qg, i6Var, PorterDuff.Mode.MULTIPLY);
                         de0Var3.c();
                         return;
                 }
@@ -476,7 +476,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                             de0 de0Var = this.f42876b;
                             de0Var.getClass();
                             int intValue = ((Integer) view2.getTag()).intValue();
-                            de0Var.f34385a0.f13732a = intValue;
+                            de0Var.f34385a0.f13729a = intValue;
                             for (int i17 = 0; i17 < 4; i17++) {
                                 RadioButton radioButton = de0Var.f34412v0[i17];
                                 if (i17 == intValue) {
@@ -556,7 +556,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0 de0Var = this.f42876b;
                         de0Var.getClass();
                         int intValue = ((Integer) view2.getTag()).intValue();
-                        de0Var.f34385a0.f13732a = intValue;
+                        de0Var.f34385a0.f13729a = intValue;
                         for (int i17 = 0; i17 < 4; i17++) {
                             RadioButton radioButton = de0Var.f34412v0[i17];
                             if (i17 == intValue) {
@@ -630,7 +630,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0 de0Var = this.f42876b;
                         de0Var.getClass();
                         int intValue = ((Integer) view2.getTag()).intValue();
-                        de0Var.f34385a0.f13732a = intValue;
+                        de0Var.f34385a0.f13729a = intValue;
                         for (int i17 = 0; i17 < 4; i17++) {
                             RadioButton radioButton = de0Var.f34412v0[i17];
                             if (i17 == intValue) {
@@ -704,7 +704,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                         de0 de0Var = this.f42876b;
                         de0Var.getClass();
                         int intValue = ((Integer) view2.getTag()).intValue();
-                        de0Var.f34385a0.f13732a = intValue;
+                        de0Var.f34385a0.f13729a = intValue;
                         for (int i17 = 0; i17 < 4; i17++) {
                             RadioButton radioButton = de0Var.f34412v0[i17];
                             if (i17 == intValue) {
@@ -761,9 +761,9 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             return;
         }
         if (this.f34399k0) {
-            ((FrameLayout.LayoutParams) this.f34398j0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f24115m;
+            ((FrameLayout.LayoutParams) this.f34398j0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f24112m;
         }
-        ((FrameLayout.LayoutParams) this.f34405q0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f24115m;
+        ((FrameLayout.LayoutParams) this.f34405q0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f24112m;
     }
 
     private void setShowOriginal(boolean z10) {
@@ -780,7 +780,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
         org.telegram.messenger.ff ffVar = this.f34394f0;
         h2.c cVar = this.f34385a0;
         if (ffVar != null) {
-            if (this.H != ffVar.f23889a || this.J != ffVar.d || this.Q != ffVar.f23896j || this.I != ffVar.f23891c || this.K != ffVar.f23892e || this.L != ffVar.f23893f || this.S != ffVar.f23898l || this.R != ffVar.f23897k || this.T != ffVar.f23899m || this.V != ffVar.f23901o || this.M != ffVar.f23894g || this.N != ffVar.f23890b || this.P != ffVar.f23895i || this.O != ffVar.h || !cVar.F()) {
+            if (this.H != ffVar.f23886a || this.J != ffVar.d || this.Q != ffVar.f23893j || this.I != ffVar.f23888c || this.K != ffVar.f23889e || this.L != ffVar.f23890f || this.S != ffVar.f23895l || this.R != ffVar.f23894k || this.T != ffVar.f23896m || this.V != ffVar.f23898o || this.M != ffVar.f23891g || this.N != ffVar.f23887b || this.P != ffVar.f23892i || this.O != ffVar.h || !cVar.F()) {
                 return true;
             }
             return false;
@@ -810,7 +810,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             }
             cz czVar2 = this.m0;
             if (czVar2 != null) {
-                czVar2.d(new org.telegram.ui.Cells.b5(ffVar));
+                czVar2.d(new org.telegram.ui.Cells.c5(ffVar));
             }
         }
     }
@@ -844,7 +844,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             ud0Var.setVisibility(4);
             frameLayout.setVisibility(0);
             wd0Var.setVisibility(0);
-            this.f34385a0.f13732a = 0;
+            this.f34385a0.f13729a = 0;
             for (int i10 = 0; i10 < 4; i10++) {
                 RadioButton radioButton = this.f34412v0[i10];
                 if (i10 == 0) {
@@ -911,7 +911,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
         TextView textView3 = this.f34407r0;
         if (i7 == 0) {
             Drawable mutate = textView3.getContext().getResources().getDrawable(2131232072).mutate();
-            int i10 = org.telegram.ui.ActionBar.n6.f29645qg;
+            int i10 = org.telegram.ui.ActionBar.n6.f29643qg;
             org.telegram.ui.ActionBar.u6.x(this, mutate, i10, i6Var, PorterDuff.Mode.MULTIPLY);
             textView3.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
             textView3.setTextColor(org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
@@ -923,7 +923,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             textView3.setCompoundDrawablesWithIntrinsicBounds(0, 2131232072, 0, 0);
             textView3.setTextColor(-1);
             Drawable mutate2 = textView3.getContext().getResources().getDrawable(2131232073).mutate();
-            int i11 = org.telegram.ui.ActionBar.n6.f29645qg;
+            int i11 = org.telegram.ui.ActionBar.n6.f29643qg;
             org.telegram.ui.ActionBar.u6.x(this, mutate2, i11, i6Var, PorterDuff.Mode.MULTIPLY);
             textView2.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate2, (Drawable) null, (Drawable) null);
             textView2.setTextColor(org.telegram.ui.ActionBar.n6.w0(i11, i6Var));
@@ -935,7 +935,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             textView2.setCompoundDrawablesWithIntrinsicBounds(0, 2131232073, 0, 0);
             textView2.setTextColor(-1);
             Drawable mutate3 = textView3.getContext().getResources().getDrawable(2131232071).mutate();
-            int i12 = org.telegram.ui.ActionBar.n6.f29645qg;
+            int i12 = org.telegram.ui.ActionBar.n6.f29643qg;
             org.telegram.ui.ActionBar.u6.x(this, mutate3, i12, i6Var, PorterDuff.Mode.MULTIPLY);
             textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate3, (Drawable) null, (Drawable) null);
             textView.setTextColor(org.telegram.ui.ActionBar.n6.w0(i12, i6Var));
@@ -1049,26 +1049,26 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
 
     public org.telegram.messenger.ff getSavedFilterState() {
         org.telegram.messenger.ff ffVar = new org.telegram.messenger.ff();
-        ffVar.f23889a = this.H;
-        ffVar.f23891c = this.I;
+        ffVar.f23886a = this.H;
+        ffVar.f23888c = this.I;
         ffVar.d = this.J;
-        ffVar.f23892e = this.K;
-        ffVar.f23893f = this.L;
-        ffVar.f23894g = this.M;
-        ffVar.f23890b = this.N;
+        ffVar.f23889e = this.K;
+        ffVar.f23890f = this.L;
+        ffVar.f23891g = this.M;
+        ffVar.f23887b = this.N;
         ffVar.h = this.O;
-        ffVar.f23895i = this.P;
-        ffVar.f23896j = this.Q;
-        ffVar.f23897k = this.R;
-        ffVar.f23898l = this.S;
-        ffVar.f23899m = this.T;
-        ffVar.f23900n = this.U;
-        ffVar.f23901o = this.V;
-        ffVar.f23902p = this.f34385a0;
-        ffVar.f23903q = this.f34387b0;
-        ffVar.f23904r = this.f34389c0;
-        ffVar.f23905s = this.f34390d0;
-        ffVar.f23906t = this.f34392e0;
+        ffVar.f23892i = this.P;
+        ffVar.f23893j = this.Q;
+        ffVar.f23894k = this.R;
+        ffVar.f23895l = this.S;
+        ffVar.f23896m = this.T;
+        ffVar.f23897n = this.U;
+        ffVar.f23898o = this.V;
+        ffVar.f23899p = this.f34385a0;
+        ffVar.f23900q = this.f34387b0;
+        ffVar.f23901r = this.f34389c0;
+        ffVar.f23902s = this.f34390d0;
+        ffVar.f23903t = this.f34392e0;
         this.f34394f0 = ffVar;
         return ffVar;
     }
@@ -1176,7 +1176,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
     public final ByteBuffer j() {
         h2.c cVar = this.f34385a0;
         cVar.q();
-        return (ByteBuffer) cVar.f13736f;
+        return (ByteBuffer) cVar.f13733f;
     }
 
     @Override
@@ -1198,7 +1198,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             int L2 = org.telegram.messenger.g0.L(214.0f);
             boolean z10 = this.f34418y0;
             if (!z10) {
-                i11 = org.telegram.messenger.g0.f24115m;
+                i11 = org.telegram.messenger.g0.f24112m;
             } else {
                 i11 = 0;
             }
@@ -1230,7 +1230,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             int ceil2 = (int) Math.ceil(((f14 - f13) / 2.0f) + org.telegram.messenger.g0.L(14.0f));
             float L3 = ((f15 - ceil) / 2.0f) + org.telegram.messenger.g0.L(14.0f);
             if (!z10) {
-                i12 = org.telegram.messenger.g0.f24115m;
+                i12 = org.telegram.messenger.g0.f24112m;
             } else {
                 i12 = 0;
             }
@@ -1246,7 +1246,7 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
             }
             float f16 = ceil2;
             if (!z10) {
-                i13 = org.telegram.messenger.g0.f24115m;
+                i13 = org.telegram.messenger.g0.f24112m;
             } else {
                 i13 = 0;
             }
@@ -1303,8 +1303,8 @@ public final class de0 extends FrameLayout implements ez, hi.pa {
                 break;
             }
             View childAt = thVar.getChildAt(i7);
-            if ((childAt instanceof org.telegram.ui.Cells.t5) && RecyclerView.R(childAt) == this.f34386b) {
-                ((org.telegram.ui.Cells.t5) childAt).a(org.telegram.messenger.gd.M0(2131751115, null), 0, this.H);
+            if ((childAt instanceof org.telegram.ui.Cells.u5) && RecyclerView.R(childAt) == this.f34386b) {
+                ((org.telegram.ui.Cells.u5) childAt).a(org.telegram.messenger.gd.M0(2131751115, null), 0, this.H);
                 break;
             }
             i7++;

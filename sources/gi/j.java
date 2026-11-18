@@ -24,15 +24,15 @@ import ug.k0;
 import ug.l0;
 import ug.t1;
 public final class j extends TextView {
-    public final int f13641a;
-    public Object f13642b;
-    public final Object f13643c;
+    public final int f13638a;
+    public Object f13639b;
+    public final Object f13640c;
 
     public j(Activity activity, l1 l1Var) {
         super(activity);
-        this.f13641a = 8;
-        this.f13642b = new RectF();
-        this.f13643c = l1Var;
+        this.f13638a = 8;
+        this.f13639b = new RectF();
+        this.f13640c = l1Var;
         l1Var.a(this);
         setText(gd.M0(2131743066, null));
         setContentDescription(gd.M0(2131743066, null));
@@ -42,8 +42,8 @@ public final class j extends TextView {
     }
 
     public void a() {
-        o80 o80Var = (o80) this.f13643c;
-        f80 f80Var = (f80) this.f13642b;
+        o80 o80Var = (o80) this.f13640c;
+        f80 f80Var = (f80) this.f13639b;
         if (f80Var != null && o80Var != null) {
             f80Var.rewind();
             if (getLayout() != null && getLayout().getText() != null) {
@@ -56,16 +56,16 @@ public final class j extends TextView {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        int i7 = this.f13641a;
-        Object obj = this.f13643c;
+        int i7 = this.f13638a;
+        Object obj = this.f13640c;
         switch (i7) {
             case 0:
-                Paint paint = (Paint) this.f13642b;
+                Paint paint = (Paint) this.f13639b;
                 int L = g0.L(1.0f) + (getHeight() / 2);
                 int max = Math.max(1, g0.L(0.66f));
                 Layout layout = getLayout();
                 if (layout != null) {
-                    paint.setColor(n6.r1(0.45f, n6.w0(n6.f29788y6, ((m) obj).f13652a0.f13669c)));
+                    paint.setColor(n6.r1(0.45f, n6.w0(n6.f29786y6, ((m) obj).f13649a0.f13666c)));
                     float f10 = L;
                     float f11 = max / 2.0f;
                     float f12 = f10 - f11;
@@ -76,12 +76,12 @@ public final class j extends TextView {
                 super.dispatchDraw(canvas);
                 return;
             case 1:
-                Paint paint2 = (Paint) this.f13642b;
+                Paint paint2 = (Paint) this.f13639b;
                 int L2 = g0.L(1.0f) + (getHeight() / 2);
                 int max2 = Math.max(1, g0.L(0.66f));
                 Layout layout2 = getLayout();
                 if (layout2 != null) {
-                    paint2.setColor(n6.r1(0.45f, n6.w0(n6.f29788y6, (i6) obj)));
+                    paint2.setColor(n6.r1(0.45f, n6.w0(n6.f29786y6, (i6) obj)));
                     float f14 = L2;
                     float f15 = max2 / 2.0f;
                     float f16 = f14 - f15;
@@ -92,9 +92,9 @@ public final class j extends TextView {
                 super.dispatchDraw(canvas);
                 return;
             case 11:
-                Paint paint3 = (Paint) this.f13642b;
-                int i10 = n6.f29807z6;
-                l0 l0Var = ((k0) obj).f58725e;
+                Paint paint3 = (Paint) this.f13639b;
+                int i10 = n6.f29805z6;
+                l0 l0Var = ((k0) obj).f58726e;
                 int i11 = l0.S2;
                 paint3.setColor(n6.r1(0.8f, n6.w0(i10, l0Var.J0)));
                 paint3.setStyle(Paint.Style.STROKE);
@@ -118,13 +118,13 @@ public final class j extends TextView {
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f13641a) {
+        switch (this.f13638a) {
             case 4:
-                ((org.telegram.ui.g) this.f13643c).f47850b.draw(canvas);
+                ((org.telegram.ui.g) this.f13640c).f47814b.draw(canvas);
                 super.draw(canvas);
                 return;
             case 10:
-                ((v50) this.f13643c).h.draw(canvas);
+                ((v50) this.f13640c).h.draw(canvas);
                 super.draw(canvas);
                 return;
             default:
@@ -135,10 +135,10 @@ public final class j extends TextView {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f13641a) {
+        switch (this.f13638a) {
             case 7:
                 super.onDetachedFromWindow();
-                ((o80) this.f13643c).f38013b = -1L;
+                ((o80) this.f13640c).f38013b = -1L;
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -148,17 +148,17 @@ public final class j extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f13641a) {
+        switch (this.f13638a) {
             case 2:
-                Paint paint = (Paint) this.f13642b;
-                paint.setColor(((li.p) this.f13643c).getThemedColor(n6.Fi));
+                Paint paint = (Paint) this.f13639b;
+                paint.setColor(((li.p) this.f13640c).getThemedColor(n6.Fi));
                 canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - g0.L(14.0f), getWidth(), (getHeight() / 2.0f) + g0.L(14.0f), g0.L(14.0f), g0.L(14.0f), paint);
                 super.onDraw(canvas);
                 return;
             case 3:
-                Paint paint2 = (Paint) this.f13642b;
-                oi.a aVar = ((z5) this.f13643c).f22568y;
-                if (aVar != null && aVar.f21911c > 0 && aVar.d == 0 && !aVar.f21912e) {
+                Paint paint2 = (Paint) this.f13639b;
+                oi.a aVar = ((z5) this.f13640c).f22565y;
+                if (aVar != null && aVar.f21908c > 0 && aVar.d == 0 && !aVar.f21909e) {
                     paint2.setColor(getCurrentTextColor());
                     float baseline = getBaseline() - (getTextSize() * 0.35f);
                     canvas.drawCircle(getWidth() / 2.0f, baseline, g0.N(4.3f) / 2.0f, paint2);
@@ -168,25 +168,25 @@ public final class j extends TextView {
                 return;
             case 4:
                 super.onDraw(canvas);
-                if (((org.telegram.ui.g) this.f13643c).f47858x) {
+                if (((org.telegram.ui.g) this.f13640c).f47822x) {
                     RectF rectF = g0.P;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    ((org.telegram.ui.Components.voip.n) this.f13642b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
+                    ((org.telegram.ui.Components.voip.n) this.f13639b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
                     invalidate();
                     return;
                 }
                 return;
             case 5:
-                Paint paint3 = (Paint) this.f13642b;
-                paint3.setColor(n6.w0(n6.Fi, ((si) this.f13643c).J0));
+                Paint paint3 = (Paint) this.f13639b;
+                paint3.setColor(n6.w0(n6.Fi, ((si) this.f13640c).J0));
                 canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - g0.L(14.0f), getWidth(), (getHeight() / 2.0f) + g0.L(14.0f), g0.L(14.0f), g0.L(14.0f), paint3);
                 super.onDraw(canvas);
                 return;
             case 6:
-                if (((t1) this.f13642b) != null) {
+                if (((t1) this.f13639b) != null) {
                     canvas.save();
-                    canvas.clipPath((Path) this.f13643c);
-                    ((t1) this.f13642b).d(canvas);
+                    canvas.clipPath((Path) this.f13640c);
+                    ((t1) this.f13639b).d(canvas);
                     canvas.restore();
                     invalidate();
                 }
@@ -198,9 +198,9 @@ public final class j extends TextView {
                 super.onDraw(canvas);
                 return;
             case 8:
-                RectF rectF2 = (RectF) this.f13642b;
+                RectF rectF2 = (RectF) this.f13639b;
                 rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                l1 l1Var = (l1) this.f13643c;
+                l1 l1Var = (l1) this.f13640c;
                 l1Var.d(((View) getParent()).getX() + getX(), ((View) getParent()).getY() + getY());
                 canvas.drawRoundRect(rectF2, g0.L(16.0f), g0.L(16.0f), l1Var.b());
                 super.onDraw(canvas);
@@ -208,8 +208,8 @@ public final class j extends TextView {
             case 9:
                 RectF rectF3 = g0.P;
                 rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                Paint[] paintArr = (Paint[]) this.f13642b;
-                w0 w0Var = (w0) this.f13643c;
+                Paint[] paintArr = (Paint[]) this.f13639b;
+                w0 w0Var = (w0) this.f13640c;
                 paintArr[w0Var.f41289y].setAlpha(255);
                 canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[w0Var.f41289y]);
                 float f10 = w0Var.f41288x;
@@ -226,12 +226,12 @@ public final class j extends TextView {
                 super.onDraw(canvas);
                 RectF rectF4 = g0.P;
                 rectF4.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((org.telegram.ui.Components.voip.n) this.f13642b).a(getMeasuredHeight() / 2.0f, canvas, rectF4, null);
+                ((org.telegram.ui.Components.voip.n) this.f13639b).a(getMeasuredHeight() / 2.0f, canvas, rectF4, null);
                 invalidate();
                 return;
             case 12:
-                Paint paint4 = (Paint) this.f13642b;
-                paint4.setColor(n6.w0(n6.Fi, ((vh.g) this.f13643c).J0));
+                Paint paint4 = (Paint) this.f13639b;
+                paint4.setColor(n6.w0(n6.Fi, ((vh.g) this.f13640c).J0));
                 canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - g0.L(14.0f), getWidth(), (getHeight() / 2.0f) + g0.L(14.0f), g0.L(14.0f), g0.L(14.0f), paint4);
                 super.onDraw(canvas);
                 return;
@@ -240,32 +240,32 @@ public final class j extends TextView {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f13641a) {
+        switch (this.f13638a) {
             case 6:
                 super.onLayout(z10, i7, i10, i11, i12);
                 t1 t1Var = new t1(10);
-                this.f13642b = t1Var;
+                this.f13639b = t1Var;
                 t1Var.O = 100;
                 t1Var.J = false;
                 t1Var.M = true;
                 t1Var.G = false;
                 t1Var.K = true;
                 t1Var.H = true;
-                t1Var.f58907r = 1;
-                t1Var.f58911w = 0.98f;
+                t1Var.f58908r = 1;
+                t1Var.f58912w = 0.98f;
                 t1Var.v = 0.98f;
-                t1Var.f58910u = 0.98f;
-                t1Var.f58897g = false;
-                t1Var.f58904o = 0.0f;
-                t1Var.f58912x = 750L;
-                t1Var.f58913y = 750;
+                t1Var.f58911u = 0.98f;
+                t1Var.f58898g = false;
+                t1Var.f58905o = 0.0f;
+                t1Var.f58913x = 750L;
+                t1Var.f58914y = 750;
                 t1Var.c();
                 RectF rectF = g0.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                ((t1) this.f13642b).f58892a.set(rectF);
-                ((t1) this.f13642b).f58893b.set(rectF);
-                ((t1) this.f13642b).f();
-                Path path = (Path) this.f13643c;
+                ((t1) this.f13639b).f58893a.set(rectF);
+                ((t1) this.f13639b).f58894b.set(rectF);
+                ((t1) this.f13639b).f();
+                Path path = (Path) this.f13640c;
                 path.reset();
                 path.addRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, Path.Direction.CW);
                 return;
@@ -277,7 +277,7 @@ public final class j extends TextView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f13641a) {
+        switch (this.f13638a) {
             case 7:
                 super.onMeasure(i7, i10);
                 a();
@@ -303,7 +303,7 @@ public final class j extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f13641a) {
+        switch (this.f13638a) {
             case 7:
                 super.setText(charSequence, bufferType);
                 a();
@@ -316,10 +316,10 @@ public final class j extends TextView {
 
     @Override
     public void setTextColor(int i7) {
-        switch (this.f13641a) {
+        switch (this.f13638a) {
             case 7:
                 super.setTextColor(n6.r1(0.2f, i7));
-                ((o80) this.f13643c).g(n6.r1(0.03f, i7), n6.r1(0.175f, i7), n6.r1(0.2f, i7), n6.r1(0.45f, i7));
+                ((o80) this.f13640c).g(n6.r1(0.03f, i7), n6.r1(0.175f, i7), n6.r1(0.2f, i7), n6.r1(0.45f, i7));
                 return;
             default:
                 super.setTextColor(i7);
@@ -329,12 +329,12 @@ public final class j extends TextView {
 
     public j(w0 w0Var, Context context) {
         super(context);
-        this.f13641a = 9;
-        this.f13643c = w0Var;
-        this.f13642b = new Paint[w0Var.f41283f.length];
+        this.f13638a = 9;
+        this.f13640c = w0Var;
+        this.f13639b = new Paint[w0Var.f41283f.length];
         int i7 = 0;
         while (true) {
-            Paint[] paintArr = (Paint[]) this.f13642b;
+            Paint[] paintArr = (Paint[]) this.f13639b;
             if (i7 >= paintArr.length) {
                 return;
             }
@@ -345,91 +345,91 @@ public final class j extends TextView {
 
     public j(z5 z5Var, Context context) {
         super(context);
-        this.f13641a = 3;
-        this.f13643c = z5Var;
-        this.f13642b = new Paint(1);
+        this.f13638a = 3;
+        this.f13640c = z5Var;
+        this.f13639b = new Paint(1);
     }
 
     public j(Context context, int i7) {
         super(context);
-        this.f13641a = i7;
+        this.f13638a = i7;
         switch (i7) {
             case 7:
                 super(context);
                 f80 f80Var = new f80(0);
-                this.f13642b = f80Var;
+                this.f13639b = f80Var;
                 o80 o80Var = new o80();
-                this.f13643c = o80Var;
+                this.f13640c = o80Var;
                 o80Var.f38033y = f80Var;
                 o80Var.f38030u = 0.65f;
                 o80Var.k(4.0f);
                 setBackground(o80Var);
                 return;
             default:
-                this.f13643c = new Path();
+                this.f13640c = new Path();
                 return;
         }
     }
 
     public j(vh.g gVar, Context context) {
         super(context);
-        this.f13641a = 12;
-        this.f13643c = gVar;
-        this.f13642b = new Paint(1);
+        this.f13638a = 12;
+        this.f13640c = gVar;
+        this.f13639b = new Paint(1);
     }
 
     public j(li.p pVar, Context context) {
         super(context);
-        this.f13641a = 2;
-        this.f13643c = pVar;
-        this.f13642b = new Paint(1);
+        this.f13638a = 2;
+        this.f13640c = pVar;
+        this.f13639b = new Paint(1);
     }
 
     public j(v50 v50Var, Context context) {
         super(context);
-        this.f13641a = 10;
-        this.f13643c = v50Var;
+        this.f13638a = 10;
+        this.f13640c = v50Var;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
-        this.f13642b = nVar;
+        this.f13639b = nVar;
         nVar.f41054k = false;
         nVar.f41056m = 2.0f;
     }
 
     public j(org.telegram.ui.g gVar, Context context) {
         super(context);
-        this.f13641a = 4;
-        this.f13643c = gVar;
+        this.f13638a = 4;
+        this.f13640c = gVar;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
-        this.f13642b = nVar;
+        this.f13639b = nVar;
         nVar.f41054k = false;
         nVar.f41056m = 2.0f;
     }
 
     public j(m mVar, Context context) {
         super(context);
-        this.f13641a = 0;
-        this.f13643c = mVar;
-        this.f13642b = new Paint(1);
+        this.f13638a = 0;
+        this.f13640c = mVar;
+        this.f13639b = new Paint(1);
     }
 
     public j(Context context, i6 i6Var) {
         super(context);
-        this.f13641a = 1;
-        this.f13643c = i6Var;
-        this.f13642b = new Paint(1);
+        this.f13638a = 1;
+        this.f13640c = i6Var;
+        this.f13639b = new Paint(1);
     }
 
     public j(k0 k0Var, Context context) {
         super(context);
-        this.f13641a = 11;
-        this.f13643c = k0Var;
-        this.f13642b = new Paint(1);
+        this.f13638a = 11;
+        this.f13640c = k0Var;
+        this.f13639b = new Paint(1);
     }
 
     public j(si siVar, Context context) {
         super(context);
-        this.f13641a = 5;
-        this.f13643c = siVar;
-        this.f13642b = new Paint(1);
+        this.f13638a = 5;
+        this.f13640c = siVar;
+        this.f13639b = new Paint(1);
     }
 }

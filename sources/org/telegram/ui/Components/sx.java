@@ -12,7 +12,7 @@ public final class sx extends k41 {
 
     public static l41 i(TLRPC.StickerSetCovered stickerSetCovered, kx kxVar, boolean z10) {
         l41 K = l41.K(sx.class);
-        long j3 = stickerSetCovered.set.f28432id;
+        long j3 = stickerSetCovered.set.f28430id;
         long j10 = 1 + j3;
         K.d = (int) (j10 ^ (j10 >>> 32));
         K.C = j3;

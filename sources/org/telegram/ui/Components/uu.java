@@ -15,7 +15,7 @@ public final class uu extends View {
         if (x5Var != null) {
             TLRPC.Document document = x5Var.document;
             if (document == null) {
-                return o5.e(org.telegram.messenger.j10.f24773t0, x5Var.getDocumentId());
+                return o5.e(org.telegram.messenger.j10.f24770t0, x5Var.getDocumentId());
             }
             return document;
         }

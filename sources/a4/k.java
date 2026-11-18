@@ -99,12 +99,12 @@ public class k implements a0 {
         d4.f fVar2 = (d4.f) this.f192c;
         d0 d0Var = (d0) this.f194f;
         SparseArray sparseArray3 = d0Var.h;
-        SparseBooleanArray sparseBooleanArray = d0Var.f20577i;
-        m4.f fVar3 = d0Var.f20575f;
-        List list = d0Var.f20573c;
-        int i14 = d0Var.f20571a;
+        SparseBooleanArray sparseBooleanArray = d0Var.f20574i;
+        m4.f fVar3 = d0Var.f20572f;
+        List list = d0Var.f20570c;
+        int i14 = d0Var.f20568a;
         if (xVar.A() == 2) {
-            if (i14 != 1 && i14 != 2 && d0Var.f20582n != 1) {
+            if (i14 != 1 && i14 != 2 && d0Var.f20579n != 1) {
                 k0Var = new k0(((k0) list.get(0)).d());
                 list.add(k0Var);
             } else {
@@ -114,33 +114,33 @@ public class k implements a0 {
                 xVar.O(1);
                 int H = xVar.H();
                 xVar.O(3);
-                xVar.k(0, 2, (byte[]) fVar2.f7836b);
+                xVar.k(0, 2, (byte[]) fVar2.f7833b);
                 fVar2.J(0);
                 fVar2.L(3);
-                d0Var.f20588t = fVar2.j(13);
-                xVar.k(0, 2, (byte[]) fVar2.f7836b);
+                d0Var.f20585t = fVar2.j(13);
+                xVar.k(0, 2, (byte[]) fVar2.f7833b);
                 fVar2.J(0);
                 fVar2.L(4);
                 xVar.O(fVar2.j(12));
-                if (i14 == 2 && d0Var.f20586r == null) {
-                    g0 a11 = fVar3.a(21, new n(21, null, 0, null, l0.f13787b));
-                    d0Var.f20586r = a11;
+                if (i14 == 2 && d0Var.f20583r == null) {
+                    g0 a11 = fVar3.a(21, new n(21, null, 0, null, l0.f13784b));
+                    d0Var.f20583r = a11;
                     if (a11 != null) {
-                        a11.b(k0Var, d0Var.f20581m, new f0(H, 21, 8192));
+                        a11.b(k0Var, d0Var.f20578m, new f0(H, 21, 8192));
                     }
                 }
                 sparseArray2.clear();
                 sparseIntArray.clear();
                 int a12 = xVar.a();
                 while (a12 > 0) {
-                    xVar.k(0, 5, (byte[]) fVar2.f7836b);
+                    xVar.k(0, 5, (byte[]) fVar2.f7833b);
                     fVar2.J(0);
                     int j3 = fVar2.j(8);
                     fVar2.L(3);
                     int j10 = fVar2.j(13);
                     fVar2.L(4);
                     int j11 = fVar2.j(12);
-                    int i15 = xVar.f13837b;
+                    int i15 = xVar.f13834b;
                     int i16 = i15 + j11;
                     int i17 = -1;
                     String str = null;
@@ -148,10 +148,10 @@ public class k implements a0 {
                     int i18 = 0;
                     int i19 = a12;
                     while (true) {
-                        if (xVar.f13837b < i16) {
+                        if (xVar.f13834b < i16) {
                             int A = xVar.A();
                             fVar = fVar2;
-                            int A2 = xVar.f13837b + xVar.A();
+                            int A2 = xVar.f13834b + xVar.A();
                             if (A2 > i16) {
                                 break;
                             }
@@ -205,7 +205,7 @@ public class k implements a0 {
                                 } else {
                                     if (A == 89) {
                                         ArrayList arrayList2 = new ArrayList();
-                                        while (xVar.f13837b < A2) {
+                                        while (xVar.f13834b < A2) {
                                             String trim = xVar.y(3, StandardCharsets.UTF_8).trim();
                                             xVar.A();
                                             k0 k0Var4 = k0Var;
@@ -229,7 +229,7 @@ public class k implements a0 {
                                             i17 = 257;
                                         }
                                     }
-                                    xVar.O(i12 - xVar.f13837b);
+                                    xVar.O(i12 - xVar.f13834b);
                                     k0Var = k0Var3;
                                     fVar2 = fVar;
                                     sparseArray3 = sparseArray4;
@@ -239,7 +239,7 @@ public class k implements a0 {
                                 i13 = H;
                                 k0Var3 = k0Var;
                             }
-                            xVar.O(i12 - xVar.f13837b);
+                            xVar.O(i12 - xVar.f13834b);
                             k0Var = k0Var3;
                             fVar2 = fVar;
                             sparseArray3 = sparseArray4;
@@ -253,7 +253,7 @@ public class k implements a0 {
                     int i20 = H;
                     k0 k0Var5 = k0Var;
                     xVar.N(i16);
-                    n nVar = new n(i17, str, i18, arrayList, Arrays.copyOfRange(xVar.f13836a, i15, i16));
+                    n nVar = new n(i17, str, i18, arrayList, Arrays.copyOfRange(xVar.f13833a, i15, i16));
                     if (j3 == 6 || j3 == 5) {
                         j3 = i17;
                     }
@@ -268,7 +268,7 @@ public class k implements a0 {
                     } else {
                         c10 = 21;
                         if (i14 == 2 && j3 == 21) {
-                            a10 = d0Var.f20586r;
+                            a10 = d0Var.f20583r;
                         } else {
                             a10 = fVar3.a(j3, nVar);
                         }
@@ -292,13 +292,13 @@ public class k implements a0 {
                     int keyAt = sparseIntArray.keyAt(i23);
                     int valueAt = sparseIntArray.valueAt(i23);
                     sparseBooleanArray.put(keyAt, true);
-                    d0Var.f20578j.put(valueAt, true);
+                    d0Var.f20575j.put(valueAt, true);
                     g0 g0Var = (g0) sparseArray2.valueAt(i23);
                     if (g0Var != null) {
-                        if (g0Var != d0Var.f20586r) {
+                        if (g0Var != d0Var.f20583r) {
                             i10 = i22;
                             k0Var2 = k0Var6;
-                            g0Var.b(k0Var2, d0Var.f20581m, new f0(i10, keyAt, 8192));
+                            g0Var.b(k0Var2, d0Var.f20578m, new f0(i10, keyAt, 8192));
                         } else {
                             k0Var2 = k0Var6;
                             i10 = i22;
@@ -317,10 +317,10 @@ public class k implements a0 {
                 }
                 SparseArray sparseArray7 = sparseArray6;
                 if (i14 == 2) {
-                    if (!d0Var.f20583o) {
-                        d0Var.f20581m.d1();
-                        d0Var.f20582n = 0;
-                        d0Var.f20583o = true;
+                    if (!d0Var.f20580o) {
+                        d0Var.f20578m.d1();
+                        d0Var.f20579n = 0;
+                        d0Var.f20580o = true;
                         return;
                     }
                     return;
@@ -329,12 +329,12 @@ public class k implements a0 {
                 if (i14 == 1) {
                     i7 = 0;
                 } else {
-                    i7 = d0Var.f20582n - 1;
+                    i7 = d0Var.f20579n - 1;
                 }
-                d0Var.f20582n = i7;
+                d0Var.f20579n = i7;
                 if (i7 == 0) {
-                    d0Var.f20581m.d1();
-                    d0Var.f20583o = true;
+                    d0Var.f20578m.d1();
+                    d0Var.f20580o = true;
                 }
             }
         }

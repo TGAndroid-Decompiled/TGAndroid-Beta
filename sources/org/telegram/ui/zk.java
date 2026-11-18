@@ -19,12 +19,12 @@ public final class zk extends org.telegram.ui.Components.o10 {
             return;
         }
         undoView.j(75, 0L, null);
-        bnVar.getMessagesController().s4(bnVar.f46085l6, "CONVERT_GIGAGROUP");
+        bnVar.getMessagesController().s4(bnVar.f46076l6, "CONVERT_GIGAGROUP");
     }
 
     @Override
     public final void K0() {
         bn bnVar = this.n1;
-        bnVar.getMessagesController().S(bnVar.getParentActivity(), bnVar.f45987e, bnVar, new w0(this, 21));
+        bnVar.getMessagesController().S(bnVar.getParentActivity(), bnVar.f45978e, bnVar, new w0(this, 21));
     }
 }

@@ -34,7 +34,7 @@ public class iz extends ReplacementSpan {
 
     public final void a() {
         if (this.f48819c == null) {
-            StaticLayout staticLayout = new StaticLayout(this.f48825w, this.f48817a, org.telegram.messenger.g0.f24121q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(this.f48825w, this.f48817a, org.telegram.messenger.g0.f24118q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.f48819c = staticLayout;
             this.d = staticLayout.getLineWidth(0);
             this.f48820e = this.f48819c.getHeight();

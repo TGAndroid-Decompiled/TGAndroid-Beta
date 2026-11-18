@@ -3,27 +3,27 @@ package org.telegram.ui;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class xu0 extends v4.u0 {
-    public final int f53947a;
-    public final ProfileActivity f53948b;
+    public final int f53915a;
+    public final ProfileActivity f53916b;
 
     public xu0(ProfileActivity profileActivity, int i7) {
-        this.f53947a = i7;
-        this.f53948b = profileActivity;
+        this.f53915a = i7;
+        this.f53916b = profileActivity;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         boolean z10;
         View m10;
-        switch (this.f53947a) {
+        switch (this.f53915a) {
             case 0:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(this.f53948b.getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(this.f53916b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             default:
-                ProfileActivity profileActivity = this.f53948b;
+                ProfileActivity profileActivity = this.f53916b;
                 boolean z11 = true;
                 if (i7 == 1) {
                     org.telegram.messenger.g0.v1(profileActivity.getParentActivity().getCurrentFocus());
@@ -56,9 +56,9 @@ public final class xu0 extends v4.u0 {
 
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f53947a) {
+        switch (this.f53915a) {
             case 1:
-                ProfileActivity profileActivity = this.f53948b;
+                ProfileActivity profileActivity = this.f53916b;
                 hi.m3 m3Var = profileActivity.X;
                 boolean z10 = true;
                 if (m3Var != null) {

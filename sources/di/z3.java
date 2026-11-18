@@ -29,13 +29,13 @@ public final class z3 extends yo0 {
             org.telegram.ui.Components.lc k10 = k();
             if (hVar.m() == 1) {
                 long j3 = hVar.j(0);
-                if (j3 == j10.i(this.f30189a).f24792n) {
+                if (j3 == j10.i(this.f30187a).f24789n) {
                     org.telegram.ui.Components.gc G = k10.G(2131624191, 5000, org.telegram.messenger.g0.W2(gd.a0(null, null, 2131748694, new Object[0])));
                     G.f35469r = false;
                     G.f35471t = true;
                     G.j();
                 } else if (j3 < 0) {
-                    TLRPC.Chat O0 = mp.u1(this.f30189a).O0(Long.valueOf(-j3));
+                    TLRPC.Chat O0 = mp.u1(this.f30187a).O0(Long.valueOf(-j3));
                     if (tL_forumTopic != null) {
                         str = tL_forumTopic.title;
                     } else {
@@ -46,7 +46,7 @@ public final class z3 extends yo0 {
                     G2.f35471t = true;
                     G2.j();
                 } else {
-                    org.telegram.ui.Components.gc G3 = k10.G(2131624029, 5000, org.telegram.messenger.g0.W2(gd.a0(null, null, 2131748698, mp.u1(this.f30189a).c2(Long.valueOf(j3)).first_name)));
+                    org.telegram.ui.Components.gc G3 = k10.G(2131624029, 5000, org.telegram.messenger.g0.W2(gd.a0(null, null, 2131748698, mp.u1(this.f30187a).c2(Long.valueOf(j3)).first_name)));
                     G3.f35469r = false;
                     G3.f35471t = true;
                     G3.j();
@@ -58,7 +58,7 @@ public final class z3 extends yo0 {
                 Q.j();
             }
             try {
-                this.f30195c.performHapticFeedback(3);
+                this.f30193c.performHapticFeedback(3);
             } catch (Exception unused) {
             }
         }
@@ -69,8 +69,8 @@ public final class z3 extends yo0 {
         hi.ma maVar;
         LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity != null) {
-            if (view instanceof org.telegram.ui.Cells.d7) {
-                maVar = hi.oa.b((org.telegram.ui.Cells.d7) view);
+            if (view instanceof org.telegram.ui.Cells.e7) {
+                maVar = hi.oa.b((org.telegram.ui.Cells.e7) view);
             } else {
                 maVar = null;
             }
@@ -80,22 +80,22 @@ public final class z3 extends yo0 {
             if (fjVar != null) {
                 arrayList.add(fjVar);
             } else if (f6Var.D1() instanceof TL_stars.TL_starGiftUnique) {
-                long e10 = j10.i(f6Var.f30189a).e();
+                long e10 = j10.i(f6Var.f30187a).e();
                 TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-                tL_messageService.peer_id = mp.u1(f6Var.f30189a).B1(e10);
-                tL_messageService.from_id = mp.u1(f6Var.f30189a).B1(e10);
-                tL_messageService.date = ConnectionsManager.getInstance(f6Var.f30189a).getCurrentTime();
+                tL_messageService.peer_id = mp.u1(f6Var.f30187a).B1(e10);
+                tL_messageService.from_id = mp.u1(f6Var.f30187a).B1(e10);
+                tL_messageService.date = ConnectionsManager.getInstance(f6Var.f30187a).getCurrentTime();
                 TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = new TLRPC.TL_messageActionStarGiftUnique();
                 tL_messageActionStarGiftUnique.gift = (TL_stars.TL_starGiftUnique) f6Var.D1();
                 tL_messageActionStarGiftUnique.upgrade = true;
                 tL_messageService.action = tL_messageActionStarGiftUnique;
-                fj fjVar2 = new fj(f6Var.f30189a, tL_messageService, false, false);
+                fj fjVar2 = new fj(f6Var.f30187a, tL_messageService, false, false);
                 fjVar2.L5();
                 arrayList.add(fjVar2);
             } else {
                 return;
             }
-            final hi.ta D = hi.ta.D(launchActivity, f6Var.f30189a);
+            final hi.ta D = hi.ta.D(launchActivity, f6Var.f30187a);
             D.S = new u10() {
                 @Override
                 public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
@@ -116,8 +116,8 @@ public final class z3 extends yo0 {
                         }
                     } else {
                         View view2 = view;
-                        if ((view2 instanceof org.telegram.ui.Cells.d7) && view2.isAttachedToWindow()) {
-                            maVar2 = hi.oa.b((org.telegram.ui.Cells.d7) view2);
+                        if ((view2 instanceof org.telegram.ui.Cells.e7) && view2.isAttachedToWindow()) {
+                            maVar2 = hi.oa.b((org.telegram.ui.Cells.e7) view2);
                         }
                         taVar.X(maVar2);
                     }

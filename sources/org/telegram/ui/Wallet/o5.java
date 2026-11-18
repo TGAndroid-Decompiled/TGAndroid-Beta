@@ -39,7 +39,7 @@ public final class o5 extends y61 {
     public final View d(int i7) {
         FrameLayout frameLayout = new FrameLayout(this.f44703b);
         int L = org.telegram.messenger.g0.L(20.0f);
-        int i10 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29394d6;
         org.telegram.ui.ActionBar.i6 i6Var = this.f44704c;
         ShapeDrawable e02 = org.telegram.ui.ActionBar.n6.e0(L, 0, org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
         Rect rect = this.d;

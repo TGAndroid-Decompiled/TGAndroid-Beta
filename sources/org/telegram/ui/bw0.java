@@ -1,3 +1,3 @@
 package org.telegram.ui;
-public final class bw0 extends org.telegram.ui.Cells.f6 {
+public final class bw0 extends org.telegram.ui.Cells.g6 {
 }

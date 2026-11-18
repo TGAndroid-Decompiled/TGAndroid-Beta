@@ -25,9 +25,9 @@ public class qy extends v4.u0 {
         int i10;
         ry ryVar = this.f38938c;
         ObjectAnimator[] objectAnimatorArr = ryVar.S0;
-        v4.b1 b1Var = recyclerView.getLayoutManager().f59209e;
+        v4.b1 b1Var = recyclerView.getLayoutManager().f59210e;
         boolean z10 = true;
-        if (b1Var != null && b1Var.f59069e) {
+        if (b1Var != null && b1Var.f59070e) {
             this.f38937b = true;
             return;
         }
@@ -77,7 +77,7 @@ public class qy extends v4.u0 {
                         int L = org.telegram.messenger.g0.L(f11);
                         v4.f1 K = x10.K(0);
                         if (K != null) {
-                            int bottom = K.f59122a.getBottom();
+                            int bottom = K.f59123a.getBottom();
                             int i13 = iArr[i11];
                             float f13 = (bottom - (L + i13)) / ryVar.f39342c1;
                             if (f13 > 0.0f || f13 < 1.0f) {

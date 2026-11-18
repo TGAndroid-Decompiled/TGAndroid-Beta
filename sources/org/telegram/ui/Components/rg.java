@@ -67,7 +67,7 @@ public final class rg extends View {
 
     public final void e() {
         ChatActivityEnterView chatActivityEnterView = this.K;
-        chatActivityEnterView.f32624k4.setColor(chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29348ag));
+        chatActivityEnterView.f32624k4.setColor(chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29346ag));
         this.f39130a = 1.0f;
         System.currentTimeMillis();
         this.H = -1L;
@@ -98,7 +98,7 @@ public final class rg extends View {
     }
 
     public final void h() {
-        int i7 = org.telegram.ui.ActionBar.n6.f29348ag;
+        int i7 = org.telegram.ui.ActionBar.n6.f29346ag;
         int i10 = ChatActivityEnterView.f32538n7;
         ChatActivityEnterView chatActivityEnterView = this.K;
         int C0 = chatActivityEnterView.C0(i7);
@@ -207,7 +207,7 @@ public final class rg extends View {
             float interpolation2 = lr.f37209g.getInterpolation(min);
             if (E2 > 0.0f) {
                 c10 = 0;
-                paint.setColor(i0.a.f(min2, chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29348ag), chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.Vf)));
+                paint.setColor(i0.a.f(min2, chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29346ag), chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.Vf)));
                 paint.setAlpha((int) (E2 * 255.0f * fArr[0]));
                 canvas.drawCircle(measuredWidth, (org.telegram.messenger.g0.L(2.0f) * interpolation2) + measuredHeight, org.telegram.messenger.g0.T1(this.f39137s, org.telegram.messenger.g0.L(1.5f), interpolation2), paint);
             } else {
@@ -288,7 +288,7 @@ public final class rg extends View {
                 float measuredHeight2 = getMeasuredHeight() / 2.0f;
                 float T13 = org.telegram.messenger.g0.T1(0.85f, 1.0f, f12) * org.telegram.messenger.g0.L(5.0f);
                 if (this.f39132c) {
-                    paint.setColor(i0.a.f(Math.min(1.0f, f11 * 2.5f), chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29348ag), chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.Vf)));
+                    paint.setColor(i0.a.f(Math.min(1.0f, f11 * 2.5f), chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.f29346ag), chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.Vf)));
                 }
                 int color = paint.getColor();
                 Paint paint2 = this.I;

@@ -164,7 +164,7 @@ public final class ne0 implements org.telegram.ui.ActionBar.u4 {
     public final void i() {
         int i7;
         org.telegram.ui.ActionBar.k5 k5Var = this.f37769c;
-        if (k5Var.d == this && k5Var.f29154e == null && (k5Var.I || k5Var.S)) {
+        if (k5Var.d == this && k5Var.f29152e == null && (k5Var.I || k5Var.S)) {
             return;
         }
         RectF rectF = new RectF();

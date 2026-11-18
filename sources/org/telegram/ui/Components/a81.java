@@ -91,7 +91,7 @@ public final class a81 {
                             org.telegram.utils.twidget.n1 d = d1Var.d();
                             org.telegram.utils.twidget.n1 n1Var = a81Var2.f33278o;
                             if (d == n1Var) {
-                                n1Var.f54856a.f();
+                                n1Var.f54857a.f();
                                 a81Var2.f33266a.h();
                                 return;
                             }
@@ -129,7 +129,7 @@ public final class a81 {
                             org.telegram.utils.twidget.n1 d = d1Var.d();
                             org.telegram.utils.twidget.n1 n1Var = a81Var2.f33278o;
                             if (d == n1Var) {
-                                n1Var.f54856a.f();
+                                n1Var.f54857a.f();
                                 a81Var2.f33266a.h();
                                 return;
                             }
@@ -168,7 +168,7 @@ public final class a81 {
                             org.telegram.utils.twidget.n1 d = d1Var.d();
                             org.telegram.utils.twidget.n1 n1Var = a81Var2.f33278o;
                             if (d == n1Var) {
-                                n1Var.f54856a.f();
+                                n1Var.f54857a.f();
                                 a81Var2.f33266a.h();
                                 return;
                             }
@@ -225,7 +225,7 @@ public final class a81 {
                 boolean z10 = this.E;
                 int i10 = this.I;
                 int i11 = this.H;
-                org.telegram.utils.twidget.p1 p1Var = d1Var.f54694f;
+                org.telegram.utils.twidget.p1 p1Var = d1Var.f54695f;
                 if (p1Var != null) {
                     p1Var.i(3, f10, f11, 0, true, z10, i10, i11);
                 }
@@ -273,11 +273,11 @@ public final class a81 {
         if (d1Var != null && !this.f33281r) {
             float f10 = this.J;
             float f11 = this.K;
-            org.telegram.utils.twidget.p1 p1Var = d1Var.f54694f;
+            org.telegram.utils.twidget.p1 p1Var = d1Var.f54695f;
             if (p1Var != null) {
                 long j3 = p1Var.v;
                 if (!p1Var.A && j3 != 0) {
-                    p1Var.f54884c.f(j3, 1, f10, f11, 0);
+                    p1Var.f54885c.f(j3, 1, f10, f11, 0);
                 }
             }
         }
@@ -306,7 +306,7 @@ public final class a81 {
             boolean z10 = this.E;
             int i7 = this.I;
             int i10 = this.H;
-            org.telegram.utils.twidget.p1 p1Var = d1Var.f54694f;
+            org.telegram.utils.twidget.p1 p1Var = d1Var.f54695f;
             if (p1Var != null) {
                 p1Var.i(3, f10, f11, 0, true, z10, i7, i10);
             }
@@ -323,7 +323,7 @@ public final class a81 {
                 boolean z10 = this.E;
                 int i7 = this.I;
                 int i10 = this.H;
-                org.telegram.utils.twidget.p1 p1Var = d1Var.f54694f;
+                org.telegram.utils.twidget.p1 p1Var = d1Var.f54695f;
                 if (p1Var != null) {
                     p1Var.i(0, f10, f11, 0, true, z10, i7, i10);
                 }
@@ -349,7 +349,7 @@ public final class a81 {
 
     public final float j(float f10) {
         int i7;
-        if (org.telegram.messenger.gd.f24216a0 && (i7 = this.R) > 0) {
+        if (org.telegram.messenger.gd.f24213a0 && (i7 = this.R) > 0) {
             return (i7 / this.f33267b) - f10;
         }
         return f10;
@@ -399,7 +399,7 @@ public final class a81 {
         org.telegram.utils.twidget.p1 p1Var;
         float f10 = this.f33267b;
         int actionMasked = motionEvent.getActionMasked();
-        if (z10 && actionMasked != 10 && (d1Var = this.f33279p) != null && !this.f33281r && (p1Var = d1Var.f54694f) != null && p1Var.I) {
+        if (z10 && actionMasked != 10 && (d1Var = this.f33279p) != null && !this.f33281r && (p1Var = d1Var.f54695f) != null && p1Var.I) {
             this.F = true;
             this.J = motionEvent.getX() / f10;
             float y10 = motionEvent.getY() / f10;
@@ -407,11 +407,11 @@ public final class a81 {
             org.telegram.utils.twidget.d1 d1Var2 = this.f33279p;
             float f11 = this.J;
             int k10 = k(motionEvent);
-            org.telegram.utils.twidget.p1 p1Var2 = d1Var2.f54694f;
+            org.telegram.utils.twidget.p1 p1Var2 = d1Var2.f54695f;
             if (p1Var2 != null) {
                 long j3 = p1Var2.v;
                 if (!p1Var2.A && j3 != 0) {
-                    p1Var2.f54884c.f(j3, 0, f11, y10, k10);
+                    p1Var2.f54885c.f(j3, 0, f11, y10, k10);
                     return;
                 }
                 return;

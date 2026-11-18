@@ -12,8 +12,8 @@ import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
 public final class h extends FrameLayout {
-    public final n5 f61236a;
-    public long f61237b;
+    public final n5 f61237a;
+    public long f61238b;
 
     public h(Context context, i6 i6Var) {
         super(context);
@@ -26,8 +26,8 @@ public final class h extends FrameLayout {
         float f13;
         n5 n5Var = new n5(context);
         n5Var.setTextSize(16);
-        u6.X(n5Var, n6.f29504j5, i6Var);
-        if (gd.f24216a0) {
+        u6.X(n5Var, n6.f29502j5, i6Var);
+        if (gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -35,10 +35,10 @@ public final class h extends FrameLayout {
         n5Var.setGravity(i7);
         addView(n5Var);
         n5 n5Var2 = new n5(context);
-        this.f61236a = n5Var2;
+        this.f61237a = n5Var2;
         n5Var2.setTextSize(16);
         u6.X(n5Var2, n6.L6, i6Var);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -46,7 +46,7 @@ public final class h extends FrameLayout {
         n5Var2.setGravity(i10);
         addView(n5Var2);
         n5Var.l(gd.a0("BoostingDateAndTime", null, 2131753537, new Object[0]), false);
-        boolean z10 = gd.f24216a0;
+        boolean z10 = gd.f24213a0;
         if (z10) {
             i11 = 5;
         } else {
@@ -64,7 +64,7 @@ public final class h extends FrameLayout {
             f11 = 0.0f;
         }
         n5Var.setLayoutParams(ma.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = gd.f24216a0;
+        boolean z11 = gd.f24213a0;
         int i13 = (z11 ? 3 : 5) | 16;
         if (z11) {
             f12 = 21.0f;
@@ -77,11 +77,11 @@ public final class h extends FrameLayout {
             f13 = 21.0f;
         }
         n5Var2.setLayoutParams(ma.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        u6.h(n6.f29469h5, this, i6Var);
+        u6.h(n6.f29467h5, this, i6Var);
     }
 
     public long getSelectedTime() {
-        return this.f61237b;
+        return this.f61238b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j3) {
-        this.f61237b = j3;
+        this.f61238b = j3;
         Date date = new Date(j3);
-        this.f61236a.l(gd.a0("formatDateAtTime", null, 2131742525, gd.E0().q0().format(date), gd.E0().p0().format(date)), false);
+        this.f61237a.l(gd.a0("formatDateAtTime", null, 2131742525, gd.E0().q0().format(date), gd.E0().p0().format(date)), false);
     }
 }

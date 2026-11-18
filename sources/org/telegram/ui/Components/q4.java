@@ -14,8 +14,8 @@ public final class q4 extends ok0 {
         super(1, context, bVar, true);
         int i10;
         this.f38692o1 = zVar;
-        this.f30230w0 = false;
-        this.f30228v0 = false;
+        this.f30228w0 = false;
+        this.f30226v0 = false;
         ScrollView scrollView = new ScrollView(context);
         scrollView.setFillViewport(true);
         this.O = scrollView;
@@ -27,7 +27,7 @@ public final class q4 extends ok0 {
         frameLayout.addView((View) imageView, c8.ma.d(160, 160.0f, 49, 17.0f, 14.0f, 17.0f, 0.0f));
         TextView textView = new TextView(context);
         org.telegram.messenger.n10.p(textView, 1, 24.0f);
-        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29504j5, bVar);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29502j5, bVar);
         if (i7 == 0) {
             textView.setText(org.telegram.messenger.gd.M0(2131745996, null));
         } else if (i7 == 6) {
@@ -43,7 +43,7 @@ public final class q4 extends ok0 {
         }
         TextView m10 = org.telegram.ui.Cells.c0.m(frameLayout, textView, c8.ma.d(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f), context);
         m10.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.u6.U(m10, org.telegram.ui.ActionBar.n6.f29654r5, bVar);
+        org.telegram.ui.ActionBar.u6.U(m10, org.telegram.ui.ActionBar.n6.f29652r5, bVar);
         org.telegram.messenger.f3.k(m10, 1, null, 2131746022);
         frameLayout.addView(m10, c8.ma.d(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
@@ -53,12 +53,12 @@ public final class q4 extends ok0 {
         int i11 = org.telegram.ui.ActionBar.n6.G6;
         org.telegram.ui.ActionBar.u6.U(editTextBoldCursor, i11, bVar);
         editTextBoldCursor.setBackgroundDrawable(null);
-        org.telegram.ui.ActionBar.u6.F(editTextBoldCursor, org.telegram.ui.ActionBar.n6.f29525k6, org.telegram.ui.ActionBar.n6.f29543l6, org.telegram.ui.ActionBar.n6.f29617p7, bVar);
+        org.telegram.ui.ActionBar.u6.F(editTextBoldCursor, org.telegram.ui.ActionBar.n6.f29523k6, org.telegram.ui.ActionBar.n6.f29541l6, org.telegram.ui.ActionBar.n6.f29615p7, bVar);
         editTextBoldCursor.setMaxLines(1);
         editTextBoldCursor.setLines(1);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
         editTextBoldCursor.setSingleLine(true);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             i10 = 5;
         } else {
             i10 = 3;

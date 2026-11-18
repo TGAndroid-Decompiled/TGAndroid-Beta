@@ -84,7 +84,7 @@ public final class a0 implements rx {
             CharSequence m10 = j6.m(str, m2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (g6VarArr = (g6[]) ((Spanned) m10).getSpans(0, m10.length(), g6.class)) != null) {
                 for (g6 g6Var : g6VarArr) {
-                    g6Var.f24176b = 0.85f;
+                    g6Var.f24173b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -102,7 +102,7 @@ public final class a0 implements rx {
         g0 g0Var = this.f57725a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.A1);
         String M0 = gd.M0(2131752057, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         u1Var.U = gd.M0(2131752058, null);
         alertDialog$Builder.k(gd.M0(2131752088, null), new org.telegram.ui.ActionBar.p(this, 28));

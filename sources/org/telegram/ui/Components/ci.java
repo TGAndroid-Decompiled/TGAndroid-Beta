@@ -55,7 +55,7 @@ public final class ci implements ak {
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 ?? obj = new Object();
-                obj.f28213c = (String) arrayList.get(i10);
+                obj.f28211c = (String) arrayList.get(i10);
                 arrayList4.add(obj);
             }
             hk0Var.K1(arrayList4);

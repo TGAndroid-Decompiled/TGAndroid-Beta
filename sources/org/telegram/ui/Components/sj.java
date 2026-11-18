@@ -41,7 +41,7 @@ public final class sj extends FrameLayout {
         q9 q9Var = new q9(context);
         this.f39747a = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(23.0f));
-        boolean z10 = org.telegram.messenger.gd.f24216a0;
+        boolean z10 = org.telegram.messenger.gd.f24213a0;
         if (z10) {
             i7 = 5;
         } else {
@@ -62,16 +62,16 @@ public final class sj extends FrameLayout {
         fi.u3 u3Var = new fi.u3(context, 4);
         this.f39748b = u3Var;
         org.telegram.messenger.ks.i(u3Var);
-        org.telegram.ui.ActionBar.u6.X(u3Var, org.telegram.ui.ActionBar.n6.f29504j5, i6Var);
+        org.telegram.ui.ActionBar.u6.X(u3Var, org.telegram.ui.ActionBar.n6.f29502j5, i6Var);
         u3Var.setTypeface(org.telegram.messenger.g0.o());
         u3Var.setTextSize(16);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         u3Var.setGravity(i10 | 48);
-        boolean z11 = org.telegram.messenger.gd.f24216a0;
+        boolean z11 = org.telegram.messenger.gd.f24213a0;
         if (z11) {
             i11 = 5;
         } else {
@@ -92,14 +92,14 @@ public final class sj extends FrameLayout {
         org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(context);
         this.f39749c = n5Var;
         n5Var.setTextSize(13);
-        org.telegram.ui.ActionBar.u6.X(n5Var, org.telegram.ui.ActionBar.n6.f29635q5, i6Var);
-        if (org.telegram.messenger.gd.f24216a0) {
+        org.telegram.ui.ActionBar.u6.X(n5Var, org.telegram.ui.ActionBar.n6.f29633q5, i6Var);
+        if (org.telegram.messenger.gd.f24213a0) {
             i12 = 5;
         } else {
             i12 = 3;
         }
         n5Var.setGravity(i12 | 48);
-        boolean z12 = org.telegram.messenger.gd.f24216a0;
+        boolean z12 = org.telegram.messenger.gd.f24213a0;
         if (z12) {
             i13 = 5;
         } else {
@@ -119,10 +119,10 @@ public final class sj extends FrameLayout {
         addView(n5Var, c8.ma.d(-1, 20.0f, i16, f14, 36.0f, f15, 0.0f));
         mp mpVar = new mp(21, context, i6Var);
         this.d = mpVar;
-        mpVar.b(-1, org.telegram.ui.ActionBar.n6.f29396d6, org.telegram.ui.ActionBar.n6.f29526k7);
+        mpVar.b(-1, org.telegram.ui.ActionBar.n6.f29394d6, org.telegram.ui.ActionBar.n6.f29524k7);
         mpVar.setDrawUnchecked(false);
         mpVar.setDrawBackgroundAsArc(3);
-        boolean z13 = org.telegram.messenger.gd.f24216a0;
+        boolean z13 = org.telegram.messenger.gd.f24213a0;
         int i17 = (z13 ? 5 : 3) | 48;
         if (z13) {
             f16 = 0.0f;
@@ -189,7 +189,7 @@ public final class sj extends FrameLayout {
                 q9Var.setImageDrawable(b9Var);
             }
         }
-        Utilities.f22782e.c(new mg(7, this, rjVar));
+        Utilities.f22779e.c(new mg(7, this, rjVar));
     }
 
     @Override
@@ -202,7 +202,7 @@ public final class sj extends FrameLayout {
         float L;
         int i7;
         if (this.f39757y) {
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(70.0f);
@@ -210,12 +210,12 @@ public final class sj extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.gd.f24216a0) {
+            if (org.telegram.messenger.gd.f24213a0) {
                 i7 = org.telegram.messenger.g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.n6.f29519k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.n6.f29517k0);
         }
     }
 
@@ -243,7 +243,7 @@ public final class sj extends FrameLayout {
                 this.f39749c.l(str, false);
             } else {
                 this.f39749c.l("", false);
-                Utilities.f22782e.c(new qj(this, 0));
+                Utilities.f22779e.c(new qj(this, 0));
             }
         }
     }

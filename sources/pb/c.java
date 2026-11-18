@@ -12,8 +12,8 @@ public abstract class c {
         } catch (PackageManager.NameNotFoundException e10) {
             String concat = "Exception thrown when trying to get app version ".concat(e10.toString());
             k8.a aVar = f55517a;
-            if (Log.isLoggable((String) aVar.f18183b, 6)) {
-                String str = (String) aVar.f18184c;
+            if (Log.isLoggable((String) aVar.f18180b, 6)) {
+                String str = (String) aVar.f18181c;
                 if (str != null) {
                     concat = str.concat(concat);
                 }

@@ -3,7 +3,7 @@ package pi;
 import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.ui.Cells.g0;
-import org.telegram.ui.Cells.sa;
+import org.telegram.ui.Cells.ta;
 import org.telegram.ui.bn;
 public final class g implements ValueAnimator.AnimatorUpdateListener {
     public final int f55666a;
@@ -40,14 +40,14 @@ public final class g implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 k kVar2 = this.f55668c;
                 bn bnVar2 = kVar2.F;
-                sa saVar = (sa) this.d;
-                float measuredHeight2 = ((((kVar2.G.getMeasuredHeight() - bnVar2.P9) - bnVar2.Ya) / 2.0f) - (saVar.getMeasuredHeight() / 2.0f)) + kVar2.F.P9;
-                if (saVar.getTop() > measuredHeight2) {
-                    f11 = measuredHeight2 - saVar.getTop();
+                ta taVar = (ta) this.d;
+                float measuredHeight2 = ((((kVar2.G.getMeasuredHeight() - bnVar2.P9) - bnVar2.Ya) / 2.0f) - (taVar.getMeasuredHeight() / 2.0f)) + kVar2.F.P9;
+                if (taVar.getTop() > measuredHeight2) {
+                    f11 = measuredHeight2 - taVar.getTop();
                 } else {
                     f11 = 0.0f;
                 }
-                saVar.setTranslationY((f11 * floatValue2) + ((1.0f - floatValue2) * this.f55667b));
+                taVar.setTranslationY((f11 * floatValue2) + ((1.0f - floatValue2) * this.f55667b));
                 return;
         }
     }

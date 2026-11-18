@@ -14,7 +14,7 @@ public final class fa0 implements Runnable {
             case 0:
                 oa0 oa0Var = this.f35052b;
                 di.b1 b1Var = oa0Var.f38047f;
-                if (oa0Var.f38045d0.d.f24882r) {
+                if (oa0Var.f38045d0.d.f24879r) {
                     b1Var.x0(-b1Var.computeVerticalScrollOffset(), 250, pi.k.V);
                     return;
                 }

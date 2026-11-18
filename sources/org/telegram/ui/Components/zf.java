@@ -31,14 +31,14 @@ public final class zf implements Runnable {
         if (chatActivityEnterView.f32542a2.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.O0()) {
             if (bnVar != null) {
                 int i10 = chatActivityEnterView.R;
-                long j3 = this.f42882a.f23968k.dialog_id;
+                long j3 = this.f42882a.f23965k.dialog_id;
                 TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f42884c;
                 String text = keyboardButtonProto.getText();
                 String url = keyboardButtonProto.getUrl();
                 boolean c10 = cg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
                 org.telegram.messenger.fj fjVar = this.d;
                 if (fjVar != null) {
-                    i7 = fjVar.f23968k.f28426id;
+                    i7 = fjVar.f23965k.f28424id;
                 } else {
                     i7 = 0;
                 }

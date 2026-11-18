@@ -34,8 +34,8 @@ import nb.a;
 import o2.h;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.b5;
-import org.telegram.ui.md0;
+import org.telegram.ui.Cells.c5;
+import org.telegram.ui.nd0;
 import p2.e;
 import pb.b;
 import q2.m;
@@ -268,7 +268,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             try {
                 TLRPC.Document document3 = (TLRPC.Document) arrayList2.get(i12);
                 if (!"application/x-mpegurl".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboard".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboardmap".equalsIgnoreCase(document3.mime_type)) {
-                    e61 d = e61.d(i7, document3, (TLRPC.Document) longSparseArray.get(document3.f28411id), i10, z10);
+                    e61 d = e61.d(i7, document3, (TLRPC.Document) longSparseArray.get(document3.f28409id), i10, z10);
                     if (d.f34628i > 0 && d.f34629j > 0) {
                         if (document3 == document) {
                             d.f34623b = true;
@@ -453,8 +453,8 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         if (fjVar == null) {
             return;
         }
-        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26915b.getSharedPreferences("media_saved_pos", 0);
-        sharedPreferences.edit().putBoolean(org.telegram.messenger.fj.B0(fjVar.f23968k) + "_" + fjVar.e1() + "loop", z10).apply();
+        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26913b.getSharedPreferences("media_saved_pos", 0);
+        sharedPreferences.edit().putBoolean(org.telegram.messenger.fj.B0(fjVar.f23965k) + "_" + fjVar.e1() + "loop", z10).apply();
     }
 
     public static void o0(c61 c61Var, org.telegram.messenger.fj fjVar) {
@@ -462,9 +462,9 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         if (fjVar == null) {
             return;
         }
-        long B0 = org.telegram.messenger.fj.B0(fjVar.f23968k);
+        long B0 = org.telegram.messenger.fj.B0(fjVar.f23965k);
         int e12 = fjVar.e1();
-        SharedPreferences.Editor edit = org.telegram.messenger.t0.f26915b.getSharedPreferences("media_saved_pos", 0).edit();
+        SharedPreferences.Editor edit = org.telegram.messenger.t0.f26913b.getSharedPreferences("media_saved_pos", 0).edit();
         if (c61Var == null) {
             edit.remove(B0 + "_" + e12 + "q2");
         } else {
@@ -528,10 +528,10 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
     public final void C0(org.telegram.messenger.r5 r5Var) {
         this.f34963b = r5Var;
         if (r5Var != null) {
-            this.d.f19348s0 = new y51(r5Var);
+            this.d.f19345s0 = new y51(r5Var);
             return;
         }
-        this.d.f19348s0 = null;
+        this.d.f19345s0 = null;
     }
 
     @Override
@@ -547,7 +547,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             }
         }
         if (z10 && i7 == 3 && !c0() && this.X) {
-            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.J4, this);
+            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.K4, this);
         }
         if (!this.H && i7 == 3) {
             this.H = true;
@@ -577,7 +577,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         l2.j jVar;
         int i10;
         HashMap hashMap = new HashMap();
-        hashMap.put(m2.i.f20521c.f20522a, 144179200);
+        hashMap.put(m2.i.f20518c.f20519a, 144179200);
         b3.e eVar = new b3.e();
         boolean z10 = this.f34965c;
         int i11 = 1000;
@@ -599,28 +599,28 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         l2.h hVar = new l2.h(eVar, 50000, i7, i7, i12, i12, false, hashMap);
         if (this.d == null) {
             if (this.L != null) {
-                jVar = new a61(org.telegram.messenger.t0.f26915b, this);
+                jVar = new a61(org.telegram.messenger.t0.f26913b, this);
             } else {
-                jVar = new l2.j(org.telegram.messenger.t0.f26915b);
+                jVar = new l2.j(org.telegram.messenger.t0.f26913b);
             }
-            jVar.f19415c = 1;
-            l2.n nVar = new l2.n(org.telegram.messenger.t0.f26915b);
-            a8.la.p(!nVar.f19477z);
-            nVar.f19457c = new l2.m(jVar, 2);
+            jVar.f19412c = 1;
+            l2.n nVar = new l2.n(org.telegram.messenger.t0.f26913b);
+            a8.la.p(!nVar.f19474z);
+            nVar.f19454c = new l2.m(jVar, 2);
             a3.s sVar = this.f34970f;
-            a8.la.p(!nVar.f19477z);
+            a8.la.p(!nVar.f19474z);
             sVar.getClass();
-            nVar.f19458e = new l2.m(sVar, 1);
-            a8.la.p(!nVar.f19477z);
-            nVar.f19459f = new l2.m(hVar, 0);
+            nVar.f19455e = new l2.m(sVar, 1);
+            a8.la.p(!nVar.f19474z);
+            nVar.f19456f = new l2.m(hVar, 0);
             l2.f0 a10 = nVar.a();
             this.d = a10;
             a10.D(new e2.e(3, 0, 1, 1, false, 0, true), false);
-            m2.d dVar = this.d.f19347s;
+            m2.d dVar = this.d.f19344s;
             dVar.getClass();
-            dVar.f20492f.a(this);
-            this.d.f19336m.a(this);
-            this.d.f19350t0.add(this);
+            dVar.f20489f.a(this);
+            this.d.f19333m.a(this);
+            this.d.f19347t0.add(this);
             TextureView textureView = this.f34976n;
             if (textureView != null) {
                 this.d.z1(textureView);
@@ -647,17 +647,17 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             f0Var2.k(i10);
         }
         if (this.f34981y && this.f34968e == null) {
-            l2.n nVar2 = new l2.n(org.telegram.messenger.t0.f26915b);
+            l2.n nVar2 = new l2.n(org.telegram.messenger.t0.f26913b);
             a3.s sVar2 = this.f34970f;
-            a8.la.p(!nVar2.f19477z);
+            a8.la.p(!nVar2.f19474z);
             sVar2.getClass();
-            nVar2.f19458e = new l2.m(sVar2, 1);
-            a8.la.p(true ^ nVar2.f19477z);
-            nVar2.f19459f = new l2.m(hVar, 0);
+            nVar2.f19455e = new l2.m(sVar2, 1);
+            a8.la.p(true ^ nVar2.f19474z);
+            nVar2.f19456f = new l2.m(hVar, 0);
             l2.f0 a11 = nVar2.a();
             this.f34968e = a11;
             a11.D(new e2.e(2, 0, 1, 1, false, 0, true), false);
-            this.f34968e.f19336m.a(new h2.z(this, 1));
+            this.f34968e.f19333m.a(new h2.z(this, 1));
             this.f34968e.X(this.f34980x);
         }
     }
@@ -686,7 +686,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
                 str5 = queryParameter;
             }
             v4.x0 x0Var = new v4.x0(this.R, str5, k10);
-            x0Var.f59258g = str2;
+            x0Var.f59259g = str2;
             x0Var.h = str3;
             return new oi.y3(new wf.e(x0Var));
         }
@@ -718,18 +718,18 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
                     str4 = "video/mp4";
                 }
                 v4.x0 x0Var2 = new v4.x0(e61Var.d, str4, sb3);
-                x0Var2.f59258g = str2;
+                x0Var2.f59259g = str2;
                 x0Var2.h = str3;
                 int i11 = e61Var.f34628i;
                 int i12 = e61Var.f34629j;
-                x0Var2.f59253a = i11;
-                x0Var2.f59254b = i12;
+                x0Var2.f59254a = i11;
+                x0Var2.f59255b = i12;
                 arrayList.add(new wf.e(x0Var2));
                 arrayList2 = arrayList4;
             }
         }
         ?? obj3 = new Object();
-        obj3.f22506a = arrayList;
+        obj3.f22503a = arrayList;
         return obj3;
     }
 
@@ -739,7 +739,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         if (f0Var != null) {
             f0Var.F1();
             e2.u uVar = f0Var.S;
-            if (uVar != null && uVar.f10765o != 0 && (arrayList = this.O) != null) {
+            if (uVar != null && uVar.f10762o != 0 && (arrayList = this.O) != null) {
                 int size = arrayList.size();
                 int i7 = 0;
                 while (i7 < size) {
@@ -752,7 +752,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
                         Object obj2 = arrayList2.get(i10);
                         i10++;
                         e61 e61Var = (e61) obj2;
-                        if (e61Var.f34624c == uVar.f10765o) {
+                        if (e61Var.f34624c == uVar.f10762o) {
                             return e61Var.f34627g;
                         }
                     }
@@ -793,7 +793,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
                     if (uVar != null) {
                         for (int i10 = 0; i10 < Y(); i10++) {
                             c61 Z = Z(i10);
-                            if (!Z.f33902a && uVar.f10775z == Z.f33903b && uVar.A == Z.f33904c && uVar.f10760j == ((int) Math.floor(((e61) Z.d.get(0)).f34631l * 8.0d))) {
+                            if (!Z.f33902a && uVar.f10772z == Z.f33903b && uVar.A == Z.f33904c && uVar.f10757j == ((int) Math.floor(((e61) Z.d.get(0)).f34631l * 8.0d))) {
                                 return i10;
                             }
                         }
@@ -828,7 +828,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         try {
             l2.f0 f0Var = this.d;
             f0Var.F1();
-            MediaFormat mediaFormat = ((u2.r) f0Var.f19325g[0]).f58362g0;
+            MediaFormat mediaFormat = ((u2.r) f0Var.f19322g[0]).f58363g0;
             ByteBuffer byteBuffer = mediaFormat.getByteBuffer("hdr-static-info");
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
             if (byteBuffer.get() == 0) {
@@ -837,10 +837,10 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             }
             if (Build.VERSION.SDK_INT >= 24) {
                 if (mediaFormat.containsKey("color-transfer")) {
-                    c7Var2.f14316b = mediaFormat.getInteger("color-transfer");
+                    c7Var2.f14313b = mediaFormat.getInteger("color-transfer");
                 }
                 if (mediaFormat.containsKey("color-standard")) {
-                    c7Var2.f14315a = mediaFormat.getInteger("color-standard");
+                    c7Var2.f14312a = mediaFormat.getInteger("color-standard");
                 }
                 if (mediaFormat.containsKey("color-range")) {
                     mediaFormat.getInteger("color-range");
@@ -884,7 +884,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
     @Override
     public final void a(e2.x1 x1Var) {
         if (!Objects.equals(x1Var, e2.x1.d)) {
-            this.K.onVideoSizeChanged(x1Var.f10803a, x1Var.f10804b, 0, x1Var.f10805c);
+            this.K.onVideoSizeChanged(x1Var.f10800a, x1Var.f10801b, 0, x1Var.f10802c);
         }
     }
 
@@ -892,7 +892,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         l2.f0 f0Var = this.d;
         if (f0Var != null) {
             f0Var.F1();
-            if (f0Var.f19317b0 == 0.0f) {
+            if (f0Var.f19314b0 == 0.0f) {
                 return true;
             }
             return false;
@@ -913,7 +913,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.J4 && ((f61) objArr[0]) != this && d0() && !this.E) {
+        if (i7 == org.telegram.messenger.ks.K4 && ((f61) objArr[0]) != this && d0() && !this.E) {
             g0();
         }
     }
@@ -1073,17 +1073,17 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         e2.z zVar = new e2.z();
         e2.c0 c0Var = new e2.c0();
         List list = Collections.EMPTY_LIST;
-        h9.t1 t1Var = h9.t1.f14074e;
+        h9.t1 t1Var = h9.t1.f14071e;
         e2.e0 e0Var2 = new e2.e0();
         e2.h0 h0Var = e2.h0.d;
-        if (c0Var.f10349b != null && c0Var.f10348a == null) {
+        if (c0Var.f10346b != null && c0Var.f10345a == null) {
             z10 = false;
         } else {
             z10 = true;
         }
         a8.la.p(z10);
         if (uri != null) {
-            if (c0Var.f10348a != null) {
+            if (c0Var.f10345a != null) {
                 d0Var = new e2.d0(c0Var);
             } else {
                 d0Var = null;
@@ -1101,15 +1101,15 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             Object obj = new Object();
             qb.a aVar = new qb.a(4);
             g0Var.getClass();
-            l0Var.f10504b.getClass();
-            e2.d0 d0Var3 = l0Var.f10504b.f10415c;
+            l0Var.f10501b.getClass();
+            e2.d0 d0Var3 = l0Var.f10501b.f10412c;
             if (d0Var3 == null) {
                 mVar2 = q2.m.A;
             } else {
                 synchronized (obj) {
                     try {
                         if (!d0Var3.equals(null)) {
-                            mVar = org.telegram.ui.md0.o(d0Var3);
+                            mVar = org.telegram.ui.nd0.o(d0Var3);
                         } else {
                             mVar = null;
                         }
@@ -1132,57 +1132,57 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             }
             if (this.Y == null) {
                 this.Y = new x2.f0(extendedDefaultDataSourceFactory) {
-                    public final xa f2607a;
-                    public final g f2608b;
-                    public final md0 f2609c;
+                    public final xa f2608a;
+                    public final g f2609b;
+                    public final nd0 f2610c;
                     public final a d;
-                    public final qb.a f2610e;
-                    public final long f2611f;
-                    public final long f2612g;
+                    public final qb.a f2611e;
+                    public final long f2612f;
+                    public final long f2613g;
 
                     {
                         xa xaVar = new xa(extendedDefaultDataSourceFactory);
-                        this.f2607a = xaVar;
-                        this.f2608b = extendedDefaultDataSourceFactory;
-                        this.f2609c = new md0(7);
-                        this.f2610e = new qb.a(4);
-                        this.f2611f = 30000L;
-                        this.f2612g = 5000000L;
+                        this.f2608a = xaVar;
+                        this.f2609b = extendedDefaultDataSourceFactory;
+                        this.f2610c = new nd0(7);
+                        this.f2611e = new qb.a(4);
+                        this.f2612f = 30000L;
+                        this.f2613g = 5000000L;
                         this.d = new a(28);
-                        ((w0) xaVar.d).f3353a = true;
+                        ((w0) xaVar.d).f3354a = true;
                     }
 
                     @Override
                     public final f0 a(a aVar2) {
-                        w0 w0Var = (w0) this.f2607a.d;
+                        w0 w0Var = (w0) this.f2608a.d;
                         w0Var.getClass();
-                        w0Var.f3355c = aVar2;
+                        w0Var.f3356c = aVar2;
                         return this;
                     }
 
                     @Override
                     public final x2.a b(l0 l0Var2) {
                         r rVar;
-                        l0Var2.f10504b.getClass();
+                        l0Var2.f10501b.getClass();
                         e eVar = new e();
-                        List list2 = l0Var2.f10504b.f10416e;
+                        List list2 = l0Var2.f10501b.f10413e;
                         if (!list2.isEmpty()) {
                             rVar = new h0(8, eVar, list2);
                         } else {
                             rVar = eVar;
                         }
-                        return new h(l0Var2, this.f2608b, rVar, this.f2607a, this.d, this.f2609c.s(l0Var2), this.f2610e, this.f2611f, this.f2612g);
+                        return new h(l0Var2, this.f2609b, rVar, this.f2608a, this.d, this.f2610c.s(l0Var2), this.f2611e, this.f2612f, this.f2613g);
                     }
 
                     @Override
                     public final f0 c(boolean z11) {
-                        ((w0) this.f2607a.d).f3353a = z11;
+                        ((w0) this.f2608a.d).f3354a = z11;
                         return this;
                     }
 
                     @Override
                     public final f0 d(int i7) {
-                        ((w0) this.f2607a.d).f3354b = i7;
+                        ((w0) this.f2608a.d).f3355b = i7;
                         return this;
                     }
                 };
@@ -1191,27 +1191,27 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         }
         if (this.Z == null) {
             this.Z = new x2.f0(extendedDefaultDataSourceFactory) {
-                public final b5 f2613a;
-                public c f2614b;
-                public a f2615c;
-                public final md0 f2619i = new md0(7);
-                public final b f2617f = new b(24);
-                public final f1 f2618g = d.K;
-                public final qb.a f2620j = new qb.a(4);
+                public final c5 f2614a;
+                public c f2615b;
+                public a f2616c;
+                public final nd0 f2620i = new nd0(7);
+                public final b f2618f = new b(24);
+                public final f1 f2619g = d.K;
+                public final qb.a f2621j = new qb.a(4);
                 public final a h = new a(28);
-                public final int f2622l = 1;
-                public final long f2623m = -9223372036854775807L;
-                public final boolean f2621k = true;
-                public int f2616e = 3;
+                public final int f2623l = 1;
+                public final long f2624m = -9223372036854775807L;
+                public final boolean f2622k = true;
+                public int f2617e = 3;
                 public boolean d = true;
 
                 {
-                    this.f2613a = new b5(extendedDefaultDataSourceFactory);
+                    this.f2614a = new c5(extendedDefaultDataSourceFactory);
                 }
 
                 @Override
                 public final f0 a(a aVar2) {
-                    this.f2615c = aVar2;
+                    this.f2616c = aVar2;
                     return this;
                 }
 
@@ -1223,37 +1223,37 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
 
                 @Override
                 public final f0 d(int i7) {
-                    this.f2616e = i7;
+                    this.f2617e = i7;
                     return this;
                 }
 
                 @Override
                 public final k b(l0 l0Var2) {
-                    l0Var2.f10504b.getClass();
-                    if (this.f2614b == null) {
+                    l0Var2.f10501b.getClass();
+                    if (this.f2615b == null) {
                         ?? obj2 = new Object();
                         obj2.f56341a = new a(6);
                         obj2.f56343c = 3;
-                        this.f2614b = obj2;
+                        this.f2615b = obj2;
                     }
-                    a aVar2 = this.f2615c;
+                    a aVar2 = this.f2616c;
                     if (aVar2 != null) {
-                        this.f2614b.f56341a = aVar2;
+                        this.f2615b.f56341a = aVar2;
                     }
-                    c cVar = this.f2614b;
+                    c cVar = this.f2615b;
                     cVar.f56342b = this.d;
-                    cVar.f56343c = this.f2616e;
-                    List list2 = l0Var2.f10504b.f10416e;
+                    cVar.f56343c = this.f2617e;
+                    List list2 = l0Var2.f10501b.f10413e;
                     boolean isEmpty = list2.isEmpty();
-                    t tVar = this.f2617f;
+                    t tVar = this.f2618f;
                     if (!isEmpty) {
                         tVar = new k8.a(tVar, list2, false, 29);
                     }
-                    m s5 = this.f2619i.s(l0Var2);
-                    this.f2618g.getClass();
-                    b5 b5Var = this.f2613a;
-                    qb.a aVar3 = this.f2620j;
-                    return new k(l0Var2, b5Var, cVar, this.h, s5, aVar3, new d(b5Var, aVar3, tVar), this.f2623m, this.f2621k, this.f2622l);
+                    m s5 = this.f2620i.s(l0Var2);
+                    this.f2619g.getClass();
+                    c5 c5Var = this.f2614a;
+                    qb.a aVar3 = this.f2621j;
+                    return new k(l0Var2, c5Var, cVar, this.h, s5, aVar3, new d(c5Var, aVar3, tVar), this.f2624m, this.f2622k, this.f2623l);
                 }
             };
         }
@@ -1412,7 +1412,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             this.f34968e = null;
         }
         if (this.X) {
-            org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.J4);
+            org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.K4);
         }
     }
 
@@ -1445,7 +1445,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             if (z10) {
                 p1Var = l2.p1.d;
             } else {
-                p1Var = l2.p1.f19527c;
+                p1Var = l2.p1.f19524c;
             }
             f0Var.w1(p1Var);
             this.d.Z0(5, j3);
@@ -1462,7 +1462,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
             if (z10) {
                 p1Var = l2.p1.d;
             } else {
-                p1Var = l2.p1.f19527c;
+                p1Var = l2.p1.f19524c;
             }
             f0Var.w1(p1Var);
             this.d.Z0(5, j3);
@@ -1637,8 +1637,8 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         this.f34973h0 = -9223372036854775807L;
         this.f34975j0 = new ArrayList();
         this.f34966c0 = z11;
-        this.h = new ExtendedDefaultDataSourceFactory(org.telegram.messenger.t0.f26915b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
-        a3.s sVar = new a3.s(org.telegram.messenger.t0.f26915b, new nb.a(1));
+        this.h = new ExtendedDefaultDataSourceFactory(org.telegram.messenger.t0.f26913b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        a3.s sVar = new a3.s(org.telegram.messenger.t0.f26913b, new nb.a(1));
         this.f34970f = sVar;
         if (z11) {
             a3.n j3 = sVar.j();
@@ -1650,7 +1650,7 @@ public class f61 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.fs {
         this.M = 1;
         this.X = z10;
         if (z10) {
-            org.telegram.messenger.ks.e().b(this, org.telegram.messenger.ks.J4);
+            org.telegram.messenger.ks.e().b(this, org.telegram.messenger.ks.K4);
         }
     }
 

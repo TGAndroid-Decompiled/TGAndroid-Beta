@@ -1000,7 +1000,7 @@ public class sb0 extends LinearLayout implements org.telegram.ui.ActionBar.c6 {
         this.f39565e = textView;
         textView.setGravity(17);
         this.f39565e.setSingleLine(true);
-        org.telegram.ui.ActionBar.u6.U(this.f39565e, org.telegram.ui.ActionBar.n6.f29504j5, i6Var);
+        org.telegram.ui.ActionBar.u6.U(this.f39565e, org.telegram.ui.ActionBar.n6.f29502j5, i6Var);
         this.f39565e.setBackgroundResource(0);
         float f10 = L;
         this.f39565e.setTextSize(0, f10);

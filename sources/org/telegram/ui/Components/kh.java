@@ -40,11 +40,11 @@ public final class kh implements org.telegram.messenger.u10 {
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;
-                hi.g gVar = ycVar.f15051f;
+                hi.g gVar = ycVar.f15048f;
                 gVar.setText((CharSequence) obj);
                 gVar.d();
                 gVar.k(true);
-                hi.e eVar = ycVar.f15048d0;
+                hi.e eVar = ycVar.f15045d0;
                 org.telegram.messenger.g0.r(eVar);
                 eVar.run();
                 return;

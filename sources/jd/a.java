@@ -2,14 +2,14 @@ package jd;
 
 import c8.n1;
 public final class a {
-    public static final a f17384a;
-    public static final a[] f17385b;
+    public static final a f17381a;
+    public static final a[] f17382b;
 
     static {
         ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
-        f17384a = r02;
+        f17381a = r02;
         a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
-        f17385b = aVarArr;
+        f17382b = aVarArr;
         n1.a(aVarArr);
     }
 
@@ -18,6 +18,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f17385b.clone();
+        return (a[]) f17382b.clone();
     }
 }

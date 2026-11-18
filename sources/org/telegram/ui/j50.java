@@ -14,15 +14,15 @@ public final class j50 implements TextWatcher {
         String trim = editable.toString().trim();
         k50 k50Var = this.f48882a;
         n50 n50Var = k50Var.h;
-        if (k50Var.f49180c != 0) {
-            n50Var.getConnectionsManager().cancelRequest(k50Var.f49180c, true);
-            k50Var.f49180c = 0;
+        if (k50Var.f49157c != 0) {
+            n50Var.getConnectionsManager().cancelRequest(k50Var.f49157c, true);
+            k50Var.f49157c = 0;
         }
         vs vsVar = k50Var.d;
         if (vsVar != null) {
             org.telegram.messenger.g0.r(vsVar);
         }
-        k50Var.f49181e = null;
+        k50Var.f49158e = null;
         if (trim.isEmpty()) {
             n50.f0(n50Var, null);
             return;

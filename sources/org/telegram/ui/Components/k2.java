@@ -114,7 +114,7 @@ public final class k2 implements ob0, org.telegram.ui.ActionBar.r1, org.telegram
             default:
                 return String.format("%02d", Integer.valueOf(i7));
             case 2:
-                boolean z10 = org.telegram.messenger.gd.f24218c0;
+                boolean z10 = org.telegram.messenger.gd.f24215c0;
                 int i11 = 12;
                 if (z10) {
                     i10 = 24;

@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class h10 extends v4.u0 {
-    public final f40 f48196a;
+    public final f40 f48124a;
 
     public h10(f40 f40Var) {
-        this.f48196a = f40Var;
+        this.f48124a = f40Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         org.telegram.ui.Components.kj0 kj0Var;
-        f40 f40Var = this.f48196a;
+        f40 f40Var = this.f48124a;
         n30 n30Var = f40Var.L1;
         if (i7 == 0) {
             int L = org.telegram.messenger.g0.L(74.0f);
             n30Var.getChildAt(0);
-            if ((f40Var.f47522t2 - L) + f40Var.f30226t0 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && n30Var.canScrollVertically(1) && (kj0Var = (org.telegram.ui.Components.kj0) n30Var.K(0)) != null) {
-                View view = kj0Var.f59122a;
+            if ((f40Var.f47478t2 - L) + f40Var.f30224t0 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && n30Var.canScrollVertically(1) && (kj0Var = (org.telegram.ui.Components.kj0) n30Var.K(0)) != null) {
+                View view = kj0Var.f59123a;
                 if (view.getTop() > 0) {
                     n30Var.w0(0, view.getTop(), null);
                     return;
@@ -27,11 +27,11 @@ public final class h10 extends v4.u0 {
             }
             return;
         }
-        org.telegram.ui.Components.j30 j30Var = f40Var.f47470h2;
+        org.telegram.ui.Components.j30 j30Var = f40Var.f47426h2;
         if (j30Var != null) {
             j30Var.a();
         }
-        org.telegram.ui.Components.j30 j30Var2 = f40Var.f47474i2;
+        org.telegram.ui.Components.j30 j30Var2 = f40Var.f47430i2;
         if (j30Var2 != null) {
             j30Var2.a();
         }
@@ -40,9 +40,9 @@ public final class h10 extends v4.u0 {
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         org.telegram.messenger.t3 t3Var;
-        f40 f40Var = this.f48196a;
+        f40 f40Var = this.f48124a;
         if (f40Var.L1.getChildCount() > 0 && (t3Var = f40Var.V2) != null) {
-            if (!t3Var.f26954u && !t3Var.f26953t && f40Var.T1.N0() > f40Var.K1.G - 5) {
+            if (!t3Var.f26952u && !t3Var.f26951t && f40Var.T1.N0() > f40Var.K1.G - 5) {
                 f40Var.V2.k(false);
             }
             f40.Q0(f40Var);
@@ -50,7 +50,7 @@ public final class h10 extends v4.u0 {
             if (u30Var != null) {
                 u30Var.invalidate();
             }
-            f40Var.f30192b.invalidate();
+            f40Var.f30190b.invalidate();
         }
     }
 }

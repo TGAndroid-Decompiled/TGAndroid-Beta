@@ -54,13 +54,13 @@ public final class s10 extends bk0 {
             ArrayList arrayList4 = new ArrayList(arrayList);
             arrayList2.clear();
             org.telegram.messenger.t3 t3Var = this.f39442c;
-            if (!t3Var.f26937b.rtmp_stream) {
-                arrayList2.addAll(t3Var.f26941g);
+            if (!t3Var.f26935b.rtmp_stream) {
+                arrayList2.addAll(t3Var.f26939g);
             }
             arrayList.clear();
             org.telegram.messenger.t3 t3Var2 = this.f39442c;
-            if (!t3Var2.f26937b.rtmp_stream) {
-                arrayList.addAll(t3Var2.f26940f);
+            if (!t3Var2.f26935b.rtmp_stream) {
+                arrayList.addAll(t3Var2.f26938f);
             }
             v4.o.c(new q10(this, arrayList4, arrayList3), true).c(this);
             org.telegram.messenger.g0.Z3(ck0Var);
@@ -68,13 +68,13 @@ public final class s10 extends bk0 {
         }
         arrayList2.clear();
         org.telegram.messenger.t3 t3Var3 = this.f39442c;
-        if (!t3Var3.f26937b.rtmp_stream) {
-            arrayList2.addAll(t3Var3.f26941g);
+        if (!t3Var3.f26935b.rtmp_stream) {
+            arrayList2.addAll(t3Var3.f26939g);
         }
         arrayList.clear();
         org.telegram.messenger.t3 t3Var4 = this.f39442c;
-        if (!t3Var4.f26937b.rtmp_stream) {
-            arrayList.addAll(t3Var4.f26940f);
+        if (!t3Var4.f26935b.rtmp_stream) {
+            arrayList.addAll(t3Var4.f26938f);
         }
         f();
     }
@@ -88,12 +88,12 @@ public final class s10 extends bk0 {
     public final void t(v4.f1 f1Var, int i7) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         org.telegram.messenger.u3 u3Var;
-        r10 r10Var = (r10) f1Var.f59122a;
+        r10 r10Var = (r10) f1Var.f59123a;
         org.telegram.messenger.u3 u3Var2 = r10Var.f38975f;
         ArrayList arrayList = this.f39443e;
         if (i7 < arrayList.size()) {
             u3Var = (org.telegram.messenger.u3) arrayList.get(i7);
-            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27119a;
+            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27117a;
         } else {
             int size = i7 - arrayList.size();
             ArrayList arrayList2 = this.f39444f;

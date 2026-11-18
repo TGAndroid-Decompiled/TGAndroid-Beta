@@ -383,7 +383,7 @@ public abstract class f8 {
                     }
                     i11 = i15;
                     i12 = i16;
-                    dArr = org.telegram.ui.ActionBar.w4.d(org.telegram.ui.ActionBar.w4.f30152f, org.telegram.ui.ActionBar.w4.d(org.telegram.ui.ActionBar.w4.f30149b, d16));
+                    dArr = org.telegram.ui.ActionBar.w4.d(org.telegram.ui.ActionBar.w4.f30150f, org.telegram.ui.ActionBar.w4.d(org.telegram.ui.ActionBar.w4.f30147b, d16));
                     double d17 = dArr[i11];
                     if (d17 >= 0.0d) {
                         double d18 = dArr[i12];

@@ -102,8 +102,8 @@ public final class sa implements Runnable {
                         ?? obj5 = new Object();
                         obj5.f343c = y7.TYPE_THIN;
                         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(2, false);
-                        a0Var.f1705c = Integer.valueOf(size2 & Integer.MAX_VALUE);
-                        a0Var.f1704b = (e1) next;
+                        a0Var.f1706c = Integer.valueOf(size2 & Integer.MAX_VALUE);
+                        a0Var.f1705b = (e1) next;
                         a0Var.d = l7Var;
                         obj5.f345f = new f1(a0Var);
                         pb.n.f55540a.execute(new qa(uaVar, new xa((b8) obj5, 0), a8Var, uaVar.b(), 0));
@@ -237,7 +237,7 @@ public final class sa implements Runnable {
                                         float max = Math.max(primaryHorizontal, lineRight) + fArr[0];
                                         float lineBottom = layout.getLineBottom(lineForOffset) + fArr[1];
                                         int i16 = ((int) (n0Var2.Q * 2.5f)) + 2;
-                                        Random random = s0Var.f1510t;
+                                        Random random = s0Var.f1511t;
                                         float f11 = 0.5f;
                                         if (random.nextFloat() < 0.5f) {
                                             i11 = 1;
@@ -337,7 +337,7 @@ public final class sa implements Runnable {
                 return;
             case 6:
                 androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f641b;
-                pVar.f2401o0.onDismiss(pVar.f2409w0);
+                pVar.f2402o0.onDismiss(pVar.f2410w0);
                 return;
             case 7:
                 androidx.fragment.app.s sVar = (androidx.fragment.app.s) this.f641b;
@@ -350,9 +350,9 @@ public final class sa implements Runnable {
                 ((androidx.fragment.app.j0) this.f641b).A(true);
                 return;
             case 9:
-                synchronized (((androidx.lifecycle.z) this.f641b).f2554a) {
-                    obj = ((androidx.lifecycle.z) this.f641b).f2558f;
-                    ((androidx.lifecycle.z) this.f641b).f2558f = androidx.lifecycle.z.f2553k;
+                synchronized (((androidx.lifecycle.z) this.f641b).f2555a) {
+                    obj = ((androidx.lifecycle.z) this.f641b).f2559f;
+                    ((androidx.lifecycle.z) this.f641b).f2559f = androidx.lifecycle.z.f2554k;
                 }
                 ((androidx.lifecycle.z) this.f641b).j(obj);
                 return;
@@ -363,11 +363,11 @@ public final class sa implements Runnable {
                 tVar.V.getViewTreeObserver().addOnGlobalLayoutListener(new androidx.mediarouter.app.i(tVar, 0));
                 return;
             case 11:
-                androidx.mediarouter.app.t tVar2 = ((androidx.mediarouter.app.r) this.f641b).f2745b;
-                if (tVar2.f2751d0 != null) {
-                    tVar2.f2751d0 = null;
-                    if (tVar2.f2769t0) {
-                        tVar2.q(tVar2.f2770u0);
+                androidx.mediarouter.app.t tVar2 = ((androidx.mediarouter.app.r) this.f641b).f2746b;
+                if (tVar2.f2752d0 != null) {
+                    tVar2.f2752d0 = null;
+                    if (tVar2.f2770t0) {
+                        tVar2.q(tVar2.f2771u0);
                         return;
                     }
                     return;
@@ -377,16 +377,16 @@ public final class sa implements Runnable {
                 ((b3.n) this.f641b).d();
                 return;
             case 13:
-                for (Thread thread : bg.i.f3244w.keySet()) {
+                for (Thread thread : bg.i.f3245w.keySet()) {
                     if (!thread.isAlive()) {
-                        bg.i.f3244w.remove(thread);
+                        bg.i.f3245w.remove(thread);
                     }
                 }
-                if (!bg.i.f3244w.isEmpty()) {
-                    org.telegram.messenger.g0.h3(((bg.i) this.f641b).f3261p, 5000L);
+                if (!bg.i.f3245w.isEmpty()) {
+                    org.telegram.messenger.g0.h3(((bg.i) this.f641b).f3262p, 5000L);
                     return;
                 } else {
-                    bg.i.f3245x = false;
+                    bg.i.f3246x = false;
                     return;
                 }
             case 14:
@@ -405,21 +405,21 @@ public final class sa implements Runnable {
             case 16:
                 uf ufVar = (uf) this.f641b;
                 c8.fb fbVar = c8.fb.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
-                HashMap hashMap2 = ufVar.f5012j;
+                HashMap hashMap2 = ufVar.f5009j;
                 jg jgVar = (jg) hashMap2.get(fbVar);
                 if (jgVar != null) {
                     jg jgVar2 = jgVar;
-                    cd cdVar = jgVar2.f4833a;
+                    cd cdVar = jgVar2.f4830a;
                     if (cdVar == null) {
                         jg jgVar3 = jgVar2;
-                        cd cdVar2 = new cd(jgVar3, jgVar3.f4852c);
-                        jgVar2.f4833a = cdVar2;
+                        cd cdVar2 = new cd(jgVar3, jgVar3.f4849c);
+                        jgVar2.f4830a = cdVar2;
                         cdVar = cdVar2;
                     }
                     Iterator it2 = cdVar.iterator();
                     while (it2.hasNext()) {
                         Object next2 = it2.next();
-                        Object obj6 = (Collection) jgVar.f4852c.get(next2);
+                        Object obj6 = (Collection) jgVar.f4849c.get(next2);
                         if (obj6 == null) {
                             obj6 = new ArrayList(i12);
                         }
@@ -452,10 +452,10 @@ public final class sa implements Runnable {
                         ga.d dVar = new ga.d(1);
                         dVar.d = c8.db.TYPE_THIN;
                         android.support.v4.media.session.a0 a0Var3 = new android.support.v4.media.session.a0(15, false);
-                        a0Var3.f1705c = Integer.valueOf(size4 & Integer.MAX_VALUE);
-                        a0Var3.f1704b = (c8.h1) next2;
+                        a0Var3.f1706c = Integer.valueOf(size4 & Integer.MAX_VALUE);
+                        a0Var3.f1705b = (c8.h1) next2;
                         a0Var3.d = laVar;
-                        dVar.f13284n = new c8.i1(a0Var3);
+                        dVar.f13281n = new c8.i1(a0Var3);
                         uf ufVar2 = ufVar;
                         c8.fb fbVar2 = fbVar;
                         pb.n.f55540a.execute(new qa(ufVar2, new xa(dVar, 0), fbVar2, ufVar.c(), 1));
@@ -471,8 +471,8 @@ public final class sa implements Runnable {
                 return;
             case 17:
                 ci.b0 b0Var = (ci.b0) this.f641b;
-                CameraView cameraView = b0Var.f5552b;
-                if (b0Var.f5563i0 && cameraView != null) {
+                CameraView cameraView = b0Var.f5549b;
+                if (b0Var.f5560i0 && cameraView != null) {
                     TextureView textureView = cameraView.getTextureView();
                     int width = textureView.getWidth();
                     int height = textureView.getHeight();
@@ -484,14 +484,14 @@ public final class sa implements Runnable {
                             width = Math.max(1, (int) (f13 * min));
                             height = Math.max(1, (int) (f14 * min));
                         }
-                        Bitmap bitmap = ((ci.b0) this.f641b).f5566l0;
-                        if (bitmap == null || bitmap.getWidth() != width || ((ci.b0) this.f641b).f5566l0.getHeight() != height) {
-                            ((ci.b0) this.f641b).f5566l0 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                        Bitmap bitmap = ((ci.b0) this.f641b).f5563l0;
+                        if (bitmap == null || bitmap.getWidth() != width || ((ci.b0) this.f641b).f5563l0.getHeight() != height) {
+                            ((ci.b0) this.f641b).f5563l0 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                         }
                         try {
-                            textureView.getBitmap(((ci.b0) this.f641b).f5566l0);
+                            textureView.getBitmap(((ci.b0) this.f641b).f5563l0);
                             ci.b0 b0Var2 = (ci.b0) this.f641b;
-                            q4.q f15 = ci.b0.f(b0Var2.f5566l0, b0Var2.f5564j0, b0Var2.f5565k0, b0Var2.P);
+                            q4.q f15 = ci.b0.f(b0Var2.f5563l0, b0Var2.f5561j0, b0Var2.f5562k0, b0Var2.P);
                             if (f15 != null) {
                                 org.telegram.messenger.g0.g3(new c1.c(11, this, f15));
                                 return;
@@ -500,8 +500,8 @@ public final class sa implements Runnable {
                             org.telegram.messenger.a8.g(th2, true);
                         }
                     }
-                    if (((ci.b0) this.f641b).f5563i0) {
-                        ((ci.b0) this.f641b).f5562h0.postDelayed(this, 150L);
+                    if (((ci.b0) this.f641b).f5560i0) {
+                        ((ci.b0) this.f641b).f5559h0.postDelayed(this, 150L);
                         return;
                     }
                     return;
@@ -510,9 +510,9 @@ public final class sa implements Runnable {
             case 18:
                 com.google.android.gms.common.api.internal.c0 c0Var2 = (com.google.android.gms.common.api.internal.c0) this.f641b;
                 n6.e eVar = c0Var2.d;
-                Context context = c0Var2.f6240c;
+                Context context = c0Var2.f6237c;
                 eVar.getClass();
-                if (!n6.g.f21436a.getAndSet(true)) {
+                if (!n6.g.f21433a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -530,32 +530,32 @@ public final class sa implements Runnable {
                 ((com.google.android.gms.common.api.internal.l0) this.f641b).a();
                 return;
             case 20:
-                com.google.android.gms.common.api.internal.l0 l0Var = (com.google.android.gms.common.api.internal.l0) ((ob.c) this.f641b).f21783b;
-                ((q6.d) l0Var.f6319b).j(l0Var.f6319b.getClass().getName().concat(" disconnecting because it was signed out."));
+                com.google.android.gms.common.api.internal.l0 l0Var = (com.google.android.gms.common.api.internal.l0) ((ob.c) this.f641b).f21780b;
+                ((q6.d) l0Var.f6316b).j(l0Var.f6316b.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 21:
-                ((com.google.android.gms.common.api.internal.x0) this.f641b).f6381j.b(new n6.a(4, null, null));
+                ((com.google.android.gms.common.api.internal.x0) this.f641b).f6378j.b(new n6.a(4, null, null));
                 return;
             case 22:
                 com.google.android.gms.common.api.internal.h1 h1Var = (com.google.android.gms.common.api.internal.h1) this.f641b;
-                h1Var.f6295o.lock();
+                h1Var.f6292o.lock();
                 try {
                     h1Var.j();
                     return;
                 } finally {
-                    h1Var.f6295o.unlock();
+                    h1Var.f6292o.unlock();
                 }
             case 23:
                 f5.t tVar3 = (f5.t) this.f641b;
-                f5.b bVar3 = tVar3.f11323e;
+                f5.b bVar3 = tVar3.f11320e;
                 bVar3.k(0);
-                f5.f fVar4 = f5.z.f11335i;
+                f5.f fVar4 = f5.z.f11332i;
                 bVar3.j(24, tVar3.d, fVar4);
                 tVar3.c(fVar4);
                 return;
             case 24:
                 fi.z3 z3Var = (fi.z3) this.f641b;
-                if (z3Var.f12880u1 && z3Var.L0) {
+                if (z3Var.f12877u1 && z3Var.L0) {
                     fi.f9 f9Var = ((fi.w8) z3Var.A1).d;
                     f9Var.l1 = false;
                     f9Var.V();
@@ -567,11 +567,11 @@ public final class sa implements Runnable {
                 return;
             case 26:
                 fi.o7 o7Var = (fi.o7) this.f641b;
-                o7Var.f12343b = false;
+                o7Var.f12340b = false;
                 o7Var.invalidate();
                 return;
             case 27:
-                tg.j jVar = ((hi.v9) this.f641b).f14929t0;
+                tg.j jVar = ((hi.v9) this.f641b).f14926t0;
                 if (jVar instanceof tg.m2) {
                     ((tg.m2) jVar).getEditText();
                     return;

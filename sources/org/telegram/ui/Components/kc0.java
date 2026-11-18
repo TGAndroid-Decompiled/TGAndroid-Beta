@@ -17,25 +17,25 @@ public final class kc0 extends AnimatorListenerAdapter {
         switch (this.f36737a) {
             case 0:
                 hi.y7 y7Var = this.f36738b;
-                AnimatorSet animatorSet = (AnimatorSet) y7Var.f15779e;
+                AnimatorSet animatorSet = (AnimatorSet) y7Var.f15776e;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    y7Var.f15779e = null;
+                    y7Var.f15776e = null;
                     return;
                 }
                 return;
             case 1:
                 hi.y7 y7Var2 = this.f36738b;
-                AnimatorSet animatorSet2 = (AnimatorSet) y7Var2.f15779e;
+                AnimatorSet animatorSet2 = (AnimatorSet) y7Var2.f15776e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    y7Var2.f15779e = null;
+                    y7Var2.f15776e = null;
                     return;
                 }
                 return;
             default:
                 hi.y7 y7Var3 = this.f36738b;
-                AnimatorSet animatorSet3 = (AnimatorSet) y7Var3.f15779e;
+                AnimatorSet animatorSet3 = (AnimatorSet) y7Var3.f15776e;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    y7Var3.f15779e = null;
+                    y7Var3.f15776e = null;
                     return;
                 }
                 return;

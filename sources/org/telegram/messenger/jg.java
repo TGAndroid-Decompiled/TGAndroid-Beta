@@ -4,15 +4,15 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class jg implements Runnable {
-    public final int f24853a;
-    public final ri f24854b;
-    public final String f24855c;
+    public final int f24850a;
+    public final ri f24851b;
+    public final String f24852c;
     public final boolean d;
 
     public jg(ri riVar, String str, boolean z10, int i7) {
-        this.f24853a = i7;
-        this.f24854b = riVar;
-        this.f24855c = str;
+        this.f24850a = i7;
+        this.f24851b = riVar;
+        this.f24852c = str;
         this.d = z10;
     }
 
@@ -21,19 +21,19 @@ public final class jg implements Runnable {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
         SQLiteCursor queryFinalized;
         int i7 = 0;
-        switch (this.f24853a) {
+        switch (this.f24850a) {
             case 0:
-                this.f24854b.f1(this.f24855c, this.d, false);
+                this.f24851b.f1(this.f24852c, this.d, false);
                 return;
             default:
-                ri riVar = this.f24854b;
-                String str = this.f24855c;
+                ri riVar = this.f24851b;
+                String str = this.f24852c;
                 SQLiteCursor sQLiteCursor = null;
                 r5 = null;
                 r5 = null;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = null;
                 try {
-                    queryFinalized = riVar.getMessagesStorage().f27056b.queryFinalized("SELECT data, date FROM stickers_dice WHERE emoji = ?", str);
+                    queryFinalized = riVar.getMessagesStorage().f27054b.queryFinalized("SELECT data, date FROM stickers_dice WHERE emoji = ?", str);
                 } catch (Throwable th2) {
                     th = th2;
                     tL_messages_stickerSet = null;

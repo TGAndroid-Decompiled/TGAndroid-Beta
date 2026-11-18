@@ -18,12 +18,12 @@ public final class re0 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        hi.l3 l3Var = org.telegram.ui.ActionBar.n6.f29522k3;
+        hi.l3 l3Var = org.telegram.ui.ActionBar.n6.f29520k3;
         if (l3Var != null) {
             l3Var.setAlpha((int) (getAlpha() * 255.0f));
-            org.telegram.ui.ActionBar.n6.f29522k3.setBounds(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(125.0f), org.telegram.messenger.g0.L(125.0f));
-            org.telegram.ui.ActionBar.n6.f29522k3.draw(canvas);
-            org.telegram.ui.ActionBar.n6.S1.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29659ra, false));
+            org.telegram.ui.ActionBar.n6.f29520k3.setBounds(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(125.0f), org.telegram.messenger.g0.L(125.0f));
+            org.telegram.ui.ActionBar.n6.f29520k3.draw(canvas);
+            org.telegram.ui.ActionBar.n6.S1.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29657ra, false));
             org.telegram.ui.ActionBar.n6.S1.setAlpha((int) (getAlpha() * 255.0f));
             canvas.drawCircle(org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(59.5f), org.telegram.ui.ActionBar.n6.S1);
         }

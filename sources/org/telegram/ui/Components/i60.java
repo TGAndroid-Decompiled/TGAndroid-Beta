@@ -174,7 +174,7 @@ public final class i60 extends ViewGroup {
             j60Var.f36360j2 = d;
             if (b1Var.getAdapter() != null && b1Var.getAdapter().b() > 0 && (K = b1Var.K(0)) != null) {
                 b1Var.getAdapter().g(0);
-                j60Var.M1.h1(0, K.f59122a.getTop() - b1Var.getPaddingTop());
+                j60Var.M1.h1(0, K.f59123a.getTop() - b1Var.getPaddingTop());
                 if (b1Var.getItemAnimator() != null) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     ofFloat.addUpdateListener(new fi.d4(this, 9));
@@ -246,7 +246,7 @@ public final class i60 extends ViewGroup {
         }
         if (j60Var.Y1 == null) {
             j60Var.f36356f2 = min;
-            j60Var.f30192b.invalidate();
+            j60Var.f30190b.invalidate();
         }
         setMeasuredDimension(size, Math.max(L6, L5));
         b1Var.setTranslationY(0.0f);

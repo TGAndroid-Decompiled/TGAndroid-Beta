@@ -20,26 +20,26 @@ import org.telegram.messenger.j10;
 public final class x extends FrameLayout {
     public boolean E;
     public final ActionBarLayout F;
-    public final Rect f30166a;
-    public boolean f30167b;
-    public int f30168c;
+    public final Rect f30164a;
+    public boolean f30165b;
+    public int f30166c;
     public final Paint d;
-    public int f30169e;
-    public boolean f30170f;
+    public int f30167e;
+    public boolean f30168f;
     public int h;
-    public int f30171n;
-    public LinearGradient f30172r;
-    public final Matrix f30173s;
-    public Paint f30174w;
-    public q3 f30175x;
-    public boolean f30176y;
+    public int f30169n;
+    public LinearGradient f30170r;
+    public final Matrix f30171s;
+    public Paint f30172w;
+    public q3 f30173x;
+    public boolean f30174y;
 
     public x(Context context, ActionBarLayout actionBarLayout) {
         super(context);
         this.F = actionBarLayout;
-        this.f30166a = new Rect();
+        this.f30164a = new Rect();
         this.d = new Paint();
-        this.f30173s = new Matrix();
+        this.f30171s = new Matrix();
         setWillNotDraw(false);
     }
 
@@ -49,18 +49,18 @@ public final class x extends FrameLayout {
         int paddingRight = getPaddingRight();
         int paddingBottom = getPaddingBottom();
         Paint n02 = n6.n0(i7);
-        q3 q3Var = q3.f29902c;
-        if (paddingLeft > 0 && this.f30175x != q3Var) {
+        q3 q3Var = q3.f29900c;
+        if (paddingLeft > 0 && this.f30173x != q3Var) {
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, paddingLeft + 1, getHeight(), n02);
         } else {
             canvas2 = canvas;
         }
-        if (paddingRight > 0 && this.f30175x != q3Var) {
+        if (paddingRight > 0 && this.f30173x != q3Var) {
             canvas2.drawRect(getWidth() - (paddingRight + 1), 0.0f, getWidth(), getHeight(), n02);
         }
         if (paddingBottom > 0) {
-            if (this.f30175x == q3.f29900a || z10) {
+            if (this.f30173x == q3.f29898a || z10) {
                 canvas2.drawRect(0.0f, getHeight() - (paddingBottom + 1), getWidth(), getHeight(), n02);
             }
         }
@@ -70,8 +70,8 @@ public final class x extends FrameLayout {
     public final void addView(View view, int i7, ViewGroup.LayoutParams layoutParams) {
         super.addView(view, i7, layoutParams);
         ActionBarLayout actionBarLayout = this.F;
-        if (actionBarLayout.f28723t1 != null && getParent() == actionBarLayout) {
-            actionBarLayout.o(this, actionBarLayout.f28723t1);
+        if (actionBarLayout.f28721t1 != null && getParent() == actionBarLayout) {
+            actionBarLayout.o(this, actionBarLayout.f28721t1);
             return;
         }
         WeakHashMap weakHashMap = r0.i0.f56244a;
@@ -91,16 +91,16 @@ public final class x extends FrameLayout {
             super.dispatchDraw(canvas);
             return;
         }
-        p3 p3Var = actionBarLayout.f28732y;
+        p3 p3Var = actionBarLayout.f28730y;
         boolean z10 = false;
         if (p3Var != null) {
             x02 = p3Var.getInternalNavbarPaint().getColor();
         } else {
-            x02 = n6.x0(null, n6.f29339a7, false);
+            x02 = n6.x0(null, n6.f29337a7, false);
         }
         boolean z11 = true;
-        if (this == actionBarLayout.f28730x) {
-            org.telegram.ui.Components.c6 c6Var = actionBarLayout.f28701i1;
+        if (this == actionBarLayout.f28728x) {
+            org.telegram.ui.Components.c6 c6Var = actionBarLayout.f28699i1;
             s sVar = actionBarLayout.H;
             if (sVar != null && sVar.hasSheet()) {
                 z10 = true;
@@ -112,7 +112,7 @@ public final class x extends FrameLayout {
         } else {
             h2 lastFragment = actionBarLayout.getLastFragment();
             if (lastFragment != null && !lastFragment.inPreviewMode) {
-                if (this == actionBarLayout.f28719s && this.f30175x != q3.f29900a) {
+                if (this == actionBarLayout.f28717s && this.f30173x != q3.f29898a) {
                     int childCount = getChildCount();
                     for (int i7 = 0; i7 < childCount; i7++) {
                         if (getChildAt(i7) instanceof e2) {
@@ -122,9 +122,9 @@ public final class x extends FrameLayout {
                 }
                 z11 = false;
                 a(canvas, z11, x02);
-                if (z11 && this.f30176y && actionBarLayout.w(false) <= 0 && (bVar = actionBarLayout.f28725u1) != null && bVar.d > 0) {
+                if (z11 && this.f30174y && actionBarLayout.w(false) <= 0 && (bVar = actionBarLayout.f28723u1) != null && bVar.d > 0) {
                     super.dispatchDraw(canvas);
-                    canvas.drawRect(0.0f, getHeight() - actionBarLayout.f28725u1.d, getWidth(), getHeight(), n6.n0(x02));
+                    canvas.drawRect(0.0f, getHeight() - actionBarLayout.f28723u1.d, getWidth(), getHeight(), n6.n0(x02));
                     return;
                 }
             }
@@ -142,10 +142,10 @@ public final class x extends FrameLayout {
         } else {
             z10 = false;
         }
-        if ((!z10 && !actionBarLayout.f28683b0) || (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5)) {
+        if ((!z10 && !actionBarLayout.f28681b0) || (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5)) {
             if (z10) {
                 try {
-                    if (this != actionBarLayout.f28719s) {
+                    if (this != actionBarLayout.f28717s) {
                     }
                 } catch (Throwable th2) {
                     a8.g(th2, true);
@@ -209,32 +209,32 @@ public final class x extends FrameLayout {
         i10 = 0;
         i11 = 0;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        if (i10 != 0 && (drawable = ActionBarLayout.f28676w1) != null) {
+        if (i10 != 0 && (drawable = ActionBarLayout.f28674w1) != null) {
             int alpha = drawable.getAlpha();
             int i14 = i11 + i10;
-            ActionBarLayout.f28676w1.setBounds(0, i14, getMeasuredWidth(), ActionBarLayout.f28676w1.getIntrinsicHeight() + i14);
-            ActionBarLayout.f28676w1.setAlpha(i7);
-            ActionBarLayout.f28676w1.draw(canvas);
-            ActionBarLayout.f28676w1.setAlpha(alpha);
+            ActionBarLayout.f28674w1.setBounds(0, i14, getMeasuredWidth(), ActionBarLayout.f28674w1.getIntrinsicHeight() + i14);
+            ActionBarLayout.f28674w1.setAlpha(i7);
+            ActionBarLayout.f28674w1.draw(canvas);
+            ActionBarLayout.f28674w1.setAlpha(alpha);
         }
-        if (!actionBarLayout.T0 && this.E && this.f30176y && h2Var != null && h2Var.getListViewForSimpleGlass() == null && (i12 = org.telegram.messenger.g0.f24116n) >= org.telegram.messenger.g0.L(32.0f)) {
+        if (!actionBarLayout.T0 && this.E && this.f30174y && h2Var != null && h2Var.getListViewForSimpleGlass() == null && (i12 = org.telegram.messenger.g0.f24113n) >= org.telegram.messenger.g0.L(32.0f)) {
             int i15 = (int) (i12 * 1.33f);
             int navigationBarColor = h2Var.getNavigationBarColor();
-            if (i15 != this.h || this.f30171n != navigationBarColor || this.f30174w == null) {
-                if (this.f30174w == null) {
-                    this.f30174w = new Paint(1);
+            if (i15 != this.h || this.f30169n != navigationBarColor || this.f30172w == null) {
+                if (this.f30172w == null) {
+                    this.f30172w = new Paint(1);
                 }
-                this.f30171n = navigationBarColor;
+                this.f30169n = navigationBarColor;
                 this.h = i15;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, i15, new int[]{n6.r1(0.1f, navigationBarColor), n6.r1(1.0f, navigationBarColor)}, new float[]{0.0f, 0.88f}, Shader.TileMode.CLAMP);
-                this.f30172r = linearGradient;
-                this.f30174w.setShader(linearGradient);
+                this.f30170r = linearGradient;
+                this.f30172w.setShader(linearGradient);
             }
-            Matrix matrix = this.f30173s;
+            Matrix matrix = this.f30171s;
             matrix.reset();
             matrix.postTranslate(0.0f, getHeight() - i15);
-            this.f30172r.setLocalMatrix(matrix);
-            canvas.drawRect(0.0f, getHeight() - i15, getWidth(), getHeight(), this.f30174w);
+            this.f30170r.setLocalMatrix(matrix);
+            canvas.drawRect(0.0f, getHeight() - i15, getWidth(), getHeight(), this.f30172w);
         }
         return drawChild;
     }
@@ -250,18 +250,18 @@ public final class x extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        if (this.f30168c != 0) {
-            int i7 = n6.f29396d6;
+        if (this.f30166c != 0) {
+            int i7 = n6.f29394d6;
             int x02 = n6.x0(null, i7, false);
-            int i10 = this.f30169e;
+            int i10 = this.f30167e;
             Paint paint = this.d;
             if (i10 != x02) {
                 int x03 = n6.x0(null, i7, false);
-                this.f30169e = x03;
+                this.f30167e = x03;
                 paint.setColor(x03);
             }
             canvas2 = canvas;
-            canvas2.drawRect(0.0f, (getMeasuredHeight() - this.f30168c) - 3, getMeasuredWidth(), getMeasuredHeight(), paint);
+            canvas2.drawRect(0.0f, (getMeasuredHeight() - this.f30166c) - 3, getMeasuredWidth(), getMeasuredHeight(), paint);
         } else {
             canvas2 = canvas;
         }
@@ -304,21 +304,21 @@ public final class x extends FrameLayout {
             }
         }
         View rootView = getRootView();
-        Rect rect = this.f30166a;
+        Rect rect = this.f30164a;
         getWindowVisibleDisplayFrame(rect);
         int height = rootView.getHeight();
         if (rect.top != 0) {
-            i14 = org.telegram.messenger.g0.f24115m;
+            i14 = org.telegram.messenger.g0.f24112m;
         } else {
             i14 = 0;
         }
         if (((height - i14) - org.telegram.messenger.g0.q1(rootView)) - (rect.bottom - rect.top) > 0) {
             z11 = true;
         }
-        this.f30167b = z11;
+        this.f30165b = z11;
         ActionBarLayout actionBarLayout = this.F;
         Runnable runnable = actionBarLayout.d;
-        if (runnable != null && !actionBarLayout.f28719s.f30167b && !actionBarLayout.f28728w.f30167b) {
+        if (runnable != null && !actionBarLayout.f28717s.f30165b && !actionBarLayout.f28726w.f30165b) {
             org.telegram.messenger.g0.r(runnable);
             actionBarLayout.d.run();
             actionBarLayout.d = null;
@@ -338,17 +338,17 @@ public final class x extends FrameLayout {
         } else {
             z10 = false;
         }
-        boolean z11 = this.f30170f;
+        boolean z11 = this.f30168f;
         ActionBarLayout actionBarLayout = this.F;
         if (z11 != z10 && actionBarLayout.y()) {
             actionBarLayout.v();
         }
-        this.f30170f = z10;
+        this.f30168f = z10;
         int childCount = getChildCount();
-        getWindowVisibleDisplayFrame(this.f30166a);
+        getWindowVisibleDisplayFrame(this.f30164a);
         g3 g3Var = actionBarLayout.F;
         if (g3Var != null) {
-            g3Var.setCurrentAccount(j10.f24773t0);
+            g3Var.setCurrentAccount(j10.f24770t0);
         }
         int i14 = 0;
         while (true) {
@@ -369,8 +369,8 @@ public final class x extends FrameLayout {
             View childAt2 = getChildAt(i15);
             if (!(childAt2 instanceof k)) {
                 if (childAt2 instanceof e2) {
-                    if (actionBarLayout.w(false) <= 0 && this.f30176y) {
-                        i13 = actionBarLayout.f28725u1.d;
+                    if (actionBarLayout.w(false) <= 0 && this.f30174y) {
+                        i13 = actionBarLayout.f28723u1.d;
                     } else {
                         i13 = 0;
                     }
@@ -378,8 +378,8 @@ public final class x extends FrameLayout {
                 } else if (childAt2.getTag(2131296647) == null && !childAt2.getFitsSystemWindows()) {
                     measureChildWithMargins(childAt2, i7, 0, i10, i11);
                 } else {
-                    if (this.f30176y) {
-                        i12 = actionBarLayout.f28725u1.d;
+                    if (this.f30174y) {
+                        i12 = actionBarLayout.f28723u1.d;
                     } else {
                         i12 = 0;
                     }
@@ -410,24 +410,24 @@ public final class x extends FrameLayout {
     }
 
     public void setFragmentPanTranslationOffset(int i7) {
-        this.f30168c = i7;
+        this.f30166c = i7;
         invalidate();
     }
 
     public void setShouldHandleBottomInsets(q3 q3Var) {
         boolean z10;
-        if (this.f30175x != q3Var) {
-            this.f30175x = q3Var;
-            if (q3Var != q3.f29900a) {
+        if (this.f30173x != q3Var) {
+            this.f30173x = q3Var;
+            if (q3Var != q3.f29898a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f30176y = z10;
+            this.f30174y = z10;
             View view = (View) getParent();
             ActionBarLayout actionBarLayout = this.F;
-            if (actionBarLayout.f28723t1 != null && getParent() == actionBarLayout) {
-                actionBarLayout.o(this, actionBarLayout.f28723t1);
+            if (actionBarLayout.f28721t1 != null && getParent() == actionBarLayout) {
+                actionBarLayout.o(this, actionBarLayout.f28721t1);
             } else if (view != null) {
                 WeakHashMap weakHashMap = r0.i0.f56244a;
                 r0.y.c(view);

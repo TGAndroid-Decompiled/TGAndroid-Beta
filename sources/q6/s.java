@@ -122,7 +122,7 @@ public abstract class s {
     public static String d(Context context) {
         String packageName = context.getPackageName();
         try {
-            Context context2 = z6.b.a(context).f1962a;
+            Context context2 = z6.b.a(context).f1963a;
             return context2.getPackageManager().getApplicationLabel(context2.getPackageManager().getApplicationInfo(packageName, 0)).toString();
         } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;
@@ -147,7 +147,7 @@ public abstract class s {
         a0.l lVar = f55954a;
         synchronized (lVar) {
             try {
-                Locale locale = z9.a(context.getResources().getConfiguration()).f21051a.get(0);
+                Locale locale = z9.a(context.getResources().getConfiguration()).f21048a.get(0);
                 if (!locale.equals(f55955b)) {
                     lVar.clear();
                     f55955b = locale;
@@ -156,7 +156,7 @@ public abstract class s {
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = n6.g.f21436a;
+                AtomicBoolean atomicBoolean = n6.g.f21433a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {

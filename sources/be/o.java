@@ -1,11 +1,11 @@
 package be;
 public final class o extends c {
-    public final a f3177w;
+    public final a f3178w;
 
     public o(int i7, a aVar) {
         super(i7);
-        this.f3177w = aVar;
-        if (aVar != a.f3134a) {
+        this.f3178w = aVar;
+        if (aVar != a.f3135a) {
             if (i7 >= 1) {
                 return;
             }
@@ -21,7 +21,7 @@ public final class o extends c {
     @Override
     public final Object a(id.c cVar, Object obj) {
         if (!(C(obj, true) instanceof h)) {
-            return gd.k.f13488a;
+            return gd.k.f13485a;
         }
         throw o();
     }
@@ -33,7 +33,7 @@ public final class o extends c {
 
     @Override
     public final boolean s() {
-        if (this.f3177w == a.f3135b) {
+        if (this.f3178w == a.f3136b) {
             return true;
         }
         return false;

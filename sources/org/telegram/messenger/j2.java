@@ -14,37 +14,37 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class j2 implements Runnable {
-    public final int f24804a;
+    public final int f24801a;
 
     public j2(int i7) {
-        this.f24804a = i7;
+        this.f24801a = i7;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.h2 Q;
         int i7 = 0;
-        switch (this.f24804a) {
+        switch (this.f24801a) {
             case 0:
                 return;
             case 1:
                 break;
             case 2:
-                ks.e().k(261, new Object[0]);
+                ks.e().k(262, new Object[0]);
                 return;
             case 3:
                 KeepAliveJob.a();
                 return;
             case 4:
-                if (!KeepAliveJob.f22684b && KeepAliveJob.f22683a == null) {
+                if (!KeepAliveJob.f22681b && KeepAliveJob.f22680a == null) {
                     try {
-                        if (s2.f26723a) {
+                        if (s2.f26721a) {
                             a8.b("starting keep-alive job");
                         }
-                        synchronized (KeepAliveJob.f22685c) {
-                            KeepAliveJob.f22684b = true;
+                        synchronized (KeepAliveJob.f22682c) {
+                            KeepAliveJob.f22681b = true;
                         }
-                        JobIntentService.enqueueWork(t0.f26915b, KeepAliveJob.class, 1000, new Intent());
+                        JobIntentService.enqueueWork(t0.f26913b, KeepAliveJob.class, 1000, new Intent());
                         return;
                     } catch (Exception unused) {
                         return;
@@ -54,19 +54,19 @@ public final class j2 implements Runnable {
             case 5:
                 int i10 = -1;
                 try {
-                    BatteryManager batteryManager = (BatteryManager) t0.f26915b.getSystemService("batterymanager");
+                    BatteryManager batteryManager = (BatteryManager) t0.f26913b.getSystemService("batterymanager");
                     if (batteryManager != null) {
                         i10 = batteryManager.getIntProperty(4);
                     }
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
-                pc.f26224l = SystemClock.elapsedRealtime();
-                pc.f26225m = false;
+                pc.f26222l = SystemClock.elapsedRealtime();
+                pc.f26223m = false;
                 if (i10 >= 0 && i10 <= 100) {
-                    pc.f26224l = SystemClock.elapsedRealtime();
-                    if (pc.f26223k != i10) {
-                        pc.f26223k = i10;
+                    pc.f26222l = SystemClock.elapsedRealtime();
+                    if (pc.f26221k != i10) {
+                        pc.f26221k = i10;
                         g0.g3(new j2(6));
                         return;
                     }
@@ -77,10 +77,10 @@ public final class j2 implements Runnable {
                 pc.d(false);
                 return;
             case 7:
-                ks.e().k(276, new Object[0]);
+                ks.e().k(277, new Object[0]);
                 return;
             case 8:
-                ks.e().k(283, new Object[0]);
+                ks.e().k(284, new Object[0]);
                 return;
             case 9:
                 int i11 = LocationSharingService.d;
@@ -95,7 +95,7 @@ public final class j2 implements Runnable {
                 return;
             case 11:
                 try {
-                    g0.f.n(t0.f26915b);
+                    g0.f.n(t0.f26913b);
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -105,7 +105,7 @@ public final class j2 implements Runnable {
                 org.telegram.ui.ActionBar.n6.F(false);
                 return;
             case 13:
-                ks.e().k(256, new Object[0]);
+                ks.e().k(257, new Object[0]);
                 return;
             case 14:
                 bz.y();
@@ -117,7 +117,7 @@ public final class j2 implements Runnable {
                     file2.mkdir();
                     File file3 = new File(file, "Telegram Video");
                     file3.mkdir();
-                    if (!s2.f26724b) {
+                    if (!s2.f26722b) {
                         if (file2.isDirectory()) {
                             new File(file2, ".nomedia").delete();
                         }
@@ -140,32 +140,32 @@ public final class j2 implements Runnable {
                     return;
                 }
             case 16:
-                if (!bz.f23151b && (Q = LaunchActivity.Q()) != null && Q.getParentActivity() != null) {
-                    bz.f23168h0 = null;
+                if (!bz.f23148b && (Q = LaunchActivity.Q()) != null && Q.getParentActivity() != null) {
+                    bz.f23165h0 = null;
                     bz.y();
                     ec.D().i(new j2(17));
-                    bz.f23151b = true;
+                    bz.f23148b = true;
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(Q.getParentActivity());
-                    alertDialog$Builder.f28746a.S = gd.M0(2131745643, null);
-                    alertDialog$Builder.f28746a.T = gd.M0(2131745642, null);
+                    alertDialog$Builder.f28744a.S = gd.M0(2131745643, null);
+                    alertDialog$Builder.f28744a.T = gd.M0(2131745642, null);
                     alertDialog$Builder.k(gd.M0(2131751344, null), new ed(16));
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                     u1Var.setCanceledOnTouchOutside(false);
                     u1Var.show();
                     return;
                 }
                 return;
             case 17:
-                int i12 = bz.f23148a;
+                int i12 = bz.f23145a;
                 return;
             case 18:
-                lz.f25483y = null;
+                lz.f25481y = null;
                 return;
             case 19:
                 org.telegram.ui.ActionBar.n6.F(false);
                 return;
             case 20:
-                int i13 = org.telegram.ui.bn.f45922md;
+                int i13 = org.telegram.ui.bn.f45913md;
                 return;
             case 21:
                 ch.l0.b(true);
@@ -173,13 +173,13 @@ public final class j2 implements Runnable {
             case 22:
                 ks e11 = ks.e();
                 Boolean bool = Boolean.TRUE;
-                e11.k(266, Boolean.FALSE, bool, bool);
+                e11.k(267, Boolean.FALSE, bool, bool);
                 return;
             case 23:
                 org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
                 if (T != 0) {
                     ?? obj = new Object();
-                    obj.f28923a = true;
+                    obj.f28921a = true;
                     T.showAsSheet(new PremiumPreviewFragment(0, "schedule_repeat"), obj);
                     return;
                 }
@@ -206,7 +206,7 @@ public final class j2 implements Runnable {
                     }
                     return;
                 } catch (Exception unused2) {
-                    boolean z10 = s2.f26723a;
+                    boolean z10 = s2.f26721a;
                     return;
                 }
             case 26:
@@ -238,7 +238,7 @@ public final class j2 implements Runnable {
         while (i7 < 4) {
             if (j10.i(i7).p()) {
                 ConnectionsManager.getInstance(i7).resumeNetworkMaybe();
-                Utilities.f22782e.c(new m4(i5.r(i7), 3));
+                Utilities.f22779e.c(new m4(i5.r(i7), 3));
             }
             i7++;
         }

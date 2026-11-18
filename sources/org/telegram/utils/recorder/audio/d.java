@@ -12,49 +12,49 @@ import yi.g;
 public final class d {
     public long A;
     public long B;
-    public final File f54643a;
-    public final File f54644b;
-    public final long f54645c;
+    public final File f54644a;
+    public final File f54645b;
+    public final long f54646c;
     public final long d;
-    public final g f54646e;
-    public final yi.b f54647f;
-    public final ac.e f54648g;
+    public final g f54647e;
+    public final yi.b f54648f;
+    public final ac.e f54649g;
     public final HandlerThread h;
-    public final Handler f54649i;
-    public final HandlerThread f54650j;
-    public final Handler f54651k;
-    public volatile boolean f54654n;
-    public volatile boolean f54655o;
-    public AudioRecord f54656p;
-    public long f54657q;
-    public long f54658r;
-    public AudioRecorderNative f54660t;
-    public AudioNoiseSuppressor f54661u;
+    public final Handler f54650i;
+    public final HandlerThread f54651j;
+    public final Handler f54652k;
+    public volatile boolean f54655n;
+    public volatile boolean f54656o;
+    public AudioRecord f54657p;
+    public long f54658q;
+    public long f54659r;
+    public AudioRecorderNative f54661t;
+    public AudioNoiseSuppressor f54662u;
     public Exception v;
-    public boolean f54662w;
-    public long f54663x;
-    public int f54664y;
-    public long f54665z;
-    public final ConcurrentLinkedQueue f54652l = new ConcurrentLinkedQueue();
-    public final AtomicInteger f54653m = new AtomicInteger();
-    public final ByteBuffer f54659s = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
+    public boolean f54663w;
+    public long f54664x;
+    public int f54665y;
+    public long f54666z;
+    public final ConcurrentLinkedQueue f54653l = new ConcurrentLinkedQueue();
+    public final AtomicInteger f54654m = new AtomicInteger();
+    public final ByteBuffer f54660s = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
 
     public d(File file, File file2, long j3, long j10, g gVar, yi.b bVar, ac.e eVar) {
-        this.f54643a = file;
-        this.f54644b = file2;
-        this.f54645c = j3;
+        this.f54644a = file;
+        this.f54645b = file2;
+        this.f54646c = j3;
         this.d = j10;
-        this.f54646e = gVar;
-        this.f54647f = bVar;
-        this.f54648g = eVar;
+        this.f54647e = gVar;
+        this.f54648f = bVar;
+        this.f54649g = eVar;
         HandlerThread handlerThread = new HandlerThread("AudioRecorderCapture", -16);
         this.h = handlerThread;
         handlerThread.start();
-        this.f54649i = new Handler(handlerThread.getLooper());
+        this.f54650i = new Handler(handlerThread.getLooper());
         HandlerThread handlerThread2 = new HandlerThread("AudioRecorderEncoder", 0);
-        this.f54650j = handlerThread2;
+        this.f54651j = handlerThread2;
         handlerThread2.start();
-        this.f54651k = new Handler(handlerThread2.getLooper());
+        this.f54652k = new Handler(handlerThread2.getLooper());
     }
 
     public static Exception a(Throwable th2) {
@@ -65,28 +65,28 @@ public final class d {
     }
 
     public final void b(int i7) {
-        ByteBuffer byteBuffer = this.f54659s;
+        ByteBuffer byteBuffer = this.f54660s;
         byteBuffer.position(0);
         byteBuffer.limit(i7);
-        if (this.f54661u != null) {
+        if (this.f54662u != null) {
             long nanoTime = System.nanoTime();
-            boolean b10 = this.f54661u.b(i7 / 2, byteBuffer);
+            boolean b10 = this.f54662u.b(i7 / 2, byteBuffer);
             long nanoTime2 = System.nanoTime() - nanoTime;
-            this.f54665z++;
+            this.f54666z++;
             this.A += nanoTime2;
             this.B = Math.max(this.B, nanoTime2);
-            yi.b bVar = this.f54647f;
+            yi.b bVar = this.f54648f;
             if (!b10) {
                 bVar.b("RNNoise processing failed; recording unprocessed PCM");
-                this.f54661u.c();
-                this.f54661u = null;
-            } else if (this.f54665z % 100 == 0) {
-                bVar.b("RNNoise processing: averageMs=" + ((this.A / this.f54665z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
+                this.f54662u.c();
+                this.f54662u = null;
+            } else if (this.f54666z % 100 == 0) {
+                bVar.b("RNNoise processing: averageMs=" + ((this.A / this.f54666z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
             }
             byteBuffer.position(0);
             byteBuffer.limit(i7);
         }
-        AudioRecorderNative audioRecorderNative = this.f54660t;
+        AudioRecorderNative audioRecorderNative = this.f54661t;
         if (audioRecorderNative != null && audioRecorderNative.g(byteBuffer, i7) != 0) {
             return;
         }
@@ -94,32 +94,32 @@ public final class d {
     }
 
     public final void c(ByteBuffer byteBuffer) {
-        if (!this.f54662w) {
-            this.f54652l.offer(byteBuffer);
+        if (!this.f54663w) {
+            this.f54653l.offer(byteBuffer);
         }
     }
 
     public final void d() {
-        this.f54654n = true;
-        if (!this.f54655o) {
-            this.f54649i.postAtFrontOfQueue(new yi.a(this, 1));
+        this.f54655n = true;
+        if (!this.f54656o) {
+            this.f54650i.postAtFrontOfQueue(new yi.a(this, 1));
         }
     }
 
     public final void e(Exception exc) {
-        if (this.f54655o) {
+        if (this.f54656o) {
             return;
         }
-        this.f54655o = true;
-        this.f54654n = true;
+        this.f54656o = true;
+        this.f54655n = true;
         if (exc != null) {
-            this.f54647f.a("capture failed", exc);
+            this.f54648f.a("capture failed", exc);
         }
-        AudioRecord audioRecord = this.f54656p;
+        AudioRecord audioRecord = this.f54657p;
         if (audioRecord != null) {
             try {
                 if (audioRecord.getRecordingState() == 3) {
-                    this.f54656p.stop();
+                    this.f54657p.stop();
                 }
             } finally {
                 if (exc == null) {
@@ -129,7 +129,7 @@ public final class d {
                 }
             }
         }
-        this.f54651k.post(new b(this, this.f54657q, exc));
+        this.f54652k.post(new b(this, this.f54658q, exc));
         this.h.quitSafely();
     }
 }

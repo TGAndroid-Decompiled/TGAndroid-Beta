@@ -21,7 +21,7 @@ public final class c4 extends LinearLayout {
     public final void onMeasure(int i7, int i10) {
         int i11;
         this.f33882a = true;
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         if (point.x > point.y) {
             i11 = 3;
         } else {

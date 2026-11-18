@@ -3,16 +3,16 @@ package org.telegram.ui.Wallet;
 import java.util.ArrayList;
 import org.telegram.messenger.fs;
 import org.telegram.messenger.ks;
-import org.telegram.ui.n60;
+import org.telegram.ui.o60;
 public final class h0 implements Runnable, fs {
     public boolean f44283a;
     public final ks f44284b;
-    public final n60 f44285c;
+    public final o60 f44285c;
     public final u0 d;
 
-    public h0(ks ksVar, n60 n60Var, u0 u0Var) {
+    public h0(ks ksVar, o60 o60Var, u0 u0Var) {
         this.f44284b = ksVar;
-        this.f44285c = n60Var;
+        this.f44285c = o60Var;
         this.d = u0Var;
     }
 
@@ -37,7 +37,7 @@ public final class h0 implements Runnable, fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25099c4) {
+        if (i7 == ks.f25102d4) {
             a();
         }
     }
@@ -49,7 +49,7 @@ public final class h0 implements Runnable, fs {
         }
         this.f44283a = true;
         org.telegram.messenger.g0.r(this);
-        this.f44284b.n(this, ks.f25099c4);
+        this.f44284b.n(this, ks.f25102d4);
         this.f44285c.run();
     }
 }

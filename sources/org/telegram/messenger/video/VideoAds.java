@@ -117,7 +117,7 @@ public class VideoAds {
             m6Var.f37377b = 17;
             m6Var.w(g0.L(12.0f));
             m6Var.x(g0.o1("fonts/num.otf"));
-            m6Var.N = g0.f24121q.x;
+            m6Var.N = g0.f24118q.x;
             m6Var.u(-1);
             lr lrVar = lr.h;
             this.showCrossAnimated = new c6(view, 0L, 420L, lrVar);
@@ -384,7 +384,7 @@ public class VideoAds {
         d dVar = new d(this, 0);
         Objects.requireNonNull(y60Var);
         a aVar = new a(y60Var, 1);
-        int i10 = qy0.f51376w1;
+        int i10 = qy0.f51336w1;
         if (context == null) {
             return;
         }
@@ -422,7 +422,7 @@ public class VideoAds {
 
     public void lambda$show$18(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         logSponsoredClicked(tL_sponsoredMessage);
-        vf.c.s(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, mp.u1(j10.f24773t0).f25659g6, false, false);
+        vf.c.s(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, mp.u1(j10.f24770t0).f25657g6, false, false);
     }
 
     public void lambda$show$2(CloseDrawable closeDrawable, View view) {
@@ -511,7 +511,7 @@ public class VideoAds {
     public void lambda$show$7(y60 y60Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
         y60Var.v();
         logSponsoredClicked(tL_sponsoredMessage);
-        vf.c.s(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, mp.u1(this.currentAccount).f25659g6, false, false);
+        vf.c.s(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, mp.u1(this.currentAccount).f25657g6, false, false);
     }
 
     public static boolean lambda$show$8(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
@@ -686,7 +686,7 @@ public class VideoAds {
 
             @Override
             public Activity getParentActivity() {
-                Activity W = g0.W(t0.f26915b);
+                Activity W = g0.W(t0.f26913b);
                 if (W == null) {
                     return LaunchActivity.H1;
                 }
@@ -719,7 +719,7 @@ public class VideoAds {
         tL_messages_clickSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
         tL_messages_clickSponsoredMessage.media = false;
         tL_messages_clickSponsoredMessage.fullscreen = false;
-        boolean z10 = org.telegram.messenger.s2.f26723a;
+        boolean z10 = org.telegram.messenger.s2.f26721a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_clickSponsoredMessage, null);
     }
 
@@ -729,7 +729,7 @@ public class VideoAds {
         }
         TLRPC.TL_messages_viewSponsoredMessage tL_messages_viewSponsoredMessage = new TLRPC.TL_messages_viewSponsoredMessage();
         tL_messages_viewSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
-        boolean z10 = org.telegram.messenger.s2.f26723a;
+        boolean z10 = org.telegram.messenger.s2.f26721a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_viewSponsoredMessage, null);
     }
 

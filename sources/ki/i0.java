@@ -12,11 +12,11 @@ public abstract class i0 {
                 String M0 = gd.M0(2131753049, null);
                 String M02 = gd.M0(2131748982, null);
                 ai.y1 y1Var = new ai.y1(i7, user, 4);
-                bi.a2 a2Var = bi.a2.f3379t2;
+                bi.a2 a2Var = bi.a2.f3380t2;
                 ?? obj = new Object();
-                obj.f4173a = M0;
-                obj.f4174b = M02;
-                obj.f4175c = y1Var;
+                obj.f4141a = M0;
+                obj.f4142b = M02;
+                obj.f4143c = y1Var;
                 bi.a2.k1(h2Var, false, null, obj);
                 return;
             }

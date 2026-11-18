@@ -6,21 +6,21 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class gv0 extends r11 {
-    public final i11[] f48167f2;
-    public final ProfileActivity f48168g2;
+    public final i11[] f48095f2;
+    public final ProfileActivity f48096g2;
 
     public gv0(ProfileActivity profileActivity, ProfileActivity profileActivity2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.i6 i6Var, int i10, i11[] i11VarArr) {
         super(profileActivity2, activity, true, num, i7, true, i6Var, i10);
-        this.f48168g2 = profileActivity;
-        this.f48167f2 = i11VarArr;
+        this.f48096g2 = profileActivity;
+        this.f48095f2 = i11VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i7;
         if (tL_starGiftUnique != null) {
-            i7 = ((org.telegram.ui.ActionBar.h2) this.f48168g2).currentAccount;
-            if (di.x8.y(i7, false).n(tL_starGiftUnique.f28634id) != null && org.telegram.messenger.mp.g1().getInt("statusgiftpage", 0) < 2) {
+            i7 = ((org.telegram.ui.ActionBar.h2) this.f48096g2).currentAccount;
+            if (di.x8.y(i7, false).n(tL_starGiftUnique.f28632id) != null && org.telegram.messenger.mp.g1().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -30,7 +30,7 @@ public final class gv0 extends r11 {
 
     @Override
     public final long getDialogId() {
-        return this.f48168g2.a();
+        return this.f48096g2.a();
     }
 
     @Override
@@ -42,11 +42,11 @@ public final class gv0 extends r11 {
         int i7;
         int i10;
         int i11;
-        i11[] i11VarArr = this.f48167f2;
-        ProfileActivity profileActivity = this.f48168g2;
+        i11[] i11VarArr = this.f48095f2;
+        ProfileActivity profileActivity = this.f48096g2;
         if (tL_starGiftUnique != null) {
             i7 = ((org.telegram.ui.ActionBar.h2) profileActivity).currentAccount;
-            TL_stars.SavedStarGift n10 = di.x8.y(i7, false).n(tL_starGiftUnique.f28634id);
+            TL_stars.SavedStarGift n10 = di.x8.y(i7, false).n(tL_starGiftUnique.f28632id);
             if (n10 != null && org.telegram.messenger.mp.g1().getInt("statusgiftpage", 0) < 2) {
                 org.telegram.messenger.mp.g1().edit().putInt("statusgiftpage", org.telegram.messenger.mp.g1().getInt("statusgiftpage", 0) + 1).apply();
                 Context context = getContext();
@@ -65,7 +65,7 @@ public final class gv0 extends r11 {
                 return;
             }
             TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible2 = new TLRPC.TL_inputEmojiStatusCollectible();
-            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f28634id;
+            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f28632id;
             tL_inputEmojiStatusCollectible = tL_inputEmojiStatusCollectible2;
             if (num != null) {
                 tL_inputEmojiStatusCollectible2.flags |= 1;
@@ -85,7 +85,7 @@ public final class gv0 extends r11 {
             }
         }
         if (tL_starGiftUnique != null) {
-            l11 = Long.valueOf(tL_starGiftUnique.f28634id);
+            l11 = Long.valueOf(tL_starGiftUnique.f28632id);
         } else {
             l11 = null;
         }
@@ -95,7 +95,7 @@ public final class gv0 extends r11 {
         if (chat == null) {
             j3 = 0;
         } else {
-            j3 = -chat.f28405id;
+            j3 = -chat.f28403id;
         }
         messagesController.s5(j3, tL_inputEmojiStatusCollectible, tL_starGiftUnique);
         org.telegram.ui.Components.m5 m5Var = profileActivity.G;
@@ -119,7 +119,7 @@ public final class gv0 extends r11 {
             org.telegram.ui.Cells.o oVar = profileActivity.f43539e0;
             ?? obj = new Object();
             long longValue = l10.longValue();
-            obj.f5479g = longValue;
+            obj.f5476g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }

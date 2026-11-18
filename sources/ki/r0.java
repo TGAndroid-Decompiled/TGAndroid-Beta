@@ -17,24 +17,24 @@ import org.telegram.ui.Components.b9;
 import org.telegram.ui.Components.ph0;
 import org.telegram.ui.Components.v6;
 public final class r0 extends Drawable implements v6 {
-    public final Paint f18856a;
-    public final Paint f18857b;
-    public final Paint f18858c;
+    public final Paint f18853a;
+    public final Paint f18854b;
+    public final Paint f18855c;
     public final ImageReceiver d;
-    public final ImageReceiver f18859e;
-    public final Drawable f18860f;
+    public final ImageReceiver f18856e;
+    public final Drawable f18857f;
     public int h;
 
     public r0(Context context, TLRPC.User user, TLRPC.User user2) {
         Paint paint = new Paint(1);
-        this.f18856a = paint;
-        this.f18857b = new Paint(1);
+        this.f18853a = paint;
+        this.f18854b = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f18858c = paint2;
+        this.f18855c = paint2;
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.d = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(null);
-        this.f18859e = imageReceiver2;
+        this.f18856e = imageReceiver2;
         new RectF();
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -43,7 +43,7 @@ public final class r0 extends Drawable implements v6 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(-1);
         Drawable mutate = context.getResources().getDrawable(2131231129).mutate();
-        this.f18860f = mutate;
+        this.f18857f = mutate;
         int x02 = n6.x0(null, n6.L5, false);
         this.h = x02;
         mutate.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
@@ -59,20 +59,20 @@ public final class r0 extends Drawable implements v6 {
 
     @Override
     public final void a(ph0 ph0Var) {
-        this.f18859e.H0(ph0Var);
+        this.f18856e.H0(ph0Var);
         this.d.H0(ph0Var);
     }
 
     @Override
     public final void b(ImageReceiver imageReceiver) {
         this.d.R();
-        this.f18859e.R();
+        this.f18856e.R();
     }
 
     @Override
     public final void c(ImageReceiver imageReceiver) {
         this.d.P();
-        this.f18859e.P();
+        this.f18856e.P();
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class r0 extends Drawable implements v6 {
         Rect bounds = getBounds();
         int i7 = n6.L5;
         int x02 = n6.x0(null, i7, false);
-        Paint paint = this.f18857b;
+        Paint paint = this.f18854b;
         paint.setColor(x02);
         float L = org.telegram.messenger.g0.L(136.0f) / 2.0f;
         ImageReceiver imageReceiver = this.d;
@@ -89,10 +89,10 @@ public final class r0 extends Drawable implements v6 {
         float centerX = (bounds.centerX() - L) + org.telegram.messenger.g0.L(41.0f);
         float L2 = org.telegram.messenger.g0.L(16.0f) + bounds.centerY();
         canvas.drawCircle(centerX, L2, org.telegram.messenger.g0.L(14.0f), paint);
-        canvas.drawCircle(centerX, L2, org.telegram.messenger.g0.L(12.0f), this.f18858c);
+        canvas.drawCircle(centerX, L2, org.telegram.messenger.g0.L(12.0f), this.f18855c);
         int x03 = n6.x0(null, i7, false);
         int i10 = this.h;
-        Drawable drawable = this.f18860f;
+        Drawable drawable = this.f18857f;
         if (x03 != i10) {
             this.h = x03;
             drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
@@ -100,10 +100,10 @@ public final class r0 extends Drawable implements v6 {
         drawable.setBounds((int) (centerX - org.telegram.messenger.g0.L(9.0f)), (int) (L2 - org.telegram.messenger.g0.L(9.0f)), (int) (centerX + org.telegram.messenger.g0.L(9.0f)), (int) (L2 + org.telegram.messenger.g0.L(9.0f)));
         drawable.draw(canvas);
         int centerX2 = bounds.centerX();
-        Paint paint2 = this.f18856a;
+        Paint paint2 = this.f18853a;
         canvas.drawLine(bounds.centerX() - org.telegram.messenger.g0.L(3.33f), bounds.centerY() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(3.33f) + centerX2, bounds.centerY(), paint2);
         canvas.drawLine(bounds.centerX() - org.telegram.messenger.g0.L(3.33f), org.telegram.messenger.g0.L(7.0f) + bounds.centerY(), org.telegram.messenger.g0.L(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
-        ImageReceiver imageReceiver2 = this.f18859e;
+        ImageReceiver imageReceiver2 = this.f18856e;
         imageReceiver2.y0((bounds.centerX() + L) - org.telegram.messenger.g0.L(50.0f), bounds.centerY() - org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f));
         imageReceiver2.h(canvas, null);
     }

@@ -25,9 +25,9 @@ public final class u9 extends View {
         Paint paint = this.f40269c;
         for (int i10 = 0; i10 < this.d; i10++) {
             if (i10 < this.f40270e) {
-                i7 = org.telegram.ui.ActionBar.n6.f29560m5;
+                i7 = org.telegram.ui.ActionBar.n6.f29558m5;
             } else {
-                i7 = org.telegram.ui.ActionBar.n6.f29692t5;
+                i7 = org.telegram.ui.ActionBar.n6.f29690t5;
             }
             paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
             if (i10 < this.f40270e) {

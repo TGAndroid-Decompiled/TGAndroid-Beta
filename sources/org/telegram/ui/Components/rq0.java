@@ -19,9 +19,9 @@ public final class rq0 extends org.telegram.ui.bn {
         gt0 gt0Var = this.f39277xd;
         ss0 ss0Var = gt0Var.V;
         if (this.f39275vd) {
-            if (this.f46067k0 != null) {
+            if (this.f46058k0 != null) {
                 Oa("");
-                this.f46067k0.Q(ss0Var.f39844x, false);
+                this.f46058k0.Q(ss0Var.f39844x, false);
             }
             org.telegram.ui.bk bkVar = this.D1;
             if (bkVar != null) {
@@ -36,21 +36,21 @@ public final class rq0 extends org.telegram.ui.bn {
             int i7 = ss0Var.f39843w;
             boolean z12 = ss0Var.f39842s;
             mediaDataController.R0 = p0Var;
-            mediaDataController.f26611e1 = str;
+            mediaDataController.f26609e1 = str;
             boolean[] zArr = mediaDataController.Y0;
             zArr[0] = z12;
             zArr[1] = true;
-            ArrayList arrayList3 = mediaDataController.f26600a1;
+            ArrayList arrayList3 = mediaDataController.f26598a1;
             arrayList3.clear();
             arrayList3.addAll(arrayList2);
-            mediaDataController.f26603b1.clear();
-            mediaDataController.f26603b1.addAll(arrayList);
+            mediaDataController.f26601b1.clear();
+            mediaDataController.f26601b1.addAll(arrayList);
             mediaDataController.p2();
             int[] iArr = mediaDataController.X0;
             iArr[0] = i7;
             iArr[1] = 0;
-            mediaDataController.f26614f1 = this.f39276wd;
-            mediaDataController.getNotificationCenter().k(org.telegram.messenger.ks.H0, Integer.valueOf(classGuid), 0, Integer.valueOf(mediaDataController.e0()), Long.valueOf(mediaDataController.getUserConfig().e()), Integer.valueOf(mediaDataController.f26614f1), Integer.valueOf(mediaDataController.l0()), Boolean.TRUE);
+            mediaDataController.f26612f1 = this.f39276wd;
+            mediaDataController.getNotificationCenter().k(org.telegram.messenger.ks.H0, Integer.valueOf(classGuid), 0, Integer.valueOf(mediaDataController.e0()), Long.valueOf(mediaDataController.getUserConfig().e()), Integer.valueOf(mediaDataController.f26612f1), Integer.valueOf(mediaDataController.l0()), Boolean.TRUE);
             this.f39275vd = false;
         }
         super.onTransitionAnimationStart(z10, z11);

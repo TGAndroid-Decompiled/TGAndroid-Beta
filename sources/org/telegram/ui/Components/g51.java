@@ -45,7 +45,7 @@ public class g51 extends View {
         TextPaint textPaint2 = new TextPaint(1);
         this.E = textPaint2;
         this.H = 1.0f;
-        this.N = org.telegram.ui.ActionBar.n6.f29682sf;
+        this.N = org.telegram.ui.ActionBar.n6.f29680sf;
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint2.setTextSize(org.telegram.messenger.g0.L(15.0f));
@@ -123,7 +123,7 @@ public class g51 extends View {
         if (isEnabled()) {
             i7 = this.N;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.f29788y6;
+            i7 = org.telegram.ui.ActionBar.n6.f29786y6;
         }
         int w02 = org.telegram.ui.ActionBar.n6.w0(i7, getResourceProvider());
         int i14 = this.J;
@@ -139,7 +139,7 @@ public class g51 extends View {
             this.K = w03;
             textPaint2.setColor(w03);
         }
-        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29534kg, getResourceProvider());
+        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29532kg, getResourceProvider());
         int i16 = this.L;
         Paint paint = this.f35347e;
         if (i16 != w04) {

@@ -27,7 +27,7 @@ public final class a31 extends FrameLayout implements org.telegram.ui.ActionBar.
         q9Var.setOnClickListener(new a8(this, 2));
         int i7 = org.telegram.ui.ActionBar.n6.G6;
         org.telegram.ui.ActionBar.n6.x0(null, i7, false);
-        int i10 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29394d6;
         org.telegram.ui.ActionBar.n6.x0(null, i10, false);
         int i11 = org.telegram.ui.ActionBar.n6.Fi;
         org.telegram.ui.ActionBar.n6.x0(null, i11, false);
@@ -102,12 +102,12 @@ public final class a31 extends FrameLayout implements org.telegram.ui.ActionBar.
             document = null;
         }
         if (document != null) {
-            lzVar = org.telegram.messenger.u5.d(document.thumbs, org.telegram.ui.ActionBar.n6.f29379c7, 0.2f, false);
+            lzVar = org.telegram.messenger.u5.d(document.thumbs, org.telegram.ui.ActionBar.n6.f29377c7, 0.2f, false);
         }
         org.telegram.messenger.lz lzVar2 = lzVar;
         if (lzVar2 != null) {
-            lzVar2.f25488e = 512;
-            lzVar2.f25489f = 512;
+            lzVar2.f25486e = 512;
+            lzVar2.f25487f = 512;
         }
         if (document == null) {
             i10 = ((org.telegram.ui.ActionBar.h2) sessionsActivity).currentAccount;
@@ -128,7 +128,7 @@ public final class a31 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.f25227y0 && "tg_placeholders_android".equals((String) objArr[0])) {
+        if (i7 == org.telegram.messenger.ks.f25225y0 && "tg_placeholders_android".equals((String) objArr[0])) {
             a();
         }
     }
@@ -139,7 +139,7 @@ public final class a31 extends FrameLayout implements org.telegram.ui.ActionBar.
         super.onAttachedToWindow();
         a();
         i7 = ((org.telegram.ui.ActionBar.h2) this.f45447f).currentAccount;
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25227y0);
+        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25225y0);
     }
 
     @Override
@@ -147,7 +147,7 @@ public final class a31 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i7;
         super.onDetachedFromWindow();
         i7 = ((org.telegram.ui.ActionBar.h2) this.f45447f).currentAccount;
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25227y0);
+        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25225y0);
     }
 
     @Override

@@ -6,18 +6,18 @@ import android.os.Parcelable;
 import c8.bc;
 public final class l extends r6.a {
     public static final Parcelable.Creator<l> CREATOR = new b(11);
-    public final Bundle f17315a;
+    public final Bundle f17312a;
 
     public l(Bundle responseBundle) {
         kotlin.jvm.internal.j.e(responseBundle, "responseBundle");
-        this.f17315a = responseBundle;
+        this.f17312a = responseBundle;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
         int r10 = bc.r(dest, 20293);
-        bc.b(dest, 1, this.f17315a);
+        bc.b(dest, 1, this.f17312a);
         bc.s(dest, r10);
     }
 }

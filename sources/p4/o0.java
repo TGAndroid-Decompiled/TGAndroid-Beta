@@ -13,9 +13,9 @@ public final class o0 implements Runnable {
     private final void a() {
         u2.c cVar = (u2.c) this.f55378b;
         o0 o0Var = (o0) this.f55379c;
-        cVar.f58301c.j();
-        u2.f fVar = cVar.f58300b;
-        synchronized (fVar.f58314a) {
+        cVar.f58302c.j();
+        u2.f fVar = cVar.f58301b;
+        synchronized (fVar.f58315a) {
             fVar.b();
             o0Var.run();
         }
@@ -25,11 +25,11 @@ public final class o0 implements Runnable {
         ua.a aVar;
         u9.o oVar = (u9.o) this.f55378b;
         ua.b bVar = (ua.b) this.f55379c;
-        if (oVar.f58559b == u9.o.d) {
+        if (oVar.f58560b == u9.o.d) {
             synchronized (oVar) {
-                aVar = oVar.f58558a;
-                oVar.f58558a = null;
-                oVar.f58559b = bVar;
+                aVar = oVar.f58559a;
+                oVar.f58559a = null;
+                oVar.f58560b = bVar;
             }
             aVar.b(bVar);
             return;
@@ -42,10 +42,10 @@ public final class o0 implements Runnable {
         ua.b bVar = (ua.b) this.f55379c;
         synchronized (nVar) {
             try {
-                if (nVar.f58556b == null) {
-                    nVar.f58555a.add(bVar);
+                if (nVar.f58557b == null) {
+                    nVar.f58556a.add(bVar);
                 } else {
-                    nVar.f58556b.add(bVar.get());
+                    nVar.f58557b.add(bVar.get());
                 }
             } catch (Throwable th2) {
                 throw th2;

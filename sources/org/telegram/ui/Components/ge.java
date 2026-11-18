@@ -31,7 +31,7 @@ public final class ge implements View.OnClickListener {
         }
         chatActivityEnterView.f32583f0.a(chatActivityEnterView.U2, true);
         chatActivityEnterView.f32707w2.setImageDrawable(chatActivityEnterView.f32583f0);
-        org.telegram.messenger.mp.u1(chatActivityEnterView.R).f25660g7.edit().putBoolean("silent_" + chatActivityEnterView.E3, chatActivityEnterView.U2).commit();
+        org.telegram.messenger.mp.u1(chatActivityEnterView.R).f25658g7.edit().putBoolean("silent_" + chatActivityEnterView.E3, chatActivityEnterView.U2).commit();
         org.telegram.messenger.xs t6 = org.telegram.messenger.xs.t(chatActivityEnterView.R);
         long j3 = chatActivityEnterView.E3;
         if (bnVar == null) {

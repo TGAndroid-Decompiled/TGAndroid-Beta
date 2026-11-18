@@ -2,11 +2,11 @@ package m;
 
 import hi.w4;
 public final class y0 extends w4 {
-    public final z0 f20265c;
+    public final z0 f20262c;
 
     public y0(z0 z0Var) {
         super(z0Var, 11);
-        this.f20265c = z0Var;
+        this.f20262c = z0Var;
     }
 
     @Override

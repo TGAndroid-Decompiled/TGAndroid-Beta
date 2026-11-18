@@ -21,7 +21,7 @@ public final class ld0 extends org.telegram.ui.ActionBar.x2 {
     public final ArrayList G1;
     public final ArrayList H1;
     public final TLRPC.TL_userContact_old2 I1;
-    public final org.telegram.ui.Cells.b5 f37096m1;
+    public final org.telegram.ui.Cells.c5 f37096m1;
     public final ed0 n1;
     public final LinearLayout f37097o1;
     public final fd0 f37098p1;
@@ -131,7 +131,7 @@ public final class ld0 extends org.telegram.ui.ActionBar.x2 {
         }
         if (this.f37105w1 != top) {
             this.f37105w1 = top;
-            this.f30192b.invalidate();
+            this.f30190b.invalidate();
         }
         childAt.getBottom();
         ed0Var.getMeasuredHeight();
@@ -179,13 +179,13 @@ public final class ld0 extends org.telegram.ui.ActionBar.x2 {
     @Override
     public final void onStart() {
         super.onStart();
-        gc.a((FrameLayout) this.f30192b, new bi.t(9));
+        gc.a((FrameLayout) this.f30190b, new bi.t(9));
     }
 
     @Override
     public final void onStop() {
         super.onStop();
-        gc.h((FrameLayout) this.f30192b);
+        gc.h((FrameLayout) this.f30190b);
     }
 
     @Override

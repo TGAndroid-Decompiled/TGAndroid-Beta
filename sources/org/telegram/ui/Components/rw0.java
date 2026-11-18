@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class rw0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
-    public org.telegram.ui.Cells.w9 E;
+    public org.telegram.ui.Cells.x9 E;
     public float F;
     public float G;
     public ValueAnimator H;
@@ -54,7 +54,7 @@ public final class rw0 extends FrameLayout implements org.telegram.ui.ActionBar.
             textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(6.0f));
         }
         org.telegram.ui.ActionBar.u6.U(this.E.getTextView(), org.telegram.ui.ActionBar.n6.G6, null);
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29397d7, this.f39328x, null);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29395d7, this.f39328x, null);
     }
 
     @Override

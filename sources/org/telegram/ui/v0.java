@@ -5,43 +5,43 @@ import android.animation.AnimatorListenerAdapter;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class v0 extends AnimatorListenerAdapter {
-    public final int f52650a;
-    public final g4 f52651b;
+    public final int f52635a;
+    public final g4 f52636b;
 
     public v0(g4 g4Var, int i7) {
-        this.f52651b = g4Var;
-        this.f52650a = i7;
+        this.f52636b = g4Var;
+        this.f52635a = i7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        g4 g4Var = this.f52651b;
-        ArrayList arrayList = g4Var.f47919e0;
-        if (g4Var.f47921g0.f30333f) {
+        g4 g4Var = this.f52636b;
+        ArrayList arrayList = g4Var.f47883e0;
+        if (g4Var.f47885g0.f30331f) {
             ArrayList arrayList2 = new ArrayList();
-            g4Var.f47935v0[0].setBackgroundDrawable(null);
-            k3[] k3VarArr = g4Var.f47935v0;
+            g4Var.f47899v0[0].setBackgroundDrawable(null);
+            k3[] k3VarArr = g4Var.f47899v0;
             k3 k3Var = k3VarArr[1];
             k3VarArr[1] = k3VarArr[0];
             k3VarArr[0] = k3Var;
-            g4Var.f47923i0.i();
-            g4Var.f47915b1.a(g4Var.f47935v0[0].getBackgroundColor(), true);
-            g4Var.f47917c1.a(g4Var.f47935v0[1].getBackgroundColor(), true);
+            g4Var.f47887i0.i();
+            g4Var.f47879b1.a(g4Var.f47899v0[0].getBackgroundColor(), true);
+            g4Var.f47881c1.a(g4Var.f47899v0[1].getBackgroundColor(), true);
             t3 t3Var = g4Var.L;
             if (t3Var != null) {
                 t3Var.z();
             }
-            for (int size = arrayList.size() - 1; size > this.f52650a; size--) {
+            for (int size = arrayList.size() - 1; size > this.f52635a; size--) {
                 arrayList2.add(arrayList.remove(size));
             }
-            g4Var.Q0.S(g4Var.f47935v0[0].f49158b);
-            org.telegram.ui.Cells.i9 i9Var = g4Var.Q0;
-            i9Var.f30838z0 = g4Var.f47935v0[0].d;
-            i9Var.f(true);
+            g4Var.Q0.S(g4Var.f47899v0[0].f49135b);
+            org.telegram.ui.Cells.j9 j9Var = g4Var.Q0;
+            j9Var.f30902z0 = g4Var.f47899v0[0].d;
+            j9Var.f(true);
             g4Var.g0(false);
             g4Var.d0();
-            g4Var.f47935v0[1].b();
-            g4Var.f47935v0[1].setVisibility(8);
+            g4Var.f47899v0[1].b();
+            g4Var.f47899v0[1].setVisibility(8);
             int size2 = arrayList2.size();
             int i7 = 0;
             while (i7 < size2) {
@@ -58,8 +58,8 @@ public final class v0 extends AnimatorListenerAdapter {
             g4Var.S();
             g4Var.K();
         }
-        ArticleViewer$WindowView articleViewer$WindowView = g4Var.f47921g0;
-        articleViewer$WindowView.f30333f = false;
+        ArticleViewer$WindowView articleViewer$WindowView = g4Var.f47885g0;
+        articleViewer$WindowView.f30331f = false;
         articleViewer$WindowView.d = false;
         g4Var.V0 = false;
     }

@@ -38,9 +38,9 @@ public final class nv0 extends Drawable {
         }
     }
 
-    public final void a(org.telegram.ui.Cells.q1 q1Var) {
+    public final void a(org.telegram.ui.Cells.r1 r1Var) {
         for (int i7 = 0; i7 < this.f37861b; i7++) {
-            this.f37862c[i7].n(q1Var);
+            this.f37862c[i7].n(r1Var);
         }
     }
 
@@ -57,9 +57,9 @@ public final class nv0 extends Drawable {
                 if (document == null) {
                     j3 = 0;
                 } else {
-                    j3 = document.f28411id;
+                    j3 = document.f28409id;
                 }
-                if (j3 == ((TLRPC.Document) arrayList.get(i7)).f28411id) {
+                if (j3 == ((TLRPC.Document) arrayList.get(i7)).f28409id) {
                 }
             }
             return true;
@@ -99,9 +99,9 @@ public final class nv0 extends Drawable {
                         o5VarArr[i12].setAlpha(this.d);
                         o5 o5Var2 = o5VarArr[i12];
                         if (this.f37863e) {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.n6.f29747w3;
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.n6.f29745w3;
                         } else {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.n6.f29728v3;
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.n6.f29726v3;
                         }
                         o5Var2.setColorFilter(porterDuffColorFilter);
                         o5VarArr[i12].draw(canvas);

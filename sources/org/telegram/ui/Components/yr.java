@@ -76,12 +76,12 @@ public final class yr extends sa {
 
     @Override
     public final boolean K0(View view, float f10, float f11) {
-        return !(view instanceof org.telegram.ui.Cells.d2);
+        return !(view instanceof org.telegram.ui.Cells.e2);
     }
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(ck0Var, getContext(), this.f30189a, this.f39538s1.getClassGuid(), true, new rr(this, 0), this.J0);
+        z41 z41Var = new z41(ck0Var, getContext(), this.f30187a, this.f39538s1.getClassGuid(), true, new rr(this, 0), this.J0);
         this.T1 = z41Var;
         z41Var.f42809r = false;
         return z41Var;
@@ -137,7 +137,7 @@ public final class yr extends sa {
     @Override
     public final void dismiss() {
         boolean z10;
-        SharedPreferences.Editor edit = org.telegram.messenger.mp.u1(this.f30189a).h7.edit();
+        SharedPreferences.Editor edit = org.telegram.messenger.mp.u1(this.f30187a).h7.edit();
         edit.putBoolean("delete_report", this.f42599e2.a());
         edit.putBoolean("delete_deleteAll", this.f42600f2.a());
         if (!this.f42598c2 && this.f42602h2.a()) {
@@ -233,13 +233,13 @@ public final class yr extends sa {
             for (int i10 = 0; i10 < xrVar.f42171g; i10++) {
                 TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                 tL_messages_search.peer = org.telegram.messenger.mp.n1(this.U1);
-                tL_messages_search.f28516q = "";
+                tL_messages_search.f28514q = "";
                 TLRPC.InputPeer m12 = org.telegram.messenger.mp.m1((TLObject) xrVar.f42168c.get(i10));
                 tL_messages_search.from_id = m12;
                 tL_messages_search.flags |= 1;
                 tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                 tL_messages_search.limit = 1;
-                ConnectionsManager.getInstance(this.f30189a).sendRequest(tL_messages_search, new fi.y7(this, m12, i10, iArr, 4));
+                ConnectionsManager.getInstance(this.f30187a).sendRequest(tL_messages_search, new fi.y7(this, m12, i10, iArr, 4));
             }
         }
     }
@@ -292,7 +292,7 @@ public final class yr extends sa {
         if (z10 && this.f42606l2 && (participantJoinedChats = this.f42608n2) != null && !participantJoinedChats.creator_chat_ids.isEmpty()) {
             Context context = getContext();
             org.telegram.ui.ActionBar.i6 i6Var = this.J0;
-            int i11 = this.f30189a;
+            int i11 = this.f30187a;
             ArrayList<Long> arrayList = this.f42608n2.creator_chat_ids;
             tr trVar = new tr(this, 6);
             sr srVar = new sr(this, 0);
@@ -302,7 +302,7 @@ public final class yr extends sa {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
             int i12 = 0;
             String M0 = org.telegram.messenger.gd.M0(2131751944, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
             u1Var.S = M0;
             u1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(arrayList.size(), "CommunityBanWarningMessage", org.telegram.messenger.n5.s(i11, j3)));
             alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131753727, null), new b0(srVar, 6));
@@ -325,7 +325,7 @@ public final class yr extends sa {
                 } else {
                     di.d1 d1Var = new di.d1(context, i6Var, z13);
                     int i14 = size;
-                    ((TextView) d1Var.f8645b).setText(org.telegram.messenger.n5.m(O0));
+                    ((TextView) d1Var.f8642b).setText(org.telegram.messenger.n5.m(O0));
                     TextView textView = (TextView) d1Var.d;
                     if (P0 != null) {
                         int i15 = P0.participants_count;
@@ -339,7 +339,7 @@ public final class yr extends sa {
                         str = null;
                     }
                     textView.setText(str);
-                    ((q9) d1Var.f8646c).f(O0, new b9(O0));
+                    ((q9) d1Var.f8643c).f(O0, new b9(O0));
                     d1Var.setBackground(org.telegram.ui.ActionBar.n6.N0(z12));
                     d1Var.setOnClickListener(new di.d3(u1VarArr2, trVar, longValue, 2));
                     linearLayout.addView(d1Var, c8.ma.o(-1, -2));
@@ -357,7 +357,7 @@ public final class yr extends sa {
             u1Var2.show();
             TextView textView2 = (TextView) u1Var2.d(-1);
             if (textView2 != null) {
-                org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29637q7, null);
+                org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29635q7, null);
                 return;
             }
             return;
@@ -415,8 +415,8 @@ public final class yr extends sa {
             b03.I(i7, org.telegram.messenger.gd.M0(i17, null), str2).j();
         }
         if (j3 != 0 && this.f42606l2) {
-            org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(this.f30189a);
-            long j10 = this.V1.f28405id;
+            org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(this.f30187a);
+            long j10 = this.V1.f28403id;
             jh.b bVar = new jh.b(4);
             TL_communities.TL_communities_toggleParticipantBanned tL_communities_toggleParticipantBanned = new TL_communities.TL_communities_toggleParticipantBanned();
             tL_communities_toggleParticipantBanned.community = u12.j1(j10);
@@ -459,7 +459,7 @@ public final class yr extends sa {
                 switch (r2) {
                     case 0:
                         long j11 = this.f40403b.Y1;
-                        TLRPC.Peer peer = fjVar.f23968k.peer_id;
+                        TLRPC.Peer peer = fjVar.f23965k.peer_id;
                         if ((peer != null && peer.chat_id != (-j11)) || j11 == 0) {
                             return true;
                         }
@@ -467,7 +467,7 @@ public final class yr extends sa {
                     case 1:
                         yr yrVar = this.f40403b;
                         yrVar.getClass();
-                        TLRPC.Peer peer2 = fjVar.f23968k.peer_id;
+                        TLRPC.Peer peer2 = fjVar.f23965k.peer_id;
                         if (peer2 != null) {
                             long j12 = peer2.chat_id;
                             long j13 = yrVar.Y1;
@@ -479,7 +479,7 @@ public final class yr extends sa {
                     default:
                         yr yrVar2 = this.f40403b;
                         yrVar2.getClass();
-                        TLRPC.Peer peer3 = fjVar.f23968k.peer_id;
+                        TLRPC.Peer peer3 = fjVar.f23965k.peer_id;
                         if (peer3 != null && peer3.chat_id != (-yrVar2.Y1)) {
                             return true;
                         }
@@ -521,7 +521,7 @@ public final class yr extends sa {
                 switch (r2) {
                     case 0:
                         long j11 = this.f40403b.Y1;
-                        TLRPC.Peer peer = fjVar.f23968k.peer_id;
+                        TLRPC.Peer peer = fjVar.f23965k.peer_id;
                         if ((peer != null && peer.chat_id != (-j11)) || j11 == 0) {
                             return true;
                         }
@@ -529,7 +529,7 @@ public final class yr extends sa {
                     case 1:
                         yr yrVar = this.f40403b;
                         yrVar.getClass();
-                        TLRPC.Peer peer2 = fjVar.f23968k.peer_id;
+                        TLRPC.Peer peer2 = fjVar.f23965k.peer_id;
                         if (peer2 != null) {
                             long j12 = peer2.chat_id;
                             long j13 = yrVar.Y1;
@@ -541,7 +541,7 @@ public final class yr extends sa {
                     default:
                         yr yrVar2 = this.f40403b;
                         yrVar2.getClass();
-                        TLRPC.Peer peer3 = fjVar.f23968k.peer_id;
+                        TLRPC.Peer peer3 = fjVar.f23965k.peer_id;
                         if (peer3 != null && peer3.chat_id != (-yrVar2.Y1)) {
                             return true;
                         }
@@ -557,10 +557,10 @@ public final class yr extends sa {
             }
         } else {
             if (!arrayList3.isEmpty()) {
-                org.telegram.messenger.mp.u1(this.f30189a).Z(arrayList3, null, null, -chat.f28405id, this.Z1, false, this.f42596a2);
+                org.telegram.messenger.mp.u1(this.f30187a).Z(arrayList3, null, null, -chat.f28403id, this.Z1, false, this.f42596a2);
             }
             if (!arrayList4.isEmpty()) {
-                org.telegram.messenger.mp.u1(this.f30189a).Z(arrayList4, null, null, this.Y1, this.Z1, true, this.f42596a2);
+                org.telegram.messenger.mp.u1(this.f30187a).Z(arrayList4, null, null, this.Y1, this.Z1, true, this.f42596a2);
             }
         }
         xrVar2.c(new tr(this, 4));
@@ -601,7 +601,7 @@ public final class yr extends sa {
                         switch (r2) {
                             case 0:
                                 long j11 = this.f40403b.Y1;
-                                TLRPC.Peer peer = fjVar.f23968k.peer_id;
+                                TLRPC.Peer peer = fjVar.f23965k.peer_id;
                                 if ((peer != null && peer.chat_id != (-j11)) || j11 == 0) {
                                     return true;
                                 }
@@ -609,7 +609,7 @@ public final class yr extends sa {
                             case 1:
                                 yr yrVar = this.f40403b;
                                 yrVar.getClass();
-                                TLRPC.Peer peer2 = fjVar.f23968k.peer_id;
+                                TLRPC.Peer peer2 = fjVar.f23965k.peer_id;
                                 if (peer2 != null) {
                                     long j12 = peer2.chat_id;
                                     long j13 = yrVar.Y1;
@@ -621,7 +621,7 @@ public final class yr extends sa {
                             default:
                                 yr yrVar2 = this.f40403b;
                                 yrVar2.getClass();
-                                TLRPC.Peer peer3 = fjVar.f23968k.peer_id;
+                                TLRPC.Peer peer3 = fjVar.f23965k.peer_id;
                                 if (peer3 != null && peer3.chat_id != (-yrVar2.Y1)) {
                                     return true;
                                 }
@@ -632,9 +632,9 @@ public final class yr extends sa {
                 if (z14 && (tLObject instanceof TLRPC.User) && arrayList5.size() == 1) {
                     TLRPC.TL_messages_reportReaction tL_messages_reportReaction = new TLRPC.TL_messages_reportReaction();
                     tL_messages_reportReaction.peer = org.telegram.messenger.mp.n1(chat);
-                    tL_messages_reportReaction.user_id = org.telegram.messenger.mp.u1(this.f30189a).s1((TLRPC.User) tLObject);
-                    tL_messages_reportReaction.f28513id = arrayList5.get(0).intValue();
-                    ConnectionsManager.getInstance(this.f30189a).sendRequest(tL_messages_reportReaction, null);
+                    tL_messages_reportReaction.user_id = org.telegram.messenger.mp.u1(this.f30187a).s1((TLRPC.User) tLObject);
+                    tL_messages_reportReaction.f28511id = arrayList5.get(0).intValue();
+                    ConnectionsManager.getInstance(this.f30187a).sendRequest(tL_messages_reportReaction, null);
                 } else {
                     TLRPC.TL_channels_reportSpam tL_channels_reportSpam = new TLRPC.TL_channels_reportSpam();
                     tL_channels_reportSpam.channel = org.telegram.messenger.mp.k1(chat);
@@ -643,8 +643,8 @@ public final class yr extends sa {
                     } else if (tLObject instanceof TLRPC.Chat) {
                         tL_channels_reportSpam.participant = org.telegram.messenger.mp.n1((TLRPC.Chat) tLObject);
                     }
-                    tL_channels_reportSpam.f28445id = arrayList5;
-                    ConnectionsManager.getInstance(this.f30189a).sendRequest(tL_channels_reportSpam, null);
+                    tL_channels_reportSpam.f28443id = arrayList5;
+                    ConnectionsManager.getInstance(this.f30187a).sendRequest(tL_channels_reportSpam, null);
                 }
             }
         }
@@ -659,7 +659,7 @@ public final class yr extends sa {
     @Override
     public final void s0() {
         super.s0();
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, this.J0);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, this.J0);
         if (w02 != this.C2) {
             this.C2 = w02;
             v0(w02);

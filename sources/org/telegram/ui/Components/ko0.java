@@ -23,8 +23,8 @@ public final class ko0 extends org.telegram.ui.ActionBar.j1 {
         lo0 lo0Var = this.f36836x;
         yo0 yo0Var = lo0Var.f37167q0;
         int i7 = yo0.U2;
-        for (int i10 = 0; i10 < yo0Var.f30192b.getChildCount(); i10++) {
-            View childAt = yo0Var.f30192b.getChildAt(i10);
+        for (int i10 = 0; i10 < yo0Var.f30190b.getChildCount(); i10++) {
+            View childAt = yo0Var.f30190b.getChildAt(i10);
             if (childAt != yo0Var.f42573r1 && childAt != yo0Var.f42583w1 && childAt != yo0Var.O1[1] && childAt != yo0Var.f42587y1 && childAt != yo0Var.n1 && childAt != yo0Var.Y1 && childAt != yo0Var.f42571q1) {
                 childAt.setTranslationY(f10);
             }
@@ -67,7 +67,7 @@ public final class ko0 extends org.telegram.ui.ActionBar.j1 {
         yo0Var.M1.setTranslationY(yo0Var.f42563l2 + yo0Var.f42570p2);
         yo0Var.n1.invalidate();
         yo0Var.F0 = yo0Var.f42570p2;
-        yo0Var.f30195c.invalidate();
+        yo0Var.f30193c.invalidate();
         yo0Var.a1();
         lo0Var.invalidate();
     }

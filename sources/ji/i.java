@@ -3,23 +3,23 @@ package ji;
 import android.util.Log;
 import org.telegram.messenger.g0;
 public final class i implements Runnable {
-    public final int f17945a;
-    public final m f17946b;
+    public final int f17942a;
+    public final m f17943b;
 
     public i(m mVar, int i7) {
-        this.f17945a = i7;
-        this.f17946b = mVar;
+        this.f17942a = i7;
+        this.f17943b = mVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String str;
-        switch (this.f17945a) {
+        switch (this.f17942a) {
             case 0:
-                m mVar = this.f17946b;
-                if (mVar.f17966c == 3) {
-                    if (!mVar.f17964b.c()) {
+                m mVar = this.f17943b;
+                if (mVar.f17963c == 3) {
+                    if (!mVar.f17961b.c()) {
                         mVar.g("draft gone", true);
                         return;
                     } else {
@@ -29,10 +29,10 @@ public final class i implements Runnable {
                 }
                 return;
             case 1:
-                m mVar2 = this.f17946b;
+                m mVar2 = this.f17943b;
                 float[] fArr = mVar2.V;
-                if (mVar2.f17966c == 4) {
-                    if (mVar2.f17964b.b(fArr)) {
+                if (mVar2.f17963c == 4) {
+                    if (mVar2.f17961b.b(fArr)) {
                         float f10 = fArr[0];
                         boolean z11 = true;
                         float f11 = fArr[1];
@@ -61,7 +61,7 @@ public final class i implements Runnable {
                                 sb2.append(" total=");
                                 sb2.append(mVar2.O);
                                 sb2.append(" frozen=");
-                                if (mVar2.f17970e0 == null) {
+                                if (mVar2.f17967e0 == null) {
                                     z11 = false;
                                 }
                                 sb2.append(z11);
@@ -81,7 +81,7 @@ public final class i implements Runnable {
                                 StringBuilder m10 = i5.c.m(i7, "field: trim applied, ", " of ");
                                 m10.append(mVar2.c().size());
                                 m10.append(" words cut, text ");
-                                m10.append(mVar2.f17979n.length());
+                                m10.append(mVar2.f17976n.length());
                                 m10.append(" chars");
                                 Log.d("VoiceLive", m10.toString());
                             }
@@ -92,10 +92,10 @@ public final class i implements Runnable {
                 }
                 return;
             default:
-                m mVar3 = this.f17946b;
-                if (mVar3.f17966c != 0) {
+                m mVar3 = this.f17943b;
+                if (mVar3.f17963c != 0) {
                     mVar3.t();
-                    if (mVar3.f17966c != 0) {
+                    if (mVar3.f17963c != 0) {
                         g0.h3(this, 250L);
                         return;
                     }

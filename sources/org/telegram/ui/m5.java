@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class m5 extends org.telegram.ui.Cells.x4 {
+public final class m5 extends org.telegram.ui.Cells.y4 {
     public final int h;
 
     public m5(Context context, int i7) {

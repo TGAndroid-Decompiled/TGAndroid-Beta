@@ -8,29 +8,29 @@ import android.view.ViewGroup;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.ClippingImageView;
 public final class qn0 implements org.telegram.ui.Components.z4, org.telegram.ui.ActionBar.r1, org.telegram.messenger.jc, r0.m {
-    public final PhotoViewer f51296a;
+    public final PhotoViewer f51256a;
 
     public qn0(PhotoViewer photoViewer) {
-        this.f51296a = photoViewer;
+        this.f51256a = photoViewer;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
         Drawable[] drawableArr = PhotoViewer.Z8;
-        this.f51296a.u2(z10, i7, i10, false, false, false);
+        this.f51256a.u2(z10, i7, i10, false, false, false);
     }
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
-        PhotoViewer photoViewer = this.f51296a;
+        PhotoViewer photoViewer = this.f51256a;
         hn0 hn0Var = photoViewer.f43350v4;
         Rect rect = photoViewer.f43331t2;
         Rect rect2 = new Rect(rect);
         i0.b I0 = org.telegram.messenger.g0.I0(l1Var, false);
         int i7 = l1Var.f56258a.f(647).d;
-        int i10 = I0.f15892a;
-        int i11 = I0.f15893b;
-        int i12 = I0.f15894c;
+        int i10 = I0.f15889a;
+        int i11 = I0.f15890b;
+        int i12 = I0.f15891c;
         rect.set(i10, i11, i12, i7);
         if (!rect2.equals(rect)) {
             int i13 = photoViewer.f43279n4;
@@ -66,7 +66,7 @@ public final class qn0 implements org.telegram.ui.Components.z4, org.telegram.ui
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         Drawable[] drawableArr = PhotoViewer.Z8;
-        this.f51296a.c3(0);
+        this.f51256a.c3(0);
     }
 
     @Override
@@ -76,7 +76,7 @@ public final class qn0 implements org.telegram.ui.Components.z4, org.telegram.ui
         Bitmap n10;
         boolean z13;
         int i10;
-        PhotoViewer photoViewer = this.f51296a;
+        PhotoViewer photoViewer = this.f51256a;
         if (imageReceiver == photoViewer.C4 && z10 && !z11) {
             if (!photoViewer.f43322s1 && ((photoViewer.f43341u4 == 1 || (i10 = photoViewer.d2) == 1 || i10 == 11) && photoViewer.D1 != null && (n10 = imageReceiver.n()) != null)) {
                 org.telegram.ui.Components.qd0 qd0Var = photoViewer.D1;

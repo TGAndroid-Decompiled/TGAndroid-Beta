@@ -25,28 +25,28 @@ import org.telegram.ui.hn0;
 import org.telegram.ui.rn;
 import org.telegram.ui.ww;
 public final class e2 implements x10 {
-    public final int f3570a;
-    public final long f3571b;
-    public final Object f3572c;
+    public final int f3538a;
+    public final long f3539b;
+    public final Object f3540c;
     public final Object d;
-    public final Object f3573e;
+    public final Object f3541e;
 
     public e2(fi.p6 p6Var, x10 x10Var, long j3, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        this.f3570a = 4;
-        this.f3572c = p6Var;
-        this.f3573e = x10Var;
-        this.f3571b = j3;
+        this.f3538a = 4;
+        this.f3540c = p6Var;
+        this.f3541e = x10Var;
+        this.f3539b = j3;
         this.d = tL_premium_boostsStatus;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f3570a;
+        int i7 = this.f3538a;
         y3 y3Var = null;
-        long j3 = this.f3571b;
-        Object obj2 = this.f3573e;
+        long j3 = this.f3539b;
+        Object obj2 = this.f3541e;
         Object obj3 = this.d;
-        Object obj4 = this.f3572c;
+        Object obj4 = this.f3540c;
         switch (i7) {
             case 0:
                 v2 v2Var = (v2) obj3;
@@ -56,9 +56,9 @@ public final class e2 implements x10 {
                 return;
             case 1:
                 di.f6 f6Var = (di.f6) obj4;
-                f6Var.f8782g2.setLoading(false);
-                z8 z8Var = new z8(f6Var, 1);
-                ug.l0 l0Var = new ug.l0(26, f6Var.f30189a, f6Var.getContext(), z8Var, f6Var.J0);
+                f6Var.f8779g2.setLoading(false);
+                y8 y8Var = new y8(f6Var, 1);
+                ug.l0 l0Var = new ug.l0(26, f6Var.f30187a, f6Var.getContext(), y8Var, f6Var.J0);
                 l0Var.B1((org.telegram.messenger.g3) obj);
                 l0Var.A1((TL_stories.TL_premium_boostsStatus) obj3, true);
                 l0Var.C1(j3);
@@ -73,9 +73,9 @@ public final class e2 implements x10 {
                 fi.p pVar = (fi.p) obj2;
                 ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
                 if (((Boolean) obj).booleanValue()) {
-                    ta D = ta.D(qVar.f12422f0.getParentActivity(), qVar.f12421f);
+                    ta D = ta.D(qVar.f12419f0.getParentActivity(), qVar.f12418f);
                     D.O = j3;
-                    ja jaVar = D.f15436d1;
+                    ja jaVar = D.f15433d1;
                     if (jaVar != null) {
                         jaVar.setDialogId(j3);
                     }
@@ -94,7 +94,7 @@ public final class e2 implements x10 {
                     return;
                 }
                 org.telegram.messenger.h3 I0 = mpVar.I0();
-                long j10 = this.f3571b;
+                long j10 = this.f3539b;
                 I0.b(j10, tL_premium_boostsStatus, new e2(p6Var, x10Var, j10, tL_premium_boostsStatus));
                 x10Var.a(Boolean.FALSE);
                 return;
@@ -123,13 +123,13 @@ public final class e2 implements x10 {
                 x10Var2.a(Boolean.FALSE);
                 return;
             case 5:
-                rn.d0((rn) obj4, (org.telegram.ui.ActionBar.u1) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f3571b, (org.telegram.messenger.g3) obj);
+                rn.d0((rn) obj4, (org.telegram.ui.ActionBar.u1) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f3539b, (org.telegram.messenger.g3) obj);
                 return;
             case 6:
                 org.telegram.ui.ActionBar.h2[] h2VarArr = (org.telegram.ui.ActionBar.h2[]) obj2;
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
-                cx cxVar = ((cw) obj4).f46651b;
+                cx cxVar = ((cw) obj4).f46631b;
                 cxVar.getMessagesController().Z2(Long.valueOf(j3), null, 32);
                 ww wwVar = cxVar.E2;
                 cxVar.removeSelfFromStack();
@@ -167,7 +167,7 @@ public final class e2 implements x10 {
                     float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
                     canvas.scale(max, max);
                     canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
-                    org.telegram.messenger.g0.g3(new k2(photoViewer, efVar, this.f3571b, str, createBitmap, 14));
+                    org.telegram.messenger.g0.g3(new k2(photoViewer, efVar, this.f3539b, str, createBitmap, 14));
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -178,26 +178,26 @@ public final class e2 implements x10 {
     }
 
     public e2(fi.p6 p6Var, x10 x10Var, mp mpVar, long j3) {
-        this.f3570a = 3;
-        this.f3572c = p6Var;
-        this.f3573e = x10Var;
+        this.f3538a = 3;
+        this.f3540c = p6Var;
+        this.f3541e = x10Var;
         this.d = mpVar;
-        this.f3571b = j3;
+        this.f3539b = j3;
     }
 
     public e2(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f3570a = i7;
-        this.f3572c = obj;
+        this.f3538a = i7;
+        this.f3540c = obj;
         this.d = obj2;
-        this.f3571b = j3;
-        this.f3573e = obj3;
+        this.f3539b = j3;
+        this.f3541e = obj3;
     }
 
     public e2(fs fsVar, Object obj, Object obj2, long j3, int i7) {
-        this.f3570a = i7;
-        this.f3572c = fsVar;
+        this.f3538a = i7;
+        this.f3540c = fsVar;
         this.d = obj;
-        this.f3573e = obj2;
-        this.f3571b = j3;
+        this.f3541e = obj2;
+        this.f3539b = j3;
     }
 }

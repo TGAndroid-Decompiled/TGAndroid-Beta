@@ -35,7 +35,7 @@ public final class jn0 extends bk0 {
     public final void t(v4.f1 f1Var, int i7) {
         long j3;
         String str;
-        nn0 nn0Var = (nn0) f1Var.f59122a;
+        nn0 nn0Var = (nn0) f1Var.f59123a;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i7);
         TLRPC.Peer peer = tL_sendAsPeer.peer;
         long j10 = peer.channel_id;

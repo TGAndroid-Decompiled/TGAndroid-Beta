@@ -17,77 +17,77 @@ public final class ly {
     public boolean J;
     public Object K;
     public final zy L;
-    public final long f25457a;
-    public ArrayList f25458b;
-    public TLObject f25459c;
+    public final long f25455a;
+    public ArrayList f25456b;
+    public TLObject f25457c;
     public TLObject d;
-    public int f25460e;
-    public String f25461f;
-    public TLRPC.PhotoSize f25462g;
+    public int f25458e;
+    public String f25459f;
+    public TLRPC.PhotoSize f25460g;
     public TLObject h;
-    public TLRPC.PhotoSize f25463i;
-    public TLRPC.InputFile f25464j;
-    public boolean f25465k;
-    public String f25466l;
-    public fj f25467m;
-    public TLRPC.EncryptedChat f25468n;
-    public e20 f25469o;
-    public boolean f25470p;
-    public boolean f25471q;
-    public boolean f25472r;
-    public boolean[] f25473s;
-    public TLRPC.InputMedia f25474t;
-    public ArrayList f25475u;
+    public TLRPC.PhotoSize f25461i;
+    public TLRPC.InputFile f25462j;
+    public boolean f25463k;
+    public String f25464l;
+    public fj f25465m;
+    public TLRPC.EncryptedChat f25466n;
+    public e20 f25467o;
+    public boolean f25468p;
+    public boolean f25469q;
+    public boolean f25470r;
+    public boolean[] f25471s;
+    public TLRPC.InputMedia f25472t;
+    public ArrayList f25473u;
     public ArrayList v;
-    public ArrayList f25476w;
-    public ArrayList f25477x;
-    public ArrayList f25478y;
-    public ArrayList f25479z;
+    public ArrayList f25474w;
+    public ArrayList f25475x;
+    public ArrayList f25476y;
+    public ArrayList f25477z;
 
     public ly(zy zyVar, long j3) {
         this.L = zyVar;
-        this.f25457a = j3;
+        this.f25455a = j3;
     }
 
     public final void a(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ly lyVar, boolean z10) {
         ?? obj = new Object();
-        obj.f25860a = tLObject;
-        obj.f25862c = arrayList;
-        obj.f25863e = arrayList2;
-        obj.f25865g = lyVar;
-        obj.f25864f = arrayList3;
-        obj.f25866i = z10;
-        if (this.f25458b == null) {
-            this.f25458b = new ArrayList();
+        obj.f25858a = tLObject;
+        obj.f25860c = arrayList;
+        obj.f25861e = arrayList2;
+        obj.f25863g = lyVar;
+        obj.f25862f = arrayList3;
+        obj.f25864i = z10;
+        if (this.f25456b == null) {
+            this.f25456b = new ArrayList();
         }
-        this.f25458b.add(obj);
+        this.f25456b.add(obj);
     }
 
     public final void b(long j3) {
-        this.f25460e = 4;
+        this.f25458e = 4;
         this.F = j3;
-        this.f25477x = new ArrayList();
-        this.f25479z = new ArrayList();
+        this.f25475x = new ArrayList();
+        this.f25477z = new ArrayList();
         this.A = new ArrayList();
         this.B = new ArrayList();
-        this.f25478y = new ArrayList();
+        this.f25476y = new ArrayList();
         this.E = new HashMap();
-        this.f25475u = new ArrayList();
+        this.f25473u = new ArrayList();
         this.v = new ArrayList();
-        this.f25476w = new ArrayList();
+        this.f25474w = new ArrayList();
         this.C = new ArrayList();
         this.D = new ArrayList();
     }
 
     public final void c() {
-        int i7 = this.f25460e;
+        int i7 = this.f25458e;
         int i10 = ks.M;
         zy zyVar = this.L;
         if (i7 == 4) {
-            for (int i11 = 0; i11 < this.f25477x.size(); i11++) {
-                fj fjVar = (fj) this.f25477x.get(i11);
-                zyVar.getMessagesStorage().N0(fjVar.f23997r1 ? 1 : 0, fjVar.f23968k);
-                TLRPC.Message message = fjVar.f23968k;
+            for (int i11 = 0; i11 < this.f25475x.size(); i11++) {
+                fj fjVar = (fj) this.f25475x.get(i11);
+                zyVar.getMessagesStorage().N0(fjVar.f23994r1 ? 1 : 0, fjVar.f23965k);
+                TLRPC.Message message = fjVar.f23965k;
                 message.send_state = 2;
                 message.errorAllowedPriceStars = 0L;
                 message.errorNewPriceStars = 0L;
@@ -95,55 +95,55 @@ public final class ly {
                 zyVar.d0(fjVar.e1());
                 zyVar.j0(fjVar.e1(), this.H);
             }
-            zyVar.f28387a.remove("group_" + this.F);
+            zyVar.f28385a.remove("group_" + this.F);
         } else {
             tr messagesStorage = zyVar.getMessagesStorage();
-            fj fjVar2 = this.f25467m;
-            messagesStorage.N0(fjVar2.f23997r1 ? 1 : 0, fjVar2.f23968k);
-            TLRPC.Message message2 = this.f25467m.f23968k;
+            fj fjVar2 = this.f25465m;
+            messagesStorage.N0(fjVar2.f23994r1 ? 1 : 0, fjVar2.f23965k);
+            TLRPC.Message message2 = this.f25465m.f23965k;
             message2.send_state = 2;
             message2.errorAllowedPriceStars = 0L;
             message2.errorNewPriceStars = 0L;
-            zyVar.getNotificationCenter().k(i10, Integer.valueOf(this.f25467m.e1()));
-            zyVar.d0(this.f25467m.e1());
-            zyVar.j0(this.f25467m.e1(), this.H);
+            zyVar.getNotificationCenter().k(i10, Integer.valueOf(this.f25465m.e1()));
+            zyVar.d0(this.f25465m.e1());
+            zyVar.j0(this.f25465m.e1(), this.H);
         }
         d();
     }
 
     public final void d() {
-        ArrayList arrayList = this.f25458b;
+        ArrayList arrayList = this.f25456b;
         if (arrayList != null) {
-            int i7 = this.f25460e;
+            int i7 = this.f25458e;
             if (i7 == 4 || i7 == 0) {
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    my myVar = (my) this.f25458b.get(i10);
-                    TLObject tLObject = myVar.f25860a;
+                    my myVar = (my) this.f25456b.get(i10);
+                    TLObject tLObject = myVar.f25858a;
                     boolean z10 = tLObject instanceof TLRPC.TL_messages_sendEncryptedMultiMedia;
                     zy zyVar = this.L;
                     if (z10) {
-                        zyVar.getSecretChatHelper().k((TLRPC.TL_messages_sendEncryptedMultiMedia) myVar.f25860a, this);
+                        zyVar.getSecretChatHelper().k((TLRPC.TL_messages_sendEncryptedMultiMedia) myVar.f25858a, this);
                     } else if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
-                        zyVar.P((TLRPC.TL_messages_sendMultiMedia) tLObject, myVar.f25862c, myVar.f25863e, myVar.f25864f, myVar.f25865g, myVar.f25866i);
+                        zyVar.P((TLRPC.TL_messages_sendMultiMedia) tLObject, myVar.f25860c, myVar.f25861e, myVar.f25862f, myVar.f25863g, myVar.f25864i);
                     } else {
                         boolean z11 = tLObject instanceof TLRPC.TL_messages_sendMedia;
                         if (z11) {
                             TLRPC.TL_messages_sendMedia tL_messages_sendMedia = (TLRPC.TL_messages_sendMedia) tLObject;
                             if (tL_messages_sendMedia.media instanceof TLRPC.TL_inputMediaPaidMedia) {
-                                zyVar.P(tL_messages_sendMedia, myVar.f25862c, myVar.f25863e, myVar.f25864f, myVar.f25865g, myVar.f25866i);
+                                zyVar.P(tL_messages_sendMedia, myVar.f25860c, myVar.f25861e, myVar.f25862f, myVar.f25863g, myVar.f25864i);
                             }
                         }
                         if (z11) {
                             TLRPC.TL_messages_sendMedia tL_messages_sendMedia2 = (TLRPC.TL_messages_sendMedia) tLObject;
                             if (tL_messages_sendMedia2.media instanceof TLRPC.TL_inputMediaPoll) {
-                                zyVar.P(tL_messages_sendMedia2, myVar.f25862c, myVar.f25863e, myVar.f25864f, myVar.f25865g, myVar.f25866i);
+                                zyVar.P(tL_messages_sendMedia2, myVar.f25860c, myVar.f25861e, myVar.f25862f, myVar.f25863g, myVar.f25864i);
                             }
                         }
-                        zyVar.N(tLObject, myVar.f25861b, myVar.d, myVar.f25865g, myVar.h, null, myVar.f25866i);
+                        zyVar.N(tLObject, myVar.f25859b, myVar.d, myVar.f25863g, myVar.h, null, myVar.f25864i);
                     }
                 }
-                this.f25458b = null;
+                this.f25456b = null;
             }
         }
     }

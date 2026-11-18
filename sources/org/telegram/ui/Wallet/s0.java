@@ -52,8 +52,8 @@ public final class s0 implements q10 {
                             t0Var.e(wallettransaction2);
                             if (c10 != null) {
                                 c10.set(wallettransaction2);
-                                if (!TextUtils.equals(c10.f28668id, wallettransaction2.f28668id)) {
-                                    c10.f28668id = wallettransaction2.f28668id;
+                                if (!TextUtils.equals(c10.f28666id, wallettransaction2.f28666id)) {
+                                    c10.f28666id = wallettransaction2.f28666id;
                                 }
                             } else {
                                 t0Var.f45042b.add(wallettransaction2);
@@ -104,8 +104,8 @@ public final class s0 implements q10 {
                                     if (c11 != null) {
                                         boolean a10 = u0.a(c11);
                                         boolean z16 = c11.set(wallettransaction4);
-                                        if (!TextUtils.equals(c11.f28668id, wallettransaction4.f28668id)) {
-                                            c11.f28668id = wallettransaction4.f28668id;
+                                        if (!TextUtils.equals(c11.f28666id, wallettransaction4.f28666id)) {
+                                            c11.f28666id = wallettransaction4.f28666id;
                                             z16 = true;
                                         }
                                         if (z16) {

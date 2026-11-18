@@ -48,7 +48,7 @@ public final class jz0 {
         this.h = 0.0f;
         this.f36568i = 0.0f;
         this.f36569j = 0.0f;
-        this.f36570k = org.telegram.messenger.g0.f24120p;
+        this.f36570k = org.telegram.messenger.g0.f24117p;
         this.f36571l = 1.5f;
         this.f36572m = 1.15f;
         this.f36573n = true;
@@ -77,31 +77,31 @@ public final class jz0 {
         this.C = bitmap;
     }
 
-    public static void b(Canvas canvas, org.telegram.ui.Cells.q1 q1Var, int i7, float f10, float f11) {
+    public static void b(Canvas canvas, org.telegram.ui.Cells.r1 r1Var, int i7, float f10, float f11) {
         float f12;
         canvas.save();
-        if (q1Var.b()) {
-            f12 = q1Var.getAlpha();
+        if (r1Var.b()) {
+            f12 = r1Var.getAlpha();
         } else {
             f12 = 1.0f;
         }
         canvas.translate(f10, f11);
         boolean z10 = true;
-        q1Var.setInvalidatesParent(true);
+        r1Var.setInvalidatesParent(true);
         if (i7 == 0) {
-            q1Var.y1(f12, canvas, true);
+            r1Var.y1(f12, canvas, true);
         } else if (i7 == 1) {
-            q1Var.h1(canvas, f12);
+            r1Var.h1(canvas, f12);
         } else if (i7 == 2) {
-            if (q1Var.getCurrentPosition() == null || (q1Var.getCurrentPosition().f27891l & 1) != 0) {
+            if (r1Var.getCurrentPosition() == null || (r1Var.getCurrentPosition().f27889l & 1) != 0) {
                 z10 = false;
             }
-            q1Var.Q0(f12, canvas, z10);
-        } else if (q1Var.getCurrentPosition() == null || (q1Var.getCurrentPosition().f27891l & 1) != 0) {
-            q1Var.o1(canvas, f12, null);
-            q1Var.V0(canvas, f12);
+            r1Var.Q0(f12, canvas, z10);
+        } else if (r1Var.getCurrentPosition() == null || (r1Var.getCurrentPosition().f27889l & 1) != 0) {
+            r1Var.o1(canvas, f12, null);
+            r1Var.V0(canvas, f12);
         }
-        q1Var.setInvalidatesParent(false);
+        r1Var.setInvalidatesParent(false);
         canvas.restore();
     }
 

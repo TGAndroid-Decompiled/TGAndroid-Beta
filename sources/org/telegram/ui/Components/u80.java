@@ -11,7 +11,7 @@ import android.view.PixelCopy;
 import android.view.Surface;
 import android.view.SurfaceView;
 public final class u80 {
-    public final org.telegram.ui.z90 f40255a;
+    public final org.telegram.ui.aa0 f40255a;
     public SurfaceView d;
     public Bitmap f40258e;
     public Bitmap f40259f;
@@ -33,8 +33,8 @@ public final class u80 {
     };
     public final mo f40266n = new mo(this, 25);
 
-    public u80(org.telegram.ui.z90 z90Var) {
-        this.f40255a = z90Var;
+    public u80(org.telegram.ui.aa0 aa0Var) {
+        this.f40255a = aa0Var;
     }
 
     public final void a() {

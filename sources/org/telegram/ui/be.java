@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 public final class be implements ValueAnimator.AnimatorUpdateListener {
-    public final int f45850a;
-    public final bn f45851b;
+    public final int f45838a;
+    public final bn f45839b;
 
     public be(bn bnVar, int i7) {
-        this.f45850a = i7;
-        this.f45851b = bnVar;
+        this.f45838a = i7;
+        this.f45839b = bnVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f45850a) {
+        switch (this.f45838a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                bn bnVar = this.f45851b;
-                bnVar.f45941a9 = floatValue;
-                pl plVar = bnVar.f46093m1;
+                bn bnVar = this.f45839b;
+                bnVar.f45932a9 = floatValue;
+                pl plVar = bnVar.f46084m1;
                 if (plVar != null) {
                     plVar.invalidate();
                     bnVar.A0.invalidate();
@@ -25,27 +25,27 @@ public final class be implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                bn bnVar2 = this.f45851b;
+                bn bnVar2 = this.f45839b;
                 bnVar2.getClass();
-                bnVar2.f46235x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar2.f46226x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bnVar2.Tc();
                 return;
             case 2:
-                bn bnVar3 = this.f45851b;
+                bn bnVar3 = this.f45839b;
                 bnVar3.getClass();
-                bnVar3.f46235x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar3.f46226x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bnVar3.Tc();
                 return;
             case 3:
-                bn bnVar4 = this.f45851b;
+                bn bnVar4 = this.f45839b;
                 bnVar4.getClass();
-                bnVar4.f45958bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar4.f45949bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bnVar4.M9();
                 return;
             default:
-                bn bnVar5 = this.f45851b;
+                bn bnVar5 = this.f45839b;
                 bnVar5.getClass();
-                bnVar5.f45958bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar5.f45949bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bnVar5.M9();
                 return;
         }

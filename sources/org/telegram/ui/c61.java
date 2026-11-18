@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.content.Context;
 import java.util.HashSet;
 public final class c61 extends org.telegram.ui.Cells.j0 implements org.telegram.ui.ActionBar.c6 {
-    public int f46444e;
-    public final g61 f46445f;
+    public int f46435e;
+    public final g61 f46436f;
 
     public c61(g61 g61Var, Context context) {
         super(context);
-        this.f46445f = g61Var;
+        this.f46436f = g61Var;
     }
 
     @Override
@@ -22,8 +22,8 @@ public final class c61 extends org.telegram.ui.Cells.j0 implements org.telegram.
         if (i0Var != null) {
             try {
                 int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Mj, false);
-                if (x02 != this.f46444e) {
-                    this.f46444e = x02;
+                if (x02 != this.f46435e) {
+                    this.f46435e = x02;
                     i0Var.setOuterColor(x02);
                     i0Var.invalidate();
                 }

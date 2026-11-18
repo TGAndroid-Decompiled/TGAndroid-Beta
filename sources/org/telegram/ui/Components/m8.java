@@ -58,7 +58,7 @@ public final class m8 implements org.telegram.ui.ActionBar.r1, jq {
             }
             y8Var.Z.f40252c = i7;
         }
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25197t4, new Object[0]);
+        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25202u4, new Object[0]);
         y8Var.f42394a.invalidate();
     }
 

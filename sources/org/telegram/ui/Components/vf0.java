@@ -53,24 +53,24 @@ public final class vf0 {
         uf0 uf0Var = new uf0(this, null);
         uf0 uf0Var2 = new uf0(this, new tf0(aVar.f56616c));
         dh.c cVar2 = new dh.c(uf0Var, uf0Var, uf0Var);
-        cVar2.f8381j = qVar;
-        cVar2.f8379g = bVar;
-        cVar2.f8378f = bVar2;
+        cVar2.f8378j = qVar;
+        cVar2.f8376g = bVar;
+        cVar2.f8375f = bVar2;
         this.f40610c = cVar2;
         dh.c cVar3 = new dh.c(uf0Var2, uf0Var2, uf0Var2);
-        cVar3.f8381j = qVar;
-        cVar3.f8379g = bVar;
-        cVar3.f8378f = bVar2;
+        cVar3.f8378j = qVar;
+        cVar3.f8376g = bVar;
+        cVar3.f8375f = bVar2;
         this.d = cVar3;
-        cVar3.f8382k = true;
+        cVar3.f8379k = true;
         ui.d dVar2 = new ui.d(uf0Var2, new tf0(aVar.f56618f));
         this.f40612f = dVar2;
         dh.c cVar4 = new dh.c(dVar2, dVar2, dVar2);
-        cVar4.f8381j = qVar;
-        cVar4.f8379g = bVar;
-        cVar4.f8378f = bVar2;
+        cVar4.f8378j = qVar;
+        cVar4.f8376g = bVar;
+        cVar4.f8375f = bVar2;
         this.f40611e = cVar4;
-        cVar4.f8382k = true;
+        cVar4.f8379k = true;
     }
 
     public final void a() {

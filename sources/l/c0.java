@@ -26,36 +26,36 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
     public boolean H;
     public int I;
     public boolean K;
-    public final Context f19143b;
-    public final k f19144c;
+    public final Context f19140b;
+    public final k f19141c;
     public final h d;
-    public final boolean f19145e;
-    public final int f19146f;
+    public final boolean f19142e;
+    public final int f19143f;
     public final int h;
-    public final j2 f19147n;
-    public PopupWindow.OnDismissListener f19150w;
-    public View f19151x;
-    public View f19152y;
-    public final androidx.mediarouter.app.i f19148r = new androidx.mediarouter.app.i(this, 2);
-    public final r2 f19149s = new r2(this, 8);
+    public final j2 f19144n;
+    public PopupWindow.OnDismissListener f19147w;
+    public View f19148x;
+    public View f19149y;
+    public final androidx.mediarouter.app.i f19145r = new androidx.mediarouter.app.i(this, 2);
+    public final r2 f19146s = new r2(this, 8);
     public int J = 0;
 
     public c0(Context context, k kVar, View view, int i7, boolean z10) {
-        this.f19143b = context;
-        this.f19144c = kVar;
-        this.f19145e = z10;
+        this.f19140b = context;
+        this.f19141c = kVar;
+        this.f19142e = z10;
         this.d = new h(kVar, LayoutInflater.from(context), z10, 2131492883);
         this.h = i7;
         Resources resources = context.getResources();
-        this.f19146f = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(2131165207));
-        this.f19151x = view;
-        this.f19147n = new d2(context, null, i7);
+        this.f19143f = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(2131165207));
+        this.f19148x = view;
+        this.f19144n = new d2(context, null, i7);
         kVar.b(this, context);
     }
 
     @Override
     public final boolean a() {
-        if (!this.G && this.f19147n.P.isShowing()) {
+        if (!this.G && this.f19144n.P.isShowing()) {
             return true;
         }
         return false;
@@ -68,7 +68,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
 
     @Override
     public final void d(k kVar, boolean z10) {
-        if (kVar == this.f19144c) {
+        if (kVar == this.f19141c) {
             dismiss();
             w wVar = this.E;
             if (wVar != null) {
@@ -80,7 +80,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
     @Override
     public final void dismiss() {
         if (a()) {
-            this.f19147n.dismiss();
+            this.f19144n.dismiss();
         }
     }
 
@@ -95,7 +95,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
 
     @Override
     public final r1 f() {
-        return this.f19147n.f20039c;
+        return this.f19144n.f20036c;
     }
 
     @Override
@@ -106,16 +106,16 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
         if (a()) {
             return;
         }
-        if (!this.G && (view = this.f19151x) != null) {
-            this.f19152y = view;
-            j2 j2Var = this.f19147n;
+        if (!this.G && (view = this.f19148x) != null) {
+            this.f19149y = view;
+            j2 j2Var = this.f19144n;
             m.x xVar = j2Var.P;
             m.x xVar2 = j2Var.P;
             xVar.setOnDismissListener(this);
             j2Var.G = this;
             j2Var.O = true;
             xVar2.setFocusable(true);
-            View view2 = this.f19152y;
+            View view2 = this.f19149y;
             if (this.F == null) {
                 z10 = true;
             } else {
@@ -124,21 +124,21 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
             ViewTreeObserver viewTreeObserver = view2.getViewTreeObserver();
             this.F = viewTreeObserver;
             if (z10) {
-                viewTreeObserver.addOnGlobalLayoutListener(this.f19148r);
+                viewTreeObserver.addOnGlobalLayoutListener(this.f19145r);
             }
-            view2.addOnAttachStateChangeListener(this.f19149s);
+            view2.addOnAttachStateChangeListener(this.f19146s);
             j2Var.F = view2;
-            j2Var.f20046x = this.J;
+            j2Var.f20043x = this.J;
             boolean z11 = this.H;
-            Context context = this.f19143b;
+            Context context = this.f19140b;
             h hVar = this.d;
             if (!z11) {
-                this.I = s.m(hVar, context, this.f19146f);
+                this.I = s.m(hVar, context, this.f19143f);
                 this.H = true;
             }
             j2Var.r(this.I);
             xVar2.setInputMethodMode(2);
-            Rect rect2 = this.f19235a;
+            Rect rect2 = this.f19232a;
             if (rect2 != null) {
                 rect = new Rect(rect2);
             } else {
@@ -146,15 +146,15 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
             }
             j2Var.N = rect;
             j2Var.g();
-            r1 r1Var = j2Var.f20039c;
+            r1 r1Var = j2Var.f20036c;
             r1Var.setOnKeyListener(this);
             if (this.K) {
-                k kVar = this.f19144c;
-                if (kVar.f19190m != null) {
+                k kVar = this.f19141c;
+                if (kVar.f19187m != null) {
                     FrameLayout frameLayout = (FrameLayout) LayoutInflater.from(context).inflate(2131492882, (ViewGroup) r1Var, false);
                     TextView textView = (TextView) frameLayout.findViewById(16908310);
                     if (textView != null) {
-                        textView.setText(kVar.f19190m);
+                        textView.setText(kVar.f19187m);
                     }
                     frameLayout.setEnabled(false);
                     r1Var.addHeaderView(frameLayout, null, false);
@@ -176,14 +176,14 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
     public final boolean j(d0 d0Var) {
         boolean z10;
         if (d0Var.hasVisibleItems()) {
-            v vVar = new v(this.f19143b, d0Var, this.f19152y, this.f19145e, this.h, 0);
+            v vVar = new v(this.f19140b, d0Var, this.f19149y, this.f19142e, this.h, 0);
             w wVar = this.E;
             vVar.h = wVar;
-            s sVar = vVar.f19243i;
+            s sVar = vVar.f19240i;
             if (sVar != null) {
                 sVar.h(wVar);
             }
-            int size = d0Var.f19184f.size();
+            int size = d0Var.f19181f.size();
             int i7 = 0;
             while (true) {
                 if (i7 < size) {
@@ -198,25 +198,25 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
                     break;
                 }
             }
-            vVar.f19242g = z10;
-            s sVar2 = vVar.f19243i;
+            vVar.f19239g = z10;
+            s sVar2 = vVar.f19240i;
             if (sVar2 != null) {
                 sVar2.o(z10);
             }
-            vVar.f19244j = this.f19150w;
-            this.f19150w = null;
-            this.f19144c.c(false);
-            j2 j2Var = this.f19147n;
-            int i10 = j2Var.f20041f;
+            vVar.f19241j = this.f19147w;
+            this.f19147w = null;
+            this.f19141c.c(false);
+            j2 j2Var = this.f19144n;
+            int i10 = j2Var.f20038f;
             int o4 = j2Var.o();
             int i11 = this.J;
-            View view = this.f19151x;
+            View view = this.f19148x;
             WeakHashMap weakHashMap = i0.f56244a;
             if ((Gravity.getAbsoluteGravity(i11, view.getLayoutDirection()) & 7) == 5) {
-                i10 += this.f19151x.getWidth();
+                i10 += this.f19148x.getWidth();
             }
             if (!vVar.b()) {
-                if (vVar.f19240e != null) {
+                if (vVar.f19237e != null) {
                     vVar.d(i10, o4, true, true);
                 }
             }
@@ -231,28 +231,28 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
 
     @Override
     public final void n(View view) {
-        this.f19151x = view;
+        this.f19148x = view;
     }
 
     @Override
     public final void o(boolean z10) {
-        this.d.f19176c = z10;
+        this.d.f19173c = z10;
     }
 
     @Override
     public final void onDismiss() {
         this.G = true;
-        this.f19144c.c(true);
+        this.f19141c.c(true);
         ViewTreeObserver viewTreeObserver = this.F;
         if (viewTreeObserver != null) {
             if (!viewTreeObserver.isAlive()) {
-                this.F = this.f19152y.getViewTreeObserver();
+                this.F = this.f19149y.getViewTreeObserver();
             }
-            this.F.removeGlobalOnLayoutListener(this.f19148r);
+            this.F.removeGlobalOnLayoutListener(this.f19145r);
             this.F = null;
         }
-        this.f19152y.removeOnAttachStateChangeListener(this.f19149s);
-        PopupWindow.OnDismissListener onDismissListener = this.f19150w;
+        this.f19149y.removeOnAttachStateChangeListener(this.f19146s);
+        PopupWindow.OnDismissListener onDismissListener = this.f19147w;
         if (onDismissListener != null) {
             onDismissListener.onDismiss();
         }
@@ -274,12 +274,12 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
 
     @Override
     public final void q(int i7) {
-        this.f19147n.f20041f = i7;
+        this.f19144n.f20038f = i7;
     }
 
     @Override
     public final void r(PopupWindow.OnDismissListener onDismissListener) {
-        this.f19150w = onDismissListener;
+        this.f19147w = onDismissListener;
     }
 
     @Override
@@ -289,7 +289,7 @@ public final class c0 extends s implements PopupWindow.OnDismissListener, View.O
 
     @Override
     public final void t(int i7) {
-        this.f19147n.k(i7);
+        this.f19144n.k(i7);
     }
 
     @Override

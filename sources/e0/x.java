@@ -9,42 +9,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 public final class x extends y {
-    public final ArrayList f10276e = new ArrayList();
-    public final ArrayList f10277f = new ArrayList();
-    public final j0 f10278g;
+    public final ArrayList f10273e = new ArrayList();
+    public final ArrayList f10274f = new ArrayList();
+    public final j0 f10275g;
     public CharSequence h;
-    public Boolean f10279i;
+    public Boolean f10276i;
 
     public x() {
         ?? obj = new Object();
-        obj.f10231a = "";
-        obj.f10232b = null;
-        obj.f10233c = null;
+        obj.f10228a = "";
+        obj.f10229b = null;
+        obj.f10230c = null;
         obj.d = null;
-        obj.f10234e = false;
-        obj.f10235f = false;
-        this.f10278g = obj;
+        obj.f10231e = false;
+        obj.f10232f = false;
+        this.f10275g = obj;
     }
 
     @Override
     public final void a(Bundle bundle) {
         super.a(bundle);
-        j0 j0Var = this.f10278g;
-        bundle.putCharSequence("android.selfDisplayName", j0Var.f10231a);
+        j0 j0Var = this.f10275g;
+        bundle.putCharSequence("android.selfDisplayName", j0Var.f10228a);
         bundle.putBundle("android.messagingStyleUser", j0Var.c());
         bundle.putCharSequence("android.hiddenConversationTitle", this.h);
-        if (this.h != null && this.f10279i.booleanValue()) {
+        if (this.h != null && this.f10276i.booleanValue()) {
             bundle.putCharSequence("android.conversationTitle", this.h);
         }
-        ArrayList arrayList = this.f10276e;
+        ArrayList arrayList = this.f10273e;
         if (!arrayList.isEmpty()) {
             bundle.putParcelableArray("android.messages", w.a(arrayList));
         }
-        ArrayList arrayList2 = this.f10277f;
+        ArrayList arrayList2 = this.f10274f;
         if (!arrayList2.isEmpty()) {
             bundle.putParcelableArray("android.messages.historic", w.a(arrayList2));
         }
-        Boolean bool = this.f10279i;
+        Boolean bool = this.f10276i;
         if (bool != null) {
             bundle.putBoolean("android.isGroupConversation", bool.booleanValue());
         }
@@ -61,7 +61,7 @@ public final class x extends y {
     }
 
     public final List d() {
-        return this.f10276e;
+        return this.f10273e;
     }
 
     public final SpannableStringBuilder e(w wVar) {
@@ -74,17 +74,17 @@ public final class x extends y {
             bVar = p0.b.d;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        j0 j0Var = wVar.f10273c;
+        j0 j0Var = wVar.f10270c;
         CharSequence charSequence2 = "";
         if (j0Var == null) {
             charSequence = "";
         } else {
-            charSequence = j0Var.f10231a;
+            charSequence = j0Var.f10228a;
         }
         int i7 = -16777216;
         if (TextUtils.isEmpty(charSequence)) {
-            charSequence = this.f10278g.f10231a;
-            int i10 = this.f10280a.f10267w;
+            charSequence = this.f10275g.f10228a;
+            int i10 = this.f10277a.f10264w;
             if (i10 != 0) {
                 i7 = i10;
             }
@@ -92,7 +92,7 @@ public final class x extends y {
         SpannableStringBuilder c10 = bVar.c(charSequence);
         spannableStringBuilder.append((CharSequence) c10);
         spannableStringBuilder.setSpan(new TextAppearanceSpan(null, 0, 0, ColorStateList.valueOf(i7), null), spannableStringBuilder.length() - c10.length(), spannableStringBuilder.length(), 33);
-        CharSequence charSequence3 = wVar.f10271a;
+        CharSequence charSequence3 = wVar.f10268a;
         if (charSequence3 != null) {
             charSequence2 = charSequence3;
         }
@@ -105,8 +105,8 @@ public final class x extends y {
     }
 
     public x(j0 j0Var) {
-        if (!TextUtils.isEmpty(j0Var.f10231a)) {
-            this.f10278g = j0Var;
+        if (!TextUtils.isEmpty(j0Var.f10228a)) {
+            this.f10275g = j0Var;
             return;
         }
         throw new IllegalArgumentException("User's name must not be empty.");

@@ -2,14 +2,14 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class zn implements RequestDelegate {
-    public final int f28338a;
-    public final c1 f28339b;
-    public final int f28340c;
+    public final int f28336a;
+    public final c1 f28337b;
+    public final int f28338c;
 
     public zn(c1 c1Var, int i7, int i10) {
-        this.f28338a = i10;
-        this.f28339b = c1Var;
-        this.f28340c = i7;
+        this.f28336a = i10;
+        this.f28337b = c1Var;
+        this.f28338c = i7;
     }
 
     @Override

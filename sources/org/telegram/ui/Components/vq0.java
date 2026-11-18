@@ -49,7 +49,7 @@ public final class vq0 extends wz {
     @Override
     public final void onDraw(Canvas canvas) {
         gt0 gt0Var = this.W;
-        gt0Var.W0.setColor(gt0Var.s0(org.telegram.ui.ActionBar.n6.f29396d6));
+        gt0Var.W0.setColor(gt0Var.s0(org.telegram.ui.ActionBar.n6.f29394d6));
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), gt0Var.W0);
         super.onDraw(canvas);
     }

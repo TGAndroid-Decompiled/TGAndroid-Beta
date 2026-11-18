@@ -37,7 +37,7 @@ public final class qt implements View.OnClickListener {
                 kg.k kVar = wtVar.f41787b;
                 if (kVar.isEnabled() && kVar.getAlpha() >= 0.5f) {
                     org.telegram.ui.ActionBar.j1 j1Var = wtVar.L;
-                    if (j1Var == null || !j1Var.f29024f) {
+                    if (j1Var == null || !j1Var.f29022f) {
                         if (wtVar.f41791n) {
                             rtVar.m();
                             y60 y60Var = new y60(au0Var, i6Var, kVar, false, false, true);
@@ -77,11 +77,11 @@ public final class qt implements View.OnClickListener {
                 o10 o10Var = (o10) this.f38894b;
                 o10Var.dismiss();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) this.f38895c);
-                alertDialog$Builder.f28746a.S = org.telegram.messenger.gd.M0(2131749386, null);
-                alertDialog$Builder.f28746a.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(2131749387, null));
+                alertDialog$Builder.f28744a.S = org.telegram.messenger.gd.M0(2131749386, null);
+                alertDialog$Builder.f28744a.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(2131749387, null));
                 alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131749388, null), new iy(o10Var, 3));
                 alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
-                ((org.telegram.ui.ActionBar.h2) this.d).showDialog(alertDialog$Builder.f28746a);
+                ((org.telegram.ui.ActionBar.h2) this.d).showDialog(alertDialog$Builder.f28744a);
                 return;
             case 2:
                 e80 e80Var = (e80) this.f38894b;
@@ -89,8 +89,8 @@ public final class qt implements View.OnClickListener {
                 org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.d;
                 try {
                     if (e80Var.f34640b != null) {
-                        ((ClipboardManager) org.telegram.messenger.t0.f26915b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", e80Var.f34640b));
-                        if (x2Var != null && (n2Var = x2Var.f30195c) != null) {
+                        ((ClipboardManager) org.telegram.messenger.t0.f26913b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", e80Var.f34640b));
+                        if (x2Var != null && (n2Var = x2Var.f30193c) != null) {
                             new lc(n2Var, null).k(false).j();
                         } else {
                             lc.j(h2Var).j();
@@ -107,22 +107,22 @@ public final class qt implements View.OnClickListener {
                 ta0 ta0Var2 = (ta0) this.d;
                 ua0 ua0Var = oa0Var.f38045d0;
                 org.telegram.messenger.jj jjVar = ua0Var.d;
-                boolean z11 = jjVar.f24876l;
+                boolean z11 = jjVar.f24873l;
                 boolean z12 = !z11;
-                jjVar.f24876l = z12;
+                jjVar.f24873l = z12;
                 if (!z11) {
-                    if (!jjVar.f24875k) {
-                        jjVar.f24875k = true;
+                    if (!jjVar.f24872k) {
+                        jjVar.f24872k = true;
                         ua0Var.f40287y = true;
                     }
                 } else {
                     if (ua0Var.f40287y) {
-                        jjVar.f24875k = false;
+                        jjVar.f24872k = false;
                     }
                     ua0Var.f40287y = false;
                 }
                 ta0Var.a(z12, true);
-                ta0Var2.a(jjVar.f24875k, true);
+                ta0Var2.a(jjVar.f24872k, true);
                 oa0Var.i();
                 oa0Var.l(true);
                 return;
@@ -137,7 +137,7 @@ public final class qt implements View.OnClickListener {
                     hi.i3 i3Var = new hi.i3(context, i6Var2, org.telegram.messenger.gd.M0(2131743370, null), ee0Var.f34685f);
                     ee0Var.h = i3Var;
                     i3Var.n(new gb0(ee0Var, 7));
-                    ee0Var.h.f14760q1 = ee0Var.f34686n;
+                    ee0Var.h.f14757q1 = ee0Var.f34686n;
                 }
                 ee0Var.h.show();
                 return;
@@ -151,13 +151,13 @@ public final class qt implements View.OnClickListener {
                 }
                 String str = y21Var.f42282v1;
                 x21 x21Var = y21Var.I1;
-                if (!TextUtils.equals(str, cdVar.f23335f)) {
+                if (!TextUtils.equals(str, cdVar.f23332f)) {
                     View view3 = x21Var.d;
                     if (view3 == y21Var.f42286z1 || view3 == y21Var.f42280t1) {
                         y21Var.f42283w1 = y21Var.f42282v1;
                     }
                     u21 u21Var = w21Var.f41546e;
-                    String str2 = cdVar.f23335f;
+                    String str2 = cdVar.f23332f;
                     y21Var.f42282v1 = str2;
                     u21Var.setText(y21.L0(y21.P0(str2, null, null)));
                     if (y21Var.f42278r1 != null) {

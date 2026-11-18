@@ -2,7 +2,7 @@ package d3;
 
 import e2.x1;
 public interface i0 {
-    public static final nb.a f7697k = new nb.a(7);
+    public static final nb.a f7694k = new nb.a(7);
 
     void a(x1 x1Var);
 

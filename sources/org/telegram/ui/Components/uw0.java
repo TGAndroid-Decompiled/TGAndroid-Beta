@@ -39,7 +39,7 @@ public final class uw0 implements org.telegram.ui.ls {
         if (this.f40428a.E) {
             return false;
         }
-        return org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q();
+        return org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q();
     }
 
     @Override
@@ -81,11 +81,11 @@ public final class uw0 implements org.telegram.ui.ls {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User f10;
         boolean z10;
-        if (this.f40428a.F || !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q() || (f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).f()) == null) {
+        if (this.f40428a.F || !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q() || (f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).f()) == null) {
             return null;
         }
         Long i7 = org.telegram.messenger.o10.i(f10);
-        if (document != null && (i7 == null || i7.longValue() != document.f28411id)) {
+        if (document != null && (i7 == null || i7.longValue() != document.f28409id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -161,7 +161,7 @@ public final class uw0 implements org.telegram.ui.ls {
         if (parentFragment instanceof org.telegram.ui.bn) {
             org.telegram.ui.bn bnVar = (org.telegram.ui.bn) parentFragment;
             if (bnVar.T6()) {
-                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q()) {
+                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q()) {
                     if (bnVar.j() != null && org.telegram.messenger.o10.C(bnVar.j())) {
                         return true;
                     }
@@ -189,10 +189,10 @@ public final class uw0 implements org.telegram.ui.ls {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f28411id;
+            tL_emojiStatus.document_id = document.f28409id;
             emojiStatus = tL_emojiStatus;
         }
-        TLRPC.User f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).f();
+        TLRPC.User f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).f();
         if (f10 == null) {
             obj = new TLRPC.TL_emojiStatusEmpty();
         } else {

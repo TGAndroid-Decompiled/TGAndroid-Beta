@@ -4,18 +4,18 @@ import android.animation.ValueAnimator;
 import android.graphics.RectF;
 import android.view.View;
 public final class du0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f47053a;
-    public final ProfileActivity f47054b;
+    public final int f46976a;
+    public final ProfileActivity f46977b;
 
     public du0(ProfileActivity profileActivity, int i7) {
-        this.f47053a = i7;
-        this.f47054b = profileActivity;
+        this.f46976a = i7;
+        this.f46977b = profileActivity;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f47053a;
-        ProfileActivity profileActivity = this.f47054b;
+        int i7 = this.f46976a;
+        ProfileActivity profileActivity = this.f46977b;
         switch (i7) {
             case 0:
                 profileActivity.f43679y0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));

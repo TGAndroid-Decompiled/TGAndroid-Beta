@@ -5,8 +5,8 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ef;
 import org.telegram.messenger.yy;
 public final class d extends sh.d {
-    public final ef f58214b;
-    public final yy f58215c;
+    public final ef f58215b;
+    public final yy f58216c;
 
     public d(org.telegram.messenger.yy r10) {
         throw new UnsupportedOperationException("Method not decompiled: th.d.<init>(org.telegram.messenger.yy):void");

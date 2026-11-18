@@ -1,11 +1,11 @@
 package zd;
 public abstract class q0 implements Runnable, Comparable, l0 {
     private volatile Object _heap;
-    public long f61880a;
-    public int f61881b = -1;
+    public long f61881a;
+    public int f61882b = -1;
 
     public q0(long j3) {
-        this.f61880a = j3;
+        this.f61881a = j3;
     }
 
     public final ee.v b() {
@@ -20,17 +20,17 @@ public abstract class q0 implements Runnable, Comparable, l0 {
         q0 q0Var;
         boolean z10;
         synchronized (this) {
-            if (this._heap == b0.f61817b) {
+            if (this._heap == b0.f61818b) {
                 return 2;
             }
             synchronized (r0Var) {
-                q0[] q0VarArr = r0Var.f10954a;
+                q0[] q0VarArr = r0Var.f10951a;
                 if (q0VarArr != null) {
                     q0Var = q0VarArr[0];
                 } else {
                     q0Var = null;
                 }
-                if (s0.f61884r.get(s0Var) != 0) {
+                if (s0.f61885r.get(s0Var) != 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -39,20 +39,20 @@ public abstract class q0 implements Runnable, Comparable, l0 {
                     return 1;
                 }
                 if (q0Var == null) {
-                    r0Var.f61882c = j3;
+                    r0Var.f61883c = j3;
                 } else {
-                    long j10 = q0Var.f61880a;
+                    long j10 = q0Var.f61881a;
                     if (j10 - j3 < 0) {
                         j3 = j10;
                     }
-                    if (j3 - r0Var.f61882c > 0) {
-                        r0Var.f61882c = j3;
+                    if (j3 - r0Var.f61883c > 0) {
+                        r0Var.f61883c = j3;
                     }
                 }
-                long j11 = this.f61880a;
-                long j12 = r0Var.f61882c;
+                long j11 = this.f61881a;
+                long j12 = r0Var.f61883c;
                 if (j11 - j12 < 0) {
-                    this.f61880a = j12;
+                    this.f61881a = j12;
                 }
                 r0Var.a(this);
                 return 0;
@@ -62,7 +62,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
 
     @Override
     public final int compareTo(Object obj) {
-        int i7 = ((this.f61880a - ((q0) obj).f61880a) > 0L ? 1 : ((this.f61880a - ((q0) obj).f61880a) == 0L ? 0 : -1));
+        int i7 = ((this.f61881a - ((q0) obj).f61881a) > 0L ? 1 : ((this.f61881a - ((q0) obj).f61881a) == 0L ? 0 : -1));
         if (i7 > 0) {
             return 1;
         }
@@ -73,7 +73,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
     }
 
     public final void d(r0 r0Var) {
-        if (this._heap != b0.f61817b) {
+        if (this._heap != b0.f61818b) {
             this._heap = r0Var;
             return;
         }
@@ -86,7 +86,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
         synchronized (this) {
             try {
                 Object obj = this._heap;
-                ee.t tVar = b0.f61817b;
+                ee.t tVar = b0.f61818b;
                 if (obj == tVar) {
                     return;
                 }
@@ -106,6 +106,6 @@ public abstract class q0 implements Runnable, Comparable, l0 {
     }
 
     public String toString() {
-        return "Delayed[nanos=" + this.f61880a + ']';
+        return "Delayed[nanos=" + this.f61881a + ']';
     }
 }

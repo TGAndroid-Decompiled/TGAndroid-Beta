@@ -22,15 +22,15 @@ public final class ej extends v4.u {
         kl klVar = bnVar.D0;
         int i11 = klVar.K;
         if (i7 >= i11 && i7 < klVar.L && (i10 = i7 - i11) >= 0 && i10 < klVar.L().size() && (u92 = bnVar.u9((fjVar = (org.telegram.messenger.fj) bnVar.D0.L().get(i10)))) != null) {
-            ArrayList arrayList = u92.f22901e;
+            ArrayList arrayList = u92.f22898e;
             org.telegram.messenger.xi d = u92.d(fjVar);
-            if (d.f27882a != d.f27883b && (b10 = d.f27884c) == d.d && b10 != 0) {
+            if (d.f27880a != d.f27881b && (b10 = d.f27882c) == d.d && b10 != 0) {
                 int size = arrayList.size();
                 for (int i12 = 0; i12 < size; i12++) {
                     org.telegram.messenger.xi xiVar = (org.telegram.messenger.xi) arrayList.get(i12);
                     if (xiVar != d) {
-                        byte b11 = xiVar.f27884c;
-                        byte b12 = d.f27884c;
+                        byte b11 = xiVar.f27882c;
+                        byte b12 = d.f27882c;
                         if (b11 <= b12 && xiVar.d >= b12) {
                             return true;
                         }
@@ -43,8 +43,8 @@ public final class ej extends v4.u {
 
     @Override
     public final boolean C1(View view) {
-        if (view instanceof org.telegram.ui.Cells.q1) {
-            return !((org.telegram.ui.Cells.q1) view).getMessageObject().P3();
+        if (view instanceof org.telegram.ui.Cells.r1) {
+            return !((org.telegram.ui.Cells.r1) view).getMessageObject().P3();
         }
         return false;
     }
@@ -68,7 +68,7 @@ public final class ej extends v4.u {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f59217n - this.T.P9) - C());
+            return (int) ((this.f59218n - this.T.P9) - C());
         }
         return super.K();
     }
@@ -80,7 +80,7 @@ public final class ej extends v4.u {
 
     @Override
     public final void b0(v4.x0 x0Var, v4.c1 c1Var) {
-        boolean z10 = org.telegram.messenger.s2.f26723a;
+        boolean z10 = org.telegram.messenger.s2.f26721a;
         try {
             super.b0(x0Var, c1Var);
         } catch (Exception e10) {
@@ -130,7 +130,7 @@ public final class ej extends v4.u {
     public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
         this.T.Pa = false;
         pi.l lVar = new pi.l(recyclerView.getContext(), 0);
-        lVar.f59066a = i7;
+        lVar.f59067a = i7;
         w0(lVar);
     }
 

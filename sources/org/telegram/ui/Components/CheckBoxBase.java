@@ -45,13 +45,13 @@ public class CheckBoxBase {
     public final Path f32831j = new Path();
     public boolean f32832k = true;
     public float f32834m = 1.0f;
-    public int f32839r = org.telegram.ui.ActionBar.n6.f29526k7;
+    public int f32839r = org.telegram.ui.ActionBar.n6.f29524k7;
 
     public CheckBoxBase(int i7, View view, org.telegram.ui.ActionBar.i6 i6Var) {
-        int i10 = org.telegram.ui.ActionBar.n6.f29385cd;
+        int i10 = org.telegram.ui.ActionBar.n6.f29383cd;
         this.f32840s = i10;
         this.f32841t = i10;
-        this.f32842u = org.telegram.ui.ActionBar.n6.f29469h5;
+        this.f32842u = org.telegram.ui.ActionBar.n6.f29467h5;
         this.v = 0.0f;
         this.f32843w = 1.0f;
         this.f32846z = true;

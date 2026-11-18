@@ -1,9 +1,9 @@
 package d9;
 public final class o implements n, he.b, ib.b {
-    public final Object f7925a;
+    public final Object f7922a;
 
     public o(Object obj) {
-        this.f7925a = obj;
+        this.f7922a = obj;
     }
 
     public static o b(Object obj) {
@@ -15,7 +15,7 @@ public final class o implements n, he.b, ib.b {
 
     @Override
     public Object a() {
-        return this.f7925a;
+        return this.f7922a;
     }
 
     public Object c() {
@@ -29,6 +29,6 @@ public final class o implements n, he.b, ib.b {
 
     @Override
     public Object mo24get() {
-        return this.f7925a;
+        return this.f7922a;
     }
 }

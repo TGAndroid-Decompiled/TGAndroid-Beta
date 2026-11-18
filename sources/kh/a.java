@@ -24,21 +24,21 @@ import org.telegram.ui.Cells.y;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.sp;
 public final class a extends FrameLayout implements te.b, c6 {
-    public final te.a f18556a;
-    public final te.a f18557b;
-    public ImageView f18558c;
+    public final te.a f18553a;
+    public final te.a f18554b;
+    public ImageView f18555c;
     public ImageView d;
-    public sp f18559e;
-    public i6 f18560f;
+    public sp f18556e;
+    public i6 f18557f;
     public float h;
-    public int f18561n;
-    public g f18562r;
+    public int f18558n;
+    public g f18559r;
 
     public a(Context context) {
         super(context);
         lr lrVar = lr.h;
-        this.f18556a = new te.a(0, this, lrVar, 320L, false);
-        this.f18557b = new te.a(1, this, lrVar, 320L, true);
+        this.f18553a = new te.a(0, this, lrVar, 320L, false);
+        this.f18554b = new te.a(1, this, lrVar, 320L, true);
         this.h = 1.0f;
     }
 
@@ -46,7 +46,7 @@ public final class a extends FrameLayout implements te.b, c6 {
         int i7 = n6.Nl;
         int w02 = n6.w0(i7, i6Var);
         a aVar2 = new a(context);
-        aVar2.f18560f = i6Var;
+        aVar2.f18557f = i6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.setIconColor(w02);
         int L = g0.L(22.0f);
@@ -63,7 +63,7 @@ public final class a extends FrameLayout implements te.b, c6 {
         int i11 = n6.Nl;
         int w02 = n6.w0(i11, i6Var);
         a aVar2 = new a(context);
-        aVar2.f18560f = i6Var;
+        aVar2.f18557f = i6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.f(i7, i10);
         aVar2.setIconColor(w02);
@@ -91,14 +91,14 @@ public final class a extends FrameLayout implements te.b, c6 {
 
     public final void a() {
         int i7;
-        float f10 = 1.0f - this.f18556a.f57657e;
-        float T1 = g0.T1(f10 / 2.0f, f10, this.f18557b.f57657e);
-        ImageView imageView = this.f18558c;
+        float f10 = 1.0f - this.f18553a.f57657e;
+        float T1 = g0.T1(f10 / 2.0f, f10, this.f18554b.f57657e);
+        ImageView imageView = this.f18555c;
         if (imageView != null) {
             imageView.setAlpha(T1);
-            this.f18558c.setScaleX(g0.T1(0.4f, 1.0f, f10));
-            this.f18558c.setScaleY(g0.T1(0.4f, 1.0f, f10) * this.h);
-            ImageView imageView2 = this.f18558c;
+            this.f18555c.setScaleX(g0.T1(0.4f, 1.0f, f10));
+            this.f18555c.setScaleY(g0.T1(0.4f, 1.0f, f10) * this.h);
+            ImageView imageView2 = this.f18555c;
             if (f10 > 0.0f) {
                 i7 = 0;
             } else {
@@ -110,8 +110,8 @@ public final class a extends FrameLayout implements te.b, c6 {
 
     public final void b() {
         int i7;
-        float f10 = this.f18556a.f57657e;
-        float T1 = g0.T1(f10 / 2.0f, f10, this.f18557b.f57657e);
+        float f10 = this.f18553a.f57657e;
+        float T1 = g0.T1(f10 / 2.0f, f10, this.f18554b.f57657e);
         ImageView imageView = this.d;
         if (imageView != null) {
             imageView.setAlpha(T1);
@@ -124,7 +124,7 @@ public final class a extends FrameLayout implements te.b, c6 {
             }
             if (this.d.getVisibility() != i7) {
                 this.d.setVisibility(i7);
-                this.f18559e.f39808c = -1L;
+                this.f18556e.f39808c = -1L;
             }
         }
     }
@@ -136,39 +136,39 @@ public final class a extends FrameLayout implements te.b, c6 {
 
     @Override
     public final void draw(Canvas canvas) {
-        this.f18562r.draw(canvas);
+        this.f18559r.draw(canvas);
         super.draw(canvas);
     }
 
     public final void e(boolean z10, boolean z11) {
         super.setEnabled(z10);
-        this.f18557b.a(z10, z11);
+        this.f18554b.a(z10, z11);
     }
 
     public final void f(int i7, int i10) {
-        if (this.f18558c == null) {
+        if (this.f18555c == null) {
             if (i7 == 0) {
                 return;
             }
             ImageView imageView = new ImageView(getContext());
-            this.f18558c = imageView;
+            this.f18555c = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.f18558c, ma.e(i10, i10, 17));
+            addView(this.f18555c, ma.e(i10, i10, 17));
             a();
         }
-        this.f18558c.setImageResource(i7);
+        this.f18555c.setImageResource(i7);
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        this.f18562r.setBounds(0, 0, i7, i10);
+        this.f18559r.setBounds(0, 0, i7, i10);
     }
 
     public void setBlurredBackgroundDrawable(g gVar) {
-        this.f18562r = gVar;
+        this.f18559r = gVar;
         gVar.q(g0.L(6.0f));
-        this.f18562r.r(g0.L(22.0f));
+        this.f18559r.r(g0.L(22.0f));
     }
 
     @Override
@@ -182,11 +182,11 @@ public final class a extends FrameLayout implements te.b, c6 {
 
     public void setIconColor(int i7) {
         BlendMode blendMode;
-        ImageView imageView = this.f18558c;
+        ImageView imageView = this.f18555c;
         if (imageView == null) {
             return;
         }
-        this.f18561n = i7;
+        this.f18558n = i7;
         if (Build.VERSION.SDK_INT >= 29) {
             blendMode = BlendMode.SRC_IN;
             imageView.setColorFilter(new BlendModeColorFilter(i7, blendMode));
@@ -196,7 +196,7 @@ public final class a extends FrameLayout implements te.b, c6 {
     }
 
     public void setIconPadding(int i7) {
-        ImageView imageView = this.f18558c;
+        ImageView imageView = this.f18555c;
         if (imageView != null) {
             imageView.setPadding(0, i7, 0, 0);
         }
@@ -204,13 +204,13 @@ public final class a extends FrameLayout implements te.b, c6 {
 
     @Override
     public final void updateColors() {
-        g gVar = this.f18562r;
+        g gVar = this.f18559r;
         if (gVar != null) {
             gVar.updateColors();
             invalidate();
         }
-        int w02 = n6.w0(n6.Nl, this.f18560f);
-        if (this.f18558c != null && w02 != this.f18561n) {
+        int w02 = n6.w0(n6.Nl, this.f18557f);
+        if (this.f18555c != null && w02 != this.f18558n) {
             setIconColor(w02);
         }
         int L = g0.L(22.0f);

@@ -22,8 +22,8 @@ public final class iv extends v4.u0 {
         cx cxVar = this.d;
         if (i7 == 1) {
             this.f48806a = true;
-            cxVar.f46691g3 = true;
-            a8.xa xaVar = cxVar.f46683f0[0].f46308b;
+            cxVar.f46671g3 = true;
+            a8.xa xaVar = cxVar.f46663f0[0].f46299b;
             ValueAnimator valueAnimator = (ValueAnimator) xaVar.f714c;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -35,20 +35,20 @@ public final class iv extends v4.u0 {
                 cxVar.Y.f33845r.clearFocus();
             }
         } else {
-            cxVar.f46691g3 = false;
+            cxVar.f46671g3 = false;
         }
         if (i7 == 0) {
             this.f48806a = false;
-            cxVar.f46690g2 = false;
-            boolean z10 = cxVar.f46673d1;
+            cxVar.f46670g2 = false;
+            boolean z10 = cxVar.f46653d1;
             bx bxVar = this.f48807b;
             if (z10) {
-                cxVar.f46673d1 = false;
-                if (cxVar.f46684f1) {
-                    yw ywVar = bxVar.f46307a;
+                cxVar.f46653d1 = false;
+                if (cxVar.f46664f1) {
+                    yw ywVar = bxVar.f46298a;
                     int i10 = yw.C3;
                     ywVar.D1();
-                    cxVar.f46684f1 = false;
+                    cxVar.f46664f1 = false;
                 }
                 bxVar.d.f();
             }
@@ -69,7 +69,7 @@ public final class iv extends v4.u0 {
         Object[] objArr;
         this.f48808c.V();
         bx bxVar = this.f48807b;
-        ev evVar = bxVar.f46317y;
+        ev evVar = bxVar.f46308y;
         int i13 = -i10;
         ArrayList arrayList = evVar.f39289x;
         ArrayList arrayList2 = evVar.f39281o;
@@ -77,14 +77,14 @@ public final class iv extends v4.u0 {
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
             for (int i14 = 0; i14 < size; i14++) {
-                View view = ((v4.f1) arrayList2.get(i14)).f59122a;
+                View view = ((v4.f1) arrayList2.get(i14)).f59123a;
                 view.setTranslationY(view.getTranslationY() + i13);
             }
         }
         if (!arrayList.isEmpty()) {
             int size2 = arrayList.size();
             for (int i15 = 0; i15 < size2; i15++) {
-                View view2 = ((v4.f1) arrayList.get(i15)).f59122a;
+                View view2 = ((v4.f1) arrayList.get(i15)).f59123a;
                 view2.setTranslationY(view2.getTranslationY() + i13);
             }
         }
@@ -112,13 +112,13 @@ public final class iv extends v4.u0 {
             v4.f1 K = recyclerView.K(i17);
             if (!cxVar.n4() || (K != null && K.b() >= 0)) {
                 if (K != null) {
-                    i12 = K.f59122a.getTop();
+                    i12 = K.f59123a.getTop();
                 } else {
                     i12 = 0;
                 }
-                int i19 = cxVar.f46657a2;
+                int i19 = cxVar.f46637a2;
                 if (i19 == i17) {
-                    int i20 = cxVar.f46663b2;
+                    int i20 = cxVar.f46643b2;
                     int i21 = i20 - i12;
                     if (i12 < i20) {
                         z10 = true;
@@ -127,12 +127,12 @@ public final class iv extends v4.u0 {
                     }
                     if (Math.abs(i21) <= 1) {
                         objArr = null;
-                        if (objArr != null && cxVar.f46669c2 && (z10 || cxVar.f46691g3)) {
+                        if (objArr != null && cxVar.f46649c2 && (z10 || cxVar.f46671g3)) {
                             cxVar.q4(z10);
                         }
-                        cxVar.f46657a2 = i17;
-                        cxVar.f46663b2 = i12;
-                        cxVar.f46669c2 = true;
+                        cxVar.f46637a2 = i17;
+                        cxVar.f46643b2 = i12;
+                        cxVar.f46649c2 = true;
                     }
                 } else if (i17 > i19) {
                     z10 = true;
@@ -143,17 +143,17 @@ public final class iv extends v4.u0 {
                 if (objArr != null) {
                     cxVar.q4(z10);
                 }
-                cxVar.f46657a2 = i17;
-                cxVar.f46663b2 = i12;
-                cxVar.f46669c2 = true;
+                cxVar.f46637a2 = i17;
+                cxVar.f46643b2 = i12;
+                cxVar.f46649c2 = true;
             }
         }
-        if (!cxVar.L && recyclerView == cxVar.f46683f0[0].f46307a && !cxVar.f46713l2) {
+        if (!cxVar.L && recyclerView == cxVar.f46663f0[0].f46298a && !cxVar.f46693l2) {
             kVar = ((org.telegram.ui.ActionBar.h2) cxVar).actionBar;
             if (kVar != null) {
                 kVar2 = ((org.telegram.ui.ActionBar.h2) cxVar).actionBar;
-                if (!kVar2.y() && !cxVar.f46690g2 && !cxVar.H3.c()) {
-                    if (i10 > 0 && cxVar.n4() && cxVar.f46683f0[0].f46314s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
+                if (!kVar2.y() && !cxVar.f46670g2 && !cxVar.H3.c()) {
+                    if (i10 > 0 && cxVar.n4() && cxVar.f46663f0[0].f46305s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
                         int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
                         if (top + i10 > 0) {
                             if (top < 0) {
@@ -172,7 +172,7 @@ public final class iv extends v4.u0 {
             }
         }
         xv xvVar = cxVar.H3;
-        if (xvVar != null && xvVar.c() && (ywVar = bxVar.f46307a) != null) {
+        if (xvVar != null && xvVar.c() && (ywVar = bxVar.f46298a) != null) {
             ywVar.invalidate();
         }
         tv tvVar = cxVar.F0;
@@ -180,13 +180,13 @@ public final class iv extends v4.u0 {
             cxVar.F0.getPremiumHint().f(true);
         }
         ?? n42 = cxVar.n4();
-        View childAt2 = bxVar.f46307a.getChildAt(n42 == true ? 1 : 0);
+        View childAt2 = bxVar.f46298a.getChildAt(n42 == true ? 1 : 0);
         if (childAt2 != null) {
             i11 = childAt2.getTop();
         } else {
             i11 = 0;
         }
-        cxVar.f46676e.a((i17 > n42 || (i11 - cxVar.O) + org.telegram.messenger.g0.L(5.0f) < bxVar.f46307a.getPaddingTop()) ? true : true, true);
+        cxVar.f46656e.a((i17 > n42 || (i11 - cxVar.O) + org.telegram.messenger.g0.L(5.0f) < bxVar.f46298a.getPaddingTop()) ? true : true, true);
         if (i10 != 0 && (gVar = cxVar.o4) != null && Build.VERSION.SDK_INT >= 31) {
             gVar.f(i7, i10);
         }

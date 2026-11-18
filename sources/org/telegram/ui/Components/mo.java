@@ -90,7 +90,7 @@ public final class mo implements Runnable {
                 ((xt) obj).getClass();
                 return;
             case 11:
-                vf.c.t(((gu) ((org.telegram.ui.n1) obj).f50052b).getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                vf.c.t(((gu) ((org.telegram.ui.n1) obj).f50026b).getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
                 return;
             case 12:
                 gu guVar = ((fu) obj).f35168a;
@@ -105,12 +105,12 @@ public final class mo implements Runnable {
                 return;
             case 14:
                 qw qwVar = (qw) obj;
-                if (qwVar.f45932a0.getEmojiView() != null) {
-                    ry emojiView = qwVar.f45932a0.getEmojiView();
+                if (qwVar.f45923a0.getEmojiView() != null) {
+                    ry emojiView = qwVar.f45923a0.getEmojiView();
                     if (!emojiView.f39354g0) {
                         try {
                             SparseIntArray sparseIntArray = emojiView.S.f33806s;
-                            char[] cArr = org.telegram.messenger.k6.f24990a;
+                            char[] cArr = org.telegram.messenger.k6.f24987a;
                             int i14 = sparseIntArray.get(8);
                             if (i14 > 0) {
                                 emojiView.Q.C0();
@@ -165,30 +165,30 @@ public final class mo implements Runnable {
             case 18:
                 pz pzVar = (pz) ((oz) obj).f38197f;
                 ArrayList arrayList3 = pzVar.h;
-                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q()) {
+                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q()) {
                     for (int i16 = 0; i16 < arrayList3.size(); i16++) {
                         if (((mz) arrayList3.get(i16)).f37671e && i16 != 0) {
                             org.telegram.ui.l4 l4Var = pzVar.J;
-                            pz pzVar2 = (pz) l4Var.f49426e;
+                            pz pzVar2 = (pz) l4Var.f49432e;
                             ArrayList arrayList4 = pzVar2.h;
                             SparseIntArray sparseIntArray2 = pzVar2.f38630l0;
                             int size = arrayList4.size();
                             if (i16 >= 0 && i16 < size) {
-                                ArrayList V0 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).V0();
+                                ArrayList V0 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).V0();
                                 int i17 = sparseIntArray2.get(i16);
                                 int i18 = ((mz) arrayList4.get(i16)).f37668a;
                                 for (int i19 = i16 - 1; i19 >= 0; i19--) {
                                     sparseIntArray2.put(i19 + 1, sparseIntArray2.get(i19));
                                 }
                                 org.telegram.messenger.ro roVar = (org.telegram.messenger.ro) V0.remove(i16);
-                                roVar.f26678f = 0;
+                                roVar.f26676f = 0;
                                 V0.add(0, roVar);
                                 sparseIntArray2.put(0, i17);
                                 arrayList4.add(0, (mz) arrayList4.remove(i16));
                                 ((mz) arrayList4.get(0)).f37668a = i18;
                                 for (int i20 = 0; i20 <= i16; i20++) {
                                     ((mz) arrayList4.get(i20)).f37668a = i20;
-                                    ((org.telegram.messenger.ro) V0.get(i20)).f26678f = i20;
+                                    ((org.telegram.messenger.ro) V0.get(i20)).f26676f = i20;
                                 }
                                 for (int i21 = 0; i21 <= i16; i21++) {
                                     if (pzVar2.L == i21) {
@@ -216,7 +216,7 @@ public final class mo implements Runnable {
                                 org.telegram.ui.tw twVar = (org.telegram.ui.tw) lzVar;
                                 int i23 = 0;
                                 while (true) {
-                                    org.telegram.ui.bx[] bxVarArr = twVar.f52368b.f46683f0;
+                                    org.telegram.ui.bx[] bxVarArr = twVar.f52363b.f46663f0;
                                     if (i23 < bxVarArr.length) {
                                         org.telegram.ui.bx bxVar = bxVarArr[i23];
                                         int i24 = bxVar.h;
@@ -243,7 +243,7 @@ public final class mo implements Runnable {
                                 }
                                 gc J = lc.b0(cxVar).J(2131624018, org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0(null, null, 2131748752, org.telegram.messenger.gd.M0(2131750796, null))), org.telegram.messenger.gd.M0(2131746840, null), 5000, false, new org.telegram.ui.bh(rwVar, 24));
                                 J.k(true);
-                                cxVar.f46737q3 = J;
+                                cxVar.f46717q3 = J;
                                 return;
                             }
                             return;
@@ -283,17 +283,17 @@ public final class mo implements Runnable {
                 }
                 return;
             case 24:
-                z40 z40Var = (z40) ((h6.r) obj).f13949b;
+                z40 z40Var = (z40) ((h6.r) obj).f13946b;
                 try {
                     f61 f61Var = z40Var.T;
                     if (f61Var != null && (e20Var = z40Var.S) != null) {
                         long j10 = 0;
-                        if (e20Var.f23639b > 0) {
+                        if (e20Var.f23636b > 0) {
                             long S = f61Var.S();
                             org.telegram.messenger.e20 e20Var2 = z40Var.S;
-                            if (S >= e20Var2.f23639b) {
+                            if (S >= e20Var2.f23636b) {
                                 f61 f61Var2 = z40Var.T;
-                                long j11 = e20Var2.f23637a;
+                                long j11 = e20Var2.f23634a;
                                 if (j11 > 0) {
                                     j10 = j11;
                                 }

@@ -24,7 +24,7 @@ public final class cr extends sa {
         String a02;
         boolean z11;
         String a03;
-        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(this.f30189a).O0(Long.valueOf(-j3));
+        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(this.f30187a).O0(Long.valueOf(-j3));
         this.f34165b2 = h2Var;
         this.f34166c2 = j3;
         this.f39541v1 = 0.26f;
@@ -41,8 +41,8 @@ public final class cr extends sa {
         }
         this.V1 = z10;
         this.W1 = org.telegram.messenger.v3.w(14, O0);
-        Context context = this.f30192b.getContext();
-        this.f30192b.addView(new bi.i3(18, context, this), c8.ma.d(-1, 120.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        Context context = this.f30190b.getContext();
+        this.f30190b.addView(new bi.i3(18, context, this), c8.ma.d(-1, 120.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         textView.setGravity(17);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -60,14 +60,14 @@ public final class cr extends sa {
         int L = org.telegram.messenger.g0.L(8.0f);
         int i7 = org.telegram.ui.ActionBar.n6.Fi;
         int x02 = org.telegram.ui.ActionBar.n6.x0(null, i7, false);
-        int i10 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29394d6;
         int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, i10, false), 120);
         org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.n6.k0(L, L, L, L, x02, o4, o4);
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
         org.telegram.ui.ActionBar.q6 g10 = org.telegram.ui.ActionBar.u6.g(i10, 120);
         textView.setBackground(k02);
         org.telegram.ui.ActionBar.u6.j(textView, k02, M, g10, null);
-        this.f30192b.addView(textView, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 60.0f));
+        this.f30190b.addView(textView, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 60.0f));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
         textView2.setEllipsize(truncateAt);
@@ -90,7 +90,7 @@ public final class cr extends sa {
         org.telegram.ui.ActionBar.q6 g11 = org.telegram.ui.ActionBar.u6.g(i7, 120);
         textView2.setBackground(k03);
         org.telegram.ui.ActionBar.u6.j(textView2, k03, null, g11, null);
-        this.f30192b.addView(textView2, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
+        this.f30190b.addView(textView2, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
         textView.setOnClickListener(new View.OnClickListener(this) {
             public final cr f33434b;
 
@@ -103,12 +103,12 @@ public final class cr extends sa {
                 switch (r2) {
                     case 0:
                         cr crVar = this.f33434b;
-                        crVar.f34164a2 = org.telegram.messenger.mp.u1(crVar.f30189a).l1(org.telegram.messenger.fj.B1(crVar.Z1));
+                        crVar.f34164a2 = org.telegram.messenger.mp.u1(crVar.f30187a).l1(org.telegram.messenger.fj.B1(crVar.Z1));
                         crVar.dismiss();
                         return;
                     default:
                         cr crVar2 = this.f33434b;
-                        crVar2.f34164a2 = org.telegram.messenger.mp.u1(crVar2.f30189a).l1(org.telegram.messenger.fj.B1(crVar2.Z1));
+                        crVar2.f34164a2 = org.telegram.messenger.mp.u1(crVar2.f30187a).l1(org.telegram.messenger.fj.B1(crVar2.Z1));
                         crVar2.Y1 = true;
                         crVar2.dismiss();
                         return;
@@ -127,12 +127,12 @@ public final class cr extends sa {
                 switch (r2) {
                     case 0:
                         cr crVar = this.f33434b;
-                        crVar.f34164a2 = org.telegram.messenger.mp.u1(crVar.f30189a).l1(org.telegram.messenger.fj.B1(crVar.Z1));
+                        crVar.f34164a2 = org.telegram.messenger.mp.u1(crVar.f30187a).l1(org.telegram.messenger.fj.B1(crVar.Z1));
                         crVar.dismiss();
                         return;
                     default:
                         cr crVar2 = this.f33434b;
-                        crVar2.f34164a2 = org.telegram.messenger.mp.u1(crVar2.f30189a).l1(org.telegram.messenger.fj.B1(crVar2.Z1));
+                        crVar2.f34164a2 = org.telegram.messenger.mp.u1(crVar2.f30187a).l1(org.telegram.messenger.fj.B1(crVar2.Z1));
                         crVar2.Y1 = true;
                         crVar2.dismiss();
                         return;
@@ -140,7 +140,7 @@ public final class cr extends sa {
             }
         });
         ck0 ck0Var = this.f39534o1;
-        int i11 = this.f30227u0;
+        int i11 = this.f30225u0;
         ck0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(120.0f));
         this.f39534o1.setOnItemClickListener(new n(this, 4));
         O();

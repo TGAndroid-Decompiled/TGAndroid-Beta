@@ -13,7 +13,7 @@ public abstract class a {
                 bundle2.setClassLoader(a.class.getClassLoader());
                 Parcelable parcelable = bundle2.getParcelable("a");
                 if (parcelable instanceof ParcelImpl) {
-                    return ((ParcelImpl) parcelable).f2832a;
+                    return ((ParcelImpl) parcelable).f2833a;
                 }
                 throw new IllegalArgumentException("Invalid parcel");
             }
@@ -24,11 +24,11 @@ public abstract class a {
     }
 
     public static gd.c b(rd.a aVar) {
-        gd.d[] dVarArr = gd.d.f13476a;
-        j jVar = j.f13487a;
+        gd.d[] dVarArr = gd.d.f13473a;
+        j jVar = j.f13484a;
         ?? obj = new Object();
-        obj.f13482a = aVar;
-        obj.f13483b = jVar;
+        obj.f13479a = aVar;
+        obj.f13480b = jVar;
         return obj;
     }
 

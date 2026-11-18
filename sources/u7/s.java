@@ -2,18 +2,18 @@ package u7;
 
 import c8.tc;
 public final class s extends r {
-    public static final s f58463e = new s(0, new Object[0]);
-    public final transient Object[] f58464c;
+    public static final s f58464e = new s(0, new Object[0]);
+    public final transient Object[] f58465c;
     public final transient int d;
 
     public s(int i7, Object[] objArr) {
-        this.f58464c = objArr;
+        this.f58465c = objArr;
         this.d = i7;
     }
 
     @Override
     public final int f(Object[] objArr) {
-        Object[] objArr2 = this.f58464c;
+        Object[] objArr2 = this.f58465c;
         int i7 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i7);
         return i7;
@@ -22,7 +22,7 @@ public final class s extends r {
     @Override
     public final Object get(int i7) {
         tc.a(i7, this.d);
-        Object obj = this.f58464c[i7];
+        Object obj = this.f58465c[i7];
         obj.getClass();
         return obj;
     }
@@ -44,7 +44,7 @@ public final class s extends r {
 
     @Override
     public final Object[] l() {
-        return this.f58464c;
+        return this.f58465c;
     }
 
     @Override

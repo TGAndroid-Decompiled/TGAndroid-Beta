@@ -2,33 +2,33 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class tz {
-    public final String f27101b;
-    public int f27100a = 0;
+    public final String f27099b;
+    public int f27098a = 0;
     public final ArrayList d = new ArrayList();
-    public final long f27102c = System.currentTimeMillis();
+    public final long f27100c = System.currentTimeMillis();
 
     public tz(String str) {
-        this.f27101b = str;
+        this.f27099b = str;
     }
 
     public static void a(sz szVar) {
         if (szVar != null) {
-            if (szVar.f26909b < 0) {
-                tz tzVar = szVar.f26911e;
-                int i7 = tzVar.f27100a;
-                tzVar.f27100a = i7 - 1;
+            if (szVar.f26907b < 0) {
+                tz tzVar = szVar.f26909e;
+                int i7 = tzVar.f27098a;
+                tzVar.f27098a = i7 - 1;
                 szVar.d = i7;
             }
-            szVar.f26909b = System.currentTimeMillis();
+            szVar.f26907b = System.currentTimeMillis();
         }
     }
 
     public static void b(tz tzVar) {
         if (tzVar != null) {
             ArrayList arrayList = tzVar.d;
-            long currentTimeMillis = System.currentTimeMillis() - tzVar.f27102c;
+            long currentTimeMillis = System.currentTimeMillis() - tzVar.f27100c;
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(tzVar.f27101b);
+            sb2.append(tzVar.f27099b);
             sb2.append(" total=");
             sb2.append(currentTimeMillis);
             sb2.append("ms\n");

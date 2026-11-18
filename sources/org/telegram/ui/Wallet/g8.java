@@ -1,6 +1,6 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.ui.oa0;
+import org.telegram.ui.pa0;
 public final class g8 implements Runnable {
     public final int f44269a;
     public final r8 f44270b;
@@ -20,7 +20,7 @@ public final class g8 implements Runnable {
                     r8Var.f44921r0 = false;
                     r8Var.f44918q0 = true;
                     r8Var.removeCallbacks(r8Var.C1);
-                    ((oa0) r8Var.d.f18183b).X();
+                    ((pa0) r8Var.d.f18180b).X();
                     r8Var.getParent().requestDisallowInterceptTouchEvent(true);
                     r8Var.performHapticFeedback(4);
                     e8 j10 = r8Var.j(r8Var.f44902h0);
@@ -63,7 +63,7 @@ public final class g8 implements Runnable {
                         r8Var3.O0 = j11;
                         q8Var2.I = j11;
                         fi.s2 s2Var = q8Var2.f44830c;
-                        s2Var.f22669v0 = true;
+                        s2Var.f22666v0 = true;
                         s2Var.P0(false);
                         r8Var3.performHapticFeedback(0);
                         r8Var3.f0();

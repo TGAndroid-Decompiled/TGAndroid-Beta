@@ -12,7 +12,7 @@ public final class j7 extends z3 {
 
     @Override
     public final boolean I0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.P3.f12189f.getCurrentItem()) {
+        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.P3.f12186f.getCurrentItem()) {
             return true;
         }
         return false;
@@ -20,8 +20,8 @@ public final class j7 extends z3 {
 
     @Override
     public final void invalidate() {
-        if (v.f12629c) {
-            v.f12628b.add(this);
+        if (v.f12626c) {
+            v.f12625b.add(this);
         } else {
             super.invalidate();
         }
@@ -29,8 +29,8 @@ public final class j7 extends z3 {
 
     @Override
     public final void invalidate(int i7, int i10, int i11, int i12) {
-        if (v.f12629c) {
-            v.f12628b.add(this);
+        if (v.f12626c) {
+            v.f12625b.add(this);
         } else {
             super.invalidate(i7, i10, i11, i12);
         }

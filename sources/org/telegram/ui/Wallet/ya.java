@@ -74,7 +74,7 @@ public final class ya extends b51 implements fs {
             ImageView imageView = new ImageView(parentActivity);
             imageView.setImageResource(2131231241);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i7 = org.telegram.ui.ActionBar.n6.f29488i6;
+            int i7 = org.telegram.ui.ActionBar.n6.f29486i6;
             org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i7, resourceProvider), 1, -1);
             org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
             imageView.setBackground(h02);
@@ -129,7 +129,7 @@ public final class ya extends b51 implements fs {
             hi.d dVar = new hi.d(parentActivity, resourceProvider, true);
             dVar.setRoundRadius(24);
             dVar.setText(gd.M0(2131742892, null));
-            int i11 = org.telegram.ui.ActionBar.n6.f29637q7;
+            int i11 = org.telegram.ui.ActionBar.n6.f29635q7;
             dVar.setColor(org.telegram.ui.ActionBar.n6.w0(i11, resourceProvider));
             if (dVar.getBackground() != null) {
                 Drawable background = dVar.getBackground();
@@ -161,9 +161,9 @@ public final class ya extends b51 implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        bi.d6 d6Var;
-        if (i7 == ks.f25099c4 && (d6Var = this.f33530a) != null) {
-            d6Var.f34607g3.O(true);
+        bi.c6 c6Var;
+        if (i7 == ks.f25102d4 && (c6Var = this.f33530a) != null) {
+            c6Var.f34607g3.O(true);
         }
     }
 
@@ -174,13 +174,13 @@ public final class ya extends b51 implements fs {
 
     @Override
     public final boolean onFragmentCreate() {
-        getNotificationCenter().c(this, ks.f25099c4);
+        getNotificationCenter().c(this, ks.f25102d4);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, ks.f25099c4);
+        getNotificationCenter().n(this, ks.f25102d4);
         super.onFragmentDestroy();
     }
 

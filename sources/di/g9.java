@@ -5,26 +5,26 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 public final class g9 implements Runnable {
-    public final int f8879a;
-    public final org.telegram.ui.ActionBar.x2[] f8880b;
-    public final TL_stars.StarsTransaction f8881c;
+    public final int f8876a;
+    public final org.telegram.ui.ActionBar.x2[] f8877b;
+    public final TL_stars.StarsTransaction f8878c;
     public final long d;
 
     public g9(org.telegram.ui.ActionBar.x2[] x2VarArr, long j3, TL_stars.StarsTransaction starsTransaction) {
-        this.f8879a = 3;
-        this.f8880b = x2VarArr;
+        this.f8876a = 3;
+        this.f8877b = x2VarArr;
         this.d = j3;
-        this.f8881c = starsTransaction;
+        this.f8878c = starsTransaction;
     }
 
     @Override
     public final void run() {
-        switch (this.f8879a) {
+        switch (this.f8876a) {
             case 0:
-                this.f8880b[0].dismiss();
+                this.f8877b[0].dismiss();
                 org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
                 if (T != null) {
-                    TL_stars.StarsTransaction starsTransaction = this.f8881c;
+                    TL_stars.StarsTransaction starsTransaction = this.f8878c;
                     int i7 = starsTransaction.flags & 8192;
                     long j3 = this.d;
                     if (i7 != 0) {
@@ -37,10 +37,10 @@ public final class g9 implements Runnable {
                 }
                 return;
             case 1:
-                this.f8880b[0].dismiss();
+                this.f8877b[0].dismiss();
                 org.telegram.ui.ActionBar.h2 T2 = LaunchActivity.T();
                 if (T2 != null) {
-                    TL_stars.StarsTransaction starsTransaction2 = this.f8881c;
+                    TL_stars.StarsTransaction starsTransaction2 = this.f8878c;
                     int i10 = starsTransaction2.flags & 8192;
                     long j10 = this.d;
                     if (i10 != 0) {
@@ -53,10 +53,10 @@ public final class g9 implements Runnable {
                 }
                 return;
             case 2:
-                this.f8880b[0].dismiss();
+                this.f8877b[0].dismiss();
                 org.telegram.ui.ActionBar.h2 T3 = LaunchActivity.T();
                 if (T3 != null) {
-                    TL_stars.StarsTransaction starsTransaction3 = this.f8881c;
+                    TL_stars.StarsTransaction starsTransaction3 = this.f8878c;
                     int i11 = starsTransaction3.flags & 8192;
                     long j11 = this.d;
                     if (i11 != 0) {
@@ -69,21 +69,21 @@ public final class g9 implements Runnable {
                 }
                 return;
             case 3:
-                this.f8880b[0].dismiss();
+                this.f8877b[0].dismiss();
                 org.telegram.ui.ActionBar.h2 T4 = LaunchActivity.T();
                 if (T4 != null) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", -this.d);
-                    bundle.putInt("message_id", this.f8881c.msg_id);
+                    bundle.putInt("message_id", this.f8878c.msg_id);
                     T4.presentFragment(new bn(bundle));
                     return;
                 }
                 return;
             default:
-                this.f8880b[0].dismiss();
+                this.f8877b[0].dismiss();
                 org.telegram.ui.ActionBar.h2 T5 = LaunchActivity.T();
                 if (T5 != null) {
-                    TL_stars.StarsTransaction starsTransaction4 = this.f8881c;
+                    TL_stars.StarsTransaction starsTransaction4 = this.f8878c;
                     int i12 = starsTransaction4.flags & 8192;
                     long j12 = this.d;
                     if (i12 != 0) {
@@ -99,9 +99,9 @@ public final class g9 implements Runnable {
     }
 
     public g9(org.telegram.ui.ActionBar.x2[] x2VarArr, TL_stars.StarsTransaction starsTransaction, long j3, int i7) {
-        this.f8879a = i7;
-        this.f8880b = x2VarArr;
-        this.f8881c = starsTransaction;
+        this.f8876a = i7;
+        this.f8877b = x2VarArr;
+        this.f8878c = starsTransaction;
         this.d = j3;
     }
 }

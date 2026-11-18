@@ -127,7 +127,7 @@ public class TL_forum {
         public int offset_id;
         public int offset_topic;
         public TLRPC.InputPeer peer;
-        public String f28625q;
+        public String f28623q;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
@@ -135,7 +135,7 @@ public class TL_forum {
             boolean z11;
             outputSerializedData.writeInt32(-963894886);
             boolean z12 = false;
-            if (this.f28625q != null) {
+            if (this.f28623q != null) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -154,7 +154,7 @@ public class TL_forum {
             outputSerializedData.writeInt32(flag3);
             this.peer.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(flag3, 1)) {
-                outputSerializedData.writeString(this.f28625q);
+                outputSerializedData.writeString(this.f28623q);
             }
             if (TLObject.hasFlag(flag3, 2)) {
                 outputSerializedData.writeInt64(this.icon_emoji_id.longValue());

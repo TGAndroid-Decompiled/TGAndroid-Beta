@@ -15,10 +15,10 @@ public final class t10 extends AnimatorListenerAdapter {
     public final Object f39886e;
     public final Object f39887f;
 
-    public t10(org.telegram.ui.l51 l51Var, ri riVar, org.telegram.ui.Cells.q1 q1Var, org.telegram.ui.rj rjVar, org.telegram.ui.bn bnVar) {
+    public t10(org.telegram.ui.l51 l51Var, ri riVar, org.telegram.ui.Cells.r1 r1Var, org.telegram.ui.rj rjVar, org.telegram.ui.bn bnVar) {
         this.f39887f = l51Var;
         this.f39884b = riVar;
-        this.f39885c = q1Var;
+        this.f39885c = r1Var;
         this.d = rjVar;
         this.f39886e = bnVar;
     }
@@ -49,15 +49,15 @@ public final class t10 extends AnimatorListenerAdapter {
                 ((ArrayList) riVar.f39153c).remove(l51Var);
                 riVar.a();
                 ((ViewGroup) riVar.d).invalidate();
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f39885c;
-                q1Var.setEnterTransitionInProgress(false);
-                q1Var.getTransitionParams().E0.set(q1Var.getBackgroundDrawableLeft(), q1Var.getBackgroundDrawableTop(), q1Var.getBackgroundDrawableRight(), q1Var.getBackgroundDrawableBottom());
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f39885c;
+                r1Var.setEnterTransitionInProgress(false);
+                r1Var.getTransitionParams().E0.set(r1Var.getBackgroundDrawableLeft(), r1Var.getBackgroundDrawableTop(), r1Var.getBackgroundDrawableRight(), r1Var.getBackgroundDrawableBottom());
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
                 chatActivityEnterView.setTextTransitionIsRunning(false);
                 chatActivityEnterView.getEditField().setAlpha(1.0f);
                 org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f39886e;
-                ((qo[]) bnVar.f45961c0.f3399b)[0].f38849c.setAlpha(1.0f);
-                ((qo[]) bnVar.f45961c0.f3399b)[0].d.setAlpha(1.0f);
+                ((qo[]) bnVar.f45952c0.f3400b)[0].f38849c.setAlpha(1.0f);
+                ((qo[]) bnVar.f45952c0.f3400b)[0].d.setAlpha(1.0f);
                 x5.release((View) null, l51Var.I);
                 return;
         }

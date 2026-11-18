@@ -16,7 +16,7 @@ public final class f0 extends org.telegram.ui.r11 {
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        if (tL_starGiftUnique != null && di.x8.y(this.f34857g2.f30189a, false).n(tL_starGiftUnique.f28634id) != null && org.telegram.messenger.mp.g1().getInt("statusgiftpage", 0) < 2) {
+        if (tL_starGiftUnique != null && di.x8.y(this.f34857g2.f30187a, false).n(tL_starGiftUnique.f28632id) != null && org.telegram.messenger.mp.g1().getInt("statusgiftpage", 0) < 2) {
             return false;
         }
         return true;

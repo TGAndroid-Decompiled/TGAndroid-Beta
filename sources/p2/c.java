@@ -54,7 +54,7 @@ public final class c implements w2.a {
             if (i7 >= this.f55094m.size()) {
                 break;
             }
-            if (((f1) linkedList.peek()).f10401a != i7) {
+            if (((f1) linkedList.peek()).f10398a != i7) {
                 long c10 = c(i7);
                 if (c10 != -9223372036854775807L) {
                     j11 += c10;
@@ -63,23 +63,23 @@ public final class c implements w2.a {
                 h b10 = b(i7);
                 List list2 = b10.f55114c;
                 f1 f1Var = (f1) linkedList.poll();
-                int i10 = f1Var.f10401a;
+                int i10 = f1Var.f10398a;
                 ArrayList arrayList2 = new ArrayList();
                 while (true) {
-                    int i11 = f1Var.f10402b;
+                    int i11 = f1Var.f10399b;
                     a aVar = (a) list2.get(i11);
                     List list3 = aVar.f55078c;
                     ArrayList arrayList3 = new ArrayList();
                     do {
-                        arrayList3.add((m) list3.get(f1Var.f10403c));
+                        arrayList3.add((m) list3.get(f1Var.f10400c));
                         f1Var = (f1) linkedList.poll();
-                        if (f1Var.f10401a != i10) {
+                        if (f1Var.f10398a != i10) {
                             break;
                         }
-                    } while (f1Var.f10402b == i11);
+                    } while (f1Var.f10399b == i11);
                     j10 = j11;
                     arrayList2.add(new a(aVar.f55076a, aVar.f55077b, arrayList3, aVar.d, aVar.f55079e, aVar.f55080f));
-                    if (f1Var.f10401a != i10) {
+                    if (f1Var.f10398a != i10) {
                         break;
                     }
                     j11 = j10;

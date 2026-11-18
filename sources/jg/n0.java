@@ -17,33 +17,33 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.mq;
 import org.telegram.ui.Components.q9;
 public final class n0 extends FrameLayout implements c6 {
-    public final i6 f17596a;
-    public final q9 f17597b;
-    public final TextView f17598c;
+    public final i6 f17593a;
+    public final q9 f17594b;
+    public final TextView f17595c;
     public mq d;
-    public o0 f17599e;
+    public o0 f17596e;
 
     public n0(Context context, i6 i6Var) {
         super(context);
-        this.f17596a = i6Var;
+        this.f17593a = i6Var;
         q9 q9Var = new q9(context);
-        this.f17597b = q9Var;
+        this.f17594b = q9Var;
         addView(q9Var, ma.c(30.0f, 30));
         TextView textView = new TextView(context);
-        this.f17598c = textView;
+        this.f17595c = textView;
         textView.setTextSize(1, 14.0f);
         addView(textView, ma.d(-2, -2.0f, 16, 36.0f, 0.0f, 14.0f, 0.0f));
         updateColors();
     }
 
     public void setData(o0 o0Var) {
-        this.f17599e = o0Var;
-        q9 q9Var = this.f17597b;
+        this.f17596e = o0Var;
+        q9 q9Var = this.f17594b;
         q9Var.getImageReceiver().f();
         int i7 = o0Var.d;
-        String str = o0Var.f17607c;
-        TextView textView = this.f17598c;
-        i6 i6Var = this.f17596a;
+        String str = o0Var.f17604c;
+        TextView textView = this.f17595c;
+        i6 i6Var = this.f17593a;
         float f10 = 16.0f;
         if (i7 == 7) {
             mq N = n6.N(org.telegram.messenger.g0.L(32.0f), 2131230993);
@@ -58,7 +58,7 @@ public final class n0 extends FrameLayout implements c6 {
             textView.setText(str);
             return;
         }
-        mq N2 = n6.N(org.telegram.messenger.g0.L(32.0f), o0Var.f17605a);
+        mq N2 = n6.N(org.telegram.messenger.g0.L(32.0f), o0Var.f17602a);
         this.d = N2;
         int i10 = n6.Fi;
         n6.B1(N2, n6.w0(i10, i6Var), false);
@@ -66,10 +66,10 @@ public final class n0 extends FrameLayout implements c6 {
         int i11 = n6.Ji;
         n6.B1(mqVar, n6.w0(i11, i6Var), true);
         if (o0Var.d == 4) {
-            TLObject tLObject = o0Var.f17609f;
+            TLObject tLObject = o0Var.f17606f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (j10.i(j10.f24773t0).f().f28554id == user.f28554id) {
+                if (j10.i(j10.f24770t0).f().f28552id == user.f28552id) {
                     mq N3 = n6.N(org.telegram.messenger.g0.L(32.0f), 2131231000);
                     int L3 = org.telegram.messenger.g0.L(16.0f);
                     int L4 = org.telegram.messenger.g0.L(16.0f);
@@ -101,19 +101,19 @@ public final class n0 extends FrameLayout implements c6 {
     public final void updateColors() {
         o0 o0Var;
         boolean z10 = getBackground() instanceof ShapeDrawable;
-        i6 i6Var = this.f17596a;
+        i6 i6Var = this.f17593a;
         if (z10) {
             n6.C1(n6.w0(n6.Ti, i6Var), getBackground());
             invalidate();
         } else {
             setBackground(n6.d0(org.telegram.messenger.g0.L(28.0f), n6.w0(n6.Ti, i6Var)));
         }
-        TextView textView = this.f17598c;
+        TextView textView = this.f17595c;
         if (textView != null) {
             textView.setTextColor(n6.w0(n6.G6, i6Var));
         }
         mq mqVar = this.d;
-        if (mqVar != null && (o0Var = this.f17599e) != null) {
+        if (mqVar != null && (o0Var = this.f17596e) != null) {
             if (o0Var.d == 7) {
                 n6.B1(mqVar, n6.w0(n6.Fi, i6Var), false);
                 n6.B1(this.d, n6.w0(n6.Ji, i6Var), true);

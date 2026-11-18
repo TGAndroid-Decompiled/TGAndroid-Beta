@@ -17,7 +17,7 @@ public final class y2 extends j8 {
         s3 s3Var = this.J.A1;
         if (s3Var != null) {
             f9 f9Var = ((w8) s3Var).d;
-            f9Var.f11977i1 = z10;
+            f9Var.f11974i1 = z10;
             f9Var.V();
         }
     }

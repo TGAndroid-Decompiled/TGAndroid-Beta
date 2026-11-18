@@ -11,43 +11,43 @@ import org.telegram.messenger.j10;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Cells.d3;
+import org.telegram.ui.Cells.e3;
 import org.telegram.ui.Components.q9;
-public final class h extends d3 {
-    public final m f17468f;
+public final class h extends e3 {
+    public final m f17465f;
 
     public h(m mVar, Context context) {
         super(context);
-        this.f17468f = mVar;
-        this.f30517a = j10.f24773t0;
+        this.f17465f = mVar;
+        this.f30563a = j10.f24770t0;
         setOrientation(1);
-        u6.h(n6.f29339a7, this, null);
+        u6.h(n6.f29337a7, this, null);
         x4 x4Var = new x4(context, 3);
-        x4Var.f15728c = new Path();
+        x4Var.f15725c = new Path();
         Paint paint = new Paint(1);
-        x4Var.f15727b = paint;
-        paint.setColor(n6.x0(null, n6.f29396d6, false));
+        x4Var.f15724b = paint;
+        paint.setColor(n6.x0(null, n6.f29394d6, false));
         paint.setShadowLayer(org.telegram.messenger.g0.L(1.33f), 0.0f, org.telegram.messenger.g0.L(0.33f), 503316480);
         x4Var.setWillNotDraw(false);
         x4Var.setOrientation(1);
         x4Var.setPadding(org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f));
         q9 q9Var = new q9(context);
-        this.f30518b = q9Var;
+        this.f30564b = q9Var;
         q9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final jg.h f30467b;
+            public final jg.h f30537b;
 
             {
-                this.f30467b = this;
+                this.f30537b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f30467b.f30518b.getImageReceiver().P0(false);
+                        this.f30537b.f30564b.getImageReceiver().P0(false);
                         return;
                     default:
-                        this.f30467b.f17468f.L();
+                        this.f30537b.f17465f.L();
                         return;
                 }
             }
@@ -55,7 +55,7 @@ public final class h extends d3 {
         a();
         x4Var.addView(q9Var, ma.r(130, 130, 49));
         TextView textView = new TextView(context);
-        this.f30519c = textView;
+        this.f30565c = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         u6.U(textView, n6.G6, null);
@@ -65,10 +65,10 @@ public final class h extends d3 {
         this.d = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
-        u6.U(textView2, n6.f29788y6, null);
+        u6.U(textView2, n6.f29786y6, null);
         x4Var.addView(textView2, ma.t(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
-        this.f30520e = textView3;
+        this.f30566e = textView3;
         textView3.setGravity(17);
         textView3.setBackground(b6.f(n6.Fi, 8.0f));
         textView3.setTextSize(1, 14.0f);
@@ -76,20 +76,20 @@ public final class h extends d3 {
         textView3.setTypeface(org.telegram.messenger.g0.o());
         textView3.setPadding(org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final jg.h f30467b;
+            public final jg.h f30537b;
 
             {
-                this.f30467b = this;
+                this.f30537b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f30467b.f30518b.getImageReceiver().P0(false);
+                        this.f30537b.f30564b.getImageReceiver().P0(false);
                         return;
                     default:
-                        this.f30467b.f17468f.L();
+                        this.f30537b.f17465f.L();
                         return;
                 }
             }

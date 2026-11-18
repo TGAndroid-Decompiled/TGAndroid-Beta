@@ -13,12 +13,12 @@ import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.z41;
 public final class t implements q10 {
-    public final int f20004a;
-    public final d0 f20005b;
+    public final int f20001a;
+    public final d0 f20002b;
 
     public t(d0 d0Var, int i7) {
-        this.f20004a = i7;
-        this.f20005b = d0Var;
+        this.f20001a = i7;
+        this.f20002b = d0Var;
     }
 
     @Override
@@ -27,10 +27,10 @@ public final class t implements q10 {
         String str;
         boolean z10;
         ArrayList arrayList;
-        int i7 = this.f20004a;
+        int i7 = this.f20001a;
         boolean z11 = true;
         int i10 = 0;
-        d0 d0Var = this.f20005b;
+        d0 d0Var = this.f20002b;
         switch (i7) {
             case 0:
                 z41 z41Var = (z41) obj2;
@@ -40,7 +40,7 @@ public final class t implements q10 {
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
-                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30192b, d0Var.J0, tL_error, false);
+                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30190b, d0Var.J0, tL_error, false);
                     return;
                 } else {
                     d0Var.getClass();
@@ -49,18 +49,18 @@ public final class t implements q10 {
             case 2:
                 ArrayList arrayList2 = (ArrayList) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                d0Var.f19909s1.setLoading(false);
+                d0Var.f19906s1.setLoading(false);
                 if (tL_error2 != null) {
-                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30192b, d0Var.J0, tL_error2, false);
+                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30190b, d0Var.J0, tL_error2, false);
                     return;
                 } else if (arrayList2 != null) {
                     d0Var.L1 = arrayList2;
                     if (arrayList2.isEmpty()) {
-                        f3.n(null, 2131751894, new lc((FrameLayout) d0Var.f30192b, d0Var.J0), 2131624068, 36);
+                        f3.n(null, 2131751894, new lc((FrameLayout) d0Var.f30190b, d0Var.J0), 2131624068, 36);
                         return;
                     }
-                    d0Var.f19914x1.d.f34607g3.O(false);
-                    d0Var.f19905o1.A(2);
+                    d0Var.f19911x1.d.f34607g3.O(false);
+                    d0Var.f19902o1.A(2);
                     return;
                 } else {
                     return;
@@ -74,25 +74,25 @@ public final class t implements q10 {
                 ArrayList arrayList3 = (ArrayList) obj;
                 z41 z41Var3 = (z41) obj2;
                 int i12 = d0.Q1;
-                arrayList3.add(l41.E(99, Math.min(org.telegram.messenger.g0.L(176.0f) + org.telegram.messenger.g0.f24115m, (int) (org.telegram.messenger.g0.f24121q.y * 0.25f))));
+                arrayList3.add(l41.E(99, Math.min(org.telegram.messenger.g0.L(176.0f) + org.telegram.messenger.g0.f24112m, (int) (org.telegram.messenger.g0.f24118q.y * 0.25f))));
                 arrayList3.add(l41.E(0, org.telegram.messenger.g0.L(56.0f)));
                 String M0 = gd.M0(2131751838, null);
                 l41 l41Var = new l41(39);
                 l41Var.d = 101;
                 l41Var.f37018m = M0;
                 l41Var.A = 0;
-                l41Var.L(d0Var.f19908r1);
+                l41Var.L(d0Var.f19905r1);
                 arrayList3.add(l41Var);
                 arrayList3.add(l41.B(2, gd.M0(2131751837, null)));
                 k0 k0Var = d0Var.H1;
-                if (k0Var.f19962n && k0Var.f19960l == 1 && (arrayList = k0Var.f19958j) != null && arrayList.size() == 1) {
+                if (k0Var.f19959n && k0Var.f19957l == 1 && (arrayList = k0Var.f19955j) != null && arrayList.size() == 1) {
                     arrayList3.add(l41.t(3, gd.M0(2131751893, null)));
                     k0Var.c(arrayList3);
                     arrayList3.add(l41.E(5, org.telegram.messenger.g0.L(14.33f)));
                 } else {
-                    int i13 = k0Var.f19960l;
+                    int i13 = k0Var.f19957l;
                     if (i13 > 0) {
-                        int i14 = k0Var.f19964p;
+                        int i14 = k0Var.f19961p;
                         if (i13 == i14) {
                             G = gd.M0(2131751884, null);
                         } else {
@@ -103,7 +103,7 @@ public final class t implements q10 {
                         } else {
                             str = null;
                         }
-                        int i15 = mi.i.f21036b;
+                        int i15 = mi.i.f21033b;
                         l41 K = l41.K(mi.i.class);
                         K.d = 100;
                         K.f37016k = 2131231167;
@@ -115,7 +115,7 @@ public final class t implements q10 {
                         arrayList3.add(l41.E(5, org.telegram.messenger.g0.L(14.33f)));
                     }
                 }
-                ab.c0 x10 = mp.u1(d0Var.f30189a).x(d0Var.f19906p1);
+                ab.c0 x10 = mp.u1(d0Var.f30187a).x(d0Var.f19903p1);
                 ArrayList arrayList4 = (ArrayList) x10.f910e;
                 ArrayList arrayList5 = (ArrayList) x10.d;
                 ArrayList arrayList6 = (ArrayList) x10.f909c;
@@ -180,15 +180,15 @@ public final class t implements q10 {
                 ArrayList arrayList8 = (ArrayList) obj;
                 z41 z41Var4 = (z41) obj2;
                 k0 k0Var2 = d0Var.H1;
-                arrayList8.add(l41.E(99, (int) (org.telegram.messenger.g0.f24121q.y * 0.35f)));
+                arrayList8.add(l41.E(99, (int) (org.telegram.messenger.g0.f24118q.y * 0.35f)));
                 arrayList8.add(l41.E(0, org.telegram.messenger.g0.L(48.0f)));
-                if (v3.w(2, d0Var.f19907q1)) {
+                if (v3.w(2, d0Var.f19904q1)) {
                     arrayList8.add(l41.B(1, org.telegram.messenger.g0.H2(org.telegram.messenger.g0.T2(gd.M0(2131751883, null), new v(d0Var, 2)), true)));
                 } else {
                     arrayList8.add(l41.B(1, gd.M0(2131751882, null)));
                 }
                 arrayList8.add(l41.j(2, d0Var.G1));
-                arrayList8.add(l41.t(3, gd.G(k0Var2.f19960l, "CommunityPendingRequestsSuggestedHeader", new Object[0])));
+                arrayList8.add(l41.t(3, gd.G(k0Var2.f19957l, "CommunityPendingRequestsSuggestedHeader", new Object[0])));
                 k0Var2.c(arrayList8);
                 return;
         }

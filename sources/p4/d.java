@@ -24,7 +24,7 @@ public final class d {
     public final Object f55177g;
 
     static {
-        String str = h2.l0.f13786a;
+        String str = h2.l0.f13783a;
         h = Integer.toString(0, 36);
         f55166i = Integer.toString(1, 36);
         f55167j = Integer.toString(2, 36);
@@ -138,8 +138,8 @@ public final class d {
     public static t1 g(List list) {
         int b10;
         if (list.isEmpty()) {
-            h9.g0 g0Var = h9.i0.f14006b;
-            return t1.f14074e;
+            h9.g0 g0Var = h9.i0.f14003b;
+            return t1.f14071e;
         }
         int i7 = -1;
         int i10 = -1;
@@ -150,7 +150,7 @@ public final class d {
             if (z10 && dVar.b()) {
                 int i12 = 0;
                 while (true) {
-                    if (i12 < aVar.f19705b && (b10 = aVar.b(i12)) != 6) {
+                    if (i12 < aVar.f19702b && (b10 = aVar.b(i12)) != 6) {
                         if (i7 == -1 && b10 == 2) {
                             i7 = i11;
                             break;
@@ -465,8 +465,8 @@ public final class d {
             bundle.putBoolean(f55169l, z10);
         }
         l9.a aVar = this.f55175e;
-        if (aVar.f19705b != 1 || aVar.b(0) != 6) {
-            bundle.putIntArray(f55170m, Arrays.copyOfRange(aVar.f19704a, 0, aVar.f19705b));
+        if (aVar.f19702b != 1 || aVar.b(0) != 6) {
+            bundle.putIntArray(f55170m, Arrays.copyOfRange(aVar.f19701a, 0, aVar.f19702b));
         }
         if (this.f55177g != null) {
             l(f55171n, i7, bundle);

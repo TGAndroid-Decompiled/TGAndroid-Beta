@@ -3,11 +3,11 @@ package l7;
 import android.util.Base64;
 import java.security.SecureRandom;
 public abstract class e {
-    public static final SecureRandom f19701a = new SecureRandom();
+    public static final SecureRandom f19698a = new SecureRandom();
 
     public static String a() {
         byte[] bArr = new byte[16];
-        f19701a.nextBytes(bArr);
+        f19698a.nextBytes(bArr);
         return Base64.encodeToString(bArr, 11);
     }
 }

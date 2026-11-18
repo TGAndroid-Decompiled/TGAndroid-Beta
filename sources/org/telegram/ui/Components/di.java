@@ -68,7 +68,7 @@ public final class di extends p6 {
                     if (siVar.f39713r3 != null) {
                         siVar.Q1(1);
                     }
-                    siVar.f30192b.invalidate();
+                    siVar.f30190b.invalidate();
                     return;
                 }
                 return;

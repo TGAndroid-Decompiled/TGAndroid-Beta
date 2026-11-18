@@ -6,19 +6,19 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.ui.Components.lr;
 public final class j3 extends View implements n2 {
-    public final org.telegram.ui.Components.m6 f14809a;
+    public final org.telegram.ui.Components.m6 f14806a;
 
     public j3(Activity activity) {
         super(activity);
         org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(true, true, true);
-        this.f14809a = m6Var;
+        this.f14806a = m6Var;
         m6Var.n(0.35f, 300L, lr.h);
         m6Var.u(-1);
         m6Var.w(org.telegram.messenger.g0.L(14.0f));
         m6Var.s(org.telegram.messenger.g0.L(1.4f), org.telegram.messenger.g0.L(0.4f), 1275068416);
         m6Var.f37377b = 1;
         m6Var.setCallback(this);
-        m6Var.N = org.telegram.messenger.g0.f24121q.x;
+        m6Var.N = org.telegram.messenger.g0.f24118q.x;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class j3 extends View implements n2 {
         super.draw(canvas);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Components.m6 m6Var = this.f14809a;
+        org.telegram.ui.Components.m6 m6Var = this.f14806a;
         m6Var.setBounds(0, 0, width, height);
         m6Var.draw(canvas);
     }
@@ -34,17 +34,17 @@ public final class j3 extends View implements n2 {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        this.f14809a.N = getMeasuredWidth();
+        this.f14806a.N = getMeasuredWidth();
     }
 
     @Override
     public void setInvert(float f10) {
-        this.f14809a.u(i0.a.f(f10, -1, -16777216));
+        this.f14806a.u(i0.a.f(f10, -1, -16777216));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f14809a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f14806a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

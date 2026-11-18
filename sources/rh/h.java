@@ -39,10 +39,10 @@ public class h implements f, e, c {
         obj.f39868c = b.f56593a;
         obj.d = new z0(obj, 7);
         obj.f39867b = t6Var;
-        Typeface typeface = g0.f24093a;
+        Typeface typeface = g0.f24090a;
         float f10 = 1.0f;
         try {
-            f10 = Settings.Global.getFloat(t0.f26915b.getContentResolver(), "animator_duration_scale", 1.0f);
+            f10 = Settings.Global.getFloat(t0.f26913b.getContentResolver(), "animator_duration_scale", 1.0f);
         } catch (Exception unused) {
         }
         obj.f39866a = f10 * 250.0f * 1.1f;
@@ -50,7 +50,7 @@ public class h implements f, e, c {
         this.f56610s = 1;
         this.f56613y = new g(this, 0);
         this.h = runnable;
-        this.f56603a = new te.c(0, new j(this, runnable, false, 27), j1.f29019w, 250L);
+        this.f56603a = new te.c(0, new j(this, runnable, false, 27), j1.f29017w, 250L);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class h implements f, e, c {
         if (l1Var != null) {
             return l1Var.f56258a.f(i7);
         }
-        return i0.b.f15891e;
+        return i0.b.f15888e;
     }
 
     public final void g(int i7) {
@@ -126,7 +126,7 @@ public class h implements f, e, c {
 
     public final void h(int i7) {
         if (i7 > 0) {
-            g(i7 + g0.f24116n);
+            g(i7 + g0.f24113n);
         } else {
             i(true);
         }
@@ -170,7 +170,7 @@ public class h implements f, e, c {
         float f11;
         l1 b10 = b(l1Var);
         this.f56609r = b10;
-        i0.b bVar3 = i0.b.f15891e;
+        i0.b bVar3 = i0.b.f15888e;
         if (b10 != null) {
             i1 i1Var = b10.f56258a;
             bVar = i0.b.a(i1Var.f(647), i1Var.g(647));
@@ -209,15 +209,15 @@ public class h implements f, e, c {
             this.f56611w = 0;
         }
         i0.b a10 = i0.b.a(bVar3, i0.b.b(0, 0, 0, this.f56611w));
-        int i11 = a10.f15894c;
-        int i12 = a10.f15893b;
-        int i13 = a10.f15892a;
+        int i11 = a10.f15891c;
+        int i12 = a10.f15890b;
+        int i13 = a10.f15889a;
         int i14 = a10.d;
         i0.b a11 = i0.b.a(bVar, a10);
         int i15 = a11.d;
-        int i16 = a11.f15894c;
-        int i17 = a11.f15893b;
-        int i18 = a11.f15892a;
+        int i16 = a11.f15891c;
+        int i17 = a11.f15890b;
+        int i18 = a11.f15889a;
         Runnable runnable = this.h;
         te.c cVar2 = this.f56603a;
         l lVar = this.d;

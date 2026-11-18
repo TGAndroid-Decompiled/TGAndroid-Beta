@@ -10,12 +10,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class iv {
-    public final ArrayList f24731a;
-    public final int f24732b;
+    public final ArrayList f24728a;
+    public final int f24729b;
 
     public iv(int i7, ArrayList arrayList) {
-        this.f24731a = arrayList;
-        this.f24732b = i7;
+        this.f24728a = arrayList;
+        this.f24729b = i7;
     }
 
     public static void a(TL_iv.RichText richText, ArrayList arrayList) {
@@ -115,7 +115,7 @@ public final class iv {
         TLRPC.Message message;
         TL_iv.RichMessage richMessage;
         ev evVar;
-        if (fjVar != null && (message = fjVar.f23968k) != null && (richMessage = message.rich_message) != null && (evVar = fjVar.f24025y2) != null && evVar.f23772c == richMessage) {
+        if (fjVar != null && (message = fjVar.f23965k) != null && (richMessage = message.rich_message) != null && (evVar = fjVar.f24022y2) != null && evVar.f23769c == richMessage) {
             return true;
         }
         return false;
@@ -240,12 +240,12 @@ public final class iv {
     public static int[] f(fj fjVar, String str, int i7) {
         ArrayList arrayList;
         int[] iArr = null;
-        if (fjVar == null || fjVar.f24025y2 == null || TextUtils.isEmpty(str)) {
+        if (fjVar == null || fjVar.f24022y2 == null || TextUtils.isEmpty(str)) {
             return null;
         }
-        ev evVar = fjVar.f24025y2;
-        TL_iv.RichMessage richMessage = evVar.f23772c;
-        ArrayList arrayList2 = evVar.f23781n;
+        ev evVar = fjVar.f24022y2;
+        TL_iv.RichMessage richMessage = evVar.f23769c;
+        ArrayList arrayList2 = evVar.f23778n;
         ArrayList e10 = e(richMessage);
         if (e10.isEmpty()) {
             return null;
@@ -268,21 +268,21 @@ public final class iv {
         IdentityHashMap identityHashMap = new IdentityHashMap();
         int i12 = 0;
         while (i12 < arrayList2.size()) {
-            CharSequence l10 = l((org.telegram.ui.Cells.t9) arrayList2.get(i12));
+            CharSequence l10 = l((org.telegram.ui.Cells.u9) arrayList2.get(i12));
             if (l10 instanceof Spanned) {
                 Spanned spanned = (Spanned) l10;
-                int intValue = ((Integer) evVar.f23782o.get(i12)).intValue();
+                int intValue = ((Integer) evVar.f23779o.get(i12)).intValue();
                 wt[] wtVarArr = (wt[]) spanned.getSpans(i10, l10.length(), wt.class);
                 int length2 = wtVarArr.length;
                 int i13 = i10;
                 while (i13 < length2) {
                     wt wtVar = wtVarArr[i13];
                     int[] iArr3 = iArr;
-                    if (identityHashMap.containsKey(wtVar.f27762a)) {
+                    if (identityHashMap.containsKey(wtVar.f27760a)) {
                         arrayList = arrayList2;
                     } else {
                         arrayList = arrayList2;
-                        identityHashMap.put(wtVar.f27762a, new int[]{spanned.getSpanStart(wtVar) + intValue, spanned.getSpanEnd(wtVar) + intValue, wtVar.f27763b});
+                        identityHashMap.put(wtVar.f27760a, new int[]{spanned.getSpanStart(wtVar) + intValue, spanned.getSpanEnd(wtVar) + intValue, wtVar.f27761b});
                     }
                     i13++;
                     iArr = iArr3;
@@ -413,9 +413,9 @@ public final class iv {
         TL_iv.RichText b10;
         int i12;
         if (c(fjVar)) {
-            ev evVar = fjVar.f24025y2;
-            int i13 = mp.u1(fjVar.K1).f25751r4;
-            ArrayList e10 = e(evVar.f23772c);
+            ev evVar = fjVar.f24022y2;
+            int i13 = mp.u1(fjVar.K1).f25749r4;
+            ArrayList e10 = e(evVar.f23769c);
             IdentityHashMap identityHashMap = new IdentityHashMap();
             for (int i14 = 0; i14 < e10.size(); i14++) {
                 identityHashMap.put((TL_iv.RichText) e10.get(i14), Integer.valueOf(i14));
@@ -424,8 +424,8 @@ public final class iv {
             h2.j0 n10 = n(evVar, Math.min(i7, i10), true, identityHashMap);
             h2.j0 n11 = n(evVar, Math.max(i7, i10), false, identityHashMap);
             if (n10 != null) {
-                int i15 = n10.f13772a;
-                if (n11 != null && (intValue = ((Integer) identityHashMap.get(((wt) n10.f13774c).f27762a)).intValue()) <= (intValue2 = ((Integer) identityHashMap.get(((wt) n11.f13774c).f27762a)).intValue()) && (intValue != intValue2 || i15 < n11.f13772a)) {
+                int i15 = n10.f13769a;
+                if (n11 != null && (intValue = ((Integer) identityHashMap.get(((wt) n10.f13771c).f27760a)).intValue()) <= (intValue2 = ((Integer) identityHashMap.get(((wt) n11.f13771c).f27760a)).intValue()) && (intValue != intValue2 || i15 < n11.f13769a)) {
                     hv a11 = hv.a(evVar, n10);
                     if (intValue == intValue2) {
                         a10 = a11;
@@ -433,20 +433,20 @@ public final class iv {
                         a10 = hv.a(evVar, n11);
                     }
                     if (a11 != null && a10 != null) {
-                        gv gvVar = new gv(evVar, e10, intValue, n10.f13772a, a11, intValue2, n11.f13772a, a10);
+                        gv gvVar = new gv(evVar, e10, intValue, n10.f13769a, a11, intValue2, n11.f13769a, a10);
                         if ((intValue2 - intValue) + 1 > 32) {
                             int i16 = intValue + 31;
                             if (i16 != intValue2) {
                                 gvVar.h = null;
                             }
-                            gvVar.f24310f = i16;
-                            gvVar.f24311g = Integer.MAX_VALUE;
+                            gvVar.f24307f = i16;
+                            gvVar.f24308g = Integer.MAX_VALUE;
                         }
                         int i17 = 0;
-                        loop1: while (i17 < 8 && gvVar.f24310f >= intValue) {
+                        loop1: while (i17 < 8 && gvVar.f24307f >= intValue) {
                             int i18 = intValue;
                             int i19 = 0;
-                            while (i18 <= gvVar.f24310f) {
+                            while (i18 <= gvVar.f24307f) {
                                 TL_iv.RichText a12 = gvVar.a(i18);
                                 StringBuilder sb2 = new StringBuilder();
                                 b(a12, sb2, null);
@@ -462,31 +462,31 @@ public final class iv {
                                         int offsetByCodePoints = sb3.offsetByCodePoints(0, i20);
                                         z10 = z11;
                                         hv b11 = gvVar.b(i18);
-                                        if (i18 == intValue && i21 > 0 && (b10 = gvVar.f24309e.b(0, i21)) != null) {
+                                        if (i18 == intValue && i21 > 0 && (b10 = gvVar.f24306e.b(0, i21)) != null) {
                                             offsetByCodePoints += g(b10);
                                         }
-                                        i11 = i(gvVar.f24306a, (TL_iv.RichText) gvVar.f24307b.get(i18), b11.d, offsetByCodePoints, false);
+                                        i11 = i(gvVar.f24303a, (TL_iv.RichText) gvVar.f24304b.get(i18), b11.d, offsetByCodePoints, false);
                                     }
                                     if (i20 > 0) {
-                                        if (i18 != gvVar.f24308c) {
+                                        if (i18 != gvVar.f24305c) {
                                             i21 = 0;
                                         }
-                                        if (i11 > i21 && (i18 != (i12 = gvVar.f24310f) || i11 < gvVar.f24311g)) {
+                                        if (i11 > i21 && (i18 != (i12 = gvVar.f24307f) || i11 < gvVar.f24308g)) {
                                             if (i18 != i12) {
                                                 gvVar.h = null;
                                             }
-                                            gvVar.f24310f = i18;
-                                            gvVar.f24311g = i11;
+                                            gvVar.f24307f = i18;
+                                            gvVar.f24308g = i11;
                                             i17++;
                                             z11 = z10;
                                         }
                                     }
                                     int i22 = i18 - 1;
-                                    if (i22 != gvVar.f24310f) {
+                                    if (i22 != gvVar.f24307f) {
                                         gvVar.h = null;
                                     }
-                                    gvVar.f24310f = i22;
-                                    gvVar.f24311g = Integer.MAX_VALUE;
+                                    gvVar.f24307f = i22;
+                                    gvVar.f24308g = Integer.MAX_VALUE;
                                     i17++;
                                     z11 = z10;
                                 } else {
@@ -495,9 +495,9 @@ public final class iv {
                                 }
                             }
                         }
-                        if (gvVar.f24310f >= intValue) {
+                        if (gvVar.f24307f >= intValue) {
                             ArrayList arrayList = new ArrayList();
-                            for (int i23 = intValue; i23 <= gvVar.f24310f; i23++) {
+                            for (int i23 = intValue; i23 <= gvVar.f24307f; i23++) {
                                 TL_iv.RichText o4 = o(gvVar.a(i23));
                                 if (o4 != null && g(o4) > 0) {
                                     arrayList.add(o4);
@@ -522,12 +522,12 @@ public final class iv {
         return null;
     }
 
-    public static CharSequence l(org.telegram.ui.Cells.t9 t9Var) {
+    public static CharSequence l(org.telegram.ui.Cells.u9 u9Var) {
         Layout a10;
-        if (t9Var == null) {
+        if (u9Var == null) {
             a10 = null;
         } else {
-            a10 = t9Var.a();
+            a10 = u9Var.a();
         }
         if (a10 == null) {
             return null;

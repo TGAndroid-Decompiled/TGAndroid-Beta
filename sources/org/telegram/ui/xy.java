@@ -20,89 +20,89 @@ public final class xy extends ez {
 
     @Override
     public final void c() {
-        org.telegram.ui.Components.y60 G = org.telegram.ui.Components.y60.G(this.F.d.f30195c, null, this);
+        org.telegram.ui.Components.y60 G = org.telegram.ui.Components.y60.G(this.F.d.f30193c, null, this);
         G.c(2131232105, org.telegram.messenger.gd.M0(2131751751, null), new Runnable(this) {
-            public final xy f53556b;
+            public final xy f53507b;
 
             {
-                this.f53556b = this;
+                this.f53507b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53556b;
-                        String str = xyVar.f47400y;
+                        xy xyVar = this.f53507b;
+                        String str = xyVar.f47356y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53556b.d();
+                        this.f53507b.d();
                         return;
                     default:
-                        this.f53556b.a();
+                        this.f53507b.a();
                         return;
                 }
             }
         }, false);
         G.c(2131232322, org.telegram.messenger.gd.M0(2131750456, null), new Runnable(this) {
-            public final xy f53556b;
+            public final xy f53507b;
 
             {
-                this.f53556b = this;
+                this.f53507b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53556b;
-                        String str = xyVar.f47400y;
+                        xy xyVar = this.f53507b;
+                        String str = xyVar.f47356y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53556b.d();
+                        this.f53507b.d();
                         return;
                     default:
-                        this.f53556b.a();
+                        this.f53507b.a();
                         return;
                 }
             }
         }, false);
         G.c(2131232110, org.telegram.messenger.gd.M0(2131751523, null), new Runnable(this) {
-            public final xy f53556b;
+            public final xy f53507b;
 
             {
-                this.f53556b = this;
+                this.f53507b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53556b;
-                        String str = xyVar.f47400y;
+                        xy xyVar = this.f53507b;
+                        String str = xyVar.f47356y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53556b.d();
+                        this.f53507b.d();
                         return;
                     default:
-                        this.f53556b.a();
+                        this.f53507b.a();
                         return;
                 }
             }
         }, true);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             G.f42356i = 3;
         }
         G.a0();

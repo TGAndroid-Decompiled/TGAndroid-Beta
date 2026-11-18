@@ -28,7 +28,7 @@ public final class h9 implements TextView.OnEditorActionListener {
                 da daVar = (da) this.f44317b;
                 if (i7 == 6) {
                     hi.d dVar = daVar.f44058e0;
-                    if (dVar.f14342e0) {
+                    if (dVar.f14339e0) {
                         dVar.performClick();
                         return true;
                     }

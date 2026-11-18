@@ -29,24 +29,24 @@ public class CheckBoxSquare extends View {
         int i10;
         int i11;
         this.f32857y = i6Var;
-        if (org.telegram.ui.ActionBar.n6.f29610p0 == null) {
+        if (org.telegram.ui.ActionBar.n6.f29608p0 == null) {
             org.telegram.ui.ActionBar.n6.R(context);
         }
         boolean z11 = this.f32853r;
         if (z11) {
-            i7 = org.telegram.ui.ActionBar.n6.f29787y5;
+            i7 = org.telegram.ui.ActionBar.n6.f29785y5;
         } else {
             i7 = org.telegram.ui.ActionBar.n6.Y6;
         }
         this.f32854s = i7;
         if (z11) {
-            i10 = org.telegram.ui.ActionBar.n6.f29749w5;
+            i10 = org.telegram.ui.ActionBar.n6.f29747w5;
         } else {
             i10 = org.telegram.ui.ActionBar.n6.W6;
         }
         this.f32855w = i10;
         if (z11) {
-            i11 = org.telegram.ui.ActionBar.n6.f29768x5;
+            i11 = org.telegram.ui.ActionBar.n6.f29766x5;
         } else {
             i11 = org.telegram.ui.ActionBar.n6.X6;
         }
@@ -115,17 +115,17 @@ public class CheckBoxSquare extends View {
         float f12 = this.d;
         if (f12 <= 0.5f) {
             f11 = f12 / 0.5f;
-            org.telegram.ui.ActionBar.n6.f29610p0.setColor(Color.rgb(Color.red(w02) + ((int) ((Color.red(w03) - Color.red(w02)) * f11)), Color.green(w02) + ((int) ((Color.green(w03) - Color.green(w02)) * f11)), Color.blue(w02) + ((int) ((Color.blue(w03) - Color.blue(w02)) * f11))));
+            org.telegram.ui.ActionBar.n6.f29608p0.setColor(Color.rgb(Color.red(w02) + ((int) ((Color.red(w03) - Color.red(w02)) * f11)), Color.green(w02) + ((int) ((Color.green(w03) - Color.green(w02)) * f11)), Color.blue(w02) + ((int) ((Color.blue(w03) - Color.blue(w02)) * f11))));
             f10 = f11;
         } else {
-            org.telegram.ui.ActionBar.n6.f29610p0.setColor(w03);
+            org.telegram.ui.ActionBar.n6.f29608p0.setColor(w03);
             f10 = 2.0f - (f12 / 0.5f);
             f11 = 1.0f;
         }
         if (this.f32852n) {
-            Paint paint = org.telegram.ui.ActionBar.n6.f29610p0;
+            Paint paint = org.telegram.ui.ActionBar.n6.f29608p0;
             if (this.f32853r) {
-                i7 = org.telegram.ui.ActionBar.n6.f29806z5;
+                i7 = org.telegram.ui.ActionBar.n6.f29804z5;
             } else {
                 i7 = org.telegram.ui.ActionBar.n6.Z6;
             }
@@ -136,19 +136,19 @@ public class CheckBoxSquare extends View {
         rectF.set(L, L, org.telegram.messenger.g0.L(18.0f) - L, org.telegram.messenger.g0.L(18.0f) - L);
         Bitmap bitmap = this.f32848b;
         bitmap.eraseColor(0);
-        Paint paint2 = org.telegram.ui.ActionBar.n6.f29610p0;
+        Paint paint2 = org.telegram.ui.ActionBar.n6.f29608p0;
         Canvas canvas2 = this.f32849c;
         canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint2);
         if (f11 != 1.0f) {
             float min = Math.min(org.telegram.messenger.g0.L(7.0f), (org.telegram.messenger.g0.L(7.0f) * f11) + L);
             rectF.set(org.telegram.messenger.g0.L(1.33f) + min, org.telegram.messenger.g0.L(1.33f) + min, org.telegram.messenger.g0.L(16.66f) - min, org.telegram.messenger.g0.L(16.66f) - min);
-            canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.ui.ActionBar.n6.f29573n0);
+            canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.ui.ActionBar.n6.f29571n0);
         }
         if (this.d > 0.5f) {
-            org.telegram.ui.ActionBar.n6.f29591o0.setColor(org.telegram.ui.ActionBar.n6.w0(this.f32856x, i6Var));
+            org.telegram.ui.ActionBar.n6.f29589o0.setColor(org.telegram.ui.ActionBar.n6.w0(this.f32856x, i6Var));
             float f13 = 1.0f - f10;
-            canvas2.drawLine(org.telegram.messenger.g0.L(7.0f), (int) org.telegram.messenger.g0.N(13.0f), (int) (org.telegram.messenger.g0.L(7.0f) - (org.telegram.messenger.g0.L(3.0f) * f13)), (int) (org.telegram.messenger.g0.N(13.0f) - (org.telegram.messenger.g0.L(3.0f) * f13)), org.telegram.ui.ActionBar.n6.f29591o0);
-            canvas2.drawLine((int) org.telegram.messenger.g0.N(7.0f), (int) org.telegram.messenger.g0.N(13.0f), (int) ((org.telegram.messenger.g0.L(7.0f) * f13) + org.telegram.messenger.g0.N(7.0f)), (int) (org.telegram.messenger.g0.N(13.0f) - (org.telegram.messenger.g0.L(7.0f) * f13)), org.telegram.ui.ActionBar.n6.f29591o0);
+            canvas2.drawLine(org.telegram.messenger.g0.L(7.0f), (int) org.telegram.messenger.g0.N(13.0f), (int) (org.telegram.messenger.g0.L(7.0f) - (org.telegram.messenger.g0.L(3.0f) * f13)), (int) (org.telegram.messenger.g0.N(13.0f) - (org.telegram.messenger.g0.L(3.0f) * f13)), org.telegram.ui.ActionBar.n6.f29589o0);
+            canvas2.drawLine((int) org.telegram.messenger.g0.N(7.0f), (int) org.telegram.messenger.g0.N(13.0f), (int) ((org.telegram.messenger.g0.L(7.0f) * f13) + org.telegram.messenger.g0.N(7.0f)), (int) (org.telegram.messenger.g0.N(13.0f) - (org.telegram.messenger.g0.L(7.0f) * f13)), org.telegram.ui.ActionBar.n6.f29589o0);
         }
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
     }

@@ -6,24 +6,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class m6 implements org.telegram.messenger.q10 {
-    public final int f49763a;
-    public final Object f49764b;
-    public final Object f49765c;
+    public final int f49722a;
+    public final Object f49723b;
+    public final Object f49724c;
     public final Object d;
 
     public m6(Object obj, Object obj2, Object obj3, int i7) {
-        this.f49763a = i7;
-        this.f49764b = obj;
-        this.f49765c = obj2;
+        this.f49722a = i7;
+        this.f49723b = obj;
+        this.f49724c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f49763a;
+        int i7 = this.f49722a;
         Object obj3 = this.d;
-        Object obj4 = this.f49765c;
-        Object obj5 = this.f49764b;
+        Object obj4 = this.f49724c;
+        Object obj5 = this.f49723b;
         int i10 = 0;
         switch (i7) {
             case 0:
@@ -86,7 +86,7 @@ public final class m6 implements org.telegram.messenger.q10 {
                                 if (cxVar3.H.user_admin_rights != null) {
                                     org.telegram.messenger.mp messagesController2 = cxVar3.getMessagesController();
                                     Long l11 = l10;
-                                    cxVar3.getMessagesController().b5(l11.longValue(), org.telegram.messenger.j10.i(cxVar3.getAccountInstance().f23221a).f(), np.x0(messagesController2.O0(l11).admin_rights, cxVar3.H.user_admin_rights), null, true, cxVar3, false, true, null, runnable2, new ve(3, runnable2));
+                                    cxVar3.getMessagesController().b5(l11.longValue(), org.telegram.messenger.j10.i(cxVar3.getAccountInstance().f23218a).f(), np.x0(messagesController2.O0(l11).admin_rights, cxVar3.H.user_admin_rights), null, true, cxVar3, false, true, null, runnable2, new ve(3, runnable2));
                                     return;
                                 }
                                 runnable2.run();
@@ -124,7 +124,7 @@ public final class m6 implements org.telegram.messenger.q10 {
                                 if (cxVar3.H.user_admin_rights != null) {
                                     org.telegram.messenger.mp messagesController2 = cxVar3.getMessagesController();
                                     Long l11 = l10;
-                                    cxVar3.getMessagesController().b5(l11.longValue(), org.telegram.messenger.j10.i(cxVar3.getAccountInstance().f23221a).f(), np.x0(messagesController2.O0(l11).admin_rights, cxVar3.H.user_admin_rights), null, true, cxVar3, false, true, null, runnable2, new ve(3, runnable2));
+                                    cxVar3.getMessagesController().b5(l11.longValue(), org.telegram.messenger.j10.i(cxVar3.getAccountInstance().f23218a).f(), np.x0(messagesController2.O0(l11).admin_rights, cxVar3.H.user_admin_rights), null, true, cxVar3, false, true, null, runnable2, new ve(3, runnable2));
                                     return;
                                 }
                                 runnable2.run();
@@ -142,7 +142,7 @@ public final class m6 implements org.telegram.messenger.q10 {
                 if (passkeys != null) {
                     x2Var.dismiss();
                     while (i10 < passkeys.passkeys.size()) {
-                        if (TextUtils.equals(passkeys.passkeys.get(i10).f28612id, passkey.f28612id)) {
+                        if (TextUtils.equals(passkeys.passkeys.get(i10).f28610id, passkey.f28610id)) {
                             passkeys.passkeys.remove(i10);
                             i10--;
                         }
@@ -152,7 +152,7 @@ public final class m6 implements org.telegram.messenger.q10 {
                     if (T != null) {
                         PasskeysActivity passkeysActivity = new PasskeysActivity(passkeys.passkeys);
                         T.presentFragment(passkeysActivity);
-                        org.telegram.messenger.g0.h3(new ve0(9, passkeysActivity, passkey), 150L);
+                        org.telegram.messenger.g0.h3(new we0(9, passkeysActivity, passkey), 150L);
                         return;
                     }
                     return;

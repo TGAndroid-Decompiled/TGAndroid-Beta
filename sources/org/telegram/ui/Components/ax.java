@@ -21,7 +21,7 @@ public final class ax implements Runnable {
                 ry ryVar = ((bx) this.d).G;
                 try {
                     pi.l lVar = new pi.l(ryVar.Q.getContext(), 0, f10);
-                    lVar.f59066a = i7;
+                    lVar.f59067a = i7;
                     ryVar.R.w0(lVar);
                     return;
                 } catch (Exception e10) {
@@ -33,9 +33,9 @@ public final class ax implements Runnable {
                 float f11 = this.f33479b;
                 int i10 = this.f33480c;
                 try {
-                    pi.l lVar2 = new pi.l(r11Var.f51438i0.getContext(), 0, f11);
-                    lVar2.f59066a = i10;
-                    r11Var.f51458s0.w0(lVar2);
+                    pi.l lVar2 = new pi.l(r11Var.f51398i0.getContext(), 0, f11);
+                    lVar2.f59067a = i10;
+                    r11Var.f51418s0.w0(lVar2);
                     return;
                 } catch (Exception e11) {
                     org.telegram.messenger.a8.g(e11, true);

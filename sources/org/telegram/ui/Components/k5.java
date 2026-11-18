@@ -18,7 +18,7 @@ public final class k5 {
 
     public static boolean a() {
         if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            boolean z10 = org.telegram.messenger.s2.f26723a;
+            boolean z10 = org.telegram.messenger.s2.f26721a;
             org.telegram.messenger.a8.e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
             return false;
         }
@@ -92,7 +92,7 @@ public final class k5 {
                     TLRPC.Document document = (TLRPC.Document) arrayList.get(i7);
                     e(document);
                     HashMap hashMap = this.f36679b;
-                    if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f28411id))) != null) {
+                    if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f28409id))) != null) {
                         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                             l5 l5Var = (l5) arrayList2.get(i10);
                             if (l5Var != null) {
@@ -115,7 +115,7 @@ public final class k5 {
                 if (this.f36678a == null) {
                     this.f36678a = new HashMap();
                 }
-                this.f36678a.put(Long.valueOf(document.f28411id), document);
+                this.f36678a.put(Long.valueOf(document.f28409id), document);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -137,7 +137,7 @@ public final class k5 {
                     Object obj = arrayList.get(i7);
                     i7++;
                     TLRPC.Document document = (TLRPC.Document) obj;
-                    this.f36678a.put(Long.valueOf(document.f28411id), document);
+                    this.f36678a.put(Long.valueOf(document.f28409id), document);
                 }
             } catch (Throwable th2) {
                 throw th2;

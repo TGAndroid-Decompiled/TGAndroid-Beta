@@ -29,7 +29,7 @@ public final class i61 implements Runnable {
                 l61Var2.f37047e = null;
                 if (l61Var2.f37042b != null) {
                     l61Var2.f37055s = true;
-                    PhotoViewer photoViewer = l61Var2.N.f51296a;
+                    PhotoViewer photoViewer = l61Var2.N.f51256a;
                     if (photoViewer.f43340u3) {
                         photoViewer.Z2(true);
                         return;
@@ -43,7 +43,7 @@ public final class i61 implements Runnable {
                 l61Var3.f37047e = null;
                 if (l61Var3.f37042b != null) {
                     l61Var3.f37055s = true;
-                    PhotoViewer photoViewer2 = l61Var3.N.f51296a;
+                    PhotoViewer photoViewer2 = l61Var3.N.f51256a;
                     if (photoViewer2.f43340u3) {
                         photoViewer2.Z2(true);
                         return;

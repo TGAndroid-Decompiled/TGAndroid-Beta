@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.text.Editable;
-public final class fb1 extends org.telegram.ui.Cells.k3 {
+public final class fb1 extends org.telegram.ui.Cells.l3 {
     public final int F;
     public final UserInfoActivity G;
 

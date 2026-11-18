@@ -54,28 +54,28 @@ public final class x9 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 zh.k kVar = (zh.k) this.f45288g;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kVar.f62007y = floatValue2;
+                kVar.f62008y = floatValue2;
                 float f14 = this.f45284b;
                 float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, f14, floatValue2, f14);
                 zh.j jVar = kVar.E;
                 jVar.setScaleX(z10);
                 jVar.setScaleY(z10);
-                jVar.setTranslationX((1.0f - kVar.f62007y) * this.f45285c);
-                jVar.setTranslationY((1.0f - kVar.f62007y) * this.d);
-                int i10 = (int) ((1.0f - kVar.f62007y) * this.f45286e);
+                jVar.setTranslationX((1.0f - kVar.f62008y) * this.f45285c);
+                jVar.setTranslationY((1.0f - kVar.f62008y) * this.d);
+                int i10 = (int) ((1.0f - kVar.f62008y) * this.f45286e);
                 kVar.h.N(i10, i10);
-                float a10 = c8.l9.a((kVar.f62007y * 2.0f) - 1.0f, 0.0f, 1.0f);
-                kVar.f61999c.setAlpha((int) (a10 * 255.0f));
+                float a10 = c8.l9.a((kVar.f62008y * 2.0f) - 1.0f, 0.0f, 1.0f);
+                kVar.f62000c.setAlpha((int) (a10 * 255.0f));
                 kVar.d.setAlpha(a10);
-                kVar.f62000e.setAlpha(a10);
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = kVar.f62001f;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - kVar.f62007y) * this.f45287f);
+                kVar.f62001e.setAlpha(a10);
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = kVar.f62002f;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - kVar.f62008y) * this.f45287f);
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a10);
-                BitmapDrawable bitmapDrawable = kVar.f62006x;
+                BitmapDrawable bitmapDrawable = kVar.f62007x;
                 if (bitmapDrawable != null) {
-                    bitmapDrawable.setAlpha((int) (kVar.f62007y * 255.0f));
+                    bitmapDrawable.setAlpha((int) (kVar.f62008y * 255.0f));
                 }
-                kVar.f62002n.setAlpha(a10);
+                kVar.f62003n.setAlpha(a10);
                 return;
         }
     }

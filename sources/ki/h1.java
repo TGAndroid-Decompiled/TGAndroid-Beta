@@ -37,7 +37,7 @@ public final class h1 extends sa {
     public boolean X1;
     public boolean Y1;
     public final bi.h0 Z1;
-    public int f18714a2;
+    public int f18711a2;
 
     public h1(Context context, int i7, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, i6 i6Var, org.telegram.ui.web.q qVar, bi.h0 h0Var) {
         super(context, null, false, false, i6Var);
@@ -131,7 +131,7 @@ public final class h1 extends sa {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f28411id = 0L;
+                    tL_document2.f28409id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -194,7 +194,7 @@ public final class h1 extends sa {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] g12 = fj.g1(botInlineResult);
-                            tL_documentAttributeImageSize.f28412w = g12[0];
+                            tL_documentAttributeImageSize.f28410w = g12[0];
                             tL_documentAttributeImageSize.h = g12[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -252,7 +252,7 @@ public final class h1 extends sa {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] g13 = fj.g1(botInlineResult);
-                            tL_documentAttributeVideo.f28412w = g13[0];
+                            tL_documentAttributeVideo.f28410w = g13[0];
                             tL_documentAttributeVideo.h = g13[1];
                             tL_documentAttributeVideo.duration = fj.f1(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -292,7 +292,7 @@ public final class h1 extends sa {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] g14 = fj.g1(botInlineResult);
-                        tL_photoSize.f28430w = g14[0];
+                        tL_photoSize.f28428w = g14[0];
                         z10 = true;
                         tL_photoSize.h = g14[1];
                         tL_photoSize.size = 0;
@@ -320,7 +320,7 @@ public final class h1 extends sa {
                         tL_photo2.file_reference = new byte[i11];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] g15 = fj.g1(botInlineResult);
-                        tL_photoSize2.f28430w = g15[i11];
+                        tL_photoSize2.f28428w = g15[i11];
                         tL_photoSize2.h = g15[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -341,15 +341,15 @@ public final class h1 extends sa {
             e12 = e1(i10, j3, botInlineResult, tL_photo, tL_document, null);
         }
         g1 g1Var = e12;
-        org.telegram.ui.Cells.u0 u0Var = new org.telegram.ui.Cells.u0(context, i6Var, false);
-        u0Var.setDelegate(new Object());
-        u0Var.setCustomText(gd.M0(2131752968, null));
-        org.telegram.ui.Cells.q1 q1Var = new org.telegram.ui.Cells.q1(context, i10);
-        q1Var.setDelegate(new Object());
-        q1Var.y3(g1Var, null, false, false, false, false);
+        org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context, i6Var, false);
+        v0Var.setDelegate(new Object());
+        v0Var.setCustomText(gd.M0(2131752968, null));
+        org.telegram.ui.Cells.r1 r1Var = new org.telegram.ui.Cells.r1(context, i10);
+        r1Var.setDelegate(new Object());
+        r1Var.y3(g1Var, null, false, false, false, false);
         LinearLayout g10 = org.telegram.messenger.f3.g(context, r11);
-        g10.addView(u0Var, ma.o(-1, -2));
-        g10.addView(q1Var, ma.o(-1, -2));
+        g10.addView(v0Var, ma.o(-1, -2));
+        g10.addView(r1Var, ma.o(-1, -2));
         ?? au0Var = new au0(context, null);
         this.W1 = au0Var;
         au0Var.U(w5.e(null, i10, j3, n6.I.q()));
@@ -359,14 +359,14 @@ public final class h1 extends sa {
         g11.i(gd.M0(2131752967, null), false, r11);
         g11.setOnClickListener(new di.q0(this, tL_messages_preparedInlineMessage, h0Var, i10, j3, qVar));
         frameLayout.addView(g11, ma.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        ViewGroup viewGroup = this.f30192b;
-        int i13 = this.f30227u0;
+        ViewGroup viewGroup = this.f30190b;
+        int i13 = this.f30225u0;
         viewGroup.addView(frameLayout, ma.f(-2.0f, -1, 87, i13, 0, i13, 0));
         ck0 ck0Var = this.f39534o1;
-        int i14 = this.f30227u0;
+        int i14 = this.f30225u0;
         ck0Var.setPadding(i14, 0, i14, org.telegram.messenger.g0.L(68.0f) + r11);
         this.f39534o1.r1();
-        int i15 = n6.f29339a7;
+        int i15 = n6.f29337a7;
         v0(n6.w0(i15, this.J0));
         Q(i15);
         this.V1.O(false);
@@ -381,7 +381,7 @@ public final class h1 extends sa {
         u1Var.r(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = mp.u1(i7).q1(j3);
-        tL_messages_getPreparedInlineMessage.f28505id = str;
+        tL_messages_getPreparedInlineMessage.f28503id = str;
         ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getPreparedInlineMessage, new ii.f(i7, u1Var, context, j3, i6Var, qVar, h0Var));
     }
 
@@ -426,9 +426,9 @@ public final class h1 extends sa {
     public final void s0() {
         try {
             super.s0();
-            int w02 = n6.w0(n6.f29339a7, this.J0);
-            if (w02 != this.f18714a2) {
-                this.f18714a2 = w02;
+            int w02 = n6.w0(n6.f29337a7, this.J0);
+            if (w02 != this.f18711a2) {
+                this.f18711a2 = w02;
                 v0(w02);
             }
         } catch (Exception e10) {

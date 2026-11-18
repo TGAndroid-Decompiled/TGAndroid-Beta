@@ -55,7 +55,7 @@ public final class my extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 7) {
+        if (f1Var.f59127f == 7) {
             return true;
         }
         return false;
@@ -298,8 +298,8 @@ public final class my extends bk0 {
         ry ryVar = this.R;
         LongSparseArray longSparseArray = ryVar.A1;
         LongSparseArray longSparseArray2 = ryVar.f39415z1;
-        int i11 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        int i11 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         SparseArray sparseArray = this.f37660r;
         boolean z11 = true;
         char c10 = 1;
@@ -311,24 +311,24 @@ public final class my extends bk0 {
                 if (i11 != 2) {
                     if (i11 == 3) {
                         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) sparseArray.get(i7);
-                        org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) view;
-                        if (longSparseArray2.indexOfKey(stickerSetCovered.set.f28432id) >= 0) {
+                        org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) view;
+                        if (longSparseArray2.indexOfKey(stickerSetCovered.set.f28430id) >= 0) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        if (longSparseArray.indexOfKey(stickerSetCovered.set.f28432id) < 0) {
+                        if (longSparseArray.indexOfKey(stickerSetCovered.set.f28430id) < 0) {
                             c10 = 0;
                         }
                         if (z10 || c10 != 0) {
-                            if (z10 && u3Var.f32105r) {
-                                longSparseArray2.remove(stickerSetCovered.set.f28432id);
+                            if (z10 && v3Var.f32162r) {
+                                longSparseArray2.remove(stickerSetCovered.set.f28430id);
                                 z10 = false;
-                            } else if (c10 != 0 && !u3Var.f32105r) {
-                                longSparseArray.remove(stickerSetCovered.set.f28432id);
+                            } else if (c10 != 0 && !v3Var.f32162r) {
+                                longSparseArray.remove(stickerSetCovered.set.f28430id);
                             }
                         }
-                        u3Var.b(z10, false);
+                        v3Var.b(z10, false);
                         if (TextUtils.isEmpty(this.O)) {
                             A1 = -1;
                         } else {
@@ -336,28 +336,28 @@ public final class my extends bk0 {
                         }
                         int i13 = A1;
                         if (i13 >= 0) {
-                            u3Var.c(stickerSetCovered, false, false, i13, this.O.length(), false);
+                            v3Var.c(stickerSetCovered, false, false, i13, this.O.length(), false);
                             return;
                         }
-                        u3Var.c(stickerSetCovered, false, false, 0, 0, false);
+                        v3Var.c(stickerSetCovered, false, false, 0, 0, false);
                         if (!TextUtils.isEmpty(this.O) && org.telegram.messenger.g0.A1(stickerSetCovered.set.short_name, this.O) == 0) {
-                            u3Var.d(this.O.length(), stickerSetCovered.set.short_name);
+                            v3Var.d(this.O.length(), stickerSetCovered.set.short_name);
                             return;
                         }
                         return;
                     }
                     return;
                 }
-                org.telegram.ui.Cells.j8 j8Var = (org.telegram.ui.Cells.j8) view;
+                org.telegram.ui.Cells.k8 k8Var = (org.telegram.ui.Cells.k8) view;
                 Object obj = sparseArray.get(i7);
                 if (obj instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
                     if (!TextUtils.isEmpty(this.O) && this.G.containsKey(tL_messages_stickerSet)) {
                         TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                         if (stickerSet != null) {
-                            j8Var.a(0, stickerSet.title);
+                            k8Var.a(0, stickerSet.title);
                         }
-                        j8Var.c(this.O.length(), tL_messages_stickerSet.set.short_name);
+                        k8Var.c(this.O.length(), tL_messages_stickerSet.set.short_name);
                         return;
                     }
                     Integer num2 = (Integer) this.H.get(tL_messages_stickerSet);
@@ -370,23 +370,23 @@ public final class my extends bk0 {
                         } else {
                             i10 = 0;
                         }
-                        j8Var.b(str, 0, null, intValue, i10);
+                        k8Var.b(str, 0, null, intValue, i10);
                     }
-                    j8Var.c(0, null);
+                    k8Var.c(0, null);
                     return;
                 } else if (obj instanceof String) {
-                    j8Var.a(0, (String) obj);
-                    j8Var.c(0, null);
+                    k8Var.a(0, (String) obj);
+                    k8Var.c(0, null);
                     return;
                 } else {
                     return;
                 }
             }
-            org.telegram.ui.Cells.m3 m3Var = (org.telegram.ui.Cells.m3) view;
+            org.telegram.ui.Cells.n3 n3Var = (org.telegram.ui.Cells.n3) view;
             if (i7 == this.f37664y) {
                 int i14 = this.f37662w.get(i7 - 1, Integer.MIN_VALUE);
                 if (i14 == Integer.MIN_VALUE) {
-                    m3Var.setHeight(1);
+                    n3Var.setHeight(1);
                     return;
                 }
                 Object obj2 = this.f37659n.get(i14);
@@ -396,30 +396,30 @@ public final class my extends bk0 {
                     num = (Integer) obj2;
                 }
                 if (num == null) {
-                    m3Var.setHeight(1);
+                    n3Var.setHeight(1);
                     return;
                 } else if (num.intValue() == 0) {
-                    m3Var.setHeight(org.telegram.messenger.g0.L(8.0f));
+                    n3Var.setHeight(org.telegram.messenger.g0.L(8.0f));
                     return;
                 } else {
                     int B = org.telegram.messenger.n10.B(82.0f, (int) Math.ceil(num.intValue() / ryVar.f39414z0.d), ryVar.h.getHeight());
                     if (B > 0) {
                         i12 = B;
                     }
-                    m3Var.setHeight(i12);
+                    n3Var.setHeight(i12);
                     return;
                 }
             }
-            m3Var.setHeight(org.telegram.messenger.g0.L(82.0f));
+            n3Var.setHeight(org.telegram.messenger.g0.L(82.0f));
             return;
         }
         TLRPC.Document document = (TLRPC.Document) sparseArray.get(i7);
-        org.telegram.ui.Cells.z7 z7Var = (org.telegram.ui.Cells.z7) view;
-        z7Var.d(document, null, this.f37661s.get(i7), (String) this.f37663x.get(i7), false, false);
+        org.telegram.ui.Cells.a8 a8Var = (org.telegram.ui.Cells.a8) view;
+        a8Var.d(document, null, this.f37661s.get(i7), (String) this.f37663x.get(i7), false, false);
         if (!ryVar.f39367k1.contains(document) && !ryVar.l1.contains(document)) {
             z11 = false;
         }
-        z7Var.setRecent(z11);
+        a8Var.setRecent(z11);
     }
 
     @Override
@@ -433,15 +433,15 @@ public final class my extends bk0 {
                 view = new jg.b2(2, context, i6Var, true);
                 break;
             case 1:
-                view = new org.telegram.ui.Cells.m3(context);
+                view = new org.telegram.ui.Cells.n3(context);
                 break;
             case 2:
-                view = new org.telegram.ui.Cells.j8(this.h, false, false, ryVar.f39335a2, ryVar.f39365j2);
+                view = new org.telegram.ui.Cells.k8(this.h, false, false, ryVar.f39335a2, ryVar.f39365j2);
                 break;
             case 3:
-                org.telegram.ui.Cells.u3 u3Var = new org.telegram.ui.Cells.u3(17, this.h, ryVar.f39335a2, false, true);
-                u3Var.setAddOnClickListener(new n0(this, 15));
-                view = u3Var;
+                org.telegram.ui.Cells.v3 v3Var = new org.telegram.ui.Cells.v3(17, this.h, ryVar.f39335a2, false, true);
+                v3Var.setAddOnClickListener(new n0(this, 15));
+                view = v3Var;
                 break;
             case 4:
                 view = new View(context);

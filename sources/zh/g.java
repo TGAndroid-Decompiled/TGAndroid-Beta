@@ -13,28 +13,28 @@ import org.telegram.ui.ActionBar.h2;
 import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Cells.f5;
+import org.telegram.ui.Cells.g5;
 import org.telegram.ui.Components.b9;
 import org.telegram.ui.Components.bk0;
 import v4.f1;
 public final class g extends bk0 {
-    public final l f61990c;
+    public final l f61991c;
 
     public g(l lVar) {
-        this.f61990c = lVar;
+        this.f61991c = lVar;
     }
 
     @Override
     public final boolean D(f1 f1Var) {
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             return true;
         }
         return false;
     }
 
     public final void E(List list) {
-        l lVar = this.f61990c;
-        ArrayList arrayList = lVar.f62010c;
+        l lVar = this.f61991c;
+        ArrayList arrayList = lVar.f62011c;
         boolean isEmpty = arrayList.isEmpty();
         int i7 = 0;
         while (i7 < list.size()) {
@@ -64,18 +64,18 @@ public final class g extends bk0 {
 
     @Override
     public final int b() {
-        l lVar = this.f61990c;
+        l lVar = this.f61991c;
         int i7 = 1;
-        return ((lVar.f62010c.isEmpty() || !lVar.f62028x) ? 0 : 0) + lVar.f62010c.size() + (!lVar.B ? 1 : 0);
+        return ((lVar.f62011c.isEmpty() || !lVar.f62029x) ? 0 : 0) + lVar.f62011c.size() + (!lVar.B ? 1 : 0);
     }
 
     @Override
     public final int d(int i7) {
-        l lVar = this.f61990c;
+        l lVar = this.f61991c;
         if (i7 == 0 && !lVar.B) {
             return 2;
         }
-        if (i7 == b() - 1 && !lVar.f62010c.isEmpty() && lVar.f62028x) {
+        if (i7 == b() - 1 && !lVar.f62011c.isEmpty() && lVar.f62029x) {
             return 4;
         }
         return 0;
@@ -84,29 +84,29 @@ public final class g extends bk0 {
     @Override
     public final void t(f1 f1Var, int i7) {
         boolean z10;
-        l lVar = this.f61990c;
-        ArrayList arrayList = lVar.f62010c;
-        int i10 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        l lVar = this.f61991c;
+        ArrayList arrayList = lVar.f62011c;
+        int i10 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         if (i10 == 0) {
-            f5 f5Var = (f5) view;
+            g5 g5Var = (g5) view;
             int i11 = i7 - (!lVar.B ? 1 : 0);
             LongSparseArray longSparseArray = lVar.d;
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i11);
-            if (i11 == arrayList.size() - 1 && !lVar.f62028x) {
+            if (i11 == arrayList.size() - 1 && !lVar.f62029x) {
                 z10 = false;
             } else {
                 z10 = true;
             }
-            n5 n5Var = f5Var.d;
-            f5Var.f30612e = tL_chatInviteImporter;
-            f5Var.f30613f = z10;
-            f5Var.setWillNotDraw(!z10);
+            n5 n5Var = g5Var.d;
+            g5Var.f30671e = tL_chatInviteImporter;
+            g5Var.f30672f = z10;
+            g5Var.setWillNotDraw(!z10);
             TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-            b9 b9Var = f5Var.f30609a;
+            b9 b9Var = g5Var.f30668a;
             b9Var.r(user);
-            f5Var.f30610b.f(user, b9Var);
-            f5Var.f30611c.l(o10.q(user), false);
+            g5Var.f30669b.f(user, b9Var);
+            g5Var.f30670c.l(o10.q(user), false);
             String s5 = gd.s(tL_chatInviteImporter.date, false);
             if (tL_chatInviteImporter.via_chatlist) {
                 n5Var.l(gd.M0(2131748877, null), false);
@@ -130,39 +130,39 @@ public final class g extends bk0 {
 
     @Override
     public final f1 x(ViewGroup viewGroup, int i7) {
-        f5 f5Var;
-        l lVar = this.f61990c;
-        boolean z10 = lVar.f62008a;
+        g5 g5Var;
+        l lVar = this.f61991c;
+        boolean z10 = lVar.f62009a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
-                        f5Var = new f5(viewGroup.getContext(), lVar, z10);
+                        g5Var = new g5(viewGroup.getContext(), lVar, z10);
                     } else {
-                        h2 h2Var = lVar.f62013g;
+                        h2 h2Var = lVar.f62014g;
                         r2 r2Var = new r2(3, h2Var.getParentActivity(), h2Var.getResourceProvider());
                         if (lVar.B) {
-                            u6.h(n6.f29396d6, r2Var, h2Var.getResourceProvider());
+                            u6.h(n6.f29394d6, r2Var, h2Var.getResourceProvider());
                         }
-                        r2Var.e(n6.f29396d6, n6.f29339a7, -1);
+                        r2Var.e(n6.f29394d6, n6.f29337a7, -1);
                         r2Var.setViewType(15);
                         r2Var.setMemberRequestButton(z10);
                         r2Var.setIsSingleCell(true);
                         r2Var.setItemsCount(1);
                         r2Var.setTag(-33024);
-                        f5Var = r2Var;
+                        g5Var = r2Var;
                     }
                 } else {
-                    f5Var = new View(viewGroup.getContext());
+                    g5Var = new View(viewGroup.getContext());
                 }
             } else {
                 f fVar = new f(viewGroup.getContext(), 0);
                 fVar.setTag(-33024);
-                f5Var = fVar;
+                g5Var = fVar;
             }
         } else {
-            f5Var = new View(viewGroup.getContext());
+            g5Var = new View(viewGroup.getContext());
         }
-        return new f1(f5Var);
+        return new f1(g5Var);
     }
 }

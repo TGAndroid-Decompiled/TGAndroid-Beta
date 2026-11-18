@@ -13,21 +13,21 @@ import java.lang.reflect.InvocationTargetException;
 import w7.s;
 public final class f {
     public static Boolean d = null;
-    public static String f2947e = null;
-    public static boolean f2948f = false;
-    public static int f2949g = -1;
+    public static String f2948e = null;
+    public static boolean f2949f = false;
+    public static int f2950g = -1;
     public static Boolean h;
-    public static m f2953l;
-    public static n f2954m;
-    public final Context f2955a;
-    public static final ThreadLocal f2950i = new ThreadLocal();
-    public static final j f2951j = new j(0);
-    public static final sa.d f2952k = new sa.d(4);
-    public static final s f2945b = new s(4);
-    public static final nb.a f2946c = new nb.a(5);
+    public static m f2954l;
+    public static n f2955m;
+    public final Context f2956a;
+    public static final ThreadLocal f2951i = new ThreadLocal();
+    public static final j f2952j = new j(0);
+    public static final sa.d f2953k = new sa.d(4);
+    public static final s f2946b = new s(4);
+    public static final nb.a f2947c = new nb.a(5);
 
     public f(Context context) {
-        this.f2955a = context;
+        this.f2956a = context;
     }
 
     public static int a(Context context, String str) {
@@ -89,13 +89,13 @@ public final class f {
                 i7 = 0;
             }
             ProviderInfo resolveContentProvider = packageManager.resolveContentProvider("com.google.android.gms.chimera", i7);
-            if (n6.e.f21434b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
+            if (n6.e.f21431b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
                 z10 = true;
             }
             h = Boolean.valueOf(z10);
             if (z10 && (applicationInfo = resolveContentProvider.applicationInfo) != null && (applicationInfo.flags & 129) == 0) {
                 Log.i("DynamiteModule", "Non-system-image GmsCore APK, forcing V1");
-                f2948f = true;
+                f2949f = true;
             }
         }
         if (!z10) {
@@ -120,7 +120,7 @@ public final class f {
                     nVar = new a8.a(iBinder, "com.google.android.gms.dynamite.IDynamiteLoaderV2", 9);
                 }
             }
-            f2954m = nVar;
+            f2955m = nVar;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e10) {
             throw new Exception("Failed to instantiate dynamite loader", e10);
         }
@@ -129,7 +129,7 @@ public final class f {
     public static m h(Context context) {
         m mVar;
         synchronized (f.class) {
-            m mVar2 = f2953l;
+            m mVar2 = f2954l;
             if (mVar2 != null) {
                 return mVar2;
             }
@@ -146,7 +146,7 @@ public final class f {
                     }
                 }
                 if (mVar != 0) {
-                    f2953l = mVar;
+                    f2954l = mVar;
                     return mVar;
                 }
             } catch (Exception e10) {
@@ -162,7 +162,7 @@ public final class f {
 
     public final IBinder b(String str) {
         try {
-            return (IBinder) this.f2955a.getClassLoader().loadClass(str).newInstance();
+            return (IBinder) this.f2956a.getClassLoader().loadClass(str).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e10) {
             throw new Exception("Failed to instantiate module class: ".concat(str), e10);
         }

@@ -45,7 +45,7 @@ public final class q implements Runnable {
                         return Integer.valueOf(DictationAsr.t("silero_vad.onnx", j1.f(arrayList, "silero-vad"), null, z12));
                     }
                 });
-                int t6 = DictationAsr.t(tVar.a(), j1.f(a10, tVar.f1531b), tVar, z11);
+                int t6 = DictationAsr.t(tVar.a(), j1.f(a10, tVar.f1532b), tVar, z11);
                 try {
                     i7 = ((Integer) submit.get()).intValue();
                 } catch (Exception unused2) {
@@ -65,10 +65,10 @@ public final class q implements Runnable {
                 }
                 tVar.h = false;
                 if (z13) {
-                    mp.g1().edit().putLong("tinyasr_checked_" + tVar.f1530a, System.currentTimeMillis()).apply();
+                    mp.g1().edit().putLong("tinyasr_checked_" + tVar.f1531a, System.currentTimeMillis()).apply();
                 }
                 if (DictationAsr.w(tVar) && (z12 || tVar.d == 0)) {
-                    tVar.f1535g = true;
+                    tVar.f1536g = true;
                     DictationAsr.d.execute(new p(tVar, 1));
                 } else if (!DictationAsr.w(tVar)) {
                     org.telegram.messenger.g0.g3(new q(false, tVar, 1));
@@ -83,8 +83,8 @@ public final class q implements Runnable {
                     z10 = false;
                 }
                 if (z14 == z10) {
-                    ArrayList arrayList = new ArrayList(tVar2.f1537j);
-                    tVar2.f1537j.clear();
+                    ArrayList arrayList = new ArrayList(tVar2.f1538j);
+                    tVar2.f1538j.clear();
                     int size = arrayList.size();
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);

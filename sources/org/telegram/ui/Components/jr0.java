@@ -39,8 +39,8 @@ public final class jr0 implements ViewTreeObserver.OnPreDrawListener {
                     b1Var.getClass();
                     int R = RecyclerView.R(childAt);
                     if (R >= i10) {
-                        if (R == 1 && b1Var.getAdapter() == o51Var.f37985p1 && (childAt instanceof org.telegram.ui.Cells.x3)) {
-                            childAt = ((org.telegram.ui.Cells.x3) childAt).getTextView();
+                        if (R == 1 && b1Var.getAdapter() == o51Var.f37985p1 && (childAt instanceof org.telegram.ui.Cells.y3)) {
+                            childAt = ((org.telegram.ui.Cells.y3) childAt).getTextView();
                         }
                         childAt.setAlpha(0.0f);
                         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);

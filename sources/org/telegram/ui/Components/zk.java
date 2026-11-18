@@ -57,7 +57,7 @@ public final class zk implements org.telegram.ui.ActionBar.m0, org.telegram.mess
                 int top = childAt.getTop();
                 if (top < (-L)) {
                     hi.u4 d = klVar.E.d();
-                    klVar.G = ((pb.b) org.telegram.messenger.t0.k()).newCameraUpdateLatLngZoom((org.telegram.messenger.ab) d.f15536b, d.f15537c);
+                    klVar.G = ((pb.b) org.telegram.messenger.t0.k()).newCameraUpdateLatLngZoom((org.telegram.messenger.ab) d.f15533b, d.f15534c);
                     b1Var.w0(0, top + L, null);
                 }
             }

@@ -6,20 +6,20 @@ import org.json.JSONObject;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.utils.twidget.p1;
 public final class p implements Runnable {
-    public final int f27535a = 0;
-    public final int f27536b;
-    public final long f27537c;
+    public final int f27533a = 0;
+    public final int f27534b;
+    public final long f27535c;
     public final boolean d;
-    public final Object f27538e;
-    public final Object f27539f;
+    public final Object f27536e;
+    public final Object f27537f;
     public final Object h;
 
     public p(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i7, long j3, boolean z10) {
-        this.f27538e = intent;
-        this.f27539f = phoneCall;
+        this.f27536e = intent;
+        this.f27537f = phoneCall;
         this.h = context;
-        this.f27536b = i7;
-        this.f27537c = j3;
+        this.f27534b = i7;
+        this.f27535c = j3;
         this.d = z10;
     }
 
@@ -29,19 +29,19 @@ public final class p implements Runnable {
     }
 
     public p(p1 p1Var, int i7, long j3, JSONObject jSONObject, String str, boolean z10) {
-        this.f27538e = p1Var;
-        this.f27536b = i7;
-        this.f27537c = j3;
-        this.f27539f = jSONObject;
+        this.f27536e = p1Var;
+        this.f27534b = i7;
+        this.f27535c = j3;
+        this.f27537f = jSONObject;
         this.h = str;
         this.d = z10;
     }
 
     public p(qi.i iVar, long j3, qi.f fVar, int i7, boolean z10, ji.j jVar) {
-        this.f27538e = iVar;
-        this.f27537c = j3;
-        this.f27539f = fVar;
-        this.f27536b = i7;
+        this.f27536e = iVar;
+        this.f27535c = j3;
+        this.f27537f = fVar;
+        this.f27534b = i7;
         this.d = z10;
         this.h = jVar;
     }

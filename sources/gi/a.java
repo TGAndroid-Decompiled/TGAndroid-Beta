@@ -7,7 +7,7 @@ import di.n4;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 import org.telegram.ui.ActionBar.x2;
-import org.telegram.ui.Cells.z2;
+import org.telegram.ui.Cells.a3;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.b5;
@@ -26,22 +26,22 @@ import org.telegram.ui.Components.ty;
 import org.telegram.ui.Components.ug0;
 import org.telegram.ui.Components.yo0;
 import org.telegram.ui.bn;
-import org.telegram.ui.eh0;
+import org.telegram.ui.fh0;
 import org.telegram.ui.g4;
 import org.telegram.ui.la;
 import org.telegram.ui.lb;
 public final class a implements View.OnTouchListener {
-    public final int f13632a;
+    public final int f13629a;
 
     public a(int i7) {
-        this.f13632a = i7;
+        this.f13629a = i7;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f13632a) {
+        switch (this.f13629a) {
             case 0:
-                int i7 = m.f13650b0;
+                int i7 = m.f13647b0;
                 return true;
             case 1:
                 int i10 = x2.l1;
@@ -49,13 +49,13 @@ public final class a implements View.OnTouchListener {
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = g4.f47891d1;
+                HashSet hashSet = g4.f47855d1;
                 return true;
             case 4:
-                int i11 = n4.f9371f;
+                int i11 = n4.f9368f;
                 return true;
             case 5:
-                int i12 = z2.f32486x;
+                int i12 = a3.f30366x;
                 return true;
             case 6:
                 Paint paint = la.I;
@@ -64,7 +64,7 @@ public final class a implements View.OnTouchListener {
                 int i13 = lb.R0;
                 return true;
             case 8:
-                int i14 = bn.f45922md;
+                int i14 = bn.f45913md;
                 return true;
             case 9:
                 return true;
@@ -129,7 +129,7 @@ public final class a implements View.OnTouchListener {
                 int i27 = UndoView.f33171j0;
                 return true;
             default:
-                int i28 = eh0.Z1;
+                int i28 = fh0.Z1;
                 return true;
         }
     }

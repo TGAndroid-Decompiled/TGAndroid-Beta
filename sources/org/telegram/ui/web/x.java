@@ -6,20 +6,20 @@ import java.io.Serializable;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x implements Runnable {
-    public final int f53392a;
-    public final Object f53393b;
-    public final Object f53394c;
+    public final int f53343a;
+    public final Object f53344b;
+    public final Object f53345c;
     public final Serializable d;
-    public final Object f53395e;
-    public final Object f53396f;
+    public final Object f53346e;
+    public final Object f53347f;
 
     public x(Object obj, WebView webView, Object obj2, String str, Object obj3, int i7) {
-        this.f53392a = i7;
-        this.f53393b = obj;
-        this.f53395e = webView;
-        this.f53396f = obj2;
+        this.f53343a = i7;
+        this.f53344b = obj;
+        this.f53346e = webView;
+        this.f53347f = obj2;
         this.d = str;
-        this.f53394c = obj3;
+        this.f53345c = obj3;
     }
 
     @Override
@@ -28,38 +28,38 @@ public final class x implements Runnable {
     }
 
     public x(Object obj, String str, Serializable serializable, String str2, String str3, int i7) {
-        this.f53392a = i7;
-        this.f53393b = obj;
+        this.f53343a = i7;
+        this.f53344b = obj;
         this.d = str;
-        this.f53395e = serializable;
-        this.f53396f = str2;
-        this.f53394c = str3;
+        this.f53346e = serializable;
+        this.f53347f = str2;
+        this.f53345c = str3;
     }
 
     public x(v0 v0Var, TLObject tLObject, f7 f7Var, String str, String str2) {
-        this.f53392a = 1;
-        this.f53393b = v0Var;
-        this.f53394c = tLObject;
-        this.f53395e = f7Var;
+        this.f53343a = 1;
+        this.f53344b = v0Var;
+        this.f53345c = tLObject;
+        this.f53346e = f7Var;
         this.d = str;
-        this.f53396f = str2;
+        this.f53347f = str2;
     }
 
     public x(v0 v0Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.u1 u1Var) {
-        this.f53392a = 3;
-        this.f53393b = v0Var;
-        this.f53394c = tLObject;
+        this.f53343a = 3;
+        this.f53344b = v0Var;
+        this.f53345c = tLObject;
         this.d = strArr;
-        this.f53395e = tL_error;
-        this.f53396f = u1Var;
+        this.f53346e = tL_error;
+        this.f53347f = u1Var;
     }
 
     public x(v0 v0Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
-        this.f53392a = 0;
-        this.f53393b = v0Var;
-        this.f53395e = tL_error;
+        this.f53343a = 0;
+        this.f53344b = v0Var;
+        this.f53346e = tL_error;
         this.d = str;
-        this.f53396f = tL_inputInvoiceSlug;
-        this.f53394c = tLObject;
+        this.f53347f = tL_inputInvoiceSlug;
+        this.f53345c = tLObject;
     }
 }

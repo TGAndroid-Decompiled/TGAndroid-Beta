@@ -21,25 +21,25 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 public final class o implements View.OnClickListener {
-    public final int f3919a;
+    public final int f3885a;
 
     public o(int i7) {
-        this.f3919a = i7;
+        this.f3885a = i7;
     }
 
     @Override
     public final void onClick(View view) {
         int i7;
-        org.telegram.ui.Cells.c2 c2Var;
-        switch (this.f3919a) {
+        org.telegram.ui.Cells.d2 d2Var;
+        switch (this.f3885a) {
             case 0:
-                int i10 = y.f4224w2;
+                int i10 = y.f4192w2;
                 return;
             case 1:
-                nc[] ncVarArr = m0.f3857l2;
+                nc[] ncVarArr = m0.f3828l2;
                 return;
             case 2:
-                int i11 = t0.f4069c2;
+                int i11 = t0.f4044c2;
                 return;
             case 3:
                 org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
@@ -56,22 +56,22 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 5:
-                int i12 = ch.f.f5349e;
+                int i12 = ch.f.f5346e;
                 return;
             case 6:
-                int i13 = di.h1.f8896w2;
+                int i13 = di.h1.f8893w2;
                 return;
             case 7:
-                int i14 = hi.q3.f15266e;
+                int i14 = hi.q3.f15263e;
                 return;
             case 8:
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 9:
-                int i15 = ki.m.f18768n;
+                int i15 = ki.m.f18765n;
                 return;
             case 10:
-                int i16 = lh.c.f19853e;
+                int i16 = lh.c.f19850e;
                 return;
             case 11:
                 return;
@@ -88,10 +88,10 @@ public final class o implements View.OnClickListener {
             case 14:
                 if (!MediaController.B().B0) {
                     if (MediaController.B().H()) {
-                        MediaController.B().S(MediaController.B().f22743v0);
+                        MediaController.B().S(MediaController.B().f22740v0);
                         return;
                     } else {
-                        MediaController.B().R(MediaController.B().f22743v0, true);
+                        MediaController.B().R(MediaController.B().f22740v0, true);
                         return;
                     }
                 }
@@ -111,10 +111,10 @@ public final class o implements View.OnClickListener {
                 }
                 B.n0();
                 B.m();
-                fj fjVar = B.f22743v0;
+                fj fjVar = B.f22740v0;
                 if (fjVar != null) {
                     ks f10 = ks.f(fjVar.K1);
-                    fj fjVar2 = B.f22743v0;
+                    fj fjVar2 = B.f22740v0;
                     if (fjVar2 != null) {
                         i7 = fjVar2.e1();
                     } else {
@@ -125,7 +125,7 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 18:
-                ((org.telegram.ui.Cells.c2) view).c(!c2Var.b(), true);
+                ((org.telegram.ui.Cells.d2) view).c(!d2Var.b(), true);
                 return;
             case 19:
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -168,7 +168,7 @@ public final class o implements View.OnClickListener {
     }
 
     public o(Object obj, int i7) {
-        this.f3919a = i7;
+        this.f3885a = i7;
     }
 
     private final void a(View view) {

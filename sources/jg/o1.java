@@ -8,20 +8,20 @@ import org.telegram.ui.Wallet.q6;
 import org.telegram.ui.Wallet.s6;
 import org.telegram.ui.bn;
 public final class o1 implements Runnable {
-    public final int f17611a;
-    public final int f17612b;
-    public final int f17613c;
+    public final int f17608a;
+    public final int f17609b;
+    public final int f17610c;
     public final Object d;
-    public final Object f17614e;
-    public final Object f17615f;
+    public final Object f17611e;
+    public final Object f17612f;
 
     public o1(int i7, int i10, int i11, Object obj, Object obj2, TLObject tLObject) {
-        this.f17611a = i11;
+        this.f17608a = i11;
         this.d = obj;
-        this.f17612b = i7;
-        this.f17614e = tLObject;
-        this.f17615f = obj2;
-        this.f17613c = i10;
+        this.f17609b = i7;
+        this.f17611e = tLObject;
+        this.f17612f = obj2;
+        this.f17610c = i10;
     }
 
     @Override
@@ -30,38 +30,38 @@ public final class o1 implements Runnable {
     }
 
     public o1(int i7, TLRPC.User user, TLRPC.Document document, int i10, org.telegram.ui.web.o oVar) {
-        this.f17611a = 1;
-        this.f17612b = i7;
+        this.f17608a = 1;
+        this.f17609b = i7;
         this.d = user;
-        this.f17614e = document;
-        this.f17613c = i10;
-        this.f17615f = oVar;
+        this.f17611e = document;
+        this.f17610c = i10;
+        this.f17612f = oVar;
     }
 
     public o1(Object obj, Object obj2, int i7, Object obj3, int i10, int i11) {
-        this.f17611a = i11;
+        this.f17608a = i11;
         this.d = obj;
-        this.f17614e = obj2;
-        this.f17612b = i7;
-        this.f17615f = obj3;
-        this.f17613c = i10;
+        this.f17611e = obj2;
+        this.f17609b = i7;
+        this.f17612f = obj3;
+        this.f17610c = i10;
     }
 
-    public o1(bn bnVar, int i7, int i10, CharacterStyle characterStyle, org.telegram.ui.Cells.q1 q1Var) {
-        this.f17611a = 9;
+    public o1(bn bnVar, int i7, int i10, CharacterStyle characterStyle, org.telegram.ui.Cells.r1 r1Var) {
+        this.f17608a = 9;
         this.d = bnVar;
-        this.f17612b = i7;
-        this.f17613c = i10;
-        this.f17614e = characterStyle;
-        this.f17615f = q1Var;
+        this.f17609b = i7;
+        this.f17610c = i10;
+        this.f17611e = characterStyle;
+        this.f17612f = r1Var;
     }
 
     public o1(s6 s6Var, Context context, int i7, int i10, q6 q6Var) {
-        this.f17611a = 10;
+        this.f17608a = 10;
         this.d = s6Var;
-        this.f17614e = context;
-        this.f17612b = i7;
-        this.f17613c = i10;
-        this.f17615f = q6Var;
+        this.f17611e = context;
+        this.f17609b = i7;
+        this.f17610c = i10;
+        this.f17612f = q6Var;
     }
 }

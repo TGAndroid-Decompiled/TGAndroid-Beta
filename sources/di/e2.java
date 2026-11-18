@@ -17,18 +17,18 @@ import org.telegram.ui.Components.n31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.gi0;
 public final class e2 implements q10 {
-    public final int f8695a;
-    public final Object f8696b;
-    public final Object f8697c;
+    public final int f8692a;
+    public final Object f8693b;
+    public final Object f8694c;
     public final Object d;
-    public final Object f8698e;
+    public final Object f8695e;
 
     public e2(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f8695a = i7;
-        this.f8696b = obj;
-        this.f8697c = obj2;
+        this.f8692a = i7;
+        this.f8693b = obj;
+        this.f8694c = obj2;
         this.d = obj3;
-        this.f8698e = obj4;
+        this.f8695e = obj4;
     }
 
     @Override
@@ -37,11 +37,11 @@ public final class e2 implements q10 {
         fj fjVar;
         org.telegram.ui.Components.lc k10;
         CharSequence P2;
-        int i7 = this.f8695a;
-        Object obj3 = this.f8698e;
+        int i7 = this.f8692a;
+        Object obj3 = this.f8695e;
         Object obj4 = this.d;
-        Object obj5 = this.f8697c;
-        Object obj6 = this.f8696b;
+        Object obj5 = this.f8694c;
+        Object obj6 = this.f8693b;
         switch (i7) {
             case 0:
                 f6 f6Var = (f6) obj6;
@@ -60,21 +60,21 @@ public final class e2 implements q10 {
                             i10++;
                             TLRPC.Message message = ((TL_update.TL_updateNewMessage) obj7).message;
                             if (message != null && (message.action instanceof TLRPC.TL_messageActionStarGiftUnique)) {
-                                fjVar = new fj(f6Var.f30189a, message, false, false);
+                                fjVar = new fj(f6Var.f30187a, message, false, false);
                             }
                         } else {
                             fjVar = null;
                         }
                     }
-                    mp.u1(f6Var.f30189a).V3(updates, false);
+                    mp.u1(f6Var.f30187a).V3(updates, false);
                     if (fjVar != null) {
-                        TL_stars.StarGift starGift = ((TLRPC.TL_messageActionStarGiftUnique) fjVar.f23968k.action).gift;
+                        TL_stars.StarGift starGift = ((TLRPC.TL_messageActionStarGiftUnique) fjVar.f23965k.action).gift;
                         q10Var.a(starGift, new ai.s(f6Var, fjVar, arrayList, starGift, 12));
                         return;
                     }
                     q10Var.a(null, null);
-                    x8.y(f6Var.f30189a, false).N();
-                    o8 G = x8.y(f6Var.f30189a, false).G(j10.i(f6Var.f30189a).e(), false);
+                    x8.y(f6Var.f30187a, false).N();
+                    o8 G = x8.y(f6Var.f30187a, false).G(j10.i(f6Var.f30187a).e(), false);
                     if (G != null) {
                         G.l(arrayList, null);
                         return;
@@ -84,16 +84,16 @@ public final class e2 implements q10 {
                     if ("STARGIFT_CRAFT_UNAVAILABLE".equalsIgnoreCase(tL_error.text)) {
                         alertDialog$Builder = new AlertDialog$Builder(0, f6Var.getContext(), new fi.b());
                         String M0 = gd.M0(2131749739, null);
-                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                         u1Var.S = M0;
                         u1Var.U = org.telegram.messenger.g0.W2(gd.M0(2131749741, null));
                     } else {
                         String str = tL_error.text;
                         if (str != null && str.startsWith("STARGIFT_CRAFT_TOO_EARLY_")) {
-                            long currentTime = ConnectionsManager.getInstance(f6Var.f30189a).getCurrentTime();
+                            long currentTime = ConnectionsManager.getInstance(f6Var.f30187a).getCurrentTime();
                             alertDialog$Builder = new AlertDialog$Builder(0, f6Var.getContext(), new fi.b());
                             String M02 = gd.M0(2131749739, null);
-                            org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f28746a;
+                            org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f28744a;
                             u1Var2.S = M02;
                             u1Var2.U = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749740, gd.x(Long.parseLong(tL_error.text.substring(25)) + currentTime, true)));
                         } else {
@@ -118,7 +118,7 @@ public final class e2 implements q10 {
                 if (stargiftdepositpayload == null) {
                     bVar.b();
                     if (a2Var != null) {
-                        k10 = new org.telegram.ui.Components.lc(a2Var.f30195c, f6Var2.J0);
+                        k10 = new org.telegram.ui.Components.lc(a2Var.f30193c, f6Var2.J0);
                     } else {
                         k10 = f6Var2.k();
                     }
@@ -137,10 +137,10 @@ public final class e2 implements q10 {
                     n31Var.run();
                     return;
                 }
-                org.telegram.ui.ActionBar.x2 x2Var = gi0.f48115a;
+                org.telegram.ui.ActionBar.x2 x2Var = gi0.f48043a;
                 if (x2Var != null) {
                     x2Var.dismiss();
-                    gi0.f48115a = null;
+                    gi0.f48043a = null;
                 }
                 org.telegram.ui.Components.lc a10 = gi0.a();
                 String M03 = gd.M0(2131753126, null);
@@ -158,19 +158,19 @@ public final class e2 implements q10 {
                 TLRPC.User user = (TLRPC.User) obj3;
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.ActionBar.i6 i6Var2 = v0Var.f53350e;
+                org.telegram.ui.ActionBar.i6 i6Var2 = v0Var.f53301e;
                 if (updates2 != null) {
                     mp.u1(v0Var.N).V3(updates2, false);
                     v0Var.x(f7Var, "requested_chat_sent", org.telegram.ui.web.v0.A(str3, "req_id"));
-                    long j3 = v0Var.V.f28554id;
+                    long j3 = v0Var.V.f28552id;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f28554id);
+                    bundle.putLong("user_id", user.f28552id);
                     org.telegram.ui.web.a0 a0Var = new org.telegram.ui.web.a0(v0Var, bundle, user, j3);
                     org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
                     if (T != null) {
                         T.presentFragment(a0Var);
                     }
-                    org.telegram.ui.web.c0 c0Var = v0Var.f53347c;
+                    org.telegram.ui.web.c0 c0Var = v0Var.f53298c;
                     if (c0Var != null) {
                         c0Var.b();
                         return;

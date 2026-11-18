@@ -35,7 +35,7 @@ public final class o6 extends ReplacementSpan {
         this.f44711e = i6Var;
         if (f44707x == null) {
             if (Build.VERSION.SDK_INT >= 26) {
-                f44707x = new Typeface.Builder(org.telegram.messenger.t0.f26915b.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
+                f44707x = new Typeface.Builder(org.telegram.messenger.t0.f26913b.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
             } else {
                 f44707x = org.telegram.messenger.g0.o1("fonts/rmono.ttf");
             }
@@ -51,7 +51,7 @@ public final class o6 extends ReplacementSpan {
         textPaint.setTextSize(paint.getTextSize() * 0.95f);
         int color = paint.getColor();
         textPaint.setColor(color);
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, this.f44711e);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, this.f44711e);
         Paint paint2 = this.h;
         paint2.setColor(w02);
         Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();

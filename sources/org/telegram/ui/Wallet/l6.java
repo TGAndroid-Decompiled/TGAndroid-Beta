@@ -50,7 +50,7 @@ public final class l6 extends FrameLayout {
         if (c11 == null) {
             f10 = 0.0f;
         } else {
-            f10 = c11.f5633l / c11.f5625b;
+            f10 = c11.f5630l / c11.f5622b;
         }
         if (f10 > 0.0f) {
             if (bz.o() != 0 && !pc.f() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && activityManager.getDeviceConfigurationInfo().reqGlEsVersion >= 196608) {

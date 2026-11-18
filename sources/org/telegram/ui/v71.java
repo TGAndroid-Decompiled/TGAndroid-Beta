@@ -12,12 +12,12 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
 public final class v71 extends org.telegram.ui.Components.bk0 {
-    public final Context f52723c;
+    public final Context f52708c;
     public final x71 d;
 
     public v71(Context context, x71 x71Var) {
         this.d = x71Var;
-        this.f52723c = context;
+        this.f52708c = context;
     }
 
     @Override
@@ -42,29 +42,29 @@ public final class v71 extends org.telegram.ui.Components.bk0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         BlendMode blendMode;
-        org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) f1Var.f59122a;
+        org.telegram.ui.Cells.k5 k5Var = (org.telegram.ui.Cells.k5) f1Var.f59123a;
         x71 x71Var = this.d;
-        j5Var.setPattern((TLRPC.TL_wallPaper) x71Var.W0.get(i7));
-        j5Var.getImageReceiver().f22656p1 = new PorterDuffColorFilter(x71Var.l1, x71Var.f53739u1);
+        k5Var.setPattern((TLRPC.TL_wallPaper) x71Var.W0.get(i7));
+        k5Var.getImageReceiver().f22653p1 = new PorterDuffColorFilter(x71Var.l1, x71Var.f53727u1);
         if (Build.VERSION.SDK_INT >= 29) {
             int i10 = 0;
-            if (x71Var.f53686b == 1) {
+            if (x71Var.f53674b == 1) {
                 int E0 = org.telegram.ui.ActionBar.n6.E0(org.telegram.ui.ActionBar.n6.Ge);
-                long j3 = x71Var.f53742w.f29179l;
+                long j3 = x71Var.f53730w.f29177l;
                 int i11 = (int) j3;
                 if (i11 != 0 || j3 == 0) {
                     i10 = i11 != 0 ? i11 : E0;
                 }
             } else if (x71Var.D1 instanceof rc1) {
-                i10 = x71Var.f53698e1;
+                i10 = x71Var.f53686e1;
             }
             if (i10 != 0 && x71Var.n1 >= 0.0f) {
-                ImageReceiver imageReceiver = x71Var.f53751z0.getImageReceiver();
+                ImageReceiver imageReceiver = x71Var.f53739z0.getImageReceiver();
                 blendMode = BlendMode.SOFT_LIGHT;
                 imageReceiver.Z(blendMode);
                 return;
             }
-            j5Var.getImageReceiver().Z(null);
+            k5Var.getImageReceiver().Z(null);
         }
     }
 
@@ -72,9 +72,9 @@ public final class v71 extends org.telegram.ui.Components.bk0 {
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         int i10 = this.d.J1;
         u71 u71Var = new u71(this);
-        ?? q9Var = new org.telegram.ui.Components.q9(this.f52723c);
+        ?? q9Var = new org.telegram.ui.Components.q9(this.f52708c);
         q9Var.H = new RectF();
-        int i11 = org.telegram.messenger.j10.f24773t0;
+        int i11 = org.telegram.messenger.j10.f24770t0;
         q9Var.K = i11;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
         q9Var.V = i10;

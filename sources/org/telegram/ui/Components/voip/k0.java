@@ -241,7 +241,7 @@ public abstract class k0 extends FrameLayout {
         imageView.setBackground(n6.h0(i0.a.o(-1, 55), 1, -1));
         imageView.setOnClickListener(new c31(5, b20Var, f40Var));
         addView(imageView, ma.d(32, 32.0f, 53, 12.0f, 12.0f, 12.0f, 12.0f));
-        ai.k0 k0Var = new ai.k0(b20Var, context, n6.d0(org.telegram.messenger.g0.L(18.0f), i0.a.o(n6.x0(null, n6.f29535kh, false), 204)), 20);
+        ai.k0 k0Var = new ai.k0(b20Var, context, n6.d0(org.telegram.messenger.g0.L(18.0f), i0.a.o(n6.x0(null, n6.f29533kh, false), 204)), 20);
         this.J = k0Var;
         e9 e9Var = new e9(context, true);
         this.K = e9Var;
@@ -274,7 +274,7 @@ public abstract class k0 extends FrameLayout {
             f40 f40Var = ((b20) this).R0;
             b20 b20Var = f40Var.Z3;
             if (b20Var != null) {
-                f40Var.f47550y5.a(!b20Var.W, true);
+                f40Var.f47506y5.a(!b20Var.W, true);
             }
             gk gkVar = this.f40984i0;
             if (z10 && this.f40973b) {
@@ -428,7 +428,7 @@ public abstract class k0 extends FrameLayout {
 
     public final void f(y yVar) {
         this.I.remove(yVar);
-        long B1 = fj.B1(yVar.f41356x.f27119a.peer);
+        long B1 = fj.B1(yVar.f41356x.f27117a.peer);
         LongSparseIntArray longSparseIntArray = this.f41002x;
         longSparseIntArray.put(B1, longSparseIntArray.get(B1, 0) - 1);
     }
@@ -468,7 +468,7 @@ public abstract class k0 extends FrameLayout {
 
     public final boolean h() {
         t3 t3Var = this.f40985j0;
-        if (t3Var != null && t3Var.f26937b.rtmp_stream) {
+        if (t3Var != null && t3Var.f26935b.rtmp_stream) {
             return true;
         }
         return false;
@@ -485,7 +485,7 @@ public abstract class k0 extends FrameLayout {
         while (true) {
             ArrayList arrayList = this.I;
             if (i7 < arrayList.size()) {
-                if (fj.B1(((y) arrayList.get(i7)).f41356x.f27119a.peer) == fj.B1(groupCallParticipant.peer)) {
+                if (fj.B1(((y) arrayList.get(i7)).f41356x.f27117a.peer) == fj.B1(groupCallParticipant.peer)) {
                     ((y) arrayList.get(i7)).setAmplitude(f10);
                 }
                 i7++;
@@ -635,7 +635,7 @@ public abstract class k0 extends FrameLayout {
         TLRPC.Chat chat;
         int i10 = 0;
         if (this.f40973b && !this.N0 && this.f40978e != null && this.f40993r == null && this.f40985j0 != null) {
-            int i11 = this.f40986k0.f30189a;
+            int i11 = this.f40986k0.f30187a;
             long j10 = 500;
             if (System.currentTimeMillis() - this.P0 < 500) {
                 if (this.Q0 == null) {
@@ -659,7 +659,7 @@ public abstract class k0 extends FrameLayout {
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.f40985j0.P.f(this.f40985j0.P.j(i12));
                 if (!groupCallParticipant.self && !groupCallParticipant.muted_by_you) {
                     j3 = j10;
-                    if (fj.B1(this.f40978e.f27119a.peer) == fj.B1(groupCallParticipant.peer)) {
+                    if (fj.B1(this.f40978e.f27117a.peer) == fj.B1(groupCallParticipant.peer)) {
                         i7 = i12;
                     } else {
                         long B1 = fj.B1(groupCallParticipant.peer);

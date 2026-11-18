@@ -32,7 +32,7 @@ public final class t00 extends b8 {
                 if (i7 != 0 && i7 != 2) {
                     if (i7 == 4) {
                         textView.setGravity(51);
-                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29693t7, fragmentContextView.f32975r0);
+                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29691t7, fragmentContextView.f32975r0);
                         textView.setTypeface(org.telegram.messenger.g0.o());
                         textView.setTextSize(1, 15.0f);
                     } else if (i7 == 1 || i7 == 3) {
@@ -55,7 +55,7 @@ public final class t00 extends b8 {
                 textView2.setEllipsize(TextUtils.TruncateAt.END);
                 textView2.setGravity(3);
                 textView2.setTextSize(1, 13.0f);
-                org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29770x7, this.G.f32975r0);
+                org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29768x7, this.G.f32975r0);
                 return textView2;
         }
     }

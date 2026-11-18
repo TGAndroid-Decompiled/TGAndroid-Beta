@@ -35,23 +35,23 @@ public final class wd0 extends View {
             }
             float min = Math.min(2.0f, (this.d - y10) / 8.0f);
             h2.c cVar = this.f41701x;
-            int i10 = cVar.f13732a;
+            int i10 = cVar.f13729a;
             if (i10 != 0) {
                 if (i10 != 1) {
                     if (i10 != 2) {
                         if (i10 != 3) {
                             be0Var = null;
                         } else {
-                            be0Var = (be0) cVar.f13735e;
+                            be0Var = (be0) cVar.f13732e;
                         }
                     } else {
                         be0Var = (be0) cVar.d;
                     }
                 } else {
-                    be0Var = (be0) cVar.f13734c;
+                    be0Var = (be0) cVar.f13731c;
                 }
             } else {
-                be0Var = (be0) cVar.f13733b;
+                be0Var = (be0) cVar.f13730b;
             }
             int i11 = this.f41692a;
             if (i11 != 1) {
@@ -112,7 +112,7 @@ public final class wd0 extends View {
         float f15 = yi0Var.f42503a;
         float f16 = yi0Var.f42504b;
         canvas.drawLine(f15, f16 + yi0Var.d, f15 + yi0Var.f42505c, f16, this.h);
-        int i11 = cVar.f13732a;
+        int i11 = cVar.f13729a;
         int i12 = 3;
         int i13 = 2;
         if (i11 != 0) {
@@ -122,7 +122,7 @@ public final class wd0 extends View {
                         be0Var = null;
                     } else {
                         paint.setColor(-13404165);
-                        be0Var = (be0) cVar.f13735e;
+                        be0Var = (be0) cVar.f13732e;
                     }
                 } else {
                     paint.setColor(-15667555);
@@ -130,11 +130,11 @@ public final class wd0 extends View {
                 }
             } else {
                 paint.setColor(-1229492);
-                be0Var = (be0) cVar.f13734c;
+                be0Var = (be0) cVar.f13731c;
             }
         } else {
             paint.setColor(-1);
-            be0Var = (be0) cVar.f13733b;
+            be0Var = (be0) cVar.f13730b;
         }
         int i14 = 0;
         while (i14 < 5) {

@@ -16,7 +16,7 @@ public final class r31 implements zt0 {
             if (i7 > org.telegram.messenger.g0.L(20.0f)) {
                 s31 s31Var = this.f39001c;
                 if (!s31Var.f39473h0) {
-                    s31Var.f39479o0.f30223r0 = false;
+                    s31Var.f39479o0.f30221r0 = false;
                     s31Var.f39473h0 = true;
                 }
             }

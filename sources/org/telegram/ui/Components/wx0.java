@@ -33,7 +33,7 @@ public final class wx0 extends View {
     public final ArrayList Q;
     public boolean R;
     public final ux0 S;
-    public final org.telegram.ui.Cells.i9 f41804a;
+    public final org.telegram.ui.Cells.j9 f41804a;
     public int f41805b;
     public final mx0 f41806c;
     public final mx0 d;
@@ -47,7 +47,7 @@ public final class wx0 extends View {
     public int f41813x;
     public boolean f41814y;
 
-    public wx0(Context context, vx0 vx0Var, org.telegram.ui.Cells.i9 i9Var) {
+    public wx0(Context context, vx0 vx0Var, org.telegram.ui.Cells.j9 j9Var) {
         super(context);
         this.f41806c = new mx0(this, true);
         this.d = new mx0(this, false);
@@ -67,7 +67,7 @@ public final class wx0 extends View {
         this.N = new RectF();
         this.O = new float[8];
         this.Q = new ArrayList();
-        this.f41804a = i9Var;
+        this.f41804a = j9Var;
         setRowCount(Integer.MIN_VALUE);
         setColumnCount(Integer.MIN_VALUE);
         setOrientation(0);
@@ -670,10 +670,10 @@ public final class wx0 extends View {
             ix0 a10 = tx0.a(tx0Var, true);
             ix0 a11 = tx0.a(tx0Var2, false);
             h6.m f10 = mx0Var2.f();
-            nx0 nx0Var = (nx0) ((Object[]) f10.d)[((int[]) f10.f13939b)[i20]];
+            nx0 nx0Var = (nx0) ((Object[]) f10.d)[((int[]) f10.f13936b)[i20]];
             h6.m f11 = mx0Var3.f();
             mx0 mx0Var4 = mx0Var2;
-            nx0 nx0Var2 = (nx0) ((Object[]) f11.d)[((int[]) f11.f13939b)[i20]];
+            nx0 nx0Var2 = (nx0) ((Object[]) f11.d)[((int[]) f11.f13936b)[i20]];
             int b10 = a10.b(d, i24 - nx0Var.d(true));
             int b11 = a11.b(d, i25 - nx0Var2.d(true));
             int e10 = wx0Var.e(d, true, true);

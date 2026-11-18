@@ -74,11 +74,11 @@ public class j01 extends FrameLayout implements org.telegram.messenger.fs, org.t
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.Q = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(8.0f));
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29487i5, this, i6Var);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29485i5, this, i6Var);
         q9 q9Var = new q9(context);
         this.I = q9Var;
         q9Var.getImageReceiver().B0 = true;
-        q9Var.getImageReceiver().f22669v0 = false;
+        q9Var.getImageReceiver().f22666v0 = false;
         q9Var.getImageReceiver().W(0);
         if (i10 != 0 && i10 != 3 && i10 != 2) {
             addView(q9Var, c8.ma.d(36, 36.0f, 81, 0.0f, 0.0f, 0.0f, 12.0f));
@@ -155,7 +155,7 @@ public class j01 extends FrameLayout implements org.telegram.messenger.fs, org.t
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.f25145k4) {
+        if (i7 == org.telegram.messenger.ks.f25148l4) {
             invalidate();
         }
     }
@@ -242,7 +242,7 @@ public class j01 extends FrameLayout implements org.telegram.messenger.fs, org.t
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25145k4);
+        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.f25148l4);
         this.P = true;
         org.telegram.ui.en enVar = this.O;
         if (enVar != null) {
@@ -254,7 +254,7 @@ public class j01 extends FrameLayout implements org.telegram.messenger.fs, org.t
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25145k4);
+        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.f25148l4);
         this.P = false;
         org.telegram.ui.en enVar = this.O;
         if (enVar != null) {
@@ -312,7 +312,7 @@ public class j01 extends FrameLayout implements org.telegram.messenger.fs, org.t
 
     @Override
     public void setBackgroundColor(int i7) {
-        int i10 = org.telegram.ui.ActionBar.n6.f29487i5;
+        int i10 = org.telegram.ui.ActionBar.n6.f29485i5;
         org.telegram.ui.ActionBar.i6 i6Var = this.f36292y;
         this.f36289s.setColor(org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
         TextPaint textPaint = this.F;
@@ -337,7 +337,7 @@ public class j01 extends FrameLayout implements org.telegram.messenger.fs, org.t
     public final void updateColors() {
         org.telegram.ui.ActionBar.i6 i6Var = this.f36292y;
         try {
-            this.f36289s.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29487i5, i6Var));
+            this.f36289s.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29485i5, i6Var));
             TextPaint textPaint = this.F;
             if (textPaint != null) {
                 textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Of, i6Var));

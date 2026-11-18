@@ -10,20 +10,20 @@ import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Dictation.DictationLid;
 public final class v0 implements Runnable {
-    public final int f1561a;
-    public final File f1562b;
+    public final int f1562a;
+    public final File f1563b;
 
     public v0(File file, int i7) {
-        this.f1561a = i7;
-        this.f1562b = file;
+        this.f1562a = i7;
+        this.f1563b = file;
     }
 
     @Override
     public final void run() {
         CountDownLatch e10;
-        switch (this.f1561a) {
+        switch (this.f1562a) {
             case 0:
-                File file = this.f1562b;
+                File file = this.f1563b;
                 ExecutorService executorService = DictationLid.f43030a;
                 SharedPreferences g12 = mp.g1();
                 long[] jArr = {0};
@@ -55,10 +55,10 @@ public final class v0 implements Runnable {
                 }
                 return;
             case 1:
-                DictationLid.g(this.f1562b);
+                DictationLid.g(this.f1563b);
                 return;
             default:
-                DictationLid.g(this.f1562b);
+                DictationLid.g(this.f1563b);
                 return;
         }
     }

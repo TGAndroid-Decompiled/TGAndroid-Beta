@@ -14,7 +14,7 @@ public final class rk0 extends Drawable {
     public int f39162g;
     public int h;
     public int f39163i;
-    public org.telegram.ui.Cells.q1 f39164j;
+    public org.telegram.ui.Cells.r1 f39164j;
     public float f39165k;
     public int f39166l;
     public int f39167m;

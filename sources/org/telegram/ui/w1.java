@@ -16,27 +16,27 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
-    public final p50 f52898a;
-    public final e4 f52899b;
-    public Drawable f52900c;
+public final class w1 extends FrameLayout implements org.telegram.ui.Cells.i9 {
+    public final p50 f52888a;
+    public final e4 f52889b;
+    public Drawable f52890c;
     public z2 d;
-    public z2 f52901e;
-    public final ImageReceiver f52902f;
+    public z2 f52891e;
+    public final ImageReceiver f52892f;
     public boolean h;
-    public int f52903n;
-    public int f52904r;
-    public int f52905s;
-    public boolean f52906w;
-    public int f52907x;
-    public TL_iv.pageBlockMap f52908y;
+    public int f52893n;
+    public int f52894r;
+    public int f52895s;
+    public boolean f52896w;
+    public int f52897x;
+    public TL_iv.pageBlockMap f52898y;
 
     public w1(Context context, p50 p50Var, e4 e4Var) {
         super(context);
-        this.f52898a = p50Var;
-        this.f52899b = e4Var;
+        this.f52888a = p50Var;
+        this.f52889b = e4Var;
         setWillNotDraw(false);
-        this.f52902f = new ImageReceiver(this);
+        this.f52892f = new ImageReceiver(this);
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
         if (z2Var != null) {
             arrayList.add(z2Var);
         }
-        z2 z2Var2 = this.f52901e;
+        z2 z2Var2 = this.f52891e;
         if (z2Var2 != null) {
             arrayList.add(z2Var2);
         }
@@ -58,7 +58,7 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
         if (z2Var != null) {
             z2Var.i(this);
         }
-        z2 z2Var2 = this.f52901e;
+        z2 z2Var2 = this.f52891e;
         if (z2Var2 != null) {
             z2Var2.i(this);
         }
@@ -71,7 +71,7 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
         if (z2Var != null) {
             z2Var.f(this);
         }
-        z2 z2Var2 = this.f52901e;
+        z2 z2Var2 = this.f52891e;
         if (z2Var2 != null) {
             z2Var2.f(this);
         }
@@ -79,15 +79,15 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f52908y == null) {
+        if (this.f52898y == null) {
             return;
         }
         Paint paint = org.telegram.ui.ActionBar.n6.S1;
-        int i7 = org.telegram.ui.ActionBar.n6.f29460gf;
-        p50 p50Var = this.f52898a;
+        int i7 = org.telegram.ui.ActionBar.n6.f29458gf;
+        p50 p50Var = this.f52888a;
         ((g4) p50Var).getClass();
         paint.setColor(org.telegram.ui.ActionBar.n6.v0(i7));
-        ImageReceiver imageReceiver = this.f52902f;
+        ImageReceiver imageReceiver = this.f52892f;
         canvas.drawRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), imageReceiver.A(), org.telegram.ui.ActionBar.n6.S1);
         float r10 = imageReceiver.r();
         Drawable[] drawableArr = org.telegram.ui.ActionBar.n6.S4;
@@ -98,34 +98,34 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
         drawable.setBounds(intrinsicWidth, s5, drawable.getIntrinsicWidth() + intrinsicWidth, drawableArr[0].getIntrinsicHeight() + s5);
         drawableArr[0].draw(canvas);
         imageReceiver.h(canvas, null);
-        if (this.f52907x == 2 && imageReceiver.L()) {
-            if (this.f52900c == null) {
-                this.f52900c = getContext().getDrawable(2131231647).mutate();
+        if (this.f52897x == 2 && imageReceiver.L()) {
+            if (this.f52890c == null) {
+                this.f52890c = getContext().getDrawable(2131231647).mutate();
             }
-            int intrinsicWidth2 = (int) (this.f52900c.getIntrinsicWidth() * 0.8f);
-            int intrinsicHeight = (int) (this.f52900c.getIntrinsicHeight() * 0.8f);
+            int intrinsicWidth2 = (int) (this.f52890c.getIntrinsicWidth() * 0.8f);
+            int intrinsicHeight = (int) (this.f52890c.getIntrinsicHeight() * 0.8f);
             int A = (int) com.google.android.gms.internal.vision.e2.A(imageReceiver.N0, intrinsicWidth2, 2.0f, imageReceiver.L0);
             int i11 = (int) (((imageReceiver.O0 / 2.0f) - intrinsicHeight) + imageReceiver.M0);
-            this.f52900c.setAlpha((int) (imageReceiver.f22644i1 * 255.0f));
-            this.f52900c.setBounds(A, i11, intrinsicWidth2 + A, intrinsicHeight + i11);
-            this.f52900c.draw(canvas);
+            this.f52890c.setAlpha((int) (imageReceiver.f22641i1 * 255.0f));
+            this.f52890c.setBounds(A, i11, intrinsicWidth2 + A, intrinsicHeight + i11);
+            this.f52890c.draw(canvas);
         }
         if (this.d != null) {
             canvas.save();
-            canvas.translate(this.f52903n, this.f52904r);
+            canvas.translate(this.f52893n, this.f52894r);
             g4.t(p50Var, canvas, this, 0);
             this.d.d(canvas, this);
             canvas.restore();
             i10 = 1;
         }
-        if (this.f52901e != null) {
+        if (this.f52891e != null) {
             canvas.save();
-            canvas.translate(this.f52903n, this.f52904r + this.f52905s);
+            canvas.translate(this.f52893n, this.f52894r + this.f52895s);
             g4.t(p50Var, canvas, this, i10);
-            this.f52901e.d(canvas, this);
+            this.f52891e.d(canvas, this);
             canvas.restore();
         }
-        g4.s(canvas, p50Var, this.f52908y, getMeasuredHeight());
+        g4.s(canvas, p50Var, this.f52898y, getMeasuredHeight());
     }
 
     @Override
@@ -152,53 +152,53 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
         Layout.Alignment alignment;
         TLRPC.WebPage webPage;
         int size = View.MeasureSpec.getSize(i7);
-        TL_iv.pageBlockMap pageblockmap = this.f52908y;
+        TL_iv.pageBlockMap pageblockmap = this.f52898y;
         if (pageblockmap != null) {
             if (pageblockmap.level > 0) {
                 i13 = org.telegram.messenger.g0.L(18.0f) + org.telegram.messenger.g0.L(i12 * 14);
-                this.f52903n = i13;
+                this.f52893n = i13;
                 i14 = org.telegram.messenger.n10.x(18.0f, i13, size);
                 L = i14;
             } else {
-                this.f52903n = org.telegram.messenger.g0.L(18.0f);
+                this.f52893n = org.telegram.messenger.g0.L(18.0f);
                 i13 = 0;
                 L = size - org.telegram.messenger.g0.L(36.0f);
                 i14 = size;
             }
-            TL_iv.pageBlockMap pageblockmap2 = this.f52908y;
-            int i16 = (int) ((i14 / pageblockmap2.f28630w) * pageblockmap2.h);
-            Point point = org.telegram.messenger.g0.f24121q;
+            TL_iv.pageBlockMap pageblockmap2 = this.f52898y;
+            int i16 = (int) ((i14 / pageblockmap2.f28628w) * pageblockmap2.h);
+            Point point = org.telegram.messenger.g0.f24118q;
             int max = (int) ((Math.max(point.x, point.y) - org.telegram.messenger.g0.L(56.0f)) * 0.9f);
             if (i16 > max) {
-                TL_iv.pageBlockMap pageblockmap3 = this.f52908y;
-                i14 = (int) ((max / pageblockmap3.h) * pageblockmap3.f28630w);
+                TL_iv.pageBlockMap pageblockmap3 = this.f52898y;
+                i14 = (int) ((max / pageblockmap3.h) * pageblockmap3.f28628w);
                 i13 += ((size - i13) - i14) / 2;
                 i15 = max;
             } else {
                 i15 = i16;
             }
             float f11 = i13;
-            if (!this.h && this.f52908y.level <= 0) {
+            if (!this.h && this.f52898y.level <= 0) {
                 f10 = org.telegram.messenger.g0.L(8.0f);
             } else {
                 f10 = 0.0f;
             }
             float f12 = i14;
             float f13 = i15;
-            ImageReceiver imageReceiver = this.f52902f;
+            ImageReceiver imageReceiver = this.f52892f;
             imageReceiver.y0(f11, f10, f12, f13);
-            int i17 = ((g4) this.f52898a).Y;
-            TLRPC.GeoPoint geoPoint = this.f52908y.geo;
+            int i17 = ((g4) this.f52888a).Y;
+            TLRPC.GeoPoint geoPoint = this.f52898y.geo;
             double d = geoPoint.lat;
             double d2 = geoPoint._long;
-            float f14 = org.telegram.messenger.g0.f24120p;
+            float f14 = org.telegram.messenger.g0.f24117p;
             String e02 = org.telegram.messenger.g0.e0(i17, d, d2, (int) (f12 / f14), (int) (f13 / f14), true, 15, -1);
-            TLRPC.GeoPoint geoPoint2 = this.f52908y.geo;
-            float f15 = org.telegram.messenger.g0.f24120p;
+            TLRPC.GeoPoint geoPoint2 = this.f52898y.geo;
+            float f15 = org.telegram.messenger.g0.f24117p;
             org.telegram.messenger.h20 b10 = org.telegram.messenger.h20.b(geoPoint2, (int) (f12 / f15), (int) (f13 / f15), 15, Math.min(2, (int) Math.ceil(f15)));
-            int i18 = org.telegram.messenger.mp.u1(i17).f25731p3;
-            this.f52907x = i18;
-            e4 e4Var = this.f52899b;
+            int i18 = org.telegram.messenger.mp.u1(i17).f25729p3;
+            this.f52897x = i18;
+            e4 e4Var = this.f52889b;
             if (i18 == 2) {
                 org.telegram.messenger.fc p10 = org.telegram.messenger.fc.p(b10);
                 if (e4Var != null) {
@@ -211,35 +211,35 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
                 imageReceiver.o0(e02, null, null, null, 0L);
             }
             int L2 = (int) (imageReceiver.M0 + imageReceiver.O0 + org.telegram.messenger.g0.L(8.0f));
-            this.f52904r = L2;
-            TL_iv.pageBlockMap pageblockmap4 = this.f52908y;
-            z2 o4 = g4.o(this.f52898a, this, null, pageblockmap4.caption.text, L, L2, pageblockmap4, this.f52899b);
+            this.f52894r = L2;
+            TL_iv.pageBlockMap pageblockmap4 = this.f52898y;
+            z2 o4 = g4.o(this.f52888a, this, null, pageblockmap4.caption.text, L, L2, pageblockmap4, this.f52889b);
             this.d = o4;
             if (o4 != null) {
                 int height = this.d.d.getHeight() + org.telegram.messenger.g0.L(4.0f);
-                this.f52905s = height;
+                this.f52895s = height;
                 i15 = org.telegram.messenger.f3.C(4.0f, height, i15);
                 z2 z2Var = this.d;
-                z2Var.f54373s = this.f52903n;
-                z2Var.f54374w = this.f52904r;
+                z2Var.f54332s = this.f52893n;
+                z2Var.f54333w = this.f52894r;
             }
             int i19 = i15;
-            TL_iv.pageBlockMap pageblockmap5 = this.f52908y;
+            TL_iv.pageBlockMap pageblockmap5 = this.f52898y;
             TL_iv.RichText richText = pageblockmap5.caption.credit;
             if (e4Var != null && e4Var.H) {
                 alignment = org.telegram.ui.Components.wu0.a();
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
-            z2 n10 = g4.n(this.f52898a, this, null, richText, L, 0, pageblockmap5, alignment, 0, this.f52899b);
-            this.f52901e = n10;
+            z2 n10 = g4.n(this.f52888a, this, null, richText, L, 0, pageblockmap5, alignment, 0, this.f52889b);
+            this.f52891e = n10;
             if (n10 != null) {
-                i19 += this.f52901e.d.getHeight() + org.telegram.messenger.g0.L(4.0f);
-                z2 z2Var2 = this.f52901e;
-                z2Var2.f54373s = this.f52903n;
-                z2Var2.f54374w = this.f52904r + this.f52905s;
+                i19 += this.f52891e.d.getHeight() + org.telegram.messenger.g0.L(4.0f);
+                z2 z2Var2 = this.f52891e;
+                z2Var2.f54332s = this.f52893n;
+                z2Var2.f54333w = this.f52894r + this.f52895s;
             }
-            if (!this.h && this.f52908y.level <= 0) {
+            if (!this.h && this.f52898y.level <= 0) {
                 i19 += org.telegram.messenger.g0.L(8.0f);
             }
             i11 = org.telegram.messenger.g0.L(8.0f) + i19;
@@ -253,12 +253,12 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         float x10 = motionEvent.getX();
         float y10 = motionEvent.getY();
-        if (motionEvent.getAction() == 0 && this.f52902f.O(x10, y10)) {
-            this.f52906w = true;
-        } else if (motionEvent.getAction() == 1 && this.f52906w) {
-            this.f52906w = false;
+        if (motionEvent.getAction() == 0 && this.f52892f.O(x10, y10)) {
+            this.f52896w = true;
+        } else if (motionEvent.getAction() == 1 && this.f52896w) {
+            this.f52896w = false;
             try {
-                TLRPC.GeoPoint geoPoint = this.f52908y.geo;
+                TLRPC.GeoPoint geoPoint = this.f52898y.geo;
                 double d = geoPoint.lat;
                 double d2 = geoPoint._long;
                 Context context = getContext();
@@ -267,11 +267,11 @@ public final class w1 extends FrameLayout implements org.telegram.ui.Cells.h9 {
                 org.telegram.messenger.a8.g(e10, true);
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f52906w = false;
+            this.f52896w = false;
         }
-        if (!this.f52906w) {
-            if (!g4.j(this.f52898a, this.f52899b, motionEvent, this, this.d, this.f52903n, this.f52904r)) {
-                if (!g4.j(this.f52898a, this.f52899b, motionEvent, this, this.f52901e, this.f52903n, this.f52904r + this.f52905s) && !super.onTouchEvent(motionEvent)) {
+        if (!this.f52896w) {
+            if (!g4.j(this.f52888a, this.f52889b, motionEvent, this, this.d, this.f52893n, this.f52894r)) {
+                if (!g4.j(this.f52888a, this.f52889b, motionEvent, this, this.f52891e, this.f52893n, this.f52894r + this.f52895s) && !super.onTouchEvent(motionEvent)) {
                     return false;
                 }
             }

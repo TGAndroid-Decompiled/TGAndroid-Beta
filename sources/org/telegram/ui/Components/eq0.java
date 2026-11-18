@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-public final class eq0 extends bi.q6 {
+public final class eq0 extends bi.p6 {
     public final gt0 W;
 
     public eq0(gt0 gt0Var, org.telegram.ui.ActionBar.h2 h2Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.i6 i6Var, dh.c cVar) {

@@ -12,7 +12,7 @@ public final class t3 extends p41 {
 
     @Override
     public final void onClick(View view) {
-        this.f39898e.f28746a.M0.run();
+        this.f39898e.f28744a.M0.run();
         super.onClick(view);
     }
 }

@@ -184,7 +184,7 @@ public final class l0 extends FrameLayout {
         if (this.f36939f) {
             Paint W0 = org.telegram.ui.ActionBar.n6.W0("paintDivider", this.f36936b);
             if (W0 == null) {
-                W0 = org.telegram.ui.ActionBar.n6.f29519k0;
+                W0 = org.telegram.ui.ActionBar.n6.f29517k0;
             }
             canvas.drawRect(org.telegram.messenger.g0.L(10.0f), getHeight() - 1, getWidth() - org.telegram.messenger.g0.L(10.0f), getHeight(), W0);
         }

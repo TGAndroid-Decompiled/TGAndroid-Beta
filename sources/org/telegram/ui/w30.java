@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class w30 extends org.telegram.ui.Cells.f4 {
-    public final z30 f52920h0;
+public final class w30 extends org.telegram.ui.Cells.g4 {
+    public final z30 f52910h0;
 
     public w30(z30 z30Var, Context context) {
         super(context);
-        this.f52920h0 = z30Var;
+        this.f52910h0 = z30Var;
     }
 
     @Override
-    public final void d(org.telegram.ui.Cells.f4 f4Var) {
-        f40 f40Var = this.f52920h0.N;
+    public final void d(org.telegram.ui.Cells.g4 g4Var) {
+        f40 f40Var = this.f52910h0.N;
         f40 f40Var2 = f40.C5;
-        f40Var.M1(f4Var);
+        f40Var.M1(g4Var);
     }
 
     @Override

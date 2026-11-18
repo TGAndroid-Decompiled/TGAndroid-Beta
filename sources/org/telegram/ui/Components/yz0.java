@@ -77,7 +77,7 @@ public final class yz0 extends FrameLayout {
             this.f42680n[i10].setCursorWidth(1.5f);
             this.f42680n[i10].setTextSize(1, 18.0f);
             this.f42680n[i10].setBackground(null);
-            org.telegram.ui.ActionBar.u6.F(this.f42680n[i10], org.telegram.ui.ActionBar.n6.f29711u5, org.telegram.ui.ActionBar.n6.f29730v5, org.telegram.ui.ActionBar.n6.f29637q7, null);
+            org.telegram.ui.ActionBar.u6.F(this.f42680n[i10], org.telegram.ui.ActionBar.n6.f29709u5, org.telegram.ui.ActionBar.n6.f29728v5, org.telegram.ui.ActionBar.n6.f29635q7, null);
             this.f42680n[i10].setMaxLines(1);
             this.f42680n[i10].setTag(Integer.valueOf(i10));
             this.f42680n[i10].setGravity(17);
@@ -181,7 +181,7 @@ public final class yz0 extends FrameLayout {
             i7 = 51;
         }
         ObjectAnimator ofInt = ObjectAnimator.ofInt(w2Var, o6Var, i7);
-        ViewGroup viewGroup = editorAlert.f30192b;
+        ViewGroup viewGroup = editorAlert.f30190b;
         if (z10) {
             f10 = 0.2f;
         } else {

@@ -26,7 +26,7 @@ public final class n50 implements View.OnClickListener {
         switch (this.f37730a) {
             case 0:
                 x50 x50Var = ((s50) this.h).f39494c;
-                ny0.b(x50Var.getContext(), x50Var.f30189a, -x50Var.f41888b2, this.f37731b, this.f37732c, this.d, this.f37733e, this.f37734f, x50Var.J0);
+                ny0.b(x50Var.getContext(), x50Var.f30187a, -x50Var.f41888b2, this.f37731b, this.f37732c, this.d, this.f37733e, this.f37734f, x50Var.J0);
                 return;
             default:
                 gt0 gt0Var = ((tr0) this.h).f40091f;

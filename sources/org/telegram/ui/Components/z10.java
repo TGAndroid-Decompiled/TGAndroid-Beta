@@ -328,7 +328,7 @@ public final class z10 implements org.telegram.messenger.fs {
         VoIPService sharedInstance;
         if (!org.telegram.ui.Components.voip.j1.j() && f42710f0 == null) {
             if (org.telegram.messenger.t0.G && (sharedInstance = VoIPService.getSharedInstance()) != null && sharedInstance.groupCall != null && !sharedInstance.isHangingUp() && !f42711g0) {
-                if (org.telegram.messenger.t0.f26924y || !org.telegram.ui.f40.D5) {
+                if (org.telegram.messenger.t0.f26922y || !org.telegram.ui.f40.D5) {
                     return true;
                 }
                 return false;
@@ -351,11 +351,11 @@ public final class z10 implements org.telegram.messenger.fs {
         } else {
             z10 = false;
         }
-        Context context2 = org.telegram.messenger.t0.f26915b;
-        Typeface typeface = org.telegram.messenger.g0.f24093a;
+        Context context2 = org.telegram.messenger.t0.f26913b;
+        Typeface typeface = org.telegram.messenger.g0.f24090a;
         boolean canDrawOverlays = Settings.canDrawOverlays(context2);
         Activity W = org.telegram.messenger.g0.W(context);
-        if (org.telegram.ui.Components.voip.j1.j() || (!canDrawOverlays ? !z10 || f42711g0 || W == null || org.telegram.messenger.t0.f26924y || org.telegram.ui.f40.D5 || org.telegram.messenger.g0.H1(W) || ((e0Var = org.telegram.ui.Components.voip.e0.f40850e) != null && e0Var.f40852b != null) : !z10 || f42711g0 || (!org.telegram.messenger.t0.f26924y && org.telegram.ui.f40.D5))) {
+        if (org.telegram.ui.Components.voip.j1.j() || (!canDrawOverlays ? !z10 || f42711g0 || W == null || org.telegram.messenger.t0.f26922y || org.telegram.ui.f40.D5 || org.telegram.messenger.g0.H1(W) || ((e0Var = org.telegram.ui.Components.voip.e0.f40850e) != null && e0Var.f40852b != null) : !z10 || f42711g0 || (!org.telegram.messenger.t0.f26922y && org.telegram.ui.f40.D5))) {
             z11 = false;
         } else {
             z11 = true;
@@ -366,14 +366,14 @@ public final class z10 implements org.telegram.messenger.fs {
         if (z11) {
             int account = sharedInstance.getAccount();
             if (f42710f0 == null) {
-                boolean canDrawOverlays2 = Settings.canDrawOverlays(org.telegram.messenger.t0.f26915b);
+                boolean canDrawOverlays2 = Settings.canDrawOverlays(org.telegram.messenger.t0.f26913b);
                 Activity W2 = org.telegram.messenger.g0.W(context);
                 if (canDrawOverlays2 || W2 != null) {
                     z10 z10Var2 = new z10(context, account);
                     f42710f0 = z10Var2;
                     z10Var2.f42723r = canDrawOverlays2;
                     if (canDrawOverlays2) {
-                        windowManager = (WindowManager) org.telegram.messenger.t0.f26915b.getSystemService("window");
+                        windowManager = (WindowManager) org.telegram.messenger.t0.f26913b.getSystemService("window");
                     } else {
                         windowManager = W2.getWindowManager();
                     }
@@ -404,8 +404,8 @@ public final class z10 implements org.telegram.messenger.fs {
                     f42710f0.f42712a.setScaleY(0.5f);
                     f42710f0.f42712a.setAlpha(0.0f);
                     f42710f0.f42712a.animate().alpha(0.7f).scaleY(1.0f).scaleX(1.0f).setDuration(350L).setInterpolator(new OvershootInterpolator()).start();
-                    org.telegram.messenger.ks.f(f42710f0.h).b(f42710f0, org.telegram.messenger.ks.f25215w2);
-                    org.telegram.messenger.ks.e().b(f42710f0, org.telegram.messenger.ks.Q4);
+                    org.telegram.messenger.ks.f(f42710f0.h).b(f42710f0, org.telegram.messenger.ks.f25213w2);
+                    org.telegram.messenger.ks.e().b(f42710f0, org.telegram.messenger.ks.R4);
                     org.telegram.messenger.ks.e().b(f42710f0, org.telegram.messenger.ks.D2);
                     org.telegram.ui.Components.voip.e0.k();
                 }
@@ -457,9 +457,9 @@ public final class z10 implements org.telegram.messenger.fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 != org.telegram.messenger.ks.f25215w2 && i7 != org.telegram.messenger.ks.Q4) {
+        if (i7 != org.telegram.messenger.ks.f25213w2 && i7 != org.telegram.messenger.ks.R4) {
             if (i7 == org.telegram.messenger.ks.D2) {
-                k(org.telegram.messenger.t0.f26915b);
+                k(org.telegram.messenger.t0.f26913b);
                 return;
             }
             return;
@@ -468,8 +468,8 @@ public final class z10 implements org.telegram.messenger.fs {
     }
 
     public final void e() {
-        org.telegram.messenger.ks.f(this.h).n(this, org.telegram.messenger.ks.f25215w2);
-        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.Q4);
+        org.telegram.messenger.ks.f(this.h).n(this, org.telegram.messenger.ks.f25213w2);
+        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.R4);
         org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.F2);
         org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.D2);
     }
@@ -546,7 +546,7 @@ public final class z10 implements org.telegram.messenger.fs {
             int i7 = 0;
             int i10 = this.h;
             if (t3Var != null) {
-                ArrayList arrayList = t3Var.f26939e;
+                ArrayList arrayList = t3Var.f26937e;
                 long selfId = sharedInstance.getSelfId();
                 int size = arrayList.size();
                 int i11 = 0;
@@ -578,7 +578,7 @@ public final class z10 implements org.telegram.messenger.fs {
     }
 
     public final void i() {
-        int i7 = org.telegram.messenger.g0.f24121q.x;
+        int i7 = org.telegram.messenger.g0.f24118q.x;
         x10 x10Var = this.f42712a;
         float min = Math.min(Math.max(this.f42724s.x, -org.telegram.messenger.g0.L(36.0f)), org.telegram.messenger.g0.L(36.0f) + (i7 - x10Var.getMeasuredWidth()));
         int i10 = (min > 0.0f ? 1 : (min == 0.0f ? 0 : -1));

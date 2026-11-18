@@ -11,10 +11,10 @@ import org.telegram.ui.Components.h41;
 import org.telegram.ui.Components.rx;
 import org.telegram.ui.StickersActivity;
 public final class q1 implements rx {
-    public final z1 f22256a;
+    public final z1 f22253a;
 
     public q1(z1 z1Var) {
-        this.f22256a = z1Var;
+        this.f22253a = z1Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class q1 implements rx {
     public final void i(int i7) {
         e1 focusedEditTextOrNull;
         boolean z10 = false;
-        z1 z1Var = this.f22256a;
+        z1 z1Var = this.f22253a;
         if (i7 != 0 && (focusedEditTextOrNull = z1Var.Q.getFocusedEditTextOrNull()) != null) {
             z1Var.S0 = focusedEditTextOrNull;
             z1Var.T0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class q1 implements rx {
 
     @Override
     public final boolean k() {
-        e1 f02 = z1.f0(this.f22256a);
+        e1 f02 = z1.f0(this.f22253a);
         if (f02 == null || f02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class q1 implements rx {
 
     @Override
     public final void l(String str) {
-        z1 z1Var = this.f22256a;
+        z1 z1Var = this.f22253a;
         e1 f02 = z1.f0(z1Var);
         if (f02 != null) {
             int g02 = z1.g0(z1Var, f02);
@@ -104,18 +104,18 @@ public final class q1 implements rx {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f22256a.presentFragment(new StickersActivity(5, arrayList));
+        this.f22253a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f22256a.presentFragment(new StickersActivity(0, null));
+        this.f22253a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.x5 x5Var;
-        z1 z1Var = this.f22256a;
+        z1 z1Var = this.f22253a;
         e1 f02 = z1.f0(z1Var);
         if (f02 != null) {
             int g02 = z1.g0(z1Var, f02);
@@ -144,7 +144,7 @@ public final class q1 implements rx {
 
     @Override
     public final boolean z() {
-        return this.f22256a.D0;
+        return this.f22253a.D0;
     }
 
     @Override

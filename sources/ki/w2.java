@@ -6,32 +6,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.i6;
 public final class w2 implements x10 {
-    public final int f19026a;
-    public final Object f19027b;
-    public final Context f19028c;
+    public final int f19023a;
+    public final Object f19024b;
+    public final Context f19025c;
     public final int d;
-    public final long f19029e;
-    public final i6 f19030f;
+    public final long f19026e;
+    public final i6 f19027f;
 
     public w2(Object obj, Context context, int i7, long j3, i6 i6Var, int i10) {
-        this.f19026a = i10;
-        this.f19027b = obj;
-        this.f19028c = context;
+        this.f19023a = i10;
+        this.f19024b = obj;
+        this.f19025c = context;
         this.d = i7;
-        this.f19029e = j3;
-        this.f19030f = i6Var;
+        this.f19026e = j3;
+        this.f19027f = i6Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f19026a) {
+        switch (this.f19023a) {
             case 0:
-                final org.telegram.ui.ActionBar.x2 x2Var = (org.telegram.ui.ActionBar.x2) this.f19027b;
+                final org.telegram.ui.ActionBar.x2 x2Var = (org.telegram.ui.ActionBar.x2) this.f19024b;
                 final TLRPC.UserFull userFull = (TLRPC.UserFull) obj;
-                final Context context = this.f19028c;
+                final Context context = this.f19025c;
                 final int i7 = this.d;
-                final long j3 = this.f19029e;
-                final i6 i6Var = this.f19030f;
+                final long j3 = this.f19026e;
+                final i6 i6Var = this.f19027f;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -57,12 +57,12 @@ public final class w2 implements x10 {
                 });
                 return;
             case 1:
-                final org.telegram.ui.ActionBar.x2 x2Var2 = (org.telegram.ui.ActionBar.x2) this.f19027b;
+                final org.telegram.ui.ActionBar.x2 x2Var2 = (org.telegram.ui.ActionBar.x2) this.f19024b;
                 final TLRPC.UserFull userFull2 = (TLRPC.UserFull) obj;
-                final Context context2 = this.f19028c;
+                final Context context2 = this.f19025c;
                 final int i10 = this.d;
-                final long j10 = this.f19029e;
-                final i6 i6Var2 = this.f19030f;
+                final long j10 = this.f19026e;
+                final i6 i6Var2 = this.f19027f;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -88,8 +88,8 @@ public final class w2 implements x10 {
                 });
                 return;
             default:
-                ((org.telegram.ui.ActionBar.x2[]) this.f19027b)[0].dismiss();
-                i3.K0(this.f19028c, this.d, (TL_payments.connectedBotStarRef) obj, this.f19029e, this.f19030f);
+                ((org.telegram.ui.ActionBar.x2[]) this.f19024b)[0].dismiss();
+                i3.K0(this.f19025c, this.d, (TL_payments.connectedBotStarRef) obj, this.f19026e, this.f19027f);
                 return;
         }
     }

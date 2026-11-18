@@ -12,7 +12,7 @@ import org.telegram.messenger.tr;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class r8 extends View {
-    public static final int f15335a = 0;
+    public static final int f15332a = 0;
 
     public static void a(int i7, d7 d7Var) {
         o8 o8Var;
@@ -25,17 +25,17 @@ public abstract class r8 extends View {
                     SerializedData serializedData = new SerializedData(Utilities.v(string));
                     o8Var = b(serializedData);
                     serializedData.cleanup();
-                    if (o8Var.f15199f.isEmpty() && o8Var.f15196b.isEmpty()) {
+                    if (o8Var.f15196f.isEmpty() && o8Var.f15193b.isEmpty()) {
                         o8Var = new o8();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(o8Var.f15197c);
+                        hashSet.addAll(o8Var.f15194c);
                         for (ArrayList arrayList : o8Var.d.values()) {
                             hashSet.addAll(arrayList);
                         }
                         if (!hashSet.isEmpty()) {
                             tr a02 = tr.a0(i7);
-                            a02.f27054a.c(new ai.a1(a02, hashSet, i7, 17));
+                            a02.f27052a.c(new ai.a1(a02, hashSet, i7, 17));
                         }
                     }
                 }
@@ -45,7 +45,7 @@ public abstract class r8 extends View {
             }
             d7Var.E0 = o8Var;
             d7Var.F0.clear();
-            d7Var.F0.addAll(d7Var.E0.f15196b);
+            d7Var.F0.addAll(d7Var.E0.f15193b);
             if (j10.i(i7).q()) {
                 d7Var.I0 = mp.u1(i7).h7.getInt("story_period", 86400);
             } else {
@@ -90,7 +90,7 @@ public abstract class r8 extends View {
                         hashSet.addAll(arrayList4);
                     }
                     o8 o8Var = new o8(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = o8Var.f15197c;
+                    ArrayList arrayList5 = o8Var.f15194c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = o8Var.d;
@@ -106,12 +106,12 @@ public abstract class r8 extends View {
     }
 
     public static void c(SerializedData serializedData, o8 o8Var) {
-        int i7 = o8Var.f15195a;
+        int i7 = o8Var.f15192a;
         HashMap hashMap = o8Var.d;
-        ArrayList arrayList = o8Var.f15197c;
+        ArrayList arrayList = o8Var.f15194c;
         serializedData.writeInt32(i7);
         serializedData.writeInt32(481674261);
-        ArrayList arrayList2 = o8Var.f15198e;
+        ArrayList arrayList2 = o8Var.f15195e;
         serializedData.writeInt32(arrayList2.size());
         int size = arrayList2.size();
         int i10 = 0;

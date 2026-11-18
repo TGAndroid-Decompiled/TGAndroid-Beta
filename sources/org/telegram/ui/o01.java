@@ -5,18 +5,18 @@ import android.content.Context;
 import android.graphics.ColorFilter;
 import android.util.SparseIntArray;
 public final class o01 extends org.telegram.ui.Components.lv {
-    public final int f50391h0;
-    public final r11 f50392i0;
+    public final int f50375h0;
+    public final r11 f50376i0;
 
     public o01(r11 r11Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11, int i7, tr0 tr0Var, int i10, int i11) {
         super(context, i6Var, z10, z11, false, true, i7, tr0Var, i10, false);
-        this.f50392i0 = r11Var;
-        this.f50391h0 = i11;
+        this.f50376i0 = r11Var;
+        this.f50375h0 = i11;
     }
 
     @Override
     public final ColorFilter getEmojiColorFilter() {
-        return this.f50392i0.l1;
+        return this.f50376i0.l1;
     }
 
     @Override
@@ -26,20 +26,20 @@ public final class o01 extends org.telegram.ui.Components.lv {
         g11 g11Var;
         int i12;
         int i13;
-        r11 r11Var = this.f50392i0;
-        SparseIntArray sparseIntArray = r11Var.f51473y0;
+        r11 r11Var = this.f50376i0;
+        SparseIntArray sparseIntArray = r11Var.f51433y0;
         int i14 = 0;
-        if (r11Var.f51474y1) {
+        if (r11Var.f51434y1) {
             return false;
         }
-        int i15 = this.f50391h0;
+        int i15 = this.f50375h0;
         if (i15 == 4 && i7 == 0) {
             r11Var.R = !r11Var.R;
-            r11Var.f51429e0.setVisibility(8);
-            org.telegram.ui.Components.lv lvVar = r11Var.f51426d0[r11Var.R ? 1 : 0];
-            r11Var.f51429e0 = lvVar;
+            r11Var.f51389e0.setVisibility(8);
+            org.telegram.ui.Components.lv lvVar = r11Var.f51386d0[r11Var.R ? 1 : 0];
+            r11Var.f51389e0 = lvVar;
             lvVar.setVisibility(0);
-            org.telegram.ui.Components.hv hvVar = r11Var.f51429e0.f37255y;
+            org.telegram.ui.Components.hv hvVar = r11Var.f51389e0.f37255y;
             Context context = getContext();
             if (r11Var.R) {
                 i12 = 2131232129;
@@ -47,7 +47,7 @@ public final class o01 extends org.telegram.ui.Components.lv {
                 i12 = 2131232128;
             }
             hvVar.setDrawable(context.getDrawable(i12));
-            org.telegram.ui.Components.hv hvVar2 = r11Var.f51429e0.f37255y;
+            org.telegram.ui.Components.hv hvVar2 = r11Var.f51389e0.f37255y;
             if (r11Var.R) {
                 i13 = 2131754756;
             } else {
@@ -55,7 +55,7 @@ public final class o01 extends org.telegram.ui.Components.lv {
             }
             hvVar2.setContentDescription(org.telegram.messenger.gd.M0(i13, null));
             r11Var.B(true, false, false);
-            r11Var.f51458s0.h1(0, 0);
+            r11Var.f51418s0.h1(0, 0);
             return true;
         }
         org.telegram.ui.Components.hv hvVar3 = this.F;
@@ -66,7 +66,7 @@ public final class o01 extends org.telegram.ui.Components.lv {
         }
         int i16 = i10 + 1;
         if (hvVar3 != null && this.f37247c0 && i7 == 1) {
-            i11 = r11Var.f51446n;
+            i11 = r11Var.f51406n;
         } else {
             if ((i15 != 4 || i7 != 0) && i7 > 0) {
                 int i17 = i7 - i16;
@@ -80,10 +80,10 @@ public final class o01 extends org.telegram.ui.Components.lv {
             i14 = 7;
         }
         r11.a(r11Var, i11, org.telegram.messenger.g0.L(i14 - 2));
-        r11Var.f51429e0.j(i7, true);
-        r11Var.f51438i0.K1 = true;
+        r11Var.f51389e0.j(i7, true);
+        r11Var.f51398i0.K1 = true;
         r11Var.v(null, true, true);
-        j01 j01Var = r11Var.f51434g0;
+        j01 j01Var = r11Var.f51394g0;
         if (j01Var != null && (g11Var = j01Var.f48837n) != null) {
             g11Var.I1(null);
         }
@@ -92,7 +92,7 @@ public final class o01 extends org.telegram.ui.Components.lv {
 
     @Override
     public final void i(org.telegram.ui.Components.hv hvVar) {
-        ValueAnimator valueAnimator = this.f50392i0.W1;
+        ValueAnimator valueAnimator = this.f50376i0.W1;
         if (valueAnimator != null && !valueAnimator.isRunning()) {
             return;
         }

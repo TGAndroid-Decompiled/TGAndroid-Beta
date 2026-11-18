@@ -60,7 +60,7 @@ public final class u11 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.f40171e = m6Var;
         m6Var.w(org.telegram.messenger.g0.L(11.0f));
         m6Var.x(org.telegram.messenger.g0.o());
-        m6Var.N = org.telegram.messenger.g0.f24121q.x;
+        m6Var.N = org.telegram.messenger.g0.f24118q.x;
         m6Var.f37377b = 17;
         fi.u2 u2Var = new fi.u2(this, context, i6Var);
         this.f40172f = u2Var;
@@ -84,7 +84,7 @@ public final class u11 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public int getTextColor() {
         float f10;
-        int i7 = org.telegram.ui.ActionBar.n6.f29807z6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29805z6;
         org.telegram.ui.ActionBar.i6 i6Var = this.f40169b;
         int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
         int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, i6Var);
@@ -105,7 +105,7 @@ public final class u11 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29807z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29805z6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.Fi));
     }
 
@@ -114,7 +114,7 @@ public final class u11 extends FrameLayout implements org.telegram.ui.ActionBar.
         String str;
         setLayout(false);
         long j10 = this.f40177x;
-        long j11 = tL_forumTopic.f28457id;
+        long j11 = tL_forumTopic.f28455id;
         if (j10 == j11) {
             z11 = true;
         } else {
@@ -125,7 +125,7 @@ public final class u11 extends FrameLayout implements org.telegram.ui.ActionBar.
         k80 k80Var = this.d;
         k80Var.setVisibility(0);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (tL_forumTopic.f28457id == 1) {
+        if (tL_forumTopic.f28455id == 1) {
             spannableStringBuilder.append((CharSequence) "#");
             if (tL_forumTopic.hidden) {
                 str = "\u200b";
@@ -304,19 +304,19 @@ public final class u11 extends FrameLayout implements org.telegram.ui.ActionBar.
         if (f5Var == null) {
             org.telegram.ui.f5 f5Var2 = new org.telegram.ui.f5(18.0f, i7, k80Var);
             this.F = f5Var2;
-            f5Var2.f47564w = false;
+            f5Var2.f47520w = false;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         TLObject g22 = org.telegram.messenger.mp.u1(i7).g2(o4);
         if (g22 != null) {
             spannableStringBuilder.append((CharSequence) "x  ");
             org.telegram.ui.f5 f5Var3 = this.F;
-            b9 b9Var = f5Var3.f47558c;
+            b9 b9Var = f5Var3.f47514c;
             b9Var.p(g22);
-            f5Var3.f47557b.i0(g22, b9Var, null);
+            f5Var3.f47513b.i0(g22, b9Var, null);
             spannableStringBuilder.setSpan(this.F, 0, 1, 33);
         }
-        spannableStringBuilder.append((CharSequence) org.telegram.messenger.n5.l(org.telegram.messenger.j10.f24773t0, o4));
+        spannableStringBuilder.append((CharSequence) org.telegram.messenger.n5.l(org.telegram.messenger.j10.f24770t0, o4));
         k80Var.setText(TextUtils.ellipsize(spannableStringBuilder, k80Var.getPaint(), org.telegram.messenger.g0.L(150.0f), TextUtils.TruncateAt.END));
         setSelected(z10);
         e(tL_forumTopic.unread_count, org.telegram.messenger.mp.u1(i7).u2(j3, o4, null), z11);

@@ -25,7 +25,7 @@ public final class a3 extends FrameLayout {
         this.f43924b = paint;
         this.f43925c = new Path();
         setWillNotDraw(false);
-        paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, d3Var.J0));
+        paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, d3Var.J0));
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class a3 extends FrameLayout {
         if (num != null) {
             w02 = num.intValue();
         } else {
-            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, d3Var.J0);
+            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, d3Var.J0);
         }
         Paint paint = this.f43924b;
         paint.setColor(w02);
@@ -61,18 +61,18 @@ public final class a3 extends FrameLayout {
                 }
             }
         }
-        if (this.d <= org.telegram.messenger.g0.f24115m) {
+        if (this.d <= org.telegram.messenger.g0.f24112m) {
             f11 = 1.0f;
         }
         float e10 = this.f43923a.e(false, f11);
-        float max = Math.max(org.telegram.messenger.g0.f24115m, this.d) - (org.telegram.messenger.g0.f24115m * e10);
+        float max = Math.max(org.telegram.messenger.g0.f24112m, this.d) - (org.telegram.messenger.g0.f24112m * e10);
         this.d = max;
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(d3Var.f30227u0, max, getWidth() - d3Var.f30227u0, org.telegram.messenger.g0.L(8.0f) + getHeight());
+        rectF.set(d3Var.f30225u0, max, getWidth() - d3Var.f30225u0, org.telegram.messenger.g0.L(8.0f) + getHeight());
         float W1 = org.telegram.messenger.g0.W1(e10, org.telegram.messenger.g0.L(14.0f), 0);
         canvas.drawRoundRect(rectF, W1, W1, paint);
         if (d3Var.F != null) {
-            d3Var.F.setTranslationY(Math.max((d3Var.f30192b.getY() + this.d) + d3Var.f30226t0, d3Var.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f24115m)) - d3Var.F.getBottom());
+            d3Var.F.setTranslationY(Math.max((d3Var.f30190b.getY() + this.d) + d3Var.f30224t0, d3Var.F.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f24112m)) - d3Var.F.getBottom());
         }
         canvas.save();
         Path path = this.f43925c;

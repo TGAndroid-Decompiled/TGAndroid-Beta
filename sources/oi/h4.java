@@ -12,14 +12,14 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.i6;
 public final class h4 extends ReplacementSpan {
-    public final TL_iv.textButton f22092a;
-    public cu f22093b;
-    public View f22094c;
-    public int d = j10.f24773t0;
-    public i6 f22095e;
+    public final TL_iv.textButton f22089a;
+    public cu f22090b;
+    public View f22091c;
+    public int d = j10.f24770t0;
+    public i6 f22092e;
 
     public h4(TL_iv.textButton textbutton) {
-        this.f22092a = textbutton;
+        this.f22089a = textbutton;
     }
 
     public static boolean c(TL_keyboard.InlineButtonType inlineButtonType) {
@@ -31,29 +31,29 @@ public final class h4 extends ReplacementSpan {
 
     public final void a(int i7, View view, i6 i6Var) {
         View view2;
-        cu cuVar = this.f22093b;
-        if (cuVar != null && (view2 = this.f22094c) != null) {
+        cu cuVar = this.f22090b;
+        if (cuVar != null && (view2 = this.f22091c) != null) {
             cuVar.b(view2);
         }
-        this.f22094c = view;
+        this.f22091c = view;
         this.d = i7;
-        this.f22095e = i6Var;
-        this.f22093b = null;
+        this.f22092e = i6Var;
+        this.f22090b = null;
         b();
     }
 
     public final cu b() {
-        if (this.f22093b == null) {
+        if (this.f22090b == null) {
             int i7 = this.d;
             int L = org.telegram.messenger.g0.L(240.0f);
-            cu cuVar = new cu(new ev(i7, L, this.f22095e), L, this.f22092a, Boolean.FALSE);
-            this.f22093b = cuVar;
-            View view = this.f22094c;
+            cu cuVar = new cu(new ev(i7, L, this.f22092e), L, this.f22089a, Boolean.FALSE);
+            this.f22090b = cuVar;
+            View view = this.f22091c;
             if (view != null) {
                 cuVar.a(view);
             }
         }
-        return this.f22093b;
+        return this.f22090b;
     }
 
     public final void d(Editable editable) {

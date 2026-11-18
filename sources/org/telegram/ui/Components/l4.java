@@ -23,7 +23,7 @@ public final class l4 extends LinearLayout {
             case 0:
                 k4 k4Var = (k4) this.f36998c;
                 this.f36997b = true;
-                Point point = org.telegram.messenger.g0.f24121q;
+                Point point = org.telegram.messenger.g0.f24118q;
                 if (point.x > point.y) {
                     i11 = 3;
                 } else {
@@ -37,7 +37,7 @@ public final class l4 extends LinearLayout {
             default:
                 p4 p4Var = (p4) this.f36998c;
                 this.f36997b = true;
-                Point point2 = org.telegram.messenger.g0.f24121q;
+                Point point2 = org.telegram.messenger.g0.f24118q;
                 if (point2.x > point2.y) {
                     i12 = 3;
                 } else {

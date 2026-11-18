@@ -39,7 +39,7 @@ public final class uk extends org.telegram.ui.Components.cz0 {
     public final void d() {
         int i7 = -(org.telegram.messenger.g0.L(16.0f) + getMeasuredHeight());
         bn bnVar = this.L;
-        int top = bnVar.f45932a0.getTop() - bnVar.f46093m1.getMeasuredHeight();
+        int top = bnVar.f45923a0.getTop() - bnVar.f46084m1.getMeasuredHeight();
         setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i7)));
     }
 

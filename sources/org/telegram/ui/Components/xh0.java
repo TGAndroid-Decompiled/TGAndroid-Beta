@@ -43,14 +43,14 @@ public final class xh0 extends v4.i0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        if (f1Var.f59126f == 0) {
-            ((org.telegram.ui.Cells.m6) f1Var.f59122a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f34715n.get(i7));
+        if (f1Var.f59127f == 0) {
+            ((org.telegram.ui.Cells.n6) f1Var.f59123a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f34715n.get(i7));
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        FrameLayout m6Var;
+        FrameLayout n6Var;
         if (i7 != 0) {
             ei0 ei0Var = this.h;
             y90 y90Var = ei0Var.K;
@@ -62,14 +62,14 @@ public final class xh0 extends v4.i0 {
                 ei0Var.i();
             }
             Context context = this.d;
-            m6Var = new FrameLayout(context);
+            n6Var = new FrameLayout(context);
             View view = new View(context);
             org.telegram.ui.ActionBar.u6.i(view, org.telegram.ui.ActionBar.u6.K(0.06f, org.telegram.ui.ActionBar.n6.E8), this.f42044e);
-            m6Var.addView(view, c8.ma.c(8.0f, -1));
-            m6Var.addView(ei0Var.K, c8.ma.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
+            n6Var.addView(view, c8.ma.c(8.0f, -1));
+            n6Var.addView(ei0Var.K, c8.ma.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            m6Var = new org.telegram.ui.Cells.m6(0, this.f42043c, this.d, this.f42044e, true, this.f42045f);
+            n6Var = new org.telegram.ui.Cells.n6(0, this.f42043c, this.d, this.f42044e, true, this.f42045f);
         }
-        return new v4.f1(m6Var);
+        return new v4.f1(n6Var);
     }
 }

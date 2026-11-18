@@ -37,7 +37,7 @@ public final class q0 extends sa {
             i7++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && n5.o(peer) != (-chat.f28405id)) {
+            if (peer != null && n5.o(peer) != (-chat.f28403id)) {
                 this.U1.add(tL_myBoost2);
             }
         }
@@ -45,24 +45,24 @@ public final class q0 extends sa {
         aVar.setClickable(true);
         aVar.setOrientation(1);
         aVar.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
-        u6.h(n6.f29469h5, aVar, this.J0);
+        u6.h(n6.f29467h5, aVar, this.J0);
         d0 d0Var = new d0(getContext(), this.J0);
         this.W1 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new ug.a0(1, this, chat));
         aVar.addView(d0Var, ma.r(-1, 48, 87));
-        ViewGroup viewGroup = this.f30192b;
-        int i10 = this.f30227u0;
+        ViewGroup viewGroup = this.f30190b;
+        int i10 = this.f30225u0;
         viewGroup.addView(aVar, ma.f(-2.0f, -1, 87, i10, 0, i10, 0));
         ck0 ck0Var = this.f39534o1;
-        int i11 = this.f30227u0;
+        int i11 = this.f30225u0;
         ck0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(64.0f));
         this.f39534o1.setOnItemClickListener(new g4(24, this, chat));
         O();
         c1();
         e1(false);
-        gc.a(this.f30195c, new Object());
+        gc.a(this.f30193c, new Object());
     }
 
     @Override

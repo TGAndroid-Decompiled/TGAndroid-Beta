@@ -1,9 +1,9 @@
 package org.telegram.ui.ActionBar;
 public final class e5 implements te.d, m0 {
-    public final g5 f28898a;
+    public final g5 f28896a;
 
     public e5(g5 g5Var) {
-        this.f28898a = g5Var;
+        this.f28896a = g5Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class e5 implements te.d, m0 {
 
     @Override
     public void g(int i7) {
-        j jVar = this.f28898a.f28975a.W;
+        j jVar = this.f28896a.f28973a.W;
         if (jVar != null) {
             jVar.b(i7);
         }
@@ -26,9 +26,9 @@ public final class e5 implements te.d, m0 {
 
     @Override
     public void m1() {
-        g5 g5Var = this.f28898a;
+        g5 g5Var = this.f28896a;
         g5Var.e();
-        g5Var.f28975a.invalidate();
+        g5Var.f28973a.invalidate();
     }
 
     @Override

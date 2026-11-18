@@ -5,10 +5,10 @@ import android.view.TextureView;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class pu0 implements org.telegram.ui.ActionBar.o0, dr0, gh.a, org.telegram.ui.Components.k8 {
-    public final ProfileActivity f51021a;
+    public final ProfileActivity f50942a;
 
     public pu0(ProfileActivity profileActivity) {
-        this.f51021a = profileActivity;
+        this.f50942a = profileActivity;
     }
 
     @Override
@@ -18,9 +18,9 @@ public final class pu0 implements org.telegram.ui.ActionBar.o0, dr0, gh.a, org.t
 
     @Override
     public int A2() {
-        ProfileActivity profileActivity = this.f51021a;
+        ProfileActivity profileActivity = this.f50942a;
         gh.e eVar = profileActivity.M5;
-        return org.telegram.ui.ActionBar.n6.r1(profileActivity.l4(), eVar.a(eVar.f13628e));
+        return org.telegram.ui.ActionBar.n6.r1(profileActivity.l4(), eVar.a(eVar.f13625e));
     }
 
     @Override
@@ -30,18 +30,18 @@ public final class pu0 implements org.telegram.ui.ActionBar.o0, dr0, gh.a, org.t
 
     @Override
     public void G0(org.telegram.messenger.fj fjVar) {
-        ProfileActivity profileActivity = this.f51021a;
+        ProfileActivity profileActivity = this.f50942a;
         profileActivity.f43508a.I0(true);
         vv0 vv0Var = profileActivity.O;
         if (vv0Var != null && vv0Var.getCurrentListView() != null) {
             profileActivity.O.getCurrentListView().I0(true);
         }
-        profileActivity.f43533d1.setBackgroundColor(i0.a.f(0.1f, profileActivity.f4(profileActivity.Z4.f47790f), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, profileActivity.A0)));
+        profileActivity.f43533d1.setBackgroundColor(i0.a.f(0.1f, profileActivity.f4(profileActivity.Z4.f47754f), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, profileActivity.A0)));
     }
 
     @Override
     public void H(org.telegram.messenger.fj fjVar) {
-        org.telegram.ui.Components.xf0 xf0Var = this.f51021a.f43601n0;
+        org.telegram.ui.Components.xf0 xf0Var = this.f50942a.f43601n0;
         if (xf0Var != null && xf0Var.f41999a) {
             xf0Var.L.e(true, 0.0f);
             xf0Var.invalidate();
@@ -57,7 +57,7 @@ public final class pu0 implements org.telegram.ui.ActionBar.o0, dr0, gh.a, org.t
     public void R0(int i7, int i10) {
         int i11;
         RectF rectF = ProfileActivity.Z6;
-        ProfileActivity profileActivity = this.f51021a;
+        ProfileActivity profileActivity = this.f50942a;
         long a10 = profileActivity.a();
         profileActivity.getMessagesController().T4(i7, a10);
         if (profileActivity.f43665w2 == null && profileActivity.f43657v2 == null) {
@@ -76,16 +76,16 @@ public final class pu0 implements org.telegram.ui.ActionBar.o0, dr0, gh.a, org.t
 
     @Override
     public int U0() {
-        ProfileActivity profileActivity = this.f51021a;
+        ProfileActivity profileActivity = this.f50942a;
         gh.e eVar = profileActivity.M5;
         return i0.a.f(profileActivity.l4(), 352321535, eVar.a(eVar.d));
     }
 
     @Override
     public int W1() {
-        ProfileActivity profileActivity = this.f51021a;
+        ProfileActivity profileActivity = this.f50942a;
         gh.e eVar = profileActivity.M5;
-        return org.telegram.ui.ActionBar.n6.r1(profileActivity.l4(), eVar.a(eVar.f13626b));
+        return org.telegram.ui.ActionBar.n6.r1(profileActivity.l4(), eVar.a(eVar.f13623b));
     }
 
     @Override
@@ -100,13 +100,13 @@ public final class pu0 implements org.telegram.ui.ActionBar.o0, dr0, gh.a, org.t
 
     @Override
     public void d1() {
-        this.f51021a.presentFragment(new p4());
+        this.f50942a.presentFragment(new p4());
         dismiss();
     }
 
     @Override
     public void dismiss() {
-        this.f51021a.T0.V(null, null);
+        this.f50942a.T0.V(null, null);
     }
 
     @Override
@@ -117,14 +117,14 @@ public final class pu0 implements org.telegram.ui.ActionBar.o0, dr0, gh.a, org.t
     @Override
     public void k() {
         RectF rectF = ProfileActivity.Z6;
-        org.telegram.ui.Components.wk0.d(new a5(this.f51021a, 19));
+        org.telegram.ui.Components.wk0.d(new a5(this.f50942a, 19));
     }
 
     @Override
     public int t0() {
-        ProfileActivity profileActivity = this.f51021a;
+        ProfileActivity profileActivity = this.f50942a;
         gh.e eVar = profileActivity.M5;
-        return i0.a.f(profileActivity.l4(), 553648127, eVar.a(eVar.f13627c));
+        return i0.a.f(profileActivity.l4(), 553648127, eVar.a(eVar.f13624c));
     }
 
     @Override

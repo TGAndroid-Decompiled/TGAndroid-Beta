@@ -37,7 +37,7 @@ public final class VoIPPendingCall {
         this.video = z10;
         this.accountInstance = cVar;
         if (!onConnectionStateUpdated(false)) {
-            ks f10 = ks.f(j10.f24773t0);
+            ks f10 = ks.f(j10.f24770t0);
             this.notificationCenter = f10;
             f10.b(fsVar, ks.T1);
             Handler handler = new Handler(Looper.myLooper());
@@ -54,7 +54,7 @@ public final class VoIPPendingCall {
     }
 
     private boolean isConnected(org.telegram.messenger.c cVar) {
-        if (ConnectionsManager.getInstance(cVar.f23221a).getConnectionState() == 3) {
+        if (ConnectionsManager.getInstance(cVar.f23218a).getConnectionState() == 3) {
             return true;
         }
         return false;
@@ -75,10 +75,10 @@ public final class VoIPPendingCall {
         if (this.released || (!z10 && !isConnected(this.accountInstance) && !isAirplaneMode())) {
             return false;
         }
-        mp u12 = mp.u1(this.accountInstance.f23221a);
+        mp u12 = mp.u1(this.accountInstance.f23218a);
         TLRPC.User c22 = u12.c2(Long.valueOf(this.userId));
         if (c22 != null) {
-            TLRPC.UserFull d2 = u12.d2(c22.f28554id);
+            TLRPC.UserFull d2 = u12.d2(c22.f28552id);
             boolean z12 = this.video;
             if (d2 != null && d2.video_calls_available) {
                 z11 = true;

@@ -9,16 +9,16 @@ import org.telegram.messenger.gd;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
 public final class r2 extends LinearLayout {
-    public final int f1488a;
+    public final int f1489a;
 
     public r2(Context context, int i7) {
         super(context);
-        this.f1488a = i7;
+        this.f1489a = i7;
     }
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f1488a) {
+        switch (this.f1489a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(400.0f), View.MeasureSpec.getSize(i7)), 1073741824), i10);
                 return;
@@ -61,7 +61,7 @@ public final class r2 extends LinearLayout {
 
     public r2(Context context) {
         super(context);
-        this.f1488a = 12;
+        this.f1489a = 12;
         setOrientation(1);
         setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
         TextView textView = new TextView(context);

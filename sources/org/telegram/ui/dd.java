@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.text.SpannableStringBuilder;
 import org.telegram.tgnet.ConnectionsManager;
 public final class dd implements Runnable {
-    public final int f46926a;
-    public final xd f46927b;
-    public final int f46928c;
+    public final int f46859a;
+    public final xd f46860b;
+    public final int f46861c;
 
     public dd(xd xdVar, int i7, int i10) {
-        this.f46926a = i10;
-        this.f46927b = xdVar;
-        this.f46928c = i7;
+        this.f46859a = i10;
+        this.f46860b = xdVar;
+        this.f46861c = i7;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String H;
-        int i7 = this.f46926a;
-        int i10 = this.f46928c;
-        xd xdVar = this.f46927b;
+        int i7 = this.f46859a;
+        int i10 = this.f46861c;
+        xd xdVar = this.f46860b;
         switch (i7) {
             case 0:
                 vf.c.t(xdVar.getContext(), org.telegram.messenger.gd.M0(i10, null));
                 return;
             case 1:
-                dd ddVar = xdVar.f53798g1;
+                dd ddVar = xdVar.f53792g1;
                 di.q qVar = xdVar.P0;
                 org.telegram.ui.Components.gc.e();
                 if (xdVar.E0.amount < org.telegram.messenger.mp.u1(i10).U5) {
@@ -43,7 +43,7 @@ public final class dd implements Runnable {
                 ddVar.run();
                 return;
             default:
-                dd ddVar2 = xdVar.f53798g1;
+                dd ddVar2 = xdVar.f53792g1;
                 int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
                 nd ndVar = xdVar.H0;
                 if (xdVar.O0 <= 0 && xdVar.C0 <= currentTime) {
@@ -54,14 +54,14 @@ public final class dd implements Runnable {
                 ndVar.setEnabled(z10);
                 if (currentTime < xdVar.C0) {
                     ndVar.i(org.telegram.messenger.gd.M0(2131748175, null), true, true);
-                    if (xdVar.f53797f1 == null) {
-                        xdVar.f53797f1 = new SpannableStringBuilder("l");
+                    if (xdVar.f53791f1 == null) {
+                        xdVar.f53791f1 = new SpannableStringBuilder("l");
                         org.telegram.ui.Components.lq lqVar = new org.telegram.ui.Components.lq(2131231977, 0);
                         lqVar.f37197n = 1;
-                        xdVar.f53797f1.setSpan(lqVar, 0, 1, 33);
+                        xdVar.f53791f1.setSpan(lqVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) xdVar.f53797f1).append((CharSequence) di.t.x0(xdVar.C0 - currentTime));
+                    spannableStringBuilder.append((CharSequence) xdVar.f53791f1).append((CharSequence) di.t.x0(xdVar.C0 - currentTime));
                     ndVar.g(spannableStringBuilder, true);
                     org.telegram.ui.Components.gc gcVar = xdVar.Q0;
                     if (gcVar != null) {

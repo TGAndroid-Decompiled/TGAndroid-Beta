@@ -170,7 +170,7 @@ public final class pn0 extends View implements org.telegram.ui.ActionBar.c6 {
         this.d.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Uf, false));
         this.f38498e.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Tf, false));
         if (this.f38497c != null) {
-            int r12 = org.telegram.ui.ActionBar.n6.r1(0.2f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+            int r12 = org.telegram.ui.ActionBar.n6.r1(0.2f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
             if (r12 != this.f38503w) {
                 this.f38503w = r12;
                 org.telegram.ui.ActionBar.n6.H1(this.f38497c, r12, true);
@@ -178,7 +178,7 @@ public final class pn0 extends View implements org.telegram.ui.ActionBar.c6 {
             invalidate();
             return;
         }
-        this.f38503w = org.telegram.ui.ActionBar.n6.r1(0.2f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+        this.f38503w = org.telegram.ui.ActionBar.n6.r1(0.2f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
         int L = org.telegram.messenger.g0.L(18.0f);
         int i7 = this.f38503w;
         org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.n6.k0(L, L, L, L, 0, i7, i7);

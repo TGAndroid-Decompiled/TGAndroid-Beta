@@ -4,23 +4,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class lj implements RequestDelegate {
-    public final int f25392a;
-    public final mp f25393b;
-    public final long f25394c;
+    public final int f25390a;
+    public final mp f25391b;
+    public final long f25392c;
 
     public lj(mp mpVar, long j3, int i7) {
-        this.f25392a = i7;
-        this.f25393b = mpVar;
-        this.f25394c = j3;
+        this.f25390a = i7;
+        this.f25391b = mpVar;
+        this.f25392c = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f25392a) {
+        switch (this.f25390a) {
             case 0:
-                long j3 = this.f25394c;
+                long j3 = this.f25392c;
                 int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-                mp mpVar = this.f25393b;
+                mp mpVar = this.f25391b;
                 if (i7 != 0) {
                     mpVar.getMessagesStorage().q1(j3);
                     return;
@@ -29,57 +29,57 @@ public final class lj implements RequestDelegate {
                     return;
                 }
             case 1:
-                g0.g3(new gl(this.f25393b, this.f25394c, tLObject));
+                g0.g3(new gl(this.f25391b, this.f25392c, tLObject));
                 return;
             case 2:
                 boolean z10 = tLObject instanceof TLRPC.TL_channels_channelParticipants;
-                mp mpVar2 = this.f25393b;
+                mp mpVar2 = this.f25391b;
                 if (z10) {
-                    mpVar2.P3(this.f25394c, (TLRPC.TL_channels_channelParticipants) tLObject);
+                    mpVar2.P3(this.f25392c, (TLRPC.TL_channels_channelParticipants) tLObject);
                     return;
                 }
                 mpVar2.getClass();
                 return;
             case 3:
-                mp mpVar3 = this.f25393b;
+                mp mpVar3 = this.f25391b;
                 mpVar3.getClass();
                 if (tL_error == null) {
                     mpVar3.V3((TLRPC.Updates) tLObject, false);
                 }
-                long j10 = this.f25394c;
+                long j10 = this.f25392c;
                 if (j10 != 0) {
                     mpVar3.getMessagesStorage().q1(j10);
                     return;
                 }
                 return;
             case 4:
-                mp mpVar4 = this.f25393b;
+                mp mpVar4 = this.f25391b;
                 mpVar4.getClass();
                 if (tL_error == null) {
                     mpVar4.V3((TLRPC.Updates) tLObject, false);
                 }
-                long j11 = this.f25394c;
+                long j11 = this.f25392c;
                 if (j11 != 0) {
                     mpVar4.getMessagesStorage().q1(j11);
                     return;
                 }
                 return;
             case 5:
-                mp mpVar5 = this.f25393b;
+                mp mpVar5 = this.f25391b;
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
                     mpVar5.T3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
                 }
-                long j12 = this.f25394c;
+                long j12 = this.f25392c;
                 if (j12 != 0) {
                     mpVar5.getMessagesStorage().q1(j12);
                     return;
                 }
                 return;
             case 6:
-                long j13 = this.f25394c;
+                long j13 = this.f25392c;
                 int i10 = (j13 > 0L ? 1 : (j13 == 0L ? 0 : -1));
-                mp mpVar6 = this.f25393b;
+                mp mpVar6 = this.f25391b;
                 if (i10 != 0) {
                     mpVar6.getMessagesStorage().q1(j13);
                     return;
@@ -88,30 +88,30 @@ public final class lj implements RequestDelegate {
                     return;
                 }
             case 7:
-                mp mpVar7 = this.f25393b;
+                mp mpVar7 = this.f25391b;
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages2 = (TLRPC.TL_messages_affectedMessages) tLObject;
                     mpVar7.T3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
                 }
-                long j14 = this.f25394c;
+                long j14 = this.f25392c;
                 if (j14 != 0) {
                     mpVar7.getMessagesStorage().q1(j14);
                     return;
                 }
                 return;
             case 8:
-                this.f25393b.getMessagesStorage().q1(this.f25394c);
+                this.f25391b.getMessagesStorage().q1(this.f25392c);
                 return;
             case 9:
                 if (tL_error == null) {
-                    g0.g3(new gl(this.f25393b, tLObject, this.f25394c));
+                    g0.g3(new gl(this.f25391b, tLObject, this.f25392c));
                     return;
                 }
                 return;
             case 10:
-                long j15 = this.f25394c;
+                long j15 = this.f25392c;
                 int i11 = (j15 > 0L ? 1 : (j15 == 0L ? 0 : -1));
-                mp mpVar8 = this.f25393b;
+                mp mpVar8 = this.f25391b;
                 if (i11 != 0) {
                     mpVar8.getMessagesStorage().q1(j15);
                     return;
@@ -120,9 +120,9 @@ public final class lj implements RequestDelegate {
                     return;
                 }
             case 11:
-                long j16 = this.f25394c;
+                long j16 = this.f25392c;
                 int i12 = (j16 > 0L ? 1 : (j16 == 0L ? 0 : -1));
-                mp mpVar9 = this.f25393b;
+                mp mpVar9 = this.f25391b;
                 if (i12 != 0) {
                     mpVar9.getMessagesStorage().q1(j16);
                     return;
@@ -133,23 +133,23 @@ public final class lj implements RequestDelegate {
             case 12:
                 if (tLObject != null) {
                     TLRPC.TL_chatOnlines tL_chatOnlines = (TLRPC.TL_chatOnlines) tLObject;
-                    mp mpVar10 = this.f25393b;
+                    mp mpVar10 = this.f25391b;
                     tr messagesStorage = mpVar10.getMessagesStorage();
                     int i13 = tL_chatOnlines.onlines;
-                    q5 q5Var = messagesStorage.f27054a;
-                    long j17 = this.f25394c;
+                    q5 q5Var = messagesStorage.f27052a;
+                    long j17 = this.f25392c;
                     q5Var.c(new vp(messagesStorage, i13, j17, 7));
                     g0.g3(new d4(mpVar10, j17, tL_chatOnlines, 19));
                     return;
                 }
                 return;
             case 13:
-                mp mpVar11 = this.f25393b;
+                mp mpVar11 = this.f25391b;
                 mpVar11.getClass();
                 if (tL_error == null) {
                     mpVar11.V3((TLRPC.Updates) tLObject, false);
                 }
-                long j18 = this.f25394c;
+                long j18 = this.f25392c;
                 if (j18 != 0) {
                     mpVar11.getMessagesStorage().q1(j18);
                     return;
@@ -157,25 +157,25 @@ public final class lj implements RequestDelegate {
                 return;
             case 14:
                 if (tL_error == null) {
-                    mp mpVar12 = this.f25393b;
+                    mp mpVar12 = this.f25391b;
                     mpVar12.getMessagesController().V3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new ik(mpVar12, this.f25394c, 21), 1000L);
+                    g0.h3(new ik(mpVar12, this.f25392c, 21), 1000L);
                     return;
                 }
                 return;
             case 15:
-                mp mpVar13 = this.f25393b;
+                mp mpVar13 = this.f25391b;
                 if (tL_error == null) {
                     mpVar13.getMessagesController().V3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new ik(mpVar13, this.f25394c, 19), 1000L);
+                    g0.h3(new ik(mpVar13, this.f25392c, 19), 1000L);
                     return;
                 }
                 mpVar13.getClass();
                 return;
             case 16:
-                long j19 = this.f25394c;
+                long j19 = this.f25392c;
                 int i14 = (j19 > 0L ? 1 : (j19 == 0L ? 0 : -1));
-                mp mpVar14 = this.f25393b;
+                mp mpVar14 = this.f25391b;
                 if (i14 != 0) {
                     mpVar14.getMessagesStorage().q1(j19);
                 } else {
@@ -188,8 +188,8 @@ public final class lj implements RequestDelegate {
                 return;
             default:
                 boolean z11 = tLObject instanceof TLRPC.TL_boolTrue;
-                mp mpVar15 = this.f25393b;
-                long j20 = this.f25394c;
+                mp mpVar15 = this.f25391b;
+                long j20 = this.f25392c;
                 if (z11) {
                     long j21 = -j20;
                     if (mpVar15.P0(j21) == null) {

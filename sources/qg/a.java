@@ -46,9 +46,9 @@ public final class a extends Drawable {
             f56131j = mz.h(2131624294, -1);
         }
         lz clone = f56131j.clone();
-        SparseArray sparseArray = clone.f25500r;
+        SparseArray sparseArray = clone.f25498r;
         this.f56134a = clone;
-        ArrayList arrayList = clone.f25485a;
+        ArrayList arrayList = clone.f25483a;
         arrayList.add(arrayList.get(0));
         Paint paint = new Paint(1);
         this.f56139g = paint;
@@ -95,7 +95,7 @@ public final class a extends Drawable {
         this.f56135b = linearGradient;
         linearGradient.setLocalMatrix(this.f56136c);
         paint.setShader(this.f56135b);
-        this.f56134a.f25500r.put(0, paint);
+        this.f56134a.f25498r.put(0, paint);
         this.f56139g.setColor(i0.a.f(0.1f, iArr[1], -1));
         this.f56138f.setColor(i0.a.f(0.1f, iArr[0], -16777216));
     }

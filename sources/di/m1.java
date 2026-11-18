@@ -1,20 +1,20 @@
 package di;
 public final class m1 implements Runnable {
-    public final int f9295a;
-    public final f6 f9296b;
-    public final long f9297c;
+    public final int f9292a;
+    public final f6 f9293b;
+    public final long f9294c;
 
     public m1(f6 f6Var, long j3, int i7) {
-        this.f9295a = i7;
-        this.f9296b = f6Var;
-        this.f9297c = j3;
+        this.f9292a = i7;
+        this.f9293b = f6Var;
+        this.f9294c = j3;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f9295a;
-        long j3 = this.f9297c;
-        f6 f6Var = this.f9296b;
+        int i7 = this.f9292a;
+        long j3 = this.f9294c;
+        f6 f6Var = this.f9293b;
         switch (i7) {
             case 0:
                 f6Var.h2(j3);
@@ -23,7 +23,7 @@ public final class m1 implements Runnable {
                 f6Var.h2(j3);
                 return;
             case 2:
-                k1 k1Var = f6Var.f8808t3;
+                k1 k1Var = f6Var.f8805t3;
                 f6Var.H2(1, true, null);
                 if (j3 > 0) {
                     org.telegram.messenger.g0.r(k1Var);
@@ -41,7 +41,7 @@ public final class m1 implements Runnable {
                 f6Var.d2(j3);
                 return;
             case 6:
-                fb fbVar = new fb(f6Var.getContext(), f6Var.J0, this.f9297c, 10, null, new w2(4, f6Var, new boolean[]{false}), 0L);
+                fb fbVar = new fb(f6Var.getContext(), f6Var.J0, this.f9294c, 10, null, new w2(4, f6Var, new boolean[]{false}), 0L);
                 fbVar.setOnDismissListener(new n3(f6Var, 0));
                 fbVar.show();
                 return;

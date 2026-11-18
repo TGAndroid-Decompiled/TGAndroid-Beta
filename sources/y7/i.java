@@ -2,21 +2,21 @@ package y7;
 
 import java.util.Map;
 public final class i implements na.d {
-    public static final i f60841b = new i(0);
-    public static final i f60842c = new i(1);
-    public final int f60843a;
+    public static final i f60842b = new i(0);
+    public static final i f60843c = new i(1);
+    public final int f60844a;
 
     public i(int i7) {
-        this.f60843a = i7;
+        this.f60844a = i7;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f60843a) {
+        switch (this.f60844a) {
             case 0:
                 Map.Entry entry = (Map.Entry) obj;
                 na.e eVar = (na.e) obj2;
-                eVar.a(j.f60852g, entry.getKey());
+                eVar.a(j.f60853g, entry.getKey());
                 eVar.a(j.h, entry.getValue());
                 return;
             default:

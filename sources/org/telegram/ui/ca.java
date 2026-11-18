@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ca implements org.telegram.ui.Components.oj0 {
-    public final la f46471a;
+    public final la f46468a;
 
     public ca(la laVar) {
-        this.f46471a = laVar;
+        this.f46468a = laVar;
     }
 
     @Override
@@ -16,13 +16,13 @@ public final class ca implements org.telegram.ui.Components.oj0 {
         int i11;
         int i12;
         boolean z10 = view instanceof ia;
-        la laVar = this.f46471a;
+        la laVar = this.f46468a;
         if (z10) {
             ia iaVar = (ia) view;
-            TLRPC.TL_username tL_username = iaVar.f48676w;
-            if (tL_username != null && !iaVar.f48674r) {
-                if (tL_username.editable && laVar.f49519y == 0) {
-                    laVar.f49510b.y0(0);
+            TLRPC.TL_username tL_username = iaVar.f48673w;
+            if (tL_username != null && !iaVar.f48671r) {
+                if (tL_username.editable && laVar.f49497y == 0) {
+                    laVar.f49488b.y0(0);
                     laVar.j0(true);
                     return;
                 }
@@ -33,7 +33,7 @@ public final class ca implements org.telegram.ui.Components.oj0 {
                     i10 = 2131743434;
                 }
                 String M0 = org.telegram.messenger.gd.M0(i10, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 if (tL_username.active) {
                     i11 = 2131743425;

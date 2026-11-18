@@ -67,7 +67,7 @@ public final class xf0 extends View {
         this.L = c6Var;
         this.M = new fi.d5(2, this);
         c6Var.e(true, 1.0f);
-        boolean z11 = this.f41999a & org.telegram.messenger.bz.f23149a0;
+        boolean z11 = this.f41999a & org.telegram.messenger.bz.f23146a0;
         this.f41999a = z11;
         if (z11) {
             setLayerType(2, null);
@@ -162,7 +162,7 @@ public final class xf0 extends View {
         fg0 fg0Var = this.h;
         if (fg0Var != null) {
             fi.d5 d5Var = this.M;
-            ArrayList arrayList = fg0Var.f4450l0;
+            ArrayList arrayList = fg0Var.f4447l0;
             if (arrayList != null) {
                 arrayList.remove(d5Var);
             }
@@ -259,7 +259,7 @@ public final class xf0 extends View {
                             imageReceiver = wv0Var.f38742a;
                         }
                         f(imageReceiver, beginRecording2, f17, f11);
-                        if (wv0Var.f53536b0 && wv0Var.W > 0.0f) {
+                        if (wv0Var.f53487b0 && wv0Var.W > 0.0f) {
                             f(wv0Var.V, beginRecording2, f17, f11);
                         }
                         this.J.endRecording();

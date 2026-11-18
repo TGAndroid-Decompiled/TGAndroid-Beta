@@ -370,8 +370,8 @@ public final class po {
             no noVar = this.f38508f;
             org.telegram.ui.ActionBar.h1 h1Var = new org.telegram.ui.ActionBar.h1(noVar, -2, -2);
             this.h = h1Var;
-            h1Var.f28993e = true;
-            h1Var.f28992c = 220;
+            h1Var.f28991e = true;
+            h1Var.f28990c = 220;
             h1Var.setOutsideTouchable(true);
             this.h.setClippingEnabled(true);
             this.h.setAnimationStyle(2131755192);
@@ -413,11 +413,11 @@ public final class po {
         org.telegram.ui.ActionBar.z0 z0Var2 = this.f38505b;
         if (u22) {
             z0Var.j(org.telegram.messenger.gd.M0(2131743611, null), 2131232414, null);
-            i7 = org.telegram.ui.ActionBar.n6.f29769x6;
+            i7 = org.telegram.ui.ActionBar.n6.f29767x6;
             z0Var2.setVisibility(8);
         } else {
             z0Var.j(org.telegram.messenger.gd.M0(2131748114, null), 2131232258, null);
-            int i13 = org.telegram.ui.ActionBar.n6.f29637q7;
+            int i13 = org.telegram.ui.ActionBar.n6.f29635q7;
             z0Var2.setVisibility(0);
             if (org.telegram.messenger.mp.u1(i12).v2(j3, j10)) {
                 z0Var2.j(org.telegram.messenger.gd.M0(2131745082, null), 2131232404, null);
@@ -430,7 +430,7 @@ public final class po {
             this.f38504a.setVisibility(8);
         }
         if (!u22 && this.f38516o != 1) {
-            SharedPreferences sharedPreferences = org.telegram.messenger.mp.u1(i12).f25660g7;
+            SharedPreferences sharedPreferences = org.telegram.messenger.mp.u1(i12).f25658g7;
             i11 = sharedPreferences.getInt("last_selected_mute_until_time", 0);
             i10 = sharedPreferences.getInt("last_selected_mute_until_time2", 0);
         } else {
@@ -461,7 +461,7 @@ public final class po {
         if (hashSet != null && !hashSet.isEmpty()) {
             frameLayout.setVisibility(0);
             textView.setVisibility(0);
-            textView.setText(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.G(hashSet.size(), "TopicNotificationsExceptions", new Object[0]), org.telegram.ui.ActionBar.n6.f29578n6, 1, null, null));
+            textView.setText(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.G(hashSet.size(), "TopicNotificationsExceptions", new Object[0]), org.telegram.ui.ActionBar.n6.f29576n6, 1, null, null));
             return;
         }
         frameLayout.setVisibility(8);

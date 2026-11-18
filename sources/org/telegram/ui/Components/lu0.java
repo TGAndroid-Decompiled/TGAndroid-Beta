@@ -185,9 +185,9 @@ public final class lu0 {
                 int i18 = 0;
                 while (i18 < i7) {
                     if (arrayList.size() < i11) {
-                        SecureRandom secureRandom = Utilities.f22780b;
+                        SecureRandom secureRandom = Utilities.f22777b;
                         if (secureRandom.nextFloat() > 0.7f) {
-                            int i19 = org.telegram.messenger.g0.f24115m;
+                            int i19 = org.telegram.messenger.g0.f24112m;
                             float nextFloat2 = secureRandom.nextFloat() * view.getMeasuredWidth();
                             if (i16 == 0) {
                                 nextFloat = (secureRandom.nextFloat() * org.telegram.messenger.f3.z(20.0f, view.getMeasuredHeight(), i19)) + i19;

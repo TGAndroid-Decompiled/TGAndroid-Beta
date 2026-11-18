@@ -56,17 +56,17 @@ public final class yf0 implements c5.h {
                         k11--;
                     }
                     ImageReceiver imageReceiver = ((q9) childAt).getImageReceiver();
-                    boolean z10 = imageReceiver.f22667u0;
+                    boolean z10 = imageReceiver.f22664u0;
                     if (k11 >= 0 && k11 < fg0Var.X0.size()) {
                         if (k11 == k10) {
                             if (!z10) {
-                                imageReceiver.f22667u0 = true;
+                                imageReceiver.f22664u0 = true;
                                 imageReceiver.P0(false);
                             }
                             org.telegram.messenger.fc fcVar2 = (org.telegram.messenger.fc) fg0Var.X0.get(k11);
                             if (fcVar2 != null) {
                                 org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(fg0Var.M0);
-                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = fcVar2.f23871f;
+                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = fcVar2.f23868f;
                                 if (tL_fileLocationToBeDeprecated != null) {
                                     org.telegram.messenger.w7.K.c(new org.telegram.messenger.z4(9, G, tL_fileLocationToBeDeprecated));
                                 }
@@ -74,9 +74,9 @@ public final class yf0 implements c5.h {
                         } else if (z10) {
                             b6 m10 = imageReceiver.m();
                             if (m10 != null && (fcVar = (org.telegram.messenger.fc) fg0Var.X0.get(k11)) != null) {
-                                m10.y(fcVar.f23874j, false, true);
+                                m10.y(fcVar.f23871j, false, true);
                             }
-                            imageReceiver.f22667u0 = false;
+                            imageReceiver.f22664u0 = false;
                             imageReceiver.Q0();
                         }
                     }

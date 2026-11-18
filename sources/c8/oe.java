@@ -32,9 +32,9 @@ public abstract class oe {
                     mediaFormat = null;
                 }
                 mediaExtractor.release();
-                int i7 = dVar.f2944c;
+                int i7 = dVar.f2945c;
                 synchronized (xVar) {
-                    xVar2.f62371s = i7;
+                    xVar2.f62372s = i7;
                 }
                 if (mediaFormat != null) {
                     xVar2.n(mediaFormat, false);
@@ -87,14 +87,14 @@ public abstract class oe {
                             long min = Math.min(j15, max2);
                             y7.f7 f7Var = new y7.f7(4);
                             j12 = 0;
-                            pe.c(file, j14, max, min, dVar.f2942a, dVar.f2943b, dVar.f2944c, f7Var);
-                            if (((MediaFormat) f7Var.f60812c) != null && !((ArrayList) f7Var.f60810a).isEmpty()) {
-                                boolean m10 = zi.x.m(trackFormat, (MediaFormat) f7Var.f60812c, "csd-0", "csd-1");
+                            pe.c(file, j14, max, min, dVar.f2943a, dVar.f2944b, dVar.f2945c, f7Var);
+                            if (((MediaFormat) f7Var.f60813c) != null && !((ArrayList) f7Var.f60811a).isEmpty()) {
+                                boolean m10 = zi.x.m(trackFormat, (MediaFormat) f7Var.f60813c, "csd-0", "csd-1");
                                 if (min >= max2) {
                                     if (m10) {
                                         mediaFormat2 = trackFormat;
                                     } else {
-                                        mediaFormat2 = (MediaFormat) f7Var.f60812c;
+                                        mediaFormat2 = (MediaFormat) f7Var.f60813c;
                                     }
                                     xVar2.n(mediaFormat2, true);
                                     e(xVar2, f7Var, max);
@@ -108,7 +108,7 @@ public abstract class oe {
                                     str = "reencode-head";
                                 } else {
                                     max = max;
-                                    pe.c(file, j14, max, max2, dVar.f2942a, dVar.f2943b, dVar.f2944c, new a8.va(xVar2, max, 11));
+                                    pe.c(file, j14, max, max2, dVar.f2943a, dVar.f2944b, dVar.f2945c, new a8.va(xVar2, max, 11));
                                     str = "reencode-all";
                                 }
                             } else {
@@ -148,9 +148,9 @@ public abstract class oe {
                         }
                         long h = xVar.h();
                         ?? obj = new Object();
-                        obj.f21207a = max / 1000;
-                        obj.f21208b = h;
-                        obj.f21209c = str;
+                        obj.f21204a = max / 1000;
+                        obj.f21205b = h;
+                        obj.f21206c = str;
                         return obj;
                     }
                     throw new IOException("Trim range has no video sync sample");
@@ -237,9 +237,9 @@ public abstract class oe {
     }
 
     public static void e(zi.x xVar, y7.f7 f7Var, long j3) {
-        ArrayList arrayList = (ArrayList) f7Var.f60810a;
+        ArrayList arrayList = (ArrayList) f7Var.f60811a;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) f7Var.f60811b).get(i7), -j3);
+            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) f7Var.f60812b).get(i7), -j3);
         }
     }
 }

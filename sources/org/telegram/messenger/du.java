@@ -11,18 +11,18 @@ public final class du extends zt {
     public final dv X;
     public final dv Y;
     public final boolean Z;
-    public final org.telegram.ui.Cells.t9[] f23578a0;
+    public final org.telegram.ui.Cells.u9[] f23575a0;
 
     public du(ev evVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
         super(evVar, rect, i7);
         dv dvVar;
         if (!TextUtils.isEmpty(spannableStringBuilder)) {
-            dvVar = new dv(evVar, spannableStringBuilder, this.f28353c);
+            dvVar = new dv(evVar, spannableStringBuilder, this.f28351c);
         } else {
             dvVar = null;
         }
         this.X = dvVar;
-        dv dvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new dv(evVar, spannableStringBuilder2, this.f28353c);
+        dv dvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new dv(evVar, spannableStringBuilder2, this.f28351c);
         this.Y = dvVar2;
         this.Z = evVar.I();
         ArrayList arrayList = new ArrayList(2);
@@ -32,25 +32,25 @@ public final class du extends zt {
         if (dvVar2 != null) {
             arrayList.add(dvVar2);
         }
-        this.f23578a0 = (org.telegram.ui.Cells.t9[]) arrayList.toArray(new org.telegram.ui.Cells.t9[0]);
+        this.f23575a0 = (org.telegram.ui.Cells.u9[]) arrayList.toArray(new org.telegram.ui.Cells.u9[0]);
     }
 
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         int i10 = rect.top;
         int i11 = 0;
         dv dvVar = this.X;
         if (dvVar != null) {
-            i7 = dvVar.f23580b.getHeight();
+            i7 = dvVar.f23577b.getHeight();
         } else {
             i7 = 0;
         }
         int j02 = j0() + i7 + i10;
         dv dvVar2 = this.Y;
         if (dvVar2 != null) {
-            i11 = dvVar2.f23580b.getHeight();
+            i11 = dvVar2.f23577b.getHeight();
         }
         return j02 + i11 + rect.bottom;
     }
@@ -59,7 +59,7 @@ public final class du extends zt {
     public final int J() {
         int i7;
         int i10;
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         dv dvVar = this.Y;
         if (dvVar != null) {
             i7 = dvVar.q() + rect.left;
@@ -88,13 +88,13 @@ public final class du extends zt {
         if (dvVar2 != null) {
             i7 = Math.max(i7, dvVar2.r());
         }
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         return rect.left + i7 + rect.right;
     }
 
     @Override
-    public final org.telegram.ui.Cells.t9[] L() {
-        return this.f23578a0;
+    public final org.telegram.ui.Cells.u9[] L() {
+        return this.f23575a0;
     }
 
     @Override
@@ -133,7 +133,7 @@ public final class du extends zt {
             canvas.save();
             float i02 = i0();
             if (dvVar != null) {
-                i7 = dvVar.f23580b.getHeight();
+                i7 = dvVar.f23577b.getHeight();
             } else {
                 i7 = 0;
             }
@@ -150,13 +150,13 @@ public final class du extends zt {
         int i10;
         dv dvVar = this.X;
         if (dvVar != null) {
-            i7 = dvVar.f23580b.getHeight();
+            i7 = dvVar.f23577b.getHeight();
         } else {
             i7 = 0;
         }
         int j02 = j0();
         float y10 = motionEvent.getY();
-        int i11 = this.f28352b.top;
+        int i11 = this.f28350b.top;
         float f10 = y10 - i11;
         if (dvVar != null && f10 >= 0.0f && f10 < i7) {
             motionEvent.offsetLocation(0.0f, -i11);
@@ -183,20 +183,20 @@ public final class du extends zt {
         this.V = i11;
         dv dvVar = this.X;
         if (dvVar != null) {
-            dvVar.f23581c = i7 - dvVar.f23583f;
+            dvVar.f23578c = i7 - dvVar.f23580f;
             dvVar.d = i10;
-            dvVar.f23582e = i11;
+            dvVar.f23579e = i11;
         }
         dv dvVar2 = this.Y;
         if (dvVar2 != null) {
-            dvVar2.f23581c = (i0() + i7) - dvVar2.f23583f;
+            dvVar2.f23578c = (i0() + i7) - dvVar2.f23580f;
             if (dvVar != null) {
-                i12 = dvVar.f23580b.getHeight();
+                i12 = dvVar.f23577b.getHeight();
             } else {
                 i12 = 0;
             }
             dvVar2.d = j0() + i12 + i10;
-            dvVar2.f23582e = i11;
+            dvVar2.f23579e = i11;
         }
     }
 
@@ -205,8 +205,8 @@ public final class du extends zt {
         if (dvVar == null || !this.Z) {
             return 0;
         }
-        int i7 = this.f28351a.C;
-        Rect rect = this.f28352b;
+        int i7 = this.f28349a.C;
+        Rect rect = this.f28350b;
         return Math.max(0, ((i7 - rect.left) - rect.right) - dvVar.r());
     }
 
@@ -222,7 +222,7 @@ public final class du extends zt {
         StaticLayout staticLayout;
         zt.l(spannableStringBuilder, this.X, null);
         dv dvVar = this.Y;
-        if (dvVar != null && (staticLayout = dvVar.f23580b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
+        if (dvVar != null && (staticLayout = dvVar.f23577b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
             if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
                 spannableStringBuilder.append('\n');
             }

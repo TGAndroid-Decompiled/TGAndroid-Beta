@@ -6,24 +6,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class mi0 extends org.telegram.ui.ActionBar.j {
-    public final int f49867a;
-    public final Object f49868b;
-    public final org.telegram.ui.ActionBar.h2 f49869c;
+    public final int f49841a;
+    public final Object f49842b;
+    public final org.telegram.ui.ActionBar.h2 f49843c;
 
     public mi0(org.telegram.ui.ActionBar.h2 h2Var, Object obj, int i7) {
-        this.f49867a = i7;
-        this.f49869c = h2Var;
-        this.f49868b = obj;
+        this.f49841a = i7;
+        this.f49843c = h2Var;
+        this.f49842b = obj;
     }
 
     @Override
     public final void b(int i7) {
         int i10;
         int i11;
-        int i12 = this.f49867a;
-        Object obj = this.f49868b;
+        int i12 = this.f49841a;
+        Object obj = this.f49842b;
         int i13 = 0;
-        org.telegram.ui.ActionBar.h2 h2Var = this.f49869c;
+        org.telegram.ui.ActionBar.h2 h2Var = this.f49843c;
         int i14 = 1;
         switch (i12) {
             case 0:
@@ -36,9 +36,9 @@ public final class mi0 extends org.telegram.ui.ActionBar.j {
                         i14 = 0;
                     }
                     passcodeActivity.E = i14;
-                    org.telegram.messenger.g0.h3(new ve0(8, this, (org.telegram.ui.ActionBar.z0) obj), 150L);
+                    org.telegram.messenger.g0.h3(new we0(8, this, (org.telegram.ui.ActionBar.z0) obj), 150L);
                     passcodeActivity.h.setText("");
-                    er[] erVarArr = passcodeActivity.f43143n.f46283f;
+                    er[] erVarArr = passcodeActivity.f43143n.f46274f;
                     int length = erVarArr.length;
                     while (i13 < length) {
                         erVarArr[i13].setText("");
@@ -64,7 +64,7 @@ public final class mi0 extends org.telegram.ui.ActionBar.j {
                                 if (sb2.length() > 0) {
                                     sb2.append("\n\n");
                                 }
-                                sb2.append(azVar.f22988a.e());
+                                sb2.append(azVar.f22985a.e());
                             }
                             Intent intent = new Intent("android.intent.action.SEND");
                             intent.setType("text/plain");
@@ -93,7 +93,7 @@ public final class mi0 extends org.telegram.ui.ActionBar.j {
                         i10 = 2131751500;
                     }
                     String M0 = org.telegram.messenger.gd.M0(i10, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                     u1Var.U = M0;
                     alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
                     u1Var.S = org.telegram.messenger.gd.M0(2131751498, null);
@@ -101,7 +101,7 @@ public final class mi0 extends org.telegram.ui.ActionBar.j {
                     proxyListActivity.showDialog(u1Var);
                     TextView textView = (TextView) u1Var.d(-1);
                     if (textView != null) {
-                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29637q7, null);
+                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, null);
                         return;
                     }
                     return;

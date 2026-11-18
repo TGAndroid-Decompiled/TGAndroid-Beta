@@ -1,7 +1,7 @@
 package yg;
 
-import org.telegram.ui.Cells.r8;
-public final class y extends r8 {
+import org.telegram.ui.Cells.s8;
+public final class y extends s8 {
     public static final int M = 0;
     public int L;
 

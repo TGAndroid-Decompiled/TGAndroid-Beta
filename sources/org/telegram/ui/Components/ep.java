@@ -55,7 +55,7 @@ public final class ep implements qi {
                 }
                 if (str != null) {
                     File z14 = org.telegram.messenger.w7.z(4);
-                    File file = new File(z14, Utilities.f22780b.nextInt() + ".jpg");
+                    File file = new File(z14, Utilities.f22777b.nextInt() + ".jpg");
                     Point c12 = org.telegram.messenger.g0.c1();
                     Bitmap K = org.telegram.messenger.ec.K(str, null, (float) c12.x, (float) c12.y, true);
                     K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
@@ -63,7 +63,7 @@ public final class ep implements qi {
                     bpVar.X1 = lpVar.Z1;
                     bpVar.H1 = false;
                     bpVar.G1 = false;
-                    bpVar.f53727p1 = 0.2f;
+                    bpVar.f53715p1 = 0.2f;
                     bpVar.h1(lpVar.f37182v1.a());
                     bpVar.K1 = new dp(this, 0);
                     lp.J0(lpVar, bpVar);

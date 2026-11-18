@@ -2,12 +2,12 @@ package ce;
 
 import hi.u5;
 public final class h implements c {
-    public final u5 f5220a;
-    public final m1.n f5221b;
+    public final u5 f5217a;
+    public final m1.n f5218b;
 
     public h(u5 u5Var, m1.n nVar) {
-        this.f5220a = u5Var;
-        this.f5221b = nVar;
+        this.f5217a = u5Var;
+        this.f5218b = nVar;
     }
 
     @Override

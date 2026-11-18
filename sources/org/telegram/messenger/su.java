@@ -21,39 +21,39 @@ import org.telegram.ui.Components.ox0;
 import org.telegram.ui.Components.px0;
 import org.telegram.ui.Components.vx0;
 import org.telegram.ui.Components.wx0;
-import org.telegram.ui.vg0;
-import org.telegram.ui.xg0;
+import org.telegram.ui.wg0;
+import org.telegram.ui.yg0;
 public final class su extends zt implements vx0 {
     public final j6.o A0;
     public final TL_iv.pageBlockTable X;
     public final wx0 Y;
     public final ArrayList Z;
-    public final org.telegram.ui.Cells.t9[] f26861a0;
-    public final dv f26862b0;
-    public final int f26863c0;
-    public final ArrayList f26864d0;
-    public final int f26865e0;
-    public final int f26866f0;
-    public int f26867g0;
-    public int f26868h0;
-    public final int f26869i0;
-    public int f26870j0;
-    public Paint f26871k0;
-    public Paint f26872l0;
+    public final org.telegram.ui.Cells.u9[] f26859a0;
+    public final dv f26860b0;
+    public final int f26861c0;
+    public final ArrayList f26862d0;
+    public final int f26863e0;
+    public final int f26864f0;
+    public int f26865g0;
+    public int f26866h0;
+    public final int f26867i0;
+    public int f26868j0;
+    public Paint f26869k0;
+    public Paint f26870l0;
     public Paint m0;
-    public Paint f26873n0;
-    public float f26874o0;
-    public int f26875p0;
-    public boolean f26876q0;
-    public dv f26877r0;
-    public float f26878s0;
-    public float f26879t0;
-    public boolean f26880u0;
-    public int f26881v0;
-    public int f26882w0;
-    public int f26883x0;
-    public VelocityTracker f26884y0;
-    public OverScroller f26885z0;
+    public Paint f26871n0;
+    public float f26872o0;
+    public int f26873p0;
+    public boolean f26874q0;
+    public dv f26875r0;
+    public float f26876s0;
+    public float f26877t0;
+    public boolean f26878u0;
+    public int f26879v0;
+    public int f26880w0;
+    public int f26881x0;
+    public VelocityTracker f26882y0;
+    public OverScroller f26883z0;
 
     public su(ev evVar, Rect rect, int i7, TL_iv.pageBlockTable pageblocktable) {
         super(evVar, rect, i7);
@@ -62,13 +62,13 @@ public final class su extends zt implements vx0 {
         int i11;
         int max;
         this.Z = new ArrayList();
-        this.f26864d0 = new ArrayList();
+        this.f26862d0 = new ArrayList();
         this.A0 = new j6.o(this, 15);
-        Rect rect2 = this.f28352b;
+        Rect rect2 = this.f28350b;
         rect2.top = g0.L(10.0f) + rect2.top;
         this.X = pageblocktable;
-        this.f26865e0 = this.f28353c;
-        wx0 wx0Var = new wx0(t0.f26915b, this, null);
+        this.f26863e0 = this.f28351c;
+        wx0 wx0Var = new wx0(t0.f26913b, this, null);
         this.Y = wx0Var;
         wx0Var.setOrientation(0);
         wx0Var.setRowOrderPreserved(true);
@@ -125,54 +125,54 @@ public final class su extends zt implements vx0 {
             }
         }
         this.Y.setColumnCount(i10);
-        this.Y.measure(View.MeasureSpec.makeMeasureSpec(this.f28353c, 0), View.MeasureSpec.makeMeasureSpec(0, 0));
+        this.Y.measure(View.MeasureSpec.makeMeasureSpec(this.f28351c, 0), View.MeasureSpec.makeMeasureSpec(0, 0));
         int measuredWidth = this.Y.getMeasuredWidth();
-        this.f26868h0 = this.Y.getMeasuredHeight();
-        this.f26869i0 = Math.max(0, measuredWidth - this.f26865e0);
+        this.f26866h0 = this.Y.getMeasuredHeight();
+        this.f26867i0 = Math.max(0, measuredWidth - this.f26863e0);
         TL_iv.RichText richText = pageblocktable.title;
         if (richText != null && !(richText instanceof TL_iv.textEmpty) && !TextUtils.isEmpty(ev.x(richText))) {
-            dv dvVar = new dv(evVar, evVar.l(pageblocktable.title, ev.R(0, 15)), this.f26865e0, Layout.Alignment.ALIGN_CENTER);
-            this.f26862b0 = dvVar;
-            dvVar.f23585r = true;
-            this.f26863c0 = g0.L(9.0f) + dvVar.f23580b.getHeight();
+            dv dvVar = new dv(evVar, evVar.l(pageblocktable.title, ev.R(0, 15)), this.f26863e0, Layout.Alignment.ALIGN_CENTER);
+            this.f26860b0 = dvVar;
+            dvVar.f23582r = true;
+            this.f26861c0 = g0.L(9.0f) + dvVar.f23577b.getHeight();
         } else {
-            this.f26862b0 = null;
-            this.f26863c0 = 0;
+            this.f26860b0 = null;
+            this.f26861c0 = 0;
         }
-        dv dvVar2 = this.f26862b0;
+        dv dvVar2 = this.f26860b0;
         if (dvVar2 != null) {
             i11 = dvVar2.r();
         } else {
             i11 = 0;
         }
         if (evVar.D()) {
-            max = Math.max(0, this.f26865e0);
+            max = Math.max(0, this.f26863e0);
         } else {
-            max = Math.max(0, Math.min(this.f26865e0, Math.max(measuredWidth, i11)));
+            max = Math.max(0, Math.min(this.f26863e0, Math.max(measuredWidth, i11)));
         }
-        this.f26866f0 = max;
-        this.f26867g0 = max;
+        this.f26864f0 = max;
+        this.f26865g0 = max;
         for (int i19 = 0; i19 < this.Y.getChildCount(); i19++) {
             px0 d = this.Y.d(i19);
             ox0 ox0Var = d.f38593b;
             if (ox0Var instanceof dv) {
                 this.Z.add((dv) ox0Var);
-                this.f26864d0.add(new ru(d));
+                this.f26862d0.add(new ru(d));
             }
         }
         ArrayList arrayList = new ArrayList();
-        dv dvVar3 = this.f26862b0;
+        dv dvVar3 = this.f26860b0;
         if (dvVar3 != null) {
             arrayList.add(dvVar3);
         }
         arrayList.addAll(this.Z);
-        this.f26861a0 = (org.telegram.ui.Cells.t9[]) arrayList.toArray(new org.telegram.ui.Cells.t9[0]);
+        this.f26859a0 = (org.telegram.ui.Cells.u9[]) arrayList.toArray(new org.telegram.ui.Cells.u9[0]);
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f28352b;
-        return g0.L(10.0f) + rect.top + this.f26863c0 + this.f26868h0 + rect.bottom;
+        Rect rect = this.f28350b;
+        return g0.L(10.0f) + rect.top + this.f26861c0 + this.f26866h0 + rect.bottom;
     }
 
     @Override
@@ -182,19 +182,19 @@ public final class su extends zt implements vx0 {
 
     @Override
     public final int K() {
-        Rect rect = this.f28352b;
-        return rect.left + this.f26866f0 + rect.right;
+        Rect rect = this.f28350b;
+        return rect.left + this.f26864f0 + rect.right;
     }
 
     @Override
-    public final org.telegram.ui.Cells.t9[] L() {
-        return this.f26861a0;
+    public final org.telegram.ui.Cells.u9[] L() {
+        return this.f26859a0;
     }
 
     @Override
     public final boolean Q() {
-        if (!this.f26876q0) {
-            OverScroller overScroller = this.f26885z0;
+        if (!this.f26874q0) {
+            OverScroller overScroller = this.f26883z0;
             if (overScroller == null || overScroller.isFinished()) {
                 return false;
             }
@@ -205,7 +205,7 @@ public final class su extends zt implements vx0 {
 
     @Override
     public final void T() {
-        dv dvVar = this.f26862b0;
+        dv dvVar = this.f26860b0;
         if (dvVar != null) {
             dvVar.i(this.W);
         }
@@ -221,7 +221,7 @@ public final class su extends zt implements vx0 {
 
     @Override
     public final void V() {
-        dv dvVar = this.f26862b0;
+        dv dvVar = this.f26860b0;
         if (dvVar != null) {
             dvVar.f(this.W);
         }
@@ -239,7 +239,7 @@ public final class su extends zt implements vx0 {
     public final void W(Canvas canvas) {
         int i7;
         int i10;
-        dv dvVar = this.f26862b0;
+        dv dvVar = this.f26860b0;
         if (dvVar != null) {
             canvas.save();
             canvas.translate(j0(), 0.0f);
@@ -247,14 +247,14 @@ public final class su extends zt implements vx0 {
             canvas.restore();
         }
         canvas.save();
-        canvas.translate(0.0f, this.f26863c0);
-        ev evVar = this.f28351a;
+        canvas.translate(0.0f, this.f26861c0);
+        ev evVar = this.f28349a;
         int i11 = evVar.S;
-        h6.m mVar = evVar.f23792z;
-        Rect rect = this.f28352b;
-        canvas.saveLayerAlpha(-i11, 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26868h0, 255, 31);
+        h6.m mVar = evVar.f23789z;
+        Rect rect = this.f28350b;
+        canvas.saveLayerAlpha(-i11, 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26866h0, 255, 31);
         canvas.save();
-        canvas.translate(-this.f26870j0, 0.0f);
+        canvas.translate(-this.f26868j0, 0.0f);
         wx0 wx0Var = this.Y;
         int childCount = wx0Var.getChildCount();
         for (int i12 = 0; i12 < childCount; i12++) {
@@ -262,9 +262,9 @@ public final class su extends zt implements vx0 {
         }
         canvas.restore();
         RectF rectF = g0.P;
-        rectF.set(-evVar.S, 0.0f, g0.L(12.0f) + i7, this.f26868h0);
+        rectF.set(-evVar.S, 0.0f, g0.L(12.0f) + i7, this.f26866h0);
         mVar.n(canvas, rectF, 0, 1.0f);
-        rectF.set(i10 - g0.L(12.0f), 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26868h0);
+        rectF.set(i10 - g0.L(12.0f), 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26866h0);
         mVar.n(canvas, rectF, 2, 1.0f);
         canvas.restore();
         canvas.restore();
@@ -277,53 +277,53 @@ public final class su extends zt implements vx0 {
         int i10;
         View view;
         int actionMasked = motionEvent.getActionMasked();
-        int i11 = this.f26869i0;
+        int i11 = this.f26867i0;
         px0 px0Var = null;
         int i12 = 0;
         if (actionMasked == 0) {
-            if (this.f26881v0 == 0 && (view = this.W) != null) {
+            if (this.f26879v0 == 0 && (view = this.W) != null) {
                 ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                this.f26881v0 = viewConfiguration.getScaledTouchSlop();
-                this.f26882w0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                this.f26883x0 = viewConfiguration.getScaledMaximumFlingVelocity();
+                this.f26879v0 = viewConfiguration.getScaledTouchSlop();
+                this.f26880w0 = viewConfiguration.getScaledMinimumFlingVelocity();
+                this.f26881x0 = viewConfiguration.getScaledMaximumFlingVelocity();
             }
-            if (this.f26885z0 == null && this.W != null) {
-                this.f26885z0 = new OverScroller(this.W.getContext());
+            if (this.f26883z0 == null && this.W != null) {
+                this.f26883z0 = new OverScroller(this.W.getContext());
             }
-            OverScroller overScroller = this.f26885z0;
+            OverScroller overScroller = this.f26883z0;
             if (overScroller != null && !overScroller.isFinished()) {
-                this.f26885z0.forceFinished(true);
+                this.f26883z0.forceFinished(true);
             }
-            this.f26874o0 = motionEvent.getX();
+            this.f26872o0 = motionEvent.getX();
             motionEvent.getY();
-            this.f26875p0 = this.f26870j0;
-            this.f26876q0 = false;
-            VelocityTracker velocityTracker2 = this.f26884y0;
+            this.f26873p0 = this.f26868j0;
+            this.f26874q0 = false;
+            VelocityTracker velocityTracker2 = this.f26882y0;
             if (velocityTracker2 == null) {
-                this.f26884y0 = VelocityTracker.obtain();
+                this.f26882y0 = VelocityTracker.obtain();
             } else {
                 velocityTracker2.clear();
             }
-            this.f26884y0.addMovement(motionEvent);
-            this.f26877r0 = null;
-            this.f26880u0 = false;
-            int i13 = this.f26863c0;
-            dv dvVar = this.f26862b0;
+            this.f26882y0.addMovement(motionEvent);
+            this.f26875r0 = null;
+            this.f26878u0 = false;
+            int i13 = this.f26861c0;
+            dv dvVar = this.f26860b0;
             if (dvVar != null && motionEvent.getY() < i13) {
                 float j02 = j0();
                 motionEvent.offsetLocation(-j02, 0.0f);
                 boolean t6 = dvVar.t(motionEvent);
                 motionEvent.offsetLocation(j02, 0.0f);
                 if (t6) {
-                    this.f26877r0 = dvVar;
-                    this.f26878s0 = j02;
-                    this.f26879t0 = 0.0f;
-                    this.f26880u0 = true;
+                    this.f26875r0 = dvVar;
+                    this.f26876s0 = j02;
+                    this.f26877t0 = 0.0f;
+                    this.f26878u0 = true;
                 }
             }
-            if (!this.f26880u0) {
+            if (!this.f26878u0) {
                 float x10 = motionEvent.getX();
-                float f10 = x10 + this.f26870j0;
+                float f10 = x10 + this.f26868j0;
                 float y10 = motionEvent.getY() - i13;
                 wx0 wx0Var = this.Y;
                 int childCount = wx0Var.getChildCount();
@@ -344,48 +344,48 @@ public final class su extends zt implements vx0 {
                     i14++;
                 }
                 if (px0Var != null) {
-                    this.f26877r0 = (dv) px0Var.f38593b;
-                    this.f26878s0 = px0Var.b() - this.f26870j0;
-                    this.f26879t0 = px0Var.c() + i13;
-                    this.f26877r0.S.set(px0Var.f38605p - px0Var.b(), px0Var.f38606q - px0Var.c(), (px0Var.f38605p + px0Var.f38600k) - px0Var.b(), (px0Var.f38606q + px0Var.f38601l) - px0Var.c());
-                    motionEvent.offsetLocation(-this.f26878s0, -this.f26879t0);
-                    this.f26880u0 = this.f26877r0.t(motionEvent);
-                    motionEvent.offsetLocation(this.f26878s0, this.f26879t0);
+                    this.f26875r0 = (dv) px0Var.f38593b;
+                    this.f26876s0 = px0Var.b() - this.f26868j0;
+                    this.f26877t0 = px0Var.c() + i13;
+                    this.f26875r0.S.set(px0Var.f38605p - px0Var.b(), px0Var.f38606q - px0Var.c(), (px0Var.f38605p + px0Var.f38600k) - px0Var.b(), (px0Var.f38606q + px0Var.f38601l) - px0Var.c());
+                    motionEvent.offsetLocation(-this.f26876s0, -this.f26877t0);
+                    this.f26878u0 = this.f26875r0.t(motionEvent);
+                    motionEvent.offsetLocation(this.f26876s0, this.f26877t0);
                 }
             }
-            if (this.f26880u0 || i11 > 0) {
+            if (this.f26878u0 || i11 > 0) {
                 return true;
             }
             return false;
         }
         if (actionMasked == 2) {
-            VelocityTracker velocityTracker3 = this.f26884y0;
+            VelocityTracker velocityTracker3 = this.f26882y0;
             if (velocityTracker3 != null) {
                 velocityTracker3.addMovement(motionEvent);
             }
-            float x11 = motionEvent.getX() - this.f26874o0;
-            if (!this.f26876q0 && i11 > 0 && Math.abs(x11) > this.f26881v0) {
-                this.f26876q0 = true;
+            float x11 = motionEvent.getX() - this.f26872o0;
+            if (!this.f26874q0 && i11 > 0 && Math.abs(x11) > this.f26879v0) {
+                this.f26874q0 = true;
                 a0(true);
-                if (this.f26880u0 && this.f26877r0 != null) {
+                if (this.f26878u0 && this.f26875r0 != null) {
                     MotionEvent obtain = MotionEvent.obtain(motionEvent);
                     obtain.setAction(3);
-                    obtain.offsetLocation(-this.f26878s0, -this.f26879t0);
-                    this.f26877r0.t(obtain);
+                    obtain.offsetLocation(-this.f26876s0, -this.f26877t0);
+                    this.f26875r0.t(obtain);
                     obtain.recycle();
-                    this.f26880u0 = false;
+                    this.f26878u0 = false;
                 }
             }
-            if (this.f26876q0) {
-                int i15 = (int) (this.f26875p0 - x11);
+            if (this.f26874q0) {
+                int i15 = (int) (this.f26873p0 - x11);
                 if (i15 >= 0) {
                     i12 = i15;
                 }
                 if (i12 <= i11) {
                     i11 = i12;
                 }
-                if (i11 != this.f26870j0) {
-                    this.f26870j0 = i11;
+                if (i11 != this.f26868j0) {
+                    this.f26868j0 = i11;
                     Z(this.T, this.U, this.V);
                     View view2 = this.W;
                     if (view2 != null) {
@@ -394,36 +394,36 @@ public final class su extends zt implements vx0 {
                     }
                 }
             } else {
-                return this.f26880u0;
+                return this.f26878u0;
             }
         } else {
             if (actionMasked == 1 || actionMasked == 3) {
-                boolean z10 = this.f26876q0;
-                this.f26876q0 = false;
+                boolean z10 = this.f26874q0;
+                this.f26874q0 = false;
                 if (z10) {
                     a0(false);
-                    if (actionMasked == 1 && (velocityTracker = this.f26884y0) != null && this.f26885z0 != null && this.W != null) {
+                    if (actionMasked == 1 && (velocityTracker = this.f26882y0) != null && this.f26883z0 != null && this.W != null) {
                         velocityTracker.addMovement(motionEvent);
-                        this.f26884y0.computeCurrentVelocity(1000, this.f26883x0);
-                        float f11 = -this.f26884y0.getXVelocity();
-                        if (Math.abs(f11) > this.f26882w0) {
-                            this.f26885z0.fling(this.f26870j0, 0, (int) f11, 0, 0, this.f26869i0, 0, 0);
+                        this.f26882y0.computeCurrentVelocity(1000, this.f26881x0);
+                        float f11 = -this.f26882y0.getXVelocity();
+                        if (Math.abs(f11) > this.f26880w0) {
+                            this.f26883z0.fling(this.f26868j0, 0, (int) f11, 0, 0, this.f26867i0, 0, 0);
                             this.W.postOnAnimation(this.A0);
                         }
                     }
                 }
-                if (!z10 && this.f26880u0 && this.f26877r0 != null) {
-                    motionEvent.offsetLocation(-this.f26878s0, -this.f26879t0);
-                    this.f26877r0.t(motionEvent);
-                    motionEvent.offsetLocation(this.f26878s0, this.f26879t0);
+                if (!z10 && this.f26878u0 && this.f26875r0 != null) {
+                    motionEvent.offsetLocation(-this.f26876s0, -this.f26877t0);
+                    this.f26875r0.t(motionEvent);
+                    motionEvent.offsetLocation(this.f26876s0, this.f26877t0);
                 }
-                boolean z11 = this.f26880u0;
-                this.f26880u0 = false;
-                this.f26877r0 = null;
-                VelocityTracker velocityTracker4 = this.f26884y0;
+                boolean z11 = this.f26878u0;
+                this.f26878u0 = false;
+                this.f26875r0 = null;
+                VelocityTracker velocityTracker4 = this.f26882y0;
                 if (velocityTracker4 != null) {
                     velocityTracker4.recycle();
-                    this.f26884y0 = null;
+                    this.f26882y0 = null;
                 }
                 if (z10 || z11) {
                 }
@@ -438,11 +438,11 @@ public final class su extends zt implements vx0 {
         this.T = i7;
         this.U = i10;
         this.V = i11;
-        dv dvVar = this.f26862b0;
+        dv dvVar = this.f26860b0;
         if (dvVar != null) {
-            dvVar.f23581c = (j0() + i7) - dvVar.n();
+            dvVar.f23578c = (j0() + i7) - dvVar.n();
             dvVar.d = i10;
-            dvVar.f23582e = i11;
+            dvVar.f23579e = i11;
         }
         wx0 wx0Var = this.Y;
         int childCount = wx0Var.getChildCount();
@@ -451,9 +451,9 @@ public final class su extends zt implements vx0 {
             ox0 ox0Var = d.f38593b;
             if (ox0Var instanceof dv) {
                 dv dvVar2 = (dv) ox0Var;
-                dvVar2.f23581c = ((d.b() + i7) - this.f26870j0) - dvVar2.n();
-                dvVar2.d = d.c() + this.f26863c0 + i10;
-                dvVar2.f23582e = i11;
+                dvVar2.f23578c = ((d.b() + i7) - this.f26868j0) - dvVar2.n();
+                dvVar2.d = d.c() + this.f26861c0 + i10;
+                dvVar2.f23579e = i11;
             }
         }
     }
@@ -466,7 +466,7 @@ public final class su extends zt implements vx0 {
         }
         int R = ev.R(0, 14);
         TL_iv.RichText richText = pagetablecell.text;
-        ev evVar = this.f28351a;
+        ev evVar = this.f28349a;
         SpannableStringBuilder l10 = evVar.l(richText, R);
         if (pagetablecell.align_right) {
             alignment = Layout.Alignment.ALIGN_OPPOSITE;
@@ -476,7 +476,7 @@ public final class su extends zt implements vx0 {
             alignment = Layout.Alignment.ALIGN_NORMAL;
         }
         dv dvVar = new dv(evVar, l10, i7, alignment);
-        dvVar.f23585r = true;
+        dvVar.f23582r = true;
         return dvVar;
     }
 
@@ -489,40 +489,40 @@ public final class su extends zt implements vx0 {
     @Override
     public final Paint getLinePaint() {
         i0();
-        return this.f26871k0;
+        return this.f26869k0;
     }
 
     @Override
     public final Paint getStripPaint() {
         i0();
-        return this.f26873n0;
+        return this.f26871n0;
     }
 
     public final void i0() {
         int i7;
         int i10;
-        if (this.f26871k0 == null) {
+        if (this.f26869k0 == null) {
             Paint paint = new Paint(1);
-            this.f26871k0 = paint;
+            this.f26869k0 = paint;
             Paint.Style style = Paint.Style.STROKE;
             paint.setStyle(style);
-            this.f26871k0.setStrokeWidth(g0.N(0.66f));
+            this.f26869k0.setStrokeWidth(g0.N(0.66f));
             Paint paint2 = new Paint();
-            this.f26872l0 = paint2;
+            this.f26870l0 = paint2;
             paint2.setStyle(style);
-            this.f26872l0.setStrokeWidth(g0.N(0.66f));
+            this.f26870l0.setStrokeWidth(g0.N(0.66f));
             this.m0 = new Paint();
-            this.f26873n0 = new Paint();
+            this.f26871n0 = new Paint();
         }
-        ev evVar = this.f28351a;
+        ev evVar = this.f28349a;
         if (evVar.E()) {
             i7 = org.telegram.ui.ActionBar.n6.ll;
         } else {
             i7 = org.telegram.ui.ActionBar.n6.kl;
         }
         int w02 = org.telegram.ui.ActionBar.n6.w0(i7, evVar.D);
-        this.f26871k0.setColor(w02);
-        this.f26872l0.setColor(w02);
+        this.f26869k0.setColor(w02);
+        this.f26870l0.setColor(w02);
         Paint paint3 = this.m0;
         if (evVar.E()) {
             i10 = org.telegram.ui.ActionBar.n6.jl;
@@ -530,30 +530,30 @@ public final class su extends zt implements vx0 {
             i10 = org.telegram.ui.ActionBar.n6.il;
         }
         paint3.setColor(org.telegram.ui.ActionBar.n6.w0(i10, evVar.D));
-        this.f26873n0.setColor(167772160);
+        this.f26871n0.setColor(167772160);
     }
 
     public final int j0() {
-        dv dvVar = this.f26862b0;
+        dv dvVar = this.f26860b0;
         if (dvVar == null) {
             return 0;
         }
-        int i7 = this.f26867g0;
+        int i7 = this.f26865g0;
         int i10 = dvVar.h;
-        int i11 = dvVar.f23583f;
+        int i11 = dvVar.f23580f;
         return Math.round(((i7 - (i10 - i11)) / 2.0f) - i11);
     }
 
     @Override
     public final void k(SpannableStringBuilder spannableStringBuilder) {
         StaticLayout staticLayout;
-        zt.l(spannableStringBuilder, this.f26862b0, null);
+        zt.l(spannableStringBuilder, this.f26860b0, null);
         int i7 = 0;
         while (true) {
             ArrayList arrayList = this.Z;
             if (i7 < arrayList.size()) {
                 dv dvVar = (dv) arrayList.get(i7);
-                if (dvVar != null && (staticLayout = dvVar.f23580b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
+                if (dvVar != null && (staticLayout = dvVar.f23577b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
                     if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
                         spannableStringBuilder.append(", ");
                     }
@@ -568,7 +568,7 @@ public final class su extends zt implements vx0 {
 
     @Override
     public final void p(ArrayList arrayList) {
-        ArrayList arrayList2 = this.f26864d0;
+        ArrayList arrayList2 = this.f26862d0;
         if (arrayList2.isEmpty()) {
             arrayList.add(this);
         } else {
@@ -592,19 +592,19 @@ public final class su extends zt implements vx0 {
         int i13;
         org.telegram.ui.Components.t5 t5Var2;
         canvas.save();
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         canvas.translate(rect.left, rect.top);
-        dv dvVar2 = this.f26862b0;
+        dv dvVar2 = this.f26860b0;
         if (dvVar2 != null && (t5Var2 = dvVar2.F) != null && !t5Var2.f39906a.isEmpty()) {
             canvas.save();
             canvas.translate(j0(), 0.0f);
-            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, dvVar2.f23580b, dvVar2.F, 0.0f, dvVar2.f23588x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
+            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, dvVar2.f23577b, dvVar2.F, 0.0f, dvVar2.f23585x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
             canvas.restore();
             z10 = true;
         } else {
             z10 = false;
         }
-        canvas.translate(0.0f, this.f26863c0);
+        canvas.translate(0.0f, this.f26861c0);
         ArrayList arrayList = this.Z;
         int size = arrayList.size();
         int i14 = 0;
@@ -612,12 +612,12 @@ public final class su extends zt implements vx0 {
             if (i14 < size) {
                 org.telegram.ui.Components.t5 t5Var3 = ((dv) arrayList.get(i14)).F;
                 if (t5Var3 != null && !t5Var3.f39906a.isEmpty()) {
-                    ev evVar = this.f28351a;
+                    ev evVar = this.f28349a;
                     int i15 = evVar.S;
-                    h6.m mVar2 = evVar.f23792z;
-                    int saveLayerAlpha = canvas.saveLayerAlpha(-i15, 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26868h0, 255, 31);
+                    h6.m mVar2 = evVar.f23789z;
+                    int saveLayerAlpha = canvas.saveLayerAlpha(-i15, 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26866h0, 255, 31);
                     canvas.save();
-                    canvas.translate(-this.f26870j0, 0.0f);
+                    canvas.translate(-this.f26868j0, 0.0f);
                     wx0 wx0Var2 = this.Y;
                     int childCount = wx0Var2.getChildCount();
                     int i16 = 0;
@@ -637,7 +637,7 @@ public final class su extends zt implements vx0 {
                             i12 = i16;
                             mVar = mVar2;
                             i13 = saveLayerAlpha;
-                            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, dvVar.f23580b, dvVar.F, 0.0f, dvVar.f23588x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
+                            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, dvVar.f23577b, dvVar.F, 0.0f, dvVar.f23585x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
                             canvas.restore();
                         }
                         i16 = i12 + 1;
@@ -650,9 +650,9 @@ public final class su extends zt implements vx0 {
                     h6.m mVar3 = mVar2;
                     canvas.restore();
                     RectF rectF = g0.P;
-                    rectF.set(-evVar.S, 0.0f, g0.L(12.0f) + i7, this.f26868h0);
+                    rectF.set(-evVar.S, 0.0f, g0.L(12.0f) + i7, this.f26866h0);
                     mVar3.n(canvas, rectF, 0, 1.0f);
-                    rectF.set(i10 - g0.L(12.0f), 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26868h0);
+                    rectF.set(i10 - g0.L(12.0f), 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26866h0);
                     mVar3.n(canvas, rectF, 2, 1.0f);
                     canvas.restoreToCount(i17);
                     z11 = true;
@@ -680,33 +680,33 @@ public final class su extends zt implements vx0 {
         int i13;
         int i14;
         float f11;
-        xg0 xg0Var = this.L;
-        if (xg0Var != null && xg0Var.h) {
-            ArrayList arrayList = this.f26864d0;
-            if (!arrayList.isEmpty() && xg0Var.d((vg0) arrayList.get(0)) >= 0) {
-                float c10 = xg0Var.c((vg0) arrayList.get(0));
+        yg0 yg0Var = this.L;
+        if (yg0Var != null && yg0Var.h) {
+            ArrayList arrayList = this.f26862d0;
+            if (!arrayList.isEmpty() && yg0Var.d((wg0) arrayList.get(0)) >= 0) {
+                float c10 = yg0Var.c((wg0) arrayList.get(0));
                 float f12 = 0.0f;
                 if (c10 <= 0.0f) {
                     return;
                 }
                 canvas.save();
-                Rect rect = this.f28352b;
+                Rect rect = this.f28350b;
                 canvas.translate(rect.left, rect.top);
-                dv dvVar = this.f26862b0;
+                dv dvVar = this.f26860b0;
                 if (dvVar != null) {
                     canvas.save();
                     canvas.translate(j0(), 0.0f);
                     dvVar.d(canvas, dvVar.T);
                     canvas.restore();
                 }
-                canvas.translate(0.0f, this.f26863c0);
-                ev evVar = this.f28351a;
+                canvas.translate(0.0f, this.f26861c0);
+                ev evVar = this.f28349a;
                 int i15 = evVar.S;
-                h6.m mVar = evVar.f23792z;
+                h6.m mVar = evVar.f23789z;
                 float f13 = 255.0f;
-                int saveLayerAlpha = canvas.saveLayerAlpha(-i15, 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26868h0, (int) (c10 * 255.0f), 31);
+                int saveLayerAlpha = canvas.saveLayerAlpha(-i15, 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26866h0, (int) (c10 * 255.0f), 31);
                 canvas.save();
-                canvas.translate(-this.f26870j0, 0.0f);
+                canvas.translate(-this.f26868j0, 0.0f);
                 wx0 wx0Var2 = this.Y;
                 int childCount = wx0Var2.getChildCount();
                 int i16 = 0;
@@ -714,7 +714,7 @@ public final class su extends zt implements vx0 {
                 while (i16 < childCount) {
                     float f14 = f13;
                     px0 d = wx0Var2.d(i16);
-                    if (i17 < arrayList.size() && ((ru) arrayList.get(i17)).f26698a == d) {
+                    if (i17 < arrayList.size() && ((ru) arrayList.get(i17)).f26696a == d) {
                         ruVar = (ru) arrayList.get(i17);
                         i17++;
                     } else {
@@ -723,23 +723,23 @@ public final class su extends zt implements vx0 {
                     int i18 = i17;
                     if (ruVar == null) {
                         d.a(canvas, this.W, true);
-                    } else if (!xg0Var.i(ruVar)) {
+                    } else if (!yg0Var.i(ruVar)) {
                         d.a(canvas, this.W, false);
                     } else {
-                        if (xg0Var.g(ruVar)) {
+                        if (yg0Var.g(ruVar)) {
                             d.a(canvas, this.W, false);
                             if (d.f38593b instanceof dv) {
                                 canvas.save();
                                 f10 = f12;
                                 canvas.translate(d.b(), d.c());
                                 dv dvVar2 = (dv) d.f38593b;
-                                if (xg0Var.g(ruVar)) {
-                                    i14 = xg0Var.f53848e;
+                                if (yg0Var.g(ruVar)) {
+                                    i14 = yg0Var.f54154e;
                                 } else {
                                     i14 = -1;
                                 }
-                                if (xg0Var.g(ruVar)) {
-                                    f11 = xg0Var.f53849f;
+                                if (yg0Var.g(ruVar)) {
+                                    f11 = yg0Var.f54155f;
                                 } else {
                                     f11 = f10;
                                 }
@@ -750,7 +750,7 @@ public final class su extends zt implements vx0 {
                             }
                         } else {
                             f10 = f12;
-                            float c11 = xg0Var.c(ruVar);
+                            float c11 = yg0Var.c(ruVar);
                             if (c11 >= 1.0f) {
                                 d.a(canvas, this.W, true);
                             } else {
@@ -811,9 +811,9 @@ public final class su extends zt implements vx0 {
                 int i19 = saveLayerAlpha;
                 canvas.restore();
                 RectF rectF = g0.P;
-                rectF.set(-evVar.S, f15, g0.L(12.0f) + i7, this.f26868h0);
+                rectF.set(-evVar.S, f15, g0.L(12.0f) + i7, this.f26866h0);
                 mVar.n(canvas, rectF, 0, 1.0f);
-                rectF.set(i10 - g0.L(12.0f), 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26868h0);
+                rectF.set(i10 - g0.L(12.0f), 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, this.f26866h0);
                 mVar.n(canvas, rectF, 2, 1.0f);
                 canvas.restoreToCount(i19);
                 canvas.restore();
@@ -827,11 +827,11 @@ public final class su extends zt implements vx0 {
     public final boolean u(CharacterStyle characterStyle, int i7, qt qtVar) {
         px0 d;
         dv dvVar;
-        Rect rect = this.f28352b;
-        dv dvVar2 = this.f26862b0;
+        Rect rect = this.f28350b;
+        dv dvVar2 = this.f26860b0;
         if (dvVar2 != null && dvVar2.o(characterStyle, qtVar)) {
-            qtVar.f26452e = (j0() + rect.left) - dvVar2.n();
-            qtVar.f26453f = i7 + rect.top;
+            qtVar.f26450e = (j0() + rect.left) - dvVar2.n();
+            qtVar.f26451f = i7 + rect.top;
             return true;
         }
         wx0 wx0Var = this.Y;
@@ -840,8 +840,8 @@ public final class su extends zt implements vx0 {
             ox0 ox0Var = wx0Var.d(i10).f38593b;
             if (ox0Var instanceof dv) {
                 if (((dv) ox0Var).o(characterStyle, qtVar)) {
-                    qtVar.f26452e = ((d.b() + rect.left) - this.f26870j0) - dvVar.n();
-                    qtVar.f26453f = d.c() + i7 + rect.top + this.f26863c0;
+                    qtVar.f26450e = ((d.b() + rect.left) - this.f26868j0) - dvVar.n();
+                    qtVar.f26451f = d.c() + i7 + rect.top + this.f26861c0;
                     return true;
                 }
             }

@@ -16,7 +16,7 @@ public final class vp0 extends tg.g0 {
     public final int getPKeyboardHeight() {
         hi.p3 p3Var = this.Y1.L1;
         if (p3Var != null) {
-            return p3Var.f15227l;
+            return p3Var.f15224l;
         }
         return 0;
     }

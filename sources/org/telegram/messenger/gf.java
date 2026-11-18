@@ -1,14 +1,14 @@
 package org.telegram.messenger;
 public final class gf {
-    public final fj f24251a;
-    public final float f24252b;
-    public final int f24253c;
+    public final fj f24248a;
+    public final float f24249b;
+    public final int f24250c;
     public final int d;
 
     public gf(fj fjVar) {
-        this.f24251a = fjVar;
-        this.f24252b = fjVar.f23928b0;
-        this.f24253c = fjVar.f23937d0;
-        this.d = fjVar.f23960i0;
+        this.f24248a = fjVar;
+        this.f24249b = fjVar.f23925b0;
+        this.f24250c = fjVar.f23934d0;
+        this.d = fjVar.f23957i0;
     }
 }

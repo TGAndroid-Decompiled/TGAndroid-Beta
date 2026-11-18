@@ -10,12 +10,12 @@ import org.telegram.ui.Components.eh;
 import org.telegram.ui.Components.qi;
 import org.telegram.ui.Components.si;
 public final class o1 implements qi {
-    public final si f22216a;
-    public final z1 f22217b;
+    public final si f22213a;
+    public final z1 f22214b;
 
     public o1(z1 z1Var, si siVar) {
-        this.f22217b = z1Var;
-        this.f22216a = siVar;
+        this.f22214b = z1Var;
+        this.f22213a = siVar;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class o1 implements qi {
 
     @Override
     public final void f0(eh ehVar) {
-        ks.f(this.f22217b.getCurrentAccount()).d(ehVar);
+        ks.f(this.f22214b.getCurrentAccount()).d(ehVar);
     }
 
     @Override
@@ -35,15 +35,15 @@ public final class o1 implements qi {
 
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        si siVar = this.f22216a;
+        si siVar = this.f22213a;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = siVar.f39670e2;
-        z1 z1Var = this.f22217b;
+        z1 z1Var = this.f22214b;
         if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             s3 s3Var = z1Var.Q;
-            a aVar = s3Var.f22330j4;
-            s3Var.f22330j4 = null;
+            a aVar = s3Var.f22327j4;
+            s3Var.f22327j4 = null;
             int i12 = 0;
             while (true) {
                 if (i12 >= selectedPhotosOrder.size()) {
@@ -61,7 +61,7 @@ public final class o1 implements qi {
                 }
             }
         }
-        z1Var.Q.f22330j4 = null;
+        z1Var.Q.f22327j4 = null;
         siVar.a(true);
     }
 

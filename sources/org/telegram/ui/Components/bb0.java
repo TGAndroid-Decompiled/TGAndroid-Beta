@@ -166,8 +166,8 @@ public final class bb0 extends Drawable {
             canvas.save();
             canvas.translate(f10, f11);
             canvas.scale(f12, f13);
-            canvas.concat(cVar.f13614b);
-            this.f33648y.A0(cVar.f13613a);
+            canvas.concat(cVar.f13611b);
+            this.f33648y.A0(cVar.f13610a);
             this.f33648y.h(canvas, null);
             canvas.restore();
         }
@@ -431,8 +431,8 @@ public final class bb0 extends Drawable {
                 if (i10 != i7) {
                     gg.c cVar = (gg.c) this.R.get(i10);
                     canvas.save();
-                    canvas.concat(cVar.f13614b);
-                    canvas.drawBitmap(this.f33647x, (Rect) null, cVar.f13613a, paint2);
+                    canvas.concat(cVar.f13611b);
+                    canvas.drawBitmap(this.f33647x, (Rect) null, cVar.f13610a, paint2);
                     canvas.restore();
                 }
             }
@@ -504,7 +504,7 @@ public final class bb0 extends Drawable {
             ((View) this.f33627c.get()).invalidate();
         }
         if (this.f33644t) {
-            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25150l4, new Object[0]);
+            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25153m4, new Object[0]);
             y();
             Runnable runnable = this.G;
             org.telegram.messenger.g0.r(runnable);
@@ -565,7 +565,7 @@ public final class bb0 extends Drawable {
     }
 
     public final void p() {
-        if (Build.VERSION.SDK_INT >= 28 && this.Q == null && !org.telegram.messenger.bz.f23185o) {
+        if (Build.VERSION.SDK_INT >= 28 && this.Q == null && !org.telegram.messenger.bz.f23182o) {
             this.Q = new fb0();
         }
     }

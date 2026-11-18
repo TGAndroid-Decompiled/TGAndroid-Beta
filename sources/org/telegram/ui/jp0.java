@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class jp0 extends org.telegram.ui.Components.xz {
-    public final so0 f49052e;
-    public final PhotoViewer f49053f;
+    public final so0 f49029e;
+    public final PhotoViewer f49030f;
 
     public jp0(PhotoViewer photoViewer, so0 so0Var) {
         super(false);
-        this.f49053f = photoViewer;
-        this.f49052e = so0Var;
+        this.f49030f = photoViewer;
+        this.f49029e = so0Var;
     }
 
     @Override
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
-        PhotoViewer photoViewer = this.f49053f;
+        PhotoViewer photoViewer = this.f49030f;
         int[] iArr = photoViewer.f43269m3;
         sb2.append(org.telegram.messenger.gd.G(iArr[0], "Minutes", new Object[0]));
         sb2.append(' ');
@@ -28,13 +28,13 @@ public final class jp0 extends org.telegram.ui.Components.xz {
 
     @Override
     public final float k() {
-        return this.f49053f.f43304q3.c();
+        return this.f49030f.f43304q3.c();
     }
 
     @Override
     public final void l(float f10) {
-        this.f49052e.a(f10);
-        PhotoViewer photoViewer = this.f49053f;
+        this.f49029e.a(f10);
+        PhotoViewer photoViewer = this.f49030f;
         photoViewer.f43304q3.h(false, f10);
         photoViewer.f43314r3.invalidate();
     }

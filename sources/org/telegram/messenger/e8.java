@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 public final class e8 {
-    public long f23672a;
-    public int f23673b;
-    public int f23674c;
+    public long f23669a;
+    public int f23670b;
+    public int f23671c;
     public long d;
 }

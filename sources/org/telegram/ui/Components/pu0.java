@@ -60,7 +60,7 @@ public final class pu0 extends TimeAnimator {
                 pu0Var.end();
             }
         });
-        int duration = (int) (((float) getDuration()) / org.telegram.messenger.g0.f24124t);
+        int duration = (int) (((float) getDuration()) / org.telegram.messenger.g0.f24121t);
         this.f38562a = duration;
         this.f38563b = duration;
         super.start();

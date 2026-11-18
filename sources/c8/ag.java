@@ -5,11 +5,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.ArrayList;
 public final class ag implements Parcelable.Creator {
-    public final int f4488a;
+    public final int f4485a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f4488a) {
+        switch (this.f4485a) {
             case 0:
                 int z10 = ac.z(parcel);
                 long j3 = 0;
@@ -180,7 +180,7 @@ public final class ag implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f4488a) {
+        switch (this.f4485a) {
             case 0:
                 return new yf[i7];
             case 1:

@@ -3,7 +3,7 @@ package q2;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 public interface q {
     void A(byte[] bArr);
 
@@ -19,7 +19,7 @@ public interface q {
 
     boolean O(String str, byte[] bArr);
 
-    void a(b5 b5Var);
+    void a(c5 c5Var);
 
     Map d(byte[] bArr);
 

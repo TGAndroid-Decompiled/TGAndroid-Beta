@@ -81,37 +81,37 @@ public final class a01 extends bk0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         int c10;
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             boolean z10 = true;
             int i10 = i7 - 1;
             org.telegram.ui.ActionBar.w6 w6Var = (org.telegram.ui.ActionBar.w6) ((ArrayList) this.f33200e.get(i10)).get(0);
-            if (w6Var.f30157e == org.telegram.ui.ActionBar.n6.Ee) {
+            if (w6Var.f30155e == org.telegram.ui.ActionBar.n6.Ee) {
                 c10 = 0;
             } else {
                 c10 = w6Var.c();
             }
-            org.telegram.ui.Cells.u8 u8Var = (org.telegram.ui.Cells.u8) f1Var.f59122a;
-            u8Var.f32121a.setText((CharSequence) this.f33201f.get(i10));
-            u8Var.f32122b = c10;
+            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) f1Var.f59123a;
+            v8Var.f32178a.setText((CharSequence) this.f33201f.get(i10));
+            v8Var.f32179b = c10;
             if (c10 != 0) {
                 z10 = false;
             }
-            u8Var.setWillNotDraw(z10);
-            u8Var.invalidate();
+            v8Var.setWillNotDraw(z10);
+            v8Var.invalidate();
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View u8Var;
+        View v8Var;
         Context context = this.f33199c;
         if (i7 != 0) {
-            u8Var = new View(context);
-            u8Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(56.0f)));
+            v8Var = new View(context);
+            v8Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(56.0f)));
         } else {
-            u8Var = new org.telegram.ui.Cells.u8(context);
-            u8Var.setLayoutParams(new v4.q0(-1, -2));
+            v8Var = new org.telegram.ui.Cells.v8(context);
+            v8Var.setLayoutParams(new v4.q0(-1, -2));
         }
-        return new v4.f1(u8Var);
+        return new v4.f1(v8Var);
     }
 }

@@ -147,7 +147,7 @@ public final class sh extends FrameLayout {
                 super.setAlpha(f10);
                 si siVar = this.f39653b;
                 siVar.Q1(0);
-                siVar.f30192b.invalidate();
+                siVar.f30190b.invalidate();
                 return;
             case 1:
             default:

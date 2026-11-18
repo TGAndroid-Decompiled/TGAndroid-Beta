@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import bi.f5;
+import bi.e5;
 import c8.ma;
 import hi.k3;
 import java.util.List;
@@ -107,7 +107,7 @@ public final class h1 extends LinearLayout {
                     sg.h hVar = (sg.h) list2.get(i7 - 1);
                     if (z10 || !(hVar instanceof sg.b)) {
                         this.f57898a[i10].f(hVar.e(), 28, 28, null);
-                        this.f57898a[i10].setOnClickListener(new f5(this, i10, hVar, 25));
+                        this.f57898a[i10].setOnClickListener(new e5(this, i10, hVar, 25));
                     } else {
                         i7++;
                     }

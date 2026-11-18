@@ -76,7 +76,7 @@ public final class we implements Runnable {
                         max = Math.max(i11 - 1, 0);
                     }
                     gp gpVar = lpVar.B1;
-                    gpVar.f59066a = max;
+                    gpVar.f59067a = max;
                     layoutManager.w0(gpVar);
                 }
                 lpVar.K1 = i11;
@@ -84,25 +84,25 @@ public final class we implements Runnable {
             default:
                 int i12 = this.f41703b;
                 hi.y7 y7Var = (hi.y7) callback;
-                if (((we) y7Var.f15780f) == this) {
+                if (((we) y7Var.f15777f) == this) {
                     ArrayList arrayList = new ArrayList();
-                    TextView textView = (TextView) ((ArrayList) y7Var.f15777b).get(i12);
+                    TextView textView = (TextView) ((ArrayList) y7Var.f15774b).get(i12);
                     Property property = View.SCALE_X;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
                     Property property2 = View.SCALE_Y;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
                     Property property3 = View.ALPHA;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
-                    TextView textView2 = (TextView) ((ArrayList) y7Var.f15778c).get(i12);
+                    TextView textView2 = (TextView) ((ArrayList) y7Var.f15775c).get(i12);
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property, 1.0f));
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property2, 1.0f));
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property3, 1.0f));
                     AnimatorSet animatorSet = new AnimatorSet();
-                    y7Var.f15779e = animatorSet;
+                    y7Var.f15776e = animatorSet;
                     animatorSet.setDuration(150L);
-                    ((AnimatorSet) y7Var.f15779e).playTogether(arrayList);
-                    ((AnimatorSet) y7Var.f15779e).addListener(new q60(this, 8));
-                    ((AnimatorSet) y7Var.f15779e).start();
+                    ((AnimatorSet) y7Var.f15776e).playTogether(arrayList);
+                    ((AnimatorSet) y7Var.f15776e).addListener(new q60(this, 8));
+                    ((AnimatorSet) y7Var.f15776e).start();
                     return;
                 }
                 return;

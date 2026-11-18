@@ -99,7 +99,7 @@ public final class ut implements rx {
         wt wtVar = this.f40413a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wtVar.getContext(), wtVar.N);
         String M0 = org.telegram.messenger.gd.M0(2131752057, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         u1Var.U = org.telegram.messenger.gd.M0(2131752058, null);
         alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131752088, null), new b0(this, 27));
@@ -121,7 +121,7 @@ public final class ut implements rx {
     public final void q() {
         org.telegram.ui.ActionBar.h2 h2Var = this.f40413a.h;
         if (h2Var == null) {
-            new ug.z0((org.telegram.ui.ActionBar.h2) new bi.z8(this, 6), 11, false).show();
+            new ug.z0((org.telegram.ui.ActionBar.h2) new bi.y8(this, 6), 11, false).show();
         } else {
             h2Var.showDialog(new ug.z0(h2Var, 11, false));
         }

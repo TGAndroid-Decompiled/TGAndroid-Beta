@@ -75,7 +75,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                 if (!z10 && (imageView2 = profileActivity.Y0) != null) {
                     imageView2.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                 }
-                if (profileActivity.J0 && (imageView = this.f29068e) != null) {
+                if (profileActivity.J0 && (imageView = this.f29066e) != null) {
                     imageView.setColorFilter(i7, PorterDuff.Mode.SRC_IN);
                     return;
                 }
@@ -90,7 +90,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
     public boolean R(View view) {
         switch (this.G1) {
             case 3:
-                if (!super.R(view) && view != ((org.telegram.ui.cx) this.H1).f46721n0) {
+                if (!super.R(view) && view != ((org.telegram.ui.cx) this.H1).f46701n0) {
                     return false;
                 }
                 return true;
@@ -118,7 +118,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
             case 3:
                 org.telegram.ui.cx cxVar = (org.telegram.ui.cx) this.H1;
                 org.telegram.ui.qw qwVar = cxVar.Y;
-                if (qwVar != null && qwVar.getAlpha() > 0.0f && cxVar.f46660b.f57658f) {
+                if (qwVar != null && qwVar.getAlpha() > 0.0f && cxVar.f46640b.f57658f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -182,7 +182,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
         switch (this.G1) {
             case 0:
                 super.setAlpha(f10);
-                ((g8) this.H1).f30192b.invalidate();
+                ((g8) this.H1).f30190b.invalidate();
                 return;
             case 1:
                 si siVar = (si) this.H1;
@@ -204,7 +204,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                         textView.setVisibility(i7);
                     }
                     si.J0(siVar);
-                    siVar.f30192b.invalidate();
+                    siVar.f30190b.invalidate();
                     if (shVar != null && shVar2 != null) {
                         if (shVar.getTag() == null) {
                             ki kiVar = siVar.f39732w2;
@@ -232,7 +232,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 2:
                 super.setAlpha(f10);
-                ((df0) this.H1).f30192b.invalidate();
+                ((df0) this.H1).f30190b.invalidate();
                 return;
             case 3:
             case 5:
@@ -252,7 +252,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
             case 7:
                 if (getAlpha() != f10) {
                     super.setAlpha(f10);
-                    ((ug.z0) this.H1).f30192b.invalidate();
+                    ((ug.z0) this.H1).f30190b.invalidate();
                     return;
                 }
                 return;
@@ -268,7 +268,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                 ug.z0 z0Var = (ug.z0) this.H1;
                 v7 v7Var = z0Var.I1;
                 if (v7Var != null && v7Var.getTag() != null) {
-                    if (i0.a.h(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, z0Var.J0)) > 0.699999988079071d) {
+                    if (i0.a.h(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, z0Var.J0)) > 0.699999988079071d) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -276,7 +276,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                     org.telegram.messenger.g0.p3(z0Var, z10);
                     return;
                 }
-                org.telegram.ui.ActionBar.h2 h2Var = z0Var.f58957m1;
+                org.telegram.ui.ActionBar.h2 h2Var = z0Var.f58958m1;
                 if (h2Var != null) {
                     org.telegram.messenger.g0.p3(z0Var, h2Var.isLightStatusBar());
                     return;

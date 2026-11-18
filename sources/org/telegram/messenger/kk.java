@@ -6,41 +6,41 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class kk implements RequestDelegate {
-    public final int f25045a;
-    public final mp f25046b;
-    public final int f25047c;
+    public final int f25042a;
+    public final mp f25043b;
+    public final int f25044c;
     public final long d;
-    public final long f25048e;
+    public final long f25045e;
 
     public kk(int i7, long j3, long j10, mp mpVar) {
-        this.f25045a = 0;
-        this.f25046b = mpVar;
+        this.f25042a = 0;
+        this.f25043b = mpVar;
         this.d = j3;
-        this.f25047c = i7;
-        this.f25048e = j10;
+        this.f25044c = i7;
+        this.f25045e = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.Chat chat;
-        switch (this.f25045a) {
+        switch (this.f25042a) {
             case 0:
-                mp mpVar = this.f25046b;
+                mp mpVar = this.f25043b;
                 long j3 = this.d;
-                long j10 = this.f25048e;
+                long j10 = this.f25045e;
                 if (tLObject != null) {
                     TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) tLObject;
                     a0.h hVar = new a0.h();
                     int i7 = 0;
                     for (int i10 = 0; i10 < updates_channeldifference.users.size(); i10++) {
                         TLRPC.User user = updates_channeldifference.users.get(i10);
-                        hVar.k(user, user.f28554id);
+                        hVar.k(user, user.f28552id);
                     }
                     int i11 = 0;
                     while (true) {
                         if (i11 < updates_channeldifference.chats.size()) {
                             chat = updates_channeldifference.chats.get(i11);
-                            if (chat.f28405id != j3) {
+                            if (chat.f28403id != j3) {
                                 i11++;
                             }
                         } else {
@@ -62,11 +62,11 @@ public final class kk implements RequestDelegate {
                     }
                     mpVar.getMessagesStorage().m1(updates_channeldifference.users, updates_channeldifference.chats, true, true);
                     g0.g3(new fi(15, mpVar, updates_channeldifference));
-                    mpVar.getMessagesStorage().f27054a.c(new mk(mpVar, arrayList, j3, updates_channeldifference, chat2, hVar, this.f25047c, j10));
+                    mpVar.getMessagesStorage().f27052a.c(new mk(mpVar, arrayList, j3, updates_channeldifference, chat2, hVar, this.f25044c, j10));
                     return;
                 } else if (tL_error != null) {
                     g0.g3(new rl(mpVar, tL_error, j3, 0));
-                    mpVar.f25597a1.e(j3);
+                    mpVar.f25595a1.e(j3);
                     if (j10 != 0) {
                         mpVar.getMessagesStorage().q1(j10);
                         return;
@@ -76,19 +76,19 @@ public final class kk implements RequestDelegate {
                     return;
                 }
             case 1:
-                g0.g3(new uj(this.f25046b, this.f25047c, this.d, this.f25048e, 0));
+                g0.g3(new uj(this.f25043b, this.f25044c, this.d, this.f25045e, 0));
                 return;
             default:
-                g0.g3(new uj(this.f25046b, this.f25047c, this.d, this.f25048e, 1));
+                g0.g3(new uj(this.f25043b, this.f25044c, this.d, this.f25045e, 1));
                 return;
         }
     }
 
     public kk(mp mpVar, int i7, long j3, long j10, int i10) {
-        this.f25045a = i10;
-        this.f25046b = mpVar;
-        this.f25047c = i7;
+        this.f25042a = i10;
+        this.f25043b = mpVar;
+        this.f25044c = i7;
         this.d = j3;
-        this.f25048e = j10;
+        this.f25045e = j10;
     }
 }

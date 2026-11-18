@@ -20,7 +20,7 @@ public final class pj extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             return true;
         }
         return false;
@@ -60,8 +60,8 @@ public final class pj extends bk0 {
     public final void t(v4.f1 f1Var, int i7) {
         boolean z10;
         TLRPC.User user;
-        if (f1Var.f59126f == 0) {
-            sj sjVar = (sj) f1Var.f59122a;
+        if (f1Var.f59127f == 0) {
+            sj sjVar = (sj) f1Var.f59123a;
             if (i7 != b() - 2) {
                 z10 = true;
             } else {
@@ -70,9 +70,9 @@ public final class pj extends bk0 {
             Object E = E(i7);
             if (E instanceof org.telegram.messenger.f5) {
                 org.telegram.messenger.f5 f5Var = (org.telegram.messenger.f5) E;
-                user = f5Var.f23850m;
+                user = f5Var.f23847m;
                 if (user == null) {
-                    sjVar.setCurrentId(f5Var.f23840a);
+                    sjVar.setCurrentId(f5Var.f23837a);
                     sjVar.a(null, (CharSequence) this.f38457e.get(i7 - 1), new lj(f5Var, 1), z10);
                     user = null;
                 }

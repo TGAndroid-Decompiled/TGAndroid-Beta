@@ -4,35 +4,35 @@ import android.os.SystemClock;
 import android.os.Trace;
 import java.util.HashSet;
 public final class qx0 implements Runnable {
-    public final int f51359a;
-    public final long f51360b;
-    public final Object f51361c;
+    public final int f51319a;
+    public final long f51320b;
+    public final Object f51321c;
 
     public qx0(Object obj, long j3, int i7) {
-        this.f51359a = i7;
-        this.f51361c = obj;
-        this.f51360b = j3;
+        this.f51319a = i7;
+        this.f51321c = obj;
+        this.f51320b = j3;
     }
 
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f51359a;
-        long j3 = this.f51360b;
-        Object obj = this.f51361c;
+        int i10 = this.f51319a;
+        long j3 = this.f51320b;
+        Object obj = this.f51321c;
         switch (i10) {
             case 0:
                 org.telegram.messenger.az azVar = (org.telegram.messenger.az) obj;
-                azVar.f22991e = SystemClock.elapsedRealtime();
-                azVar.f22990c = false;
+                azVar.f22988e = SystemClock.elapsedRealtime();
+                azVar.f22987c = false;
                 if (j3 == -1) {
                     azVar.d = false;
-                    azVar.f22989b = 0L;
+                    azVar.f22986b = 0L;
                 } else {
-                    azVar.f22989b = j3;
+                    azVar.f22986b = j3;
                     azVar.d = true;
                 }
-                org.telegram.messenger.ks.e().k(280, azVar);
+                org.telegram.messenger.ks.e().k(281, azVar);
                 return;
             case 1:
                 ((li.d) obj).a(Long.valueOf(j3));
@@ -46,27 +46,27 @@ public final class qx0 implements Runnable {
                 org.telegram.utils.twidget.p1 p1Var = (org.telegram.utils.twidget.p1) obj;
                 Trace.beginSection("WidgetSandbox:Destroy");
                 try {
-                    p1Var.f54884c.e(j3);
+                    p1Var.f54885c.e(j3);
                     return;
                 } finally {
                     Trace.endSection();
                 }
             case 4:
                 wg.w0 w0Var = (wg.w0) obj;
-                HashSet hashSet = w0Var.f59833a2;
+                HashSet hashSet = w0Var.f59834a2;
                 hashSet.remove(Long.valueOf(j3));
                 w0Var.U1.b(true, hashSet, new wg.r0(w0Var, 5), null);
                 w0Var.o1(true, false);
                 return;
             default:
                 yi.j jVar = (yi.j) ((ac.e) obj).f1022c;
-                if (j3 == jVar.f61328o && (i7 = jVar.G) != 9 && i7 != 10 && i7 != 8) {
+                if (j3 == jVar.f61329o && (i7 = jVar.G) != 9 && i7 != 10 && i7 != 8) {
                     SystemClock.elapsedRealtime();
-                    jVar.f61335w = false;
+                    jVar.f61336w = false;
                     jVar.s(3);
-                    jVar.f61322i.removeCallbacks(jVar.D);
+                    jVar.f61323i.removeCallbacks(jVar.D);
                     yi.b bVar = jVar.h;
-                    bVar.b("recording started: retainedDurationMs=" + yi.j.r(jVar.f61329p));
+                    bVar.b("recording started: retainedDurationMs=" + yi.j.r(jVar.f61330p));
                     return;
                 }
                 return;

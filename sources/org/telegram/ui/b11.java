@@ -32,31 +32,31 @@ public final class b11 extends View {
     public float U;
     public final r30 V;
     public final r11 W;
-    public boolean f45721a;
-    public boolean f45722b;
-    public int f45723c;
+    public boolean f45711a;
+    public boolean f45712b;
+    public int f45713c;
     public TLRPC.Document d;
-    public org.telegram.ui.Components.x5 f45724e;
-    public final org.telegram.messenger.gc[] f45725f;
+    public org.telegram.ui.Components.x5 f45714e;
+    public final org.telegram.messenger.gc[] f45715f;
     public ImageReceiver h;
-    public final ImageReceiver f45726n;
-    public ImageReceiver f45727r;
-    public boolean f45728s;
-    public TL_stars.TL_starGiftUnique f45729w;
-    public Integer f45730x;
-    public ch.p0 f45731y;
+    public final ImageReceiver f45716n;
+    public ImageReceiver f45717r;
+    public boolean f45718s;
+    public TL_stars.TL_starGiftUnique f45719w;
+    public Integer f45720x;
+    public ch.p0 f45721y;
 
     public b11(r11 r11Var, Context context) {
         super(context);
         this.W = r11Var;
-        this.f45721a = false;
-        this.f45722b = false;
-        this.f45725f = new org.telegram.messenger.gc[2];
+        this.f45711a = false;
+        this.f45712b = false;
+        this.f45715f = new org.telegram.messenger.gc[2];
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f45726n = imageReceiver;
+        this.f45716n = imageReceiver;
         this.U = 1.0f;
         this.V = new r30(this, 1);
-        imageReceiver.f22677y = true;
+        imageReceiver.f22674y = true;
         setFocusable(true);
     }
 
@@ -86,9 +86,9 @@ public final class b11 extends View {
             return;
         }
         a11Var.h = false;
-        a11Var.f58630n = -1;
-        if (a11Var.f58625a == 2 && (paint = a11Var.f58635y) != null) {
-            paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29339a7, false));
+        a11Var.f58631n = -1;
+        if (a11Var.f58626a == 2 && (paint = a11Var.f58636y) != null) {
+            paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29337a7, false));
         }
     }
 
@@ -96,8 +96,8 @@ public final class b11 extends View {
         String str;
         this.d = document;
         a(u01Var);
-        org.telegram.messenger.lz f10 = org.telegram.messenger.u5.f(document, org.telegram.ui.ActionBar.n6.f29561m6, 0.2f, null);
-        if (this.W.f51417a0 == 6) {
+        org.telegram.messenger.lz f10 = org.telegram.messenger.u5.f(document, org.telegram.ui.ActionBar.n6.f29559m6, 0.2f, null);
+        if (this.W.f51377a0 == 6) {
             ImageReceiver imageReceiver = this.h;
             org.telegram.messenger.fc b10 = org.telegram.messenger.fc.b(document);
             if (!org.telegram.messenger.pc.e(16388)) {
@@ -110,7 +110,7 @@ public final class b11 extends View {
             this.h.r0(org.telegram.messenger.fc.b(document), "100_100_firstframe", null, null, f10, 0L, "tgs", document, 0);
         }
         this.R = true;
-        this.f45724e = null;
+        this.f45714e = null;
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -134,7 +134,7 @@ public final class b11 extends View {
     }
 
     public final void e(boolean z10, boolean z11) {
-        if (!this.M && z10 && z11 && this.W.f51417a0 != 14) {
+        if (!this.M && z10 && z11 && this.W.f51377a0 != 14) {
             this.N = true;
             this.T = 1.0f;
             this.S = 1.0f;
@@ -157,7 +157,7 @@ public final class b11 extends View {
     }
 
     public final void f() {
-        if (this.M && this.W.f51417a0 != 14) {
+        if (this.M && this.W.f51377a0 != 14) {
             ValueAnimator valueAnimator = this.J;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -181,7 +181,7 @@ public final class b11 extends View {
 
     @Override
     public final void invalidate() {
-        if (ch.f0.f5354b || getParent() == null) {
+        if (ch.f0.f5351b || getParent() == null) {
             return;
         }
         ((View) getParent()).invalidate();
@@ -203,7 +203,7 @@ public final class b11 extends View {
             imageReceiver.H0((View) getParent());
             this.h.P();
         }
-        this.f45726n.P();
+        this.f45716n.P();
     }
 
     @Override
@@ -226,7 +226,7 @@ public final class b11 extends View {
             imageReceiver.R();
             this.h.g0(false);
         }
-        this.f45726n.R();
+        this.f45716n.R();
     }
 
     @Override
@@ -235,15 +235,15 @@ public final class b11 extends View {
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         String str2 = null;
-        if (this.f45721a) {
+        if (this.f45711a) {
             str2 = org.telegram.messenger.gd.M0(2131746093, null);
         } else {
-            ch.p0 p0Var = this.f45731y;
-            if (p0Var != null && (str = p0Var.f5478f) != null) {
+            ch.p0 p0Var = this.f45721y;
+            if (p0Var != null && (str = p0Var.f5475f) != null) {
                 str2 = str;
             } else {
                 TLRPC.Document document = this.d;
-                if (document == null && (x5Var = this.f45724e) != null && (document = x5Var.document) == null) {
+                if (document == null && (x5Var = this.f45714e) != null && (document = x5Var.document) == null) {
                     document = org.telegram.ui.Components.o5.e(this.W.W, x5Var.getDocumentId());
                 }
                 if (document != null) {
@@ -302,7 +302,7 @@ public final class b11 extends View {
             }
             if (!z10) {
                 float f10 = this.O;
-                if (f10 != 0.0f && this.W.f51417a0 != 14) {
+                if (f10 != 0.0f && this.W.f51377a0 != 14) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
                     this.J = ofFloat;
                     ofFloat.addUpdateListener(new y01(this, 0));
@@ -317,7 +317,7 @@ public final class b11 extends View {
 
     @Override
     public final void invalidate(int i7, int i10, int i11, int i12) {
-        if (ch.f0.f5354b) {
+        if (ch.f0.f5351b) {
             return;
         }
         super.invalidate(i7, i10, i11, i12);

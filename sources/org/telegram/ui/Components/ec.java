@@ -35,7 +35,7 @@ public final class ec extends db implements org.telegram.ui.ActionBar.c6 {
             org.telegram.messenger.n10.r(textView, i7, i6Var, null, 2131743648);
             textView.setGravity(16);
             float f10 = z11 ? 34.0f : 12.0f;
-            boolean z12 = org.telegram.messenger.gd.f24216a0;
+            boolean z12 = org.telegram.messenger.gd.f24213a0;
             c8.xa.a(textView, z12 ? 12.0f : f10, 8.0f, z12 ? f10 : 12.0f, 8.0f);
             addView(textView, c8.ma.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }

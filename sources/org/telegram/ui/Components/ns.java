@@ -49,9 +49,9 @@ public final class ns extends AnimatorListenerAdapter {
                 rsVar2.u(f1Var2);
                 rsVar2.v.remove(f1Var2);
                 rsVar2.A();
-                View view = f1Var2.f59122a;
-                if (view instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) view).setMoving(false);
+                View view = f1Var2.f59123a;
+                if (view instanceof org.telegram.ui.Cells.u2) {
+                    ((org.telegram.ui.Cells.u2) view).setMoving(false);
                     return;
                 }
                 return;

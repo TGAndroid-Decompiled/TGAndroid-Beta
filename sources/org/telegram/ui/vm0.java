@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
 public final class vm0 implements View.OnClickListener {
-    public final int f52815a;
-    public final int f52816b;
-    public final Object f52817c;
+    public final int f52805a;
+    public final int f52806b;
+    public final Object f52807c;
 
     public vm0(int i7, org.telegram.messenger.fj fjVar) {
-        this.f52815a = 1;
-        this.f52816b = i7;
-        this.f52817c = fjVar;
+        this.f52805a = 1;
+        this.f52806b = i7;
+        this.f52807c = fjVar;
     }
 
     @Override
@@ -24,15 +24,15 @@ public final class vm0 implements View.OnClickListener {
         boolean z10;
         int i7;
         org.telegram.ui.Components.gc j3;
-        int i10 = this.f52815a;
-        int i11 = this.f52816b;
-        Object obj = this.f52817c;
+        int i10 = this.f52805a;
+        int i11 = this.f52806b;
+        Object obj = this.f52807c;
         switch (i10) {
             case 0:
                 cn0 cn0Var = (cn0) obj;
-                org.telegram.ui.ActionBar.h1 h1Var = cn0Var.f46575n0;
+                org.telegram.ui.ActionBar.h1 h1Var = cn0Var.f46555n0;
                 if (h1Var != null && h1Var.isShowing()) {
-                    cn0Var.f46575n0.d(true);
+                    cn0Var.f46555n0.d(true);
                 }
                 if (i11 == 0) {
                     org.telegram.ui.Components.b5.I(cn0Var.getParentActivity(), cn0Var.V.a(), new um0(cn0Var, 1));
@@ -46,7 +46,7 @@ public final class vm0 implements View.OnClickListener {
                 int i12 = PopupNotificationActivity.f43406c0;
                 TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) view.getTag();
                 if (keyboardButtonProto != null) {
-                    org.telegram.messenger.g0.g3(new org.telegram.messenger.ek(org.telegram.messenger.zy.C(i11), org.telegram.messenger.fj.B0(fjVar.f23968k), fjVar.e1(), keyboardButtonProto.getData(), 10));
+                    org.telegram.messenger.g0.g3(new org.telegram.messenger.ek(org.telegram.messenger.zy.C(i11), org.telegram.messenger.fj.B0(fjVar.f23965k), fjVar.e1(), keyboardButtonProto.getData(), 10));
                     return;
                 }
                 return;
@@ -65,7 +65,7 @@ public final class vm0 implements View.OnClickListener {
                         } else {
                             profileActivity.getMessagesController().h7.edit().putBoolean("story_keep", true).apply();
                             hi.ta D = hi.ta.D(profileActivity.getParentActivity(), profileActivity.getCurrentAccount());
-                            D.f15501y = new uv0(profileActivity);
+                            D.f15498y = new uv0(profileActivity);
                             D.Q(null);
                             return;
                         }
@@ -86,7 +86,7 @@ public final class vm0 implements View.OnClickListener {
                     SparseArray<org.telegram.messenger.fj> actionModeSelected = profileActivity.O.getActionModeSelected();
                     if (actionModeSelected != null) {
                         for (int i13 = 0; i13 < actionModeSelected.size(); i13++) {
-                            TL_stories.StoryItem storyItem = actionModeSelected.valueAt(i13).f23973l;
+                            TL_stories.StoryItem storyItem = actionModeSelected.valueAt(i13).f23970l;
                             if (storyItem != null) {
                                 arrayList.add(storyItem);
                             }
@@ -118,7 +118,7 @@ public final class vm0 implements View.OnClickListener {
                 if (actionModeSelected2 != null) {
                     int i14 = 0;
                     for (int i15 = 0; i15 < actionModeSelected2.size(); i15++) {
-                        TL_stories.StoryItem storyItem2 = actionModeSelected2.valueAt(i15).f23973l;
+                        TL_stories.StoryItem storyItem2 = actionModeSelected2.valueAt(i15).f23970l;
                         if (storyItem2 != null) {
                             arrayList2.add(storyItem2);
                             i14++;
@@ -155,7 +155,7 @@ public final class vm0 implements View.OnClickListener {
                 return;
             case 3:
                 c51 c51Var = (c51) obj;
-                c51Var.f46418i0.A(i11);
+                c51Var.f46409i0.A(i11);
                 c51Var.p0(i11, true);
                 return;
             default:
@@ -181,8 +181,8 @@ public final class vm0 implements View.OnClickListener {
     }
 
     public vm0(Object obj, int i7, int i10) {
-        this.f52815a = i10;
-        this.f52817c = obj;
-        this.f52816b = i7;
+        this.f52805a = i10;
+        this.f52807c = obj;
+        this.f52806b = i7;
     }
 }

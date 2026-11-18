@@ -37,26 +37,26 @@ public final class g implements b {
     public int Q;
     public int R;
     public boolean S;
-    public final Context f20508a;
-    public final f f20510c;
+    public final Context f20505a;
+    public final f f20507c;
     public final PlaybackSession d;
-    public String f20515s;
-    public PlaybackMetrics.Builder f20516w;
-    public int f20517x;
-    public final Executor f20509b = h2.a.e();
-    public final k1 f20512f = new k1();
+    public String f20512s;
+    public PlaybackMetrics.Builder f20513w;
+    public int f20514x;
+    public final Executor f20506b = h2.a.e();
+    public final k1 f20509f = new k1();
     public final i1 h = new i1();
-    public final HashMap f20514r = new HashMap();
-    public final HashMap f20513n = new HashMap();
-    public final long f20511e = SystemClock.elapsedRealtime();
-    public int f20518y = 0;
+    public final HashMap f20511r = new HashMap();
+    public final HashMap f20510n = new HashMap();
+    public final long f20508e = SystemClock.elapsedRealtime();
+    public int f20515y = 0;
     public int E = 0;
 
     public g(Context context, PlaybackSession playbackSession) {
-        this.f20508a = context.getApplicationContext();
+        this.f20505a = context.getApplicationContext();
         this.d = playbackSession;
         f fVar = new f();
-        this.f20510c = fVar;
+        this.f20507c = fVar;
         fVar.d = this;
     }
 
@@ -78,7 +78,7 @@ public final class g implements b {
         if (i7 == 1) {
             this.M = true;
         }
-        this.f20517x = i7;
+        this.f20514x = i7;
     }
 
     @Override
@@ -88,7 +88,7 @@ public final class g implements b {
 
     @Override
     public final void b(c0 c0Var) {
-        this.N = c0Var.f60043a;
+        this.N = c0Var.f60044a;
     }
 
     @Override
@@ -96,10 +96,10 @@ public final class g implements b {
         long longValue;
         g0 g0Var = aVar.d;
         if (g0Var != null) {
-            String d = this.f20510c.d(aVar.f20480b, g0Var);
-            HashMap hashMap = this.f20514r;
+            String d = this.f20507c.d(aVar.f20477b, g0Var);
+            HashMap hashMap = this.f20511r;
             Long l10 = (Long) hashMap.get(d);
-            HashMap hashMap2 = this.f20513n;
+            HashMap hashMap2 = this.f20510n;
             Long l11 = (Long) hashMap2.get(d);
             long j10 = 0;
             if (l10 == null) {
@@ -119,9 +119,9 @@ public final class g implements b {
         String str;
         if (xaVar != null) {
             String str2 = (String) xaVar.d;
-            f fVar = this.f20510c;
+            f fVar = this.f20507c;
             synchronized (fVar) {
-                str = fVar.f20506f;
+                str = fVar.f20503f;
             }
             if (str2.equals(str)) {
                 return true;
@@ -135,38 +135,38 @@ public final class g implements b {
         long longValue;
         long longValue2;
         int i7;
-        PlaybackMetrics.Builder builder = this.f20516w;
+        PlaybackMetrics.Builder builder = this.f20513w;
         if (builder != null && this.S) {
             builder.setAudioUnderrunCount(this.R);
-            this.f20516w.setVideoFramesDropped(this.P);
-            this.f20516w.setVideoFramesPlayed(this.Q);
-            Long l10 = (Long) this.f20513n.get(this.f20515s);
-            PlaybackMetrics.Builder builder2 = this.f20516w;
+            this.f20513w.setVideoFramesDropped(this.P);
+            this.f20513w.setVideoFramesPlayed(this.Q);
+            Long l10 = (Long) this.f20510n.get(this.f20512s);
+            PlaybackMetrics.Builder builder2 = this.f20513w;
             if (l10 == null) {
                 longValue = 0;
             } else {
                 longValue = l10.longValue();
             }
             builder2.setNetworkTransferDurationMillis(longValue);
-            Long l11 = (Long) this.f20514r.get(this.f20515s);
-            PlaybackMetrics.Builder builder3 = this.f20516w;
+            Long l11 = (Long) this.f20511r.get(this.f20512s);
+            PlaybackMetrics.Builder builder3 = this.f20513w;
             if (l11 == null) {
                 longValue2 = 0;
             } else {
                 longValue2 = l11.longValue();
             }
             builder3.setNetworkBytesRead(longValue2);
-            PlaybackMetrics.Builder builder4 = this.f20516w;
+            PlaybackMetrics.Builder builder4 = this.f20513w;
             if (l11 != null && l11.longValue() > 0) {
                 i7 = 1;
             } else {
                 i7 = 0;
             }
             builder4.setStreamSource(i7);
-            this.f20509b.execute(new h0(21, this, this.f20516w.build()));
+            this.f20506b.execute(new h0(21, this, this.f20513w.build()));
         }
-        this.f20516w = null;
-        this.f20515s = null;
+        this.f20513w = null;
+        this.f20512s = null;
         this.R = 0;
         this.P = 0;
         this.Q = 0;
@@ -182,20 +182,20 @@ public final class g implements b {
 
     public final void l(l1 l1Var, g0 g0Var) {
         int b10;
-        PlaybackMetrics.Builder builder = this.f20516w;
-        if (g0Var == null || (b10 = l1Var.b(g0Var.f60087a)) == -1) {
+        PlaybackMetrics.Builder builder = this.f20513w;
+        if (g0Var == null || (b10 = l1Var.b(g0Var.f60088a)) == -1) {
             return;
         }
         i1 i1Var = this.h;
         int i7 = 0;
         l1Var.f(b10, i1Var, false);
-        int i10 = i1Var.f10436c;
-        k1 k1Var = this.f20512f;
+        int i10 = i1Var.f10433c;
+        k1 k1Var = this.f20509f;
         l1Var.n(i10, k1Var);
-        e2.g0 g0Var2 = k1Var.f10480c.f10504b;
+        e2.g0 g0Var2 = k1Var.f10477c.f10501b;
         int i11 = 2;
         if (g0Var2 != null) {
-            int K = l0.K(g0Var2.f10413a, g0Var2.f10414b);
+            int K = l0.K(g0Var2.f10410a, g0Var2.f10411b);
             if (K != 0) {
                 if (K != 1) {
                     if (K != 2) {
@@ -211,8 +211,8 @@ public final class g implements b {
             }
         }
         builder.setStreamType(i7);
-        if (k1Var.f10488m != -9223372036854775807L && !k1Var.f10486k && !k1Var.f10484i && !k1Var.a()) {
-            builder.setMediaDurationMillis(l0.h0(k1Var.f10488m));
+        if (k1Var.f10485m != -9223372036854775807L && !k1Var.f10483k && !k1Var.f10481i && !k1Var.a()) {
+            builder.setMediaDurationMillis(l0.h0(k1Var.f10485m));
         }
         if (!k1Var.a()) {
             i11 = 1;
@@ -227,24 +227,24 @@ public final class g implements b {
             return;
         }
         j();
-        this.f20515s = str;
-        this.f20516w = new PlaybackMetrics.Builder().setPlayerName("AndroidXMedia3").setPlayerVersion("1.10.1");
-        l(aVar.f20480b, g0Var);
+        this.f20512s = str;
+        this.f20513w = new PlaybackMetrics.Builder().setPlayerName("AndroidXMedia3").setPlayerVersion("1.10.1");
+        l(aVar.f20477b, g0Var);
     }
 
     public final void n(a aVar, String str) {
         g0 g0Var = aVar.d;
-        if ((g0Var == null || !g0Var.b()) && str.equals(this.f20515s)) {
+        if ((g0Var == null || !g0Var.b()) && str.equals(this.f20512s)) {
             j();
         }
-        this.f20513n.remove(str);
-        this.f20514r.remove(str);
+        this.f20510n.remove(str);
+        this.f20511r.remove(str);
     }
 
     public final void o(int i7, long j3, u uVar, int i10) {
         int i11;
         String str;
-        TrackChangeEvent.Builder timeSinceCreatedMillis = new TrackChangeEvent.Builder(i7).setTimeSinceCreatedMillis(j3 - this.f20511e);
+        TrackChangeEvent.Builder timeSinceCreatedMillis = new TrackChangeEvent.Builder(i7).setTimeSinceCreatedMillis(j3 - this.f20508e);
         if (uVar != null) {
             timeSinceCreatedMillis.setTrackState(1);
             if (i10 != 1) {
@@ -260,23 +260,23 @@ public final class g implements b {
                 i11 = 2;
             }
             timeSinceCreatedMillis.setTrackChangeReason(i11);
-            String str2 = uVar.f10768r;
+            String str2 = uVar.f10765r;
             if (str2 != null) {
                 timeSinceCreatedMillis.setContainerMimeType(str2);
             }
-            String str3 = uVar.f10769s;
+            String str3 = uVar.f10766s;
             if (str3 != null) {
                 timeSinceCreatedMillis.setSampleMimeType(str3);
             }
-            String str4 = uVar.f10761k;
+            String str4 = uVar.f10758k;
             if (str4 != null) {
                 timeSinceCreatedMillis.setCodecName(str4);
             }
-            int i12 = uVar.f10760j;
+            int i12 = uVar.f10757j;
             if (i12 != -1) {
                 timeSinceCreatedMillis.setBitrate(i12);
             }
-            int i13 = uVar.f10775z;
+            int i13 = uVar.f10772z;
             if (i13 != -1) {
                 timeSinceCreatedMillis.setWidth(i13);
             }
@@ -294,7 +294,7 @@ public final class g implements b {
             }
             String str5 = uVar.d;
             if (str5 != null) {
-                String str6 = l0.f13786a;
+                String str6 = l0.f13783a;
                 String[] split = str5.split("-", -1);
                 String str7 = split[0];
                 if (split.length >= 2) {
@@ -317,20 +317,20 @@ public final class g implements b {
             timeSinceCreatedMillis.setTrackState(0);
         }
         this.S = true;
-        this.f20509b.execute(new h0(18, this, timeSinceCreatedMillis.build()));
+        this.f20506b.execute(new h0(18, this, timeSinceCreatedMillis.build()));
     }
 
     @Override
     public final void r(a aVar, c0 c0Var) {
         g0 g0Var = aVar.d;
         if (g0Var != null) {
-            u uVar = c0Var.f60045c;
+            u uVar = c0Var.f60046c;
             uVar.getClass();
             int i7 = c0Var.d;
-            l1 l1Var = aVar.f20480b;
+            l1 l1Var = aVar.f20477b;
             g0Var.getClass();
-            xa xaVar = new xa(uVar, i7, this.f20510c.d(l1Var, g0Var));
-            int i10 = c0Var.f60044b;
+            xa xaVar = new xa(uVar, i7, this.f20507c.d(l1Var, g0Var));
+            int i10 = c0Var.f60045b;
             if (i10 != 0) {
                 if (i10 != 1) {
                     if (i10 != 2) {
@@ -356,8 +356,8 @@ public final class g implements b {
             u uVar = (u) xaVar.f714c;
             if (uVar.A == -1) {
                 t a10 = uVar.a();
-                a10.f10723y = x1Var.f10803a;
-                a10.f10724z = x1Var.f10804b;
+                a10.f10720y = x1Var.f10800a;
+                a10.f10721z = x1Var.f10801b;
                 this.G = new xa(new u(a10), xaVar.f713b, (String) xaVar.d);
             }
         }
@@ -365,8 +365,8 @@ public final class g implements b {
 
     @Override
     public final void z(l2.d dVar) {
-        this.P += dVar.f19282g;
-        this.Q += dVar.f19280e;
+        this.P += dVar.f19279g;
+        this.Q += dVar.f19277e;
     }
 
     @Override

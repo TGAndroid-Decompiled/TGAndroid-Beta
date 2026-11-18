@@ -40,7 +40,7 @@ public final class az implements Runnable {
                 }
                 return;
             case 1:
-                ((org.telegram.ui.de0) this.f33495e).O1(this.f33493b, this.f33494c, this.d);
+                ((org.telegram.ui.ee0) this.f33495e).O1(this.f33493b, this.f33494c, this.d);
                 return;
             default:
                 org.telegram.utils.twidget.p1 p1Var = (org.telegram.utils.twidget.p1) this.f33495e;

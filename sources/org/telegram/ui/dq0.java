@@ -17,7 +17,7 @@ public final class dq0 extends org.telegram.ui.Components.ke0 {
     public dq0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.z0 z0Var) {
         super(context);
         this.O = photoViewer;
-        this.f36743a = org.telegram.messenger.j10.f24773t0;
+        this.f36743a = org.telegram.messenger.j10.f24770t0;
         this.f36751w = new ArrayList();
         this.M = new org.telegram.ui.Components.gb0(this, 9);
         this.f36744b = photoViewer2;
@@ -40,16 +40,16 @@ public final class dq0 extends org.telegram.ui.Components.ke0 {
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29788y6, null);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29786y6, null);
         textView.setGravity(17);
         linearLayout.addView(textView, c8.ma.r(-2, -2, 1));
         TextView textView2 = new TextView(context);
         this.f36746e = textView2;
         textView2.setTextSize(1, 16.0f);
-        int i7 = org.telegram.ui.ActionBar.n6.f29578n6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29576n6;
         org.telegram.ui.ActionBar.u6.U(textView2, i7, null);
         textView2.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f));
-        int i10 = org.telegram.ui.ActionBar.b6.f28812a;
+        int i10 = org.telegram.ui.ActionBar.b6.f28810a;
         textView2.setBackground(org.telegram.ui.ActionBar.b6.d(0, org.telegram.ui.ActionBar.b6.b(org.telegram.ui.ActionBar.n6.x0(null, i7, false)), 12.0f));
         textView2.setVisibility(8);
         linearLayout.addView(textView2, c8.ma.t(-2, -2, 1, 0, 8, 0, 0));

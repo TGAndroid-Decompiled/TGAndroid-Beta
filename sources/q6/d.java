@@ -112,7 +112,7 @@ public abstract class d {
                     } else {
                         e0 e0Var = this.f55875r;
                         if (e0Var != null && (nVar = this.f55865g) != null) {
-                            String str = (String) nVar.f1788c;
+                            String str = (String) nVar.f1789c;
                             String str2 = (String) nVar.d;
                             StringBuilder sb2 = new StringBuilder(String.valueOf(str).length() + 70 + String.valueOf(str2).length());
                             sb2.append("Calling connect() while still connected, missing disconnect() for ");
@@ -121,13 +121,13 @@ public abstract class d {
                             sb2.append(str2);
                             Log.e("GmsClient", sb2.toString());
                             l0 l0Var = this.f55867j;
-                            String str3 = (String) this.f55865g.f1788c;
+                            String str3 = (String) this.f55865g.f1789c;
                             m.h(str3);
                             String str4 = (String) this.f55865g.d;
                             if (this.f55879w == null) {
                                 this.h.getClass();
                             }
-                            l0Var.c(str3, str4, e0Var, this.f55865g.f1787b);
+                            l0Var.c(str3, str4, e0Var, this.f55865g.f1788b);
                             this.C.incrementAndGet();
                         }
                         e0 e0Var2 = new e0(this, this.C.get());
@@ -137,20 +137,20 @@ public abstract class d {
                         boolean r10 = r();
                         this.f55865g = new androidx.activity.n(q10, p10, r10);
                         if (r10 && d() < 17895000) {
-                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.f55865g.f1788c)));
+                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.f55865g.f1789c)));
                         }
                         l0 l0Var2 = this.f55867j;
-                        String str5 = (String) this.f55865g.f1788c;
+                        String str5 = (String) this.f55865g.f1789c;
                         m.h(str5);
                         String str6 = (String) this.f55865g.d;
                         String str7 = this.f55879w;
                         if (str7 == null) {
                             str7 = this.h.getClass().getName();
                         }
-                        n6.a b10 = l0Var2.b(new i0(str5, str6, this.f55865g.f1787b), e0Var2, str7);
+                        n6.a b10 = l0Var2.b(new i0(str5, str6, this.f55865g.f1788b), e0Var2, str7);
                         if (!b10.c()) {
                             androidx.activity.n nVar2 = this.f55865g;
-                            String str8 = (String) nVar2.f1788c;
+                            String str8 = (String) nVar2.f1789c;
                             String str9 = (String) nVar2.d;
                             StringBuilder sb3 = new StringBuilder(String.valueOf(str8).length() + 34 + String.valueOf(str9).length());
                             sb3.append("unable to connect to service: ");
@@ -158,13 +158,13 @@ public abstract class d {
                             sb3.append(" on ");
                             sb3.append(str9);
                             Log.w("GmsClient", sb3.toString());
-                            int i10 = b10.f21422b;
+                            int i10 = b10.f21419b;
                             if (i10 == -1) {
                                 i10 = 16;
                             }
-                            if (b10.f21423c != null) {
+                            if (b10.f21420c != null) {
                                 bundle = new Bundle();
-                                bundle.putParcelable("pendingIntent", b10.f21423c);
+                                bundle.putParcelable("pendingIntent", b10.f21420c);
                             }
                             int i11 = this.C.get();
                             g0 g0Var = new g0(this, i10, bundle);
@@ -176,13 +176,13 @@ public abstract class d {
                     e0 e0Var3 = this.f55875r;
                     if (e0Var3 != null) {
                         l0 l0Var3 = this.f55867j;
-                        String str10 = (String) this.f55865g.f1788c;
+                        String str10 = (String) this.f55865g.f1789c;
                         m.h(str10);
                         String str11 = (String) this.f55865g.d;
                         if (this.f55879w == null) {
                             this.h.getClass();
                         }
-                        l0Var3.c(str10, str11, e0Var3, this.f55865g.f1787b);
+                        l0Var3.c(str10, str11, e0Var3, this.f55865g.f1788b);
                         this.f55875r = null;
                     }
                 }
@@ -331,7 +331,7 @@ public abstract class d {
         } else if (this.f55881y == null) {
             attributionTag = this.f55880x;
         } else {
-            AttributionSource attributionSource = (AttributionSource) this.f55881y.f59120a;
+            AttributionSource attributionSource = (AttributionSource) this.f55881y.f59121a;
             if (attributionSource == null) {
                 attributionTag = this.f55880x;
             } else if (attributionSource.getAttributionTag() == null) {
@@ -342,7 +342,7 @@ public abstract class d {
         }
         String str = attributionTag;
         int i7 = this.v;
-        int i10 = n6.e.f21433a;
+        int i10 = n6.e.f21430a;
         Scope[] scopeArr = g.F;
         Bundle bundle = new Bundle();
         n6.c[] cVarArr = g.G;
@@ -482,7 +482,7 @@ public abstract class d {
     }
 
     public void u(n6.a aVar) {
-        this.d = aVar.f21422b;
+        this.d = aVar.f21419b;
         this.f55863e = System.currentTimeMillis();
     }
 

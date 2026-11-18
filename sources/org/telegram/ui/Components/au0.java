@@ -80,7 +80,7 @@ public class au0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
     }
 
     public static boolean E() {
-        if (Build.VERSION.SDK_INT >= 31 && org.telegram.messenger.bz.f23149a0) {
+        if (Build.VERSION.SDK_INT >= 31 && org.telegram.messenger.bz.f23146a0) {
             return true;
         }
         return false;
@@ -116,7 +116,7 @@ public class au0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
             if (o4 != 2) {
                 L = org.telegram.messenger.g0.L(15.0f);
             } else {
-                return org.telegram.messenger.g0.f24120p;
+                return org.telegram.messenger.g0.f24117p;
             }
         } else {
             L = org.telegram.messenger.g0.L(12.0f);
@@ -157,9 +157,9 @@ public class au0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
     public void H(Canvas canvas, float f10, Rect rect, Paint paint, boolean z10) {
         int i7;
         if (E() && org.telegram.messenger.bz.o() == 2) {
-            i7 = org.telegram.ui.ActionBar.n6.f29606og;
+            i7 = org.telegram.ui.ActionBar.n6.f29604og;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.f29626pg;
+            i7 = org.telegram.ui.ActionBar.n6.f29624pg;
         }
         I(canvas, f10, rect, paint, z10, Color.alpha(org.telegram.ui.ActionBar.n6.w0(i7, getResourceProvider())));
     }
@@ -210,7 +210,7 @@ public class au0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
         }
         int height = rootView.getHeight();
         if (rect.top != 0) {
-            i7 = org.telegram.messenger.g0.f24115m;
+            i7 = org.telegram.messenger.g0.f24112m;
         } else {
             i7 = 0;
         }
@@ -228,7 +228,7 @@ public class au0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
             return;
         }
         this.f33463f = Q();
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         if (point.x > point.y) {
             z10 = true;
         } else {
@@ -283,12 +283,12 @@ public class au0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
     }
 
     public boolean W() {
-        return !(this instanceof bi.t8);
+        return !(this instanceof bi.s8);
     }
 
     public void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29626pg));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29606og));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29624pg));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29604og));
     }
 
     @Override
@@ -357,7 +357,7 @@ public class au0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
     }
 
     public boolean getNewDrawableMotion() {
-        return org.telegram.ui.ActionBar.n6.f29482i0;
+        return org.telegram.ui.ActionBar.n6.f29480i0;
     }
 
     public org.telegram.ui.ActionBar.i6 getResourceProvider() {

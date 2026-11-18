@@ -18,7 +18,7 @@ public final class w7 extends FrameLayout {
         this.f41573a = new q9[2];
         for (int i7 = 0; i7 < 2; i7++) {
             this.f41573a[i7] = new q9(context);
-            this.f41573a[i7].getImageReceiver().f22642h1 = new ai.s1(this, i7, 8);
+            this.f41573a[i7].getImageReceiver().f22639h1 = new ai.s1(this, i7, 8);
             this.f41573a[i7].setRoundRadius(org.telegram.messenger.g0.L(4.0f));
             if (i7 == 1) {
                 this.f41573a[i7].setVisibility(8);

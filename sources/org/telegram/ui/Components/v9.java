@@ -86,7 +86,7 @@ public final class v9 extends v4.o0 implements eh.a {
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        aVar.f8372a = true;
+        aVar.f8369a = true;
     }
 
     @Override
@@ -288,7 +288,7 @@ public final class v9 extends v4.o0 implements eh.a {
                 if (ck0Var.L2 != null) {
                     for (int i16 = 0; i16 < ck0Var.L2.size(); i16++) {
                         long longValue = ((Long) ck0Var.L2.get(i16)).longValue();
-                        Typeface typeface = org.telegram.messenger.g0.f24093a;
+                        Typeface typeface = org.telegram.messenger.g0.f24090a;
                         View T0 = ck0Var.T0((int) (longValue >> 32));
                         View T02 = ck0Var.T0((int) longValue);
                         if (T0 != null && !ck0.a1(T0)) {
@@ -580,7 +580,7 @@ public final class v9 extends v4.o0 implements eh.a {
         if (ck0Var.L2 != null) {
             for (int i11 = 0; i11 < ck0Var.L2.size(); i11++) {
                 long longValue = ((Long) ck0Var.L2.get(i11)).longValue();
-                Typeface typeface = org.telegram.messenger.g0.f24093a;
+                Typeface typeface = org.telegram.messenger.g0.f24090a;
                 int i12 = (int) (longValue >> 32);
                 int i13 = (int) longValue;
                 float f15 = height;

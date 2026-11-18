@@ -1,48 +1,45 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.ui.Components.RadioButton;
-public final class wh0 extends FrameLayout {
-    public TextView f53441a;
-    public RadioButton f53442b;
-    public org.telegram.ui.Components.mp f53443c;
-    public boolean d;
-    public vh0 f53444e;
+import android.net.Uri;
+import android.text.TextUtils;
+import java.io.File;
+import java.io.IOException;
+import org.telegram.tgnet.TLRPC;
+public final class wh0 {
+    public boolean f53390a;
+    public boolean f53391b;
+    public int f53392c;
+    public int d;
+    public TLRPC.Document f53393e;
+    public String f53394f;
+    public String f53395g;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        if (this.d) {
-            float f11 = 60.0f;
-            if (org.telegram.messenger.gd.f24216a0) {
-                f10 = 0.0f;
-            } else {
-                f10 = 60.0f;
-            }
-            float L = org.telegram.messenger.g0.L(f10);
-            float height = getHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (!org.telegram.messenger.gd.f24216a0) {
-                f11 = 0.0f;
-            }
-            canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.n6.f29519k0);
+    public final Uri a(int i7) {
+        if (!TextUtils.isEmpty(this.f53395g)) {
+            return Uri.fromFile(new File(this.f53395g));
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f53442b.f33093f);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
+        TLRPC.Document document = this.f53393e;
+        if (document != null) {
+            String str = document.file_name_fixed;
+            String A = org.telegram.messenger.w7.A(document);
+            if (A != null) {
+                String lowerCase = A.toLowerCase();
+                if (!str.endsWith(lowerCase)) {
+                    str = a8.p0.E(str, ".", lowerCase);
+                }
+                File file = new File(org.telegram.messenger.g0.E0(), str);
+                if (!file.exists()) {
+                    try {
+                        org.telegram.messenger.w7.G(i7);
+                        org.telegram.messenger.g0.E(org.telegram.messenger.w7.I(this.f53393e), file);
+                    } catch (IOException e10) {
+                        e10.printStackTrace();
+                    }
+                }
+                return Uri.fromFile(file);
+            }
+            return null;
+        }
+        return null;
     }
 }

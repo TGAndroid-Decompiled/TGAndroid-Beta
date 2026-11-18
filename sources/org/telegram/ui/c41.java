@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class c41 extends org.telegram.ui.Components.ck0 {
-    public int f46394f3;
-    public final c51 f46395g3;
+    public int f46385f3;
+    public final c51 f46386g3;
 
     public c41(c51 c51Var, Context context) {
         super(context, null);
-        this.f46395g3 = c51Var;
+        this.f46386g3 = c51Var;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         h41 h41Var;
         super.onMeasure(i7, i10);
-        if (this.f46394f3 != getMeasuredHeight() && (h41Var = this.f46395g3.X) != null) {
+        if (this.f46385f3 != getMeasuredHeight() && (h41Var = this.f46386g3.X) != null) {
             h41Var.f();
         }
-        this.f46394f3 = getMeasuredHeight();
+        this.f46385f3 = getMeasuredHeight();
     }
 }

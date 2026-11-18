@@ -1,47 +1,36 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-public final class mb0 extends TextView {
-    public final int f49823a;
+public final class mb0 extends br {
+    public final int h;
+    public final Object f49793n;
 
-    public mb0(Context context, int i7) {
+    public mb0(int i7, Context context, Object obj) {
         super(context);
-        this.f49823a = i7;
+        this.h = i7;
+        this.f49793n = obj;
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f49823a) {
-            case 5:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f49823a) {
+    public final void a() {
+        switch (this.h) {
             case 0:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
+                ((pb0) this.f49793n).h(null);
                 return;
             case 1:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(100.0f)), Integer.MIN_VALUE));
+                ((hc0) this.f49793n).h(null);
                 return;
             case 2:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
-                return;
-            case 3:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
-                return;
-            case 4:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(org.telegram.messenger.g0.L(26.0f)), 1073741824));
-                return;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f49793n;
+                if (passcodeActivity.F == 0) {
+                    postDelayed(new if0(this, 3), 260L);
+                    return;
+                } else {
+                    passcodeActivity.u0();
+                    return;
+                }
             default:
-                super.onMeasure(i7, i10);
+                ((bb1) this.f49793n).H0();
                 return;
         }
     }

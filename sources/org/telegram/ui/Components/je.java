@@ -18,9 +18,9 @@ public final class je implements z4, wi0 {
             default:
                 boolean s12 = this.f36421b.s1(z10, i7, i10, 0L, true);
                 ChatActivityEnterView chatActivityEnterView = this.f36421b;
-                org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
-                if (eg0Var != null) {
-                    eg0Var.h(!s12);
+                org.telegram.ui.fg0 fg0Var = chatActivityEnterView.M0;
+                if (fg0Var != null) {
+                    fg0Var.h(!s12);
                     chatActivityEnterView.M0 = null;
                     return;
                 }

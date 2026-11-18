@@ -38,8 +38,8 @@ public final class yk implements Runnable {
                 }
                 org.telegram.messenger.da daVar = klVar2.E;
                 if (daVar != null && (location = klVar2.f36802j0) != null) {
-                    location.setLatitude(((org.telegram.messenger.ab) daVar.d().f15536b).f22854a);
-                    klVar2.f36802j0.setLongitude(((org.telegram.messenger.ab) klVar2.E.d().f15536b).f22855b);
+                    location.setLatitude(((org.telegram.messenger.ab) daVar.d().f15533b).f22851a);
+                    klVar2.f36802j0.setLongitude(((org.telegram.messenger.ab) klVar2.E.d().f15533b).f22852b);
                 }
                 r0Var.L(klVar2.f36802j0);
                 r0Var.H();

@@ -36,10 +36,10 @@ public final class o00 implements View.OnLongClickListener {
                 v0Var2.O = fragmentContextView.h instanceof org.telegram.ui.bn;
                 v0Var2.G.setShader(null);
                 v0Var2.h = null;
-                Bitmap bitmap = v0Var2.f30134f;
+                Bitmap bitmap = v0Var2.f30132f;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    v0Var2.f30134f = null;
+                    v0Var2.f30132f = null;
                 }
                 fragmentContextView.H.I(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
                 fragmentContextView.H.W();
@@ -89,7 +89,7 @@ public final class o00 implements View.OnLongClickListener {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
                     final org.telegram.ui.ActionBar.z0 z0Var = new org.telegram.ui.ActionBar.z0(1, yo0Var.getContext(), yo0Var.J0, true, false);
                     if (z10) {
-                        z0Var.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29425eh, yo0Var.J0));
+                        z0Var.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29423eh, yo0Var.J0));
                     }
                     actionBarPopupWindow$ActionBarPopupWindowLayout.a(z0Var, c8.ma.o(-1, 48));
                     z0Var.j(org.telegram.messenger.gd.M0(2131745136, null), 0, null);
@@ -97,7 +97,7 @@ public final class o00 implements View.OnLongClickListener {
                     z0Var.setChecked(true);
                     final org.telegram.ui.ActionBar.z0 z0Var2 = new org.telegram.ui.ActionBar.z0(1, yo0Var.getContext(), yo0Var.J0, false, true);
                     if (z10) {
-                        z0Var2.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29425eh, yo0Var.J0));
+                        z0Var2.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29423eh, yo0Var.J0));
                     }
                     actionBarPopupWindow$ActionBarPopupWindowLayout.a(z0Var2, c8.ma.o(-1, 48));
                     z0Var2.j(org.telegram.messenger.gd.M0(2131749116, null), 0, null);
@@ -153,7 +153,7 @@ public final class o00 implements View.OnLongClickListener {
                 actionBarPopupWindow$ActionBarPopupWindowLayout2.setShownFromBottom(false);
                 org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(0, yo0Var.getContext(), yo0Var.J0, true, true);
                 if (z10) {
-                    z0Var3.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29425eh, yo0Var.J0));
+                    z0Var3.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29423eh, yo0Var.J0));
                     z0Var3.setIconColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.H6, yo0Var.J0));
                 }
                 z0Var3.j(org.telegram.messenger.gd.M0(2131745388, null), 2131231509, null);
@@ -162,7 +162,7 @@ public final class o00 implements View.OnLongClickListener {
                 z0Var3.setOnClickListener(new tn0(yo0Var, 2));
                 org.telegram.ui.ActionBar.z0 z0Var4 = new org.telegram.ui.ActionBar.z0(0, yo0Var.getContext(), yo0Var.J0, true, true);
                 if (z10) {
-                    z0Var4.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29425eh, yo0Var.J0));
+                    z0Var4.setTextColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29423eh, yo0Var.J0));
                     z0Var4.setIconColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.H6, yo0Var.J0));
                 }
                 z0Var4.j(org.telegram.messenger.gd.M0(2131745406, null), 2131232360, null);
@@ -173,14 +173,14 @@ public final class o00 implements View.OnLongClickListener {
                 linearLayout.addView(actionBarPopupWindow$ActionBarPopupWindowLayout2, c8.ma.o(-1, -2));
                 org.telegram.ui.ActionBar.h1 h1Var = new org.telegram.ui.ActionBar.h1(linearLayout, -2, -2);
                 yo0Var.F2 = h1Var;
-                h1Var.f28991b = false;
+                h1Var.f28989b = false;
                 h1Var.setAnimationStyle(2131755193);
                 yo0Var.F2.setOutsideTouchable(true);
                 yo0Var.F2.setClippingEnabled(true);
                 yo0Var.F2.setInputMethodMode(2);
                 yo0Var.F2.setSoftInputMode(0);
                 yo0Var.F2.getContentView().setFocusableInTouchMode(true);
-                int i11 = org.telegram.messenger.bz.f23148a;
+                int i11 = org.telegram.messenger.bz.f23145a;
                 SharedPreferences.Editor edit = org.telegram.messenger.mp.g1().edit();
                 edit.putInt("scheduledOrNoSoundHintShows", 3);
                 edit.apply();
@@ -188,7 +188,7 @@ public final class o00 implements View.OnLongClickListener {
                 yo0Var.F2.setFocusable(true);
                 int[] iArr = new int[2];
                 u1Var.getLocationInWindow(iArr);
-                if (yo0Var.d && (bnVar = yo0Var.f42554b2) != null && bnVar.f46093m1.getMeasuredHeight() > org.telegram.messenger.g0.L(58.0f)) {
+                if (yo0Var.d && (bnVar = yo0Var.f42554b2) != null && bnVar.f46084m1.getMeasuredHeight() > org.telegram.messenger.g0.L(58.0f)) {
                     measuredHeight = u1Var.getMeasuredHeight() + iArr[1];
                 } else {
                     measuredHeight = (iArr[1] - linearLayout.getMeasuredHeight()) - org.telegram.messenger.g0.L(2.0f);

@@ -2,14 +2,14 @@ package l;
 
 import android.widget.PopupWindow;
 public final class t implements PopupWindow.OnDismissListener {
-    public final v f19236a;
+    public final v f19233a;
 
     public t(v vVar) {
-        this.f19236a = vVar;
+        this.f19233a = vVar;
     }
 
     @Override
     public final void onDismiss() {
-        this.f19236a.c();
+        this.f19233a.c();
     }
 }

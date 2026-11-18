@@ -46,9 +46,9 @@ public final class i3 implements View.OnClickListener {
                 ((boolean[]) obj5)[0] = false;
                 int c10 = (int) (b5.c(null, (sb0) obj4, (sb0) callback, (sb0) viewGroup, (sb0) obj3) / 1000);
                 int i10 = iArr[0];
-                mt mtVar = (mt) i0Var.f8999c;
-                int i11 = i0Var.f8997a;
-                int i12 = i0Var.f8998b;
+                mt mtVar = (mt) i0Var.f8996c;
+                int i11 = i0Var.f8994a;
+                int i12 = i0Var.f8995b;
                 Editable text = mtVar.getText();
                 ?? obj6 = new Object();
                 obj6.f34537a |= 128;
@@ -66,7 +66,7 @@ public final class i3 implements View.OnClickListener {
                 if (ktVar != null) {
                     ktVar.g();
                 }
-                ((org.telegram.ui.ActionBar.x2) w4Var.f15645b).f30234y0.run();
+                ((org.telegram.ui.ActionBar.x2) w4Var.f15642b).f30232y0.run();
                 return;
             default:
                 FrameLayout frameLayout = (FrameLayout) obj5;
@@ -76,11 +76,11 @@ public final class i3 implements View.OnClickListener {
                 String[] strArr = (String[]) obj3;
                 int[] iArr2 = (int[]) obj2;
                 Runnable runnable = (Runnable) obj;
-                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q()) {
+                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q()) {
                     new lc(frameLayout, i6Var).Q(2131624217, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.gd.M0(2131748305, null), new org.telegram.messenger.j2(23))).j();
                     return;
                 }
-                y60 G = y60.G(x2Var.f30195c, i6Var, frameLayout2);
+                y60 G = y60.G(x2Var.f30193c, i6Var, frameLayout2);
                 for (int i13 = 0; i13 < iArr.length; i13++) {
                     G.c(0, strArr[i13], new c3(iArr2, iArr[i13], runnable), false);
                 }

@@ -6,25 +6,25 @@ import android.view.KeyEvent;
 import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Cells.r8;
+import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Components.x5;
 public final class i implements x10 {
-    public final int f5374a;
-    public final p f5375b;
+    public final int f5371a;
+    public final p f5372b;
 
     public i(p pVar, int i7) {
-        this.f5374a = i7;
-        this.f5375b = pVar;
+        this.f5371a = i7;
+        this.f5372b = pVar;
     }
 
     @Override
     public final void a(Object obj) {
         x5[] x5VarArr;
-        r8 r8Var;
+        s8 s8Var;
         long j3;
-        switch (this.f5374a) {
+        switch (this.f5371a) {
             case 0:
-                p pVar = this.f5375b;
+                p pVar = this.f5372b;
                 pVar.X = (TL_stories.TL_premium_boostsStatus) obj;
                 if (!pVar.I.keySet().equals(pVar.K.keySet())) {
                     pVar.e0(false);
@@ -33,8 +33,8 @@ public final class i implements x10 {
                 return;
             case 1:
                 Boolean bool = (Boolean) obj;
-                p pVar2 = this.f5375b;
-                h hVar = pVar2.f5464b0;
+                p pVar2 = this.f5372b;
+                h hVar = pVar2.f5461b0;
                 if (!pVar2.g0()) {
                     int editTextSelectionEnd = pVar2.h.getEditTextSelectionEnd();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(pVar2.h.getText());
@@ -42,9 +42,9 @@ public final class i implements x10 {
                         if (spannableStringBuilder.getSpanEnd(x5Var) == editTextSelectionEnd) {
                             pVar2.I.remove(Long.valueOf(x5Var.documentId));
                             pVar2.J.remove(Long.valueOf(x5Var.documentId));
-                            pVar2.f5463b.A(Long.valueOf(x5Var.documentId));
-                            if (x5Var.documentId == -1 && (r8Var = pVar2.f5469r) != null) {
-                                r8Var.setChecked(false);
+                            pVar2.f5460b.A(Long.valueOf(x5Var.documentId));
+                            if (x5Var.documentId == -1 && (s8Var = pVar2.f5466r) != null) {
+                                s8Var.setChecked(false);
                                 pVar2.h.setMaxLength(pVar2.O);
                             }
                             if (bool.booleanValue()) {
@@ -64,9 +64,9 @@ public final class i implements x10 {
                 return;
             case 2:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                p pVar3 = this.f5375b;
+                p pVar3 = this.f5372b;
                 if (!pVar3.isFinishing()) {
-                    pVar3.f5470s.setLoading(false);
+                    pVar3.f5467s.setLoading(false);
                     if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
                         pVar3.finishFragment();
                         return;
@@ -82,7 +82,7 @@ public final class i implements x10 {
                 }
                 return;
             default:
-                p pVar4 = this.f5375b;
+                p pVar4 = this.f5372b;
                 pVar4.getClass();
                 pVar4.V = ((Integer) obj).intValue();
                 return;

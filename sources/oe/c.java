@@ -2,8 +2,8 @@ package oe;
 
 import h2.o0;
 public final class c implements ke.a {
-    public static final c f21792a = new Object();
-    public static final n f21793b = new n("kotlin.Double", me.b.f20969c);
+    public static final c f21789a = new Object();
+    public static final n f21790b = new n("kotlin.Double", me.b.f20966c);
 
     @Override
     public final void a(qe.h hVar, Object obj) {
@@ -12,14 +12,14 @@ public final class c implements ke.a {
         if (hVar.f56117a) {
             hVar.j(String.valueOf(doubleValue));
         } else {
-            ((mc.a) iVar.f5126c).c(String.valueOf(doubleValue));
+            ((mc.a) iVar.f5123c).c(String.valueOf(doubleValue));
         }
         ((o0) hVar.f56121f).getClass();
         if (!Double.isInfinite(doubleValue) && !Double.isNaN(doubleValue)) {
             return;
         }
         Double valueOf = Double.valueOf(doubleValue);
-        String aVar = ((mc.a) iVar.f5126c).toString();
+        String aVar = ((mc.a) iVar.f5123c).toString();
         throw new qe.d("Unexpected special floating-point value " + valueOf + ". By default, non-finite floating point values are prohibited because they do not conform JSON specification. It is possible to deserialize them using 'JsonBuilder.allowSpecialFloatingPointValues = true'\nCurrent output: " + ((Object) qe.f.d(-1, aVar)));
     }
 
@@ -30,7 +30,7 @@ public final class c implements ke.a {
         String k10 = kVar.k();
         try {
             double parseDouble = Double.parseDouble(k10);
-            ((pe.b) decoder.f13733b).f55572a.getClass();
+            ((pe.b) decoder.f13730b).f55572a.getClass();
             if (!Double.isInfinite(parseDouble) && !Double.isNaN(parseDouble)) {
                 return Double.valueOf(parseDouble);
             }
@@ -45,6 +45,6 @@ public final class c implements ke.a {
 
     @Override
     public final me.d d() {
-        return f21793b;
+        return f21790b;
     }
 }

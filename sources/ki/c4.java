@@ -29,34 +29,34 @@ import org.telegram.ui.Components.ph0;
 import org.telegram.ui.Components.v6;
 import org.telegram.ui.Components.vy0;
 public final class c4 extends Drawable implements v6, fs {
-    public final Paint f18609a;
-    public final Paint f18610b;
-    public final ImageReceiver f18611c;
+    public final Paint f18606a;
+    public final Paint f18607b;
+    public final ImageReceiver f18608c;
     public final ImageReceiver d;
-    public int f18612e;
-    public final o5[] f18613f;
+    public int f18609e;
+    public final o5[] f18610f;
     public final vy0 h;
-    public final RectF f18614n;
-    public final boolean f18615r;
-    public final c6 f18616s;
-    public boolean f18617w;
-    public boolean f18618x;
-    public View f18619y;
+    public final RectF f18611n;
+    public final boolean f18612r;
+    public final c6 f18613s;
+    public boolean f18614w;
+    public boolean f18615x;
+    public View f18616y;
 
     public c4(TLRPC.User user) {
         Paint paint = new Paint(1);
-        this.f18609a = paint;
+        this.f18606a = paint;
         Paint paint2 = new Paint(1);
-        this.f18610b = paint2;
+        this.f18607b = paint2;
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f18611c = imageReceiver;
+        this.f18608c = imageReceiver;
         this.d = new ImageReceiver(null);
-        this.f18612e = 1;
-        this.f18613f = new o5[2];
-        this.f18614n = new RectF();
-        this.f18616s = new c6(new b4(this, 1), 320L, lr.h, 0);
-        this.f18615r = false;
-        int i7 = n6.f29396d6;
+        this.f18609e = 1;
+        this.f18610f = new o5[2];
+        this.f18611n = new RectF();
+        this.f18613s = new c6(new b4(this, 1), 320L, lr.h, 0);
+        this.f18612r = false;
+        int i7 = n6.f29394d6;
         paint.setColor(n6.x0(null, i7, false));
         paint2.setColor(n6.x0(null, i7, false));
         paint2.setShadowLayer(org.telegram.messenger.g0.L(2.33f), 0.0f, org.telegram.messenger.g0.L(2.0f), n6.r1(0.18f, -16777216));
@@ -70,72 +70,72 @@ public final class c4 extends Drawable implements v6, fs {
 
     @Override
     public final void a(ph0 ph0Var) {
-        this.f18619y = ph0Var;
+        this.f18616y = ph0Var;
         this.d.H0(ph0Var);
-        this.f18611c.H0(ph0Var);
+        this.f18608c.H0(ph0Var);
     }
 
     @Override
     public final void b(ImageReceiver imageReceiver) {
-        this.f18618x = false;
-        this.f18611c.R();
+        this.f18615x = false;
+        this.f18608c.R();
         this.d.R();
-        ks.f(j10.f24773t0).n(this, ks.C1);
-        o5[] o5VarArr = this.f18613f;
+        ks.f(j10.f24770t0).n(this, ks.C1);
+        o5[] o5VarArr = this.f18610f;
         o5 o5Var = o5VarArr[0];
         if (o5Var != null) {
-            o5Var.n(this.f18619y);
+            o5Var.n(this.f18616y);
         }
         o5 o5Var2 = o5VarArr[1];
         if (o5Var2 != null) {
-            o5Var2.n(this.f18619y);
+            o5Var2.n(this.f18616y);
         }
     }
 
     @Override
     public final void c(ImageReceiver imageReceiver) {
-        this.f18618x = true;
-        this.f18611c.P();
+        this.f18615x = true;
+        this.f18608c.P();
         this.d.P();
-        ks.f(j10.f24773t0).c(this, ks.C1);
-        o5[] o5VarArr = this.f18613f;
+        ks.f(j10.f24770t0).c(this, ks.C1);
+        o5[] o5VarArr = this.f18610f;
         o5 o5Var = o5VarArr[0];
         if (o5Var != null) {
-            o5Var.a(this.f18619y);
+            o5Var.a(this.f18616y);
         }
         o5 o5Var2 = o5VarArr[1];
         if (o5Var2 != null) {
-            o5Var2.a(this.f18619y);
+            o5Var2.a(this.f18616y);
         }
     }
 
     public final void d() {
         o5 o5Var;
-        TLRPC.TL_messages_stickerSet o02 = ri.d0(j10.f24773t0).o0(new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
+        TLRPC.TL_messages_stickerSet o02 = ri.d0(j10.f24770t0).o0(new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
         if (o02 != null && !o02.documents.isEmpty()) {
             TLRPC.Document document = o02.documents.get((int) Math.floor(Math.random() * o02.documents.size()));
-            int i7 = 1 - this.f18612e;
-            this.f18612e = i7;
-            o5[] o5VarArr = this.f18613f;
+            int i7 = 1 - this.f18609e;
+            this.f18609e = i7;
+            o5[] o5VarArr = this.f18610f;
             o5 o5Var2 = o5VarArr[i7];
             if (o5Var2 != null) {
-                o5Var2.n(this.f18619y);
+                o5Var2.n(this.f18616y);
             }
-            o5VarArr[this.f18612e] = o5.l(j10.f24773t0, 9, document);
-            o5VarArr[this.f18612e].setColorFilter(new PorterDuffColorFilter(n6.x0(null, n6.Fi, false), PorterDuff.Mode.SRC_IN));
-            if (this.f18618x && (o5Var = o5VarArr[this.f18612e]) != null) {
-                o5Var.a(this.f18619y);
+            o5VarArr[this.f18609e] = o5.l(j10.f24770t0, 9, document);
+            o5VarArr[this.f18609e].setColorFilter(new PorterDuffColorFilter(n6.x0(null, n6.Fi, false), PorterDuff.Mode.SRC_IN));
+            if (this.f18615x && (o5Var = o5VarArr[this.f18609e]) != null) {
+                o5Var.a(this.f18616y);
             }
             org.telegram.messenger.g0.h3(new b4(this, 0), 2500L);
             return;
         }
-        this.f18617w = true;
+        this.f18614w = true;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.B0 && this.f18617w && this.f18618x) {
-            this.f18617w = false;
+        if (i7 == ks.B0 && this.f18614w && this.f18615x) {
+            this.f18614w = false;
             d();
         }
     }
@@ -151,16 +151,16 @@ public final class c4 extends Drawable implements v6, fs {
         o5 o5Var2;
         int i10;
         Rect bounds = getBounds();
-        int x02 = n6.x0(null, n6.f29396d6, false);
-        Paint paint = this.f18609a;
+        int x02 = n6.x0(null, n6.f29394d6, false);
+        Paint paint = this.f18606a;
         if (paint.getColor() != x02) {
             paint.setColor(x02);
         }
-        Paint paint2 = this.f18610b;
+        Paint paint2 = this.f18607b;
         if (paint2.getColor() != x02) {
             paint2.setColor(x02);
         }
-        boolean z10 = this.f18615r;
+        boolean z10 = this.f18612r;
         if (z10) {
             i7 = 48;
         } else {
@@ -168,10 +168,10 @@ public final class c4 extends Drawable implements v6, fs {
         }
         float L = (org.telegram.messenger.g0.L((i7 + 38) + 6.66f) + this.h.f41482c) / 2.0f;
         float L2 = org.telegram.messenger.g0.L(32.0f) / 2.0f;
-        RectF rectF = this.f18614n;
+        RectF rectF = this.f18611n;
         rectF.set(bounds.centerX() - L, bounds.centerY() - L2, bounds.centerX() + L, bounds.centerY() + L2);
         canvas.drawRoundRect(rectF, L2, L2, paint);
-        ImageReceiver imageReceiver = this.f18611c;
+        ImageReceiver imageReceiver = this.f18608c;
         imageReceiver.y0(rectF.left, rectF.top, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f));
         imageReceiver.h(canvas, null);
         this.h.c(org.telegram.messenger.g0.L(36.0f) + rectF.left, rectF.centerY(), 1.0f, n6.x0(null, n6.G6, false), canvas);
@@ -183,16 +183,16 @@ public final class c4 extends Drawable implements v6, fs {
             imageReceiver2.h(canvas, null);
             return;
         }
-        float e10 = this.f18616s.e(false, this.f18612e);
+        float e10 = this.f18613s.e(false, this.f18609e);
         canvas.save();
         canvas.translate((int) (rectF.right - org.telegram.messenger.g0.L(30.66f)), (int) (rectF.centerY() - org.telegram.messenger.g0.L(12.0f)));
         int i11 = (e10 > 1.0f ? 1 : (e10 == 1.0f ? 0 : -1));
         int i12 = -1;
-        o5[] o5VarArr = this.f18613f;
+        o5[] o5VarArr = this.f18610f;
         if (i11 < 0 && (o5Var2 = o5VarArr[0]) != null) {
             canvas.save();
             f10 = 24.0f;
-            if (this.f18612e == 0) {
+            if (this.f18609e == 0) {
                 i10 = -1;
             } else {
                 i10 = 1;
@@ -216,7 +216,7 @@ public final class c4 extends Drawable implements v6, fs {
         }
         if (e10 > 0.0f && (o5Var = o5VarArr[1]) != null) {
             canvas.save();
-            if (this.f18612e != 1) {
+            if (this.f18609e != 1) {
                 i12 = 1;
             }
             canvas.translate(0.0f, (f11 - e10) * org.telegram.messenger.g0.L(9.0f) * i12);
@@ -237,19 +237,19 @@ public final class c4 extends Drawable implements v6, fs {
 
     public c4(TLRPC.User user, TLRPC.Document document) {
         Paint paint = new Paint(1);
-        this.f18609a = paint;
+        this.f18606a = paint;
         Paint paint2 = new Paint(1);
-        this.f18610b = paint2;
+        this.f18607b = paint2;
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f18611c = imageReceiver;
+        this.f18608c = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(null);
         this.d = imageReceiver2;
-        this.f18612e = 1;
-        this.f18613f = new o5[2];
-        this.f18614n = new RectF();
-        this.f18616s = new c6(new b4(this, 1), 320L, lr.h, 0);
-        this.f18615r = true;
-        int i7 = n6.f29396d6;
+        this.f18609e = 1;
+        this.f18610f = new o5[2];
+        this.f18611n = new RectF();
+        this.f18613s = new c6(new b4(this, 1), 320L, lr.h, 0);
+        this.f18612r = true;
+        int i7 = n6.f29394d6;
         paint.setColor(n6.x0(null, i7, false));
         paint2.setColor(n6.x0(null, i7, false));
         paint2.setShadowLayer(org.telegram.messenger.g0.L(2.33f), 0.0f, org.telegram.messenger.g0.L(2.0f), n6.r1(0.18f, -16777216));
@@ -258,7 +258,7 @@ public final class c4 extends Drawable implements v6, fs {
         imageReceiver.i0(user, b9Var, null);
         imageReceiver.J0(org.telegram.messenger.g0.L(16.0f));
         TLRPC.PhotoSize w10 = w7.w(document.thumbs, 120, false, null, false);
-        imageReceiver2.r0(fc.b(document), "120_120", fc.c(w10, document), "120_120", u5.d(document.thumbs, n6.f29339a7, 0.35f, false), 0L, null, null, 0);
+        imageReceiver2.r0(fc.b(document), "120_120", fc.c(w10, document), "120_120", u5.d(document.thumbs, n6.f29337a7, 0.35f, false), 0L, null, null, 0);
         this.h = new vy0(o10.q(user), 14.0f, null);
     }
 

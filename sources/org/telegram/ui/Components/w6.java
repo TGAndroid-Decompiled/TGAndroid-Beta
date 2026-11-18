@@ -37,7 +37,7 @@ public final class w6 implements org.telegram.ui.ActionBar.v6 {
             case 4:
                 om0 om0Var = ((rm0) this.f41571b).A0;
                 if (om0Var != null) {
-                    om0Var.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29790y8, false));
+                    om0Var.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29788y8, false));
                     return;
                 }
                 return;

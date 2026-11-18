@@ -3,27 +3,27 @@ package org.telegram.ui;
 import java.util.Comparator;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class qw0 implements Comparator {
-    public final int f51347a;
+    public final int f51307a;
 
     public qw0(int i7) {
-        this.f51347a = i7;
+        this.f51307a = i7;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int i7;
         int i10;
-        switch (this.f51347a) {
+        switch (this.f51307a) {
             case 0:
                 if (obj instanceof vw0) {
-                    i7 = ((vw0) obj).f52877g;
+                    i7 = ((vw0) obj).f52867g;
                 } else if (obj instanceof org.telegram.messenger.yo) {
                     i7 = ((org.telegram.messenger.yo) obj).d;
                 } else {
                     i7 = 0;
                 }
                 if (obj2 instanceof vw0) {
-                    i10 = ((vw0) obj2).f52877g;
+                    i10 = ((vw0) obj2).f52867g;
                 } else if (obj2 instanceof org.telegram.messenger.yo) {
                     i10 = ((org.telegram.messenger.yo) obj2).d;
                 } else {
@@ -70,17 +70,17 @@ public final class qw0 implements Comparator {
                 }
                 return 0;
             case 7:
-                return (int) (((org.telegram.ui.web.j) obj2).f53172c - ((org.telegram.ui.web.j) obj).f53172c);
+                return (int) (((org.telegram.ui.web.j) obj2).f53123c - ((org.telegram.ui.web.j) obj).f53123c);
             case 8:
-                return (int) (((org.telegram.ui.web.j) obj2).f53172c - ((org.telegram.ui.web.j) obj).f53172c);
+                return (int) (((org.telegram.ui.web.j) obj2).f53123c - ((org.telegram.ui.web.j) obj).f53123c);
             case 9:
-                return Long.compare(((org.telegram.utils.twidget.k0) obj2).f54820y, ((org.telegram.utils.twidget.k0) obj).f54820y);
+                return Long.compare(((org.telegram.utils.twidget.k0) obj2).f54821y, ((org.telegram.utils.twidget.k0) obj).f54821y);
             case 10:
-                return ((v4.f1) obj2).f59122a.getTop() - ((v4.f1) obj).f59122a.getTop();
+                return ((v4.f1) obj2).f59123a.getTop() - ((v4.f1) obj).f59123a.getTop();
             case 11:
                 return ((s2.e) obj).f56768a.compareTo(((s2.e) obj2).f56768a);
             case 12:
-                return (int) ((((ug.m1) obj).f58765a * 100.0f) - (((ug.m1) obj2).f58765a * 100.0f));
+                return (int) ((((ug.m1) obj).f58766a * 100.0f) - (((ug.m1) obj2).f58766a * 100.0f));
             default:
                 return ((String) obj).compareTo((String) obj2);
         }

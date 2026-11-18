@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.tl.TL_account;
 public final class ri0 extends org.telegram.ui.Components.k41 {
-    public static final int f51619b = 0;
+    public static final int f51608b = 0;
 
     static {
         org.telegram.ui.Components.k41.h(new org.telegram.ui.Components.k41());
@@ -18,18 +18,18 @@ public final class ri0 extends org.telegram.ui.Components.k41 {
         si0 si0Var = (si0) view;
         TL_account.Passkey passkey = (TL_account.Passkey) l41Var.H;
         View.OnClickListener onClickListener = l41Var.E;
-        TextView textView = si0Var.f52005n;
+        TextView textView = si0Var.f52007n;
         TextView textView2 = si0Var.h;
         org.telegram.ui.ActionBar.i6 i6Var = si0Var.d;
-        FrameLayout frameLayout = si0Var.f52003e;
-        org.telegram.ui.Components.q9 q9Var = si0Var.f52004f;
-        si0Var.f52008w = passkey.f28612id;
+        FrameLayout frameLayout = si0Var.f52005e;
+        org.telegram.ui.Components.q9 q9Var = si0Var.f52006f;
+        si0Var.f52010w = passkey.f28610id;
         long j3 = passkey.software_emoji_id;
         if (j3 != 0) {
-            q9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.o5.m(si0Var.f52002c, j3, null, 3));
+            q9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.o5.m(si0Var.f52004c, j3, null, 3));
             frameLayout.setBackground(null);
             q9Var.setColorFilter(null);
-            si0Var.f52000a = false;
+            si0Var.f52002a = false;
             q9Var.setScaleX(1.0f);
             q9Var.setScaleY(1.0f);
         } else {
@@ -53,8 +53,8 @@ public final class ri0 extends org.telegram.ui.Components.k41 {
         } else {
             textView.setText(org.telegram.messenger.gd.a0(null, null, 2131747454, org.telegram.messenger.gd.x(passkey.date, false)));
         }
-        si0Var.f52006r.setOnClickListener(onClickListener);
-        si0Var.f52007s = z10;
+        si0Var.f52008r.setOnClickListener(onClickListener);
+        si0Var.f52009s = z10;
         si0Var.setWillNotDraw(!z10);
     }
 

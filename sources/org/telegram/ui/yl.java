@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import android.graphics.RectF;
 public final class yl implements Runnable {
-    public final int f54221a;
-    public final org.telegram.ui.Cells.q1 f54222b;
-    public final RectF f54223c;
+    public final int f54180a;
+    public final org.telegram.ui.Cells.r1 f54181b;
+    public final RectF f54182c;
 
-    public yl(org.telegram.ui.Cells.q1 q1Var, RectF rectF, int i7) {
-        this.f54221a = i7;
-        this.f54222b = q1Var;
-        this.f54223c = rectF;
+    public yl(org.telegram.ui.Cells.r1 r1Var, RectF rectF, int i7) {
+        this.f54180a = i7;
+        this.f54181b = r1Var;
+        this.f54182c = rectF;
     }
 
     @Override
     public final void run() {
-        switch (this.f54221a) {
+        switch (this.f54180a) {
             case 0:
-                org.telegram.messenger.g0.h3(new yl(this.f54222b, this.f54223c, 1), 400L);
+                org.telegram.messenger.g0.h3(new yl(this.f54181b, this.f54182c, 1), 400L);
                 return;
             default:
-                RectF rectF = this.f54223c;
-                org.telegram.ui.Cells.q1 q1Var = this.f54222b;
-                if (q1Var.getScrimBlockBounds() == rectF) {
-                    q1Var.setScrimBlockBounds(null);
+                RectF rectF = this.f54182c;
+                org.telegram.ui.Cells.r1 r1Var = this.f54181b;
+                if (r1Var.getScrimBlockBounds() == rectF) {
+                    r1Var.setScrimBlockBounds(null);
                     return;
                 }
                 return;

@@ -121,7 +121,7 @@ public class gc {
                     lbVar.invalidate();
                     if (j3 >= 0) {
                         ?? obj = new Object();
-                        obj.f11199a = j3;
+                        obj.f11196a = j3;
                         this.f35468q = obj;
                     } else if (lbVar != null && this.f35468q == null) {
                         this.f35468q = lbVar.createTransition();

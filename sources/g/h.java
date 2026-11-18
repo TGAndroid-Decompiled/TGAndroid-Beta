@@ -5,29 +5,29 @@ import java.util.WeakHashMap;
 import r0.i0;
 import r0.l0;
 public final class h implements Runnable {
-    public final int f12992a;
-    public final s f12993b;
+    public final int f12989a;
+    public final s f12990b;
 
     public h(s sVar, int i7) {
-        this.f12992a = i7;
-        this.f12993b = sVar;
+        this.f12989a = i7;
+        this.f12990b = sVar;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        int i7 = this.f12992a;
-        s sVar = this.f12993b;
+        int i7 = this.f12989a;
+        s sVar = this.f12990b;
         switch (i7) {
             case 0:
-                if ((sVar.f13034j0 & 1) != 0) {
+                if ((sVar.f13031j0 & 1) != 0) {
                     sVar.l(0);
                 }
-                if ((sVar.f13034j0 & 4096) != 0) {
+                if ((sVar.f13031j0 & 4096) != 0) {
                     sVar.l(108);
                 }
-                sVar.f13033i0 = false;
-                sVar.f13034j0 = 0;
+                sVar.f13030i0 = false;
+                sVar.f13031j0 = 0;
                 return;
             default:
                 sVar.F.showAtLocation(sVar.E, 55, 0, 0);

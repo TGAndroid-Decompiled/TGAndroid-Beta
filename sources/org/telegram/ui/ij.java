@@ -20,7 +20,7 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
             case 1:
                 return ((lm0) this.f48740b).T;
             default:
-                return ((t71) this.f48740b).f52199f.f53682a.d();
+                return ((t71) this.f48740b).f52203f.f53670a.d();
         }
     }
 
@@ -34,7 +34,7 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
                 org.telegram.ui.ActionBar.n6.r(f10, f11, i7, i10);
                 return;
             default:
-                w61 w61Var = ((t71) this.f48740b).f52199f.f53682a;
+                w61 w61Var = ((t71) this.f48740b).f52203f.f53670a;
                 if (w61Var != null) {
                     w61Var.e(f10, f11, i7, i10);
                     return;
@@ -49,11 +49,11 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
     public final ColorFilter f() {
         switch (this.f48739a) {
             case 0:
-                return org.telegram.ui.ActionBar.n6.f29728v3;
+                return org.telegram.ui.ActionBar.n6.f29726v3;
             case 1:
-                return org.telegram.ui.ActionBar.n6.f29728v3;
+                return org.telegram.ui.ActionBar.n6.f29726v3;
             default:
-                return org.telegram.ui.ActionBar.n6.f29728v3;
+                return org.telegram.ui.ActionBar.n6.f29726v3;
         }
     }
 
@@ -65,7 +65,7 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
             case 1:
                 return org.telegram.ui.ActionBar.n6.V0(str);
             default:
-                return ((t71) this.f48740b).f52199f.f53682a.g(str);
+                return ((t71) this.f48740b).f52203f.f53670a.g(str);
         }
     }
 
@@ -77,18 +77,18 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
             case 1:
                 lm0 lm0Var = (lm0) this.f48740b;
                 if (str.equals("drawableMsgIn")) {
-                    return lm0Var.f49646x;
+                    return lm0Var.f49605x;
                 }
                 if (str.equals("drawableMsgInSelected")) {
-                    return lm0Var.f49647y;
+                    return lm0Var.f49606y;
                 }
-                org.telegram.ui.ActionBar.i6 i6Var = lm0Var.f49644s;
+                org.telegram.ui.ActionBar.i6 i6Var = lm0Var.f49603s;
                 if (i6Var != null) {
                     return i6Var.getDrawable(str);
                 }
                 return org.telegram.ui.ActionBar.n6.R0(str);
             default:
-                x71 x71Var = ((t71) this.f48740b).f52199f;
+                x71 x71Var = ((t71) this.f48740b).f52203f;
                 if (str.equals("drawableMsgOut")) {
                     return x71Var.T;
                 }
@@ -101,7 +101,7 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
                 if (str.equals("drawableMsgOutMediaSelected")) {
                     return x71Var.W;
                 }
-                w61 w61Var = x71Var.f53682a;
+                w61 w61Var = x71Var.f53670a;
                 if (w61Var != null) {
                     return w61Var.getDrawable(str);
                 }
@@ -129,7 +129,7 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
             case 1:
                 return k(i7);
             default:
-                return ((t71) this.f48740b).f52199f.f53682a.k(i7);
+                return ((t71) this.f48740b).f52203f.f53670a.k(i7);
         }
     }
 
@@ -141,7 +141,7 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
             case 1:
                 return false;
             default:
-                return ((t71) this.f48740b).f52199f.f53682a.j();
+                return ((t71) this.f48740b).f52203f.f53670a.j();
         }
     }
 
@@ -152,17 +152,17 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
                 return ((bn) this.f48740b).getThemedColor(i7);
             case 1:
                 lm0 lm0Var = (lm0) this.f48740b;
-                int indexOfKey = lm0Var.f49645w.indexOfKey(i7);
+                int indexOfKey = lm0Var.f49604w.indexOfKey(i7);
                 if (indexOfKey >= 0) {
-                    return lm0Var.f49645w.valueAt(indexOfKey);
+                    return lm0Var.f49604w.valueAt(indexOfKey);
                 }
-                org.telegram.ui.ActionBar.i6 i6Var = lm0Var.f49644s;
+                org.telegram.ui.ActionBar.i6 i6Var = lm0Var.f49603s;
                 if (i6Var != null) {
                     return i6Var.k(i7);
                 }
                 return org.telegram.ui.ActionBar.n6.v0(i7);
             default:
-                return ((t71) this.f48740b).f52199f.f53682a.k(i7);
+                return ((t71) this.f48740b).f52203f.f53670a.k(i7);
         }
     }
 
@@ -179,7 +179,7 @@ public final class ij implements org.telegram.ui.ActionBar.i6 {
             case 1:
                 return k(i7);
             default:
-                return ((t71) this.f48740b).f52199f.f53682a.m(i7);
+                return ((t71) this.f48740b).f52203f.f53670a.m(i7);
         }
     }
 

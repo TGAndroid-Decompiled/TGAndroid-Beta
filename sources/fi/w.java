@@ -2,8 +2,8 @@ package fi;
 public abstract class w extends n7 {
     @Override
     public final void invalidate() {
-        if (v.f12629c) {
-            v.f12628b.add(this);
+        if (v.f12626c) {
+            v.f12625b.add(this);
         } else {
             super.invalidate();
         }
@@ -11,8 +11,8 @@ public abstract class w extends n7 {
 
     @Override
     public final void invalidate(int i7, int i10, int i11, int i12) {
-        if (v.f12629c) {
-            v.f12628b.add(this);
+        if (v.f12626c) {
+            v.f12625b.add(this);
         } else {
             super.invalidate(i7, i10, i11, i12);
         }

@@ -14,14 +14,14 @@ import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.vt0;
 import org.telegram.ui.ProfileActivity;
 public final class k9 implements q10 {
-    public final int f14877a;
-    public final boolean f14878b;
-    public final fs f14879c;
+    public final int f14874a;
+    public final boolean f14875b;
+    public final fs f14876c;
 
     public k9(fs fsVar, boolean z10, int i7) {
-        this.f14877a = i7;
-        this.f14879c = fsVar;
-        this.f14878b = z10;
+        this.f14874a = i7;
+        this.f14876c = fsVar;
+        this.f14875b = z10;
     }
 
     @Override
@@ -30,30 +30,30 @@ public final class k9 implements q10 {
         float f10;
         vt0 vt0Var;
         TLRPC.PhotoSize w10;
-        int i7 = this.f14877a;
+        int i7 = this.f14874a;
         int i10 = 0;
-        boolean z11 = this.f14878b;
-        fs fsVar = this.f14879c;
+        boolean z11 = this.f14875b;
+        fs fsVar = this.f14876c;
         switch (i7) {
             case 0:
                 ta taVar = (ta) fsVar;
                 Bitmap bitmap = (Bitmap) obj2;
-                int i11 = taVar.f15431c;
-                if (obj != null && taVar.f15475q2 == null && !taVar.X && taVar.I()) {
+                int i11 = taVar.f15428c;
+                if (obj != null && taVar.f15472q2 == null && !taVar.X && taVar.I()) {
                     if (z11) {
                         if (taVar.L1 != null) {
                             taVar.t();
-                            taVar.L1.f14409j = true;
+                            taVar.L1.f14406j = true;
                             if (obj instanceof ef) {
-                                v9 v9Var = taVar.f15495w1;
+                                v9 v9Var = taVar.f15492w1;
                                 v9Var.b0(v9Var.h0(((ef) obj).I, false));
                             } else if (obj instanceof TLObject) {
-                                v9 v9Var2 = taVar.f15495w1;
+                                v9 v9Var2 = taVar.f15492w1;
                                 TLObject tLObject = (TLObject) obj;
                                 v9Var2.V1 = true;
                                 g5 g5Var = v9Var2.B0;
                                 if ((tLObject instanceof TLRPC.Photo) && (w10 = org.telegram.messenger.w7.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false)) != null) {
-                                    f10 = w10.f28430w / w10.h;
+                                    f10 = w10.f28428w / w10.h;
                                 } else {
                                     f10 = 1.0f;
                                 }
@@ -83,21 +83,21 @@ public final class k9 implements q10 {
                         } else {
                             z10 = false;
                         }
-                        e6Var.f14580o0 = -1.0f;
-                        e6Var.f14581p0 = z10;
+                        e6Var.f14577o0 = -1.0f;
+                        e6Var.f14578p0 = z10;
                         e6Var.invalidate();
                         taVar.e(false);
                         boolean z12 = obj instanceof ef;
                         if (z12) {
                             ef efVar = (ef) obj;
-                            if (efVar.f27849b && !efVar.d()) {
+                            if (efVar.f27847b && !efVar.d()) {
                                 i10 = 1;
                             }
                             taVar.P1 = i10;
                             d7 l10 = d7.l(efVar);
                             l10.M0 = bitmap;
-                            l10.J0 = taVar.f15494w0;
-                            l10.K0 = taVar.f15498x0;
+                            l10.J0 = taVar.f15491w0;
+                            l10.K0 = taVar.f15495x0;
                             l10.A();
                             taVar.M1 = true;
                             if (taVar.B0.j()) {
@@ -118,12 +118,12 @@ public final class k9 implements q10 {
                         } else if (obj instanceof d7) {
                             d7 d7Var = (d7) obj;
                             if (d7Var.L == null && !d7Var.v()) {
-                                taVar.f15443f1.c("Failed to load draft");
-                                mp.u1(i11).R1().f12404w.b(d7Var);
+                                taVar.f15440f1.c("Failed to load draft");
+                                mp.u1(i11).R1().f12401w.b(d7Var);
                                 return;
                             }
-                            d7Var.J0 = taVar.f15494w0;
-                            d7Var.K0 = taVar.f15498x0;
+                            d7Var.J0 = taVar.f15491w0;
+                            d7Var.K0 = taVar.f15495x0;
                             taVar.P1 = d7Var.K ? 1 : 0;
                             d7Var.M0 = bitmap;
                             taVar.M1 = false;
@@ -139,8 +139,8 @@ public final class k9 implements q10 {
                     }
                     h3 h3Var = taVar.N0;
                     if (h3Var != null) {
-                        taVar.f15463m2 = h3Var.f14543e.e0();
-                        taVar.f15466n2 = taVar.N0.getSelectedAlbum();
+                        taVar.f15460m2 = h3Var.f14540e.e0();
+                        taVar.f15463n2 = taVar.N0.getSelectedAlbum();
                         return;
                     }
                     return;
@@ -152,15 +152,15 @@ public final class k9 implements q10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
                     if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-                        li.l0.f(new lc((FrameLayout) d0Var.f30192b, d0Var.J0), 2, z11);
-                        d0Var.f19905o1.A(0);
+                        li.l0.f(new lc((FrameLayout) d0Var.f30190b, d0Var.J0), 2, z11);
+                        d0Var.f19902o1.A(0);
                         return;
                     }
-                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30192b, d0Var.J0, tL_error, false);
+                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30190b, d0Var.J0, tL_error, false);
                     return;
                 }
-                li.l0.f(new lc((FrameLayout) d0Var.f30192b, d0Var.J0), 1, z11);
-                d0Var.f19905o1.A(0);
+                li.l0.f(new lc((FrameLayout) d0Var.f30190b, d0Var.J0), 1, z11);
+                d0Var.f19902o1.A(0);
                 return;
             default:
                 ProfileActivity profileActivity = (ProfileActivity) fsVar;

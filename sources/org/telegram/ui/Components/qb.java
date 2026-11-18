@@ -36,12 +36,12 @@ public final class qb implements ui0 {
             int keyAt = rbVar.f39084e.keyAt(i10);
             TLRPC.Message message = new TLRPC.Message();
             message.dialog_id = h2Var.getUserConfig().e();
-            message.f28426id = keyAt;
+            message.f28424id = keyAt;
             org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(h2Var.getCurrentAccount(), message, false, false);
             ArrayList arrayList = new ArrayList();
             arrayList.add(p0Var);
             h2Var.getSendMessagesHelper().s0(fjVar, arrayList, p0Var, false, false, rbVar.f39085f, null);
-            i7 = message.f28426id;
+            i7 = message.f28424id;
         }
         rbVar.f();
         gc.e();

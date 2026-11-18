@@ -53,11 +53,11 @@ public final class f00 extends FrameLayout implements org.telegram.ui.ActionBar.
         view.f34553x = paint3;
         view.f34554y = new Matrix();
         view.E = new Matrix();
-        int i11 = org.telegram.ui.ActionBar.n6.f29742vi;
+        int i11 = org.telegram.ui.ActionBar.n6.f29740vi;
         textPaint.setColor(org.telegram.ui.ActionBar.n6.r1(0.8f, org.telegram.ui.ActionBar.n6.x0(null, i11, false)));
         textPaint.setTextSize(org.telegram.messenger.g0.L(15.33f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        int i12 = org.telegram.ui.ActionBar.n6.f29596o6;
+        int i12 = org.telegram.ui.ActionBar.n6.f29594o6;
         textPaint2.setColor(org.telegram.ui.ActionBar.n6.x0(null, i12, false));
         textPaint2.setTextSize(org.telegram.messenger.g0.L(17.0f));
         textPaint2.setTypeface(org.telegram.messenger.g0.o());
@@ -67,7 +67,7 @@ public final class f00 extends FrameLayout implements org.telegram.ui.ActionBar.
         m6Var.n(0.3f, 250L, lr.h);
         m6Var.setCallback(view);
         m6Var.w(org.telegram.messenger.g0.L(11.66f));
-        m6Var.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+        m6Var.u(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
         m6Var.x(org.telegram.messenger.g0.o());
         m6Var.f37377b = 1;
         int r12 = org.telegram.ui.ActionBar.n6.r1(0.8f, org.telegram.ui.ActionBar.n6.x0(null, i11, false));

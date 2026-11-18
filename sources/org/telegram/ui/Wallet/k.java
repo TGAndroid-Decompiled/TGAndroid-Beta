@@ -4,7 +4,7 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.k80;
-import org.telegram.ui.t60;
+import org.telegram.ui.u60;
 public final class k implements x10 {
     public final int f44427a;
     public final Object f44428b;
@@ -37,7 +37,7 @@ public final class k implements x10 {
             case 2:
                 String str2 = (String) obj;
                 l2.m("approve session", str2);
-                ((t60) obj2).a(str2);
+                ((u60) obj2).a(str2);
                 return;
             case 3:
                 org.telegram.messenger.g0.g3(new c5(7, (r8) obj2, (TLRPC.UserFull) obj));

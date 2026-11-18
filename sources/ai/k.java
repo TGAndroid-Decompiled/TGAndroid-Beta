@@ -26,7 +26,7 @@ public final class k implements Runnable {
                 final float[] fArr = this.f1259b;
                 t[] tVarArr = DictationAsr.f43023a;
                 if (!zArr[0]) {
-                    DictationAsr.Y((t) a0Var.f1704b, new u() {
+                    DictationAsr.Y((t) a0Var.f1705b, new u() {
                         @Override
                         public final void a(boolean z10) {
                             boolean[] zArr2 = zArr;

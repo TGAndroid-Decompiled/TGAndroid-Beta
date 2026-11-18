@@ -4,35 +4,35 @@ import android.os.RemoteException;
 import java.lang.ref.WeakReference;
 import java.util.List;
 public final class bf implements e2.a1 {
-    public final int f23064a = 0;
-    public final Object f23065b;
-    public final Object f23066c;
+    public final int f23061a = 0;
+    public final Object f23062b;
+    public final Object f23063c;
 
     public bf(p4.d0 d0Var, p4.i1 i1Var) {
-        this.f23065b = new WeakReference(d0Var);
-        this.f23066c = new WeakReference(i1Var);
+        this.f23062b = new WeakReference(d0Var);
+        this.f23063c = new WeakReference(i1Var);
     }
 
     @Override
     public final void B(List list) {
-        int i7 = this.f23064a;
+        int i7 = this.f23061a;
     }
 
     @Override
     public final void D(int i7, boolean z10) {
-        int i10 = this.f23064a;
+        int i10 = this.f23061a;
     }
 
     @Override
     public final void E(e2.q1 q1Var) {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         b10.f55194s = b10.f55194s.d(q1Var);
                         b10.f55180c.a(true, true);
                         b10.d(new org.telegram.utils.twidget.f(q1Var, 23));
@@ -46,21 +46,21 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void F(e2.z0 z0Var) {
-        int i7 = this.f23064a;
+        int i7 = this.f23061a;
     }
 
     @Override
     public final void H(e2.w0 w0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i7 = g1Var.f55239b;
@@ -97,19 +97,19 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z10 = false;
                                     a8.la.p(z10);
                                     b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
                                     b10.f55180c.a(true, true);
-                                    p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26236e;
+                                    p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26234e;
                                     m0Var.p0(m0Var.h.f55195t);
                                     return;
                                 }
                             } else {
                                 q1Var = q1Var2;
                             }
-                            p4.m0 m0Var2 = (p4.m0) b10.h.f55328j.f26236e;
+                            p4.m0 m0Var2 = (p4.m0) b10.h.f55328j.f26234e;
                             m0Var2.p0(m0Var2.h.f55195t);
                             return;
                         } catch (RemoteException e10) {
@@ -131,14 +131,14 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void J(int i7, int i10) {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         b10.d(new gh.c(i7, i10, 3));
                         return;
                     }
@@ -150,14 +150,14 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void L(e2.l1 l1Var, int i7) {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    p4.i1 i1Var = (p4.i1) ((WeakReference) this.f23066c).get();
+                    p4.i1 i1Var = (p4.i1) ((WeakReference) this.f23063c).get();
                     if (i1Var != null) {
                         b10.f55194s = b10.f55194s.c(l1Var, i1Var.R0(), i7);
                         b10.f55180c.a(false, true);
@@ -177,19 +177,19 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void M(e2.q0 q0Var) {
-        int i7 = this.f23064a;
+        int i7 = this.f23061a;
     }
 
     @Override
     public final void O(e2.y0 y0Var) {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         b10.f(y0Var);
                         return;
                     }
@@ -202,20 +202,20 @@ public final class bf implements e2.a1 {
     @Override
     public final void P(boolean z10) {
         boolean z11;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
-                l2.p pVar = (l2.p) this.f23065b;
-                cf cfVar = (cf) this.f23066c;
-                a aVar = cfVar.f23350e;
+                l2.p pVar = (l2.p) this.f23062b;
+                cf cfVar = (cf) this.f23063c;
+                a aVar = cfVar.f23347e;
                 if (z10) {
-                    cfVar.f23349c = ((l2.f0) pVar).l();
+                    cfVar.f23346c = ((l2.f0) pVar).l();
                 } else {
                     long l10 = ((l2.f0) pVar).l();
-                    long j3 = cfVar.f23349c;
+                    long j3 = cfVar.f23346c;
                     if (j3 != -9223372036854775807L && l10 > j3) {
                         cf.a(cfVar, j3, l10);
                     }
-                    cfVar.f23349c = -9223372036854775807L;
+                    cfVar.f23346c = -9223372036854775807L;
                 }
                 g0.r(aVar);
                 if (!z10) {
@@ -227,7 +227,7 @@ public final class bf implements e2.a1 {
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i7 = g1Var.f55239b;
@@ -261,7 +261,7 @@ public final class bf implements e2.a1 {
                         long j12 = g1Var.E;
                         e2.s1 s1Var = g1Var.F;
                         e2.q1 q1Var = g1Var.G;
-                        if (!l1Var.p() && n1Var.f55363a.f10338b >= l1Var.o()) {
+                        if (!l1Var.p() && n1Var.f55363a.f10335b >= l1Var.o()) {
                             z11 = false;
                         } else {
                             z11 = true;
@@ -270,7 +270,7 @@ public final class bf implements e2.a1 {
                         b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z12, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z13, z14, i15, i16, i17, z10, z15, o0Var2, j10, j11, j12, s1Var, q1Var);
                         b10.f55180c.a(true, true);
                         try {
-                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26236e;
+                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26234e;
                             m0Var.p0(m0Var.h.f55195t);
                         } catch (RemoteException e10) {
                             h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
@@ -288,7 +288,7 @@ public final class bf implements e2.a1 {
     public final void a(e2.x1 x1Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
@@ -331,7 +331,7 @@ public final class bf implements e2.a1 {
                     try {
                         if (!l1Var.p()) {
                             q1Var = q1Var2;
-                            if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                            if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                 z10 = false;
                                 a8.la.p(z10);
                                 b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -359,21 +359,21 @@ public final class bf implements e2.a1 {
     }
 
     public p4.d0 b() {
-        return (p4.d0) ((WeakReference) this.f23065b).get();
+        return (p4.d0) ((WeakReference) this.f23062b).get();
     }
 
     @Override
     public final void d(int i7) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i10 = g1Var.f55239b;
@@ -410,7 +410,7 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z10 = false;
                                     a8.la.p(z10);
                                     b10.f55194s = new p4.g1(v0Var, i10, n1Var, b1Var, b1Var2, i11, w0Var, i12, z11, x1Var, l1Var, i13, o0Var, f10, f11, eVar, i7, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -444,14 +444,14 @@ public final class bf implements e2.a1 {
     public final void e(int i7) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i10 = g1Var.f55239b;
@@ -488,7 +488,7 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z10 = false;
                                     a8.la.p(z10);
                                     b10.f55194s = new p4.g1(v0Var, i10, n1Var, b1Var, b1Var2, i11, w0Var, i7, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -520,24 +520,24 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void f(boolean z10) {
-        int i7 = this.f23064a;
+        int i7 = this.f23061a;
     }
 
     @Override
     public final void g(int i7) {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         b10.f55194s = g1Var.b(g1Var.f55257w, i7, g1Var.v);
                         b10.f55180c.a(true, true);
                         try {
-                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26236e;
+                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26234e;
                             m0Var.p0(m0Var.h.f55195t);
                             return;
                         } catch (RemoteException e10) {
@@ -553,12 +553,12 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void h(boolean z10) {
-        int i7 = this.f23064a;
+        int i7 = this.f23061a;
     }
 
     @Override
     public final void i(int i7) {
-        int i10 = this.f23064a;
+        int i10 = this.f23061a;
     }
 
     @Override
@@ -568,19 +568,19 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void k(int i7, boolean z10) {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         b10.f55194s = g1Var.b(i7, g1Var.f55260z, z10);
                         b10.f55180c.a(true, true);
                         try {
-                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26236e;
+                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26234e;
                             m0Var.p0(m0Var.h.f55195t);
                             return;
                         } catch (RemoteException e10) {
@@ -598,7 +598,7 @@ public final class bf implements e2.a1 {
     public final void l(float f10) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
@@ -644,7 +644,7 @@ public final class bf implements e2.a1 {
                     try {
                         if (!l1Var.p()) {
                             q1Var = q1Var2;
-                            if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                            if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                 z10 = false;
                                 a8.la.p(z10);
                                 b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -674,14 +674,14 @@ public final class bf implements e2.a1 {
     @Override
     public final void m(int i7) {
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    p4.i1 i1Var = (p4.i1) ((WeakReference) this.f23066c).get();
+                    p4.i1 i1Var = (p4.i1) ((WeakReference) this.f23063c).get();
                     if (i1Var != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 W = i1Var.W();
@@ -721,7 +721,7 @@ public final class bf implements e2.a1 {
                         } else {
                             z10 = false;
                         }
-                        if (l1Var.p() || n1Var.f55363a.f10338b < l1Var.o()) {
+                        if (l1Var.p() || n1Var.f55363a.f10335b < l1Var.o()) {
                             z15 = true;
                         }
                         a8.la.p(z15);
@@ -730,7 +730,7 @@ public final class bf implements e2.a1 {
                         try {
                             pe peVar = b10.h.f55328j;
                             i1Var.W();
-                            p4.m0 m0Var = (p4.m0) peVar.f26236e;
+                            p4.m0 m0Var = (p4.m0) peVar.f26234e;
                             m0Var.p0(m0Var.h.f55195t);
                             return;
                         } catch (RemoteException e10) {
@@ -748,7 +748,7 @@ public final class bf implements e2.a1 {
     public final void n(e2.o0 o0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
@@ -791,7 +791,7 @@ public final class bf implements e2.a1 {
                     try {
                         if (!l1Var.p()) {
                             q1Var = q1Var2;
-                            if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                            if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                 z10 = false;
                                 a8.la.p(z10);
                                 b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -822,14 +822,14 @@ public final class bf implements e2.a1 {
     public final void o(e2.e eVar) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i7 = g1Var.f55239b;
@@ -866,12 +866,12 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z10 = false;
                                     a8.la.p(z10);
                                     b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
                                     b10.f55180c.a(true, true);
-                                    p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26236e;
+                                    p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26234e;
                                     m0Var.h.f55195t.K().getClass();
                                     ((q4.l) m0Var.f55332n.f55826b).f55808a.setPlaybackToLocal(eVar.b());
                                     return;
@@ -879,7 +879,7 @@ public final class bf implements e2.a1 {
                             } else {
                                 q1Var = q1Var2;
                             }
-                            p4.m0 m0Var2 = (p4.m0) b10.h.f55328j.f26236e;
+                            p4.m0 m0Var2 = (p4.m0) b10.h.f55328j.f26234e;
                             m0Var2.h.f55195t.K().getClass();
                             ((q4.l) m0Var2.f55332n.f55826b).f55808a.setPlaybackToLocal(eVar.b());
                             return;
@@ -902,7 +902,7 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
@@ -926,14 +926,14 @@ public final class bf implements e2.a1 {
     public final void p(e2.o0 o0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i7 = g1Var.f55239b;
@@ -970,7 +970,7 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z10 = false;
                                     a8.la.p(z10);
                                     b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var2, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var, j3, j10, j11, s1Var, q1Var);
@@ -1002,26 +1002,26 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void q(e2.v0 v0Var) {
-        int i7 = this.f23064a;
+        int i7 = this.f23061a;
     }
 
     @Override
     public final void s(e2.b1 b1Var, e2.b1 b1Var2, int i7) {
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
-                cf cfVar = (cf) this.f23066c;
+                cf cfVar = (cf) this.f23063c;
                 if (i7 == 1) {
-                    long j3 = cfVar.f23349c;
+                    long j3 = cfVar.f23346c;
                     long j10 = -9223372036854775807L;
                     if (j3 != -9223372036854775807L) {
-                        cf.a(cfVar, j3, b1Var.f10341f);
+                        cf.a(cfVar, j3, b1Var.f10338f);
                     }
-                    if (((com.google.android.gms.common.api.q) ((l2.p) this.f23065b)).h()) {
-                        j10 = b1Var2.f10341f;
+                    if (((com.google.android.gms.common.api.q) ((l2.p) this.f23062b)).h()) {
+                        j10 = b1Var2.f10338f;
                     }
-                    cfVar.f23349c = j10;
-                    g0.r(cfVar.f23350e);
+                    cfVar.f23346c = j10;
+                    g0.r(cfVar.f23347e);
                     return;
                 }
                 return;
@@ -1029,7 +1029,7 @@ public final class bf implements e2.a1 {
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i10 = g1Var.f55239b;
@@ -1061,7 +1061,7 @@ public final class bf implements e2.a1 {
                         long j13 = g1Var.E;
                         e2.s1 s1Var = g1Var.F;
                         e2.q1 q1Var = g1Var.G;
-                        if (!l1Var.p() && n1Var.f55363a.f10338b >= l1Var.o()) {
+                        if (!l1Var.p() && n1Var.f55363a.f10335b >= l1Var.o()) {
                             z10 = false;
                         } else {
                             z10 = true;
@@ -1070,7 +1070,7 @@ public final class bf implements e2.a1 {
                         b10.f55194s = new p4.g1(v0Var, i10, n1Var, b1Var, b1Var2, i7, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j11, j12, j13, s1Var, q1Var);
                         b10.f55180c.a(true, true);
                         try {
-                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26236e;
+                            p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26234e;
                             m0Var.p0(m0Var.h.f55195t);
                             return;
                         } catch (RemoteException e10) {
@@ -1088,14 +1088,14 @@ public final class bf implements e2.a1 {
     public final void t(boolean z10) {
         e2.q1 q1Var;
         boolean z11;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i7 = g1Var.f55239b;
@@ -1132,7 +1132,7 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z11 = false;
                                     a8.la.p(z11);
                                     b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z10, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -1164,14 +1164,14 @@ public final class bf implements e2.a1 {
 
     @Override
     public final void u(e2.s1 s1Var) {
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         b10.f55194s = b10.f55194s.a(s1Var);
                         b10.f55180c.a(true, false);
                         b10.d(new org.telegram.utils.twidget.f(s1Var, 21));
@@ -1187,14 +1187,14 @@ public final class bf implements e2.a1 {
     public final void v(int i7, e2.l0 l0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         p4.n1 n1Var = g1Var.f55240c;
@@ -1231,7 +1231,7 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z10 = false;
                                     a8.la.p(z10);
                                     b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -1265,14 +1265,14 @@ public final class bf implements e2.a1 {
     public final void x(g2.c cVar) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         e2.v0 v0Var = g1Var.f55238a;
                         int i7 = g1Var.f55239b;
@@ -1308,7 +1308,7 @@ public final class bf implements e2.a1 {
                         e2.q1 q1Var2 = g1Var.G;
                         if (!l1Var.p()) {
                             q1Var = q1Var2;
-                            if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                            if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                 z10 = false;
                                 a8.la.p(z10);
                                 b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
@@ -1334,14 +1334,14 @@ public final class bf implements e2.a1 {
     public final void y(e2.v0 v0Var) {
         e2.q1 q1Var;
         boolean z10;
-        switch (this.f23064a) {
+        switch (this.f23061a) {
             case 0:
                 return;
             default:
                 p4.d0 b10 = b();
                 if (b10 != null) {
                     b10.u();
-                    if (((p4.i1) ((WeakReference) this.f23066c).get()) != null) {
+                    if (((p4.i1) ((WeakReference) this.f23063c).get()) != null) {
                         p4.g1 g1Var = b10.f55194s;
                         int i7 = g1Var.f55239b;
                         p4.n1 n1Var = g1Var.f55240c;
@@ -1378,19 +1378,19 @@ public final class bf implements e2.a1 {
                         try {
                             if (!l1Var.p()) {
                                 q1Var = q1Var2;
-                                if (n1Var.f55363a.f10338b >= l1Var.o()) {
+                                if (n1Var.f55363a.f10335b >= l1Var.o()) {
                                     z10 = false;
                                     a8.la.p(z10);
                                     b10.f55194s = new p4.g1(v0Var, i7, n1Var, b1Var, b1Var2, i10, w0Var, i11, z11, x1Var, l1Var, i12, o0Var, f10, f11, eVar, i13, cVar, oVar, i14, z12, z13, i15, i16, i17, z14, z15, o0Var2, j3, j10, j11, s1Var, q1Var);
                                     b10.f55180c.a(true, true);
-                                    p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26236e;
+                                    p4.m0 m0Var = (p4.m0) b10.h.f55328j.f26234e;
                                     m0Var.p0(m0Var.h.f55195t);
                                     return;
                                 }
                             } else {
                                 q1Var = q1Var2;
                             }
-                            p4.m0 m0Var2 = (p4.m0) b10.h.f55328j.f26236e;
+                            p4.m0 m0Var2 = (p4.m0) b10.h.f55328j.f26234e;
                             m0Var2.p0(m0Var2.h.f55195t);
                             return;
                         } catch (RemoteException e10) {
@@ -1411,8 +1411,8 @@ public final class bf implements e2.a1 {
     }
 
     public bf(cf cfVar, l2.p pVar) {
-        this.f23066c = cfVar;
-        this.f23065b = pVar;
+        this.f23063c = cfVar;
+        this.f23062b = pVar;
     }
 
     private final void h0() {

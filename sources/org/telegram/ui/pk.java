@@ -34,7 +34,7 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
         switch (this.N0) {
             case 2:
                 super.onAttachedToWindow();
-                ((jm0) this.O0).f49010s.a();
+                ((jm0) this.O0).f48987s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
         switch (this.N0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((jm0) this.O0).f49010s.b();
+                ((jm0) this.O0).f48987s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -127,7 +127,7 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
                 super.setTranslationY(f10);
                 bn bnVar = (bn) this.O0;
                 if (this == bnVar.S2[0] && bnVar.W2[1] != null) {
-                    if (bnVar.f45966c5 && f10 < 0.0f) {
+                    if (bnVar.f45957c5 && f10 < 0.0f) {
                         bnVar.O2.setTranslationY(f10 / 2.0f);
                         return;
                     } else {

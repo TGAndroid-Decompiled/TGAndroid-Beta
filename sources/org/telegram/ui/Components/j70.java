@@ -12,8 +12,8 @@ public abstract class j70 extends org.telegram.ui.ActionBar.x2 {
 
     public j70(Context context, TLRPC.Chat chat) {
         super(context, true);
-        this.f30230w0 = false;
-        this.f30228v0 = false;
+        this.f30228w0 = false;
+        this.f30226v0 = false;
         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
         this.O = g10;
         q9 q9Var = new q9(context);
@@ -22,21 +22,21 @@ public abstract class j70 extends org.telegram.ui.ActionBar.x2 {
         q9Var.f(chat, new b9(chat));
         TextView textView = new TextView(context);
         org.telegram.messenger.n10.p(textView, 1, 18.0f);
-        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29504j5, null);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29502j5, null);
         textView.setGravity(1);
         TextView f10 = org.telegram.messenger.n10.f(g10, textView, c8.ma.t(-2, -2, 49, 17, 24, 17, 0), context);
         f10.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.u6.U(f10, org.telegram.ui.ActionBar.n6.f29654r5, null);
+        org.telegram.ui.ActionBar.u6.U(f10, org.telegram.ui.ActionBar.n6.f29652r5, null);
         f10.setGravity(1);
         g10.addView(f10, c8.ma.t(-2, -2, 49, 30, 8, 30, 0));
-        org.telegram.messenger.t3 i12 = org.telegram.messenger.mp.u1(org.telegram.messenger.c.a(this.f30189a).f23221a).i1(chat.f28405id, false, null);
+        org.telegram.messenger.t3 i12 = org.telegram.messenger.mp.u1(org.telegram.messenger.c.a(this.f30187a).f23218a).i1(chat.f28403id, false, null);
         if (i12 != null) {
-            if (TextUtils.isEmpty(i12.f26937b.title)) {
+            if (TextUtils.isEmpty(i12.f26935b.title)) {
                 textView.setText(chat.title);
             } else {
-                textView.setText(i12.f26937b.title);
+                textView.setText(i12.f26935b.title);
             }
-            int i7 = i12.f26937b.participants_count;
+            int i7 = i12.f26935b.participants_count;
             if (i7 == 0) {
                 f10.setText(org.telegram.messenger.gd.M0(2131747994, null));
             } else {

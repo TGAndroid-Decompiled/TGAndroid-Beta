@@ -41,7 +41,7 @@ public final class w8 implements View.OnClickListener {
             case 0:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (Context) obj3, i6Var);
                 String M0 = gd.M0(2131742900, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = gd.M0(2131742901, null);
                 alertDialog$Builder.h(gd.M0(2131752578, null), null);
@@ -104,10 +104,10 @@ public final class w8 implements View.OnClickListener {
                     textView2.setText(u8.c0(g9Var.f44278s));
                     textView2.setPadding(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(12.0f));
                     textView2.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
-                    int i11 = org.telegram.ui.ActionBar.n6.f29339a7;
+                    int i11 = org.telegram.ui.ActionBar.n6.f29337a7;
                     int w02 = org.telegram.ui.ActionBar.n6.w0(i11, i6Var2);
                     int w03 = org.telegram.ui.ActionBar.n6.w0(i11, i6Var2);
-                    int i12 = org.telegram.ui.ActionBar.n6.f29488i6;
+                    int i12 = org.telegram.ui.ActionBar.n6.f29486i6;
                     org.telegram.ui.Cells.y b02 = org.telegram.ui.ActionBar.n6.b0(w02, org.telegram.ui.ActionBar.n6.w(w03, org.telegram.ui.ActionBar.n6.w0(i12, i6Var2)), 10, 10);
                     org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i11);
                     org.telegram.ui.ActionBar.q6 p10 = org.telegram.ui.ActionBar.u6.p(i11, i12);

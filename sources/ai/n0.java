@@ -436,7 +436,7 @@ public final class n0 implements a2 {
         Drawable backgroundImage;
         if (!this.f1365f0) {
             this.f1365f0 = true;
-            ArrayList arrayList = t0.f1543g;
+            ArrayList arrayList = t0.f1544g;
             a3.l lVar = this.f1363e0;
             if (!arrayList.contains(lVar)) {
                 arrayList.add(lVar);
@@ -472,7 +472,7 @@ public final class n0 implements a2 {
             }
         } catch (Throwable unused) {
         }
-        int i16 = n6.f29396d6;
+        int i16 = n6.f29394d6;
         i6 i6Var = this.f1372n;
         int w02 = n6.w0(i16, i6Var);
         boolean c10 = s0.c(w02);
@@ -851,7 +851,7 @@ public final class n0 implements a2 {
         if (z02 != fVar) {
             c6 c6Var2 = null;
             if (fVar != null) {
-                fVar.f17780f = null;
+                fVar.f17777f = null;
             }
             this.f1356a0 = z02;
             if (z02 != null) {
@@ -867,13 +867,13 @@ public final class n0 implements a2 {
         }
         jh.f fVar2 = this.f1356a0;
         if (fVar2 != null) {
-            fVar2.f17780f = new a0(this, 2);
+            fVar2.f17777f = new a0(this, 2);
             dh.c cVar = qfVar.f38784a.J1;
-            if (cVar != null && (gVar = fVar2.f17781n) != null && (aVar = gVar.f11674w) != null) {
+            if (cVar != null && (gVar = fVar2.f17778n) != null && (aVar = gVar.f11671w) != null) {
                 fh.g c10 = cVar.c(this.f1384w, aVar, false);
-                fh.g c11 = cVar.c(this.f1384w, this.f1356a0.f17781n.f11674w, false);
+                fh.g c11 = cVar.c(this.f1384w, this.f1356a0.f17778n.f11671w, false);
                 k1 k1Var = this.f1384w;
-                fh.g c12 = cVar.c(k1Var, this.f1356a0.f17781n.f11674w, false);
+                fh.g c12 = cVar.c(k1Var, this.f1356a0.f17778n.f11671w, false);
                 k1Var.I = c10;
                 k1Var.J = c11;
                 k1Var.K = c12;
@@ -881,7 +881,7 @@ public final class n0 implements a2 {
                 c11.r(org.telegram.messenger.g0.L(18.0f));
                 c12.r(org.telegram.messenger.g0.L(18.0f));
                 k1 k1Var2 = this.f1384w;
-                k1Var2.setGearGlass(cVar.c(k1Var2, this.f1356a0.f17781n.f11674w, false));
+                k1Var2.setGearGlass(cVar.c(k1Var2, this.f1356a0.f17778n.f11671w, false));
                 q0 q0Var4 = this.f1379s;
                 if (q0Var4 != null) {
                     q0Var4.setStopGlass(cVar.c(q0Var4, new qb.a(2), false));
@@ -983,10 +983,10 @@ public final class n0 implements a2 {
     public final boolean k(RectF rectF) {
         fh.g gVar;
         jh.f fVar = this.f1356a0;
-        if (fVar == null || (gVar = fVar.f17781n) == null) {
+        if (fVar == null || (gVar = fVar.f17778n) == null) {
             return false;
         }
-        Rect rect = gVar.R.f11649m;
+        Rect rect = gVar.R.f11646m;
         if (rect.isEmpty()) {
             return false;
         }

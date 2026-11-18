@@ -56,7 +56,7 @@ public final class gb0 implements Runnable {
                 ((ee0) this.f35452b).h = null;
                 return;
             case 8:
-                ee0 ee0Var = (ee0) ((ji.j) this.f35452b).f17949c;
+                ee0 ee0Var = (ee0) ((ji.j) this.f35452b).f17946c;
                 ee0Var.d.q0(ee0Var.f34684e, false);
                 return;
             case 9:
@@ -159,13 +159,13 @@ public final class gb0 implements Runnable {
                 org.telegram.messenger.w7.G(i7).P(arrayList2);
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     org.telegram.messenger.w7.G(i7);
-                    if (org.telegram.messenger.w7.M(((org.telegram.messenger.fj) arrayList.get(i10)).f23968k, false, true).exists()) {
+                    if (org.telegram.messenger.w7.M(((org.telegram.messenger.fj) arrayList.get(i10)).f23965k, false, true).exists()) {
                         arrayList3.add((org.telegram.messenger.fj) arrayList.get(i10));
                     }
                 }
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     org.telegram.messenger.w7.G(i7);
-                    if (!org.telegram.messenger.w7.M(((org.telegram.messenger.fj) arrayList2.get(i11)).f23968k, false, true).exists()) {
+                    if (!org.telegram.messenger.w7.M(((org.telegram.messenger.fj) arrayList2.get(i11)).f23965k, false, true).exists()) {
                         arrayList4.add((org.telegram.messenger.fj) arrayList2.get(i11));
                     }
                 }
@@ -190,9 +190,9 @@ public final class gb0 implements Runnable {
                 ((ym0) this.f35452b).getClass();
                 return;
             case 26:
-                org.telegram.ui.Cells.q1 q1Var = ((bn0) this.f35452b).f33737n;
-                if (q1Var != null) {
-                    q1Var.invalidate();
+                org.telegram.ui.Cells.r1 r1Var = ((bn0) this.f35452b).f33737n;
+                if (r1Var != null) {
+                    r1Var.invalidate();
                     return;
                 }
                 return;
@@ -209,11 +209,11 @@ public final class gb0 implements Runnable {
                 hi.k1[] k1VarArr = cp0Var.f34148a;
                 if (cp0Var.f34149b != 1) {
                     for (hi.k1 k1Var : k1VarArr) {
-                        org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14854e;
+                        org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) k1Var.f14851e;
                         n5Var.setAlpha(1.0f);
                         n5Var.setScaleX(1.0f);
                         n5Var.setScaleY(1.0f);
-                        ((org.telegram.ui.ActionBar.n5) k1Var.f14855f).setAlpha(0.0f);
+                        ((org.telegram.ui.ActionBar.n5) k1Var.f14852f).setAlpha(0.0f);
                     }
                     cp0Var.F = false;
                     org.telegram.messenger.g0.h3(cp0Var.H, 4000L);
@@ -221,8 +221,8 @@ public final class gb0 implements Runnable {
                 }
                 cp0Var.F = !cp0Var.F;
                 for (hi.k1 k1Var2 : k1VarArr) {
-                    org.telegram.ui.ActionBar.n5 n5Var2 = (org.telegram.ui.ActionBar.n5) k1Var2.f14854e;
-                    org.telegram.ui.ActionBar.n5 n5Var3 = (org.telegram.ui.ActionBar.n5) k1Var2.f14855f;
+                    org.telegram.ui.ActionBar.n5 n5Var2 = (org.telegram.ui.ActionBar.n5) k1Var2.f14851e;
+                    org.telegram.ui.ActionBar.n5 n5Var3 = (org.telegram.ui.ActionBar.n5) k1Var2.f14852f;
                     n5Var2.setPivotX(0.0f);
                     n5Var3.setPivotX(0.0f);
                     if (cp0Var.F) {

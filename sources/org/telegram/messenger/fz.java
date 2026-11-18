@@ -4,18 +4,18 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.logging.Level;
 public final class fz {
-    public final ArrayList f24090a;
+    public final ArrayList f24087a;
 
     public fz() {
         File file = new File(System.getProperty("java.io.tmpdir"));
         if (!file.exists()) {
             file.mkdirs();
         }
-        this.f24090a = new ArrayList();
+        this.f24087a = new ArrayList();
     }
 
     public void a() {
-        ArrayList arrayList = this.f24090a;
+        ArrayList arrayList = this.f24087a;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -36,6 +36,6 @@ public final class fz {
     }
 
     public fz(ArrayList arrayList) {
-        this.f24090a = arrayList;
+        this.f24087a = arrayList;
     }
 }

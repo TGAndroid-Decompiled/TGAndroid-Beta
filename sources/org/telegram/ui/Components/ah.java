@@ -23,7 +23,7 @@ public final class ah extends e6 {
         if (gVar != null) {
             gVar.updateColors();
         }
-        Color.alpha(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+        Color.alpha(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
         invalidate();
     }
 
@@ -78,11 +78,11 @@ public final class ah extends e6 {
             View view2 = ((d6) i13.f57666a).f34281a;
             float min = Math.min(1.0f, i13.f57668c.f57683a) * i13.c();
             if (min > 0.0f && (!z10 || (fragmentContextView = this.f33348y) == null || (fragmentContextView != view2 && fragmentContextView.getParent() != view2))) {
-                int alpha = org.telegram.ui.ActionBar.n6.f29519k0.getAlpha();
-                org.telegram.ui.ActionBar.n6.f29519k0.setAlpha((int) (alpha * min));
+                int alpha = org.telegram.ui.ActionBar.n6.f29517k0.getAlpha();
+                org.telegram.ui.ActionBar.n6.f29517k0.setAlpha((int) (alpha * min));
                 float f10 = 1.0f - min;
-                canvas2.drawLine(getPaddingLeft() + (org.telegram.messenger.g0.L(16.0f) * f10), paddingTop2, getWidth() - ((org.telegram.messenger.g0.L(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.n6.f29519k0);
-                org.telegram.ui.ActionBar.n6.f29519k0.setAlpha(alpha);
+                canvas2.drawLine(getPaddingLeft() + (org.telegram.messenger.g0.L(16.0f) * f10), paddingTop2, getWidth() - ((org.telegram.messenger.g0.L(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.n6.f29517k0);
+                org.telegram.ui.ActionBar.n6.f29517k0.setAlpha(alpha);
             }
             i12++;
             canvas2 = canvas;

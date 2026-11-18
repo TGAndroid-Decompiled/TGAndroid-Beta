@@ -16,28 +16,28 @@ import org.telegram.ui.Components.o5;
 import org.telegram.ui.Components.x5;
 import org.telegram.ui.r11;
 public final class n extends r11 {
-    public boolean f5428f2;
-    public final p f5429g2;
+    public boolean f5425f2;
+    public final p f5426g2;
 
     public n(p pVar, p pVar2, Activity activity, i6 i6Var, int i7) {
         super(pVar2, activity, false, null, 6, false, i6Var, 16, i7);
-        this.f5429g2 = pVar;
-        this.f5428f2 = true;
+        this.f5426g2 = pVar;
+        this.f5425f2 = true;
         setDrawBackground(false);
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        if (this.f5428f2) {
-            this.f5428f2 = false;
-            this.f5429g2.f5463b.s(null);
+        if (this.f5425f2) {
+            this.f5425f2 = false;
+            this.f5426g2.f5460b.s(null);
         }
     }
 
     @Override
     public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        p pVar = this.f5429g2;
+        p pVar = this.f5426g2;
         int i7 = pVar.O;
         ArrayList arrayList = pVar.J;
         LinkedHashMap linkedHashMap = pVar.I;
@@ -46,7 +46,7 @@ public final class n extends r11 {
             x5 x5Var = (x5) linkedHashMap.remove(l10);
             x5Var.setRemoved(new c1.c(3, this, x5Var));
             pVar.c0(x5Var);
-            pVar.f5463b.x(l10, true);
+            pVar.f5460b.x(l10, true);
             pVar.e0(false);
         } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i7) {
             lc.b0(pVar).t(gd.G(i7, "ReactionMaxCountError", new Object[0]), null).j();
@@ -62,7 +62,7 @@ public final class n extends r11 {
                 spannableString.setSpan(e10, 0, spannableString.length(), 33);
                 pVar.h.getText().insert(editTextSelectionEnd, spannableString);
                 pVar.h.setSelection(editTextSelectionEnd + spannableString.length());
-                pVar.f5463b.x(l10, true);
+                pVar.f5460b.x(l10, true);
                 pVar.e0(true);
                 pVar.c0(e10);
             } catch (Exception e11) {

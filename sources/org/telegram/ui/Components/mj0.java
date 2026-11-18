@@ -20,7 +20,7 @@ public final class mj0 extends v4.o0 implements eh.a {
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        aVar.f8372a = true;
+        aVar.f8369a = true;
     }
 
     @Override

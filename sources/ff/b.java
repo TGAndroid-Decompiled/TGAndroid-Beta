@@ -5,14 +5,14 @@ import gf.g;
 import java.util.ArrayList;
 import kf.p;
 public final class b extends mf.a {
-    public final ArrayList f11611c;
+    public final ArrayList f11608c;
     public final ArrayList d;
-    public final ef.a f11609a = new p();
-    public final ArrayList f11610b = new ArrayList();
-    public boolean f11612e = true;
+    public final ef.a f11606a = new p();
+    public final ArrayList f11607b = new ArrayList();
+    public boolean f11609e = true;
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f11611c = arrayList;
+        this.f11608c = arrayList;
         this.d = arrayList2;
     }
 
@@ -52,16 +52,16 @@ public final class b extends mf.a {
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.f11612e) {
-            this.f11612e = false;
+        if (this.f11609e) {
+            this.f11609e = false;
         } else {
-            this.f11610b.add(charSequence);
+            this.f11607b.add(charSequence);
         }
     }
 
     @Override
     public final kf.a e() {
-        return this.f11609a;
+        return this.f11606a;
     }
 
     @Override
@@ -71,13 +71,13 @@ public final class b extends mf.a {
         ArrayList arrayList2 = this.d;
         int size = arrayList2.size();
         ?? pVar = new p();
-        ?? r32 = this.f11609a;
+        ?? r32 = this.f11606a;
         r32.b(pVar);
         ?? pVar2 = new p();
         pVar.b(pVar2);
         int i7 = 0;
         while (true) {
-            arrayList = this.f11611c;
+            arrayList = this.f11608c;
             if (i7 >= size) {
                 break;
             }
@@ -87,11 +87,11 @@ public final class b extends mf.a {
                 pVar3.h = (c) arrayList.get(i7);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f10960g = true;
+            pVar3.f10957g = true;
             pVar2.b(pVar3);
             i7++;
         }
-        ArrayList arrayList3 = this.f11610b;
+        ArrayList arrayList3 = this.f11607b;
         int size2 = arrayList3.size();
         ?? r52 = 0;
         int i10 = 0;
@@ -124,8 +124,8 @@ public final class b extends mf.a {
 
     @Override
     public final gf.a h(g gVar) {
-        if (gVar.f13549a.toString().contains("|")) {
-            return gf.a.a(gVar.f13550b);
+        if (gVar.f13546a.toString().contains("|")) {
+            return gf.a.a(gVar.f13547b);
         }
         return null;
     }

@@ -116,7 +116,7 @@ public class RadioButton extends View {
             f33088x.setColor(rgb);
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float f13 = (this.h / 2) - ((f10 + 1.0f) * org.telegram.messenger.g0.f24120p);
+        float f13 = (this.h / 2) - ((f10 + 1.0f) * org.telegram.messenger.g0.f24117p);
         canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f13, f33086s);
         if (this.f33095r == null) {
             if (this.f33091c <= 0.5f) {

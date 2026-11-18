@@ -1,6 +1,6 @@
 package dg;
 public abstract class a {
-    public float f8362a = 1.0f;
+    public float f8359a = 1.0f;
 
     public abstract short a();
 

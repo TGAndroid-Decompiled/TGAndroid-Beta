@@ -108,12 +108,12 @@ public final class ze0 extends xj0 {
             TLRPC.PollAnswer pollAnswer = poll.answers.get(i11);
             if (Arrays.equals(pollAnswer.option, cf0Var.d) && ((af0) df0Var.f34429w1.get(cf0Var)) != null) {
                 TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (fjVar != null && fjVar.L2 && (message = fjVar.f23968k) != null && message.translatedPoll != null) {
+                if (fjVar != null && fjVar.L2 && (message = fjVar.f23965k) != null && message.translatedPoll != null) {
                     while (true) {
-                        if (i10 >= fjVar.f23968k.translatedPoll.f27628b.size()) {
+                        if (i10 >= fjVar.f23965k.translatedPoll.f27626b.size()) {
                             break;
                         }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) fjVar.f23968k.translatedPoll.f27628b.get(i10);
+                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) fjVar.f23965k.translatedPoll.f27626b.get(i10);
                         if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
                             tL_textWithEntities = pollAnswer2.text;
                             break;
@@ -161,13 +161,13 @@ public final class ze0 extends xj0 {
         TLRPC.Poll poll = df0Var.f34426t1;
         ArrayList arrayList2 = df0Var.f34430x1;
         org.telegram.messenger.fj fjVar = df0Var.f34425s1;
-        int i11 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        int i11 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         int i12 = 0;
         if (i11 != 2) {
             if (i11 == 3) {
                 cf0 cf0Var = (cf0) arrayList2.get(i7 - 1);
-                ((org.telegram.ui.Cells.m8) view).o(2131230871, org.telegram.messenger.gd.G(cf0Var.f33986a - cf0Var.b(), "ShowVotes", new Object[0]), false);
+                ((org.telegram.ui.Cells.n8) view).o(2131230871, org.telegram.messenger.gd.G(cf0Var.f33986a - cf0Var.b(), "ShowVotes", new Object[0]), false);
                 return;
             }
             return;
@@ -182,12 +182,12 @@ public final class ze0 extends xj0 {
             TLRPC.PollAnswer pollAnswer = poll.answers.get(i13);
             if (Arrays.equals(pollAnswer.option, bArr) && ((af0) df0Var.f34429w1.get(cf0Var2)) != null) {
                 TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (fjVar != null && fjVar.L2 && (message = fjVar.f23968k) != null && message.translatedPoll != null) {
+                if (fjVar != null && fjVar.L2 && (message = fjVar.f23965k) != null && message.translatedPoll != null) {
                     while (true) {
-                        if (i12 >= fjVar.f23968k.translatedPoll.f27628b.size()) {
+                        if (i12 >= fjVar.f23965k.translatedPoll.f27626b.size()) {
                             break;
                         }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) fjVar.f23968k.translatedPoll.f27628b.get(i12);
+                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) fjVar.f23965k.translatedPoll.f27626b.get(i12);
                         if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
                             tL_textWithEntities = pollAnswer2.text;
                             break;
@@ -215,35 +215,35 @@ public final class ze0 extends xj0 {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.m8 m8Var;
+        org.telegram.ui.Cells.n8 n8Var;
         df0 df0Var = this.f42881s;
         View view = df0Var.f34431y1;
         Context context = this.f42880r;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
-                    org.telegram.ui.Cells.m8 m8Var2 = new org.telegram.ui.Cells.m8(23, context, true);
-                    m8Var2.setOffsetFromImage(65);
-                    org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29469h5, m8Var2, df0Var.J0);
-                    m8Var2.g(org.telegram.ui.ActionBar.n6.N6, org.telegram.ui.ActionBar.n6.f29636q6);
-                    m8Var = m8Var2;
+                    org.telegram.ui.Cells.n8 n8Var2 = new org.telegram.ui.Cells.n8(23, context, true);
+                    n8Var2.setOffsetFromImage(65);
+                    org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29467h5, n8Var2, df0Var.J0);
+                    n8Var2.g(org.telegram.ui.ActionBar.n6.N6, org.telegram.ui.ActionBar.n6.f29634q6);
+                    n8Var = n8Var2;
                 } else {
                     View ye0Var = new ye0(this, context);
                     ye0Var.setTag(-33024);
-                    m8Var = ye0Var;
+                    n8Var = ye0Var;
                 }
             } else {
                 ViewParent parent = view.getParent();
-                m8Var = view;
+                n8Var = view;
                 if (parent != null) {
                     ((ViewGroup) view.getParent()).removeView(view);
-                    m8Var = view;
+                    n8Var = view;
                 }
             }
         } else {
-            m8Var = new PollVotesAlert$UserCell(df0Var, context);
+            n8Var = new PollVotesAlert$UserCell(df0Var, context);
         }
-        return new v4.f1(m8Var);
+        return new v4.f1(n8Var);
     }
 
     @Override
@@ -251,15 +251,15 @@ public final class ze0 extends xj0 {
         boolean z10;
         TLRPC.Chat chat;
         boolean z11;
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             int b10 = f1Var.b();
             int S = S(b10);
             int Q = Q(b10) - 1;
-            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) f1Var.f59122a;
+            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) f1Var.f59123a;
             df0 df0Var = this.f42881s;
             cf0 cf0Var = (cf0) df0Var.f34430x1.get(S - 1);
             TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) cf0Var.f33987b.get(Q);
-            TLObject g22 = org.telegram.messenger.mp.u1(df0Var.f30189a).g2(org.telegram.messenger.n5.o(messagePeerVote.peer));
+            TLObject g22 = org.telegram.messenger.mp.u1(df0Var.f30187a).g2(org.telegram.messenger.n5.o(messagePeerVote.peer));
             int i7 = messagePeerVote.date;
             boolean z12 = true;
             if (Q == cf0Var.b() - 1 && TextUtils.isEmpty(cf0Var.f33988c) && !cf0Var.f33989e) {
@@ -327,9 +327,9 @@ public final class ze0 extends xj0 {
                 xu0 xu0Var = pollVotesAlert$UserCell.f33016f;
                 TLRPC.User user3 = pollVotesAlert$UserCell.h;
                 TLRPC.Chat chat4 = pollVotesAlert$UserCell.f33017n;
-                int i10 = org.telegram.ui.ActionBar.n6.f29810z9;
+                int i10 = org.telegram.ui.ActionBar.n6.f29808z9;
                 df0 df0Var2 = pollVotesAlert$UserCell.F;
-                org.telegram.ui.Cells.o8 o8Var = df0.M1;
+                org.telegram.ui.Cells.p8 p8Var = df0.M1;
                 n5Var.i(xu0Var.b(user3, chat4, org.telegram.ui.ActionBar.n6.w0(i10, df0Var2.J0), z11));
                 TLRPC.Chat chat5 = pollVotesAlert$UserCell.f33017n;
                 if (chat5 != null) {

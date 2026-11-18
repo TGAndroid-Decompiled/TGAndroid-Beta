@@ -3,34 +3,34 @@ package hi;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 public final class g6 implements CameraView.CameraViewDelegate, CameraController.VideoTakeCallback {
-    public final j6 f14697a;
+    public final j6 f14694a;
 
     public g6(j6 j6Var) {
-        this.f14697a = j6Var;
+        this.f14694a = j6Var;
     }
 
     @Override
     public void onCameraInit() {
-        j6 j6Var = this.f14697a;
-        i6 i6Var = j6Var.f14813a;
-        if (j6Var.f14815c > 0) {
+        j6 j6Var = this.f14694a;
+        i6 i6Var = j6Var.f14810a;
+        if (j6Var.f14812c > 0) {
             return;
         }
-        CameraController.getInstance().recordVideo(i6Var.getCameraSessionObject(), j6Var.f14814b, false, new g6(j6Var), new f6(j6Var, 1), i6Var, true);
+        CameraController.getInstance().recordVideo(i6Var.getCameraSessionObject(), j6Var.f14811b, false, new g6(j6Var), new f6(j6Var, 1), i6Var, true);
     }
 
     @Override
     public void onFinishVideoRecording(String str, long j3) {
         long currentTimeMillis = System.currentTimeMillis();
-        j6 j6Var = this.f14697a;
+        j6 j6Var = this.f14694a;
         j6Var.d = currentTimeMillis;
         org.telegram.messenger.g0.r(j6Var.h);
-        if (!j6Var.f14823y) {
+        if (!j6Var.f14820y) {
             if (j3 > 1000) {
-                j6Var.f14813a.destroy(true, null);
-                fi.b0 b0Var = j6Var.f14818n;
+                j6Var.f14810a.destroy(true, null);
+                fi.b0 b0Var = j6Var.f14815n;
                 if (b0Var != null) {
-                    b0Var.a(j6Var.f14814b, str, Long.valueOf(j3));
+                    b0Var.a(j6Var.f14811b, str, Long.valueOf(j3));
                     return;
                 }
                 return;

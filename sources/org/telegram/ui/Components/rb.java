@@ -30,7 +30,7 @@ public final class rb extends ob implements org.telegram.messenger.fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.f25154m3) {
+        if (i7 == org.telegram.messenger.ks.f25152m3) {
             this.f39084e = (SparseLongArray) objArr[0];
         }
     }
@@ -38,8 +38,8 @@ public final class rb extends ob implements org.telegram.messenger.fs {
     public final void f() {
         if (this.d.getReactionsWindow() != null) {
             this.d.e();
-            if (this.d.getReactionsWindow().f5297a != null) {
-                this.d.getReactionsWindow().f5297a.animate().alpha(0.0f).setDuration(180L).start();
+            if (this.d.getReactionsWindow().f5294a != null) {
+                this.d.getReactionsWindow().f5294a.animate().alpha(0.0f).setDuration(180L).start();
             }
         }
     }
@@ -52,13 +52,13 @@ public final class rb extends ob implements org.telegram.messenger.fs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.ks.f(org.telegram.messenger.j10.f24773t0).c(this, org.telegram.messenger.ks.f25154m3);
+        org.telegram.messenger.ks.f(org.telegram.messenger.j10.f24770t0).c(this, org.telegram.messenger.ks.f25152m3);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ks.f(org.telegram.messenger.j10.f24773t0).n(this, org.telegram.messenger.ks.f25154m3);
+        org.telegram.messenger.ks.f(org.telegram.messenger.j10.f24770t0).n(this, org.telegram.messenger.ks.f25152m3);
     }
 
     public void setBulletin(gc gcVar) {

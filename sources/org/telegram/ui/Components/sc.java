@@ -36,7 +36,7 @@ public final class sc extends Drawable {
                 if (chatActivityEnterView.V0 != null) {
                     paint.setAlpha(Math.round(chatActivityEnterView.f32666q4 * 102.0f));
                     float width = chatActivityEnterView.getWidth();
-                    float y10 = (chatActivityEnterView.V0.getY() - chatActivityEnterView.getHeight()) + org.telegram.ui.ActionBar.n6.f29485i3.getIntrinsicHeight();
+                    float y10 = (chatActivityEnterView.V0.getY() - chatActivityEnterView.getHeight()) + org.telegram.ui.ActionBar.n6.f29483i3.getIntrinsicHeight();
                     gf gfVar = chatActivityEnterView.F0;
                     if (gfVar == null) {
                         offsetY = 0.0f;
@@ -78,8 +78,8 @@ public final class sc extends Drawable {
                 int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
                 int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
                 int A = (int) com.google.android.gms.internal.vision.e2.A(imageReceiver.N0, intrinsicWidth, 2.0f, imageReceiver.L0);
-                int interpolation = (int) ((((imageReceiver.O0 / 2.0f) - intrinsicHeight) + imageReceiver.M0) - ((1.0f - lr.f37212k.getInterpolation(imageReceiver.f22644i1)) * org.telegram.messenger.g0.L(16.0f)));
-                drawable.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f22644i1 * 5.0f) * 255.0f));
+                int interpolation = (int) ((((imageReceiver.O0 / 2.0f) - intrinsicHeight) + imageReceiver.M0) - ((1.0f - lr.f37212k.getInterpolation(imageReceiver.f22641i1)) * org.telegram.messenger.g0.L(16.0f)));
+                drawable.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f22641i1 * 5.0f) * 255.0f));
                 drawable.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
                 drawable.draw(canvas);
                 return;

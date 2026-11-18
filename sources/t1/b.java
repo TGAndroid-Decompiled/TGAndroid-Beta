@@ -20,7 +20,7 @@ public final class b extends InputConnectionWrapper {
         s sVar = new s(24);
         this.f57524a = editText;
         this.f57525b = sVar;
-        if (l.f2251j != null) {
+        if (l.f2252j != null) {
             l a10 = l.a();
             if (a10.b() != 1 || editorInfo == null) {
                 return;
@@ -28,10 +28,10 @@ public final class b extends InputConnectionWrapper {
             if (editorInfo.extras == null) {
                 editorInfo.extras = new Bundle();
             }
-            androidx.emoji2.text.f fVar = a10.f2255e;
+            androidx.emoji2.text.f fVar = a10.f2256e;
             fVar.getClass();
             Bundle bundle = editorInfo.extras;
-            s1.b bVar = (s1.b) ((c0) fVar.f2243c).f908b;
+            s1.b bVar = (s1.b) ((c0) fVar.f2244c).f908b;
             int a11 = bVar.a(4);
             if (a11 != 0) {
                 i7 = ((ByteBuffer) bVar.d).getInt(a11 + bVar.f56292a);

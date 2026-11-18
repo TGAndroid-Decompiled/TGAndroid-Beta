@@ -18,45 +18,45 @@ public final class iu extends zt implements y5 {
     public final TLRPC.Document X;
     public final RadialProgress2 Y;
     public final ImageReceiver Z;
-    public final Paint f24716a0;
-    public final TextPaint f24717b0;
-    public final TextPaint f24718c0;
-    public StaticLayout f24719d0;
-    public StaticLayout f24720e0;
-    public final int f24721f0;
-    public final int f24722g0;
-    public final int f24723h0;
-    public final int f24724i0;
-    public final RectF f24725j0;
-    public final boolean f24726k0;
-    public int f24727l0;
+    public final Paint f24713a0;
+    public final TextPaint f24714b0;
+    public final TextPaint f24715c0;
+    public StaticLayout f24716d0;
+    public StaticLayout f24717e0;
+    public final int f24718f0;
+    public final int f24719g0;
+    public final int f24720h0;
+    public final int f24721i0;
+    public final RectF f24722j0;
+    public final boolean f24723k0;
+    public int f24724l0;
     public boolean m0;
-    public boolean f24728n0;
-    public int f24729o0;
-    public final int f24730p0;
+    public boolean f24725n0;
+    public int f24726o0;
+    public final int f24727p0;
 
     public iu(ev evVar, Rect rect, int i7, TL_iv.pageBlockDocument pageblockdocument) {
         super(evVar, rect, i7);
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.Z = imageReceiver;
-        this.f24716a0 = new Paint(1);
-        this.f24717b0 = new TextPaint(1);
-        this.f24718c0 = new TextPaint(1);
+        this.f24713a0 = new Paint(1);
+        this.f24714b0 = new TextPaint(1);
+        this.f24715c0 = new TextPaint(1);
         int L = g0.L(16.0f);
-        this.f24721f0 = L;
+        this.f24718f0 = L;
         int L2 = g0.L(9.0f);
         int L3 = g0.L(42.0f);
-        this.f24723h0 = L3;
-        this.f24724i0 = g0.L(14.0f);
-        this.f24725j0 = new RectF();
-        this.f24729o0 = -1;
+        this.f24720h0 = L3;
+        this.f24721i0 = g0.L(14.0f);
+        this.f24722j0 = new RectF();
+        this.f24726o0 = -1;
         TLRPC.Document s5 = evVar.s(pageblockdocument.document_id);
         this.X = s5;
         int L4 = g0.L(10.0f) + evVar.S;
-        this.f24722g0 = L4;
+        this.f24719g0 = L4;
         boolean W2 = fj.W2(s5);
-        this.f24726k0 = W2;
-        this.f24730p0 = a6.q(evVar.f23770a).k();
+        this.f24723k0 = W2;
+        this.f24727p0 = a6.q(evVar.f23767a).k();
         RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
         this.Y = radialProgress2;
         radialProgress2.setCircleRadius(L3 / 2);
@@ -68,7 +68,7 @@ public final class iu extends zt implements y5 {
         if (W2) {
             TLRPC.PhotoSize w10 = w7.w(s5.thumbs, 320, false, null, true);
             imageReceiver.y0(L4, g0.L(10.0f), g0.L(86.0f), g0.L(86.0f));
-            imageReceiver.q0(w10 != null ? fc.c(w10, s5) : null, "86_86", ec.m(s5.thumbs), null, evVar.f23771b, 1);
+            imageReceiver.q0(w10 != null ? fc.c(w10, s5) : null, "86_86", ec.m(s5.thumbs), null, evVar.f23768b, 1);
         }
         k0();
         l0(false);
@@ -82,9 +82,9 @@ public final class iu extends zt implements y5 {
     @Override
     public final int I() {
         float f10;
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         int i7 = rect.top;
-        if (this.f24726k0) {
+        if (this.f24723k0) {
             f10 = 106.0f;
         } else {
             f10 = 60.0f;
@@ -96,21 +96,21 @@ public final class iu extends zt implements y5 {
     public final int J() {
         int i7;
         int i10;
-        boolean z10 = this.f24726k0;
-        ev evVar = this.f28351a;
+        boolean z10 = this.f24723k0;
+        ev evVar = this.f28349a;
         if (z10) {
-            i10 = g0.L(86.0f) + (this.f24722g0 - evVar.S);
+            i10 = g0.L(86.0f) + (this.f24719g0 - evVar.S);
         } else {
-            StaticLayout staticLayout = this.f24720e0;
+            StaticLayout staticLayout = this.f24717e0;
             if (staticLayout != null && staticLayout.getLineCount() > 0) {
-                StaticLayout staticLayout2 = this.f24720e0;
+                StaticLayout staticLayout2 = this.f24717e0;
                 i7 = (int) Math.ceil(staticLayout2.getLineWidth(staticLayout2.getLineCount() - 1));
             } else {
                 i7 = 0;
             }
-            i10 = (this.f24721f0 - evVar.S) + this.f24723h0 + this.f24724i0 + i7;
+            i10 = (this.f24718f0 - evVar.S) + this.f24720h0 + this.f24721i0 + i7;
         }
-        Rect rect = this.f28352b;
+        Rect rect = this.f28350b;
         return rect.left + i10 + rect.right;
     }
 
@@ -128,14 +128,14 @@ public final class iu extends zt implements y5 {
         if (document != null) {
             str = g0.i0(document.size, false, false);
         }
-        int ceil = (int) Math.ceil(Math.max(this.f24717b0.measureText(B), this.f24718c0.measureText(str)));
-        if (this.f24726k0) {
+        int ceil = (int) Math.ceil(Math.max(this.f24714b0.measureText(B), this.f24715c0.measureText(str)));
+        if (this.f24723k0) {
             i7 = g0.L(107.0f);
         } else {
-            i7 = this.f24721f0 + this.f24723h0 + this.f24724i0;
+            i7 = this.f24718f0 + this.f24720h0 + this.f24721i0;
         }
-        int min = Math.min(this.f28353c, Math.max(g0.L(220.0f), g0.L(48.0f) + i7 + ceil));
-        Rect rect = this.f28352b;
+        int min = Math.min(this.f28351c, Math.max(g0.L(220.0f), g0.L(48.0f) + i7 + ceil));
+        Rect rect = this.f28350b;
         return rect.left + min + rect.right;
     }
 
@@ -160,7 +160,7 @@ public final class iu extends zt implements y5 {
     @Override
     public final void V() {
         this.Z.R();
-        a6.q(this.f28351a.f23770a).v(this);
+        a6.q(this.f28349a.f23767a).v(this);
     }
 
     @Override
@@ -168,30 +168,30 @@ public final class iu extends zt implements y5 {
         int i7;
         int i10;
         int i11;
-        org.telegram.ui.Cells.q1 q1Var;
-        org.telegram.ui.Cells.l1 l1Var;
+        org.telegram.ui.Cells.r1 r1Var;
+        org.telegram.ui.Cells.m1 m1Var;
         int i12;
         TLRPC.Document document = this.X;
         if (document == null) {
             return;
         }
-        if (this.f24729o0 != i0()) {
+        if (this.f24726o0 != i0()) {
             k0();
         }
         canvas.save();
-        ev evVar = this.f28351a;
+        ev evVar = this.f28349a;
         canvas.translate(-evVar.S, 0.0f);
         Drawable drawable = null;
-        boolean z10 = this.f24726k0;
-        int i13 = this.f24722g0;
+        boolean z10 = this.f24723k0;
+        int i13 = this.f24719g0;
         if (z10 && !this.Z.h(canvas, null)) {
             if (evVar.E()) {
-                i12 = org.telegram.ui.ActionBar.n6.f29813zc;
+                i12 = org.telegram.ui.ActionBar.n6.f29811zc;
             } else {
-                i12 = org.telegram.ui.ActionBar.n6.f29776xe;
+                i12 = org.telegram.ui.ActionBar.n6.f29774xe;
             }
             int w02 = org.telegram.ui.ActionBar.n6.w0(i12, evVar.D);
-            Paint paint = this.f24716a0;
+            Paint paint = this.f24713a0;
             paint.setColor(w02);
             canvas.drawRoundRect(i13, g0.L(10.0f), g0.L(86.0f) + i13, g0.L(96.0f), g0.L(6.0f), g0.L(6.0f), paint);
         }
@@ -199,33 +199,33 @@ public final class iu extends zt implements y5 {
         if (evVar.E()) {
             i7 = org.telegram.ui.ActionBar.n6.wc;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.f29720ue;
+            i7 = org.telegram.ui.ActionBar.n6.f29718ue;
         }
-        this.f24717b0.setColor(org.telegram.ui.ActionBar.n6.w0(i7, evVar.D));
+        this.f24714b0.setColor(org.telegram.ui.ActionBar.n6.w0(i7, evVar.D));
         if (evVar.E()) {
-            i10 = org.telegram.ui.ActionBar.n6.f29511jc;
+            i10 = org.telegram.ui.ActionBar.n6.f29509jc;
         } else {
-            i10 = org.telegram.ui.ActionBar.n6.f29422ee;
+            i10 = org.telegram.ui.ActionBar.n6.f29420ee;
         }
-        this.f24718c0.setColor(org.telegram.ui.ActionBar.n6.w0(i10, evVar.D));
+        this.f24715c0.setColor(org.telegram.ui.ActionBar.n6.w0(i10, evVar.D));
         if (z10) {
             i11 = g0.L(97.0f) + i13;
         } else {
-            i11 = this.f24721f0 + this.f24723h0 + this.f24724i0;
+            i11 = this.f24718f0 + this.f24720h0 + this.f24721i0;
         }
         int L = g0.L(11.0f);
         int L2 = g0.L(2.0f);
         canvas.save();
         float f10 = i11;
         canvas.translate(f10, L);
-        this.f24719d0.draw(canvas);
+        this.f24716d0.draw(canvas);
         canvas.restore();
         canvas.save();
-        canvas.translate(f10, L2 + this.f24719d0.getHeight() + L);
-        this.f24720e0.draw(canvas);
+        canvas.translate(f10, L2 + this.f24716d0.getHeight() + L);
+        this.f24717e0.draw(canvas);
         canvas.restore();
-        RectF rectF = this.f24725j0;
-        if (document != null && (q1Var = evVar.E) != null && (l1Var = evVar.F) != null && l1Var.d0(q1Var)) {
+        RectF rectF = this.f24722j0;
+        if (document != null && (r1Var = evVar.E) != null && (m1Var = evVar.F) != null && m1Var.d0(r1Var)) {
             if (evVar.E()) {
                 org.telegram.ui.ActionBar.i6 i6Var = evVar.D;
                 if (i6Var != null) {
@@ -235,9 +235,9 @@ public final class iu extends zt implements y5 {
                     drawable = org.telegram.ui.ActionBar.n6.R0("drawableMsgOutMenu");
                 }
             } else {
-                drawable = org.telegram.ui.ActionBar.n6.f29376c4;
+                drawable = org.telegram.ui.ActionBar.n6.f29374c4;
             }
-            int L3 = (this.f24729o0 + this.f28352b.right) - g0.L(32.0f);
+            int L3 = (this.f24726o0 + this.f28350b.right) - g0.L(32.0f);
             int L4 = g0.L(7.0f);
             drawable.setBounds(L3, L4, drawable.getIntrinsicWidth() + L3, drawable.getIntrinsicHeight() + L4);
             drawable.draw(canvas);
@@ -255,7 +255,7 @@ public final class iu extends zt implements y5 {
 
     @Override
     public final int getObserverTag() {
-        return this.f24730p0;
+        return this.f24727p0;
     }
 
     @Override
@@ -267,17 +267,17 @@ public final class iu extends zt implements y5 {
             min = Math.min(1.0f, ((float) j3) / ((float) j10));
         }
         this.Y.p(true, min);
-        if (this.f24727l0 != 2) {
+        if (this.f24724l0 != 2) {
             l0(true);
         }
     }
 
     public final int i0() {
-        ev evVar = this.f28351a;
+        ev evVar = this.f28349a;
         int i7 = evVar.C;
-        int i10 = this.f28353c;
+        int i10 = this.f28351c;
         if (i7 > 0) {
-            Rect rect = this.f28352b;
+            Rect rect = this.f28350b;
             i10 = Math.min(i10, Math.max(0, (i7 - rect.left) - rect.right));
         }
         return i10 + evVar.S + evVar.T;
@@ -288,13 +288,13 @@ public final class iu extends zt implements y5 {
         if (document == null) {
             return null;
         }
-        ev evVar = this.f28351a;
-        w7.G(evVar.f23770a);
+        ev evVar = this.f28349a;
+        w7.G(evVar.f23767a);
         File J = w7.J(document, null, false, true);
         if (J != null && J.exists()) {
             return J;
         }
-        w7.G(evVar.f23770a);
+        w7.G(evVar.f23767a);
         return w7.J(document, null, true, true);
     }
 
@@ -302,21 +302,21 @@ public final class iu extends zt implements y5 {
         int i7;
         int i10;
         String B;
-        this.f24729o0 = i0();
-        if (this.f24726k0) {
+        this.f24726o0 = i0();
+        if (this.f24723k0) {
             i7 = g0.L(97.0f);
-            i10 = this.f24722g0;
+            i10 = this.f24719g0;
         } else {
-            i7 = this.f24721f0 + this.f24723h0;
-            i10 = this.f24724i0;
+            i7 = this.f24718f0 + this.f24720h0;
+            i10 = this.f24721i0;
         }
         int i11 = i7 + i10;
-        int d = i5.c.d(48.0f, this.f24729o0 - i11, g0.L(40.0f));
-        ev evVar = this.f28351a;
-        TextPaint textPaint = this.f24717b0;
+        int d = i5.c.d(48.0f, this.f24726o0 - i11, g0.L(40.0f));
+        ev evVar = this.f28349a;
+        TextPaint textPaint = this.f24714b0;
         textPaint.setTextSize(g0.L(evVar.M - 1));
         textPaint.setTypeface(g0.o());
-        this.f24718c0.setTextSize(g0.L(evVar.M - 3));
+        this.f24715c0.setTextSize(g0.L(evVar.M - 3));
         String str = "";
         TLRPC.Document document = this.X;
         if (document == null) {
@@ -326,11 +326,11 @@ public final class iu extends zt implements y5 {
         }
         CharSequence ellipsize = TextUtils.ellipsize(B, textPaint, d, TextUtils.TruncateAt.END);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.f24719d0 = new StaticLayout(ellipsize, this.f24717b0, d, alignment, 1.0f, 0.0f, false);
+        this.f24716d0 = new StaticLayout(ellipsize, this.f24714b0, d, alignment, 1.0f, 0.0f, false);
         if (document != null) {
             str = g0.i0(document.size, false, false);
         }
-        this.f24720e0 = new StaticLayout(str, this.f24718c0, d, alignment, 1.0f, 0.0f, false);
+        this.f24717e0 = new StaticLayout(str, this.f24715c0, d, alignment, 1.0f, 0.0f, false);
     }
 
     public final void l0(boolean z10) {
@@ -339,11 +339,11 @@ public final class iu extends zt implements y5 {
         int i11;
         int i12;
         int i13;
-        ev evVar = this.f28351a;
+        ev evVar = this.f28349a;
         RadialProgress2 radialProgress2 = this.Y;
-        boolean z11 = this.f24726k0;
+        boolean z11 = this.f24723k0;
         if (z11) {
-            radialProgress2.g(org.telegram.ui.ActionBar.n6.f29387cf, org.telegram.ui.ActionBar.n6.f29404df, org.telegram.ui.ActionBar.n6.f29423ef, org.telegram.ui.ActionBar.n6.f29440ff);
+            radialProgress2.g(org.telegram.ui.ActionBar.n6.f29385cf, org.telegram.ui.ActionBar.n6.f29402df, org.telegram.ui.ActionBar.n6.f29421ef, org.telegram.ui.ActionBar.n6.f29438ff);
             radialProgress2.d = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Yd, evVar.D);
         } else {
             if (evVar.E()) {
@@ -354,23 +354,23 @@ public final class iu extends zt implements y5 {
             if (evVar.E()) {
                 i10 = org.telegram.ui.ActionBar.n6.Fc;
             } else {
-                i10 = org.telegram.ui.ActionBar.n6.f29347af;
+                i10 = org.telegram.ui.ActionBar.n6.f29345af;
             }
             if (evVar.E()) {
                 i11 = org.telegram.ui.ActionBar.n6.Gb;
             } else {
-                i11 = org.telegram.ui.ActionBar.n6.f29550ld;
+                i11 = org.telegram.ui.ActionBar.n6.f29548ld;
             }
             if (evVar.E()) {
                 i12 = org.telegram.ui.ActionBar.n6.Hb;
             } else {
-                i12 = org.telegram.ui.ActionBar.n6.f29566md;
+                i12 = org.telegram.ui.ActionBar.n6.f29564md;
             }
             radialProgress2.g(i7, i10, i11, i12);
             if (evVar.E()) {
-                i13 = org.telegram.ui.ActionBar.n6.f29718uc;
+                i13 = org.telegram.ui.ActionBar.n6.f29716uc;
             } else {
-                i13 = org.telegram.ui.ActionBar.n6.f29681se;
+                i13 = org.telegram.ui.ActionBar.n6.f29679se;
             }
             radialProgress2.d = org.telegram.ui.ActionBar.n6.w0(i13, evVar.D);
         }
@@ -378,17 +378,17 @@ public final class iu extends zt implements y5 {
         File j02 = j0();
         int i14 = 4;
         if (j02 != null && j02.exists()) {
-            a6.q(evVar.f23770a).v(this);
-            this.f24727l0 = 0;
+            a6.q(evVar.f23767a).v(this);
+            this.f24724l0 = 0;
             if (!z11) {
                 i14 = 5;
             }
             radialProgress2.setIcon(i14, false, z10);
         } else if (!TextUtils.isEmpty(r10)) {
-            a6.q(evVar.f23770a).a(r10, null, this);
+            a6.q(evVar.f23767a).a(r10, null, this);
             float f10 = 0.0f;
-            if (w7.G(evVar.f23770a).S(r10)) {
-                this.f24727l0 = 2;
+            if (w7.G(evVar.f23767a).S(r10)) {
+                this.f24724l0 = 2;
                 Float w10 = ec.D().w(r10);
                 if (w10 != null) {
                     f10 = w10.floatValue();
@@ -396,7 +396,7 @@ public final class iu extends zt implements y5 {
                 radialProgress2.p(z10, f10);
                 radialProgress2.setIcon(3, true, z10);
             } else {
-                this.f24727l0 = 1;
+                this.f24724l0 = 1;
                 radialProgress2.p(z10, 0.0f);
                 radialProgress2.setIcon(2, false, z10);
             }

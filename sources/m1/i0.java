@@ -3,22 +3,22 @@ package m1;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class i0 implements a {
-    public final File f20360a;
-    public final y0 f20361b;
-    public final m0 f20362c;
+    public final File f20357a;
+    public final y0 f20358b;
+    public final m0 f20359c;
     public final androidx.lifecycle.k0 d;
-    public final AtomicBoolean f20363e;
-    public final ie.d f20364f;
+    public final AtomicBoolean f20360e;
+    public final ie.d f20361f;
 
     public i0(File file, y0 serializer, m0 coordinator, androidx.lifecycle.k0 k0Var) {
         kotlin.jvm.internal.j.e(serializer, "serializer");
         kotlin.jvm.internal.j.e(coordinator, "coordinator");
-        this.f20360a = file;
-        this.f20361b = serializer;
-        this.f20362c = coordinator;
+        this.f20357a = file;
+        this.f20358b = serializer;
+        this.f20359c = coordinator;
         this.d = k0Var;
-        this.f20363e = new AtomicBoolean(false);
-        this.f20364f = new ie.d();
+        this.f20360e = new AtomicBoolean(false);
+        this.f20361f = new ie.d();
     }
 
     public final java.lang.Object a(m1.n r8, kd.c r9) {
@@ -31,7 +31,7 @@ public final class i0 implements a {
 
     @Override
     public final void close() {
-        this.f20363e.set(true);
+        this.f20360e.set(true);
         this.d.invoke();
     }
 }

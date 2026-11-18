@@ -15,7 +15,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.bn;
 import org.telegram.ui.ne;
-import org.telegram.ui.t60;
+import org.telegram.ui.u60;
 public final class p implements Runnable {
     public final int f44728a;
     public final Object f44729b;
@@ -92,7 +92,7 @@ public final class p implements Runnable {
             case 4:
                 h2 h2Var = (h2) obj3;
                 hi.d dVar = (hi.d) obj;
-                if (!((bi.h6) obj2).canScrollVertically(1)) {
+                if (!((bi.g6) obj2).canScrollVertically(1)) {
                     h2Var.f44302p = true;
                 }
                 if (!h2Var.f44302p || h2Var.f44299m || h2Var.f44300n) {
@@ -106,7 +106,7 @@ public final class p implements Runnable {
                 l2Var.getClass();
                 k kVar = new k((x10) obj, 1);
                 if (tonconnectsession != null && tonconnectsession.dapp_client_id != null && tonconnectsession.client_id != null && tonconnectsession.nonce != null) {
-                    if (!l2Var.f44481c.add(Long.valueOf(tonconnectsession.f28667id))) {
+                    if (!l2Var.f44481c.add(Long.valueOf(tonconnectsession.f28665id))) {
                         kVar.a("A TON Connect operation is already in progress");
                         return;
                     }
@@ -143,7 +143,7 @@ public final class p implements Runnable {
                 l2 l2Var3 = (l2) obj2;
                 g2 g2Var = (g2) obj3;
                 l2Var3.getClass();
-                k kVar2 = new k((t60) obj, 2);
+                k kVar2 = new k((u60) obj, 2);
                 TL_wallet.tonConnectSession tonconnectsession3 = g2Var.f44250e;
                 if (!tonconnectsession3.closed && !tonconnectsession3.closing && tonconnectsession3.manifest_error == null && tonconnectsession3.manifest != null) {
                     if (g2Var.f44251f) {
@@ -159,7 +159,7 @@ public final class p implements Runnable {
             case 8:
                 boolean[] zArr = (boolean[]) obj3;
                 w2 w2Var = (w2) obj;
-                z2.f45342a.remove((bi.d5) obj2);
+                z2.f45342a.remove((bi.c5) obj2);
                 if (!zArr[0]) {
                     zArr[0] = true;
                     lc.c0(gd.M0(2131742701, null));
@@ -292,7 +292,7 @@ public final class p implements Runnable {
                 d9 d9Var = (d9) obj3;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, d9Var.getParentActivity(), d9Var.getResourceProvider());
                 String M0 = gd.M0(2131742893, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = gd.M0(2131742896, null);
                 alertDialog$Builder.h(gd.M0(2131752578, null), null);

@@ -5,42 +5,42 @@ import java.io.Closeable;
 import java.util.HashMap;
 import java.util.Locale;
 public class ia implements Closeable {
-    public static final HashMap f61606f = new HashMap();
-    public int f61607a;
-    public long f61608b;
-    public long f61609c;
+    public static final HashMap f61607f = new HashMap();
+    public int f61608a;
+    public long f61609b;
+    public long f61610c;
     public long d = 2147483647L;
-    public long f61610e = -2147483648L;
+    public long f61611e = -2147483648L;
 
     public ia(String str) {
     }
 
     public void a() {
-        this.f61608b = SystemClock.elapsedRealtimeNanos() / 1000;
+        this.f61609b = SystemClock.elapsedRealtimeNanos() / 1000;
     }
 
     public void b(long j3) {
         long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos() / 1000;
-        long j10 = this.f61609c;
+        long j10 = this.f61610c;
         if (j10 != 0 && elapsedRealtimeNanos - j10 >= 1000000) {
-            this.f61607a = 0;
-            this.f61608b = 0L;
+            this.f61608a = 0;
+            this.f61609b = 0L;
             this.d = 2147483647L;
-            this.f61610e = -2147483648L;
+            this.f61611e = -2147483648L;
         }
-        this.f61609c = elapsedRealtimeNanos;
-        this.f61607a++;
+        this.f61610c = elapsedRealtimeNanos;
+        this.f61608a++;
         this.d = Math.min(this.d, j3);
-        this.f61610e = Math.max(this.f61610e, j3);
-        if (this.f61607a % 50 == 0) {
+        this.f61611e = Math.max(this.f61611e, j3);
+        if (this.f61608a % 50 == 0) {
             Locale locale = Locale.US;
             qa.b();
         }
-        if (this.f61607a % 500 == 0) {
-            this.f61607a = 0;
-            this.f61608b = 0L;
+        if (this.f61608a % 500 == 0) {
+            this.f61608a = 0;
+            this.f61609b = 0L;
             this.d = 2147483647L;
-            this.f61610e = -2147483648L;
+            this.f61611e = -2147483648L;
         }
     }
 
@@ -50,7 +50,7 @@ public class ia implements Closeable {
 
     @Override
     public void close() {
-        long j3 = this.f61608b;
+        long j3 = this.f61609b;
         if (j3 != 0) {
             c(j3);
             return;

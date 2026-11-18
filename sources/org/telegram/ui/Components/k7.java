@@ -158,7 +158,7 @@ public final class k7 implements Runnable {
                 z12 = 0;
             }
             TLRPC.User c22 = h2Var.getMessagesController().c2(Long.valueOf(B1));
-            if (c22.f28554id != h2Var.getUserConfig().e()) {
+            if (c22.f28552id != h2Var.getUserConfig().e()) {
                 String lowerCase2 = org.telegram.messenger.o10.q(c22).toLowerCase();
                 String S02 = org.telegram.messenger.gd.E0().S0(lowerCase2, z11, z12);
                 if (lowerCase2.equals(S02)) {
@@ -219,7 +219,7 @@ public final class k7 implements Runnable {
         zr0Var.d = arrayList;
         zr0Var.f42941r--;
         if (!org.telegram.messenger.v3.T(zr0Var.f42940n)) {
-            ArrayList arrayList3 = zr0Var.f42938e.f17735g;
+            ArrayList arrayList3 = zr0Var.f42938e.f17732g;
             arrayList3.clear();
             arrayList3.addAll(arrayList2);
         }

@@ -7,7 +7,7 @@ public final class z30 extends e4.b {
 
     public z30() {
         super(2131624183);
-        this.f42759g = GLES20.glGetUniformLocation(this.f10820a, "bTexture");
-        this.h = GLES20.glGetUniformLocation(this.f10820a, "center");
+        this.f42759g = GLES20.glGetUniformLocation(this.f10817a, "bTexture");
+        this.h = GLES20.glGetUniformLocation(this.f10817a, "center");
     }
 }

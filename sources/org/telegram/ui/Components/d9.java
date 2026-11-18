@@ -106,10 +106,10 @@ public final class d9 {
                             if (i10 == i11) {
                                 c9 c9Var3 = c9VarArr2[i10];
                                 c9Var3.f33931i = -1;
-                                org.telegram.ui.Cells.e4 e4Var = c9Var3.f33926b;
+                                org.telegram.ui.Cells.f4 f4Var = c9Var3.f33926b;
                                 c9 c9Var4 = c9VarArr[i10];
                                 c9Var3.f33926b = c9Var4.f33926b;
-                                c9Var4.f33926b = e4Var;
+                                c9Var4.f33926b = f4Var;
                             } else {
                                 c9 c9Var5 = c9VarArr2[i10];
                                 c9Var5.f33931i = 2;
@@ -299,7 +299,7 @@ public final class d9 {
                 user = null;
             }
             if (this.f34311k == 4) {
-                if (B1 == org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i10).f23221a).e()) {
+                if (B1 == org.telegram.messenger.j10.i(org.telegram.messenger.c.a(i10).f23218a).e()) {
                     c9VarArr[i7].d = 0L;
                 } else if (this.f34313m) {
                     c9VarArr[i7].d = groupCallParticipant.lastActiveDate;
@@ -321,7 +321,7 @@ public final class d9 {
                 b9Var.f33601p = 1.0f;
                 b9Var.r(user2);
             }
-            c9VarArr[i7].f33930g = user2.f28554id;
+            c9VarArr[i7].f33930g = user2.f28552id;
             user = user2;
             chat = null;
         } else if (tLObject instanceof TLRPC.Chat) {
@@ -330,7 +330,7 @@ public final class d9 {
             b9 b9Var2 = c9VarArr[i7].f33925a;
             b9Var2.f33601p = 1.0f;
             b9Var2.q(chat);
-            c9VarArr[i7].f33930g = -chat.f28405id;
+            c9VarArr[i7].f33930g = -chat.f28403id;
             user = null;
         } else {
             user = null;
@@ -339,7 +339,7 @@ public final class d9 {
         int b10 = b();
         if (tLObject instanceof TL_stories.StoryItem) {
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject;
-            c9VarArr[i7].f33930g = storyItem.f28644id;
+            c9VarArr[i7].f33930g = storyItem.f28642id;
             TLRPC.MessageMedia messageMedia = storyItem.media;
             TLRPC.Document document = messageMedia.document;
             if (document != null) {

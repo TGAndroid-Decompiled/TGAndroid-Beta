@@ -9,26 +9,26 @@ import android.view.Choreographer;
 import android.view.Surface;
 import h2.l0;
 public final class x {
-    public final l f7764a;
-    public final c0 f7765b;
-    public final long f7766c;
+    public final l f7761a;
+    public final c0 f7762b;
+    public final long f7763c;
     public boolean d;
-    public long f7769g;
-    public boolean f7771j;
-    public boolean f7774m;
-    public boolean f7775n;
-    public int f7767e = 0;
-    public long f7768f = -9223372036854775807L;
+    public long f7766g;
+    public boolean f7768j;
+    public boolean f7771m;
+    public boolean f7772n;
+    public int f7764e = 0;
+    public long f7765f = -9223372036854775807L;
     public long h = -9223372036854775807L;
-    public long f7770i = -9223372036854775807L;
-    public float f7772k = 1.0f;
-    public h2.g0 f7773l = h2.g0.f13763a;
-    public final boolean f7776o = true;
+    public long f7767i = -9223372036854775807L;
+    public float f7769k = 1.0f;
+    public h2.g0 f7770l = h2.g0.f13760a;
+    public final boolean f7773o = true;
 
     public x(Context context, l lVar, long j3) {
-        this.f7764a = lVar;
-        this.f7766c = j3;
-        this.f7765b = new c0(context);
+        this.f7761a = lVar;
+        this.f7763c = j3;
+        this.f7762b = new c0(context);
     }
 
     public final int a(long r31, long r33, long r35, long r37, boolean r39, boolean r40, d3.w r41) {
@@ -36,43 +36,43 @@ public final class x {
     }
 
     public final boolean b(boolean z10) {
-        if (z10 && (this.f7767e == 3 || (this.f7775n && (!this.f7774m || !this.f7776o)))) {
-            this.f7770i = -9223372036854775807L;
+        if (z10 && (this.f7764e == 3 || (this.f7772n && (!this.f7771m || !this.f7773o)))) {
+            this.f7767i = -9223372036854775807L;
             return true;
-        } else if (this.f7770i == -9223372036854775807L) {
+        } else if (this.f7767i == -9223372036854775807L) {
             return false;
         } else {
-            this.f7773l.getClass();
-            if (SystemClock.elapsedRealtime() < this.f7770i) {
+            this.f7770l.getClass();
+            if (SystemClock.elapsedRealtime() < this.f7767i) {
                 return true;
             }
-            this.f7770i = -9223372036854775807L;
+            this.f7767i = -9223372036854775807L;
             return false;
         }
     }
 
     public final void c(boolean z10) {
         long j3;
-        this.f7771j = z10;
-        long j10 = this.f7766c;
+        this.f7768j = z10;
+        long j10 = this.f7763c;
         if (j10 > 0) {
-            this.f7773l.getClass();
+            this.f7770l.getClass();
             j3 = SystemClock.elapsedRealtime() + j10;
         } else {
             j3 = -9223372036854775807L;
         }
-        this.f7770i = j3;
+        this.f7767i = j3;
     }
 
     public final void d() {
         z zVar;
         this.d = true;
-        this.f7773l.getClass();
-        this.f7769g = l0.S(SystemClock.elapsedRealtime());
-        c0 c0Var = this.f7765b;
+        this.f7770l.getClass();
+        this.f7766g = l0.S(SystemClock.elapsedRealtime());
+        c0 c0Var = this.f7762b;
         c0Var.d = true;
         c0Var.b();
-        DisplayManager displayManager = (DisplayManager) c0Var.f7638b.getSystemService("display");
+        DisplayManager displayManager = (DisplayManager) c0Var.f7635b.getSystemService("display");
         z zVar2 = null;
         if (displayManager != null) {
             try {
@@ -87,7 +87,7 @@ public final class x {
                 h2.a.m("VideoFrameReleaseHelper", "Vsync sampling disabled due to platform error", e10);
             }
         }
-        c0Var.f7639c = zVar2;
+        c0Var.f7636c = zVar2;
         if (zVar2 != null) {
             zVar2.a();
         }
@@ -98,28 +98,28 @@ public final class x {
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
-                    this.f7767e = Math.min(this.f7767e, 2);
+                    this.f7764e = Math.min(this.f7764e, 2);
                 } else {
                     throw new IllegalStateException();
                 }
             } else {
-                this.f7767e = 0;
+                this.f7764e = 0;
             }
         } else {
-            this.f7767e = 1;
+            this.f7764e = 1;
         }
-        this.f7765b.b();
+        this.f7762b.b();
     }
 
     public final void f(float f10) {
-        c0 c0Var = this.f7765b;
-        c0Var.f7641f = f10;
-        g gVar = c0Var.f7637a;
-        gVar.f7687a.c();
-        gVar.f7688b.c();
-        gVar.f7689c = false;
+        c0 c0Var = this.f7762b;
+        c0Var.f7638f = f10;
+        g gVar = c0Var.f7634a;
+        gVar.f7684a.c();
+        gVar.f7685b.c();
+        gVar.f7686c = false;
         gVar.d = -9223372036854775807L;
-        gVar.f7690e = 0;
+        gVar.f7687e = 0;
         c0Var.c();
     }
 
@@ -130,15 +130,15 @@ public final class x {
         } else {
             z10 = false;
         }
-        this.f7774m = z10;
-        this.f7775n = false;
-        c0 c0Var = this.f7765b;
-        if (c0Var.f7640e != surface) {
+        this.f7771m = z10;
+        this.f7772n = false;
+        c0 c0Var = this.f7762b;
+        if (c0Var.f7637e != surface) {
             c0Var.a();
-            c0Var.f7640e = surface;
+            c0Var.f7637e = surface;
             c0Var.d(true);
         }
-        this.f7767e = Math.min(this.f7767e, 1);
+        this.f7764e = Math.min(this.f7764e, 1);
     }
 
     public final void h(float f10) {
@@ -149,12 +149,12 @@ public final class x {
             z10 = false;
         }
         la.f(z10);
-        if (f10 == this.f7772k) {
+        if (f10 == this.f7769k) {
             return;
         }
-        this.f7772k = f10;
-        c0 c0Var = this.f7765b;
-        c0Var.f7643i = f10;
+        this.f7769k = f10;
+        c0 c0Var = this.f7762b;
+        c0Var.f7640i = f10;
         c0Var.d(false);
     }
 }

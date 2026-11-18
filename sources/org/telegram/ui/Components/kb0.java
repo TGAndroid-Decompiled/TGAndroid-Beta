@@ -24,7 +24,7 @@ public abstract class kb0 extends au0 implements r0.l, View.OnLayoutChangeListen
 
     @Override
     public final void k(int i7, View view) {
-        this.f36720g0.f10687a = 0;
+        this.f36720g0.f10684a = 0;
         org.telegram.ui.ActionBar.u2 u2Var = this.f36723j0;
         if (u2Var != null) {
             u2Var.onStopNestedScroll(view);
@@ -84,7 +84,7 @@ public abstract class kb0 extends au0 implements r0.l, View.OnLayoutChangeListen
 
     @Override
     public final void r(View view, View view2, int i7, int i10) {
-        this.f36720g0.f10687a = i7;
+        this.f36720g0.f10684a = i7;
     }
 
     @Override
@@ -101,7 +101,7 @@ public abstract class kb0 extends au0 implements r0.l, View.OnLayoutChangeListen
                     if (L0 != -1) {
                         v4.f1 K = listView.K(L0);
                         if (K != null) {
-                            i12 = K.f59122a.getTop();
+                            i12 = K.f59123a.getTop();
                         }
                         int paddingTop = listView.getPaddingTop();
                         if (i12 != paddingTop || L0 != 0) {

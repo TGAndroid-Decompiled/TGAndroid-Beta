@@ -29,7 +29,7 @@ public final class iq0 extends tg.s1 {
         Path path = this.f48780t0;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(this.f58121n0, org.telegram.messenger.g0.L(this.f58125r0), org.telegram.messenger.g0.L(this.f58125r0), direction);
+        path.addRoundRect(this.f58122n0, org.telegram.messenger.g0.L(this.f58126r0), org.telegram.messenger.g0.L(this.f58126r0), direction);
         canvas.clipPath(path);
         canvas.translate(-getX(), -getY());
         PhotoViewer photoViewer = this.f48783w0;

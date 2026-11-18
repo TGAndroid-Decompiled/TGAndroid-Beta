@@ -11,15 +11,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bb0;
 import org.telegram.ui.Components.mh0;
 public final class tb implements Runnable {
-    public Thread f26977a;
-    public final Object f26978b = new Object();
-    public final sb f26979c;
+    public Thread f26975a;
+    public final Object f26976b = new Object();
+    public final sb f26977c;
     public boolean d;
-    public final ec f26980e;
+    public final ec f26978e;
 
     public tb(ec ecVar, sb sbVar) {
-        this.f26980e = ecVar;
-        this.f26979c = sbVar;
+        this.f26978e = ecVar;
+        this.f26977c = sbVar;
     }
 
     public static Bitmap a(Bitmap bitmap, TLRPC.WallPaper wallPaper) {
@@ -130,13 +130,13 @@ public final class tb implements Runnable {
     public final void run() {
         try {
             d();
-            synchronized (this.f26978b) {
-                this.f26977a = null;
+            synchronized (this.f26976b) {
+                this.f26975a = null;
             }
             Thread.interrupted();
         } catch (Throwable th2) {
-            synchronized (this.f26978b) {
-                this.f26977a = null;
+            synchronized (this.f26976b) {
+                this.f26975a = null;
                 Thread.interrupted();
                 throw th2;
             }

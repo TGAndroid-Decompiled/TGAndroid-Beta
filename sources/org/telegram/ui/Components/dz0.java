@@ -57,7 +57,7 @@ public final class dz0 {
         }
         int i12 = this.f34537a;
         if ((i12 & 8192) != 0) {
-            textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29637q7, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29635q7, false));
         } else if ((i12 & 4096) != 0) {
             textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Fi, false));
         }

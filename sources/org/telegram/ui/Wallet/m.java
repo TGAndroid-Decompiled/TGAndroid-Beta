@@ -55,8 +55,8 @@ public final class m implements Runnable {
                 e1 e1Var = (e1) this.f44506b;
                 e1Var.c("AUTH_CANCELED");
                 e1Var.e();
-                if (c8.za.f5102b == e1Var) {
-                    c8.za.f5102b = null;
+                if (c8.za.f5099b == e1Var) {
+                    c8.za.f5099b = null;
                     return;
                 }
                 return;
@@ -64,7 +64,7 @@ public final class m implements Runnable {
                 ((d3) this.f44506b).dismiss();
                 return;
             case 5:
-                ((org.telegram.ui.Cells.u0) this.f44506b).invalidate();
+                ((org.telegram.ui.Cells.v0) this.f44506b).invalidate();
                 return;
             case 6:
                 ((org.telegram.ui.ActionBar.k5) this.f44506b).a(true);
@@ -74,8 +74,8 @@ public final class m implements Runnable {
                 return;
             case 8:
                 j6 j6Var = (j6) this.f44506b;
-                bi.d6 d6Var = j6Var.f44404c;
-                if (d6Var != null && d6Var.getScrollState() == 0) {
+                bi.c6 c6Var = j6Var.f44404c;
+                if (c6Var != null && c6Var.getScrollState() == 0) {
                     e51 B0 = j6Var.f44409j.B0();
                     if ((B0 == null || B0.getScrollState() == 0) && (d = j6Var.d(j6Var.f44404c.f34606f3)) != null) {
                         v4.c0 c0Var = j6Var.f44404c.f34606f3;
@@ -92,12 +92,12 @@ public final class m implements Runnable {
                 return;
             case 9:
                 fi.u2 u2Var = (fi.u2) this.f44506b;
-                ci.f fVar = (ci.f) u2Var.f12614b;
-                ci.e eVar = (ci.e) u2Var.f12615c;
+                ci.f fVar = (ci.f) u2Var.f12611b;
+                ci.e eVar = (ci.e) u2Var.f12612c;
                 if (eVar != null) {
                     fVar.a(eVar);
                     fVar.D = 0.0f;
-                    u2Var.f12615c = null;
+                    u2Var.f12612c = null;
                     u2Var.invalidate();
                     return;
                 }
@@ -123,10 +123,10 @@ public final class m implements Runnable {
                 l4 l4Var = e9Var.f44139b;
                 float f10 = e9Var.f44140c;
                 float f11 = e9Var.d;
-                l4Var.f59547r = f10;
-                l4Var.f59548s = f11;
-                l4Var.f59549w = z11;
-                l4Var.f59550x = z11;
+                l4Var.f59548r = f10;
+                l4Var.f59549s = f11;
+                l4Var.f59550w = z11;
+                l4Var.f59551x = z11;
                 return;
             case 12:
                 l9 l9Var = (l9) this.f44506b;
@@ -138,7 +138,7 @@ public final class m implements Runnable {
                 }
                 return;
             case 13:
-                ((org.telegram.ui.Cells.w3) this.f44506b).requestLayout();
+                ((org.telegram.ui.Cells.x3) this.f44506b).requestLayout();
                 return;
             default:
                 ((va) this.f44506b).Z();

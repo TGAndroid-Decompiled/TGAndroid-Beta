@@ -115,12 +115,12 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.mediaEntities = e20Var.G;
             convertVideoParams.isPhoto = e20Var.I;
             convertVideoParams.cropState = e20Var.H;
-            convertVideoParams.isRound = e20Var.f23655s;
+            convertVideoParams.isRound = e20Var.f23652s;
             convertVideoParams.callback = kfVar;
             convertVideoParams.gradientTopColor = e20Var.Q;
             convertVideoParams.gradientBottomColor = e20Var.R;
-            convertVideoParams.muted = e20Var.f23656t;
-            convertVideoParams.volume = e20Var.f23657u;
+            convertVideoParams.muted = e20Var.f23653t;
+            convertVideoParams.volume = e20Var.f23654u;
             convertVideoParams.isStory = e20Var.J;
             convertVideoParams.hdrInfo = e20Var.K;
             convertVideoParams.isDark = e20Var.T;
@@ -181,7 +181,7 @@ public class MediaCodecVideoConvertor {
             long j3 = 0;
             while (!this.stopFeeding) {
                 try {
-                    if (MediaCodecVideoConvertor.this.callback != null && ((e20) ((pe) MediaCodecVideoConvertor.this.callback).f26234b).W) {
+                    if (MediaCodecVideoConvertor.this.callback != null && ((e20) ((pe) MediaCodecVideoConvertor.this.callback).f26232b).W) {
                         return;
                     }
                     int sampleTrackIndex = this.extractor.getSampleTrackIndex();
@@ -272,8 +272,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i7);
                 try {
                     dg.c cVar = new dg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f8365b;
-                    cVar.f8362a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f8362b;
+                    cVar.f8359a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j3 = mixedSoundInfo.startTime;
                     int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                     if (i10 > 0) {
@@ -302,7 +302,7 @@ public class MediaCodecVideoConvertor {
 
     private void checkConversionCanceled() {
         kf kfVar = this.callback;
-        if (kfVar != null && ((e20) ((pe) kfVar).f26234b).W) {
+        if (kfVar != null && ((e20) ((pe) kfVar).f26232b).W) {
             throw new ConversionCanceledException();
         }
     }

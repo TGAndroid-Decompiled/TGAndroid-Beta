@@ -36,30 +36,30 @@ public abstract class n {
         ?? obj = new Object();
         obj.f55834a = new Bundle();
         obj.f("android.media.metadata.MEDIA_ID", str);
-        CharSequence charSequence = o0Var.f10581a;
+        CharSequence charSequence = o0Var.f10578a;
         Bundle bundle = o0Var.J;
-        Integer num = o0Var.f10595q;
-        Uri uri2 = o0Var.f10592n;
+        Integer num = o0Var.f10592q;
+        Uri uri2 = o0Var.f10589n;
         if (charSequence != null) {
             obj.g(charSequence, "android.media.metadata.TITLE");
         }
-        CharSequence charSequence2 = o0Var.f10584e;
+        CharSequence charSequence2 = o0Var.f10581e;
         if (charSequence2 != null) {
             obj.g(charSequence2, "android.media.metadata.DISPLAY_TITLE");
         }
-        CharSequence charSequence3 = o0Var.f10585f;
+        CharSequence charSequence3 = o0Var.f10582f;
         if (charSequence3 != null) {
             obj.g(charSequence3, "android.media.metadata.DISPLAY_SUBTITLE");
         }
-        CharSequence charSequence4 = o0Var.f10586g;
+        CharSequence charSequence4 = o0Var.f10583g;
         if (charSequence4 != null) {
             obj.g(charSequence4, "android.media.metadata.DISPLAY_DESCRIPTION");
         }
-        CharSequence charSequence5 = o0Var.f10582b;
+        CharSequence charSequence5 = o0Var.f10579b;
         if (charSequence5 != null) {
             obj.g(charSequence5, "android.media.metadata.ARTIST");
         }
-        CharSequence charSequence6 = o0Var.f10583c;
+        CharSequence charSequence6 = o0Var.f10580c;
         if (charSequence6 != null) {
             obj.g(charSequence6, "android.media.metadata.ALBUM");
         }
@@ -67,7 +67,7 @@ public abstract class n {
         if (charSequence7 != null) {
             obj.g(charSequence7, "android.media.metadata.ALBUM_ARTIST");
         }
-        Integer num2 = o0Var.f10599u;
+        Integer num2 = o0Var.f10596u;
         if (num2 != null) {
             obj.d(num2.intValue(), "android.media.metadata.YEAR");
         }
@@ -101,11 +101,11 @@ public abstract class n {
             j3 = -1;
         }
         obj.d(j3, "android.media.metadata.DURATION");
-        q4.y d = d(o0Var.f10587i);
+        q4.y d = d(o0Var.f10584i);
         if (d != null) {
             obj.e("android.media.metadata.USER_RATING", d);
         }
-        q4.y d2 = d(o0Var.f10588j);
+        q4.y d2 = d(o0Var.f10585j);
         if (d2 != null) {
             obj.e("android.media.metadata.RATING", d2);
         }
@@ -196,21 +196,21 @@ public abstract class n {
             float f10 = 0.0f;
             switch (e10) {
                 case 1:
-                    if (((e2.w) d1Var).f10789c) {
+                    if (((e2.w) d1Var).f10786c) {
                         f10 = 1.0f;
                     }
                     return new q4.y(1, f10);
                 case 2:
-                    if (((e2.g1) d1Var).f10421c) {
+                    if (((e2.g1) d1Var).f10418c) {
                         f10 = 1.0f;
                     }
                     return new q4.y(2, f10);
                 case 3:
                 case 4:
                 case 5:
-                    return q4.y.d(((e2.e1) d1Var).f10389c, e10);
+                    return q4.y.d(((e2.e1) d1Var).f10386c, e10);
                 case 6:
-                    return q4.y.c(((e2.u0) d1Var).f10777b);
+                    return q4.y.c(((e2.u0) d1Var).f10774b);
             }
         }
         return null;
@@ -224,7 +224,7 @@ public abstract class n {
             return 2;
         }
         if (d1Var instanceof e2.e1) {
-            int i7 = ((e2.e1) d1Var).f10388b;
+            int i7 = ((e2.e1) d1Var).f10385b;
             int i10 = 3;
             if (i7 != 3) {
                 i10 = 4;

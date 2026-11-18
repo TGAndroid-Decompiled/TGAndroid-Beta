@@ -13,12 +13,12 @@ import org.telegram.ui.Components.yc0;
 import org.telegram.ui.Components.zc0;
 import org.telegram.ui.LaunchActivity;
 public abstract class na {
-    public static int f4892a = 1500;
+    public static int f4889a = 1500;
 
     public static boolean a() {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26915b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
         }
         if (activity == null) {
             return false;
@@ -29,7 +29,7 @@ public abstract class na {
     public static void b(String[] strArr, x10 x10Var) {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26915b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
         }
         if (activity == null) {
             return;
@@ -42,10 +42,10 @@ public abstract class na {
                         int i7 = org.telegram.ui.ActionBar.n6.L5;
                         alertDialog$Builder.m(2131624117, 72, org.telegram.ui.ActionBar.n6.x0(null, i7, false), null);
                         alertDialog$Builder.n(i7, null);
-                        alertDialog$Builder.f28746a.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(2131747116, null));
+                        alertDialog$Builder.f28744a.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(2131747116, null));
                         alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747107, null), new yc0(activity, 1));
                         alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131751761, null), null);
-                        alertDialog$Builder.f28746a.show();
+                        alertDialog$Builder.f28744a.show();
                         x10Var.a(Boolean.FALSE);
                         return;
                     }
@@ -60,7 +60,7 @@ public abstract class na {
     public static void c(int i7, int i10, String[] strArr, String[] strArr2, x10 x10Var) {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26915b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
         }
         if (activity == null) {
             return;
@@ -77,10 +77,10 @@ public abstract class na {
                 int i11 = org.telegram.ui.ActionBar.n6.L5;
                 alertDialog$Builder.m(i7, 72, org.telegram.ui.ActionBar.n6.x0(null, i11, false), null);
                 alertDialog$Builder.n(i11, null);
-                alertDialog$Builder.f28746a.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(i10, null));
+                alertDialog$Builder.f28744a.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(i10, null));
                 alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747107, null), new yc0(activity, 0));
                 alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131751761, null), null);
-                alertDialog$Builder.f28746a.show();
+                alertDialog$Builder.f28744a.show();
                 x10Var.a(Boolean.FALSE);
                 return;
             }
@@ -91,7 +91,7 @@ public abstract class na {
     public static boolean d(String str) {
         Context context = LaunchActivity.H1;
         if (context == null) {
-            context = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26915b);
+            context = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
         }
         if (context != null && context.checkSelfPermission(str) == 0) {
             return true;
@@ -102,28 +102,28 @@ public abstract class na {
     public static void e(String[] strArr, x10 x10Var) {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26915b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
         }
         if (activity == null) {
             return;
         }
-        int i7 = f4892a;
-        f4892a = i7 + 1;
+        int i7 = f4889a;
+        f4889a = i7 + 1;
         fs[] fsVarArr = {new ad0(i7, x10Var, fsVarArr)};
-        ks.e().b(fsVarArr[0], ks.f25185r5);
+        ks.e().b(fsVarArr[0], ks.s5);
         activity.requestPermissions(strArr, i7);
     }
 
     public static void f() {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26915b);
+            activity = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
         }
         if (activity == null) {
             return;
         }
         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26915b.getPackageName()));
+        intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26913b.getPackageName()));
         try {
             activity.startActivity(intent);
         } catch (Exception e10) {

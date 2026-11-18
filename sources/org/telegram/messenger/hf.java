@@ -21,10 +21,10 @@ public final class hf extends xe {
     @Override
     public final String a() {
         if (this.L != null) {
-            w7.G(j10.f24773t0);
+            w7.G(j10.f24770t0);
             return w7.J(this.L, null, true, true).getAbsolutePath();
         } else if (this.J != null) {
-            w7.G(j10.f24773t0);
+            w7.G(j10.f24770t0);
             return w7.J(this.J, null, true, true).getAbsolutePath();
         } else {
             return ec.A(this.C).getAbsolutePath();
@@ -52,10 +52,10 @@ public final class hf extends xe {
 
     public final String g() {
         if (this.L != null) {
-            w7.G(j10.f24773t0);
+            w7.G(j10.f24770t0);
             return w7.J(this.L, null, true, true).getAbsolutePath();
         } else if (this.J != null) {
-            w7.G(j10.f24773t0);
+            w7.G(j10.f24770t0);
             return w7.J(this.J, null, true, true).getAbsolutePath();
         } else {
             return this.C;

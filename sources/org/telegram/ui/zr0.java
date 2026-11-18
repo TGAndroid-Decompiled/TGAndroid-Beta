@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class zr0 extends org.telegram.ui.Cells.q1 {
+public final class zr0 extends org.telegram.ui.Cells.r1 {
     public final int Ad;
     public final int Bd;
-    public final int f54579zd;
+    public final int f54580zd;
 
     public zr0(Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var, int i10, int i11, int i12) {
         super(context, i7, false, null, i6Var);
-        this.f54579zd = i12;
+        this.f54580zd = i12;
         this.Ad = i10;
         this.Bd = i11;
     }
 
     @Override
     public final void j1(Canvas canvas) {
-        switch (this.f54579zd) {
+        switch (this.f54580zd) {
             case 0:
                 this.S4 = 0;
                 this.T4 = this.Q4.size() - 1;
@@ -32,7 +32,7 @@ public final class zr0 extends org.telegram.ui.Cells.q1 {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        switch (this.f54579zd) {
+        switch (this.f54580zd) {
             case 0:
                 setMeasuredDimension(this.Ad, this.Bd);
                 return;
@@ -44,7 +44,7 @@ public final class zr0 extends org.telegram.ui.Cells.q1 {
 
     @Override
     public final void setPressed(boolean z10) {
-        int i7 = this.f54579zd;
+        int i7 = this.f54580zd;
     }
 
     private final void f4(boolean z10) {

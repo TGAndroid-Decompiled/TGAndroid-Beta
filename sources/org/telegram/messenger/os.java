@@ -1,14 +1,14 @@
 package org.telegram.messenger;
 public final class os implements Runnable {
-    public final int f26102a;
-    public final xs f26103b;
-    public final long f26104c;
+    public final int f26100a;
+    public final xs f26101b;
+    public final long f26102c;
     public final int d;
 
     public os(xs xsVar, long j3, int i7, int i10) {
-        this.f26102a = i10;
-        this.f26103b = xsVar;
-        this.f26104c = j3;
+        this.f26100a = i10;
+        this.f26101b = xsVar;
+        this.f26102c = j3;
         this.d = i7;
     }
 

@@ -27,37 +27,37 @@ public final class ho0 implements org.telegram.messenger.fs {
         org.telegram.ui.ActionBar.k kVar = yo0Var.f42582v2;
         long longValue = ((Long) objArr[0]).longValue();
         TLRPC.Dialog dialog = this.f35942a;
-        if (longValue == (-dialog.f28409id)) {
+        if (longValue == (-dialog.f28407id)) {
             ArrayList arrayList = wo0Var.f41747f;
             AtomicReference atomicReference = this.f35943b;
-            if ((arrayList == null && org.telegram.messenger.mp.u1(yo0Var.f30189a).f25771t7.l(-dialog.f28409id) != null) || atomicReference.get() == null) {
+            if ((arrayList == null && org.telegram.messenger.mp.u1(yo0Var.f30187a).f25769t7.l(-dialog.f28407id) != null) || atomicReference.get() == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            wo0Var.f41747f = org.telegram.messenger.mp.u1(yo0Var.f30189a).f25771t7.l(-dialog.f28409id);
-            wo0Var.d = org.telegram.messenger.o10.v(org.telegram.messenger.mp.u1(yo0Var.f30189a).c2(Long.valueOf(dialog.f28409id)));
-            wo0Var.f41746e = org.telegram.messenger.o10.w(org.telegram.messenger.mp.u1(yo0Var.f30189a).c2(Long.valueOf(dialog.f28409id)));
+            wo0Var.f41747f = org.telegram.messenger.mp.u1(yo0Var.f30187a).f25769t7.l(-dialog.f28407id);
+            wo0Var.d = org.telegram.messenger.o10.v(org.telegram.messenger.mp.u1(yo0Var.f30187a).c2(Long.valueOf(dialog.f28407id)));
+            wo0Var.f41746e = org.telegram.messenger.o10.w(org.telegram.messenger.mp.u1(yo0Var.f30187a).c2(Long.valueOf(dialog.f28407id)));
             if (z10) {
                 wo0Var.f();
             }
             if (wo0Var.f41747f != null) {
-                org.telegram.messenger.ks.f(yo0Var.f30189a).n(this, org.telegram.messenger.ks.s5);
+                org.telegram.messenger.ks.f(yo0Var.f30187a).n(this, org.telegram.messenger.ks.f25196t5);
             }
             if (z10) {
                 ck0Var.setVisibility(0);
                 ck0Var.setAlpha(0.0f);
                 kVar.setVisibility(0);
                 kVar.setAlpha(0.0f);
-                if (org.telegram.messenger.o10.v(org.telegram.messenger.mp.u1(yo0Var.f30189a).c2(Long.valueOf(dialog.f28409id)))) {
-                    kVar.setTitle(org.telegram.messenger.n5.u(org.telegram.messenger.mp.u1(yo0Var.f30189a).c2(Long.valueOf(dialog.f28409id))));
+                if (org.telegram.messenger.o10.v(org.telegram.messenger.mp.u1(yo0Var.f30187a).c2(Long.valueOf(dialog.f28407id)))) {
+                    kVar.setTitle(org.telegram.messenger.n5.u(org.telegram.messenger.mp.u1(yo0Var.f30187a).c2(Long.valueOf(dialog.f28407id))));
                     kVar.setSubtitle(org.telegram.messenger.gd.M0(2131745474, null));
-                } else if (org.telegram.messenger.v3.o0(yo0Var.f30189a, dialog.f28409id)) {
-                    int i11 = yo0Var.f30189a;
-                    kVar.setTitle(qg.c.j(i11, org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(-dialog.f28409id)), false));
+                } else if (org.telegram.messenger.v3.o0(yo0Var.f30187a, dialog.f28407id)) {
+                    int i11 = yo0Var.f30187a;
+                    kVar.setTitle(qg.c.j(i11, org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(-dialog.f28407id)), false));
                     kVar.setSubtitle(org.telegram.messenger.gd.M0(2131745474, null));
                 } else {
-                    kVar.setTitle(org.telegram.messenger.mp.u1(yo0Var.f30189a).O0(Long.valueOf(-dialog.f28409id)).title);
+                    kVar.setTitle(org.telegram.messenger.mp.u1(yo0Var.f30187a).O0(Long.valueOf(-dialog.f28407id)).title);
                     kVar.setSubtitle(org.telegram.messenger.gd.M0(2131745454, null));
                 }
                 yo0Var.I2 = yo0Var.H2;
@@ -69,7 +69,7 @@ public final class ho0 implements org.telegram.messenger.fs {
                 r1.g gVar2 = new r1.g(new r1.f(0.0f));
                 r1.h hVar = new r1.h(1000.0f);
                 org.telegram.ui.bn bnVar = yo0Var.f42554b2;
-                if (bnVar != null && bnVar.f45946b) {
+                if (bnVar != null && bnVar.f45937b) {
                     f10 = 10.0f;
                 } else {
                     f10 = 800.0f;

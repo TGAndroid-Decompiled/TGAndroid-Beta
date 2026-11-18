@@ -70,7 +70,7 @@ public final class v7 implements Runnable {
                 TL_wallet.nftItem nftitem = (TL_wallet.nftItem) obj2;
                 t0 t0Var2 = (t0) obj;
                 u0Var.getClass();
-                if (wallettransaction2.pending || wallettransaction2.failed || TextUtils.isEmpty(wallettransaction2.f28668id)) {
+                if (wallettransaction2.pending || wallettransaction2.failed || TextUtils.isEmpty(wallettransaction2.f28666id)) {
                     wallettransaction2.pending = false;
                     wallettransaction2.failed = true;
                     u0Var.f45098r.remove(wallettransaction2);

@@ -9,42 +9,42 @@ import java.util.List;
 import java.util.WeakHashMap;
 import org.telegram.messenger.s2;
 public abstract class f1 {
-    public static final List f59121u = Collections.EMPTY_LIST;
-    public final View f59122a;
-    public WeakReference f59123b;
-    public int f59131l;
-    public RecyclerView f59139t;
-    public int f59124c = -1;
+    public static final List f59122u = Collections.EMPTY_LIST;
+    public final View f59123a;
+    public WeakReference f59124b;
+    public int f59132l;
+    public RecyclerView f59140t;
+    public int f59125c = -1;
     public int d = -1;
-    public long f59125e = -1;
-    public int f59126f = -1;
-    public int f59127g = -1;
+    public long f59126e = -1;
+    public int f59127f = -1;
+    public int f59128g = -1;
     public int h = -1;
-    public int f59128i = -1;
-    public f1 f59129j = null;
-    public f1 f59130k = null;
-    public ArrayList f59132m = null;
-    public List f59133n = null;
-    public int f59134o = 0;
-    public x0 f59135p = null;
-    public boolean f59136q = false;
-    public int f59137r = 0;
-    public int f59138s = -1;
+    public int f59129i = -1;
+    public f1 f59130j = null;
+    public f1 f59131k = null;
+    public ArrayList f59133m = null;
+    public List f59134n = null;
+    public int f59135o = 0;
+    public x0 f59136p = null;
+    public boolean f59137q = false;
+    public int f59138r = 0;
+    public int f59139s = -1;
 
     public f1(View view) {
         if (view != null) {
-            this.f59122a = view;
+            this.f59123a = view;
             return;
         }
         throw new IllegalArgumentException("itemView may not be null");
     }
 
     public final void a(int i7) {
-        this.f59131l = i7 | this.f59131l;
+        this.f59132l = i7 | this.f59132l;
     }
 
     public final int b() {
-        RecyclerView recyclerView = this.f59139t;
+        RecyclerView recyclerView = this.f59140t;
         if (recyclerView == null) {
             return -1;
         }
@@ -52,54 +52,54 @@ public abstract class f1 {
     }
 
     public final int c() {
-        int i7 = this.f59127g;
+        int i7 = this.f59128g;
         if (i7 == -1) {
-            return this.f59124c;
+            return this.f59125c;
         }
         return i7;
     }
 
     public final List d() {
         ArrayList arrayList;
-        if ((this.f59131l & 1024) == 0 && (arrayList = this.f59132m) != null && arrayList.size() != 0) {
-            return this.f59133n;
+        if ((this.f59132l & 1024) == 0 && (arrayList = this.f59133m) != null && arrayList.size() != 0) {
+            return this.f59134n;
         }
-        return f59121u;
+        return f59122u;
     }
 
     public final boolean e(int i7) {
-        if ((i7 & this.f59131l) != 0) {
+        if ((i7 & this.f59132l) != 0) {
             return true;
         }
         return false;
     }
 
     public final boolean f() {
-        View view = this.f59122a;
-        if (view.getParent() != null && view.getParent() != this.f59139t) {
+        View view = this.f59123a;
+        if (view.getParent() != null && view.getParent() != this.f59140t) {
             return true;
         }
         return false;
     }
 
     public final boolean g() {
-        if ((this.f59131l & 1) != 0) {
+        if ((this.f59132l & 1) != 0) {
             return true;
         }
         return false;
     }
 
     public final boolean h() {
-        if ((this.f59131l & 4) != 0) {
+        if ((this.f59132l & 4) != 0) {
             return true;
         }
         return false;
     }
 
     public final boolean i() {
-        if ((this.f59131l & 16) == 0) {
+        if ((this.f59132l & 16) == 0) {
             WeakHashMap weakHashMap = r0.i0.f56244a;
-            if (!this.f59122a.hasTransientState()) {
+            if (!this.f59123a.hasTransientState()) {
                 return true;
             }
             return false;
@@ -108,28 +108,28 @@ public abstract class f1 {
     }
 
     public final boolean j() {
-        if ((this.f59131l & 8) != 0) {
+        if ((this.f59132l & 8) != 0) {
             return true;
         }
         return false;
     }
 
     public final boolean k() {
-        if (this.f59135p != null) {
+        if (this.f59136p != null) {
             return true;
         }
         return false;
     }
 
     public final boolean l() {
-        if ((this.f59131l & 256) != 0) {
+        if ((this.f59132l & 256) != 0) {
             return true;
         }
         return false;
     }
 
     public final boolean m() {
-        if ((this.f59131l & 2) != 0) {
+        if ((this.f59132l & 2) != 0) {
             return true;
         }
         return false;
@@ -137,82 +137,82 @@ public abstract class f1 {
 
     public final void n(int i7, boolean z10) {
         if (this.d == -1) {
-            this.d = this.f59124c;
+            this.d = this.f59125c;
         }
-        if (this.f59127g == -1) {
-            this.f59127g = this.f59124c;
+        if (this.f59128g == -1) {
+            this.f59128g = this.f59125c;
         }
         if (z10) {
-            this.f59127g += i7;
+            this.f59128g += i7;
         }
-        this.f59124c += i7;
-        View view = this.f59122a;
+        this.f59125c += i7;
+        View view = this.f59123a;
         if (view.getLayoutParams() != null) {
-            ((q0) view.getLayoutParams()).f59224c = true;
+            ((q0) view.getLayoutParams()).f59225c = true;
         }
     }
 
     public final void o() {
-        this.f59131l = 0;
-        int i7 = this.f59124c;
+        this.f59132l = 0;
+        int i7 = this.f59125c;
         if (i7 != -1) {
             this.h = i7;
         }
-        this.f59124c = -1;
+        this.f59125c = -1;
         this.d = -1;
-        this.f59125e = -1L;
-        this.f59127g = -1;
-        this.f59134o = 0;
-        this.f59129j = null;
-        this.f59130k = null;
-        ArrayList arrayList = this.f59132m;
+        this.f59126e = -1L;
+        this.f59128g = -1;
+        this.f59135o = 0;
+        this.f59130j = null;
+        this.f59131k = null;
+        ArrayList arrayList = this.f59133m;
         if (arrayList != null) {
             arrayList.clear();
         }
-        this.f59131l &= -1025;
-        this.f59137r = 0;
-        this.f59138s = -1;
+        this.f59132l &= -1025;
+        this.f59138r = 0;
+        this.f59139s = -1;
         RecyclerView.m(this);
     }
 
     public final void p(int i7, int i10) {
-        this.f59131l = (i7 & i10) | (this.f59131l & (~i10));
+        this.f59132l = (i7 & i10) | (this.f59132l & (~i10));
     }
 
     public final void q(boolean z10) {
         int i7;
-        int i10 = this.f59134o;
+        int i10 = this.f59135o;
         if (z10) {
             i7 = i10 - 1;
         } else {
             i7 = i10 + 1;
         }
-        this.f59134o = i7;
+        this.f59135o = i7;
         if (i7 >= 0) {
             if (!z10 && i7 == 1) {
-                this.f59131l |= 16;
+                this.f59132l |= 16;
                 return;
             } else if (z10 && i7 == 0) {
-                this.f59131l &= -17;
+                this.f59132l &= -17;
                 return;
             } else {
                 return;
             }
         }
-        this.f59134o = 0;
-        boolean z11 = s2.f26723a;
+        this.f59135o = 0;
+        boolean z11 = s2.f26721a;
         throw new RuntimeException("isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for " + this);
     }
 
     public final boolean r() {
-        if ((this.f59131l & 128) != 0) {
+        if ((this.f59132l & 128) != 0) {
             return true;
         }
         return false;
     }
 
     public final boolean s() {
-        if ((this.f59131l & 32) != 0) {
+        if ((this.f59132l & 32) != 0) {
             return true;
         }
         return false;
@@ -220,10 +220,10 @@ public abstract class f1 {
 
     public final String toString() {
         String str;
-        StringBuilder sb2 = new StringBuilder("ViewHolder{" + Integer.toHexString(hashCode()) + " position=" + this.f59124c + " id=" + this.f59125e + ", oldPos=" + this.d + ", pLpos:" + this.f59127g);
+        StringBuilder sb2 = new StringBuilder("ViewHolder{" + Integer.toHexString(hashCode()) + " position=" + this.f59125c + " id=" + this.f59126e + ", oldPos=" + this.d + ", pLpos:" + this.f59128g);
         if (k()) {
             sb2.append(" scrap ");
-            if (this.f59136q) {
+            if (this.f59137q) {
                 str = "[changeScrap]";
             } else {
                 str = "[attachedScrap]";
@@ -236,7 +236,7 @@ public abstract class f1 {
         if (!g()) {
             sb2.append(" unbound");
         }
-        if ((this.f59131l & 2) != 0) {
+        if ((this.f59132l & 2) != 0) {
             sb2.append(" update");
         }
         if (j()) {
@@ -249,12 +249,12 @@ public abstract class f1 {
             sb2.append(" tmpDetached");
         }
         if (!i()) {
-            sb2.append(" not recyclable(" + this.f59134o + ")");
+            sb2.append(" not recyclable(" + this.f59135o + ")");
         }
-        if ((this.f59131l & 512) != 0 || h()) {
+        if ((this.f59132l & 512) != 0 || h()) {
             sb2.append(" undefined adapter position");
         }
-        if (this.f59122a.getParent() == null) {
+        if (this.f59123a.getParent() == null) {
             sb2.append(" no parent");
         }
         sb2.append("}");

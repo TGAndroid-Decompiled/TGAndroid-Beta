@@ -86,7 +86,7 @@ public final class hg0 implements ig0 {
             rectF2.set(x10, y10, scaleX + x10, scaleY + y10);
             bi.y1 y1Var = jg0Var.f36437n;
             if (y1Var != null) {
-                rectF2.union((RectF) y1Var.f4251e);
+                rectF2.union((RectF) y1Var.f4219e);
             }
             rectF2.inset(-org.telegram.messenger.g0.L(20.0f), -org.telegram.messenger.g0.L(20.0f));
             rectF2.intersect(rectF);
@@ -174,24 +174,24 @@ public final class hg0 implements ig0 {
             beginRecording4.translate(f19, f20);
             beginRecording4.translate(0.0f, org.telegram.messenger.g0.L(32.0f));
             bi.y1 y1Var2 = jg0Var.f36437n;
-            if (y1Var2.f4250c) {
-                float min = Math.min(((RectF) y1Var2.f4251e).width(), ((RectF) jg0Var.f36437n.f4251e).height()) / 2.0f;
-                RectF rectF3 = (RectF) jg0Var.f36437n.f4251e;
+            if (y1Var2.f4218c) {
+                float min = Math.min(((RectF) y1Var2.f4219e).width(), ((RectF) jg0Var.f36437n.f4219e).height()) / 2.0f;
+                RectF rectF3 = (RectF) jg0Var.f36437n.f4219e;
                 float width = rectF3.bottom - (rectF3.width() / 2.0f);
-                beginRecording4.drawCircle(((RectF) jg0Var.f36437n.f4251e).centerX(), width, min, paint3);
+                beginRecording4.drawCircle(((RectF) jg0Var.f36437n.f4219e).centerX(), width, min, paint3);
                 path.rewind();
                 float f26 = f10 / 2.0f;
-                path.moveTo(((RectF) jg0Var.f36437n.f4251e).centerX() - f26, width);
-                path.lineTo(((RectF) jg0Var.f36437n.f4251e).centerX(), min + width + f10);
-                path.lineTo(((RectF) jg0Var.f36437n.f4251e).centerX() + f26, width);
+                path.moveTo(((RectF) jg0Var.f36437n.f4219e).centerX() - f26, width);
+                path.lineTo(((RectF) jg0Var.f36437n.f4219e).centerX(), min + width + f10);
+                path.lineTo(((RectF) jg0Var.f36437n.f4219e).centerX() + f26, width);
                 path.close();
                 beginRecording4.drawPath(path, paint3);
-            } else if (y1Var2.f4249b) {
+            } else if (y1Var2.f4217b) {
                 beginRecording4.drawPath((Path) y1Var2.d, paint3);
             } else {
-                float max = Math.max(((RectF) y1Var2.f4251e).width(), ((RectF) jg0Var.f36437n.f4251e).height()) / 2.0f;
+                float max = Math.max(((RectF) y1Var2.f4219e).width(), ((RectF) jg0Var.f36437n.f4219e).height()) / 2.0f;
                 RectF rectF4 = this.h;
-                rectF4.set((RectF) jg0Var.f36437n.f4251e);
+                rectF4.set((RectF) jg0Var.f36437n.f4219e);
                 beginRecording4.drawRoundRect(rectF4, max, max, paint3);
                 path.rewind();
                 float f27 = f10 / 2.0f;
@@ -223,7 +223,7 @@ public final class hg0 implements ig0 {
         canvas.translate(f11, f16 - org.telegram.messenger.g0.L(32.0f));
         bi.y1 y1Var3 = jg0Var.f36437n;
         if (y1Var3 != null) {
-            canvas.clipRect(0.0f, ((RectF) y1Var3.f4251e).top, f13, f12);
+            canvas.clipRect(0.0f, ((RectF) y1Var3.f4219e).top, f13, f12);
         }
         Paint paint5 = this.f35860a;
         canvas.saveLayer(rectF2, paint5);

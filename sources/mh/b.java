@@ -11,18 +11,18 @@ import org.telegram.messenger.n10;
 import org.telegram.ui.Components.voip.q2;
 import te.c;
 public abstract class b extends ViewGroup {
-    public int f21004a;
-    public int f21005b;
-    public final LinkedHashMap f21006c;
+    public int f21001a;
+    public int f21002b;
+    public final LinkedHashMap f21003c;
 
     public b(Context context) {
         super(context);
-        this.f21006c = new LinkedHashMap(16);
+        this.f21003c = new LinkedHashMap(16);
     }
 
     public final void a(q2 q2Var) {
         addView(q2Var);
-        this.f21006c.put(q2Var, new a(q2Var, new j0(this, 20)));
+        this.f21003c.put(q2Var, new a(q2Var, new j0(this, 20)));
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -41,7 +41,7 @@ public abstract class b extends ViewGroup {
             z12 = true;
         }
         if (measuredWidth2 > 0 && measuredHeight > 0) {
-            LinkedHashMap linkedHashMap = this.f21006c;
+            LinkedHashMap linkedHashMap = this.f21003c;
             int i11 = 0;
             for (a aVar : linkedHashMap.values()) {
                 if (aVar.h) {
@@ -64,10 +64,10 @@ public abstract class b extends ViewGroup {
             for (Map.Entry entry : linkedHashMap.entrySet()) {
                 a aVar2 = (a) entry.getValue();
                 boolean z14 = aVar2.h;
-                q2 q2Var = aVar2.f21002e;
-                c cVar2 = aVar2.f21000b;
-                te.a aVar3 = aVar2.f21001c;
-                c cVar3 = aVar2.f20999a;
+                q2 q2Var = aVar2.f20999e;
+                c cVar2 = aVar2.f20997b;
+                te.a aVar3 = aVar2.f20998c;
+                c cVar3 = aVar2.f20996a;
                 if (z14) {
                     if (!z12) {
                         measuredWidth = ((measuredWidth2 - q2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i12) + i7;
@@ -101,7 +101,7 @@ public abstract class b extends ViewGroup {
     }
 
     public final void c(q2 q2Var, boolean z10, boolean z11) {
-        a aVar = (a) this.f21006c.get(q2Var);
+        a aVar = (a) this.f21003c.get(q2Var);
         if (aVar != null && aVar.h != z10) {
             aVar.h = z10;
             b(z11, false);
@@ -128,12 +128,12 @@ public abstract class b extends ViewGroup {
         for (int i11 = 0; i11 < childCount; i11++) {
             getChildAt(i11).measure(makeMeasureSpec, makeMeasureSpec2);
         }
-        if (this.f21004a == size && this.f21005b == size2) {
+        if (this.f21001a == size && this.f21002b == size2) {
             b(true, false);
             return;
         }
         b(false, true);
-        this.f21004a = size;
-        this.f21005b = size2;
+        this.f21001a = size;
+        this.f21002b = size2;
     }
 }

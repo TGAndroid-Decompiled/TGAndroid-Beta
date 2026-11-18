@@ -147,7 +147,7 @@ public final class o implements x10 {
                 }
                 return;
             case 9:
-                ((org.telegram.ui.Cells.g6) ((View) obj)).x((TLRPC.User) obj4, null, (CharSequence) obj3, (CharSequence) obj2, false, false);
+                ((org.telegram.ui.Cells.h6) ((View) obj)).x((TLRPC.User) obj4, null, (CharSequence) obj3, (CharSequence) obj2, false, false);
                 return;
             default:
                 e3 e3Var = (e3) obj3;

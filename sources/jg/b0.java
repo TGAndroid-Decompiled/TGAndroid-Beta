@@ -37,12 +37,12 @@ public final class b0 extends v4.c0 {
         switch (this.I) {
             case 4:
                 pi.l lVar = new pi.l(recyclerView.getContext(), 0);
-                lVar.f59066a = i7;
+                lVar.f59067a = i7;
                 w0(lVar);
                 return;
             case 15:
                 cp0 cp0Var = new cp0(recyclerView.getContext());
-                cp0Var.f59066a = i7;
+                cp0Var.f59067a = i7;
                 w0(cp0Var);
                 return;
             default:

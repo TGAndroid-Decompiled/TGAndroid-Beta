@@ -47,7 +47,7 @@ public final class gf extends jg {
             return;
         }
         org.telegram.ui.bn bnVar = chatActivityEnterView.D3;
-        if (bnVar != null && bnVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.D3.getParentLayout()).f28682b) {
+        if (bnVar != null && bnVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.D3.getParentLayout()).f28680b) {
             setWindowView(chatActivityEnterView.D3.getParentLayout().getWindow().getDecorView());
         } else {
             setWindowView(chatActivityEnterView.C3.getWindow().getDecorView());
@@ -229,7 +229,7 @@ public final class gf extends jg {
                     canvas2.restoreToCount(saveLayer);
                 }
             }
-            float f29 = org.telegram.messenger.g0.f24120p;
+            float f29 = org.telegram.messenger.g0.f24117p;
             float max2 = Math.max(0.05f, ((float) (l1Var.f1308a - (SystemClock.uptimeMillis() - l1Var.f1311e))) / 1000.0f);
             while (true) {
                 int i12 = l1Var.f1318m;
@@ -355,7 +355,7 @@ public final class gf extends jg {
                             if (!z10.isEmpty()) {
                                 if (oi.z4.d(z10, hashMap)) {
                                     org.telegram.messenger.mp.u1(chatActivityEnterView.R);
-                                    boolean z11 = org.telegram.messenger.s2.f26723a;
+                                    boolean z11 = org.telegram.messenger.s2.f26721a;
                                     int max = Math.max(0, chatActivityEnterView.F0.getSelectionStart());
                                     int min = Math.min(chatActivityEnterView.F0.getText().length(), chatActivityEnterView.F0.getSelectionEnd());
                                     chatActivityEnterView.h1(chatActivityEnterView.F0.getText().subSequence(0, Math.min(max, min)), chatActivityEnterView.F0.getText().subSequence(Math.max(max, min), chatActivityEnterView.F0.getText().length()), htmlText);
@@ -405,12 +405,12 @@ public final class gf extends jg {
                 this.f35488l2 = motionEvent.getY();
                 this.f35489m2 = true;
             } else if (this.f35489m2 && motionEvent.getAction() == 2) {
-                if (Math.abs(motionEvent.getX() - this.f35487k2) > org.telegram.messenger.g0.f24100e || Math.abs(motionEvent.getY() - this.f35488l2) > org.telegram.messenger.g0.f24100e) {
+                if (Math.abs(motionEvent.getX() - this.f35487k2) > org.telegram.messenger.g0.f24097e || Math.abs(motionEvent.getY() - this.f35488l2) > org.telegram.messenger.g0.f24097e) {
                     this.f35489m2 = false;
                 }
             } else if (this.f35489m2) {
                 if (chatActivityEnterView.N3 != null) {
-                    org.telegram.ui.ActionBar.u6.l(this, 36, org.telegram.ui.ActionBar.n6.f29569mg, chatActivityEnterView.K4);
+                    org.telegram.ui.ActionBar.u6.l(this, 36, org.telegram.ui.ActionBar.n6.f29567mg, chatActivityEnterView.K4);
                     chatActivityEnterView.N3.o1();
                 }
                 gf gfVar = chatActivityEnterView.F0;
@@ -422,7 +422,7 @@ public final class gf extends jg {
             return this.f35489m2;
         }
         if (motionEvent.getAction() == 0 && chatActivityEnterView.N3 != null) {
-            org.telegram.ui.ActionBar.u6.l(this, 36, org.telegram.ui.ActionBar.n6.f29569mg, chatActivityEnterView.K4);
+            org.telegram.ui.ActionBar.u6.l(this, 36, org.telegram.ui.ActionBar.n6.f29567mg, chatActivityEnterView.K4);
             chatActivityEnterView.N3.o1();
         }
         return super.onTouchEvent(motionEvent);

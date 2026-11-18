@@ -33,7 +33,7 @@ public final class g implements TextView.OnEditorActionListener {
                 xk xkVar = (xk) this.f35247b;
                 if (i7 == 6) {
                     hi.d dVar = xkVar.f42121p0;
-                    if (dVar.f14342e0) {
+                    if (dVar.f14339e0) {
                         dVar.performClick();
                         return true;
                     }
@@ -42,10 +42,10 @@ public final class g implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 3:
-                org.telegram.ui.Cells.i3 i3Var = ((org.telegram.ui.Cells.k3) this.f35247b).d;
+                org.telegram.ui.Cells.j3 j3Var = ((org.telegram.ui.Cells.l3) this.f35247b).d;
                 if (i7 == 5) {
-                    i3Var.requestFocus();
-                    i3Var.setSelection(i3Var.length());
+                    j3Var.requestFocus();
+                    j3Var.setSelection(j3Var.length());
                     return true;
                 }
                 return false;
@@ -95,7 +95,7 @@ public final class g implements TextView.OnEditorActionListener {
             case 9:
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f35247b;
                 if (i7 == 5) {
-                    alertDialog$Builder.f28746a.d(-1).callOnClick();
+                    alertDialog$Builder.f28744a.d(-1).callOnClick();
                     return true;
                 }
                 return false;

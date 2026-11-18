@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.cd0;
+import org.telegram.ui.dd0;
 public final class a0 {
     public static final a0 f57150e;
     public static final List f57151f;
@@ -44,7 +44,7 @@ public final class a0 {
         if (arrayList == null) {
             if (arrayList == null && !f57153i) {
                 f57153i = true;
-                Utilities.f22785i.c(new cd0(22));
+                Utilities.f22782i.c(new dd0(22));
             }
             return f57151f;
         }
@@ -69,10 +69,10 @@ public final class a0 {
 
     public final Typeface d() {
         ji.j jVar = this.d;
-        if (((Typeface) jVar.f17949c) == null) {
-            jVar.f17949c = ((y) jVar.f17948b).a();
+        if (((Typeface) jVar.f17946c) == null) {
+            jVar.f17946c = ((y) jVar.f17945b).a();
         }
-        return (Typeface) jVar.f17949c;
+        return (Typeface) jVar.f17946c;
     }
 
     public a0(Font font, String str) {

@@ -23,14 +23,14 @@ public final class q implements y, x {
         switch (this.f54908a) {
             case 2:
                 ZipFile zipFile = (ZipFile) this.f54909b;
-                String str2 = WidgetEngineService.f54670b;
+                String str2 = WidgetEngineService.f54671b;
                 ZipEntry entry = zipFile.getEntry("assets/WidgetSandbox/" + str);
                 if (entry != null) {
                     return zipFile.getInputStream(entry);
                 }
                 throw new FileNotFoundException(str);
             default:
-                String str3 = WidgetEngineService.f54670b;
+                String str3 = WidgetEngineService.f54671b;
                 return ((AssetManager) this.f54909b).open("WidgetSandbox/" + str);
         }
     }

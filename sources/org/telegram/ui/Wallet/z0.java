@@ -42,8 +42,8 @@ import org.json.JSONObject;
 import org.telegram.messenger.bz;
 import org.telegram.messenger.x10;
 import org.telegram.ui.Components.ow0;
-import org.telegram.ui.a80;
-import org.telegram.ui.cd0;
+import org.telegram.ui.b80;
+import org.telegram.ui.dd0;
 public final class z0 {
     public static final Object f45332g = new Object();
     public static final HashMap h = new HashMap();
@@ -109,7 +109,7 @@ public final class z0 {
 
     public static boolean i(Context context) {
         String str;
-        if (context != null && (str = bz.f23197s) != null && str.length() != 0) {
+        if (context != null && (str = bz.f23194s) != null && str.length() != 0) {
             try {
                 KeyguardManager keyguardManager = (KeyguardManager) context.getSystemService("keyguard");
                 if (keyguardManager != null) {
@@ -268,7 +268,7 @@ public final class z0 {
         ai.d0 d0Var = new ai.d0(this, j3, 12);
         e1 e1Var = new e1();
         e1Var.d = absolutePath;
-        org.telegram.messenger.g0.g3(new a80(e1Var, d0Var, z10, 11));
+        org.telegram.messenger.g0.g3(new b80(e1Var, d0Var, z10, 11));
         try {
             if (!e1Var.f44100a.await(90L, TimeUnit.SECONDS)) {
                 str = "AUTH_TIMEOUT";
@@ -664,7 +664,7 @@ public final class z0 {
                         }
                     }
                     Os.rename(file2.getAbsolutePath(), file.getAbsolutePath());
-                    org.telegram.messenger.g0.g3(new cd0(10));
+                    org.telegram.messenger.g0.g3(new dd0(10));
                     if (exists) {
                         if (!delete) {
                             return;

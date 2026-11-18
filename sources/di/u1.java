@@ -23,14 +23,14 @@ import org.telegram.ui.hc1;
 import org.telegram.ui.nl0;
 import org.telegram.ui.qx0;
 public final class u1 implements DialogInterface.OnDismissListener {
-    public final int f9845a;
-    public final Object f9846b;
-    public final Object f9847c;
+    public final int f9842a;
+    public final Object f9843b;
+    public final Object f9844c;
 
     public u1(int i7, Object obj, Object obj2) {
-        this.f9845a = i7;
-        this.f9846b = obj;
-        this.f9847c = obj2;
+        this.f9842a = i7;
+        this.f9843b = obj;
+        this.f9844c = obj2;
     }
 
     @Override
@@ -39,9 +39,9 @@ public final class u1 implements DialogInterface.OnDismissListener {
         HashMap hashMap;
         HashMap hashMap2;
         org.telegram.ui.Wallet.da daVar;
-        int i7 = this.f9845a;
-        Object obj = this.f9847c;
-        Object obj2 = this.f9846b;
+        int i7 = this.f9842a;
+        Object obj = this.f9844c;
+        Object obj2 = this.f9843b;
         switch (i7) {
             case 0:
                 ((boolean[]) obj2)[0] = true;
@@ -60,9 +60,9 @@ public final class u1 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 2:
-                bi.m8 m8Var = (bi.m8) obj;
+                bi.l8 l8Var = (bi.l8) obj;
                 if (!((boolean[]) obj2)[0]) {
-                    m8Var.a(Boolean.FALSE, null);
+                    l8Var.a(Boolean.FALSE, null);
                     return;
                 }
                 return;
@@ -121,7 +121,7 @@ public final class u1 implements DialogInterface.OnDismissListener {
                         lastFragment = actionBarLayout.getLastFragment();
                     }
                     try {
-                        String str = gd.E0().B.f23333c;
+                        String str = gd.E0().B.f23330c;
                         if (lastFragment != null) {
                             org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(lastFragment);
                             if (str.equals("en")) {
@@ -153,7 +153,7 @@ public final class u1 implements DialogInterface.OnDismissListener {
                     edit.putBoolean("proxy_enabled", false);
                     edit.commit();
                     ConnectionsManager.setProxySettings(false, null);
-                    ks.e().k(279, new Object[0]);
+                    ks.e().k(280, new Object[0]);
                     launchActivity.E0 = null;
                 }
                 launchActivity.D0.remove(u1Var);
@@ -170,12 +170,12 @@ public final class u1 implements DialogInterface.OnDismissListener {
                 if (!((boolean[]) obj2)[0]) {
                     h01Var.c(true);
                 }
-                h01Var.f50063x = null;
+                h01Var.f50037x = null;
                 return;
             case 12:
                 hc1 hc1Var = (hc1) obj;
                 if (!((boolean[]) obj2)[0]) {
-                    hc1Var.f48370u0.b();
+                    hc1Var.f48290u0.b();
                     return;
                 }
                 return;
@@ -201,7 +201,7 @@ public final class u1 implements DialogInterface.OnDismissListener {
                     v0Var.getClass();
                     runnable2.run();
                 }
-                v0Var.f53349d0 = null;
+                v0Var.f53300d0 = null;
                 return;
             case 15:
                 boolean[] zArr4 = (boolean[]) obj2;
@@ -223,8 +223,8 @@ public final class u1 implements DialogInterface.OnDismissListener {
     }
 
     public u1(Object obj, boolean[] zArr, int i7) {
-        this.f9845a = i7;
-        this.f9847c = obj;
-        this.f9846b = zArr;
+        this.f9842a = i7;
+        this.f9844c = obj;
+        this.f9843b = zArr;
     }
 }

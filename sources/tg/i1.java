@@ -16,7 +16,7 @@ public final class i1 extends bk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        d1 d1Var = (d1) f1Var.f59122a;
+        d1 d1Var = (d1) f1Var.f59123a;
         sg.a0 a0Var = (sg.a0) sg.a0.c().get(i7);
         d1Var.getClass();
         d1Var.setTypeface(a0Var.d());

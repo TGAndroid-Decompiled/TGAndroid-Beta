@@ -42,16 +42,16 @@ public class ju0 extends v4.d0 {
 
     @Override
     public final void q(v4.a1 a1Var) {
-        PointF a10 = a(this.f59066a);
+        PointF a10 = a(this.f59067a);
         if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
             v4.b1.b(a10);
-            this.f59103k = a10;
-            this.f59107o = (int) (a10.x * 10000.0f);
-            this.f59108p = (int) (a10.y * 10000.0f);
-            a1Var.b((int) (this.f59107o * 1.2f), (int) (this.f59108p * 1.2f), (int) (n(10000) * 1.2f), this.f36534r);
+            this.f59104k = a10;
+            this.f59108o = (int) (a10.x * 10000.0f);
+            this.f59109p = (int) (a10.y * 10000.0f);
+            a1Var.b((int) (this.f59108o * 1.2f), (int) (this.f59109p * 1.2f), (int) (n(10000) * 1.2f), this.f36534r);
             return;
         }
-        a1Var.d = this.f59066a;
+        a1Var.d = this.f59067a;
         h();
     }
 }

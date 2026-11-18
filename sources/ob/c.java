@@ -70,12 +70,12 @@ import org.telegram.ui.Components.ui0;
 import org.telegram.ui.dr0;
 import sg.t0;
 public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0, g0, d, q, oo0, dr0, OnSuccessListener, ib.b, k, n, t0 {
-    public final int f21782a;
-    public Object f21783b;
+    public final int f21779a;
+    public Object f21780b;
 
     public c(Object obj, int i7) {
-        this.f21782a = i7;
-        this.f21783b = obj;
+        this.f21779a = i7;
+        this.f21780b = obj;
     }
 
     @Override
@@ -84,13 +84,13 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
     }
 
     public o C() {
-        o oVar = (o) this.f21783b;
-        if (oVar.f11435a != null) {
+        o oVar = (o) this.f21780b;
+        if (oVar.f11432a != null) {
             if (!Double.isNaN(oVar.d) && oVar.d < 0.0d) {
                 throw new IllegalArgumentException("startTime cannot be negative or NaN.");
             }
-            if (!Double.isNaN(oVar.f11438e)) {
-                if (!Double.isNaN(oVar.f11439f) && oVar.f11439f >= 0.0d) {
+            if (!Double.isNaN(oVar.f11435e)) {
+                if (!Double.isNaN(oVar.f11436f) && oVar.f11436f >= 0.0d) {
                     return oVar;
                 }
                 throw new IllegalArgumentException("preloadTime cannot be negative or Nan.");
@@ -102,7 +102,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void D0() {
-        gc k10 = ((f6) this.f21783b).k().k(false);
+        gc k10 = ((f6) this.f21780b).k().k(false);
         k10.f35471t = true;
         k10.j();
     }
@@ -118,7 +118,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
         int i10;
         int i11;
         int i12;
-        ec.a aVar = (ec.a) this.f21783b;
+        ec.a aVar = (ec.a) this.f21780b;
         if (iArr.length != 0) {
             int length = iArr.length;
             if (length > 1 && iArr[0] == 0) {
@@ -140,7 +140,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
             int[] iArr5 = new int[i7];
             boolean z10 = true;
             for (int i15 = 0; i15 < i7; i15++) {
-                int i16 = aVar.f10881a[aVar.f10886g + i15];
+                int i16 = aVar.f10878a[aVar.f10883g + i15];
                 if (i16 == 0) {
                     i12 = iArr2[iArr2.length - 1];
                 } else {
@@ -169,7 +169,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
             }
             ec.b bVar = new ec.b(aVar, iArr5);
             ec.b a10 = aVar.a(i7, 1);
-            ec.b bVar2 = aVar.f10883c;
+            ec.b bVar2 = aVar.f10880c;
             if (a10.d() >= bVar.d()) {
                 a10 = bVar;
                 bVar = a10;
@@ -215,7 +215,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
                 } else {
                     int[] iArr6 = new int[d2];
                     int i19 = 0;
-                    for (int i20 = 1; i20 < aVar.f10884e && i19 < d2; i20++) {
+                    for (int i20 = 1; i20 < aVar.f10881e && i19 < d2; i20++) {
                         if (bVar10.b(i20) == 0) {
                             iArr6[i19] = aVar.b(i20);
                             i19++;
@@ -245,7 +245,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
                     }
                     int c13 = aVar.c(bVar11.b(b12), aVar.b(i22));
                     iArr7[i21] = c13;
-                    if (aVar.f10886g != 0) {
+                    if (aVar.f10883g != 0) {
                         iArr7[i21] = aVar.c(c13, b12);
                     }
                 }
@@ -253,7 +253,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
                     int length4 = iArr.length - 1;
                     int i25 = iArr3[i24];
                     if (i25 != 0) {
-                        int i26 = length4 - aVar.f10882b[i25];
+                        int i26 = length4 - aVar.f10879b[i25];
                         if (i26 >= 0) {
                             iArr[i26] = iArr[i26] ^ iArr7[i24];
                         } else {
@@ -272,26 +272,26 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void G0(fj fjVar) {
-        ((w8) ((z3) this.f21783b).A1).f(true);
+        ((w8) ((z3) this.f21780b).A1).f(true);
     }
 
     @Override
     public void H(fj fjVar) {
-        ((w8) ((z3) this.f21783b).A1).f(false);
+        ((w8) ((z3) this.f21780b).A1).f(false);
     }
 
     public synchronized void I() {
-        ((SharedPreferences) this.f21783b).edit().clear().commit();
+        ((SharedPreferences) this.f21780b).edit().clear().commit();
     }
 
     public SparseIntArray J(long j3) {
-        return (SparseIntArray) ((h) this.f21783b).f(j3);
+        return (SparseIntArray) ((h) this.f21780b).f(j3);
     }
 
     public StringBuilder K() {
-        mf.a aVar = (mf.a) this.f21783b;
+        mf.a aVar = (mf.a) this.f21780b;
         if (aVar instanceof p) {
-            StringBuilder sb2 = ((p) aVar).f13606b.f13591b;
+            StringBuilder sb2 = ((p) aVar).f13603b.f13588b;
             if (sb2.length() != 0) {
                 return sb2;
             }
@@ -301,7 +301,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
     }
 
     public void L(ia.c cVar, Thread thread, Throwable th2) {
-        aa.p pVar = (aa.p) this.f21783b;
+        aa.p pVar = (aa.p) this.f21780b;
         synchronized (pVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -309,7 +309,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
             }
             c0.a();
             try {
-                f0.a(pVar.f833e.f3087a.b(new aa.n(pVar, System.currentTimeMillis(), th2, thread, cVar)));
+                f0.a(pVar.f833e.f3088a.b(new aa.n(pVar, System.currentTimeMillis(), th2, thread, cVar)));
             } catch (TimeoutException unused) {
                 Log.e("FirebaseCrashlytics", "Cannot send reports. Timed out while fetching settings.", null);
             } catch (Exception e10) {
@@ -324,15 +324,15 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void a() {
-        i0 i0Var = (i0) this.f21783b;
-        Lock lock = i0Var.f6297a;
+        i0 i0Var = (i0) this.f21780b;
+        Lock lock = i0Var.f6294a;
         lock.lock();
         try {
-            i0Var.f6306m = new com.google.android.gms.common.api.internal.c0(i0Var, i0Var.f6303j, i0Var.f6304k, i0Var.d, i0Var.f6305l, lock, i0Var.f6299c);
-            i0Var.f6306m.u();
-            i0Var.f6298b.signalAll();
+            i0Var.f6303m = new com.google.android.gms.common.api.internal.c0(i0Var, i0Var.f6300j, i0Var.f6301k, i0Var.d, i0Var.f6302l, lock, i0Var.f6296c);
+            i0Var.f6303m.u();
+            i0Var.f6295b.signalAll();
         } finally {
-            i0Var.f6297a.unlock();
+            i0Var.f6294a.unlock();
         }
     }
 
@@ -341,17 +341,17 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
         d8.d dVar = new d8.d(1, (TaskCompletionSource) obj2);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-        int i7 = d8.a.f7884a;
+        int i7 = d8.a.f7881a;
         obtain.writeStrongBinder(dVar);
         obtain.writeInt(1);
-        ((o8.c) this.f21783b).writeToParcel(obtain, 0);
+        ((o8.c) this.f21780b).writeToParcel(obtain, 0);
         ((d8.c) ((f) obj).n()).h1(obtain, 1);
     }
 
     @Override
     public Object apply(Object obj) {
         Map.Entry entry = (Map.Entry) obj;
-        h1 h1Var = (h1) this.f21783b;
+        h1 h1Var = (h1) this.f21780b;
         h1Var.getClass();
         entry.getClass();
         return new e1(entry, h1Var);
@@ -364,8 +364,8 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void c(b0 b0Var) {
-        j0 j0Var = (j0) this.f21783b;
-        FrameLayout frameLayout = j0Var.f5682f;
+        j0 j0Var = (j0) this.f21780b;
+        FrameLayout frameLayout = j0Var.f5679f;
         if (frameLayout != null) {
             frameLayout.removeView(b0Var);
         }
@@ -388,38 +388,38 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void e0() {
-        v9 v9Var = (v9) this.f21783b;
-        v9Var.f14918n0.f57271a.u();
+        v9 v9Var = (v9) this.f21780b;
+        v9Var.f14915n0.f57271a.u();
         v9Var.N0.setViewHidden(false);
     }
 
     @Override
     public void f(Object obj) {
         Bundle extras;
-        switch (this.f21782a) {
+        switch (this.f21779a) {
             case 6:
                 androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                androidx.fragment.app.j0 j0Var = (androidx.fragment.app.j0) this.f21783b;
+                androidx.fragment.app.j0 j0Var = (androidx.fragment.app.j0) this.f21780b;
                 androidx.fragment.app.f0 f0Var = (androidx.fragment.app.f0) j0Var.F.pollLast();
                 if (f0Var == null) {
                     Log.w("FragmentManager", "No Activities were started for result for " + this);
                     return;
                 }
-                String str = f0Var.f2333a;
-                int i7 = f0Var.f2334b;
-                s o4 = j0Var.f2347c.o(str);
+                String str = f0Var.f2334a;
+                int i7 = f0Var.f2335b;
+                s o4 = j0Var.f2348c.o(str);
                 if (o4 == null) {
                     Log.w("FragmentManager", "Activity result delivered for unknown Fragment " + str);
                     return;
                 }
-                o4.x(i7, aVar.f1799a, aVar.f1800b);
+                o4.x(i7, aVar.f1800a, aVar.f1801b);
                 return;
             default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f21783b;
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f21780b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
-                Intent intent = aVar2.f1800b;
-                int i10 = u.e("ProxyBillingActivityV2", intent).f11286a;
+                Intent intent = aVar2.f1801b;
+                int i10 = u.e("ProxyBillingActivityV2", intent).f11283a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.N;
                 if (resultReceiver != null) {
                     if (intent == null) {
@@ -429,7 +429,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
                     }
                     resultReceiver.send(i10, extras);
                 }
-                int i11 = aVar2.f1799a;
+                int i11 = aVar2.f1800a;
                 if (i11 != -1 || i10 != 0) {
                     u.h("ProxyBillingActivityV2", "Alternative billing only dialog finished with resultCode " + i11 + " and billing's responseCode: " + i10);
                 }
@@ -445,14 +445,14 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void g(View view, p0 p0Var, boolean z10, boolean z11) {
-        ch.s sVar = (ch.s) this.f21783b;
-        sVar.f5509a.Eb(null, sVar.f5512e, sVar.f5510b, view, 0.0f, 0.0f, p0Var, false, z10, z11, false);
+        ch.s sVar = (ch.s) this.f21780b;
+        sVar.f5506a.Eb(null, sVar.f5509e, sVar.f5507b, view, 0.0f, 0.0f, p0Var, false, z10, z11, false);
         org.telegram.messenger.g0.g3(new r(this, 2));
     }
 
     @Override
     public Object mo24get() {
-        return new k0((u0) ((ib.c) this.f21783b).mo24get());
+        return new k0((u0) ((ib.c) this.f21780b).mo24get());
     }
 
     @Override
@@ -469,7 +469,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void i(String str) {
-        j0 j0Var = (j0) this.f21783b;
+        j0 j0Var = (j0) this.f21780b;
         if (j0Var.getParentActivity() != null) {
             vf.c.t(j0Var.getParentActivity(), str);
         }
@@ -477,7 +477,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void k() {
-        i3 i3Var = ((v9) this.f21783b).f14941z0;
+        i3 i3Var = ((v9) this.f21780b).f14938z0;
         if (i3Var != null) {
             i3Var.invalidate();
         }
@@ -486,14 +486,14 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
     @Override
     public List m(long j3) {
         if (j3 >= 0) {
-            return (List) this.f21783b;
+            return (List) this.f21780b;
         }
         return Collections.EMPTY_LIST;
     }
 
     @Override
     public void n() {
-        v9 v9Var = (v9) this.f21783b;
+        v9 v9Var = (v9) this.f21780b;
         if (v9Var.M0) {
             v9Var.M0 = false;
             return;
@@ -504,8 +504,8 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void n0() {
-        v9 v9Var = (v9) this.f21783b;
-        if (v9Var.f14929t0 != null) {
+        v9 v9Var = (v9) this.f21780b;
+        if (v9Var.f14926t0 != null) {
             v9Var.A0(null, true);
         }
         v9Var.N0.setViewHidden(true);
@@ -518,7 +518,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void onSuccess(Object obj) {
-        ((g6.a) this.f21783b).getClass();
+        ((g6.a) this.f21780b).getClass();
         m8.a("com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES", (Bundle) obj);
     }
 
@@ -534,7 +534,7 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void r() {
-        ((hi.k0) this.f21783b).d.invalidate();
+        ((hi.k0) this.f21780b).d.invalidate();
     }
 
     @Override
@@ -544,11 +544,11 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
 
     @Override
     public void u() {
-        i0 i0Var = (i0) this.f21783b;
-        for (com.google.android.gms.common.api.c cVar : i0Var.f6301f.values()) {
+        i0 i0Var = (i0) this.f21780b;
+        for (com.google.android.gms.common.api.c cVar : i0Var.f6298f.values()) {
             cVar.a();
         }
-        i0Var.f6308o.G = Collections.EMPTY_SET;
+        i0Var.f6305o.G = Collections.EMPTY_SET;
     }
 
     @Override
@@ -559,8 +559,8 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
     @Override
     public boolean y() {
         boolean z10;
-        v9 v9Var = (v9) this.f21783b;
-        if (v9Var.f14929t0 == null) {
+        v9 v9Var = (v9) this.f21780b;
+        if (v9Var.f14926t0 == null) {
             z10 = true;
         } else {
             z10 = false;
@@ -572,53 +572,53 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
     }
 
     public c(MediaInfo mediaInfo) {
-        this.f21782a = 21;
+        this.f21779a = 21;
         o oVar = new o(mediaInfo, 0, true, Double.NaN, Double.POSITIVE_INFINITY, 0.0d, null, null);
         if (mediaInfo != null) {
-            this.f21783b = oVar;
+            this.f21780b = oVar;
             return;
         }
         throw new IllegalArgumentException("media cannot be null.");
     }
 
     public c(Set set) {
-        this.f21782a = 0;
-        this.f21783b = new HashMap();
+        this.f21779a = 0;
+        this.f21780b = new HashMap();
         Iterator it = set.iterator();
         while (it.hasNext()) {
             b bVar = (b) it.next();
             bVar.getClass();
-            ((HashMap) this.f21783b).put(a.class, bVar.f21781a);
+            ((HashMap) this.f21780b).put(a.class, bVar.f21778a);
         }
     }
 
     public c(JSONObject jSONObject) {
-        this.f21782a = 21;
-        this.f21783b = new o(jSONObject);
+        this.f21779a = 21;
+        this.f21780b = new o(jSONObject);
     }
 
     public c(int i7) {
-        this.f21782a = i7;
+        this.f21779a = i7;
         switch (i7) {
             case 8:
-                this.f21783b = new h();
+                this.f21780b = new h();
                 return;
             case 17:
                 return;
             case 19:
-                this.f21783b = new x(10);
+                this.f21780b = new x(10);
                 return;
             default:
-                this.f21783b = new LinkedHashMap(0, 0.75f, true);
+                this.f21780b = new LinkedHashMap(0, 0.75f, true);
                 return;
         }
     }
 
     public c(Context context) {
         boolean isEmpty;
-        this.f21782a = 2;
+        this.f21779a = 2;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.android.gms.appid", 0);
-        this.f21783b = sharedPreferences;
+        this.f21780b = sharedPreferences;
         File file = new File(context.getNoBackupFilesDir(), "com.google.android.gms.appid-no-backup");
         if (file.exists()) {
             return;
@@ -674,8 +674,8 @@ public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0
     }
 
     public c(rd.p pVar) {
-        this.f21782a = 9;
-        this.f21783b = (j) pVar;
+        this.f21779a = 9;
+        this.f21780b = (j) pVar;
     }
 
     @Override

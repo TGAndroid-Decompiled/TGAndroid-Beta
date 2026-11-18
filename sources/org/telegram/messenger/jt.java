@@ -7,12 +7,12 @@ import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ud0;
+import org.telegram.ui.vd0;
 public abstract class jt {
-    public static void a(boolean[] zArr, ud0 ud0Var, boolean z10, androidx.emoji2.text.n nVar, Context context, int i7, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
+    public static void a(boolean[] zArr, vd0 vd0Var, boolean z10, androidx.emoji2.text.n nVar, Context context, int i7, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
         if (!zArr[0]) {
             if (tL_error != null) {
-                ud0Var.a(0L, null, tL_error.text);
+                vd0Var.a(0L, null, tL_error.text);
                 return;
             }
             try {
@@ -22,20 +22,20 @@ public abstract class jt {
                 v0.m mVar = new v0.m(hd.f.l(arrayList), !z10);
                 try {
                     CancellationSignal cancellationSignal = new CancellationSignal();
-                    nVar.d(context, mVar, cancellationSignal, context.getMainExecutor(), new gt(ud0Var, context, i7));
+                    nVar.d(context, mVar, cancellationSignal, context.getMainExecutor(), new gt(vd0Var, context, i7));
                     runnableArr[0] = new a(cancellationSignal, 11);
                 } catch (Exception e10) {
-                    ud0Var.a(0L, null, e10.getMessage());
+                    vd0Var.a(0L, null, e10.getMessage());
                 }
             } catch (Exception e11) {
                 a8.g(e11, true);
-                ud0Var.a(0L, null, e11.getMessage());
+                vd0Var.a(0L, null, e11.getMessage());
             }
         }
     }
 
     public static void b(final int i7, final Context context, final q10 q10Var) {
-        if (!s2.f26729i) {
+        if (!s2.f26727i) {
             return;
         }
         kotlin.jvm.internal.j.e(context, "context");

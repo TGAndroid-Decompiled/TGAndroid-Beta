@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
     public static final r1.e IN_OUT_OFFSET_Y = new hb(0);
-    public static final Property<lb, Float> IN_OUT_OFFSET_Y2 = new org.telegram.ui.Cells.o8("offsetY", 8);
+    public static final Property<lb, Float> IN_OUT_OFFSET_Y2 = new org.telegram.ui.Cells.p8("offsetY", 8);
     Drawable background;
     private Drawable backgroundBeforeGlass;
     private int backgroundColor;
@@ -63,7 +63,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
 
     public static boolean a() {
         if (!org.telegram.messenger.g0.Q1()) {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             if (point.x < point.y) {
                 return false;
             }
@@ -168,10 +168,10 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
                 this.blurVisibilityDrawable = new wh.b(new b0(this, 15));
             }
             wh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f59865c == null) {
+            if (bVar.f59866c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, org.telegram.messenger.g0.L(10.0f));
             }
-            this.blurVisibilityDrawable.f59869i = c8.l9.b((int) org.telegram.messenger.n10.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f59870i = c8.l9.b((int) org.telegram.messenger.n10.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -357,9 +357,9 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
             this.callbacks.get(i7).d();
         }
         wh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f59865c) != null) {
+        if (bVar != null && (bitmap = bVar.f59866c) != null) {
             bitmap.recycle();
-            bVar.f59865c = null;
+            bVar.f59866c = null;
         }
     }
 

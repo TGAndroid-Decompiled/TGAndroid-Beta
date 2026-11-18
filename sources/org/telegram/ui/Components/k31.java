@@ -29,7 +29,7 @@ public final class k31 extends sa {
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(ck0Var, getContext(), this.f30189a, 0, true, new b31(this, 0), this.J0);
+        z41 z41Var = new z41(ck0Var, getContext(), this.f30187a, 0, true, new b31(this, 0), this.J0);
         this.f36669f2 = z41Var;
         z41Var.f42809r = false;
         return z41Var;
@@ -64,7 +64,7 @@ public final class k31 extends sa {
 
     public final void f1() {
         if (this.f36671h2 >= 0) {
-            ConnectionsManager.getInstance(this.f30189a).cancelRequest(this.f36671h2, true);
+            ConnectionsManager.getInstance(this.f30187a).cancelRequest(this.f36671h2, true);
             this.f36671h2 = -1;
         }
     }
@@ -73,7 +73,7 @@ public final class k31 extends sa {
         String charSequence;
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence[] charSequenceArr = {this.W1};
-        tL_textWithEntities.entities = org.telegram.messenger.ri.d0(this.f30189a).Y(charSequenceArr, true, true);
+        tL_textWithEntities.entities = org.telegram.messenger.ri.d0(this.f30187a).Y(charSequenceArr, true, true);
         CharSequence charSequence2 = charSequenceArr[0];
         if (charSequence2 == null) {
             charSequence = "";
@@ -98,7 +98,7 @@ public final class k31 extends sa {
             tL_messages_translateText.flags |= 4;
             tL_messages_translateText.tone = this.d2[i7];
         }
-        this.f36671h2 = ConnectionsManager.getInstance(this.f30189a).sendRequestTyped(tL_messages_translateText, new d3.b(1), new b31(this, 1));
+        this.f36671h2 = ConnectionsManager.getInstance(this.f30187a).sendRequestTyped(tL_messages_translateText, new d3.b(1), new b31(this, 1));
         this.f36669f2.O(true);
     }
 
@@ -119,7 +119,7 @@ public final class k31 extends sa {
         FrameLayout frameLayout = this.U1;
         try {
             super.s0();
-            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, this.J0);
+            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, this.J0);
             if (w02 != this.f36673j2) {
                 this.f36673j2 = w02;
                 v0(w02);

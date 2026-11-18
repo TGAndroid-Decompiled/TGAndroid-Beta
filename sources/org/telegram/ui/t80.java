@@ -1,13 +1,20 @@
 package org.telegram.ui;
-public final class t80 extends org.telegram.ui.Components.uz {
-    @Override
-    public final void b() {
-        setVisibility(8);
-    }
+
+import android.view.View;
+public final class t80 implements View.OnLayoutChangeListener {
+    public boolean f52210a;
 
     @Override
-    public final void c(boolean z10) {
-        setVisibility(0);
-        super.c(z10);
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        boolean z10;
+        if (i12 - i10 > i11 - i7) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10 != this.f52210a) {
+            org.telegram.messenger.g0.g3(new org.telegram.ui.Components.me(this, 28));
+            this.f52210a = z10;
+        }
     }
 }

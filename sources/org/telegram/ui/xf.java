@@ -7,32 +7,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class xf implements org.telegram.messenger.q10 {
-    public final int f53836a;
-    public final int f53837b;
-    public final Object f53838c;
+    public final int f53822a;
+    public final int f53823b;
+    public final Object f53824c;
     public final Object d;
 
     public xf(Object obj, int i7, TLObject tLObject, int i10) {
-        this.f53836a = i10;
-        this.f53838c = obj;
-        this.f53837b = i7;
+        this.f53822a = i10;
+        this.f53824c = obj;
+        this.f53823b = i7;
         this.d = tLObject;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         TLRPC.Updates updates;
-        int i7 = this.f53836a;
-        int i10 = this.f53837b;
+        int i7 = this.f53822a;
+        int i10 = this.f53823b;
         Object obj3 = this.d;
-        Object obj4 = this.f53838c;
+        Object obj4 = this.f53824c;
         switch (i7) {
             case 0:
-                org.telegram.messenger.g0.g3(new ai.g1((bn) obj4, this.f53837b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
+                org.telegram.messenger.g0.g3(new ai.g1((bn) obj4, this.f53823b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
                 return;
             case 1:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
-                n60 n60Var = (n60) obj3;
+                o60 o60Var = (o60) obj3;
                 TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 String str = LaunchActivity.C1;
@@ -42,11 +42,11 @@ public final class xf implements org.telegram.messenger.q10 {
                     updates = updates2;
                 } else {
                     if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
-                        org.telegram.messenger.g0.g3(new n60(1, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
+                        org.telegram.messenger.g0.g3(new o60(1, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
                     }
                     updates = null;
                 }
-                org.telegram.messenger.g0.g3(new ai.g1(launchActivity, n60Var, tL_error, updates, this.f53837b, 21));
+                org.telegram.messenger.g0.g3(new ai.g1(launchActivity, o60Var, tL_error, updates, this.f53823b, 21));
                 return;
             case 2:
                 PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
@@ -109,10 +109,10 @@ public final class xf implements org.telegram.messenger.q10 {
         }
     }
 
-    public xf(LaunchActivity launchActivity, n60 n60Var, int i7) {
-        this.f53836a = 1;
-        this.f53838c = launchActivity;
-        this.d = n60Var;
-        this.f53837b = i7;
+    public xf(LaunchActivity launchActivity, o60 o60Var, int i7) {
+        this.f53822a = 1;
+        this.f53824c = launchActivity;
+        this.d = o60Var;
+        this.f53823b = i7;
     }
 }

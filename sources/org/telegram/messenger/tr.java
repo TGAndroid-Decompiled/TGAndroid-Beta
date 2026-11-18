@@ -31,9 +31,9 @@ import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class tr extends c1 {
-    public static volatile tr[] f27051f0 = new tr[4];
-    public static final Object[] f27052g0 = new Object[4];
-    public static final String[] f27053h0;
+    public static volatile tr[] f27049f0 = new tr[4];
+    public static final Object[] f27050g0 = new Object[4];
+    public static final String[] f27051h0;
     public int E;
     public int F;
     public int G;
@@ -56,42 +56,42 @@ public final class tr extends c1 {
     public final int[][] X;
     public final int[][] Y;
     public final int[][] Z;
-    public final q5 f27054a;
-    public final int[] f27055a0;
-    public SQLiteDatabase f27056b;
-    public final int[] f27057b0;
-    public File f27058c;
-    public final a0.h f27059c0;
+    public final q5 f27052a;
+    public final int[] f27053a0;
+    public SQLiteDatabase f27054b;
+    public final int[] f27055b0;
+    public File f27056c;
+    public final a0.h f27057c0;
     public File d;
-    public final a0.h f27060d0;
-    public File f27061e;
-    public final ob.c f27062e0;
-    public final AtomicLong f27063f;
+    public final a0.h f27058d0;
+    public File f27059e;
+    public final ob.c f27060e0;
+    public final AtomicLong f27061f;
     public final SparseArray h;
-    public int f27064n;
-    public int f27065r;
-    public int f27066s;
-    public int f27067w;
-    public int f27068x;
-    public byte[] f27069y;
+    public int f27062n;
+    public int f27063r;
+    public int f27064s;
+    public int f27065w;
+    public int f27066x;
+    public byte[] f27067y;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f27052g0[i7] = new Object();
+            f27050g0[i7] = new Object();
         }
-        f27053h0 = new String[]{"messages_holes", "media_holes_v2", "scheduled_messages_v2", "quick_replies", "messages_v2", "download_queue", "user_contacts_v7", "user_phones_v7", "dialogs", "dialog_filter", "dialog_filter_ep", "dialog_filter_pin_v2", "randoms_v2", "enc_tasks_v4", "messages_seq", "params", "media_v4", "bot_keyboard", "bot_keyboard_topics", "chat_settings_v2", "user_settings", "chat_pinned_v2", "chat_pinned_count", "chat_hints", "botcache", "users_data", "users", "chats", "enc_chats", "channel_users_v2", "channel_admins_v3", "contacts", "dialog_photos", "dialog_settings", "web_recent_v3", "stickers_v2", "stickers_featured", "stickers_dice", "stickersets", "hashtag_recent_v2", "webpage_pending_v2", "sent_files_v2", "search_recent", "media_counts_v2", "keyvalue", "bot_info_v2", "pending_tasks", "requested_holes", "sharing_locations", "shortcut_widget", "emoji_keywords_v2", "emoji_keywords_info_v2", "wallpapers2", "unread_push_messages", "polls_v2", "reactions", "reaction_mentions", "downloading_documents", "animated_emoji", "attach_menu_bots", "premium_promo", "emoji_statuses", "messages_holes_topics", "messages_topics", "saved_dialogs", "media_topics", "media_holes_topics", "topics", "media_counts_topics", "reaction_mentions_topics", "emoji_groups", "poll_votes_mentions", "poll_votes_mentions_topics", "ephemeral_messages", "widget_state", "widget_heights"};
+        f27051h0 = new String[]{"messages_holes", "media_holes_v2", "scheduled_messages_v2", "quick_replies", "messages_v2", "download_queue", "user_contacts_v7", "user_phones_v7", "dialogs", "dialog_filter", "dialog_filter_ep", "dialog_filter_pin_v2", "randoms_v2", "enc_tasks_v4", "messages_seq", "params", "media_v4", "bot_keyboard", "bot_keyboard_topics", "chat_settings_v2", "user_settings", "chat_pinned_v2", "chat_pinned_count", "chat_hints", "botcache", "users_data", "users", "chats", "enc_chats", "channel_users_v2", "channel_admins_v3", "contacts", "dialog_photos", "dialog_settings", "web_recent_v3", "stickers_v2", "stickers_featured", "stickers_dice", "stickersets", "hashtag_recent_v2", "webpage_pending_v2", "sent_files_v2", "search_recent", "media_counts_v2", "keyvalue", "bot_info_v2", "pending_tasks", "requested_holes", "sharing_locations", "shortcut_widget", "emoji_keywords_v2", "emoji_keywords_info_v2", "wallpapers2", "unread_push_messages", "polls_v2", "reactions", "reaction_mentions", "downloading_documents", "animated_emoji", "attach_menu_bots", "premium_promo", "emoji_statuses", "messages_holes_topics", "messages_topics", "saved_dialogs", "media_topics", "media_holes_topics", "topics", "media_counts_topics", "reaction_mentions_topics", "emoji_groups", "poll_votes_mentions", "poll_votes_mentions_topics", "ephemeral_messages", "widget_state", "widget_heights"};
     }
 
     public tr(int i7) {
         super(i7);
-        this.f27063f = new AtomicLong(System.currentTimeMillis());
+        this.f27061f = new AtomicLong(System.currentTimeMillis());
         this.h = new SparseArray();
-        this.f27064n = 0;
-        this.f27065r = 0;
-        this.f27066s = 0;
-        this.f27067w = 0;
-        this.f27068x = 0;
-        this.f27069y = null;
+        this.f27062n = 0;
+        this.f27063r = 0;
+        this.f27064s = 0;
+        this.f27065w = 0;
+        this.f27066x = 0;
+        this.f27067y = null;
         this.E = 0;
         this.F = 0;
         this.G = 0;
@@ -107,13 +107,13 @@ public final class tr extends c1 {
         this.X = new int[][]{new int[2], new int[2]};
         this.Y = new int[][]{new int[2], new int[2]};
         this.Z = new int[][]{new int[2], new int[2]};
-        this.f27055a0 = new int[2];
-        this.f27057b0 = new int[2];
-        this.f27059c0 = new a0.h();
-        this.f27060d0 = new a0.h();
-        this.f27062e0 = new ob.c(8);
+        this.f27053a0 = new int[2];
+        this.f27055b0 = new int[2];
+        this.f27057c0 = new a0.h();
+        this.f27058d0 = new a0.h();
+        this.f27060e0 = new ob.c(8);
         q5 q5Var = new q5(i5.c.i(i7, "storageQueue_"));
-        this.f27054a = q5Var;
+        this.f27052a = q5Var;
         q5Var.setPriority(8);
         q5Var.c(new pq(this, 9));
     }
@@ -173,14 +173,14 @@ public final class tr extends c1 {
             TLRPC.MessageMedia messageMedia = message.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
                 if (messageMedia.bytes.length == 0) {
-                    Pattern pattern = Utilities.f22779a;
+                    Pattern pattern = Utilities.f22776a;
                     byte b10 = (byte) 0;
                     messageMedia.bytes = new byte[]{b10, b10, b10, (byte) 234};
                 }
             } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
                 TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
                 message.media = tL_messageMediaUnsupported_old;
-                Pattern pattern2 = Utilities.f22779a;
+                Pattern pattern2 = Utilities.f22776a;
                 byte b11 = (byte) 0;
                 tL_messageMediaUnsupported_old.bytes = new byte[]{b11, b11, b11, (byte) 234};
                 message.flags |= 512;
@@ -255,13 +255,13 @@ public final class tr extends c1 {
 
     public static tr a0(int i7) {
         tr trVar;
-        tr trVar2 = f27051f0[i7];
+        tr trVar2 = f27049f0[i7];
         if (trVar2 == null) {
-            synchronized (f27052g0[i7]) {
+            synchronized (f27050g0[i7]) {
                 try {
-                    trVar = f27051f0[i7];
+                    trVar = f27049f0[i7];
                     if (trVar == null) {
-                        tr[] trVarArr = f27051f0;
+                        tr[] trVarArr = f27049f0;
                         tr trVar3 = new tr(i7);
                         trVarArr[i7] = trVar3;
                         trVar = trVar3;
@@ -713,7 +713,7 @@ public final class tr extends c1 {
     }
 
     public final void A1(int i7, int i10, int i11, int i12) {
-        this.f27054a.c(new er(this, i7, i10, i11, i12, 0));
+        this.f27052a.c(new er(this, i7, i10, i11, i12, 0));
     }
 
     public final void B(long j3, SparseArray sparseArray) {
@@ -722,8 +722,8 @@ public final class tr extends c1 {
             try {
                 ArrayList arrayList = new ArrayList();
                 if (sparseArray.size() != 0) {
-                    this.f27056b.beginTransaction();
-                    SQLitePreparedStatement executeFast = this.f27056b.executeFast("REPLACE INTO enc_tasks_v4 VALUES(?, ?, ?, ?)");
+                    this.f27054b.beginTransaction();
+                    SQLitePreparedStatement executeFast = this.f27054b.executeFast("REPLACE INTO enc_tasks_v4 VALUES(?, ?, ?, ?)");
                     int i7 = Integer.MAX_VALUE;
                     for (int i10 = 0; i10 < sparseArray.size(); i10++) {
                         try {
@@ -744,7 +744,7 @@ public final class tr extends c1 {
                             e = e10;
                             sQLitePreparedStatement = executeFast;
                             o(e, true);
-                            SQLiteDatabase sQLiteDatabase = this.f27056b;
+                            SQLiteDatabase sQLiteDatabase = this.f27054b;
                             if (sQLiteDatabase != null) {
                                 sQLiteDatabase.commitTransaction();
                             }
@@ -756,7 +756,7 @@ public final class tr extends c1 {
                         } catch (Throwable th2) {
                             th = th2;
                             sQLitePreparedStatement = executeFast;
-                            SQLiteDatabase sQLiteDatabase2 = this.f27056b;
+                            SQLiteDatabase sQLiteDatabase2 = this.f27054b;
                             if (sQLiteDatabase2 != null) {
                                 sQLiteDatabase2.commitTransaction();
                             }
@@ -767,13 +767,13 @@ public final class tr extends c1 {
                         }
                     }
                     executeFast.dispose();
-                    this.f27056b.commitTransaction();
-                    SQLiteDatabase sQLiteDatabase3 = this.f27056b;
+                    this.f27054b.commitTransaction();
+                    SQLiteDatabase sQLiteDatabase3 = this.f27054b;
                     Locale locale = Locale.US;
                     sQLiteDatabase3.executeFast("UPDATE messages_v2 SET ttl = 0 WHERE uid = " + j3 + " AND mid IN(" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
                     getMessagesController().o0(i7, j3, sparseArray);
                 }
-                SQLiteDatabase sQLiteDatabase4 = this.f27056b;
+                SQLiteDatabase sQLiteDatabase4 = this.f27054b;
                 if (sQLiteDatabase4 != null) {
                     sQLiteDatabase4.commitTransaction();
                 }
@@ -791,10 +791,10 @@ public final class tr extends c1 {
 
     public final void B1(int i7, int i10, int i11, int i12) {
         try {
-            if (this.F == i7 && this.G == i10 && this.H == i11 && this.f27066s == i12) {
+            if (this.F == i7 && this.G == i10 && this.H == i11 && this.f27064s == i12) {
                 return;
             }
-            SQLitePreparedStatement executeFast = this.f27056b.executeFast("UPDATE params SET seq = ?, pts = ?, date = ?, qts = ? WHERE id = 1");
+            SQLitePreparedStatement executeFast = this.f27054b.executeFast("UPDATE params SET seq = ?, pts = ?, date = ?, qts = ? WHERE id = 1");
             executeFast.bindInteger(1, i7);
             executeFast.bindInteger(2, i10);
             executeFast.bindInteger(3, i11);
@@ -812,13 +812,13 @@ public final class tr extends c1 {
     public final void C(ro roVar) {
         try {
             this.I.remove(roVar);
-            this.J.remove(roVar.f26674a);
-            SQLiteDatabase sQLiteDatabase = this.f27056b;
-            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + roVar.f26674a).stepThis().dispose();
-            SQLiteDatabase sQLiteDatabase2 = this.f27056b;
-            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + roVar.f26674a).stepThis().dispose();
-            SQLiteDatabase sQLiteDatabase3 = this.f27056b;
-            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + roVar.f26674a).stepThis().dispose();
+            this.J.remove(roVar.f26672a);
+            SQLiteDatabase sQLiteDatabase = this.f27054b;
+            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + roVar.f26672a).stepThis().dispose();
+            SQLiteDatabase sQLiteDatabase2 = this.f27054b;
+            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + roVar.f26672a).stepThis().dispose();
+            SQLiteDatabase sQLiteDatabase3 = this.f27054b;
+            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + roVar.f26672a).stepThis().dispose();
         } catch (Exception e10) {
             o(e10, true);
         }
@@ -829,7 +829,7 @@ public final class tr extends c1 {
     }
 
     public final void C1(int i7, long j3, List list, boolean z10) {
-        this.f27054a.c(new tq(this, j3, list, z10, i7, 1));
+        this.f27052a.c(new tq(this, j3, list, z10, i7, 1));
     }
 
     public final void D(java.util.ArrayList r9, boolean r10) {
@@ -846,7 +846,7 @@ public final class tr extends c1 {
 
     public final void E(ArrayList arrayList, long j3) {
         try {
-            SQLiteDatabase sQLiteDatabase = this.f27056b;
+            SQLiteDatabase sQLiteDatabase = this.f27054b;
             Locale locale = Locale.US;
             String join = TextUtils.join(",", arrayList);
             sQLiteDatabase.executeFast("DELETE FROM unread_push_messages WHERE uid = " + j3 + " AND mid IN(" + join + ")").stepThis().dispose();
@@ -860,7 +860,7 @@ public final class tr extends c1 {
     }
 
     public final void E1(long j3, long j10) {
-        this.f27054a.c(new np(0, j3, j10, this));
+        this.f27052a.c(new np(0, j3, j10, this));
     }
 
     public final void F(long r19, long r21, int r23, int r24) {
@@ -869,12 +869,12 @@ public final class tr extends c1 {
 
     public final TLRPC.ChatFull F0(final long j3, final boolean z10, final CountDownLatch countDownLatch, final boolean z11, final boolean z12, final int i7) {
         final TLRPC.ChatFull[] chatFullArr = new TLRPC.ChatFull[1];
-        this.f27054a.c(new Runnable(chatFullArr, j3, z10, z11, z12, i7, countDownLatch) {
-            public final TLRPC.ChatFull[] f24056b;
-            public final long f24057c;
+        this.f27052a.c(new Runnable(chatFullArr, j3, z10, z11, z12, i7, countDownLatch) {
+            public final TLRPC.ChatFull[] f24053b;
+            public final long f24054c;
             public final boolean d;
-            public final boolean f24058e;
-            public final boolean f24059f;
+            public final boolean f24055e;
+            public final boolean f24056f;
             public final CountDownLatch h;
 
             {
@@ -883,7 +883,7 @@ public final class tr extends c1 {
 
             @Override
             public final void run() {
-                this.f24056b[0] = tr.this.G0(this.f24057c, this.d, this.f24058e, this.f24059f);
+                this.f24053b[0] = tr.this.G0(this.f24054c, this.d, this.f24055e, this.f24056f);
                 CountDownLatch countDownLatch2 = this.h;
                 if (countDownLatch2 != null) {
                     countDownLatch2.countDown();
@@ -900,7 +900,7 @@ public final class tr extends c1 {
     }
 
     public final void F1(long j3, boolean z10) {
-        this.f27054a.c(new up(0, j3, this, z10));
+        this.f27052a.c(new up(0, j3, this, z10));
     }
 
     public final void G(int i7, long j3, long j10, String str) {
@@ -909,23 +909,23 @@ public final class tr extends c1 {
         int i11 = 2;
         if (i10 != 0) {
             if (i7 == 0) {
-                this.f27056b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
+                this.f27054b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
             } else {
-                this.f27056b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d AND start = 0"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
+                this.f27054b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d AND topic_id = %d AND start = 0"), Long.valueOf(j3), Long.valueOf(j10))).stepThis().dispose();
             }
         } else if (i7 == 0) {
-            this.f27056b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d"), Long.valueOf(j3))).stepThis().dispose();
+            this.f27054b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d"), Long.valueOf(j3))).stepThis().dispose();
         } else {
-            this.f27056b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d AND start = 0"), Long.valueOf(j3))).stepThis().dispose();
+            this.f27054b.executeFast(String.format(Locale.US, a8.p0.p("DELETE FROM ", str, " WHERE uid = %d AND start = 0"), Long.valueOf(j3))).stepThis().dispose();
         }
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 if (i10 != 0) {
-                    SQLiteDatabase sQLiteDatabase = this.f27056b;
+                    SQLiteDatabase sQLiteDatabase = this.f27054b;
                     executeFast = sQLiteDatabase.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?, ?)");
                 } else {
-                    SQLiteDatabase sQLiteDatabase2 = this.f27056b;
+                    SQLiteDatabase sQLiteDatabase2 = this.f27054b;
                     executeFast = sQLiteDatabase2.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?)");
                 }
                 sQLitePreparedStatement = executeFast;
@@ -958,7 +958,7 @@ public final class tr extends c1 {
         if (arrayList == null && arrayList2 == null && j3 == 0) {
             return;
         }
-        this.f27054a.c(new z1(this, arrayList, arrayList2, i7, j3));
+        this.f27052a.c(new z1(this, arrayList, arrayList2, i7, j3));
     }
 
     public final void H() {
@@ -974,12 +974,12 @@ public final class tr extends c1 {
 
     public final void H1(int i7) {
         H();
-        this.f27064n = i7;
+        this.f27062n = i7;
     }
 
     public final void I(Runnable runnable) {
         Thread currentThread = Thread.currentThread();
-        q5 q5Var = this.f27054a;
+        q5 q5Var = this.f27052a;
         if (currentThread != q5Var) {
             q5Var.c(runnable);
         } else {
@@ -991,8 +991,8 @@ public final class tr extends c1 {
         try {
             a0.h hVar = new a0.h();
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                if (!((b00) arrayList.get(i7)).f23008i && !((b00) arrayList.get(i7)).f23009j && ((b00) arrayList.get(i7)).f23007g != null) {
-                    long j3 = ((b00) arrayList.get(i7)).f23007g.grouped_id;
+                if (!((b00) arrayList.get(i7)).f23005i && !((b00) arrayList.get(i7)).f23006j && ((b00) arrayList.get(i7)).f23004g != null) {
+                    long j3 = ((b00) arrayList.get(i7)).f23004g.grouped_id;
                     if (j3 != 0) {
                         ArrayList arrayList2 = (ArrayList) hVar.f(j3);
                         if (arrayList2 == null) {
@@ -1006,15 +1006,15 @@ public final class tr extends c1 {
             for (int i10 = 0; i10 < hVar.m(); i10++) {
                 long j10 = hVar.j(i10);
                 ArrayList arrayList3 = (ArrayList) hVar.n(i10);
-                SQLiteDatabase sQLiteDatabase = this.f27056b;
+                SQLiteDatabase sQLiteDatabase = this.f27054b;
                 Locale locale = Locale.US;
-                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + ((b00) arrayList3.get(0)).f23003b + " AND group_id = " + j10 + " ORDER BY date DESC", new Object[0]);
+                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + ((b00) arrayList3.get(0)).f23000b + " AND group_id = " + j10 + " ORDER BY date DESC", new Object[0]);
                 ArrayList arrayList4 = null;
                 while (queryFinalized.next()) {
                     NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                     TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     if (TLdeserialize != null) {
-                        TLdeserialize.readAttachPath(byteBufferValue, j10.i(this.currentAccount).f24792n);
+                        TLdeserialize.readAttachPath(byteBufferValue, j10.i(this.currentAccount).f24789n);
                     }
                     if (arrayList4 == null) {
                         arrayList4 = new ArrayList();
@@ -1033,7 +1033,7 @@ public final class tr extends c1 {
 
     public final void I1(int i7) {
         H();
-        this.f27065r = i7;
+        this.f27063r = i7;
     }
 
     public final void J0(ArrayList arrayList, long j3) {
@@ -1056,7 +1056,7 @@ public final class tr extends c1 {
                 for (int i10 = 0; i10 < hVar.m(); i10++) {
                     long j11 = hVar.j(i10);
                     ArrayList arrayList3 = (ArrayList) hVar.n(i10);
-                    SQLiteDatabase sQLiteDatabase = this.f27056b;
+                    SQLiteDatabase sQLiteDatabase = this.f27054b;
                     Locale locale = Locale.US;
                     SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + j3 + " AND group_id = " + j11 + " ORDER BY date DESC", new Object[0]);
                     ArrayList<fj> arrayList4 = null;
@@ -1064,7 +1064,7 @@ public final class tr extends c1 {
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                         TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         if (TLdeserialize != null) {
-                            TLdeserialize.readAttachPath(byteBufferValue, j10.i(this.currentAccount).f24792n);
+                            TLdeserialize.readAttachPath(byteBufferValue, j10.i(this.currentAccount).f24789n);
                         }
                         if (arrayList4 == null) {
                             arrayList4 = new ArrayList<>();
@@ -1084,7 +1084,7 @@ public final class tr extends c1 {
 
     public final void J1(int i7) {
         H();
-        this.f27066s = i7;
+        this.f27064s = i7;
     }
 
     public final void K0(a0.h r22, a0.h r23, java.util.ArrayList r24, java.util.ArrayList r25, int r26) {
@@ -1093,21 +1093,21 @@ public final class tr extends c1 {
 
     public final void K1(int i7) {
         H();
-        this.f27067w = i7;
+        this.f27065w = i7;
     }
 
     public final void L(String str, ArrayList arrayList) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                SQLiteDatabase sQLiteDatabase = this.f27056b;
+                SQLiteDatabase sQLiteDatabase = this.f27054b;
                 Locale locale = Locale.US;
                 sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT data FROM animated_emoji WHERE document_id IN (" + str + ")", new Object[0]);
                 while (sQLiteCursor.next()) {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     try {
                         TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        if (TLdeserialize != null && TLdeserialize.f28411id != 0) {
+                        if (TLdeserialize != null && TLdeserialize.f28409id != 0) {
                             arrayList.add(TLdeserialize);
                         }
                     } catch (Exception e10) {
@@ -1136,7 +1136,7 @@ public final class tr extends c1 {
         ArrayList arrayList = new ArrayList();
         try {
             String join = TextUtils.join(",", hashSet);
-            SQLiteDatabase sQLiteDatabase = this.f27056b;
+            SQLiteDatabase sQLiteDatabase = this.f27054b;
             SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT info, pinned FROM user_settings WHERE uid IN(" + join + ")", new Object[0]);
             while (queryFinalized.next()) {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -1157,7 +1157,7 @@ public final class tr extends c1 {
 
     public final void M(String str, RequestDelegate requestDelegate) {
         if (str != null) {
-            this.f27054a.c(new dg(this, getConnectionsManager().getCurrentTime(), str, requestDelegate, 14));
+            this.f27052a.c(new dg(this, getConnectionsManager().getCurrentTime(), str, requestDelegate, 14));
         }
     }
 
@@ -1167,14 +1167,14 @@ public final class tr extends c1 {
 
     public final void M1(long j3, TLRPC.TL_chatBannedRights tL_chatBannedRights, int i7) {
         if (tL_chatBannedRights != null && j3 != 0) {
-            this.f27054a.c(new ek(this, j3, i7, tL_chatBannedRights, 7));
+            this.f27052a.c(new ek(this, j3, i7, tL_chatBannedRights, 7));
         }
     }
 
     public final int N(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Integer[] numArr = {0};
-        this.f27054a.c(new fm(this, j3, numArr, countDownLatch, 13));
+        this.f27052a.c(new fm(this, j3, numArr, countDownLatch, 13));
         try {
             countDownLatch.await();
         } catch (Exception e10) {
@@ -1184,11 +1184,11 @@ public final class tr extends c1 {
     }
 
     public final void N0(int i7, TLRPC.Message message) {
-        this.f27054a.c(new l7(this, i7, message, 1));
+        this.f27052a.c(new l7(this, i7, message, 1));
     }
 
     public final void N1(TLRPC.ChatFull chatFull, boolean z10) {
-        this.f27054a.c(new xf(this, chatFull, z10, 11));
+        this.f27052a.c(new xf(this, chatFull, z10, 11));
     }
 
     public final TLRPC.Chat O(long j3) {
@@ -1213,13 +1213,13 @@ public final class tr extends c1 {
         if (chatParticipants == null) {
             return;
         }
-        this.f27054a.c(new rq(2, this, chatParticipants));
+        this.f27052a.c(new rq(2, this, chatParticipants));
     }
 
     public final TLRPC.Chat P(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         TLRPC.Chat[] chatArr = new TLRPC.Chat[1];
-        this.f27054a.c(new fm(this, chatArr, j3, countDownLatch, 14));
+        this.f27052a.c(new fm(this, chatArr, j3, countDownLatch, 14));
         try {
             countDownLatch.await();
         } catch (Exception e10) {
@@ -1233,7 +1233,7 @@ public final class tr extends c1 {
             return null;
         }
         if (z10) {
-            this.f27054a.c(new bi.m4(this, j3, arrayList, z11, i7, i10));
+            this.f27052a.c(new bi.m4(this, j3, arrayList, z11, i7, i10));
             return null;
         }
         return Q0(i7, i10, j3, arrayList, z11);
@@ -1242,14 +1242,14 @@ public final class tr extends c1 {
     public final void P1(int i7) {
         g0.g3(new pq(this, 4));
         a8.b("MessagesStorage start db migration from " + i7 + " to 182");
-        int c10 = m5.c(this, this.f27056b, i7);
+        int c10 = m5.c(this, this.f27054b, i7);
         a8.b("MessagesStorage db migration finished to varsion " + c10);
         g0.g3(new pq(this, 5));
     }
 
     public final void Q(String str, ArrayList arrayList) {
         if (str != null && str.length() != 0 && arrayList != null) {
-            SQLiteDatabase sQLiteDatabase = this.f27056b;
+            SQLiteDatabase sQLiteDatabase = this.f27054b;
             Locale locale = Locale.US;
             SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.p("SELECT data FROM chats WHERE uid IN(", str, ")"), new Object[0]);
             ArrayList arrayList2 = null;
@@ -1281,7 +1281,7 @@ public final class tr extends c1 {
             }
             queryFinalized.dispose();
             if (arrayList2 != null) {
-                SQLiteDatabase sQLiteDatabase2 = this.f27056b;
+                SQLiteDatabase sQLiteDatabase2 = this.f27054b;
                 Locale locale2 = Locale.US;
                 SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized(a8.p0.p("SELECT data FROM chats WHERE uid IN(", TextUtils.join(", ", arrayList2), ")"), new Object[0]);
                 while (queryFinalized2.next()) {
@@ -1320,15 +1320,15 @@ public final class tr extends c1 {
         } else {
             str2 = "unread_reactions";
         }
-        this.f27054a.c(new tq(this, z10, str, j3, i7, str2));
+        this.f27052a.c(new tq(this, z10, str, j3, i7, str2));
     }
 
     public final SQLiteDatabase R() {
-        return this.f27056b;
+        return this.f27054b;
     }
 
     public final void R0(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, SparseIntArray sparseIntArray) {
-        this.f27054a.c(new tl(this, longSparseIntArray, longSparseIntArray2, sparseIntArray, 19));
+        this.f27052a.c(new tl(this, longSparseIntArray, longSparseIntArray2, sparseIntArray, 19));
     }
 
     public final void R1(long j3, long j10, ArrayList arrayList, ArrayList arrayList2) {
@@ -1337,13 +1337,13 @@ public final class tr extends c1 {
 
     public final long S() {
         long j3;
-        File file = this.f27058c;
+        File file = this.f27056c;
         if (file != null) {
             j3 = file.length();
         } else {
             j3 = 0;
         }
-        File file2 = this.f27061e;
+        File file2 = this.f27059e;
         if (file2 != null) {
             return file2.length() + j3;
         }
@@ -1352,7 +1352,7 @@ public final class tr extends c1 {
 
     public final void S0(int i7, int i10, long j3, ArrayList arrayList) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            this.f27054a.c(new b1(i10, i7, j3, arrayList, this));
+            this.f27052a.c(new b1(i10, i7, j3, arrayList, this));
         }
     }
 
@@ -1366,7 +1366,7 @@ public final class tr extends c1 {
             try {
                 int i7 = -1;
                 if (this.K.f(j3) == null) {
-                    sQLiteCursor = this.f27056b.queryFinalized("SELECT folder_id FROM dialogs WHERE did = ?", Long.valueOf(j3));
+                    sQLiteCursor = this.f27054b.queryFinalized("SELECT folder_id FROM dialogs WHERE did = ?", Long.valueOf(j3));
                     if (sQLiteCursor.next()) {
                         i7 = sQLiteCursor.intValue(0);
                     }
@@ -1395,13 +1395,13 @@ public final class tr extends c1 {
         if (t0(longSparseIntArray) && t0(longSparseIntArray2) && s0(hVar) && t0(longSparseIntArray3)) {
             return;
         }
-        this.f27054a.c(new fn(this, longSparseIntArray, longSparseIntArray2, hVar, longSparseIntArray3, 11));
+        this.f27052a.c(new fn(this, longSparseIntArray, longSparseIntArray2, hVar, longSparseIntArray3, 11));
     }
 
     public final int U(final long j3, final boolean z10) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         final Integer[] numArr = {0};
-        this.f27054a.c(new Runnable() {
+        this.f27052a.c(new Runnable() {
             @Override
             public final void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.dr.run():void");
@@ -1427,7 +1427,7 @@ public final class tr extends c1 {
 
     public final void V(String str, ArrayList arrayList, ArrayList arrayList2) {
         if (str != null && str.length() != 0) {
-            SQLiteDatabase sQLiteDatabase = this.f27056b;
+            SQLiteDatabase sQLiteDatabase = this.f27054b;
             Locale locale = Locale.US;
             SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.p("SELECT data, user, g, authkey, ttl, layer, seq_in, seq_out, use_count, exchange_id, key_date, fprint, fauthkey, khash, in_seq_no, admin_id, mtproto_seq FROM enc_chats WHERE uid IN(", str, ")"), new Object[0]);
             while (queryFinalized.next()) {
@@ -1474,9 +1474,9 @@ public final class tr extends c1 {
     }
 
     public final void V0(int i7) {
-        if (!vr.f27585a) {
+        if (!vr.f27583a) {
             int i10 = 0;
-            while (!vr.f27585a) {
+            while (!vr.f27583a) {
                 try {
                     Thread.sleep(1000L);
                 } catch (InterruptedException e10) {
@@ -1494,46 +1494,46 @@ public final class tr extends c1 {
             file.mkdirs();
             h = file;
         }
-        this.f27058c = new File(h, "cache4.db");
+        this.f27056c = new File(h, "cache4.db");
         this.d = new File(h, "cache4.db-wal");
-        this.f27061e = new File(h, "cache4.db-shm");
+        this.f27059e = new File(h, "cache4.db-shm");
         this.P = false;
-        boolean exists = this.f27058c.exists();
+        boolean exists = this.f27056c.exists();
         int i11 = 3;
         try {
-            SQLiteDatabase sQLiteDatabase = new SQLiteDatabase(this.f27058c.getPath());
-            this.f27056b = sQLiteDatabase;
+            SQLiteDatabase sQLiteDatabase = new SQLiteDatabase(this.f27056c.getPath());
+            this.f27054b = sQLiteDatabase;
             sQLiteDatabase.executeFast("PRAGMA secure_delete = ON").stepThis().dispose();
-            this.f27056b.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
-            this.f27056b.executeFast("PRAGMA journal_mode = WAL").stepThis().dispose();
-            this.f27056b.executeFast("PRAGMA journal_size_limit = 10485760").stepThis().dispose();
+            this.f27054b.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
+            this.f27054b.executeFast("PRAGMA journal_mode = WAL").stepThis().dispose();
+            this.f27054b.executeFast("PRAGMA journal_size_limit = 10485760").stepThis().dispose();
             if (!exists) {
-                if (s2.f26723a) {
+                if (s2.f26721a) {
                     a8.b("create new database");
                 }
-                A(this.f27056b);
+                A(this.f27054b);
             } else {
-                int intValue = this.f27056b.executeInt("PRAGMA user_version", new Object[0]).intValue();
-                if (s2.f26723a) {
+                int intValue = this.f27054b.executeInt("PRAGMA user_version", new Object[0]).intValue();
+                if (s2.f26721a) {
                     a8.b("current db version = " + intValue);
                 }
                 if (intValue != 0) {
                     try {
-                        SQLiteCursor queryFinalized = this.f27056b.queryFinalized("SELECT seq, pts, date, qts, lsv, sg, pbytes FROM params WHERE id = 1", new Object[0]);
+                        SQLiteCursor queryFinalized = this.f27054b.queryFinalized("SELECT seq, pts, date, qts, lsv, sg, pbytes FROM params WHERE id = 1", new Object[0]);
                         if (queryFinalized.next()) {
-                            this.f27067w = queryFinalized.intValue(0);
-                            this.f27065r = queryFinalized.intValue(1);
-                            this.f27064n = queryFinalized.intValue(2);
-                            this.f27066s = queryFinalized.intValue(3);
-                            this.f27068x = queryFinalized.intValue(4);
+                            this.f27065w = queryFinalized.intValue(0);
+                            this.f27063r = queryFinalized.intValue(1);
+                            this.f27062n = queryFinalized.intValue(2);
+                            this.f27064s = queryFinalized.intValue(3);
+                            this.f27066x = queryFinalized.intValue(4);
                             this.E = queryFinalized.intValue(5);
                             if (queryFinalized.isNull(6)) {
-                                this.f27069y = null;
+                                this.f27067y = null;
                             } else {
                                 byte[] byteArrayValue = queryFinalized.byteArrayValue(6);
-                                this.f27069y = byteArrayValue;
+                                this.f27067y = byteArrayValue;
                                 if (byteArrayValue != null && byteArrayValue.length == 1) {
-                                    this.f27069y = null;
+                                    this.f27067y = null;
                                 }
                             }
                         }
@@ -1544,8 +1544,8 @@ public final class tr extends c1 {
                             throw new RuntimeException("malformed");
                         }
                         try {
-                            this.f27056b.executeFast("CREATE TABLE IF NOT EXISTS params(id INTEGER PRIMARY KEY, seq INTEGER, pts INTEGER, date INTEGER, qts INTEGER, lsv INTEGER, sg INTEGER, pbytes BLOB)").stepThis().dispose();
-                            this.f27056b.executeFast("INSERT INTO params VALUES(1, 0, 0, 0, 0, 0, 0, NULL)").stepThis().dispose();
+                            this.f27054b.executeFast("CREATE TABLE IF NOT EXISTS params(id INTEGER PRIMARY KEY, seq INTEGER, pts INTEGER, date INTEGER, qts INTEGER, lsv INTEGER, sg INTEGER, pbytes BLOB)").stepThis().dispose();
+                            this.f27054b.executeFast("INSERT INTO params VALUES(1, 0, 0, 0, 0, 0, 0, NULL)").stepThis().dispose();
                         } catch (Exception e12) {
                             a8.g(e12, true);
                         }
@@ -1554,7 +1554,7 @@ public final class tr extends c1 {
                         try {
                             P1(intValue);
                         } catch (Exception e13) {
-                            boolean z10 = s2.f26723a;
+                            boolean z10 = s2.f26721a;
                             a8.g(e13, true);
                             throw new RuntimeException("malformed");
                         }
@@ -1581,9 +1581,9 @@ public final class tr extends c1 {
             }
         }
         g0.g3(new pq(this, 2));
-        this.f27054a.c(new pq(this, 27));
-        this.f27054a.c(new pq(this, 21));
-        this.f27054a.c(new pq(this, 28));
+        this.f27052a.c(new pq(this, 27));
+        this.f27052a.c(new pq(this, 21));
+        this.f27052a.c(new pq(this, 28));
         try {
             this.Q.countDown();
         } catch (Throwable unused) {
@@ -1595,7 +1595,7 @@ public final class tr extends c1 {
         if (encryptedChat == null) {
             return;
         }
-        this.f27054a.c(new zp(this, encryptedChat, 1));
+        this.f27052a.c(new zp(this, encryptedChat, 1));
     }
 
     public final org.telegram.tgnet.tl.TL_ephemeral.EphemeralMessage W(int r5, long r6) {
@@ -1617,7 +1617,7 @@ public final class tr extends c1 {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                sQLiteCursor = this.f27056b.queryFinalized("SELECT data FROM ephemeral_messages WHERE dialog_id = ? AND topic_id = ? AND date >= ? ORDER BY date DESC LIMIT 30", Long.valueOf(j3), Long.valueOf(j10), Integer.valueOf(getConnectionsManager().getCurrentTime() - 172800));
+                sQLiteCursor = this.f27054b.queryFinalized("SELECT data FROM ephemeral_messages WHERE dialog_id = ? AND topic_id = ? AND date >= ? ORDER BY date DESC LIMIT 30", Long.valueOf(j3), Long.valueOf(j10), Integer.valueOf(getConnectionsManager().getCurrentTime() - 172800));
                 while (sQLiteCursor.next()) {
                     TL_ephemeral.EphemeralMessage ephemeralMessage = (TL_ephemeral.EphemeralMessage) sQLiteCursor.tlObjectValue(0, new ed(10), false);
                     if (ephemeralMessage != null && ephemeralMessage.anchor_msg_id == 0) {
@@ -1648,7 +1648,7 @@ public final class tr extends c1 {
     }
 
     public final void X1(long j3, TLRPC.Message message) {
-        this.f27054a.c(new d4(this, message, j3, 28));
+        this.f27052a.c(new d4(this, message, j3, 28));
     }
 
     public final ArrayList Y(ArrayList arrayList, long j3) {
@@ -1657,7 +1657,7 @@ public final class tr extends c1 {
             SQLiteCursor sQLiteCursor = null;
             try {
                 try {
-                    SQLiteDatabase sQLiteDatabase = this.f27056b;
+                    SQLiteDatabase sQLiteDatabase = this.f27054b;
                     Locale locale = Locale.US;
                     String join = TextUtils.join(",", arrayList);
                     sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT data FROM ephemeral_messages WHERE dialog_id = " + j3 + " AND id IN (" + join + ")", new Object[0]);
@@ -1704,7 +1704,7 @@ public final class tr extends c1 {
         while (it.hasNext()) {
             ro roVar = (ro) this.J.get(((Integer) it.next()).intValue());
             if (roVar != null) {
-                roVar.f26677e = -1;
+                roVar.f26675e = -1;
             }
         }
         for (Map.Entry entry : hashMap.entrySet()) {
@@ -1712,7 +1712,7 @@ public final class tr extends c1 {
             if (roVar2 != null) {
                 Iterator it2 = ((HashSet) entry.getValue()).iterator();
                 while (it2.hasNext()) {
-                    roVar2.f26681j.delete(((Long) it2.next()).longValue());
+                    roVar2.f26679j.delete(((Long) it2.next()).longValue());
                 }
                 z10 = true;
             }
@@ -1728,9 +1728,9 @@ public final class tr extends c1 {
         boolean z11 = false;
         for (int i12 = 0; i12 < size3; i12++) {
             ro roVar3 = (ro) this.I.get(i12);
-            int indexOf = arrayList4.indexOf(Integer.valueOf(roVar3.f26674a));
-            if (roVar3.f26678f != indexOf) {
-                roVar3.f26678f = indexOf;
+            int indexOf = arrayList4.indexOf(Integer.valueOf(roVar3.f26672a));
+            if (roVar3.f26676f != indexOf) {
+                roVar3.f26676f = indexOf;
                 z11 = true;
                 z10 = true;
             }
@@ -1752,7 +1752,7 @@ public final class tr extends c1 {
     }
 
     public final void Y1(long j3, TLRPC.Poll poll, TLRPC.PollResults pollResults) {
-        this.f27054a.c(new fm(this, j3, poll, pollResults, 16));
+        this.f27052a.c(new fm(this, j3, poll, pollResults, 16));
     }
 
     public final int Z(long j3) {
@@ -1783,18 +1783,18 @@ public final class tr extends c1 {
         if (hashMap.isEmpty() && !z10 && !z11) {
             return;
         }
-        this.f27054a.c(new xf(this, hashMap, z10, 2));
+        this.f27052a.c(new xf(this, hashMap, z10, 2));
     }
 
     public final void Z1(long j3, int i7, TLRPC.TL_messageReactions tL_messageReactions) {
-        this.f27054a.c(new ek(this, i7, j3, tL_messageReactions, 8));
+        this.f27052a.c(new ek(this, i7, j3, tL_messageReactions, 8));
     }
 
     public final void a1(a0.h hVar, a0.h hVar2, a0.h hVar3, boolean z10) {
         if (s0(hVar) && s0(hVar2) && s0(hVar3)) {
             return;
         }
-        this.f27054a.c(new in((c1) this, (Object) hVar, (Object) hVar2, (Object) hVar3, z10, 3));
+        this.f27052a.c(new in((c1) this, (Object) hVar, (Object) hVar2, (Object) hVar3, z10, 3));
     }
 
     public final long[] a2(long r35, long r37, java.lang.Integer r39, int r40, int r41, int r42, int r43) {
@@ -1808,7 +1808,7 @@ public final class tr extends c1 {
     public final TLRPC.Message b0(long j3, long j10) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         AtomicReference atomicReference = new AtomicReference();
-        this.f27054a.c(new j9(this, j3, j10, atomicReference, countDownLatch, 5));
+        this.f27052a.c(new j9(this, j3, j10, atomicReference, countDownLatch, 5));
         try {
             countDownLatch.await();
         } catch (Exception e10) {
@@ -1819,13 +1819,13 @@ public final class tr extends c1 {
 
     public final void b1(List list) {
         if (list != null && !list.isEmpty()) {
-            SQLitePreparedStatement executeFast = this.f27056b.executeFast("REPLACE INTO chats VALUES(?, ?, ?)");
+            SQLitePreparedStatement executeFast = this.f27054b.executeFast("REPLACE INTO chats VALUES(?, ?, ?)");
             for (int i7 = 0; i7 < list.size(); i7++) {
                 TLRPC.Chat chat = (TLRPC.Chat) list.get(i7);
                 if (chat.min) {
-                    SQLiteDatabase sQLiteDatabase = this.f27056b;
+                    SQLiteDatabase sQLiteDatabase = this.f27054b;
                     Locale locale = Locale.US;
-                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.o(chat.f28405id, "SELECT data FROM chats WHERE uid = "), new Object[0]);
+                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.o(chat.f28403id, "SELECT data FROM chats WHERE uid = "), new Object[0]);
                     if (queryFinalized.next()) {
                         try {
                             NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -1890,7 +1890,7 @@ public final class tr extends c1 {
                 chat.flags |= 131072;
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chat.getObjectSize());
                 chat.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, chat.f28405id);
+                executeFast.bindLong(1, chat.f28403id);
                 String str2 = chat.title;
                 if (str2 != null) {
                     executeFast.bindString(2, str2.toLowerCase());
@@ -1900,14 +1900,14 @@ public final class tr extends c1 {
                 executeFast.bindByteBuffer(3, nativeByteBuffer);
                 executeFast.step();
                 nativeByteBuffer.reuse();
-                this.S.delete(-chat.f28405id);
+                this.S.delete(-chat.f28403id);
             }
             executeFast.dispose();
         }
     }
 
     public final void b2(final int i7, final long j3, final long j10, final String str, final boolean z10) {
-        this.f27054a.c(new Runnable() {
+        this.f27052a.c(new Runnable() {
             @Override
             public final void run() {
                 TLRPC.TL_message e02;
@@ -1921,14 +1921,14 @@ public final class tr extends c1 {
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        trVar.f27056b.beginTransaction();
+                        trVar.f27054b.beginTransaction();
                         e02 = trVar.e0(i10, j11);
                         e02.voiceTranscriptionFinal = z11;
                         e02.voiceTranscriptionId = j12;
                         e02.voiceTranscription = str2;
                         e02.voiceTranscriptionLocal = false;
                         e02.voiceTranscriptionWords = null;
-                        executeFast = trVar.f27056b.executeFast("UPDATE messages_v2 SET custom_params = ? WHERE mid = ? AND uid = ?");
+                        executeFast = trVar.f27054b.executeFast("UPDATE messages_v2 SET custom_params = ? WHERE mid = ? AND uid = ?");
                     } catch (Exception e10) {
                         e = e10;
                     }
@@ -1947,11 +1947,11 @@ public final class tr extends c1 {
                     executeFast.bindLong(3, j11);
                     executeFast.step();
                     executeFast.dispose();
-                    trVar.f27056b.commitTransaction();
+                    trVar.f27054b.commitTransaction();
                     if (c10 != null) {
                         c10.reuse();
                     }
-                    SQLiteDatabase sQLiteDatabase = trVar.f27056b;
+                    SQLiteDatabase sQLiteDatabase = trVar.f27054b;
                     if (sQLiteDatabase != null) {
                         sQLiteDatabase.commitTransaction();
                     }
@@ -1959,7 +1959,7 @@ public final class tr extends c1 {
                     e = e11;
                     sQLitePreparedStatement = executeFast;
                     trVar.o(e, true);
-                    SQLiteDatabase sQLiteDatabase2 = trVar.f27056b;
+                    SQLiteDatabase sQLiteDatabase2 = trVar.f27054b;
                     if (sQLiteDatabase2 != null) {
                         sQLiteDatabase2.commitTransaction();
                     }
@@ -1969,7 +1969,7 @@ public final class tr extends c1 {
                 } catch (Throwable th3) {
                     th = th3;
                     sQLitePreparedStatement = executeFast;
-                    SQLiteDatabase sQLiteDatabase3 = trVar.f27056b;
+                    SQLiteDatabase sQLiteDatabase3 = trVar.f27054b;
                     if (sQLiteDatabase3 != null) {
                         sQLiteDatabase3.commitTransaction();
                     }
@@ -1989,14 +1989,14 @@ public final class tr extends c1 {
         SQLiteCursor sQLiteCursor2 = null;
         try {
             try {
-                SQLiteCursor queryFinalized = this.f27056b.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + j3 + " AND mid = " + j10 + " LIMIT 1", new Object[0]);
+                SQLiteCursor queryFinalized = this.f27054b.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + j3 + " AND mid = " + j10 + " LIMIT 1", new Object[0]);
                 while (queryFinalized.next()) {
                     try {
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                         if (byteBufferValue != null) {
                             TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             if (TLdeserialize != null) {
-                                TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().f24792n);
+                                TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().f24789n);
                             }
                             byteBufferValue.reuse();
                             message2 = TLdeserialize;
@@ -2035,11 +2035,11 @@ public final class tr extends c1 {
         if (arrayList.isEmpty() && !z10) {
             return;
         }
-        this.f27054a.c(new yp(this, z10, new ArrayList(arrayList)));
+        this.f27052a.c(new yp(this, z10, new ArrayList(arrayList)));
     }
 
     public final void c2(final long j3, final ArrayList arrayList, final boolean z10, final int i7, final int i10, final boolean z11, final HashMap hashMap) {
-        this.f27054a.c(new Runnable() {
+        this.f27052a.c(new Runnable() {
             @Override
             public final void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kr.run():void");
@@ -2051,11 +2051,11 @@ public final class tr extends c1 {
         if (messages_dialogs.dialogs.isEmpty()) {
             return;
         }
-        this.f27054a.c(new l7(this, messages_dialogs, i7, 18));
+        this.f27052a.c(new l7(this, messages_dialogs, i7, 18));
     }
 
     public final void d2(long j3, long j10, int i7, int i10) {
-        this.f27054a.c(new ii.k(this, j3, j10, i7, i10));
+        this.f27052a.c(new ii.k(this, j3, j10, i7, i10));
     }
 
     public final TLRPC.TL_message e0(int i7, long j3) {
@@ -2065,7 +2065,7 @@ public final class tr extends c1 {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                queryFinalized = this.f27056b.queryFinalized("SELECT custom_params FROM messages_v2 WHERE mid = ? AND uid = ?", Integer.valueOf(i7), Long.valueOf(j3));
+                queryFinalized = this.f27054b.queryFinalized("SELECT custom_params FROM messages_v2 WHERE mid = ? AND uid = ?", Integer.valueOf(i7), Long.valueOf(j3));
             } catch (SQLiteException e10) {
                 e = e10;
             }
@@ -2081,7 +2081,7 @@ public final class tr extends c1 {
             }
             queryFinalized.dispose();
             if (!z10) {
-                sQLiteCursor = this.f27056b.queryFinalized("SELECT custom_params FROM messages_topics WHERE mid = ? AND uid = ?", Integer.valueOf(i7), Long.valueOf(j3));
+                sQLiteCursor = this.f27054b.queryFinalized("SELECT custom_params FROM messages_topics WHERE mid = ? AND uid = ?", Integer.valueOf(i7), Long.valueOf(j3));
                 if (sQLiteCursor.next()) {
                     ui.b(tL_message, sQLiteCursor.byteBufferValue(0));
                 }
@@ -2119,7 +2119,7 @@ public final class tr extends c1 {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        this.f27054a.c(new kg((Object) this, (Object) str, (Object) str2, 19));
+        this.f27052a.c(new kg((Object) this, (Object) str, (Object) str2, 19));
     }
 
     public final org.telegram.messenger.xq f0(long r83, long r85, int r87, int r88, int r89, int r90, int r91, int r92, int r93, long r94, int r96, boolean r97, boolean r98, org.telegram.messenger.tz r99) {
@@ -2138,7 +2138,7 @@ public final class tr extends c1 {
         if (tL_forumTopic == null) {
             return;
         }
-        this.f27054a.c(new b1(this, i7, tL_forumTopic, j3, currentTime));
+        this.f27052a.c(new b1(this, i7, tL_forumTopic, j3, currentTime));
     }
 
     public final void g(SQLitePreparedStatement sQLitePreparedStatement, TLRPC.Message message) {
@@ -2164,7 +2164,7 @@ public final class tr extends c1 {
                 TLRPC.Reaction reaction = reactionCount2.reaction;
                 if ((reaction instanceof TLRPC.TL_reactionEmoji) || (reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
                     sQLitePreparedStatement.requery();
-                    sQLitePreparedStatement.bindLong(1, message.f28426id);
+                    sQLitePreparedStatement.bindLong(1, message.f28424id);
                     sQLitePreparedStatement.bindLong(2, fj.Q1(e10, message));
                     TLRPC.Reaction reaction2 = reactionCount2.reaction;
                     if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
@@ -2193,7 +2193,7 @@ public final class tr extends c1 {
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Object[] objArr = new Object[2];
-        this.f27054a.c(new yj(this, str, i7, objArr, countDownLatch, 3));
+        this.f27052a.c(new yj(this, str, i7, objArr, countDownLatch, 3));
         try {
             countDownLatch.await();
         } catch (Exception e10) {
@@ -2210,7 +2210,7 @@ public final class tr extends c1 {
         if (z10) {
             try {
                 try {
-                    this.f27056b.beginTransaction();
+                    this.f27054b.beginTransaction();
                 } catch (Exception e10) {
                     o(e10, true);
                     if (sQLitePreparedStatement != null) {
@@ -2226,7 +2226,7 @@ public final class tr extends c1 {
                 throw th2;
             }
         }
-        sQLitePreparedStatement = this.f27056b.executeFast("INSERT OR REPLACE INTO ephemeral_messages (dialog_id, id, topic_id, date, data) VALUES (?, ?, ?, ?, ?);");
+        sQLitePreparedStatement = this.f27054b.executeFast("INSERT OR REPLACE INTO ephemeral_messages (dialog_id, id, topic_id, date, data) VALUES (?, ?, ?, ?, ?);");
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -2236,7 +2236,7 @@ public final class tr extends c1 {
             if (!ephemeralMessage.welcome) {
                 sQLitePreparedStatement.requery();
                 sQLitePreparedStatement.bindLong(1, n5.o(ephemeralMessage.peer_id));
-                sQLitePreparedStatement.bindInteger(2, ephemeralMessage.f28620id);
+                sQLitePreparedStatement.bindInteger(2, ephemeralMessage.f28618id);
                 sQLitePreparedStatement.bindInteger(3, ephemeralMessage.top_msg_id);
                 sQLitePreparedStatement.bindInteger(4, ephemeralMessage.date);
                 sQLitePreparedStatement.bindTlObject(5, ephemeralMessage);
@@ -2244,7 +2244,7 @@ public final class tr extends c1 {
             }
         }
         if (z10) {
-            this.f27056b.commitTransaction();
+            this.f27054b.commitTransaction();
         }
         if (sQLitePreparedStatement != null) {
             sQLitePreparedStatement.dispose();
@@ -2264,7 +2264,7 @@ public final class tr extends c1 {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                sQLiteCursor = this.f27056b.queryFinalized("SELECT uid, info, participants_count FROM chat_settings_v2 WHERE participants_count > 1", new Object[0]);
+                sQLiteCursor = this.f27054b.queryFinalized("SELECT uid, info, participants_count FROM chat_settings_v2 WHERE participants_count > 1", new Object[0]);
                 while (sQLiteCursor.next()) {
                     long longValue = sQLiteCursor.longValue(0);
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(1);
@@ -2295,11 +2295,11 @@ public final class tr extends c1 {
     }
 
     public final void h1(int i7, int i10, int i11, long j3, long j10, TLRPC.messages_Messages messages_messages, boolean z10) {
-        this.f27054a.c(new rg(this, i11, messages_messages, j3, j10, i7, i10, z10));
+        this.f27052a.c(new rg(this, i11, messages_messages, j3, j10, i7, i10, z10));
     }
 
     public final void h2(int i7, long j3, long j10, boolean z10) {
-        this.f27054a.c(new di.i8(this, j10, z10, "unread_poll_votes", j3, i7, "poll_votes_mentions_topics", "unread_poll_votes", "poll_votes_mentions"));
+        this.f27052a.c(new di.i8(this, j10, z10, "unread_poll_votes", j3, i7, "poll_votes_mentions_topics", "unread_poll_votes", "poll_votes_mentions"));
     }
 
     public final void i(Long l10) {
@@ -2308,7 +2308,7 @@ public final class tr extends c1 {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                SQLiteDatabase sQLiteDatabase = this.f27056b;
+                SQLiteDatabase sQLiteDatabase = this.f27054b;
                 Locale locale = Locale.US;
                 i7 = 0;
                 queryFinalized = sQLiteDatabase.queryFinalized("SELECT COUNT(mid) FROM scheduled_messages_v2 WHERE uid = " + l10, new Object[0]);
@@ -2342,7 +2342,7 @@ public final class tr extends c1 {
     }
 
     public final q5 i0() {
-        return this.f27054a;
+        return this.f27052a;
     }
 
     public final void i1(int i7, int i10, long j3, ArrayList arrayList, boolean z10) {
@@ -2350,7 +2350,7 @@ public final class tr extends c1 {
     }
 
     public final void i2(int i7, long j3, long j10, boolean z10) {
-        this.f27054a.c(new di.i8(this, j10, z10, "unread_reactions", j3, i7, "reaction_mentions_topics", "unread_reactions", "reaction_mentions"));
+        this.f27052a.c(new di.i8(this, j10, z10, "unread_reactions", j3, i7, "reaction_mentions_topics", "unread_reactions", "reaction_mentions"));
     }
 
     public final void j(boolean r28) {
@@ -2376,7 +2376,7 @@ public final class tr extends c1 {
     public final void j1(final ArrayList arrayList, final boolean z10, boolean z11, final boolean z12, final int i7, final boolean z13, final int i10, final long j3) {
         if (arrayList != null && !arrayList.isEmpty()) {
             if (z11) {
-                this.f27054a.c(new Runnable() {
+                this.f27052a.c(new Runnable() {
                     @Override
                     public final void run() {
                         tr.this.k1(arrayList, z10, z12, i7, z13, i10, j3);
@@ -2389,7 +2389,7 @@ public final class tr extends c1 {
     }
 
     public final void j2(TLRPC.UserFull userFull, boolean z10) {
-        this.f27054a.c(new xf(this, userFull, z10, 8));
+        this.f27052a.c(new xf(this, userFull, z10, 8));
     }
 
     public final void k(int i7) {
@@ -2400,7 +2400,7 @@ public final class tr extends c1 {
         }
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
-            this.f27054a.a((Runnable) arrayList.get(i10));
+            this.f27052a.a((Runnable) arrayList.get(i10));
         }
         sparseArray.remove(i7);
     }
@@ -2408,7 +2408,7 @@ public final class tr extends c1 {
     public final TLRPC.User k0(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         TLRPC.User[] userArr = new TLRPC.User[1];
-        this.f27054a.c(new fm(this, userArr, j3, countDownLatch, 11));
+        this.f27052a.c(new fm(this, userArr, j3, countDownLatch, 11));
         try {
             countDownLatch.await();
         } catch (Exception e10) {
@@ -2425,7 +2425,7 @@ public final class tr extends c1 {
         if (arrayList.isEmpty()) {
             return;
         }
-        this.f27054a.c(new yp(this, arrayList, z10, 0));
+        this.f27052a.c(new yp(this, arrayList, z10, 0));
     }
 
     public final void l(int i7) {
@@ -2433,7 +2433,7 @@ public final class tr extends c1 {
         try {
             try {
                 boolean z10 = false;
-                sQLiteCursor = this.f27056b.queryFinalized("SELECT did FROM dialogs WHERE folder_id = ?", Integer.valueOf(i7));
+                sQLiteCursor = this.f27054b.queryFinalized("SELECT did FROM dialogs WHERE folder_id = ?", Integer.valueOf(i7));
                 while (true) {
                     if (sQLiteCursor.next()) {
                         long longValue = sQLiteCursor.longValue(0);
@@ -2453,7 +2453,7 @@ public final class tr extends c1 {
                 sQLiteCursor.dispose();
                 if (z10) {
                     g0.g3(new rp(this, i7, 6));
-                    this.f27056b.executeFast("DELETE FROM dialogs WHERE did = " + (2305843009213693952L | i7)).stepThis().dispose();
+                    this.f27054b.executeFast("DELETE FROM dialogs WHERE did = " + (2305843009213693952L | i7)).stepThis().dispose();
                 }
                 sQLiteCursor.dispose();
             } catch (Exception e10) {
@@ -2484,14 +2484,14 @@ public final class tr extends c1 {
 
     public final void l1(String str, TLObject tLObject, int i7, String str2) {
         if (str != null && tLObject != null && str2 != null) {
-            this.f27054a.c(new yj(this, str, tLObject, i7, str2, 4));
+            this.f27052a.c(new yj(this, str, tLObject, i7, str2, 4));
         }
     }
 
     public final void l2(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             try {
-                SQLiteDatabase sQLiteDatabase = this.f27056b;
+                SQLiteDatabase sQLiteDatabase = this.f27054b;
                 Locale locale = Locale.US;
                 String join = TextUtils.join(",", arrayList);
                 SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT DISTINCT id FROM shortcut_widget WHERE did IN(" + join + ",-1)", new Object[0]);
@@ -2515,7 +2515,7 @@ public final class tr extends c1 {
     public final boolean m(long j3) {
         boolean[] zArr = new boolean[1];
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.f27054a.c(new aq(this, j3, zArr, countDownLatch, 2));
+        this.f27052a.c(new aq(this, j3, zArr, countDownLatch, 2));
         try {
             countDownLatch.await();
         } catch (Exception e10) {
@@ -2533,7 +2533,7 @@ public final class tr extends c1 {
             return;
         }
         if (z11) {
-            this.f27054a.c(new aa.c0(this, list, list2, z10, 21));
+            this.f27052a.c(new aa.c0(this, list, list2, z10, 21));
             return;
         }
         n1(list, list2, z10);
@@ -2560,7 +2560,7 @@ public final class tr extends c1 {
                 }
             }
             if (!arrayList.isEmpty()) {
-                SQLiteDatabase sQLiteDatabase = this.f27056b;
+                SQLiteDatabase sQLiteDatabase = this.f27054b;
                 Locale locale = Locale.US;
                 SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.p("SELECT data, status FROM users WHERE uid IN(", TextUtils.join(",", arrayList), ")"), new Object[0]);
                 while (queryFinalized.next()) {
@@ -2593,10 +2593,10 @@ public final class tr extends c1 {
         if (z10) {
             try {
                 try {
-                    this.f27056b.beginTransaction();
+                    this.f27054b.beginTransaction();
                 } catch (Exception e10) {
                     o(e10, true);
-                    SQLiteDatabase sQLiteDatabase = this.f27056b;
+                    SQLiteDatabase sQLiteDatabase = this.f27054b;
                     if (sQLiteDatabase != null) {
                         sQLiteDatabase.commitTransaction();
                         return;
@@ -2604,7 +2604,7 @@ public final class tr extends c1 {
                     return;
                 }
             } catch (Throwable th2) {
-                SQLiteDatabase sQLiteDatabase2 = this.f27056b;
+                SQLiteDatabase sQLiteDatabase2 = this.f27054b;
                 if (sQLiteDatabase2 != null) {
                     sQLiteDatabase2.commitTransaction();
                 }
@@ -2613,7 +2613,7 @@ public final class tr extends c1 {
         }
         o1(list);
         b1(list2);
-        SQLiteDatabase sQLiteDatabase3 = this.f27056b;
+        SQLiteDatabase sQLiteDatabase3 = this.f27054b;
         if (sQLiteDatabase3 != null) {
             sQLiteDatabase3.commitTransaction();
         }
@@ -2636,7 +2636,7 @@ public final class tr extends c1 {
                 }
             }
             if (!hashSet.isEmpty()) {
-                SQLiteDatabase sQLiteDatabase = this.f27056b;
+                SQLiteDatabase sQLiteDatabase = this.f27054b;
                 Locale locale = Locale.US;
                 SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.p("SELECT data, status FROM users WHERE uid IN(", TextUtils.join(",", hashSet), ")"), new Object[0]);
                 while (queryFinalized.next()) {
@@ -2667,14 +2667,14 @@ public final class tr extends c1 {
         int i10;
         int i11;
         if (list != null && !list.isEmpty()) {
-            SQLitePreparedStatement executeFast = this.f27056b.executeFast("REPLACE INTO users VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = this.f27054b.executeFast("REPLACE INTO users VALUES(?, ?, ?, ?)");
             for (int i12 = 0; i12 < list.size(); i12++) {
                 TLRPC.User user = (TLRPC.User) list.get(i12);
                 if (user != null) {
                     if (user.min) {
-                        SQLiteDatabase sQLiteDatabase = this.f27056b;
+                        SQLiteDatabase sQLiteDatabase = this.f27054b;
                         Locale locale = Locale.US;
-                        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.o(user.f28554id, "SELECT data FROM users WHERE uid = "), new Object[0]);
+                        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a8.p0.o(user.f28552id, "SELECT data FROM users WHERE uid = "), new Object[0]);
                         if (queryFinalized.next()) {
                             try {
                                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -2712,7 +2712,7 @@ public final class tr extends c1 {
                     executeFast.requery();
                     NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(user.getObjectSize());
                     user.serializeToStream(nativeByteBuffer);
-                    executeFast.bindLong(1, user.f28554id);
+                    executeFast.bindLong(1, user.f28552id);
                     executeFast.bindString(2, K(user));
                     TLRPC.UserStatus userStatus = user.status;
                     if (userStatus != null) {
@@ -2745,7 +2745,7 @@ public final class tr extends c1 {
                     executeFast.bindByteBuffer(4, nativeByteBuffer);
                     executeFast.step();
                     nativeByteBuffer.reuse();
-                    this.S.delete(user.f28554id);
+                    this.S.delete(user.f28552id);
                 }
             }
             executeFast.dispose();
@@ -2758,44 +2758,44 @@ public final class tr extends c1 {
         } else {
             q();
         }
-        SQLiteDatabase sQLiteDatabase = this.f27056b;
+        SQLiteDatabase sQLiteDatabase = this.f27054b;
         if (sQLiteDatabase != null) {
             sQLiteDatabase.close();
-            this.f27056b = null;
+            this.f27054b = null;
         }
         if (z10) {
-            File file = this.f27058c;
+            File file = this.f27056c;
             if (file != null) {
                 file.delete();
-                this.f27058c = null;
+                this.f27056c = null;
             }
             File file2 = this.d;
             if (file2 != null) {
                 file2.delete();
                 this.d = null;
             }
-            File file3 = this.f27061e;
+            File file3 = this.f27059e;
             if (file3 != null) {
                 file3.delete();
-                this.f27061e = null;
+                this.f27059e = null;
             }
         }
     }
 
     public final void p0() {
-        this.f27054a.c(new pq(this, 23));
+        this.f27052a.c(new pq(this, 23));
     }
 
     public final void p1(int i7, ArrayList arrayList) {
-        this.f27054a.c(new tp(this, i7, arrayList, 3));
+        this.f27052a.c(new tp(this, i7, arrayList, 3));
     }
 
     public final void q() {
-        this.f27064n = 0;
-        this.f27067w = 0;
-        this.f27065r = 0;
-        this.f27066s = 0;
-        this.f27068x = 0;
+        this.f27062n = 0;
+        this.f27065w = 0;
+        this.f27063r = 0;
+        this.f27064s = 0;
+        this.f27066x = 0;
         this.L = 0;
         this.M = 0;
         this.N = 0;
@@ -2806,13 +2806,13 @@ public final class tr extends c1 {
         this.F = 0;
         this.G = 0;
         this.H = 0;
-        this.f27069y = null;
+        this.f27067y = null;
         this.E = 0;
     }
 
     public final void q0(final int i7, final int i10, final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3, final boolean z10) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.f27054a.c(new Runnable() {
+        this.f27052a.c(new Runnable() {
             @Override
             public final void run() {
                 ArrayList arrayList4;
@@ -2826,7 +2826,7 @@ public final class tr extends c1 {
                     try {
                         ArrayList arrayList7 = new ArrayList();
                         ArrayList arrayList8 = new ArrayList();
-                        SQLiteDatabase sQLiteDatabase = trVar.f27056b;
+                        SQLiteDatabase sQLiteDatabase = trVar.f27054b;
                         Locale locale = Locale.US;
                         try {
                             SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT did FROM shortcut_widget WHERE id = " + i11 + " ORDER BY ord ASC", new Object[0]);
@@ -2872,7 +2872,7 @@ public final class tr extends c1 {
                             queryFinalized.dispose();
                             if (!z10 && arrayList4.isEmpty()) {
                                 if (i10 == 0) {
-                                    SQLiteCursor queryFinalized2 = trVar.f27056b.queryFinalized("SELECT did FROM dialogs WHERE folder_id = 0 ORDER BY pinned DESC, date DESC LIMIT 0,10", new Object[0]);
+                                    SQLiteCursor queryFinalized2 = trVar.f27054b.queryFinalized("SELECT did FROM dialogs WHERE folder_id = 0 ORDER BY pinned DESC, date DESC LIMIT 0,10", new Object[0]);
                                     while (queryFinalized2.next()) {
                                         long longValue2 = queryFinalized2.longValue(0);
                                         if (!n5.D(longValue2)) {
@@ -2888,7 +2888,7 @@ public final class tr extends c1 {
                                     }
                                     queryFinalized2.dispose();
                                 } else {
-                                    SQLiteCursor queryFinalized3 = trVar.getMessagesStorage().f27056b.queryFinalized("SELECT did FROM chat_hints WHERE type = 0 ORDER BY rating DESC LIMIT 4", new Object[0]);
+                                    SQLiteCursor queryFinalized3 = trVar.getMessagesStorage().f27054b.queryFinalized("SELECT did FROM chat_hints WHERE type = 0 ORDER BY rating DESC LIMIT 4", new Object[0]);
                                     while (queryFinalized3.next()) {
                                         long longValue3 = queryFinalized3.longValue(0);
                                         arrayList4.add(Long.valueOf(longValue3));
@@ -2931,11 +2931,11 @@ public final class tr extends c1 {
     }
 
     public final void q1(long j3) {
-        this.f27054a.c(new pp(this, j3, 6));
+        this.f27052a.c(new pp(this, j3, 6));
     }
 
     public final void r(int i7) {
-        this.f27054a.c(new rp(this, i7, 4));
+        this.f27052a.c(new rp(this, i7, 4));
     }
 
     public final boolean r0(a0.h hVar, TLRPC.Chat chat) {
@@ -2958,7 +2958,7 @@ public final class tr extends c1 {
         if (message == null || (message instanceof TLRPC.TL_messageEmpty)) {
             return;
         }
-        this.f27054a.c(new in(this, message, z10, arrayList, arrayList2, 1));
+        this.f27052a.c(new in(this, message, z10, arrayList, arrayList2, 1));
     }
 
     public final void s() {
@@ -2983,13 +2983,13 @@ public final class tr extends c1 {
         for (int i7 = 0; i7 < size; i7++) {
             ro roVar = (ro) this.I.get(i7);
             if (z10) {
-                int i10 = roVar.f26679g;
+                int i10 = roVar.f26677g;
                 int i11 = mp.I8;
                 if ((i10 & 32) != 0) {
-                    roVar.f26677e = -1;
+                    roVar.f26675e = -1;
                 }
             } else {
-                roVar.f26677e = -1;
+                roVar.f26675e = -1;
             }
         }
         j(false);
@@ -3024,13 +3024,13 @@ public final class tr extends c1 {
                         i12 = 3;
                         i13 = 4;
                         i14 = 1;
-                        queryFinalized = this.f27056b.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND topic_id = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j3), Long.valueOf(j10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10)), new Object[0]);
+                        queryFinalized = this.f27054b.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND topic_id = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j3), Long.valueOf(j10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10)), new Object[0]);
                     } else {
                         i11 = 2;
                         i12 = 3;
                         i13 = 4;
                         i14 = 1;
-                        queryFinalized = this.f27056b.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j3), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10)), new Object[0]);
+                        queryFinalized = this.f27054b.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j3), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i7), Integer.valueOf(i10)), new Object[0]);
                     }
                     sQLiteCursor2 = queryFinalized;
                     ArrayList arrayList2 = null;
@@ -3055,8 +3055,8 @@ public final class tr extends c1 {
                         int i22 = 0;
                         while (i22 < arrayList2.size()) {
                             mr mrVar = (mr) arrayList2.get(i22);
-                            int i23 = mrVar.f25833b;
-                            int i24 = mrVar.f25832a;
+                            int i23 = mrVar.f25831b;
+                            int i24 = mrVar.f25830a;
                             int i25 = i23 - 1;
                             boolean z12 = z11;
                             int i26 = i20;
@@ -3074,7 +3074,7 @@ public final class tr extends c1 {
                                         objArr[1] = valueOf2;
                                         objArr[i11] = valueOf3;
                                         objArr[i12] = valueOf4;
-                                        this.f27056b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr)).stepThis().dispose();
+                                        this.f27054b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr)).stepThis().dispose();
                                     } else {
                                         arrayList = arrayList2;
                                         Long valueOf5 = Long.valueOf(j3);
@@ -3084,7 +3084,7 @@ public final class tr extends c1 {
                                         objArr2[z12 ? 1 : 0] = valueOf5;
                                         objArr2[1] = valueOf6;
                                         objArr2[i11] = valueOf7;
-                                        this.f27056b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr2)).stepThis().dispose();
+                                        this.f27054b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr2)).stepThis().dispose();
                                     }
                                     i18 = i11;
                                     i16 = 3;
@@ -3105,7 +3105,7 @@ public final class tr extends c1 {
                                 if (i23 != i7) {
                                     if (i26 != 0) {
                                         try {
-                                            SQLiteDatabase sQLiteDatabase = this.f27056b;
+                                            SQLiteDatabase sQLiteDatabase = this.f27054b;
                                             Locale locale = Locale.US;
                                             Long valueOf8 = Long.valueOf(j3);
                                             Long valueOf9 = Long.valueOf(j10);
@@ -3126,12 +3126,12 @@ public final class tr extends c1 {
                                             objArr4[1] = valueOf13;
                                             objArr4[i11] = valueOf14;
                                             objArr4[3] = valueOf15;
-                                            this.f27056b.executeFast(String.format(locale, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", objArr4)).stepThis().dispose();
+                                            this.f27054b.executeFast(String.format(locale, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", objArr4)).stepThis().dispose();
                                         } catch (Exception e11) {
                                             o(e11, z12);
                                         }
                                     } else {
-                                        SQLiteDatabase sQLiteDatabase2 = this.f27056b;
+                                        SQLiteDatabase sQLiteDatabase2 = this.f27054b;
                                         Locale locale2 = Locale.US;
                                         Long valueOf16 = Long.valueOf(j3);
                                         Integer valueOf17 = Integer.valueOf(i24);
@@ -3148,14 +3148,14 @@ public final class tr extends c1 {
                                         objArr6[z12 ? 1 : 0] = valueOf19;
                                         objArr6[1] = valueOf20;
                                         objArr6[i11] = valueOf21;
-                                        this.f27056b.executeFast(String.format(locale2, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", objArr6)).stepThis().dispose();
+                                        this.f27054b.executeFast(String.format(locale2, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", objArr6)).stepThis().dispose();
                                     }
                                 }
                             } else if (i7 <= i24 + 1) {
                                 if (i24 != i10) {
                                     if (i26 != 0) {
                                         try {
-                                            SQLiteDatabase sQLiteDatabase3 = this.f27056b;
+                                            SQLiteDatabase sQLiteDatabase3 = this.f27054b;
                                             Locale locale3 = Locale.US;
                                             Long valueOf22 = Long.valueOf(j3);
                                             Long valueOf23 = Long.valueOf(j10);
@@ -3176,12 +3176,12 @@ public final class tr extends c1 {
                                             objArr8[1] = valueOf27;
                                             objArr8[i11] = valueOf28;
                                             objArr8[3] = valueOf29;
-                                            this.f27056b.executeFast(String.format(locale3, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", objArr8)).stepThis().dispose();
+                                            this.f27054b.executeFast(String.format(locale3, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", objArr8)).stepThis().dispose();
                                         } catch (Exception e12) {
                                             o(e12, false);
                                         }
                                     } else {
-                                        SQLiteDatabase sQLiteDatabase4 = this.f27056b;
+                                        SQLiteDatabase sQLiteDatabase4 = this.f27054b;
                                         Locale locale4 = Locale.US;
                                         Long valueOf30 = Long.valueOf(j3);
                                         Integer valueOf31 = Integer.valueOf(i24);
@@ -3198,7 +3198,7 @@ public final class tr extends c1 {
                                         objArr10[0] = valueOf33;
                                         objArr10[1] = valueOf34;
                                         objArr10[i11] = valueOf35;
-                                        this.f27056b.executeFast(String.format(locale4, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", objArr10)).stepThis().dispose();
+                                        this.f27054b.executeFast(String.format(locale4, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", objArr10)).stepThis().dispose();
                                     }
                                 }
                             } else {
@@ -3212,8 +3212,8 @@ public final class tr extends c1 {
                                     objArr11[1] = valueOf37;
                                     objArr11[i11] = valueOf38;
                                     objArr11[3] = valueOf39;
-                                    this.f27056b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr11)).stepThis().dispose();
-                                    executeFast = this.f27056b.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?, ?)");
+                                    this.f27054b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", objArr11)).stepThis().dispose();
+                                    executeFast = this.f27054b.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?, ?)");
                                     i16 = 3;
                                     z10 = false;
                                 } else {
@@ -3226,8 +3226,8 @@ public final class tr extends c1 {
                                     objArr12[0] = valueOf40;
                                     objArr12[1] = valueOf41;
                                     objArr12[i11] = valueOf42;
-                                    this.f27056b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr12)).stepThis().dispose();
-                                    executeFast = this.f27056b.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?)");
+                                    this.f27054b.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", objArr12)).stepThis().dispose();
+                                    executeFast = this.f27054b.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?)");
                                 }
                                 try {
                                     executeFast.requery();
@@ -3326,7 +3326,7 @@ public final class tr extends c1 {
         LongSparseIntArray longSparseIntArray;
         SQLiteCursor sQLiteCursor = null;
         try {
-            SQLiteDatabase sQLiteDatabase = this.f27056b;
+            SQLiteDatabase sQLiteDatabase = this.f27054b;
             Locale locale = Locale.ENGLISH;
             SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT topic_id FROM topics WHERE did = " + j3 + " AND unread_count > 0", new Object[0]);
             try {
@@ -3338,7 +3338,7 @@ public final class tr extends c1 {
                 }
                 queryFinalized.dispose();
                 if (longSparseIntArray != null) {
-                    this.f27056b.executeFast("UPDATE dialogs SET unread_count = 0, unread_count_i = 0 WHERE did = " + j3).stepThis().dispose();
+                    this.f27054b.executeFast("UPDATE dialogs SET unread_count = 0, unread_count_i = 0 WHERE did = " + j3).stepThis().dispose();
                 }
                 W1(longSparseIntArray, null, true);
                 getMessagesController().O3(longSparseIntArray, null);
@@ -3361,7 +3361,7 @@ public final class tr extends c1 {
     public final boolean v(long j3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Boolean[] boolArr = {Boolean.FALSE};
-        this.f27054a.c(new fm(this, j3, boolArr, countDownLatch, 12));
+        this.f27052a.c(new fm(this, j3, boolArr, countDownLatch, 12));
         try {
             countDownLatch.await();
         } catch (Exception e10) {
@@ -3372,7 +3372,7 @@ public final class tr extends c1 {
 
     public final void v1(String str, TLObject tLObject) {
         if (tLObject != null && !TextUtils.isEmpty(str)) {
-            this.f27054a.c(new kg((Object) this, (Object) tLObject, str, 18));
+            this.f27052a.c(new kg((Object) this, (Object) tLObject, str, 18));
         }
     }
 
@@ -3381,11 +3381,11 @@ public final class tr extends c1 {
     }
 
     public final void w1(int i7, long j3) {
-        this.f27054a.c(new vp(this, i7, j3, 2));
+        this.f27052a.c(new vp(this, i7, j3, 2));
     }
 
     public final SQLiteCursor x(int i7, int i10, long j3) {
-        SQLiteDatabase sQLiteDatabase = this.f27056b;
+        SQLiteDatabase sQLiteDatabase = this.f27054b;
         Locale locale = Locale.US;
         StringBuilder t6 = a8.p0.t(j3, "SELECT data, seen, pin FROM profile_stories JOIN profile_stories_albums_links ON profile_stories.story_id = profile_stories_albums_links.story_id WHERE profile_stories.dialog_id = ", " AND profile_stories_albums_links.dialog_id = ");
         t6.append(j3);
@@ -3433,9 +3433,9 @@ public final class tr extends c1 {
                     } else {
                         arrayList.add(roVar);
                     }
-                    this.J.put(roVar.f26674a, roVar);
+                    this.J.put(roVar.f26672a, roVar);
                 }
-                executeFast = this.f27056b.executeFast("REPLACE INTO dialog_filter VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+                executeFast = this.f27054b.executeFast("REPLACE INTO dialog_filter VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             } catch (Throwable th2) {
                 th = th2;
             }
@@ -3443,37 +3443,37 @@ public final class tr extends c1 {
             e = e10;
         }
         try {
-            int i10 = roVar.f26674a;
-            LongSparseIntArray longSparseIntArray = roVar.f26681j;
+            int i10 = roVar.f26672a;
+            LongSparseIntArray longSparseIntArray = roVar.f26679j;
             executeFast.bindInteger(1, i10);
-            executeFast.bindInteger(2, roVar.f26678f);
+            executeFast.bindInteger(2, roVar.f26676f);
             executeFast.bindInteger(3, roVar.d);
-            executeFast.bindInteger(4, roVar.f26679g);
-            if (roVar.f26674a == 0) {
+            executeFast.bindInteger(4, roVar.f26677g);
+            if (roVar.f26672a == 0) {
                 str = "ALL_CHATS";
             } else {
-                str = roVar.f26675b;
+                str = roVar.f26673b;
             }
             executeFast.bindString(5, str);
-            executeFast.bindInteger(6, roVar.f26684m);
+            executeFast.bindInteger(6, roVar.f26682m);
             Vector vector = new Vector(new ed(9));
-            vector.objects.addAll(roVar.f26676c);
+            vector.objects.addAll(roVar.f26674c);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(vector.getObjectSize());
             vector.serializeToStream(nativeByteBuffer);
             executeFast.bindByteBuffer(7, nativeByteBuffer);
-            executeFast.bindInteger(8, roVar.f26685n ? 1 : 0);
+            executeFast.bindInteger(8, roVar.f26683n ? 1 : 0);
             executeFast.step();
             executeFast.dispose();
             nativeByteBuffer.reuse();
-            this.f27056b.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + roVar.f26674a).stepThis().dispose();
-            this.f27056b.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + roVar.f26674a).stepThis().dispose();
-            this.f27056b.beginTransaction();
-            SQLitePreparedStatement executeFast2 = this.f27056b.executeFast("REPLACE INTO dialog_filter_pin_v2 VALUES(?, ?, ?)");
+            this.f27054b.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + roVar.f26672a).stepThis().dispose();
+            this.f27054b.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + roVar.f26672a).stepThis().dispose();
+            this.f27054b.beginTransaction();
+            SQLitePreparedStatement executeFast2 = this.f27054b.executeFast("REPLACE INTO dialog_filter_pin_v2 VALUES(?, ?, ?)");
             int size = roVar.h.size();
             for (int i11 = 0; i11 < size; i11++) {
                 long longValue = ((Long) roVar.h.get(i11)).longValue();
                 executeFast2.requery();
-                executeFast2.bindInteger(1, roVar.f26674a);
+                executeFast2.bindInteger(1, roVar.f26672a);
                 executeFast2.bindLong(2, longValue);
                 executeFast2.bindInteger(3, longSparseIntArray.get(longValue, Integer.MIN_VALUE));
                 executeFast2.step();
@@ -3483,24 +3483,24 @@ public final class tr extends c1 {
                 long keyAt = longSparseIntArray.keyAt(i12);
                 if (n5.C(keyAt)) {
                     executeFast2.requery();
-                    executeFast2.bindInteger(1, roVar.f26674a);
+                    executeFast2.bindInteger(1, roVar.f26672a);
                     executeFast2.bindLong(2, keyAt);
                     executeFast2.bindInteger(3, longSparseIntArray.valueAt(i12));
                     executeFast2.step();
                 }
             }
             executeFast2.dispose();
-            SQLitePreparedStatement executeFast3 = this.f27056b.executeFast("REPLACE INTO dialog_filter_ep VALUES(?, ?)");
-            int size3 = roVar.f26680i.size();
+            SQLitePreparedStatement executeFast3 = this.f27054b.executeFast("REPLACE INTO dialog_filter_ep VALUES(?, ?)");
+            int size3 = roVar.f26678i.size();
             for (i7 = 0; i7 < size3; i7++) {
                 executeFast3.requery();
-                executeFast3.bindInteger(1, roVar.f26674a);
-                executeFast3.bindLong(2, ((Long) roVar.f26680i.get(i7)).longValue());
+                executeFast3.bindInteger(1, roVar.f26672a);
+                executeFast3.bindLong(2, ((Long) roVar.f26678i.get(i7)).longValue());
                 executeFast3.step();
             }
             executeFast3.dispose();
-            this.f27056b.commitTransaction();
-            SQLiteDatabase sQLiteDatabase = this.f27056b;
+            this.f27054b.commitTransaction();
+            SQLiteDatabase sQLiteDatabase = this.f27054b;
             if (sQLiteDatabase != null) {
                 sQLiteDatabase.commitTransaction();
             }
@@ -3508,7 +3508,7 @@ public final class tr extends c1 {
             e = e11;
             sQLitePreparedStatement3 = sQLitePreparedStatement2;
             o(e, true);
-            SQLiteDatabase sQLiteDatabase2 = this.f27056b;
+            SQLiteDatabase sQLiteDatabase2 = this.f27054b;
             if (sQLiteDatabase2 != null) {
                 sQLiteDatabase2.commitTransaction();
             }
@@ -3518,7 +3518,7 @@ public final class tr extends c1 {
         } catch (Throwable th3) {
             th = th3;
             sQLitePreparedStatement3 = sQLitePreparedStatement;
-            SQLiteDatabase sQLiteDatabase3 = this.f27056b;
+            SQLiteDatabase sQLiteDatabase3 = this.f27054b;
             if (sQLiteDatabase3 != null) {
                 sQLiteDatabase3.commitTransaction();
             }
@@ -3532,7 +3532,7 @@ public final class tr extends c1 {
     public final void y(long j3, TLRPC.Message message) {
         TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
         tL_forumTopic.topicStartMessage = message;
-        tL_forumTopic.top_message = message.f28426id;
+        tL_forumTopic.top_message = message.f28424id;
         tL_forumTopic.topMessage = message;
         tL_forumTopic.from_id = message.from_id;
         tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
@@ -3541,7 +3541,7 @@ public final class tr extends c1 {
         TLRPC.MessageAction messageAction = message.action;
         if (messageAction instanceof TLRPC.TL_messageActionTopicCreate) {
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = (TLRPC.TL_messageActionTopicCreate) messageAction;
-            tL_forumTopic.f28457id = message.f28426id;
+            tL_forumTopic.f28455id = message.f28424id;
             long j10 = tL_messageActionTopicCreate.icon_emoji_id;
             tL_forumTopic.icon_emoji_id = j10;
             tL_forumTopic.title = tL_messageActionTopicCreate.title;
@@ -3555,7 +3555,7 @@ public final class tr extends c1 {
             g0.g3(new d4(this, j3, tL_forumTopic, 22));
         } else if (messageAction instanceof TLRPC.TL_messageActionTopicEdit) {
             TLRPC.TL_messageActionTopicEdit tL_messageActionTopicEdit = (TLRPC.TL_messageActionTopicEdit) messageAction;
-            tL_forumTopic.f28457id = (int) fj.b2(this.currentAccount, message, true, false);
+            tL_forumTopic.f28455id = (int) fj.b2(this.currentAccount, message, true, false);
             tL_forumTopic.icon_emoji_id = tL_messageActionTopicEdit.icon_emoji_id;
             tL_forumTopic.title = tL_messageActionTopicEdit.title;
             tL_forumTopic.closed = tL_messageActionTopicEdit.closed;
@@ -3573,20 +3573,20 @@ public final class tr extends c1 {
             if ((i10 & 8) != 0) {
                 i7 += 32;
             }
-            this.f27054a.c(new b1(this, i7, tL_forumTopic, j3, message.date));
+            this.f27052a.c(new b1(this, i7, tL_forumTopic, j3, message.date));
         }
     }
 
     public final void y1() {
-        this.f27054a.c(new qp(this, new ArrayList(getMessagesController().Q0), 8));
+        this.f27052a.c(new qp(this, new ArrayList(getMessagesController().Q0), 8));
     }
 
     public final long z(NativeByteBuffer nativeByteBuffer) {
         if (nativeByteBuffer == null) {
             return 0L;
         }
-        long andAdd = this.f27063f.getAndAdd(1L);
-        this.f27054a.c(new d4(this, andAdd, nativeByteBuffer, 25));
+        long andAdd = this.f27061f.getAndAdd(1L);
+        this.f27052a.c(new d4(this, andAdd, nativeByteBuffer, 25));
         return andAdd;
     }
 
@@ -3599,14 +3599,14 @@ public final class tr extends c1 {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                sQLitePreparedStatement = this.f27056b.executeFast("UPDATE dialog_filter SET ord = ?, flags = ? WHERE id = ?");
+                sQLitePreparedStatement = this.f27054b.executeFast("UPDATE dialog_filter SET ord = ?, flags = ? WHERE id = ?");
                 int size = arrayList.size();
                 for (int i7 = 0; i7 < size; i7++) {
                     ro roVar = (ro) arrayList.get(i7);
                     sQLitePreparedStatement.requery();
-                    sQLitePreparedStatement.bindInteger(1, roVar.f26678f);
-                    sQLitePreparedStatement.bindInteger(2, roVar.f26679g);
-                    sQLitePreparedStatement.bindInteger(3, roVar.f26674a);
+                    sQLitePreparedStatement.bindInteger(1, roVar.f26676f);
+                    sQLitePreparedStatement.bindInteger(2, roVar.f26677g);
+                    sQLitePreparedStatement.bindInteger(3, roVar.f26672a);
                     sQLitePreparedStatement.step();
                 }
                 sQLitePreparedStatement.dispose();

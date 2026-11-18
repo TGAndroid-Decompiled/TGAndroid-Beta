@@ -50,7 +50,7 @@ public final class c2 implements q10 {
                             return;
                         } else if ("signData".equals(h2Var.f44292e)) {
                             if (l2Var.A(h2Var) && !l2Var.j(h2Var)) {
-                                Utilities.f22782e.c(new v7(l2Var, r0Var, h2Var, p51Var, 8));
+                                Utilities.f22779e.c(new v7(l2Var, r0Var, h2Var, p51Var, 8));
                                 return;
                             } else {
                                 l2Var.y(h2Var, r0Var, null, 0, "Request expired or wallet changed", p51Var);
@@ -60,7 +60,7 @@ public final class c2 implements q10 {
                             WalletEngine2 walletEngine2 = l2Var.f44480b.f45084b;
                             if (walletEngine2 != null && l2Var.A(h2Var) && !l2Var.j(h2Var)) {
                                 k2 k2Var = h2Var.f44293f;
-                                walletEngine2.signMessage(r0Var, k2Var, "ton-connect:" + h2Var.f44289a.f28667id + ":" + h2Var.f44290b, new s(l2Var, h2Var, r0Var, p51Var, 8));
+                                walletEngine2.signMessage(r0Var, k2Var, "ton-connect:" + h2Var.f44289a.f28665id + ":" + h2Var.f44290b, new s(l2Var, h2Var, r0Var, p51Var, 8));
                                 return;
                             }
                             l2Var.y(h2Var, r0Var, null, 0, "Wallet unavailable or request expired", p51Var);
@@ -99,7 +99,7 @@ public final class c2 implements q10 {
                 TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (!z11 && tL_error2 != null && (str2 = tL_error2.text) != null && (str2.startsWith("INPUT_METHOD_INVALID") || tL_error2.text.startsWith("INPUT_CONSTRUCTOR_INVALID"))) {
-                    org.telegram.utils.twidget.n0.f54853k[k0Var.f54800b] = true;
+                    org.telegram.utils.twidget.n0.f54854k[k0Var.f54801b] = true;
                     org.telegram.utils.twidget.n0.y(k0Var, widgetQueryType, bArr2, iArr, eVar);
                     return;
                 }

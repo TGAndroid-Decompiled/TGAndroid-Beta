@@ -61,7 +61,7 @@ public final class lg implements Runnable {
                 k5 k5Var = (k5) obj;
                 ArrayList arrayList = new ArrayList(k5Var.f36680c);
                 k5Var.f36680c.clear();
-                org.telegram.messenger.tr.a0(k5Var.f36681e).f27054a.c(new h5(k5Var, arrayList, 0));
+                org.telegram.messenger.tr.a0(k5Var.f36681e).f27052a.c(new h5(k5Var, arrayList, 0));
                 k5Var.d = null;
                 return;
             case 6:
@@ -119,7 +119,7 @@ public final class lg implements Runnable {
                 return;
             case 14:
                 ca caVar2 = (ca) obj;
-                caVar2.f33953o = (Bitmap) caVar2.f33952n.f13734c;
+                caVar2.f33953o = (Bitmap) caVar2.f33952n.f13731c;
                 caVar2.d();
                 return;
             case 15:
@@ -174,7 +174,7 @@ public final class lg implements Runnable {
                 ((fi) obj).f35104l0.f39741y3.f();
                 return;
             case 25:
-                kk kkVar = (kk) ((androidx.mediarouter.app.f) obj).f2667b;
+                kk kkVar = (kk) ((androidx.mediarouter.app.f) obj).f2668b;
                 try {
                     File file = kkVar.P;
                     if (file == null) {

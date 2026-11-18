@@ -2,24 +2,24 @@ package jg;
 
 import org.telegram.ui.bx;
 public final class f implements Runnable {
-    public final int f17454a;
-    public final m f17455b;
+    public final int f17451a;
+    public final m f17452b;
 
     public f(m mVar, int i7) {
-        this.f17454a = i7;
-        this.f17455b = mVar;
+        this.f17451a = i7;
+        this.f17452b = mVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f17454a) {
+        switch (this.f17451a) {
             case 0:
-                for (bx bxVar : this.f17455b.S.f46683f0) {
-                    ((v4.c0) bxVar.f46307a.getLayoutManager()).f59080u = false;
+                for (bx bxVar : this.f17452b.S.f46663f0) {
+                    ((v4.c0) bxVar.f46298a.getLayoutManager()).f59081u = false;
                 }
                 return;
             default:
-                this.f17455b.K();
+                this.f17452b.K();
                 return;
         }
     }

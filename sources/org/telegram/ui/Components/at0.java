@@ -120,8 +120,8 @@ public class at0 extends ij0 {
             int i7 = 0;
             for (int i10 = 0; i10 < ck0Var.getChildCount(); i10++) {
                 View childAt = ck0Var.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.o7) {
-                    i7 = ((org.telegram.ui.Cells.o7) childAt).getMessageId();
+                if (childAt instanceof org.telegram.ui.Cells.p7) {
+                    i7 = ((org.telegram.ui.Cells.p7) childAt).getMessageId();
                 }
                 if (i7 != 0) {
                     break;
@@ -179,13 +179,13 @@ public class at0 extends ij0 {
         gt0 gt0Var = this.f33450f;
         int[] iArr = gt0Var.f35615p1;
         vs0[] vs0VarArr = gt0Var.f35636w1;
-        if (f1Var.f59126f == 0) {
+        if (f1Var.f59127f == 0) {
             ArrayList c11 = vs0VarArr[0].c();
             int d = i7 - vs0VarArr[0].d();
-            View view = f1Var.f59122a;
-            if (view instanceof org.telegram.ui.Cells.o7) {
-                org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
-                int messageId = o7Var.getMessageId();
+            View view = f1Var.f59123a;
+            if (view instanceof org.telegram.ui.Cells.p7) {
+                org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;
+                int messageId = p7Var.getMessageId();
                 boolean z11 = true;
                 if (this == gt0Var.K) {
                     i10 = iArr[0];
@@ -203,7 +203,7 @@ public class at0 extends ij0 {
                     }
                     if (gt0Var.F1) {
                         SparseArray[] sparseArrayArr = gt0Var.f35577c1;
-                        if (org.telegram.messenger.fj.B0(fjVar.f23968k) == gt0Var.f35606m1) {
+                        if (org.telegram.messenger.fj.B0(fjVar.f23965k) == gt0Var.f35606m1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -211,15 +211,15 @@ public class at0 extends ij0 {
                         if (sparseArrayArr[c10].indexOfKey(fjVar.e1()) < 0) {
                             z11 = false;
                         }
-                        o7Var.i(z11, z10);
+                        p7Var.i(z11, z10);
                     } else {
-                        o7Var.i(false, z10);
+                        p7Var.i(false, z10);
                     }
-                    o7Var.k(fjVar, i10, false);
+                    p7Var.k(fjVar, i10, false);
                     return;
                 }
-                o7Var.k(null, i10, false);
-                o7Var.i(false, false);
+                p7Var.k(null, i10, false);
+                p7Var.i(false, false);
             }
         }
     }
@@ -237,15 +237,15 @@ public class at0 extends ij0 {
         if (this.f33449e == null) {
             this.f33449e = new m.o3(viewGroup.getContext(), i6Var);
         }
-        org.telegram.ui.Cells.o7 o7Var = new org.telegram.ui.Cells.o7(context, this.f33449e, gt0Var.f35642y1.getCurrentAccount());
+        org.telegram.ui.Cells.p7 p7Var = new org.telegram.ui.Cells.p7(context, this.f33449e, gt0Var.f35642y1.getCurrentAccount());
         if (i7 == 19) {
-            o7Var.f31207x0 = true;
+            p7Var.f31254x0 = true;
         }
-        o7Var.setGradientView(gt0Var.E);
+        p7Var.setGradientView(gt0Var.E);
         if (gt0.x(gt0Var, this) != -1) {
-            o7Var.f31183e0 = true;
+            p7Var.f31230e0 = true;
         }
-        o7Var.setLayoutParams(new v4.q0(-1, -2));
-        return new v4.f1(o7Var);
+        p7Var.setLayoutParams(new v4.q0(-1, -2));
+        return new v4.f1(p7Var);
     }
 }

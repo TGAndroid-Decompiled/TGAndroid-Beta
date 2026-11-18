@@ -14,27 +14,27 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.mp;
 import org.telegram.messenger.x10;
 import org.telegram.messenger.zy;
-import org.telegram.ui.Cells.na;
+import org.telegram.ui.Cells.oa;
 import org.telegram.ui.Components.d11;
 import org.telegram.ui.Components.gu;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.cd0;
+import org.telegram.ui.dd0;
 import org.telegram.ui.qc;
 import org.telegram.ui.sy0;
 public final class e implements x10 {
-    public final int f11868a;
+    public final int f11865a;
 
     public e(int i7) {
-        this.f11868a = i7;
+        this.f11865a = i7;
     }
 
     @Override
     public final void a(Object obj) {
         fj messageObject;
         fj messageObject2;
-        switch (this.f11868a) {
+        switch (this.f11865a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -50,7 +50,7 @@ public final class e implements x10 {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof kg.s1) {
-                    ((kg.s1) view2).f18452c.invalidate();
+                    ((kg.s1) view2).f18449c.invalidate();
                     return;
                 }
                 return;
@@ -71,25 +71,25 @@ public final class e implements x10 {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i7 = org.telegram.ui.ActionBar.e3.f28890r;
+                int i7 = org.telegram.ui.ActionBar.e3.f28888r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i10 = na.f31132n;
+                int i10 = oa.f31186n;
                 return;
             case 9:
                 qc.f1((View) obj);
                 return;
             case 10:
                 View view4 = (View) obj;
-                if ((view4 instanceof org.telegram.ui.Cells.q1) && (messageObject = ((org.telegram.ui.Cells.q1) view4).getMessageObject()) != null) {
+                if ((view4 instanceof org.telegram.ui.Cells.r1) && (messageObject = ((org.telegram.ui.Cells.r1) view4).getMessageObject()) != null) {
                     messageObject.M1 = true;
                     return;
                 }
                 return;
             case 11:
                 View view5 = (View) obj;
-                if ((view5 instanceof org.telegram.ui.Cells.q1) && (messageObject2 = ((org.telegram.ui.Cells.q1) view5).getMessageObject()) != null) {
+                if ((view5 instanceof org.telegram.ui.Cells.r1) && (messageObject2 = ((org.telegram.ui.Cells.r1) view5).getMessageObject()) != null) {
                     messageObject2.M1 = true;
                     messageObject2.H = true;
                     return;
@@ -110,13 +110,13 @@ public final class e implements x10 {
                 }
             case 14:
                 View view7 = (View) obj;
-                if (view7 instanceof org.telegram.ui.Cells.g5) {
-                    org.telegram.ui.Cells.g5 g5Var = (org.telegram.ui.Cells.g5) view7;
-                    g5Var.f30649b.invalidate();
-                    g5Var.f30650c.invalidate();
+                if (view7 instanceof org.telegram.ui.Cells.h5) {
+                    org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
+                    h5Var.f30698b.invalidate();
+                    h5Var.f30699c.invalidate();
                     return;
                 } else if (view7 instanceof kg.s1) {
-                    ((kg.s1) view7).f18452c.invalidate();
+                    ((kg.s1) view7).f18449c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -124,15 +124,15 @@ public final class e implements x10 {
                 }
             case 15:
                 View view8 = (View) obj;
-                if (view8 instanceof org.telegram.ui.Cells.z7) {
-                    ((org.telegram.ui.Cells.z7) view8).a(true);
+                if (view8 instanceof org.telegram.ui.Cells.a8) {
+                    ((org.telegram.ui.Cells.a8) view8).a(true);
                     return;
                 }
                 return;
             case 16:
                 View view9 = (View) obj;
-                if (view9 instanceof org.telegram.ui.Cells.z7) {
-                    ((org.telegram.ui.Cells.z7) view9).c(true);
+                if (view9 instanceof org.telegram.ui.Cells.a8) {
+                    ((org.telegram.ui.Cells.a8) view9).c(true);
                     return;
                 }
                 return;
@@ -159,7 +159,7 @@ public final class e implements x10 {
                     }
                     return;
                 }
-                org.telegram.messenger.g0.g3(new cd0(2));
+                org.telegram.messenger.g0.g3(new dd0(2));
                 return;
             case 21:
                 SurfaceTexture surfaceTexture2 = (SurfaceTexture) obj;
@@ -179,7 +179,7 @@ public final class e implements x10 {
                 return;
             case 24:
                 HashSet hashSet = (HashSet) obj;
-                String str2 = gd.E0().B.f23335f;
+                String str2 = gd.E0().B.f23332f;
                 hashSet.addAll(sy0.d0());
                 SharedPreferences.Editor edit = mp.g1().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str2)) {
@@ -188,10 +188,10 @@ public final class e implements x10 {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                sy0.f52104s = false;
+                sy0.f52106s = false;
                 for (int i11 = 0; i11 < 4; i11++) {
                     try {
-                        mp.u1(i11).f25789v7.g();
+                        mp.u1(i11).f25787v7.g();
                     } catch (Exception unused) {
                     }
                 }
@@ -225,6 +225,6 @@ public final class e implements x10 {
     }
 
     public e(qc qcVar) {
-        this.f11868a = 9;
+        this.f11865a = 9;
     }
 }

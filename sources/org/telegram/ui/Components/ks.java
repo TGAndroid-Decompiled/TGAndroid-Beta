@@ -43,13 +43,13 @@ public abstract class ks extends z41 {
     public final void X() {
         ArrayList arrayList = new ArrayList();
         int i7 = this.Q;
-        ArrayList arrayList2 = org.telegram.messenger.mp.u1(i7).f25811y;
+        ArrayList arrayList2 = org.telegram.messenger.mp.u1(i7).f25809y;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList2.get(i10);
             i10++;
-            TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(-((TLRPC.Dialog) obj).f28409id));
+            TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(-((TLRPC.Dialog) obj).f28407id));
             if (O0 != null && org.telegram.messenger.v3.V(O0) && org.telegram.messenger.v3.t0(O0) && !org.telegram.messenger.v3.r0(O0)) {
                 arrayList.add(O0);
                 if (arrayList.size() >= 100) {

@@ -5,10 +5,10 @@ import e2.u;
 import t3.h;
 import v3.c;
 public final class a {
-    public static final a f59030a = new Object();
+    public static final a f59031a = new Object();
 
     public final da a(u uVar) {
-        String str = uVar.f10769s;
+        String str = uVar.f10766s;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -60,7 +60,7 @@ public final class a {
     }
 
     public final boolean b(u uVar) {
-        String str = uVar.f10769s;
+        String str = uVar.f10766s;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

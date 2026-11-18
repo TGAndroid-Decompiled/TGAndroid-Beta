@@ -73,13 +73,13 @@ public abstract class iv0 extends ck0 implements org.telegram.ui.ActionBar.c6 {
         c0Var.j1(0);
         setSelectorRadius(org.telegram.messenger.g0.L(15.0f));
         setSelectorType(1);
-        int i10 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.ActionBar.u6.l(this, 20, i10, i6Var);
         paint.setColor(org.telegram.ui.ActionBar.n6.w0(i10, this.f34074o2));
         setWillNotDraw(false);
         setOnItemClickListener(new n(this, 15));
         long currentTimeMillis = System.currentTimeMillis();
-        F3.c(org.telegram.messenger.j10.f24773t0, Integer.valueOf(i7), new hi.d8(this, currentTimeMillis, 3));
+        F3.c(org.telegram.messenger.j10.f24770t0, Integer.valueOf(i7), new hi.d8(this, currentTimeMillis, 3));
     }
 
     public static void A1(iv0 iv0Var, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j3) {
@@ -378,7 +378,7 @@ public abstract class iv0 extends ck0 implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void updateColors() {
         try {
-            this.f36217m3.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29488i6, this.f34074o2));
+            this.f36217m3.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29486i6, this.f34074o2));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

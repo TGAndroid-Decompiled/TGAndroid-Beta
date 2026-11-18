@@ -28,37 +28,37 @@ import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.bn;
 public final class s extends h2 implements te.b {
-    public final te.a f19994a;
-    public long f19995b;
-    public FrameLayout f19996c;
+    public final te.a f19991a;
+    public long f19992b;
+    public FrameLayout f19993c;
     public e51 d;
-    public lh.f f19997e;
-    public LinearLayout f19998f;
+    public lh.f f19994e;
+    public LinearLayout f19995f;
     public hi.d h;
-    public hi.d f19999n;
-    public kv0 f20000r;
-    public TLRPC.ChatFull f20001s;
-    public k0 f20002w;
-    public int f20003x;
+    public hi.d f19996n;
+    public kv0 f19997r;
+    public TLRPC.ChatFull f19998s;
+    public k0 f19999w;
+    public int f20000x;
 
     public s(Bundle bundle) {
         super(bundle);
-        this.f19994a = new te.a(0, this, lr.h, 320L, false);
+        this.f19991a = new te.a(0, this, lr.h, 320L, false);
     }
 
     public static void Z(s sVar, l41 l41Var) {
         Object obj = l41Var.H;
         if (obj instanceof mi.f) {
             mi.f fVar = (mi.f) obj;
-            long j3 = fVar.f21021a;
+            long j3 = fVar.f21018a;
             TLRPC.Chat O0 = mp.u1(sVar.currentAccount).O0(Long.valueOf(-j3));
             TLRPC.User c22 = mp.u1(sVar.currentAccount).c2(Long.valueOf(j3));
             if (c22 != null) {
-                sVar.presentFragment(bn.ua(c22.f28554id));
+                sVar.presentFragment(bn.ua(c22.f28552id));
             } else if (!v3.t0(O0) && !v3.j0(O0)) {
                 new ni.c(sVar.getParentActivity(), O0, new kg.h0(16, sVar, fVar)).show();
             } else {
-                sVar.presentFragment(bn.ua(-O0.f28405id));
+                sVar.presentFragment(bn.ua(-O0.f28403id));
             }
         }
     }
@@ -67,8 +67,8 @@ public final class s extends h2 implements te.b {
     public final void H(int i7, float f10, float f11, te.c cVar) {
         int i10;
         float f12 = 1.0f - f10;
-        this.f19998f.setAlpha(f12);
-        LinearLayout linearLayout = this.f19998f;
+        this.f19995f.setAlpha(f12);
+        LinearLayout linearLayout = this.f19995f;
         int i11 = 8;
         if (f12 > 0.0f) {
             i10 = 0;
@@ -76,8 +76,8 @@ public final class s extends h2 implements te.b {
             i10 = 8;
         }
         linearLayout.setVisibility(i10);
-        this.f20000r.setAlpha(f10);
-        kv0 kv0Var = this.f20000r;
+        this.f19997r.setAlpha(f10);
+        kv0 kv0Var = this.f19997r;
         if (f10 > 0.0f) {
             i11 = 0;
         }
@@ -86,27 +86,27 @@ public final class s extends h2 implements te.b {
 
     public final void a0(int i7) {
         this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + i7);
-        this.f19998f.setPadding(org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(12.0f) + i7);
-        this.f20000r.setTranslationY((this.d.getPaddingTop() - this.d.getPaddingBottom()) / 2.0f);
-        this.f19997e.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f) + i7);
+        this.f19995f.setPadding(org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(12.0f) + i7);
+        this.f19997r.setTranslationY((this.d.getPaddingTop() - this.d.getPaddingBottom()) / 2.0f);
+        this.f19994e.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f) + i7);
     }
 
     @Override
     public final View createView(Context context) {
         boolean z10 = true;
         setHasOwnBackground(true);
-        k0 k0Var = new k0(getParentActivity(), this.resourceProvider, lc.b0(this), this.currentAccount, this.f19995b);
-        this.f20002w = k0Var;
+        k0 k0Var = new k0(getParentActivity(), this.resourceProvider, lc.b0(this), this.currentAccount, this.f19992b);
+        this.f19999w = k0Var;
         k0Var.h = new g1(this, 9);
         k0Var.d();
-        this.f20002w.e();
+        this.f19999w.e();
         this.actionBar.setBackButtonDrawable(new y1(false));
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new r1(this, 19));
         this.actionBar.setTitle(gd.M0(2131751884, null));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f19996c = frameLayout;
-        int i7 = n6.f29339a7;
+        this.f19993c = frameLayout;
+        int i7 = n6.f29337a7;
         u6.h(i7, frameLayout, null);
         e51 e51Var = new e51(this, new e7(this, 23), new q(this), new c(this, 1));
         this.d = e51Var;
@@ -116,91 +116,91 @@ public final class s extends h2 implements te.b {
         e51Var2.r1();
         this.d.j(new q1(this, 23));
         this.actionBar.setAdaptiveBackground(this.d);
-        this.f19996c.addView(this.d, ma.c(-1.0f, -1));
+        this.f19993c.addView(this.d, ma.c(-1.0f, -1));
         lh.f fVar = new lh.f(context);
-        this.f19997e = fVar;
+        this.f19994e = fVar;
         fVar.setupColorKey(i7);
-        this.f19997e.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f));
-        this.f19997e.setFadeHeightBottom(org.telegram.messenger.g0.L(24.0f));
-        this.f19996c.addView(this.f19997e, ma.g());
-        this.f19996c.addView(this.actionBar, ma.e(-1, -2, 48));
+        this.f19994e.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f));
+        this.f19994e.setFadeHeightBottom(org.telegram.messenger.g0.L(24.0f));
+        this.f19993c.addView(this.f19994e, ma.g());
+        this.f19993c.addView(this.actionBar, ma.e(-1, -2, 48));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f19998f = linearLayout;
+        this.f19995f = linearLayout;
         linearLayout.setOrientation(0);
-        this.f19998f.setPadding(org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(12.0f));
+        this.f19995f.setPadding(org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(12.0f));
         hi.d dVar = new hi.d(context, this.resourceProvider, true);
-        this.f19999n = dVar;
+        this.f19996n = dVar;
         dVar.e();
-        hi.d dVar2 = this.f19999n;
-        int f10 = i0.a.f(0.125f, getThemedColor(n6.f29396d6), getThemedColor(n6.G6));
-        this.f20003x = f10;
+        hi.d dVar2 = this.f19996n;
+        int f10 = i0.a.f(0.125f, getThemedColor(n6.f29394d6), getThemedColor(n6.G6));
+        this.f20000x = f10;
         dVar2.setColor(f10);
-        this.f19999n.setText(gd.M0(2131751889, null));
-        this.f19999n.f();
-        this.f19999n.setOnClickListener(new View.OnClickListener(this) {
-            public final s f19993b;
+        this.f19996n.setText(gd.M0(2131751889, null));
+        this.f19996n.f();
+        this.f19996n.setOnClickListener(new View.OnClickListener(this) {
+            public final s f19990b;
 
             {
-                this.f19993b = this;
+                this.f19990b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f19993b.f20002w.f(false, true);
+                        this.f19990b.f19999w.f(false, true);
                         return;
                     default:
-                        this.f19993b.f20002w.f(true, true);
+                        this.f19990b.f19999w.f(true, true);
                         return;
                 }
             }
         });
-        this.f19998f.addView(this.f19999n, ma.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
+        this.f19995f.addView(this.f19996n, ma.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
         hi.d dVar3 = new hi.d(context, this.resourceProvider, true);
         this.h = dVar3;
         dVar3.setText(gd.M0(2131751891, null));
         this.h.f();
         this.h.setOnClickListener(new View.OnClickListener(this) {
-            public final s f19993b;
+            public final s f19990b;
 
             {
-                this.f19993b = this;
+                this.f19990b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f19993b.f20002w.f(false, true);
+                        this.f19990b.f19999w.f(false, true);
                         return;
                     default:
-                        this.f19993b.f20002w.f(true, true);
+                        this.f19990b.f19999w.f(true, true);
                         return;
                 }
             }
         });
-        this.f19998f.addView(this.h, ma.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
-        this.f19996c.addView(this.f19998f, ma.e(-1, -2, 80));
+        this.f19995f.addView(this.h, ma.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
+        this.f19993c.addView(this.f19995f, ma.e(-1, -2, 80));
         kv0 kv0Var = new kv0(getParentActivity(), null, 16, this.resourceProvider);
-        this.f20000r = kv0Var;
+        this.f19997r = kv0Var;
         kv0Var.d.setText(gd.M0(2131748033, null));
-        this.f20000r.f36896e.setText(gd.M0(2131748032, null));
-        this.f20000r.setAnimateLayoutChange(true);
-        this.f20000r.setVisibility(8);
-        this.f19996c.addView(this.f20000r, ma.e(-2, -2, 17));
-        TLRPC.ChatFull chatFull = this.f20001s;
+        this.f19997r.f36896e.setText(gd.M0(2131748032, null));
+        this.f19997r.setAnimateLayoutChange(true);
+        this.f19997r.setVisibility(8);
+        this.f19993c.addView(this.f19997r, ma.e(-2, -2, 17));
+        TLRPC.ChatFull chatFull = this.f19998s;
         if (chatFull != null && chatFull.requests_pending != 0) {
             z10 = false;
         }
-        this.f19994a.a(z10, false);
+        this.f19991a.a(z10, false);
         a0(0);
-        FrameLayout frameLayout2 = this.f19996c;
+        FrameLayout frameLayout2 = this.f19993c;
         q qVar = new q(this);
         WeakHashMap weakHashMap = r0.i0.f56244a;
         r0.a0.i(frameLayout2, qVar);
         setBulletinDelegate(new bi.t(5));
-        FrameLayout frameLayout3 = this.f19996c;
+        FrameLayout frameLayout3 = this.f19993c;
         this.fragmentView = frameLayout3;
         return frameLayout3;
     }
@@ -217,31 +217,31 @@ public final class s extends h2 implements te.b {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f19995b = this.arguments.getLong("community_id", 0L);
-        getMessagesController().O0(Long.valueOf(this.f19995b));
-        this.f20001s = getMessagesController().P0(this.f19995b);
+        this.f19992b = this.arguments.getLong("community_id", 0L);
+        getMessagesController().O0(Long.valueOf(this.f19992b));
+        this.f19998s = getMessagesController().P0(this.f19992b);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        k0 k0Var = this.f20002w;
-        vb vbVar = k0Var.f19957i;
+        k0 k0Var = this.f19999w;
+        vb vbVar = k0Var.f19954i;
         if (vbVar != null) {
             vbVar.run();
         }
-        k0Var.f19957i = null;
+        k0Var.f19954i = null;
     }
 
     @Override
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            int f10 = i0.a.f(0.125f, getThemedColor(n6.f29396d6), getThemedColor(n6.G6));
-            hi.d dVar = this.f19999n;
-            if (dVar != null && f10 != this.f20003x) {
-                this.f20003x = f10;
+            int f10 = i0.a.f(0.125f, getThemedColor(n6.f29394d6), getThemedColor(n6.G6));
+            hi.d dVar = this.f19996n;
+            if (dVar != null && f10 != this.f20000x) {
+                this.f20000x = f10;
                 dVar.setColor(f10);
             }
         } catch (Exception e10) {

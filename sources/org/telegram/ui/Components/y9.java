@@ -63,7 +63,7 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
             String str2 = this.f42417r;
             if (str2 != null && str2.equals(str)) {
                 a(false);
-                org.telegram.messenger.t0.f26914a.v((Activity) getContext(), this.f42416n.document);
+                org.telegram.messenger.t0.f26912a.v((Activity) getContext(), this.f42416n.document);
             }
         } else if (i7 == org.telegram.messenger.ks.Z1) {
             String str3 = (String) objArr[0];
@@ -111,11 +111,11 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
         GradientDrawable gradientDrawable = this.f42421y;
         GradientDrawable gradientDrawable2 = this.f42420x;
         try {
-            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false);
+            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false);
             if (this.E) {
                 if (x03 != this.F) {
                 }
-                x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29676s8, false);
+                x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29674s8, false);
                 scrollView = this.f42415f;
                 if (scrollView != null && (!this.E || x02 != this.G)) {
                     this.G = x02;
@@ -141,7 +141,7 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
             if (z11) {
                 gradientDrawable.setColors(new int[]{x03, 0});
             }
-            x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29676s8, false);
+            x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29674s8, false);
             scrollView = this.f42415f;
             if (scrollView != null) {
                 this.G = x02;

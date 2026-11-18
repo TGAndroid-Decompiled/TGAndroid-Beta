@@ -14,29 +14,29 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.b5;
 import org.telegram.ui.bn;
 public final class m implements Runnable {
-    public final int f19974a;
-    public final boolean f19975b;
-    public final boolean f19976c;
+    public final int f19971a;
+    public final boolean f19972b;
+    public final boolean f19973c;
     public final long d;
-    public final fs f19977e;
+    public final fs f19974e;
 
     public m(fs fsVar, boolean z10, boolean z11, long j3, int i7) {
-        this.f19974a = i7;
-        this.f19977e = fsVar;
-        this.f19975b = z10;
-        this.f19976c = z11;
+        this.f19971a = i7;
+        this.f19974e = fsVar;
+        this.f19972b = z10;
+        this.f19973c = z11;
         this.d = j3;
     }
 
     @Override
     public final void run() {
         ArrayList arrayList;
-        int i7 = this.f19974a;
+        int i7 = this.f19971a;
         int i10 = 2131751903;
-        boolean z10 = this.f19976c;
-        boolean z11 = this.f19975b;
+        boolean z10 = this.f19973c;
+        boolean z11 = this.f19972b;
         long j3 = this.d;
-        fs fsVar = this.f19977e;
+        fs fsVar = this.f19974e;
         switch (i7) {
             case 0:
                 p pVar = (p) fsVar;
@@ -62,16 +62,16 @@ public final class m implements Runnable {
                 M.show();
                 TextView textView = (TextView) M.d(-1);
                 if (textView != null) {
-                    u6.U(textView, n6.f29637q7, null);
+                    u6.U(textView, n6.f29635q7, null);
                     return;
                 }
                 return;
             case 2:
                 mp mpVar = (mp) fsVar;
                 if (z11) {
-                    arrayList = mpVar.f25792w0;
+                    arrayList = mpVar.f25790w0;
                 } else {
-                    arrayList = mpVar.f25782v0;
+                    arrayList = mpVar.f25780v0;
                 }
                 if (z10) {
                     if (!arrayList.contains(Long.valueOf(j3))) {
@@ -89,10 +89,10 @@ public final class m implements Runnable {
     }
 
     public m(bn bnVar, long j3, boolean z10, boolean z11) {
-        this.f19974a = 3;
-        this.f19977e = bnVar;
+        this.f19971a = 3;
+        this.f19974e = bnVar;
         this.d = j3;
-        this.f19975b = z10;
-        this.f19976c = z11;
+        this.f19972b = z10;
+        this.f19973c = z11;
     }
 }

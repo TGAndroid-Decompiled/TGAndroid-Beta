@@ -185,7 +185,7 @@ public class m6 extends Drawable {
 
     public final StaticLayout j(int i7, CharSequence charSequence) {
         if (i7 <= 0) {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             i7 = Math.min(point.x, point.y);
         }
         return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f37375a, i7).setMaxLines(1).setLineSpacing(0.0f, 1.0f).setAlignment(Layout.Alignment.ALIGN_NORMAL).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i7).setIncludePad(this.T).build();

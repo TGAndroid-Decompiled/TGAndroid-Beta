@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -37,7 +37,7 @@ public final class e extends DefaultHandler implements b3.r {
         if (i7 >= 0) {
             i10 = i7 + 1;
         } else {
-            String str = l0.f13786a;
+            String str = l0.f13783a;
             i10 = (int) ((((j11 - j3) + j10) - 1) / j10);
         }
         for (int i11 = 0; i11 < i10; i11++) {
@@ -183,7 +183,7 @@ public final class e extends DefaultHandler implements b3.r {
         if (attributeValue == null) {
             return j3;
         }
-        Matcher matcher = l0.f13789e.matcher(attributeValue);
+        Matcher matcher = l0.f13786e.matcher(attributeValue);
         if (matcher.matches()) {
             boolean isEmpty = TextUtils.isEmpty(matcher.group(1));
             String group = matcher.group(3);
@@ -550,8 +550,8 @@ public final class e extends DefaultHandler implements b3.r {
         long j17;
         long j18;
         long j19;
-        md0 md0Var;
-        md0 md0Var2;
+        nd0 nd0Var;
+        nd0 nd0Var2;
         long j20 = 1;
         if (pVar != null) {
             j14 = pVar.f55142b;
@@ -618,17 +618,17 @@ public final class e extends DefaultHandler implements b3.r {
             j19 = j18;
         }
         if (pVar != null) {
-            md0Var = pVar.f55136k;
+            nd0Var = pVar.f55136k;
         } else {
-            md0Var = null;
+            nd0Var = null;
         }
-        md0 s5 = s(xmlPullParser, "media", md0Var);
+        nd0 s5 = s(xmlPullParser, "media", nd0Var);
         if (pVar != null) {
-            md0Var2 = pVar.f55135j;
+            nd0Var2 = pVar.f55135j;
         } else {
-            md0Var2 = null;
+            nd0Var2 = null;
         }
-        md0 s9 = s(xmlPullParser, "initialization", md0Var2);
+        nd0 s9 = s(xmlPullParser, "initialization", nd0Var2);
         List list2 = null;
         do {
             xmlPullParser.next();
@@ -696,13 +696,13 @@ public final class e extends DefaultHandler implements b3.r {
             }
         } while (!h2.a.h(xmlPullParser, "SegmentTimeline"));
         if (z10) {
-            String str = l0.f13786a;
+            String str = l0.f13783a;
             a(arrayList, j12, j13, i7, l0.a0(j10, j3, 1000L, RoundingMode.DOWN));
         }
         return arrayList;
     }
 
-    public static md0 s(XmlPullParser xmlPullParser, String str, md0 md0Var) {
+    public static nd0 s(XmlPullParser xmlPullParser, String str, nd0 nd0Var) {
         String str2;
         String attributeValue = xmlPullParser.getAttributeValue(null, str);
         if (attributeValue != null) {
@@ -781,9 +781,9 @@ public final class e extends DefaultHandler implements b3.r {
                     i7 = indexOf2 + 1;
                 }
             }
-            return new md0(arrayList, arrayList2, arrayList3, 3);
+            return new nd0(arrayList, arrayList2, arrayList3, 3);
         }
-        return md0Var;
+        return nd0Var;
     }
 
     @Override

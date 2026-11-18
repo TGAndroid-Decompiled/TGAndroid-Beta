@@ -10,8 +10,8 @@ public abstract class x {
     public Object d;
 
     public x() {
-        if (nb.a.f21468c == null) {
-            nb.a.f21468c = new nb.a(24);
+        if (nb.a.f21465c == null) {
+            nb.a.f21465c = new nb.a(24);
         }
     }
 

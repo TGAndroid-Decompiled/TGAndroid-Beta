@@ -31,10 +31,10 @@ public final class yl extends dm {
         int childCount = xlVar.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
             View childAt = xlVar.getChildAt(i7);
-            if (childAt instanceof org.telegram.ui.Cells.r5) {
-                org.telegram.ui.Cells.r5 r5Var = (org.telegram.ui.Cells.r5) childAt;
-                r5Var.f31700a.getImageReceiver().O0(true, true);
-                r5Var.g(true);
+            if (childAt instanceof org.telegram.ui.Cells.s5) {
+                org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) childAt;
+                s5Var.f31753a.getImageReceiver().O0(true, true);
+                s5Var.g(true);
             }
         }
     }
@@ -105,14 +105,14 @@ public final class yl extends dm {
         ArrayList arrayList = ChatAttachAlertPhotoLayout.f32763s1;
         if (!arrayList.isEmpty() && !siVar.Q1) {
             if (e20Var != null && i7 >= 0 && i7 < arrayList.size()) {
-                ((org.telegram.messenger.ef) arrayList.get(i7)).f27864s = e20Var;
+                ((org.telegram.messenger.ef) arrayList.get(i7)).f27862s = e20Var;
             }
             org.telegram.ui.ActionBar.h2 h2Var = siVar.f39659a2;
             if (!(h2Var instanceof org.telegram.ui.bn) || !((org.telegram.ui.bn) h2Var).z()) {
                 int size = arrayList.size();
                 for (int i12 = 0; i12 < size; i12++) {
                     org.telegram.messenger.ef efVar = (org.telegram.messenger.ef) ChatAttachAlertPhotoLayout.f32763s1.get(i12);
-                    if (efVar.f27868x <= 0) {
+                    if (efVar.f27866x <= 0) {
                         org.telegram.messenger.g0.e(efVar.I);
                     }
                 }
@@ -145,8 +145,8 @@ public final class yl extends dm {
                     if (efVar.h != null) {
                         new File(efVar.h).delete();
                     }
-                    if (efVar.f27850c != null) {
-                        new File(efVar.f27850c).delete();
+                    if (efVar.f27848c != null) {
+                        new File(efVar.f27848c).delete();
                     }
                 }
                 ChatAttachAlertPhotoLayout.f32763s1.clear();

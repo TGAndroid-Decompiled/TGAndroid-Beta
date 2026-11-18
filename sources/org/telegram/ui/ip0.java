@@ -19,7 +19,7 @@ public final class ip0 extends VideoPlayerRewinder {
         PhotoViewer.c(photoViewer, obtain);
         photoViewer.A1.f(false);
         wi.n nVar = photoViewer.P8;
-        if (nVar != null && (hVar = nVar.f59989e) != null) {
+        if (nVar != null && (hVar = nVar.f59990e) != null) {
             hVar.F.f(false);
         }
     }
@@ -34,16 +34,16 @@ public final class ip0 extends VideoPlayerRewinder {
         photoViewer.A1.f(true);
         photoViewer.f43208f0.invalidate();
         wi.n nVar = photoViewer.P8;
-        if (nVar != null && (hVar = nVar.f59989e) != null) {
+        if (nVar != null && (hVar = nVar.f59990e) != null) {
             org.telegram.ui.Components.x51 x51Var = hVar.F;
             x51Var.e(false);
             x51Var.d(z11);
             x51Var.f(true);
-            fi.u2 u2Var = hVar.f59957o;
+            fi.u2 u2Var = hVar.f59958o;
             if (u2Var != null) {
                 u2Var.invalidate();
             }
-            wi.d dVar = hVar.f59955m;
+            wi.d dVar = hVar.f59956m;
             if (dVar != null) {
                 dVar.invalidate();
             }
@@ -60,15 +60,15 @@ public final class ip0 extends VideoPlayerRewinder {
             photoViewer.f43314r3.invalidate();
         }
         wi.n nVar = photoViewer.P8;
-        if (nVar != null && (hVar = nVar.f59989e) != null) {
+        if (nVar != null && (hVar = nVar.f59990e) != null) {
             hVar.F.g(0L);
             if (z10) {
                 hVar.I = f10;
-                fi.u2 u2Var = hVar.f59957o;
+                fi.u2 u2Var = hVar.f59958o;
                 if (u2Var != null) {
                     u2Var.invalidate();
                 }
-                wi.d dVar = hVar.f59955m;
+                wi.d dVar = hVar.f59956m;
                 if (dVar != null) {
                     dVar.invalidate();
                 }

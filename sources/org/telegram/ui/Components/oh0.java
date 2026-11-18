@@ -41,6 +41,6 @@ public final class oh0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f38112c.f38439c.f22656p1 = colorFilter;
+        this.f38112c.f38439c.f22653p1 = colorFilter;
     }
 }

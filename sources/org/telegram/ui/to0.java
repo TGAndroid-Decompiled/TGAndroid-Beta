@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class to0 implements Runnable {
-    public final PhotoViewer f52321a;
+    public final PhotoViewer f52316a;
 
     public to0(PhotoViewer photoViewer) {
-        this.f52321a = photoViewer;
+        this.f52316a = photoViewer;
     }
 
     @Override
     public final void run() {
-        PhotoViewer photoViewer = this.f52321a;
+        PhotoViewer photoViewer = this.f52316a;
         org.telegram.messenger.fj fjVar = photoViewer.T4;
         if (fjVar == null) {
             return;

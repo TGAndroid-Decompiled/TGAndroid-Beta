@@ -144,7 +144,7 @@ public final class p0 {
                 }
             }
             byte[] byteArray = byteArrayOutputStream.toByteArray();
-            if (c8.ab.f4485a == null) {
+            if (c8.ab.f4482a == null) {
                 int[] iArr2 = new int[256];
                 for (int i18 = 0; i18 < 256; i18++) {
                     int i19 = i18;
@@ -157,11 +157,11 @@ public final class p0 {
                     }
                     iArr2[i18] = i19;
                 }
-                c8.ab.f4485a = iArr2;
+                c8.ab.f4482a = iArr2;
             }
             int i22 = -1;
             for (byte b10 : byteArray) {
-                i22 = (i22 >>> 8) ^ c8.ab.f4485a[(b10 ^ i22) & 255];
+                i22 = (i22 >>> 8) ^ c8.ab.f4482a[(b10 ^ i22) & 255];
             }
             int i23 = ~i22;
             byte[] bArr5 = new byte[byteArray.length + 4];

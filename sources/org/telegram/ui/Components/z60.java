@@ -17,10 +17,10 @@ public final class z60 implements DialogInterface.OnCancelListener {
     public final void onCancel(DialogInterface dialogInterface) {
         switch (this.f42818a) {
             case 0:
-                ConnectionsManager.getInstance(this.f42819b.f23221a).cancelRequest(this.f42820c, true);
+                ConnectionsManager.getInstance(this.f42819b.f23218a).cancelRequest(this.f42820c, true);
                 return;
             default:
-                ConnectionsManager.getInstance(this.f42819b.f23221a).cancelRequest(this.f42820c, true);
+                ConnectionsManager.getInstance(this.f42819b.f23218a).cancelRequest(this.f42820c, true);
                 return;
         }
     }

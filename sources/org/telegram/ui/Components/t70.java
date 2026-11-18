@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.tgnet.TLRPC;
 public abstract class t70 extends LinearLayout {
-    public final org.telegram.ui.Cells.n4 f39931a;
-    public final org.telegram.ui.Cells.r8 f39932b;
-    public final org.telegram.ui.Cells.r8 f39933c;
-    public final org.telegram.ui.Cells.z8 d;
-    public final org.telegram.ui.Cells.z8 f39934e;
+    public final org.telegram.ui.Cells.o4 f39931a;
+    public final org.telegram.ui.Cells.s8 f39932b;
+    public final org.telegram.ui.Cells.s8 f39933c;
+    public final org.telegram.ui.Cells.a9 d;
+    public final org.telegram.ui.Cells.a9 f39934e;
     public boolean f39935f;
     public boolean h;
     public TLRPC.Chat f39936n;
@@ -29,23 +29,23 @@ public abstract class t70 extends LinearLayout {
         this.f39935f = chat.join_to_send;
         this.h = chat.join_request;
         setOrientation(1);
-        org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(context, 20);
-        this.f39931a = n4Var;
-        n4Var.setText(org.telegram.messenger.gd.M0(2131752289, null));
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, n4Var, null);
-        addView(n4Var);
-        org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(context, 20);
-        this.f39932b = r8Var;
+        org.telegram.ui.Cells.o4 o4Var = new org.telegram.ui.Cells.o4(context, 20);
+        this.f39931a = o4Var;
+        o4Var.setText(org.telegram.messenger.gd.M0(2131752289, null));
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29394d6, o4Var, null);
+        addView(o4Var);
+        org.telegram.ui.Cells.s8 s8Var = new org.telegram.ui.Cells.s8(context, 20);
+        this.f39932b = s8Var;
         String M0 = org.telegram.messenger.gd.M0(2131752288, null);
         boolean z12 = this.f39935f;
-        r8Var.f(M0, z12, z12);
+        s8Var.f(M0, z12, z12);
         if (!chat.creator && ((tL_chatAdminRights2 = chat.admin_rights) == null || !tL_chatAdminRights2.ban_users)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        r8Var.setEnabled(z10);
-        r8Var.setOnClickListener(new View.OnClickListener(this) {
+        s8Var.setEnabled(z10);
+        s8Var.setOnClickListener(new View.OnClickListener(this) {
             public final t70 f38724b;
 
             {
@@ -77,18 +77,18 @@ public abstract class t70 extends LinearLayout {
                 }
             }
         });
-        addView(r8Var);
-        org.telegram.ui.Cells.r8 r8Var2 = new org.telegram.ui.Cells.r8(context, 20);
-        this.f39933c = r8Var2;
-        r8Var2.f(org.telegram.messenger.gd.M0(2131752293, null), this.h, false);
-        r8Var2.setPivotY(0.0f);
+        addView(s8Var);
+        org.telegram.ui.Cells.s8 s8Var2 = new org.telegram.ui.Cells.s8(context, 20);
+        this.f39933c = s8Var2;
+        s8Var2.f(org.telegram.messenger.gd.M0(2131752293, null), this.h, false);
+        s8Var2.setPivotY(0.0f);
         if (!chat.creator && ((tL_chatAdminRights = chat.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
             z11 = false;
         } else {
             z11 = true;
         }
-        r8Var2.setEnabled(z11);
-        r8Var2.setOnClickListener(new View.OnClickListener(this) {
+        s8Var2.setEnabled(z11);
+        s8Var2.setOnClickListener(new View.OnClickListener(this) {
             public final t70 f38724b;
 
             {
@@ -120,18 +120,18 @@ public abstract class t70 extends LinearLayout {
                 }
             }
         });
-        addView(r8Var2);
-        org.telegram.ui.Cells.z8 z8Var = new org.telegram.ui.Cells.z8(12, context, null);
-        this.d = z8Var;
-        z8Var.setText(org.telegram.messenger.gd.M0(2131752287, null));
-        addView(z8Var);
-        org.telegram.ui.Cells.z8 z8Var2 = new org.telegram.ui.Cells.z8(12, context, null);
-        this.f39934e = z8Var2;
-        z8Var2.setText(org.telegram.messenger.gd.M0(2131752292, null));
-        addView(z8Var2);
+        addView(s8Var2);
+        org.telegram.ui.Cells.a9 a9Var = new org.telegram.ui.Cells.a9(12, context, null);
+        this.d = a9Var;
+        a9Var.setText(org.telegram.messenger.gd.M0(2131752287, null));
+        addView(a9Var);
+        org.telegram.ui.Cells.a9 a9Var2 = new org.telegram.ui.Cells.a9(12, context, null);
+        this.f39934e = a9Var2;
+        a9Var2.setText(org.telegram.messenger.gd.M0(2131752292, null));
+        addView(a9Var2);
         boolean z13 = this.f39935f;
         this.f39938s = z13 ? 1.0f : 0.0f;
-        r8Var2.setVisibility(z13 ? 0 : 8);
+        s8Var2.setVisibility(z13 ? 0 : 8);
         d(this.f39938s);
     }
 
@@ -165,77 +165,77 @@ public abstract class t70 extends LinearLayout {
     public final void d(float f10) {
         int measuredHeight;
         this.f39938s = f10;
-        org.telegram.ui.Cells.r8 r8Var = this.f39933c;
-        r8Var.setAlpha(f10);
+        org.telegram.ui.Cells.s8 s8Var = this.f39933c;
+        s8Var.setAlpha(f10);
         float f11 = 1.0f - f10;
-        r8Var.setTranslationY((-org.telegram.messenger.g0.L(16.0f)) * f11);
-        r8Var.setScaleY(1.0f - (0.1f * f11));
-        if (r8Var.getMeasuredHeight() <= 0) {
+        s8Var.setTranslationY((-org.telegram.messenger.g0.L(16.0f)) * f11);
+        s8Var.setScaleY(1.0f - (0.1f * f11));
+        if (s8Var.getMeasuredHeight() <= 0) {
             measuredHeight = org.telegram.messenger.g0.L(50.0f);
         } else {
-            measuredHeight = r8Var.getMeasuredHeight();
+            measuredHeight = s8Var.getMeasuredHeight();
         }
-        org.telegram.ui.Cells.z8 z8Var = this.d;
-        z8Var.setAlpha(f11);
+        org.telegram.ui.Cells.a9 a9Var = this.d;
+        a9Var.setAlpha(f11);
         float f12 = (-measuredHeight) * f11;
-        z8Var.setTranslationY(((-org.telegram.messenger.g0.L(4.0f)) * f10) + f12);
-        org.telegram.ui.Cells.z8 z8Var2 = this.f39934e;
-        z8Var2.setAlpha(f10);
-        z8Var2.setTranslationY((org.telegram.messenger.g0.L(4.0f) * f11) + f12);
+        a9Var.setTranslationY(((-org.telegram.messenger.g0.L(4.0f)) * f10) + f12);
+        org.telegram.ui.Cells.a9 a9Var2 = this.f39934e;
+        a9Var2.setAlpha(f10);
+        a9Var2.setTranslationY((org.telegram.messenger.g0.L(4.0f) * f11) + f12);
         requestLayout();
     }
 
     public float getBottomInfoMargin() {
-        org.telegram.ui.Cells.z8 z8Var = this.d;
-        float alpha = z8Var.getAlpha() * z8Var.getHeight();
-        org.telegram.ui.Cells.z8 z8Var2 = this.f39934e;
-        return (z8Var2.getAlpha() * z8Var2.getHeight()) + alpha;
+        org.telegram.ui.Cells.a9 a9Var = this.d;
+        float alpha = a9Var.getAlpha() * a9Var.getHeight();
+        org.telegram.ui.Cells.a9 a9Var2 = this.f39934e;
+        return (a9Var2.getAlpha() * a9Var2.getHeight()) + alpha;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
-        org.telegram.ui.Cells.r8 r8Var = this.f39932b;
-        if (r8Var.getVisibility() == 0) {
+        org.telegram.ui.Cells.s8 s8Var = this.f39932b;
+        if (s8Var.getVisibility() == 0) {
             int i14 = i11 - i7;
-            org.telegram.ui.Cells.n4 n4Var = this.f39931a;
-            int measuredHeight = n4Var.getMeasuredHeight();
-            n4Var.layout(0, 0, i14, measuredHeight);
-            i13 = r8Var.getMeasuredHeight() + measuredHeight;
-            r8Var.layout(0, measuredHeight, i14, i13);
+            org.telegram.ui.Cells.o4 o4Var = this.f39931a;
+            int measuredHeight = o4Var.getMeasuredHeight();
+            o4Var.layout(0, 0, i14, measuredHeight);
+            i13 = s8Var.getMeasuredHeight() + measuredHeight;
+            s8Var.layout(0, measuredHeight, i14, i13);
         } else {
             i13 = 0;
         }
         int i15 = i11 - i7;
-        org.telegram.ui.Cells.r8 r8Var2 = this.f39933c;
-        int measuredHeight2 = r8Var2.getMeasuredHeight() + i13;
-        r8Var2.layout(0, i13, i15, measuredHeight2);
-        org.telegram.ui.Cells.z8 z8Var = this.d;
-        z8Var.layout(0, measuredHeight2, i15, z8Var.getMeasuredHeight() + measuredHeight2);
-        org.telegram.ui.Cells.z8 z8Var2 = this.f39934e;
-        z8Var2.layout(0, measuredHeight2, i15, z8Var2.getMeasuredHeight() + measuredHeight2);
+        org.telegram.ui.Cells.s8 s8Var2 = this.f39933c;
+        int measuredHeight2 = s8Var2.getMeasuredHeight() + i13;
+        s8Var2.layout(0, i13, i15, measuredHeight2);
+        org.telegram.ui.Cells.a9 a9Var = this.d;
+        a9Var.layout(0, measuredHeight2, i15, a9Var.getMeasuredHeight() + measuredHeight2);
+        org.telegram.ui.Cells.a9 a9Var2 = this.f39934e;
+        a9Var2.layout(0, measuredHeight2, i15, a9Var2.getMeasuredHeight() + measuredHeight2);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        org.telegram.ui.Cells.z8 z8Var;
-        org.telegram.ui.Cells.z8 z8Var2;
+        org.telegram.ui.Cells.a9 a9Var;
+        org.telegram.ui.Cells.a9 a9Var2;
         float measuredHeight;
-        org.telegram.ui.Cells.n4 n4Var = this.f39931a;
+        org.telegram.ui.Cells.o4 o4Var = this.f39931a;
         int i11 = this.f39939w;
-        n4Var.measure(i7, i11);
-        org.telegram.ui.Cells.r8 r8Var = this.f39932b;
-        r8Var.measure(i7, i11);
-        org.telegram.ui.Cells.r8 r8Var2 = this.f39933c;
-        r8Var2.measure(i7, i11);
+        o4Var.measure(i7, i11);
+        org.telegram.ui.Cells.s8 s8Var = this.f39932b;
+        s8Var.measure(i7, i11);
+        org.telegram.ui.Cells.s8 s8Var2 = this.f39933c;
+        s8Var2.measure(i7, i11);
         this.d.measure(i7, i11);
         this.f39934e.measure(i7, i11);
-        if (r8Var.getVisibility() == 0) {
-            measuredHeight = (r8Var2.getMeasuredHeight() * this.f39938s) + r8Var.getMeasuredHeight() + n4Var.getMeasuredHeight();
+        if (s8Var.getVisibility() == 0) {
+            measuredHeight = (s8Var2.getMeasuredHeight() * this.f39938s) + s8Var.getMeasuredHeight() + o4Var.getMeasuredHeight();
         } else {
-            measuredHeight = r8Var2.getMeasuredHeight();
+            measuredHeight = s8Var2.getMeasuredHeight();
         }
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) (measuredHeight + org.telegram.messenger.g0.W1(this.f39938s, z8Var.getMeasuredHeight(), z8Var2.getMeasuredHeight())), 1073741824));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) (measuredHeight + org.telegram.messenger.g0.W1(this.f39938s, a9Var.getMeasuredHeight(), a9Var2.getMeasuredHeight())), 1073741824));
     }
 
     public void setChat(TLRPC.Chat chat) {
@@ -265,12 +265,12 @@ public abstract class t70 extends LinearLayout {
     public void setJoinToSend(boolean z10) {
         float f10;
         this.f39935f = z10;
-        org.telegram.ui.Cells.r8 r8Var = this.f39932b;
-        r8Var.setChecked(z10);
-        r8Var.setDivider(this.f39935f);
+        org.telegram.ui.Cells.s8 s8Var = this.f39932b;
+        s8Var.setChecked(z10);
+        s8Var.setDivider(this.f39935f);
         boolean z11 = this.h;
-        org.telegram.ui.Cells.r8 r8Var2 = this.f39933c;
-        r8Var2.setChecked(z11);
+        org.telegram.ui.Cells.s8 s8Var2 = this.f39933c;
+        s8Var2.setChecked(z11);
         ValueAnimator valueAnimator = this.f39937r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -287,7 +287,7 @@ public abstract class t70 extends LinearLayout {
         this.f39937r.setInterpolator(lr.f37208f);
         this.f39937r.addUpdateListener(new e60(this, 3));
         this.f39937r.addListener(new q60(this, 2));
-        r8Var2.setVisibility(0);
+        s8Var2.setVisibility(0);
         this.f39937r.start();
     }
 }

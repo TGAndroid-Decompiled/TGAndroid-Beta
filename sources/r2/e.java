@@ -14,13 +14,13 @@ public final class e extends y2.b {
     @Override
     public final long O() {
         a();
-        return this.f56347e + ((s2.k) this.d.get((int) this.f60663c)).f56817e;
+        return this.f56347e + ((s2.k) this.d.get((int) this.f60664c)).f56817e;
     }
 
     @Override
     public final long S0() {
         a();
-        s2.k kVar = (s2.k) this.d.get((int) this.f60663c);
+        s2.k kVar = (s2.k) this.d.get((int) this.f60664c);
         return this.f56347e + kVar.f56817e + kVar.f56816c;
     }
 }

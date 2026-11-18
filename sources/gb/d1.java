@@ -3,17 +3,17 @@ package gb;
 import android.util.Log;
 import java.util.Map;
 public final class d1 {
-    public final jb.l f13322a;
-    public final u0 f13323b;
-    public final q0 f13324c;
+    public final jb.l f13319a;
+    public final u0 f13320b;
+    public final q0 f13321c;
     public final h1 d;
-    public final m1.g f13325e;
-    public final d0 f13326f;
-    public final id.h f13327g;
+    public final m1.g f13322e;
+    public final d0 f13323f;
+    public final id.h f13324g;
     public j0 h;
-    public boolean f13328i;
-    public boolean f13329j;
-    public String f13330k;
+    public boolean f13325i;
+    public boolean f13326j;
+    public String f13327k;
 
     public d1(jb.l sessionsSettings, u0 sessionGenerator, q0 sessionFirelogPublisher, h1 timeProvider, m1.g sessionDataStore, d0 processDataManager, id.h backgroundDispatcher) {
         kotlin.jvm.internal.j.e(sessionsSettings, "sessionsSettings");
@@ -23,15 +23,15 @@ public final class d1 {
         kotlin.jvm.internal.j.e(sessionDataStore, "sessionDataStore");
         kotlin.jvm.internal.j.e(processDataManager, "processDataManager");
         kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
-        this.f13322a = sessionsSettings;
-        this.f13323b = sessionGenerator;
-        this.f13324c = sessionFirelogPublisher;
+        this.f13319a = sessionsSettings;
+        this.f13320b = sessionGenerator;
+        this.f13321c = sessionFirelogPublisher;
         this.d = timeProvider;
-        this.f13325e = sessionDataStore;
-        this.f13326f = processDataManager;
-        this.f13327g = backgroundDispatcher;
-        a1 a1Var = a1.f13289a;
-        this.f13330k = "";
+        this.f13322e = sessionDataStore;
+        this.f13323f = processDataManager;
+        this.f13324g = backgroundDispatcher;
+        a1 a1Var = a1.f13286a;
+        this.f13327k = "";
         zd.b0.q(zd.b0.b(backgroundDispatcher), new z0(this, null, 0));
     }
 
@@ -40,27 +40,27 @@ public final class d1 {
     }
 
     public final void b() {
-        this.f13328i = false;
+        this.f13325i = false;
         if (this.h == null) {
             Log.d("FirebaseSessions", "App backgrounded, but local SessionData not initialized");
             return;
         }
-        Log.d("FirebaseSessions", "App backgrounded on " + this.f13326f.a());
-        zd.b0.q(zd.b0.b(this.f13327g), new z0(this, null, 1));
+        Log.d("FirebaseSessions", "App backgrounded on " + this.f13323f.a());
+        zd.b0.q(zd.b0.b(this.f13324g), new z0(this, null, 1));
     }
 
     public final void c() {
-        this.f13328i = true;
+        this.f13325i = true;
         j0 j0Var = this.h;
         if (j0Var == null) {
-            this.f13329j = true;
+            this.f13326j = true;
             Log.d("FirebaseSessions", "App foregrounded, but local SessionData not initialized");
         } else if (j0Var != null) {
-            Log.d("FirebaseSessions", "App foregrounded on " + this.f13326f.a());
+            Log.d("FirebaseSessions", "App foregrounded on " + this.f13323f.a());
             if (!e(j0Var) && !d(j0Var)) {
                 return;
             }
-            zd.b0.q(zd.b0.b(this.f13327g), new be.l(this, j0Var, null, 5));
+            zd.b0.q(zd.b0.b(this.f13324g), new be.l(this, j0Var, null, 5));
         } else {
             kotlin.jvm.internal.j.h("localSessionData");
             throw null;
@@ -68,13 +68,13 @@ public final class d1 {
     }
 
     public final boolean d(j0 j0Var) {
-        Map map = j0Var.f13378c;
+        Map map = j0Var.f13375c;
         boolean z10 = true;
-        d0 d0Var = this.f13326f;
+        d0 d0Var = this.f13323f;
         if (map != null) {
             d0Var.getClass();
             b0 b0Var = (b0) map.get(d0Var.a());
-            if (b0Var != null && b0Var.f13294a == d0Var.f13319c && kotlin.jvm.internal.j.a(b0Var.f13295b, (String) d0Var.d.getValue())) {
+            if (b0Var != null && b0Var.f13291a == d0Var.f13316c && kotlin.jvm.internal.j.a(b0Var.f13292b, (String) d0Var.d.getValue())) {
                 z10 = false;
             }
             if (z10) {

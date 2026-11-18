@@ -15,26 +15,26 @@ public final class a6 implements ViewTreeObserver.OnPreDrawListener {
 
     @Override
     public final boolean onPreDraw() {
-        bi.d6 d6Var;
+        bi.c6 c6Var;
         boolean z10;
         hi.x4 x4Var;
         hi.x4 x4Var2;
         hi.x4 x4Var3;
         switch (this.f43930a) {
             case 0:
-                n6 n6Var = (n6) ((y61) this.f43931b).f54080b;
+                n6 n6Var = (n6) ((y61) this.f43931b).f54021b;
                 if (n6Var.G) {
                     n6Var.X0();
                     return true;
                 }
                 return true;
             case 1:
-                c6 c6Var = (c6) this.f43931b;
-                n6 n6Var2 = c6Var.f44000e;
+                c6 c6Var2 = (c6) this.f43931b;
+                n6 n6Var2 = c6Var2.f44000e;
                 float f10 = 0.0f;
                 int i7 = 0;
-                if (n6Var2.f44621a0 != null && (d6Var = n6Var2.f33530a) != null) {
-                    if (n6Var2.f44641r0 && !d6Var.canScrollVertically(1)) {
+                if (n6Var2.f44621a0 != null && (c6Var = n6Var2.f33530a) != null) {
+                    if (n6Var2.f44641r0 && !c6Var.canScrollVertically(1)) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -59,10 +59,10 @@ public final class a6 implements ViewTreeObserver.OnPreDrawListener {
                 if (m10 != null) {
                     i7 = m10.getHeight();
                 }
-                if (m10 != c6Var.f43997a || f10 != c6Var.f43998b || i7 != c6Var.f43999c) {
-                    c6Var.f43997a = m10;
-                    c6Var.f43998b = f10;
-                    c6Var.f43999c = i7;
+                if (m10 != c6Var2.f43997a || f10 != c6Var2.f43998b || i7 != c6Var2.f43999c) {
+                    c6Var2.f43997a = m10;
+                    c6Var2.f43998b = f10;
+                    c6Var2.f43999c = i7;
                     n6Var2.Y0();
                 }
                 return true;
@@ -79,7 +79,7 @@ public final class a6 implements ViewTreeObserver.OnPreDrawListener {
                 }
                 return true;
             default:
-                da daVar = (da) ((hi.x4) this.f43931b).f15728c;
+                da daVar = (da) ((hi.x4) this.f43931b).f15725c;
                 hi.x4 x4Var4 = daVar.f44081x;
                 if (x4Var4 != null && daVar.f44053a0 != null && x4Var4.getHeight() > 0 && daVar.f44053a0.getHeight() > 0) {
                     float paddingTop = daVar.fragmentView.getPaddingTop();

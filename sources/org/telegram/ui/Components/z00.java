@@ -63,7 +63,7 @@ public final class z00 {
             org.telegram.messenger.t3 t3Var = sharedInstance.groupCall;
             if (t3Var != null) {
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) t3Var.d.f(sharedInstance.getSelfId());
-                if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.v3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f26937b.rtmp_stream) {
+                if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.v3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f26935b.rtmp_stream) {
                     sharedInstance.setMicMute(true, false, false);
                     b(3, z10);
                     return;

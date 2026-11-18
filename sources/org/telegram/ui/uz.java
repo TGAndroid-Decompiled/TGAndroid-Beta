@@ -6,14 +6,14 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.HashSet;
 public final class uz extends View implements org.telegram.ui.ActionBar.c6 {
-    public final org.telegram.ui.Components.m6 f52642a;
-    public fh.g f52643b;
-    public String f52644c;
+    public final org.telegram.ui.Components.m6 f52627a;
+    public fh.g f52628b;
+    public String f52629c;
 
     public uz(Activity activity) {
         super(activity);
         org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(true, false, false);
-        this.f52642a = m6Var;
+        this.f52627a = m6Var;
         m6Var.u(-1);
         m6Var.f37377b = 17;
         m6Var.x(org.telegram.messenger.g0.o());
@@ -24,14 +24,14 @@ public final class uz extends View implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        org.telegram.ui.Components.m6 m6Var = this.f52642a;
+        org.telegram.ui.Components.m6 m6Var = this.f52627a;
         int N = (int) (org.telegram.messenger.g0.N(30.0f) + m6Var.c());
         int width = (getWidth() - N) / 2;
         int i7 = N + width;
-        fh.g gVar = this.f52643b;
+        fh.g gVar = this.f52628b;
         if (gVar != null) {
             gVar.setBounds(width, 0, i7, getHeight());
-            this.f52643b.draw(canvas);
+            this.f52628b.draw(canvas);
         }
         m6Var.draw(canvas);
     }
@@ -39,12 +39,12 @@ public final class uz extends View implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        this.f52642a.setBounds(0, 0, i7, i10);
+        this.f52627a.setBounds(0, 0, i7, i10);
     }
 
     @Override
     public final void updateColors() {
-        fh.g gVar = this.f52643b;
+        fh.g gVar = this.f52628b;
         if (gVar != null) {
             gVar.updateColors();
             invalidate();
@@ -53,7 +53,7 @@ public final class uz extends View implements org.telegram.ui.ActionBar.c6 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f52642a) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f52627a) {
             return false;
         }
         return true;

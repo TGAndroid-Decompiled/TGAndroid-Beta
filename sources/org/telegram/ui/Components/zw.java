@@ -106,15 +106,15 @@ public class zw extends el0 {
                 yw ywVar = ryVar.P0;
                 int round = Math.round(motionEvent.getRawY() - this.A0);
                 bg.w0 w0Var = (bg.w0) ywVar;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) w0Var.f3355c;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) w0Var.f3356c;
                 if (w0Var.d()) {
-                    Point point = org.telegram.messenger.g0.f24121q;
+                    Point point = org.telegram.messenger.g0.f24118q;
                     if (point.x > point.y) {
                         i7 = chatActivityEnterView.f32637m3;
                     } else {
                         i7 = chatActivityEnterView.f32630l3;
                     }
-                    int max = Math.max(Math.min(round + w0Var.f3354b, 0), -(chatActivityEnterView.f32674r4 - i7));
+                    int max = Math.max(Math.min(round + w0Var.f3355b, 0), -(chatActivityEnterView.f32674r4 - i7));
                     if (chatActivityEnterView.f32565c7 == null) {
                         float f11 = max;
                         chatActivityEnterView.V0.setTranslationY(f11);
@@ -130,21 +130,21 @@ public class zw extends el0 {
                 this.D0 = null;
                 if (motionEvent.getAction() == 1) {
                     bg.w0 w0Var2 = (bg.w0) ryVar.P0;
-                    ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) w0Var2.f3355c;
+                    ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) w0Var2.f3356c;
                     if (w0Var2.d()) {
                         chatActivityEnterView2.f32682s4 = false;
-                        if ((w0Var2.f3353a && yVelocity >= org.telegram.messenger.g0.L(200.0f)) || ((!w0Var2.f3353a && yVelocity <= org.telegram.messenger.g0.L(-200.0f)) || (((z10 = w0Var2.f3353a) && chatActivityEnterView2.f32666q4 <= 0.6f) || (!z10 && chatActivityEnterView2.f32666q4 >= 0.4f)))) {
-                            chatActivityEnterView2.M1(!w0Var2.f3353a, true, true, true);
+                        if ((w0Var2.f3354a && yVelocity >= org.telegram.messenger.g0.L(200.0f)) || ((!w0Var2.f3354a && yVelocity <= org.telegram.messenger.g0.L(-200.0f)) || (((z10 = w0Var2.f3354a) && chatActivityEnterView2.f32666q4 <= 0.6f) || (!z10 && chatActivityEnterView2.f32666q4 >= 0.4f)))) {
+                            chatActivityEnterView2.M1(!w0Var2.f3354a, true, true, true);
                         } else {
                             chatActivityEnterView2.M1(z10, true, true, true);
                         }
                     }
                 } else {
                     bg.w0 w0Var3 = (bg.w0) ryVar.P0;
-                    ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) w0Var3.f3355c;
+                    ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) w0Var3.f3356c;
                     if (chatActivityEnterView3.f32631l4) {
                         chatActivityEnterView3.f32682s4 = false;
-                        chatActivityEnterView3.M1(w0Var3.f3353a, true, false, true);
+                        chatActivityEnterView3.M1(w0Var3.f3354a, true, false, true);
                     }
                 }
                 this.f42956y0 = true;
@@ -158,24 +158,24 @@ public class zw extends el0 {
         if (getScrollX() == 0 && translationX == 0.0f) {
             if (!this.f42954w0 && this.f42955x0 - motionEvent.getX() < 0.0f) {
                 if (!hwVar.N) {
-                    hwVar.f4444f0 = true;
+                    hwVar.f4441f0 = true;
                     hwVar.setScrollState(1);
                     hwVar.S = 0.0f;
                     hwVar.U = 0.0f;
-                    VelocityTracker velocityTracker = hwVar.f4435a0;
+                    VelocityTracker velocityTracker = hwVar.f4432a0;
                     if (velocityTracker == null) {
-                        hwVar.f4435a0 = VelocityTracker.obtain();
+                        hwVar.f4432a0 = VelocityTracker.obtain();
                     } else {
                         velocityTracker.clear();
                     }
                     long uptimeMillis = SystemClock.uptimeMillis();
                     MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
-                    hwVar.f4435a0.addMovement(obtain);
+                    hwVar.f4432a0.addMovement(obtain);
                     obtain.recycle();
                     this.f42954w0 = true;
                     getTranslationX();
                 }
-            } else if (this.f42954w0 && this.f42955x0 - motionEvent.getX() > 0.0f && hwVar.f4444f0) {
+            } else if (this.f42954w0 && this.f42955x0 - motionEvent.getX() > 0.0f && hwVar.f4441f0) {
                 hwVar.i();
                 this.f42954w0 = false;
             }

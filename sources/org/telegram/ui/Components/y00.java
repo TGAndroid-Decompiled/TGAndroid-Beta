@@ -22,8 +22,8 @@ public final class y00 {
     public final int f42236o = org.telegram.ui.ActionBar.n6.Qh;
     public final int f42237p = org.telegram.ui.ActionBar.n6.Rh;
     public final int f42238q = org.telegram.ui.ActionBar.n6.Zh;
-    public final int f42239r = org.telegram.ui.ActionBar.n6.f29350ai;
-    public final int f42240s = org.telegram.ui.ActionBar.n6.f29370bi;
+    public final int f42239r = org.telegram.ui.ActionBar.n6.f29348ai;
+    public final int f42240s = org.telegram.ui.ActionBar.n6.f29368bi;
 
     public y00(int i7) {
         this.f42230i = i7;

@@ -45,7 +45,7 @@ public final class x8 implements org.telegram.ui.ActionBar.r1 {
             default:
                 da daVar = (da) this.f45281b;
                 kg.a1 a1Var = (kg.a1) this.d;
-                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f45282c;
+                org.telegram.ui.Cells.d2 d2Var = (org.telegram.ui.Cells.d2) this.f45282c;
                 String str = null;
                 if (a1Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
                     int i10 = -daVar.f44070p0;
@@ -58,7 +58,7 @@ public final class x8 implements org.telegram.ui.ActionBar.r1 {
                     str = trim;
                 }
                 daVar.f44062h0 = str;
-                daVar.f44063i0 = !c2Var.b();
+                daVar.f44063i0 = !d2Var.b();
                 if (TextUtils.isEmpty(daVar.f44062h0)) {
                     daVar.Q.setVisibility(8);
                 } else {

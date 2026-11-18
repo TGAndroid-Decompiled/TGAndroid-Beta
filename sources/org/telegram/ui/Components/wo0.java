@@ -20,7 +20,7 @@ public final class wo0 extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f != 1) {
+        if (f1Var.f59127f != 1) {
             return true;
         }
         return false;
@@ -63,27 +63,27 @@ public final class wo0 extends bk0 {
         boolean z10;
         long j3;
         int L;
-        if (f1Var.f59126f == 0) {
-            org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) f1Var.f59122a;
+        if (f1Var.f59127f == 0) {
+            org.telegram.ui.Cells.f7 f7Var = (org.telegram.ui.Cells.f7) f1Var.f59123a;
             if (i7 == 1 && this.d) {
-                e7Var.setAsNewBotForumTopic(this.f41746e);
+                f7Var.setAsNewBotForumTopic(this.f41746e);
             } else if (this.f41747f != null) {
                 TLRPC.TL_forumTopic E = E(i7);
                 yo0 yo0Var = this.h;
                 TLRPC.Dialog dialog = yo0Var.f42588y2;
-                if (E != null && yo0Var.Q1.h(E.f28457id) >= 0) {
+                if (E != null && yo0Var.Q1.h(E.f28455id) >= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Cells.b7 b7Var = e7Var.f30568b;
-                int i10 = e7Var.f30571f;
-                q9 q9Var = e7Var.f30567a;
-                TextView textView = e7Var.f30569c;
+                org.telegram.ui.Cells.c7 c7Var = f7Var.f30620b;
+                int i10 = f7Var.f30623f;
+                q9 q9Var = f7Var.f30619a;
+                TextView textView = f7Var.f30621c;
                 if (dialog != null) {
-                    TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i10).O0(Long.valueOf(-dialog.f28409id));
+                    TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i10).O0(Long.valueOf(-dialog.f28407id));
                     String str = "";
-                    if (dialog.f28409id > 0) {
+                    if (dialog.f28407id > 0) {
                         textView.setText(E.title);
                         j3 = 0;
                     } else if (O0 != null) {
@@ -104,14 +104,14 @@ public final class wo0 extends bk0 {
                         long o4 = org.telegram.messenger.n5.o(E.from_id);
                         if (org.telegram.messenger.n5.E(o4)) {
                             TLRPC.User c22 = org.telegram.messenger.mp.u1(i10).c2(Long.valueOf(o4));
-                            org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29504j5, e7Var.h);
-                            b7Var.r(c22);
+                            org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29502j5, f7Var.h);
+                            c7Var.r(c22);
                             if (c22 != null) {
                                 textView.setText(org.telegram.messenger.i5.m(0, c22.first_name, c22.last_name));
                             } else {
                                 textView.setText("");
                             }
-                            q9Var.f(c22, b7Var);
+                            q9Var.f(c22, c7Var);
                             q9Var.setRoundRadius(org.telegram.messenger.g0.L(28.0f));
                         } else {
                             TLRPC.Chat O02 = org.telegram.messenger.mp.u1(i10).O0(Long.valueOf(o4));
@@ -120,12 +120,12 @@ public final class wo0 extends bk0 {
                             } else {
                                 textView.setText("");
                             }
-                            b7Var.q(O02);
-                            q9Var.f(O0, b7Var);
+                            c7Var.q(O02);
+                            q9Var.f(O0, c7Var);
                         }
                     } else if (E.icon_emoji_id != j3) {
                         q9Var.setImageDrawable(null);
-                        q9Var.setAnimatedEmojiDrawable(new o5(13, org.telegram.messenger.j10.f24773t0, E.icon_emoji_id));
+                        q9Var.setAnimatedEmojiDrawable(new o5(13, org.telegram.messenger.j10.f24770t0, E.icon_emoji_id));
                     } else {
                         q9Var.setAnimatedEmojiDrawable(null);
                         qg.a aVar = new qg.a(E.icon_color);
@@ -146,8 +146,8 @@ public final class wo0 extends bk0 {
                         L = org.telegram.messenger.g0.L(28.0f);
                     }
                     q9Var.setRoundRadius(L);
-                    e7Var.d = dialog.f28409id;
-                    e7Var.f30570e = E.f28457id;
+                    f7Var.d = dialog.f28407id;
+                    f7Var.f30622e = E.f28455id;
                 }
             }
         }
@@ -155,15 +155,15 @@ public final class wo0 extends bk0 {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View e7Var;
+        View f7Var;
         Context context = this.f41745c;
         if (i7 != 0 && i7 != 2) {
-            e7Var = new View(context);
-            e7Var.setLayoutParams(new v4.q0(-1, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()));
+            f7Var = new View(context);
+            f7Var.setLayoutParams(new v4.q0(-1, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()));
         } else {
-            e7Var = new org.telegram.ui.Cells.e7(context, this.h.J0);
-            e7Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(100.0f)));
+            f7Var = new org.telegram.ui.Cells.f7(context, this.h.J0);
+            f7Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(100.0f)));
         }
-        return new v4.f1(e7Var);
+        return new v4.f1(f7Var);
     }
 }

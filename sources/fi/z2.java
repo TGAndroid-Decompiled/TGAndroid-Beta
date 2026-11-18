@@ -6,15 +6,15 @@ import hi.eb;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.Components.lr;
 public final class z2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f12807a;
-    public final Object f12808b;
-    public final Object f12809c;
+    public final int f12804a;
+    public final Object f12805b;
+    public final Object f12806c;
     public final Object d;
 
     public z2(Object obj, Object obj2, Object obj3, int i7) {
-        this.f12807a = i7;
-        this.f12808b = obj;
-        this.f12809c = obj2;
+        this.f12804a = i7;
+        this.f12805b = obj;
+        this.f12806c = obj2;
         this.d = obj3;
     }
 
@@ -22,15 +22,15 @@ public final class z2 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
         float f11;
-        switch (this.f12807a) {
+        switch (this.f12804a) {
             case 0:
                 boolean[] zArr = (boolean[]) this.d;
-                z3 z3Var = ((b3) this.f12808b).f11767a;
-                z3Var.f12826f3 = ((Float) ((ValueAnimator) this.f12809c).getAnimatedValue()).floatValue();
+                z3 z3Var = ((b3) this.f12805b).f11764a;
+                z3Var.f12823f3 = ((Float) ((ValueAnimator) this.f12806c).getAnimatedValue()).floatValue();
                 z3Var.invalidate();
-                if (z3Var.f12826f3 > 0.8f && !zArr[0]) {
+                if (z3Var.f12823f3 > 0.8f && !zArr[0]) {
                     zArr[0] = true;
-                    z3Var.f12812a3 = true;
+                    z3Var.f12809a3 = true;
                     try {
                         z3Var.performHapticFeedback(3);
                         return;
@@ -40,8 +40,8 @@ public final class z2 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                hi.l5 l5Var = (hi.l5) this.f12808b;
-                View view = (View) this.f12809c;
+                hi.l5 l5Var = (hi.l5) this.f12805b;
+                View view = (View) this.f12806c;
                 View view2 = (View) this.d;
                 l5Var.K0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l5Var.G0.invalidate();
@@ -75,8 +75,8 @@ public final class z2 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 2:
-                eb ebVar = (eb) this.f12808b;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f12809c;
+                eb ebVar = (eb) this.f12805b;
+                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f12806c;
                 hi.v vVar = (hi.v) this.d;
                 ebVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
@@ -88,26 +88,26 @@ public final class z2 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 3:
-                pi.j jVar = (pi.j) this.f12808b;
-                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f12809c;
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.d;
+                pi.j jVar = (pi.j) this.f12805b;
+                org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) this.f12806c;
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (jVar.f55681l) {
-                    x1Var.f32330h0 = (-jVar.f55688s) * floatValue2;
-                    x1Var.f32335i0 = (-jVar.f55689t) * floatValue2;
-                    x1Var.f32344k0 = (-jVar.f55690u) * floatValue2;
-                    x1Var.f32340j0 = (-jVar.v) * floatValue2;
+                    y1Var.f32377h0 = (-jVar.f55688s) * floatValue2;
+                    y1Var.f32382i0 = (-jVar.f55689t) * floatValue2;
+                    y1Var.f32391k0 = (-jVar.f55690u) * floatValue2;
+                    y1Var.f32387j0 = (-jVar.v) * floatValue2;
                 } else {
-                    x1Var.f32330h0 = ((-jVar.f55688s) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f32335i0 = ((-jVar.f55689t) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f32344k0 = ((-jVar.f55690u) * floatValue2) - q1Var.getTranslationY();
-                    x1Var.f32340j0 = ((-jVar.v) * floatValue2) - q1Var.getTranslationY();
+                    y1Var.f32377h0 = ((-jVar.f55688s) * floatValue2) - r1Var.getAnimationOffsetX();
+                    y1Var.f32382i0 = ((-jVar.f55689t) * floatValue2) - r1Var.getAnimationOffsetX();
+                    y1Var.f32391k0 = ((-jVar.f55690u) * floatValue2) - r1Var.getTranslationY();
+                    y1Var.f32387j0 = ((-jVar.v) * floatValue2) - r1Var.getTranslationY();
                 }
-                q1Var.invalidate();
+                r1Var.invalidate();
                 return;
             default:
-                tg.g0 g0Var = (tg.g0) this.f12808b;
-                View view3 = (View) this.f12809c;
+                tg.g0 g0Var = (tg.g0) this.f12805b;
+                View view3 = (View) this.f12806c;
                 View view4 = (View) this.d;
                 g0Var.S0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 g0Var.P0.invalidate();

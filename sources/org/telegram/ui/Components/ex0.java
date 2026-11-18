@@ -53,8 +53,8 @@ public final class ex0 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.F = new ph0[2];
         this.H = 1.0f;
         String[] strArr = {org.telegram.messenger.gd.M0(2131744080, null), org.telegram.messenger.gd.M0(2131744079, null), org.telegram.messenger.gd.M0(2131744084, null), org.telegram.messenger.gd.M0(2131744081, null), org.telegram.messenger.gd.M0(2131744083, null), org.telegram.messenger.gd.M0(2131744082, null)};
-        int i11 = org.telegram.ui.ActionBar.n6.f29381c9;
-        int[] iArr = {i11, i11, i11, i11, org.telegram.ui.ActionBar.n6.Y5, org.telegram.ui.ActionBar.n6.f29399d9};
+        int i11 = org.telegram.ui.ActionBar.n6.f29379c9;
+        int[] iArr = {i11, i11, i11, i11, org.telegram.ui.ActionBar.n6.Y5, org.telegram.ui.ActionBar.n6.f29397d9};
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
@@ -67,7 +67,7 @@ public final class ex0 extends FrameLayout implements org.telegram.ui.ActionBar.
         paint3.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         dx0 dx0Var = new dx0(this, context);
         this.h = dx0Var;
-        this.f34824a = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29504j5, false);
+        this.f34824a = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29502j5, false);
         dx0Var.setMinValue(0);
         dx0Var.setDrawDividers(false);
         boolean isEmpty = org.telegram.messenger.mp.u1(i7).Q0.isEmpty();
@@ -160,8 +160,8 @@ public final class ex0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void c(int i7) {
         mh0[] mh0VarArr = this.f34831s;
         if (mh0VarArr[i7] != null) {
-            int f10 = i0.a.f(0.9f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29381c9, false));
-            int i10 = org.telegram.ui.ActionBar.n6.f29418e9;
+            int f10 = i0.a.f(0.9f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29379c9, false));
+            int i10 = org.telegram.ui.ActionBar.n6.f29416e9;
             int x02 = org.telegram.ui.ActionBar.n6.x0(null, i10, false);
             mh0 mh0Var = mh0VarArr[i7];
             mh0[] mh0VarArr2 = this.f34832w;
@@ -216,7 +216,7 @@ public final class ex0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public void setBackgroundColor(int i7) {
         super.setBackgroundColor(i7);
         updateColors();
-        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29504j5, false);
+        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29502j5, false);
         this.f34824a = x02;
         dx0 dx0Var = this.h;
         dx0Var.setTextColor(x02);

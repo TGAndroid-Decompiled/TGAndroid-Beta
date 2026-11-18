@@ -27,39 +27,39 @@ import yc.f;
 import yc.g;
 import yc.i;
 public final class d extends i {
-    public static final e f59677l;
-    public static final HashMap f59678m;
-    public final ExtendedDefaultDataSourceFactory f59679e;
-    public final x f59680f;
-    public final sa.d f59681g;
+    public static final e f59678l;
+    public static final HashMap f59679m;
+    public final ExtendedDefaultDataSourceFactory f59680e;
+    public final x f59681f;
+    public final sa.d f59682g;
     public final HashMap h;
-    public Pair f59682i;
-    public boolean f59683j;
-    public final AtomicInteger f59684k;
+    public Pair f59683i;
+    public boolean f59684j;
+    public final AtomicInteger f59685k;
 
     static {
         e eVar = new e(new x0(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f59677l = eVar;
+        f59678l = eVar;
         e[] eVarArr = {eVar};
         HashMap hashMap = new HashMap();
-        f59678m = hashMap;
+        f59679m = hashMap;
         e eVar2 = eVarArr[0];
         hashMap.put(eVar2.d, eVar2);
     }
 
     public d() {
-        this.f61170c = new va(10);
+        this.f61171c = new va(10);
         this.h = new HashMap();
-        this.f59682i = null;
-        this.f59683j = false;
-        this.f59684k = new AtomicInteger();
-        this.f59680f = new x(16);
-        this.f59681g = new sa.d(11);
-        this.f59679e = new ExtendedDefaultDataSourceFactory(t0.f26915b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        this.f59683i = null;
+        this.f59684j = false;
+        this.f59685k = new AtomicInteger();
+        this.f59681f = new x(16);
+        this.f59682g = new sa.d(11);
+        this.f59680e = new ExtendedDefaultDataSourceFactory(t0.f26913b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
     public static String i() {
-        int ipAddress = ((WifiManager) t0.f26915b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
+        int ipAddress = ((WifiManager) t0.f26913b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
         if (ipAddress == 0) {
             try {
                 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -90,9 +90,9 @@ public final class d extends i {
     @Override
     public final g e(yc.d dVar) {
         String str;
-        int incrementAndGet = this.f59684k.incrementAndGet();
+        int incrementAndGet = this.f59685k.incrementAndGet();
         StringBuilder m10 = i5.c.m(incrementAndGet, "Request ", " ");
-        switch (dVar.f61146g) {
+        switch (dVar.f61147g) {
             case 1:
                 str = "GET";
                 break;
@@ -147,12 +147,12 @@ public final class d extends i {
         }
         m10.append(str);
         m10.append(" ");
-        m10.append(dVar.f61145f);
+        m10.append(dVar.f61146f);
         m10.append(" ");
-        p5.c.t(m10, (String) dVar.f61147i.get("range"), "CAST_SERVER");
+        p5.c.t(m10, (String) dVar.f61148i.get("range"), "CAST_SERVER");
         try {
             g k10 = k(dVar);
-            vg vgVar = k10.f61162e;
+            vg vgVar = k10.f61163e;
             vgVar.put("Access-Control-Allow-Origin", "*");
             vgVar.put("Access-Control-Max-Age", "3628800");
             vgVar.put("Access-Control-Allow-Methods", "*");
@@ -161,7 +161,7 @@ public final class d extends i {
         } catch (Throwable unused) {
             Log.d("CAST_SERVER", "Error " + incrementAndGet);
             g c10 = i.c(f.INTERNAL_ERROR, "text/plain", "Error reading file");
-            vg vgVar2 = c10.f61162e;
+            vg vgVar2 = c10.f61163e;
             vgVar2.put("Access-Control-Allow-Origin", "*");
             vgVar2.put("Access-Control-Max-Age", "3628800");
             vgVar2.put("Access-Control-Allow-Methods", "*");
@@ -172,10 +172,10 @@ public final class d extends i {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f59683j) {
+            if (this.f59684j) {
                 try {
-                    i.d(this.f61168a);
-                    va vaVar = this.f61170c;
+                    i.d(this.f61169a);
+                    va vaVar = this.f61171c;
                     vaVar.getClass();
                     ArrayList arrayList = new ArrayList((List) vaVar.f694c);
                     int size = arrayList.size();
@@ -184,22 +184,22 @@ public final class d extends i {
                         Object obj = arrayList.get(i7);
                         i7++;
                         yc.a aVar = (yc.a) obj;
-                        i.d(aVar.f61131a);
-                        i.d(aVar.f61132b);
+                        i.d(aVar.f61132a);
+                        i.d(aVar.f61133b);
                     }
-                    Thread thread = this.f61169b;
+                    Thread thread = this.f61170b;
                     if (thread != null) {
                         thread.join();
                     }
                 } catch (Exception e10) {
                     i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e10);
                 }
-                this.f59683j = false;
+                this.f59684j = false;
             }
-        } else if (!this.f59683j) {
+        } else if (!this.f59684j) {
             try {
                 f();
-                this.f59683j = true;
+                this.f59684j = true;
             } catch (IOException e11) {
                 throw new RuntimeException(e11);
             }
@@ -212,16 +212,16 @@ public final class d extends i {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f59682i = new Pair(str, file);
+            this.f59683i = new Pair(str, file);
         } else {
-            Pair pair = this.f59682i;
+            Pair pair = this.f59683i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f59682i.second).delete();
+                    ((File) this.f59683i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f59682i = null;
+            this.f59683i = null;
         }
         h();
     }

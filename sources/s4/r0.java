@@ -40,9 +40,9 @@ public final class r0 extends h3 implements ServiceConnection {
     @Override
     public final p c(String str) {
         if (str != null) {
-            ca.i iVar = (ca.i) this.f7214n;
+            ca.i iVar = (ca.i) this.f7211n;
             if (iVar != null) {
-                List list = (List) iVar.f5126c;
+                List list = (List) iVar.f5123c;
                 int size = list.size();
                 for (int i7 = 0; i7 < size; i7++) {
                     if (((m) list.get(i7)).d().equals(str)) {
@@ -109,16 +109,16 @@ public final class r0 extends h3 implements ServiceConnection {
                 } else {
                     i7 = 1;
                 }
-                this.f57029y = this.f7209a.bindService(intent, this, i7);
+                this.f57029y = this.f7206a.bindService(intent, this, i7);
             } catch (SecurityException unused) {
             }
         }
     }
 
     public final q0 o(String str, String str2) {
-        ca.i iVar = (ca.i) this.f7214n;
+        ca.i iVar = (ca.i) this.f7211n;
         if (iVar != null) {
-            List list = (List) iVar.f5126c;
+            List list = (List) iVar.f5123c;
             int size = list.size();
             for (int i7 = 0; i7 < size; i7++) {
                 if (((m) list.get(i7)).d().equals(str)) {
@@ -188,7 +188,7 @@ public final class r0 extends h3 implements ServiceConnection {
             }
             m0 m0Var = this.E;
             m0Var.b(2, 0, 0, null, null);
-            m0Var.f56991b.f12964b.clear();
+            m0Var.f56991b.f12961b.clear();
             m0Var.f56990a.getBinder().unlinkToDeath(m0Var, 0);
             m0Var.f56996r.f57026s.post(new l0(m0Var, 0));
             this.E = null;
@@ -200,7 +200,7 @@ public final class r0 extends h3 implements ServiceConnection {
             this.f57029y = false;
             p();
             try {
-                this.f7209a.unbindService(this);
+                this.f7206a.unbindService(this);
             } catch (IllegalArgumentException e10) {
                 Log.e("MediaRouteProviderProxy", this + ": unbindService failed", e10);
             }

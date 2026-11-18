@@ -3,20 +3,20 @@ package ai;
 import android.os.SystemClock;
 import org.telegram.ui.Dictation.DictationLid;
 public final class x1 implements Runnable {
-    public final int f1610a;
-    public final c2 f1611b;
+    public final int f1611a;
+    public final c2 f1612b;
 
     public x1(c2 c2Var, int i7) {
-        this.f1610a = i7;
-        this.f1611b = c2Var;
+        this.f1611a = i7;
+        this.f1612b = c2Var;
     }
 
     @Override
     public final void run() {
         z zVar;
-        switch (this.f1610a) {
+        switch (this.f1611a) {
             case 0:
-                c2 c2Var = this.f1611b;
+                c2 c2Var = this.f1612b;
                 if (!c2Var.f1153j && !c2Var.f1151i) {
                     c2Var.f1146f.postDelayed(this, 700L);
                     if (!c2Var.E && DictationLid.f()) {
@@ -34,7 +34,7 @@ public final class x1 implements Runnable {
                 }
                 return;
             case 1:
-                c2 c2Var2 = this.f1611b;
+                c2 c2Var2 = this.f1612b;
                 if (!c2Var2.f1153j) {
                     c2Var2.f1146f.postDelayed(this, 700L);
                     if (!c2Var2.W && !c2Var2.f1151i && (zVar = c2Var2.f1164u) != null) {
@@ -58,7 +58,7 @@ public final class x1 implements Runnable {
                 }
                 return;
             default:
-                c2 c2Var3 = this.f1611b;
+                c2 c2Var3 = this.f1612b;
                 if (!c2Var3.f1153j) {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
                     double d = elapsedRealtime - c2Var3.f1150h0;

@@ -212,7 +212,7 @@ public class ck0 extends RecyclerView implements eh.a {
         for (int i7 = 0; i7 < 2; i7++) {
             for (int i10 = childCount - 1; i10 >= 0; i10--) {
                 View childAt = getChildAt(i10);
-                if ((!(childAt instanceof org.telegram.ui.Cells.q1) && !(childAt instanceof org.telegram.ui.Cells.u0)) || childAt.getVisibility() != 4) {
+                if ((!(childAt instanceof org.telegram.ui.Cells.r1) && !(childAt instanceof org.telegram.ui.Cells.v0)) || childAt.getVisibility() != 4) {
                     float f13 = 0.0f;
                     if (i7 == 0) {
                         f12 = childAt.getTranslationX();
@@ -364,7 +364,7 @@ public class ck0 extends RecyclerView implements eh.a {
             v4.p0 layoutManager = getLayoutManager();
             if (layoutManager instanceof v4.c0) {
                 v4.c0 c0Var = (v4.c0) layoutManager;
-                if (c0Var.f59074o == 1) {
+                if (c0Var.f59075o == 1) {
                     if (this.f34057f1 != null) {
                         if (this.f34091x1 == 1) {
                             paddingTop = 0;
@@ -613,7 +613,7 @@ public class ck0 extends RecyclerView implements eh.a {
                     if (z10) {
                         int i13 = this.f34058f2;
                         if (S > i13) {
-                            if (!this.f34060g2.f20024a) {
+                            if (!this.f34060g2.f20021a) {
                                 for (int i14 = i13 + 1; i14 <= S; i14++) {
                                     if (i14 != this.f34056e2 && this.f34060g2.a(i14)) {
                                         this.f34060g2.d(min2, min, i14, true);
@@ -637,7 +637,7 @@ public class ck0 extends RecyclerView implements eh.a {
                                 }
                                 i15++;
                             }
-                        } else if (!this.f34060g2.f20024a) {
+                        } else if (!this.f34060g2.f20021a) {
                             for (int i16 = i15 - 1; i16 >= S; i16--) {
                                 if (i16 != this.f34056e2 && this.f34060g2.a(i16)) {
                                     this.f34060g2.d(min2, min, i16, true);
@@ -646,7 +646,7 @@ public class ck0 extends RecyclerView implements eh.a {
                         }
                     }
                 }
-                if (!this.f34060g2.f20024a) {
+                if (!this.f34060g2.f20021a) {
                     this.f34058f2 = S;
                     return;
                 }
@@ -868,7 +868,7 @@ public class ck0 extends RecyclerView implements eh.a {
                     z13 = false;
                 }
                 if (z11 && z13) {
-                    return org.telegram.ui.ActionBar.n6.d0(0, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f34074o2));
+                    return org.telegram.ui.ActionBar.n6.d0(0, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f34074o2));
                 }
                 z12 = z13;
             }
@@ -947,9 +947,9 @@ public class ck0 extends RecyclerView implements eh.a {
     @Override
     public final void c(dh.a aVar, RectF rectF) {
         if (Build.VERSION.SDK_INT < 29) {
-            aVar.f8372a = true;
+            aVar.f8369a = true;
         } else if (Y0() && getOverScrollMode() != 2) {
-            aVar.f8372a = true;
+            aVar.f8369a = true;
         } else {
             int itemDecorationCount = getItemDecorationCount();
             for (int i7 = 0; i7 < itemDecorationCount; i7++) {
@@ -1077,7 +1077,7 @@ public class ck0 extends RecyclerView implements eh.a {
                         View view2 = (View) this.f34073o1.get(i11);
                         int save = canvas.save();
                         int intValue = ((Integer) view2.getTag()).intValue();
-                        if (org.telegram.messenger.gd.f24216a0) {
+                        if (org.telegram.messenger.gd.f24213a0) {
                             f10 = getWidth() - view2.getWidth();
                         } else {
                             f10 = 0.0f;
@@ -1091,7 +1091,7 @@ public class ck0 extends RecyclerView implements eh.a {
             } else if (i10 == 2 && this.f34057f1 != null && (view = this.f34077q1) != null && view.getAlpha() != 0.0f) {
                 int save2 = canvas.save();
                 int intValue2 = ((Integer) this.f34077q1.getTag()).intValue();
-                if (org.telegram.messenger.gd.f24216a0) {
+                if (org.telegram.messenger.gd.f24213a0) {
                     f12 = getWidth() - this.f34077q1.getWidth();
                 }
                 canvas.translate(f12, intValue2);
@@ -1177,7 +1177,7 @@ public class ck0 extends RecyclerView implements eh.a {
         }
         v4.f1 K = K(lj0Var.run());
         if (K != null) {
-            View view = K.f59122a;
+            View view = K.f59123a;
             int c10 = K.c();
             this.f34092x2 = c10;
             k1(c10, view);
@@ -1297,7 +1297,7 @@ public class ck0 extends RecyclerView implements eh.a {
     }
 
     public int getSectionColorForDecoration() {
-        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f34074o2);
+        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f34074o2);
     }
 
     public int getSectionsBackgroundColorForDecoration() {
@@ -1332,7 +1332,7 @@ public class ck0 extends RecyclerView implements eh.a {
         if (this.L2 != null && i7 >= 0) {
             for (int i10 = 0; i10 < this.L2.size(); i10++) {
                 long longValue = ((Long) this.L2.get(i10)).longValue();
-                Typeface typeface = org.telegram.messenger.g0.f24093a;
+                Typeface typeface = org.telegram.messenger.g0.f24090a;
                 int i11 = (int) (longValue >> 32);
                 int i12 = (int) longValue;
                 if (i7 >= i11 && i7 <= i12) {
@@ -1539,7 +1539,7 @@ public class ck0 extends RecyclerView implements eh.a {
         }
         if (this.f34086u2) {
             this.f34086u2 = false;
-            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25142k1, 512);
+            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25140k1, 512);
         }
     }
 
@@ -1550,7 +1550,7 @@ public class ck0 extends RecyclerView implements eh.a {
                 n1(this, true);
             }
             if (this.f34048a1 != null) {
-                int i7 = org.telegram.ui.bn.f45922md;
+                int i7 = org.telegram.ui.bn.f45913md;
                 return true;
             } else if (super.onInterceptTouchEvent(motionEvent)) {
                 return true;
@@ -1654,7 +1654,7 @@ public class ck0 extends RecyclerView implements eh.a {
                 org.telegram.ui.bn bnVar = (org.telegram.ui.bn) b3Var.d;
                 iArr[0] = (int) bnVar.P9;
                 iArr[1] = bnVar.Ya;
-                if (motionEvent.getY() > (getMeasuredHeight() - org.telegram.messenger.g0.L(56.0f)) - this.f34069l2[1] && (this.f34058f2 >= this.f34056e2 || !this.f34060g2.f20024a)) {
+                if (motionEvent.getY() > (getMeasuredHeight() - org.telegram.messenger.g0.L(56.0f)) - this.f34069l2[1] && (this.f34058f2 >= this.f34056e2 || !this.f34060g2.f20021a)) {
                     this.f34064i2 = false;
                     if (!this.f34062h2) {
                         this.f34062h2 = true;
@@ -1662,7 +1662,7 @@ public class ck0 extends RecyclerView implements eh.a {
                         org.telegram.messenger.g0.g3(gkVar);
                         return true;
                     }
-                } else if (motionEvent.getY() < org.telegram.messenger.g0.L(56.0f) + this.f34069l2[0] && (this.f34058f2 <= this.f34056e2 || !this.f34060g2.f20024a)) {
+                } else if (motionEvent.getY() < org.telegram.messenger.g0.L(56.0f) + this.f34069l2[0] && (this.f34058f2 <= this.f34056e2 || !this.f34060g2.f20021a)) {
                     this.f34064i2 = true;
                     if (!this.f34062h2) {
                         this.f34062h2 = true;
@@ -1737,7 +1737,7 @@ public class ck0 extends RecyclerView implements eh.a {
         v4.i0 adapter = getAdapter();
         jg.m1 m1Var = this.f34082s2;
         if (adapter != null) {
-            adapter.f59158a.unregisterObserver(m1Var);
+            adapter.f59159a.unregisterObserver(m1Var);
         }
         ArrayList arrayList = this.f34073o1;
         if (arrayList != null) {
@@ -1882,9 +1882,9 @@ public class ck0 extends RecyclerView implements eh.a {
         int i7;
         if (num == null) {
             if (b1()) {
-                i7 = org.telegram.ui.ActionBar.n6.f29505j6;
+                i7 = org.telegram.ui.ActionBar.n6.f29503j6;
             } else {
-                i7 = org.telegram.ui.ActionBar.n6.f29488i6;
+                i7 = org.telegram.ui.ActionBar.n6.f29486i6;
             }
             intValue = org.telegram.ui.ActionBar.n6.w0(i7, this.f34074o2);
         } else {
@@ -2083,7 +2083,7 @@ public class ck0 extends RecyclerView implements eh.a {
 
     public final void t1(org.telegram.messenger.y10 y10Var, org.telegram.messenger.y10 y10Var2, int i7, float f10, boolean z10) {
         iy iyVar = new iy(this, 15);
-        org.telegram.ui.ActionBar.u6.l(this, 20, org.telegram.ui.ActionBar.n6.f29505j6, this.f34074o2);
+        org.telegram.ui.ActionBar.u6.l(this, 20, org.telegram.ui.ActionBar.n6.f29503j6, this.f34074o2);
         this.I2 = y10Var;
         this.J2 = y10Var2;
         this.P2 = i7;
@@ -2166,14 +2166,14 @@ public class ck0 extends RecyclerView implements eh.a {
         this.D2 = new gk(this, 13);
         this.T2 = true;
         this.V2 = ak0.f33356a;
-        this.W2 = org.telegram.ui.ActionBar.n6.f29339a7;
+        this.W2 = org.telegram.ui.ActionBar.n6.f29337a7;
         this.Y2 = new Path();
         this.f34074o2 = i6Var;
         bt btVar = new bt();
         this.E2 = btVar;
         setEdgeEffectFactory(btVar);
-        org.telegram.ui.ActionBar.u6.l(this, 21, org.telegram.ui.ActionBar.n6.f29676s8, i6Var);
-        org.telegram.ui.ActionBar.u6.l(this, 20, org.telegram.ui.ActionBar.n6.f29488i6, i6Var);
+        org.telegram.ui.ActionBar.u6.l(this, 21, org.telegram.ui.ActionBar.n6.f29674s8, i6Var);
+        org.telegram.ui.ActionBar.u6.l(this, 20, org.telegram.ui.ActionBar.n6.f29486i6, i6Var);
         try {
             if (!f34043a3) {
                 int[] iArr = null;

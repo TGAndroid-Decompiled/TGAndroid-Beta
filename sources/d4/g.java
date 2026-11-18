@@ -9,35 +9,35 @@ import java.util.ArrayList;
 import java.util.List;
 public final class g extends j {
     public final x h = new x();
-    public final f f7839i = new f();
-    public int f7840j = -1;
-    public final int f7841k;
-    public final e[] f7842l;
-    public e f7843m;
-    public List f7844n;
-    public List f7845o;
-    public f f7846p;
-    public int f7847q;
+    public final f f7836i = new f();
+    public int f7837j = -1;
+    public final int f7838k;
+    public final e[] f7839l;
+    public e f7840m;
+    public List f7841n;
+    public List f7842o;
+    public f f7843p;
+    public int f7844q;
 
     public g(int i7, List list) {
-        this.f7841k = i7 == -1 ? 1 : i7;
+        this.f7838k = i7 == -1 ? 1 : i7;
         if (list != null) {
-            byte[] bArr = h2.g.f13760a;
+            byte[] bArr = h2.g.f13757a;
             if (list.size() == 1 && ((byte[]) list.get(0)).length == 1) {
                 byte b10 = ((byte[]) list.get(0))[0];
             }
         }
-        this.f7842l = new e[8];
+        this.f7839l = new e[8];
         for (int i10 = 0; i10 < 8; i10++) {
-            this.f7842l[i10] = new e();
+            this.f7839l[i10] = new e();
         }
-        this.f7843m = this.f7842l[0];
+        this.f7840m = this.f7839l[0];
     }
 
     @Override
     public final ob.c f() {
-        List list = this.f7844n;
-        this.f7845o = list;
+        List list = this.f7841n;
+        this.f7842o = list;
         list.getClass();
         return new ob.c(list, 14);
     }
@@ -45,18 +45,18 @@ public final class g extends j {
     @Override
     public final void flush() {
         super.flush();
-        this.f7844n = null;
-        this.f7845o = null;
-        this.f7847q = 0;
-        this.f7843m = this.f7842l[0];
+        this.f7841n = null;
+        this.f7842o = null;
+        this.f7844q = 0;
+        this.f7840m = this.f7839l[0];
         l();
-        this.f7846p = null;
+        this.f7843p = null;
     }
 
     @Override
     public final void g(h hVar) {
         boolean z10;
-        ByteBuffer byteBuffer = hVar.f18127c;
+        ByteBuffer byteBuffer = hVar.f18124c;
         byteBuffer.getClass();
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
@@ -78,40 +78,40 @@ public final class g extends j {
                     if (i7 == 3) {
                         j();
                         int i10 = (A2 & 192) >> 6;
-                        int i11 = this.f7840j;
+                        int i11 = this.f7837j;
                         if (i11 != -1 && i10 != (i11 + 1) % 4) {
                             l();
-                            h2.a.l("Cea708Decoder", "Sequence number discontinuity. previous=" + this.f7840j + " current=" + i10);
+                            h2.a.l("Cea708Decoder", "Sequence number discontinuity. previous=" + this.f7837j + " current=" + i10);
                         }
-                        this.f7840j = i10;
+                        this.f7837j = i10;
                         int i12 = A2 & 63;
                         if (i12 == 0) {
                             i12 = 64;
                         }
                         f fVar = new f(i10, i12);
-                        this.f7846p = fVar;
-                        fVar.f7838e = 1;
-                        ((byte[]) fVar.f7836b)[0] = A3;
+                        this.f7843p = fVar;
+                        fVar.f7835e = 1;
+                        ((byte[]) fVar.f7833b)[0] = A3;
                     } else {
                         if (i7 == 2) {
                             z11 = true;
                         }
                         la.f(z11);
-                        f fVar2 = this.f7846p;
+                        f fVar2 = this.f7843p;
                         if (fVar2 == null) {
                             h2.a.c("Cea708Decoder", "Encountered DTVCC_PACKET_DATA before DTVCC_PACKET_START");
                         } else {
-                            byte[] bArr = (byte[]) fVar2.f7836b;
-                            int i13 = fVar2.f7838e;
+                            byte[] bArr = (byte[]) fVar2.f7833b;
+                            int i13 = fVar2.f7835e;
                             int i14 = i13 + 1;
-                            fVar2.f7838e = i14;
+                            fVar2.f7835e = i14;
                             bArr[i13] = A2;
-                            fVar2.f7838e = i13 + 2;
+                            fVar2.f7835e = i13 + 2;
                             bArr[i14] = A3;
                         }
                     }
-                    f fVar3 = this.f7846p;
-                    if (fVar3.f7838e == (fVar3.d * 2) - 1) {
+                    f fVar3 = this.f7843p;
+                    if (fVar3.f7835e == (fVar3.d * 2) - 1) {
                         j();
                     }
                 }
@@ -126,7 +126,7 @@ public final class g extends j {
 
     @Override
     public final boolean i() {
-        if (this.f7844n != this.f7845o) {
+        if (this.f7841n != this.f7842o) {
             return true;
         }
         return false;
@@ -137,18 +137,18 @@ public final class g extends j {
         int i7;
         boolean z10;
         e eVar;
-        f fVar = this.f7846p;
+        f fVar = this.f7843p;
         if (fVar == null) {
             return;
         }
         int i10 = 2;
-        if (fVar.f7838e != (fVar.d * 2) - 1) {
-            h2.a.b("Cea708Decoder", "DtvCcPacket ended prematurely; size is " + ((this.f7846p.d * 2) - 1) + ", but current index is " + this.f7846p.f7838e + " (sequence number " + this.f7846p.f7837c + ");");
+        if (fVar.f7835e != (fVar.d * 2) - 1) {
+            h2.a.b("Cea708Decoder", "DtvCcPacket ended prematurely; size is " + ((this.f7843p.d * 2) - 1) + ", but current index is " + this.f7843p.f7835e + " (sequence number " + this.f7843p.f7834c + ");");
         }
-        f fVar2 = this.f7846p;
-        int i11 = fVar2.f7838e;
-        f fVar3 = this.f7839i;
-        fVar3.H(i11, (byte[]) fVar2.f7836b);
+        f fVar2 = this.f7843p;
+        int i11 = fVar2.f7835e;
+        f fVar3 = this.f7836i;
+        fVar3.H(i11, (byte[]) fVar2.f7833b);
         boolean z11 = false;
         while (true) {
             if (fVar3.b() > 0) {
@@ -166,7 +166,7 @@ public final class g extends j {
                     if (j3 != 0) {
                         h2.a.l("Cea708Decoder", "serviceNumber is non-zero (" + j3 + ") when blockSize is 0");
                     }
-                } else if (j3 != this.f7841k) {
+                } else if (j3 != this.f7838k) {
                     fVar3.M(j10);
                 } else {
                     int f10 = (j10 * 8) + fVar3.f();
@@ -182,7 +182,7 @@ public final class g extends j {
                                                     l();
                                                     break;
                                                 case 13:
-                                                    this.f7843m.a('\n');
+                                                    this.f7840m.a('\n');
                                                     break;
                                                 case 14:
                                                     break;
@@ -201,28 +201,28 @@ public final class g extends j {
                                                     }
                                             }
                                         } else {
-                                            SpannableStringBuilder spannableStringBuilder = this.f7843m.f7817b;
+                                            SpannableStringBuilder spannableStringBuilder = this.f7840m.f7814b;
                                             int length = spannableStringBuilder.length();
                                             if (length > 0) {
                                                 spannableStringBuilder.delete(length - 1, length);
                                             }
                                         }
                                     } else {
-                                        this.f7844n = k();
+                                        this.f7841n = k();
                                     }
                                 }
                                 i7 = i10;
                             } else if (j11 <= 127) {
                                 if (j11 == 127) {
-                                    this.f7843m.a((char) 9835);
+                                    this.f7840m.a((char) 9835);
                                 } else {
-                                    this.f7843m.a((char) (j11 & 255));
+                                    this.f7840m.a((char) (j11 & 255));
                                 }
                                 i7 = i10;
                                 z11 = true;
                             } else {
                                 if (j11 <= 159) {
-                                    e[] eVarArr = this.f7842l;
+                                    e[] eVarArr = this.f7839l;
                                     switch (j11) {
                                         case 128:
                                         case 129:
@@ -234,9 +234,9 @@ public final class g extends j {
                                         case 135:
                                             z10 = true;
                                             int i13 = j11 - 128;
-                                            if (this.f7847q != i13) {
-                                                this.f7847q = i13;
-                                                this.f7843m = eVarArr[i13];
+                                            if (this.f7844q != i13) {
+                                                this.f7844q = i13;
+                                                this.f7840m = eVarArr[i13];
                                                 break;
                                             }
                                             break;
@@ -245,13 +245,13 @@ public final class g extends j {
                                             for (int i14 = 1; i14 <= 8; i14++) {
                                                 if (fVar3.i()) {
                                                     e eVar2 = eVarArr[8 - i14];
-                                                    eVar2.f7816a.clear();
-                                                    eVar2.f7817b.clear();
-                                                    eVar2.f7828o = -1;
-                                                    eVar2.f7829p = -1;
-                                                    eVar2.f7830q = -1;
-                                                    eVar2.f7832s = -1;
-                                                    eVar2.f7834u = 0;
+                                                    eVar2.f7813a.clear();
+                                                    eVar2.f7814b.clear();
+                                                    eVar2.f7825o = -1;
+                                                    eVar2.f7826p = -1;
+                                                    eVar2.f7827q = -1;
+                                                    eVar2.f7829s = -1;
+                                                    eVar2.f7831u = 0;
                                                 }
                                             }
                                             break;
@@ -300,7 +300,7 @@ public final class g extends j {
                                             break;
                                         case 144:
                                             int i19 = i10;
-                                            if (!this.f7843m.f7818c) {
+                                            if (!this.f7840m.f7815c) {
                                                 fVar3.L(16);
                                                 z10 = true;
                                                 i12 = 3;
@@ -314,35 +314,35 @@ public final class g extends j {
                                                 i12 = 3;
                                                 fVar3.j(3);
                                                 fVar3.j(3);
-                                                this.f7843m.e(i20, i21);
+                                                this.f7840m.e(i20, i21);
                                                 z10 = true;
                                             }
                                         case 145:
-                                            if (!this.f7843m.f7818c) {
+                                            if (!this.f7840m.f7815c) {
                                                 fVar3.L(24);
                                             } else {
                                                 int c11 = e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), fVar3.j(2));
                                                 int c12 = e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), fVar3.j(2));
                                                 fVar3.L(2);
                                                 e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), 0);
-                                                this.f7843m.f(c11, c12);
+                                                this.f7840m.f(c11, c12);
                                             }
                                             z10 = true;
                                             i12 = 3;
                                             break;
                                         case 146:
-                                            if (!this.f7843m.f7818c) {
+                                            if (!this.f7840m.f7815c) {
                                                 fVar3.L(16);
                                             } else {
                                                 fVar3.L(4);
                                                 int j12 = fVar3.j(4);
                                                 fVar3.L(2);
                                                 fVar3.j(6);
-                                                e eVar3 = this.f7843m;
-                                                if (eVar3.f7834u != j12) {
+                                                e eVar3 = this.f7840m;
+                                                if (eVar3.f7831u != j12) {
                                                     eVar3.a('\n');
                                                 }
-                                                eVar3.f7834u = j12;
+                                                eVar3.f7831u = j12;
                                             }
                                             z10 = true;
                                             i12 = 3;
@@ -356,7 +356,7 @@ public final class g extends j {
                                             z10 = true;
                                             break;
                                         case 151:
-                                            if (!this.f7843m.f7818c) {
+                                            if (!this.f7840m.f7815c) {
                                                 fVar3.L(32);
                                             } else {
                                                 int c13 = e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), fVar3.j(2));
@@ -368,9 +368,9 @@ public final class g extends j {
                                                 fVar3.j(2);
                                                 int j13 = fVar3.j(2);
                                                 fVar3.L(8);
-                                                e eVar4 = this.f7843m;
-                                                eVar4.f7827n = c13;
-                                                eVar4.f7824k = j13;
+                                                e eVar4 = this.f7840m;
+                                                eVar4.f7824n = c13;
+                                                eVar4.f7821k = j13;
                                             }
                                             z10 = true;
                                             i12 = 3;
@@ -399,45 +399,45 @@ public final class g extends j {
                                             fVar3.L(i10);
                                             int j19 = fVar3.j(3);
                                             int j20 = fVar3.j(3);
-                                            ArrayList arrayList = eVar5.f7816a;
-                                            eVar5.f7818c = true;
+                                            ArrayList arrayList = eVar5.f7813a;
+                                            eVar5.f7815c = true;
                                             eVar5.d = i23;
-                                            eVar5.f7819e = j14;
-                                            eVar5.f7820f = i24;
-                                            eVar5.f7821g = j15;
+                                            eVar5.f7816e = j14;
+                                            eVar5.f7817f = i24;
+                                            eVar5.f7818g = j15;
                                             eVar5.h = j16;
-                                            eVar5.f7822i = j17;
+                                            eVar5.f7819i = j17;
                                             int i25 = j18 + 1;
-                                            if (eVar5.f7823j != i25) {
-                                                eVar5.f7823j = i25;
+                                            if (eVar5.f7820j != i25) {
+                                                eVar5.f7820j = i25;
                                                 while (true) {
-                                                    if (arrayList.size() >= eVar5.f7823j || arrayList.size() >= 15) {
+                                                    if (arrayList.size() >= eVar5.f7820j || arrayList.size() >= 15) {
                                                         arrayList.remove(0);
                                                     }
                                                 }
                                             }
-                                            if (j19 != 0 && eVar5.f7825l != j19) {
-                                                eVar5.f7825l = j19;
+                                            if (j19 != 0 && eVar5.f7822l != j19) {
+                                                eVar5.f7822l = j19;
                                                 int i26 = j19 - 1;
                                                 int i27 = e.B[i26];
                                                 boolean z12 = e.A[i26];
-                                                int i28 = e.f7814y[i26];
-                                                int i29 = e.f7815z[i26];
-                                                int i30 = e.f7813x[i26];
-                                                eVar5.f7827n = i27;
-                                                eVar5.f7824k = i30;
+                                                int i28 = e.f7811y[i26];
+                                                int i29 = e.f7812z[i26];
+                                                int i30 = e.f7810x[i26];
+                                                eVar5.f7824n = i27;
+                                                eVar5.f7821k = i30;
                                             }
-                                            if (j20 != 0 && eVar5.f7826m != j20) {
-                                                eVar5.f7826m = j20;
+                                            if (j20 != 0 && eVar5.f7823m != j20) {
+                                                eVar5.f7823m = j20;
                                                 int i31 = j20 - 1;
                                                 int i32 = e.D[i31];
                                                 int i33 = e.C[i31];
                                                 eVar5.e(false, false);
                                                 eVar5.f(e.v, e.E[i31]);
                                             }
-                                            if (this.f7847q != i22) {
-                                                this.f7847q = i22;
-                                                this.f7843m = eVarArr[i22];
+                                            if (this.f7844q != i22) {
+                                                this.f7844q = i22;
+                                                this.f7840m = eVarArr[i22];
                                             }
                                             z10 = true;
                                             i12 = 3;
@@ -446,7 +446,7 @@ public final class g extends j {
                                 } else {
                                     z10 = true;
                                     if (j11 <= 255) {
-                                        this.f7843m.a((char) (j11 & 255));
+                                        this.f7840m.a((char) (j11 & 255));
                                     } else {
                                         e2.o(j11, "Invalid base command: ", "Cea708Decoder");
                                         i7 = 2;
@@ -486,54 +486,54 @@ public final class g extends j {
                                                                         if (j21 != 61) {
                                                                             switch (j21) {
                                                                                 case 48:
-                                                                                    this.f7843m.a((char) 9608);
+                                                                                    this.f7840m.a((char) 9608);
                                                                                     break;
                                                                                 case 49:
-                                                                                    this.f7843m.a((char) 8216);
+                                                                                    this.f7840m.a((char) 8216);
                                                                                     break;
                                                                                 case 50:
-                                                                                    this.f7843m.a((char) 8217);
+                                                                                    this.f7840m.a((char) 8217);
                                                                                     break;
                                                                                 case 51:
-                                                                                    this.f7843m.a((char) 8220);
+                                                                                    this.f7840m.a((char) 8220);
                                                                                     break;
                                                                                 case 52:
-                                                                                    this.f7843m.a((char) 8221);
+                                                                                    this.f7840m.a((char) 8221);
                                                                                     break;
                                                                                 case 53:
-                                                                                    this.f7843m.a((char) 8226);
+                                                                                    this.f7840m.a((char) 8226);
                                                                                     break;
                                                                                 default:
                                                                                     switch (j21) {
                                                                                         case 118:
-                                                                                            this.f7843m.a((char) 8539);
+                                                                                            this.f7840m.a((char) 8539);
                                                                                             break;
                                                                                         case 119:
-                                                                                            this.f7843m.a((char) 8540);
+                                                                                            this.f7840m.a((char) 8540);
                                                                                             break;
                                                                                         case 120:
-                                                                                            this.f7843m.a((char) 8541);
+                                                                                            this.f7840m.a((char) 8541);
                                                                                             break;
                                                                                         case 121:
-                                                                                            this.f7843m.a((char) 8542);
+                                                                                            this.f7840m.a((char) 8542);
                                                                                             break;
                                                                                         case 122:
-                                                                                            this.f7843m.a((char) 9474);
+                                                                                            this.f7840m.a((char) 9474);
                                                                                             break;
                                                                                         case 123:
-                                                                                            this.f7843m.a((char) 9488);
+                                                                                            this.f7840m.a((char) 9488);
                                                                                             break;
                                                                                         case 124:
-                                                                                            this.f7843m.a((char) 9492);
+                                                                                            this.f7840m.a((char) 9492);
                                                                                             break;
                                                                                         case 125:
-                                                                                            this.f7843m.a((char) 9472);
+                                                                                            this.f7840m.a((char) 9472);
                                                                                             break;
                                                                                         case 126:
-                                                                                            this.f7843m.a((char) 9496);
+                                                                                            this.f7840m.a((char) 9496);
                                                                                             break;
                                                                                         case 127:
-                                                                                            this.f7843m.a((char) 9484);
+                                                                                            this.f7840m.a((char) 9484);
                                                                                             break;
                                                                                         default:
                                                                                             e2.o(j21, "Invalid G2 character: ", "Cea708Decoder");
@@ -541,34 +541,34 @@ public final class g extends j {
                                                                                     }
                                                                             }
                                                                         } else {
-                                                                            this.f7843m.a((char) 8480);
+                                                                            this.f7840m.a((char) 8480);
                                                                         }
                                                                     } else {
-                                                                        this.f7843m.a((char) 339);
+                                                                        this.f7840m.a((char) 339);
                                                                     }
                                                                 } else {
-                                                                    this.f7843m.a((char) 353);
+                                                                    this.f7840m.a((char) 353);
                                                                 }
                                                             } else {
-                                                                this.f7843m.a((char) 8482);
+                                                                this.f7840m.a((char) 8482);
                                                             }
                                                         } else {
-                                                            this.f7843m.a((char) 376);
+                                                            this.f7840m.a((char) 376);
                                                         }
                                                     } else {
-                                                        this.f7843m.a((char) 338);
+                                                        this.f7840m.a((char) 338);
                                                     }
                                                 } else {
-                                                    this.f7843m.a((char) 352);
+                                                    this.f7840m.a((char) 352);
                                                 }
                                             } else {
-                                                this.f7843m.a((char) 8230);
+                                                this.f7840m.a((char) 8230);
                                             }
                                         } else {
-                                            this.f7843m.a((char) 160);
+                                            this.f7840m.a((char) 160);
                                         }
                                     } else {
-                                        this.f7843m.a(' ');
+                                        this.f7840m.a(' ');
                                     }
                                     i7 = 2;
                                     z11 = true;
@@ -586,10 +586,10 @@ public final class g extends j {
                                     i7 = 2;
                                     if (j21 <= 255) {
                                         if (j21 == 160) {
-                                            this.f7843m.a((char) 13252);
+                                            this.f7840m.a((char) 13252);
                                         } else {
                                             e2.o(j21, "Invalid G3 character: ", "Cea708Decoder");
-                                            this.f7843m.a('_');
+                                            this.f7840m.a('_');
                                         }
                                         z11 = true;
                                     } else {
@@ -605,9 +605,9 @@ public final class g extends j {
             }
         }
         if (z11) {
-            this.f7844n = k();
+            this.f7841n = k();
         }
-        this.f7846p = null;
+        this.f7843p = null;
     }
 
     public final java.util.List k() {
@@ -616,7 +616,7 @@ public final class g extends j {
 
     public final void l() {
         for (int i7 = 0; i7 < 8; i7++) {
-            this.f7842l[i7].d();
+            this.f7839l[i7].d();
         }
     }
 }

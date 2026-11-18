@@ -102,7 +102,7 @@ public final class yh implements org.telegram.ui.web.c0 {
             org.telegram.messenger.g0.v1(t3Var);
             yb0 yb0Var = new yb0(h2Var.getParentActivity());
             yb0Var.show();
-            ml0Var.f49881a1 = new a3.h((Object) yb0Var, (Object) t3Var, str, 26);
+            ml0Var.f49855a1 = new a3.h((Object) yb0Var, (Object) t3Var, str, 26);
             ml0Var.Z0 = siVar.J0;
             yb0Var.d(ml0Var);
         }
@@ -195,7 +195,7 @@ public final class yh implements org.telegram.ui.web.c0 {
     public final void s() {
         ki kiVar = this.f42500e.f39732w2;
         ki.t3 t3Var = this.f42498b;
-        if (kiVar == t3Var && !t3Var.K.f18896c) {
+        if (kiVar == t3Var && !t3Var.K.f18893c) {
             t3Var.K();
         }
     }
@@ -218,7 +218,7 @@ public final class yh implements org.telegram.ui.web.c0 {
     public final void u(int i7, final int i10, boolean z10) {
         int i11;
         si siVar = this.f42500e;
-        final int i12 = siVar.E4.f58998b;
+        final int i12 = siVar.E4.f58999b;
         final ki.q1 q1Var = new ki.q1();
         int i13 = 0;
         if (siVar.V1) {
@@ -226,12 +226,12 @@ public final class yh implements org.telegram.ui.web.c0 {
         } else {
             i11 = 0;
         }
-        q1Var.c(q1Var.f18847a, i11, siVar.J0);
+        q1Var.c(q1Var.f18844a, i11, siVar.J0);
         siVar.V1 = z10;
         if (z10) {
             i13 = i10;
         }
-        q1Var.c(q1Var.f18848b, i13, siVar.J0);
+        q1Var.c(q1Var.f18845b, i13, siVar.J0);
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
         duration.setInterpolator(lr.f37208f);
         final ki.t3 t3Var = this.f42498b;
@@ -269,7 +269,7 @@ public final class yh implements org.telegram.ui.web.c0 {
         if (isEmpty) {
             org.telegram.ui.ActionBar.h2 h2Var = siVar.f39659a2;
             if (h2Var instanceof org.telegram.ui.bn) {
-                org.telegram.ui.rj rjVar = ((org.telegram.ui.bn) h2Var).f45932a0;
+                org.telegram.ui.rj rjVar = ((org.telegram.ui.bn) h2Var).f45923a0;
                 rjVar.setFieldText("@" + org.telegram.messenger.o10.o(user) + " " + str);
             }
             siVar.a(true);

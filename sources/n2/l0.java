@@ -5,8 +5,8 @@ import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.os.Build;
 public final class l0 {
-    public final Context f21170a;
-    public Boolean f21171b;
+    public final Context f21167a;
+    public Boolean f21168b;
 
     public l0(Context context) {
         Context applicationContext;
@@ -15,7 +15,7 @@ public final class l0 {
         } else {
             applicationContext = context.getApplicationContext();
         }
-        this.f21170a = applicationContext;
+        this.f21167a = applicationContext;
     }
 
     public final f a(e2.e eVar, e2.u uVar) {
@@ -26,12 +26,12 @@ public final class l0 {
         eVar.getClass();
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 29 && i7 != -1) {
-            Boolean bool = this.f21171b;
+            Boolean bool = this.f21168b;
             boolean z11 = false;
             if (bool != null) {
                 booleanValue = bool.booleanValue();
             } else {
-                Context context = this.f21170a;
+                Context context = this.f21167a;
                 if (context != null) {
                     String parameters = f2.i.d(context).getParameters("offloadVariableRateSupported");
                     if (parameters != null && parameters.equals("offloadVariableRateSupported=1")) {
@@ -39,15 +39,15 @@ public final class l0 {
                     } else {
                         z10 = false;
                     }
-                    this.f21171b = Boolean.valueOf(z10);
+                    this.f21168b = Boolean.valueOf(z10);
                 } else {
-                    this.f21171b = Boolean.FALSE;
+                    this.f21168b = Boolean.FALSE;
                 }
-                booleanValue = this.f21171b.booleanValue();
+                booleanValue = this.f21168b.booleanValue();
             }
-            String str = uVar.f10769s;
+            String str = uVar.f10766s;
             str.getClass();
-            int c10 = e2.s0.c(str, uVar.f10761k);
+            int c10 = e2.s0.c(str, uVar.f10758k);
             if (c10 != 0 && i10 >= h2.l0.s(c10)) {
                 int t6 = h2.l0.t(uVar.K);
                 if (t6 == 0) {
@@ -64,9 +64,9 @@ public final class l0 {
                             z11 = true;
                         }
                         ?? obj = new Object();
-                        obj.f16183a = true;
-                        obj.f16184b = z11;
-                        obj.f16185c = booleanValue;
+                        obj.f16180a = true;
+                        obj.f16181b = z11;
+                        obj.f16182c = booleanValue;
                         return obj.a();
                     } else if (i10 >= 31) {
                         int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(build, eVar.b());
@@ -77,16 +77,16 @@ public final class l0 {
                         if (i10 > 32 && playbackOffloadSupport == 2) {
                             z11 = true;
                         }
-                        obj2.f16183a = true;
-                        obj2.f16184b = z11;
-                        obj2.f16185c = booleanValue;
+                        obj2.f16180a = true;
+                        obj2.f16181b = z11;
+                        obj2.f16182c = booleanValue;
                         return obj2.a();
                     } else if (!AudioManager.isOffloadedPlaybackSupported(build, eVar.b())) {
                         return f.d;
                     } else {
                         ?? obj3 = new Object();
-                        obj3.f16183a = true;
-                        obj3.f16185c = booleanValue;
+                        obj3.f16180a = true;
+                        obj3.f16182c = booleanValue;
                         return obj3.a();
                     }
                 } catch (IllegalArgumentException unused) {

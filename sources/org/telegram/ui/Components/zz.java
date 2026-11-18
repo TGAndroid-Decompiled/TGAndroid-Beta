@@ -12,7 +12,7 @@ public final class zz extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 2) {
+        if (f1Var.f59127f == 2) {
             int b10 = f1Var.b();
             g00 g00Var = this.f42974c;
             if (b10 >= g00Var.f35261n2 && f1Var.b() <= g00Var.f35262o2) {
@@ -67,16 +67,16 @@ public final class zz extends bk0 {
         } else {
             f00Var = null;
             if (i7 == 1) {
-                ?? z8Var = new org.telegram.ui.Cells.z8(g00Var.getContext());
-                org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29339a7, z8Var, null);
-                f00Var2 = z8Var;
+                ?? a9Var = new org.telegram.ui.Cells.a9(g00Var.getContext());
+                org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29337a7, a9Var, null);
+                f00Var2 = a9Var;
             } else if (i7 == 2) {
-                ?? h4Var = new org.telegram.ui.Cells.h4(g00Var.getContext(), 1, 0, false);
-                org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, h4Var, null);
-                f00Var = h4Var;
+                ?? i4Var = new org.telegram.ui.Cells.i4(g00Var.getContext(), 1, 0, false);
+                org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29394d6, i4Var, null);
+                f00Var = i4Var;
             } else if (i7 == 3) {
                 ?? d00Var = new d00(g00Var.getContext());
-                org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, d00Var, null);
+                org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29394d6, d00Var, null);
                 f00Var2 = d00Var;
             }
             f00Var = f00Var2;

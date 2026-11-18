@@ -17,24 +17,24 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.tm0;
 public final class a2 implements Runnable {
-    public final int f28753a;
-    public final Object f28754b;
-    public final Object f28755c;
+    public final int f28751a;
+    public final Object f28752b;
+    public final Object f28753c;
 
     public a2(int i7, Object obj, Object obj2) {
-        this.f28753a = i7;
-        this.f28754b = obj;
-        this.f28755c = obj2;
+        this.f28751a = i7;
+        this.f28752b = obj;
+        this.f28753c = obj2;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f28753a;
+        int i7 = this.f28751a;
         float f10 = 0.0f;
         ArrayList arrayList = null;
         Bitmap bitmap = null;
-        Object obj = this.f28755c;
-        Object obj2 = this.f28754b;
+        Object obj = this.f28753c;
+        Object obj2 = this.f28752b;
         switch (i7) {
             case 0:
                 fh.g gVar = (fh.g) obj;
@@ -96,7 +96,7 @@ public final class a2 implements Runnable {
                 return;
             case 3:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                Drawable drawable = ActionBarLayout.f28676w1;
+                Drawable drawable = ActionBarLayout.f28674w1;
                 actionBarLayout.e0((h2) obj2, false);
                 actionBarLayout.setVisibility(8);
                 View view = actionBarLayout.I0;
@@ -108,7 +108,7 @@ public final class a2 implements Runnable {
             case 4:
                 h2 h2Var = (h2) obj2;
                 h2 h2Var2 = (h2) obj;
-                Drawable drawable2 = ActionBarLayout.f28676w1;
+                Drawable drawable2 = ActionBarLayout.f28674w1;
                 if (h2Var != null) {
                     h2Var.onTransitionAnimationEnd(false, false);
                 }
@@ -142,8 +142,8 @@ public final class a2 implements Runnable {
                         if (arrayList == null) {
                             arrayList = new ArrayList();
                         }
-                        if (!arrayList.contains(k6Var.f29182o)) {
-                            arrayList.add(k6Var.f29182o);
+                        if (!arrayList.contains(k6Var.f29180o)) {
+                            arrayList.add(k6Var.f29180o);
                         }
                     }
                     i10++;
@@ -156,22 +156,22 @@ public final class a2 implements Runnable {
                         tL_inputWallPaperSlug.slug = (String) arrayList.get(i11);
                         getmultiwallpapers.wallpapers.add(tL_inputWallPaperSlug);
                     }
-                    ConnectionsManager.getInstance(h6Var.f29003a).sendRequest(getmultiwallpapers, new f6(h6Var, arrayList3, 0));
+                    ConnectionsManager.getInstance(h6Var.f29001a).sendRequest(getmultiwallpapers, new f6(h6Var, arrayList3, 0));
                     return;
                 }
                 return;
             case 7:
                 h6 h6Var2 = (h6) obj2;
                 g6 g6Var = (g6) obj;
-                TLRPC.TL_wallPaper tL_wallPaper = g6Var.f28980a;
-                w7.G(j10.f24773t0);
+                TLRPC.TL_wallPaper tL_wallPaper = g6Var.f28978a;
+                w7.G(j10.f24770t0);
                 File J = w7.J(tL_wallPaper.document, null, true, true);
-                ArrayList arrayList4 = g6Var.f28981b;
+                ArrayList arrayList4 = g6Var.f28979b;
                 int size4 = arrayList4.size();
                 ArrayList arrayList5 = null;
                 for (int i12 = 0; i12 < size4; i12++) {
                     k6 k6Var2 = (k6) arrayList4.get(i12);
-                    if (k6Var2.f29182o.equals(tL_wallPaper.slug)) {
+                    if (k6Var2.f29180o.equals(tL_wallPaper.slug)) {
                         bitmap = h6.b(bitmap, "application/x-tgwallpattern".equals(tL_wallPaper.document.mime_type), J, k6Var2);
                         if (arrayList5 == null) {
                             arrayList5 = new ArrayList();
@@ -186,15 +186,15 @@ public final class a2 implements Runnable {
                 return;
             default:
                 m6 m6Var = (m6) obj2;
-                m6Var.d((File) obj, m6Var.f29262i0);
+                m6Var.d((File) obj, m6Var.f29260i0);
                 org.telegram.messenger.g0.g3(new l6(m6Var, 0));
                 return;
         }
     }
 
     public a2(ActionBarLayout actionBarLayout, h2 h2Var) {
-        this.f28753a = 3;
-        this.f28755c = actionBarLayout;
-        this.f28754b = h2Var;
+        this.f28751a = 3;
+        this.f28753c = actionBarLayout;
+        this.f28752b = h2Var;
     }
 }

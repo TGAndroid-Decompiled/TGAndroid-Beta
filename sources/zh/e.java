@@ -1,24 +1,24 @@
 package zh;
 public final class e implements Runnable {
-    public final int f61987a;
-    public final l f61988b;
+    public final int f61988a;
+    public final l f61989b;
 
     public e(l lVar, int i7) {
-        this.f61987a = i7;
-        this.f61988b = lVar;
+        this.f61988a = i7;
+        this.f61989b = lVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f61987a) {
+        switch (this.f61988a) {
             case 0:
-                this.f61988b.e();
+                this.f61989b.e();
                 return;
             case 1:
-                l.k(this.f61988b.f62022q, true, true);
+                l.k(this.f61989b.f62023q, true, true);
                 return;
             default:
-                this.f61988b.e();
+                this.f61989b.e();
                 return;
         }
     }

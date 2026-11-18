@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.WeakHashMap;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 public final class a extends View.AccessibilityDelegate {
     public final b f56212a;
 
@@ -30,9 +30,9 @@ public final class a extends View.AccessibilityDelegate {
 
     @Override
     public final AccessibilityNodeProvider getAccessibilityNodeProvider(View view) {
-        b5 a10 = this.f56212a.a(view);
+        c5 a10 = this.f56212a.a(view);
         if (a10 != null) {
-            return (AccessibilityNodeProvider) a10.f30431a;
+            return (AccessibilityNodeProvider) a10.f30477a;
         }
         return null;
     }

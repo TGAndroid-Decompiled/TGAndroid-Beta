@@ -7,18 +7,18 @@ import android.text.TextPaint;
 import java.util.ArrayList;
 import java.util.Locale;
 public final class f6 {
-    public static final org.telegram.ui.Cells.o8 h = new org.telegram.ui.Cells.o8("progress", 3);
+    public static final org.telegram.ui.Cells.p8 h = new org.telegram.ui.Cells.p8("progress", 3);
     public final TextPaint f34952c;
     public ObjectAnimator d;
-    public final org.telegram.ui.Cells.q1 f34955g;
+    public final org.telegram.ui.Cells.r1 f34955g;
     public final ArrayList f34950a = new ArrayList();
     public final ArrayList f34951b = new ArrayList();
     public float f34953e = 0.0f;
     public int f34954f = 1;
 
-    public f6(org.telegram.ui.Cells.q1 q1Var, TextPaint textPaint) {
+    public f6(org.telegram.ui.Cells.r1 r1Var, TextPaint textPaint) {
         this.f34952c = textPaint;
-        this.f34955g = q1Var;
+        this.f34955g = r1Var;
     }
 
     public final int a() {

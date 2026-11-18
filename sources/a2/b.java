@@ -88,15 +88,15 @@ public final class b implements Callable {
             case 2:
                 uf ufVar = (uf) this.f55b;
                 ufVar.getClass();
-                return j.f55914c.a(ufVar.f5010g);
+                return j.f55914c.a(ufVar.f5007g);
             case 3:
                 t tVar = (t) this.f55b;
-                f5.b bVar = tVar.f11323e;
-                synchronized (bVar.f11252a) {
+                f5.b bVar = tVar.f11320e;
+                synchronized (bVar.f11249a) {
                     try {
-                        if (bVar.f11253b != 3) {
+                        if (bVar.f11250b != 3) {
                             boolean z23 = true;
-                            if (bVar.f11253b == 1) {
+                            if (bVar.f11250b == 1) {
                                 z10 = true;
                             } else {
                                 z10 = false;
@@ -104,23 +104,23 @@ public final class b implements Callable {
                             if (!TextUtils.isEmpty(null)) {
                                 bundle = new Bundle();
                                 bundle.putString("accountName", null);
-                                u.b(bundle, bVar.f11254c, bVar.d, bVar.A.longValue());
+                                u.b(bundle, bVar.f11251c, bVar.d, bVar.A.longValue());
                             } else {
                                 bundle = null;
                             }
-                            synchronized (bVar.f11252a) {
-                                cVar = bVar.f11258i;
+                            synchronized (bVar.f11249a) {
+                                cVar = bVar.f11255i;
                             }
                             if (cVar == null) {
-                                f5.b bVar2 = tVar.f11323e;
+                                f5.b bVar2 = tVar.f11320e;
                                 bVar2.k(0);
                                 int i11 = tVar.d;
                                 f fVar3 = z.h;
                                 bVar2.j(107, i11, fVar3);
                                 tVar.c(fVar3);
                             } else {
-                                f5.b bVar3 = tVar.f11323e;
-                                String packageName = bVar3.f11257g.getPackageName();
+                                f5.b bVar3 = tVar.f11320e;
+                                String packageName = bVar3.f11254g.getPackageName();
                                 int i12 = 3;
                                 int i13 = 25;
                                 while (true) {
@@ -153,17 +153,17 @@ public final class b implements Callable {
                                                 } else {
                                                     str = null;
                                                 }
-                                                tVar.f11323e.k(0);
+                                                tVar.f11320e.k(0);
                                                 if (z24) {
                                                     fVar = z.h;
                                                 } else {
-                                                    fVar = z.f11333f;
+                                                    fVar = z.f11330f;
                                                 }
                                                 tVar.b(fVar, i7, str, z10);
                                                 if (z24) {
                                                     fVar2 = z.h;
                                                 } else {
-                                                    fVar2 = z.f11333f;
+                                                    fVar2 = z.f11330f;
                                                 }
                                                 tVar.c(fVar2);
                                             }
@@ -184,7 +184,7 @@ public final class b implements Callable {
                                 } else {
                                     z11 = false;
                                 }
-                                bVar3.f11260k = z11;
+                                bVar3.f11257k = z11;
                                 if (i13 < 3) {
                                     u.g("BillingClient", "In-app billing API does not support subscription on this device.");
                                     i10 = 9;
@@ -208,21 +208,21 @@ public final class b implements Callable {
                                             i14 = ((com.google.android.gms.internal.play_billing.a) cVar).x1(i15, packageName, "inapp", bundle);
                                         }
                                         if (i14 == 0) {
-                                            bVar3.f11261l = i15;
+                                            bVar3.f11258l = i15;
                                             u.g("BillingClient", "mHighestLevelSupportedForInApp: " + i15);
                                         } else {
                                             i15--;
                                         }
                                     }
                                 }
-                                int i16 = bVar3.f11261l;
-                                bVar3.f11261l = i16;
+                                int i16 = bVar3.f11258l;
+                                bVar3.f11258l = i16;
                                 if (i16 >= 26) {
                                     z12 = true;
                                 } else {
                                     z12 = false;
                                 }
-                                bVar3.f11271w = z12;
+                                bVar3.f11268w = z12;
                                 if (i16 >= 24) {
                                     z13 = true;
                                 } else {
@@ -234,62 +234,62 @@ public final class b implements Callable {
                                 } else {
                                     z14 = false;
                                 }
-                                bVar3.f11270u = z14;
+                                bVar3.f11267u = z14;
                                 if (i16 >= 20) {
                                     z15 = true;
                                 } else {
                                     z15 = false;
                                 }
-                                bVar3.f11269t = z15;
+                                bVar3.f11266t = z15;
                                 if (i16 >= 19) {
                                     z16 = true;
                                 } else {
                                     z16 = false;
                                 }
-                                bVar3.f11268s = z16;
+                                bVar3.f11265s = z16;
                                 if (i16 >= 17) {
                                     z17 = true;
                                 } else {
                                     z17 = false;
                                 }
-                                bVar3.f11267r = z17;
+                                bVar3.f11264r = z17;
                                 if (i16 >= 16) {
                                     z18 = true;
                                 } else {
                                     z18 = false;
                                 }
-                                bVar3.f11266q = z18;
+                                bVar3.f11263q = z18;
                                 if (i16 >= 15) {
                                     z19 = true;
                                 } else {
                                     z19 = false;
                                 }
-                                bVar3.f11265p = z19;
+                                bVar3.f11262p = z19;
                                 if (i16 >= 14) {
                                     z20 = true;
                                 } else {
                                     z20 = false;
                                 }
-                                bVar3.f11264o = z20;
+                                bVar3.f11261o = z20;
                                 if (i16 >= 9) {
                                     z21 = true;
                                 } else {
                                     z21 = false;
                                 }
-                                bVar3.f11263n = z21;
+                                bVar3.f11260n = z21;
                                 if (i16 >= 6) {
                                     z22 = true;
                                 } else {
                                     z22 = false;
                                 }
-                                bVar3.f11262m = z22;
+                                bVar3.f11259m = z22;
                                 if (i16 < 3) {
                                     u.h("BillingClient", "In-app billing API version 3 is not supported on this device.");
                                     i10 = 36;
                                 }
                                 f5.b.p(bVar3, i14);
                                 if (i14 != 0) {
-                                    f fVar4 = z.f11329a;
+                                    f fVar4 = z.f11326a;
                                     tVar.b(fVar4, i10, null, z10);
                                     tVar.c(fVar4);
                                 } else {
@@ -298,7 +298,7 @@ public final class b implements Callable {
                                         if (z10) {
                                             h3 s5 = i3.s();
                                             s5.c();
-                                            i3.r((i3) s5.f7142b, 6);
+                                            i3.r((i3) s5.f7139b, 6);
                                             c4 r10 = d4.r();
                                             int i17 = tVar.d;
                                             if (i17 <= 0) {
@@ -309,30 +309,30 @@ public final class b implements Callable {
                                             if (a10 != null) {
                                                 long longValue = a10.longValue();
                                                 r10.c();
-                                                d4.p((d4) r10.f7142b, longValue);
+                                                d4.p((d4) r10.f7139b, longValue);
                                             }
-                                            f5.b bVar4 = tVar.f11323e;
+                                            f5.b bVar4 = tVar.f11320e;
                                             s5.c();
-                                            i3.q((i3) s5.f7142b, (d4) r10.a());
+                                            i3.q((i3) s5.f7139b, (d4) r10.a());
                                             bVar4.i((i3) s5.a());
                                         } else {
                                             z3 p10 = a4.p();
                                             j3 s9 = k3.s();
                                             s9.c();
-                                            k3.r((k3) s9.f7142b, 0);
+                                            k3.r((k3) s9.f7139b, 0);
                                             p10.c();
-                                            a4.n((a4) p10.f7142b, (k3) s9.a());
+                                            a4.n((a4) p10.f7139b, (k3) s9.a());
                                             if (a10 != null) {
                                                 long longValue2 = a10.longValue();
                                                 p10.c();
-                                                a4.o((a4) p10.f7142b, longValue2);
+                                                a4.o((a4) p10.f7139b, longValue2);
                                             }
-                                            tVar.f11323e.h.b0((a4) p10.a());
+                                            tVar.f11320e.h.b0((a4) p10.a());
                                         }
                                     } catch (Throwable th2) {
                                         u.i("BillingClient", "Unable to log.", th2);
                                     }
-                                    tVar.c(z.f11334g);
+                                    tVar.c(z.f11331g);
                                 }
                             }
                         }
@@ -345,40 +345,40 @@ public final class b implements Callable {
             case 5:
                 p pVar = (p) this.f55b;
                 pVar.getClass();
-                return j.f55914c.a(pVar.f59623a);
+                return j.f55914c.a(pVar.f59624a);
             case 6:
                 ArrayList arrayList = new ArrayList();
-                Iterator it = ((e) ((ShortcutInfoCompatSaverImpl) this.f55b).f2827b.values()).iterator();
+                Iterator it = ((e) ((ShortcutInfoCompatSaverImpl) this.f55b).f2828b.values()).iterator();
                 while (true) {
                     a0.b bVar5 = (a0.b) it;
                     if (bVar5.hasNext()) {
-                        g0.b bVar6 = ((x4.f) bVar5.next()).f60393c;
+                        g0.b bVar6 = ((x4.f) bVar5.next()).f60394c;
                         ?? obj = new Object();
-                        obj.f13064a = bVar6.f13064a;
-                        obj.f13065b = bVar6.f13065b;
-                        Intent[] intentArr = bVar6.f13066c;
-                        obj.f13066c = (Intent[]) Arrays.copyOf(intentArr, intentArr.length);
+                        obj.f13061a = bVar6.f13061a;
+                        obj.f13062b = bVar6.f13062b;
+                        Intent[] intentArr = bVar6.f13063c;
+                        obj.f13063c = (Intent[]) Arrays.copyOf(intentArr, intentArr.length);
                         obj.d = bVar6.d;
-                        obj.f13067e = bVar6.f13067e;
-                        obj.f13068f = bVar6.f13068f;
-                        obj.f13069g = bVar6.f13069g;
+                        obj.f13064e = bVar6.f13064e;
+                        obj.f13065f = bVar6.f13065f;
+                        obj.f13066g = bVar6.f13066g;
                         obj.h = bVar6.h;
-                        obj.f13072k = bVar6.f13072k;
-                        obj.f13073l = bVar6.f13073l;
-                        obj.f13074m = bVar6.f13074m;
-                        j0[] j0VarArr = bVar6.f13070i;
+                        obj.f13069k = bVar6.f13069k;
+                        obj.f13070l = bVar6.f13070l;
+                        obj.f13071m = bVar6.f13071m;
+                        j0[] j0VarArr = bVar6.f13067i;
                         if (j0VarArr != null) {
-                            obj.f13070i = (j0[]) Arrays.copyOf(j0VarArr, j0VarArr.length);
+                            obj.f13067i = (j0[]) Arrays.copyOf(j0VarArr, j0VarArr.length);
                         }
-                        if (bVar6.f13071j != null) {
-                            obj.f13071j = new HashSet(bVar6.f13071j);
+                        if (bVar6.f13068j != null) {
+                            obj.f13068j = new HashSet(bVar6.f13068j);
                         }
-                        PersistableBundle persistableBundle = bVar6.f13075n;
+                        PersistableBundle persistableBundle = bVar6.f13072n;
                         if (persistableBundle != null) {
-                            obj.f13075n = persistableBundle;
+                            obj.f13072n = persistableBundle;
                         }
-                        if (!TextUtils.isEmpty(obj.f13067e)) {
-                            Intent[] intentArr2 = obj.f13066c;
+                        if (!TextUtils.isEmpty(obj.f13064e)) {
+                            Intent[] intentArr2 = obj.f13063c;
                             if (intentArr2 != null && intentArr2.length != 0) {
                                 arrayList.add(obj);
                             }
@@ -391,15 +391,15 @@ public final class b implements Callable {
                 }
                 throw new IllegalArgumentException("Shortcut must have an intent");
             case 7:
-                return BitmapFactory.decodeFile(((x4.f) this.f55b).f60392b);
+                return BitmapFactory.decodeFile(((x4.f) this.f55b).f60393b);
             case 8:
                 d9 d9Var = (d9) this.f55b;
                 d9Var.getClass();
-                return j.f55914c.a(d9Var.f60797g);
+                return j.f55914c.a(d9Var.f60798g);
             default:
                 ma maVar = (ma) this.f55b;
                 maVar.getClass();
-                return j.f55914c.a(maVar.f61670g);
+                return j.f55914c.a(maVar.f61671g);
         }
     }
 }

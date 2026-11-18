@@ -31,9 +31,9 @@ public final class hl extends v4.u0 {
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
                     si siVar = klVar.f36766b;
-                    int i10 = siVar.f30226t0;
+                    int i10 = siVar.f30224t0;
                     if (((siVar.Z3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (kj0Var = (kj0) b1Var.K(0)) != null) {
-                        View view = kj0Var.f59122a;
+                        View view = kj0Var.f59123a;
                         if (view.getTop() > 0) {
                             b1Var.w0(0, view.getTop(), null);
                             return;

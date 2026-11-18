@@ -28,23 +28,23 @@ import org.telegram.ui.Components.z11;
 import org.telegram.ui.bn;
 import org.telegram.ui.qy0;
 public final class i0 implements Runnable {
-    public final int f3267a = 1;
-    public final long f3268b;
-    public final Object f3269c;
+    public final int f3268a = 1;
+    public final long f3269b;
+    public final Object f3270c;
     public final Object d;
-    public final Object f3270e;
-    public final Object f3271f;
+    public final Object f3271e;
+    public final Object f3272f;
     public final Object h;
-    public final Object f3272n;
+    public final Object f3273n;
 
     public i0(long j3, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger, ConferenceCall conferenceCall, TLObject tLObject, TLRPC.TL_error tL_error, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks) {
-        this.f3270e = conferenceCall;
-        this.f3271f = getgroupcallchainblocks;
-        this.f3268b = j3;
-        this.f3269c = tLObject;
+        this.f3271e = conferenceCall;
+        this.f3272f = getgroupcallchainblocks;
+        this.f3269b = j3;
+        this.f3270c = tLObject;
         this.d = tL_error;
         this.h = atomicBoolean;
-        this.f3272n = atomicInteger;
+        this.f3273n = atomicInteger;
     }
 
     @Override
@@ -56,14 +56,14 @@ public final class i0 implements Runnable {
         final boolean z11;
         int i7;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
-        int i10 = this.f3267a;
-        long j3 = this.f3268b;
-        Object obj = this.f3272n;
-        Object obj2 = this.f3270e;
+        int i10 = this.f3268a;
+        long j3 = this.f3269b;
+        Object obj = this.f3273n;
+        Object obj2 = this.f3271e;
         Object obj3 = this.h;
-        Object obj4 = this.f3271f;
+        Object obj4 = this.f3272f;
         Object obj5 = this.d;
-        Object obj6 = this.f3269c;
+        Object obj6 = this.f3270c;
         switch (i10) {
             case 0:
                 bn bnVar2 = (bn) obj2;
@@ -84,7 +84,7 @@ public final class i0 implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     c22.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f28429id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f28427id;
                     if (w10 != null) {
                         tL_userProfilePhoto.photo_small = w10.location;
                     }
@@ -121,7 +121,7 @@ public final class i0 implements Runnable {
                         w7.G(bnVar.getCurrentAccount());
                         w7.J(fileLocationArr[0], null, true, true).renameTo(J2);
                     }
-                    bnVar.getMessagesController().W0(c22.f28554id);
+                    bnVar.getMessagesController().W0(c22.f28552id);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(c22);
                     bnVar.getMessagesStorage().m1(arrayList2, null, false, true);
@@ -134,12 +134,12 @@ public final class i0 implements Runnable {
                 }
                 return;
             case 1:
-                ((ConferenceCall) obj2).lambda$poll$7((TL_phone.getGroupCallChainBlocks) obj4, this.f3268b, (TLObject) obj6, (TLRPC.TL_error) obj5, (AtomicBoolean) obj3, (AtomicInteger) obj);
+                ((ConferenceCall) obj2).lambda$poll$7((TL_phone.getGroupCallChainBlocks) obj4, this.f3269b, (TLObject) obj6, (TLRPC.TL_error) obj5, (AtomicBoolean) obj3, (AtomicInteger) obj);
                 return;
             case 2:
                 x50 x50Var = (x50) obj5;
                 ((u1) obj2).c(400L);
-                x50.N0((Context) obj6, x50Var.f30189a, -j3, ((TLRPC.TL_chatInviteExported) obj4).subscription_pricing, (TLRPC.TL_chatInviteImporter) obj3, (TLRPC.ChannelParticipant) obj, x50Var.J0);
+                x50.N0((Context) obj6, x50Var.f30187a, -j3, ((TLRPC.TL_chatInviteExported) obj4).subscription_pricing, (TLRPC.TL_chatInviteImporter) obj3, (TLRPC.ChannelParticipant) obj, x50Var.J0);
                 return;
             case 3:
                 final z11 z11Var = (z11) obj5;
@@ -160,7 +160,7 @@ public final class i0 implements Runnable {
                     i7 = 2131753724;
                 }
                 z0Var.setText(gd.M0(i7, null));
-                final long j10 = this.f3268b;
+                final long j10 = this.f3269b;
                 z0Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -184,51 +184,51 @@ public final class i0 implements Runnable {
             default:
                 Activity activity = (Activity) obj5;
                 i6 i6Var = (i6) obj4;
-                qy0 qy0Var = new qy0(activity, i6Var, this.f3268b, (byte[]) obj3);
+                qy0 qy0Var = new qy0(activity, i6Var, this.f3269b, (byte[]) obj3);
                 qy0Var.O0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) obj6));
-                qy0Var.f51385v1 = new xi.e((bn) obj2, activity, i6Var, (fj) obj);
+                qy0Var.f51345v1 = new xi.e((bn) obj2, activity, i6Var, (fj) obj);
                 qy0Var.show();
                 return;
         }
     }
 
     public i0(TLObject tLObject, Activity activity, i6 i6Var, long j3, byte[] bArr, bn bnVar, fj fjVar) {
-        this.f3269c = tLObject;
+        this.f3270c = tLObject;
         this.d = activity;
-        this.f3271f = i6Var;
-        this.f3268b = j3;
+        this.f3272f = i6Var;
+        this.f3269b = j3;
         this.h = bArr;
-        this.f3270e = bnVar;
-        this.f3272n = fjVar;
+        this.f3271e = bnVar;
+        this.f3273n = fjVar;
     }
 
     public i0(TLRPC.TL_error tL_error, bn bnVar, TLObject tLObject, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
         this.d = tL_error;
-        this.f3270e = bnVar;
-        this.f3269c = tLObject;
-        this.f3271f = fileLocationArr;
-        this.f3272n = str;
+        this.f3271e = bnVar;
+        this.f3270c = tLObject;
+        this.f3272f = fileLocationArr;
+        this.f3273n = str;
         this.h = fileLocationArr2;
-        this.f3268b = j3;
+        this.f3269b = j3;
     }
 
     public i0(x50 x50Var, u1 u1Var, Context context, long j3, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
         this.d = x50Var;
-        this.f3270e = u1Var;
-        this.f3269c = context;
-        this.f3268b = j3;
-        this.f3271f = tL_chatInviteExported;
+        this.f3271e = u1Var;
+        this.f3270c = context;
+        this.f3269b = j3;
+        this.f3272f = tL_chatInviteExported;
         this.h = tL_chatInviteImporter;
-        this.f3272n = channelParticipant;
+        this.f3273n = channelParticipant;
     }
 
     public i0(z11 z11Var, TLRPC.ChannelParticipant channelParticipant, z0 z0Var, y60 y60Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
         this.d = z11Var;
-        this.f3270e = channelParticipant;
-        this.f3269c = z0Var;
-        this.f3271f = y60Var;
-        this.f3268b = j3;
+        this.f3271e = channelParticipant;
+        this.f3270c = z0Var;
+        this.f3272f = y60Var;
+        this.f3269b = j3;
         this.h = user;
-        this.f3272n = chat;
+        this.f3273n = chat;
     }
 }

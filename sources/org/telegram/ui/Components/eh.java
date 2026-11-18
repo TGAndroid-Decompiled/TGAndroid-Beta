@@ -85,7 +85,7 @@ public final class eh implements Runnable {
                 siVar5.f39713r3 = null;
                 ki kiVar3 = siVar5.f39732w2;
                 if (kiVar3 != siVar5.f39670e2 && (kiVar = siVar5.f39736x2) != (pmVar = siVar5.f39690l2) && kiVar3 != kiVar && kiVar3 != pmVar) {
-                    siVar5.f30192b.removeView(kiVar3);
+                    siVar5.f30190b.removeView(kiVar3);
                 }
                 siVar5.f39732w2.setVisibility(8);
                 siVar5.f39732w2.t();

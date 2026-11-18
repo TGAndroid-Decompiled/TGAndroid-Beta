@@ -16,10 +16,10 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bh;
-import org.telegram.ui.de0;
+import org.telegram.ui.ee0;
 import org.telegram.ui.gb;
-import org.telegram.ui.hf0;
 import org.telegram.ui.hk0;
+import org.telegram.ui.if0;
 import org.telegram.ui.lb;
 import org.telegram.ui.np;
 import org.telegram.ui.qj0;
@@ -29,28 +29,28 @@ import org.telegram.ui.vo;
 import org.telegram.ui.wn;
 import org.telegram.ui.yj0;
 public final class g2 implements RequestDelegate {
-    public final int f3634a;
-    public final Object f3635b;
-    public final Object f3636c;
+    public final int f3603a;
+    public final Object f3604b;
+    public final Object f3605c;
     public final Object d;
-    public final Object f3637e;
+    public final Object f3606e;
 
     public g2(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f3634a = i7;
-        this.f3635b = obj;
-        this.f3636c = obj2;
+        this.f3603a = i7;
+        this.f3604b = obj;
+        this.f3605c = obj2;
         this.d = obj3;
-        this.f3637e = obj4;
+        this.f3606e = obj4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
-        int i7 = this.f3634a;
-        Object obj = this.f3637e;
+        int i7 = this.f3603a;
+        Object obj = this.f3606e;
         Object obj2 = this.d;
-        Object obj3 = this.f3636c;
-        Object obj4 = this.f3635b;
+        Object obj3 = this.f3605c;
+        Object obj4 = this.f3604b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.g3(new h2((j3) obj4, (org.telegram.ui.ActionBar.u1) obj3, tLObject, (ai.g1) obj2, (x10) obj, tL_error, 0));
@@ -81,7 +81,7 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj2;
                 ai.e1 e1Var = (ai.e1) obj;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && storyItem != null) {
-                    org.telegram.messenger.r8.n(d7Var.f14388a).u(new Object[]{tL_messages_getAttachedStickers, e1Var}, storyItem);
+                    org.telegram.messenger.r8.n(d7Var.f14385a).u(new Object[]{tL_messages_getAttachedStickers, e1Var}, storyItem);
                     return;
                 } else {
                     e1Var.run(tLObject, tL_error);
@@ -98,7 +98,7 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj2;
                 boolean[] zArr = (boolean[]) obj;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj3;
-                lb lbVar = gbVar.f48013a.f48686n;
+                lb lbVar = gbVar.f47950a.f48684n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i10 = 0; i10 < tL_messages_exportedChatInvite.users.size(); i10++) {
@@ -106,7 +106,7 @@ public final class g2 implements RequestDelegate {
                         if (lbVar.A0 == null) {
                             lbVar.A0 = new HashMap();
                         }
-                        lbVar.A0.put(Long.valueOf(user.f28554id), user);
+                        lbVar.A0.put(Long.valueOf(user.f28552id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -124,20 +124,20 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers2 = (TLRPC.TL_messages_getAttachedStickers) obj2;
                 org.telegram.ui.u7 u7Var = (org.telegram.ui.u7) obj;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && obj3 != null) {
-                    org.telegram.messenger.r8.n(qo0Var.f30189a).u(new Object[]{tL_messages_getAttachedStickers2, u7Var}, obj3);
+                    org.telegram.messenger.r8.n(qo0Var.f30187a).u(new Object[]{tL_messages_getAttachedStickers2, u7Var}, obj3);
                     return;
                 } else {
                     u7Var.run(tLObject, tL_error);
                     return;
                 }
             case 14:
-                org.telegram.messenger.g0.g3(new wn((Object) ((de0) obj4), tL_error, (Object) ((String) obj3), (Object) ((String) obj2), (Object) ((String) obj), 17));
+                org.telegram.messenger.g0.g3(new wn((Object) ((ee0) obj4), tL_error, (Object) ((String) obj3), (Object) ((String) obj2), (Object) ((String) obj), 17));
                 return;
             case 15:
                 org.telegram.messenger.g0.g3(new h2((hk0) obj4, tL_error, (String) obj3, (yj0) obj2, tLObject, (TL_account.sendVerifyPhoneCode) obj));
                 return;
             case 16:
-                org.telegram.messenger.g0.g3(new wn((Object) ((qj0) obj4), tL_error, (Object) ((hf0) obj3), (Object) ((k8.a) obj2), (Object) ((TL_account.verifyEmail) obj), 24));
+                org.telegram.messenger.g0.g3(new wn((Object) ((qj0) obj4), tL_error, (Object) ((if0) obj3), (Object) ((k8.a) obj2), (Object) ((TL_account.verifyEmail) obj), 24));
                 return;
             case 17:
                 org.telegram.messenger.g0.g3(new wn((Object) ((PrivacyControlActivity) obj4), tL_error, (Object) ((boolean[]) obj3), (Object) ((TLRPC.GlobalPrivacySettings) obj2), (Object) ((TL_account.setGlobalPrivacySettings) obj), 28));
@@ -159,10 +159,10 @@ public final class g2 implements RequestDelegate {
     }
 
     public g2(gb gbVar, TLRPC.TL_chatInviteExported tL_chatInviteExported, boolean[] zArr, org.telegram.ui.ActionBar.u1 u1Var) {
-        this.f3634a = 10;
-        this.f3635b = gbVar;
+        this.f3603a = 10;
+        this.f3604b = gbVar;
         this.d = tL_chatInviteExported;
-        this.f3637e = zArr;
-        this.f3636c = u1Var;
+        this.f3606e = zArr;
+        this.f3605c = u1Var;
     }
 }

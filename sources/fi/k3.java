@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.hk0;
 public final class k3 implements View.OnClickListener {
-    public final int f12180a;
-    public final boolean f12181b;
-    public final Object f12182c;
+    public final int f12177a;
+    public final boolean f12178b;
+    public final Object f12179c;
     public final Object d;
-    public final Object f12183e;
+    public final Object f12180e;
 
     public k3(Object obj, Object obj2, boolean z10, Object obj3, int i7) {
-        this.f12180a = i7;
-        this.f12182c = obj;
+        this.f12177a = i7;
+        this.f12179c = obj;
         this.d = obj2;
-        this.f12181b = z10;
-        this.f12183e = obj3;
+        this.f12178b = z10;
+        this.f12180e = obj3;
     }
 
     @Override
@@ -25,10 +25,10 @@ public final class k3 implements View.OnClickListener {
     }
 
     public k3(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, hk0 hk0Var, boolean z10) {
-        this.f12180a = 2;
-        this.f12182c = hk0Var;
+        this.f12177a = 2;
+        this.f12179c = hk0Var;
         this.d = arrayList;
-        this.f12183e = tL_secureRequiredType;
-        this.f12181b = z10;
+        this.f12180e = tL_secureRequiredType;
+        this.f12178b = z10;
     }
 }

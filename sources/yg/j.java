@@ -5,18 +5,18 @@ import android.text.Spanned;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.q2;
 public final class j extends InputFilter.LengthFilter {
-    public final l f61240a;
+    public final l f61241a;
 
     public j(l lVar) {
         super(128);
-        this.f61240a = lVar;
+        this.f61241a = lVar;
     }
 
     @Override
     public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
         CharSequence filter = super.filter(charSequence, i7, i10, spanned, i11, i12);
         if (filter != null && filter.length() == 0) {
-            g0.D3(this.f61240a.f61241a);
+            g0.D3(this.f61241a.f61242a);
             q2.APP_ERROR.a();
         }
         return filter;

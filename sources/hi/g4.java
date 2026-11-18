@@ -8,36 +8,36 @@ import org.telegram.ui.Components.al0;
 import org.telegram.ui.Components.iw0;
 import org.telegram.ui.Components.ph0;
 public final class g4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14688a;
-    public final int f14689b;
-    public final int f14690c;
+    public final int f14685a;
+    public final int f14686b;
+    public final int f14687c;
     public final Object d;
 
     public g4(Object obj, int i7, int i10, int i11) {
-        this.f14688a = i11;
+        this.f14685a = i11;
         this.d = obj;
-        this.f14689b = i7;
-        this.f14690c = i10;
+        this.f14686b = i7;
+        this.f14687c = i10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f14688a;
-        int i10 = this.f14690c;
-        int i11 = this.f14689b;
+        int i7 = this.f14685a;
+        int i10 = this.f14687c;
+        int i11 = this.f14686b;
         Object obj = this.d;
         switch (i7) {
             case 0:
                 l5 l5Var = (l5) obj;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l5Var.f14915k1.f57218a = i0.a.f(floatValue, i11, i10);
+                l5Var.f14912k1.f57218a = i0.a.f(floatValue, i11, i10);
                 l5Var.D0.invalidate();
                 return;
             case 1:
-                org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) obj;
-                f4Var.getClass();
+                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) obj;
+                g4Var.getClass();
                 int S0 = org.telegram.messenger.g0.S0(valueAnimator.getAnimatedFraction(), 1.0f, i11, i10);
-                ph0 ph0Var = f4Var.f30600f;
+                ph0 ph0Var = g4Var.f30659f;
                 ph0Var.setColorFilter(new PorterDuffColorFilter(S0, PorterDuff.Mode.SRC_IN));
                 org.telegram.ui.ActionBar.n6.H1(ph0Var.getDrawable(), S0 & 620756991, true);
                 return;

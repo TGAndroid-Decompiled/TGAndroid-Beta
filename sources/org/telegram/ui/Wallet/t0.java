@@ -32,7 +32,7 @@ public final class t0 {
 
     public static TL_wallet.walletTransaction d(String str, ArrayList arrayList) {
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            if (TextUtils.equals(((TL_wallet.walletTransaction) arrayList.get(i7)).f28668id, str)) {
+            if (TextUtils.equals(((TL_wallet.walletTransaction) arrayList.get(i7)).f28666id, str)) {
                 return (TL_wallet.walletTransaction) arrayList.get(i7);
             }
         }
@@ -78,11 +78,11 @@ public final class t0 {
     }
 
     public final TL_wallet.walletTransaction c(TL_wallet.walletTransaction wallettransaction) {
-        TL_wallet.walletTransaction d = d(wallettransaction.f28668id, this.f45042b);
+        TL_wallet.walletTransaction d = d(wallettransaction.f28666id, this.f45042b);
         if (d != null) {
             return d;
         }
-        String str = wallettransaction.f28668id;
+        String str = wallettransaction.f28666id;
         HashMap hashMap = this.f45045f;
         TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) hashMap.get(str);
         if (wallettransaction2 != null && b(wallettransaction2)) {
@@ -99,10 +99,10 @@ public final class t0 {
     }
 
     public final void e(TL_wallet.walletTransaction wallettransaction) {
-        String str = wallettransaction.f28668id;
+        String str = wallettransaction.f28666id;
         HashMap hashMap = this.f45044e;
         hashMap.remove(str);
-        String str2 = wallettransaction.f28668id;
+        String str2 = wallettransaction.f28666id;
         HashMap hashMap2 = this.f45045f;
         TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) hashMap2.get(str2);
         HashSet hashSet = this.d;
@@ -114,7 +114,7 @@ public final class t0 {
             i7++;
             String str3 = (String) obj;
             TL_wallet.walletTransaction wallettransaction3 = (TL_wallet.walletTransaction) hashMap2.get(str3);
-            if (TextUtils.equals(str3, wallettransaction.f28668id) || (wallettransaction3 != null && (wallettransaction3 == wallettransaction2 || u0.t0(wallettransaction3, wallettransaction)))) {
+            if (TextUtils.equals(str3, wallettransaction.f28666id) || (wallettransaction3 != null && (wallettransaction3 == wallettransaction2 || u0.t0(wallettransaction3, wallettransaction)))) {
                 hashSet.remove(str3);
                 hashMap.remove(str3);
             }
@@ -162,7 +162,7 @@ public final class t0 {
 
     public final void i() {
         u0 u0Var = this.f45051m;
-        ks.f(u0Var.f45083a).k(ks.f25104d4, this, u0Var);
+        ks.f(u0Var.f45083a).k(ks.f25108e4, this, u0Var);
     }
 
     public final void k() {
@@ -181,13 +181,13 @@ public final class t0 {
                 break;
             }
             TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) arrayList2.get(size);
-            if (!TextUtils.isEmpty(wallettransaction.f28668id) || !TextUtils.isEmpty(wallettransaction.tx_hash) || !TextUtils.isEmpty(wallettransaction.messageHash)) {
+            if (!TextUtils.isEmpty(wallettransaction.f28666id) || !TextUtils.isEmpty(wallettransaction.tx_hash) || !TextUtils.isEmpty(wallettransaction.messageHash)) {
                 int size2 = arrayList.size();
                 while (i7 < size2) {
                     Object obj = arrayList.get(i7);
                     i7++;
                     TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) obj;
-                    if ((!TextUtils.isEmpty(wallettransaction.f28668id) && TextUtils.equals(wallettransaction.f28668id, wallettransaction2.f28668id)) || (wallettransaction.incoming == wallettransaction2.incoming && (u0.l0(wallettransaction.tx_hash, wallettransaction2.tx_hash) || u0.l0(wallettransaction.messageHash, wallettransaction2.messageHash)))) {
+                    if ((!TextUtils.isEmpty(wallettransaction.f28666id) && TextUtils.equals(wallettransaction.f28666id, wallettransaction2.f28666id)) || (wallettransaction.incoming == wallettransaction2.incoming && (u0.l0(wallettransaction.tx_hash, wallettransaction2.tx_hash) || u0.l0(wallettransaction.messageHash, wallettransaction2.messageHash)))) {
                         if (TextUtils.isEmpty(wallettransaction2.gaslessMessageBodyHash)) {
                             wallettransaction2.gaslessMessageBodyHash = wallettransaction.gaslessMessageBodyHash;
                         }
@@ -206,7 +206,7 @@ public final class t0 {
         HashSet hashSet = new HashSet();
         int i10 = 0;
         while (i10 < arrayList.size()) {
-            String str2 = ((TL_wallet.walletTransaction) arrayList.get(i10)).f28668id;
+            String str2 = ((TL_wallet.walletTransaction) arrayList.get(i10)).f28666id;
             if (!TextUtils.isEmpty(str2) && !hashSet.add(str2)) {
                 arrayList.remove(i10);
                 i10--;

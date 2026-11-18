@@ -23,7 +23,7 @@ public final class wy0 extends ReplacementSpan {
         this.f41816a = imageReceiver;
         imageReceiver.K0 = true;
         imageReceiver.v0(bitmap);
-        imageReceiver.f22656p1 = new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN);
+        imageReceiver.f22653p1 = new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN);
         this.f41819e = i12;
         this.d = true;
     }

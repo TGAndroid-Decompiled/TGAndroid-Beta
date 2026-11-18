@@ -107,9 +107,9 @@ public final class f20 extends FrameLayout implements org.telegram.messenger.fs,
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.P4) {
+        if (i7 == org.telegram.messenger.ks.Q4) {
             setAmplitude(((Float) objArr[0]).floatValue() * 4000.0f);
-        } else if (i7 == org.telegram.messenger.ks.f25215w2) {
+        } else if (i7 == org.telegram.messenger.ks.f25213w2) {
             a();
         }
     }
@@ -120,8 +120,8 @@ public final class f20 extends FrameLayout implements org.telegram.messenger.fs,
         int i7;
         super.onAttachedToWindow();
         setAmplitude(0.0d);
-        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.P4);
-        org.telegram.messenger.ks.f(this.F).c(this, org.telegram.messenger.ks.f25215w2);
+        org.telegram.messenger.ks.e().c(this, org.telegram.messenger.ks.Q4);
+        org.telegram.messenger.ks.f(this.F).c(this, org.telegram.messenger.ks.f25213w2);
         if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
             z10 = true;
         } else {
@@ -180,8 +180,8 @@ public final class f20 extends FrameLayout implements org.telegram.messenger.fs,
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.P4);
-        org.telegram.messenger.ks.f(this.F).n(this, org.telegram.messenger.ks.f25215w2);
+        org.telegram.messenger.ks.e().n(this, org.telegram.messenger.ks.Q4);
+        org.telegram.messenger.ks.f(this.F).n(this, org.telegram.messenger.ks.f25213w2);
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().unregisterStateListener(this);
         }

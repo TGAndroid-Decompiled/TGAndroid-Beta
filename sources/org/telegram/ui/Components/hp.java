@@ -19,7 +19,7 @@ public final class hp implements ResultCallback {
         List list = (List) obj;
         ArrayList e10 = this.f35945a.e(7);
         lp lpVar = this.f35946b;
-        org.telegram.messenger.ks.f(lpVar.f30189a).d(new mg(18, this, e10));
+        org.telegram.messenger.ks.f(lpVar.f30187a).d(new mg(18, this, e10));
         lpVar.V1 = false;
     }
 

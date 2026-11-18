@@ -403,7 +403,7 @@ public final class ex extends ck0 {
                 dx dxVar = (dx) this.f34822m3.get(pointerId);
                 this.f34822m3.remove(pointerId);
                 if (E != null && dxVar != null) {
-                    if (Math.sqrt(Math.pow(y10 - dxVar.f34525b, 2.0d) + Math.pow(x10 - dxVar.f34524a, 2.0d)) < org.telegram.messenger.g0.f24100e * 3.0f && !z12) {
+                    if (Math.sqrt(Math.pow(y10 - dxVar.f34525b, 2.0d) + Math.pow(x10 - dxVar.f34524a, 2.0d)) < org.telegram.messenger.g0.f24097e * 3.0f && !z12) {
                         ry ryVar = this.f34823n3;
                         if (!ryVar.C1.isShowing() || SystemClock.elapsedRealtime() - dxVar.f34526c < ViewConfiguration.getLongPressTimeout()) {
                             View view = dxVar.d;
@@ -572,17 +572,17 @@ public final class ex extends ck0 {
                     iuVar.dismiss();
                     int i7 = iuVar.f36199c.f35974n[0];
                     if (i7 >= 1 && i7 <= 5) {
-                        str = (String) org.telegram.messenger.j4.f24809a.get(i7 - 1);
+                        str = (String) org.telegram.messenger.j4.f24806a.get(i7 - 1);
                     } else {
                         str = null;
                     }
                     String str2 = (String) ryVar.S1.getTag();
                     if (!ryVar.S1.f42962c) {
                         if (str != null) {
-                            org.telegram.messenger.j6.f24820j.put(str2, str);
+                            org.telegram.messenger.j6.f24817j.put(str2, str);
                             str2 = ry.g(str2, str);
                         } else {
-                            org.telegram.messenger.j6.f24820j.remove(str2);
+                            org.telegram.messenger.j6.f24817j.remove(str2);
                         }
                         ryVar.S1.a(org.telegram.messenger.j6.f(str2), ryVar.S1.f42962c);
                         ry.d(ryVar, ryVar.S1, null);

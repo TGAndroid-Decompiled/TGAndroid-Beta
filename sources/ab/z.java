@@ -15,7 +15,7 @@ import org.telegram.messenger.xo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Cells.w1;
+import org.telegram.ui.Cells.x1;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.l70;
 import org.telegram.ui.Components.m6;
@@ -42,7 +42,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
     @Override
     public void a(xh.f fVar, float f10, float f11) {
         xh.l lVar = (xh.l) this.f1008c;
-        if (!lVar.d && !lVar.f60596e && !lVar.f60597f && this.f1007b) {
+        if (!lVar.d && !lVar.f60597e && !lVar.f60598f && this.f1007b) {
             lVar.c(f10, f11);
         }
     }
@@ -57,15 +57,15 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
         fi.q qVar = (fi.q) this.f1008c;
         if (!this.f1007b && z10) {
             boolean z11 = true;
-            if (qVar.f12414b != 1) {
+            if (qVar.f12411b != 1) {
                 z11 = false;
             }
-            p6 p6Var = qVar.f12436s;
+            p6 p6Var = qVar.f12433s;
             if (z11) {
-                if (!p6Var.f12407z) {
+                if (!p6Var.f12404z) {
                     return;
                 }
-            } else if (!p6Var.f12398p) {
+            } else if (!p6Var.f12395p) {
                 return;
             }
             p6Var.T(z11);
@@ -77,11 +77,11 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
         switch (this.f1006a) {
             case 2:
                 kg.a0 a0Var = (kg.a0) this.f1008c;
-                ArrayList arrayList2 = a0Var.f18251k;
-                ArrayList arrayList3 = a0Var.f18250j;
+                ArrayList arrayList2 = a0Var.f18248k;
+                ArrayList arrayList3 = a0Var.f18247j;
                 int i10 = 0;
                 if (this.f1007b) {
-                    a0Var.f18247f = i7;
+                    a0Var.f18244f = i7;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i10 < arrayList3.size()) {
@@ -89,7 +89,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                         i10++;
                     }
                 } else {
-                    a0Var.f18248g = i7;
+                    a0Var.f18245g = i7;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     while (i10 < arrayList2.size()) {
@@ -97,7 +97,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                         i10++;
                     }
                 }
-                a0Var.f18246e.run();
+                a0Var.f18243e.run();
                 return;
             default:
                 kz kzVar = (kz) this.f1008c;
@@ -157,7 +157,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                 return;
             case 4:
             default:
-                f40 f40Var = ((k30) this.f1008c).f49169b;
+                f40 f40Var = ((k30) this.f1008c).f49146b;
                 f40Var.V2.A(0, null);
                 UndoView o12 = f40Var.o1();
                 if (this.f1007b) {
@@ -169,7 +169,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                 return;
             case 5:
                 bn bnVar = (bn) this.f1008c;
-                rj rjVar = bnVar.f45932a0;
+                rj rjVar = bnVar.f45923a0;
                 if (rjVar != null) {
                     if (this.f1007b) {
                         bnVar.finishFragment();
@@ -185,7 +185,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
 
     @Override
     public void i(long j3) {
-        m6 m6Var = ((w1) this.f1008c).f32231a.f31609z3;
+        m6 m6Var = ((x1) this.f1008c).f32284a.f31659z3;
         if (m6Var != null) {
             m6Var.t(gd.M((int) j3, this.f1007b), true, true);
         }

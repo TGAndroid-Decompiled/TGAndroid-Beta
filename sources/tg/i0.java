@@ -199,7 +199,7 @@ public class i0 extends View {
                 this.f57916b0 = 0.0f;
                 this.f57919d0 = 0.0f;
                 int f22 = o10.f(j10.i(this.f57913a).f());
-                cp cpVar = mp.u1(this.f57913a).f25769t4;
+                cp cpVar = mp.u1(this.f57913a).f25767t4;
                 String str3 = null;
                 if (cpVar != null && f22 >= 7) {
                     bpVar = cpVar.d(f22);
@@ -207,7 +207,7 @@ public class i0 extends View {
                     bpVar = null;
                 }
                 if (bpVar == null) {
-                    int[] iArr = n6.f29657r8;
+                    int[] iArr = n6.f29655r8;
                     f10 = n6.x0(null, iArr[f22 % iArr.length], false);
                 } else {
                     f10 = bpVar.f();
@@ -250,7 +250,7 @@ public class i0 extends View {
                     f12 = 48.0f;
                     TLRPC.PhotoSize w11 = w7.w(webPage.photo.sizes, (int) (i7 * f20), false, w10, false);
                     if (w11 != null) {
-                        i11 = w11.f28430w;
+                        i11 = w11.f28428w;
                         i10 = w11.h;
                     } else {
                         i10 = 0;
@@ -274,7 +274,7 @@ public class i0 extends View {
                         TLRPC.PhotoSize w12 = w7.w(document.thumbs, 1, false, null, false);
                         TLRPC.PhotoSize w13 = w7.w(webPage.document.thumbs, (int) (i7 * f20), false, w12, false);
                         if (w13 != null) {
-                            i11 = w13.f28430w;
+                            i11 = w13.f28428w;
                             i10 = w13.h;
                         } else {
                             i10 = 0;
@@ -368,7 +368,7 @@ public class i0 extends View {
                         i13 = 0;
                     }
                     int i17 = 3 - i12;
-                    this.P = org.telegram.ui.Cells.q1.I1(str4, textPaint, ceil, (int) Math.ceil(Math.max(1.0f, f21 - ((40 + i13) * f14))), i17, 4);
+                    this.P = org.telegram.ui.Cells.r1.I1(str4, textPaint, ceil, (int) Math.ceil(Math.max(1.0f, f21 - ((40 + i13) * f14))), i17, 4);
                     this.Q = 0.0f;
                     this.R = Float.MAX_VALUE;
                     for (int i18 = 0; i18 < this.P.getLineCount(); i18++) {

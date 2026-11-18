@@ -67,7 +67,7 @@ public final class k30 {
         if (org.telegram.messenger.mp.g1().getInt(this.f36662a, 0) < this.f36663b) {
             float f10 = this.f36664c;
             if (f10 < 1.0f) {
-                if (f10 > 0.0f && Utilities.f22781c.nextFloat() < f10) {
+                if (f10 > 0.0f && Utilities.f22778c.nextFloat() < f10) {
                     return true;
                 }
             } else {

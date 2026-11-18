@@ -1,64 +1,60 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.lr;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.JsPromptResult;
+import android.widget.TextView;
+import org.telegram.messenger.x10;
 import org.telegram.ui.Components.mt;
-public final class r5 extends mt {
-    public final org.telegram.ui.Components.f5 f4037e2;
-    public int f4038f2;
-    public final org.telegram.ui.Components.m6 f4039g2;
-    public final q6 f4040h2;
+public final class r5 implements TextView.OnEditorActionListener {
+    public final int f4008a;
+    public final Object f4009b;
+    public final Object f4010c;
+    public final Object d;
+    public final Object f4011e;
 
-    public r5(q6 q6Var, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i6Var);
-        this.f4040h2 = q6Var;
-        this.f4037e2 = new org.telegram.ui.Components.f5(this);
-        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, true, true);
-        this.f4039g2 = m6Var;
-        m6Var.n(0.2f, 160L, lr.h);
-        m6Var.w(org.telegram.messenger.g0.L(15.33f));
-        m6Var.setCallback(this);
-        m6Var.f37377b = 5;
+    public r5(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f4008a = i7;
+        this.f4009b = obj;
+        this.f4010c = obj2;
+        this.d = obj3;
+        this.f4011e = obj4;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i7;
-        super.dispatchDraw(canvas);
-        if (this.f4038f2 < 0) {
-            i7 = org.telegram.ui.ActionBar.n6.f29617p7;
-        } else {
-            i7 = org.telegram.ui.ActionBar.n6.P5;
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        switch (this.f4008a) {
+            case 0:
+                q5 q5Var = (q5) this.f4009b;
+                if (i7 != 6) {
+                    return false;
+                }
+                String obj = q5Var.getText().toString();
+                if (obj.length() > 0 && obj.length() <= 12) {
+                    ((x10) this.f4010c).a(obj);
+                    org.telegram.ui.ActionBar.u1 u1Var = ((org.telegram.ui.ActionBar.u1[]) this.d)[0];
+                    if (u1Var != null) {
+                        u1Var.dismiss();
+                    }
+                    View view = (View) this.f4011e;
+                    if (view != null) {
+                        view.requestFocus();
+                    }
+                } else {
+                    org.telegram.messenger.g0.D3(q5Var);
+                }
+                return true;
+            default:
+                if (i7 != 6) {
+                    return false;
+                }
+                boolean[] zArr = (boolean[]) this.f4009b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    ((JsPromptResult) this.f4010c).confirm(((mt) this.d).getText().toString());
+                    ((org.telegram.ui.ActionBar.u1) this.f4011e).dismiss();
+                }
+                return true;
         }
-        int a10 = this.f4037e2.a(org.telegram.ui.ActionBar.n6.w0(i7, this.f4040h2.f4007f), false);
-        org.telegram.ui.Components.m6 m6Var = this.f4039g2;
-        m6Var.u(a10);
-        m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        m6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        super.onTextChanged(charSequence, i7, i10, i11);
-        org.telegram.ui.Components.m6 m6Var = this.f4039g2;
-        if (m6Var != null) {
-            this.f4038f2 = 12 - charSequence.length();
-            m6Var.a();
-            String str = "";
-            if (this.f4038f2 <= 4) {
-                str = "" + this.f4038f2;
-            }
-            m6Var.t(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f4039g2 && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

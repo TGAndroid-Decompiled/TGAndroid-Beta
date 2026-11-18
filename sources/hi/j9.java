@@ -7,32 +7,32 @@ import org.telegram.ui.Components.lv;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.bc1;
 public final class j9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14830a;
-    public final float f14831b;
-    public final float f14832c;
+    public final int f14827a;
+    public final float f14828b;
+    public final float f14829c;
     public final Object d;
 
     public j9(Object obj, float f10, float f11, int i7) {
-        this.f14830a = i7;
+        this.f14827a = i7;
         this.d = obj;
-        this.f14831b = f10;
-        this.f14832c = f11;
+        this.f14828b = f10;
+        this.f14829c = f11;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         boolean z10;
-        int i7 = this.f14830a;
-        float f10 = this.f14832c;
-        float f11 = this.f14831b;
+        int i7 = this.f14827a;
+        float f10 = this.f14829c;
+        float f11 = this.f14828b;
         Object obj = this.d;
         switch (i7) {
             case 0:
                 ta taVar = (ta) obj;
                 taVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                taVar.f15476r.setTranslationY(f11 * floatValue);
-                taVar.f15476r.b(f10 * floatValue);
+                taVar.f15473r.setTranslationY(f11 * floatValue);
+                taVar.f15473r.b(f10 * floatValue);
                 return;
             case 1:
                 lv lvVar = (lv) obj;
@@ -54,7 +54,7 @@ public final class j9 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21896a;
+                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21893a;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f11;
                 float f13 = photoViewer.f43166a6;
                 cropAreaView.f32892o0 = floatValue3;
@@ -97,9 +97,9 @@ public final class j9 implements ValueAnimator.AnimatorUpdateListener {
                 vg.e eVar = (vg.e) obj;
                 eVar.getClass();
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = eVar.f59413a;
+                vg.f fVar = eVar.f59414a;
                 fVar.d = f11 * floatValue6;
-                fVar.f59430i = f10 * floatValue6;
+                fVar.f59431i = f10 * floatValue6;
                 return;
         }
     }

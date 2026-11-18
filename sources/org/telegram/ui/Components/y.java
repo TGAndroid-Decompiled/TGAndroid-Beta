@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.widget.TextView;
-public final class y extends org.telegram.ui.Cells.r8 {
+public final class y extends org.telegram.ui.Cells.s8 {
     public boolean L;
     public float M;
     public float N;

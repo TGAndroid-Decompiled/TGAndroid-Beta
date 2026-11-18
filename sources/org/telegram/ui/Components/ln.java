@@ -19,7 +19,7 @@ public final class ln implements View.OnKeyListener {
                 pn pnVar = (pn) this.f37151b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
                 if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = pnVar.f30387f;
+                    ImageView imageView = pnVar.f30446f;
                     if (imageView != null) {
                         imageView.callOnClick();
                     }

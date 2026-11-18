@@ -55,7 +55,7 @@ public final class d implements org.telegram.messenger.q10 {
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 14.0f);
             textView2.setGravity(1);
-            org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29504j5, i6Var);
+            org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29502j5, i6Var);
             textView2.setText(org.telegram.messenger.gd.a0(null, null, 2131742999, new Object[0]));
             textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
             r2Var.addView(textView2, c8.ma.t(-2, -2, 1, 28, 0, 28, 17));
@@ -167,7 +167,7 @@ public final class d implements org.telegram.messenger.q10 {
             }
             return;
         }
-        ArrayList arrayList4 = org.telegram.messenger.ri.d0(i11).f26626m1;
+        ArrayList arrayList4 = org.telegram.messenger.ri.d0(i11).f26624m1;
         ArrayList arrayList5 = new ArrayList();
         if (arrayList4 != null) {
             for (int i14 = 0; i14 < arrayList4.size(); i14++) {
@@ -208,8 +208,8 @@ public final class d implements org.telegram.messenger.q10 {
             }
             for (int i15 = 0; i15 < arrayList5.size() && (i15 < 5 || isVar.X); i15++) {
                 TLRPC.User user = (TLRPC.User) arrayList5.get(i15);
-                if (!hashSet.contains(Long.valueOf(user.f28554id))) {
-                    hashSet.add(Long.valueOf(user.f28554id));
+                if (!hashSet.contains(Long.valueOf(user.f28552id))) {
+                    hashSet.add(Long.valueOf(user.f28552id));
                     l41 w11 = l41.w(user);
                     w11.f37023r = true;
                     w11.f37026u = true;
@@ -228,8 +228,8 @@ public final class d implements org.telegram.messenger.q10 {
             boolean z12 = false;
             for (int i16 = 0; i16 < arrayList6.size(); i16++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList6.get(i16);
-                if (!hashSet.contains(Long.valueOf(user2.f28554id))) {
-                    hashSet.add(Long.valueOf(user2.f28554id));
+                if (!hashSet.contains(Long.valueOf(user2.f28552id))) {
+                    hashSet.add(Long.valueOf(user2.f28552id));
                     l41 w12 = l41.w(user2);
                     w12.f37023r = true;
                     w12.f37024s = true;
@@ -320,7 +320,7 @@ public final class d implements org.telegram.messenger.q10 {
                     arrayList.add(w10);
                 }
             }
-            HashMap hashMap = org.telegram.messenger.mp.u1(i11).f25642e8;
+            HashMap hashMap = org.telegram.messenger.mp.u1(i11).f25640e8;
             if (hashMap == null) {
                 noVar = null;
             } else {
@@ -328,7 +328,7 @@ public final class d implements org.telegram.messenger.q10 {
             }
             if (noVar != null) {
                 ArrayList arrayList4 = new ArrayList();
-                ArrayList arrayList5 = noVar.f25955b;
+                ArrayList arrayList5 = noVar.f25953b;
                 int size2 = arrayList5.size();
                 int i14 = 0;
                 while (i14 < size2) {
@@ -337,7 +337,7 @@ public final class d implements org.telegram.messenger.q10 {
                     TLObject tLObject = (TLObject) obj3;
                     if (tLObject instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat.f28405id));
+                        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat.f28403id));
                         if (org.telegram.messenger.v3.r0(chat) && (O0 == null || org.telegram.messenger.v3.r0(O0))) {
                             arrayList4.add(chat);
                         }
@@ -370,7 +370,7 @@ public final class d implements org.telegram.messenger.q10 {
             i15++;
             TLRPC.Chat chat2 = (TLRPC.Chat) obj5;
             int i16 = size4;
-            TLRPC.Chat O02 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat2.f28405id));
+            TLRPC.Chat O02 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat2.f28403id));
             if (org.telegram.messenger.v3.r0(chat2) && (O02 == null || org.telegram.messenger.v3.r0(O02))) {
                 arrayList6.add(chat2);
             }
@@ -383,7 +383,7 @@ public final class d implements org.telegram.messenger.q10 {
             Object obj6 = arrayList8.get(i17);
             i17++;
             TLRPC.Chat chat3 = (TLRPC.Chat) obj6;
-            TLRPC.Chat O03 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat3.f28405id));
+            TLRPC.Chat O03 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat3.f28403id));
             if (org.telegram.messenger.v3.r0(chat3) && (O03 == null || org.telegram.messenger.v3.r0(O03))) {
                 arrayList6.add(chat3);
             }
@@ -395,7 +395,7 @@ public final class d implements org.telegram.messenger.q10 {
             Object obj7 = arrayList9.get(i18);
             i18++;
             TLRPC.Chat chat4 = (TLRPC.Chat) obj7;
-            TLRPC.Chat O04 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat4.f28405id));
+            TLRPC.Chat O04 = org.telegram.messenger.mp.u1(i11).O0(Long.valueOf(chat4.f28403id));
             if (org.telegram.messenger.v3.r0(chat4) && (O04 == null || org.telegram.messenger.v3.r0(O04))) {
                 arrayList6.add(chat4);
             }
@@ -471,32 +471,32 @@ public final class d implements org.telegram.messenger.q10 {
             org.telegram.messenger.h4 h4Var = (org.telegram.messenger.h4) ryVar.S1.getDrawable();
             int intValue = num.intValue();
             int intValue2 = num2.intValue();
-            if (h4Var.f24385c.f24552a != intValue) {
-                org.telegram.messenger.i4 i4Var = h4Var.f24388g;
+            if (h4Var.f24382c.f24549a != intValue) {
+                org.telegram.messenger.i4 i4Var = h4Var.f24385g;
                 if (i4Var != null) {
-                    h4Var.f24385c = i4Var;
+                    h4Var.f24382c = i4Var;
                 }
-                org.telegram.messenger.i4 i4Var2 = h4Var.f24385c;
-                if (i4Var2.f24552a != intValue) {
-                    i4Var2 = new org.telegram.messenger.i4(intValue, i4Var2.f24553b);
+                org.telegram.messenger.i4 i4Var2 = h4Var.f24382c;
+                if (i4Var2.f24549a != intValue) {
+                    i4Var2 = new org.telegram.messenger.i4(intValue, i4Var2.f24550b);
                 }
-                h4Var.f24388g = i4Var2;
-                c6 c6Var = h4Var.f24386e;
+                h4Var.f24385g = i4Var2;
+                c6 c6Var = h4Var.f24383e;
                 if (c6Var != null) {
                     c6Var.e(true, 0.0f);
                 }
             }
-            if (h4Var.d.f24552a != intValue2) {
+            if (h4Var.d.f24549a != intValue2) {
                 org.telegram.messenger.i4 i4Var3 = h4Var.h;
                 if (i4Var3 != null) {
                     h4Var.d = i4Var3;
                 }
                 org.telegram.messenger.i4 i4Var4 = h4Var.d;
-                if (i4Var4.f24552a != intValue2) {
-                    i4Var4 = new org.telegram.messenger.i4(intValue2, i4Var4.f24553b);
+                if (i4Var4.f24549a != intValue2) {
+                    i4Var4 = new org.telegram.messenger.i4(intValue2, i4Var4.f24550b);
                 }
                 h4Var.h = i4Var4;
-                c6 c6Var2 = h4Var.f24387f;
+                c6 c6Var2 = h4Var.f24384f;
                 if (c6Var2 != null) {
                     c6Var2.e(true, 0.0f);
                 }
@@ -504,22 +504,22 @@ public final class d implements org.telegram.messenger.q10 {
             h4Var.invalidateSelf();
             String str2 = (String) ryVar.S1.getTag();
             if (num.intValue() == -1 && num2.intValue() == -1) {
-                org.telegram.messenger.j6.f24820j.remove(str2);
+                org.telegram.messenger.j6.f24817j.remove(str2);
             } else {
                 StringBuilder sb2 = new StringBuilder();
                 String str3 = "";
                 if (num.intValue() < 0) {
                     str = "";
                 } else {
-                    str = (String) org.telegram.messenger.j4.f24809a.get(num.intValue());
+                    str = (String) org.telegram.messenger.j4.f24806a.get(num.intValue());
                 }
                 sb2.append(str);
                 sb2.append("\u200d");
                 if (num2.intValue() >= 0) {
-                    str3 = (String) org.telegram.messenger.j4.f24809a.get(num2.intValue());
+                    str3 = (String) org.telegram.messenger.j4.f24806a.get(num2.intValue());
                 }
                 sb2.append(str3);
-                org.telegram.messenger.j6.f24820j.put(str2, sb2.toString());
+                org.telegram.messenger.j6.f24817j.put(str2, sb2.toString());
             }
             org.telegram.messenger.j6.q();
         }
@@ -539,12 +539,12 @@ public final class d implements org.telegram.messenger.q10 {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = kxVar.f36909b;
             boolean z10 = true;
             if (tL_messages_stickerSet != null) {
-                if (tL_messages_stickerSet.set.f28432id != qxVar.d) {
+                if (tL_messages_stickerSet.set.f28430id != qxVar.d) {
                     z10 = false;
                 }
                 int i10 = sx.f39861b;
                 l41 K = l41.K(sx.class);
-                long j3 = tL_messages_stickerSet.set.f28432id;
+                long j3 = tL_messages_stickerSet.set.f28430id;
                 K.d = (int) ((j3 >>> 32) ^ j3);
                 K.C = j3;
                 K.H = tL_messages_stickerSet;
@@ -553,7 +553,7 @@ public final class d implements org.telegram.messenger.q10 {
             } else {
                 TLRPC.StickerSetCovered stickerSetCovered = kxVar.f36908a;
                 if (stickerSetCovered != null) {
-                    if (stickerSetCovered.set.f28432id != qxVar.d) {
+                    if (stickerSetCovered.set.f28430id != qxVar.d) {
                         z10 = false;
                     }
                     arrayList.add(sx.i(stickerSetCovered, kxVar, z10));
@@ -579,14 +579,14 @@ public final class d implements org.telegram.messenger.q10 {
             Object obj3 = arrayList2.get(i7);
             i7++;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj3;
-            if (longSparseIntArray.indexOfKey(tL_messages_stickerSet.set.f28432id) < 0) {
-                longSparseIntArray.append(tL_messages_stickerSet.set.f28432id, 1);
-                if (tL_messages_stickerSet.set.f28432id != myVar.d) {
+            if (longSparseIntArray.indexOfKey(tL_messages_stickerSet.set.f28430id) < 0) {
+                longSparseIntArray.append(tL_messages_stickerSet.set.f28430id, 1);
+                if (tL_messages_stickerSet.set.f28430id != myVar.d) {
                     z11 = false;
                 }
                 int i10 = sx.f39861b;
                 l41 K = l41.K(sx.class);
-                long j3 = tL_messages_stickerSet.set.f28432id;
+                long j3 = tL_messages_stickerSet.set.f28430id;
                 K.d = (int) ((j3 >>> 32) ^ j3);
                 K.C = j3;
                 K.H = tL_messages_stickerSet;
@@ -602,10 +602,10 @@ public final class d implements org.telegram.messenger.q10 {
             i11++;
             kx kxVar = (kx) obj4;
             TLRPC.StickerSet stickerSet = kxVar.f36910c;
-            if (longSparseIntArray.indexOfKey(stickerSet.f28432id) < 0) {
-                longSparseIntArray.append(stickerSet.f28432id, 1);
+            if (longSparseIntArray.indexOfKey(stickerSet.f28430id) < 0) {
+                longSparseIntArray.append(stickerSet.f28430id, 1);
                 TLRPC.StickerSetCovered stickerSetCovered = kxVar.f36908a;
-                if (stickerSet.f28432id == myVar.d) {
+                if (stickerSet.f28430id == myVar.d) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -634,7 +634,7 @@ public final class d implements org.telegram.messenger.q10 {
         z41 z41Var = (z41) obj2;
         ArrayList arrayList2 = new ArrayList(0);
         e30Var.f34592c = arrayList2;
-        arrayList2.addAll(org.telegram.messenger.ma.a(e30Var.f34590a).f25554f);
+        arrayList2.addAll(org.telegram.messenger.ma.a(e30Var.f34590a).f25552f);
         if (e30Var.f34592c.isEmpty()) {
             return;
         }
@@ -660,14 +660,14 @@ public final class d implements org.telegram.messenger.q10 {
         z41 z41Var = (z41) obj2;
         ArrayList arrayList2 = f30Var.R;
         int i7 = 0;
-        if (f30Var.S && (b6Var = f30Var.T) != null && b6Var.f12048i.size() > 0) {
+        if (f30Var.S && (b6Var = f30Var.T) != null && b6Var.f12045i.size() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
             fi.b6 b6Var2 = f30Var.T;
-            int i10 = jg.j1.f17548b;
+            int i10 = jg.j1.f17545b;
             l41 K = l41.K(jg.j1.class);
             K.H = b6Var2;
             arrayList.add(K);
@@ -786,7 +786,7 @@ public final class d implements org.telegram.messenger.q10 {
         TLRPC.TL_stickers_renameStickerSet tL_stickers_renameStickerSet = new TLRPC.TL_stickers_renameStickerSet();
         tL_stickers_renameStickerSet.stickerset = org.telegram.messenger.ri.b0(iw0Var.N1.set);
         tL_stickers_renameStickerSet.title = charSequence.toString();
-        ConnectionsManager.getInstance(org.telegram.messenger.j10.f24773t0).sendRequest(tL_stickers_renameStickerSet, new e2((org.telegram.messenger.x10) obj2, 13));
+        ConnectionsManager.getInstance(org.telegram.messenger.j10.f24770t0).sendRequest(tL_stickers_renameStickerSet, new e2((org.telegram.messenger.x10) obj2, 13));
     }
 
     private final void o(Object obj, Object obj2) {
@@ -808,10 +808,10 @@ public final class d implements org.telegram.messenger.q10 {
                 if (bool.booleanValue()) {
                     i7 = 2131743710;
                 }
-                e10.k(org.telegram.messenger.ks.R4, 1, org.telegram.messenger.gd.M0(i7, null));
+                e10.k(org.telegram.messenger.ks.S4, 1, org.telegram.messenger.gd.M0(i7, null));
                 return;
             }
-            lc lcVar = new lc((FrameLayout) y21Var.f30192b, y21Var.J0);
+            lc lcVar = new lc((FrameLayout) y21Var.f30190b, y21Var.J0);
             if (bool.booleanValue()) {
                 i7 = 2131743710;
             }

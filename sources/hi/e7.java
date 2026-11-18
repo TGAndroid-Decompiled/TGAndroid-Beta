@@ -6,18 +6,18 @@ import org.telegram.messenger.q10;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class e7 implements q10 {
-    public final int f14597a;
-    public final Object f14598b;
+    public final int f14594a;
+    public final Object f14595b;
 
     public e7(Object obj, int i7) {
-        this.f14597a = i7;
-        this.f14598b = obj;
+        this.f14594a = i7;
+        this.f14595b = obj;
     }
 
     private final void b(Object obj, Object obj2) {
         int i7;
         int i10;
-        ni.a aVar = (ni.a) this.f14598b;
+        ni.a aVar = (ni.a) this.f14595b;
         ArrayList arrayList = (ArrayList) obj;
         z41 z41Var = (z41) obj2;
         arrayList.add(l41.E(0, org.telegram.messenger.g0.L(12.0f)));

@@ -81,7 +81,7 @@ public final class k2 extends Dialog {
         this.f57990e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         d1Var2.addView(imageView, ma.e(-1, -1, 119));
-        i2 i2Var = new i2(this, context, org.telegram.messenger.g0.f24120p);
+        i2 i2Var = new i2(this, context, org.telegram.messenger.g0.f24117p);
         this.f57991f = i2Var;
         d1Var2.addView(i2Var, ma.e(-2, -2, 17));
         y60 G = y60.G(w01Var, bVar, w01Var);

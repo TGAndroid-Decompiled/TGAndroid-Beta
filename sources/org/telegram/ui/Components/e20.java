@@ -49,10 +49,10 @@ public final class e20 {
         } else if (i7 == 3) {
             int i14 = this.f34582j;
             int i15 = org.telegram.ui.ActionBar.n6.Zh;
-            if (i14 != org.telegram.ui.ActionBar.n6.x0(null, i15, false) || this.f34583k != org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29350ai, false) || this.f34584l != org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29370bi, false)) {
-                int x06 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29350ai, false);
+            if (i14 != org.telegram.ui.ActionBar.n6.x0(null, i15, false) || this.f34583k != org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29348ai, false) || this.f34584l != org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29368bi, false)) {
+                int x06 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29348ai, false);
                 this.f34583k = x06;
-                int x07 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29370bi, false);
+                int x07 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29368bi, false);
                 this.f34584l = x07;
                 int x08 = org.telegram.ui.ActionBar.n6.x0(null, i15, false);
                 this.f34582j = x08;
@@ -64,7 +64,7 @@ public final class e20 {
         int L = org.telegram.messenger.g0.L(130.0f);
         float f12 = this.f34578e;
         if (f12 == 0.0f || this.f34579f >= f12) {
-            this.f34578e = Utilities.f22780b.nextInt(700) + 500;
+            this.f34578e = Utilities.f22777b.nextInt(700) + 500;
             this.f34579f = 0.0f;
             if (this.f34575a == -1.0f) {
                 b();
@@ -102,15 +102,15 @@ public final class e20 {
     public final void b() {
         int i7 = this.f34581i;
         if (i7 == 0) {
-            SecureRandom secureRandom = Utilities.f22780b;
+            SecureRandom secureRandom = Utilities.f22777b;
             this.f34575a = a8.p0.f(secureRandom.nextInt(100), 0.1f, 100.0f, 0.2f);
             this.f34576b = a8.p0.f(secureRandom.nextInt(100), 0.1f, 100.0f, 0.7f);
         } else if (i7 == 3) {
-            SecureRandom secureRandom2 = Utilities.f22780b;
+            SecureRandom secureRandom2 = Utilities.f22777b;
             this.f34575a = a8.p0.f(secureRandom2.nextInt(100), 0.1f, 100.0f, 0.6f);
             this.f34576b = (secureRandom2.nextInt(100) * 0.1f) / 100.0f;
         } else {
-            SecureRandom secureRandom3 = Utilities.f22780b;
+            SecureRandom secureRandom3 = Utilities.f22777b;
             this.f34575a = com.google.android.gms.internal.vision.e2.c(secureRandom3.nextInt(100), 100.0f, 0.2f, 0.8f);
             this.f34576b = secureRandom3.nextInt(100) / 100.0f;
         }

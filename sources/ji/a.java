@@ -21,14 +21,14 @@ import org.telegram.ui.Components.re;
 import org.telegram.ui.Components.y60;
 import org.telegram.ui.bn;
 import org.telegram.ui.ci;
-import org.telegram.ui.eg0;
+import org.telegram.ui.fg0;
 public final class a implements Runnable {
-    public final int f17807a;
-    public final e f17808b;
+    public final int f17804a;
+    public final e f17805b;
 
     public a(e eVar, int i7) {
-        this.f17807a = i7;
-        this.f17808b = eVar;
+        this.f17804a = i7;
+        this.f17805b = eVar;
     }
 
     @Override
@@ -36,27 +36,27 @@ public final class a implements Runnable {
         e eVar;
         androidx.activity.n nVar;
         int i7;
-        int i10 = this.f17807a;
-        e eVar2 = this.f17808b;
+        int i10 = this.f17804a;
+        e eVar2 = this.f17805b;
         switch (i10) {
             case 0:
-                if (!eVar2.R && eVar2.W <= 0.0f && (eVar = ((m) eVar2.f17838a.d).K) != null) {
+                if (!eVar2.R && eVar2.W <= 0.0f && (eVar = ((m) eVar2.f17835a.d).K) != null) {
                     g0.E2(eVar);
                     return;
                 }
                 return;
             default:
-                if (eVar2.f17862f0 == 0) {
-                    eVar2.f17862f0 = -1;
+                if (eVar2.f17859f0 == 0) {
+                    eVar2.f17859f0 = -1;
                     eVar2.invalidate();
                     try {
                         eVar2.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    m mVar = (m) eVar2.f17838a.d;
-                    String trim = mVar.f17979n.trim();
-                    if (!trim.isEmpty() && mVar.f17966c == 4) {
-                        pf pfVar = mVar.f17964b;
+                    m mVar = (m) eVar2.f17835a.d;
+                    String trim = mVar.f17976n.trim();
+                    if (!trim.isEmpty() && mVar.f17963c == 4) {
+                        pf pfVar = mVar.f17961b;
                         f fVar = new f(mVar, 0);
                         e eVar3 = mVar.K;
                         ChatActivityEnterView chatActivityEnterView = pfVar.f38384a;
@@ -64,9 +64,9 @@ public final class a implements Runnable {
                         bn bnVar = chatActivityEnterView.D3;
                         re reVar = chatActivityEnterView.K0;
                         if (reVar != null && reVar.getWidth() > 0) {
-                            eg0 eg0Var = chatActivityEnterView.M0;
-                            if (eg0Var != null) {
-                                eg0Var.h(false);
+                            fg0 fg0Var = chatActivityEnterView.M0;
+                            if (fg0Var != null) {
+                                fg0Var.h(false);
                             }
                             g0.r(chatActivityEnterView.f32571d6);
                             lf lfVar = new lf(chatActivityEnterView, chatActivityEnterView.getContext(), i6Var, eVar3);
@@ -80,13 +80,13 @@ public final class a implements Runnable {
                             boolean z10 = true;
                             boolean[] zArr = new boolean[1];
                             if (nVar != null) {
-                                eg0 eg0Var2 = chatActivityEnterView.M0;
+                                fg0 fg0Var2 = chatActivityEnterView.M0;
                                 ?? obj = new Object();
                                 obj.f989c = zArr;
                                 obj.d = nVar;
                                 obj.f988b = new float[4];
-                                eg0Var2.m0 = obj;
-                                eg0Var2.f47241n0 = nVar;
+                                fg0Var2.m0 = obj;
+                                fg0Var2.f47636n0 = nVar;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
                             tL_message.out = true;
@@ -97,7 +97,7 @@ public final class a implements Runnable {
                             tL_message.entities.addAll(ri.d0(chatActivityEnterView.R).Y(charSequenceArr, true, true));
                             tL_message.message = charSequenceArr[0].toString();
                             fj fjVar = chatActivityEnterView.H3;
-                            if (fjVar != null && !fjVar.f23987p) {
+                            if (fjVar != null && !fjVar.f23984p) {
                                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                                 fj fjVar2 = chatActivityEnterView.I3;
                                 if (fjVar2 != null) {
@@ -110,14 +110,14 @@ public final class a implements Runnable {
                             }
                             fj fjVar3 = new fj(chatActivityEnterView.R, tL_message, false, false);
                             fj fjVar4 = chatActivityEnterView.H3;
-                            if (fjVar4 != null && !fjVar4.f23987p) {
+                            if (fjVar4 != null && !fjVar4.f23984p) {
                                 fjVar3.C = fjVar4;
                             }
                             fjVar3.B0 = true;
                             fjVar3.W2 = Boolean.TRUE;
                             fjVar3.D = 0;
                             fjVar3.n0(null);
-                            fjVar3.f24016w1 = true;
+                            fjVar3.f24013w1 = true;
                             chatActivityEnterView.M0.r(f3.i(fjVar3));
                             hd hdVar = new hd(chatActivityEnterView, zArr, fVar, trim);
                             chatActivityEnterView.M0.s(reVar, true, new n0(hdVar, 6));

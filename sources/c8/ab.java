@@ -3,11 +3,11 @@ package c8;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 public abstract class ab {
-    public static int[] f4485a;
+    public static int[] f4482a;
 
     public static int a(ArrayList arrayList, ca.q qVar) {
         int size = arrayList.size();
-        ArrayList arrayList2 = qVar.f5144a;
+        ArrayList arrayList2 = qVar.f5141a;
         int size2 = arrayList2.size();
         int i7 = 0;
         while (i7 < size2) {
@@ -29,7 +29,7 @@ public abstract class ab {
             }
             arrayList.add(obj2);
         }
-        return qVar.f5145b + size;
+        return qVar.f5142b + size;
     }
 
     public static ca.q b(byte[] bArr) {
@@ -54,8 +54,8 @@ public abstract class ab {
                     i14 += i11 * c10;
                 }
                 ?? obj = new Object();
-                obj.f5144a = new ArrayList();
-                obj.f5145b = c12;
+                obj.f5141a = new ArrayList();
+                obj.f5142b = c12;
                 for (int i15 = 0; i15 < c10; i15++) {
                     ?? obj2 = new Object();
                     int i16 = i14 + 1;
@@ -76,7 +76,7 @@ public abstract class ab {
                             obj2.d[i22] = c(i14, i10, bArr);
                             i14 += i10;
                         }
-                        obj.f5144a.add(obj2);
+                        obj.f5141a.add(obj2);
                     } else {
                         throw new IllegalArgumentException("Cells with cached hashes are not supported");
                     }

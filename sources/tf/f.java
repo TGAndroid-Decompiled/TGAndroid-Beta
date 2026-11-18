@@ -2,7 +2,7 @@ package tf;
 
 import java.io.EOFException;
 import org.telegram.ui.Components.hn;
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 public final class f {
     public final String f57700a;
     public final int f57701b;
@@ -12,15 +12,15 @@ public final class f {
     public final boolean f57704f;
     public final int f57705g;
 
-    public f(md0 md0Var) {
+    public f(nd0 nd0Var) {
         byte b10;
         byte b11;
         boolean z10;
         boolean z11;
-        uf.a aVar = (uf.a) md0Var.f49838b;
+        uf.a aVar = (uf.a) nd0Var.f50148b;
         long j3 = aVar.f912b;
-        hn hnVar = (hn) md0Var.d;
-        h hVar = (h) md0Var.f49839c;
+        hn hnVar = (hn) nd0Var.d;
+        h hVar = (h) nd0Var.f50149c;
         int i7 = hVar.f57708a;
         int i10 = hVar.f57708a;
         byte b12 = 2;

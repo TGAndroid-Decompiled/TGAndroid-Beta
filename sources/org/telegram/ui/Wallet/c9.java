@@ -42,7 +42,7 @@ public final class c9 extends LinearLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29807z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29805z6));
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class c9 extends LinearLayout implements org.telegram.ui.ActionBar.
         int i7 = org.telegram.ui.ActionBar.n6.G6;
         org.telegram.ui.ActionBar.i6 i6Var = this.f44002a;
         this.f44003b.setTextColor(org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
-        int i10 = org.telegram.ui.ActionBar.n6.f29807z6;
+        int i10 = org.telegram.ui.ActionBar.n6.f29805z6;
         this.f44004c.setTextColor(org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
         this.d.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.w0(i10, i6Var), PorterDuff.Mode.SRC_IN));
     }

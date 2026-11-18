@@ -5,7 +5,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.cd0;
+import org.telegram.ui.dd0;
 public final class m0 implements q10 {
     public final int f44507a;
     public final n0 f44508b;
@@ -53,7 +53,7 @@ public final class m0 implements q10 {
                 }
                 u0Var2.w0(walletState);
                 u0Var2.Z();
-                org.telegram.messenger.g0.h3(new cd0(9), 1000L);
+                org.telegram.messenger.g0.h3(new dd0(9), 1000L);
                 return;
         }
     }

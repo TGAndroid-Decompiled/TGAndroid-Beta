@@ -48,8 +48,8 @@ public final class q4 implements Runnable {
                         }
                     }
                 }
-                bi.d6 d6Var = n6Var.f33530a;
-                if (d6Var != null && d6Var.f34607g3 != null) {
+                bi.c6 c6Var = n6Var.f33530a;
+                if (c6Var != null && c6Var.f34607g3 != null) {
                     n6Var.c1(true);
                     return;
                 }

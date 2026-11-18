@@ -59,7 +59,7 @@ public abstract class d extends FrameLayout {
             if (!this.f57776f && actionMasked == 2) {
                 float x10 = motionEvent.getX();
                 float y10 = motionEvent.getY();
-                if (this.f57774c || w9.a(x10, y10, this.d, this.f57775e) > org.telegram.messenger.g0.f24100e) {
+                if (this.f57774c || w9.a(x10, y10, this.d, this.f57775e) > org.telegram.messenger.g0.f24097e) {
                     this.f57774c = true;
                     B.f57962n = true;
                     B.e(x10 - this.d, y10 - this.f57775e);

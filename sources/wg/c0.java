@@ -35,18 +35,18 @@ public final class c0 extends sa {
         this.U1 = z10;
         this.T1 = tL_payments_checkedGiftCode;
         this.W1 = str;
-        this.f30228v0 = false;
-        this.f30230w0 = false;
+        this.f30226v0 = false;
+        this.f30228w0 = false;
         O();
         c1();
         b0 b0Var = this.V1;
-        n2 n2Var = this.f30195c;
+        n2 n2Var = this.f30193c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f60485e = h2Var;
-        b0Var.f60486f = tL_payments_checkedGiftCode;
+        b0Var.f60486e = h2Var;
+        b0Var.f60487f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f60487n = n2Var;
+        b0Var.f60488n = n2Var;
     }
 
     public static boolean e1(Intent intent, vf.b bVar) {
@@ -87,12 +87,12 @@ public final class c0 extends sa {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (bVar != null) {
             bVar.d();
-            bVar.f59374b = new c(atomicBoolean, 1);
+            bVar.f59375b = new c(atomicBoolean, 1);
         }
         i2 i2Var = new i2(atomicBoolean, h2Var, str, bVar);
         e eVar = new e(atomicBoolean, bVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(j10.f24773t0);
-        mp u12 = mp.u1(j10.f24773t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(j10.f24770t0);
+        mp u12 = mp.u1(j10.f24770t0);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
         connectionsManager.sendRequest(tL_payments_checkGiftCode, new m1(u12, i2Var, eVar, 25));
@@ -115,6 +115,6 @@ public final class c0 extends sa {
 
     @Override
     public final void V0(au0 au0Var) {
-        gc.a(this.f30195c, new bi.t(15));
+        gc.a(this.f30193c, new bi.t(15));
     }
 }

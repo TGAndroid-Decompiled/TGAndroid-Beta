@@ -41,7 +41,7 @@ public final class tg extends FrameLayout {
         this.f39994e = textView2;
         textView2.setTextSize(2, 13.0f);
         textView2.setGravity(3);
-        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29788y6, null);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29786y6, null);
         linearLayout.addView(textView2, c8.ma.t(-1, -2, 0, 0, 4, z10 ? 64 : 0, 0));
         setPadding(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
         if (z10) {
@@ -58,7 +58,7 @@ public final class tg extends FrameLayout {
             case 1:
                 super.dispatchDraw(canvas);
                 if (this.f39992b) {
-                    canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.n6.f29519k0);
+                    canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.n6.f29517k0);
                     return;
                 }
                 return;

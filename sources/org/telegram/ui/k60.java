@@ -9,29 +9,29 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.Components.RadioButton;
 public final class k60 extends org.telegram.ui.Components.bk0 {
-    public final int f49199c;
+    public final int f49176c;
     public final Context d;
-    public final boolean f49200e;
-    public final org.telegram.ui.ActionBar.h2 f49201f;
+    public final boolean f49177e;
+    public final org.telegram.ui.ActionBar.h2 f49178f;
 
     public k60(org.telegram.ui.ActionBar.h2 h2Var, Context context, boolean z10, int i7) {
-        this.f49199c = i7;
-        this.f49201f = h2Var;
+        this.f49176c = i7;
+        this.f49178f = h2Var;
         this.d = context;
-        this.f49200e = z10;
+        this.f49177e = z10;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        switch (this.f49199c) {
+        switch (this.f49176c) {
             case 0:
-                int i7 = f1Var.f59126f;
+                int i7 = f1Var.f59127f;
                 if (i7 != 0 && i7 != 4 && i7 != 5 && i7 != 2) {
                     return false;
                 }
                 return true;
             default:
-                if (f1Var.f59126f == 0) {
+                if (f1Var.f59127f == 0) {
                     return true;
                 }
                 return false;
@@ -42,10 +42,10 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
     public final int b() {
         int i7;
         int i10;
-        switch (this.f49199c) {
+        switch (this.f49176c) {
             case 0:
-                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f49201f;
-                if (this.f49200e) {
+                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f49178f;
+                if (this.f49177e) {
                     ArrayList arrayList = languageSelectActivity.f43063e;
                     if (arrayList == null) {
                         return 0;
@@ -74,16 +74,16 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
                 }
                 return size;
             default:
-                sy0 sy0Var = (sy0) this.f49201f;
+                sy0 sy0Var = (sy0) this.f49178f;
                 int i11 = 0;
-                if (this.f49200e) {
-                    ArrayList arrayList2 = sy0Var.f52110f;
+                if (this.f49177e) {
+                    ArrayList arrayList2 = sy0Var.f52112f;
                     if (arrayList2 == null) {
                         return 0;
                     }
                     return arrayList2.size();
                 }
-                if (sy0Var.f52109e >= 0) {
+                if (sy0Var.f52111e >= 0) {
                     i11 = 1;
                 }
                 return i11 + sy0Var.h.size();
@@ -109,9 +109,9 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
         int i12;
         int i13;
         float f12;
-        org.telegram.ui.Cells.y6 y6Var;
-        org.telegram.ui.Cells.n4 n4Var;
-        int i14 = this.f49199c;
+        org.telegram.ui.Cells.z6 z6Var;
+        org.telegram.ui.Cells.o4 o4Var;
+        int i14 = this.f49176c;
         Context context = this.d;
         switch (i14) {
             case 0:
@@ -121,29 +121,29 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
                         if (i7 != 3) {
                             if (i7 != 4 && i7 != 5) {
                                 if (i7 != 6) {
-                                    y6Var = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.c0) null);
+                                    z6Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c0) null);
                                 } else {
-                                    y6Var = new org.telegram.ui.Cells.z8(context);
+                                    z6Var = new org.telegram.ui.Cells.a9(context);
                                 }
                             } else {
-                                y6Var = new org.telegram.ui.Cells.w9(context);
+                                z6Var = new org.telegram.ui.Cells.x9(context);
                             }
                         } else {
-                            y6Var = new org.telegram.ui.Cells.n4(context);
+                            z6Var = new org.telegram.ui.Cells.o4(context);
                         }
                     } else {
-                        y6Var = new org.telegram.ui.Cells.r8(context);
+                        z6Var = new org.telegram.ui.Cells.s8(context);
                     }
                 } else {
                     ?? frameLayout = new FrameLayout(context);
-                    frameLayout.f30441e = 50;
-                    frameLayout.f30444r = 21;
+                    frameLayout.f30487e = 50;
+                    frameLayout.f30490r = 21;
                     TextView textView = new TextView(context);
-                    frameLayout.f30438a = textView;
+                    frameLayout.f30484a = textView;
                     org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, null);
                     org.telegram.messenger.n10.q(textView, 1, 16.0f, 1, 1);
                     textView.setSingleLine(true);
-                    if (org.telegram.messenger.gd.f24216a0) {
+                    if (org.telegram.messenger.gd.f24213a0) {
                         i10 = 5;
                     } else {
                         i10 = 3;
@@ -151,7 +151,7 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
                     textView.setGravity(i10 | 16);
                     TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                     textView.setEllipsize(truncateAt);
-                    boolean z10 = org.telegram.messenger.gd.f24216a0;
+                    boolean z10 = org.telegram.messenger.gd.f24213a0;
                     if (z10) {
                         i11 = 5;
                     } else {
@@ -171,10 +171,10 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
                     }
                     frameLayout.addView(textView, c8.ma.d(-1, -1.0f, i16, f10, 0.0f, f11, 0.0f));
                     TextView textView2 = new TextView(context);
-                    frameLayout.f30439b = textView2;
-                    org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29807z6, null);
+                    frameLayout.f30485b = textView2;
+                    org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29805z6, null);
                     textView2.setTextSize(1, 13.0f);
-                    if (org.telegram.messenger.gd.f24216a0) {
+                    if (org.telegram.messenger.gd.f24213a0) {
                         i12 = 5;
                     } else {
                         i12 = 3;
@@ -185,7 +185,7 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
                     textView2.setSingleLine(true);
                     textView2.setPadding(0, 0, 0, 0);
                     textView2.setEllipsize(truncateAt);
-                    boolean z11 = org.telegram.messenger.gd.f24216a0;
+                    boolean z11 = org.telegram.messenger.gd.f24213a0;
                     if (z11) {
                         i13 = 5;
                     } else {
@@ -202,41 +202,41 @@ public final class k60 extends org.telegram.ui.Components.bk0 {
                     }
                     frameLayout.addView(textView2, c8.ma.d(-2, -2.0f, i17, f12, 36.0f, f13, 0.0f));
                     RadioButton radioButton = new RadioButton(context);
-                    frameLayout.f30440c = radioButton;
+                    frameLayout.f30486c = radioButton;
                     radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
-                    org.telegram.ui.ActionBar.u6.O(radioButton, org.telegram.ui.ActionBar.n6.f29452g7, org.telegram.ui.ActionBar.n6.h7, null);
-                    if (!org.telegram.messenger.gd.f24216a0) {
+                    org.telegram.ui.ActionBar.u6.O(radioButton, org.telegram.ui.ActionBar.n6.f29450g7, org.telegram.ui.ActionBar.n6.h7, null);
+                    if (!org.telegram.messenger.gd.f24213a0) {
                         i15 = 3;
                     }
                     frameLayout.addView(radioButton, c8.ma.d(20, 20.0f, i15 | 16, 22.0f, 0.0f, 22.0f, 0.0f));
-                    frameLayout.f30443n = org.telegram.messenger.gd.f24216a0;
+                    frameLayout.f30489n = org.telegram.messenger.gd.f24213a0;
                     frameLayout.setClipChildren(false);
-                    y6Var = frameLayout;
+                    z6Var = frameLayout;
                 }
-                return new v4.f1(y6Var);
+                return new v4.f1(z6Var);
             default:
                 if (i7 != 0) {
                     if (i7 != 2) {
-                        n4Var = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.c0) null);
+                        o4Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c0) null);
                     } else {
-                        org.telegram.ui.Cells.n4 n4Var2 = new org.telegram.ui.Cells.n4(context);
-                        n4Var2.setText(org.telegram.messenger.gd.M0(2131752113, null));
-                        n4Var = n4Var2;
+                        org.telegram.ui.Cells.o4 o4Var2 = new org.telegram.ui.Cells.o4(context);
+                        o4Var2.setText(org.telegram.messenger.gd.M0(2131752113, null));
+                        o4Var = o4Var2;
                     }
                 } else {
-                    n4Var = new org.telegram.ui.Cells.s8(context);
+                    o4Var = new org.telegram.ui.Cells.t8(context);
                 }
-                return new v4.f1(n4Var);
+                return new v4.f1(o4Var);
         }
     }
 
     @Override
     public void y(v4.f1 f1Var) {
-        switch (this.f49199c) {
+        switch (this.f49176c) {
             case 0:
-                View view = f1Var.f59122a;
-                if (view instanceof org.telegram.ui.Cells.b9) {
-                    ((org.telegram.ui.Cells.b9) view).c();
+                View view = f1Var.f59123a;
+                if (view instanceof org.telegram.ui.Cells.c9) {
+                    ((org.telegram.ui.Cells.c9) view).c();
                     return;
                 }
                 return;

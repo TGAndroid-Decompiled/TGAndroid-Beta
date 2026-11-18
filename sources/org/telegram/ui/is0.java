@@ -11,7 +11,7 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class is0 extends org.telegram.ui.ActionBar.h2 {
     public final long f48790a;
-    public org.telegram.ui.Cells.t7 f48791b;
+    public org.telegram.ui.Cells.u7 f48791b;
     public org.telegram.ui.Components.e80 f48792c;
     public org.telegram.ui.Components.e51 d;
     public org.telegram.ui.ActionBar.d5 f48793e;
@@ -35,7 +35,7 @@ public final class is0 extends org.telegram.ui.ActionBar.h2 {
         long j10 = chat != null ? chat.send_paid_messages_stars : 0L;
         z10 = (O0 == null || !O0.broadcast_messages_allowed) ? false : false;
         this.f48794f = z10;
-        long k10 = Utilities.k(z10 ? j10 : ((org.telegram.messenger.j0) getMessagesController().A7.f26135b.f15539b).f24767c, getMessagesController().L6, 0L);
+        long k10 = Utilities.k(z10 ? j10 : ((org.telegram.messenger.j0) getMessagesController().A7.f26133b.f15536b).f24764c, getMessagesController().L6, 0L);
         this.h = k10;
         this.f48795n = z10;
         this.f48796r = k10;
@@ -76,7 +76,7 @@ public final class is0 extends org.telegram.ui.ActionBar.h2 {
 
     public final String b0() {
         int i7 = getMessagesController().M6;
-        return org.telegram.messenger.gd.a0(null, null, 2131746880, ki.k.J0(i7), String.valueOf(((int) (((((float) this.f48796r) * (i7 / 1000.0f)) / 1000.0d) * getMessagesController().f25650f6)) / 100.0d));
+        return org.telegram.messenger.gd.a0(null, null, 2131746880, ki.k.J0(i7), String.valueOf(((int) (((((float) this.f48796r) * (i7 / 1000.0f)) / 1000.0d) * getMessagesController().f25648f6)) / 100.0d));
     }
 
     public final boolean c0() {
@@ -95,12 +95,12 @@ public final class is0 extends org.telegram.ui.ActionBar.h2 {
         a0(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29339a7, frameLayout, null);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29337a7, frameLayout, null);
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
-        org.telegram.ui.Cells.t7 t7Var = new org.telegram.ui.Cells.t7(context, this.resourceProvider);
-        this.f48791b = t7Var;
-        int i7 = org.telegram.ui.ActionBar.n6.f29396d6;
-        org.telegram.ui.ActionBar.u6.h(i7, t7Var, getResourceProvider());
+        org.telegram.ui.Cells.u7 u7Var = new org.telegram.ui.Cells.u7(context, this.resourceProvider);
+        this.f48791b = u7Var;
+        int i7 = org.telegram.ui.ActionBar.n6.f29394d6;
+        org.telegram.ui.ActionBar.u6.h(i7, u7Var, getResourceProvider());
         org.telegram.ui.Components.e80 e80Var = new org.telegram.ui.Components.e80(context, this, null, true, true);
         this.f48792c = e80Var;
         e80Var.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), 0);
@@ -117,7 +117,7 @@ public final class is0 extends org.telegram.ui.ActionBar.h2 {
     public final void d0() {
         long j3;
         long j10;
-        if (!this.f48793e.f28873y.f57658f) {
+        if (!this.f48793e.f28871y.f57658f) {
             if (!c0()) {
                 finishFragment();
                 return;
@@ -191,7 +191,7 @@ public final class is0 extends org.telegram.ui.ActionBar.h2 {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 String M0 = org.telegram.messenger.gd.M0(2131743598, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = org.telegram.messenger.gd.M0(2131748278, null);
                 alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131754214, null), new gs0(this, 0));

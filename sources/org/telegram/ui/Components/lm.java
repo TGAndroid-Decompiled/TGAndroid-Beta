@@ -60,18 +60,18 @@ public final class lm extends org.telegram.ui.oq0 {
                 if (Build.VERSION.SDK_INT < 26) {
                     iArr[0] = iArr[0] - pmVar.f36766b.T();
                 }
-                wq0Var.f53497b = iArr[0];
-                wq0Var.f53498c = iArr[1] + ((int) nmVar.f37806a);
-                wq0Var.f53504k = 1.0f;
+                wq0Var.f53448b = iArr[0];
+                wq0Var.f53449c = iArr[1] + ((int) nmVar.f37806a);
+                wq0Var.f53455k = 1.0f;
                 wq0Var.d = omVar;
                 ImageReceiver imageReceiver = mmVar.f37563c;
-                wq0Var.f53496a = imageReceiver;
-                wq0Var.f53499e = imageReceiver.p();
+                wq0Var.f53447a = imageReceiver;
+                wq0Var.f53450e = imageReceiver.p();
                 wq0Var.h = r5;
                 RectF rectF = mmVar.f37575q;
                 int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                wq0Var.f53503j = (int) (-omVar.getY());
-                wq0Var.f53502i = omVar.getHeight() - ((int) (((-omVar.getY()) + pmVar.f38487r.getHeight()) - pmVar.f36766b.a1()));
+                wq0Var.f53454j = (int) (-omVar.getY());
+                wq0Var.f53453i = omVar.getHeight() - ((int) (((-omVar.getY()) + pmVar.f38487r.getHeight()) - pmVar.f36766b.a1()));
                 return wq0Var;
             }
         }

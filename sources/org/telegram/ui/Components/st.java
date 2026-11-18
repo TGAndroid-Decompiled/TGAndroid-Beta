@@ -35,7 +35,7 @@ public final class st extends ry {
             }
             if (this.Y2 && (i13 = this.W2) > 0 && i14 > 0 && i14 != i13) {
                 setTranslationY(i14 - i13);
-                org.telegram.messenger.n10.o(animate().translationY(0.0f), org.telegram.ui.ActionBar.j1.f29019w, 250L);
+                org.telegram.messenger.n10.o(animate().translationY(0.0f), org.telegram.ui.ActionBar.j1.f29017w, 250L);
                 this.Y2 = false;
             }
             this.X2 = wtVar.f41796y;

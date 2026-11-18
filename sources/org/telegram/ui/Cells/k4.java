@@ -1,156 +1,24 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.fj;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.vy0;
-public final class k4 implements org.telegram.messenger.y5 {
-    public boolean E;
-    public TLRPC.MessageExtendedMedia F;
-    public String G;
-    public final RadialProgress2 H;
-    public int I;
-    public final int J;
-    public final int K;
-    public int L;
-    public vy0 M;
-    public boolean N;
-    public int f30917a;
-    public int f30918b;
-    public int f30919c;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class k4 {
+    public ArrayList f30918a;
+    public ArrayList f30919b;
+    public HashMap f30920c;
     public int d;
-    public final q1 f30920e;
-    public final ImageReceiver f30921f;
-    public boolean h;
-    public final int f30922n;
-    public final int f30923r;
-    public final float[] f30924s = new float[8];
-    public String f30925w;
-    public final boolean f30926x;
-    public final boolean f30927y;
+    public int f30921e;
+    public int f30922f;
+    public float f30923g;
+    public int h;
+    public float f30924i;
 
-    public k4(q1 q1Var, fj fjVar, TLRPC.MessageExtendedMedia messageExtendedMedia, boolean z10, int i7, int i10) {
-        boolean z11;
-        boolean z12;
-        new RectF();
-        new Path();
-        this.I = 4;
-        this.K = 0;
-        this.L = 0;
-        this.f30920e = q1Var;
-        this.f30926x = z10;
-        this.f30927y = false;
-        if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
-            TLRPC.MessageMedia messageMedia = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && fj.K4(messageMedia.document)) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            this.f30927y = z12;
-            this.K = (int) Math.max(1L, Math.round(fj.H0(messageMedia.document)));
-        } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
-            TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia;
-            if ((4 & tL_messageExtendedMediaPreview.flags) != 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            this.f30927y = z11;
-            this.K = tL_messageExtendedMediaPreview.video_duration;
+    public final float a(int i7, int i10, float[] fArr) {
+        float f10 = 0.0f;
+        while (i7 < i10) {
+            f10 += fArr[i7];
+            i7++;
         }
-        if (this.f30927y) {
-            int i11 = this.K;
-            this.L = i11;
-            this.M = new vy0(org.telegram.messenger.g0.g0(i11, true, false), 12.0f, null);
-        }
-        ImageReceiver imageReceiver = new ImageReceiver(q1Var);
-        this.f30921f = imageReceiver;
-        imageReceiver.f22656p1 = null;
-        this.f30922n = i7;
-        this.f30923r = i10;
-        this.J = org.telegram.messenger.a6.q(q1Var.f31280a6).k();
-        c(messageExtendedMedia, fjVar);
-        RadialProgress2 radialProgress2 = new RadialProgress2(q1Var, q1Var.getResourcesProvider());
-        this.H = radialProgress2;
-        int a10 = a();
-        this.I = a10;
-        radialProgress2.setIcon(a10, false, false);
-    }
-
-    public final int a() {
-        if (this.f30927y && !this.E) {
-            return 0;
-        }
-        return 4;
-    }
-
-    public final void b(int i7) {
-        if (i7 != this.I) {
-            this.I = i7;
-            this.H.setIcon(i7, true, true);
-        }
-    }
-
-    public final void c(org.telegram.tgnet.TLRPC.MessageExtendedMedia r14, org.telegram.messenger.fj r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.k4.c(org.telegram.tgnet.TLRPC$MessageExtendedMedia, org.telegram.messenger.fj):void");
-    }
-
-    @Override
-    public final int getObserverTag() {
-        return this.J;
-    }
-
-    @Override
-    public final void i(long j3, long j10) {
-        float min;
-        int a10;
-        if (j10 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j3) / ((float) j10));
-        }
-        this.F.downloadProgress = min;
-        this.H.p(true, min);
-        if (min < 1.0f) {
-            a10 = 3;
-        } else {
-            a10 = a();
-        }
-        b(a10);
-        this.f30920e.invalidate();
-    }
-
-    @Override
-    public final void o(long j3, long j10) {
-        float min;
-        int a10;
-        if (j10 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j3) / ((float) j10));
-        }
-        this.F.uploadProgress = min;
-        this.H.p(true, min);
-        if (min < 1.0f) {
-            a10 = 3;
-        } else if (this.f30926x) {
-            a10 = 6;
-        } else {
-            a10 = a();
-        }
-        b(a10);
-        this.f30920e.invalidate();
-    }
-
-    @Override
-    public final void C(boolean z10) {
-    }
-
-    @Override
-    public final void N(String str) {
+        return this.h / f10;
     }
 }

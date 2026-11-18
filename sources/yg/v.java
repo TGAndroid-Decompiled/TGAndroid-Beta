@@ -10,22 +10,22 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.du0;
 import org.telegram.ui.Components.eu0;
 public final class v extends FrameLayout {
-    public final eu0 f61270a;
-    public final View f61271b;
+    public final eu0 f61271a;
+    public final View f61272b;
 
     public v(Context context, i6 i6Var) {
         super(context);
         View view = new View(context);
-        this.f61271b = view;
+        this.f61272b = view;
         addView(view, ma.o(-1, -1));
-        u6.h(n6.f29469h5, view, i6Var);
+        u6.h(n6.f29467h5, view, i6Var);
         eu0 eu0Var = new eu0(context, i6Var);
-        this.f61270a = eu0Var;
+        this.f61271a = eu0Var;
         addView(eu0Var, ma.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
-        u6.Z(this, getContext(), 2131231231, n6.f29360b7);
+        u6.Z(this, getContext(), 2131231231, n6.f29358b7);
     }
 
     public void setCallBack(du0 du0Var) {
-        this.f61270a.setCallback(du0Var);
+        this.f61271a.setCallback(du0Var);
     }
 }

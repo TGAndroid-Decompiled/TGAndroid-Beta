@@ -26,7 +26,7 @@ public final class gw extends FrameLayout {
         if (L != 0.0f) {
             canvas.clipRect(0.0f, L, getMeasuredWidth(), getMeasuredHeight());
         }
-        int z10 = ryVar.z(org.telegram.ui.ActionBar.n6.f29816zf);
+        int z10 = ryVar.z(org.telegram.ui.ActionBar.n6.f29814zf);
         Paint paint = this.f35660a;
         paint.setColor(z10);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), fwVar.getExpandedOffset() + org.telegram.messenger.g0.L(36.0f), paint);

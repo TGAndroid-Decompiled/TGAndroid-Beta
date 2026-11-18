@@ -1,50 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class ha0 extends jg.r0 {
-    public boolean f48315e0;
-    public final pa0 f48316f0;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.tgnet.TLRPC;
+public final class ha0 extends org.telegram.ui.ActionBar.j {
+    public final qa0 f48225a;
 
-    public ha0(pa0 pa0Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11) {
-        super(context, i7, j3, false, i6Var, false, z10, z11);
-        this.f48316f0 = pa0Var;
-        this.f48315e0 = true;
+    public ha0(qa0 qa0Var) {
+        this.f48225a = qa0Var;
     }
 
     @Override
-    public final void J() {
-        this.f48316f0.B0(null);
-    }
-
-    @Override
-    public final void N(ArrayList arrayList) {
-        int i7;
-        pa0 pa0Var = this.f48316f0;
-        org.telegram.messenger.fj fjVar = pa0Var.J0;
-        if (fjVar != null && fjVar.C3()) {
-            int i10 = 0;
-            if (arrayList != null) {
-                i7 = 0;
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    la0 la0Var = (la0) arrayList.get(i11);
-                    if (la0Var != null && !org.telegram.messenger.o10.C(la0Var.f49522c)) {
-                        i7++;
-                    }
-                }
-            } else {
-                i7 = 0;
-            }
-            if (this.f48315e0 && i7 == 1) {
-                pa0Var.f50851q0 = ((la0) arrayList.get(0)).f49520a;
-            }
-            this.f48315e0 = false;
-            org.telegram.ui.ActionBar.h5 h5Var = pa0Var.W;
-            if (i7 != 1) {
-                i10 = 8;
-            }
-            h5Var.setVisibility(i10);
+    public final void b(int i7) {
+        qa0 qa0Var = this.f48225a;
+        if (i7 == -1) {
+            qa0Var.finishFragment();
+            return;
         }
-        super.N(arrayList);
+        int i10 = 1;
+        if (i7 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = qa0Var.J0.f23965k.media.geo;
+                double d = geoPoint.lat;
+                double d2 = geoPoint._long;
+                qa0Var.getParentActivity().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d2 + "?q=" + d + "," + d2)));
+            } catch (Exception e10) {
+                org.telegram.messenger.a8.g(e10, true);
+            }
+        } else if (i7 == 5) {
+            qa0Var.C0(false);
+        } else if (i7 == 6) {
+            qa0Var.B0(null);
+        } else if ((i7 == 2 || i7 == 3 || i7 == 4) && qa0Var.F != null) {
+            qa0Var.D0();
+            org.telegram.messenger.da daVar = qa0Var.F;
+            if (i7 != 3) {
+                if (i7 == 4) {
+                    i10 = 2;
+                } else {
+                    i10 = 0;
+                }
+            }
+            daVar.j(i10);
+        }
     }
 }

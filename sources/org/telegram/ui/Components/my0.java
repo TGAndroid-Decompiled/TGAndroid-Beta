@@ -14,13 +14,13 @@ public final class my0 extends ReplacementSpan {
         Paint paint = new Paint(1);
         this.f37667c = paint;
         this.f37666b = i7;
-        paint.setColor(org.telegram.ui.ActionBar.n6.r1(0.3f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29422ee, false)));
+        paint.setColor(org.telegram.ui.ActionBar.n6.r1(0.3f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29420ee, false)));
     }
 
     public void a(int i7) {
         org.telegram.ui.gm0 gm0Var = (org.telegram.ui.gm0) this.f37667c;
         if (gm0Var != null) {
-            gm0Var.f48133a = i7 / 2.0f;
+            gm0Var.f48061a = i7 / 2.0f;
             gm0Var.d();
             this.f37666b = i7;
         }
@@ -35,7 +35,7 @@ public final class my0 extends ReplacementSpan {
                 float L2 = org.telegram.messenger.g0.L(6.66f) / 2.0f;
                 rectF.set(f10, L - L2, this.f37666b + f10, L + L2);
                 Paint paint2 = (Paint) this.f37667c;
-                paint2.setColor(org.telegram.ui.ActionBar.n6.r1(0.3f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29422ee, false)));
+                paint2.setColor(org.telegram.ui.ActionBar.n6.r1(0.3f, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29420ee, false)));
                 canvas.drawRoundRect(rectF, L2, L2, paint2);
                 return;
             default:

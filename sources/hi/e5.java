@@ -12,10 +12,10 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.h41;
 import org.telegram.ui.Components.rx;
 public final class e5 implements rx {
-    public final l5 f14560a;
+    public final l5 f14557a;
 
     public e5(l5 l5Var) {
-        this.f14560a = l5Var;
+        this.f14557a = l5Var;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class e5 implements rx {
 
     @Override
     public final boolean k() {
-        tg.b editText = ((tg.m2) this.f14560a.f14929t0).getEditText();
+        tg.b editText = ((tg.m2) this.f14557a.f14926t0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -68,7 +68,7 @@ public final class e5 implements rx {
         tg.m2 m2Var;
         tg.b editText;
         org.telegram.messenger.g6[] g6VarArr;
-        tg.j jVar = this.f14560a.f14929t0;
+        tg.j jVar = this.f14557a.f14926t0;
         if (!(jVar instanceof tg.m2) || (editText = (m2Var = (tg.m2) jVar).getEditText()) == null) {
             return;
         }
@@ -80,7 +80,7 @@ public final class e5 implements rx {
             CharSequence m10 = org.telegram.messenger.j6.m(str, m2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (g6VarArr = (org.telegram.messenger.g6[]) ((Spanned) m10).getSpans(0, m10.length(), org.telegram.messenger.g6.class)) != null) {
                 for (org.telegram.messenger.g6 g6Var : g6VarArr) {
-                    g6Var.f24176b = 0.85f;
+                    g6Var.f24173b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -95,10 +95,10 @@ public final class e5 implements rx {
 
     @Override
     public final void n() {
-        l5 l5Var = this.f14560a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, l5Var.getContext(), l5Var.f14924q1);
+        l5 l5Var = this.f14557a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, l5Var.getContext(), l5Var.f14921q1);
         String M0 = gd.M0(2131752057, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         u1Var.U = gd.M0(2131752058, null);
         alertDialog$Builder.k(gd.M0(2131752088, null), new di.c7(this, 21));
@@ -114,7 +114,7 @@ public final class e5 implements rx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.x5 x5Var;
-        tg.b editText = ((tg.m2) this.f14560a.f14929t0).getEditText();
+        tg.b editText = ((tg.m2) this.f14557a.f14926t0).getEditText();
         if (editText == null) {
             return;
         }
@@ -125,7 +125,7 @@ public final class e5 implements rx {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                x5Var = new org.telegram.ui.Components.x5(document.f28411id, 1.0f, editText.getPaint().getFontMetricsInt());
+                x5Var = new org.telegram.ui.Components.x5(document.f28409id, 1.0f, editText.getPaint().getFontMetricsInt());
                 x5Var.document = document;
             } else {
                 x5Var = new org.telegram.ui.Components.x5(j3, 1.0f, editText.getPaint().getFontMetricsInt());

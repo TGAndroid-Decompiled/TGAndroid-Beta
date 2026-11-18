@@ -14,33 +14,33 @@ import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.y60;
 import org.telegram.ui.ci;
 public final class q4 implements y10 {
-    public final int f15270a;
-    public final Object f15271b;
-    public final Object f15272c;
+    public final int f15267a;
+    public final Object f15268b;
+    public final Object f15269c;
     public final Object d;
 
     public q4(Object obj, Object obj2, Object obj3, int i7) {
-        this.f15270a = i7;
-        this.f15271b = obj;
-        this.f15272c = obj2;
+        this.f15267a = i7;
+        this.f15268b = obj;
+        this.f15269c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final Object a(Object obj) {
-        int i7 = this.f15270a;
+        int i7 = this.f15267a;
         Object obj2 = this.d;
-        Object obj3 = this.f15272c;
-        Object obj4 = this.f15271b;
+        Object obj3 = this.f15269c;
+        Object obj4 = this.f15268b;
         switch (i7) {
             case 0:
                 l5 l5Var = (l5) obj4;
                 boolean[] zArr = (boolean[]) obj3;
                 z4 z4Var = (z4) obj2;
-                org.telegram.ui.ActionBar.n2 n2Var = z4Var.f30195c;
+                org.telegram.ui.ActionBar.n2 n2Var = z4Var.f30193c;
                 Integer num = (Integer) obj;
                 g5 g5Var = l5Var.B0;
-                d5 d5Var = l5Var.f14924q1;
+                d5 d5Var = l5Var.f14921q1;
                 if (num.intValue() == 0) {
                     zArr[0] = false;
                     l5Var.I0(null, new bi.b(l5Var, 28));
@@ -51,8 +51,8 @@ public final class q4 implements y10 {
                     return Boolean.FALSE;
                 } else if (num.intValue() == 2) {
                     z4Var.dismiss();
-                    ta taVar = ((v9) l5Var).f15617k2;
-                    taVar.f15436d1.M.b(true);
+                    ta taVar = ((v9) l5Var).f15614k2;
+                    taVar.f15433d1.M.b(true);
                     taVar.v();
                     taVar.s(true);
                     taVar.e(true);
@@ -68,7 +68,7 @@ public final class q4 implements y10 {
                     l5Var.b0(l5Var.i0(true));
                     return Boolean.TRUE;
                 } else if (num.intValue() == 4) {
-                    if (!j10.i(l5Var.f14922p1).q()) {
+                    if (!j10.i(l5Var.f14919p1).q()) {
                         try {
                             n2Var.performHapticFeedback(3);
                         } catch (Exception unused) {
@@ -101,8 +101,8 @@ public final class q4 implements y10 {
                 TL_aicompose.AiComposeTone aiComposeTone = k0Var.f36591e;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     final TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone;
-                    y60 G = y60.G(m0Var.f30195c, i6Var, k0Var);
-                    G.X(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(12.0f), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var)));
+                    y60 G = y60.G(m0Var.f30193c, i6Var, k0Var);
+                    G.X(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(12.0f), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var)));
                     G.l(2131232118, gd.M0(2131754996, null), new Runnable() {
                         @Override
                         public final void run() {
@@ -135,7 +135,7 @@ public final class q4 implements y10 {
                                 default:
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, m0Var2.getContext(), i6Var2);
                                     String M0 = org.telegram.messenger.gd.M0(2131754998, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                                     u1Var.S = M0;
                                     u1Var.U = org.telegram.messenger.gd.M0(2131754997, null);
                                     alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
@@ -180,7 +180,7 @@ public final class q4 implements y10 {
                                 default:
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, m0Var2.getContext(), i6Var2);
                                     String M0 = org.telegram.messenger.gd.M0(2131754998, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                                     u1Var.S = M0;
                                     u1Var.U = org.telegram.messenger.gd.M0(2131754997, null);
                                     alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
@@ -197,7 +197,7 @@ public final class q4 implements y10 {
                 return Boolean.FALSE;
             case 2:
                 View view = (View) obj;
-                fj fjVar = ((th.g) obj2).f58224b;
+                fj fjVar = ((th.g) obj2).f58225b;
                 return th.c.d(view, (String) obj4, (String) obj3, fjVar.F0(), fjVar);
             default:
                 ck0 ck0Var = (ck0) obj4;
@@ -212,7 +212,7 @@ public final class q4 implements y10 {
                     boolean booleanValue = bool.booleanValue();
                     v4.f1 T = ck0Var.T(view2);
                     if (T != null) {
-                        sparseIntArray.put(T.f59126f, booleanValue ? 1 : 0);
+                        sparseIntArray.put(T.f59127f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {

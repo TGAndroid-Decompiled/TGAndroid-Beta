@@ -30,8 +30,8 @@ public final class kl0 implements Runnable {
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     String B = org.telegram.messenger.w7.B(((org.telegram.messenger.fj) arrayList2.get(i11)).F0());
                     if (B != null && B.toLowerCase().contains(str)) {
-                        org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(i10, ((org.telegram.messenger.fj) arrayList2.get(i11)).f23968k, false, false);
-                        fjVar.f24027z0 = ((org.telegram.messenger.fj) arrayList2.get(i11)).f24027z0;
+                        org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(i10, ((org.telegram.messenger.fj) arrayList2.get(i11)).f23965k, false, false);
+                        fjVar.f24024z0 = ((org.telegram.messenger.fj) arrayList2.get(i11)).f24024z0;
                         fjVar.K5(ql0Var.L, true);
                         arrayList3.add(fjVar);
                     }
@@ -39,8 +39,8 @@ public final class kl0 implements Runnable {
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     String B2 = org.telegram.messenger.w7.B(((org.telegram.messenger.fj) arrayList.get(i12)).F0());
                     if (B2 != null && B2.toLowerCase().contains(str)) {
-                        org.telegram.messenger.fj fjVar2 = new org.telegram.messenger.fj(i10, ((org.telegram.messenger.fj) arrayList.get(i12)).f23968k, false, false);
-                        fjVar2.f24027z0 = ((org.telegram.messenger.fj) arrayList.get(i12)).f24027z0;
+                        org.telegram.messenger.fj fjVar2 = new org.telegram.messenger.fj(i10, ((org.telegram.messenger.fj) arrayList.get(i12)).f23965k, false, false);
+                        fjVar2.f24024z0 = ((org.telegram.messenger.fj) arrayList.get(i12)).f24024z0;
                         fjVar2.K5(ql0Var.L, true);
                         arrayList4.add(fjVar2);
                     }

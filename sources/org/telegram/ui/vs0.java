@@ -12,24 +12,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Arrays;
 public final class vs0 extends LinearLayout {
-    public final TextView f52850a;
-    public final TextView f52851b;
-    public final FrameLayout f52852c;
+    public final TextView f52840a;
+    public final TextView f52841b;
+    public final FrameLayout f52842c;
     public final di.bc d;
-    public final br0 f52853e;
-    public boolean f52854f;
+    public final br0 f52843e;
+    public boolean f52844f;
     public boolean h;
-    public final PremiumPreviewFragment f52855n;
+    public final PremiumPreviewFragment f52845n;
 
     public vs0(PremiumPreviewFragment premiumPreviewFragment, Context context) {
         super(context);
         int i7;
         int i10;
         int i11;
-        this.f52855n = premiumPreviewFragment;
+        this.f52845n = premiumPreviewFragment;
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f52852c = frameLayout;
+        this.f52842c = frameLayout;
         int i12 = premiumPreviewFragment.f43432h0;
         if (i12 == 1) {
             i7 = 175;
@@ -49,7 +49,7 @@ public final class vs0 extends LinearLayout {
         frameLayout.setClipChildren(false);
         setClipChildren(false);
         TextView textView = new TextView(context);
-        this.f52850a = textView;
+        this.f52840a = textView;
         textView.setTextSize(1, 22.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setGravity(1);
@@ -60,13 +60,13 @@ public final class vs0 extends LinearLayout {
         }
         addView(textView, c8.ma.q(-2, -2, 0.0f, 1, 16, i11, 16, 0));
         TextView textView2 = new TextView(context);
-        this.f52851b = textView2;
+        this.f52841b = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
         textView2.setGravity(1);
         addView(textView2, c8.ma.q(-1, -2, 0.0f, 1, 16, 7, 16, 0));
         br0 br0Var = new br0(this, context);
-        this.f52853e = br0Var;
+        this.f52843e = br0Var;
         br0Var.setOverScrollMode(2);
         br0Var.setLayoutManager(new v4.c0());
         br0Var.setAdapter(new us0(this, context));
@@ -78,7 +78,7 @@ public final class vs0 extends LinearLayout {
             public final void accept(Object obj) {
                 int b10;
                 Canvas canvas = (Canvas) obj;
-                br0 br0Var2 = vs0.this.f52853e;
+                br0 br0Var2 = vs0.this.f52843e;
                 View pressedChildView = br0Var2.getPressedChildView();
                 if (pressedChildView == null) {
                     b10 = -1;

@@ -1,37 +1,37 @@
 package org.telegram.ui;
 public final class y81 implements Runnable {
-    public final int f54095a;
-    public final y91 f54096b;
+    public final int f54033a;
+    public final y91 f54034b;
 
     public y81(y91 y91Var, int i7) {
-        this.f54095a = i7;
-        this.f54096b = y91Var;
+        this.f54033a = i7;
+        this.f54034b = y91Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f54095a) {
+        switch (this.f54033a) {
             case 0:
-                y91 y91Var = this.f54096b;
+                y91 y91Var = this.f54034b;
                 y91Var.B0();
                 y91Var.F0();
                 return;
             case 1:
-                this.f54096b.B0();
+                this.f54034b.B0();
                 return;
             case 2:
-                this.f54096b.S0(true);
+                this.f54034b.S0(true);
                 return;
             case 3:
-                this.f54096b.finishPreviewFragment();
+                this.f54034b.finishPreviewFragment();
                 return;
             case 4:
-                y91 y91Var2 = this.f54096b;
+                y91 y91Var2 = this.f54034b;
                 y91Var2.B0 = null;
                 y91Var2.Z0(true, false);
                 return;
             default:
-                y91 y91Var3 = this.f54096b;
+                y91 y91Var3 = this.f54034b;
                 y91Var3.O.postOnAnimation(new y81(y91Var3, 1));
                 return;
         }

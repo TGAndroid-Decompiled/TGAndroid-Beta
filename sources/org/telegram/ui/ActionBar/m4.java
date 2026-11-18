@@ -16,31 +16,31 @@ import java.util.List;
 import org.telegram.messenger.dl;
 import org.telegram.ui.Components.dt;
 public final class m4 {
-    public static final z3 f29233p = new Object();
-    public static final List f29234q = Arrays.asList(2131296503, 2131296491, 2131296497, 2131296509, 2131296499, 2131296512, 2131296508, 2131296498, 2131296502, 2131296493);
-    public static final List f29235r = Arrays.asList(2131296491, 2131296497, 2131296509, 2131296498, 2131296499, 2131296512, 2131296508, 2131296502);
-    public final View f29236a;
-    public final k4 f29237b;
-    public Menu f29239e;
-    public final int f29242i;
-    public Runnable f29243j;
-    public dt f29244k;
-    public final i6 f29247n;
-    public final dh.c f29248o;
-    public final Rect f29238c = new Rect();
+    public static final z3 f29231p = new Object();
+    public static final List f29232q = Arrays.asList(2131296503, 2131296491, 2131296497, 2131296509, 2131296499, 2131296512, 2131296508, 2131296498, 2131296502, 2131296493);
+    public static final List f29233r = Arrays.asList(2131296491, 2131296497, 2131296509, 2131296498, 2131296499, 2131296512, 2131296508, 2131296502);
+    public final View f29234a;
+    public final k4 f29235b;
+    public Menu f29237e;
+    public final int f29240i;
+    public Runnable f29241j;
+    public dt f29242k;
+    public final i6 f29245n;
+    public final dh.c f29246o;
+    public final Rect f29236c = new Rect();
     public final Rect d = new Rect();
-    public ArrayList f29240f = new ArrayList();
-    public MenuItem.OnMenuItemClickListener f29241g = f29233p;
+    public ArrayList f29238f = new ArrayList();
+    public MenuItem.OnMenuItemClickListener f29239g = f29231p;
     public boolean h = true;
-    public final a4 f29245l = new a4(this);
-    public final dl f29246m = new dl(22);
+    public final a4 f29243l = new a4(this);
+    public final dl f29244m = new dl(22);
 
     public m4(Context context, View view, int i7, i6 i6Var, dh.c cVar) {
-        this.f29236a = view;
-        this.f29242i = i7;
-        this.f29248o = cVar;
-        this.f29247n = i6Var;
-        this.f29237b = new k4(this, context, view);
+        this.f29234a = view;
+        this.f29240i = i7;
+        this.f29246o = cVar;
+        this.f29245n = i6Var;
+        this.f29235b = new k4(this, context, view);
     }
 
     public static AnimatorSet a(RelativeLayout relativeLayout, int i7, AnimatorListenerAdapter animatorListenerAdapter) {
@@ -72,7 +72,7 @@ public final class m4 {
                 SubMenu subMenu = item.getSubMenu();
                 if (subMenu != null) {
                     arrayList.addAll(d(subMenu));
-                } else if ((item.getItemId() != 2131296502 || (dtVar = this.f29244k) == null || ((Boolean) dtVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != 2131296503 || this.f29243j == null)) {
+                } else if ((item.getItemId() != 2131296502 || (dtVar = this.f29242k) == null || ((Boolean) dtVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != 2131296503 || this.f29241j == null)) {
                     arrayList.add(item);
                 }
             }

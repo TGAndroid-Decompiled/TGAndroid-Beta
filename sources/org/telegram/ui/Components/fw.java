@@ -52,10 +52,10 @@ public final class fw extends zw {
         TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
         tL_messages_reorderStickerSets.masks = false;
         tL_messages_reorderStickerSets.emojis = false;
-        for (int i15 = ryVar.f39351f0; i15 < arrayList.size(); i15 = com.google.android.gms.internal.vision.e2.g(i15, 1, ((TLRPC.TL_messages_stickerSet) arrayList.get(i15)).set.f28432id, tL_messages_reorderStickerSets.order)) {
+        for (int i15 = ryVar.f39351f0; i15 < arrayList.size(); i15 = com.google.android.gms.internal.vision.e2.g(i15, 1, ((TLRPC.TL_messages_stickerSet) arrayList.get(i15)).set.f28430id, tL_messages_reorderStickerSets.order)) {
         }
         ConnectionsManager.getInstance(i14).sendRequest(tL_messages_reorderStickerSets, new fi.k5(19));
-        org.telegram.messenger.ks.f(i14).k(org.telegram.messenger.ks.f25220x0, 0, Boolean.TRUE);
+        org.telegram.messenger.ks.f(i14).k(org.telegram.messenger.ks.f25218x0, 0, Boolean.TRUE);
         ryVar.Y(true);
         if (org.telegram.messenger.bz.X) {
             org.telegram.messenger.bz.P();

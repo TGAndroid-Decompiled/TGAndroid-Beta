@@ -38,7 +38,7 @@ public final class ty extends FrameLayout {
         TextView textView = new TextView(context);
         this.f40135b = textView;
         textView.setTextSize(1, 20.0f);
-        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29379c7, i6Var);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29377c7, i6Var);
         org.telegram.messenger.f3.k(textView, 1, null, 2131747975);
         linearLayout.addView(textView, c8.ma.r(-2, -2, 17));
         addView(linearLayout, c8.ma.c(-2.0f, -2));
@@ -163,7 +163,7 @@ public final class ty extends FrameLayout {
         }
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         if (mutate != null) {
-            org.telegram.ui.ActionBar.u6.x(this, mutate, org.telegram.ui.ActionBar.n6.f29379c7, this.f40134a, PorterDuff.Mode.MULTIPLY);
+            org.telegram.ui.ActionBar.u6.x(this, mutate, org.telegram.ui.ActionBar.n6.f29377c7, this.f40134a, PorterDuff.Mode.MULTIPLY);
         }
         textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
         textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(1.0f));

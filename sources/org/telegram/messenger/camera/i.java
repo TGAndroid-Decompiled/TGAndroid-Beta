@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import bi.j5;
+import bi.i5;
 import c8.ma;
 import c8.ra;
 import di.xb;
@@ -40,18 +40,18 @@ import org.telegram.ui.Components.sb0;
 import org.telegram.ui.Components.v3;
 import org.telegram.ui.cr;
 public final class i implements Runnable {
-    public final int f23303a;
-    public final Object f23304b;
-    public final Object f23305c;
+    public final int f23300a;
+    public final Object f23301b;
+    public final Object f23302c;
     public final Object d;
-    public final Object f23306e;
+    public final Object f23303e;
 
     public i(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f23303a = i7;
-        this.f23305c = obj;
-        this.f23304b = obj2;
+        this.f23300a = i7;
+        this.f23302c = obj;
+        this.f23301b = obj2;
         this.d = obj3;
-        this.f23306e = obj4;
+        this.f23303e = obj4;
     }
 
     private final void a() {
@@ -62,20 +62,20 @@ public final class i implements Runnable {
         me meVar;
         ViewGroup viewGroup;
         v3 v3Var;
-        rn rnVar = (rn) this.f23305c;
-        Context context = (Context) this.f23304b;
-        i6 i6Var = (i6) this.f23306e;
+        rn rnVar = (rn) this.f23302c;
+        Context context = (Context) this.f23301b;
+        i6 i6Var = (i6) this.f23303e;
         long j3 = rnVar.W;
         final g2 g2Var = new g2(13, rnVar, (View) this.d);
         me meVar2 = new me(3);
-        int i7 = n6.f29504j5;
+        int i7 = n6.f29502j5;
         if (i6Var != null) {
             x02 = i6Var.i(i7);
         } else {
             x02 = n6.x0(null, i7, false);
         }
         int i10 = x02;
-        int i11 = n6.f29469h5;
+        int i11 = n6.f29467h5;
         if (i6Var != null) {
             x03 = i6Var.i(i11);
         } else {
@@ -105,7 +105,7 @@ public final class i implements Runnable {
         } else {
             n6.x0(null, i15, false);
         }
-        int i16 = n6.f29488i6;
+        int i16 = n6.f29486i6;
         if (i6Var != null) {
             i6Var.i(i16);
         } else {
@@ -133,9 +133,9 @@ public final class i implements Runnable {
         if (context == null) {
             return;
         }
-        final int n22 = (int) mp.u1(j10.f24773t0).A7.J.n2(TimeUnit.SECONDS);
+        final int n22 = (int) mp.u1(j10.f24770t0).A7.J.n2(TimeUnit.SECONDS);
         final w4 w4Var = new w4(context, i6Var);
-        ((x2) w4Var.f15645b).f30230w0 = false;
+        ((x2) w4Var.f15642b).f30228w0 = false;
         int i20 = x04;
         final sb0 sb0Var = new sb0(context, i6Var);
         sb0Var.setTextColor(i10);
@@ -174,7 +174,7 @@ public final class i implements Runnable {
         v3Var2.addView(linearLayout, ma.q(-1, -2, 1.0f, 0, 0, 23, 0, 23));
         final TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 12.0f);
-        u6.U(textView2, n6.f29635q5, i6Var);
+        u6.U(textView2, n6.f29633q5, i6Var);
         textView2.setGravity(17);
         final Calendar calendar = Calendar.getInstance();
         xb xbVar = new xb(context, 16);
@@ -185,19 +185,19 @@ public final class i implements Runnable {
         sb0Var.setMaxValue(365);
         sb0Var.setWrapSelectorWheel(false);
         sb0Var.setFormatter(new cr(28));
-        j5 j5Var = new j5(n22, sb0Var, (f4) sb0Var2, (g4) sb0Var3, textView2);
-        sb0Var.setOnValueChangedListener(j5Var);
+        i5 i5Var = new i5(n22, sb0Var, (f4) sb0Var2, (g4) sb0Var3, textView2);
+        sb0Var.setOnValueChangedListener(i5Var);
         sb0Var2.setMinValue(0);
         sb0Var2.setMaxValue(23);
         linearLayout.addView((View) sb0Var2, ma.l(0.2f, 0, 270));
         sb0Var2.setFormatter(new cr(29));
-        sb0Var2.setOnValueChangedListener(j5Var);
+        sb0Var2.setOnValueChangedListener(i5Var);
         sb0Var3.setMinValue(0);
         sb0Var3.setMaxValue(59);
         sb0Var3.setValue(0);
         sb0Var3.setFormatter(new k2(0));
         linearLayout.addView((View) sb0Var3, ma.l(0.3f, 0, 270));
-        sb0Var3.setOnValueChangedListener(j5Var);
+        sb0Var3.setOnValueChangedListener(i5Var);
         if (j3 > 0 && j3 != 2147483646) {
             long j10 = 1000 * j3;
             meVar = meVar2;
@@ -251,11 +251,11 @@ public final class i implements Runnable {
                     calendar2.set(14, 0);
                 }
                 g2Var.O((int) (calendar2.getTimeInMillis() / 1000), 0, true);
-                ((org.telegram.ui.ActionBar.x2) w4Var.f15645b).f30234y0.run();
+                ((org.telegram.ui.ActionBar.x2) w4Var.f15642b).f30232y0.run();
             }
         });
         v3Var3.addView(textView2, ma.t(-1, -2, 83, 14, 0, 14, 16));
-        x2 x2Var = (x2) w4Var.f15645b;
+        x2 x2Var = (x2) w4Var.f15642b;
         x2Var.O = viewGroup;
         x2Var.show();
         x2Var.setOnDismissListener(new m2(0, meVar, zArr));
@@ -269,26 +269,26 @@ public final class i implements Runnable {
     }
 
     public i(Runnable runnable, CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable2) {
-        this.f23303a = 1;
-        this.f23304b = runnable;
-        this.f23305c = cameraSession;
-        this.f23306e = countDownLatch;
+        this.f23300a = 1;
+        this.f23301b = runnable;
+        this.f23302c = cameraSession;
+        this.f23303e = countDownLatch;
         this.d = runnable2;
     }
 
     public i(CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
-        this.f23303a = 0;
-        this.f23305c = cameraSession;
-        this.f23304b = runnable;
-        this.f23306e = surfaceTexture;
+        this.f23300a = 0;
+        this.f23302c = cameraSession;
+        this.f23301b = runnable;
+        this.f23303e = surfaceTexture;
         this.d = runnable2;
     }
 
     public i(ly lyVar, TLRPC.TL_messages_getStickers tL_messages_getStickers, TLObject tLObject, Runnable runnable) {
-        this.f23303a = 27;
-        this.f23305c = lyVar;
+        this.f23300a = 27;
+        this.f23302c = lyVar;
         this.d = tL_messages_getStickers;
-        this.f23306e = tLObject;
-        this.f23304b = runnable;
+        this.f23303e = tLObject;
+        this.f23301b = runnable;
     }
 }

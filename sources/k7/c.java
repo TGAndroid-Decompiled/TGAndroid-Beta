@@ -2,5 +2,5 @@ package k7;
 
 import a8.q;
 public abstract class c extends q implements d {
-    public static final int f18178b = 0;
+    public static final int f18175b = 0;
 }

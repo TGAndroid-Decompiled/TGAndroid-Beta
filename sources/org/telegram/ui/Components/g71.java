@@ -410,7 +410,7 @@ public class g71 extends FrameLayout {
     }
 
     public float getAvailableTranslationX() {
-        return org.telegram.messenger.g0.f24121q.x;
+        return org.telegram.messenger.g0.f24118q.x;
     }
 
     public int getCurrentPosition() {
@@ -521,7 +521,7 @@ public class g71 extends FrameLayout {
         w61 w61Var = new w61(this, getContext(), z10, i7, this.f35375a);
         this.N = w61Var;
         w61Var.f35012r = D();
-        this.N.setDelegate(new org.telegram.ui.Cells.b5(this));
+        this.N.setDelegate(new org.telegram.ui.Cells.c5(this));
         j(false);
         return this.N;
     }

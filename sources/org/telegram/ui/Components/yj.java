@@ -36,7 +36,7 @@ public final class yj extends ck0 {
                             f10 = getChildAt(i7).getY();
                         }
                     }
-                    this.f42507g3.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false));
+                    this.f42507g3.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false));
                 }
                 super.dispatchDraw(canvas);
                 return;
@@ -48,7 +48,7 @@ public final class yj extends ck0 {
                             f11 = getChildAt(i10).getY();
                         }
                     }
-                    this.f42507g3.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false));
+                    this.f42507g3.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false));
                 }
                 super.dispatchDraw(canvas);
                 return;

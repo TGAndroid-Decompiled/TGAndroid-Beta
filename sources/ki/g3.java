@@ -9,7 +9,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class g3 extends k41 {
-    public static final int f18702b = 0;
+    public static final int f18699b = 0;
 
     static {
         k41.h(new k41());
@@ -21,7 +21,7 @@ public final class g3 extends k41 {
         CharSequence charSequence = l41Var.f37018m;
         CharSequence charSequence2 = l41Var.f37019n;
         h3Var.setText(charSequence);
-        h3Var.f18718r.setText(charSequence2);
+        h3Var.f18715r.setText(charSequence2);
     }
 
     @Override

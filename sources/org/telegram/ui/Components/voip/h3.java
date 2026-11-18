@@ -17,7 +17,7 @@ public final class h3 extends AnimatorListenerAdapter {
         i3 i3Var = this.f40913a;
         i3Var.f40932e = i3Var.f40931c;
         i3Var.f40933f = i3Var.d;
-        SecureRandom secureRandom = Utilities.f22780b;
+        SecureRandom secureRandom = Utilities.f22777b;
         i3Var.f40931c = org.telegram.messenger.g0.L(12.0f) + secureRandom.nextInt(org.telegram.messenger.g0.L(16.0f));
         i3Var.d = org.telegram.messenger.g0.L(12.0f) + secureRandom.nextInt(org.telegram.messenger.g0.L(16.0f));
         ValueAnimator valueAnimator = i3Var.f40930b;

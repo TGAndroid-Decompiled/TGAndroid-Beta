@@ -2,10 +2,10 @@ package org.telegram.messenger;
 
 import java.util.Comparator;
 public final class dl implements Comparator {
-    public final int f23546a;
+    public final int f23543a;
 
     public dl(int i7) {
-        this.f23546a = i7;
+        this.f23543a = i7;
     }
 
     @Override
@@ -14,6 +14,6 @@ public final class dl implements Comparator {
     }
 
     public dl(mp mpVar, int i7) {
-        this.f23546a = i7;
+        this.f23543a = i7;
     }
 }

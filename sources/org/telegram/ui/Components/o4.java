@@ -22,7 +22,7 @@ public final class o4 extends p41 {
                 return;
             case 1:
                 iw0 iw0Var = (iw0) this.f37953f;
-                org.telegram.messenger.mp.u1(iw0Var.f30189a).F3(getURL(), iw0Var.G1, 1, null);
+                org.telegram.messenger.mp.u1(iw0Var.f30187a).F3(getURL(), iw0Var.G1, 1, null);
                 iw0Var.dismiss();
                 return;
             case 2:
@@ -34,7 +34,7 @@ public final class o4 extends p41 {
                 org.telegram.messenger.mp.u1(org.telegram.ui.n50.e0(n50Var)).F3("stickers", n50Var, 1, null);
                 return;
             case 4:
-                ((org.telegram.ui.qj0) this.f37953f).f51277a.dismissCurrentDialog();
+                ((org.telegram.ui.qj0) this.f37953f).f51237a.dismissCurrentDialog();
                 super.onClick(view);
                 return;
             default:

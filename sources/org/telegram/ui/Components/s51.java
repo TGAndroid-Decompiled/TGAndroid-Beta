@@ -49,7 +49,7 @@ public final class s51 extends View {
         m6Var2.f37377b = 5;
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
         m6Var2.f37375a.setXfermode(new PorterDuffXfermode(mode));
-        m6Var2.N = org.telegram.messenger.g0.f24121q.x;
+        m6Var2.N = org.telegram.messenger.g0.f24118q.x;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint2.setColor(-1);

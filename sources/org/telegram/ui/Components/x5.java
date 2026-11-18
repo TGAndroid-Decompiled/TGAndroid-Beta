@@ -51,7 +51,7 @@ public class x5 extends ReplacementSpan {
     public boolean top;
 
     public x5(TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
-        this(document.f28411id, 1.2f, fontMetricsInt);
+        this(document.f28409id, 1.2f, fontMetricsInt);
         this.document = document;
     }
 
@@ -183,7 +183,7 @@ public class x5 extends ReplacementSpan {
     public long getDocumentId() {
         TLRPC.Document document = this.document;
         if (document != null) {
-            return document.f28411id;
+            return document.f28409id;
         }
         return this.documentId;
     }
@@ -427,11 +427,11 @@ public class x5 extends ReplacementSpan {
         }
         ArrayList arrayList = t5Var.f39908c;
         int i7 = 0;
-        if (org.telegram.messenger.j6.f24823m == 0.0f && f10 == 0.0f) {
+        if (org.telegram.messenger.j6.f24820m == 0.0f && f10 == 0.0f) {
             z10 = false;
         } else {
             canvas.save();
-            canvas.translate(0.0f, org.telegram.messenger.j6.f24823m + org.telegram.messenger.g0.L(20.0f * f10));
+            canvas.translate(0.0f, org.telegram.messenger.j6.f24820m + org.telegram.messenger.g0.L(20.0f * f10));
             z10 = true;
         }
         long currentTimeMillis = System.currentTimeMillis();
@@ -457,7 +457,7 @@ public class x5 extends ReplacementSpan {
                             float f16 = x5Var.lastDrawnCx;
                             float f17 = x5Var.lastDrawnCy;
                             s5Var.f39488e.set((int) (f16 - f15), (int) (f17 - f15), (int) (f16 + f15), (int) (f17 + f15));
-                            float max = (list == null || list.isEmpty() || !s5Var.f39493w) ? 1.0f : Math.max(0.0f, list.get(i7).f60557n);
+                            float max = (list == null || list.isEmpty() || !s5Var.f39493w) ? 1.0f : Math.max(0.0f, list.get(i7).f60558n);
                             s5Var.f39491r = f13;
                             s5Var.f39492s = max;
                             s5Var.getClass();
@@ -486,7 +486,7 @@ public class x5 extends ReplacementSpan {
                                     }
                                 }
                             } else if (o5Var2.f37976k != null) {
-                                o5Var2.setColorFilter(colorFilter == null ? org.telegram.ui.ActionBar.n6.f29728v3 : colorFilter);
+                                o5Var2.setColorFilter(colorFilter == null ? org.telegram.ui.ActionBar.n6.f29726v3 : colorFilter);
                                 s5Var.f39489f.p(currentTimeMillis);
                                 float extraScale2 = s5Var.d.getExtraScale();
                                 if (extraScale2 == 1.0f && !s5Var.d.invert) {
@@ -539,7 +539,7 @@ public class x5 extends ReplacementSpan {
     }
 
     public x5(TLRPC.Document document, float f10, Paint.FontMetricsInt fontMetricsInt) {
-        this(document.f28411id, f10, fontMetricsInt);
+        this(document.f28409id, f10, fontMetricsInt);
         this.document = document;
     }
 
@@ -587,7 +587,7 @@ public class x5 extends ReplacementSpan {
         Layout[] layoutArr = new Layout[arrayList == null ? 0 : arrayList.size()];
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                layoutArr[i10] = arrayList.get(i10).f23364e;
+                layoutArr[i10] = arrayList.get(i10).f23361e;
             }
         }
         return update(i7, view, z10, t5Var, z11, layoutArr);
@@ -718,16 +718,16 @@ public class x5 extends ReplacementSpan {
                             }
                             if (x5Var.documentAbsolutePath != null) {
                                 i11 = i14;
-                                s5Var2.f39489f = o5.m(org.telegram.messenger.j10.f24773t0, x5Var.getDocumentId(), x5Var.documentAbsolutePath, i12);
+                                s5Var2.f39489f = o5.m(org.telegram.messenger.j10.f24770t0, x5Var.getDocumentId(), x5Var.documentAbsolutePath, i12);
                             } else {
                                 i11 = i14;
                                 TLRPC.Document document = x5Var.document;
                                 if (document != null) {
-                                    s5Var2.f39489f = o5.l(org.telegram.messenger.j10.f24773t0, i12, document);
+                                    s5Var2.f39489f = o5.l(org.telegram.messenger.j10.f24770t0, i12, document);
                                 } else {
                                     long j3 = x5Var.documentId;
                                     if (j3 != 0) {
-                                        s5Var2.f39489f = o5.m(org.telegram.messenger.j10.f24773t0, j3, null, i12);
+                                        s5Var2.f39489f = o5.m(org.telegram.messenger.j10.f24770t0, j3, null, i12);
                                     }
                                 }
                             }
@@ -858,9 +858,9 @@ public class x5 extends ReplacementSpan {
                 }
                 TLRPC.Document document = x5Var2.document;
                 if (document != null) {
-                    m10 = o5.l(org.telegram.messenger.j10.f24773t0, i10, document);
+                    m10 = o5.l(org.telegram.messenger.j10.f24770t0, i10, document);
                 } else {
-                    m10 = o5.m(org.telegram.messenger.j10.f24773t0, x5Var2.documentId, null, i10);
+                    m10 = o5.m(org.telegram.messenger.j10.f24770t0, x5Var2.documentId, null, i10);
                 }
                 m10.a(view);
                 longSparseArray.put(x5Var2.getDocumentId(), m10);
@@ -909,7 +909,7 @@ public class x5 extends ReplacementSpan {
                         i10 = i7;
                     }
                 }
-                o5 m10 = o5.m(org.telegram.messenger.j10.f24773t0, x5Var.documentId, null, i10);
+                o5 m10 = o5.m(org.telegram.messenger.j10.f24770t0, x5Var.documentId, null, i10);
                 m10.a(view);
                 longSparseArray.put(x5Var.getDocumentId(), m10);
             }

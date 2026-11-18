@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class wp implements Runnable {
-    public final int f27750a;
-    public final tr f27751b;
-    public final a0.h f27752c;
+    public final int f27748a;
+    public final tr f27749b;
+    public final a0.h f27750c;
 
     public wp(tr trVar, a0.h hVar, int i7) {
-        this.f27750a = i7;
-        this.f27751b = trVar;
-        this.f27752c = hVar;
+        this.f27748a = i7;
+        this.f27749b = trVar;
+        this.f27750c = hVar;
     }
 
     @Override

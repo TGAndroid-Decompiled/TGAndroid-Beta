@@ -17,21 +17,21 @@ import org.telegram.ui.Components.mt;
 import org.telegram.ui.f11;
 import org.telegram.ui.j01;
 public final class u extends mt {
-    public final int f4100e2;
-    public final Object f4101f2;
+    public final int f4071e2;
+    public final Object f4072f2;
 
     public u(FrameLayout frameLayout, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
         super(context, i6Var);
-        this.f4100e2 = i7;
-        this.f4101f2 = frameLayout;
+        this.f4071e2 = i7;
+        this.f4072f2 = frameLayout;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 0:
                 super.dispatchDraw(canvas);
-                Drawable drawable = (Drawable) this.f4101f2;
+                Drawable drawable = (Drawable) this.f4072f2;
                 drawable.setBounds(0, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(28.0f));
                 drawable.draw(canvas);
                 return;
@@ -43,7 +43,7 @@ public final class u extends mt {
 
     @Override
     public int e() {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 return 3;
             case 2:
@@ -56,9 +56,9 @@ public final class u extends mt {
 
     @Override
     public void invalidate() {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 2:
-                if (!ch.f0.f5354b) {
+                if (!ch.f0.f5351b) {
                     super.invalidate();
                     return;
                 }
@@ -71,10 +71,10 @@ public final class u extends mt {
 
     @Override
     public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                if (((org.telegram.ui.Cells.a6) this.f4101f2).f30390s) {
+                if (((org.telegram.ui.Cells.b6) this.f4072f2).f30449s) {
                     editorInfo.imeOptions &= -1073741825;
                 }
                 return onCreateInputConnection;
@@ -90,10 +90,10 @@ public final class u extends mt {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 super.onDraw(canvas);
-                ((org.telegram.ui.Cells.a6) this.f4101f2).getClass();
+                ((org.telegram.ui.Cells.b6) this.f4072f2).getClass();
                 return;
             default:
                 super.onDraw(canvas);
@@ -103,14 +103,14 @@ public final class u extends mt {
 
     @Override
     public void onFocusChanged(boolean z10, int i7, Rect rect) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 super.onFocusChanged(z10, i7, rect);
-                ((org.telegram.ui.Cells.a6) this.f4101f2).j(z10);
+                ((org.telegram.ui.Cells.b6) this.f4072f2).j(z10);
                 return;
             case 2:
                 if (z10) {
-                    ((j01) this.f4101f2).G.q();
+                    ((j01) this.f4072f2).G.q();
                     org.telegram.messenger.g0.h3(new f11(this, 0), 200L);
                 }
                 super.onFocusChanged(z10, i7, rect);
@@ -123,7 +123,7 @@ public final class u extends mt {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 3:
                 super.onSizeChanged(i7, i10, i11, i12);
                 postOnAnimation(new org.telegram.ui.web.z0(this, 16));
@@ -137,7 +137,7 @@ public final class u extends mt {
     @Override
     public boolean onTextContextMenuItem(int i7) {
         ClipData primaryClip;
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 if (i7 == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && org.telegram.messenger.g0.t(primaryClip.getItemAt(0).getText(), "\n") > 0) {
                     CharSequence text = primaryClip.getItemAt(0).getText();
@@ -155,7 +155,7 @@ public final class u extends mt {
                     if (!TextUtils.isEmpty(sb2)) {
                         arrayList.add(sb2);
                     }
-                    if (((org.telegram.ui.Cells.a6) this.f4101f2).m(arrayList)) {
+                    if (((org.telegram.ui.Cells.b6) this.f4072f2).m(arrayList)) {
                         return true;
                     }
                 }
@@ -167,17 +167,17 @@ public final class u extends mt {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 if (!isEnabled()) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    ((org.telegram.ui.Cells.a6) this.f4101f2).l(this);
+                    ((org.telegram.ui.Cells.b6) this.f4072f2).l(this);
                 }
                 return super.onTouchEvent(motionEvent);
             case 2:
-                if (motionEvent.getAction() == 1 && ((j01) this.f4101f2).G.u()) {
+                if (motionEvent.getAction() == 1 && ((j01) this.f4072f2).G.u()) {
                     org.telegram.messenger.g0.h3(new f11(this, 1), 200L);
                     return false;
                 }
@@ -189,10 +189,10 @@ public final class u extends mt {
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback, int i7) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 ActionMode startActionMode = super.startActionMode(callback, i7);
-                ((org.telegram.ui.Cells.a6) this.f4101f2).h(this, startActionMode);
+                ((org.telegram.ui.Cells.b6) this.f4072f2).h(this, startActionMode);
                 return startActionMode;
             default:
                 return super.startActionMode(callback, i7);
@@ -201,16 +201,16 @@ public final class u extends mt {
 
     public u(Context context, org.telegram.ui.ActionBar.i6 i6Var, Drawable drawable) {
         super(context, i6Var);
-        this.f4100e2 = 0;
-        this.f4101f2 = drawable;
+        this.f4071e2 = 0;
+        this.f4072f2 = drawable;
     }
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback) {
-        switch (this.f4100e2) {
+        switch (this.f4071e2) {
             case 1:
                 ActionMode startActionMode = super.startActionMode(callback);
-                ((org.telegram.ui.Cells.a6) this.f4101f2).h(this, startActionMode);
+                ((org.telegram.ui.Cells.b6) this.f4072f2).h(this, startActionMode);
                 return startActionMode;
             default:
                 return super.startActionMode(callback);

@@ -22,7 +22,7 @@ public final class f implements org.telegram.messenger.x10 {
                 return;
             case 1:
                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-                m0Var.f37298s2.f23614b.add(0, aiComposeTone);
+                m0Var.f37298s2.f23611b.add(0, aiComposeTone);
                 m0Var.E1();
                 new lc(m0Var.E2, m0Var.J0).p(aiComposeTone.emoji_id, org.telegram.messenger.gd.a0(null, null, 2131754956, aiComposeTone.title), org.telegram.messenger.gd.M0(2131754957, null)).j();
                 return;
@@ -31,10 +31,10 @@ public final class f implements org.telegram.messenger.x10 {
                 if (aiComposeTone2 instanceof TL_aicompose.TL_aiComposeTone) {
                     org.telegram.messenger.e eVar = m0Var.f37298s2;
                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone2;
-                    ArrayList arrayList = eVar.f23614b;
+                    ArrayList arrayList = eVar.f23611b;
                     while (true) {
                         if (i10 < arrayList.size()) {
-                            if ((arrayList.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) arrayList.get(i10)).f28618id == tL_aiComposeTone.f28618id) {
+                            if ((arrayList.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) arrayList.get(i10)).f28616id == tL_aiComposeTone.f28616id) {
                                 arrayList.set(i10, tL_aiComposeTone);
                                 eVar.c();
                             } else {

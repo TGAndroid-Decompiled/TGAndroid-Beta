@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class cf {
-    public final int f23347a;
-    public TLRPC.TL_inputDocument f23348b;
-    public long f23349c = -9223372036854775807L;
+    public final int f23344a;
+    public TLRPC.TL_inputDocument f23345b;
+    public long f23346c = -9223372036854775807L;
     public final ArrayList d = new ArrayList();
-    public final a f23350e = new a(this, 19);
+    public final a f23347e = new a(this, 19);
 
     public cf(int i7) {
-        this.f23347a = i7;
+        this.f23344a = i7;
     }
 
     public static void a(cf cfVar, long j3, long j10) {
@@ -37,11 +37,11 @@ public final class cf {
     }
 
     public final void b() {
-        if (this.f23348b == null) {
+        if (this.f23345b == null) {
             return;
         }
         d();
-        this.f23348b = null;
+        this.f23345b = null;
     }
 
     public final long c() {
@@ -59,15 +59,15 @@ public final class cf {
     }
 
     public final void d() {
-        g0.r(this.f23350e);
-        if (this.f23348b == null || c() < 3000) {
+        g0.r(this.f23347e);
+        if (this.f23345b == null || c() < 3000) {
             return;
         }
         TLRPC.TL_messages_reportMusicListen tL_messages_reportMusicListen = new TLRPC.TL_messages_reportMusicListen();
-        tL_messages_reportMusicListen.f28512id = this.f23348b;
+        tL_messages_reportMusicListen.f28510id = this.f23345b;
         tL_messages_reportMusicListen.listened_duration = (int) Math.round(c() / 1000.0d);
-        ConnectionsManager.getInstance(this.f23347a).sendRequest(tL_messages_reportMusicListen, null);
-        this.f23349c = -9223372036854775807L;
+        ConnectionsManager.getInstance(this.f23344a).sendRequest(tL_messages_reportMusicListen, null);
+        this.f23346c = -9223372036854775807L;
         this.d.clear();
     }
 }

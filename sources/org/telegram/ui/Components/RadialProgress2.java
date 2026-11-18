@@ -243,7 +243,7 @@ public class RadialProgress2 {
                 Paint paint5 = this.f33056f;
                 int i24 = 2;
                 if (I) {
-                    float f13 = imageReceiver.f22644i1;
+                    float f13 = imageReceiver.f22641i1;
                     f10 = 1.0f;
                     paint5.setAlpha((int) (this.E * 100.0f * f13 * b11));
                     if (f13 >= 1.0f) {
@@ -320,7 +320,7 @@ public class RadialProgress2 {
                     canvas2.restoreToCount(i10);
                 }
                 if (this.f33054c || this.f33066q >= 0) {
-                    if (Math.abs(rectF.width() - org.telegram.messenger.g0.L(44.0f)) < org.telegram.messenger.g0.f24120p) {
+                    if (Math.abs(rectF.width() - org.telegram.messenger.g0.L(44.0f)) < org.telegram.messenger.g0.f24117p) {
                         float f17 = 16;
                         centerX = rectF.centerX() + org.telegram.messenger.g0.L(f17);
                         centerY = rectF.centerY() + org.telegram.messenger.g0.L(f17);
@@ -348,7 +348,7 @@ public class RadialProgress2 {
                     Canvas canvas7 = this.D;
                     if (canvas7 != null) {
                         float f18 = i11 + 18 + i24;
-                        canvas7.drawCircle(org.telegram.messenger.g0.L(f18), org.telegram.messenger.g0.L(f18), org.telegram.messenger.g0.L(i27 + 1) * f12 * this.f33060k, org.telegram.ui.ActionBar.n6.f29573n0);
+                        canvas7.drawCircle(org.telegram.messenger.g0.L(f18), org.telegram.messenger.g0.L(f18), org.telegram.messenger.g0.L(i27 + 1) * f12 * this.f33060k, org.telegram.ui.ActionBar.n6.f29571n0);
                     } else {
                         int i28 = this.d;
                         Paint paint6 = this.f33055e;

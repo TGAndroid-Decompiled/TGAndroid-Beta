@@ -75,8 +75,8 @@ public final class hp0 implements x00, org.telegram.messenger.rr, org.telegram.u
             rs0Var.f39299x.clear();
         }
         UndoView undoView2 = null;
-        if (arrayList.size() <= 1 && ((org.telegram.messenger.sr) arrayList.get(0)).f26847a != h2Var.getUserConfig().e() && charSequence == null) {
-            long j3 = ((org.telegram.messenger.sr) arrayList.get(0)).f26847a;
+        if (arrayList.size() <= 1 && ((org.telegram.messenger.sr) arrayList.get(0)).f26845a != h2Var.getUserConfig().e() && charSequence == null) {
+            long j3 = ((org.telegram.messenger.sr) arrayList.get(0)).f26845a;
             Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
             if (org.telegram.messenger.n5.C(j3)) {
                 k10.putInt("enc_id", (int) (j3 & 4294967295L));
@@ -90,7 +90,7 @@ public final class hp0 implements x00, org.telegram.messenger.rr, org.telegram.u
                     return true;
                 }
             }
-            h2Var.getNotificationCenter().k(org.telegram.messenger.ks.f25192t, new Object[0]);
+            h2Var.getNotificationCenter().k(org.telegram.messenger.ks.f25190t, new Object[0]);
             org.telegram.ui.bn bnVar = new org.telegram.ui.bn(k10);
             qg.c.a(bnVar, (org.telegram.messenger.sr) arrayList.get(0));
             cxVar.presentFragment(bnVar, true);
@@ -100,7 +100,7 @@ public final class hp0 implements x00, org.telegram.messenger.rr, org.telegram.u
         gt0Var.L1(true);
         int i14 = 0;
         while (i14 < arrayList.size()) {
-            long j10 = ((org.telegram.messenger.sr) arrayList.get(i14)).f26847a;
+            long j10 = ((org.telegram.messenger.sr) arrayList.get(i14)).f26845a;
             if (charSequence != null) {
                 h2Var.getSendMessagesHelper().r0(org.telegram.messenger.xy.b(charSequence.toString(), j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
             }
@@ -120,7 +120,7 @@ public final class hp0 implements x00, org.telegram.messenger.rr, org.telegram.u
         }
         if (undoView != null) {
             if (arrayList.size() == z13) {
-                undoView.m(((org.telegram.messenger.sr) arrayList.get(0)).f26847a, Integer.valueOf(arrayList2.size()), 53);
+                undoView.m(((org.telegram.messenger.sr) arrayList.get(0)).f26845a, Integer.valueOf(arrayList2.size()), 53);
                 return z13;
             }
             undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);

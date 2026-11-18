@@ -12,7 +12,7 @@ public abstract class i9 {
             }
             for (h9 h9Var : parentLayout.getPulledDialogs()) {
                 if (tL_forumTopic != null || h9Var.f35823f != j3) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = h9Var.f35822e) != null && tL_forumTopic2.f28457id == tL_forumTopic.f28457id) {
+                    if (tL_forumTopic != null && (tL_forumTopic2 = h9Var.f35822e) != null && tL_forumTopic2.f28455id == tL_forumTopic.f28455id) {
                         return;
                     }
                 } else {

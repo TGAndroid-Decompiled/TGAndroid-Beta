@@ -1,66 +1,29 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class f90 implements TextWatcher {
-    public final int f47618a;
-    public final j90 f47619b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.EditText;
+public final class f90 extends EditText {
+    public final int f47576a;
 
-    public f90(j90 j90Var, int i7) {
-        this.f47618a = i7;
-        this.f47619b = j90Var;
+    public f90(Context context, int i7) {
+        super(context);
+        this.f47576a = i7;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f47618a) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f47576a) {
             case 0:
-                j90 j90Var = this.f47619b;
-                if (!j90Var.O) {
-                    if (editable.toString().equals("0")) {
-                        j90Var.G.setText("");
-                        return;
-                    }
-                    try {
-                        int parseInt = Integer.parseInt(editable.toString());
-                        if (parseInt > 100000) {
-                            j90Var.c0();
-                            return;
-                        } else {
-                            j90Var.b0(parseInt);
-                            return;
-                        }
-                    } catch (NumberFormatException unused) {
-                        j90Var.c0();
-                        return;
-                    }
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
                 }
-                return;
+                return super.onTouchEvent(motionEvent);
             default:
-                org.telegram.messenger.j6.l(editable, this.f47619b.L.getPaint().getFontMetricsInt(), false);
-                return;
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
+                }
+                return super.onTouchEvent(motionEvent);
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f47618a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f47618a;
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

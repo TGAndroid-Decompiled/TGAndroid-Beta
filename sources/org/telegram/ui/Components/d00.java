@@ -20,13 +20,13 @@ public final class d00 extends FrameLayout {
         n6Var.setTypeface(org.telegram.messenger.g0.o());
         int i12 = org.telegram.ui.ActionBar.n6.L6;
         org.telegram.ui.ActionBar.u6.Y(n6Var, i12, null);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         n6Var.setGravity(i7);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -37,20 +37,20 @@ public final class d00 extends FrameLayout {
         n6Var2.b(0.45f, 250L, lr.h);
         n6Var2.setTextSize(org.telegram.messenger.g0.L(15.0f));
         org.telegram.ui.ActionBar.u6.Y(n6Var2, i12, null);
-        if (org.telegram.messenger.gd.f24216a0) {
+        if (org.telegram.messenger.gd.f24213a0) {
             i11 = 3;
         } else {
             i11 = 5;
         }
         n6Var2.setGravity(i11);
-        addView(n6Var2, c8.ma.d(-2, 20.0f, (org.telegram.messenger.gd.f24216a0 ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
+        addView(n6Var2, c8.ma.d(-2, 20.0f, (org.telegram.messenger.gd.f24213a0 ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
         WeakHashMap weakHashMap = r0.i0.f56244a;
         new r0.v(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 
     public final void a(String str, Runnable runnable) {
         n6 n6Var = this.f34235b;
-        n6Var.c(str, !org.telegram.messenger.gd.f24216a0, true);
+        n6Var.c(str, !org.telegram.messenger.gd.f24213a0, true);
         n6Var.setOnClickListener(new s6(1, runnable));
     }
 
@@ -60,7 +60,7 @@ public final class d00 extends FrameLayout {
         if (z10) {
             n6Var.a();
         }
-        if (z10 && !org.telegram.messenger.gd.f24216a0) {
+        if (z10 && !org.telegram.messenger.gd.f24213a0) {
             z11 = true;
         } else {
             z11 = false;

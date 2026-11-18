@@ -10,41 +10,41 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class td extends LinearLayout {
-    public static final int f52257y = 0;
-    public final int f52258a;
-    public final qd f52259b;
-    public final sd f52260c;
+    public static final int f52251y = 0;
+    public final int f52252a;
+    public final qd f52253b;
+    public final sd f52254c;
     public final k0 d;
-    public final long f52261e;
-    public final cd f52262f;
+    public final long f52255e;
+    public final cd f52256f;
     public String h;
-    public final ArrayList f52263n;
-    public final ArrayList f52264r;
-    public String f52265s;
-    public final boolean[] f52266w;
-    public final xd f52267x;
+    public final ArrayList f52257n;
+    public final ArrayList f52258r;
+    public String f52259s;
+    public final boolean[] f52260w;
+    public final xd f52261x;
 
     public td(xd xdVar, Context context, int i7, long j3, int i10, cd cdVar, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f52267x = xdVar;
+        this.f52261x = xdVar;
         this.h = "";
-        this.f52263n = new ArrayList();
-        this.f52264r = new ArrayList();
-        this.f52265s = "";
-        this.f52266w = new boolean[]{false, false};
-        this.f52258a = i7;
-        this.f52261e = j3;
-        this.f52262f = cdVar;
+        this.f52257n = new ArrayList();
+        this.f52258r = new ArrayList();
+        this.f52259s = "";
+        this.f52260w = new boolean[]{false, false};
+        this.f52252a = i7;
+        this.f52255e = j3;
+        this.f52256f = cdVar;
         setOrientation(1);
         setClipChildren(false);
         setClipToPadding(false);
         qd qdVar = new qd(this, context, i6Var, xdVar);
-        this.f52259b = qdVar;
+        this.f52253b = qdVar;
         sd sdVar = new sd(this, context, i7, j3, i10, i6Var);
-        this.f52260c = sdVar;
+        this.f52254c = sdVar;
         qdVar.setAdapter(sdVar);
         org.telegram.ui.Components.f71 i11 = qdVar.i(-2, true);
-        ri.q qVar = xdVar.f53796e1;
+        ri.q qVar = xdVar.f53790e1;
         if (qVar != null) {
             qVar.c(qdVar);
         }
@@ -58,7 +58,7 @@ public final class td extends LinearLayout {
     }
 
     public final boolean a() {
-        if (this.f52263n.isEmpty() && this.f52264r.isEmpty()) {
+        if (this.f52257n.isEmpty() && this.f52258r.isEmpty()) {
             return false;
         }
         return true;
@@ -67,9 +67,9 @@ public final class td extends LinearLayout {
     public final boolean b(int i7) {
         boolean isEmpty;
         if (i7 == 1) {
-            isEmpty = this.f52263n.isEmpty();
+            isEmpty = this.f52257n.isEmpty();
         } else if (i7 == 0) {
-            isEmpty = this.f52264r.isEmpty();
+            isEmpty = this.f52258r.isEmpty();
         } else {
             return false;
         }
@@ -77,37 +77,37 @@ public final class td extends LinearLayout {
     }
 
     public final void c(final int i7) {
-        boolean[] zArr = this.f52266w;
+        boolean[] zArr = this.f52260w;
         if (!zArr[i7]) {
             final boolean a10 = a();
             final boolean b10 = b(i7);
             int i10 = 20;
-            long j3 = this.f52261e;
-            xd xdVar = this.f52267x;
-            int i11 = this.f52258a;
+            long j3 = this.f52255e;
+            xd xdVar = this.f52261x;
+            int i11 = this.f52252a;
             if (i7 == 1) {
-                if (this.h != null && xdVar.f53794c1) {
+                if (this.h != null && xdVar.f53788c1) {
                     zArr[i7] = true;
                     TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
                     tL_payments_getStarsTransactions.ton = true;
                     tL_payments_getStarsTransactions.peer = org.telegram.messenger.mp.u1(i11).l1(j3);
                     tL_payments_getStarsTransactions.offset = this.h;
-                    if (this.f52263n.isEmpty()) {
+                    if (this.f52257n.isEmpty()) {
                         i10 = 5;
                     }
                     tL_payments_getStarsTransactions.limit = i10;
                     ConnectionsManager.getInstance(i11).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate(this) {
-                        public final td f50589b;
+                        public final td f50531b;
 
                         {
-                            this.f50589b = this;
+                            this.f50531b = this;
                         }
 
                         @Override
                         public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                             switch (r5) {
                                 case 0:
-                                    final td tdVar = this.f50589b;
+                                    final td tdVar = this.f50531b;
                                     final int i12 = i7;
                                     final boolean z10 = a10;
                                     final boolean z11 = b10;
@@ -119,7 +119,7 @@ public final class td extends LinearLayout {
                                             switch (r7) {
                                                 case 0:
                                                     td tdVar2 = tdVar;
-                                                    int i13 = tdVar2.f52258a;
+                                                    int i13 = tdVar2.f52252a;
                                                     TLObject tLObject2 = tLObject;
                                                     boolean z12 = tLObject2 instanceof TL_stars.StarsStatus;
                                                     int i14 = i12;
@@ -127,9 +127,9 @@ public final class td extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                         org.telegram.messenger.mp.u1(i13).f4(starsStatus.users, false);
                                                         org.telegram.messenger.mp.u1(i13).Z3(starsStatus.chats, false);
-                                                        tdVar2.f52264r.addAll(starsStatus.history);
-                                                        tdVar2.f52265s = starsStatus.next_offset;
-                                                        tdVar2.f52266w[i14] = false;
+                                                        tdVar2.f52258r.addAll(starsStatus.history);
+                                                        tdVar2.f52259s = starsStatus.next_offset;
+                                                        tdVar2.f52260w[i14] = false;
                                                         tdVar2.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error2 = tL_error;
@@ -137,7 +137,7 @@ public final class td extends LinearLayout {
                                                             org.telegram.ui.Components.lc.e0(tL_error2);
                                                         }
                                                     }
-                                                    if (tdVar2.a() != z10 && (cdVar = tdVar2.f52262f) != null) {
+                                                    if (tdVar2.a() != z10 && (cdVar = tdVar2.f52256f) != null) {
                                                         cdVar.run();
                                                     }
                                                     if (tdVar2.b(i14) != z11) {
@@ -147,7 +147,7 @@ public final class td extends LinearLayout {
                                                     return;
                                                 default:
                                                     td tdVar3 = tdVar;
-                                                    int i15 = tdVar3.f52258a;
+                                                    int i15 = tdVar3.f52252a;
                                                     TLObject tLObject3 = tLObject;
                                                     boolean z13 = tLObject3 instanceof TL_stars.StarsStatus;
                                                     int i16 = i12;
@@ -155,9 +155,9 @@ public final class td extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject3;
                                                         org.telegram.messenger.mp.u1(i15).f4(starsStatus2.users, false);
                                                         org.telegram.messenger.mp.u1(i15).Z3(starsStatus2.chats, false);
-                                                        tdVar3.f52263n.addAll(starsStatus2.history);
+                                                        tdVar3.f52257n.addAll(starsStatus2.history);
                                                         tdVar3.h = starsStatus2.next_offset;
-                                                        tdVar3.f52266w[i16] = false;
+                                                        tdVar3.f52260w[i16] = false;
                                                         tdVar3.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error3 = tL_error;
@@ -165,7 +165,7 @@ public final class td extends LinearLayout {
                                                             org.telegram.ui.Components.lc.e0(tL_error3);
                                                         }
                                                     }
-                                                    if (tdVar3.a() != z10 && (cdVar2 = tdVar3.f52262f) != null) {
+                                                    if (tdVar3.a() != z10 && (cdVar2 = tdVar3.f52256f) != null) {
                                                         cdVar2.run();
                                                     }
                                                     if (tdVar3.b(i16) != z11) {
@@ -178,7 +178,7 @@ public final class td extends LinearLayout {
                                     });
                                     return;
                                 default:
-                                    final td tdVar2 = this.f50589b;
+                                    final td tdVar2 = this.f50531b;
                                     final int i13 = i7;
                                     final boolean z12 = a10;
                                     final boolean z13 = b10;
@@ -190,7 +190,7 @@ public final class td extends LinearLayout {
                                             switch (r7) {
                                                 case 0:
                                                     td tdVar22 = tdVar2;
-                                                    int i132 = tdVar22.f52258a;
+                                                    int i132 = tdVar22.f52252a;
                                                     TLObject tLObject2 = tLObject;
                                                     boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                     int i14 = i13;
@@ -198,9 +198,9 @@ public final class td extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                         org.telegram.messenger.mp.u1(i132).f4(starsStatus.users, false);
                                                         org.telegram.messenger.mp.u1(i132).Z3(starsStatus.chats, false);
-                                                        tdVar22.f52264r.addAll(starsStatus.history);
-                                                        tdVar22.f52265s = starsStatus.next_offset;
-                                                        tdVar22.f52266w[i14] = false;
+                                                        tdVar22.f52258r.addAll(starsStatus.history);
+                                                        tdVar22.f52259s = starsStatus.next_offset;
+                                                        tdVar22.f52260w[i14] = false;
                                                         tdVar22.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error2 = tL_error;
@@ -208,7 +208,7 @@ public final class td extends LinearLayout {
                                                             org.telegram.ui.Components.lc.e0(tL_error2);
                                                         }
                                                     }
-                                                    if (tdVar22.a() != z12 && (cdVar = tdVar22.f52262f) != null) {
+                                                    if (tdVar22.a() != z12 && (cdVar = tdVar22.f52256f) != null) {
                                                         cdVar.run();
                                                     }
                                                     if (tdVar22.b(i14) != z13) {
@@ -218,7 +218,7 @@ public final class td extends LinearLayout {
                                                     return;
                                                 default:
                                                     td tdVar3 = tdVar2;
-                                                    int i15 = tdVar3.f52258a;
+                                                    int i15 = tdVar3.f52252a;
                                                     TLObject tLObject3 = tLObject;
                                                     boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                     int i16 = i13;
@@ -226,9 +226,9 @@ public final class td extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject3;
                                                         org.telegram.messenger.mp.u1(i15).f4(starsStatus2.users, false);
                                                         org.telegram.messenger.mp.u1(i15).Z3(starsStatus2.chats, false);
-                                                        tdVar3.f52263n.addAll(starsStatus2.history);
+                                                        tdVar3.f52257n.addAll(starsStatus2.history);
                                                         tdVar3.h = starsStatus2.next_offset;
-                                                        tdVar3.f52266w[i16] = false;
+                                                        tdVar3.f52260w[i16] = false;
                                                         tdVar3.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error3 = tL_error;
@@ -236,7 +236,7 @@ public final class td extends LinearLayout {
                                                             org.telegram.ui.Components.lc.e0(tL_error3);
                                                         }
                                                     }
-                                                    if (tdVar3.a() != z12 && (cdVar2 = tdVar3.f52262f) != null) {
+                                                    if (tdVar3.a() != z12 && (cdVar2 = tdVar3.f52256f) != null) {
                                                         cdVar2.run();
                                                     }
                                                     if (tdVar3.b(i16) != z13) {
@@ -252,28 +252,28 @@ public final class td extends LinearLayout {
                         }
                     });
                 }
-            } else if (i7 == 0 && this.f52265s != null && xdVar.f53795d1) {
+            } else if (i7 == 0 && this.f52259s != null && xdVar.f53789d1) {
                 zArr[i7] = true;
                 TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions2 = new TL_stars.TL_payments_getStarsTransactions();
                 tL_payments_getStarsTransactions2.ton = false;
                 tL_payments_getStarsTransactions2.peer = org.telegram.messenger.mp.u1(i11).l1(j3);
-                tL_payments_getStarsTransactions2.offset = this.f52265s;
-                if (this.f52264r.isEmpty()) {
+                tL_payments_getStarsTransactions2.offset = this.f52259s;
+                if (this.f52258r.isEmpty()) {
                     i10 = 5;
                 }
                 tL_payments_getStarsTransactions2.limit = i10;
                 ConnectionsManager.getInstance(i11).sendRequest(tL_payments_getStarsTransactions2, new RequestDelegate(this) {
-                    public final td f50589b;
+                    public final td f50531b;
 
                     {
-                        this.f50589b = this;
+                        this.f50531b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r5) {
                             case 0:
-                                final td tdVar = this.f50589b;
+                                final td tdVar = this.f50531b;
                                 final int i12 = i7;
                                 final boolean z10 = a10;
                                 final boolean z11 = b10;
@@ -285,7 +285,7 @@ public final class td extends LinearLayout {
                                         switch (r7) {
                                             case 0:
                                                 td tdVar22 = tdVar;
-                                                int i132 = tdVar22.f52258a;
+                                                int i132 = tdVar22.f52252a;
                                                 TLObject tLObject2 = tLObject;
                                                 boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                 int i14 = i12;
@@ -293,9 +293,9 @@ public final class td extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                     org.telegram.messenger.mp.u1(i132).f4(starsStatus.users, false);
                                                     org.telegram.messenger.mp.u1(i132).Z3(starsStatus.chats, false);
-                                                    tdVar22.f52264r.addAll(starsStatus.history);
-                                                    tdVar22.f52265s = starsStatus.next_offset;
-                                                    tdVar22.f52266w[i14] = false;
+                                                    tdVar22.f52258r.addAll(starsStatus.history);
+                                                    tdVar22.f52259s = starsStatus.next_offset;
+                                                    tdVar22.f52260w[i14] = false;
                                                     tdVar22.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
@@ -303,7 +303,7 @@ public final class td extends LinearLayout {
                                                         org.telegram.ui.Components.lc.e0(tL_error2);
                                                     }
                                                 }
-                                                if (tdVar22.a() != z10 && (cdVar = tdVar22.f52262f) != null) {
+                                                if (tdVar22.a() != z10 && (cdVar = tdVar22.f52256f) != null) {
                                                     cdVar.run();
                                                 }
                                                 if (tdVar22.b(i14) != z11) {
@@ -313,7 +313,7 @@ public final class td extends LinearLayout {
                                                 return;
                                             default:
                                                 td tdVar3 = tdVar;
-                                                int i15 = tdVar3.f52258a;
+                                                int i15 = tdVar3.f52252a;
                                                 TLObject tLObject3 = tLObject;
                                                 boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                 int i16 = i12;
@@ -321,9 +321,9 @@ public final class td extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject3;
                                                     org.telegram.messenger.mp.u1(i15).f4(starsStatus2.users, false);
                                                     org.telegram.messenger.mp.u1(i15).Z3(starsStatus2.chats, false);
-                                                    tdVar3.f52263n.addAll(starsStatus2.history);
+                                                    tdVar3.f52257n.addAll(starsStatus2.history);
                                                     tdVar3.h = starsStatus2.next_offset;
-                                                    tdVar3.f52266w[i16] = false;
+                                                    tdVar3.f52260w[i16] = false;
                                                     tdVar3.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
@@ -331,7 +331,7 @@ public final class td extends LinearLayout {
                                                         org.telegram.ui.Components.lc.e0(tL_error3);
                                                     }
                                                 }
-                                                if (tdVar3.a() != z10 && (cdVar2 = tdVar3.f52262f) != null) {
+                                                if (tdVar3.a() != z10 && (cdVar2 = tdVar3.f52256f) != null) {
                                                     cdVar2.run();
                                                 }
                                                 if (tdVar3.b(i16) != z11) {
@@ -344,7 +344,7 @@ public final class td extends LinearLayout {
                                 });
                                 return;
                             default:
-                                final td tdVar2 = this.f50589b;
+                                final td tdVar2 = this.f50531b;
                                 final int i13 = i7;
                                 final boolean z12 = a10;
                                 final boolean z13 = b10;
@@ -356,7 +356,7 @@ public final class td extends LinearLayout {
                                         switch (r7) {
                                             case 0:
                                                 td tdVar22 = tdVar2;
-                                                int i132 = tdVar22.f52258a;
+                                                int i132 = tdVar22.f52252a;
                                                 TLObject tLObject2 = tLObject;
                                                 boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                 int i14 = i13;
@@ -364,9 +364,9 @@ public final class td extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                     org.telegram.messenger.mp.u1(i132).f4(starsStatus.users, false);
                                                     org.telegram.messenger.mp.u1(i132).Z3(starsStatus.chats, false);
-                                                    tdVar22.f52264r.addAll(starsStatus.history);
-                                                    tdVar22.f52265s = starsStatus.next_offset;
-                                                    tdVar22.f52266w[i14] = false;
+                                                    tdVar22.f52258r.addAll(starsStatus.history);
+                                                    tdVar22.f52259s = starsStatus.next_offset;
+                                                    tdVar22.f52260w[i14] = false;
                                                     tdVar22.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
@@ -374,7 +374,7 @@ public final class td extends LinearLayout {
                                                         org.telegram.ui.Components.lc.e0(tL_error2);
                                                     }
                                                 }
-                                                if (tdVar22.a() != z12 && (cdVar = tdVar22.f52262f) != null) {
+                                                if (tdVar22.a() != z12 && (cdVar = tdVar22.f52256f) != null) {
                                                     cdVar.run();
                                                 }
                                                 if (tdVar22.b(i14) != z13) {
@@ -384,7 +384,7 @@ public final class td extends LinearLayout {
                                                 return;
                                             default:
                                                 td tdVar3 = tdVar2;
-                                                int i15 = tdVar3.f52258a;
+                                                int i15 = tdVar3.f52252a;
                                                 TLObject tLObject3 = tLObject;
                                                 boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                 int i16 = i13;
@@ -392,9 +392,9 @@ public final class td extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject3;
                                                     org.telegram.messenger.mp.u1(i15).f4(starsStatus2.users, false);
                                                     org.telegram.messenger.mp.u1(i15).Z3(starsStatus2.chats, false);
-                                                    tdVar3.f52263n.addAll(starsStatus2.history);
+                                                    tdVar3.f52257n.addAll(starsStatus2.history);
                                                     tdVar3.h = starsStatus2.next_offset;
-                                                    tdVar3.f52266w[i16] = false;
+                                                    tdVar3.f52260w[i16] = false;
                                                     tdVar3.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
@@ -402,7 +402,7 @@ public final class td extends LinearLayout {
                                                         org.telegram.ui.Components.lc.e0(tL_error3);
                                                     }
                                                 }
-                                                if (tdVar3.a() != z12 && (cdVar2 = tdVar3.f52262f) != null) {
+                                                if (tdVar3.a() != z12 && (cdVar2 = tdVar3.f52256f) != null) {
                                                     cdVar2.run();
                                                 }
                                                 if (tdVar3.b(i16) != z13) {
@@ -424,12 +424,12 @@ public final class td extends LinearLayout {
     public final void d() {
         int i7 = 0;
         while (true) {
-            qd qdVar = this.f52259b;
+            qd qdVar = this.f52253b;
             if (i7 < qdVar.getViewPages().length) {
                 View view = qdVar.getViewPages()[i7];
                 if (view instanceof rd) {
                     rd rdVar = (rd) view;
-                    org.telegram.ui.Components.e51 e51Var = rdVar.f51588a;
+                    org.telegram.ui.Components.e51 e51Var = rdVar.f51564a;
                     e51Var.f34607g3.O(true);
                     if (e51Var.canScrollVertically(1)) {
                         for (int i10 = 0; i10 < e51Var.getChildCount(); i10++) {
@@ -437,7 +437,7 @@ public final class td extends LinearLayout {
                             }
                         }
                     }
-                    rdVar.f51591e.run();
+                    rdVar.f51567e.run();
                     break;
                 }
                 i7++;
@@ -449,11 +449,11 @@ public final class td extends LinearLayout {
 
     public final void e() {
         int h;
-        sd sdVar = this.f52260c;
-        ArrayList arrayList = sdVar.f51978e;
-        ArrayList arrayList2 = sdVar.f51978e;
+        sd sdVar = this.f52254c;
+        ArrayList arrayList = sdVar.f51983e;
+        ArrayList arrayList2 = sdVar.f51983e;
         int size = arrayList.size();
-        qd qdVar = this.f52259b;
+        qd qdVar = this.f52253b;
         if (size == 0) {
             h = -1;
         } else {
@@ -480,14 +480,14 @@ public final class td extends LinearLayout {
         qdVar.setPosition(i12);
         qdVar.F();
         qdVar.j(false);
-        this.f52267x.p();
+        this.f52261x.p();
     }
 
     public org.telegram.ui.Components.ck0 getCurrentListView() {
-        View currentView = this.f52259b.getCurrentView();
+        View currentView = this.f52253b.getCurrentView();
         if (!(currentView instanceof rd)) {
             return null;
         }
-        return ((rd) currentView).f51588a;
+        return ((rd) currentView).f51564a;
     }
 }

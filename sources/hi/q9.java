@@ -6,14 +6,14 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.camera.CameraController;
 public final class q9 implements c6 {
-    public final ta f15296a;
+    public final ta f15293a;
 
     public q9(ta taVar) {
-        this.f15296a = taVar;
+        this.f15293a = taVar;
     }
 
     public final void a() {
-        ta taVar = this.f15296a;
+        ta taVar = this.f15293a;
         ArrayList<d7> content = taVar.B0.getContent();
         int i7 = 0;
         if (content.size() == 1) {
@@ -30,31 +30,31 @@ public final class q9 implements c6 {
         if (n9Var != null) {
             n9Var.a(i7);
         }
-        r8.a(taVar.f15431c, taVar.L1);
+        r8.a(taVar.f15428c, taVar.L1);
         taVar.J(1, true);
     }
 
     public final void b() {
         ArrayList arrayList;
-        ta taVar = this.f15296a;
+        ta taVar = this.f15293a;
         w9 w9Var = taVar.C0;
         if (w9Var != null && !taVar.T1 && !taVar.Q1 && w9Var.isInited()) {
-            ta taVar2 = this.f15296a;
-            if (taVar2.f15445g0 == 0) {
+            ta taVar2 = this.f15293a;
+            if (taVar2.f15442g0 == 0) {
                 m3 m3Var = taVar2.n1;
                 if (m3Var != null) {
                     m3Var.f(true);
                 }
-                if (this.f15296a.p0() && (arrayList = this.f15296a.f15492v2) != null && !arrayList.isEmpty()) {
-                    ta taVar3 = this.f15296a;
-                    org.telegram.messenger.t0.f26915b.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) taVar3.f15492v2.get(taVar3.f15489u2)).commit();
+                if (this.f15293a.p0() && (arrayList = this.f15293a.f15489v2) != null && !arrayList.isEmpty()) {
+                    ta taVar3 = this.f15293a;
+                    org.telegram.messenger.t0.f26913b.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) taVar3.f15489v2.get(taVar3.f15486u2)).commit();
                 }
-                this.f15296a.C0.switchCamera();
-                ta.Z(this.f15296a.C0.isFrontface());
-                if (this.f15296a.p0()) {
-                    this.f15296a.f15480s.c(null);
+                this.f15293a.C0.switchCamera();
+                ta.Z(this.f15293a.C0.isFrontface());
+                if (this.f15293a.p0()) {
+                    this.f15293a.f15477s.c(null);
                 } else {
-                    this.f15296a.f15480s.d();
+                    this.f15293a.f15477s.d();
                 }
             }
         }
@@ -62,9 +62,9 @@ public final class q9 implements c6 {
 
     public final void c() {
         boolean z10;
-        ta taVar = this.f15296a;
-        if (taVar.f15445g0 == 0 && !taVar.Q1 && !taVar.R1) {
-            Activity activity = taVar.f15427b;
+        ta taVar = this.f15293a;
+        if (taVar.f15442g0 == 0 && !taVar.Q1 && !taVar.R1) {
+            Activity activity = taVar.f15424b;
             if (activity != null) {
                 boolean z11 = false;
                 if (Build.VERSION.SDK_INT >= 33) {
@@ -94,8 +94,8 @@ public final class q9 implements c6 {
 
     public final void d() {
         w9 w9Var;
-        ta taVar = this.f15296a;
-        if (!taVar.Q1 && !taVar.T1 && taVar.f15445g0 == 0 && (w9Var = taVar.C0) != null && w9Var.isInited()) {
+        ta taVar = this.f15293a;
+        if (!taVar.Q1 && !taVar.T1 && taVar.f15442g0 == 0 && (w9Var = taVar.C0) != null && w9Var.isInited()) {
             taVar.X0.f(true);
             File file = taVar.H1;
             if (file != null) {
@@ -109,17 +109,17 @@ public final class q9 implements c6 {
             if (a6Var != null) {
                 a6Var.c(true);
             }
-            taVar.H1 = d7.w(taVar.f15431c, "jpg");
+            taVar.H1 = d7.w(taVar.f15428c, "jpg");
             taVar.Q1 = true;
             taVar.o();
             taVar.d2 = false;
-            if (taVar.C0.isFrontface() && taVar.f15489u2 == 1) {
+            if (taVar.C0.isFrontface() && taVar.f15486u2 == 1) {
                 ta.a(taVar);
             }
             if (taVar.p0()) {
-                o2 o2Var = taVar.f15480s;
+                o2 o2Var = taVar.f15477s;
                 t6 t6Var = new t6(this, 3);
-                o2Var.h(o2Var.f15153p);
+                o2Var.h(o2Var.f15150p);
                 o2Var.e(1.0f, 320L, new k2(o2Var, t6Var, 0));
                 return;
             }
@@ -129,7 +129,7 @@ public final class q9 implements c6 {
 
     public final void e(boolean z10) {
         long j3;
-        ta taVar = this.f15296a;
+        ta taVar = this.f15293a;
         if (!taVar.S1 && taVar.R1) {
             taVar.S1 = true;
             o9 o9Var = new o9(this, 0);
@@ -144,9 +144,9 @@ public final class q9 implements c6 {
 
     public final void f(Runnable runnable, boolean z10) {
         w9 w9Var;
-        ta taVar = this.f15296a;
-        if (!taVar.R1 && !taVar.S1 && !taVar.T1 && taVar.f15445g0 == 0 && (w9Var = taVar.C0) != null && w9Var.getCameraSession() != null) {
-            m3 m3Var = taVar.f15462m1;
+        ta taVar = this.f15293a;
+        if (!taVar.R1 && !taVar.S1 && !taVar.T1 && taVar.f15442g0 == 0 && (w9Var = taVar.C0) != null && w9Var.getCameraSession() != null) {
+            m3 m3Var = taVar.f15459m1;
             if (m3Var != null) {
                 m3Var.f(true);
             }
@@ -168,14 +168,14 @@ public final class q9 implements c6 {
                 }
                 taVar.H1 = null;
             }
-            taVar.H1 = d7.x(taVar.f15431c, true);
+            taVar.H1 = d7.x(taVar.f15428c, true);
             taVar.o();
             taVar.d2 = false;
-            if (taVar.C0.isFrontface() && taVar.f15489u2 == 1) {
+            if (taVar.C0.isFrontface() && taVar.f15486u2 == 1) {
                 ta.a(taVar);
             }
             if (taVar.p0()) {
-                taVar.f15480s.c(new p9(this, z10, runnable));
+                taVar.f15477s.c(new p9(this, z10, runnable));
             } else {
                 g(runnable, z10);
             }
@@ -184,7 +184,7 @@ public final class q9 implements c6 {
 
     public final void g(Runnable runnable, boolean z10) {
         boolean z11;
-        ta taVar = this.f15296a;
+        ta taVar = this.f15293a;
         if (taVar.C0 != null) {
             CameraController.getInstance().recordVideo(taVar.C0.getCameraSessionObject(), taVar.H1, false, new di.c7(this, 22), new p9(this, runnable, z10), taVar.C0, true);
             boolean z12 = true;
@@ -202,8 +202,8 @@ public final class q9 implements c6 {
                 if (taVar.P1 != 1) {
                     z12 = false;
                 }
-                e6Var.f14580o0 = -1.0f;
-                e6Var.f14581p0 = z12;
+                e6Var.f14577o0 = -1.0f;
+                e6Var.f14578p0 = z12;
                 e6Var.invalidate();
             }
         }

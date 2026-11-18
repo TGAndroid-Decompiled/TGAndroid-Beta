@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.RadialProgress2;
-public final class a2 extends FrameLayout implements org.telegram.messenger.y5, org.telegram.ui.Cells.h9 {
+public final class a2 extends FrameLayout implements org.telegram.messenger.y5, org.telegram.ui.Cells.i9 {
     public int E;
     public boolean F;
     public int G;
@@ -229,11 +229,11 @@ public final class a2 extends FrameLayout implements org.telegram.messenger.y5, 
             return;
         }
         ImageReceiver imageReceiver = this.f45423e;
-        if (imageReceiver.I() && imageReceiver.f22644i1 == 1.0f) {
+        if (imageReceiver.I() && imageReceiver.f22641i1 == 1.0f) {
             canvas2 = canvas;
         } else {
             canvas2 = canvas;
-            canvas2.drawRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), imageReceiver.A(), g4.f47902q1);
+            canvas2.drawRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), imageReceiver.A(), g4.f47866q1);
         }
         imageReceiver.h(canvas2, null);
         if (imageReceiver.R0) {

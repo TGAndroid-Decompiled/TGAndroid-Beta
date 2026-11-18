@@ -92,18 +92,18 @@ public final class b implements g {
         }
         if (jVar != null) {
             h2.k kVar = this.h;
-            synchronized (kVar.f13775a) {
+            synchronized (kVar.f13772a) {
                 try {
                     ArrayList arrayList = new ArrayList(kVar.d);
                     arrayList.add(jVar);
                     kVar.d = DesugarCollections.unmodifiableList(arrayList);
-                    Integer num = (Integer) kVar.f13776b.get(jVar);
+                    Integer num = (Integer) kVar.f13773b.get(jVar);
                     if (num == null) {
-                        HashSet hashSet = new HashSet(kVar.f13777c);
+                        HashSet hashSet = new HashSet(kVar.f13774c);
                         hashSet.add(jVar);
-                        kVar.f13777c = DesugarCollections.unmodifiableSet(hashSet);
+                        kVar.f13774c = DesugarCollections.unmodifiableSet(hashSet);
                     }
-                    HashMap hashMap = kVar.f13776b;
+                    HashMap hashMap = kVar.f13773b;
                     if (num != null) {
                         i7 = num.intValue() + 1;
                     } else {
@@ -153,7 +153,7 @@ public final class b implements g {
         if (i10 == 0) {
             this.f55729p = 0;
             android.support.v4.media.session.q qVar = this.f55727n;
-            String str = l0.f13786a;
+            String str = l0.f13783a;
             qVar.removeCallbacksAndMessages(null);
             this.f55732s.b();
             this.f55732s = null;
@@ -195,20 +195,20 @@ public final class b implements g {
                 eVar.I = null;
             }
             k8.a aVar = eVar.f55747n;
-            HashSet hashSet = (HashSet) aVar.f18183b;
+            HashSet hashSet = (HashSet) aVar.f18180b;
             hashSet.remove(this);
-            if (((b) aVar.f18184c) == this) {
-                aVar.f18184c = null;
+            if (((b) aVar.f18181c) == this) {
+                aVar.f18181c = null;
                 if (!hashSet.isEmpty()) {
                     b bVar = (b) hashSet.iterator().next();
-                    aVar.f18184c = bVar;
+                    aVar.f18181c = bVar;
                     p n10 = bVar.f55717b.n();
                     bVar.f55738z = n10;
                     android.support.v4.media.session.f fVar = bVar.f55732s;
-                    String str2 = l0.f13786a;
+                    String str2 = l0.f13783a;
                     n10.getClass();
                     fVar.getClass();
-                    fVar.obtainMessage(1, new a(x2.u.f60236g.getAndIncrement(), true, SystemClock.elapsedRealtime(), n10)).sendToTarget();
+                    fVar.obtainMessage(1, new a(x2.u.f60237g.getAndIncrement(), true, SystemClock.elapsedRealtime(), n10)).sendToTarget();
                 }
             }
             if (eVar.f55750w != -9223372036854775807L) {
@@ -259,8 +259,8 @@ public final class b implements g {
     public final void i(h2.j jVar) {
         Set<j> set;
         h2.k kVar = this.h;
-        synchronized (kVar.f13775a) {
-            set = kVar.f13777c;
+        synchronized (kVar.f13772a) {
+            set = kVar.f13774c;
         }
         for (j jVar2 : set) {
             jVar.accept(jVar2);
@@ -311,8 +311,8 @@ public final class b implements g {
         h2.a.d("DefaultDrmSession", "DRM session error", th2);
         if (th2 instanceof Exception) {
             h2.k kVar = this.h;
-            synchronized (kVar.f13775a) {
-                set = kVar.f13777c;
+            synchronized (kVar.f13772a) {
+                set = kVar.f13774c;
             }
             for (j jVar : set) {
                 jVar.d((Exception) th2);
@@ -363,10 +363,10 @@ public final class b implements g {
             o H = this.f55717b.H(bArr, this.f55716a, i7, this.f55721g);
             this.f55736x = H;
             android.support.v4.media.session.f fVar = this.f55732s;
-            String str = l0.f13786a;
+            String str = l0.f13783a;
             H.getClass();
             fVar.getClass();
-            fVar.obtainMessage(2, new a(x2.u.f60236g.getAndIncrement(), z10, SystemClock.elapsedRealtime(), H)).sendToTarget();
+            fVar.obtainMessage(2, new a(x2.u.f60237g.getAndIncrement(), z10, SystemClock.elapsedRealtime(), H)).sendToTarget();
         } catch (Exception | NoSuchMethodError e10) {
             m(e10, true);
         }

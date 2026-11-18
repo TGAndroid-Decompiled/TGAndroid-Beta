@@ -26,12 +26,12 @@ public abstract class bu0 extends au0 {
         if (this.f33783j0) {
             int height = rootView.getHeight();
             if (rect.top != 0) {
-                i7 = org.telegram.messenger.g0.f24115m;
+                i7 = org.telegram.messenger.g0.f24112m;
             }
             return ((height - i7) - org.telegram.messenger.g0.q1(rootView)) - (rect.bottom - rect.top);
         }
         int height2 = (this.f33780g0.getWindow().getDecorView().getHeight() - org.telegram.messenger.g0.q1(rootView)) - rootView.getBottom();
-        if (height2 <= Math.max(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.f24115m)) {
+        if (height2 <= Math.max(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.f24112m)) {
             return 0;
         }
         return height2;
@@ -44,7 +44,7 @@ public abstract class bu0 extends au0 {
             return;
         }
         this.f33782i0 = Q();
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         if (point.x > point.y) {
             z10 = true;
         } else {

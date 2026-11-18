@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 public final class fz0 implements Runnable {
-    public final int f47847a;
-    public final SecretMediaViewer f47848b;
+    public final int f47811a;
+    public final SecretMediaViewer f47812b;
 
     public fz0(SecretMediaViewer secretMediaViewer, int i7) {
-        this.f47847a = i7;
-        this.f47848b = secretMediaViewer;
+        this.f47811a = i7;
+        this.f47812b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
         String format;
         String format2;
-        int i7 = this.f47847a;
-        SecretMediaViewer secretMediaViewer = this.f47848b;
+        int i7 = this.f47811a;
+        SecretMediaViewer secretMediaViewer = this.f47812b;
         switch (i7) {
             case 0:
                 secretMediaViewer.J0 = null;
@@ -123,7 +123,7 @@ public final class fz0 implements Runnable {
     }
 
     public fz0(SecretMediaViewer secretMediaViewer, wq0 wq0Var, int i7) {
-        this.f47847a = i7;
-        this.f47848b = secretMediaViewer;
+        this.f47811a = i7;
+        this.f47812b = secretMediaViewer;
     }
 }

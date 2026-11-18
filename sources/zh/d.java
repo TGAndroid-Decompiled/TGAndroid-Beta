@@ -21,24 +21,24 @@ import org.telegram.ui.Cells.y;
 import org.telegram.ui.Components.d9;
 import org.telegram.ui.ee;
 public final class d {
-    public final h2 f61976a;
-    public final TLRPC.Chat f61977b;
-    public final int f61978c;
+    public final h2 f61977a;
+    public final TLRPC.Chat f61978b;
+    public final int f61979c;
     public FrameLayout d;
-    public u f61979e;
-    public LinearLayout f61980f;
-    public TextView f61981g;
+    public u f61980e;
+    public LinearLayout f61981f;
+    public TextView f61982g;
     public ImageView h;
-    public b f61982i;
-    public TLRPC.ChatFull f61983j;
-    public int f61984k;
-    public int f61985l = -1;
-    public c f61986m;
+    public b f61983i;
+    public TLRPC.ChatFull f61984j;
+    public int f61985k;
+    public int f61986l = -1;
+    public c f61987m;
 
     public d(TLRPC.Chat chat, h2 h2Var) {
-        this.f61976a = h2Var;
-        this.f61977b = chat;
-        this.f61978c = h2Var.getCurrentAccount();
+        this.f61977a = h2Var;
+        this.f61978b = chat;
+        this.f61979c = h2Var.getCurrentAccount();
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -50,25 +50,25 @@ public final class d {
         }
         if (z10 != z12) {
             if (z10) {
-                int i7 = this.f61985l;
-                h2 h2Var = this.f61976a;
-                TLRPC.Chat chat = this.f61977b;
+                int i7 = this.f61986l;
+                h2 h2Var = this.f61977a;
+                TLRPC.Chat chat = this.f61978b;
                 if (i7 == -1 && chat != null) {
                     mp messagesController = h2Var.getMessagesController();
-                    long j3 = chat.f28405id;
-                    this.f61985l = messagesController.h7.getInt("chatPendingRequests" + j3, 0);
+                    long j3 = chat.f28403id;
+                    this.f61986l = messagesController.h7.getInt("chatPendingRequests" + j3, 0);
                 }
-                int i10 = this.f61984k;
-                int i11 = this.f61985l;
+                int i10 = this.f61985k;
+                int i11 = this.f61986l;
                 if (i10 != i11) {
                     if (i11 != 0 && chat != null) {
-                        h2Var.getMessagesController().P4(0, chat.f28405id);
+                        h2Var.getMessagesController().P4(0, chat.f28403id);
                     }
                 } else {
                     return;
                 }
             }
-            c cVar = this.f61986m;
+            c cVar = this.f61987m;
             if (cVar != null) {
                 cVar.g(z10, z11);
             }
@@ -77,60 +77,60 @@ public final class d {
 
     public final FrameLayout b() {
         if (this.d == null) {
-            h2 h2Var = this.f61976a;
+            h2 h2Var = this.f61977a;
             FrameLayout frameLayout = new FrameLayout(h2Var.getParentActivity());
             this.d = frameLayout;
             frameLayout.setBackground(n6.N0(false));
             this.d.setOnClickListener(new View.OnClickListener(this) {
-                public final d f61975b;
+                public final d f61976b;
 
                 {
-                    this.f61975b = this;
+                    this.f61976b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            d dVar = this.f61975b;
-                            h2 h2Var2 = dVar.f61976a;
-                            if (dVar.f61982i == null) {
-                                dVar.f61982i = new b(dVar, h2Var2, dVar.f61977b.f28405id);
+                            d dVar = this.f61976b;
+                            h2 h2Var2 = dVar.f61977a;
+                            if (dVar.f61983i == null) {
+                                dVar.f61983i = new b(dVar, h2Var2, dVar.f61978b.f28403id);
                             }
-                            h2Var2.showDialog(dVar.f61982i);
+                            h2Var2.showDialog(dVar.f61983i);
                             return;
                         default:
-                            d dVar2 = this.f61975b;
-                            dVar2.f61976a.getMessagesController().P4(dVar2.f61984k, dVar2.f61977b.f28405id);
-                            dVar2.f61985l = dVar2.f61984k;
+                            d dVar2 = this.f61976b;
+                            dVar2.f61977a.getMessagesController().P4(dVar2.f61985k, dVar2.f61978b.f28403id);
+                            dVar2.f61986l = dVar2.f61985k;
                             dVar2.a(false, true);
                             return;
                     }
                 }
             });
             LinearLayout linearLayout = new LinearLayout(h2Var.getParentActivity());
-            this.f61980f = linearLayout;
+            this.f61981f = linearLayout;
             linearLayout.setOrientation(0);
-            this.d.addView(this.f61980f, ma.d(-1, -1.0f, 48, 0.0f, 0.0f, 100.0f, 0.0f));
+            this.d.addView(this.f61981f, ma.d(-1, -1.0f, 48, 0.0f, 0.0f, 100.0f, 0.0f));
             u uVar = new u(1, h2Var.getParentActivity(), false);
-            this.f61979e = uVar;
+            this.f61980e = uVar;
             uVar.setAvatarsTextSize(g0.L(18.0f));
-            d9 d9Var = this.f61979e.f34650a;
+            d9 d9Var = this.f61980e.f34650a;
             for (int i7 = 0; i7 < d9Var.f34305c.length; i7++) {
                 d9Var.j(0, 0, null);
             }
-            this.f61980f.addView(this.f61979e, ma.d(-2, -1.0f, 48, 8.0f, 0.0f, 10.0f, 0.0f));
+            this.f61981f.addView(this.f61980e, ma.d(-2, -1.0f, 48, 8.0f, 0.0f, 10.0f, 0.0f));
             TextView textView = new TextView(h2Var.getParentActivity());
-            this.f61981g = textView;
+            this.f61982g = textView;
             textView.setEllipsize(TextUtils.TruncateAt.END);
-            this.f61981g.setGravity(16);
-            this.f61981g.setSingleLine();
-            this.f61981g.setText((CharSequence) null);
-            u6.U(this.f61981g, n6.We, h2Var.getResourceProvider());
-            this.f61981g.setTypeface(g0.o());
-            this.f61980f.addView(this.f61981g, ma.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.f61982g.setGravity(16);
+            this.f61982g.setSingleLine();
+            this.f61982g.setText((CharSequence) null);
+            u6.U(this.f61982g, n6.We, h2Var.getResourceProvider());
+            this.f61982g.setTypeface(g0.o());
+            this.f61981f.addView(this.f61982g, ma.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
             this.h = new ImageView(h2Var.getParentActivity());
-            int i10 = n6.f29770x7;
+            int i10 = n6.f29768x7;
             int themedColor = h2Var.getThemedColor(i10);
             y h02 = n6.h0(436207615 & themedColor, 1, g0.L(14.0f));
             if ((themedColor >>> 24) == 255) {
@@ -143,34 +143,34 @@ public final class d {
             this.h.setImageResource(2131231984);
             this.h.setScaleType(ImageView.ScaleType.CENTER);
             this.h.setOnClickListener(new View.OnClickListener(this) {
-                public final d f61975b;
+                public final d f61976b;
 
                 {
-                    this.f61975b = this;
+                    this.f61976b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            d dVar = this.f61975b;
-                            h2 h2Var2 = dVar.f61976a;
-                            if (dVar.f61982i == null) {
-                                dVar.f61982i = new b(dVar, h2Var2, dVar.f61977b.f28405id);
+                            d dVar = this.f61976b;
+                            h2 h2Var2 = dVar.f61977a;
+                            if (dVar.f61983i == null) {
+                                dVar.f61983i = new b(dVar, h2Var2, dVar.f61978b.f28403id);
                             }
-                            h2Var2.showDialog(dVar.f61982i);
+                            h2Var2.showDialog(dVar.f61983i);
                             return;
                         default:
-                            d dVar2 = this.f61975b;
-                            dVar2.f61976a.getMessagesController().P4(dVar2.f61984k, dVar2.f61977b.f28405id);
-                            dVar2.f61985l = dVar2.f61984k;
+                            d dVar2 = this.f61976b;
+                            dVar2.f61977a.getMessagesController().P4(dVar2.f61985k, dVar2.f61978b.f28403id);
+                            dVar2.f61986l = dVar2.f61985k;
                             dVar2.a(false, true);
                             return;
                     }
                 }
             });
             this.d.addView(this.h, ma.d(36, -1.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
-            TLRPC.ChatFull chatFull = this.f61983j;
+            TLRPC.ChatFull chatFull = this.f61984j;
             if (chatFull != null) {
                 d(chatFull.requests_pending, chatFull.recent_requesters, false);
             }
@@ -179,34 +179,34 @@ public final class d {
     }
 
     public final void c(ee eeVar) {
-        this.f61986m = eeVar;
+        this.f61987m = eeVar;
     }
 
     public final void d(int i7, List list, boolean z10) {
         if (this.d != null) {
-            h2 h2Var = this.f61976a;
+            h2 h2Var = this.f61977a;
             if (i7 <= 0) {
-                TLRPC.Chat chat = this.f61977b;
+                TLRPC.Chat chat = this.f61978b;
                 if (chat != null) {
-                    h2Var.getMessagesController().P4(0, chat.f28405id);
-                    this.f61985l = 0;
+                    h2Var.getMessagesController().P4(0, chat.f28403id);
+                    this.f61986l = 0;
                 }
                 a(false, z10);
-                this.f61984k = 0;
-            } else if (this.f61984k != i7) {
-                this.f61984k = i7;
-                this.f61981g.setText(gd.G(i7, "JoinUsersRequests", new Object[0]));
+                this.f61985k = 0;
+            } else if (this.f61985k != i7) {
+                this.f61985k = i7;
+                this.f61982g.setText(gd.G(i7, "JoinUsersRequests", new Object[0]));
                 a(true, z10);
                 if (list != null && !list.isEmpty()) {
                     int min = Math.min(3, list.size());
                     for (int i10 = 0; i10 < min; i10++) {
                         TLRPC.User c22 = h2Var.getMessagesController().c2((Long) list.get(i10));
                         if (c22 != null) {
-                            this.f61979e.b(i10, this.f61978c, c22);
+                            this.f61980e.b(i10, this.f61979c, c22);
                         }
                     }
-                    this.f61979e.setCount(min);
-                    this.f61979e.a(true);
+                    this.f61980e.setCount(min);
+                    this.f61980e.a(true);
                 }
             }
         }

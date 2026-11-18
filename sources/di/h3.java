@@ -8,29 +8,29 @@ import org.telegram.messenger.mp;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 public final class h3 implements Runnable {
-    public final int f8921a;
-    public final f6 f8922b;
-    public final String f8923c;
+    public final int f8918a;
+    public final f6 f8919b;
+    public final String f8920c;
 
     public h3(f6 f6Var, String str, int i7) {
-        this.f8921a = i7;
-        this.f8922b = f6Var;
-        this.f8923c = str;
+        this.f8918a = i7;
+        this.f8919b = f6Var;
+        this.f8920c = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f8921a;
-        String str = this.f8923c;
-        f6 f6Var = this.f8922b;
+        int i7 = this.f8918a;
+        String str = this.f8920c;
+        f6 f6Var = this.f8919b;
         switch (i7) {
             case 0:
                 Context context = f6Var.getContext();
-                vf.c.v(context, mp.u1(f6Var.f30189a).K6 + str, false);
+                vf.c.v(context, mp.u1(f6Var.f30187a).K6 + str, false);
                 return;
             case 1:
                 long j3 = f6Var.T1;
-                f6Var.f8782g2.setLoading(false);
+                f6Var.f8779g2.setLoading(false);
                 if (!TextUtils.isEmpty(str)) {
                     f6Var.dismiss();
                     org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
@@ -42,11 +42,11 @@ public final class h3 implements Runnable {
                                 return;
                             }
                         }
-                        ks f10 = ks.f(f6Var.f30189a);
+                        ks f10 = ks.f(f6Var.f30187a);
                         Long valueOf = Long.valueOf(j3);
                         Boolean bool = Boolean.FALSE;
                         f10.k(6, valueOf, bool);
-                        ks.f(f6Var.f30189a).k(5, Long.valueOf(j3), bool);
+                        ks.f(f6Var.f30187a).k(5, Long.valueOf(j3), bool);
                         bn ua2 = bn.ua(j3);
                         ua2.whenFullyVisible(new w2(3, f6Var, ua2));
                         Q.presentFragment(ua2);
@@ -58,23 +58,23 @@ public final class h3 implements Runnable {
                 return;
             case 2:
                 Context context2 = f6Var.getContext();
-                vf.c.v(context2, mp.u1(f6Var.f30189a).K6 + str, false);
+                vf.c.v(context2, mp.u1(f6Var.f30187a).K6 + str, false);
                 return;
             case 3:
                 Context context3 = f6Var.getContext();
-                vf.c.v(context3, mp.u1(f6Var.f30189a).K6 + str, false);
+                vf.c.v(context3, mp.u1(f6Var.f30187a).K6 + str, false);
                 return;
             case 4:
                 Context context4 = f6Var.getContext();
-                vf.c.v(context4, mp.u1(f6Var.f30189a).K6 + str, false);
+                vf.c.v(context4, mp.u1(f6Var.f30187a).K6 + str, false);
                 return;
             case 5:
                 Context context5 = f6Var.getContext();
-                vf.c.v(context5, mp.u1(f6Var.f30189a).K6 + str, false);
+                vf.c.v(context5, mp.u1(f6Var.f30187a).K6 + str, false);
                 return;
             case 6:
                 Context context6 = f6Var.getContext();
-                vf.c.v(context6, mp.u1(f6Var.f30189a).K6 + str, false);
+                vf.c.v(context6, mp.u1(f6Var.f30187a).K6 + str, false);
                 return;
             case 7:
                 org.telegram.messenger.g0.g(str);
@@ -85,7 +85,7 @@ public final class h3 implements Runnable {
             default:
                 f6Var.dismiss();
                 Context context7 = f6Var.getContext();
-                vf.c.t(context7, "https://" + mp.u1(f6Var.f30189a).X2 + "/" + str);
+                vf.c.t(context7, "https://" + mp.u1(f6Var.f30187a).X2 + "/" + str);
                 return;
         }
     }

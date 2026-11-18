@@ -5,16 +5,16 @@ import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import org.telegram.tgnet.TLObject;
 public final class av extends MetricAffectingSpan {
-    public final ev f22972a;
-    public final int f22973b;
-    public final boolean f22974c;
+    public final ev f22969a;
+    public final int f22970b;
+    public final boolean f22971c;
     public boolean d;
-    public int f22975e;
+    public int f22972e;
 
     public av(ev evVar, int i7, boolean z10) {
-        this.f22972a = evVar;
-        this.f22973b = i7;
-        this.f22974c = z10;
+        this.f22969a = evVar;
+        this.f22970b = i7;
+        this.f22971c = z10;
     }
 
     public final void a(TextPaint textPaint) {
@@ -25,7 +25,7 @@ public final class av extends MetricAffectingSpan {
         int w02;
         int i10;
         int i11;
-        int i12 = this.f22973b;
+        int i12 = this.f22970b;
         int i13 = i12 & 15;
         if (i13 == 8) {
             typeface = Typeface.MONOSPACE;
@@ -84,7 +84,7 @@ public final class av extends MetricAffectingSpan {
                     break;
                 case 8:
                     int i15 = i14 - 2;
-                    L = g0.L(Math.max(Math.min(10, i15), i15 - this.f22975e));
+                    L = g0.L(Math.max(Math.min(10, i15), i15 - this.f22972e));
                     break;
                 case 9:
                 case 11:
@@ -109,10 +109,10 @@ public final class av extends MetricAffectingSpan {
             L -= g0.L(4.0f);
         }
         textPaint.setTextSize(L);
-        if (!this.f22974c) {
+        if (!this.f22971c) {
             textPaint.setFlags(TLObject.setFlag(TLObject.setFlag(textPaint.getFlags(), 8, TLObject.hasFlag(i12, 64)), 16, TLObject.hasFlag(i12, 128)));
             if (i13 != 8) {
-                ev evVar = this.f22972a;
+                ev evVar = this.f22969a;
                 if (i13 == 11) {
                     if (evVar.E()) {
                         i11 = org.telegram.ui.ActionBar.n6.Tb;

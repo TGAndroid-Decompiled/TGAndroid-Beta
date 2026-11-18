@@ -33,7 +33,7 @@ public final class h10 extends LinearLayout {
         addView(textView, c8.ma.t(-2, -2, 49, 0, 15, 0, 7));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29379c7, null);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29377c7, null);
         textView2.setGravity(1);
         if (org.telegram.messenger.j10.i(i7).q()) {
             i10 = 2131750462;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 public final class h implements Iterable {
     public final d f57677a;
     public final c f57679c;
@@ -18,7 +18,7 @@ public final class h implements Iterable {
         this.f57677a = dVar;
         this.d = new g(this, dVar);
         if (interpolator != null && j3 > 0) {
-            this.f57679c = new c(0, new b5(this), interpolator, j3);
+            this.f57679c = new c(0, new c5(this), interpolator, j3);
         } else {
             this.f57679c = null;
         }

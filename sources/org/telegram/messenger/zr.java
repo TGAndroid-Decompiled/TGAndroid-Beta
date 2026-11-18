@@ -14,14 +14,14 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 public abstract class zr {
-    public static final LinkedList f28347a;
-    public static boolean f28348b;
-    public static wr f28349c;
+    public static final LinkedList f28345a;
+    public static boolean f28346b;
+    public static wr f28347c;
     public static ComponentName d;
 
     static {
         LinkedList linkedList = new LinkedList();
-        f28347a = linkedList;
+        f28345a = linkedList;
         linkedList.add(NotificationBadge$AdwHomeBadger.class);
         linkedList.add(NotificationBadge$ApexHomeBadger.class);
         linkedList.add(NotificationBadge$NewHtcHomeBadger.class);
@@ -37,7 +37,7 @@ public abstract class zr {
     }
 
     public static boolean a(Intent intent) {
-        List<ResolveInfo> queryBroadcastReceivers = t0.f26915b.getPackageManager().queryBroadcastReceivers(intent, 0);
+        List<ResolveInfo> queryBroadcastReceivers = t0.f26913b.getPackageManager().queryBroadcastReceivers(intent, 0);
         if (queryBroadcastReceivers == null || queryBroadcastReceivers.size() <= 0) {
             return false;
         }
@@ -47,7 +47,7 @@ public abstract class zr {
     public static void b() {
         wr wrVar;
         wr wrVar2;
-        Context context = t0.f26915b;
+        Context context = t0.f26913b;
         Intent launchIntentForPackage = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
         if (launchIntentForPackage != null) {
             d = launchIntentForPackage.getComponent();
@@ -56,7 +56,7 @@ public abstract class zr {
             ResolveInfo resolveActivity = context.getPackageManager().resolveActivity(intent, 65536);
             if (resolveActivity != null) {
                 String str = resolveActivity.activityInfo.packageName;
-                Iterator it = f28347a.iterator();
+                Iterator it = f28345a.iterator();
                 while (true) {
                     if (!it.hasNext()) {
                         break;
@@ -67,11 +67,11 @@ public abstract class zr {
                         wrVar2 = null;
                     }
                     if (wrVar2 != null && wrVar2.b().contains(str)) {
-                        f28349c = wrVar2;
+                        f28347c = wrVar2;
                         break;
                     }
                 }
-                if (f28349c != null) {
+                if (f28347c != null) {
                     return;
                 }
             }
@@ -79,7 +79,7 @@ public abstract class zr {
             if (queryIntentActivities != null) {
                 for (int i7 = 0; i7 < queryIntentActivities.size(); i7++) {
                     String str2 = queryIntentActivities.get(i7).activityInfo.packageName;
-                    Iterator it2 = f28347a.iterator();
+                    Iterator it2 = f28345a.iterator();
                     while (true) {
                         if (!it2.hasNext()) {
                             break;
@@ -90,19 +90,19 @@ public abstract class zr {
                             wrVar = null;
                         }
                         if (wrVar != null && wrVar.b().contains(str2)) {
-                            f28349c = wrVar;
+                            f28347c = wrVar;
                             break;
                         }
                     }
-                    if (f28349c != null) {
+                    if (f28347c != null) {
                         break;
                     }
                 }
             }
-            if (f28349c == null) {
+            if (f28347c == null) {
                 String str3 = Build.MANUFACTURER;
                 if (str3.equalsIgnoreCase("Xiaomi")) {
-                    f28349c = new wr() {
+                    f28347c = new wr() {
                         @Override
                         public final void a(int i10) {
                             Integer valueOf;
@@ -136,19 +136,19 @@ public abstract class zr {
                         }
                     };
                 } else if (str3.equalsIgnoreCase("ZUK")) {
-                    f28349c = new NotificationBadge$ZukHomeBadger();
+                    f28347c = new NotificationBadge$ZukHomeBadger();
                 } else if (str3.equalsIgnoreCase("OPPO")) {
-                    f28349c = new wr() {
-                        public int f22765a = -1;
+                    f28347c = new wr() {
+                        public int f22762a = -1;
 
                         @Override
                         public final void a(int i10) {
-                            if (this.f22765a != i10) {
-                                this.f22765a = i10;
+                            if (this.f22762a != i10) {
+                                this.f22762a = i10;
                                 try {
                                     Bundle bundle = new Bundle();
                                     bundle.putInt("app_badge_count", i10);
-                                    t0.f26915b.getContentResolver().call(Uri.parse("content://com.android.badge/badge"), "setAppBadgeCount", (String) null, bundle);
+                                    t0.f26913b.getContentResolver().call(Uri.parse("content://com.android.badge/badge"), "setAppBadgeCount", (String) null, bundle);
                                 } catch (Throwable unused3) {
                                 }
                             }
@@ -160,15 +160,15 @@ public abstract class zr {
                         }
                     };
                 } else if (str3.equalsIgnoreCase("VIVO")) {
-                    f28349c = new wr() {
+                    f28347c = new wr() {
                         @Override
                         public final void a(int i10) {
                             Intent intent2 = new Intent("launcher.action.CHANGE_APPLICATION_NOTIFICATION_NUM");
                             intent2.setPackage("com.vivo.launcher");
-                            intent2.putExtra("packageName", t0.f26915b.getPackageName());
+                            intent2.putExtra("packageName", t0.f26913b.getPackageName());
                             intent2.putExtra("className", zr.d.getClassName());
                             intent2.putExtra("notificationNum", i10);
-                            t0.f26915b.sendBroadcast(intent2);
+                            t0.f26913b.sendBroadcast(intent2);
                         }
 
                         @Override
@@ -177,7 +177,7 @@ public abstract class zr {
                         }
                     };
                 } else {
-                    f28349c = new NotificationBadge$DefaultBadger();
+                    f28347c = new NotificationBadge$DefaultBadger();
                 }
             }
         }

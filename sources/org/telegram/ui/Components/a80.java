@@ -30,7 +30,7 @@ public final class a80 implements PopupWindow.OnDismissListener {
                 m5Var.animate().alpha(0.0f).setDuration(150L).setListener(new q60(this, 3));
                 return;
             default:
-                ((org.telegram.ui.iy) this.f33265e).f47086y = null;
+                ((org.telegram.ui.iy) this.f33265e).f47009y = null;
                 hi.m5 m5Var2 = (hi.m5) this.f33264c;
                 m5Var2.animate().cancel();
                 m5Var2.animate().alpha(0.0f).setDuration(150L).setListener(new org.telegram.ui.ay(this, 0));

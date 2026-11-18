@@ -24,7 +24,7 @@ public final class ta0 extends View implements org.telegram.ui.ActionBar.c6 {
         this.f39962f = str;
         this.h = str2;
         this.f39959b = i6Var;
-        int i11 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i11, i6Var), 2, -1);
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i11);
         setBackground(h02);
@@ -35,8 +35,8 @@ public final class ta0 extends View implements org.telegram.ui.ActionBar.c6 {
         m6Var.w(org.telegram.messenger.g0.L(16.0f));
         m6Var.u(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.E8, i6Var));
         m6Var.setCallback(this);
-        m6Var.q(!org.telegram.messenger.gd.f24216a0);
-        if (org.telegram.messenger.gd.f24216a0) {
+        m6Var.q(!org.telegram.messenger.gd.f24213a0);
+        if (org.telegram.messenger.gd.f24213a0) {
             m6Var.f37377b = 5;
         }
         TextPaint textPaint = m6Var.f37375a;
@@ -74,7 +74,7 @@ public final class ta0 extends View implements org.telegram.ui.ActionBar.c6 {
         } else {
             str = this.h;
         }
-        if (z11 && !org.telegram.messenger.gd.f24216a0) {
+        if (z11 && !org.telegram.messenger.gd.f24213a0) {
             z12 = true;
         } else {
             z12 = false;
@@ -113,7 +113,7 @@ public final class ta0 extends View implements org.telegram.ui.ActionBar.c6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        boolean z10 = org.telegram.messenger.gd.f24216a0;
+        boolean z10 = org.telegram.messenger.gd.f24213a0;
         m6 m6Var = this.f39958a;
         pa0 pa0Var = this.f39960c;
         if (z10) {

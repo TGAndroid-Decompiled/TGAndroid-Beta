@@ -21,17 +21,17 @@ public final class n5 extends rg.b {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        return ((s5) this.d.f52163d0.get(f1Var.b())).f56590b;
+        return ((s5) this.d.f52165d0.get(f1Var.b())).f56590b;
     }
 
     @Override
     public final int b() {
-        return this.d.f52163d0.size();
+        return this.d.f52165d0.size();
     }
 
     @Override
     public final int d(int i7) {
-        return ((s5) this.d.f52163d0.get(i7)).f56589a;
+        return ((s5) this.d.f52165d0.get(i7)).f56589a;
     }
 
     @Override
@@ -41,10 +41,10 @@ public final class n5 extends rg.b {
         int i11;
         t5 t5Var = this.d;
         int i12 = t5Var.T;
-        TLRPC.Chat chat = t5Var.f52169j0;
-        ArrayList arrayList = t5Var.f52163d0;
-        int i13 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        TLRPC.Chat chat = t5Var.f52171j0;
+        ArrayList arrayList = t5Var.f52165d0;
+        int i13 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         if (i13 != 4 && i13 != 14 && i13 != 15) {
             if (i13 != 1 && i13 != 12 && i13 != 16) {
                 if (i13 == 0) {
@@ -88,31 +88,31 @@ public final class n5 extends rg.b {
                     } else {
                         a02 = org.telegram.messenger.gd.a0("BoostExpireOn", null, 2131753659, org.telegram.messenger.gd.r(boost.expires, false));
                     }
-                    bVar.d(c22, org.telegram.messenger.i5.p(c22), a02, !((s5) arrayList.get(i7)).f51903f);
+                    bVar.d(c22, org.telegram.messenger.i5.p(c22), a02, !((s5) arrayList.get(i7)).f51892f);
                     bVar.setStatus(boost);
                     bVar.setAvatarPadding(5);
                     return;
                 } else if (i13 == 6) {
-                    org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-                    z8Var.setText(((s5) arrayList.get(i7)).f51901c);
-                    z8Var.setTextColor(org.telegram.ui.ActionBar.n6.r1(0.875f, -1));
+                    org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
+                    a9Var.setText(((s5) arrayList.get(i7)).f51890c);
+                    a9Var.setTextColor(org.telegram.ui.ActionBar.n6.r1(0.875f, -1));
                     return;
                 } else if (i13 == 9) {
-                    org.telegram.ui.Cells.x4 x4Var = (org.telegram.ui.Cells.x4) view;
-                    if (t5Var.f52164e0 == 0) {
-                        x4Var.b(2131230871, 5, org.telegram.messenger.gd.G(t5Var.f52160a0, "BoostingShowMoreBoosts", new Object[0]), false);
+                    org.telegram.ui.Cells.y4 y4Var = (org.telegram.ui.Cells.y4) view;
+                    if (t5Var.f52166e0 == 0) {
+                        y4Var.b(2131230871, 5, org.telegram.messenger.gd.G(t5Var.f52162a0, "BoostingShowMoreBoosts", new Object[0]), false);
                         return;
                     } else {
-                        x4Var.b(2131230871, 5, org.telegram.messenger.gd.G(t5Var.f52162c0, "BoostingShowMoreGifts", new Object[0]), false);
+                        y4Var.b(2131230871, 5, org.telegram.messenger.gd.G(t5Var.f52164c0, "BoostingShowMoreGifts", new Object[0]), false);
                         return;
                     }
                 } else if (i13 == 3) {
-                    ((org.telegram.ui.Components.e80) view).setLink(((s5) arrayList.get(i7)).f51901c);
+                    ((org.telegram.ui.Components.e80) view).setLink(((s5) arrayList.get(i7)).f51890c);
                     return;
                 } else if (i13 == 11) {
                     s5 s5Var = (s5) arrayList.get(i7);
-                    TL_stories.PrepaidGiveaway prepaidGiveaway = s5Var.f51902e;
-                    boolean z10 = s5Var.f51903f;
+                    TL_stories.PrepaidGiveaway prepaidGiveaway = s5Var.f51891e;
+                    boolean z10 = s5Var.f51892f;
                     bh.c cVar = (bh.c) view;
                     if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                         cVar.d(prepaidGiveaway, org.telegram.messenger.gd.G(prepaidGiveaway.quantity, "BoostingTelegramPremiumCountPlural", new Object[0]), org.telegram.messenger.gd.G(prepaidGiveaway.quantity, "BoostingSubscriptionsCountPlural", org.telegram.messenger.gd.G(((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, "PrepaidGiveawayMonths", new Object[0])), !z10);
@@ -124,14 +124,14 @@ public final class n5 extends rg.b {
                     cVar.setAvatarPadding(5);
                     return;
                 } else if (i13 == 13) {
-                    if (t5Var.W.getTag() == null || ((Integer) t5Var.W.getTag()).intValue() != Objects.hash(Integer.valueOf(t5Var.f52174p0), Integer.valueOf(t5Var.f52173o0))) {
-                        t5Var.W.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(t5Var.f52174p0), Integer.valueOf(t5Var.f52173o0))));
+                    if (t5Var.W.getTag() == null || ((Integer) t5Var.W.getTag()).intValue() != Objects.hash(Integer.valueOf(t5Var.f52176p0), Integer.valueOf(t5Var.f52175o0))) {
+                        t5Var.W.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(t5Var.f52176p0), Integer.valueOf(t5Var.f52175o0))));
                         t5Var.W.f();
-                        t5Var.W.a(0, org.telegram.messenger.gd.G(t5Var.f52174p0, "BoostingBoostsCount", new Object[0]), null);
-                        if (org.telegram.messenger.mp.u1(i12).f25761s4 && (i10 = t5Var.f52173o0) > 0 && i10 != t5Var.f52174p0) {
+                        t5Var.W.a(0, org.telegram.messenger.gd.G(t5Var.f52176p0, "BoostingBoostsCount", new Object[0]), null);
+                        if (org.telegram.messenger.mp.u1(i12).f25759s4 && (i10 = t5Var.f52175o0) > 0 && i10 != t5Var.f52176p0) {
                             t5Var.W.a(1, org.telegram.messenger.gd.G(i10, "BoostingGiftsCount", new Object[0]), null);
                         }
-                        t5Var.W.setInitialTabId(t5Var.f52164e0);
+                        t5Var.W.setInitialTabId(t5Var.f52166e0);
                         t5Var.W.c();
                         return;
                     }
@@ -141,9 +141,9 @@ public final class n5 extends rg.b {
                 }
             }
             ng.c cVar2 = (ng.c) view;
-            cVar2.setTitle(((s5) arrayList.get(i7)).f51901c);
+            cVar2.setTitle(((s5) arrayList.get(i7)).f51890c);
             cVar2.c(false);
-            if (f1Var.f59126f == 12) {
+            if (f1Var.f59127f == 12) {
                 cVar2.setPadding(org.telegram.messenger.g0.L(3.0f), cVar2.getPaddingTop(), cVar2.getPaddingRight(), cVar2.getPaddingBottom());
             }
         }
@@ -151,7 +151,7 @@ public final class n5 extends rg.b {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View y6Var;
+        View z6Var;
         bi.p2 p2Var;
         org.telegram.ui.ActionBar.i6 i6Var;
         int i10;
@@ -168,8 +168,8 @@ public final class n5 extends rg.b {
                 p2Var = cVar;
                 break;
             case 2:
-                y6Var = new org.telegram.ui.Cells.y6(viewGroup.getContext(), 0, 0);
-                p2Var = y6Var;
+                z6Var = new org.telegram.ui.Cells.z6(viewGroup.getContext(), 0, 0);
+                p2Var = z6Var;
                 break;
             case 3:
                 org.telegram.ui.Components.e80 e80Var = new org.telegram.ui.Components.e80(t5Var.getParentActivity(), t5Var, null, false, false);
@@ -189,38 +189,38 @@ public final class n5 extends rg.b {
             case 6:
                 Context context = viewGroup.getContext();
                 i6Var = ((org.telegram.ui.ActionBar.h2) t5Var).resourceProvider;
-                y6Var = new org.telegram.ui.Cells.z8(20, context, i6Var);
-                p2Var = y6Var;
+                z6Var = new org.telegram.ui.Cells.a9(20, context, i6Var);
+                p2Var = z6Var;
                 break;
             case 7:
-                p2Var = new org.telegram.ui.Cells.v3(t5Var.getParentActivity(), 8);
+                p2Var = new org.telegram.ui.Cells.w3(t5Var.getParentActivity(), 8);
                 break;
             case 8:
                 bi.p2 p2Var2 = new bi.p2(t5Var.getParentActivity(), 9);
                 TextView textView = new TextView(t5Var.getParentActivity());
-                if (org.telegram.messenger.v3.V(t5Var.f52169j0)) {
+                if (org.telegram.messenger.v3.V(t5Var.f52171j0)) {
                     i10 = 2131748042;
                 } else {
                     i10 = 2131748043;
                 }
                 org.telegram.messenger.n10.l(14.0f, i10, 1, textView, null);
-                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29788y6, null);
+                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29786y6, null);
                 textView.setGravity(17);
                 p2Var2.addView(textView, c8.ma.d(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
                 p2Var = p2Var2;
                 break;
             case 9:
                 m5 m5Var = new m5(t5Var.getParentActivity(), 0);
-                m5Var.a(org.telegram.ui.ActionBar.n6.f29731v6, org.telegram.ui.ActionBar.n6.f29712u6);
+                m5Var.a(org.telegram.ui.ActionBar.n6.f29729v6, org.telegram.ui.ActionBar.n6.f29710u6);
                 p2Var = m5Var;
                 break;
             case 10:
-                org.telegram.ui.Cells.m8 m8Var = new org.telegram.ui.Cells.m8(t5Var.getParentActivity());
-                m8Var.o(2131232174, org.telegram.messenger.gd.a0(null, null, 2131753510, new Object[0]), false);
-                m8Var.f31086s = 64;
-                int i11 = org.telegram.ui.ActionBar.n6.f29636q6;
-                m8Var.g(i11, i11);
-                p2Var = m8Var;
+                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(t5Var.getParentActivity());
+                n8Var.o(2131232174, org.telegram.messenger.gd.a0(null, null, 2131753510, new Object[0]), false);
+                n8Var.f31141s = 64;
+                int i11 = org.telegram.ui.ActionBar.n6.f29634q6;
+                n8Var.g(i11, i11);
+                p2Var = n8Var;
                 break;
             case 11:
                 p2Var = new bh.c(t5Var.getParentActivity());
@@ -235,10 +235,10 @@ public final class n5 extends rg.b {
                 i6Var2 = ((org.telegram.ui.ActionBar.h2) t5Var).resourceProvider;
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(parentActivity, i6Var2);
                 t5Var.W = scrollSlidingTextTabStrip;
-                int i12 = org.telegram.ui.ActionBar.n6.f29331a;
-                int i13 = org.telegram.ui.ActionBar.n6.f29761wi;
-                int i14 = org.telegram.ui.ActionBar.n6.f29742vi;
-                int i15 = org.telegram.ui.ActionBar.n6.f29331a;
+                int i12 = org.telegram.ui.ActionBar.n6.f29329a;
+                int i13 = org.telegram.ui.ActionBar.n6.f29759wi;
+                int i14 = org.telegram.ui.ActionBar.n6.f29740vi;
+                int i15 = org.telegram.ui.ActionBar.n6.f29329a;
                 scrollSlidingTextTabStrip.M = i13;
                 scrollSlidingTextTabStrip.N = i14;
                 scrollSlidingTextTabStrip.updateColors();

@@ -16,20 +16,20 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.NumberTextView;
 import org.telegram.ui.bn;
 public final class i2 extends ChatActivityEnterView {
-    public ValueAnimator f12088o7;
-    public int f12089p7;
-    public int f12090q7;
-    public int f12091r7;
-    public final z3 f12092s7;
+    public ValueAnimator f12085o7;
+    public int f12086p7;
+    public int f12087q7;
+    public int f12088r7;
+    public final z3 f12089s7;
 
     public i2(z3 z3Var, Activity activity, z3 z3Var2, g2 g2Var) {
         super(activity, z3Var2, null, true, g2Var);
-        this.f12092s7 = z3Var;
+        this.f12089s7 = z3Var;
     }
 
     @Override
     public final void F1(float f10, float f11, float f12, boolean z10) {
-        LinearLayout linearLayout = this.f12092s7.Q1;
+        LinearLayout linearLayout = this.f12089s7.Q1;
         if (linearLayout != null) {
             linearLayout.setTranslationX((1.0f - f12) * f10);
         }
@@ -42,7 +42,7 @@ public final class i2 extends ChatActivityEnterView {
 
     @Override
     public final boolean R1(Runnable runnable) {
-        this.f12092s7.l0(runnable);
+        this.f12089s7.l0(runnable);
         return true;
     }
 
@@ -53,14 +53,14 @@ public final class i2 extends ChatActivityEnterView {
 
     @Override
     public final void Z0(int i7, int i10) {
-        z3 z3Var = this.f12092s7;
+        z3 z3Var = this.f12089s7;
         if (z3Var.L1 != null) {
             this.f32553b4 = true;
-            this.f12090q7 = this.F0.getMeasuredHeight();
-            this.f12091r7 = this.F0.getScrollY();
+            this.f12087q7 = this.F0.getMeasuredHeight();
+            this.f12088r7 = this.F0.getScrollY();
             invalidate();
             z3Var.invalidate();
-            this.f12089p7 = z3Var.L1.getBackgroundTop();
+            this.f12086p7 = z3Var.L1.getBackgroundTop();
         }
     }
 
@@ -72,7 +72,7 @@ public final class i2 extends ChatActivityEnterView {
         if (!isEnabled()) {
             RectF rectF = org.telegram.messenger.g0.P;
             float width = getWidth();
-            z3 z3Var = this.f12092s7;
+            z3 z3Var = this.f12089s7;
             if (z3Var.S1 != null) {
                 f10 = this.E * 1.5f;
             } else {
@@ -106,7 +106,7 @@ public final class i2 extends ChatActivityEnterView {
 
     @Override
     public final int getMessagesCount() {
-        if (this.f12092s7.f12896y1.f12727f) {
+        if (this.f12089s7.f12893y1.f12724f) {
             return 1;
         }
         return super.getMessagesCount();
@@ -115,10 +115,10 @@ public final class i2 extends ChatActivityEnterView {
     @Override
     public final long getStarsPrice() {
         long messageMinPrice;
-        z3 z3Var = this.f12092s7;
-        if (z3Var.f12896y1.f12727f) {
+        z3 z3Var = this.f12089s7;
+        if (z3Var.f12893y1.f12724f) {
             messageMinPrice = z3Var.getMessageMinPrice();
-            return Math.max(messageMinPrice, z3Var.f12886v3);
+            return Math.max(messageMinPrice, z3Var.f12883v3);
         }
         return super.getStarsPrice();
     }
@@ -138,15 +138,15 @@ public final class i2 extends ChatActivityEnterView {
             e1();
             return false;
         }
-        z3 z3Var = this.f12092s7;
-        if (z3Var.f12896y1.f12727f) {
-            long j3 = z3Var.f12886v3;
+        z3 z3Var = this.f12089s7;
+        if (z3Var.f12893y1.f12724f) {
+            long j3 = z3Var.f12883v3;
             messageMinPrice = z3Var.getMessageMinPrice();
             long max = Math.max(j3, messageMinPrice);
             TLRPC.TL_textWithEntities textWithEntities = getTextWithEntities();
             CharSequence j02 = fj.j0(textWithEntities, false, false, new TextPaint());
             int length = j02.length();
-            int[] iArr = mp.u1(z3Var.f12850m2).f25603a7;
+            int[] iArr = mp.u1(z3Var.f12847m2).f25601a7;
             if (iArr != null && iArr.length > 2) {
                 i7 = iArr[2];
             } else {
@@ -171,15 +171,15 @@ public final class i2 extends ChatActivityEnterView {
                     i10 = 0;
                 }
                 int i11 = (int) max;
-                if (i10 > t.b(z3Var.f12850m2, i11, 2) || j02.length() > t.b(z3Var.f12850m2, i11, 1)) {
+                if (i10 > t.b(z3Var.f12847m2, i11, 2) || j02.length() > t.b(z3Var.f12847m2, i11, 1)) {
                     z3Var.M0();
                     return false;
                 }
             }
-            z3Var.f12883v0.o(textWithEntities, max);
+            z3Var.f12880v0.o(textWithEntities, max);
             this.F0.setText("");
             org.telegram.messenger.g0.v1(this);
-            z3Var.f12886v3 = 0L;
+            z3Var.f12883v3 = 0L;
             z3Var.p0(true);
             P(true);
             return true;
@@ -189,9 +189,9 @@ public final class i2 extends ChatActivityEnterView {
 
     @Override
     public final boolean s1(boolean z10, int i7, int i10, long j3, boolean z11) {
-        z3 z3Var = this.f12092s7;
-        if (mp.u1(z3Var.f12850m2).A2()) {
-            org.telegram.ui.b.b(z3Var.f12850m2);
+        z3 z3Var = this.f12089s7;
+        if (mp.u1(z3Var.f12847m2).A2()) {
+            org.telegram.ui.b.b(z3Var.f12847m2);
             return false;
         }
         return super.s1(z10, i7, i10, j3, z11);
@@ -200,8 +200,8 @@ public final class i2 extends ChatActivityEnterView {
     @Override
     public final void t2(boolean z10) {
         boolean z11;
-        z3 z3Var = this.f12092s7;
-        if (!z3Var.f12860p1 && !z3Var.f12864q1) {
+        z3 z3Var = this.f12089s7;
+        if (!z3Var.f12857p1 && !z3Var.f12861q1) {
             z11 = false;
         } else {
             z11 = true;
@@ -211,11 +211,11 @@ public final class i2 extends ChatActivityEnterView {
 
     @Override
     public final boolean x() {
-        return this.f12092s7.B0(true);
+        return this.f12089s7.B0(true);
     }
 
     @Override
     public final void y0(Menu menu) {
-        bn.C8(menu, null, false, !this.f12092s7.f12896y1.f12727f, true, true);
+        bn.C8(menu, null, false, !this.f12089s7.f12893y1.f12724f, true, true);
     }
 }

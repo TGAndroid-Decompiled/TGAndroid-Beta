@@ -133,8 +133,8 @@ public final class wb0 implements tt0, org.telegram.messenger.jc, gh.d, r0.m, or
 
     @Override
     public int j(org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
-        Bitmap bitmap = ci.u.f5783a;
-        return (((int) a8.p0.f(ci.c1.f5615b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
+        Bitmap bitmap = ci.u.f5780a;
+        return (((int) a8.p0.f(ci.c1.f5612b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
     }
 
     @Override
@@ -149,7 +149,7 @@ public final class wb0 implements tt0, org.telegram.messenger.jc, gh.d, r0.m, or
                 int L = org.telegram.messenger.g0.L(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(org.telegram.messenger.g0.L(200.0f), L, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, L / 2.0f, paint);
@@ -178,13 +178,13 @@ public final class wb0 implements tt0, org.telegram.messenger.jc, gh.d, r0.m, or
                 }
                 return;
             default:
-                if (!(imageReceiver.f22647k0 instanceof org.telegram.messenger.o6) && !(imageReceiver.T instanceof org.telegram.messenger.o6) && !(imageReceiver.f22626b0 instanceof org.telegram.messenger.o6) && !(imageReceiver.f22652n0 instanceof org.telegram.messenger.o6)) {
+                if (!(imageReceiver.f22644k0 instanceof org.telegram.messenger.o6) && !(imageReceiver.T instanceof org.telegram.messenger.o6) && !(imageReceiver.f22623b0 instanceof org.telegram.messenger.o6) && !(imageReceiver.f22649n0 instanceof org.telegram.messenger.o6)) {
                     z13 = false;
                 } else {
                     z13 = true;
                 }
                 if (z13) {
-                    imageReceiver.f22656p1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
+                    imageReceiver.f22653p1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
                     return;
                 }
                 return;

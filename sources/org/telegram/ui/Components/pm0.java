@@ -14,10 +14,10 @@ public final class pm0 extends v4.u0 {
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         switch (this.f38492a) {
             case 0:
-                ((org.telegram.ui.kw) this.f38493b.f9011c).P();
+                ((org.telegram.ui.kw) this.f38493b.f9008c).P();
                 return;
             default:
-                ((org.telegram.ui.kw) this.f38493b.f9011c).P();
+                ((org.telegram.ui.kw) this.f38493b.f9008c).P();
                 return;
         }
     }

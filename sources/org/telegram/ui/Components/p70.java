@@ -56,7 +56,7 @@ public final class p70 extends org.telegram.ui.ActionBar.x2 {
         int w02;
         super.s0();
         try {
-            if (this.H0 == this.f38304m1 && (w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.J0)) != this.H0) {
+            if (this.H0 == this.f38304m1 && (w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.J0)) != this.H0) {
                 P(w02);
                 this.f38304m1 = this.H0;
             }

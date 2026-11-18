@@ -34,7 +34,7 @@ public final class uh0 extends FrameLayout {
         this.f40361s = fjVar;
         wz wzVar = new wz(context, null);
         this.f40354a = wzVar;
-        wzVar.e(org.telegram.ui.ActionBar.n6.G8, org.telegram.ui.ActionBar.n6.f29488i6, -1);
+        wzVar.e(org.telegram.ui.ActionBar.n6.G8, org.telegram.ui.ActionBar.n6.f29486i6, -1);
         wzVar.setViewType(13);
         wzVar.setIsSingleCell(false);
         addView(wzVar, c8.ma.c(-1.0f, -2));
@@ -70,8 +70,8 @@ public final class uh0 extends FrameLayout {
         org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(i7);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
         org.telegram.messenger.fj fjVar = this.f40361s;
-        tL_messages_getMessageReactionsList.peer = u12.l1(org.telegram.messenger.fj.B0(fjVar.f23968k));
-        tL_messages_getMessageReactionsList.f28500id = fjVar.e1();
+        tL_messages_getMessageReactionsList.peer = u12.l1(org.telegram.messenger.fj.B0(fjVar.f23965k));
+        tL_messages_getMessageReactionsList.f28498id = fjVar.e1();
         tL_messages_getMessageReactionsList.limit = 3;
         tL_messages_getMessageReactionsList.reaction = null;
         tL_messages_getMessageReactionsList.offset = null;
@@ -91,11 +91,11 @@ public final class uh0 extends FrameLayout {
         org.telegram.messenger.fj fjVar = this.f40361s;
         TLRPC.Chat O0 = u12.O0(Long.valueOf(fjVar.x0()));
         TLRPC.ChatFull P0 = u12.P0(fjVar.x0());
-        if (O0 != null && fjVar.P3() && fjVar.q4() && !fjVar.Y2() && !fjVar.o4() && !fjVar.n4() && !fjVar.f23968k.media_unread && !fjVar.F4() && ConnectionsManager.getInstance(i7).getCurrentTime() - fjVar.f23968k.date < 604800 && ((org.telegram.messenger.v3.n0(O0) || !org.telegram.messenger.v3.T(O0)) && P0 != null && P0.participants_count <= org.telegram.messenger.mp.u1(i7).f25760s3 && !(fjVar.f23968k.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+        if (O0 != null && fjVar.P3() && fjVar.q4() && !fjVar.Y2() && !fjVar.o4() && !fjVar.n4() && !fjVar.f23965k.media_unread && !fjVar.F4() && ConnectionsManager.getInstance(i7).getCurrentTime() - fjVar.f23965k.date < 604800 && ((org.telegram.messenger.v3.n0(O0) || !org.telegram.messenger.v3.T(O0)) && P0 != null && P0.participants_count <= org.telegram.messenger.mp.u1(i7).f25758s3 && !(fjVar.f23965k.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
             TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
             tL_messages_getMessageReadParticipants.msg_id = fjVar.e1();
-            tL_messages_getMessageReadParticipants.peer = org.telegram.messenger.mp.u1(i7).l1(org.telegram.messenger.fj.B0(fjVar.f23968k));
-            TLRPC.Peer peer = fjVar.f23968k.from_id;
+            tL_messages_getMessageReadParticipants.peer = org.telegram.messenger.mp.u1(i7).l1(org.telegram.messenger.fj.B0(fjVar.f23965k));
+            TLRPC.Peer peer = fjVar.f23965k.from_id;
             if (peer != null) {
                 j3 = peer.user_id;
             } else {

@@ -22,7 +22,7 @@ public final class e61 {
 
     public static Uri a(int i7, int i10, TLRPC.Document document) {
         StringBuilder m10 = i5.c.m(i7, "?account=", "&id=");
-        m10.append(document.f28411id);
+        m10.append(document.f28409id);
         m10.append("&hash=");
         m10.append(document.access_hash);
         m10.append("&dc=");
@@ -71,11 +71,11 @@ public final class e61 {
         }
         obj.f34622a = i7;
         obj.f34627g = document;
-        obj.f34624c = document.f28411id;
+        obj.f34624c = document.f28409id;
         obj.d = a(i7, i10, document);
         if (document2 != null) {
             obj.h = document2;
-            obj.f34625e = document2.f28411id;
+            obj.f34625e = document2.f28409id;
             obj.f34626f = a(i7, i10, document2);
             org.telegram.messenger.w7.G(i7);
             File J = org.telegram.messenger.w7.J(document2, null, false, z10);
@@ -94,7 +94,7 @@ public final class e61 {
         obj.f34630k = j3;
         if (tL_documentAttributeVideo != null) {
             double d = tL_documentAttributeVideo.duration;
-            obj.f34628i = tL_documentAttributeVideo.f28412w;
+            obj.f34628i = tL_documentAttributeVideo.f28410w;
             obj.f34629j = tL_documentAttributeVideo.h;
             obj.f34631l = j3 / d;
         }

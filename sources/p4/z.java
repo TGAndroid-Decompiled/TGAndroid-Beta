@@ -23,10 +23,10 @@ public final class z implements c0, l0 {
         m9.e0 q10 = m0Var.h.q(vVar, h9.i0.u((e2.l0) this.d), -1, -9223372036854775807L);
         ?? obj = new Object();
         obj.d = m0Var;
-        obj.f20026c = vVar;
-        obj.f20024a = this.f55460a;
-        obj.f20025b = this.f55461b;
-        q10.b(new m9.u(0, q10, (Object) obj), m9.r.f20955a);
+        obj.f20023c = vVar;
+        obj.f20021a = this.f55460a;
+        obj.f20022b = this.f55461b;
+        q10.b(new m9.u(0, q10, (Object) obj), m9.r.f20952a);
     }
 
     public z(n1 n1Var, boolean z10, boolean z11, v vVar) {

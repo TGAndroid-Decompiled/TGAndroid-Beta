@@ -43,7 +43,7 @@ public final class ef extends xe {
         this.H = j10;
         this.E = i12;
         this.J = i11;
-        this.f27849b = z10;
+        this.f27847b = z10;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class ef extends xe {
         synchronized (this) {
             try {
                 if (!this.V) {
-                    if (!this.f27849b) {
+                    if (!this.f27847b) {
                         l();
                     }
                     this.V = true;
@@ -73,9 +73,9 @@ public final class ef extends xe {
 
     @Override
     public final void e() {
-        if (this.f27849b && this.f27854i != null) {
-            new File(this.f27854i).delete();
-            this.f27854i = null;
+        if (this.f27847b && this.f27852i != null) {
+            new File(this.f27852i).delete();
+            this.f27852i = null;
         }
         this.M = false;
         this.N = 0L;
@@ -83,7 +83,7 @@ public final class ef extends xe {
     }
 
     public final ef clone() {
-        ef efVar = new ef(this.B, this.C, this.D, this.I, this.J, this.E, this.f27849b, this.F, this.G, this.H);
+        ef efVar = new ef(this.B, this.C, this.D, this.I, this.J, this.E, this.f27847b, this.F, this.G, this.H);
         efVar.K = this.K;
         efVar.L = this.L;
         efVar.M = this.M;
@@ -98,33 +98,33 @@ public final class ef extends xe {
     }
 
     public final void g(ef efVar) {
-        this.f27848a = efVar.f27848a;
-        this.f27850c = efVar.f27850c;
+        this.f27846a = efVar.f27846a;
+        this.f27848c = efVar.f27848c;
         this.h = efVar.h;
-        this.f27854i = efVar.f27854i;
-        this.f27855j = efVar.f27855j;
-        this.f27856k = efVar.f27856k;
-        this.f27857l = efVar.f27857l;
-        this.f27859n = efVar.f27859n;
-        this.f27860o = efVar.f27860o;
-        this.f27861p = efVar.f27861p;
-        this.f27862q = efVar.f27862q;
-        this.f27863r = efVar.f27863r;
-        this.f27864s = efVar.f27864s;
-        this.f27865t = efVar.f27865t;
-        this.f27866u = efVar.f27866u;
+        this.f27852i = efVar.f27852i;
+        this.f27853j = efVar.f27853j;
+        this.f27854k = efVar.f27854k;
+        this.f27855l = efVar.f27855l;
+        this.f27857n = efVar.f27857n;
+        this.f27858o = efVar.f27858o;
+        this.f27859p = efVar.f27859p;
+        this.f27860q = efVar.f27860q;
+        this.f27861r = efVar.f27861r;
+        this.f27862s = efVar.f27862s;
+        this.f27863t = efVar.f27863t;
+        this.f27864u = efVar.f27864u;
         this.v = efVar.v;
-        this.f27867w = efVar.f27867w;
-        this.f27858m = efVar.f27858m;
-        this.f27868x = efVar.f27868x;
+        this.f27865w = efVar.f27865w;
+        this.f27856m = efVar.f27856m;
+        this.f27866x = efVar.f27866x;
         this.A = efVar.A;
-        this.f27853g = efVar.f27853g;
-        this.f27870z = efVar.f27870z;
+        this.f27851g = efVar.f27851g;
+        this.f27868z = efVar.f27868z;
         this.M = efVar.M;
         this.N = efVar.N;
         this.V = efVar.V;
         this.W = efVar.W;
-        this.f27858m = efVar.f27858m;
+        this.f27856m = efVar.f27856m;
         this.P = efVar.P;
     }
 
@@ -136,15 +136,15 @@ public final class ef extends xe {
             } catch (Exception unused) {
             }
         }
-        if (this.f27857l != null) {
+        if (this.f27855l != null) {
             try {
-                new File(this.f27857l).delete();
+                new File(this.f27855l).delete();
             } catch (Exception unused2) {
             }
         }
-        if (this.f27855j != null) {
+        if (this.f27853j != null) {
             try {
-                new File(this.f27855j).delete();
+                new File(this.f27853j).delete();
             } catch (Exception unused3) {
             }
         }
@@ -154,15 +154,15 @@ public final class ef extends xe {
             } catch (Exception unused4) {
             }
         }
-        if (this.f27854i != null) {
+        if (this.f27852i != null) {
             try {
-                new File(this.f27854i).delete();
+                new File(this.f27852i).delete();
             } catch (Exception unused5) {
             }
         }
-        if (this.f27856k != null) {
+        if (this.f27854k != null) {
             try {
-                new File(this.f27856k).delete();
+                new File(this.f27854k).delete();
             } catch (Exception unused6) {
             }
         }
@@ -170,7 +170,7 @@ public final class ef extends xe {
 
     public final boolean i() {
         if (!this.V) {
-            if (!this.f27849b || this.X) {
+            if (!this.f27847b || this.X) {
                 return false;
             }
             return true;
@@ -181,7 +181,7 @@ public final class ef extends xe {
     public final boolean j() {
         Boolean bool = this.O;
         if (bool == null) {
-            return !bz.f23172i1;
+            return !bz.f23169i1;
         }
         return bool.booleanValue();
     }
@@ -222,12 +222,12 @@ public final class ef extends xe {
             wVar = null;
         }
         if (wVar != null) {
-            long j3 = wVar.f7762a;
+            long j3 = wVar.f7759a;
             if (j3 > 0) {
-                this.f27849b = true;
+                this.f27847b = true;
                 this.W = true;
-                this.f27858m = j3;
-                this.P = wVar.f7763b;
+                this.f27856m = j3;
+                this.P = wVar.f7760b;
             }
         } else {
             try {
@@ -244,18 +244,18 @@ public final class ef extends xe {
                         n3.c cVar2 = null;
                         for (int i7 = 0; i7 < t1Var.d; i7++) {
                             n3.c cVar3 = (n3.c) t1Var.get(i7);
-                            String str2 = cVar3.f21306b;
+                            String str2 = cVar3.f21303b;
                             if ("Primary".equalsIgnoreCase(str2)) {
                                 cVar = cVar3;
                             } else if ("MotionPhoto".equalsIgnoreCase(str2)) {
                                 cVar2 = cVar3;
                             }
                         }
-                        if (cVar != null && cVar2 != null && cVar2.f21307c > 0) {
+                        if (cVar != null && cVar2 != null && cVar2.f21304c > 0) {
                             try {
-                                this.f27849b = true;
+                                this.f27847b = true;
                                 this.W = true;
-                                this.f27858m = new File(str).length() - cVar2.f21307c;
+                                this.f27856m = new File(str).length() - cVar2.f21304c;
                                 this.P = vaVar.f693b;
                             } catch (Exception e11) {
                                 a8.g(e11, true);
@@ -298,6 +298,6 @@ public final class ef extends xe {
         } else {
             this.J = i10;
         }
-        this.f27849b = z10;
+        this.f27847b = z10;
     }
 }

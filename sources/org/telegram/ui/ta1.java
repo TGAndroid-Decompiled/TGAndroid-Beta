@@ -1,34 +1,34 @@
 package org.telegram.ui;
 public final class ta1 implements org.telegram.ui.ActionBar.r1 {
-    public final int f52233a;
-    public final bb1 f52234b;
+    public final int f52236a;
+    public final bb1 f52237b;
 
     public ta1(bb1 bb1Var, int i7) {
-        this.f52233a = i7;
-        this.f52234b = bb1Var;
+        this.f52236a = i7;
+        this.f52237b = bb1Var;
     }
 
     @Override
     public final void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f52233a) {
+        switch (this.f52236a) {
             case 0:
-                this.f52234b.finishFragment();
+                this.f52237b.finishFragment();
                 return;
             case 1:
-                bb1 bb1Var = this.f52234b;
+                bb1 bb1Var = this.f52237b;
                 bb1Var.G0();
                 bb1Var.finishFragment();
                 return;
             case 2:
-                bb1 bb1Var2 = this.f52234b;
+                bb1 bb1Var2 = this.f52237b;
                 bb1Var2.S = "";
                 bb1Var2.J0(false);
                 return;
             case 3:
-                bb1.f0(this.f52234b);
+                bb1.f0(this.f52237b);
                 return;
             default:
-                bb1.c0(this.f52234b);
+                bb1.c0(this.f52237b);
                 return;
         }
     }

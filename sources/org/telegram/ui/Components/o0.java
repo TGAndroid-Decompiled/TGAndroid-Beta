@@ -24,7 +24,7 @@ public final class o0 extends sa {
         this.f37916b2 = false;
         this.f39541v1 = 0.35f;
         O();
-        int i7 = org.telegram.ui.ActionBar.n6.f29487i5;
+        int i7 = org.telegram.ui.ActionBar.n6.f29485i5;
         int w02 = org.telegram.ui.ActionBar.n6.w0(i7, this.J0);
         this.d2 = w02;
         v0(w02);
@@ -75,7 +75,7 @@ public final class o0 extends sa {
         this.X1 = z10;
         this.T1.O(false);
         v4.k kVar = new v4.k();
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         kVar.C = false;
         kVar.o(lr.h);
         kVar.n(350L);
@@ -92,11 +92,11 @@ public final class o0 extends sa {
         dVar.i(org.telegram.messenger.gd.M0(2131750992, null), false, true);
         dVar.setOnClickListener(new n0(this, 0));
         aVar.addView(dVar, c8.ma.r(-1, 48, 87));
-        ViewGroup viewGroup = this.f30192b;
-        int i10 = this.f30227u0;
+        ViewGroup viewGroup = this.f30190b;
+        int i10 = this.f30225u0;
         viewGroup.addView(aVar, c8.ma.f(-2.0f, -1, 87, i10, 0, i10, 0));
         ck0 ck0Var = this.f39534o1;
-        int i11 = this.f30227u0;
+        int i11 = this.f30225u0;
         ck0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(68.0f));
         this.f39534o1.r1();
     }
@@ -108,7 +108,7 @@ public final class o0 extends sa {
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        z41 z41Var = new z41(ck0Var, getContext(), this.f30189a, 0, true, new d(this, 3), this.J0);
+        z41 z41Var = new z41(ck0Var, getContext(), this.f30187a, 0, true, new d(this, 3), this.J0);
         this.T1 = z41Var;
         return z41Var;
     }
@@ -179,7 +179,7 @@ public final class o0 extends sa {
                 Object obj = arrayList2.get(i7);
                 i7++;
                 long o4 = org.telegram.messenger.n5.o(((TLRPC.ChannelParticipant) obj).peer);
-                this.W1.k(org.telegram.messenger.mp.u1(this.f30189a).c2(Long.valueOf(o4)), o4);
+                this.W1.k(org.telegram.messenger.mp.u1(this.f30187a).c2(Long.valueOf(o4)), o4);
             }
         }
         z41 z41Var = this.T1;
@@ -198,7 +198,7 @@ public final class o0 extends sa {
     public final void s0() {
         try {
             super.s0();
-            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29487i5, this.J0);
+            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29485i5, this.J0);
             if (w02 != this.d2) {
                 this.d2 = w02;
                 v0(w02);

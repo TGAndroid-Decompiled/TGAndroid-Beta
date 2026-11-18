@@ -27,7 +27,7 @@ public final class e7 {
     public final AnimatorSet f44124m;
     public final RectF f44125n;
     public final RectF f44126o;
-    public org.telegram.ui.Cells.u0 f44127p;
+    public org.telegram.ui.Cells.v0 f44127p;
     public final c7 f44128q;
     public float f44129r;
     public boolean f44130s;
@@ -65,17 +65,17 @@ public final class e7 {
                         if (!e7Var.v && !e7Var.f44132u) {
                             e7Var.e();
                             e7Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.u0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
+                            org.telegram.ui.Cells.v0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
                             if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.u0 u0Var = e7Var.f44127p;
-                                if (u0Var != K8) {
-                                    if (u0Var != null) {
-                                        u0Var.J0.i(false);
+                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44127p;
+                                if (v0Var != K8) {
+                                    if (v0Var != null) {
+                                        v0Var.J0.i(false);
                                     }
                                     e7Var.f44127p = K8;
                                 }
                                 l4 l4Var = e7Var.f44127p.J0.f44537m;
-                                if (e7Var.f44131t && c7Var.f59546n && l4Var != null && l4Var.f59546n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
+                                if (e7Var.f44131t && c7Var.f59547n && l4Var != null && l4Var.f59547n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
                                     rectF.set(e7Var.c(l4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
                                         e7Var.f44132u = true;
@@ -157,17 +157,17 @@ public final class e7 {
                         if (!e7Var.v && !e7Var.f44132u) {
                             e7Var.e();
                             e7Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.u0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
+                            org.telegram.ui.Cells.v0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
                             if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.u0 u0Var = e7Var.f44127p;
-                                if (u0Var != K8) {
-                                    if (u0Var != null) {
-                                        u0Var.J0.i(false);
+                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44127p;
+                                if (v0Var != K8) {
+                                    if (v0Var != null) {
+                                        v0Var.J0.i(false);
                                     }
                                     e7Var.f44127p = K8;
                                 }
                                 l4 l4Var = e7Var.f44127p.J0.f44537m;
-                                if (e7Var.f44131t && c7Var2.f59546n && l4Var != null && l4Var.f59546n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
+                                if (e7Var.f44131t && c7Var2.f59547n && l4Var != null && l4Var.f59547n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
                                     rectF.set(e7Var.c(l4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
                                         e7Var.f44132u = true;
@@ -232,17 +232,17 @@ public final class e7 {
                         if (!e7Var.v && !e7Var.f44132u) {
                             e7Var.e();
                             e7Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.u0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
+                            org.telegram.ui.Cells.v0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
                             if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.u0 u0Var = e7Var.f44127p;
-                                if (u0Var != K8) {
-                                    if (u0Var != null) {
-                                        u0Var.J0.i(false);
+                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44127p;
+                                if (v0Var != K8) {
+                                    if (v0Var != null) {
+                                        v0Var.J0.i(false);
                                     }
                                     e7Var.f44127p = K8;
                                 }
                                 l4 l4Var = e7Var.f44127p.J0.f44537m;
-                                if (e7Var.f44131t && c7Var2.f59546n && l4Var != null && l4Var.f59546n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
+                                if (e7Var.f44131t && c7Var2.f59547n && l4Var != null && l4Var.f59547n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
                                     rectF.set(e7Var.c(l4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
                                         e7Var.f44132u = true;
@@ -297,13 +297,13 @@ public final class e7 {
         b7Var.removeCallbacks(a7Var);
         m7 m7Var = this.f44120i;
         m7Var.l(null);
-        org.telegram.ui.Cells.u0 u0Var = this.f44127p;
-        if (u0Var != null) {
-            u0Var.J0.i(false);
+        org.telegram.ui.Cells.v0 v0Var = this.f44127p;
+        if (v0Var != null) {
+            v0Var.J0.i(false);
             if (z10 && this.f44129r >= 1.0f) {
                 RectF rectF = this.f44126o;
                 if (!rectF.isEmpty() && this.f44127p.isAttachedToWindow() && u0.Q(this.f44127p.getMessageObject(), this.f44118f)) {
-                    float centerY = (((rectF.centerY() - (Math.min(this.f44125n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f24120p;
+                    float centerY = (((rectF.centerY() - (Math.min(this.f44125n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f24117p;
                     m4 m4Var = this.f44127p.J0;
                     m4Var.l();
                     r1.g gVar = new r1.g(new r1.f(0.0f));
@@ -402,10 +402,10 @@ public final class e7 {
             flightYaw += ((float) Math.IEEEremainder(this.f44127p.J0.g() - flightYaw, 6.283185307179586d)) * C;
             flightPitch += ((this.f44127p.J0.f44533k.F * 0.14f) - flightPitch) * C;
         }
-        c7Var.f59547r = flightYaw;
-        c7Var.f59548s = flightPitch;
-        c7Var.f59549w = true;
-        c7Var.f59550x = true;
+        c7Var.f59548r = flightYaw;
+        c7Var.f59549s = flightPitch;
+        c7Var.f59550w = true;
+        c7Var.f59551x = true;
     }
 
     public final void e() {

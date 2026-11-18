@@ -9,7 +9,7 @@ public final class bh0 {
     public float f33693g;
     public float h;
     public int f33694i;
-    public org.telegram.ui.Cells.t9 f33695j;
+    public org.telegram.ui.Cells.u9 f33695j;
     public float f33696k;
     public float f33697l;
 }

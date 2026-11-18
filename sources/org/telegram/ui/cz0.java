@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class cz0 extends rg.a {
-    public final org.telegram.messenger.kv f46802c;
+    public final org.telegram.messenger.kv f46782c;
     public final String d;
 
     public cz0(int i7) {
         super(i7, false);
-        this.f46802c = null;
+        this.f46782c = null;
     }
 
     public final boolean equals(Object obj) {
@@ -26,8 +26,8 @@ public final class cz0 extends rg.a {
         if (str != null) {
             return Objects.equals(str, cz0Var.d);
         }
-        org.telegram.messenger.kv kvVar2 = this.f46802c;
-        if (kvVar2 == null || (kvVar = cz0Var.f46802c) == null || kvVar2.d == kvVar.d) {
+        org.telegram.messenger.kv kvVar2 = this.f46782c;
+        if (kvVar2 == null || (kvVar = cz0Var.f46782c) == null || kvVar2.d == kvVar.d) {
             return true;
         }
         return false;
@@ -35,12 +35,12 @@ public final class cz0 extends rg.a {
 
     public cz0(org.telegram.messenger.kv kvVar) {
         super(2, false);
-        this.f46802c = kvVar;
+        this.f46782c = kvVar;
     }
 
     public cz0(int i7, String str) {
         super(i7, false);
         this.d = str;
-        this.f46802c = null;
+        this.f46782c = null;
     }
 }

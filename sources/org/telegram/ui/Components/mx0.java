@@ -75,7 +75,7 @@ public final class mx0 {
         nx0[] nx0VarArr = (nx0[]) ((Object[]) f().d);
         for (int i7 = 0; i7 < nx0VarArr.length; i7++) {
             int d = nx0VarArr[i7].d(z10);
-            sx0 sx0Var2 = (sx0) ((Object[]) mVar.d)[((int[]) mVar.f13939b)[i7]];
+            sx0 sx0Var2 = (sx0) ((Object[]) mVar.d)[((int[]) mVar.f13936b)[i7]];
             int i10 = sx0Var2.f39862a;
             if (!z10) {
                 d = -d;
@@ -117,7 +117,7 @@ public final class mx0 {
     public final h6.m c(boolean z10) {
         qx0 qx0Var;
         lx0 lx0Var = new lx0(qx0.class, sx0.class);
-        tx0[] tx0VarArr = (tx0[]) ((Object[]) f().f13940c);
+        tx0[] tx0VarArr = (tx0[]) ((Object[]) f().f13937c);
         int length = tx0VarArr.length;
         for (int i7 = 0; i7 < length; i7++) {
             if (z10) {
@@ -147,7 +147,7 @@ public final class mx0 {
             h6.m mVar = this.f37639f;
             int i7 = 0;
             while (true) {
-                qx0[] qx0VarArr = (qx0[]) ((Object[]) mVar.f13940c);
+                qx0[] qx0VarArr = (qx0[]) ((Object[]) mVar.f13937c);
                 if (i7 >= qx0VarArr.length) {
                     break;
                 }
@@ -164,7 +164,7 @@ public final class mx0 {
             h6.m mVar2 = this.h;
             int i10 = 0;
             while (true) {
-                qx0[] qx0VarArr2 = (qx0[]) ((Object[]) mVar2.f13940c);
+                qx0[] qx0VarArr2 = (qx0[]) ((Object[]) mVar2.f13937c);
                 if (i10 >= qx0VarArr2.length) {
                     break;
                 }
@@ -277,7 +277,7 @@ public final class mx0 {
                 }
                 int i14 = e10 + i10;
                 h6.m mVar2 = this.d;
-                nx0 nx0Var3 = (nx0) ((Object[]) mVar2.d)[((int[]) mVar2.f13939b)[i13]];
+                nx0 nx0Var3 = (nx0) ((Object[]) mVar2.d)[((int[]) mVar2.f13936b)[i13]];
                 int i15 = nx0Var3.f37872c;
                 if (tx0Var.f40133c == wx0.T && f10 == 0.0f) {
                     i11 = 0;

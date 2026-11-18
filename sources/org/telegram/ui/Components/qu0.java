@@ -11,7 +11,7 @@ public final class qu0 extends sa {
         this.f39544y1 = true;
         Z0();
         ck0 ck0Var = this.f39534o1;
-        int i7 = this.f30227u0;
+        int i7 = this.f30225u0;
         ck0Var.setPadding(i7, 0, i7, 0);
         this.f39534o1.j(new oa(this, 20));
         this.f39534o1.setOnItemClickListener(new n(this, 14));
@@ -19,7 +19,7 @@ public final class qu0 extends sa {
 
     @Override
     public final bk0 M0(ck0 ck0Var) {
-        is isVar = new is(ck0Var, getContext(), this.f30189a, 0, true, this.J0);
+        is isVar = new is(ck0Var, getContext(), this.f30187a, 0, true, this.J0);
         this.T1 = isVar;
         isVar.f42809r = false;
         return isVar;

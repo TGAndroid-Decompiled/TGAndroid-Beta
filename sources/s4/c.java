@@ -1,6 +1,6 @@
 package s4;
 
-import org.telegram.ui.md0;
+import org.telegram.ui.nd0;
 public final class c implements Runnable {
     public final int f56923a;
     public final androidx.emoji2.text.q f56924b;
@@ -16,14 +16,14 @@ public final class c implements Runnable {
     public final void run() {
         switch (this.f56923a) {
             case 0:
-                v vVar = ((e) ((md0) this.f56924b.f2270f).d).d;
+                v vVar = ((e) ((nd0) this.f56924b.f2271f).d).d;
                 if (vVar != null) {
                     vVar.j(this.f56925c);
                     return;
                 }
                 return;
             default:
-                v vVar2 = ((e) ((md0) this.f56924b.f2270f).d).d;
+                v vVar2 = ((e) ((nd0) this.f56924b.f2271f).d).d;
                 if (vVar2 != null) {
                     vVar2.k(this.f56925c);
                     return;

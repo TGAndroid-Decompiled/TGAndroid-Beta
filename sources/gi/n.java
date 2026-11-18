@@ -10,7 +10,7 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class n extends k41 {
-    public static final int f13663b = 0;
+    public static final int f13660b = 0;
 
     static {
         k41.h(new k41());
@@ -20,12 +20,12 @@ public final class n extends k41 {
     public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
         o oVar = (o) view;
         s00 s00Var = (s00) l41Var.H;
-        oVar.f13664a.setText(s00Var.f26719b);
-        oVar.f13665b.setText(s00Var.f26720c);
-        if (oVar.f13666c != z10) {
+        oVar.f13661a.setText(s00Var.f26717b);
+        oVar.f13662b.setText(s00Var.f26718c);
+        if (oVar.f13663c != z10) {
             oVar.invalidate();
         }
-        oVar.f13666c = z10;
+        oVar.f13663c = z10;
         oVar.setWillNotDraw(!z10);
     }
 

@@ -31,7 +31,7 @@ public final class n1 {
         e2.b1 b1Var = new e2.b1(null, 0, null, null, 0, 0L, 0L, -1, -1);
         f55352k = b1Var;
         f55353l = new n1(b1Var, false, -9223372036854775807L, -9223372036854775807L, 0L, 0, 0L, -9223372036854775807L, -9223372036854775807L, 0L);
-        String str = h2.l0.f13786a;
+        String str = h2.l0.f13783a;
         f55354m = Integer.toString(0, 36);
         f55355n = Integer.toString(1, 36);
         f55356o = Integer.toString(2, 36);
@@ -184,17 +184,17 @@ public final class n1 {
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("SessionPositionInfo {PositionInfo {mediaItemIndex=");
         e2.b1 b1Var = this.f55363a;
-        sb2.append(b1Var.f10338b);
+        sb2.append(b1Var.f10335b);
         sb2.append(", periodIndex=");
-        sb2.append(b1Var.f10340e);
+        sb2.append(b1Var.f10337e);
         sb2.append(", positionMs=");
-        sb2.append(b1Var.f10341f);
+        sb2.append(b1Var.f10338f);
         sb2.append(", contentPositionMs=");
-        sb2.append(b1Var.f10342g);
+        sb2.append(b1Var.f10339g);
         sb2.append(", adGroupIndex=");
         sb2.append(b1Var.h);
         sb2.append(", adIndexInAdGroup=");
-        sb2.append(b1Var.f10343i);
+        sb2.append(b1Var.f10340i);
         sb2.append("}, isPlayingAd=");
         sb2.append(this.f55364b);
         sb2.append(", eventTimeMs=");

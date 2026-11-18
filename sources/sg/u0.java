@@ -267,7 +267,7 @@ public class u0 extends TextureView {
                 x0Var.d = min;
                 g1Var.h.f57401f = u0Var.getCurrentWeight();
                 g1Var.h.f57402g = org.telegram.messenger.g0.L(32.0f);
-                g1Var.h.f57406l = k0.e(j10.f24773t0).f57269k;
+                g1Var.h.f57406l = k0.e(j10.f24770t0).f57269k;
                 if (g1Var.h.f57397a.o() == 4) {
                     x0 x0Var2 = g1Var.h;
                     float f12 = vt0Var.f41433a / 2.0f;

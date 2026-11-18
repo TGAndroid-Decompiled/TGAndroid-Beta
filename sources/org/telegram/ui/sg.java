@@ -36,15 +36,15 @@ public final class sg implements Runnable {
                 return;
             case 4:
                 org.telegram.messenger.bz.I(0);
-                ((org.telegram.ui.Cells.w9) view).f32278c.c(org.telegram.messenger.gd.M0(2131744166, null), true, true);
+                ((org.telegram.ui.Cells.x9) view).f32331c.c(org.telegram.messenger.gd.M0(2131744166, null), true, true);
                 return;
             case 5:
                 org.telegram.messenger.bz.I(1);
-                ((org.telegram.ui.Cells.w9) view).f32278c.c(org.telegram.messenger.gd.M0(2131744165, null), true, true);
+                ((org.telegram.ui.Cells.x9) view).f32331c.c(org.telegram.messenger.gd.M0(2131744165, null), true, true);
                 return;
             default:
                 org.telegram.messenger.bz.I(2);
-                ((org.telegram.ui.Cells.w9) view).f32278c.c(org.telegram.messenger.gd.M0(2131744164, null), true, true);
+                ((org.telegram.ui.Cells.x9) view).f32331c.c(org.telegram.messenger.gd.M0(2131744164, null), true, true);
                 return;
         }
     }

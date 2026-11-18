@@ -8,19 +8,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class rk implements Runnable {
-    public final int f51626a = 1;
-    public final int f51627b;
-    public final int f51628c;
+    public final int f51615a = 1;
+    public final int f51616b;
+    public final int f51617c;
     public final boolean d;
-    public final Object f51629e;
-    public final Object f51630f;
+    public final Object f51618e;
+    public final Object f51619f;
     public final Serializable h;
 
     public rk(h2.c cVar, Bitmap bitmap, int i7, int i10, String str, boolean z10) {
-        this.f51629e = cVar;
-        this.f51630f = bitmap;
-        this.f51627b = i7;
-        this.f51628c = i10;
+        this.f51618e = cVar;
+        this.f51619f = bitmap;
+        this.f51616b = i7;
+        this.f51617c = i10;
         this.h = str;
         this.d = z10;
     }
@@ -32,25 +32,25 @@ public final class rk implements Runnable {
         int i10;
         int i11;
         Rect rect;
-        int i12 = this.f51626a;
+        int i12 = this.f51615a;
         Serializable serializable = this.h;
-        int i13 = this.f51628c;
-        int i14 = this.f51627b;
-        Object obj = this.f51630f;
-        Object obj2 = this.f51629e;
+        int i13 = this.f51617c;
+        int i14 = this.f51616b;
+        Object obj = this.f51619f;
+        Object obj2 = this.f51618e;
         switch (i12) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 ArrayList arrayList2 = (ArrayList) serializable;
-                bn bnVar = ((sk) obj2).f52013b;
+                bn bnVar = ((sk) obj2).f52015b;
                 if (this.d) {
                     i7 = ((org.telegram.ui.ActionBar.h2) bnVar).currentAccount;
-                    org.telegram.messenger.mp.u1(i7).f25660g7.edit().remove("pin_" + bnVar.f46085l6).commit();
+                    org.telegram.messenger.mp.u1(i7).f25658g7.edit().remove("pin_" + bnVar.f46076l6).commit();
                     bnVar.gd(0, true);
                     gcVar = null;
                 } else {
                     gcVar = null;
-                    bnVar.getNotificationCenter().k(56, Long.valueOf(bnVar.f46085l6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(bnVar.f46019g5));
+                    bnVar.getNotificationCenter().k(56, Long.valueOf(bnVar.f46076l6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(bnVar.f46010g5));
                 }
                 if (i13 == bnVar.R3) {
                     bnVar.P3 = gcVar;
@@ -62,7 +62,7 @@ public final class rk implements Runnable {
                 Bitmap bitmap = (Bitmap) obj;
                 String str = (String) serializable;
                 Paint paint = (Paint) cVar.d;
-                int i15 = cVar.f13732a;
+                int i15 = cVar.f13729a;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     float width = bitmap.getWidth() / bitmap.getHeight();
                     int round = (int) Math.round(Math.sqrt(width * 324.0f));
@@ -117,11 +117,11 @@ public final class rk implements Runnable {
     }
 
     public rk(sk skVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i7, int i10) {
-        this.f51629e = skVar;
+        this.f51618e = skVar;
         this.d = z10;
-        this.f51630f = arrayList;
+        this.f51619f = arrayList;
         this.h = arrayList2;
-        this.f51627b = i7;
-        this.f51628c = i10;
+        this.f51616b = i7;
+        this.f51617c = i10;
     }
 }

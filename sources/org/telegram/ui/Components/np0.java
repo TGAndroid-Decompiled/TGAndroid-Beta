@@ -33,7 +33,7 @@ public final class np0 implements Runnable {
                 Context context = gt0Var.getContext();
                 org.telegram.ui.ActionBar.i6 i6Var = this.f37840c;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.Q0 = false;
                 org.telegram.messenger.fj fjVar = this.d;
                 if (fjVar.c4()) {

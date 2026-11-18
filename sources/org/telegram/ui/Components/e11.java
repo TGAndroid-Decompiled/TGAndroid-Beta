@@ -42,7 +42,7 @@ public final class e11 extends FrameLayout implements x60 {
 
     @Override
     public final void h(Canvas canvas, float f10) {
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f34572y.f34880e);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f34572y.f34880e);
         Paint paint = this.f34563b;
         paint.setColor(w02);
         RectF rectF = org.telegram.messenger.g0.P;
@@ -65,7 +65,7 @@ public final class e11 extends FrameLayout implements x60 {
         Paint paint = this.f34563b;
         f11 f11Var = this.f34572y;
         if (i10 != 0) {
-            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, f11Var.f34880e));
+            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, f11Var.f34880e));
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
         } else {
@@ -96,7 +96,7 @@ public final class e11 extends FrameLayout implements x60 {
         } else {
             f10 = f13;
         }
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29788y6, f11Var.f34880e);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, f11Var.f34880e);
         if (this.f34568r && (drawable2 = this.f34571x) != null) {
             drawable2.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             int L2 = org.telegram.messenger.g0.L(13.0f);
@@ -138,7 +138,7 @@ public final class e11 extends FrameLayout implements x60 {
             canvas2.drawText(this.h, rectF2.centerX() - (f11Var.f34894q0.measureText(this.h) / f12), rectF2.centerY() - ((f11Var.f34894q0.ascent() + f11Var.f34894q0.descent()) / f12), f11Var.f34894q0);
         }
         if (this.f34564c && !this.f34569s) {
-            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29397d7, f11Var.f34880e));
+            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29395d7, f11Var.f34880e));
             canvas2.drawRect(L, getHeight() - 1, f13, getHeight(), paint);
         }
     }

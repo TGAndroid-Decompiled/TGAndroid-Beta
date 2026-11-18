@@ -29,7 +29,7 @@ public final class d30 extends org.telegram.ui.ActionBar.k {
     public final void setAlpha(float f10) {
         if (getAlpha() != f10) {
             super.setAlpha(f10);
-            this.H1.f30192b.invalidate();
+            this.H1.f30190b.invalidate();
         }
     }
 }

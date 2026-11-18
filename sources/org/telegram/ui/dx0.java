@@ -7,67 +7,67 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class dx0 extends View {
-    public static final String[] f47068s = {"🎉", "🎆", "🎈"};
-    public final ProfileActivity f47069a;
-    public ax0 f47070b;
-    public ax0 f47071c;
+    public static final String[] f46991s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f46992a;
+    public ax0 f46993b;
+    public ax0 f46994c;
     public final PointF d;
-    public boolean f47072e;
-    public boolean f47073f;
+    public boolean f46995e;
+    public boolean f46996f;
     public float h;
-    public long f47074n;
-    public boolean f47075r;
+    public long f46997n;
+    public boolean f46998r;
 
     public dx0(ProfileActivity profileActivity, ax0 ax0Var) {
         super(profileActivity.getParentActivity());
         this.d = new PointF();
         this.h = 1.0f;
-        this.f47075r = false;
-        this.f47069a = profileActivity;
-        this.f47070b = ax0Var;
+        this.f46998r = false;
+        this.f46992a = profileActivity;
+        this.f46993b = ax0Var;
     }
 
     public final boolean a() {
-        ax0 ax0Var = this.f47070b;
-        if (!ax0Var.f45694b || this.h < 1.0f) {
+        ax0 ax0Var = this.f46993b;
+        if (!ax0Var.f45684b || this.h < 1.0f) {
             return false;
         }
-        if (ax0Var.f45695c.B() != null) {
-            this.f47070b.f45695c.B().N(0, false, false);
-            this.f47070b.f45695c.B().H(true);
+        if (ax0Var.f45685c.B() != null) {
+            this.f46993b.f45685c.B().N(0, false, false);
+            this.f46993b.f45685c.B().H(true);
         }
-        this.f47075r = true;
+        this.f46998r = true;
         this.h = 0.0f;
         invalidate();
         return true;
     }
 
     public final void b(ax0 ax0Var) {
-        if (this.f47070b != ax0Var && ax0Var != null) {
-            ArrayList arrayList = ax0Var.f45696e;
-            if (this.f47075r) {
-                this.f47071c = ax0Var;
+        if (this.f46993b != ax0Var && ax0Var != null) {
+            ArrayList arrayList = ax0Var.f45686e;
+            if (this.f46998r) {
+                this.f46994c = ax0Var;
                 return;
             }
-            if (this.f47073f) {
-                for (int i7 = 0; i7 < this.f47070b.f45696e.size(); i7++) {
-                    ((cx0) this.f47070b.f45696e.get(i7)).H0(null);
+            if (this.f46996f) {
+                for (int i7 = 0; i7 < this.f46993b.f45686e.size(); i7++) {
+                    ((cx0) this.f46993b.f45686e.get(i7)).H0(null);
                 }
-                this.f47073f = false;
+                this.f46996f = false;
             }
-            ax0 ax0Var2 = this.f47070b;
-            ArrayList arrayList2 = ax0Var2.f45700j;
+            ax0 ax0Var2 = this.f46993b;
+            ArrayList arrayList2 = ax0Var2.f45690j;
             arrayList2.remove(this);
-            if (arrayList2.isEmpty() && ax0Var2.f45699i) {
+            if (arrayList2.isEmpty() && ax0Var2.f45689i) {
                 ax0Var2.b(true);
-                ax0Var2.f45699i = false;
+                ax0Var2.f45689i = false;
             }
-            this.f47070b = ax0Var;
-            if (!this.f47073f) {
+            this.f46993b = ax0Var;
+            if (!this.f46996f) {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     ((cx0) arrayList.get(i10)).H0(this);
                 }
-                this.f47073f = true;
+                this.f46996f = true;
             }
         }
     }
@@ -75,48 +75,48 @@ public final class dx0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f47070b.f45700j.add(this);
+        this.f46993b.f45690j.add(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f47073f) {
-            for (int i7 = 0; i7 < this.f47070b.f45696e.size(); i7++) {
-                ((cx0) this.f47070b.f45696e.get(i7)).H0(null);
+        if (this.f46996f) {
+            for (int i7 = 0; i7 < this.f46993b.f45686e.size(); i7++) {
+                ((cx0) this.f46993b.f45686e.get(i7)).H0(null);
             }
-            this.f47073f = false;
+            this.f46996f = false;
         }
-        ax0 ax0Var = this.f47070b;
-        ArrayList arrayList = ax0Var.f45700j;
+        ax0 ax0Var = this.f46993b;
+        ArrayList arrayList = ax0Var.f45690j;
         arrayList.remove(this);
-        if (arrayList.isEmpty() && ax0Var.f45699i) {
+        if (arrayList.isEmpty() && ax0Var.f45689i) {
             ax0Var.b(true);
-            ax0Var.f45699i = false;
+            ax0Var.f45689i = false;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f47070b.f45694b) {
+        if (this.f46993b.f45684b) {
             boolean z10 = true;
-            if (!this.f47073f) {
-                for (int i7 = 0; i7 < this.f47070b.f45696e.size(); i7++) {
-                    ((cx0) this.f47070b.f45696e.get(i7)).H0(this);
+            if (!this.f46996f) {
+                for (int i7 = 0; i7 < this.f46993b.f45686e.size(); i7++) {
+                    ((cx0) this.f46993b.f45686e.get(i7)).H0(this);
                 }
-                this.f47073f = true;
-                if (!this.f47072e) {
-                    this.f47072e = true;
+                this.f46996f = true;
+                if (!this.f46995e) {
+                    this.f46995e = true;
                     post(new ru0(this, 5));
                 }
             }
-            if (!this.f47075r) {
+            if (!this.f46998r) {
                 return;
             }
             long currentTimeMillis = System.currentTimeMillis();
-            this.h = Utilities.i(this.h + (((float) Utilities.k(currentTimeMillis - this.f47074n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
-            this.f47074n = currentTimeMillis;
-            ProfileActivity profileActivity = this.f47069a;
+            this.h = Utilities.i(this.h + (((float) Utilities.k(currentTimeMillis - this.f46997n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f46997n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f46992a;
             qu0 qu0Var = profileActivity.f43508a;
             int i10 = profileActivity.V2;
             PointF pointF = this.d;
@@ -128,8 +128,8 @@ public final class dx0 extends View {
                         break;
                     }
                     View childAt = qu0Var.getChildAt(i11);
-                    if (i10 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.x8)) {
-                        xh.l lVar = ((org.telegram.ui.Cells.x8) childAt).f32437a;
+                    if (i10 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.y8)) {
+                        xh.l lVar = ((org.telegram.ui.Cells.y8) childAt).f32484a;
                         pointF.set(lVar.getX() + childAt.getX() + qu0Var.getX() + org.telegram.messenger.g0.L(12.0f), (lVar.getMeasuredHeight() / 2.0f) + lVar.getY() + childAt.getY() + qu0Var.getY());
                         break;
                     }
@@ -137,23 +137,23 @@ public final class dx0 extends View {
                 }
             }
             float f11 = nx.f();
-            this.f47070b.f45695c.y0((getWidth() - org.telegram.messenger.g0.L(f11)) / 2.0f, Math.max(0.0f, pointF.y - (org.telegram.messenger.g0.L(f11) * 0.5f)), org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f11));
+            this.f46993b.f45685c.y0((getWidth() - org.telegram.messenger.g0.L(f11)) / 2.0f, Math.max(0.0f, pointF.y - (org.telegram.messenger.g0.L(f11) * 0.5f)), org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f11));
             canvas.save();
             canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
             ax0 ax0Var = null;
-            this.f47070b.f45695c.h(canvas, null);
-            this.f47070b.f45695c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            this.f46993b.f45685c.h(canvas, null);
+            this.f46993b.f45685c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
             canvas.restore();
             int L = org.telegram.messenger.g0.L(110.0f);
-            int size = this.f47070b.d.size() - 1;
+            int size = this.f46993b.d.size() - 1;
             while (size >= 0) {
-                cx0 cx0Var = (cx0) this.f47070b.d.get(size);
+                cx0 cx0Var = (cx0) this.f46993b.d.get(size);
                 float f12 = size;
-                float s5 = org.telegram.messenger.g0.s(this.h, f12, this.f47070b.d.size(), 1.8f);
+                float s5 = org.telegram.messenger.g0.s(this.h, f12, this.f46993b.d.size(), 1.8f);
                 float f13 = L;
                 boolean z11 = z10;
                 float f14 = f13 * 0.88f;
-                float w10 = com.google.android.gms.internal.vision.e2.w(f14, this.f47070b.d.size() - 1, getWidth(), f10);
+                float w10 = com.google.android.gms.internal.vision.e2.w(f14, this.f46993b.d.size() - 1, getWidth(), f10);
                 float f15 = pointF.x;
                 float f16 = f10;
                 float f17 = pointF.y;
@@ -173,9 +173,9 @@ public final class dx0 extends View {
             }
             ax0 ax0Var2 = ax0Var;
             if (this.h >= 1.0f) {
-                this.f47075r = false;
-                b(this.f47071c);
-                this.f47071c = ax0Var2;
+                this.f46998r = false;
+                b(this.f46994c);
+                this.f46994c = ax0Var2;
                 return;
             }
             invalidate();

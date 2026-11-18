@@ -5,14 +5,14 @@ import ab.c0;
 import c8.ob;
 import java.nio.ByteBuffer;
 public final class v extends com.googlecode.mp4parser.c {
-    public static final ze.b f16110f;
+    public static final ze.b f16107f;
     public static final ze.b h;
-    public long[] f16111e;
+    public long[] f16108e;
 
     static {
         ze.a aVar = new ze.a(v.class, "SyncSampleBox.java");
         aVar.e(aVar.d("getSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "[J"));
-        f16110f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
+        f16107f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
         h = aVar.e(aVar.d("setSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "[J", "sampleNumber", "void"));
     }
 
@@ -20,30 +20,30 @@ public final class v extends com.googlecode.mp4parser.c {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         int a10 = ob.a(h5.b.i(byteBuffer));
-        this.f16111e = new long[a10];
+        this.f16108e = new long[a10];
         for (int i7 = 0; i7 < a10; i7++) {
-            this.f16111e[i7] = h5.b.i(byteBuffer);
+            this.f16108e[i7] = h5.b.i(byteBuffer);
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt(this.f16111e.length);
-        for (long j3 : this.f16111e) {
+        byteBuffer.putInt(this.f16108e.length);
+        for (long j3 : this.f16108e) {
             byteBuffer.putInt((int) j3);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f16111e.length * 4) + 8;
+        return (this.f16108e.length * 4) + 8;
     }
 
     public final String toString() {
-        c0 b10 = ze.a.b(f16110f, this, this);
+        c0 b10 = ze.a.b(f16107f, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
-        return p0.n(this.f16111e.length, "]", new StringBuilder("SyncSampleBox[entryCount="));
+        return p0.n(this.f16108e.length, "]", new StringBuilder("SyncSampleBox[entryCount="));
     }
 }

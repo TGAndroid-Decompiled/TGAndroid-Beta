@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class lf extends org.telegram.ui.eg0 {
+public final class lf extends org.telegram.ui.fg0 {
     public final ji.e E0;
     public final ChatActivityEnterView F0;
 

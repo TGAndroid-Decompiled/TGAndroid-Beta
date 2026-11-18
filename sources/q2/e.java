@@ -21,7 +21,7 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import org.telegram.ui.Components.hn;
 import p4.o0;
 import p4.r0;
@@ -52,7 +52,7 @@ public final class e implements m {
 
     public e(UUID uuid, ab.q qVar, HashMap hashMap, boolean z10, int[] iArr, boolean z11, qb.a aVar) {
         uuid.getClass();
-        la.e("Use C.CLEARKEY_UUID instead", !e2.l.f10494c.equals(uuid));
+        la.e("Use C.CLEARKEY_UUID instead", !e2.l.f10491c.equals(uuid));
         this.f55742a = uuid;
         this.f55743b = t.d;
         this.f55744c = qVar;
@@ -86,8 +86,8 @@ public final class e implements m {
     public static ArrayList f(e2.r rVar, UUID uuid, boolean z10) {
         ArrayList arrayList = new ArrayList(rVar.d);
         for (int i7 = 0; i7 < rVar.d; i7++) {
-            e2.q qVar = rVar.f10684a[i7];
-            if ((qVar.a(uuid) || (e2.l.d.equals(uuid) && qVar.a(e2.l.f10494c))) && (qVar.f10637e != null || z10)) {
+            e2.q qVar = rVar.f10681a[i7];
+            if ((qVar.a(uuid) || (e2.l.d.equals(uuid) && qVar.a(e2.l.f10491c))) && (qVar.f10634e != null || z10)) {
                 arrayList.add(qVar);
             }
         }
@@ -100,9 +100,9 @@ public final class e implements m {
         q qVar = this.G;
         qVar.getClass();
         int J = qVar.J();
-        e2.r rVar = uVar.f10772w;
+        e2.r rVar = uVar.f10769w;
         if (rVar == null) {
-            int h = s0.h(uVar.f10769s);
+            int h = s0.h(uVar.f10766s);
             int i7 = 0;
             while (true) {
                 int[] iArr = this.f55746f;
@@ -122,12 +122,12 @@ public final class e implements m {
         } else if (this.L == null) {
             UUID uuid = this.f55742a;
             if (f(rVar, uuid, true).isEmpty()) {
-                if (rVar.d == 1 && rVar.f10684a[0].a(e2.l.f10494c)) {
+                if (rVar.d == 1 && rVar.f10681a[0].a(e2.l.f10491c)) {
                     h2.a.l("DefaultDrmSessionMgr", "DrmInitData only contains common PSSH SchemeData. Assuming support for: " + uuid);
                 }
                 return 1;
             }
-            String str = rVar.f10686c;
+            String str = rVar.f10683c;
             if (str != null && !"cenc".equals(str) && (!"cbcs".equals(str) ? "cbc1".equals(str) || "cens".equals(str) : Build.VERSION.SDK_INT < 25)) {
                 return 1;
             }
@@ -170,7 +170,7 @@ public final class e implements m {
                         sVar = new w7.s(21);
                     }
                     this.G = sVar;
-                    sVar.a(new b5(this));
+                    sVar.a(new c5(this));
                 } catch (UnsupportedSchemeException e10) {
                     throw new Exception(e10);
                 } catch (Exception e11) {
@@ -196,11 +196,11 @@ public final class e implements m {
         if (this.N == null) {
             this.N = new android.support.v4.media.session.q(this, looper, 9);
         }
-        e2.r rVar = uVar.f10772w;
+        e2.r rVar = uVar.f10769w;
         int i7 = 0;
         b bVar = null;
         if (rVar == null) {
-            int h = s0.h(uVar.f10769s);
+            int h = s0.h(uVar.f10766s);
             q qVar = this.G;
             qVar.getClass();
             if (qVar.J() != 2 || !r.f55768c) {
@@ -219,8 +219,8 @@ public final class e implements m {
                 if (i7 != -1 && qVar.J() != 1) {
                     b bVar2 = this.H;
                     if (bVar2 == null) {
-                        g0 g0Var = i0.f14006b;
-                        b e10 = e(t1.f14074e, true, null, z10);
+                        g0 g0Var = i0.f14003b;
+                        b e10 = e(t1.f14071e, true, null, z10);
                         this.f55751x.add(e10);
                         this.H = e10;
                     } else {

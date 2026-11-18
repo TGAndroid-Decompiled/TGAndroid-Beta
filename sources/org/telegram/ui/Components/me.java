@@ -56,7 +56,7 @@ public final class me implements Runnable {
                 org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
                 if (Q != 0) {
                     ?? obj = new Object();
-                    obj.f28923a = true;
+                    obj.f28921a = true;
                     Q.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }

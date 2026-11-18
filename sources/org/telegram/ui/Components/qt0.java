@@ -602,9 +602,9 @@ public class qt0 extends FrameLayout implements r0.l {
         f(str, view, 0, 0, true);
         e2.r0 r0Var = this.f38917x;
         if (i7 == 1) {
-            r0Var.f10688b = 0;
+            r0Var.f10685b = 0;
         } else {
-            r0Var.f10687a = 0;
+            r0Var.f10684a = 0;
         }
     }
 
@@ -767,7 +767,7 @@ public class qt0 extends FrameLayout implements r0.l {
             oa oaVar = this.f38911k0;
             if (recyclerView3 != null) {
                 recyclerView3.C0();
-                ArrayList arrayList = this.G.f2820x0;
+                ArrayList arrayList = this.G.f2821x0;
                 if (arrayList != null) {
                     arrayList.remove(oaVar);
                 }
@@ -783,9 +783,9 @@ public class qt0 extends FrameLayout implements r0.l {
     public final void r(View view, View view2, int i7, int i10) {
         e2.r0 r0Var = this.f38917x;
         if (i10 == 1) {
-            r0Var.f10688b = i7;
+            r0Var.f10685b = i7;
         } else {
-            r0Var.f10687a = i7;
+            r0Var.f10684a = i7;
         }
     }
 
@@ -868,7 +868,7 @@ public class qt0 extends FrameLayout implements r0.l {
         oa oaVar = this.f38911k0;
         if (recyclerView != null) {
             recyclerView.C0();
-            ArrayList arrayList = this.F.f2820x0;
+            ArrayList arrayList = this.F.f2821x0;
             if (arrayList != null) {
                 arrayList.remove(oaVar);
             }

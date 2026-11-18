@@ -3,15 +3,15 @@ package di;
 import org.telegram.messenger.q10;
 import org.telegram.messenger.x10;
 public final class o6 implements q10 {
-    public final int f9451a = 0;
-    public final boolean[] f9452b;
-    public final q10 f9453c;
+    public final int f9448a = 0;
+    public final boolean[] f9449b;
+    public final q10 f9450c;
     public final x10 d;
 
     public o6(x10 x10Var, boolean[] zArr, q10 q10Var) {
         this.d = x10Var;
-        this.f9452b = zArr;
-        this.f9453c = q10Var;
+        this.f9449b = zArr;
+        this.f9450c = q10Var;
     }
 
     @Override
@@ -20,14 +20,14 @@ public final class o6 implements q10 {
         String str2;
         Long l10 = (Long) obj;
         Boolean bool = (Boolean) obj2;
-        switch (this.f9451a) {
+        switch (this.f9448a) {
             case 0:
                 x10 x10Var = this.d;
                 if (x10Var != null) {
                     x10Var.a(Boolean.TRUE);
                 }
-                this.f9452b[0] = true;
-                q10 q10Var = this.f9453c;
+                this.f9449b[0] = true;
+                q10 q10Var = this.f9450c;
                 if (q10Var != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
@@ -39,8 +39,8 @@ public final class o6 implements q10 {
                 }
                 return;
             default:
-                this.f9452b[0] = true;
-                q10 q10Var2 = this.f9453c;
+                this.f9449b[0] = true;
+                q10 q10Var2 = this.f9450c;
                 if (q10Var2 != null) {
                     if (bool.booleanValue()) {
                         str2 = "paid";
@@ -59,8 +59,8 @@ public final class o6 implements q10 {
     }
 
     public o6(boolean[] zArr, q10 q10Var, x10 x10Var) {
-        this.f9452b = zArr;
-        this.f9453c = q10Var;
+        this.f9449b = zArr;
+        this.f9450c = q10Var;
         this.d = x10Var;
     }
 }

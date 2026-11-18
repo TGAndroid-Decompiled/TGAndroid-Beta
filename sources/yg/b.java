@@ -15,16 +15,16 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.mq;
 public final class b extends FrameLayout {
-    public final n5 f61206a;
-    public final ImageView f61207b;
+    public final n5 f61207a;
+    public final ImageView f61208b;
 
     public b(Context context, i6 i6Var) {
         super(context);
         int i7;
         n5 n5Var = new n5(context);
-        this.f61206a = n5Var;
+        this.f61207a = n5Var;
         n5Var.setTextSize(16);
-        if (gd.f24216a0) {
+        if (gd.f24213a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -35,7 +35,7 @@ public final class b extends FrameLayout {
         n5Var.setTag(Integer.valueOf(i10));
         addView(n5Var);
         ImageView imageView = new ImageView(context);
-        this.f61207b = imageView;
+        this.f61208b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
         n5Var.k(gd.M0(2131753601, null));
@@ -44,9 +44,9 @@ public final class b extends FrameLayout {
         int i11 = n6.N6;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         u6.x(this, drawable, i11, i6Var, mode);
-        u6.x(this, drawable2, n6.f29526k7, i6Var, mode);
+        u6.x(this, drawable2, n6.f29524k7, i6Var, mode);
         imageView.setImageDrawable(new mq(drawable, drawable2));
-        u6.h(n6.f29469h5, this, i6Var);
+        u6.h(n6.f29467h5, this, i6Var);
     }
 
     @Override
@@ -54,11 +54,11 @@ public final class b extends FrameLayout {
         int L;
         int measuredWidth;
         int i13 = i11 - i7;
-        n5 n5Var = this.f61206a;
+        n5 n5Var = this.f61207a;
         int textHeight = ((i12 - i10) - n5Var.getTextHeight()) / 2;
-        boolean z11 = gd.f24216a0;
+        boolean z11 = gd.f24213a0;
         float f10 = 23.0f;
-        ImageView imageView = this.f61207b;
+        ImageView imageView = this.f61208b;
         if (z11) {
             int measuredWidth2 = getMeasuredWidth() - n5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
@@ -72,7 +72,7 @@ public final class b extends FrameLayout {
             L = g0.L(f10);
         }
         n5Var.layout(L, textHeight, n5Var.getMeasuredWidth() + L, n5Var.getMeasuredHeight() + textHeight);
-        if (!gd.f24216a0) {
+        if (!gd.f24213a0) {
             measuredWidth = g0.L(24.0f);
         } else {
             measuredWidth = (i13 - imageView.getMeasuredWidth()) - g0.L(24.0f);
@@ -83,8 +83,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
-        this.f61206a.measure(n10.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(20.0f), 1073741824));
-        this.f61207b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(50.0f), 1073741824));
+        this.f61207a.measure(n10.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(20.0f), 1073741824));
+        this.f61208b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(50.0f), 1073741824));
         setMeasuredDimension(size, g0.L(50.0f));
     }
 }

@@ -320,7 +320,7 @@ public final class x0 {
         com.google.android.gms.internal.vision.e2.r(sb2, wallettransaction.messageHash, ", id=", str2, ", success=");
         sb2.append(z11);
         u0.P(sb2.toString());
-        wallettransaction.f28668id = str2;
+        wallettransaction.f28666id = str2;
         u0Var.h(wallettransaction, z11, optString3);
         if (wallettransaction.nft != null && (l0Var = u0Var.f45095o) != null) {
             l0.a(l0Var, wallettransaction);

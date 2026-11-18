@@ -2,18 +2,18 @@ package da;
 
 import java.util.List;
 public final class y0 extends e2 {
-    public final String f8237a;
-    public final String f8238b;
-    public final List f8239c;
+    public final String f8234a;
+    public final String f8235b;
+    public final List f8236c;
     public final e2 d;
-    public final int f8240e;
+    public final int f8237e;
 
     public y0(String str, String str2, List list, e2 e2Var, int i7) {
-        this.f8237a = str;
-        this.f8238b = str2;
-        this.f8239c = list;
+        this.f8234a = str;
+        this.f8235b = str2;
+        this.f8236c = list;
         this.d = e2Var;
-        this.f8240e = i7;
+        this.f8237e = i7;
     }
 
     public final boolean equals(Object obj) {
@@ -25,8 +25,8 @@ public final class y0 extends e2 {
         if (obj instanceof e2) {
             y0 y0Var = (y0) ((e2) obj);
             e2 e2Var2 = y0Var.d;
-            String str2 = y0Var.f8238b;
-            if (this.f8237a.equals(y0Var.f8237a) && ((str = this.f8238b) != null ? str.equals(str2) : str2 == null) && this.f8239c.equals(y0Var.f8239c) && ((e2Var = this.d) != null ? e2Var.equals(e2Var2) : e2Var2 == null) && this.f8240e == y0Var.f8240e) {
+            String str2 = y0Var.f8235b;
+            if (this.f8234a.equals(y0Var.f8234a) && ((str = this.f8235b) != null ? str.equals(str2) : str2 == null) && this.f8236c.equals(y0Var.f8236c) && ((e2Var = this.d) != null ? e2Var.equals(e2Var2) : e2Var2 == null) && this.f8237e == y0Var.f8237e) {
                 return true;
             }
         }
@@ -35,32 +35,32 @@ public final class y0 extends e2 {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f8237a.hashCode() ^ 1000003) * 1000003;
+        int hashCode2 = (this.f8234a.hashCode() ^ 1000003) * 1000003;
         int i7 = 0;
-        String str = this.f8238b;
+        String str = this.f8235b;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
-        int hashCode3 = (((hashCode2 ^ hashCode) * 1000003) ^ this.f8239c.hashCode()) * 1000003;
+        int hashCode3 = (((hashCode2 ^ hashCode) * 1000003) ^ this.f8236c.hashCode()) * 1000003;
         e2 e2Var = this.d;
         if (e2Var != null) {
             i7 = e2Var.hashCode();
         }
-        return ((hashCode3 ^ i7) * 1000003) ^ this.f8240e;
+        return ((hashCode3 ^ i7) * 1000003) ^ this.f8237e;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Exception{type=");
-        sb2.append(this.f8237a);
+        sb2.append(this.f8234a);
         sb2.append(", reason=");
-        sb2.append(this.f8238b);
+        sb2.append(this.f8235b);
         sb2.append(", frames=");
-        sb2.append(this.f8239c);
+        sb2.append(this.f8236c);
         sb2.append(", causedBy=");
         sb2.append(this.d);
         sb2.append(", overflowCount=");
-        return a8.p0.n(this.f8240e, "}", sb2);
+        return a8.p0.n(this.f8237e, "}", sb2);
     }
 }

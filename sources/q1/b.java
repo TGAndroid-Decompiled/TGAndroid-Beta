@@ -37,7 +37,7 @@ public final class b {
             } else {
                 eVar = new gd.e(entry.getKey(), entry.getValue());
             }
-            linkedHashMap.put(eVar.f13477a, eVar.f13478b);
+            linkedHashMap.put(eVar.f13474a, eVar.f13475b);
         }
         Map unmodifiableMap = DesugarCollections.unmodifiableMap(linkedHashMap);
         j.d(unmodifiableMap, "unmodifiableMap(map)");

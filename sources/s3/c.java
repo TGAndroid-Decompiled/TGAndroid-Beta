@@ -25,7 +25,7 @@ public final class c implements p0 {
     public final void b(n0 n0Var) {
         String str = this.f56917b;
         if (str != null) {
-            n0Var.f10531a = str;
+            n0Var.f10528a = str;
         }
     }
 

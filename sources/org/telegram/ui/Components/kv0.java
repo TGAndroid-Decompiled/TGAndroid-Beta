@@ -102,8 +102,8 @@ public class kv0 extends FrameLayout implements org.telegram.messenger.fs {
                 if (document != null) {
                     org.telegram.messenger.lz d = org.telegram.messenger.u5.d(document.thumbs, this.H, 0.2f, false);
                     if (d != null) {
-                        d.f25488e = 512;
-                        d.f25489f = 512;
+                        d.f25486e = 512;
+                        d.f25487f = 512;
                     }
                     q9Var.k(org.telegram.messenger.fc.b(document), str, "tgs", d, obj);
                     int i12 = this.f36899r;
@@ -212,7 +212,7 @@ public class kv0 extends FrameLayout implements org.telegram.messenger.fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.f25227y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
+        if (i7 == org.telegram.messenger.ks.f25225y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
             c();
         }
     }
@@ -280,13 +280,13 @@ public class kv0 extends FrameLayout implements org.telegram.messenger.fs {
         if (getVisibility() == 0) {
             c();
         }
-        org.telegram.messenger.ks.f(this.f36902x).c(this, org.telegram.messenger.ks.f25227y0);
+        org.telegram.messenger.ks.f(this.f36902x).c(this, org.telegram.messenger.ks.f25225y0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.ks.f(this.f36902x).n(this, org.telegram.messenger.ks.f25227y0);
+        org.telegram.messenger.ks.f(this.f36902x).n(this, org.telegram.messenger.ks.f25225y0);
     }
 
     @Override
@@ -367,9 +367,9 @@ public class kv0 extends FrameLayout implements org.telegram.messenger.fs {
 
     public kv0(Context context, View view, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f36902x = org.telegram.messenger.j10.f24773t0;
+        this.f36902x = org.telegram.messenger.j10.f24770t0;
         this.E = new gk(this, 18);
-        this.H = org.telegram.ui.ActionBar.n6.f29379c7;
+        this.H = org.telegram.ui.ActionBar.n6.f29377c7;
         this.f36898n = i6Var;
         this.f36900s = view;
         this.f36899r = i7;
@@ -389,7 +389,7 @@ public class kv0 extends FrameLayout implements org.telegram.messenger.fs {
         lVar.setGravity(17);
         k80 k80Var = new k80(context, null);
         this.f36896e = k80Var;
-        int i11 = org.telegram.ui.ActionBar.n6.f29788y6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29786y6;
         k80Var.setTag(Integer.valueOf(i11));
         org.telegram.ui.ActionBar.u6.U(k80Var, i11, i6Var);
         org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.J6, i6Var);

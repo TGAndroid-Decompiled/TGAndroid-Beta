@@ -168,7 +168,7 @@ public class tm0 extends ScrollView implements eh.a {
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        aVar.f8372a = true;
+        aVar.f8369a = true;
     }
 
     @Override
@@ -193,7 +193,7 @@ public class tm0 extends ScrollView implements eh.a {
                 throw th2;
             }
         }
-        int i7 = org.telegram.ui.ActionBar.n6.f29339a7;
+        int i7 = org.telegram.ui.ActionBar.n6.f29337a7;
         org.telegram.ui.ActionBar.i6 i6Var = this.f40046a;
         int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.w0(i7, i6Var), 255);
         this.d.setColor(o4);
@@ -207,7 +207,7 @@ public class tm0 extends ScrollView implements eh.a {
         rectF3.set(rectF);
         rectF3.offset(scrollX, scrollY);
         e();
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var);
         canvas.save();
         try {
             canvas.clipRect(rectF);
@@ -270,7 +270,7 @@ public class tm0 extends ScrollView implements eh.a {
         float f11;
         float f12;
         char c10;
-        int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, this.f40046a), 255);
+        int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, this.f40046a), 255);
         Paint paint = this.d;
         paint.setColor(o4);
         if (this.f40056y != o4) {
@@ -419,7 +419,7 @@ public class tm0 extends ScrollView implements eh.a {
                 Object obj = arrayList.get(i7);
                 i7++;
                 View view3 = (View) obj;
-                if (!Objects.equals(view3.getTag(), -33024) && !(view3 instanceof org.telegram.ui.Cells.z8) && !(view3 instanceof org.telegram.ui.Cells.y6) && !(view3 instanceof org.telegram.ui.g00)) {
+                if (!Objects.equals(view3.getTag(), -33024) && !(view3 instanceof org.telegram.ui.Cells.a9) && !(view3 instanceof org.telegram.ui.Cells.z6) && !(view3 instanceof org.telegram.ui.g00)) {
                     if (view != null && Math.abs(view2.getAlpha() - view3.getAlpha()) > 0.1f) {
                         b(view, view2);
                         view = null;
@@ -507,7 +507,7 @@ public class tm0 extends ScrollView implements eh.a {
             int i12 = i7 + 3;
             if (rectF.intersects(fArr[i7], fArr[i10], fArr[i11], fArr[i12])) {
                 float f10 = this.F[i7 + 4];
-                int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f40046a);
+                int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f40046a);
                 int round = Math.round(Math.max(0.0f, Math.min(1.0f, f10)) * Color.alpha(w02));
                 if (!this.E) {
                     k10 = i0.a.o(w02, round);

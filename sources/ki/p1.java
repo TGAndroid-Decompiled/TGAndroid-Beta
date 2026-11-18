@@ -56,11 +56,11 @@ public abstract class p1 {
         q9Var.f(user, b9Var);
         frameLayout2.addView(q9Var, ma.e(28, 28, 51));
         q9 q9Var2 = new q9(activity);
-        q9Var2.setEmojiColorFilter(new PorterDuffColorFilter(n6.x0(null, n6.f29810z9, false), PorterDuff.Mode.SRC_IN));
+        q9Var2.setEmojiColorFilter(new PorterDuffColorFilter(n6.x0(null, n6.f29808z9, false), PorterDuff.Mode.SRC_IN));
         q9Var2.setAnimatedEmojiDrawable(o5.m(i7, botVerifierSettings.icon, null, 3));
         frameLayout2.addView(q9Var2, ma.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         n5 n5Var = new n5(activity);
-        u6.X(n5Var, n6.f29504j5, null);
+        u6.X(n5Var, n6.f29502j5, null);
         n5Var.setTextSize(13);
         n5Var.setEllipsizeByGradient(true);
         n5Var.l(str, false);
@@ -70,7 +70,7 @@ public abstract class p1 {
         boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
         String M0 = gd.M0(2131752986, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
         u1Var.S = M0;
         if (i11 >= 0) {
             i10 = 2131752987;

@@ -27,7 +27,7 @@ public final class h5 extends r0 {
 
     @Override
     public final void G(boolean z10) {
-        this.A0.f28975a.B(z10, true);
+        this.A0.f28973a.B(z10, true);
     }
 
     @Override
@@ -45,18 +45,18 @@ public final class h5 extends r0 {
     @Override
     public final r0 O() {
         this.B0 = true;
-        this.A0.f28975a.setSearchItem(this);
+        this.A0.f28973a.setSearchItem(this);
         return this;
     }
 
     @Override
     public final void Q(CharSequence charSequence, boolean z10) {
-        this.A0.f28975a.setSearchFieldText(charSequence);
+        this.A0.f28973a.setSearchFieldText(charSequence);
     }
 
     @Override
     public final boolean U(boolean z10) {
-        a5 a5Var = this.A0.f28975a;
+        a5 a5Var = this.A0.f28973a;
         if (a5Var.G) {
             a5Var.o(z10);
             return false;
@@ -76,7 +76,7 @@ public final class h5 extends r0 {
         if (z12 == z10) {
             if (!z10 && !z11 && getVisibility() != 8) {
                 super.setVisibility(8);
-                g5Var.f28979f = true;
+                g5Var.f28977f = true;
                 g5Var.requestLayout();
                 return;
             } else if (z10 && getVisibility() != 0) {
@@ -98,8 +98,8 @@ public final class h5 extends r0 {
         } else if (!z11 || !isLaidOut() || !g5Var.isLaidOut()) {
             super.setVisibility(8);
         }
-        if (!z11 || !g5Var.f28975a.y()) {
-            g5Var.f28979f = true;
+        if (!z11 || !g5Var.f28973a.y()) {
+            g5Var.f28977f = true;
         }
         g5Var.requestLayout();
     }
@@ -110,7 +110,7 @@ public final class h5 extends r0 {
 
     @Override
     public EditTextBoldCursor getSearchField() {
-        return this.A0.f28975a.getSearchField();
+        return this.A0.f28973a.getSearchField();
     }
 
     public n0 getSearchListener() {
@@ -119,18 +119,18 @@ public final class h5 extends r0 {
 
     @Override
     public k5 getSubMenuOverlay() {
-        return this.A0.f28975a.getMenuOverlay();
+        return this.A0.f28973a.getMenuOverlay();
     }
 
     @Override
     public u4 getSubMenuOverlayHost() {
-        return this.A0.f28975a;
+        return this.A0.f28973a;
     }
 
     @Override
     public final boolean j() {
         g5 g5Var = this.A0;
-        if (g5Var.f28976b && !g5Var.f28975a.x()) {
+        if (g5Var.f28974b && !g5Var.f28973a.x()) {
             return false;
         }
         return true;
@@ -138,17 +138,17 @@ public final class h5 extends r0 {
 
     @Override
     public final void o() {
-        this.A0.f28975a.setSearchFieldText("");
+        this.A0.f28973a.setSearchFieldText("");
     }
 
     @Override
     public void setSearchFieldCaption(CharSequence charSequence) {
-        this.A0.f28975a.setSearchFieldCaption(charSequence);
+        this.A0.f28973a.setSearchFieldCaption(charSequence);
     }
 
     @Override
     public void setSearchFieldHint(CharSequence charSequence) {
-        this.A0.f28975a.setSearchFieldHint(charSequence);
+        this.A0.f28973a.setSearchFieldHint(charSequence);
         setContentDescription(charSequence);
     }
 
@@ -163,8 +163,8 @@ public final class h5 extends r0 {
             } else {
                 z10 = false;
             }
-            a5 a5Var = g5Var.f28975a;
-            if (g5Var.isLaidOut() && a5Var.y() && (!g5Var.f28976b || (a5Var.x() && a5Var.getActionModeFactor() > 0.0f))) {
+            a5 a5Var = g5Var.f28973a;
+            if (g5Var.isLaidOut() && a5Var.y() && (!g5Var.f28974b || (a5Var.x() && a5Var.getActionModeFactor() > 0.0f))) {
                 z11 = true;
             }
             Z(z10, z11);
@@ -180,11 +180,11 @@ public final class h5 extends r0 {
 
     @Override
     public final boolean w() {
-        return this.A0.f28975a.G;
+        return this.A0.f28973a.G;
     }
 
     @Override
     public final boolean x() {
-        return this.A0.f28975a.G;
+        return this.A0.f28973a.G;
     }
 }

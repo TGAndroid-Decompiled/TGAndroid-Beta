@@ -1,12 +1,12 @@
 package g9;
 public abstract class g extends d {
-    public final String f13254a;
+    public final String f13251a;
 
     public g(String str) {
-        this.f13254a = str;
+        this.f13251a = str;
     }
 
     public final String toString() {
-        return this.f13254a;
+        return this.f13251a;
     }
 }

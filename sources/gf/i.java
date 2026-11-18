@@ -3,21 +3,21 @@ package gf;
 import java.io.Serializable;
 import java.util.ArrayList;
 public final class i extends mf.a {
-    public final int f13565a;
-    public final kf.a f13566b;
-    public final Serializable f13567c;
+    public final int f13562a;
+    public final kf.a f13563b;
+    public final Serializable f13564c;
 
     public i() {
-        this.f13565a = 1;
-        this.f13566b = new kf.p();
-        this.f13567c = new ArrayList();
+        this.f13562a = 1;
+        this.f13563b = new kf.p();
+        this.f13564c = new ArrayList();
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        switch (this.f13565a) {
+        switch (this.f13562a) {
             case 1:
-                ((ArrayList) this.f13567c).add(charSequence);
+                ((ArrayList) this.f13564c).add(charSequence);
                 return;
             default:
                 return;
@@ -28,9 +28,9 @@ public final class i extends mf.a {
     public void d() {
         int i7;
         boolean z10;
-        switch (this.f13565a) {
+        switch (this.f13562a) {
             case 1:
-                ArrayList arrayList = (ArrayList) this.f13567c;
+                ArrayList arrayList = (ArrayList) this.f13564c;
                 int size = arrayList.size() - 1;
                 while (true) {
                     if (size >= 0) {
@@ -64,7 +64,7 @@ public final class i extends mf.a {
                     sb2.append((CharSequence) arrayList.get(i7));
                     sb2.append('\n');
                 }
-                ((kf.l) this.f13566b).f18231g = sb2.toString();
+                ((kf.l) this.f13563b).f18228g = sb2.toString();
                 return;
             default:
                 return;
@@ -73,19 +73,19 @@ public final class i extends mf.a {
 
     @Override
     public final kf.a e() {
-        switch (this.f13565a) {
+        switch (this.f13562a) {
             case 0:
-                return (kf.i) this.f13566b;
+                return (kf.i) this.f13563b;
             default:
-                return (kf.l) this.f13566b;
+                return (kf.l) this.f13563b;
         }
     }
 
     @Override
     public void g(lf.a aVar) {
-        switch (this.f13565a) {
+        switch (this.f13562a) {
             case 0:
-                aVar.a((String) this.f13567c, (kf.i) this.f13566b);
+                aVar.a((String) this.f13564c, (kf.i) this.f13563b);
                 return;
             default:
                 return;
@@ -94,25 +94,25 @@ public final class i extends mf.a {
 
     @Override
     public final a h(g gVar) {
-        switch (this.f13565a) {
+        switch (this.f13562a) {
             case 0:
                 return null;
             default:
-                if (gVar.f13554g >= 4) {
-                    return new a(-1, gVar.f13551c + 4, false);
+                if (gVar.f13551g >= 4) {
+                    return new a(-1, gVar.f13548c + 4, false);
                 }
                 if (gVar.h) {
-                    return a.a(gVar.f13552e);
+                    return a.a(gVar.f13549e);
                 }
                 return null;
         }
     }
 
     public i(int i7, String str) {
-        this.f13565a = 0;
+        this.f13562a = 0;
         ?? pVar = new kf.p();
-        this.f13566b = pVar;
-        pVar.f18227g = i7;
-        this.f13567c = str;
+        this.f13563b = pVar;
+        pVar.f18224g = i7;
+        this.f13564c = str;
     }
 }

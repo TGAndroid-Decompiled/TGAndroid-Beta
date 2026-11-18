@@ -19,10 +19,10 @@ public final class a implements p0 {
 
     static {
         t tVar = new t();
-        tVar.f10717r = s0.n("application/id3");
+        tVar.f10714r = s0.n("application/id3");
         f55781g = new u(tVar);
         t tVar2 = new t();
-        tVar2.f10717r = s0.n("application/x-scte35");
+        tVar2.f10714r = s0.n("application/x-scte35");
         h = new u(tVar2);
     }
 

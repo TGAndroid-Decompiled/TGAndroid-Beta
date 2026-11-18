@@ -102,7 +102,7 @@ public final class lq0 extends ws0 {
                     TextPaint textPaint = new TextPaint(1);
                     this.f41779o3 = textPaint;
                     textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
-                    this.f41779o3.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29807z6, this.f34074o2));
+                    this.f41779o3.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29805z6, this.f34074o2));
                 }
                 int measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(60.0f);
                 StaticLayout staticLayout = this.f41780p3;
@@ -144,7 +144,7 @@ public final class lq0 extends ws0 {
         }
         if (this.f41783s3 == null) {
             int currentAccount = h2Var.getCurrentAccount();
-            fi.n9[] n9VarArr = fi.n9.f12313f;
+            fi.n9[] n9VarArr = fi.n9.f12310f;
             if (n9VarArr[currentAccount] == null) {
                 n9VarArr[currentAccount] = new fi.n9(currentAccount);
             }
@@ -239,8 +239,8 @@ public final class lq0 extends ws0 {
             arrayList.clear();
             for (int i10 = 0; i10 < getChildCount(); i10++) {
                 View childAt = getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.q1) {
-                    arrayList.add(((org.telegram.ui.Cells.q1) childAt).getMessageObject());
+                if (childAt instanceof org.telegram.ui.Cells.r1) {
+                    arrayList.add(((org.telegram.ui.Cells.r1) childAt).getMessageObject());
                 }
             }
             org.telegram.messenger.mp.u1(ps0Var.d).l(arrayList, ps0Var.f38548s.f35606m1);
@@ -263,11 +263,11 @@ public final class lq0 extends ws0 {
     }
 
     @Override
-    public final void z1(org.telegram.ui.Cells.o7 o7Var) {
+    public final void z1(org.telegram.ui.Cells.p7 p7Var) {
         float f10;
-        int messageId = o7Var.getMessageId();
+        int messageId = p7Var.getMessageId();
         iq0 iq0Var = this.f37205x3;
-        if (messageId == iq0Var.J && o7Var.f31179c.I()) {
+        if (messageId == iq0Var.J && p7Var.f31226c.I()) {
             if (!iq0Var.K) {
                 iq0Var.L = 0.0f;
                 iq0Var.K = true;
@@ -280,9 +280,9 @@ public final class lq0 extends ws0 {
             } else {
                 f10 = 1.0f;
             }
-            o7Var.setHighlightProgress(f10);
+            p7Var.setHighlightProgress(f10);
             return;
         }
-        o7Var.setHighlightProgress(0.0f);
+        p7Var.setHighlightProgress(0.0f);
     }
 }

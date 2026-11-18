@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 public final class q0 extends u0 {
     public static final PathInterpolator f56269e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final x1.a f56270f = new x1.b(x1.a.f60020c);
+    public static final x1.a f56270f = new x1.b(x1.a.f60021c);
     public static final DecelerateInterpolator f56271g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 
@@ -28,7 +28,7 @@ public final class q0 extends u0 {
     public static void f(View view, l1 l1Var, boolean z10) {
         com.google.android.gms.common.api.q i7 = i(view);
         if (i7 != null) {
-            i7.f6398a = l1Var;
+            i7.f6395a = l1Var;
             if (!z10) {
                 z10 = true;
             }

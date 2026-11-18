@@ -16,7 +16,7 @@ public final class ru extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59126f == 1) {
+        if (f1Var.f59127f == 1) {
             return true;
         }
         return false;
@@ -55,7 +55,7 @@ public final class ru extends bk0 {
         ArrayList arrayList;
         bv bvVar = this.f39309c;
         nu nuVar = bvVar.f33786p1;
-        if (!org.telegram.messenger.j10.i(bvVar.f30189a).q() && (arrayList = nuVar.f42946b) != null && arrayList.size() == 1 && org.telegram.messenger.fj.V3((TLRPC.TL_messages_stickerSet) nuVar.f42946b.get(0))) {
+        if (!org.telegram.messenger.j10.i(bvVar.f30187a).q() && (arrayList = nuVar.f42946b) != null && arrayList.size() == 1 && org.telegram.messenger.fj.V3((TLRPC.TL_messages_stickerSet) nuVar.f42946b.get(0))) {
             r22 = 1;
         } else {
             r22 = 0;

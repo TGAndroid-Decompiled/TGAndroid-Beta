@@ -27,7 +27,7 @@ public final class l21 extends v4.u0 {
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         float f10;
         y21 y21Var = this.f36989a;
-        y21Var.f30192b.invalidate();
+        y21Var.f30190b.invalidate();
         boolean canScrollVertically = y21Var.H1.canScrollVertically(1);
         View view = y21Var.L1;
         Boolean bool = y21Var.R1;

@@ -8,26 +8,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.e51;
 public final class s extends FrameLayout {
-    public final int f9682a;
-    public final ArrayList f9683b;
-    public final e51 f9684c;
+    public final int f9679a;
+    public final ArrayList f9680b;
+    public final e51 f9681c;
     public String d;
-    public boolean f9685e;
-    public boolean f9686f;
+    public boolean f9682e;
+    public boolean f9683f;
     public boolean h;
-    public final ca.r f9687n;
-    public final t f9688r;
+    public final ca.r f9684n;
+    public final t f9685r;
 
     public s(t tVar, Context context, int i7) {
         super(context);
         int i10;
         org.telegram.ui.ActionBar.i6 i6Var;
         ri.q qVar;
-        this.f9688r = tVar;
-        this.f9683b = new ArrayList();
+        this.f9685r = tVar;
+        this.f9680b = new ArrayList();
         this.d = "";
-        this.f9687n = new ca.r(this, 10);
-        this.f9682a = i7;
+        this.f9684n = new ca.r(this, 10);
+        this.f9679a = i7;
         setClipChildren(false);
         setClipToPadding(false);
         i10 = ((org.telegram.ui.ActionBar.h2) tVar).currentAccount;
@@ -36,7 +36,7 @@ public final class s extends FrameLayout {
         a1.c cVar = new a1.c(this, 22);
         i6Var = ((org.telegram.ui.ActionBar.h2) tVar).resourceProvider;
         e51 e51Var = new e51(context, i10, classGuid, true, bVar, cVar, null, i6Var);
-        this.f9684c = e51Var;
+        this.f9681c = e51Var;
         e51Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
         e51Var.f34607g3.f42809r = false;
         e51Var.setCaptureSectionsDecoratorAllowed(true);
@@ -53,13 +53,13 @@ public final class s extends FrameLayout {
         int i7;
         int i10;
         int i11;
-        t tVar = this.f9688r;
-        if (!tVar.P && !this.f9685e && !this.f9686f && !this.h) {
+        t tVar = this.f9685r;
+        if (!tVar.P && !this.f9682e && !this.f9683f && !this.h) {
             boolean z11 = true;
-            this.f9685e = true;
+            this.f9682e = true;
             TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
             tL_payments_getStarsTransactions.ton = true;
-            int i12 = this.f9682a;
+            int i12 = this.f9679a;
             if (i12 == 1) {
                 z10 = true;
             } else {
@@ -71,11 +71,11 @@ public final class s extends FrameLayout {
             }
             tL_payments_getStarsTransactions.outbound = z11;
             i7 = ((org.telegram.ui.ActionBar.h2) tVar).currentAccount;
-            tL_payments_getStarsTransactions.peer = mp.u1(i7).l1(tVar.f9752b);
+            tL_payments_getStarsTransactions.peer = mp.u1(i7).l1(tVar.f9749b);
             String str = this.d;
             tL_payments_getStarsTransactions.offset = str;
             tL_payments_getStarsTransactions.limit = 20;
-            this.f9684c.f34607g3.O(false);
+            this.f9681c.f34607g3.O(false);
             i10 = ((org.telegram.ui.ActionBar.h2) tVar).currentAccount;
             int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsTransactions, new bi.k1(4, this, str));
             i11 = ((org.telegram.ui.ActionBar.h2) tVar).currentAccount;
@@ -86,12 +86,12 @@ public final class s extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        post(this.f9687n);
+        post(this.f9684n);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        removeCallbacks(this.f9687n);
+        removeCallbacks(this.f9684n);
         super.onDetachedFromWindow();
     }
 }

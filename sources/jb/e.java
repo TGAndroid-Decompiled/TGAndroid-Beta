@@ -9,43 +9,43 @@ import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONObject;
 import zd.z;
 public final class e extends kd.j implements rd.p {
-    public int f17354a;
-    public final f f17355b;
-    public final Object f17356c;
+    public int f17351a;
+    public final f f17352b;
+    public final Object f17353c;
     public final be.l d;
-    public final c f17357e;
+    public final c f17354e;
 
     public e(f fVar, Map map, be.l lVar, c cVar, id.c cVar2) {
         super(2, cVar2);
-        this.f17355b = fVar;
-        this.f17356c = map;
+        this.f17352b = fVar;
+        this.f17353c = map;
         this.d = lVar;
-        this.f17357e = cVar;
+        this.f17354e = cVar;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        return new e(this.f17355b, this.f17356c, this.d, this.f17357e, cVar);
+        return new e(this.f17352b, this.f17353c, this.d, this.f17354e, cVar);
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((e) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13488a);
+        return ((e) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13485a);
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        jd.a aVar = jd.a.f17384a;
-        int i7 = this.f17354a;
-        gd.k kVar = gd.k.f13488a;
-        c cVar = this.f17357e;
+        jd.a aVar = jd.a.f17381a;
+        int i7 = this.f17351a;
+        gd.k kVar = gd.k.f13485a;
+        c cVar = this.f17354e;
         try {
         } catch (Exception e10) {
             String message = e10.getMessage();
             if (message == null) {
                 message = e10.toString();
             }
-            this.f17354a = 3;
+            this.f17351a = 3;
             cVar.invoke(message, this);
             if (kVar == aVar) {
             }
@@ -62,12 +62,12 @@ public final class e extends kd.j implements rd.p {
             }
         } else {
             b7.h.b(obj);
-            URLConnection openConnection = f.a(this.f17355b).openConnection();
+            URLConnection openConnection = f.a(this.f17352b).openConnection();
             kotlin.jvm.internal.j.c(openConnection, "null cannot be cast to non-null type javax.net.ssl.HttpsURLConnection");
             HttpsURLConnection httpsURLConnection = (HttpsURLConnection) openConnection;
             httpsURLConnection.setRequestMethod("GET");
             httpsURLConnection.setRequestProperty("Accept", "application/json");
-            for (Map.Entry entry : this.f17356c.entrySet()) {
+            for (Map.Entry entry : this.f17353c.entrySet()) {
                 httpsURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
             }
             int responseCode = httpsURLConnection.getResponseCode();
@@ -86,12 +86,12 @@ public final class e extends kd.j implements rd.p {
                 inputStream.close();
                 JSONObject jSONObject = new JSONObject(sb2.toString());
                 be.l lVar = this.d;
-                this.f17354a = 1;
+                this.f17351a = 1;
                 if (lVar.invoke(jSONObject, this) == aVar) {
                     return aVar;
                 }
             } else {
-                this.f17354a = 2;
+                this.f17351a = 2;
                 cVar.invoke("Bad response code: " + responseCode, this);
                 if (kVar == aVar) {
                     return aVar;

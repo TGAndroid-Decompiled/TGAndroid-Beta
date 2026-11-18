@@ -39,7 +39,7 @@ public final class n {
             }
             tL_messages_getPollVotes.limit = i7;
             tL_messages_getPollVotes.peer = this.f57465b;
-            tL_messages_getPollVotes.f28504id = this.f57466c;
+            tL_messages_getPollVotes.f28502id = this.f57466c;
             tL_messages_getPollVotes.option = this.d;
             tL_messages_getPollVotes.offset = str;
             ConnectionsManager.getInstance(this.f57464a).sendRequestTyped(tL_messages_getPollVotes, new d3.b(1), new i(this, 1));

@@ -43,7 +43,7 @@ public final class a1 extends EditTextBoldCursor {
             case 0:
                 super.dispatchDraw(canvas);
                 if (this.O1 < 0) {
-                    i7 = n6.f29617p7;
+                    i7 = n6.f29615p7;
                 } else {
                     i7 = n6.P5;
                 }
@@ -56,7 +56,7 @@ public final class a1 extends EditTextBoldCursor {
             case 1:
                 super.dispatchDraw(canvas);
                 if (this.O1 < 0) {
-                    i10 = n6.f29617p7;
+                    i10 = n6.f29615p7;
                 } else {
                     i10 = n6.P5;
                 }
@@ -69,7 +69,7 @@ public final class a1 extends EditTextBoldCursor {
             case 2:
                 super.dispatchDraw(canvas);
                 if (this.O1 <= 0) {
-                    i11 = n6.f29617p7;
+                    i11 = n6.f29615p7;
                 } else {
                     i11 = n6.P5;
                 }
@@ -85,7 +85,7 @@ public final class a1 extends EditTextBoldCursor {
             default:
                 super.dispatchDraw(canvas);
                 if (this.O1 <= 0) {
-                    i12 = n6.f29617p7;
+                    i12 = n6.f29615p7;
                 } else {
                     i12 = n6.P5;
                 }

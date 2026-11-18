@@ -9,8 +9,8 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import bi.a4;
-import bi.v4;
-import bi.x4;
+import bi.u4;
+import bi.w4;
 import c8.ma;
 import di.a5;
 import di.b5;
@@ -18,6 +18,8 @@ import di.m8;
 import di.o9;
 import di.p5;
 import di.s5;
+import di.v4;
+import di.x4;
 import di.x8;
 import di.z4;
 import fi.f9;
@@ -95,27 +97,27 @@ public final class a1 implements Runnable {
                 }
                 return;
             case 2:
-                ((x4) obj2).run();
-                org.telegram.messenger.g0.g3(new a4(org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749567, v4.k(((org.telegram.ui.Wallet.p0) obj).f44732b), gd.x(i11, true))), 0));
+                ((w4) obj2).run();
+                org.telegram.messenger.g0.g3(new a4(org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749567, u4.k(((org.telegram.ui.Wallet.p0) obj).f44732b), gd.x(i11, true))), 0));
                 return;
             case 3:
                 eq0 eq0Var = (eq0) obj2;
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                m8 m8Var = eq0Var.f4006e;
+                m8 m8Var = eq0Var.f3944e;
                 if (i11 != -1) {
                     int i12 = tL_starGiftCollection.collection_id;
-                    int i13 = m8Var.f9322a;
+                    int i13 = m8Var.f9319a;
                     int f11 = m8Var.f(i12);
                     if (f11 != -1) {
-                        TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) m8Var.f9325e.remove(f11);
+                        TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) m8Var.f9322e.remove(f11);
                         m8Var.h.remove(Integer.valueOf(tL_starGiftCollection2.collection_id));
                         TL_stars.deleteStarGiftCollection deletestargiftcollection = new TL_stars.deleteStarGiftCollection();
-                        deletestargiftcollection.peer = mp.u1(i13).l1(m8Var.f9323b);
+                        deletestargiftcollection.peer = mp.u1(i13).l1(m8Var.f9320b);
                         deletestargiftcollection.collection_id = tL_starGiftCollection2.collection_id;
                         ConnectionsManager.getInstance(i13).sendRequest(deletestargiftcollection, null);
                     }
                     eq0Var.f(true);
-                    f71 f71Var = eq0Var.f4008n;
+                    f71 f71Var = eq0Var.f3946n;
                     if (i11 < m8Var.d().size()) {
                         i11++;
                     }
@@ -145,8 +147,8 @@ public final class a1 implements Runnable {
                 b5 b5Var = (b5) obj2;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
                 int[] iArr2 = b5Var.W;
-                di.x4 x4Var = b5Var.f8546f;
-                di.v4 v4Var = b5Var.h;
+                x4 x4Var = b5Var.f8543f;
+                v4 v4Var = b5Var.h;
                 if (starGift != null) {
                     z4 z4Var = new z4(b5Var.getContext());
                     z4Var.a(starGift, false);
@@ -160,7 +162,7 @@ public final class a1 implements Runnable {
                     ViewPropertyAnimator interpolator = duration.setInterpolator(lrVar);
                     interpolator.setUpdateListener(new ah.g(b5Var, 6));
                     interpolator.start();
-                    v4Var.f9915a[i11].setVisibility(8);
+                    v4Var.f9912a[i11].setVisibility(8);
                     x4Var.setVisibility(0);
                     x4Var.setAlpha(0.0f);
                     x4Var.animate().alpha(0.5f).setDuration(820L).setInterpolator(lrVar).start();
@@ -176,11 +178,11 @@ public final class a1 implements Runnable {
                 imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
                 b5Var.m0 = imageView;
                 frameLayout.setBackground(new p5(org.telegram.messenger.g0.L(12.0f), n6.r1(0.075f, -1)));
-                v4Var.f9915a[i11].setVisibility(8);
+                v4Var.f9912a[i11].setVisibility(8);
                 frameLayout.setRotation(180.0f);
                 v4Var.f(i11, frameLayout);
                 b5Var.G.a(iArr2[2], iArr2[3]);
-                a5 a5Var = b5Var.f8539b;
+                a5 a5Var = b5Var.f8536b;
                 int[] iArr3 = b5Var.V;
                 a5Var.a(iArr3[2], iArr3[3]);
                 x4Var.a(iArr2[3], iArr2[2]);
@@ -191,10 +193,10 @@ public final class a1 implements Runnable {
             case 8:
                 x8 x8Var = (x8) obj2;
                 TLObject tLObject = (TLObject) obj;
-                boolean[] zArr = x8Var.f10033r;
-                ArrayList[] arrayListArr = x8Var.f10032q;
-                int i15 = x8Var.f10018a;
-                x8Var.f10035t[i11] = false;
+                boolean[] zArr = x8Var.f10030r;
+                ArrayList[] arrayListArr = x8Var.f10029q;
+                int i15 = x8Var.f10015a;
+                x8Var.f10032t[i11] = false;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
                     mp.u1(i15).f4(starsStatus.users, false);
@@ -206,12 +208,12 @@ public final class a1 implements Runnable {
                         z10 = true;
                     }
                     zArr[i11] = z10;
-                    boolean[] zArr2 = x8Var.f10036u;
+                    boolean[] zArr2 = x8Var.f10033u;
                     if ((starsStatus.flags & 1) != 0) {
                         z11 = false;
                     }
                     zArr2[i11] = z11;
-                    String[] strArr = x8Var.f10034s;
+                    String[] strArr = x8Var.f10031s;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }
@@ -247,10 +249,10 @@ public final class a1 implements Runnable {
                 return;
             case 12:
                 f9 f9Var = ((w8) obj2).d;
-                v8 v8Var = f9Var.f11986o0;
+                v8 v8Var = f9Var.f11983o0;
                 int i16 = f9Var.h;
                 v8Var.B0 = (ArrayList) obj;
-                v8Var.f12310z0 = i16;
+                v8Var.f12307z0 = i16;
                 v8Var.setAdapter(null);
                 v8Var.setAdapter(v8Var.A0);
                 v8Var.setCurrentItem(i11);
@@ -263,10 +265,10 @@ public final class a1 implements Runnable {
                     h2.q qVar = (h2.q) it.next();
                     if (!qVar.d) {
                         if (i11 != -1) {
-                            qVar.f13811b.b(i11);
+                            qVar.f13808b.b(i11);
                         }
-                        qVar.f13812c = true;
-                        oVar.invoke(qVar.f13810a);
+                        qVar.f13809c = true;
+                        oVar.invoke(qVar.f13807a);
                     }
                 }
                 return;
@@ -279,7 +281,7 @@ public final class a1 implements Runnable {
             case 16:
                 l5 l5Var = (l5) obj2;
                 sg.g gVar = (sg.g) obj;
-                if (l5Var.f14939y0.getCurrentBrush() instanceof sg.g) {
+                if (l5Var.f14936y0.getCurrentBrush() instanceof sg.g) {
                     l5Var.M0 = true;
                 }
                 l5Var.w(gVar);
@@ -298,25 +300,25 @@ public final class a1 implements Runnable {
             case 19:
                 jg.h0 h0Var = (jg.h0) obj2;
                 String str2 = (String) obj;
-                int i18 = h0Var.f17493t0;
-                h0Var.f17489r = null;
-                if (i11 == h0Var.f17475e0) {
-                    if (h0Var.f17484n >= 0) {
-                        ConnectionsManager.getInstance(i18).cancelRequest(h0Var.f17484n, true);
+                int i18 = h0Var.f17490t0;
+                h0Var.f17486r = null;
+                if (i11 == h0Var.f17472e0) {
+                    if (h0Var.f17481n >= 0) {
+                        ConnectionsManager.getInstance(i18).cancelRequest(h0Var.f17481n, true);
                     }
                     TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
                     tL_channels_searchPosts.flags |= 1;
                     tL_channels_searchPosts.hashtag = str2;
                     tL_channels_searchPosts.limit = 3;
                     tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                    h0Var.f17484n = ConnectionsManager.getInstance(i18).sendRequest(tL_channels_searchPosts, new jg.u(h0Var, i11, str2, 0));
+                    h0Var.f17481n = ConnectionsManager.getInstance(i18).sendRequest(tL_channels_searchPosts, new jg.u(h0Var, i11, str2, 0));
                     return;
                 }
                 return;
             case 20:
                 kg.y yVar = (kg.y) obj2;
-                yVar.f18539b.add(i11, (TL_account.TL_businessChatLink) obj);
-                ks.f(yVar.f18538a).k(125, new Object[0]);
+                yVar.f18536b.add(i11, (TL_account.TL_businessChatLink) obj);
+                ks.f(yVar.f18535a).k(125, new Object[0]);
                 return;
             case 21:
                 int[] iArr4 = (int[]) obj2;
@@ -336,20 +338,20 @@ public final class a1 implements Runnable {
                 TLObject tLObject3 = (TLObject) obj;
                 if (tLObject3 instanceof TLRPC.TL_webViewResultUrl) {
                     TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject3;
-                    t3Var.f18963y = tL_webViewResultUrl.query_id;
-                    t3Var.f18958n.t(i11, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
+                    t3Var.f18960y = tL_webViewResultUrl.query_id;
+                    t3Var.f18955n.t(i11, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
                     org.telegram.messenger.g0.g3(t3Var.V);
                     return;
                 }
                 return;
             case 23:
                 Pair pair = (Pair) obj;
-                ((l2.c1) obj2).f19276b.h.N(((Integer) pair.first).intValue(), (x2.g0) pair.second, i11);
+                ((l2.c1) obj2).f19273b.h.N(((Integer) pair.first).intValue(), (x2.g0) pair.second, i11);
                 return;
             case 24:
                 o5 m10 = ((oi.l5) obj2).getGrid().m((TL_iv.pageTableCell) obj);
                 if (m10 != null) {
-                    oi.e1 e1Var = m10.f22226a;
+                    oi.e1 e1Var = m10.f22223a;
                     e1Var.O();
                     e1Var.setSelection(Math.max(0, Math.min(i11, e1Var.length())));
                     return;
@@ -357,9 +359,9 @@ public final class a1 implements Runnable {
                 return;
             case 25:
                 oi.a aVar = (oi.a) obj;
-                z5 z5Var = ((t5) obj2).f22381a;
+                z5 z5Var = ((t5) obj2).f22378a;
                 if (z5Var.E != null) {
-                    z5.e(aVar.f21910b, "");
+                    z5.e(aVar.f21907b, "");
                     ((c3) z5Var.E).c(aVar, i11);
                     return;
                 }

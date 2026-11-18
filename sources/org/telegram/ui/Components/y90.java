@@ -57,7 +57,7 @@ public final class y90 extends FrameLayout implements org.telegram.messenger.fs,
         this.L = true;
         this.N = 0.0f;
         this.f42422a = i7;
-        int i11 = org.telegram.ui.ActionBar.n6.f29488i6;
+        int i11 = org.telegram.ui.ActionBar.n6.f29486i6;
         org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.n6.a0(org.telegram.ui.ActionBar.n6.w0(i11, i6Var), 0, 16);
         org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i11);
         setBackground(a02);
@@ -103,7 +103,7 @@ public final class y90 extends FrameLayout implements org.telegram.messenger.fs,
                     ArrayList<TLRPC.Document> arrayList3 = o02.documents;
                     if (arrayList3 == null || i13 >= arrayList3.size()) {
                         break;
-                    } else if (o02.documents.get(i13).f28411id == o02.set.thumb_document_id) {
+                    } else if (o02.documents.get(i13).f28409id == o02.set.thumb_document_id) {
                         document = o02.documents.get(i13);
                         break;
                     } else {
@@ -123,7 +123,7 @@ public final class y90 extends FrameLayout implements org.telegram.messenger.fs,
                 spannableString.setSpan(new w90(this, document, this.h.getFontMetricsInt()), 0, spannableString.length(), 33);
                 o5 l10 = o5.l(i7, 0, document);
                 this.d = l10;
-                org.telegram.ui.ActionBar.u6.x(this, l10, org.telegram.ui.ActionBar.n6.f29578n6, i6Var, PorterDuff.Mode.SRC_IN);
+                org.telegram.ui.ActionBar.u6.x(this, l10, org.telegram.ui.ActionBar.n6.f29576n6, i6Var, PorterDuff.Mode.SRC_IN);
                 this.d.a(this);
                 SpannableString spannableString2 = new SpannableString(str);
                 spannableString2.setSpan(new oi.v5(this, 2), 0, spannableString2.length(), 33);
@@ -137,7 +137,7 @@ public final class y90 extends FrameLayout implements org.telegram.messenger.fs,
             o80 o80Var = new o80(i6Var);
             this.f42426f = o80Var;
             o80Var.f38021l = org.telegram.ui.ActionBar.n6.G8;
-            o80Var.f38022m = org.telegram.ui.ActionBar.n6.f29488i6;
+            o80Var.f38022m = org.telegram.ui.ActionBar.n6.f29486i6;
             o80Var.k(4.0f);
         } else if (i10 == 4) {
             this.f42427n = org.telegram.messenger.g0.R2(org.telegram.messenger.gd.M0(2131744630, null), org.telegram.ui.ActionBar.n6.Xc, 2, null, i6Var);

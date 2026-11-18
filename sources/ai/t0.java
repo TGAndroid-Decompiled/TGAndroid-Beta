@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.mp;
 public abstract class t0 {
     public static boolean d;
-    public static int f1541e;
-    public static final String[] f1538a = {"hue", "chroma", "light", "haloW", "haloS", "lift", "rimW", "rimB", "speed", "spread", "buttonLean", "iconTint"};
-    public static final float[] f1539b = {150.0f, 0.26f, 0.82f, 1.0f, 1.1f, 0.6f, 1.0f, 1.15f, 1.0f, 40.0f, 0.0f, 0.25f};
-    public static int f1540c = 1;
-    public static final float[] f1542f = new float[12];
-    public static final ArrayList f1543g = new ArrayList();
+    public static int f1542e;
+    public static final String[] f1539a = {"hue", "chroma", "light", "haloW", "haloS", "lift", "rimW", "rimB", "speed", "spread", "buttonLean", "iconTint"};
+    public static final float[] f1540b = {150.0f, 0.26f, 0.82f, 1.0f, 1.1f, 0.6f, 1.0f, 1.15f, 1.0f, 40.0f, 0.0f, 0.25f};
+    public static int f1541c = 1;
+    public static final float[] f1543f = new float[12];
+    public static final ArrayList f1544g = new ArrayList();
 
     public static int a(float f10, float f11, float f12) {
         float f13;
@@ -46,7 +46,7 @@ public abstract class t0 {
 
     public static float c(int i7) {
         f();
-        return f1542f[i7];
+        return f1543f[i7];
     }
 
     public static float d(float f10) {
@@ -77,11 +77,11 @@ public abstract class t0 {
         if (!d) {
             d = true;
             SharedPreferences g12 = mp.g1();
-            f1541e = g12.getInt("dict_glow_day2_preset", 0);
+            f1542e = g12.getInt("dict_glow_day2_preset", 0);
             g12.getBoolean("dict_glow_day2_contrast", true);
-            f1540c = g12.getInt("dict_glow_day2_rimMode", 1);
+            f1541c = g12.getInt("dict_glow_day2_rimMode", 1);
             for (int i7 = 0; i7 < 12; i7++) {
-                f1542f[i7] = g12.getFloat("dict_glow_day2_" + f1538a[i7], f1539b[i7]);
+                f1543f[i7] = g12.getFloat("dict_glow_day2_" + f1539a[i7], f1540b[i7]);
             }
         }
     }

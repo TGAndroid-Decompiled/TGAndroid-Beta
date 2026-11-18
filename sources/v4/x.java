@@ -6,11 +6,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
 public final class x extends GestureDetector.SimpleOnGestureListener {
-    public boolean f59251a = true;
-    public final z f59252b;
+    public boolean f59252a = true;
+    public final z f59253b;
 
     public x(z zVar) {
-        this.f59252b = zVar;
+        this.f59253b = zVar;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class x extends GestureDetector.SimpleOnGestureListener {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         f1 T;
-        if (this.f59251a) {
-            z zVar = this.f59252b;
+        if (this.f59252a) {
+            z zVar = this.f59253b;
             View m10 = zVar.m(motionEvent);
-            w wVar = zVar.f59269y;
+            w wVar = zVar.f59270y;
             if (m10 != null && (T = zVar.I.T(m10)) != null) {
                 RecyclerView recyclerView = zVar.I;
                 int e10 = wVar.e(recyclerView, T);
                 WeakHashMap weakHashMap = r0.i0.f56244a;
                 if ((wVar.b(e10, recyclerView.getLayoutDirection()) & 16711680) != 0) {
                     int pointerId = motionEvent.getPointerId(0);
-                    int i7 = zVar.f59268x;
+                    int i7 = zVar.f59269x;
                     if (pointerId == i7) {
                         int findPointerIndex = motionEvent.findPointerIndex(i7);
                         float x10 = motionEvent.getX(findPointerIndex);
                         float y10 = motionEvent.getY(findPointerIndex);
                         zVar.d = x10;
-                        zVar.f59262e = y10;
-                        zVar.f59265r = 0.0f;
-                        zVar.f59264n = 0.0f;
+                        zVar.f59263e = y10;
+                        zVar.f59266r = 0.0f;
+                        zVar.f59265n = 0.0f;
                         if (wVar.k()) {
                             zVar.r(T, 2);
                         }

@@ -1,6 +1,6 @@
 package jb;
 public final class h {
     public final ke.a serializer() {
-        return g.f17360a;
+        return g.f17357a;
     }
 }

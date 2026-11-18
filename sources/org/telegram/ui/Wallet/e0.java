@@ -16,9 +16,10 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
+import org.telegram.ui.m60;
 import org.telegram.ui.p51;
-import org.telegram.ui.t60;
-import org.telegram.ui.t80;
+import org.telegram.ui.u60;
+import org.telegram.ui.u80;
 public final class e0 implements q10 {
     public final int f44097a;
     public final Object f44098b;
@@ -86,17 +87,17 @@ public final class e0 implements q10 {
                 return;
             case 3:
                 TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f44098b;
-                t60 t60Var = (t60) this.f44099c;
+                u60 u60Var = (u60) this.f44099c;
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = (TL_wallet.inputTonConnectOauthSession) obj;
                 String str4 = (String) obj2;
                 if (str4 == null) {
                     inputtonconnectoauthsessionArr[0] = inputtonconnectoauthsession;
                 }
-                t60Var.a(str4);
+                u60Var.a(str4);
                 return;
             case 4:
                 ((r0) this.f44098b).close();
-                ((bi.t3) this.f44099c).a((h2) obj, (String) obj2);
+                ((m60) this.f44099c).a((h2) obj, (String) obj2);
                 return;
             case 5:
                 ((r0) this.f44098b).close();
@@ -149,18 +150,18 @@ public final class e0 implements q10 {
                 TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) this.f44099c;
                 Boolean bool = (Boolean) obj;
                 String str6 = (String) obj2;
-                a0Var.f59706m2.f61199a.setLoading(false);
+                a0Var.f59707m2.f61200a.setLoading(false);
                 if (a0Var.getContext() != null) {
                     org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
-                    t80 t80Var = LaunchActivity.H1.f43108w0;
+                    u80 u80Var = LaunchActivity.H1.f43108w0;
                     if (T != null) {
                         if (bool.booleanValue()) {
                             a0Var.dismiss();
-                            bn ua2 = bn.ua(-a0Var.X1.f28405id);
+                            bn ua2 = bn.ua(-a0Var.X1.f28403id);
                             T.presentFragment(ua2);
                             T.whenFullyVisible(new wg.r(1, ua2, tL_starsGiveawayOption));
-                            if (t80Var != null) {
-                                t80Var.c(true);
+                            if (u80Var != null) {
+                                u80Var.c(true);
                                 return;
                             }
                             return;

@@ -28,17 +28,17 @@ public final class y1 extends v4.i0 {
     public String[] K;
     public int L;
     public final z1 O;
-    public int f15753c;
-    public boolean f15760x;
+    public int f15750c;
+    public boolean f15757x;
     public final HashMap d = new HashMap();
-    public final HashMap f15754e = new HashMap();
-    public final HashMap f15755f = new HashMap();
+    public final HashMap f15751e = new HashMap();
+    public final HashMap f15752f = new HashMap();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f15756n = new ArrayList();
-    public final ArrayList f15757r = new ArrayList();
-    public final ArrayList f15758s = new ArrayList();
-    public final ArrayList f15759w = new ArrayList();
-    public int f15761y = 0;
+    public final ArrayList f15753n = new ArrayList();
+    public final ArrayList f15754r = new ArrayList();
+    public final ArrayList f15755s = new ArrayList();
+    public final ArrayList f15756w = new ArrayList();
+    public int f15758y = 0;
     public final SparseIntArray E = new SparseIntArray();
     public final HashSet M = new HashSet();
     public final k N = new k(this, 6);
@@ -56,7 +56,7 @@ public final class y1 extends v4.i0 {
 
     @Override
     public final int b() {
-        return this.f15761y;
+        return this.f15758y;
     }
 
     @Override
@@ -64,15 +64,15 @@ public final class y1 extends v4.i0 {
         if (i7 == 0) {
             return 0;
         }
-        if (this.f15760x && i7 == this.f15761y - 1) {
+        if (this.f15757x && i7 == this.f15758y - 1) {
             return 3;
         }
         if (this.E.get(i7, -1) >= 0) {
             return 1;
         }
         if (i7 >= 0) {
-            ArrayList arrayList = this.f15758s;
-            if (i7 < arrayList.size() && arrayList.get(i7) == this.O.f15808s.f14797o1) {
+            ArrayList arrayList = this.f15755s;
+            if (i7 < arrayList.size() && arrayList.get(i7) == this.O.f15805s.f14794o1) {
                 return 4;
             }
             return 2;
@@ -88,12 +88,12 @@ public final class y1 extends v4.i0 {
         String str;
         TLRPC.StickerSet stickerSet;
         z1 z1Var = this.O;
-        j2 j2Var = z1Var.f15808s;
-        int i10 = f1Var.f59126f;
-        View view = f1Var.f59122a;
+        j2 j2Var = z1Var.f15805s;
+        int i10 = f1Var.f59127f;
+        View view = f1Var.f59123a;
         if (i10 == 0) {
             view.setTag(34);
-            view.setLayoutParams(new v4.q0(-1, (int) j2Var.f14801s1));
+            view.setLayoutParams(new v4.q0(-1, (int) j2Var.f14798s1));
             return;
         }
         boolean z11 = false;
@@ -101,7 +101,7 @@ public final class y1 extends v4.i0 {
         if (i10 == 1) {
             int i12 = this.E.get(i7);
             if (i12 >= 0) {
-                ArrayList arrayList = this.f15756n;
+                ArrayList arrayList = this.f15753n;
                 if (i12 < arrayList.size()) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList.get(i12);
                     if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
@@ -110,17 +110,17 @@ public final class y1 extends v4.i0 {
                         str = "";
                     }
                     String str2 = str;
-                    org.telegram.ui.Cells.j8 j8Var = (org.telegram.ui.Cells.j8) view;
+                    org.telegram.ui.Cells.k8 k8Var = (org.telegram.ui.Cells.k8) view;
                     if (this.J == null) {
-                        j8Var.a(0, str2);
+                        k8Var.a(0, str2);
                         return;
                     }
                     int indexOf = str2.toLowerCase().indexOf(this.J.toLowerCase());
                     if (indexOf < 0) {
-                        j8Var.a(0, str2);
+                        k8Var.a(0, str2);
                         return;
                     } else {
-                        j8Var.b(str2, 0, null, indexOf, this.J.length());
+                        k8Var.b(str2, 0, null, indexOf, this.J.length());
                         return;
                     }
                 }
@@ -130,20 +130,20 @@ public final class y1 extends v4.i0 {
         }
         int i13 = 3;
         if (i10 == 2) {
-            ArrayList arrayList2 = this.f15758s;
+            ArrayList arrayList2 = this.f15755s;
             if (i7 >= arrayList2.size()) {
                 document = null;
             } else {
                 document = (TLRPC.Document) arrayList2.get(i7);
             }
             n1 n1Var = (n1) view;
-            if (document == j2Var.f14798p1) {
+            if (document == j2Var.f14795p1) {
                 n1Var.setSticker(null);
-                if (n1Var.f15089a == null) {
+                if (n1Var.f15086a == null) {
                     ShapeDrawable d02 = org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(28.0f), -1);
                     int i14 = org.telegram.ui.ActionBar.n6.Ef;
                     org.telegram.ui.ActionBar.q6 K = org.telegram.ui.ActionBar.u6.K(0.12f, i14);
-                    org.telegram.ui.ActionBar.u6.k(n1Var, d02, K.f29911a, -1, 2, K.d, j2Var.J0, PorterDuff.Mode.SRC_IN);
+                    org.telegram.ui.ActionBar.u6.k(n1Var, d02, K.f29909a, -1, 2, K.d, j2Var.J0, PorterDuff.Mode.SRC_IN);
                     Drawable mutate = z1Var.getResources().getDrawable(2131231080).mutate();
                     org.telegram.ui.ActionBar.u6.x(n1Var, mutate, i14, j2Var.J0, PorterDuff.Mode.MULTIPLY);
                     mq mqVar = new mq(d02, mutate);
@@ -156,30 +156,30 @@ public final class y1 extends v4.i0 {
                     mqVar.f37610e = L3;
                     mqVar.f37611f = L4;
                     mqVar.f37613r = true;
-                    n1Var.f15089a = mqVar;
+                    n1Var.f15086a = mqVar;
                 }
-                n1Var.setDrawable(n1Var.f15089a);
+                n1Var.setDrawable(n1Var.f15086a);
                 return;
             }
-            ArrayList arrayList3 = this.f15759w;
+            ArrayList arrayList3 = this.f15756w;
             if (i7 >= arrayList3.size()) {
                 longValue = 0;
             } else {
                 longValue = ((Long) arrayList3.get(i7)).longValue();
             }
             if (document != null || longValue != 0) {
-                int i15 = z1Var.f15570a;
+                int i15 = z1Var.f15567a;
                 if (i15 == 0) {
                     if (document != null) {
                         n1Var.setSticker(null);
-                        if (z1Var.f15570a == 1) {
+                        if (z1Var.f15567a == 1) {
                             z11 = true;
                         }
                         n1Var.a(document, z11);
                         return;
                     }
                     n1Var.setSticker(null);
-                    if (z1Var.f15570a == 1) {
+                    if (z1Var.f15567a == 1) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -190,9 +190,9 @@ public final class y1 extends v4.i0 {
                             o5Var.n(n1Var);
                         }
                         if (longValue != 0) {
-                            n1Var.f15090b = true;
+                            n1Var.f15087b = true;
                             n1Var.h = longValue;
-                            int i16 = n1Var.f15091c;
+                            int i16 = n1Var.f15088c;
                             if (!z10) {
                                 i11 = 16388;
                             }
@@ -201,13 +201,13 @@ public final class y1 extends v4.i0 {
                             }
                             org.telegram.ui.Components.o5 m10 = org.telegram.ui.Components.o5.m(i16, longValue, null, i13);
                             n1Var.d = m10;
-                            if (n1Var.f15097w) {
+                            if (n1Var.f15094w) {
                                 m10.a(n1Var);
                                 return;
                             }
                             return;
                         }
-                        n1Var.f15090b = false;
+                        n1Var.f15087b = false;
                         n1Var.h = 0L;
                         n1Var.d = null;
                         return;
@@ -223,9 +223,9 @@ public final class y1 extends v4.i0 {
         } else if (i10 == 3) {
             w1 w1Var = (w1) view;
             int i17 = this.L;
-            if (w1Var.f15631b != i17) {
-                w1Var.f15631b = i17;
-                r11.D(j10.f24773t0, w1Var.f15630a);
+            if (w1Var.f15628b != i17) {
+                w1Var.f15628b = i17;
+                r11.D(j10.f24770t0, w1Var.f15627a);
             }
         }
     }
@@ -234,26 +234,26 @@ public final class y1 extends v4.i0 {
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         boolean z10;
         int i10;
-        yb j8Var;
+        yb k8Var;
         z1 z1Var = this.O;
-        j2 j2Var = z1Var.f15808s;
+        j2 j2Var = z1Var.f15805s;
         if (i7 == 0) {
-            j8Var = new View(z1Var.getContext());
+            k8Var = new View(z1Var.getContext());
         } else if (i7 == 1) {
             Context context = z1Var.getContext();
             int i11 = j2.C1;
-            j8Var = new org.telegram.ui.Cells.j8(context, true, false, j2Var.J0, false);
+            k8Var = new org.telegram.ui.Cells.k8(context, true, false, j2Var.J0, false);
         } else if (i7 == 3) {
             Context context2 = z1Var.getContext();
-            if (z1Var.f15570a == 0) {
+            if (z1Var.f15567a == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             ?? frameLayout = new FrameLayout(context2);
-            frameLayout.f15631b = -1;
+            frameLayout.f15628b = -1;
             org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(context2);
-            frameLayout.f15630a = q9Var;
+            frameLayout.f15627a = q9Var;
             frameLayout.addView(q9Var, c8.ma.e(36, 36, 17));
             TextView textView = new TextView(context2);
             textView.setTextSize(1, 14.0f);
@@ -265,14 +265,14 @@ public final class y1 extends v4.i0 {
             }
             textView.setText(gd.M0(i10, null));
             frameLayout.addView(textView, c8.ma.d(-2, -2.0f, 17, 0.0f, 34.0f, 0.0f, 0.0f));
-            j8Var = frameLayout;
+            k8Var = frameLayout;
         } else if (i7 == 4) {
             yb ybVar = new yb(j2Var, z1Var.getContext());
-            ybVar.f10101f = new e1(j2Var, 2);
-            j8Var = ybVar;
+            ybVar.f10098f = new e1(j2Var, 2);
+            k8Var = ybVar;
         } else {
-            j8Var = new n1(z1Var.getContext(), z1Var.f15802b);
+            k8Var = new n1(z1Var.getContext(), z1Var.f15799b);
         }
-        return new v4.f1(j8Var);
+        return new v4.f1(k8Var);
     }
 }

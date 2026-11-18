@@ -3,7 +3,7 @@ package f3;
 import com.google.android.gms.internal.vision.e2;
 import java.io.EOFException;
 public final class n implements i0 {
-    public final byte[] f11197a = new byte[4096];
+    public final byte[] f11194a = new byte[4096];
 
     @Override
     public final void a(h2.x xVar, int i7, int i10) {
@@ -22,7 +22,7 @@ public final class n implements i0 {
 
     @Override
     public final int f(e2.n nVar, int i7, boolean z10) {
-        byte[] bArr = this.f11197a;
+        byte[] bArr = this.f11194a;
         int read = nVar.read(bArr, 0, Math.min(bArr.length, i7));
         if (read == -1) {
             if (z10) {

@@ -30,7 +30,7 @@ public final class ik extends org.telegram.ui.Components.vi0 {
             j3.getLocationInWindow(iArr);
             float width2 = (j3.getWidth() / 2.0f) + iArr[0];
             int L = org.telegram.messenger.g0.L(20.0f);
-            boolean z11 = org.telegram.messenger.gd.f24216a0;
+            boolean z11 = org.telegram.messenger.gd.f24213a0;
             if (z11) {
                 i13 = -1;
             } else {

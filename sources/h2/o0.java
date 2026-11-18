@@ -21,33 +21,33 @@ import fi.a6;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class o0 implements yb.a {
-    public final int f13805a = 1;
-    public boolean f13806b;
-    public boolean f13807c;
+    public final int f13802a = 1;
+    public boolean f13803b;
+    public boolean f13804c;
     public final Object d;
-    public final Object f13808e;
-    public Object f13809f;
+    public final Object f13805e;
+    public Object f13806f;
 
     public o0(Context context, xb.a aVar) {
         this.d = context;
-        this.f13808e = aVar;
+        this.f13805e = aVar;
     }
 
     public void a(boolean z10, boolean z11) {
-        i0 i0Var = (i0) this.f13808e;
+        i0 i0Var = (i0) this.f13805e;
         if (z10 && z11) {
             i0Var.d(new m0(this, z10, z11, 0));
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(true);
-        ((i0) this.f13809f).f13771a.postDelayed(new a6(25, this, atomicBoolean), 1000L);
+        ((i0) this.f13806f).f13768a.postDelayed(new a6(25, this, atomicBoolean), 1000L);
         i0Var.d(new n0(this, atomicBoolean, z10, z11, 0));
     }
 
     public void b(boolean z10) {
-        if (this.f13807c != z10) {
-            this.f13807c = z10;
-            if (this.f13806b) {
+        if (this.f13804c != z10) {
+            this.f13804c = z10;
+            if (this.f13803b) {
                 a(true, z10);
             }
         }
@@ -56,30 +56,30 @@ public final class o0 implements yb.a {
     @Override
     public ArrayList c(ub.a aVar) {
         a7.b bVar;
-        if (((db) this.f13809f) == null) {
+        if (((db) this.f13806f) == null) {
             zzb();
         }
-        db dbVar = (db) this.f13809f;
+        db dbVar = (db) this.f13806f;
         q6.m.h(dbVar);
-        if (!this.f13806b) {
+        if (!this.f13803b) {
             try {
                 dbVar.t1(dbVar.p1(), 1);
-                this.f13806b = true;
+                this.f13803b = true;
             } catch (RemoteException e10) {
                 throw new lb.a("Failed to init thin image labeler.", e10);
             }
         }
-        int i7 = aVar.f58565e;
-        int i10 = aVar.f58563b;
-        int i11 = aVar.f58564c;
+        int i7 = aVar.f58566e;
+        int i10 = aVar.f58564b;
+        int i11 = aVar.f58565c;
         int a10 = ad.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i12 = aVar.f58565e;
+        int i12 = aVar.f58566e;
         if (i12 != -1) {
             if (i12 != 17) {
                 if (i12 != 35) {
                     if (i12 != 842094169) {
-                        throw new lb.a(i5.c.i(aVar.f58565e, "Unsupported image format: "), 3);
+                        throw new lb.a(i5.c.i(aVar.f58566e, "Unsupported image format: "), 3);
                     }
                 } else {
                     bVar = new a7.b(null);
@@ -88,7 +88,7 @@ public final class o0 implements yb.a {
             q6.m.h(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f58562a;
+        Bitmap bitmap = aVar.f58563a;
         q6.m.h(bitmap);
         bVar = new a7.b(bitmap);
         try {
@@ -127,9 +127,9 @@ public final class o0 implements yb.a {
     }
 
     public String toString() {
-        switch (this.f13805a) {
+        switch (this.f13802a) {
             case 1:
-                return "JsonConfiguration(encodeDefaults=false, ignoreUnknownKeys=false, isLenient=false, allowStructuredMapKeys=false, prettyPrint=false, explicitNulls=" + this.f13806b + ", prettyPrintIndent='" + ((String) this.d) + "', coerceInputValues=false, useArrayPolymorphism=false, classDiscriminator='" + ((String) this.f13808e) + "', allowSpecialFloatingPointValues=false, useAlternativeNames=" + this.f13807c + ", namingStrategy=null, decodeEnumsCaseInsensitive=false, allowTrailingComma=false, allowComments=false, classDiscriminatorMode=" + ((pe.a) this.f13809f) + ')';
+                return "JsonConfiguration(encodeDefaults=false, ignoreUnknownKeys=false, isLenient=false, allowStructuredMapKeys=false, prettyPrint=false, explicitNulls=" + this.f13803b + ", prettyPrintIndent='" + ((String) this.d) + "', coerceInputValues=false, useArrayPolymorphism=false, classDiscriminator='" + ((String) this.f13805e) + "', allowSpecialFloatingPointValues=false, useAlternativeNames=" + this.f13804c + ", namingStrategy=null, decodeEnumsCaseInsensitive=false, allowTrailingComma=false, allowComments=false, classDiscriminatorMode=" + ((pe.a) this.f13806f) + ')';
             default:
                 return super.toString();
         }
@@ -139,11 +139,11 @@ public final class o0 implements yb.a {
     public void zzb() {
         IInterface aVar;
         Context context = (Context) this.d;
-        if (((db) this.f13809f) != null) {
+        if (((db) this.f13806f) != null) {
             return;
         }
         try {
-            IBinder b10 = b7.f.c(context, b7.f.f2945b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            IBinder b10 = b7.f.c(context, b7.f.f2946b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
             int i7 = fb.f402b;
             if (b10 == null) {
                 aVar = null;
@@ -155,13 +155,13 @@ public final class o0 implements yb.a {
                     aVar = new a8.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 0);
                 }
             }
-            this.f13809f = ((eb) aVar).x1(new a7.b(context), new ib(((xb.a) this.f13808e).f59658a, -1));
+            this.f13806f = ((eb) aVar).x1(new a7.b(context), new ib(((xb.a) this.f13805e).f59659a, -1));
         } catch (RemoteException e10) {
             throw new lb.a("Failed to create thin image labeler.", e10);
         } catch (b7.b unused) {
-            if (!this.f13807c) {
+            if (!this.f13804c) {
                 pb.j.b(context);
-                this.f13807c = true;
+                this.f13804c = true;
             }
             throw new lb.a("Waiting for the label optional module to be downloaded. Please wait.", 14);
         }
@@ -169,30 +169,30 @@ public final class o0 implements yb.a {
 
     @Override
     public void zzc() {
-        db dbVar = (db) this.f13809f;
+        db dbVar = (db) this.f13806f;
         if (dbVar != null) {
             try {
                 dbVar.t1(dbVar.p1(), 2);
             } catch (RemoteException unused) {
                 Log.e("DecoupledImageLabeler", "Failed to release thin image labeler.");
             }
-            this.f13809f = null;
-            this.f13806b = false;
+            this.f13806f = null;
+            this.f13803b = false;
         }
     }
 
     public o0() {
         pe.a aVar = pe.a.f55570a;
-        this.f13806b = true;
+        this.f13803b = true;
         this.d = "    ";
-        this.f13808e = "type";
-        this.f13807c = true;
-        this.f13809f = aVar;
+        this.f13805e = "type";
+        this.f13804c = true;
+        this.f13806f = aVar;
     }
 
     public o0(Context context, Looper looper, g0 g0Var) {
         this.d = new wf.b(context.getApplicationContext(), 24);
-        this.f13808e = g0Var.a(looper, null);
-        this.f13809f = g0Var.a(Looper.getMainLooper(), null);
+        this.f13805e = g0Var.a(looper, null);
+        this.f13806f = g0Var.a(Looper.getMainLooper(), null);
     }
 }

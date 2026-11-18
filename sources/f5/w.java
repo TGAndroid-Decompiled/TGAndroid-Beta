@@ -48,16 +48,16 @@ public final class w extends b {
         }
         b3.j jVar = new b3.j(this, i7, 2);
         ?? obj = new Object();
-        obj.f7038c = new Object();
+        obj.f7035c = new Object();
         j4 j4Var = new j4(obj);
-        obj.f7037b = j4Var;
-        obj.f7036a = jVar.getClass();
+        obj.f7034b = j4Var;
+        obj.f7033a = jVar.getClass();
         try {
-            obj.f7036a = jVar.v(obj);
+            obj.f7033a = jVar.v(obj);
         } catch (Exception e10) {
             g2 g2Var = new g2(e10);
-            i9 i9Var = g4.f7024f;
-            i4 i4Var = j4Var.f7057b;
+            i9 i9Var = g4.f7021f;
+            i4 i4Var = j4Var.f7054b;
             if (i9Var.d(i4Var, null, g2Var)) {
                 g4.d(i4Var);
             }
@@ -66,7 +66,7 @@ public final class w extends b {
     }
 
     public final void G(int i7, int i10, f fVar) {
-        int i11 = x.f11327a;
+        int i11 = x.f11324a;
         g3 b10 = x.b(i7, i10, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED);
         Objects.requireNonNull(b10, "ApiFailure should not be null");
         this.h.W(b10);
@@ -88,17 +88,17 @@ public final class w extends b {
         }
         if (!F.isDone()) {
             ?? obj = new Object();
-            obj.f7150n = F;
+            obj.f7147n = F;
             ?? obj2 = new Object();
-            obj2.f7140a = obj;
-            obj.f7151r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
-            F.c(obj2, p0.f7102a);
+            obj2.f7137a = obj;
+            obj.f7148r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
+            F.c(obj2, p0.f7099a);
             F = obj;
         }
         ?? obj3 = new Object();
-        obj3.f20881a = i7;
-        obj3.f20882b = aVar;
-        obj3.f20883c = runnable;
+        obj3.f20878a = i7;
+        obj3.f20879b = aVar;
+        obj3.f20880c = runnable;
         obj3.d = this;
         F.c(new q0(F, obj3), e());
     }
@@ -123,13 +123,13 @@ public final class w extends b {
         try {
             i7 = ((Integer) F(2).get(28500L, TimeUnit.MILLISECONDS)).intValue();
         } catch (TimeoutException e10) {
-            G(102, 28, z.f11342p);
+            G(102, 28, z.f11339p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", e10);
         } catch (Exception e11) {
             if (e11 instanceof InterruptedException) {
                 Thread.currentThread().interrupt();
             }
-            G(95, 28, z.f11342p);
+            G(95, 28, z.f11339p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e11);
         }
         if (i7 > 0) {
@@ -141,7 +141,7 @@ public final class w extends b {
         try {
             return super.b(activity, eVar);
         } catch (Exception e12) {
-            f fVar = z.f11333f;
+            f fVar = z.f11330f;
             G(103, 2, fVar);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An internal error occurred.", e12);
             return fVar;
@@ -158,12 +158,12 @@ public final class w extends b {
         synchronized (this) {
             if (K()) {
                 com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connection is valid. No need to re-initialize.");
-                int i7 = x.f11327a;
+                int i7 = x.f11324a;
                 i3 c10 = x.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 wf.b bVar = this.h;
                 bVar.getClass();
-                bVar.e0(c10, (p3) bVar.f59672b);
+                bVar.e0(c10, (p3) bVar.f59673b);
             } else {
                 int i10 = 1;
                 if (this.D == 1) {

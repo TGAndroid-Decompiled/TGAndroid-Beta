@@ -80,8 +80,8 @@ public final class i extends y2.l {
         this.Q = xVar;
         this.f56372c0 = z15;
         this.E = z16;
-        g0 g0Var = i0.f14006b;
-        this.Z = t1.f14074e;
+        g0 g0Var = i0.f14003b;
+        this.Z = t1.f14071e;
         this.f56373w = f56369d0.getAndIncrement();
     }
 
@@ -128,7 +128,7 @@ public final class i extends y2.l {
         }
         if (!this.X) {
             if (!this.K) {
-                d(this.f60686r, this.f60681b, this.R);
+                d(this.f60687r, this.f60682b, this.R);
             }
             this.Y = !this.X;
         }
@@ -167,7 +167,7 @@ public final class i extends y2.l {
                         break;
                     }
                 } catch (EOFException e10) {
-                    if ((this.d.f10757f & 16384) != 0) {
+                    if ((this.d.f10754f & 16384) != 0) {
                         this.T.f56337a.d(0L, 0L);
                         j3 = h.d;
                     } else {
@@ -176,7 +176,7 @@ public final class i extends y2.l {
                 }
             } while (this.T.f56337a.f(h, b.f56336f) == 0);
             j3 = h.d;
-            this.V = (int) (j3 - mVar.f17191e);
+            this.V = (int) (j3 - mVar.f17188e);
         } catch (Exception unused) {
         } catch (Throwable th2) {
             s0.a(hVar);

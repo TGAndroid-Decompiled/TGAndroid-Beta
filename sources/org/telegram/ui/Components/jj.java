@@ -13,10 +13,10 @@ public final class jj {
 
     public static jj a(Object obj) {
         if (obj instanceof org.telegram.messenger.f5) {
-            return new jj(2, ((org.telegram.messenger.f5) obj).f23840a);
+            return new jj(2, ((org.telegram.messenger.f5) obj).f23837a);
         }
         if (obj instanceof TLRPC.User) {
-            return new jj(1, ((TLRPC.User) obj).f28554id);
+            return new jj(1, ((TLRPC.User) obj).f28552id);
         }
         return null;
     }

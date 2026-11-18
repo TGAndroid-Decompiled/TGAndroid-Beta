@@ -43,8 +43,8 @@ public final class qq {
     public TextPaint f38866e = new TextPaint(1);
     public final RectF f38867f = new RectF();
     public float f38872l = 1.0f;
-    public int v = org.telegram.ui.ActionBar.n6.f29515jg;
-    public int f38882w = org.telegram.ui.ActionBar.n6.f29534kg;
+    public int v = org.telegram.ui.ActionBar.n6.f29513jg;
+    public int f38882w = org.telegram.ui.ActionBar.n6.f29532kg;
     public int f38885z = 17;
     public final float C = 11.5f;
     public int I = 0;
@@ -132,11 +132,11 @@ public final class qq {
                     z11 = false;
                 }
                 if (this.F && (paint = this.d) != null) {
-                    float f19 = org.telegram.messenger.g0.f24120p * f14;
+                    float f19 = org.telegram.messenger.g0.f24117p * f14;
                     canvas.drawRoundRect(rectF, f19, f19, paint);
                     if (this.f38868g && org.telegram.ui.ActionBar.n6.d1()) {
-                        float f20 = f14 * org.telegram.messenger.g0.f24120p;
-                        canvas.drawRoundRect(rectF, f20, f20, org.telegram.ui.ActionBar.n6.f29466h2);
+                        float f20 = f14 * org.telegram.messenger.g0.f24117p;
+                        canvas.drawRoundRect(rectF, f20, f20, org.telegram.ui.ActionBar.n6.f29464h2);
                     }
                 }
                 if (z11) {
@@ -231,11 +231,11 @@ public final class qq {
             } else {
                 z10 = false;
             }
-            float f14 = org.telegram.messenger.g0.f24120p * f10;
+            float f14 = org.telegram.messenger.g0.f24117p * f10;
             canvas.drawRoundRect(rectF, f14, f14, this.d);
             if (this.f38868g && org.telegram.ui.ActionBar.n6.d1()) {
-                float f15 = f10 * org.telegram.messenger.g0.f24120p;
-                canvas.drawRoundRect(rectF, f15, f15, org.telegram.ui.ActionBar.n6.f29466h2);
+                float f15 = f10 * org.telegram.messenger.g0.f24117p;
+                canvas.drawRoundRect(rectF, f15, f15, org.telegram.ui.ActionBar.n6.f29464h2);
             }
             if (z10) {
                 canvas.restore();

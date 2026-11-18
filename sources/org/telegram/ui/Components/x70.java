@@ -73,14 +73,14 @@ public final class x70 implements View.OnClickListener {
                 if (h2Var.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h2Var.getParentActivity());
                     String M02 = org.telegram.messenger.gd.M0(2131745828, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                     u1Var.S = M02;
                     u1Var.U = org.telegram.messenger.gd.M0(2131745831, null);
                     alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131745829, null), new w70(e80Var, 1));
                     alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
                     TextView textView = (TextView) u1Var.d(-1);
                     if (textView != null) {
-                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29637q7, null);
+                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, null);
                     }
                     alertDialog$Builder.p();
                     return;

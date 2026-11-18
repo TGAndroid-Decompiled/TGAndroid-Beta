@@ -22,8 +22,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile d f13077a;
-    public static volatile ArrayList f13078b;
+    public static volatile d f13074a;
+    public static volatile ArrayList f13075b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p10 = p(arrayList);
@@ -59,7 +59,7 @@ public abstract class f {
         IconCompat c10;
         IconCompat iconCompat = bVar.h;
         if (iconCompat != null) {
-            int i7 = iconCompat.f2068a;
+            int i7 = iconCompat.f2069a;
             if (i7 != 6 && i7 != 4) {
                 return true;
             }
@@ -69,7 +69,7 @@ public abstract class f {
             }
             if (i7 == 6) {
                 c10 = new IconCompat(5);
-                c10.f2069b = decodeStream;
+                c10.f2070b = decodeStream;
             } else {
                 c10 = IconCompat.c(decodeStream);
             }
@@ -145,16 +145,16 @@ public abstract class f {
     }
 
     public static d j(Context context) {
-        if (f13077a == null) {
+        if (f13074a == null) {
             try {
-                f13077a = (d) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                f13074a = (d) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
             } catch (Exception unused) {
             }
-            if (f13077a == null) {
-                f13077a = new Object();
+            if (f13074a == null) {
+                f13074a = new Object();
             }
         }
-        return f13077a;
+        return f13074a;
     }
 
     public static List k(Context context) {
@@ -211,9 +211,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (b bVar2 : b10) {
-                        int i12 = bVar2.f13074m;
+                        int i12 = bVar2.f13071m;
                         if (i12 > i10) {
-                            str2 = bVar2.f13065b;
+                            str2 = bVar2.f13062b;
                             i10 = i12;
                         }
                     }
@@ -246,10 +246,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, bVar.f13065b);
+                q(context, bVar.f13062b);
                 throw th2;
             }
-            q(context, bVar.f13065b);
+            q(context, bVar.f13062b);
         }
     }
 

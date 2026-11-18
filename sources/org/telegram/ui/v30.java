@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class v30 extends org.telegram.ui.Cells.z3 {
+public final class v30 extends org.telegram.ui.Cells.a4 {
     @Override
     public final void onMeasure(int i7, int i10) {
         if (org.telegram.messenger.g0.Q1()) {

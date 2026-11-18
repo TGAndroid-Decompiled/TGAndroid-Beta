@@ -33,10 +33,10 @@ public final class pq0 extends v4.o0 {
                 i7 = org.telegram.messenger.g0.L(2.0f);
             }
             rect.right = i7;
-        } else if (view instanceof org.telegram.ui.Cells.o7) {
-            org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
+        } else if (view instanceof org.telegram.ui.Cells.p7) {
+            org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;
             iq0Var.h.getClass();
-            int R2 = RecyclerView.R(o7Var);
+            int R2 = RecyclerView.R(p7Var);
             int i10 = iq0Var.f33775x.J;
             boolean z12 = true;
             if (R2 < i10) {
@@ -44,18 +44,18 @@ public final class pq0 extends v4.o0 {
             } else {
                 z10 = false;
             }
-            o7Var.f31178b0 = z10;
+            p7Var.f31225b0 = z10;
             int i11 = R2 % i10;
             if (i11 == 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            o7Var.W = z11;
+            p7Var.W = z11;
             if (i11 != i10 - 1) {
                 z12 = false;
             }
-            o7Var.f31176a0 = z12;
+            p7Var.f31223a0 = z12;
             rect.left = 0;
             rect.top = 0;
             rect.bottom = 0;

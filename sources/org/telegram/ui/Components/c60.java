@@ -45,7 +45,7 @@ public final class c60 implements Runnable {
                     z12 = true;
                 }
                 z1Var.g(str3, true, z11, true, z12, 0L, false, 0, 0);
-                org.telegram.messenger.q5 q5Var = Utilities.f22784g;
+                org.telegram.messenger.q5 q5Var = Utilities.f22781g;
                 c60 c60Var = new c60(d60Var2, str3, 2);
                 d60Var2.h = c60Var;
                 q5Var.c(c60Var);

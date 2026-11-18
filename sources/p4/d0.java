@@ -62,7 +62,7 @@ public class d0 {
 
     public d0(x xVar, Context context, String str, e2.c1 c1Var, h9.i0 i0Var, h9.i0 i0Var2, h9.i0 i0Var3, w7.s sVar, Bundle bundle, Bundle bundle2, h2.d dVar, boolean z10, boolean z11) {
         String str2 = str;
-        h2.a.g("MediaSessionImpl", "Init " + Integer.toHexString(System.identityHashCode(this)) + " [AndroidXMedia3/1.10.1] [" + h2.l0.f13786a + "]");
+        h2.a.g("MediaSessionImpl", "Init " + Integer.toHexString(System.identityHashCode(this)) + " [AndroidXMedia3/1.10.1] [" + h2.l0.f13783a + "]");
         this.f55186k = xVar;
         this.f55182f = context;
         this.f55184i = str2;
@@ -106,9 +106,9 @@ public class d0 {
                 if (!d0Var.f55180c.hasMessages(1)) {
                     n1 n1Var = d0Var.f55194s.f55240c;
                     e2.b1 b1Var = R0.f55363a;
-                    int i7 = b1Var.f10338b;
+                    int i7 = b1Var.f10335b;
                     e2.b1 b1Var2 = n1Var.f55363a;
-                    if (i7 == b1Var2.f10338b && b1Var.f10340e == b1Var2.f10340e && b1Var.h == b1Var2.h && b1Var.f10343i == b1Var2.f10343i) {
+                    if (i7 == b1Var2.f10335b && b1Var.f10337e == b1Var2.f10337e && b1Var.h == b1Var2.h && b1Var.f10340i == b1Var2.f10340i) {
                         ab.c0 c0Var = d0Var.f55183g.f55210b;
                         h9.i0 p10 = c0Var.p();
                         for (int i10 = 0; i10 < p10.size(); i10++) {
@@ -392,7 +392,7 @@ public class d0 {
     public final boolean o() {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             try {
-                return ((Boolean) t7.a(new org.telegram.ui.ActionBar.p(this, 11)).f4348b.get()).booleanValue();
+                return ((Boolean) t7.a(new org.telegram.ui.ActionBar.p(this, 11)).f4345b.get()).booleanValue();
             } catch (InterruptedException | ExecutionException e10) {
                 throw new IllegalStateException(e10);
             }
@@ -417,7 +417,7 @@ public class d0 {
     }
 
     public final void r() {
-        h2.a.g("MediaSessionImpl", "Release " + Integer.toHexString(System.identityHashCode(this)) + " [AndroidXMedia3/1.10.1] [" + h2.l0.f13786a + "] [" + e2.m0.b() + "]");
+        h2.a.g("MediaSessionImpl", "Release " + Integer.toHexString(System.identityHashCode(this)) + " [AndroidXMedia3/1.10.1] [" + h2.l0.f13783a + "] [" + e2.m0.b() + "]");
         synchronized (this.f55178a) {
             try {
                 if (this.v) {

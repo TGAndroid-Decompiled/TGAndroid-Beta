@@ -21,30 +21,30 @@ import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.z41;
 public final class v0 extends h2 implements fs {
-    public d5 f18500a;
-    public e51 f18501b;
-    public a0 f18502c;
+    public d5 f18497a;
+    public e51 f18498b;
+    public a0 f18499c;
     public final int[] d;
-    public final String[] f18503e;
-    public boolean f18504f;
+    public final String[] f18500e;
+    public boolean f18501f;
     public int h;
-    public TL_account.TL_businessGreetingMessage f18505n;
-    public boolean f18506r;
-    public boolean f18507s;
-    public int f18508w;
+    public TL_account.TL_businessGreetingMessage f18502n;
+    public boolean f18503r;
+    public boolean f18504s;
+    public int f18505w;
 
     public v0() {
         super(null);
         int[] iArr = {7, 14, 21, 28};
         this.d = iArr;
         this.h = -4;
-        this.f18508w = 7;
-        this.f18503e = new String[iArr.length];
+        this.f18505w = 7;
+        this.f18500e = new String[iArr.length];
         int i7 = 0;
         while (true) {
             int[] iArr2 = this.d;
             if (i7 < iArr2.length) {
-                this.f18503e[i7] = gd.G(iArr2[i7], "DaysSchedule", new Object[0]);
+                this.f18500e[i7] = gd.G(iArr2[i7], "DaysSchedule", new Object[0]);
                 i7++;
             } else {
                 return;
@@ -62,10 +62,10 @@ public final class v0 extends h2 implements fs {
         l41Var.f37020o = "👋";
         arrayList.add(l41Var);
         l41 i7 = l41.i(1, gd.M0(2131752758, null));
-        i7.L(v0Var.f18506r);
+        i7.L(v0Var.f18503r);
         arrayList.add(i7);
         arrayList.add(l41.C(null));
-        if (v0Var.f18506r) {
+        if (v0Var.f18503r) {
             v1 d = w1.f(v0Var.currentAccount).d("hello");
             if (d != null) {
                 l41 l41Var2 = new l41(17);
@@ -79,20 +79,20 @@ public final class v0 extends h2 implements fs {
             arrayList.add(l41.C(null));
             arrayList.add(l41.u(gd.M0(2131752677, null)));
             l41 x10 = l41.x(3, gd.M0(2131752770, null));
-            x10.L(v0Var.f18507s);
+            x10.L(v0Var.f18504s);
             arrayList.add(x10);
             l41 x11 = l41.x(4, gd.M0(2131752765, null));
-            x11.L(!v0Var.f18507s);
+            x11.L(!v0Var.f18504s);
             arrayList.add(x11);
             arrayList.add(l41.C(null));
-            v0Var.f18502c.a(arrayList, z41Var, true);
+            v0Var.f18499c.a(arrayList, z41Var, true);
             arrayList.add(l41.C(gd.M0(2131752759, null)));
             arrayList.add(l41.u(gd.M0(2131752761, null)));
             int i10 = 0;
             while (true) {
                 int[] iArr = v0Var.d;
                 if (i10 < iArr.length) {
-                    if (iArr[i10] == v0Var.f18508w) {
+                    if (iArr[i10] == v0Var.f18505w) {
                         break;
                     }
                     i10++;
@@ -101,7 +101,7 @@ public final class v0 extends h2 implements fs {
                     break;
                 }
             }
-            String[] strArr = v0Var.f18503e;
+            String[] strArr = v0Var.f18500e;
             t6 t6Var = new t6(v0Var, 10);
             l41 l41Var3 = new l41(14);
             l41Var3.f37022q = strArr;
@@ -114,24 +114,24 @@ public final class v0 extends h2 implements fs {
     }
 
     public final void a0(boolean z10) {
-        if (this.f18500a == null) {
+        if (this.f18497a == null) {
             return;
         }
-        this.f18500a.a(b0(), z10);
+        this.f18497a.a(b0(), z10);
     }
 
     public final boolean b0() {
         boolean z10;
         a0 a0Var;
-        if (this.f18504f) {
-            boolean z11 = this.f18506r;
-            TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.f18505n;
+        if (this.f18501f) {
+            boolean z11 = this.f18503r;
+            TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.f18502n;
             if (tL_businessGreetingMessage != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (z11 != z10 || (z11 && tL_businessGreetingMessage != null && (tL_businessGreetingMessage.no_activity_days != this.f18508w || tL_businessGreetingMessage.recipients.exclude_selected != this.f18507s || ((a0Var = this.f18502c) != null && a0Var.g())))) {
+            if (z11 != z10 || (z11 && tL_businessGreetingMessage != null && (tL_businessGreetingMessage.no_activity_days != this.f18505w || tL_businessGreetingMessage.recipients.exclude_selected != this.f18504s || ((a0Var = this.f18499c) != null && a0Var.g())))) {
                 return true;
             }
         }
@@ -139,38 +139,38 @@ public final class v0 extends h2 implements fs {
     }
 
     public final void c0() {
-        if (!this.f18500a.f28873y.f57658f) {
+        if (!this.f18497a.f28871y.f57658f) {
             if (!b0()) {
                 finishFragment();
                 return;
             }
             v1 d = w1.f(this.currentAccount).d("hello");
-            boolean z10 = this.f18506r;
+            boolean z10 = this.f18503r;
             if (z10 && d == null) {
                 q2.APP_ERROR.a();
-                View B1 = this.f18501b.B1(2);
+                View B1 = this.f18498b.B1(2);
                 int i7 = -this.h;
                 this.h = i7;
                 org.telegram.messenger.g0.E3(i7, B1, null);
-            } else if (z10 && !this.f18502c.k(this.f18501b)) {
+            } else if (z10 && !this.f18499c.k(this.f18498b)) {
             } else {
-                this.f18500a.b(true);
+                this.f18497a.b(true);
                 TLRPC.UserFull d2 = getMessagesController().d2(getUserConfig().e());
                 TL_account.updateBusinessGreetingMessage updatebusinessgreetingmessage = new TL_account.updateBusinessGreetingMessage();
-                if (this.f18506r) {
+                if (this.f18503r) {
                     TL_account.TL_inputBusinessGreetingMessage tL_inputBusinessGreetingMessage = new TL_account.TL_inputBusinessGreetingMessage();
                     updatebusinessgreetingmessage.message = tL_inputBusinessGreetingMessage;
-                    tL_inputBusinessGreetingMessage.shortcut_id = d.f18509a;
-                    tL_inputBusinessGreetingMessage.recipients = this.f18502c.e();
-                    updatebusinessgreetingmessage.message.no_activity_days = this.f18508w;
+                    tL_inputBusinessGreetingMessage.shortcut_id = d.f18506a;
+                    tL_inputBusinessGreetingMessage.recipients = this.f18499c.e();
+                    updatebusinessgreetingmessage.message.no_activity_days = this.f18505w;
                     updatebusinessgreetingmessage.flags |= 1;
                     if (d2 != null) {
                         d2.flags2 |= 4;
                         TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = new TL_account.TL_businessGreetingMessage();
                         d2.business_greeting_message = tL_businessGreetingMessage;
-                        tL_businessGreetingMessage.shortcut_id = d.f18509a;
-                        tL_businessGreetingMessage.recipients = this.f18502c.f();
-                        d2.business_greeting_message.no_activity_days = this.f18508w;
+                        tL_businessGreetingMessage.shortcut_id = d.f18506a;
+                        tL_businessGreetingMessage.recipients = this.f18499c.f();
+                        d2.business_greeting_message.no_activity_days = this.f18505w;
                     }
                 } else if (d2 != null) {
                     d2.flags2 &= -5;
@@ -189,13 +189,13 @@ public final class v0 extends h2 implements fs {
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setTitle(gd.M0(2131752764, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.r1(this, 9));
-        this.f18500a = this.simpleActionBar.s(gd.M0(2131745751, null));
+        this.f18497a = this.simpleActionBar.s(gd.M0(2131745751, null));
         a0(false);
         FrameLayout frameLayout = new FrameLayout(context);
         a0 a0Var = new a0(this, new j0(this, 2));
-        this.f18502c = a0Var;
-        a0Var.f18254n = true;
-        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.f18505n;
+        this.f18499c = a0Var;
+        a0Var.f18251n = true;
+        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.f18502n;
         if (tL_businessGreetingMessage == null) {
             tL_businessRecipients = null;
         } else {
@@ -203,10 +203,10 @@ public final class v0 extends h2 implements fs {
         }
         a0Var.j(tL_businessRecipients);
         e51 e51Var = new e51(this, new e7(this, 11), new u0(this, 2), null);
-        this.f18501b = e51Var;
+        this.f18498b = e51Var;
         e51Var.r1();
-        this.f18501b.setSectionsDrawBackground(true);
-        e51 e51Var2 = this.f18501b;
+        this.f18498b.setSectionsDrawBackground(true);
+        e51 e51Var2 = this.f18498b;
         e51Var2.f34607g3.f42809r = false;
         frameLayout.addView(e51Var2, ma.c(-1.0f, -1));
         d0();
@@ -220,7 +220,7 @@ public final class v0 extends h2 implements fs {
         boolean z11;
         z41 z41Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
-        if (this.f18504f) {
+        if (this.f18501f) {
             return;
         }
         TLRPC.UserFull d2 = getMessagesController().d2(getUserConfig().e());
@@ -229,26 +229,26 @@ public final class v0 extends h2 implements fs {
             return;
         }
         TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = d2.business_greeting_message;
-        this.f18505n = tL_businessGreetingMessage;
+        this.f18502n = tL_businessGreetingMessage;
         if (tL_businessGreetingMessage != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f18506r = z10;
+        this.f18503r = z10;
         if (tL_businessGreetingMessage != null) {
             i7 = tL_businessGreetingMessage.no_activity_days;
         } else {
             i7 = 7;
         }
-        this.f18508w = i7;
+        this.f18505w = i7;
         if (tL_businessGreetingMessage != null) {
             z11 = tL_businessGreetingMessage.recipients.exclude_selected;
         } else {
             z11 = true;
         }
-        this.f18507s = z11;
-        a0 a0Var = this.f18502c;
+        this.f18504s = z11;
+        a0 a0Var = this.f18499c;
         if (a0Var != null) {
             if (tL_businessGreetingMessage == null) {
                 tL_businessRecipients = null;
@@ -257,19 +257,19 @@ public final class v0 extends h2 implements fs {
             }
             a0Var.j(tL_businessRecipients);
         }
-        e51 e51Var = this.f18501b;
+        e51 e51Var = this.f18498b;
         if (e51Var != null && (z41Var = e51Var.f34607g3) != null) {
             z41Var.O(true);
         }
         a0(true);
-        this.f18504f = true;
+        this.f18501f = true;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         z41 z41Var;
         if (i7 == ks.F1) {
-            e51 e51Var = this.f18501b;
+            e51 e51Var = this.f18498b;
             if (e51Var != null && (z41Var = e51Var.f34607g3) != null) {
                 z41Var.O(true);
             }
@@ -281,7 +281,7 @@ public final class v0 extends h2 implements fs {
 
     @Override
     public final ck0 getListViewForSimpleGlass() {
-        return this.f18501b;
+        return this.f18498b;
     }
 
     @Override
@@ -293,13 +293,13 @@ public final class v0 extends h2 implements fs {
     public final boolean onBackPressed(boolean z10) {
         if (b0()) {
             if (z10) {
-                if (!this.f18506r) {
+                if (!this.f18503r) {
                     c0();
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 String M0 = gd.M0(2131743598, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                 u1Var.S = M0;
                 u1Var.U = gd.M0(2131752757, null);
                 alertDialog$Builder.k(gd.M0(2131754214, null), new u0(this, 0));

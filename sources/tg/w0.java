@@ -3,12 +3,12 @@ package tg;
 import android.content.Context;
 import android.view.ViewGroup;
 public final class w0 extends v4.i0 {
-    public final Context f58159c;
+    public final Context f58160c;
     public final y0 d;
 
     public w0(y0 y0Var, Context context) {
         this.d = y0Var;
-        this.f58159c = context;
+        this.f58160c = context;
     }
 
     @Override
@@ -19,26 +19,26 @@ public final class w0 extends v4.i0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         float f10;
-        x0 x0Var = (x0) f1Var.f59122a;
+        x0 x0Var = (x0) f1Var.f59123a;
         ViewGroup.LayoutParams layoutParams = x0Var.getLayoutParams();
         y0 y0Var = this.d;
         layoutParams.height = ((y0Var.getHeight() - y0Var.getPaddingTop()) - y0Var.getPaddingBottom()) / 2;
-        sg.k0 k0Var = y0Var.f58179i3;
+        sg.k0 k0Var = y0Var.f58180i3;
         if (k0Var != null) {
-            x0Var.f58166a = k0Var.b(i7);
+            x0Var.f58167a = k0Var.b(i7);
             x0Var.invalidate();
-            if (y0Var.f58178h3 == i7) {
+            if (y0Var.f58179h3 == i7) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
-            x0Var.f58167b = f10;
+            x0Var.f58168b = f10;
             x0Var.invalidate();
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        return new v4.f1(new x0(this.d, this.f58159c));
+        return new v4.f1(new x0(this.d, this.f58160c));
     }
 }

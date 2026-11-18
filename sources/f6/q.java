@@ -22,19 +22,19 @@ public final class q extends r6.a {
     public j L;
     public n M;
     public boolean N;
-    public MediaInfo f11443a;
-    public long f11444b;
-    public int f11445c;
+    public MediaInfo f11440a;
+    public long f11441b;
+    public int f11442c;
     public double d;
-    public int f11446e;
-    public int f11447f;
+    public int f11443e;
+    public int f11444f;
     public long h;
-    public long f11448n;
-    public double f11449r;
-    public boolean f11450s;
-    public long[] f11451w;
-    public int f11452x;
-    public int f11453y;
+    public long f11445n;
+    public double f11446r;
+    public boolean f11447s;
+    public long[] f11448w;
+    public int f11449x;
+    public int f11450y;
     public final ArrayList H = new ArrayList();
     public final SparseArray O = new SparseArray();
 
@@ -45,19 +45,19 @@ public final class q extends r6.a {
     }
 
     public q(MediaInfo mediaInfo, long j3, int i7, double d, int i10, int i11, long j10, long j11, double d2, boolean z10, long[] jArr, int i12, int i13, String str, int i14, ArrayList arrayList, boolean z11, c cVar, u uVar, j jVar, n nVar) {
-        this.f11443a = mediaInfo;
-        this.f11444b = j3;
-        this.f11445c = i7;
+        this.f11440a = mediaInfo;
+        this.f11441b = j3;
+        this.f11442c = i7;
         this.d = d;
-        this.f11446e = i10;
-        this.f11447f = i11;
+        this.f11443e = i10;
+        this.f11444f = i11;
         this.h = j10;
-        this.f11448n = j11;
-        this.f11449r = d2;
-        this.f11450s = z10;
-        this.f11451w = jArr;
-        this.f11452x = i12;
-        this.f11453y = i13;
+        this.f11445n = j11;
+        this.f11446r = d2;
+        this.f11447s = z10;
+        this.f11448w = jArr;
+        this.f11449x = i12;
+        this.f11450y = i13;
         this.E = str;
         if (str != null) {
             try {
@@ -79,7 +79,7 @@ public final class q extends r6.a {
         this.L = jVar;
         this.M = nVar;
         boolean z12 = false;
-        if (nVar != null && nVar.f11434s) {
+        if (nVar != null && nVar.f11431s) {
             z12 = true;
         }
         this.N = z12;
@@ -98,7 +98,7 @@ public final class q extends r6.a {
             for (int i7 = 0; i7 < list.size(); i7++) {
                 o oVar = (o) list.get(i7);
                 arrayList.add(oVar);
-                sparseArray.put(oVar.f11436b, Integer.valueOf(i7));
+                sparseArray.put(oVar.f11433b, Integer.valueOf(i7));
             }
         }
     }
@@ -121,7 +121,7 @@ public final class q extends r6.a {
                 } else {
                     z11 = true;
                 }
-                if (z10 == z11 && this.f11444b == qVar.f11444b && this.f11445c == qVar.f11445c && this.d == qVar.d && this.f11446e == qVar.f11446e && this.f11447f == qVar.f11447f && this.h == qVar.h && this.f11449r == qVar.f11449r && this.f11450s == qVar.f11450s && this.f11452x == qVar.f11452x && this.f11453y == qVar.f11453y && this.G == qVar.G && Arrays.equals(this.f11451w, qVar.f11451w) && j6.a.d(Long.valueOf(this.f11448n), Long.valueOf(qVar.f11448n)) && j6.a.d(this.H, qVar.H) && j6.a.d(this.f11443a, qVar.f11443a) && (((jSONObject = this.F) == null || (jSONObject2 = qVar.F) == null || x6.c.a(jSONObject, jSONObject2)) && this.I == qVar.I && j6.a.d(this.J, qVar.J) && j6.a.d(this.K, qVar.K) && j6.a.d(this.L, qVar.L) && q6.m.l(this.M, qVar.M) && this.N == qVar.N)) {
+                if (z10 == z11 && this.f11441b == qVar.f11441b && this.f11442c == qVar.f11442c && this.d == qVar.d && this.f11443e == qVar.f11443e && this.f11444f == qVar.f11444f && this.h == qVar.h && this.f11446r == qVar.f11446r && this.f11447s == qVar.f11447s && this.f11449x == qVar.f11449x && this.f11450y == qVar.f11450y && this.G == qVar.G && Arrays.equals(this.f11448w, qVar.f11448w) && j6.a.d(Long.valueOf(this.f11445n), Long.valueOf(qVar.f11445n)) && j6.a.d(this.H, qVar.H) && j6.a.d(this.f11440a, qVar.f11440a) && (((jSONObject = this.F) == null || (jSONObject2 = qVar.F) == null || x6.c.a(jSONObject, jSONObject2)) && this.I == qVar.I && j6.a.d(this.J, qVar.J) && j6.a.d(this.K, qVar.K) && j6.a.d(this.L, qVar.L) && q6.m.l(this.M, qVar.M) && this.N == qVar.N)) {
                 }
             }
             return false;
@@ -130,7 +130,7 @@ public final class q extends r6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11443a, Long.valueOf(this.f11444b), Integer.valueOf(this.f11445c), Double.valueOf(this.d), Integer.valueOf(this.f11446e), Integer.valueOf(this.f11447f), Long.valueOf(this.h), Long.valueOf(this.f11448n), Double.valueOf(this.f11449r), Boolean.valueOf(this.f11450s), Integer.valueOf(Arrays.hashCode(this.f11451w)), Integer.valueOf(this.f11452x), Integer.valueOf(this.f11453y), String.valueOf(this.F), Integer.valueOf(this.G), this.H, Boolean.valueOf(this.I), this.J, this.K, this.L, this.M});
+        return Arrays.hashCode(new Object[]{this.f11440a, Long.valueOf(this.f11441b), Integer.valueOf(this.f11442c), Double.valueOf(this.d), Integer.valueOf(this.f11443e), Integer.valueOf(this.f11444f), Long.valueOf(this.h), Long.valueOf(this.f11445n), Double.valueOf(this.f11446r), Boolean.valueOf(this.f11447s), Integer.valueOf(Arrays.hashCode(this.f11448w)), Integer.valueOf(this.f11449x), Integer.valueOf(this.f11450y), String.valueOf(this.F), Integer.valueOf(this.G), this.H, Boolean.valueOf(this.I), this.J, this.K, this.L, this.M});
     }
 
     @Override
@@ -144,39 +144,39 @@ public final class q extends r6.a {
         }
         this.E = jSONObject;
         int r10 = bc.r(parcel, 20293);
-        bc.k(parcel, 2, this.f11443a, i7);
-        long j3 = this.f11444b;
+        bc.k(parcel, 2, this.f11440a, i7);
+        long j3 = this.f11441b;
         bc.q(parcel, 3, 8);
         parcel.writeLong(j3);
-        int i10 = this.f11445c;
+        int i10 = this.f11442c;
         bc.q(parcel, 4, 4);
         parcel.writeInt(i10);
         double d = this.d;
         bc.q(parcel, 5, 8);
         parcel.writeDouble(d);
-        int i11 = this.f11446e;
+        int i11 = this.f11443e;
         bc.q(parcel, 6, 4);
         parcel.writeInt(i11);
-        int i12 = this.f11447f;
+        int i12 = this.f11444f;
         bc.q(parcel, 7, 4);
         parcel.writeInt(i12);
         long j10 = this.h;
         bc.q(parcel, 8, 8);
         parcel.writeLong(j10);
-        long j11 = this.f11448n;
+        long j11 = this.f11445n;
         bc.q(parcel, 9, 8);
         parcel.writeLong(j11);
-        double d2 = this.f11449r;
+        double d2 = this.f11446r;
         bc.q(parcel, 10, 8);
         parcel.writeDouble(d2);
-        boolean z10 = this.f11450s;
+        boolean z10 = this.f11447s;
         bc.q(parcel, 11, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        bc.j(parcel, 12, this.f11451w);
-        int i13 = this.f11452x;
+        bc.j(parcel, 12, this.f11448w);
+        int i13 = this.f11449x;
         bc.q(parcel, 13, 4);
         parcel.writeInt(i13);
-        int i14 = this.f11453y;
+        int i14 = this.f11450y;
         bc.q(parcel, 14, 4);
         parcel.writeInt(i14);
         bc.l(parcel, 15, this.E);

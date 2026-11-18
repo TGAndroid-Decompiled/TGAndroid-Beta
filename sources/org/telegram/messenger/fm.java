@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class fm implements Runnable {
-    public final int f24036a;
-    public final Object f24037b;
-    public final long f24038c;
+    public final int f24033a;
+    public final Object f24034b;
+    public final long f24035c;
     public final Object d;
-    public final Object f24039e;
+    public final Object f24036e;
 
     public fm(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f24036a = i7;
-        this.f24037b = obj;
+        this.f24033a = i7;
+        this.f24034b = obj;
         this.d = obj2;
-        this.f24038c = j3;
-        this.f24039e = obj3;
+        this.f24035c = j3;
+        this.f24036e = obj3;
     }
 
     private final void a() {
@@ -28,18 +28,18 @@ public final class fm implements Runnable {
     }
 
     public fm(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f24036a = i7;
-        this.f24037b = obj;
+        this.f24033a = i7;
+        this.f24034b = obj;
         this.d = obj2;
-        this.f24039e = obj3;
-        this.f24038c = j3;
+        this.f24036e = obj3;
+        this.f24035c = j3;
     }
 
     public fm(c1 c1Var, long j3, Object obj, Object obj2, int i7) {
-        this.f24036a = i7;
-        this.f24037b = c1Var;
-        this.f24038c = j3;
+        this.f24033a = i7;
+        this.f24034b = c1Var;
+        this.f24035c = j3;
         this.d = obj;
-        this.f24039e = obj2;
+        this.f24036e = obj2;
     }
 }

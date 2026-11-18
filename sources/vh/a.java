@@ -6,23 +6,23 @@ import java.util.HashMap;
 import org.telegram.ui.Components.hn;
 import org.telegram.ui.Components.rn;
 public final class a implements View.OnClickListener {
-    public final int f59551a;
-    public final g f59552b;
+    public final int f59552a;
+    public final g f59553b;
 
     public a(g gVar, int i7) {
-        this.f59551a = i7;
-        this.f59552b = gVar;
+        this.f59552a = i7;
+        this.f59553b = gVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f59551a;
-        g gVar = this.f59552b;
+        int i7 = this.f59552a;
+        g gVar = this.f59553b;
         switch (i7) {
             case 0:
-                hn hnVar = gVar.f59569g2;
+                hn hnVar = gVar.f59570g2;
                 if (hnVar != null) {
-                    ArrayList arrayList = new ArrayList(gVar.f59568f2.keySet());
+                    ArrayList arrayList = new ArrayList(gVar.f59569f2.keySet());
                     rn rnVar = (rn) hnVar.f35933b;
                     ArrayList arrayList2 = rnVar.Q0;
                     arrayList2.clear();
@@ -35,9 +35,9 @@ public final class a implements View.OnClickListener {
                 gVar.dismiss();
                 return;
             case 1:
-                hn hnVar2 = gVar.f59569g2;
+                hn hnVar2 = gVar.f59570g2;
                 if (hnVar2 != null) {
-                    ArrayList arrayList3 = new ArrayList(gVar.f59568f2.keySet());
+                    ArrayList arrayList3 = new ArrayList(gVar.f59569f2.keySet());
                     rn rnVar2 = (rn) hnVar2.f35933b;
                     ArrayList arrayList4 = rnVar2.Q0;
                     arrayList4.clear();
@@ -50,17 +50,17 @@ public final class a implements View.OnClickListener {
                 gVar.dismiss();
                 return;
             case 2:
-                HashMap hashMap = gVar.f59568f2;
+                HashMap hashMap = gVar.f59569f2;
                 hashMap.clear();
                 gVar.d2.b();
                 gVar.Z1.O(true);
-                gVar.f59564a2.c(hashMap.size(), true);
+                gVar.f59565a2.c(hashMap.size(), true);
                 return;
             case 3:
                 gVar.h1(view);
                 return;
             default:
-                int i12 = g.f59563n2;
+                int i12 = g.f59564n2;
                 gVar.h1(view);
                 return;
         }

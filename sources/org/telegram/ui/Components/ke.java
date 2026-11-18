@@ -14,9 +14,9 @@ public final class ke implements z4 {
             case 0:
                 boolean s12 = this.f36742b.s1(z10, i7, i10, 0L, true);
                 ChatActivityEnterView chatActivityEnterView = this.f36742b;
-                org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
-                if (eg0Var != null) {
-                    eg0Var.h(!s12);
+                org.telegram.ui.fg0 fg0Var = chatActivityEnterView.M0;
+                if (fg0Var != null) {
+                    fg0Var.h(!s12);
                     chatActivityEnterView.M0 = null;
                     return;
                 }
@@ -24,9 +24,9 @@ public final class ke implements z4 {
             default:
                 this.f36742b.s1(z10, i7, i10, 0L, true);
                 ChatActivityEnterView chatActivityEnterView2 = this.f36742b;
-                org.telegram.ui.eg0 eg0Var2 = chatActivityEnterView2.M0;
-                if (eg0Var2 != null) {
-                    eg0Var2.i();
+                org.telegram.ui.fg0 fg0Var2 = chatActivityEnterView2.M0;
+                if (fg0Var2 != null) {
+                    fg0Var2.i();
                     chatActivityEnterView2.M0 = null;
                     return;
                 }

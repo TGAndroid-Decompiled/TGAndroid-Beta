@@ -139,7 +139,7 @@ public final class nm {
     }
 
     public final float b() {
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         return this.f37828z.Q.getPreviewScale() * org.telegram.messenger.g0.T1(this.f37811g, this.f37809e, this.f37813j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f37808c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
     }
 }

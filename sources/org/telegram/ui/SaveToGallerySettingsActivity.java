@@ -30,9 +30,9 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.h2 
         this.f43712w = new LongSparseArray();
     }
 
-    public static void b0(SaveToGallerySettingsActivity saveToGallerySettingsActivity, org.telegram.ui.Cells.r8 r8Var, int i7) {
-        for (int i10 = 0; i10 < r8Var.getChildCount(); i10++) {
-            View childAt = r8Var.getChildAt(i10);
+    public static void b0(SaveToGallerySettingsActivity saveToGallerySettingsActivity, org.telegram.ui.Cells.s8 s8Var, int i7) {
+        for (int i10 = 0; i10 < s8Var.getChildCount(); i10++) {
+            View childAt = s8Var.getChildAt(i10);
             if ((childAt instanceof org.telegram.ui.Components.ph0) && childAt.getBackground() != null) {
                 Drawable background = childAt.getBackground();
                 org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
@@ -84,7 +84,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.h2 
         kVar.n(400L);
         kVar.o(org.telegram.ui.Components.lr.h);
         kVar.C = false;
-        kVar.f59151m = false;
+        kVar.f59152m = false;
         this.f43710r.setItemAnimator(kVar);
         this.f43710r.setLayoutManager(new v4.c0());
         org.telegram.ui.Components.ck0 ck0Var2 = this.f43710r;
@@ -169,7 +169,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.h2 
             }
         }
         arrayList2.add(new cz0(7, str));
-        if (c0().f25443b) {
+        if (c0().f25441b) {
             arrayList2.add(new cz0(5, org.telegram.messenger.gd.M0(2131748476, null)));
             this.maxVideoSizeRow = arrayList2.size();
             arrayList2.add(new cz0(8));
@@ -230,9 +230,9 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.h2 
                 this.f43706c = new org.telegram.messenger.lv();
                 org.telegram.messenger.mv f10 = org.telegram.messenger.c6.f(this.f43704a);
                 org.telegram.messenger.kv kvVar2 = this.f43706c;
-                kvVar2.f25442a = f10.f25442a;
-                kvVar2.f25443b = f10.f25443b;
-                kvVar2.f25444c = f10.f25444c;
+                kvVar2.f25440a = f10.f25440a;
+                kvVar2.f25441b = f10.f25441b;
+                kvVar2.f25442c = f10.f25442c;
                 kvVar2.d = this.f43705b;
             }
         }

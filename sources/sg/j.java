@@ -25,8 +25,8 @@ public final class j extends ScrollView {
         int L = org.telegram.messenger.g0.L(36.0f);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set((getMeasuredWidth() - L) / 2.0f, y10, (getMeasuredWidth() + L) / 2.0f, org.telegram.messenger.g0.L(4.0f) + y10);
-        n6.f29687t0.setColor(-10790053);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), n6.f29687t0);
+        n6.f29685t0.setColor(-10790053);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), n6.f29685t0);
     }
 
     @Override

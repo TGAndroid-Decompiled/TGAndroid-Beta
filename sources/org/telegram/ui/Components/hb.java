@@ -12,9 +12,9 @@ public final class hb extends r1.e {
             case 0:
                 return ((lb) obj).inOutOffset;
             case 1:
-                return ((org.telegram.ui.ne0) obj).O;
+                return ((org.telegram.ui.oe0) obj).O;
             default:
-                return ((org.telegram.ui.ne0) obj).N;
+                return ((org.telegram.ui.oe0) obj).N;
         }
     }
 
@@ -25,14 +25,14 @@ public final class hb extends r1.e {
                 lb.access$2400((lb) obj, f10);
                 return;
             case 1:
-                org.telegram.ui.ne0 ne0Var = (org.telegram.ui.ne0) obj;
-                ne0Var.O = f10;
-                ne0Var.invalidate();
+                org.telegram.ui.oe0 oe0Var = (org.telegram.ui.oe0) obj;
+                oe0Var.O = f10;
+                oe0Var.invalidate();
                 return;
             default:
-                org.telegram.ui.ne0 ne0Var2 = (org.telegram.ui.ne0) obj;
-                ne0Var2.N = f10;
-                ne0Var2.invalidate();
+                org.telegram.ui.oe0 oe0Var2 = (org.telegram.ui.oe0) obj;
+                oe0Var2.N = f10;
+                oe0Var2.invalidate();
                 return;
         }
     }

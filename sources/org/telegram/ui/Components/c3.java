@@ -8,10 +8,10 @@ public final class c3 implements Runnable {
     public final int[] f33867c;
     public final Runnable d;
 
-    public c3(int i7, int[] iArr, org.telegram.ui.n60 n60Var) {
+    public c3(int i7, int[] iArr, org.telegram.ui.o60 o60Var) {
         this.f33866b = i7;
         this.f33867c = iArr;
-        this.d = n60Var;
+        this.d = o60Var;
     }
 
     @Override

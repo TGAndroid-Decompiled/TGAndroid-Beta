@@ -116,8 +116,8 @@ public final class nw implements org.telegram.ui.ls {
     @Override
     public final boolean N(TLRPC.Document document) {
         if (document != null) {
-            ArrayList arrayList = org.telegram.messenger.j6.f24819i;
-            if (arrayList.contains("animated_" + document.f28411id)) {
+            ArrayList arrayList = org.telegram.messenger.j6.f24816i;
+            if (arrayList.contains("animated_" + document.f28409id)) {
                 return true;
             }
             return false;
@@ -129,11 +129,11 @@ public final class nw implements org.telegram.ui.ls {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User f10;
         boolean z10;
-        if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q() || (f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).f()) == null) {
+        if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q() || (f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).f()) == null) {
             return null;
         }
         Long i7 = org.telegram.messenger.o10.i(f10);
-        if (document != null && (i7 == null || i7.longValue() != document.f28411id)) {
+        if (document != null && (i7 == null || i7.longValue() != document.f28409id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -203,7 +203,7 @@ public final class nw implements org.telegram.ui.ls {
         ry ryVar = this.f37866a;
         org.telegram.ui.ActionBar.h2 h2Var = ryVar.Z1;
         if ((h2Var instanceof org.telegram.ui.bn) && ((org.telegram.ui.bn) h2Var).T6()) {
-            if (org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).q() || (((org.telegram.ui.bn) ryVar.Z1).j() != null && org.telegram.messenger.o10.C(((org.telegram.ui.bn) ryVar.Z1).j()))) {
+            if (org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).q() || (((org.telegram.ui.bn) ryVar.Z1).j() != null && org.telegram.messenger.o10.C(((org.telegram.ui.bn) ryVar.Z1).j()))) {
                 return true;
             }
             return false;
@@ -244,13 +244,13 @@ public final class nw implements org.telegram.ui.ls {
     @Override
     public final void p(TLRPC.Document document) {
         if (document != null) {
-            String str = "animated_" + document.f28411id;
+            String str = "animated_" + document.f28409id;
             HashMap hashMap = org.telegram.messenger.j6.h;
             hashMap.remove(str);
-            ArrayList arrayList = org.telegram.messenger.j6.f24819i;
+            ArrayList arrayList = org.telegram.messenger.j6.f24816i;
             arrayList.remove(str);
             if (hashMap.isEmpty() || arrayList.isEmpty()) {
-                org.telegram.messenger.j6.a(org.telegram.messenger.j6.f24825o[0]);
+                org.telegram.messenger.j6.a(org.telegram.messenger.j6.f24822o[0]);
             }
             bx bxVar = this.f37866a.S;
             if (bxVar != null) {
@@ -304,10 +304,10 @@ public final class nw implements org.telegram.ui.ls {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f28411id;
+            tL_emojiStatus.document_id = document.f28409id;
             emojiStatus = tL_emojiStatus;
         }
-        TLRPC.User f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24773t0).f();
+        TLRPC.User f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).f();
         if (f10 == null) {
             obj = new TLRPC.TL_emojiStatusEmpty();
         } else {
@@ -322,7 +322,7 @@ public final class nw implements org.telegram.ui.ls {
             imageView.setImageResource(2131232364);
             imageView.setScaleX(0.8f);
             imageView.setScaleY(0.8f);
-            org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29810z9, i6Var, PorterDuff.Mode.MULTIPLY);
+            org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29808z9, i6Var, PorterDuff.Mode.MULTIPLY);
             ec ecVar = new ec(ryVar.getContext(), i6Var, true);
             ecVar.f34666b = mgVar;
             ybVar.setButton(ecVar);

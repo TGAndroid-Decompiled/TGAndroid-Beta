@@ -45,9 +45,9 @@ public final class p9 implements q10 {
                 if (walletuseraddress != null) {
                     daVar2.h = walletuseraddress.address;
                 }
-                bi.d6 d6Var = daVar2.f33530a;
-                if (d6Var != null) {
-                    d6Var.f34607g3.O(true);
+                bi.c6 c6Var = daVar2.f33530a;
+                if (c6Var != null) {
+                    c6Var.f34607g3.O(true);
                 }
                 daVar2.C0();
                 daVar2.t0();

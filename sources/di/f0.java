@@ -26,7 +26,7 @@ public final class f0 extends z41 {
     public int I(int i7) {
         switch (this.Q) {
             case 1:
-                if (i7 == org.telegram.ui.ActionBar.n6.f29487i5) {
+                if (i7 == org.telegram.ui.ActionBar.n6.f29485i5) {
                     return -15921907;
                 }
                 return org.telegram.ui.ActionBar.n6.w0(i7, this.f42812x);

@@ -4,7 +4,7 @@ import a4.k;
 import ca.i;
 import h2.o0;
 import kotlin.jvm.internal.j;
-import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c5;
 import qe.f;
 import qe.h;
 import w7.s;
@@ -12,7 +12,7 @@ public final class b {
     public static final b d = new b();
     public final o0 f55572a = new o0();
     public final s f55573b = re.a.f56571a;
-    public final b5 f55574c = new b5(15);
+    public final c5 f55574c = new c5(15);
 
     public final Object a(ke.a deserializer, String str) {
         byte b10;
@@ -52,7 +52,7 @@ public final class b {
         mc.a aVar = new mc.a(1);
         qe.b bVar = qe.b.f56110c;
         synchronized (bVar) {
-            hd.d dVar = (hd.d) bVar.f2152b;
+            hd.d dVar = (hd.d) bVar.f2153b;
             cArr = null;
             if (dVar.isEmpty()) {
                 removeLast = null;
@@ -61,14 +61,14 @@ public final class b {
             }
             char[] cArr2 = (char[]) removeLast;
             if (cArr2 != null) {
-                bVar.f2151a -= cArr2.length;
+                bVar.f2152a -= cArr2.length;
                 cArr = cArr2;
             }
         }
         if (cArr == null) {
             cArr = new char[128];
         }
-        aVar.f20965b = cArr;
+        aVar.f20962b = cArr;
         try {
             this.f55572a.getClass();
             new h(new i(aVar, 8), this, qe.j.f56125c, new h[qe.j.f56128n.f()]).i(serializer, obj);

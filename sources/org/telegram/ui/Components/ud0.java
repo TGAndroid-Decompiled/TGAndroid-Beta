@@ -55,7 +55,7 @@ public final class ud0 extends FrameLayout {
         float f10 = vt0Var.f41433a;
         float width = (this.f40307e.x * f10) + ((getWidth() - f10) / 2.0f);
         if (!this.L) {
-            i7 = org.telegram.messenger.g0.f24115m;
+            i7 = org.telegram.messenger.g0.f24112m;
         } else {
             i7 = 0;
         }
@@ -149,7 +149,7 @@ public final class ud0 extends FrameLayout {
                     float f19 = y10 - this.f40312w;
                     float width = (getWidth() - vt0Var.f41433a) / 2.0f;
                     if (!z13) {
-                        i11 = org.telegram.messenger.g0.f24115m;
+                        i11 = org.telegram.messenger.g0.f24112m;
                     } else {
                         i11 = 0;
                     }
@@ -176,7 +176,7 @@ public final class ud0 extends FrameLayout {
                     float f24 = y10 - this.f40312w;
                     float width2 = (getWidth() - vt0Var.f41433a) / 2.0f;
                     if (!z13) {
-                        i10 = org.telegram.messenger.g0.f24115m;
+                        i10 = org.telegram.messenger.g0.f24112m;
                     } else {
                         i10 = 0;
                     }
@@ -275,7 +275,7 @@ public final class ud0 extends FrameLayout {
             this.N = 5;
         }
         float b10 = b(motionEvent);
-        float c10 = com.google.android.gms.internal.vision.e2.c(b10 - this.f40313x, org.telegram.messenger.g0.f24120p, 0.01f, this.f40314y);
+        float c10 = com.google.android.gms.internal.vision.e2.c(b10 - this.f40313x, org.telegram.messenger.g0.f24117p, 0.01f, this.f40314y);
         this.f40314y = c10;
         float max = Math.max(0.1f, this.f40308f * c10);
         this.f40308f = max;

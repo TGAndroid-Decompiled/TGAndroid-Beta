@@ -25,15 +25,15 @@ public final class v4 extends kv0 {
                 super.e(z10, z11);
                 float f10 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = ((TextView) y91Var.f54138n.d).animate();
+                    ViewPropertyAnimator animate = ((TextView) y91Var.f54079n.d).animate();
                     if (z10) {
                         f10 = 0.0f;
                     }
                     animate.alpha(f10).start();
                     return;
                 }
-                ((TextView) y91Var.f54138n.d).animate().cancel();
-                TextView textView = (TextView) y91Var.f54138n.d;
+                ((TextView) y91Var.f54079n.d).animate().cancel();
+                TextView textView = (TextView) y91Var.f54079n.d;
                 if (z10) {
                     f10 = 0.0f;
                 }
@@ -60,7 +60,7 @@ public final class v4 extends kv0 {
         switch (this.L) {
             case 0:
                 a5 a5Var = ((w4) this.M).d;
-                super.onMeasure(i7, n10.c(a5Var.f11731e, a5Var.f11733n - a5Var.f11734r.getPaddingTop(), 1073741824));
+                super.onMeasure(i7, n10.c(a5Var.f11728e, a5Var.f11730n - a5Var.f11731r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);

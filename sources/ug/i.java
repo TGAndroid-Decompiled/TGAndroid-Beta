@@ -5,8 +5,8 @@ import di.l4;
 import java.util.ArrayList;
 public final class i extends a {
     public final ArrayList d;
-    public final Bitmap f58673e;
-    public final int f58674f;
+    public final Bitmap f58674e;
+    public final int f58675f;
 
     public i(int r22, android.content.Context r23, org.telegram.ui.ActionBar.i6 r24) {
         throw new UnsupportedOperationException("Method not decompiled: ug.i.<init>(int, android.content.Context, org.telegram.ui.ActionBar.i6):void");

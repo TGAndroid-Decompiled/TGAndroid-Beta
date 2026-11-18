@@ -53,7 +53,7 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
 
     public static hn m() {
         if (f35931c == null) {
-            Point point = org.telegram.messenger.g0.f24121q;
+            Point point = org.telegram.messenger.g0.f24118q;
             f35931c = new hn(point.x, point.y);
         }
         return f35931c;
@@ -278,7 +278,7 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
     public void G() {
         pd0 pd0Var = ((qd0) this.f35933b).f38762a;
         if (pd0Var != null) {
-            PhotoViewer photoViewer = ((org.telegram.ui.so0) pd0Var).f52040a;
+            PhotoViewer photoViewer = ((org.telegram.ui.so0) pd0Var).f52042a;
             if (photoViewer.d2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.o3();
@@ -352,7 +352,7 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
 
     @Override
     public void c(int i7, k2.d dVar, long j3, int i10) {
-        ((MediaCodec) this.f35933b).queueSecureInputBuffer(i7, 0, dVar.f18123i, j3, i10);
+        ((MediaCodec) this.f35933b).queueSecureInputBuffer(i7, 0, dVar.f18120i, j3, i10);
     }
 
     @Override
@@ -361,11 +361,11 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
         try {
             if (!arrayList.isEmpty()) {
                 org.telegram.messenger.yy yyVar = (org.telegram.messenger.yy) arrayList.get(0);
-                if (yyVar.f28213c != null) {
+                if (yyVar.f28211c != null) {
                     File z10 = org.telegram.messenger.w7.z(4);
-                    r7Var.f620f = new File(z10, Utilities.f22780b.nextInt() + ".jpg");
+                    r7Var.f620f = new File(z10, Utilities.f22777b.nextInt() + ".jpg");
                     Point c12 = org.telegram.messenger.g0.c1();
-                    Bitmap K = org.telegram.messenger.ec.K(yyVar.f28213c, null, (float) c12.x, (float) c12.y, true);
+                    Bitmap K = org.telegram.messenger.ec.K(yyVar.f28211c, null, (float) c12.x, (float) c12.y, true);
                     K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream((File) r7Var.f620f));
                     ((l71) r7Var.f619e).b((File) r7Var.f620f, K, true);
                 }
@@ -384,7 +384,7 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
     public androidx.lifecycle.p0 g(Class cls, y1.b bVar) {
         androidx.lifecycle.m0 m0Var = null;
         for (y1.c cVar : (y1.c[]) this.f35933b) {
-            if (cVar.f60657a.equals(cls)) {
+            if (cVar.f60658a.equals(cls)) {
                 m0Var = new androidx.lifecycle.m0();
             }
         }
@@ -494,7 +494,7 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
                 f61 f61Var = r40Var.I0.T;
                 if (f61Var != null && f61Var.d0() && i7 == 4 && (e20Var = (z40Var = r40Var.I0).S) != null) {
                     f61 f61Var2 = z40Var.T;
-                    long j3 = e20Var.f23637a;
+                    long j3 = e20Var.f23634a;
                     if (j3 <= 0) {
                         j3 = 0;
                     }
@@ -553,8 +553,8 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
     @Override
     public void q(Object obj) {
         Location location;
-        org.telegram.messenger.pa paVar = ((org.telegram.messenger.x9) obj).f27832a;
-        List list = ((LocationResult) this.f35933b).f7365a;
+        org.telegram.messenger.pa paVar = ((org.telegram.messenger.x9) obj).f27830a;
+        List list = ((LocationResult) this.f35933b).f7362a;
         int size = list.size();
         if (size == 0) {
             location = null;
@@ -568,7 +568,7 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
     public void r() {
         pd0 pd0Var = ((qd0) this.f35933b).f38762a;
         if (pd0Var != null) {
-            ((org.telegram.ui.so0) pd0Var).f52040a.f43208f0.invalidate();
+            ((org.telegram.ui.so0) pd0Var).f52042a.f43208f0.invalidate();
         }
     }
 
@@ -672,7 +672,7 @@ public final class hn implements d61, og.n, org.telegram.ui.pm0, o2.i, xm0, com.
 
     public hn(int i7, int i10) {
         this.f35932a = 26;
-        this.f35933b = org.telegram.messenger.t0.f26915b.getSharedPreferences(a8.p0.m(i7, i10, "pip_floating_", "_"), 0);
+        this.f35933b = org.telegram.messenger.t0.f26913b.getSharedPreferences(a8.p0.m(i7, i10, "pip_floating_", "_"), 0);
     }
 
     private final void A(m2.a aVar) {

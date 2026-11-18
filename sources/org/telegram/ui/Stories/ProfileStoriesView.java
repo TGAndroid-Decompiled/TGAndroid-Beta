@@ -142,7 +142,7 @@ public class ProfileStoriesView extends View implements fs {
         paint2.setStrokeWidth(g0.N(1.5f));
         paint2.setStyle(style);
         paint2.setStrokeCap(cap);
-        paint3.setColor(n6.w0(n6.f29396d6, i6Var));
+        paint3.setColor(n6.w0(n6.f29394d6, i6Var));
         m6Var.w(g0.L(18.0f));
         m6Var.n(0.4f, 320L, lrVar);
         m6Var.x(g0.o());
@@ -157,12 +157,12 @@ public class ProfileStoriesView extends View implements fs {
 
     public static b4 d(b4 b4Var, b4 b4Var2, b4 b4Var3) {
         if (b4Var3 != null) {
-            RectF rectF = b4Var3.f11779n;
+            RectF rectF = b4Var3.f11776n;
             if (b4Var != null || b4Var2 != null) {
                 if (b4Var != null) {
-                    RectF rectF2 = b4Var.f11779n;
+                    RectF rectF2 = b4Var.f11776n;
                     if (b4Var2 != null) {
-                        RectF rectF3 = b4Var2.f11779n;
+                        RectF rectF3 = b4Var2.f11776n;
                         if (Math.min(Math.abs(rectF2.left - rectF.right), Math.abs(rectF2.right - rectF.left)) > Math.min(Math.abs(rectF3.left - rectF.right), Math.abs(rectF3.right - rectF.left))) {
                             return b4Var;
                         }
@@ -187,14 +187,14 @@ public class ProfileStoriesView extends View implements fs {
         if (b4Var2 == null) {
             return;
         }
-        RectF rectF = b4Var2.f11778m;
+        RectF rectF = b4Var2.f11775m;
         RectF rectF2 = g0.P;
         rectF2.set(rectF);
-        float f10 = -(g0.N(1.66f) * b4Var2.f11775j);
+        float f10 = -(g0.N(1.66f) * b4Var2.f11772j);
         rectF2.inset(f10, f10);
         float centerX = rectF.centerX();
         float width = rectF.width() / 2.0f;
-        RectF rectF3 = b4Var.f11778m;
+        RectF rectF3 = b4Var.f11775m;
         float centerX2 = rectF3.centerX();
         float width2 = rectF3.width() / 2.0f;
         Path path = this.T;
@@ -215,7 +215,7 @@ public class ProfileStoriesView extends View implements fs {
     }
 
     public final void b(float f10, float f11, Canvas canvas, Paint paint, RectF rectF) {
-        if (v3.b0(j10.f24773t0, this.d)) {
+        if (v3.b0(j10.f24770t0, this.d)) {
             float height = rectF.height() * 0.32f;
             if (Math.abs(f11) == 360.0f) {
                 canvas.drawRoundRect(rectF, height, height, paint);
@@ -250,15 +250,15 @@ public class ProfileStoriesView extends View implements fs {
         double degrees;
         double degrees2;
         b4 b4Var4 = b4Var;
-        RectF rectF = b4Var2.f11779n;
+        RectF rectF = b4Var2.f11776n;
         if (b4Var4 == null && b4Var3 == null) {
             b(0.0f, 360.0f, canvas, paint, rectF);
             return;
         }
         if (b4Var4 != null) {
-            RectF rectF2 = b4Var4.f11779n;
+            RectF rectF2 = b4Var4.f11776n;
             if (b4Var3 != null) {
-                RectF rectF3 = b4Var3.f11779n;
+                RectF rectF3 = b4Var3.f11776n;
                 float centerX = rectF2.centerX();
                 float width2 = rectF2.width() / 2.0f;
                 float centerX2 = rectF.centerX();
@@ -311,8 +311,8 @@ public class ProfileStoriesView extends View implements fs {
         if (b4Var4 == null) {
             b4Var4 = b4Var3;
         }
-        float centerX4 = b4Var4.f11779n.centerX();
-        float width5 = b4Var4.f11779n.width() / 2.0f;
+        float centerX4 = b4Var4.f11776n.centerX();
+        float width5 = b4Var4.f11776n.width() / 2.0f;
         float centerX5 = rectF.centerX();
         if (Math.abs(centerX4 - centerX5) > width5 + (rectF.width() / 2.0f)) {
             b(0.0f, 360.0f, canvas, paint, rectF);
@@ -327,7 +327,7 @@ public class ProfileStoriesView extends View implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25225x5) {
+        if (i7 == ks.f25230y5) {
             f(true, true);
         }
     }
@@ -353,10 +353,10 @@ public class ProfileStoriesView extends View implements fs {
         while (true) {
             ArrayList arrayList = this.f43825x;
             if (i7 < arrayList.size()) {
-                ((b4) arrayList.get(i7)).f11769b.P();
+                ((b4) arrayList.get(i7)).f11766b.P();
                 i7++;
             } else {
-                ks.f(this.f43802c).c(this, ks.f25225x5);
+                ks.f(this.f43802c).c(this, ks.f25230y5);
                 return;
             }
         }
@@ -370,10 +370,10 @@ public class ProfileStoriesView extends View implements fs {
         while (true) {
             ArrayList arrayList = this.f43825x;
             if (i7 < arrayList.size()) {
-                ((b4) arrayList.get(i7)).f11769b.R();
+                ((b4) arrayList.get(i7)).f11766b.R();
                 i7++;
             } else {
-                ks.f(this.f43802c).n(this, ks.f25225x5);
+                ks.f(this.f43802c).n(this, ks.f25230y5);
                 return;
             }
         }

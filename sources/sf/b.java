@@ -15,7 +15,7 @@ public final class b extends p {
     }
 
     public static void h(StringBuffer stringBuffer, p pVar) {
-        p pVar2 = (p) pVar.f18236c;
+        p pVar2 = (p) pVar.f18233c;
         if (pVar2 != null) {
             h(stringBuffer, pVar2);
             stringBuffer.append("/");
@@ -24,12 +24,12 @@ public final class b extends p {
     }
 
     public long i() {
-        return ((uf.a) ((d) this.f18235b)).e();
+        return ((uf.a) ((d) this.f18232b)).e();
     }
 
     public boolean j() {
         long j3;
-        b bVar = (b) this.f18238f;
+        b bVar = (b) this.f18235f;
         if (bVar != null) {
             j3 = bVar.i();
         } else {
@@ -52,12 +52,12 @@ public final class b extends p {
     }
 
     public short l() {
-        return ((DataInputStream) this.f18237e).readShort();
+        return ((DataInputStream) this.f18234e).readShort();
     }
 
     public String m() {
         byte[] bArr = new byte[(int) i()];
-        ((DataInputStream) this.f18237e).readFully(bArr);
+        ((DataInputStream) this.f18234e).readFully(bArr);
         String str = new String(bArr, "UTF-8");
         int indexOf = str.indexOf(0);
         if (indexOf < 0) {
@@ -69,7 +69,7 @@ public final class b extends p {
     public void n(int i7) {
         int i10 = 0;
         while (i10 < i7) {
-            int skipBytes = ((DataInputStream) this.f18237e).skipBytes(i7 - i10);
+            int skipBytes = ((DataInputStream) this.f18234e).skipBytes(i7 - i10);
             if (skipBytes > 0) {
                 i10 += skipBytes;
             } else {
@@ -85,8 +85,8 @@ public final class b extends p {
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);
                 stringBuffer.append("[off=");
-                long j3 = ((d) ((p) this.f18236c).f18235b).f912b;
-                d dVar = (d) this.f18235b;
+                long j3 = ((d) ((p) this.f18233c).f18232b).f912b;
+                d dVar = (d) this.f18232b;
                 stringBuffer.append(j3 - dVar.f912b);
                 stringBuffer.append(",pos=");
                 stringBuffer.append(dVar.f912b);
@@ -96,7 +96,7 @@ public final class b extends p {
                 stringBuffer.append("]");
                 return stringBuffer.toString();
             default:
-                return p0.r(new StringBuilder("mp4[pos="), ((d) this.f18235b).f912b, "]");
+                return p0.r(new StringBuilder("mp4[pos="), ((d) this.f18232b).f912b, "]");
         }
     }
 }

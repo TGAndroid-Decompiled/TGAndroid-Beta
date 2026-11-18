@@ -46,7 +46,7 @@ public abstract class ws0 extends as0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         ij0 movingAdapter = getMovingAdapter();
-        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.o7)) {
+        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.p7)) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -93,6 +93,6 @@ public abstract class ws0 extends as0 {
         this.f41785u3 = new ArrayList();
     }
 
-    public void z1(org.telegram.ui.Cells.o7 o7Var) {
+    public void z1(org.telegram.ui.Cells.p7 p7Var) {
     }
 }

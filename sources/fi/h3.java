@@ -12,74 +12,74 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.y21;
 public final class h3 implements View.OnClickListener {
-    public final int f12036a;
-    public final r3 f12037b;
+    public final int f12033a;
+    public final r3 f12034b;
 
     public h3(r3 r3Var, int i7) {
-        this.f12036a = i7;
-        this.f12037b = r3Var;
+        this.f12033a = i7;
+        this.f12034b = r3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f12036a) {
+        switch (this.f12033a) {
             case 0:
-                z3 z3Var = this.f12037b.f12501x;
+                z3 z3Var = this.f12034b.f12498x;
                 z3.c0(z3Var, z3Var.l1);
-                r3 r3Var = z3Var.f12819d1;
+                r3 r3Var = z3Var.f12816d1;
                 if (r3Var != null) {
                     r3Var.a();
                     return;
                 }
                 return;
             case 1:
-                z3 z3Var2 = this.f12037b.f12501x;
+                z3 z3Var2 = this.f12034b.f12498x;
                 z3.b0(z3Var2);
-                r3 r3Var2 = z3Var2.f12819d1;
+                r3 r3Var2 = z3Var2.f12816d1;
                 if (r3Var2 != null) {
                     r3Var2.a();
                     return;
                 }
                 return;
             case 2:
-                z3 z3Var3 = this.f12037b.f12501x;
-                org.telegram.messenger.g0.g(z3Var3.f12896y1.e());
+                z3 z3Var3 = this.f12034b.f12498x;
+                org.telegram.messenger.g0.g(z3Var3.f12893y1.e());
                 z3.h0(z3Var3);
-                r3 r3Var3 = z3Var3.f12819d1;
+                r3 r3Var3 = z3Var3.f12816d1;
                 if (r3Var3 != null) {
                     r3Var3.a();
                     return;
                 }
                 return;
             case 3:
-                z3 z3Var4 = this.f12037b.f12501x;
+                z3 z3Var4 = this.f12034b.f12498x;
                 z3Var4.W0(false);
-                r3 r3Var4 = z3Var4.f12819d1;
+                r3 r3Var4 = z3Var4.f12816d1;
                 if (r3Var4 != null) {
                     r3Var4.a();
                     return;
                 }
                 return;
             case 4:
-                z3 z3Var5 = this.f12037b.f12501x;
-                x3 x3Var = z3Var5.f12896y1;
-                x3Var.f12723a.translated = false;
-                c7 c7Var = mp.u1(z3Var5.f12850m2).R1().f12393k;
-                TL_stories.StoryItem storyItem = x3Var.f12723a;
+                z3 z3Var5 = this.f12034b.f12498x;
+                x3 x3Var = z3Var5.f12893y1;
+                x3Var.f12720a.translated = false;
+                c7 c7Var = mp.u1(z3Var5.f12847m2).R1().f12390k;
+                TL_stories.StoryItem storyItem = x3Var.f12720a;
                 c7Var.k(storyItem.dialogId, storyItem);
                 z3Var5.n0();
                 z3Var5.d1(false);
-                r3 r3Var5 = z3Var5.f12819d1;
+                r3 r3Var5 = z3Var5.f12816d1;
                 if (r3Var5 != null) {
                     r3Var5.a();
                     return;
                 }
                 return;
             case 5:
-                r3 r3Var6 = this.f12037b;
-                z3 z3Var6 = r3Var6.f12501x;
-                x3 x3Var2 = z3Var6.f12896y1;
-                x3Var2.f12723a.translated = true;
+                r3 r3Var6 = this.f12034b;
+                z3 z3Var6 = r3Var6.f12498x;
+                x3 x3Var2 = z3Var6.f12893y1;
+                x3Var2.f12720a.translated = true;
                 z3Var6.n0();
                 s3 s3Var = z3Var6.A1;
                 if (s3Var != null) {
@@ -87,13 +87,13 @@ public final class h3 implements View.OnClickListener {
                     f9Var.Z0 = true;
                     f9Var.V();
                 }
-                c7 c7Var2 = mp.u1(z3Var6.f12850m2).R1().f12393k;
-                TL_stories.StoryItem storyItem2 = x3Var2.f12723a;
+                c7 c7Var2 = mp.u1(z3Var6.f12847m2).R1().f12390k;
+                TL_stories.StoryItem storyItem2 = x3Var2.f12720a;
                 c7Var2.k(storyItem2.dialogId, storyItem2);
                 long currentTimeMillis = System.currentTimeMillis();
                 l3 l3Var = new l3(r3Var6, 1);
-                z00 z00Var = mp.u1(z3Var6.f12850m2).f25789v7;
-                TL_stories.StoryItem storyItem3 = x3Var2.f12723a;
+                z00 z00Var = mp.u1(z3Var6.f12847m2).f25787v7;
+                TL_stories.StoryItem storyItem3 = x3Var2.f12720a;
                 bi.y3 y3Var = new bi.y3(l3Var, currentTimeMillis, 5);
                 HashSet hashSet = z00Var.K;
                 if (storyItem3 != null) {
@@ -117,49 +117,49 @@ public final class h3 implements View.OnClickListener {
                 }
                 z3Var6.d1(false);
                 z3Var6.R2 = true;
-                z3Var6.f12879u0.E(true);
-                r3 r3Var7 = z3Var6.f12819d1;
+                z3Var6.f12876u0.E(true);
+                r3 r3Var7 = z3Var6.f12816d1;
                 if (r3Var7 != null) {
                     r3Var7.a();
                     return;
                 }
                 return;
             case 6:
-                z3 z3Var7 = this.f12037b.f12501x;
-                o6 o6Var = z3Var7.f12896y1.f12724b;
+                z3 z3Var7 = this.f12034b.f12498x;
+                o6 o6Var = z3Var7.f12893y1.f12721b;
                 if (o6Var != null) {
                     o6Var.a();
                     z3Var7.h1();
                 }
-                r3 r3Var8 = z3Var7.f12819d1;
+                r3 r3Var8 = z3Var7.f12816d1;
                 if (r3Var8 != null) {
                     r3Var8.a();
                     return;
                 }
                 return;
             case 7:
-                z3 z3Var8 = this.f12037b.f12501x;
+                z3 z3Var8 = this.f12034b.f12498x;
                 z3.b0(z3Var8);
-                r3 r3Var9 = z3Var8.f12819d1;
+                r3 r3Var9 = z3Var8.f12816d1;
                 if (r3Var9 != null) {
                     r3Var9.a();
                     return;
                 }
                 return;
             case 8:
-                z3 z3Var9 = this.f12037b.f12501x;
-                org.telegram.messenger.g0.g(z3Var9.f12896y1.e());
+                z3 z3Var9 = this.f12034b.f12498x;
+                org.telegram.messenger.g0.g(z3Var9.f12893y1.e());
                 z3.h0(z3Var9);
-                r3 r3Var10 = z3Var9.f12819d1;
+                r3 r3Var10 = z3Var9.f12816d1;
                 if (r3Var10 != null) {
                     r3Var10.a();
                     return;
                 }
                 return;
             case 9:
-                z3 z3Var10 = this.f12037b.f12501x;
+                z3 z3Var10 = this.f12034b.f12498x;
                 z3Var10.W0(false);
-                r3 r3Var11 = z3Var10.f12819d1;
+                r3 r3Var11 = z3Var10.f12816d1;
                 if (r3Var11 != null) {
                     r3Var11.a();
                     return;
@@ -167,47 +167,47 @@ public final class h3 implements View.OnClickListener {
                 return;
             case 10:
                 c1 c1Var = c1.X;
-                if (c1Var != null && c1Var.f11798n) {
+                if (c1Var != null && c1Var.f11795n) {
                     long j3 = c1Var.K;
                     boolean z10 = !c1Var.J;
                     c1Var.J = z10;
                     NativeInstance.switchCameraCapturer(j3, z10);
                 }
-                r3 r3Var12 = this.f12037b.f12501x.f12819d1;
+                r3 r3Var12 = this.f12034b.f12498x.f12816d1;
                 if (r3Var12 != null) {
                     r3Var12.a();
                     return;
                 }
                 return;
             case 11:
-                this.f12037b.f12501x.f12854n3.b();
+                this.f12034b.f12498x.f12851n3.b();
                 return;
             case 12:
-                this.f12037b.f12501x.f12858o3.b();
+                this.f12034b.f12498x.f12855o3.b();
                 return;
             case 13:
-                z3 z3Var11 = this.f12037b.f12501x;
+                z3 z3Var11 = this.f12034b.f12498x;
                 z3.d0(z3Var11);
-                r3 r3Var13 = z3Var11.f12819d1;
+                r3 r3Var13 = z3Var11.f12816d1;
                 if (r3Var13 != null) {
                     r3Var13.a();
                     return;
                 }
                 return;
             case 14:
-                z3 z3Var12 = this.f12037b.f12501x;
-                ri.d0(z3Var12.f12850m2).S1(z3Var12.l1);
+                z3 z3Var12 = this.f12034b.f12498x;
+                ri.d0(z3Var12.f12847m2).S1(z3Var12.l1);
                 z3Var12.C1.l0(z3Var12.l1, true, false);
-                r3 r3Var14 = z3Var12.f12819d1;
+                r3 r3Var14 = z3Var12.f12816d1;
                 if (r3Var14 != null) {
                     r3Var14.a();
                     return;
                 }
                 return;
             default:
-                z3 z3Var13 = this.f12037b.f12501x;
+                z3 z3Var13 = this.f12034b.f12498x;
                 z3.c0(z3Var13, z3Var13.l1);
-                r3 r3Var15 = z3Var13.f12819d1;
+                r3 r3Var15 = z3Var13.f12816d1;
                 if (r3Var15 != null) {
                     r3Var15.a();
                     return;

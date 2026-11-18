@@ -21,7 +21,7 @@ public final class fp0 extends org.telegram.ui.Components.yo0 {
     public final void L() {
         super.L();
         if (this.W2) {
-            org.telegram.messenger.g0.h3(new hf0(this, 20), 50L);
+            org.telegram.messenger.g0.h3(new if0(this, 20), 50L);
         }
         PhotoViewer photoViewer = this.X2;
         photoViewer.f43198e0.softInputMode = 272;

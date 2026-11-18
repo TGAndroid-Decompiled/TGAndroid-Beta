@@ -15,7 +15,7 @@ import org.telegram.ui.Components.k00;
 import org.telegram.ui.Components.nu0;
 import org.telegram.ui.Components.r41;
 public abstract class b6 {
-    public static final int[] f21955a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+    public static final int[] f21952a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
     public static void a(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i7, TL_iv.PageBlock pageBlock, boolean z10) {
         String str;
@@ -425,7 +425,7 @@ public abstract class b6 {
     public static int q(int i7, int i10, CharSequence charSequence) {
         int i11 = 0;
         for (int i12 = 0; i12 < 9; i12++) {
-            int i13 = f21955a[i12];
+            int i13 = f21952a[i12];
             if (i(i7, i10, i13, charSequence)) {
                 i11 |= i13;
             }
@@ -441,16 +441,16 @@ public abstract class b6 {
 
     public static TL_iv.RichText s(String str, a6 a6Var) {
         TL_iv.textCustomEmoji textcustomemoji;
-        h4 h4Var = (h4) a6Var.f21943f;
+        h4 h4Var = (h4) a6Var.f21940f;
         if (h4Var != null) {
-            return h4Var.f22092a;
+            return h4Var.f22089a;
         }
         if (((String) a6Var.d) != null) {
             TL_iv.textMath textmath = new TL_iv.textMath();
             textmath.source = (String) a6Var.d;
             return textmath;
         }
-        long j3 = a6Var.f21940b;
+        long j3 = a6Var.f21937b;
         if (j3 != 0) {
             TL_iv.textCustomEmoji textcustomemoji2 = new TL_iv.textCustomEmoji();
             textcustomemoji2.document_id = j3;
@@ -464,7 +464,7 @@ public abstract class b6 {
             textplain.text = str;
             textcustomemoji = textplain;
         }
-        int i7 = a6Var.f21939a;
+        int i7 = a6Var.f21936a;
         TL_iv.RichText richText = textcustomemoji;
         if ((i7 & 1) != 0) {
             TL_iv.RichText textbold = new TL_iv.textBold();
@@ -520,13 +520,13 @@ public abstract class b6 {
             richText9 = textmarked;
         }
         TL_iv.RichText richText10 = richText9;
-        if (((String) a6Var.f21941c) != null) {
+        if (((String) a6Var.f21938c) != null) {
             TL_iv.RichText texturl = new TL_iv.textUrl();
             texturl.text = richText9;
-            texturl.url = (String) a6Var.f21941c;
+            texturl.url = (String) a6Var.f21938c;
             richText10 = texturl;
         }
-        k00 k00Var = (k00) a6Var.f21942e;
+        k00 k00Var = (k00) a6Var.f21939e;
         if (k00Var != null) {
             TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = k00Var.f36597b;
             TL_iv.textDate textdate = new TL_iv.textDate();

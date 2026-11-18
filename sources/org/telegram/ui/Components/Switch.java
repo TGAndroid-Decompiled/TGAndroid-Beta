@@ -56,9 +56,9 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
         super(context);
         this.f33132a = new te.a(0, new org.telegram.ui.ActionBar.p(this, 25), lr.h, 380L, true);
         this.f33141w = 1.0f;
-        this.f33142x = org.telegram.ui.ActionBar.n6.f29656r7;
+        this.f33142x = org.telegram.ui.ActionBar.n6.f29654r7;
         this.f33143y = org.telegram.ui.ActionBar.n6.V6;
-        int i7 = org.telegram.ui.ActionBar.n6.f29396d6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29394d6;
         this.E = i7;
         this.F = i7;
         this.K = new int[]{16842910, 16842919};

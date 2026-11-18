@@ -53,7 +53,7 @@ public final class d7 implements Runnable {
             case 5:
                 org.telegram.messenger.gp gpVar = g8Var.f35405q2;
                 TLRPC.Document a10 = gpVar.a();
-                gpVar.f24294c.remove(fjVar);
+                gpVar.f24291c.remove(fjVar);
                 if (gpVar.a() != a10) {
                     gpVar.e();
                 }
@@ -61,15 +61,15 @@ public final class d7 implements Runnable {
                 g8Var.f35412u1.f();
                 y60Var.v();
                 g8Var.V0(false);
-                org.telegram.messenger.f3.n(null, 2131753909, new lc((FrameLayout) g8Var.f30192b, g8Var.J0), 2131624052, 36);
+                org.telegram.messenger.f3.n(null, 2131753909, new lc((FrameLayout) g8Var.f30190b, g8Var.J0), 2131624052, 36);
                 return;
             case 6:
                 g8Var.S0(fjVar, true, new e7(g8Var, y60Var, 4), false);
                 return;
             case 7:
-                long e10 = org.telegram.messenger.j10.i(g8Var.f30189a).e();
-                int i11 = org.telegram.messenger.j10.f24773t0;
-                int i12 = g8Var.f30189a;
+                long e10 = org.telegram.messenger.j10.i(g8Var.f30187a).e();
+                int i11 = org.telegram.messenger.j10.f24770t0;
+                int i12 = g8Var.f30187a;
                 if (i11 != i12) {
                     g8Var.A2.O0(i12);
                 }
@@ -79,23 +79,23 @@ public final class d7 implements Runnable {
                         i7 = null;
                     }
                     y60Var.v();
-                    org.telegram.messenger.f3.n(null, 2131753907, new lc((FrameLayout) g8Var.f30192b, g8Var.J0), 2131624191, 36);
+                    org.telegram.messenger.f3.n(null, 2131753907, new lc((FrameLayout) g8Var.f30190b, g8Var.J0), 2131624191, 36);
                     return;
                 }
                 i7 = org.telegram.messenger.f3.i(fjVar);
                 tL_document = null;
                 if (i7 != null) {
-                    org.telegram.messenger.zy.C(g8Var.f30189a).q0(i7, e10, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+                    org.telegram.messenger.zy.C(g8Var.f30187a).q0(i7, e10, false, false, true, 0, 0, null, -1, 0L, 0L, null);
                 } else {
-                    org.telegram.messenger.zy C = org.telegram.messenger.zy.C(g8Var.f30189a);
-                    org.telegram.messenger.xy e11 = org.telegram.messenger.xy.e(tL_document, null, fjVar.f23968k.attachPath, e10, null, null, null, null, null, true, 0, 0, 0, g8Var.f35405q2, false);
+                    org.telegram.messenger.zy C = org.telegram.messenger.zy.C(g8Var.f30187a);
+                    org.telegram.messenger.xy e11 = org.telegram.messenger.xy.e(tL_document, null, fjVar.f23965k.attachPath, e10, null, null, null, null, null, true, 0, 0, 0, g8Var.f35405q2, false);
                     e10 = e10;
                     C.r0(e11);
                 }
                 org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     lc b02 = lc.b0(Q);
-                    if (e10 == org.telegram.messenger.j10.i(g8Var.f30189a).e()) {
+                    if (e10 == org.telegram.messenger.j10.i(g8Var.f30187a).e()) {
                         a02 = org.telegram.messenger.gd.M0(2131750482, null);
                     } else if (e10 > 0) {
                         a02 = org.telegram.messenger.gd.a0(null, null, 2131750481, org.telegram.messenger.n5.t(e10));
@@ -105,7 +105,7 @@ public final class d7 implements Runnable {
                     b02.Q(2131624029, 36, a02).j();
                 }
                 y60Var.v();
-                org.telegram.messenger.f3.n(null, 2131753907, new lc((FrameLayout) g8Var.f30192b, g8Var.J0), 2131624191, 36);
+                org.telegram.messenger.f3.n(null, 2131753907, new lc((FrameLayout) g8Var.f30190b, g8Var.J0), 2131624191, 36);
                 return;
             default:
                 g8Var.R0(fjVar);

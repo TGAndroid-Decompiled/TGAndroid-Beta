@@ -32,10 +32,10 @@ public final class ui implements org.telegram.messenger.y10 {
                     i7 = 6;
                 }
                 org.telegram.messenger.lz c10 = org.telegram.messenger.u5.c(i7 * 0.12f, i11);
-                c10.f25502t = true;
-                c10.f25495m = org.telegram.ui.ActionBar.n6.f29478hf;
-                imageReceiver.s0(org.telegram.messenger.fc.p(org.telegram.messenger.h20.b(fVar.f58223b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f24120p)))), null, null, null, new cq(c10), null, 0);
-                view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.l8(imageReceiver, 1));
+                c10.f25500t = true;
+                c10.f25493m = org.telegram.ui.ActionBar.n6.f29476hf;
+                imageReceiver.s0(org.telegram.messenger.fc.p(org.telegram.messenger.h20.b(fVar.f58224b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f24117p)))), null, null, null, new cq(c10), null, 0);
+                view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.m8(imageReceiver, 1));
                 imageReceiver.J0(org.telegram.messenger.g0.L(14.0f));
                 return new sc(4, imageReceiver, view.getContext().getResources().getDrawable(2131231647).mutate());
             case 2:
@@ -54,7 +54,7 @@ public final class ui implements org.telegram.messenger.y10 {
                 if (view2.getParent() != e51Var) {
                     return Boolean.FALSE;
                 }
-                return Boolean.valueOf(!z41.K(e51Var.T(view2).f59126f));
+                return Boolean.valueOf(!z41.K(e51Var.T(view2).f59127f));
         }
     }
 }

@@ -5,25 +5,25 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import java.util.ArrayList;
 public final class m8 extends AnimatorListenerAdapter {
-    public final int f15036a;
-    public final ArrayList f15037b;
-    public final ah.n f15038c;
+    public final int f15033a;
+    public final ArrayList f15034b;
+    public final ah.n f15035c;
 
     public m8(ah.n nVar, ArrayList arrayList, int i7) {
-        this.f15036a = i7;
-        this.f15038c = nVar;
-        this.f15037b = arrayList;
+        this.f15033a = i7;
+        this.f15035c = nVar;
+        this.f15034b = arrayList;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f15036a) {
+        switch (this.f15033a) {
             case 0:
                 int i7 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f15037b;
+                    ArrayList arrayList = this.f15034b;
                     int size = arrayList.size();
-                    ah.n nVar = this.f15038c;
+                    ah.n nVar = this.f15035c;
                     if (i7 < size) {
                         nVar.removeView((View) arrayList.get(i7));
                         i7++;
@@ -33,7 +33,7 @@ public final class m8 extends AnimatorListenerAdapter {
                         nVar.h.clear();
                         nVar.f1088b = null;
                         nVar.f1089c = false;
-                        n8Var.f15109b.setAllowDrawCursor(true);
+                        n8Var.f15106b.setAllowDrawCursor(true);
                         b8 b8Var = n8Var.h;
                         if (b8Var != null) {
                             b8Var.run();
@@ -49,9 +49,9 @@ public final class m8 extends AnimatorListenerAdapter {
             default:
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f15037b;
+                    ArrayList arrayList2 = this.f15034b;
                     int size2 = arrayList2.size();
-                    ah.n nVar2 = this.f15038c;
+                    ah.n nVar2 = this.f15035c;
                     if (i10 < size2) {
                         nVar2.removeView((View) arrayList2.get(i10));
                         i10++;
@@ -61,7 +61,7 @@ public final class m8 extends AnimatorListenerAdapter {
                         arrayList3.clear();
                         nVar2.f1088b = null;
                         nVar2.f1089c = false;
-                        n8Var2.f15109b.setAllowDrawCursor(true);
+                        n8Var2.f15106b.setAllowDrawCursor(true);
                         b8 b8Var2 = n8Var2.h;
                         if (b8Var2 != null) {
                             b8Var2.run();

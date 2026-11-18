@@ -19,7 +19,7 @@ public final class gp0 implements View.OnClickListener {
                 int closestTab = gt0Var.getClosestTab();
                 y60 I = y60.I(gt0Var.f35642y1, view);
                 I.J = false;
-                if (gt0Var.b0(closestTab, new org.telegram.ui.Cells.b5(I))) {
+                if (gt0Var.b0(closestTab, new org.telegram.ui.Cells.c5(I))) {
                     if (closestTab != 13 && closestTab != 11) {
                         I.f42345b0 = true;
                     } else {
@@ -33,7 +33,7 @@ public final class gp0 implements View.OnClickListener {
             case 1:
                 gt0 gt0Var2 = this.f35548b;
                 org.telegram.ui.ActionBar.h5 h5Var = gt0Var2.J;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = h5Var.f29918b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = h5Var.f29916b;
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.d();
                 }
@@ -53,7 +53,7 @@ public final class gp0 implements View.OnClickListener {
                     if (eq0Var != null && eq0Var.g()) {
                         eq0Var.i();
                     }
-                    if (hq0Var != null && hq0Var.f50356f) {
+                    if (hq0Var != null && hq0Var.f50340f) {
                         ft0 x12 = gt0Var3.x1(gt0Var3.w1(gt0Var3.getClosestTab()));
                         bs0 g02 = gt0Var3.g0(x12.f35164a);
                         if (g02 != null) {
@@ -61,8 +61,8 @@ public final class gp0 implements View.OnClickListener {
                             lq0 lq0Var = g02.h;
                             for (int i7 = 0; i7 < lq0Var.getChildCount(); i7++) {
                                 View childAt = lq0Var.getChildAt(i7);
-                                if (childAt instanceof org.telegram.ui.Cells.o7) {
-                                    ((org.telegram.ui.Cells.o7) childAt).l(false, true);
+                                if (childAt instanceof org.telegram.ui.Cells.p7) {
+                                    ((org.telegram.ui.Cells.p7) childAt).l(false, true);
                                 }
                             }
                             et0 et0Var = x12.f35166c;

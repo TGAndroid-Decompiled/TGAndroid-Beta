@@ -9,24 +9,24 @@ import org.telegram.messenger.fs;
 import org.telegram.ui.Components.fe0;
 import org.telegram.ui.Components.j60;
 import org.telegram.ui.UsersSelectActivity;
-import org.telegram.ui.de0;
+import org.telegram.ui.ee0;
 import org.telegram.ui.hk0;
 public final class m1 extends ScrollView {
-    public final int f29214a;
-    public final Object f29215b;
+    public final int f29212a;
+    public final Object f29213b;
 
     public m1(fs fsVar, Context context, int i7) {
         super(context);
-        this.f29214a = i7;
-        this.f29215b = fsVar;
+        this.f29212a = i7;
+        this.f29213b = fsVar;
     }
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f29214a) {
+        switch (this.f29212a) {
             case 0:
                 boolean drawChild = super.drawChild(canvas, view, j3);
-                u1 u1Var = (u1) this.f29215b;
+                u1 u1Var = (u1) this.f29213b;
                 if (u1Var.E[0].getPaint().getAlpha() != 0) {
                     u1Var.E[0].setBounds(0, getScrollY(), getMeasuredWidth(), org.telegram.messenger.g0.L(3.0f) + getScrollY());
                     u1Var.E[0].draw(canvas);
@@ -43,9 +43,9 @@ public final class m1 extends ScrollView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f29214a) {
+        switch (this.f29212a) {
             case 1:
-                j60 j60Var = (j60) this.f29215b;
+                j60 j60Var = (j60) this.f29213b;
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
                 if (!org.telegram.messenger.g0.Q1() && size2 <= size) {
@@ -57,14 +57,14 @@ public final class m1 extends ScrollView {
                 return;
             case 2:
                 super.onMeasure(i7, i10);
-                setMeasuredDimension(((fe0) this.f29215b).getMeasuredWidth(), getMeasuredHeight());
+                setMeasuredDimension(((fe0) this.f29213b).getMeasuredWidth(), getMeasuredHeight());
                 return;
             case 3:
             default:
                 super.onMeasure(i7, i10);
                 return;
             case 4:
-                ((hk0) this.f29215b).f48456t0 = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.L(30.0f);
+                ((hk0) this.f29213b).f48412t0 = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.L(30.0f);
                 super.onMeasure(i7, i10);
                 return;
         }
@@ -72,7 +72,7 @@ public final class m1 extends ScrollView {
 
     @Override
     public boolean onRequestFocusInDescendants(int i7, Rect rect) {
-        switch (this.f29214a) {
+        switch (this.f29212a) {
             case 4:
                 return false;
             default:
@@ -82,21 +82,21 @@ public final class m1 extends ScrollView {
 
     @Override
     public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f29214a) {
+        switch (this.f29212a) {
             case 3:
-                int i7 = ((de0) this.f29215b).f46933a;
+                int i7 = ((ee0) this.f29213b).f47177a;
                 if (i7 == 1 || i7 == 2 || i7 == 4) {
                     rect.bottom = org.telegram.messenger.g0.L(40.0f) + rect.bottom;
                 }
                 return super.requestChildRectangleOnScreen(view, rect, z10);
             case 4:
-                int i10 = ((hk0) this.f29215b).J1;
+                int i10 = ((hk0) this.f29213b).J1;
                 if (i10 == 1 || i10 == 2 || i10 == 4) {
                     rect.bottom = org.telegram.messenger.g0.L(40.0f) + rect.bottom;
                 }
                 return super.requestChildRectangleOnScreen(view, rect, z10);
             case 5:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f29215b;
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f29213b;
                 if (usersSelectActivity.f43902w) {
                     usersSelectActivity.f43902w = false;
                     return false;
@@ -112,7 +112,7 @@ public final class m1 extends ScrollView {
 
     public m1(Context context, fe0 fe0Var) {
         super(context, null, 0, 2131755436);
-        this.f29214a = 2;
-        this.f29215b = fe0Var;
+        this.f29212a = 2;
+        this.f29213b = fe0Var;
     }
 }

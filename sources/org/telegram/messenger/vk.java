@@ -4,74 +4,74 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class vk implements RequestDelegate {
-    public final int f27426a = 1;
-    public final mp f27427b;
-    public final int f27428c;
+    public final int f27424a = 1;
+    public final mp f27425b;
+    public final int f27426c;
     public final int d;
-    public final long f27429e;
-    public final long f27430f;
-    public final int f27431g;
+    public final long f27427e;
+    public final long f27428f;
+    public final int f27429g;
     public final int h;
-    public final int f27432i;
-    public final int f27433j;
-    public final int f27434k;
-    public final int f27435l;
-    public final int f27436m;
-    public final int f27437n;
-    public final long f27438o;
-    public final int f27439p;
-    public final boolean f27440q;
-    public final int f27441r;
-    public final boolean f27442s;
-    public final boolean f27443t;
+    public final int f27430i;
+    public final int f27431j;
+    public final int f27432k;
+    public final int f27433l;
+    public final int f27434m;
+    public final int f27435n;
+    public final long f27436o;
+    public final int f27437p;
+    public final boolean f27438q;
+    public final int f27439r;
+    public final boolean f27440s;
+    public final boolean f27441t;
 
     public vk(mp mpVar, int i7, int i10, long j3, long j10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j11, int i19, boolean z10, int i20, boolean z11, boolean z12) {
-        this.f27427b = mpVar;
-        this.f27428c = i7;
+        this.f27425b = mpVar;
+        this.f27426c = i7;
         this.d = i10;
-        this.f27429e = j3;
-        this.f27430f = j10;
-        this.f27431g = i11;
+        this.f27427e = j3;
+        this.f27428f = j10;
+        this.f27429g = i11;
         this.h = i12;
-        this.f27432i = i13;
-        this.f27433j = i14;
-        this.f27434k = i15;
-        this.f27435l = i16;
-        this.f27436m = i17;
-        this.f27437n = i18;
-        this.f27438o = j11;
-        this.f27439p = i19;
-        this.f27440q = z10;
-        this.f27441r = i20;
-        this.f27442s = z11;
-        this.f27443t = z12;
+        this.f27430i = i13;
+        this.f27431j = i14;
+        this.f27432k = i15;
+        this.f27433l = i16;
+        this.f27434m = i17;
+        this.f27435n = i18;
+        this.f27436o = j11;
+        this.f27437p = i19;
+        this.f27438q = z10;
+        this.f27439r = i20;
+        this.f27440s = z11;
+        this.f27441t = z12;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         int i7;
-        switch (this.f27426a) {
+        switch (this.f27424a) {
             case 0:
-                mp mpVar = this.f27427b;
+                mp mpVar = this.f27425b;
                 mpVar.getClass();
-                long j3 = this.f27429e;
-                long j10 = this.f27430f;
-                int i10 = this.f27428c;
+                long j3 = this.f27427e;
+                long j10 = this.f27428f;
+                int i10 = this.f27426c;
                 int i11 = this.d;
-                int i12 = this.f27431g;
+                int i12 = this.f27429g;
                 int i13 = this.h;
-                int i14 = this.f27432i;
-                int i15 = this.f27433j;
-                int i16 = this.f27434k;
-                int i17 = this.f27435l;
-                int i18 = this.f27436m;
-                int i19 = this.f27437n;
-                long j11 = this.f27438o;
-                int i20 = this.f27439p;
-                boolean z10 = this.f27440q;
-                int i21 = this.f27441r;
-                boolean z11 = this.f27442s;
-                boolean z12 = this.f27443t;
+                int i14 = this.f27430i;
+                int i15 = this.f27431j;
+                int i16 = this.f27432k;
+                int i17 = this.f27433l;
+                int i18 = this.f27434m;
+                int i19 = this.f27435n;
+                long j11 = this.f27436o;
+                int i20 = this.f27437p;
+                boolean z10 = this.f27438q;
+                int i21 = this.f27439r;
+                boolean z11 = this.f27440s;
+                boolean z12 = this.f27441t;
                 if (tLObject != null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                     if (!(messages_messages instanceof TLRPC.TL_messages_messagesNotModified)) {
@@ -86,29 +86,29 @@ public final class vk implements RequestDelegate {
                     return;
                 }
             default:
-                mp mpVar2 = this.f27427b;
+                mp mpVar2 = this.f27425b;
                 mpVar2.getClass();
                 if (tLObject != null) {
                     TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
                     if (!(messages_messages2 instanceof TLRPC.TL_messages_messagesNotModified)) {
                         int i22 = this.d;
                         if (i22 != 0 && !messages_messages2.messages.isEmpty()) {
-                            i7 = ((TLRPC.Message) i5.c.h(1, messages_messages2.messages)).f28426id;
+                            i7 = ((TLRPC.Message) i5.c.h(1, messages_messages2.messages)).f28424id;
                             int size = messages_messages2.messages.size() - 1;
                             while (true) {
                                 if (size >= 0) {
                                     TLRPC.Message message = messages_messages2.messages.get(size);
                                     if (message.date > i22) {
-                                        i7 = message.f28426id;
+                                        i7 = message.f28424id;
                                     } else {
                                         size--;
                                     }
                                 }
                             }
                         } else {
-                            i7 = this.f27428c;
+                            i7 = this.f27426c;
                         }
-                        mpVar2.R3(messages_messages2, messages_messages2.messages.size(), this.f27429e, this.f27430f, this.f27431g, i7, i22, false, this.h, this.f27432i, this.f27433j, this.f27434k, this.f27435l, this.f27436m, false, this.f27437n, this.f27438o, this.f27439p, this.f27440q, this.f27441r, this.f27442s, this.f27443t, null);
+                        mpVar2.R3(messages_messages2, messages_messages2.messages.size(), this.f27427e, this.f27428f, this.f27429g, i7, i22, false, this.h, this.f27430i, this.f27431j, this.f27432k, this.f27433l, this.f27434m, false, this.f27435n, this.f27436o, this.f27437p, this.f27438q, this.f27439r, this.f27440s, this.f27441t, null);
                         return;
                     }
                     return;
@@ -118,24 +118,24 @@ public final class vk implements RequestDelegate {
     }
 
     public vk(mp mpVar, long j3, long j10, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j11, int i19, boolean z10, int i20, boolean z11, boolean z12) {
-        this.f27427b = mpVar;
-        this.f27429e = j3;
-        this.f27430f = j10;
-        this.f27428c = i7;
+        this.f27425b = mpVar;
+        this.f27427e = j3;
+        this.f27428f = j10;
+        this.f27426c = i7;
         this.d = i10;
-        this.f27431g = i11;
+        this.f27429g = i11;
         this.h = i12;
-        this.f27432i = i13;
-        this.f27433j = i14;
-        this.f27434k = i15;
-        this.f27435l = i16;
-        this.f27436m = i17;
-        this.f27437n = i18;
-        this.f27438o = j11;
-        this.f27439p = i19;
-        this.f27440q = z10;
-        this.f27441r = i20;
-        this.f27442s = z11;
-        this.f27443t = z12;
+        this.f27430i = i13;
+        this.f27431j = i14;
+        this.f27432k = i15;
+        this.f27433l = i16;
+        this.f27434m = i17;
+        this.f27435n = i18;
+        this.f27436o = j11;
+        this.f27437p = i19;
+        this.f27438q = z10;
+        this.f27439r = i20;
+        this.f27440s = z11;
+        this.f27441t = z12;
     }
 }

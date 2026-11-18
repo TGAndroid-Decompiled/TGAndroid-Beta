@@ -64,7 +64,7 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
         LaunchActivity launchActivity = (LaunchActivity) this.f949c;
         int[] iArr = (int[]) this.d;
         String str = LaunchActivity.C1;
-        TLRPC.UserFull d2 = mp.u1(launchActivity.P).d2(user.f28554id);
+        TLRPC.UserFull d2 = mp.u1(launchActivity.P).d2(user.f28552id);
         if (d2 != null && d2.video_calls_available) {
             z10 = true;
         } else {
@@ -95,12 +95,12 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
                 boolean z11 = this.f948b;
                 l41 l41Var = (l41) this.d;
                 if (!z11) {
-                    arrayList = a0Var.f18251k;
+                    arrayList = a0Var.f18248k;
                 } else {
-                    arrayList = a0Var.f18250j;
+                    arrayList = a0Var.f18247j;
                 }
                 arrayList.remove(Long.valueOf(l41Var.f37029y));
-                a0Var.f18246e.run();
+                a0Var.f18243e.run();
                 return;
             case 3:
                 i9 i9Var = (i9) this.f949c;
@@ -111,22 +111,22 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
                     TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
                     tL_messages_deletePhoneCallHistory.revoke = z13;
                     i9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new c3(2, i9Var, z13));
-                    i9Var.f48663x.clear();
-                    i9Var.f48664y = false;
+                    i9Var.f48660x.clear();
+                    i9Var.f48661y = false;
                     i9Var.F = true;
-                    i9Var.f48662w.setVisibility(8);
-                    i9Var.f48656c.f34607g3.O(true);
+                    i9Var.f48659w.setVisibility(8);
+                    i9Var.f48653c.f34607g3.O(true);
                 } else {
                     i9Var.getMessagesController().Z(new ArrayList(i9Var.H), null, null, 0L, 0, zArr[0], 0);
                 }
                 i9Var.j0(false);
                 return;
             case 4:
-                ((ca) this.f949c).f46471a.o0((TLRPC.TL_username) this.d, this.f948b, true);
+                ((ca) this.f949c).f46468a.o0((TLRPC.TL_username) this.d, this.f948b, true);
                 return;
             case 5:
                 boolean z14 = this.f948b;
-                io ioVar = ((go) this.f949c).f48145a;
+                io ioVar = ((go) this.f949c).f48073a;
                 ioVar.z1((TLRPC.TL_username) this.d, z14, true);
                 ioVar.f48772i3.b0();
                 return;
@@ -134,7 +134,7 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
                 h2 h2Var = (h2) this.f949c;
                 TLRPC.User user = (TLRPC.User) this.d;
                 boolean z15 = this.f948b;
-                TLRPC.UserFull d2 = h2Var.getMessagesController().d2(user.f28554id);
+                TLRPC.UserFull d2 = h2Var.getMessagesController().d2(user.f28552id);
                 if (d2 != null && d2.video_calls_available) {
                     z10 = true;
                 } else {
@@ -154,7 +154,7 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
                 kz kzVar = (kz) this.f949c;
                 cz czVar = (cz) this.d;
                 boolean z17 = this.f948b;
-                int i10 = czVar.f46798j;
+                int i10 = czVar.f46778j;
                 if (i10 > 0) {
                     kzVar.E &= ~i10;
                 } else {
@@ -178,7 +178,7 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
                 String str2 = (String) this.f949c;
                 h2 h2Var2 = (h2) this.d;
                 try {
-                    PackageInfo packageInfo = t0.f26915b.getPackageManager().getPackageInfo(t0.f26915b.getPackageName(), 0);
+                    PackageInfo packageInfo = t0.f26913b.getPackageManager().getPackageInfo(t0.f26913b.getPackageName(), 0);
                     Locale locale = Locale.US;
                     String str3 = packageInfo.versionName + " (" + packageInfo.versionCode + ")";
                     Intent intent = new Intent("android.intent.action.SENDTO");
@@ -200,10 +200,10 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
                     return;
                 } catch (Exception unused) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h2Var2.getParentActivity());
-                    alertDialog$Builder.f28746a.S = gd.M0(2131745876, null);
-                    alertDialog$Builder.f28746a.U = gd.M0(2131748007, "NoMailInstalled");
+                    alertDialog$Builder.f28744a.S = gd.M0(2131745876, null);
+                    alertDialog$Builder.f28744a.U = gd.M0(2131748007, "NoMailInstalled");
                     alertDialog$Builder.k(gd.M0(2131747638, "OK"), null);
-                    h2Var2.showDialog(alertDialog$Builder.f28746a);
+                    h2Var2.showDialog(alertDialog$Builder.f28744a);
                     return;
                 }
         }
@@ -215,7 +215,7 @@ public final class j implements Continuation, oa1, r1, pj0, yr, androidx.car.app
         TL_account.getTmpPassword gettmppassword = new TL_account.getTmpPassword();
         gettmppassword.password = tL_inputCheckPasswordSRP;
         gettmppassword.period = 600;
-        ConnectionsManager.getInstance(f6Var.f30189a).sendRequest(gettmppassword, new l3(f6Var, (TwoStepVerificationActivity) this.d, this.f948b, 0));
+        ConnectionsManager.getInstance(f6Var.f30187a).sendRequest(gettmppassword, new l3(f6Var, (TwoStepVerificationActivity) this.d, this.f948b, 0));
     }
 
     @Override

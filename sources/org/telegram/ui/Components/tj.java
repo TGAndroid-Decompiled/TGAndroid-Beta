@@ -35,7 +35,7 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
         this.f40025y = new ArrayList();
         this.E = false;
         this.G = new pj(this, context);
-        ri riVar = new ri(org.telegram.ui.ActionBar.n6.f29396d6, context, i6Var);
+        ri riVar = new ri(org.telegram.ui.ActionBar.n6.f29394d6, context, i6Var);
         this.I = riVar;
         riVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -49,7 +49,7 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
         iVar.addTextChangedListener(new ah.j(this, 19));
         frameLayout.addView(riVar, c8.ma.g());
         FrameLayout.LayoutParams d = c8.ma.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
-        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f24115m;
+        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f24112m;
         frameLayout.addView(oiVar, d);
         ty tyVar = new ty(context, i6Var);
         this.H = tyVar;
@@ -81,7 +81,7 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
         b1Var.setOnScrollListener(new oa(this, 3));
         b1Var.setOnItemLongClickListener(new gj(this));
         FrameLayout.LayoutParams e10 = c8.ma.e(-1, 60, 51);
-        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f24115m;
+        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f24112m;
         addView(frameLayout, e10);
         org.telegram.messenger.ks.f(this.f36766b.H3).c(this, org.telegram.messenger.ks.O);
         S();
@@ -111,19 +111,19 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
         si siVar = this.f36766b;
         if (siVar.f39705p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i11 = org.telegram.messenger.g0.L(8.0f);
-            siVar.f30223r0 = false;
+            siVar.f30221r0 = false;
         } else {
             if (!org.telegram.messenger.g0.Q1()) {
-                Point point = org.telegram.messenger.g0.f24121q;
+                Point point = org.telegram.messenger.g0.f24118q;
                 if (point.x > point.y) {
                     i11 = (int) (i10 / 3.5f);
-                    siVar.f30223r0 = true;
+                    siVar.f30221r0 = true;
                 }
             }
             i11 = (i10 / 5) * 2;
-            siVar.f30223r0 = true;
+            siVar.f30221r0 = true;
         }
-        this.f40022s.q1(0, i11 + org.telegram.messenger.g0.f24115m, 0, this.f36768e);
+        this.f40022s.q1(0, i11 + org.telegram.messenger.g0.f24112m, 0, this.f36768e);
     }
 
     @Override
@@ -189,7 +189,7 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
             String a02 = org.telegram.messenger.gd.a0("AttachContactsSlowMode", null, 2131753976, new Object[0]);
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f36765a);
             String M0 = org.telegram.messenger.gd.M0(2131689472, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
             u1Var.S = M0;
             u1Var.U = a02;
             org.telegram.messenger.f3.m(null, 2131747638, alertDialog$Builder, null);
@@ -257,9 +257,9 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.P7));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.O7));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.J7));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29635q5));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29397d7));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29488i6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29633q5));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29395d7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29486i6));
     }
 
     @Override
@@ -279,7 +279,7 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
         }
         View childAt = b1Var.getChildAt(0);
         kj0 kj0Var = (kj0) b1Var.G(childAt);
-        int top = (childAt.getTop() - org.telegram.messenger.g0.f24115m) - org.telegram.messenger.g0.L(8.0f);
+        int top = (childAt.getTop() - org.telegram.messenger.g0.f24112m) - org.telegram.messenger.g0.L(8.0f);
         if (top > 0 && kj0Var != null && kj0Var.b() == 0) {
             i7 = top;
         } else {
@@ -328,9 +328,9 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
     @Override
     public ArrayList<org.telegram.ui.ActionBar.w6> getThemeDescriptions() {
         ArrayList<org.telegram.ui.ActionBar.w6> arrayList = new ArrayList<>();
-        arrayList.add(new org.telegram.ui.ActionBar.w6(this.H, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29379c7));
-        arrayList.add(new org.telegram.ui.ActionBar.w6(this.H, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29470h6));
-        int i7 = org.telegram.ui.ActionBar.n6.f29635q5;
+        arrayList.add(new org.telegram.ui.ActionBar.w6(this.H, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29377c7));
+        arrayList.add(new org.telegram.ui.ActionBar.w6(this.H, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, org.telegram.ui.ActionBar.n6.f29468h6));
+        int i7 = org.telegram.ui.ActionBar.n6.f29633q5;
         arrayList.add(new org.telegram.ui.ActionBar.w6(this.f40022s, 0, new Class[]{sj.class}, new String[]{"nameTextView"}, (Drawable[]) null, (org.telegram.ui.ActionBar.v6) null, i7));
         return arrayList;
     }
@@ -357,7 +357,7 @@ public final class tj extends ki implements org.telegram.ui.ActionBar.c6, org.te
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f36766b.f30192b.invalidate();
+        this.f36766b.f30190b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {

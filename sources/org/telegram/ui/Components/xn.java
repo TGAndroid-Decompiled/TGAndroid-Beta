@@ -16,8 +16,8 @@ public final class xn implements k8 {
         org.telegram.ui.bn bnVar = this.f42148b.H;
         if (bnVar != null) {
             bnVar.getMessagesController().T4(i7, bnVar.a());
-            TLRPC.ChatFull chatFull = bnVar.f46163r8;
-            TLRPC.UserFull userFull = bnVar.f46176s8;
+            TLRPC.ChatFull chatFull = bnVar.f46154r8;
+            TLRPC.UserFull userFull = bnVar.f46167s8;
             if (userFull != null || chatFull != null) {
                 bnVar.h8();
                 UndoView undoView = bnVar.N3;

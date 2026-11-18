@@ -47,32 +47,32 @@ import org.telegram.ui.Components.v90;
 import org.telegram.ui.Components.wt;
 import org.telegram.ui.Components.ym0;
 public final class w6 {
-    public final View f30154a;
-    public final Paint[] f30155b;
-    public final Drawable[] f30156c;
+    public final View f30152a;
+    public final Paint[] f30153b;
+    public final Drawable[] f30154c;
     public final Class[] d;
-    public final int f30157e;
-    public final String f30158f;
-    public v6 f30159g;
+    public final int f30155e;
+    public final String f30156f;
+    public v6 f30157g;
     public int h;
-    public final boolean[] f30160i;
-    public final int f30161j;
-    public final String[] f30162k;
-    public final HashMap f30163l;
-    public final HashMap f30164m;
-    public i6 f30165n;
+    public final boolean[] f30158i;
+    public final int f30159j;
+    public final String[] f30160k;
+    public final HashMap f30161l;
+    public final HashMap f30162m;
+    public i6 f30163n;
 
     public w6(int i7, View view) {
-        this.f30160i = new boolean[1];
-        this.f30157e = i7;
-        this.f30155b = null;
-        this.f30156c = null;
-        this.f30154a = view;
-        this.f30161j = 262148;
+        this.f30158i = new boolean[1];
+        this.f30155e = i7;
+        this.f30153b = null;
+        this.f30154c = null;
+        this.f30152a = view;
+        this.f30159j = 262148;
         this.d = null;
-        this.f30159g = null;
+        this.f30157g = null;
         if (view instanceof wt) {
-            this.f30154a = ((wt) view).getEditText();
+            this.f30152a = ((wt) view).getEditText();
         }
     }
 
@@ -97,11 +97,11 @@ public final class w6 {
         if (z10) {
             ((View) obj).invalidate();
         }
-        String str = this.f30158f;
+        String str = this.f30156f;
         if (str != null && (obj instanceof ph0)) {
             ((ph0) obj).h(i7, str);
         }
-        int i10 = this.f30161j;
+        int i10 = this.f30159j;
         if ((131072 & i10) != 0 && z10) {
             obj = ((View) obj).getBackground();
         }
@@ -181,7 +181,7 @@ public final class w6 {
             } else if (obj instanceof q9) {
                 q9 q9Var = (q9) obj;
                 if (q9Var.getImageReceiver() != null) {
-                    drawable4 = q9Var.getImageReceiver().f22652n0;
+                    drawable4 = q9Var.getImageReceiver().f22649n0;
                 }
                 if (drawable4 instanceof mq) {
                     if ((i10 & 32) != 0) {
@@ -287,7 +287,7 @@ public final class w6 {
                             }
                         }
                     } else if ((i10 & 4) != 0) {
-                        if ((262144 & i10) == 0 || b(this.f30157e, (View) obj)) {
+                        if ((262144 & i10) == 0 || b(this.f30155e, (View) obj)) {
                             for (int i12 = 0; i12 < 2; i12++) {
                                 b8 b8Var2 = (b8) obj;
                                 if (i12 == 0) {
@@ -321,8 +321,8 @@ public final class w6 {
 
     public final int c() {
         Integer num;
-        i6 i6Var = this.f30165n;
-        int i7 = this.f30157e;
+        i6 i6Var = this.f30163n;
+        int i7 = this.f30155e;
         if (i6Var != null) {
             num = Integer.valueOf(i6Var.k(i7));
         } else {
@@ -347,10 +347,10 @@ public final class w6 {
                 Class cls = clsArr[i10];
                 if (cls != null && cls.isInstance(view)) {
                     view.invalidate();
-                    int i11 = this.f30161j;
+                    int i11 = this.f30159j;
                     int i12 = 262144 & i11;
-                    String[] strArr = this.f30162k;
-                    int i13 = this.f30157e;
+                    String[] strArr = this.f30160k;
+                    int i13 = this.f30155e;
                     if (i12 != 0 && !b(i13, view)) {
                         z10 = false;
                     } else {
@@ -411,9 +411,9 @@ public final class w6 {
                     if (strArr != null) {
                         if (i10 < strArr.length && (str = strArr[i10]) != null) {
                             String str2 = cls + "_" + str;
-                            HashMap hashMap = this.f30164m;
+                            HashMap hashMap = this.f30162m;
                             if (hashMap == null || !hashMap.containsKey(str2)) {
-                                HashMap hashMap2 = this.f30163l;
+                                HashMap hashMap2 = this.f30161l;
                                 if (hashMap2 != null) {
                                     try {
                                         field = (Field) hashMap2.get(str2);
@@ -454,12 +454,12 @@ public final class w6 {
         boolean z12;
         boolean z13;
         boolean z14;
-        int i10 = this.f30157e;
+        int i10 = this.f30155e;
         if (z11) {
             n6.A1(i10, i7, z10);
         }
-        Paint[] paintArr = this.f30155b;
-        int i11 = this.f30161j;
+        Paint[] paintArr = this.f30153b;
+        int i11 = this.f30159j;
         if (paintArr != null) {
             for (int i12 = 0; i12 < paintArr.length; i12++) {
                 if ((i11 & 2) != 0) {
@@ -471,7 +471,7 @@ public final class w6 {
                 paintArr[i12].setColor(i7);
             }
         }
-        Drawable[] drawableArr = this.f30156c;
+        Drawable[] drawableArr = this.f30154c;
         if (drawableArr != null) {
             for (Drawable drawable : drawableArr) {
                 if (drawable != null) {
@@ -480,7 +480,7 @@ public final class w6 {
                     } else if (drawable instanceof tk0) {
                         ((tk0) drawable).b(i7);
                     } else if (drawable instanceof mh0) {
-                        String str = this.f30158f;
+                        String str = this.f30156f;
                         if (str != null) {
                             ((mh0) drawable).Q(i7, str);
                         }
@@ -503,8 +503,8 @@ public final class w6 {
             }
         }
         Class[] clsArr = this.d;
-        View view = this.f30154a;
-        if (view != null && clsArr == null && this.f30162k == null && ((i11 & 262144) == 0 || b(i10, view))) {
+        View view = this.f30152a;
+        if (view != null && clsArr == null && this.f30160k == null && ((i11 & 262144) == 0 || b(i10, view))) {
             if ((i11 & 1) != 0) {
                 Drawable background = view.getBackground();
                 if (background instanceof v90) {
@@ -706,7 +706,7 @@ public final class w6 {
             }
             d(i7, view);
         }
-        v6 v6Var = this.f30159g;
+        v6 v6Var = this.f30157g;
         if (v6Var != null) {
             v6Var.b();
         }
@@ -716,45 +716,45 @@ public final class w6 {
     }
 
     public w6(View view, int i7, Class[] clsArr, Paint paint, Drawable[] drawableArr, v6 v6Var, int i10) {
-        this.f30160i = new boolean[1];
-        this.f30157e = i10;
+        this.f30158i = new boolean[1];
+        this.f30155e = i10;
         if (paint != null) {
-            this.f30155b = new Paint[]{paint};
+            this.f30153b = new Paint[]{paint};
         }
-        this.f30156c = drawableArr;
-        this.f30154a = view;
-        this.f30161j = i7;
+        this.f30154c = drawableArr;
+        this.f30152a = view;
+        this.f30159j = i7;
         this.d = clsArr;
-        this.f30159g = v6Var;
+        this.f30157g = v6Var;
         if (view instanceof wt) {
-            this.f30154a = ((wt) view).getEditText();
+            this.f30152a = ((wt) view).getEditText();
         }
     }
 
     public w6(ph0 ph0Var, mh0[] mh0VarArr, String str, int i7) {
-        this.f30160i = new boolean[1];
-        this.f30157e = i7;
-        this.f30158f = str;
-        this.f30156c = mh0VarArr;
-        this.f30154a = ph0Var;
-        this.f30161j = 0;
+        this.f30158i = new boolean[1];
+        this.f30155e = i7;
+        this.f30156f = str;
+        this.f30154c = mh0VarArr;
+        this.f30152a = ph0Var;
+        this.f30159j = 0;
         this.d = null;
     }
 
     public w6(View view, int i7, Class[] clsArr, String[] strArr, Drawable[] drawableArr, v6 v6Var, int i10) {
-        this.f30160i = new boolean[1];
-        this.f30157e = i10;
-        this.f30155b = null;
-        this.f30156c = drawableArr;
-        this.f30154a = view;
-        this.f30161j = i7;
+        this.f30158i = new boolean[1];
+        this.f30155e = i10;
+        this.f30153b = null;
+        this.f30154c = drawableArr;
+        this.f30152a = view;
+        this.f30159j = i7;
         this.d = clsArr;
-        this.f30162k = strArr;
-        this.f30159g = v6Var;
-        this.f30163l = new HashMap();
-        this.f30164m = new HashMap();
+        this.f30160k = strArr;
+        this.f30157g = v6Var;
+        this.f30161l = new HashMap();
+        this.f30162m = new HashMap();
         if (view instanceof wt) {
-            this.f30154a = ((wt) view).getEditText();
+            this.f30152a = ((wt) view).getEditText();
         }
     }
 }

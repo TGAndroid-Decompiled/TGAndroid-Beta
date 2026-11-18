@@ -14,18 +14,18 @@ import m.r3;
 import r0.i0;
 import r0.l1;
 public final class i implements r0.m, l.w {
-    public final s f12994a;
+    public final s f12991a;
 
     public i(s sVar) {
-        this.f12994a = sVar;
+        this.f12991a = sVar;
     }
 
     @Override
     public boolean C(l.k kVar) {
         Window.Callback callback;
         if (kVar == kVar.k()) {
-            s sVar = this.f12994a;
-            if (sVar.P && (callback = sVar.f13029f.getCallback()) != null && !sVar.f13023a0) {
+            s sVar = this.f12991a;
+            if (sVar.P && (callback = sVar.f13026f.getCallback()) != null && !sVar.f13020a0) {
                 callback.onMenuOpened(108, kVar);
                 return true;
             }
@@ -43,8 +43,8 @@ public final class i implements r0.m, l.w {
         boolean z11;
         int color;
         int d = l1Var.d();
-        s sVar = this.f12994a;
-        Context context = sVar.f13027e;
+        s sVar = this.f12991a;
+        Context context = sVar.f13024e;
         int d2 = l1Var.d();
         ActionBarContextView actionBarContextView = sVar.E;
         int i7 = 8;
@@ -54,13 +54,13 @@ public final class i implements r0.m, l.w {
             if (sVar.E.isShown()) {
                 if (sVar.m0 == null) {
                     sVar.m0 = new Rect();
-                    sVar.f13038n0 = new Rect();
+                    sVar.f13035n0 = new Rect();
                 }
                 Rect rect = sVar.m0;
-                Rect rect2 = sVar.f13038n0;
+                Rect rect2 = sVar.f13035n0;
                 rect.set(l1Var.b(), l1Var.d(), l1Var.c(), l1Var.a());
                 ViewGroup viewGroup = sVar.K;
-                Method method = r3.f20201a;
+                Method method = r3.f20198a;
                 if (method != null) {
                     try {
                         method.invoke(viewGroup, rect, rect2);
@@ -175,7 +175,7 @@ public final class i implements r0.m, l.w {
         if (z11) {
             kVar = k10;
         }
-        s sVar = this.f12994a;
+        s sVar = this.f12991a;
         r[] rVarArr = sVar.V;
         if (rVarArr != null) {
             i7 = rVarArr.length;
@@ -196,7 +196,7 @@ public final class i implements r0.m, l.w {
         }
         if (rVar != null) {
             if (z11) {
-                sVar.g(rVar.f13006a, rVar, k10);
+                sVar.g(rVar.f13003a, rVar, k10);
                 sVar.j(rVar, true);
                 return;
             }

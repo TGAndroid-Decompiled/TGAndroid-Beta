@@ -74,10 +74,10 @@ public final class wh implements TextWatcher {
                     n6Var2.animate().setListener(null).cancel();
                     n6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
                     if (i7 < 0) {
-                        org.telegram.ui.ActionBar.u6.Y(n6Var2, org.telegram.ui.ActionBar.n6.f29617p7, siVar.J0);
+                        org.telegram.ui.ActionBar.u6.Y(n6Var2, org.telegram.ui.ActionBar.n6.f29615p7, siVar.J0);
                         z11 = false;
                     } else {
-                        org.telegram.ui.ActionBar.u6.Y(n6Var2, org.telegram.ui.ActionBar.n6.f29788y6, siVar.J0);
+                        org.telegram.ui.ActionBar.u6.Y(n6Var2, org.telegram.ui.ActionBar.n6.f29786y6, siVar.J0);
                         z11 = true;
                     }
                     n6Var.c(org.telegram.messenger.gd.E(j3, ','), false, true);

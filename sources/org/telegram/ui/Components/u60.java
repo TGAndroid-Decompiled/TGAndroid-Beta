@@ -57,7 +57,7 @@ public final class u60 extends View {
             this.f40224f = 0.0f;
         }
         this.h = i0.a.o(0, y60Var.f42375s);
-        if (y60Var.f42377t && (view instanceof org.telegram.ui.Cells.qa) && (y60Var.f42346c instanceof ProfileActivity)) {
+        if (y60Var.f42377t && (view instanceof org.telegram.ui.Cells.ra) && (y60Var.f42346c instanceof ProfileActivity)) {
             this.f40221b = new Paint(3);
             Bitmap createBitmap = Bitmap.createBitmap(rect.width() + view.getWidth(), rect.height() + view.getHeight(), Bitmap.Config.ARGB_8888);
             this.f40220a = createBitmap;
@@ -312,9 +312,9 @@ public final class u60 extends View {
                     path.addRoundRect(rectF3, f39, f39, Path.Direction.CW);
                     canvas2.clipPath(path);
                 }
-                if (view instanceof org.telegram.ui.Cells.o7) {
+                if (view instanceof org.telegram.ui.Cells.p7) {
                     if (view.getAlpha() >= 1.0f) {
-                        ((org.telegram.ui.Cells.o7) view).a(canvas2, f35, f34, this.f40229x);
+                        ((org.telegram.ui.Cells.p7) view).a(canvas2, f35, f34, this.f40229x);
                         u60Var = this;
                         iArr3 = iArr;
                         iArr4 = iArr2;
@@ -324,7 +324,7 @@ public final class u60 extends View {
                         canvas2.saveLayerAlpha(0.0f, 0.0f, f35, f34, (int) (this.f40229x * f10), 31);
                         float T12 = org.telegram.messenger.g0.T1(1.0f, 0.9f, this.f40229x);
                         canvas2.scale(T12, T12, f35 / f17, f34 / f17);
-                        ((org.telegram.ui.Cells.o7) view).a(canvas2, f35, f34, this.f40229x);
+                        ((org.telegram.ui.Cells.p7) view).a(canvas2, f35, f34, this.f40229x);
                         canvas2.restore();
                         u60Var = this;
                     }

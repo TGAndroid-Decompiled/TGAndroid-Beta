@@ -30,10 +30,10 @@ public final class d9 extends b51 implements fs {
     public static void d0(d9 d9Var, Boolean bool) {
         u0 D = u0.D(d9Var.currentAccount);
         if (bool.booleanValue()) {
-            boolean z10 = org.telegram.messenger.s2.f26723a;
+            boolean z10 = org.telegram.messenger.s2.f26721a;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, d9Var.getParentActivity(), d9Var.getResourceProvider());
-        alertDialog$Builder.f28746a.S = gd.M0(2131742772, null);
+        alertDialog$Builder.f28744a.S = gd.M0(2131742772, null);
         alertDialog$Builder.k(gd.M0(2131742913, null), new x8(d9Var, bool, D, 0));
         alertDialog$Builder.h(gd.M0(2131742853, null), new aj0(27, d9Var, bool));
         alertDialog$Builder.p();
@@ -52,7 +52,7 @@ public final class d9 extends b51 implements fs {
         ArrayList f10 = r0Var.f();
         Activity parentActivity = d9Var.getParentActivity();
         org.telegram.ui.ActionBar.i6 i6Var = d9Var.resourceProvider;
-        boolean z10 = org.telegram.messenger.s2.f26723a;
+        boolean z10 = org.telegram.messenger.s2.f26721a;
         k0(parentActivity, f10, i6Var, new c5(9, d9Var, z0Var));
     }
 
@@ -101,7 +101,7 @@ public final class d9 extends b51 implements fs {
             textView.setGravity(8388613);
             textView.setIncludeFontPadding(false);
             textView.setLineSpacing(0.0f, 1.0f);
-            org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29807z6, i6Var);
+            org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29805z6, i6Var);
             StringBuilder sb2 = new StringBuilder();
             int i13 = i11 + 1;
             sb2.append(i13);
@@ -146,7 +146,7 @@ public final class d9 extends b51 implements fs {
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        n10.r(textView2, org.telegram.ui.ActionBar.n6.f29807z6, i6Var, null, 2131742779);
+        n10.r(textView2, org.telegram.ui.ActionBar.n6.f29805z6, i6Var, null, 2131742779);
         textView2.setMaxWidth(org.telegram.messenger.g0.L(330.0f));
         textView2.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(12.0f), 0);
         textView2.setGravity(1);
@@ -172,7 +172,7 @@ public final class d9 extends b51 implements fs {
         j3.O = f10;
         j3.O();
         if (c5Var != null) {
-            int i7 = org.telegram.ui.ActionBar.n6.f29637q7;
+            int i7 = org.telegram.ui.ActionBar.n6.f29635q7;
             dVar.setColor(org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
             if (dVar.getBackground() != null) {
                 Drawable background = dVar.getBackground();
@@ -211,7 +211,7 @@ public final class d9 extends b51 implements fs {
         k80 k80Var2 = o01Var.d;
         o01Var.a(m10, org.telegram.messenger.j6.m(M02, k80Var2.getPaint().getFontMetricsInt(), false, null, 0));
         org.telegram.ui.ActionBar.u6.U(k80Var, org.telegram.ui.ActionBar.n6.G6, i6Var);
-        org.telegram.ui.ActionBar.u6.U(k80Var2, org.telegram.ui.ActionBar.n6.f29807z6, i6Var);
+        org.telegram.ui.ActionBar.u6.U(k80Var2, org.telegram.ui.ActionBar.n6.f29805z6, i6Var);
         ks.i(k80Var);
         ks.i(k80Var2);
         f11.addView(i0(activity, i6Var, 2131232831, gd.M0(2131742775, null)));
@@ -271,11 +271,11 @@ public final class d9 extends b51 implements fs {
             Activity parentActivity = getParentActivity();
             String M0 = gd.M0(2131742900, null);
             String M02 = gd.M0(2131742901, null);
-            boolean z10 = org.telegram.messenger.s2.f26723a;
+            boolean z10 = org.telegram.messenger.s2.f26721a;
             org.telegram.ui.ActionBar.u1 f02 = org.telegram.ui.Components.b5.f0(parentActivity, M0, M02, null, gd.M0(2131742903, null), new v8(this, 2), getResourceProvider(), false);
             TextView textView = (TextView) f02.d(-1);
             if (textView != null) {
-                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29637q7, f02.f30050j1);
+                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, f02.f30048j1);
             }
         } else if (l41Var.H(b9.class)) {
             String charSequence = l41Var.f37018m.toString();
@@ -299,9 +299,9 @@ public final class d9 extends b51 implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        bi.d6 d6Var;
-        if (i7 == ks.f25099c4 && (d6Var = this.f33530a) != null) {
-            d6Var.f34607g3.O(true);
+        bi.c6 c6Var;
+        if (i7 == ks.f25102d4 && (c6Var = this.f33530a) != null) {
+            c6Var.f34607g3.O(true);
         }
     }
 
@@ -312,13 +312,13 @@ public final class d9 extends b51 implements fs {
 
     @Override
     public final boolean onFragmentCreate() {
-        getNotificationCenter().c(this, ks.f25099c4);
+        getNotificationCenter().c(this, ks.f25102d4);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, ks.f25099c4);
+        getNotificationCenter().n(this, ks.f25102d4);
         this.f44052f = true;
         ArrayList arrayList = this.f44051e;
         int size = arrayList.size();

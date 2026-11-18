@@ -7,12 +7,12 @@ import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class hp0 extends AnimatorListenerAdapter {
-    public final int f48504a;
-    public final PhotoViewer f48505b;
+    public final int f48460a;
+    public final PhotoViewer f48461b;
 
     public hp0(PhotoViewer photoViewer, int i7) {
-        this.f48504a = i7;
-        this.f48505b = photoViewer;
+        this.f48460a = i7;
+        this.f48461b = photoViewer;
     }
 
     @Override
@@ -20,15 +20,15 @@ public final class hp0 extends AnimatorListenerAdapter {
         boolean z10;
         boolean z11;
         org.telegram.ui.Components.si siVar;
-        int i7 = this.f48504a;
-        PhotoViewer photoViewer = this.f48505b;
+        int i7 = this.f48460a;
+        PhotoViewer photoViewer = this.f48461b;
         switch (i7) {
             case 0:
                 photoViewer.f43298p6 = null;
                 org.telegram.ui.Components.qd0 qd0Var = photoViewer.D1;
                 if (qd0Var != null) {
                     if (qd0Var.f38763b.j()) {
-                        org.telegram.ui.ActionBar.u6.s(photoViewer.f43171b1, org.telegram.ui.ActionBar.n6.f29645qg, photoViewer.f43358w2, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.u6.s(photoViewer.f43171b1, org.telegram.ui.ActionBar.n6.f29643qg, photoViewer.f43358w2, PorterDuff.Mode.MULTIPLY);
                     } else {
                         photoViewer.f43171b1.setColorFilter((ColorFilter) null);
                     }
@@ -98,7 +98,7 @@ public final class hp0 extends AnimatorListenerAdapter {
                 }
                 return;
             case 5:
-                org.telegram.messenger.g0.g3(new hf0(this, 24));
+                org.telegram.messenger.g0.g3(new if0(this, 24));
                 return;
             case 6:
                 photoViewer.f43272m6 = 1.0f;

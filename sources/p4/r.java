@@ -38,8 +38,8 @@ public final class r {
         this.d = sVar;
         this.f55417e = new Bundle();
         this.f55418f = new Bundle();
-        h9.g0 g0Var = h9.i0.f14006b;
-        t1 t1Var = t1.f14074e;
+        h9.g0 g0Var = h9.i0.f14003b;
+        t1 t1Var = t1.f14071e;
         this.f55420i = t1Var;
         this.f55421j = t1Var;
         this.h = true;
@@ -60,10 +60,10 @@ public final class r {
         h2.d dVar = this.f55419g;
         if (dVar == null) {
             ?? obj2 = new Object();
-            obj2.f3355c = context;
-            obj2.f3354b = -1;
-            obj2.f3354b = intValue;
-            obj2.f3353a = true;
+            obj2.f3356c = context;
+            obj2.f3355b = -1;
+            obj2.f3355b = intValue;
+            obj2.f3354a = true;
             this.f55419g = new j2.i(obj2);
         } else {
             this.f55419g = new b3.j(dVar, intValue, 10);

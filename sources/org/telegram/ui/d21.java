@@ -11,13 +11,13 @@ public final class d21 extends org.telegram.ui.Components.sa implements org.tele
     public int Y1;
     public org.telegram.ui.Components.z41 Z1;
 
-    public d21(org.telegram.ui.ActionBar.h2 r17, long r18, int r20, bi.y4 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d21.<init>(org.telegram.ui.ActionBar.h2, long, int, bi.y4):void");
+    public d21(org.telegram.ui.ActionBar.h2 r17, long r18, int r20, bi.x4 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d21.<init>(org.telegram.ui.ActionBar.h2, long, int, bi.x4):void");
     }
 
     @Override
     public final org.telegram.ui.Components.bk0 M0(org.telegram.ui.Components.ck0 ck0Var) {
-        org.telegram.ui.Components.z41 z41Var = new org.telegram.ui.Components.z41(ck0Var, getContext(), this.f30189a, 0, false, new a5(this, 26), this.J0);
+        org.telegram.ui.Components.z41 z41Var = new org.telegram.ui.Components.z41(ck0Var, getContext(), this.f30187a, 0, false, new a5(this, 26), this.J0);
         this.Z1 = z41Var;
         z41Var.f42809r = false;
         return z41Var;
@@ -30,7 +30,7 @@ public final class d21 extends org.telegram.ui.Components.sa implements org.tele
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.f25239z5 && ((fi.h6) objArr[0]) == this.V1) {
+        if (i7 == org.telegram.messenger.ks.A5 && ((fi.h6) objArr[0]) == this.V1) {
             this.Z1.O(false);
             e1();
         }
@@ -71,11 +71,11 @@ public final class d21 extends org.telegram.ui.Components.sa implements org.tele
             if (hashMap.containsKey(valueOf)) {
                 hashMap.remove(Integer.valueOf(e12));
                 G.f37011e = false;
-                ((org.telegram.ui.Cells.o7) view).i(false, true);
+                ((org.telegram.ui.Cells.p7) view).i(false, true);
             } else {
-                hashMap.put(Integer.valueOf(e12), fjVar.f23973l);
+                hashMap.put(Integer.valueOf(e12), fjVar.f23970l);
                 G.f37011e = true;
-                ((org.telegram.ui.Cells.o7) view).i(true, true);
+                ((org.telegram.ui.Cells.p7) view).i(true, true);
             }
             hi.d dVar = this.U1;
             dVar.setEnabled(!hashMap.isEmpty());
@@ -88,13 +88,13 @@ public final class d21 extends org.telegram.ui.Components.sa implements org.tele
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.Y1 = this.V1.o();
-        org.telegram.messenger.ks.f(this.f30189a).c(this, org.telegram.messenger.ks.f25239z5);
+        org.telegram.messenger.ks.f(this.f30187a).c(this, org.telegram.messenger.ks.A5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.V1.z(this.Y1);
-        org.telegram.messenger.ks.f(this.f30189a).n(this, org.telegram.messenger.ks.f25239z5);
+        org.telegram.messenger.ks.f(this.f30187a).n(this, org.telegram.messenger.ks.A5);
     }
 }

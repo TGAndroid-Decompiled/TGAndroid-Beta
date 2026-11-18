@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class qs0 extends org.telegram.ui.Components.bk0 {
-    public final PremiumPreviewFragment f51333c;
+    public final PremiumPreviewFragment f51293c;
 
     public qs0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f51333c = premiumPreviewFragment;
+        this.f51293c = premiumPreviewFragment;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59126f;
+        int i7 = f1Var.f59127f;
         if (i7 == 1 || i7 == 8) {
             return true;
         }
@@ -21,13 +21,13 @@ public final class qs0 extends org.telegram.ui.Components.bk0 {
 
     @Override
     public final int b() {
-        return this.f51333c.h;
+        return this.f51293c.h;
     }
 
     @Override
     public final int d(int i7) {
         if (i7 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f51333c;
+            PremiumPreviewFragment premiumPreviewFragment = this.f51293c;
             if (i7 < premiumPreviewFragment.f43437n || i7 >= premiumPreviewFragment.f43442r) {
                 if (i7 >= premiumPreviewFragment.f43449w && i7 < premiumPreviewFragment.f43451x) {
                     return 1;
@@ -69,7 +69,7 @@ public final class qs0 extends org.telegram.ui.Components.bk0 {
                 ps0Var = new ps0(this, context);
                 break;
             case 2:
-                ps0Var = new org.telegram.ui.Cells.y6(context, 0, 0);
+                ps0Var = new org.telegram.ui.Cells.z6(context, 0, 0);
                 break;
             case 3:
             default:
@@ -80,18 +80,18 @@ public final class qs0 extends org.telegram.ui.Components.bk0 {
                 ps0Var = new ai.r2(context);
                 break;
             case 5:
-                ps0Var = new org.telegram.ui.Cells.z8(context);
+                ps0Var = new org.telegram.ui.Cells.a9(context);
                 break;
             case 6:
                 ps0Var = new View(context);
                 ps0Var.setTag(-33024);
                 break;
             case 7:
-                ps0Var = new org.telegram.ui.Cells.n4(context);
+                ps0Var = new org.telegram.ui.Cells.o4(context);
                 break;
             case 8:
-                i6Var = ((org.telegram.ui.ActionBar.h2) this.f51333c).resourceProvider;
-                ps0Var = new org.telegram.ui.Cells.m8(23, context, i6Var, false, true);
+                i6Var = ((org.telegram.ui.ActionBar.h2) this.f51293c).resourceProvider;
+                ps0Var = new org.telegram.ui.Cells.n8(23, context, i6Var, false, true);
                 break;
         }
         return i5.c.q(ps0Var, ps0Var, -1, -2);

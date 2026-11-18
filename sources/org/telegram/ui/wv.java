@@ -11,7 +11,7 @@ public final class wv extends v4.c0 {
     @Override
     public final int R0() {
         bx bxVar = this.I;
-        if (bxVar.f46314s == 0 && this.J.f53949a0.n4() && bxVar.f46315w == 2) {
+        if (bxVar.f46305s == 0 && this.J.f53917a0.n4() && bxVar.f46306w == 2) {
             return 1;
         }
         return 0;

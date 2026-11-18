@@ -8,38 +8,38 @@ import android.graphics.Shader;
 import android.view.View;
 import org.telegram.ui.Components.r10;
 public final class gc implements ValueAnimator.AnimatorUpdateListener {
-    public final int f8885a;
-    public final int f8886b;
-    public final int f8887c;
+    public final int f8882a;
+    public final int f8883b;
+    public final int f8884c;
     public final int d;
-    public final int f8888e;
-    public final View f8889f;
+    public final int f8885e;
+    public final View f8886f;
 
     public gc(View view, int i7, int i10, int i11, int i12, int i13) {
-        this.f8885a = i13;
-        this.f8889f = view;
-        this.f8886b = i7;
-        this.f8887c = i10;
+        this.f8882a = i13;
+        this.f8886f = view;
+        this.f8883b = i7;
+        this.f8884c = i10;
         this.d = i11;
-        this.f8888e = i12;
+        this.f8885e = i12;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f8885a;
-        int i10 = this.f8888e;
+        int i7 = this.f8882a;
+        int i10 = this.f8885e;
         int i11 = this.d;
-        int i12 = this.f8887c;
-        int i13 = this.f8886b;
-        View view = this.f8889f;
+        int i12 = this.f8884c;
+        int i13 = this.f8883b;
+        View view = this.f8886f;
         switch (i7) {
             case 0:
                 jc jcVar = (jc) view;
                 jcVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jcVar.f9126r = i0.a.f(floatValue, i13, i12);
-                jcVar.f9127s = i0.a.f(floatValue, i11, i10);
-                jcVar.E = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{jcVar.f9126r, jcVar.f9127s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                jcVar.f9123r = i0.a.f(floatValue, i13, i12);
+                jcVar.f9124s = i0.a.f(floatValue, i11, i10);
+                jcVar.E = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{jcVar.f9123r, jcVar.f9124s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 jcVar.invalidate();
                 return;
             case 1:

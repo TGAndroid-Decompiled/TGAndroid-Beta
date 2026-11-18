@@ -128,7 +128,7 @@ public class j30 extends FrameLayout {
         return this.f36314n;
     }
 
-    public org.telegram.ui.Cells.q1 getMessageCell() {
+    public org.telegram.ui.Cells.r1 getMessageCell() {
         return null;
     }
 
@@ -169,7 +169,7 @@ public class j30 extends FrameLayout {
         this.h = z10;
         di.xb xbVar = new di.xb(context, 24);
         this.f36309a = xbVar;
-        int i10 = org.telegram.ui.ActionBar.n6.f29461gg;
+        int i10 = org.telegram.ui.ActionBar.n6.f29459gg;
         org.telegram.ui.ActionBar.u6.U(xbVar, i10, i6Var);
         xbVar.setTextSize(1, 14.0f);
         xbVar.setMaxLines(2);

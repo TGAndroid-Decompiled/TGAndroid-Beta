@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class g9 extends org.telegram.ui.Components.k41 {
-    public static final int f48003b = 0;
+    public static final int f47937b = 0;
 
     static {
         org.telegram.ui.Components.k41.h(new org.telegram.ui.Components.k41());
@@ -16,9 +16,9 @@ public final class g9 extends org.telegram.ui.Components.k41 {
         h9 h9Var = (h9) view;
         TLRPC.Chat chat = (TLRPC.Chat) l41Var.H;
         View.OnClickListener onClickListener = l41Var.E;
-        h9Var.f48310c = chat;
-        org.telegram.ui.Components.ng0 ng0Var = h9Var.f48309b;
-        ng0Var.setTag(Long.valueOf(chat.f28405id));
+        h9Var.f48220c = chat;
+        org.telegram.ui.Components.ng0 ng0Var = h9Var.f48219b;
+        ng0Var.setTag(Long.valueOf(chat.f28403id));
         if (org.telegram.messenger.v3.T(chat) && !chat.megagroup) {
             if (!org.telegram.messenger.v3.t0(chat)) {
                 lowerCase = org.telegram.messenger.gd.M0(2131752318, null).toLowerCase();
@@ -32,7 +32,7 @@ public final class g9 extends org.telegram.ui.Components.k41 {
         } else {
             lowerCase = org.telegram.messenger.gd.M0(2131748446, null).toLowerCase();
         }
-        h9Var.f48308a.x(chat, null, null, lowerCase, false, false);
+        h9Var.f48218a.x(chat, null, null, lowerCase, false, false);
         ng0Var.setOnClickListener(onClickListener);
     }
 

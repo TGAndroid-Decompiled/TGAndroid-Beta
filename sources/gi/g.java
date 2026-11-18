@@ -26,7 +26,7 @@ public final class g extends t {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((iw0) this.R).R1 != null && gd.f24216a0) {
+                if (((iw0) this.R).R1 != null && gd.f24213a0) {
                     return true;
                 }
                 return false;
@@ -57,7 +57,7 @@ public final class g extends t {
     public int o0(int i7, x0 x0Var, c1 c1Var) {
         switch (this.Q) {
             case 0:
-                if (((m) this.R).f13653b) {
+                if (((m) this.R).f13650b) {
                     i7 = 0;
                 }
                 return super.o0(i7, x0Var, c1Var);
@@ -71,12 +71,12 @@ public final class g extends t {
         switch (this.Q) {
             case 2:
                 dj djVar = new dj(this, recyclerView.getContext());
-                djVar.f59066a = i7;
+                djVar.f59067a = i7;
                 w0(djVar);
                 return;
             case 3:
                 bm bmVar = new bm(this, recyclerView.getContext());
-                bmVar.f59066a = i7;
+                bmVar.f59067a = i7;
                 w0(bmVar);
                 return;
             default:

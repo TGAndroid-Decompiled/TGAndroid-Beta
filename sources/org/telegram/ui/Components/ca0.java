@@ -22,23 +22,23 @@ public final class ca0 extends FrameLayout implements org.telegram.ui.ActionBar.
         m6Var.x(org.telegram.messenger.g0.o());
         m6Var.u(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.A8, i6Var));
         m6Var.w(org.telegram.messenger.g0.L(18.0f));
-        m6Var.q(!org.telegram.messenger.gd.f24216a0);
+        m6Var.q(!org.telegram.messenger.gd.f24213a0);
         m6Var.setCallback(this);
-        Point point = org.telegram.messenger.g0.f24121q;
+        Point point = org.telegram.messenger.g0.f24118q;
         m6Var.N = point.x;
         m6 m6Var2 = new m6(true, true, true);
         this.f33957c = m6Var2;
         m6Var2.n(0.3f, 430L, lrVar);
         m6Var2.u(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.B8, i6Var));
         m6Var2.w(org.telegram.messenger.g0.L(14.0f));
-        m6Var2.q(!org.telegram.messenger.gd.f24216a0);
+        m6Var2.q(!org.telegram.messenger.gd.f24213a0);
         m6Var2.setCallback(this);
         m6Var2.N = point.x;
     }
 
     public final void a(CharSequence charSequence, boolean z10) {
         boolean z11;
-        if (z10 && !org.telegram.messenger.gd.f24216a0) {
+        if (z10 && !org.telegram.messenger.gd.f24213a0) {
             z11 = true;
         } else {
             z11 = false;
@@ -54,7 +54,7 @@ public final class ca0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public final void b(CharSequence charSequence, boolean z10) {
         boolean z11;
-        if (z10 && !org.telegram.messenger.gd.f24216a0) {
+        if (z10 && !org.telegram.messenger.gd.f24213a0) {
             z11 = true;
         } else {
             z11 = false;

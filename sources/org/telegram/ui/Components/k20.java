@@ -50,12 +50,12 @@ public final class k20 extends c5.a {
             case 2:
                 return ((org.telegram.ui.v50) this.d).G.length;
             case 3:
-                if (((org.telegram.ui.x71) this.d).f53686b != 0) {
+                if (((org.telegram.ui.x71) this.d).f53674b != 0) {
                     return 1;
                 }
                 return 2;
             default:
-                return ((ug.z0) this.d).f58958o1.size();
+                return ((ug.z0) this.d).f58959o1.size();
         }
     }
 
@@ -105,7 +105,7 @@ public final class k20 extends c5.a {
                     i10 = 2131624177;
                 }
                 org.telegram.messenger.lz i14 = org.telegram.messenger.mz.i(org.telegram.messenger.g0.y2(null, i10));
-                i14.f25501s = false;
+                i14.f25499s = false;
                 j20Var.setImageDrawable(i14);
                 if (j20Var.getParent() != null) {
                     ((ViewGroup) j20Var.getParent()).removeView(j20Var);
@@ -161,9 +161,9 @@ public final class k20 extends c5.a {
             case 2:
                 TextView textView2 = new TextView(lVar.getContext());
                 org.telegram.ui.v50 v50Var = (org.telegram.ui.v50) obj;
-                textView2.setTag(v50Var.f52690a);
+                textView2.setTag(v50Var.f52675a);
                 TextView textView3 = new TextView(lVar.getContext());
-                textView3.setTag(v50Var.f52691b);
+                textView3.setTag(v50Var.f52676b);
                 ai.k0 k0Var = new ai.k0(lVar.getContext(), textView2, textView3);
                 int i15 = org.telegram.ui.ActionBar.n6.G6;
                 org.telegram.messenger.f3.l(textView2, i15, null, 1, 26.0f);
@@ -181,9 +181,9 @@ public final class k20 extends c5.a {
             case 3:
                 org.telegram.ui.x71 x71Var = (org.telegram.ui.x71) obj;
                 if (i7 == 0) {
-                    view = x71Var.f53740v0;
+                    view = x71Var.f53728v0;
                 } else {
-                    view = x71Var.f53724o0;
+                    view = x71Var.f53712o0;
                 }
                 lVar.addView(view);
                 return view;
@@ -191,16 +191,16 @@ public final class k20 extends c5.a {
                 ug.z0 z0Var = (ug.z0) obj;
                 ug.y0 y0Var = new ug.y0(z0Var, z0Var.getContext(), i7);
                 lVar.addView(y0Var);
-                y0Var.f58949a = i7;
-                org.telegram.ui.ws0 ws0Var = (org.telegram.ui.ws0) z0Var.f58958o1.get(i7);
-                int i16 = ws0Var.f53518a;
+                y0Var.f58950a = i7;
+                org.telegram.ui.ws0 ws0Var = (org.telegram.ui.ws0) z0Var.f58959o1.get(i7);
+                int i16 = ws0Var.f53469a;
                 String str = ws0Var.d;
-                CharSequence charSequence = ws0Var.f53520c;
-                TextView textView4 = y0Var.f58950b;
-                k80 k80Var = y0Var.f58951c;
+                CharSequence charSequence = ws0Var.f53471c;
+                TextView textView4 = y0Var.f58951b;
+                k80 k80Var = y0Var.f58952c;
                 if (i16 != 0 && i16 != 14 && i16 != 28) {
-                    if (z0Var.f58969z1) {
-                        int i17 = z0Var.f58968y1;
+                    if (z0Var.f58970z1) {
+                        int i17 = z0Var.f58969y1;
                         if (i17 == 4) {
                             textView4.setText(org.telegram.messenger.gd.M0(2131754351, null));
                             k80Var.setText(org.telegram.messenger.g0.W2(org.telegram.messenger.gd.M0(2131754350, null)));
@@ -254,7 +254,7 @@ public final class k20 extends c5.a {
                 }
                 k80Var.setMaxWidth(hi.m3.a(k80Var.getText(), k80Var.getPaint()));
                 y0Var.requestLayout();
-                if (ws0Var.f53518a == 40) {
+                if (ws0Var.f53469a == 40) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -325,7 +325,7 @@ public final class k20 extends c5.a {
                 return;
             case 2:
                 org.telegram.ui.v50 v50Var = (org.telegram.ui.v50) this.d;
-                v50Var.f52693e.setCurrentPage(i7);
+                v50Var.f52678e.setCurrentPage(i7);
                 v50Var.I = i7;
                 return;
             default:

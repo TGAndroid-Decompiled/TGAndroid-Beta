@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.function.Consumer;
 public final class nu0 implements Consumer {
-    public final ProfileActivity f50327a;
+    public final ProfileActivity f50311a;
 
     public nu0(ProfileActivity profileActivity) {
-        this.f50327a = profileActivity;
+        this.f50311a = profileActivity;
     }
 
     @Override
     public final void accept(Object obj) {
-        ProfileActivity profileActivity = this.f50327a;
+        ProfileActivity profileActivity = this.f50311a;
         HashSet hashSet = profileActivity.f43605n5;
         ArrayList arrayList = new ArrayList((HashSet) obj);
         int i7 = 0;
         while (i7 < arrayList.size()) {
-            if (profileActivity.getMessagesController().f25771t7.f(profileActivity.f43548f1, ((Integer) arrayList.get(i7)).intValue()) == null) {
+            if (profileActivity.getMessagesController().f25769t7.f(profileActivity.f43548f1, ((Integer) arrayList.get(i7)).intValue()) == null) {
                 arrayList.remove(i7);
                 i7--;
             }

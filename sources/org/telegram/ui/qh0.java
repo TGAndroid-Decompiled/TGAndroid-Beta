@@ -1,36 +1,63 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class qh0 implements Runnable {
-    public final int f51268a;
-    public final rh0 f51269b;
-    public final String f51270c;
+import j$.util.Objects;
+public final class qh0 extends rg.a {
+    public int f51226c;
+    public int d;
+    public CharSequence f51227e;
+    public CharSequence f51228f;
+    public uh0 f51229g;
+    public int h;
+    public boolean f51230i;
 
-    public qh0(rh0 rh0Var, String str, int i7) {
-        this.f51268a = i7;
-        this.f51269b = rh0Var;
-        this.f51270c = str;
+    public static qh0 b(int i7, String str, boolean z10) {
+        ?? aVar = new rg.a(1, true);
+        aVar.f51226c = i7;
+        aVar.f51227e = str;
+        aVar.f51230i = z10;
+        return aVar;
+    }
+
+    public static qh0 c(int i7, String str, String str2) {
+        ?? aVar = new rg.a(5, true);
+        aVar.f51226c = i7;
+        aVar.f51227e = str;
+        aVar.f51228f = str2;
+        return aVar;
+    }
+
+    public static qh0 d(int i7, String str) {
+        ?? aVar = new rg.a(4, true);
+        aVar.f51226c = i7;
+        aVar.f51227e = str;
+        return aVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f51268a) {
-            case 0:
-                rh0 rh0Var = this.f51269b;
-                String str = this.f51270c;
-                rh0Var.getClass();
-                org.telegram.messenger.g0.g3(new qh0(rh0Var, str, 1));
-                return;
-            default:
-                rh0 rh0Var2 = this.f51269b;
-                String str2 = this.f51270c;
-                jg.z1 z1Var = rh0Var2.h;
-                int i7 = rh0Var2.f51615n.f43123s;
-                boolean z10 = true;
-                z1Var.g(str2, true, (i7 == 1 || i7 == 3) ? false : false, true, false, 0L, false, 0, 0);
-                Utilities.f22784g.c(new lc0(rh0Var2, str2, new ArrayList(rh0Var2.f51615n.f43125x), 10));
-                return;
+    public final boolean a(rg.a aVar) {
+        if (this != aVar) {
+            if (qh0.class == aVar.getClass()) {
+                qh0 qh0Var = (qh0) aVar;
+                if (this.f51226c == qh0Var.f51226c && this.d == qh0Var.d && this.h == qh0Var.h && this.f51230i == qh0Var.f51230i && Objects.equals(this.f51227e, qh0Var.f51227e) && Objects.equals(this.f51228f, qh0Var.f51228f) && this.f51229g == qh0Var.f51229g) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && qh0.class == obj.getClass()) {
+            qh0 qh0Var = (qh0) obj;
+            if (this.f51226c == qh0Var.f51226c && this.h == qh0Var.h && ((this.f56589a == 8 || (this.d == qh0Var.d && Objects.equals(this.f51227e, qh0Var.f51227e) && (this.f56589a == 6 || Objects.equals(this.f51228f, qh0Var.f51228f)))) && this.f51229g == qh0Var.f51229g)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

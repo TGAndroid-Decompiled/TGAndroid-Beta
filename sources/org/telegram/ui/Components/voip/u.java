@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.t3;
 import org.telegram.messenger.u3;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.f40;
 public final class u extends n2 {
     public float f41233h0;
@@ -58,7 +58,7 @@ public final class u extends n2 {
         u uVar = yVar.f41325a;
         invalidate();
         t3 t3Var = this.f41234i0;
-        if (t3Var != null && t3Var.f26937b.rtmp_stream && yVar.A0) {
+        if (t3Var != null && t3Var.f26935b.rtmp_stream && yVar.A0) {
             org.telegram.messenger.g0.r(yVar.B0);
             yVar.A0 = false;
             textView.animate().cancel();
@@ -78,7 +78,7 @@ public final class u extends n2 {
         ImageView imageView = yVar.f41359y0;
         if (imageView != null && imageView.getParent() != null) {
             if (yVar.f41359y0.getAlpha() == 1.0f) {
-                yVar.f41359y0.animate().alpha(0.0f).setDuration(300L).setListener(new x9(this, 11)).start();
+                yVar.f41359y0.animate().alpha(0.0f).setDuration(300L).setListener(new y9(this, 11)).start();
             } else if (yVar.f41359y0.getParent() != null) {
                 uVar.removeView(yVar.f41359y0);
             }
@@ -145,7 +145,7 @@ public final class u extends n2 {
                 uVar.f41077b0 = 1;
             } else if (this.f41235j0.f40973b) {
                 uVar.f41077b0 = 0;
-            } else if (yVar.f41356x.f27120b) {
+            } else if (yVar.f41356x.f27118b) {
                 uVar.f41077b0 = 1;
             } else {
                 uVar.f41077b0 = 2;

@@ -28,8 +28,7 @@ import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r4;
 import org.telegram.ui.ActionBar.z;
-import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Cells.y9;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.b50;
@@ -78,18 +77,18 @@ public final class l extends AnimatorListenerAdapter {
                 return;
             case 14:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.f1083c;
-                if (animator.equals(actionBarLayout.f28717r0)) {
-                    actionBarLayout.f28700i0.clear();
-                    actionBarLayout.f28686c0.clear();
-                    actionBarLayout.f28688d0.clear();
-                    actionBarLayout.f28704k0.clear();
+                if (animator.equals(actionBarLayout.f28715r0)) {
+                    actionBarLayout.f28698i0.clear();
+                    actionBarLayout.f28684c0.clear();
+                    actionBarLayout.f28686d0.clear();
+                    actionBarLayout.f28702k0.clear();
                     actionBarLayout.j();
                     actionBarLayout.j();
                     n6.mm = null;
-                    actionBarLayout.f28702j0 = null;
-                    actionBarLayout.f28698h0 = null;
-                    actionBarLayout.f28717r0 = null;
-                    um umVar = ((r4) this.f1082b).f29963j;
+                    actionBarLayout.f28700j0 = null;
+                    actionBarLayout.f28696h0 = null;
+                    actionBarLayout.f28715r0 = null;
+                    um umVar = ((r4) this.f1082b).f29961j;
                     if (umVar != null) {
                         umVar.run();
                         return;
@@ -145,12 +144,12 @@ public final class l extends AnimatorListenerAdapter {
                 return;
             case 1:
                 oc ocVar = (oc) obj2;
-                ocVar.f9487b.remove((nc) obj);
+                ocVar.f9484b.remove((nc) obj);
                 ocVar.f1();
                 return;
             case 2:
                 super.onAnimationEnd(animator);
-                ((fi.p) obj2).f12360c0.f12427k0 = null;
+                ((fi.p) obj2).f12357c0.f12424k0 = null;
                 g0.E2((View) obj);
                 return;
             case 3:
@@ -172,12 +171,12 @@ public final class l extends AnimatorListenerAdapter {
                 if (view != null) {
                     view.setVisibility(4);
                 }
-                ((e3) ((t2) obj2).f15409c).h.setVisibility(8);
+                ((e3) ((t2) obj2).f15406c).h.setVisibility(8);
                 return;
             case 5:
                 i3 i3Var = (i3) obj2;
                 i3Var.n1 = null;
-                i3Var.f14759p1 = null;
+                i3Var.f14756p1 = null;
                 Runnable runnable = (Runnable) obj;
                 if (runnable != null) {
                     runnable.run();
@@ -199,7 +198,7 @@ public final class l extends AnimatorListenerAdapter {
                 nVar2.f1088b = null;
                 nVar2.f1089c = false;
                 n8 n8Var = (n8) nVar2.f1092n;
-                n8Var.f15109b.setAllowDrawCursor(true);
+                n8Var.f15106b.setAllowDrawCursor(true);
                 b8 b8Var = n8Var.h;
                 if (b8Var != null) {
                     b8Var.run();
@@ -212,14 +211,14 @@ public final class l extends AnimatorListenerAdapter {
                 return;
             case 8:
                 lg.g gVar2 = (lg.g) obj2;
-                gVar2.f19788b.clear();
-                gVar2.f19788b.add((ng.d) obj);
+                gVar2.f19785b.clear();
+                gVar2.f19785b.add((ng.d) obj);
                 return;
             case 9:
                 super.onAnimationEnd(animator);
                 lg.g gVar3 = (lg.g) obj2;
-                gVar3.f19791c.clear();
-                gVar3.f19791c.add((ng.b) obj);
+                gVar3.f19788c.clear();
+                gVar3.f19788c.add((ng.b) obj);
                 return;
             case 10:
                 CropAreaView cropAreaView = (CropAreaView) obj2;
@@ -229,19 +228,19 @@ public final class l extends AnimatorListenerAdapter {
             case 11:
                 z1 z1Var = (z1) obj2;
                 z1Var.F = false;
-                z1Var.f22544w.setAlpha(1.0f);
-                z1Var.f22544w.f32651o2.setVisibility(0);
-                z1Var.f22548y.r(g0.L(22.0f));
-                z1Var.f22548y.setAlpha(255);
-                jh.f fVar = z1Var.f22539s;
-                fVar.f17779e = true;
+                z1Var.f22541w.setAlpha(1.0f);
+                z1Var.f22541w.f32651o2.setVisibility(0);
+                z1Var.f22545y.r(g0.L(22.0f));
+                z1Var.f22545y.setAlpha(255);
+                jh.f fVar = z1Var.f22536s;
+                fVar.f17776e = true;
                 fVar.invalidate();
                 ((Runnable) obj).run();
                 return;
             case 12:
                 zu zuVar = (zu) obj2;
-                zuVar.f28363b = true;
-                zuVar.f28366f = null;
+                zuVar.f28361b = true;
+                zuVar.f28364f = null;
                 View view2 = (View) obj;
                 if (view2 != null) {
                     view2.invalidate();
@@ -253,12 +252,12 @@ public final class l extends AnimatorListenerAdapter {
                 AnimatorSet animatorSet = kVar.Q;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     kVar.Q = null;
-                    n5 n5Var = kVar.f29086n[0];
+                    n5 n5Var = kVar.f29084n[0];
                     if (n5Var != null) {
                         n5Var.setVisibility(4);
                     }
-                    if (kVar.f29094r != null && !TextUtils.isEmpty(kVar.B0)) {
-                        kVar.f29094r.setVisibility(4);
+                    if (kVar.f29092r != null && !TextUtils.isEmpty(kVar.B0)) {
+                        kVar.f29092r.setVisibility(4);
                     }
                     z zVar = kVar.F;
                     if (zVar != null) {
@@ -285,19 +284,19 @@ public final class l extends AnimatorListenerAdapter {
                 break;
             case 14:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj2;
-                actionBarLayout.f28720s0.e();
-                if (animator.equals(actionBarLayout.f28717r0)) {
-                    actionBarLayout.f28700i0.clear();
-                    actionBarLayout.f28686c0.clear();
-                    actionBarLayout.f28688d0.clear();
-                    actionBarLayout.f28704k0.clear();
+                actionBarLayout.f28718s0.e();
+                if (animator.equals(actionBarLayout.f28715r0)) {
+                    actionBarLayout.f28698i0.clear();
+                    actionBarLayout.f28684c0.clear();
+                    actionBarLayout.f28686d0.clear();
+                    actionBarLayout.f28702k0.clear();
                     actionBarLayout.j();
                     actionBarLayout.j();
                     n6.mm = null;
-                    actionBarLayout.f28702j0 = null;
-                    actionBarLayout.f28698h0 = null;
-                    actionBarLayout.f28717r0 = null;
-                    um umVar = ((r4) obj).f29963j;
+                    actionBarLayout.f28700j0 = null;
+                    actionBarLayout.f28696h0 = null;
+                    actionBarLayout.f28715r0 = null;
+                    um umVar = ((r4) obj).f29961j;
                     if (umVar != null) {
                         umVar.run();
                         return;
@@ -306,7 +305,7 @@ public final class l extends AnimatorListenerAdapter {
                 }
                 return;
             case 15:
-                ((ActionBarLayout) obj2).f28708n = false;
+                ((ActionBarLayout) obj2).f28706n = false;
                 ((h2) obj).onPreviewOpenAnimationEnd();
                 return;
             case 16:
@@ -318,21 +317,21 @@ public final class l extends AnimatorListenerAdapter {
                     if (viewGroup != null) {
                         viewGroup.removeView(view4);
                     }
-                    bnVar.f46119o3 = null;
+                    bnVar.f46110o3 = null;
                     bnVar.Gb = null;
                     return;
                 }
                 return;
             case 17:
-                q1 q1Var = ((il) obj2).f48748b;
-                q1Var.setAlpha(1.0f);
-                q1Var.getTransitionParams().f32399y0 = false;
+                org.telegram.ui.Cells.r1 r1Var = ((il) obj2).f48748b;
+                r1Var.setAlpha(1.0f);
+                r1Var.getTransitionParams().f32446y0 = false;
                 q0 q0Var = new q0("alpha", 2);
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                animatorSet2.playTogether(ObjectAnimator.ofFloat((b50) obj, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(q1Var, q0Var, 1.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat((b50) obj, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(r1Var, q0Var, 1.0f));
                 animatorSet2.setDuration(100L);
                 animatorSet2.setInterpolator(new DecelerateInterpolator());
-                animatorSet2.addListener(new x9(this, 7));
+                animatorSet2.addListener(new y9(this, 7));
                 animatorSet2.start();
                 return;
             case 18:

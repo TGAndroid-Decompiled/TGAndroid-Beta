@@ -98,7 +98,7 @@ public final class su extends vs {
             } else {
                 bv bvVar = this.Q.E;
                 Pattern pattern = bv.Q1;
-                bvVar.f30192b.invalidate();
+                bvVar.f30190b.invalidate();
                 return;
             }
         }
@@ -120,7 +120,7 @@ public final class su extends vs {
                 int i10 = this.L;
                 org.telegram.messenger.gc e02 = s2Var.e0(gcVarArr[i10], i10);
                 gcVarArr[i10] = e02;
-                e02.f24195c = j3;
+                e02.f24192c = j3;
                 o5Var.setAlpha(255);
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set(uuVar.getPaddingLeft() + uuVar.getLeft(), uuVar.getPaddingTop(), uuVar.getRight() - uuVar.getPaddingRight(), uuVar.getMeasuredHeight() - uuVar.getPaddingBottom());

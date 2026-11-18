@@ -4,37 +4,37 @@ import android.graphics.RectF;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class d {
-    public final int f17754a;
-    public final long f17755b;
-    public long f17757e;
-    public long f17758f;
-    public long f17759g;
+    public final int f17751a;
+    public final long f17752b;
+    public long f17754e;
+    public long f17755f;
+    public long f17756g;
     public long h;
-    public boolean f17760i;
-    public final RectF f17756c = new RectF();
-    public float f17761j = 0.0f;
-    public float f17762k = 0.0f;
-    public float f17763l = Float.MAX_VALUE;
-    public float f17764m = 0.0f;
-    public final long d = Utilities.f22780b.nextLong();
+    public boolean f17757i;
+    public final RectF f17753c = new RectF();
+    public float f17758j = 0.0f;
+    public float f17759k = 0.0f;
+    public float f17760l = Float.MAX_VALUE;
+    public float f17761m = 0.0f;
+    public final long d = Utilities.f22777b.nextLong();
 
     public d(int i7, long j3) {
-        this.f17754a = i7;
-        this.f17755b = j3;
+        this.f17751a = i7;
+        this.f17752b = j3;
     }
 
     public final TLRPC.TL_inputMessageReadMetric a() {
         int round;
         TLRPC.TL_inputMessageReadMetric tL_inputMessageReadMetric = new TLRPC.TL_inputMessageReadMetric();
-        tL_inputMessageReadMetric.msg_id = this.f17754a;
+        tL_inputMessageReadMetric.msg_id = this.f17751a;
         tL_inputMessageReadMetric.view_id = this.d;
-        tL_inputMessageReadMetric.time_in_view_ms = (int) this.f17759g;
+        tL_inputMessageReadMetric.time_in_view_ms = (int) this.f17756g;
         tL_inputMessageReadMetric.active_time_in_view_ms = (int) this.h;
-        float f10 = this.f17762k;
+        float f10 = this.f17759k;
         if (f10 == 0.0f) {
             round = 1000;
         } else {
-            round = Math.round((this.f17761j / f10) * 1000.0f);
+            round = Math.round((this.f17758j / f10) * 1000.0f);
         }
         tL_inputMessageReadMetric.height_to_viewport_ratio_permille = round;
         tL_inputMessageReadMetric.seen_range_ratio_permille = b();
@@ -42,10 +42,10 @@ public final class d {
     }
 
     public final int b() {
-        float f10 = this.f17761j;
+        float f10 = this.f17758j;
         if (f10 != 0.0f) {
-            float f11 = this.f17763l;
-            float f12 = this.f17764m;
+            float f11 = this.f17760l;
+            float f12 = this.f17761m;
             if (f11 <= f12) {
                 return Math.round(((f12 - f11) / f10) * 1000.0f);
             }

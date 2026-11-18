@@ -21,10 +21,10 @@ public final class n implements i0 {
 
     static {
         t tVar = new t();
-        tVar.f10717r = s0.n("application/id3");
+        tVar.f10714r = s0.n("application/id3");
         f56403f = new u(tVar);
         t tVar2 = new t();
-        tVar2.f10717r = s0.n("application/x-emsg");
+        tVar2.f10714r = s0.n("application/x-emsg");
         f56404g = new u(tVar2);
     }
 
@@ -67,15 +67,15 @@ public final class n implements i0 {
         byte[] bArr = this.d;
         System.arraycopy(bArr, i12, bArr, 0, i11);
         this.f56408e = i11;
-        String str = this.f56407c.f10769s;
+        String str = this.f56407c.f10766s;
         u uVar = this.f56406b;
-        String str2 = uVar.f10769s;
-        String str3 = uVar.f10769s;
+        String str2 = uVar.f10766s;
+        String str3 = uVar.f10766s;
         if (!Objects.equals(str, str2)) {
-            if ("application/x-emsg".equals(this.f56407c.f10769s)) {
+            if ("application/x-emsg".equals(this.f56407c.f10766s)) {
                 q3.a c10 = p3.b.c(xVar);
                 u a10 = c10.a();
-                if (a10 != null && Objects.equals(str3, a10.f10769s)) {
+                if (a10 != null && Objects.equals(str3, a10.f10766s)) {
                     byte[] c11 = c10.c();
                     c11.getClass();
                     xVar = new x(c11);
@@ -85,7 +85,7 @@ public final class n implements i0 {
                     return;
                 }
             } else {
-                h2.a.l("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f56407c.f10769s);
+                h2.a.l("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f56407c.f10766s);
                 return;
             }
         }

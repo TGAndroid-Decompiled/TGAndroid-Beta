@@ -27,7 +27,7 @@ public final class p extends sa {
         O();
         Z0();
         ck0 ck0Var = this.f39534o1;
-        int i7 = this.f30227u0;
+        int i7 = this.f30225u0;
         ck0Var.setPadding(i7, 0, i7, 0);
         this.f39534o1.setOnItemClickListener(new g4(1, this, g0Var));
     }

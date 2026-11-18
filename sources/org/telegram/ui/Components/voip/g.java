@@ -53,7 +53,7 @@ public abstract class g {
                 arrayList.add(new f(new wi.k(2, 2131232543, gd.M0(2131743000, null), true), 90, 1));
             } else if (f40871a || videoState == 1) {
                 String M0 = gd.M0(2131743001, null);
-                if (org.telegram.messenger.t0.f26915b.checkSelfPermission("android.permission.CAMERA") != 0 || (z10 && ((t3Var = sharedInstance.groupCall) == null || !t3Var.c()))) {
+                if (org.telegram.messenger.t0.f26913b.checkSelfPermission("android.permission.CAMERA") != 0 || (z10 && ((t3Var = sharedInstance.groupCall) == null || !t3Var.c()))) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -84,7 +84,7 @@ public abstract class g {
         t3 t3Var;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            if (org.telegram.messenger.s2.f26723a) {
+            if (org.telegram.messenger.s2.f26721a) {
                 StringBuilder m10 = i5.c.m(i7, "call pip: action ", ", camera ");
                 m10.append(sharedInstance.getVideoState(false));
                 m10.append(", mic muted ");
@@ -101,7 +101,7 @@ public abstract class g {
                 int videoState = sharedInstance.getVideoState(false);
                 if (videoState == 2) {
                     sharedInstance.setVideoState(false, 0);
-                } else if (org.telegram.messenger.t0.f26915b.checkSelfPermission("android.permission.CAMERA") == 0) {
+                } else if (org.telegram.messenger.t0.f26913b.checkSelfPermission("android.permission.CAMERA") == 0) {
                     if (!z10 || ((t3Var = sharedInstance.groupCall) != null && t3Var.c())) {
                         if (videoState == 0) {
                             sharedInstance.createCaptureDevice(false);
@@ -112,7 +112,7 @@ public abstract class g {
                 }
             } else if (i7 == 3) {
                 if (z10) {
-                    f40.x1(org.telegram.messenger.t0.f26915b, null, false, true);
+                    f40.x1(org.telegram.messenger.t0.f26913b, null, false, true);
                 } else {
                     sharedInstance.hangUp();
                 }

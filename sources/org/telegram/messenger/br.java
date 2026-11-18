@@ -3,21 +3,21 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class br implements Runnable {
-    public final int f23125a;
-    public final Object f23126b;
-    public final long f23127c;
+    public final int f23122a;
+    public final Object f23123b;
+    public final long f23124c;
     public final Object d;
 
     public br(Object obj, Object obj2, long j3, int i7) {
-        this.f23125a = i7;
-        this.f23126b = obj;
+        this.f23122a = i7;
+        this.f23123b = obj;
         this.d = obj2;
-        this.f23127c = j3;
+        this.f23124c = j3;
     }
 
     private final void a() {
-        z00 z00Var = (z00) this.f23126b;
-        long j3 = this.f23127c;
+        z00 z00Var = (z00) this.f23123b;
+        long j3 = this.f23124c;
         u00 u00Var = (u00) this.d;
         synchronized (z00Var) {
             try {
@@ -35,11 +35,11 @@ public final class br implements Runnable {
         TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
         tL_messages_translateRichMessage.flags |= 1;
         tL_messages_translateRichMessage.peer = z00Var.getMessagesController().l1(j3);
-        tL_messages_translateRichMessage.f28528id = u00Var.f27110b;
+        tL_messages_translateRichMessage.f28526id = u00Var.f27108b;
         tL_messages_translateRichMessage.to_lang = z00.D(u00Var.d);
         int sendRequest = z00Var.getConnectionsManager().sendRequest(tL_messages_translateRichMessage, new go(z00Var, u00Var, j3, 12));
         synchronized (z00Var) {
-            u00Var.f27113f = sendRequest;
+            u00Var.f27111f = sendRequest;
         }
     }
 
@@ -49,9 +49,9 @@ public final class br implements Runnable {
     }
 
     public br(c1 c1Var, long j3, Object obj, int i7) {
-        this.f23125a = i7;
-        this.f23126b = c1Var;
-        this.f23127c = j3;
+        this.f23122a = i7;
+        this.f23123b = c1Var;
+        this.f23124c = j3;
         this.d = obj;
     }
 }

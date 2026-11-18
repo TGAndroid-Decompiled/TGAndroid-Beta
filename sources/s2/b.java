@@ -33,7 +33,7 @@ public final class b implements b3.k {
         this.f56753y = dVar;
         this.f56743a = uri;
         this.f56744b = str;
-        this.d = ((j2.g) dVar.f56757a.f30431a).createDataSource();
+        this.d = ((j2.g) dVar.f56757a.f30477a).createDataSource();
     }
 
     public final Uri a() {
@@ -78,7 +78,7 @@ public final class b implements b3.k {
         Map map = Collections.EMPTY_MAP;
         la.k(uri, "The uri must be set.");
         b3.s sVar = new b3.s(this.d, new j2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, J);
-        this.f56745c.f(sVar, this, dVar.f56759c.R4(sVar.f2918c));
+        this.f56745c.f(sVar, this, dVar.f56759c.R4(sVar.f2919c));
     }
 
     public final void c(Uri uri) {
@@ -108,24 +108,24 @@ public final class b implements b3.k {
         int i10;
         b3.i iVar;
         b3.s sVar = (b3.s) mVar;
-        long j11 = sVar.f2916a;
-        int i11 = sVar.f2918c;
-        j2.m mVar2 = sVar.f2917b;
+        long j11 = sVar.f2917a;
+        int i11 = sVar.f2919c;
+        j2.m mVar2 = sVar.f2918b;
         b0 b0Var = sVar.d;
-        Uri uri = b0Var.f17156c;
-        x2.u uVar = new x2.u(mVar2, uri, b0Var.d, j3, j10, b0Var.f17155b);
+        Uri uri = b0Var.f17153c;
+        x2.u uVar = new x2.u(mVar2, uri, b0Var.d, j3, j10, b0Var.f17152b);
         if (uri.getQueryParameter("_HLS_msn") != null) {
             z10 = true;
         } else {
             z10 = false;
         }
         boolean z11 = iOException instanceof r;
-        b3.i iVar2 = b3.p.f2911e;
+        b3.i iVar2 = b3.p.f2912e;
         Uri uri2 = this.f56743a;
         d dVar = this.f56753y;
         if (z10 || z11) {
             if (iOException instanceof x) {
-                i10 = ((x) iOException).f17225c;
+                i10 = ((x) iOException).f17222c;
             } else {
                 i10 = Integer.MAX_VALUE;
             }
@@ -133,7 +133,7 @@ public final class b implements b3.k {
                 this.f56748n = SystemClock.elapsedRealtime();
                 c(uri2);
                 xa xaVar = dVar.f56761f;
-                String str = l0.f13786a;
+                String str = l0.f13783a;
                 xaVar.r(uVar, i11, iOException, true);
                 return iVar2;
             }
@@ -151,7 +151,7 @@ public final class b implements b3.k {
             if (S4 != -9223372036854775807L) {
                 iVar = new b3.i(0, S4, false);
             } else {
-                iVar = b3.p.f2912f;
+                iVar = b3.p.f2913f;
             }
             iVar2 = iVar;
         }
@@ -166,10 +166,10 @@ public final class b implements b3.k {
     @Override
     public final void p(b3.m mVar, long j3, long j10, boolean z10) {
         b3.s sVar = (b3.s) mVar;
-        long j11 = sVar.f2916a;
-        j2.m mVar2 = sVar.f2917b;
+        long j11 = sVar.f2917a;
+        j2.m mVar2 = sVar.f2918b;
         b0 b0Var = sVar.d;
-        x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+        x2.u uVar = new x2.u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
         d dVar = this.f56753y;
         dVar.f56759c.getClass();
         dVar.f56761f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
@@ -180,24 +180,24 @@ public final class b implements b3.k {
         x2.u uVar;
         b3.s sVar = (b3.s) mVar;
         if (i7 == 0) {
-            long j11 = sVar.f2916a;
-            uVar = new x2.u(sVar.f2917b, j3);
+            long j11 = sVar.f2917a;
+            uVar = new x2.u(sVar.f2918b, j3);
         } else {
-            long j12 = sVar.f2916a;
-            j2.m mVar2 = sVar.f2917b;
+            long j12 = sVar.f2917a;
+            j2.m mVar2 = sVar.f2918b;
             b0 b0Var = sVar.d;
-            uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+            uVar = new x2.u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
         }
-        this.f56753y.f56761f.u(uVar, sVar.f2918c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+        this.f56753y.f56761f.u(uVar, sVar.f2919c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
     }
 
     @Override
     public final void z(b3.m mVar, long j3, long j10) {
         b3.s sVar = (b3.s) mVar;
-        q qVar = (q) sVar.f2920f;
-        j2.m mVar2 = sVar.f2917b;
+        q qVar = (q) sVar.f2921f;
+        j2.m mVar2 = sVar.f2918b;
         b0 b0Var = sVar.d;
-        x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+        x2.u uVar = new x2.u(mVar2, b0Var.f17153c, b0Var.d, j3, j10, b0Var.f17152b);
         if (qVar instanceof m) {
             d((m) qVar, uVar);
             this.f56753y.f56761f.p(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);

@@ -1,11 +1,11 @@
 package ji;
 public final class l {
-    public String f17957a;
-    public long f17958b;
-    public long f17959c = -1;
+    public String f17954a;
+    public long f17955b;
+    public long f17956c = -1;
 
     public l(String str, long j3) {
-        this.f17957a = str;
-        this.f17958b = j3;
+        this.f17954a = str;
+        this.f17955b = j3;
     }
 }

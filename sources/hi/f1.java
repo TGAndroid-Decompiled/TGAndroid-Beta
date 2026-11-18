@@ -6,25 +6,25 @@ import org.telegram.messenger.vr;
 import org.telegram.ui.Components.nz0;
 import org.telegram.ui.f40;
 public final class f1 implements DialogInterface.OnDismissListener {
-    public final int f14644a;
+    public final int f14641a;
 
     public f1(int i7) {
-        this.f14644a = i7;
+        this.f14641a = i7;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f14644a) {
+        switch (this.f14641a) {
             case 0:
                 int i7 = j2.C1;
                 return;
             case 1:
-                org.telegram.ui.b.f45710a = false;
+                org.telegram.ui.b.f45700a = false;
                 return;
             case 2:
                 return;
             case 3:
-                vr.f27592j.edit().putInt("dismissed_count", vr.f27592j.getInt("dismissed_count", 0) + 1).apply();
+                vr.f27590j.edit().putInt("dismissed_count", vr.f27590j.getInt("dismissed_count", 0) + 1).apply();
                 return;
             case 4:
                 int i10 = nz0.f37910e;
@@ -35,16 +35,16 @@ public final class f1 implements DialogInterface.OnDismissListener {
             case 6:
                 return;
             case 7:
-                org.telegram.utils.twidget.n0.f54851i = false;
+                org.telegram.utils.twidget.n0.f54852i = false;
                 return;
             default:
-                MediaController.f22695h2 = false;
+                MediaController.f22692h2 = false;
                 return;
         }
     }
 
     public f1(boolean[] zArr) {
-        this.f14644a = 2;
+        this.f14641a = 2;
     }
 
     private final void a(DialogInterface dialogInterface) {

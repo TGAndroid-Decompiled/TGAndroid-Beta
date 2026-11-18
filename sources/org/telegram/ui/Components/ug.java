@@ -127,7 +127,7 @@ public final class ug extends View {
             u12.N4(i7, 0, j13, j14, null);
         }
         long j15 = (int) j11;
-        Typeface typeface = org.telegram.messenger.g0.f24093a;
+        Typeface typeface = org.telegram.messenger.g0.f24090a;
         StringBuilder sb2 = new StringBuilder();
         long j16 = j15 / 60;
         if (j16 >= 60) {

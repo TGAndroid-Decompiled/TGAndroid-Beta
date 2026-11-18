@@ -15,31 +15,31 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.b9;
 import org.telegram.ui.Components.q9;
 public final class i0 extends FrameLayout implements c6 {
-    public static final int f59768f = 0;
-    public final q9 f59769a;
-    public final h0 f59770b;
-    public final Paint f59771c;
+    public static final int f59769f = 0;
+    public final q9 f59770a;
+    public final h0 f59771b;
+    public final Paint f59772c;
     public boolean d;
-    public final b9 f59772e;
+    public final b9 f59773e;
 
     public i0(Context context, float f10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f59771c = paint;
+        this.f59772c = paint;
         this.d = true;
-        this.f59772e = new b9((i6) null);
+        this.f59773e = new b9((i6) null);
         q9 q9Var = new q9(getContext());
-        this.f59769a = q9Var;
+        this.f59770a = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(f10));
         ?? view = new View(context);
         TextPaint textPaint = new TextPaint(1);
-        view.f59764a = textPaint;
+        view.f59765a = textPaint;
         textPaint.setTextAlign(Paint.Align.CENTER);
-        int i7 = n6.f29339a7;
+        int i7 = n6.f29337a7;
         textPaint.setColor(n6.x0(null, i7, false));
         textPaint.setTextSize(org.telegram.messenger.g0.L(11.5f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        this.f59770b = view;
+        this.f59771b = view;
         view.setAlpha(0.0f);
         addView(q9Var, ma.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
         addView((View) view, ma.d(26, 26.0f, 85, 0.0f, 0.0f, 1.0f, 3.0f));
@@ -49,7 +49,7 @@ public final class i0 extends FrameLayout implements c6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         if (this.d) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - org.telegram.messenger.g0.L(2.0f), this.f59771c);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - org.telegram.messenger.g0.L(2.0f), this.f59772c);
         }
         super.dispatchDraw(canvas);
     }
@@ -57,7 +57,7 @@ public final class i0 extends FrameLayout implements c6 {
     @Override
     public final void updateColors() {
         try {
-            this.f59771c.setColor(n6.x0(null, n6.f29339a7, false));
+            this.f59772c.setColor(n6.x0(null, n6.f29337a7, false));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

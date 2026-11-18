@@ -3,16 +3,16 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ck implements Runnable {
-    public final int f23372a;
-    public final mp f23373b;
-    public final ArrayList f23374c;
+    public final int f23369a;
+    public final mp f23370b;
+    public final ArrayList f23371c;
     public final long d;
 
     public ck(mp mpVar, long j3, ArrayList arrayList, int i7) {
-        this.f23372a = i7;
-        this.f23373b = mpVar;
+        this.f23369a = i7;
+        this.f23370b = mpVar;
         this.d = j3;
-        this.f23374c = arrayList;
+        this.f23371c = arrayList;
     }
 
     @Override
@@ -20,15 +20,15 @@ public final class ck implements Runnable {
         int i7;
         long j3;
         long j10;
-        int i10 = this.f23372a;
+        int i10 = this.f23369a;
         long j11 = this.d;
-        ArrayList arrayList = this.f23374c;
-        mp mpVar = this.f23373b;
+        ArrayList arrayList = this.f23371c;
+        mp mpVar = this.f23370b;
         switch (i10) {
             case 0:
                 tr messagesStorage = mpVar.getMessagesStorage();
                 long j12 = this.d;
-                ArrayList arrayList2 = this.f23374c;
+                ArrayList arrayList2 = this.f23371c;
                 mpVar.getMessagesStorage().R1(j12, -j12, arrayList2, messagesStorage.P0(j12, arrayList2, false, true, 0, 0));
                 return;
             case 1:
@@ -79,7 +79,7 @@ public final class ck implements Runnable {
                         if (mpVar.E2(j13)) {
                             j3 = n5.o(tL_forumTopic.from_id);
                         } else {
-                            j3 = tL_forumTopic.f28457id;
+                            j3 = tL_forumTopic.f28455id;
                         }
                         messagesController.q3(j13, i15, 0, i7, false, j3, 0, true, 0);
                         tr messagesStorage2 = mpVar.getMessagesStorage();
@@ -87,19 +87,19 @@ public final class ck implements Runnable {
                         if (mpVar.E2(j13)) {
                             j10 = n5.o(tL_forumTopic.from_id);
                         } else {
-                            j10 = tL_forumTopic.f28457id;
+                            j10 = tL_forumTopic.f28455id;
                         }
                         messagesStorage2.d2(j14, j10, tL_forumTopic.top_message, 0);
                     }
                 }
-                mpVar.getMessagesStorage().f27054a.c(new rj(mpVar, 20));
+                mpVar.getMessagesStorage().f27052a.c(new rj(mpVar, 20));
                 return;
             case 3:
                 mpVar.x5(0, -j11, arrayList);
                 mpVar.getNotificationCenter().k(3, new Object[0]);
                 return;
             case 4:
-                g0.g3(new ck(this.f23373b, this.d, this.f23374c, 5));
+                g0.g3(new ck(this.f23370b, this.d, this.f23371c, 5));
                 return;
             default:
                 mpVar.x5(0, j11, arrayList);
@@ -109,9 +109,9 @@ public final class ck implements Runnable {
     }
 
     public ck(mp mpVar, ArrayList arrayList, long j3, int i7) {
-        this.f23372a = i7;
-        this.f23373b = mpVar;
-        this.f23374c = arrayList;
+        this.f23369a = i7;
+        this.f23370b = mpVar;
+        this.f23371c = arrayList;
         this.d = j3;
     }
 }

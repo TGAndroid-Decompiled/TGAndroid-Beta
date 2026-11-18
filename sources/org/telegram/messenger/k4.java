@@ -3,21 +3,21 @@ package org.telegram.messenger;
 import android.app.Activity;
 import java.util.HashMap;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ih0;
+import org.telegram.ui.jh0;
 public final class k4 implements Runnable {
-    public final int f24979a;
-    public final boolean f24980b;
-    public final boolean f24981c;
+    public final int f24976a;
+    public final boolean f24977b;
+    public final boolean f24978c;
     public final boolean d;
-    public final Object f24982e;
-    public final Object f24983f;
+    public final Object f24979e;
+    public final Object f24980f;
 
     public k4(Object obj, Object obj2, boolean z10, boolean z11, boolean z12, int i7) {
-        this.f24979a = i7;
-        this.f24982e = obj;
-        this.f24983f = obj2;
-        this.f24980b = z10;
-        this.f24981c = z11;
+        this.f24976a = i7;
+        this.f24979e = obj;
+        this.f24980f = obj2;
+        this.f24977b = z10;
+        this.f24978c = z11;
         this.d = z12;
     }
 
@@ -25,33 +25,33 @@ public final class k4 implements Runnable {
     public final void run() {
         org.telegram.ui.Wallet.u uVar;
         String p10;
-        int i7 = this.f24979a;
-        boolean z10 = this.f24980b;
-        Object obj = this.f24983f;
-        Object obj2 = this.f24982e;
+        int i7 = this.f24976a;
+        boolean z10 = this.f24977b;
+        Object obj = this.f24980f;
+        Object obj2 = this.f24979e;
         switch (i7) {
             case 0:
                 i5 i5Var = (i5) obj2;
                 HashMap hashMap = (HashMap) obj;
-                if (s2.f26723a) {
+                if (s2.f26721a) {
                     a8.b("sync contacts by alert");
                 }
-                i5Var.F(hashMap, true, this.f24980b, this.f24981c, false, false, this.d);
+                i5Var.F(hashMap, true, this.f24977b, this.f24978c, false, false, this.d);
                 return;
             case 1:
                 org.telegram.ui.cx cxVar = (org.telegram.ui.cx) obj2;
                 Activity activity = (Activity) obj;
                 if (cxVar.getParentActivity() != null) {
-                    cxVar.f46763v2 = false;
-                    boolean z11 = this.f24981c;
+                    cxVar.f46743v2 = false;
+                    boolean z11 = this.f24978c;
                     boolean z12 = this.d;
                     if (z10 || z11 || z12) {
                         cxVar.B0 = true;
-                        if (z10 && ih0.K0(activity)) {
+                        if (z10 && jh0.K0(activity)) {
                             c8.na.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new org.telegram.ui.Components.bn(new org.telegram.ui.Components.ph(14, cxVar, activity), 1));
                             return;
                         } else if (z11 && cxVar.W1 && cxVar.getUserConfig().V && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
-                            org.telegram.ui.ActionBar.u1 u1Var = org.telegram.ui.Components.b5.v(activity, new org.telegram.ui.xu(cxVar, 1)).f28746a;
+                            org.telegram.ui.ActionBar.u1 u1Var = org.telegram.ui.Components.b5.v(activity, new org.telegram.ui.xu(cxVar, 1)).f28744a;
                             cxVar.V1 = u1Var;
                             cxVar.showDialog(u1Var);
                             return;
@@ -103,18 +103,18 @@ public final class k4 implements Runnable {
                     } else {
                         uVar = new org.telegram.ui.Wallet.u(u0Var, q10Var);
                     }
-                    org.telegram.ui.Wallet.n3.a(i10, yVar, null, null, null, b0Var, this.f24981c, this.d, new m.b3(null, uVar));
+                    org.telegram.ui.Wallet.n3.a(i10, yVar, null, null, null, b0Var, this.f24978c, this.d, new m.b3(null, uVar));
                     return;
                 }
         }
     }
 
     public k4(org.telegram.ui.cx cxVar, boolean z10, boolean z11, boolean z12, Activity activity) {
-        this.f24979a = 1;
-        this.f24982e = cxVar;
-        this.f24980b = z10;
-        this.f24981c = z11;
+        this.f24976a = 1;
+        this.f24979e = cxVar;
+        this.f24977b = z10;
+        this.f24978c = z11;
         this.d = z12;
-        this.f24983f = activity;
+        this.f24980f = activity;
     }
 }

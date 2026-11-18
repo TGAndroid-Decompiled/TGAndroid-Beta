@@ -38,19 +38,19 @@ public final class x0 extends FrameLayout {
     public boolean Q;
     public boolean R;
     public r1.g S;
-    public final View f4197a;
-    public final org.telegram.ui.ActionBar.i6 f4198b;
-    public final w0 f4199c;
+    public final View f4165a;
+    public final org.telegram.ui.ActionBar.i6 f4166b;
+    public final w0 f4167c;
     public final LinearLayout d;
-    public final ScrollView f4200e;
-    public int f4201f;
+    public final ScrollView f4168e;
+    public int f4169f;
     public final Paint h;
-    public final Paint f4202n;
-    public final Paint f4203r;
-    public final Paint f4204s;
-    public final RectF f4205w;
-    public final RectF f4206x;
-    public final RectF f4207y;
+    public final Paint f4170n;
+    public final Paint f4171r;
+    public final Paint f4172s;
+    public final RectF f4173w;
+    public final RectF f4174x;
+    public final RectF f4175y;
 
     static {
         new lr(0.33d, 1.0d, 0.68d, 1.0d);
@@ -61,24 +61,24 @@ public final class x0 extends FrameLayout {
         boolean z10;
         float f10;
         int i7;
-        this.f4201f = Integer.MAX_VALUE;
+        this.f4169f = Integer.MAX_VALUE;
         Paint paint = new Paint(1);
         this.h = paint;
         Paint paint2 = new Paint(1);
-        this.f4202n = paint2;
-        this.f4203r = new Paint(1);
-        this.f4204s = new Paint(1);
-        this.f4205w = new RectF();
-        this.f4206x = new RectF();
-        this.f4207y = new RectF();
+        this.f4170n = paint2;
+        this.f4171r = new Paint(1);
+        this.f4172s = new Paint(1);
+        this.f4173w = new RectF();
+        this.f4174x = new RectF();
+        this.f4175y = new RectF();
         this.E = new Path();
         this.K = org.telegram.messenger.g0.L(220.0f);
-        this.f4197a = view;
-        this.f4198b = i6Var;
-        this.f4199c = w0Var;
+        this.f4165a = view;
+        this.f4166b = i6Var;
+        this.f4167c = w0Var;
         setWillNotDraw(false);
         setClipChildren(false);
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, i6Var);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, i6Var);
         int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, i6Var);
         this.I = w03;
         if (org.telegram.messenger.g0.B(w02) < 0.5f) {
@@ -113,7 +113,7 @@ public final class x0 extends FrameLayout {
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f));
         ScrollView scrollView = new ScrollView(context);
-        this.f4200e = scrollView;
+        this.f4168e = scrollView;
         scrollView.setVerticalScrollBarEnabled(false);
         scrollView.setOverScrollMode(2);
         scrollView.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
@@ -131,12 +131,12 @@ public final class x0 extends FrameLayout {
 
     public final void b(float f10) {
         this.L = f10;
-        RectF rectF = this.f4206x;
+        RectF rectF = this.f4174x;
         if (!rectF.isEmpty()) {
             float width = rectF.width();
-            RectF rectF2 = this.f4205w;
+            RectF rectF2 = this.f4173w;
             float max = Math.max(0.0f, Math.min(width, rectF2.centerX() - rectF.left));
-            ScrollView scrollView = this.f4200e;
+            ScrollView scrollView = this.f4168e;
             scrollView.setPivotX(max);
             scrollView.setPivotY(Math.max(0.0f, Math.min(rectF.height(), rectF2.centerY() - rectF.top)));
             float max2 = (Math.max(0.0f, f10) * 0.1f) + 0.9f;
@@ -155,7 +155,7 @@ public final class x0 extends FrameLayout {
             childAt.setScaleX(f12);
             childAt.setScaleY(f12);
         }
-        this.f4197a.setAlpha(1.0f - Math.max(0.0f, Math.min(1.0f, (f10 - 0.1f) / 0.45f)));
+        this.f4165a.setAlpha(1.0f - Math.max(0.0f, Math.min(1.0f, (f10 - 0.1f) / 0.45f)));
         Drawable drawable = this.O;
         if (drawable != null && !this.Q) {
             drawable.setAlpha(Math.round((1.0f - Math.max(0.0f, Math.min(1.0f, f10))) * 255.0f));
@@ -188,12 +188,12 @@ public final class x0 extends FrameLayout {
     public final void d() {
         int[] iArr = new int[2];
         int[] iArr2 = new int[2];
-        View view = this.f4197a;
+        View view = this.f4165a;
         view.getLocationInWindow(iArr);
         getLocationInWindow(iArr2);
         float scaleX = ((iArr[0] - iArr2[0]) - ((1.0f - view.getScaleX()) * view.getPivotX())) - view.getTranslationX();
         float scaleY = ((iArr[1] - iArr2[1]) - ((1.0f - view.getScaleY()) * view.getPivotY())) - view.getTranslationY();
-        RectF rectF = this.f4205w;
+        RectF rectF = this.f4173w;
         rectF.set(scaleX, scaleY, view.getWidth() + scaleX, view.getHeight() + scaleY);
         rectF.inset(0.0f, 0.0f);
     }
@@ -203,7 +203,7 @@ public final class x0 extends FrameLayout {
         w0 w0Var;
         float f10;
         float f11;
-        RectF rectF = this.f4205w;
+        RectF rectF = this.f4173w;
         if (rectF.isEmpty() && getWidth() > 0) {
             e();
         }
@@ -212,12 +212,12 @@ public final class x0 extends FrameLayout {
         }
         float f12 = this.L;
         float f13 = rectF.left;
-        RectF rectF2 = this.f4206x;
+        RectF rectF2 = this.f4174x;
         float T1 = org.telegram.messenger.g0.T1(f13, rectF2.left, f12);
         float T12 = org.telegram.messenger.g0.T1(rectF.top, rectF2.top, f12);
         float T13 = org.telegram.messenger.g0.T1(rectF.right, rectF2.right, f12);
         float T14 = org.telegram.messenger.g0.T1(rectF.bottom, rectF2.bottom, f12);
-        RectF rectF3 = this.f4207y;
+        RectF rectF3 = this.f4175y;
         rectF3.set(T1, T12, T13, T14);
         if (rectF3.width() > 1.0f && rectF3.height() > 1.0f) {
             float max = Math.max(0.0f, Math.min(1.0f, f12));
@@ -233,8 +233,8 @@ public final class x0 extends FrameLayout {
                 } else {
                     canvas.clipPath(path, Region.Op.DIFFERENCE);
                 }
-                int r12 = org.telegram.ui.ActionBar.n6.r1(0.01f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f4198b));
-                Paint paint = this.f4203r;
+                int r12 = org.telegram.ui.ActionBar.n6.r1(0.01f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, this.f4166b));
+                Paint paint = this.f4171r;
                 paint.setColor(r12);
                 float L = org.telegram.messenger.g0.L(6.0f);
                 float L2 = org.telegram.messenger.g0.L(1.5f);
@@ -263,7 +263,7 @@ public final class x0 extends FrameLayout {
                 int saveLayerAlpha = canvas.saveLayerAlpha(rectF3.left, rectF3.top, rectF3.right, rectF3.bottom, (int) (255.0f * max));
                 int ceil = (int) Math.ceil(rectF3.width());
                 int ceil2 = (int) Math.ceil(rectF3.height());
-                if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (w0Var = this.f4199c) != null && ceil > 0 && ceil2 > 0) {
+                if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (w0Var = this.f4167c) != null && ceil > 0 && ceil2 > 0) {
                     RenderNode d = n2.a0.d(this.N);
                     if (d == null) {
                         d = new RenderNode("marketMorphBlur");
@@ -299,7 +299,7 @@ public final class x0 extends FrameLayout {
             canvas.drawRect(rectF3, paint2);
             if (this.O == null && Color.alpha(this.J) > 0) {
                 int i13 = this.J;
-                Paint paint3 = this.f4204s;
+                Paint paint3 = this.f4172s;
                 paint3.setColor(i13);
                 paint3.setAlpha(Math.round((1.0f - max) * Color.alpha(this.J)));
                 canvas.drawRect(rectF3, paint3);
@@ -309,7 +309,7 @@ public final class x0 extends FrameLayout {
             canvas.clipPath(path);
             super.dispatchDraw(canvas);
             canvas.restore();
-            Paint paint4 = this.f4202n;
+            Paint paint4 = this.f4170n;
             paint4.setAlpha((int) (Color.alpha(this.H) * max));
             RectF rectF4 = org.telegram.messenger.g0.P;
             rectF4.set(rectF3.left + org.telegram.messenger.g0.L(0.33f), rectF3.top + org.telegram.messenger.g0.L(0.33f), rectF3.right - org.telegram.messenger.g0.L(0.33f), rectF3.bottom - org.telegram.messenger.g0.L(0.33f));
@@ -324,9 +324,9 @@ public final class x0 extends FrameLayout {
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
         LinearLayout linearLayout = this.d;
         linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
-        int i7 = this.f4201f;
+        int i7 = this.f4169f;
         boolean z10 = this.R;
-        RectF rectF = this.f4205w;
+        RectF rectF = this.f4173w;
         if (z10) {
             float f11 = rectF.top;
             if (f11 > 0.0f) {
@@ -346,7 +346,7 @@ public final class x0 extends FrameLayout {
         }
         float max2 = Math.max(org.telegram.messenger.g0.L(8.0f), f10);
         boolean z11 = this.R;
-        RectF rectF2 = this.f4206x;
+        RectF rectF2 = this.f4174x;
         if (z11) {
             float f13 = min;
             float max3 = Math.max(org.telegram.messenger.g0.L(8.0f), (rectF.top - org.telegram.messenger.g0.L(8.0f)) - f13);
@@ -358,7 +358,7 @@ public final class x0 extends FrameLayout {
     }
 
     public final void f() {
-        this.O = this.f4197a.getBackground();
+        this.O = this.f4165a.getBackground();
         b(this.L);
         r1.g gVar = new r1.g(new r1.f(this.L * 1000.0f));
         gVar.f56323m = org.telegram.ui.Cells.c0.p(1000.0f, 560.0f, 0.86f);
@@ -370,10 +370,10 @@ public final class x0 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         e();
-        RectF rectF = this.f4206x;
+        RectF rectF = this.f4174x;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) rectF.width(), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec((int) rectF.height(), 1073741824);
-        ScrollView scrollView = this.f4200e;
+        ScrollView scrollView = this.f4168e;
         scrollView.measure(makeMeasureSpec, makeMeasureSpec2);
         scrollView.layout((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
     }

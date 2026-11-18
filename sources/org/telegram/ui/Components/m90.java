@@ -29,7 +29,7 @@ public final class m90 extends uy {
         vt0Var.f41435c = false;
         t90 t90Var = this.Y;
         if (i7 == 0) {
-            vt0Var.f41433a = this.f59216m;
+            vt0Var.f41433a = this.f59217m;
             vt0Var.f41434b = t90Var.f39948e.h;
             vt0Var.f41435c = true;
             return vt0Var;
@@ -48,7 +48,7 @@ public final class m90 extends uy {
                 TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
                 float f11 = 100.0f;
                 if (w11 != null) {
-                    f10 = w11.f28430w;
+                    f10 = w11.f28428w;
                 } else {
                     f10 = 100.0f;
                 }
@@ -62,7 +62,7 @@ public final class m90 extends uy {
                     if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
                         i10++;
                     } else {
-                        vt0Var.f41433a = documentAttribute.f28412w;
+                        vt0Var.f41433a = documentAttribute.f28410w;
                         vt0Var.f41434b = documentAttribute.h;
                         break;
                     }
@@ -73,7 +73,7 @@ public final class m90 extends uy {
                     if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
                         i10++;
                     } else {
-                        vt0Var.f41433a = documentAttribute2.f28412w;
+                        vt0Var.f41433a = documentAttribute2.f28410w;
                         vt0Var.f41434b = documentAttribute2.h;
                         break;
                     }
@@ -84,7 +84,7 @@ public final class m90 extends uy {
                     if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
                         i10++;
                     } else {
-                        vt0Var.f41433a = documentAttribute3.f28412w;
+                        vt0Var.f41433a = documentAttribute3.f28410w;
                         vt0Var.f41434b = documentAttribute3.h;
                         break;
                     }
@@ -92,7 +92,7 @@ public final class m90 extends uy {
             } else {
                 TLRPC.Photo photo = botInlineResult.photo;
                 if (photo != null && (w10 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
-                    vt0Var.f41433a = w10.f28430w;
+                    vt0Var.f41433a = w10.f28428w;
                     vt0Var.f41434b = w10.h;
                 }
             }

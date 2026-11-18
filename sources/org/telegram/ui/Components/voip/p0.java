@@ -79,7 +79,7 @@ public final class p0 extends FrameLayout {
                 }
                 if (z10) {
                     o0Var.f41101j = ValueAnimator.ofFloat(o0Var.f41100i, 0.0f);
-                    o0Var.f41102k = (int) (2000.0f / org.telegram.messenger.g0.f24124t);
+                    o0Var.f41102k = (int) (2000.0f / org.telegram.messenger.g0.f24121t);
                 } else {
                     o0Var.f41102k = 0;
                     o0Var.f41101j = ValueAnimator.ofFloat(o0Var.f41100i, 1.0f);

@@ -1,18 +1,18 @@
 package ug;
 public class g0 {
-    public final int f58658a;
-    public final int f58659b;
-    public final String f58660c;
+    public final int f58659a;
+    public final int f58660b;
+    public final String f58661c;
     public final String d;
-    public final int f58661e;
-    public boolean f58662f;
+    public final int f58662e;
+    public boolean f58663f;
 
     public g0(int i7, int i10, int i11, String str, String str2) {
-        this.f58658a = i7;
-        this.f58659b = i10;
-        this.f58660c = str;
+        this.f58659a = i7;
+        this.f58660b = i10;
+        this.f58661c = str;
         this.d = str2;
-        this.f58661e = i11;
+        this.f58662e = i11;
     }
 
     public static g0 a(int i7, int i10) {

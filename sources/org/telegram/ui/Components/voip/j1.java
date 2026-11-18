@@ -37,7 +37,7 @@ public final class j1 implements wi.l, fs {
 
     public j1(int i7) {
         this.f40956r = i7;
-        ks.f(i7).b(this, ks.f25215w2);
+        ks.f(i7).b(this, ks.f25213w2);
         ks.f(i7).b(this, ks.B2);
     }
 
@@ -50,7 +50,7 @@ public final class j1 implements wi.l, fs {
         } else {
             t3Var = null;
         }
-        if (sharedInstance == null || t3Var == null || (groupCall = t3Var.f26937b) == null || !groupCall.rtmp_stream || sharedInstance.isHangingUp()) {
+        if (sharedInstance == null || t3Var == null || (groupCall = t3Var.f26935b) == null || !groupCall.rtmp_stream || sharedInstance.isHangingUp()) {
             return null;
         }
         return t3Var;
@@ -74,7 +74,7 @@ public final class j1 implements wi.l, fs {
                 if (sharedInstance != null) {
                     i7 = sharedInstance.getAccount();
                 } else {
-                    i7 = j10.f24773t0;
+                    i7 = j10.f24770t0;
                 }
                 f40949w = new j1(i7);
             }
@@ -84,7 +84,7 @@ public final class j1 implements wi.l, fs {
                 j1Var.f40950a = l2.i.d().k(j1Var);
             }
             wi.n nVar2 = j1Var.f40950a;
-            if (nVar2.f59988c != 0 || (g10 = nVar2.g(activity, null, true)) == null) {
+            if (nVar2.f59989c != 0 || (g10 = nVar2.g(activity, null, true)) == null) {
                 return;
             }
             t0 t0Var = new t0(g10);
@@ -124,7 +124,7 @@ public final class j1 implements wi.l, fs {
             if (j1Var != null) {
                 f40949w = null;
                 int i10 = j1Var.f40956r;
-                ks.f(i10).n(j1Var, ks.f25215w2);
+                ks.f(i10).n(j1Var, ks.f25213w2);
                 ks.f(i10).n(j1Var, ks.B2);
                 wi.n nVar = j1Var.f40950a;
                 if (nVar != null) {
@@ -141,7 +141,7 @@ public final class j1 implements wi.l, fs {
             if (sharedInstance != null) {
                 i7 = sharedInstance.getAccount();
             } else {
-                i7 = j10.f24773t0;
+                i7 = j10.f24770t0;
             }
             f40949w = new j1(i7);
         }
@@ -278,10 +278,10 @@ public final class j1 implements wi.l, fs {
         } else {
             z10 = true;
         }
-        if (z10 && g10 != null && !g10.f26940f.isEmpty()) {
-            u3 u3Var = (u3) g10.f26940f.get(0);
-            groupCallParticipant = u3Var.f27119a;
-            z11 = u3Var.f27120b;
+        if (z10 && g10 != null && !g10.f26938f.isEmpty()) {
+            u3 u3Var = (u3) g10.f26938f.get(0);
+            groupCallParticipant = u3Var.f27117a;
+            z11 = u3Var.f27118b;
         } else {
             groupCallParticipant = null;
         }
@@ -305,7 +305,7 @@ public final class j1 implements wi.l, fs {
                 }
                 sb2.append(str);
                 String sb3 = sb2.toString();
-                if (org.telegram.messenger.s2.f26723a) {
+                if (org.telegram.messenger.s2.f26721a) {
                     a8.b("rtmp pip: " + sb3);
                 }
             }
@@ -337,7 +337,7 @@ public final class j1 implements wi.l, fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25215w2 || i7 == ks.B2) {
+        if (i7 == ks.f25213w2 || i7 == ks.B2) {
             a();
             i1 i1Var = this.f40954f;
             if (i1Var != null) {

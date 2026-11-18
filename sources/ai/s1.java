@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import bi.i4;
+import bi.h4;
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -55,34 +55,34 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bn;
-import org.telegram.ui.ce0;
 import org.telegram.ui.de0;
+import org.telegram.ui.ee0;
 import org.telegram.ui.hk0;
-import org.telegram.ui.ma0;
-import org.telegram.ui.og0;
-import org.telegram.ui.rg0;
+import org.telegram.ui.na0;
+import org.telegram.ui.pg0;
+import org.telegram.ui.sg0;
 import org.telegram.ui.ti;
-import org.telegram.ui.ug0;
-import org.telegram.ui.y90;
-public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegram.ui.ActionBar.r1, ma0, lj0, h2.j {
-    public final int f1516a;
-    public final int f1517b;
-    public final Object f1518c;
+import org.telegram.ui.vg0;
+import org.telegram.ui.z90;
+public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegram.ui.ActionBar.r1, na0, lj0, h2.j {
+    public final int f1517a;
+    public final int f1518b;
+    public final Object f1519c;
 
     public s1(int i7, Object obj, int i10) {
-        this.f1516a = i10;
-        this.f1517b = i7;
-        this.f1518c = obj;
+        this.f1517a = i10;
+        this.f1518b = i7;
+        this.f1519c = obj;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        switch (this.f1516a) {
+        switch (this.f1517a) {
             case 9:
-                org.telegram.messenger.g0.h3(new jg.q(i7, this.f1517b, (oo) this.f1518c, 12), 16L);
+                org.telegram.messenger.g0.h3(new jg.q(i7, this.f1518b, (oo) this.f1519c, 12), 16L);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new jg.q(i7, this.f1517b, (i4) this.f1518c, 13), 16L);
+                org.telegram.messenger.g0.h3(new jg.q(i7, this.f1518b, (h4) this.f1519c, 13), 16L);
                 return;
         }
     }
@@ -97,10 +97,10 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
         boolean z11;
         int i10;
         String str;
-        switch (this.f1516a) {
+        switch (this.f1517a) {
             case 0:
-                c2 c2Var = (c2) this.f1518c;
-                int i11 = this.f1517b;
+                c2 c2Var = (c2) this.f1519c;
+                int i11 = this.f1518b;
                 if (!c2Var.f1153j && i11 == c2Var.C) {
                     float min = Math.min(0.6f, DictationLid.i(i7));
                     d1 n10 = DictationLid.n(min, fArr);
@@ -151,9 +151,9 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                     sb2.append(obj);
                     Log.d("Dictation", sb2.toString());
                     if (a0Var != null) {
-                        t tVar = (t) a0Var.f1704b;
+                        t tVar = (t) a0Var.f1705b;
                         android.support.v4.media.session.a0 a0Var2 = c2Var.f1167y;
-                        if (tVar != ((t) a0Var2.f1704b) || !((String) a0Var.f1705c).equals((String) a0Var2.f1705c)) {
+                        if (tVar != ((t) a0Var2.f1705b) || !((String) a0Var.f1706c).equals((String) a0Var2.f1706c)) {
                             c2Var.o(a0Var);
                             return;
                         }
@@ -163,8 +163,8 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                 }
                 return;
             case 1:
-                int i12 = this.f1517b;
-                c2 c2Var2 = ((x1) this.f1518c).f1611b;
+                int i12 = this.f1518b;
+                c2 c2Var2 = ((x1) this.f1519c).f1612b;
                 c2Var2.W = false;
                 int i13 = c2Var2.Y;
                 if (i12 == i13) {
@@ -306,8 +306,8 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                 }
                 return;
             default:
-                final o2 o2Var = (o2) this.f1518c;
-                final int i25 = this.f1517b;
+                final o2 o2Var = (o2) this.f1519c;
+                final int i25 = this.f1518b;
                 o2Var.f1414t.f1421b.add(new Runnable() {
                     @Override
                     public final void run() {
@@ -354,8 +354,8 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                             if (n12 != null) {
                                 String str4 = n12.f1175a;
                                 if (n12.f1177c && (R = DictationAsr.R(str4, a0Var3, false)) != null) {
-                                    t tVar2 = (t) R.f1704b;
-                                    if (tVar2 == ((t) a0Var3.f1704b) && ((String) R.f1705c).equals((String) a0Var3.f1705c)) {
+                                    t tVar2 = (t) R.f1705b;
+                                    if (tVar2 == ((t) a0Var3.f1705b) && ((String) R.f1706c).equals((String) a0Var3.f1706c)) {
                                         o2Var2.f1412r = true;
                                         o2Var2.f1405k = str4;
                                     } else if (!o2Var2.f1412r || n12.f1176b >= 0.8f) {
@@ -370,11 +370,11 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                                                 m11.append(R);
                                                 Log.d("Dictation", m11.toString());
                                                 x xVar = o2Var2.d;
-                                                long j12 = xVar.f1601c;
+                                                long j12 = xVar.f1602c;
                                                 if (j12 != 0) {
                                                     DictationAsr.nativeSessionFree(j12);
-                                                    xVar.f1601c = 0L;
-                                                    DictationAsr.M((t) xVar.f1602e);
+                                                    xVar.f1602c = 0L;
+                                                    DictationAsr.M((t) xVar.f1603e);
                                                 }
                                                 o2Var2.d = c10;
                                                 o2Var2.h = 0;
@@ -383,7 +383,7 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                                                 x xVar2 = o2Var2.d;
                                                 int length = byteArray.length;
-                                                long j13 = xVar2.f1601c;
+                                                long j13 = xVar2.f1602c;
                                                 if (j13 != 0) {
                                                     nativeSessionPush = DictationAsr.nativeSessionPush(j13, byteArray, 0, length);
                                                     xVar2.b(nativeSessionPush);
@@ -412,8 +412,8 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
     public void accept(Object obj) {
         p4.o oVar;
         p4.o oVar2;
-        p4.v vVar = (p4.v) this.f1518c;
-        int i7 = this.f1517b;
+        p4.v vVar = (p4.v) this.f1519c;
+        int i7 = this.f1518b;
         try {
             try {
                 oVar2 = (p4.o) ((m9.y) obj).get();
@@ -459,17 +459,17 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
     @Override
     public void b(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
         String str = LaunchActivity.C1;
-        for (Map.Entry entry : ((HashMap) this.f1518c).entrySet()) {
+        for (Map.Entry entry : ((HashMap) this.f1519c).entrySet()) {
             fj fjVar = (fj) entry.getValue();
             TLRPC.MessageMedia messageMedia2 = messageMedia;
-            zy.C(this.f1517b).r0(xy.d(messageMedia2, fj.B0(fjVar.f23968k), fjVar, null, null, null, true, 0));
+            zy.C(this.f1518b).r0(xy.d(messageMedia2, fj.B0(fjVar.f23965k), fjVar, null, null, null, true, 0));
             messageMedia = messageMedia2;
         }
     }
 
     @Override
     public boolean b1(View view) {
-        switch (this.f1516a) {
+        switch (this.f1517a) {
             case 12:
                 return false;
             default:
@@ -479,8 +479,8 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
 
     @Override
     public boolean c(int i7, View view) {
-        vi0 vi0Var = (vi0) this.f1518c;
-        if (this.f1517b == 5) {
+        vi0 vi0Var = (vi0) this.f1519c;
+        if (this.f1518b == 5) {
             vi0Var.getClass();
             return false;
         }
@@ -494,54 +494,54 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
 
     @Override
     public void d(boolean z10) {
-        bn bnVar = ((ti) this.f1518c).f52293b;
-        int i7 = this.f1517b;
-        if (i7 == 15 && v3.T(bnVar.f45987e)) {
-            TLRPC.Chat chat = bnVar.f45987e;
+        bn bnVar = ((ti) this.f1519c).f52288b;
+        int i7 = this.f1518b;
+        if (i7 == 15 && v3.T(bnVar.f45978e)) {
+            TLRPC.Chat chat = bnVar.f45978e;
             if (!chat.megagroup || v3.t0(chat)) {
-                bnVar.getMessagesController().X(2, bnVar.f46085l6, z10);
+                bnVar.getMessagesController().X(2, bnVar.f46076l6, z10);
                 return;
             }
         }
         if (i7 != 15) {
             ks notificationCenter = bnVar.getNotificationCenter();
-            int i10 = ks.f25192t;
+            int i10 = ks.f25190t;
             notificationCenter.n(bnVar, i10);
             bnVar.getNotificationCenter().k(i10, new Object[0]);
             bnVar.finishFragment();
-            bnVar.getNotificationCenter().k(ks.K2, Long.valueOf(bnVar.f46085l6), bnVar.f46001f, bnVar.f45987e, Boolean.valueOf(z10));
+            bnVar.getNotificationCenter().k(ks.K2, Long.valueOf(bnVar.f46076l6), bnVar.f45992f, bnVar.f45978e, Boolean.valueOf(z10));
             return;
         }
-        bnVar.Ta(bnVar.f46173s4, z10);
+        bnVar.Ta(bnVar.f46164s4, z10);
     }
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
-        int i10 = this.f1516a;
-        int i11 = this.f1517b;
-        Object obj = this.f1518c;
+        int i10 = this.f1517a;
+        int i11 = this.f1518b;
+        Object obj = this.f1519c;
         switch (i10) {
             case 12:
                 ContactsActivity.c0((ContactsActivity) obj, i11, view, i7);
                 return;
             default:
-                ug0 ug0Var = (ug0) obj;
-                rg0 rg0Var = ug0Var.U1;
-                HashSet hashSet = ug0Var.Z1;
+                vg0 vg0Var = (vg0) obj;
+                sg0 sg0Var = vg0Var.U1;
+                HashSet hashSet = vg0Var.Z1;
                 if (view instanceof ah.r) {
                     TLRPC.User user = ((ah.r) view).getUser();
-                    long j3 = user.f28554id;
+                    long j3 = user.f28552id;
                     if (hashSet.contains(Long.valueOf(j3))) {
                         hashSet.remove(Long.valueOf(j3));
                     } else {
                         hashSet.add(Long.valueOf(j3));
-                        ug0Var.f52555e2.put(Long.valueOf(j3), user);
+                        vg0Var.f52775e2.put(Long.valueOf(j3), user);
                     }
                     if (hashSet.size() == i11 + 1) {
                         hashSet.remove(Long.valueOf(j3));
-                        String G = gd.G(ug0Var.f52562l2, "BotMultiContactsSelectorLimit", new Object[0]);
-                        org.telegram.ui.ActionBar.n2 n2Var = ug0Var.f30195c;
-                        new lc(n2Var, ug0Var.J0).Q(2131623982, 36, G).k(true);
+                        String G = gd.G(vg0Var.f52782l2, "BotMultiContactsSelectorLimit", new Object[0]);
+                        org.telegram.ui.ActionBar.n2 n2Var = vg0Var.f30193c;
+                        new lc(n2Var, vg0Var.J0).Q(2131623982, 36, G).k(true);
                         try {
                             n2Var.performHapticFeedback(3, 2);
                             return;
@@ -549,13 +549,13 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                             return;
                         }
                     }
-                    rg0Var.b(true, hashSet, new og0(ug0Var, 2), null);
-                    ug0Var.h1(true, false);
-                    if (!TextUtils.isEmpty(ug0Var.f52556f2)) {
-                        ug0Var.f52556f2 = null;
-                        rg0Var.setText("");
-                        org.telegram.messenger.g0.r(ug0Var.f52566p2);
-                        ug0Var.g1(true, true);
+                    sg0Var.b(true, hashSet, new pg0(vg0Var, 2), null);
+                    vg0Var.h1(true, false);
+                    if (!TextUtils.isEmpty(vg0Var.f52776f2)) {
+                        vg0Var.f52776f2 = null;
+                        sg0Var.setText("");
+                        org.telegram.messenger.g0.r(vg0Var.f52786p2);
+                        vg0Var.g1(true, true);
                         return;
                     }
                     return;
@@ -566,9 +566,9 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
 
     @Override
     public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        int i10 = this.f1516a;
-        int i11 = this.f1517b;
-        Object obj = this.f1518c;
+        int i10 = this.f1517a;
+        int i11 = this.f1518b;
+        Object obj = this.f1519c;
         switch (i10) {
             case 13:
                 ArrayList arrayList = ((LaunchActivity) obj).f43075e0;
@@ -590,21 +590,21 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
                     profileActivity.getMessagesStorage().j2(d2, true);
                 }
                 TLRPC.TL_updateContactNote tL_updateContactNote = new TLRPC.TL_updateContactNote();
-                tL_updateContactNote.f28546id = profileActivity.getMessagesController().q1(profileActivity.f43540e1);
+                tL_updateContactNote.f28544id = profileActivity.getMessagesController().q1(profileActivity.f43540e1);
                 tL_updateContactNote.note = new TLRPC.TL_textWithEntities();
                 profileActivity.getConnectionsManager().sendRequest(tL_updateContactNote, null);
                 profileActivity.N5();
                 profileActivity.d.s(i11);
                 return;
             case 16:
-                de0 de0Var = ((ce0) obj).f46512h0;
-                if (j10.f24773t0 != i11) {
-                    ((LaunchActivity) de0Var.getParentActivity()).O0(i11);
+                ee0 ee0Var = ((de0) obj).f46878h0;
+                if (j10.f24770t0 != i11) {
+                    ((LaunchActivity) ee0Var.getParentActivity()).O0(i11);
                 }
-                de0Var.finishFragment();
+                ee0Var.finishFragment();
                 return;
             case 18:
-                hk0 hk0Var = ((org.telegram.ui.qj0) obj).f51277a;
+                hk0 hk0Var = ((org.telegram.ui.qj0) obj).f51237a;
                 hk0Var.D1(hk0Var.Z[i11]);
                 return;
             case 19:
@@ -617,47 +617,47 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
 
     @Override
     public String i(int i7) {
-        Calendar calendar = (Calendar) this.f1518c;
-        int i10 = this.f1517b;
+        Calendar calendar = (Calendar) this.f1519c;
+        int i10 = this.f1518b;
         calendar.clear();
         calendar.set(1, i10);
         calendar.set(2, 0);
         calendar.add(2, i7 - 120);
         if (calendar.get(1) == i10) {
             gd E0 = gd.E0();
-            if (E0.f24238r == null) {
+            if (E0.f24235r == null) {
                 synchronized (E0) {
                     try {
-                        if (E0.f24238r == null) {
-                            Locale locale = E0.f24244y;
+                        if (E0.f24235r == null) {
+                            Locale locale = E0.f24241y;
                             if (locale == null) {
                                 locale = Locale.getDefault();
                             }
-                            E0.f24238r = gd.k(locale, E0.O0(2131742508, "formatterMonthOnly", null), "MMMM");
+                            E0.f24235r = gd.k(locale, E0.O0(2131742508, "formatterMonthOnly", null), "MMMM");
                         }
                     } finally {
                     }
                 }
             }
-            return E0.f24238r.format(calendar.getTimeInMillis());
+            return E0.f24235r.format(calendar.getTimeInMillis());
         }
         return gd.E0().v0().format(calendar.getTimeInMillis());
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f1516a) {
+        switch (this.f1517a) {
             case 3:
-                ((e2.a1) obj).L(((l2.g1) this.f1518c).f19372a, this.f1517b);
+                ((e2.a1) obj).L(((l2.g1) this.f1519c).f19369a, this.f1518b);
                 return;
             case 4:
                 e2.a1 a1Var = (e2.a1) obj;
-                a1Var.v(this.f1517b, (e2.l0) this.f1518c);
+                a1Var.v(this.f1518b, (e2.l0) this.f1519c);
                 return;
             default:
                 m2.b bVar = (m2.b) obj;
                 bVar.getClass();
-                bVar.C((m2.a) this.f1518c, this.f1517b);
+                bVar.C((m2.a) this.f1519c, this.f1518b);
                 return;
         }
     }
@@ -665,8 +665,8 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
     @Override
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         int i7;
-        w7 w7Var = (w7) this.f1518c;
-        if (this.f1517b == w7Var.f41574b) {
+        w7 w7Var = (w7) this.f1519c;
+        if (this.f1518b == w7Var.f41574b) {
             g8 g8Var = w7Var.f41576e;
             Bitmap n10 = imageReceiver.n();
             if ((n10 != null && imageReceiver.J()) || imageReceiver.I()) {
@@ -701,34 +701,34 @@ public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegr
 
     @Override
     public int run() {
-        v4.c0 c0Var = ((y90) this.f1518c).f54102c;
+        v4.c0 c0Var = ((z90) this.f1519c).f54457c;
         int L = org.telegram.messenger.g0.L(60.0f);
-        int i7 = this.f1517b;
+        int i7 = this.f1518b;
         c0Var.h1(i7, L);
         return i7;
     }
 
     @Override
     public void s0(View view, float f10, float f11) {
-        int i7 = this.f1516a;
+        int i7 = this.f1517a;
     }
 
     public s1(Object obj, int i7, int i10) {
-        this.f1516a = i10;
-        this.f1518c = obj;
-        this.f1517b = i7;
+        this.f1517a = i10;
+        this.f1519c = obj;
+        this.f1518b = i7;
     }
 
     public s1(m2.a aVar, int i7, e2.b1 b1Var, e2.b1 b1Var2) {
-        this.f1516a = 5;
-        this.f1518c = aVar;
-        this.f1517b = i7;
+        this.f1517a = 5;
+        this.f1519c = aVar;
+        this.f1518b = i7;
     }
 
     public s1(ti tiVar, int i7, boolean z10) {
-        this.f1516a = 6;
-        this.f1518c = tiVar;
-        this.f1517b = i7;
+        this.f1517a = 6;
+        this.f1519c = tiVar;
+        this.f1518b = i7;
     }
 
     @Override

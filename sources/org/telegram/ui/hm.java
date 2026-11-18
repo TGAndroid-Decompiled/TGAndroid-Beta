@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class hm implements org.telegram.messenger.ap {
-    public final hi f48477a;
-    public final bn f48478b;
-    public final mm f48479c;
+    public final hi f48433a;
+    public final bn f48434b;
+    public final mm f48435c;
 
     public hm(mm mmVar, hi hiVar, bn bnVar) {
-        this.f48479c = mmVar;
-        this.f48477a = hiVar;
-        this.f48478b = bnVar;
+        this.f48435c = mmVar;
+        this.f48433a = hiVar;
+        this.f48434b = bnVar;
     }
 
     @Override
     public final void a() {
-        this.f48477a.c(false);
-        this.f48479c.f49922a.presentFragment(this.f48478b);
+        this.f48433a.c(false);
+        this.f48435c.f49896a.presentFragment(this.f48434b);
     }
 
     @Override
     public final void f(boolean z10) {
-        this.f48477a.c(false);
-        this.f48479c.f49922a.presentFragment(this.f48478b);
+        this.f48433a.c(false);
+        this.f48435c.f49896a.presentFragment(this.f48434b);
     }
 }

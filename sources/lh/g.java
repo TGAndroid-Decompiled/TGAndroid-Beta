@@ -22,14 +22,14 @@ import org.telegram.ui.ee;
 import org.telegram.ui.mu0;
 import org.telegram.ui.pl;
 public final class g implements View.OnLongClickListener {
-    public final int f19879a;
-    public final int f19880b;
-    public final FrameLayout f19881c;
+    public final int f19876a;
+    public final int f19877b;
+    public final FrameLayout f19878c;
 
     public g(FrameLayout frameLayout, int i7, int i10) {
-        this.f19879a = i10;
-        this.f19881c = frameLayout;
-        this.f19880b = i7;
+        this.f19876a = i10;
+        this.f19878c = frameLayout;
+        this.f19877b = i7;
     }
 
     @Override
@@ -38,14 +38,14 @@ public final class g implements View.OnLongClickListener {
         boolean z10;
         String M0;
         hl0 hl0Var;
-        int i7 = this.f19879a;
-        int i10 = this.f19880b;
-        FrameLayout frameLayout = this.f19881c;
+        int i7 = this.f19876a;
+        int i10 = this.f19877b;
+        FrameLayout frameLayout = this.f19878c;
         switch (i7) {
             case 0:
-                b bVar = ((h) frameLayout).f19888n;
+                b bVar = ((h) frameLayout).f19885n;
                 if (bVar != null) {
-                    bn bnVar = ((ee) bVar).f47210b;
+                    bn bnVar = ((ee) bVar).f47176b;
                     if (i10 == 2) {
                         afVar = new af(bnVar, 10);
                         z10 = true;
@@ -58,7 +58,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     Activity parentActivity = bnVar.getParentActivity();
                     s4 parentLayout = bnVar.getParentLayout();
-                    pl plVar = bnVar.f46093m1;
+                    pl plVar = bnVar.f46084m1;
                     i6 resourceProvider = bnVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(g0.L(200.0f));
@@ -75,8 +75,8 @@ public final class g implements View.OnLongClickListener {
                     z0Var.setOnClickListener(new mu0(1, afVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(z0Var);
                     h1 h1Var = new h1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                    h1Var.f28993e = true;
-                    h1Var.f28992c = 220;
+                    h1Var.f28991e = true;
+                    h1Var.f28990c = 220;
                     h1Var.setOutsideTouchable(true);
                     h1Var.setClippingEnabled(true);
                     h1Var.setAnimationStyle(2131755192);
@@ -95,9 +95,9 @@ public final class g implements View.OnLongClickListener {
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
                     h1Var.showAtLocation(plVar, 51, (int) width, (int) measuredHeight);
-                    bnVar.f46023g9 = h1Var;
-                    bnVar.w8(bnVar.f46246y1, false);
-                    bnVar.f46023g9.setOnDismissListener(new e0(bnVar, 1));
+                    bnVar.f46014g9 = h1Var;
+                    bnVar.w8(bnVar.f46237y1, false);
+                    bnVar.f46014g9.setOnDismissListener(new e0(bnVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {

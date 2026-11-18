@@ -76,7 +76,7 @@ public final class w0 extends a1 {
     public void g(i0.b bVar) {
         WindowInsets windowInsets = this.f56291c;
         if (windowInsets != null) {
-            this.f56291c = windowInsets.replaceSystemWindowInsets(bVar.f15892a, bVar.f15893b, bVar.f15894c, bVar.d);
+            this.f56291c = windowInsets.replaceSystemWindowInsets(bVar.f15889a, bVar.f15890b, bVar.f15891c, bVar.d);
         }
     }
 

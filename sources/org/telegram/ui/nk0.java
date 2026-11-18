@@ -1,48 +1,48 @@
 package org.telegram.ui;
 public final class nk0 implements Runnable {
-    public final int f50214a;
-    public final ml0 f50215b;
+    public final int f50198a;
+    public final ml0 f50199b;
 
     public nk0(ml0 ml0Var, int i7) {
-        this.f50214a = i7;
-        this.f50215b = ml0Var;
+        this.f50198a = i7;
+        this.f50199b = ml0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f50214a) {
+        switch (this.f50198a) {
             case 0:
-                this.f50215b.z0();
+                this.f50199b.z0();
                 return;
             case 1:
-                ml0 ml0Var = this.f50215b;
-                ml0Var.getMessagesController().f25726o7 = null;
-                if (ml0Var.f49897g1 == 3 && !ml0Var.isFinishing()) {
-                    ml0Var.f49897g1 = 4;
-                    ll0 ll0Var = ml0Var.f49881a1;
+                ml0 ml0Var = this.f50199b;
+                ml0Var.getMessagesController().f25724o7 = null;
+                if (ml0Var.f49871g1 == 3 && !ml0Var.isFinishing()) {
+                    ml0Var.f49871g1 = 4;
+                    ll0 ll0Var = ml0Var.f49855a1;
                     if (ll0Var != null) {
                         ll0Var.d(4);
                     }
                     ml0Var.finishFragment();
                     return;
-                } else if (ml0Var.f49897g1 == 1 && !ml0Var.isFinishing()) {
+                } else if (ml0Var.f49871g1 == 1 && !ml0Var.isFinishing()) {
                     ml0Var.finishFragment();
                     return;
                 } else {
                     return;
                 }
             case 2:
-                ml0 ml0Var2 = this.f50215b;
-                if (ml0Var2.f49891e0 != null) {
+                ml0 ml0Var2 = this.f50199b;
+                if (ml0Var2.f49865e0 != null) {
                     ml0Var2.C0();
-                    ml0Var2.f49891e0 = null;
+                    ml0Var2.f49865e0 = null;
                     return;
                 }
                 return;
             default:
-                ml0 ml0Var3 = this.f50215b;
-                ml0Var3.f49893f[0].requestFocus();
-                org.telegram.messenger.g0.I3(ml0Var3.f49893f[0]);
+                ml0 ml0Var3 = this.f50199b;
+                ml0Var3.f49867f[0].requestFocus();
+                org.telegram.messenger.g0.I3(ml0Var3.f49867f[0]);
                 return;
         }
     }

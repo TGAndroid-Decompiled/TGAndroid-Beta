@@ -9,12 +9,12 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.kg;
 import org.telegram.ui.rm;
 public final class c1 implements kg {
-    public final TL_stars.TL_starGiftUnique f3482a;
-    public final g1 f3483b;
+    public final TL_stars.TL_starGiftUnique f3451a;
+    public final g1 f3452b;
 
     public c1(g1 g1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f3483b = g1Var;
-        this.f3482a = tL_starGiftUnique;
+        this.f3452b = g1Var;
+        this.f3451a = tL_starGiftUnique;
     }
 
     @Override
@@ -30,12 +30,12 @@ public final class c1 implements kg {
     public final void a(CharSequence charSequence) {
         int i7;
         boolean z10;
-        g1 g1Var = this.f3483b;
-        org.telegram.ui.Components.n6 n6Var = g1Var.f3630w1;
-        g1Var.f3621m1.a(this.f3482a, j10.i(g1Var.f30189a).e(), g1Var.f3626s1.getTextWithEntities(), gd.M0(2131749728, null), true);
+        g1 g1Var = this.f3452b;
+        org.telegram.ui.Components.n6 n6Var = g1Var.f3599w1;
+        g1Var.f3590m1.a(this.f3451a, j10.i(g1Var.f30187a).e(), g1Var.f3595s1.getTextWithEntities(), gd.M0(2131749728, null), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         g1Var.A1 = codePointCount;
-        int i10 = g1Var.f3633z1;
+        int i10 = g1Var.f3602z1;
         if (i10 > 0 && (i7 = i10 - codePointCount) <= 15) {
             if (i7 < -9999) {
                 i7 = -9999;
@@ -56,10 +56,10 @@ public final class c1 implements kg {
             n6Var.animate().setListener(null).cancel();
             n6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i7 < 0) {
-                org.telegram.ui.ActionBar.u6.Y(n6Var, org.telegram.ui.ActionBar.n6.f29617p7, g1Var.J0);
+                org.telegram.ui.ActionBar.u6.Y(n6Var, org.telegram.ui.ActionBar.n6.f29615p7, g1Var.J0);
                 return;
             } else {
-                org.telegram.ui.ActionBar.u6.Y(n6Var, org.telegram.ui.ActionBar.n6.f29788y6, g1Var.J0);
+                org.telegram.ui.ActionBar.u6.Y(n6Var, org.telegram.ui.ActionBar.n6.f29786y6, g1Var.J0);
                 return;
             }
         }

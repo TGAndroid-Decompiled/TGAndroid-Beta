@@ -270,7 +270,7 @@ public final class i1 {
         }
         if ((vVar instanceof rc.n) && (y0Var = ((rc.n) vVar).f56520b) != null) {
             StringBuilder n10 = p5.c.n(str, ", HTTP ");
-            n10.append(y0Var.f6967b);
+            n10.append(y0Var.f6964b);
             return n10.toString();
         }
         return str;
@@ -363,7 +363,7 @@ public final class i1 {
                         i1Var.d("opening websocket; attempt=" + i10);
                         try {
                             b3.j jVar = new b3.j(15, (short) 0);
-                            jVar.f2901b = 10000;
+                            jVar.f2902b = 10000;
                             rc.u h = jVar.h(str);
                             i1Var.f44335k = h;
                             h1 h1Var = new h1(i1Var, i10, elapsedRealtime2);

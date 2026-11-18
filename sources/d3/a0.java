@@ -7,9 +7,9 @@ public final class a0 extends z implements Choreographer.FrameCallback {
     @Override
     public final void a() {
         long j3;
-        this.f7781b.registerDisplayListener(this, l0.q(null));
-        this.f7780a.postFrameCallback(this);
-        Display display = this.f7781b.getDisplay(0);
+        this.f7778b.registerDisplayListener(this, l0.q(null));
+        this.f7777a.postFrameCallback(this);
+        Display display = this.f7778b.getDisplay(0);
         if (display != null) {
             j3 = (long) (1.0E9d / display.getRefreshRate());
         } else {
@@ -21,24 +21,24 @@ public final class a0 extends z implements Choreographer.FrameCallback {
 
     @Override
     public final void b() {
-        this.f7781b.unregisterDisplayListener(this);
-        this.f7780a.removeFrameCallback(this);
-        this.f7782c = -9223372036854775807L;
+        this.f7778b.unregisterDisplayListener(this);
+        this.f7777a.removeFrameCallback(this);
+        this.f7779c = -9223372036854775807L;
         this.d = -9223372036854775807L;
     }
 
     @Override
     public final void doFrame(long j3) {
-        this.f7782c = j3;
-        this.f7780a.postFrameCallbackDelayed(this, 500L);
+        this.f7779c = j3;
+        this.f7777a.postFrameCallbackDelayed(this, 500L);
     }
 
     @Override
     public final void onDisplayChanged(int i7) {
         long j3;
         if (i7 == 0) {
-            this.f7780a.postFrameCallback(this);
-            Display display = this.f7781b.getDisplay(0);
+            this.f7777a.postFrameCallback(this);
+            Display display = this.f7778b.getDisplay(0);
             if (display != null) {
                 j3 = (long) (1.0E9d / display.getRefreshRate());
             } else {

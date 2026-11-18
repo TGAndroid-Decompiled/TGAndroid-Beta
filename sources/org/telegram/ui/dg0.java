@@ -1,54 +1,45 @@
 package org.telegram.ui;
-
-import android.content.Context;
-public final class dg0 extends org.telegram.ui.Cells.q1 {
-    public int Ad;
-    public int Bd;
-    public final eg0 Cd;
-    public int f46976zd;
-
-    public dg0(eg0 eg0Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i7, true, null, i6Var);
-        this.Cd = eg0Var;
-        this.f46976zd = Integer.MAX_VALUE;
-        this.Ad = Integer.MAX_VALUE;
-        this.Bd = -1;
-    }
+public final class dg0 extends pi.k {
+    public Runnable W;
 
     @Override
-    public final xh.e Y2() {
-        return xh.e.d(1, this, this.Cd.F);
-    }
-
-    @Override
-    public final boolean isPressed() {
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        int e12;
-        super.onLayout(z10, i7, i10, i11, i12);
-        if (this.f31390ib.f32395x0 && i10 != 0 && this.f46976zd != Integer.MAX_VALUE && i12 != 0 && this.Ad != Integer.MAX_VALUE) {
-            int i13 = this.Bd;
-            int i14 = 0;
-            if (getMessageObject() == null) {
-                e12 = 0;
-            } else {
-                e12 = getMessageObject().e1();
-            }
-            if (i13 == e12) {
-                if (!this.Cd.A0) {
-                    setTranslationY(-(i10 - this.f46976zd));
-                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.lr.h).start();
-                }
-                this.f46976zd = getTop();
-                this.Ad = getBottom();
-                if (getMessageObject() != null) {
-                    i14 = getMessageObject().e1();
-                }
-                this.Bd = i14;
-            }
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
         }
+        cg0 cg0Var = new cg0(this, 0);
+        this.W = cg0Var;
+        org.telegram.messenger.g0.g3(cg0Var);
+    }
+
+    @Override
+    public final void W() {
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
+        }
+        if (org.telegram.messenger.s2.f26721a) {
+            org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
+        }
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        cg0 cg0Var = new cg0(this, 1);
+        this.W = cg0Var;
+        org.telegram.messenger.g0.g3(cg0Var);
+    }
+
+    @Override
+    public final void F() {
     }
 }

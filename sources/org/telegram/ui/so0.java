@@ -17,15 +17,15 @@ import org.telegram.messenger.BringAppForegroundService;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.Components.w51, org.telegram.ui.Components.g61, org.telegram.ui.Components.pd0, wi.l {
-    public final PhotoViewer f52040a;
+    public final PhotoViewer f52042a;
 
     public so0(PhotoViewer photoViewer) {
-        this.f52040a = photoViewer;
+        this.f52042a = photoViewer;
     }
 
     @Override
     public void D(SurfaceTexture surfaceTexture) {
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         photoViewer.S8 = false;
         try {
             vq0 vq0Var = photoViewer.f43226h0;
@@ -55,7 +55,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public View E() {
         if (m()) {
-            return this.f52040a.f43217g0.getWebView();
+            return this.f52042a.f43217g0.getWebView();
         }
         return null;
     }
@@ -64,9 +64,9 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     public boolean G() {
         vq0 vq0Var;
         PhotoViewer photoViewer = PhotoViewer.f43157f9;
-        PhotoViewer photoViewer2 = this.f52040a;
+        PhotoViewer photoViewer2 = this.f52042a;
         if (photoViewer == photoViewer2 && photoViewer2.f43197e && !photoViewer2.J3 && !photoViewer2.S8 && (vq0Var = photoViewer2.f43226h0) != null && vq0Var.getParent() != null) {
-            PhotoViewer photoViewer3 = this.f52040a;
+            PhotoViewer photoViewer3 = this.f52042a;
             if (!photoViewer3.B3 && photoViewer3.f43279n4 == 0) {
                 return true;
             }
@@ -77,13 +77,13 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
 
     @Override
     public void H() {
-        this.f52040a.f43184c4.cancelRewind();
+        this.f52042a.f43184c4.cancelRewind();
     }
 
     @Override
     public int J() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             return photoViewer.f43217g0.getEmbedWidth();
         }
@@ -96,12 +96,12 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
 
     @Override
     public void L(float f10) {
-        this.f52040a.f43184c4.setX(f10);
+        this.f52042a.f43184c4.setX(f10);
     }
 
     @Override
     public boolean N() {
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (photoViewer.f43323s2 && h() && !photoViewer.f43333t4) {
             return true;
         }
@@ -116,7 +116,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public e2.c1 Q() {
         org.telegram.ui.Components.f61 f61Var;
-        if (!m() && (f61Var = this.f52040a.G2) != null) {
+        if (!m() && (f61Var = this.f52042a.G2) != null) {
             return f61Var.d;
         }
         return null;
@@ -129,37 +129,37 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
 
     @Override
     public void U() {
-        this.f52040a.P8 = null;
+        this.f52042a.P8 = null;
         PhotoViewer photoViewer = PhotoViewer.f43158g9;
-        PhotoViewer photoViewer2 = this.f52040a;
+        PhotoViewer photoViewer2 = this.f52042a;
         if (photoViewer == photoViewer2) {
             photoViewer2.J0();
             MediaController.B().F0();
             return;
         }
         PhotoViewer photoViewer3 = PhotoViewer.f43157f9;
-        PhotoViewer photoViewer4 = this.f52040a;
+        PhotoViewer photoViewer4 = this.f52042a;
         if (photoViewer3 == photoViewer4) {
             if (photoViewer4.S8) {
                 photoViewer4.S8 = false;
                 try {
                     vq0 vq0Var = photoViewer4.f43226h0;
                     if (vq0Var != null && vq0Var.getParent() == null) {
-                        PhotoViewer photoViewer5 = this.f52040a;
-                        ((WindowManager) this.f52040a.E.getSystemService("window")).addView(photoViewer5.f43226h0, photoViewer5.f43198e0);
+                        PhotoViewer photoViewer5 = this.f52042a;
+                        ((WindowManager) this.f52042a.E.getSystemService("window")).addView(photoViewer5.f43226h0, photoViewer5.f43198e0);
                     }
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
             }
-            this.f52040a.z0(false, false);
+            this.f52042a.z0(false, false);
         }
     }
 
     @Override
     public boolean V(boolean z10, float f10, org.telegram.ui.Components.cn0 cn0Var) {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             photoViewer.f43184c4.startRewind(photoViewer.f43217g0, z10, f10, photoViewer.f43338u1, cn0Var);
             return true;
@@ -175,16 +175,16 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public void Z() {
         View view;
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (photoViewer.J3) {
             if (PhotoViewer.f43157f9 != null) {
                 PhotoViewer.f43157f9.z0(false, true);
             }
             dq0 dq0Var = photoViewer.f43217g0;
             if (dq0Var != null && dq0Var.f36747f != null) {
-                if (org.telegram.messenger.t0.f26923x) {
+                if (org.telegram.messenger.t0.f26921x) {
                     try {
-                        dq0Var.getContext().startService(new Intent(org.telegram.messenger.t0.f26915b, BringAppForegroundService.class));
+                        dq0Var.getContext().startService(new Intent(org.telegram.messenger.t0.f26913b, BringAppForegroundService.class));
                     } catch (Throwable th2) {
                         org.telegram.messenger.a8.g(th2, true);
                     }
@@ -222,9 +222,9 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
                 view.setVisibility(4);
                 photoViewer.f43387z2.addView(view);
             }
-            if (org.telegram.messenger.t0.f26923x) {
+            if (org.telegram.messenger.t0.f26921x) {
                 try {
-                    photoViewer.E.startService(new Intent(org.telegram.messenger.t0.f26915b, BringAppForegroundService.class));
+                    photoViewer.E.startService(new Intent(org.telegram.messenger.t0.f26913b, BringAppForegroundService.class));
                 } catch (Throwable th3) {
                     org.telegram.messenger.a8.g(th3, true);
                 }
@@ -273,8 +273,8 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
                     ((LaunchActivity) activity).f43068a1.add(photoViewer.f43330t1);
                 }
                 wq0 wq0Var = photoViewer.f43193d5;
-                if (wq0Var != null && !wq0Var.f53512s) {
-                    wq0Var.f53496a.O0(false, false);
+                if (wq0Var != null && !wq0Var.f53463s) {
+                    wq0Var.f53447a.O0(false, false);
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
@@ -299,7 +299,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public void a(float f10) {
         dq0 dq0Var;
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (photoViewer.G2 == null && ((dq0Var = photoViewer.f43217g0) == null || !dq0Var.f36753y)) {
             return;
         }
@@ -319,7 +319,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public int a0() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             return photoViewer.f43217g0.getEmbedHeight();
         }
@@ -333,7 +333,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public void b() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             photoViewer.f43217g0.f();
             return;
@@ -347,7 +347,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public float b0() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             return photoViewer.f43217g0.getBufferedPosition();
         }
@@ -361,7 +361,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public void c(long j3) {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             photoViewer.f43217g0.i(j3);
             return;
@@ -380,7 +380,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public void f() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             photoViewer.f43217g0.g();
             return;
@@ -395,7 +395,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     public void g(float f10) {
         kp0 kp0Var;
         kp0 kp0Var2;
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         dq0 dq0Var = photoViewer.f43217g0;
         if (dq0Var != null && dq0Var.f36753y && (kp0Var2 = photoViewer.f43324s3) != null) {
             int i7 = photoViewer.f43304q3.h - org.telegram.ui.Components.h61.S;
@@ -419,7 +419,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
             kp0Var2.F = (int) Math.ceil(kp0Var2.G.measureText(g02));
             kp0Var2.invalidate();
             if (kp0Var2.f37049f != null) {
-                Utilities.f22782e.a(kp0Var2.f37049f);
+                Utilities.f22779e.a(kp0Var2.f37049f);
             }
             double videoDuration = (f10 * dq0Var.getVideoDuration()) / 1000.0d;
             kp0Var2.P = videoDuration;
@@ -430,14 +430,14 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
         } else if (photoViewer.G2 != null && (kp0Var = photoViewer.f43324s3) != null) {
             kp0Var.e(photoViewer.T4, f10, photoViewer.f43304q3.h - org.telegram.ui.Components.h61.S);
         }
-        this.f52040a.Z2(true);
-        PhotoViewer.Q(this.f52040a);
+        this.f52042a.Z2(true);
+        PhotoViewer.Q(this.f52042a);
     }
 
     @Override
     public long getDuration() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             return photoViewer.f43217g0.getVideoDuration();
         }
@@ -451,7 +451,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public boolean h() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             return photoViewer.f43217g0.H;
         }
@@ -464,7 +464,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
 
     @Override
     public void i(wi.o oVar) {
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         photoViewer.S8 = true;
         if (photoViewer.E2) {
             org.telegram.ui.Components.f61 f61Var = photoViewer.G2;
@@ -493,12 +493,12 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
 
     @Override
     public void invalidate() {
-        this.f52040a.f43208f0.invalidate();
+        this.f52042a.f43208f0.invalidate();
     }
 
     @Override
     public void j() {
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (photoViewer.f43261l3 && photoViewer.P3) {
             photoViewer.q2();
         }
@@ -506,12 +506,12 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
 
     @Override
     public void j0(Canvas canvas, int i7, int i10) {
-        this.f52040a.f43174b4.draw(canvas, i7, i10);
+        this.f52042a.f43174b4.draw(canvas, i7, i10);
     }
 
     @Override
     public void k() {
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (photoViewer.f43261l3 && photoViewer.P3) {
             org.telegram.messenger.g0.r(photoViewer.f43378y2);
         }
@@ -520,7 +520,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public long l() {
         boolean m10 = m();
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (m10) {
             return photoViewer.f43217g0.getCurrentPosition();
         }
@@ -532,7 +532,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     }
 
     public boolean m() {
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (photoViewer.f43333t4 && photoViewer.f43217g0 != null) {
             return true;
         }
@@ -542,7 +542,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     public void n(boolean z10) {
         float f10;
         boolean z11 = !z10;
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         if (photoViewer.W0.isClickable() != z11) {
             photoViewer.W0.setClickable(z11);
             photoViewer.W0.setVisibility(0);
@@ -558,7 +558,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     }
 
     public void o() {
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         org.telegram.ui.Components.f61 f61Var = photoViewer.G2;
         if (f61Var == null) {
             return;
@@ -567,14 +567,14 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
         photoViewer.G2.g0();
         photoViewer.S7.setProgress(photoViewer.f43364w8);
         photoViewer.n0();
-        hf0 hf0Var = new hf0(this, 22);
-        photoViewer.I2 = hf0Var;
-        org.telegram.messenger.g0.h3(hf0Var, 860L);
+        if0 if0Var = new if0(this, 22);
+        photoViewer.I2 = if0Var;
+        org.telegram.messenger.g0.h3(if0Var, 860L);
     }
 
     @Override
     public boolean o0() {
-        if (m() && !this.f52040a.f43217g0.f36753y) {
+        if (m() && !this.f52042a.f43217g0.f36753y) {
             return false;
         }
         return true;
@@ -583,7 +583,7 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
     @Override
     public boolean p() {
         if (m()) {
-            dq0 dq0Var = this.f52040a.f43217g0;
+            dq0 dq0Var = this.f52042a.f43217g0;
             if (dq0Var.f36753y && "inapp".equals(org.telegram.messenger.mp.u1(dq0Var.f36743a).D3)) {
                 return false;
             }
@@ -594,13 +594,13 @@ public final class so0 implements org.telegram.ui.ActionBar.o0, org.telegram.ui.
 
     @Override
     public boolean s() {
-        return this.f52040a.f43184c4.rewinding;
+        return this.f52042a.f43184c4.rewinding;
     }
 
     @Override
     public void u(Rect rect) {
         qq0 qq0Var;
-        PhotoViewer photoViewer = this.f52040a;
+        PhotoViewer photoViewer = this.f52042a;
         RectF rectF = photoViewer.T8;
         if (photoViewer.U8 && (qq0Var = photoViewer.f43208f0) != null && qq0Var.isAttachedToWindow()) {
             int[] iArr = new int[2];

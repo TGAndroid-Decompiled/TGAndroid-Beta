@@ -68,12 +68,12 @@ public final class c51 extends uy {
         switch (this.X) {
             case 0:
                 if (((e51) this.Y).f34609i3) {
-                    return org.telegram.messenger.g0.f24121q.y;
+                    return org.telegram.messenger.g0.f24118q.y;
                 }
                 return super.W0(c1Var);
             case 1:
                 if (((e51) this.Y).f34609i3) {
-                    return org.telegram.messenger.g0.f24121q.y;
+                    return org.telegram.messenger.g0.f24118q.y;
                 }
                 return super.W0(c1Var);
             default:
@@ -86,7 +86,7 @@ public final class c51 extends uy {
         switch (this.X) {
             case 2:
                 super.z0(c1Var, iArr);
-                iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.p7.a(1) * 2);
+                iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.q7.a(1) * 2);
                 return;
             default:
                 super.z0(c1Var, iArr);

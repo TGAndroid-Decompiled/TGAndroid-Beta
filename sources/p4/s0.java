@@ -134,7 +134,7 @@ public final class s0 implements Runnable {
             case 3:
                 t5.a aVar = (t5.a) this.f55430c;
                 o5.i iVar = (o5.i) this.d;
-                String str = iVar.f21714a;
+                String str = iVar.f21711a;
                 l5.g gVar = (l5.g) this.f55429b;
                 o5.h hVar = (o5.h) this.f55431e;
                 aVar.getClass();
@@ -193,7 +193,7 @@ public final class s0 implements Runnable {
                 }
             case 7:
                 xi.e eVar = (xi.e) this.f55430c;
-                ((ArrayDeque) eVar.f60620a).addLast(new xi.d((ki.e) this.d, (xi.a) this.f55429b, (RequestTimeDelegate) this.f55431e));
+                ((ArrayDeque) eVar.f60621a).addLast(new xi.d((ki.e) this.d, (xi.a) this.f55429b, (RequestTimeDelegate) this.f55431e));
                 eVar.K();
                 return;
             default:
@@ -201,22 +201,22 @@ public final class s0 implements Runnable {
                 zi.n0 n0Var = (zi.n0) this.d;
                 zi.n0 n0Var2 = (zi.n0) this.f55429b;
                 Handler handler = (Handler) this.f55431e;
-                if (tVar.f62287r0 && tVar.W == 0 && tVar.T) {
+                if (tVar.f62288r0 && tVar.W == 0 && tVar.T) {
                     tVar.N.g(tVar.L, tVar.D, false);
                     tVar.U = false;
                     tVar.V = false;
-                    tVar.f62260c0 = 0.0f;
+                    tVar.f62261c0 = 0.0f;
                     tVar.W = 1;
                     long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                     tVar.X = elapsedRealtimeNanos;
                     tVar.Y = elapsedRealtimeNanos;
-                    tVar.f62261d0 = n0Var;
-                    tVar.f62263e0 = n0Var2;
-                    String[] strArr = zi.v0.f62336a;
+                    tVar.f62262d0 = n0Var;
+                    tVar.f62264e0 = n0Var2;
+                    String[] strArr = zi.v0.f62337a;
                     synchronized (zi.v0.class) {
                         zi.v0.b();
                         if (n0Var != n0Var2) {
-                            if (n0Var == zi.n0.f62228b) {
+                            if (n0Var == zi.n0.f62229b) {
                                 i7 = 0;
                             }
                             a10 = zi.v0.a(i7);
@@ -224,13 +224,13 @@ public final class s0 implements Runnable {
                             throw new IllegalArgumentException("Camera switch direction must change");
                         }
                     }
-                    tVar.f62258b0 = a10;
+                    tVar.f62259b0 = a10;
                     tVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a10 - 400) * 3) / 20))) * 45) / 100) * 1000000;
-                    tVar.f62256a0 = (max - max2) * 1000000;
-                    tVar.f62269i.b("synthetic camera switch started: from=" + n0Var + ", to=" + n0Var2 + ", expectedWaitMs=" + tVar.f62258b0 + ", targetBlurRadiusPx=" + (((tVar.N.f62052a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f62256a0) / 1000000));
+                    tVar.f62257a0 = (max - max2) * 1000000;
+                    tVar.f62270i.b("synthetic camera switch started: from=" + n0Var + ", to=" + n0Var2 + ", expectedWaitMs=" + tVar.f62259b0 + ", targetBlurRadiusPx=" + (((tVar.N.f62053a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f62257a0) / 1000000));
                     tVar.Q = -1L;
-                    handler.removeCallbacks(tVar.f62300y0);
-                    handler.post(tVar.f62300y0);
+                    handler.removeCallbacks(tVar.f62301y0);
+                    handler.post(tVar.f62301y0);
                     return;
                 }
                 return;

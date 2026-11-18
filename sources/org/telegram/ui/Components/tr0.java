@@ -58,9 +58,9 @@ public final class tr0 extends bk0 {
         boolean z17;
         gt0 gt0Var = this.f40091f;
         org.telegram.ui.ActionBar.h2 h2Var = gt0Var.f35642y1;
-        View view = f1Var.f59122a;
-        if (view instanceof org.telegram.ui.Cells.qa) {
-            org.telegram.ui.Cells.qa qaVar = (org.telegram.ui.Cells.qa) view;
+        View view = f1Var.f59123a;
+        if (view instanceof org.telegram.ui.Cells.ra) {
+            org.telegram.ui.Cells.ra raVar = (org.telegram.ui.Cells.ra) view;
             if (!this.f40090e.isEmpty()) {
                 chatParticipant = this.d.participants.participants.get(((Integer) this.f40090e.get(i7)).intValue());
             } else {
@@ -135,11 +135,11 @@ public final class tr0 extends bk0 {
                 } else {
                     z14 = false;
                 }
-                qaVar.a(str, z10, z11, z14, new n50(this, c22, str, z10, z11, z12, 1));
+                raVar.a(str, z10, z11, z14, new n50(this, c22, str, z10, z11, z12, 1));
                 if (i7 == this.d.participants.participants.size() - 1) {
                     z18 = false;
                 }
-                qaVar.d(c22, null, null, z18);
+                raVar.d(c22, null, null, z18);
             }
         }
     }
@@ -152,8 +152,8 @@ public final class tr0 extends bk0 {
             X.setLayoutParams(new v4.q0(-1, -1));
             return new v4.f1(X);
         }
-        org.telegram.ui.Cells.qa qaVar = new org.telegram.ui.Cells.qa(9, 0, this.f40089c, gt0Var.I1, true, false);
-        qaVar.setLayoutParams(new v4.q0(-1, -2));
-        return new v4.f1(qaVar);
+        org.telegram.ui.Cells.ra raVar = new org.telegram.ui.Cells.ra(9, 0, this.f40089c, gt0Var.I1, true, false);
+        raVar.setLayoutParams(new v4.q0(-1, -2));
+        return new v4.f1(raVar);
     }
 }

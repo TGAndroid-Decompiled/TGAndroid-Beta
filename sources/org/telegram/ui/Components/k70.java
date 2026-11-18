@@ -19,17 +19,17 @@ public final class k70 implements Runnable {
         switch (this.f36698a) {
             case 0:
                 p70 p70Var = this.f36699b;
-                org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(p70Var.f30189a);
+                org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(p70Var.f30187a);
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = this.f36700c;
                 u12.f4(tL_chatInviteJoinResultWebView.users, false);
-                org.telegram.messenger.l2.b(p70Var.f30189a).c(this.d, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
+                org.telegram.messenger.l2.b(p70Var.f30187a).c(this.d, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
                 return;
             default:
                 p70 p70Var2 = this.f36699b;
-                org.telegram.messenger.mp u13 = org.telegram.messenger.mp.u1(p70Var2.f30189a);
+                org.telegram.messenger.mp u13 = org.telegram.messenger.mp.u1(p70Var2.f30187a);
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView2 = this.f36700c;
                 u13.f4(tL_chatInviteJoinResultWebView2.users, false);
-                org.telegram.messenger.l2.b(p70Var2.f30189a).c(this.d, tL_chatInviteJoinResultWebView2.bot_id, tL_chatInviteJoinResultWebView2.query_id, false);
+                org.telegram.messenger.l2.b(p70Var2.f30187a).c(this.d, tL_chatInviteJoinResultWebView2.bot_id, tL_chatInviteJoinResultWebView2.query_id, false);
                 return;
         }
     }

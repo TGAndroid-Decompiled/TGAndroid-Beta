@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import bi.d6;
+import bi.c6;
 import c8.ma;
 import di.t9;
 import hi.f9;
@@ -43,7 +43,7 @@ import org.telegram.ui.Components.z41;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 public final class v extends b51 implements fs {
-    public static org.telegram.ui.ActionBar.u1 f18499e;
+    public static org.telegram.ui.ActionBar.u1 f18496e;
 
     public static void d0(v vVar, TL_account.TL_businessChatLink tL_businessChatLink) {
         g0(vVar.getParentActivity(), vVar.currentAccount, tL_businessChatLink, vVar.resourceProvider);
@@ -106,21 +106,21 @@ public final class v extends b51 implements fs {
         }
         AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
         String M0 = gd.M0(2131752688, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder2.f28746a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder2.f28744a;
         u1Var.S = M0;
         s sVar = new s(activity, i6Var);
         ri.d0(i7).O(org.telegram.messenger.g0.G0(), true);
         sVar.setInputType(49153);
         sVar.setTextSize(1, 18.0f);
         sVar.setText(tL_businessChatLink.title);
-        int i10 = n6.f29504j5;
+        int i10 = n6.f29502j5;
         u6.U(sVar, i10, i6Var);
         u6.l(sVar, 34, n6.Oi, i6Var);
         u6.l(sVar, 30, n6.Ne, null);
         sVar.setHintText(gd.M0(2131752690, null));
         sVar.setSingleLine(true);
         sVar.setFocusable(true);
-        u6.F(sVar, n6.f29525k6, n6.f29543l6, n6.f29617p7, i6Var);
+        u6.F(sVar, n6.f29523k6, n6.f29541l6, n6.f29615p7, i6Var);
         sVar.setImeOptions(6);
         sVar.setBackgroundDrawable(null);
         sVar.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
@@ -132,16 +132,16 @@ public final class v extends b51 implements fs {
         f10.addView(textView, ma.k(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
         f10.addView(sVar, ma.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.o(f10);
-        u1Var.f30026a = org.telegram.messenger.g0.L(292.0f);
+        u1Var.f30024a = org.telegram.messenger.g0.L(292.0f);
         sVar.setOnEditorActionListener(new q(sVar, i7, tL_businessChatLink, u1VarArr, view, 0));
         alertDialog$Builder2.k(gd.M0(2131751343, null), new ai.r1(sVar, i7, tL_businessChatLink, 3));
         alertDialog$Builder2.h(gd.M0(2131752578, null), new f9(12));
         if (z10) {
-            f18499e = u1Var;
+            f18496e = u1Var;
             u1VarArr[0] = u1Var;
             u1Var.setOnDismissListener(new r(0, view));
-            f18499e.setOnShowListener(new bi.l(sVar, 2));
-            f18499e.r(250L);
+            f18496e.setOnShowListener(new bi.l(sVar, 2));
+            f18496e.r(250L);
         } else {
             u1Var.P = new ai.v1(23, view, sVar);
             u1VarArr[0] = u1Var;
@@ -149,7 +149,7 @@ public final class v extends b51 implements fs {
             u1VarArr[0].setOnShowListener(new o(view, sVar, 0));
             u1VarArr[0].show();
         }
-        u1VarArr[0].f30051k0 = false;
+        u1VarArr[0].f30049k0 = false;
         sVar.setSelection(sVar.getText().length());
     }
 
@@ -165,12 +165,12 @@ public final class v extends b51 implements fs {
         arrayList.add(l41Var);
         z41Var.V();
         y d = y.d(this.currentAccount);
-        if (d.f18539b.size() < mp.u1(d.f18538a).K5) {
+        if (d.f18536b.size() < mp.u1(d.f18535a).K5) {
             l41 c10 = l41.c(1, 2131231841, gd.M0(2131752698, null));
             c10.f37023r = true;
             arrayList.add(c10);
         }
-        ArrayList arrayList2 = y.d(this.currentAccount).f18539b;
+        ArrayList arrayList2 = y.d(this.currentAccount).f18536b;
         int size = arrayList2.size();
         int i7 = 0;
         int i10 = 0;
@@ -178,7 +178,7 @@ public final class v extends b51 implements fs {
             Object obj = arrayList2.get(i10);
             i10++;
             ?? obj2 = new Object();
-            obj2.f18493a = (TL_account.TL_businessChatLink) obj;
+            obj2.f18490a = (TL_account.TL_businessChatLink) obj;
             l41 l41Var2 = new l41(29);
             l41Var2.H = obj2;
             arrayList.add(l41Var2);
@@ -234,12 +234,12 @@ public final class v extends b51 implements fs {
             TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
             createbusinesschatlink.link = tL_inputBusinessChatLink;
             tL_inputBusinessChatLink.message = "";
-            ConnectionsManager.getInstance(d.f18538a).sendRequest(createbusinesschatlink, new x(d, 1));
+            ConnectionsManager.getInstance(d.f18535a).sendRequest(createbusinesschatlink, new x(d, 1));
         } else if (l41Var.f56589a == 29) {
             Object obj = l41Var.H;
             if (obj instanceof u) {
                 Bundle f10 = p5.c.f(6, "chatMode");
-                f10.putString("business_link", ((u) obj).f18493a.link);
+                f10.putString("business_link", ((u) obj).f18490a.link);
                 presentFragment(new bn(f10));
             }
         }
@@ -250,21 +250,21 @@ public final class v extends b51 implements fs {
         if (l41Var.f56589a == 29) {
             Object obj = l41Var.H;
             if (obj instanceof u) {
-                final TL_account.TL_businessChatLink tL_businessChatLink = ((u) obj).f18493a;
+                final TL_account.TL_businessChatLink tL_businessChatLink = ((u) obj).f18490a;
                 y60 I = y60.I(this, view);
                 I.c(2131232105, gd.M0(2131751756, null), new hi.k(tL_businessChatLink, 29), false);
                 I.c(2131232365, gd.M0(2131748733, null), new Runnable(this) {
-                    public final v f18411b;
+                    public final v f18408b;
 
                     {
-                        this.f18411b = this;
+                        this.f18408b = this;
                     }
 
                     @Override
                     public final void run() {
                         int i7 = r3;
                         TL_account.TL_businessChatLink tL_businessChatLink2 = tL_businessChatLink;
-                        v vVar = this.f18411b;
+                        v vVar = this.f18408b;
                         switch (i7) {
                             case 0:
                                 vVar.getClass();
@@ -280,7 +280,7 @@ public final class v extends b51 implements fs {
                             default:
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vVar.getParentActivity(), vVar.getResourceProvider());
                                 String M0 = gd.M0(2131752696, null);
-                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                                 u1Var.S = M0;
                                 u1Var.U = gd.M0(2131752697, null);
                                 alertDialog$Builder.k(gd.M0(2131746126, null), new ab.g(22, vVar, tL_businessChatLink2));
@@ -288,7 +288,7 @@ public final class v extends b51 implements fs {
                                 vVar.showDialog(u1Var);
                                 TextView textView = (TextView) u1Var.d(-1);
                                 if (textView != null) {
-                                    u6.U(textView, n6.f29637q7, vVar.getResourceProvider());
+                                    u6.U(textView, n6.f29635q7, vVar.getResourceProvider());
                                     return;
                                 }
                                 return;
@@ -296,17 +296,17 @@ public final class v extends b51 implements fs {
                     }
                 }, false);
                 I.c(2131232118, gd.M0(2131746083, null), new Runnable(this) {
-                    public final v f18411b;
+                    public final v f18408b;
 
                     {
-                        this.f18411b = this;
+                        this.f18408b = this;
                     }
 
                     @Override
                     public final void run() {
                         int i7 = r3;
                         TL_account.TL_businessChatLink tL_businessChatLink2 = tL_businessChatLink;
-                        v vVar = this.f18411b;
+                        v vVar = this.f18408b;
                         switch (i7) {
                             case 0:
                                 vVar.getClass();
@@ -322,7 +322,7 @@ public final class v extends b51 implements fs {
                             default:
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vVar.getParentActivity(), vVar.getResourceProvider());
                                 String M0 = gd.M0(2131752696, null);
-                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                                 u1Var.S = M0;
                                 u1Var.U = gd.M0(2131752697, null);
                                 alertDialog$Builder.k(gd.M0(2131746126, null), new ab.g(22, vVar, tL_businessChatLink2));
@@ -330,7 +330,7 @@ public final class v extends b51 implements fs {
                                 vVar.showDialog(u1Var);
                                 TextView textView = (TextView) u1Var.d(-1);
                                 if (textView != null) {
-                                    u6.U(textView, n6.f29637q7, vVar.getResourceProvider());
+                                    u6.U(textView, n6.f29635q7, vVar.getResourceProvider());
                                     return;
                                 }
                                 return;
@@ -338,17 +338,17 @@ public final class v extends b51 implements fs {
                     }
                 }, false);
                 I.c(2131232110, gd.M0(2131751587, null), new Runnable(this) {
-                    public final v f18411b;
+                    public final v f18408b;
 
                     {
-                        this.f18411b = this;
+                        this.f18408b = this;
                     }
 
                     @Override
                     public final void run() {
                         int i7 = r3;
                         TL_account.TL_businessChatLink tL_businessChatLink2 = tL_businessChatLink;
-                        v vVar = this.f18411b;
+                        v vVar = this.f18408b;
                         switch (i7) {
                             case 0:
                                 vVar.getClass();
@@ -364,7 +364,7 @@ public final class v extends b51 implements fs {
                             default:
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vVar.getParentActivity(), vVar.getResourceProvider());
                                 String M0 = gd.M0(2131752696, null);
-                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
                                 u1Var.S = M0;
                                 u1Var.U = gd.M0(2131752697, null);
                                 alertDialog$Builder.k(gd.M0(2131746126, null), new ab.g(22, vVar, tL_businessChatLink2));
@@ -372,7 +372,7 @@ public final class v extends b51 implements fs {
                                 vVar.showDialog(u1Var);
                                 TextView textView = (TextView) u1Var.d(-1);
                                 if (textView != null) {
-                                    u6.U(textView, n6.f29637q7, vVar.getResourceProvider());
+                                    u6.U(textView, n6.f29635q7, vVar.getResourceProvider());
                                     return;
                                 }
                                 return;
@@ -402,7 +402,7 @@ public final class v extends b51 implements fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         z41 z41Var;
-        if (i7 != ks.J1 && i7 != ks.f25141k0) {
+        if (i7 != ks.J1 && i7 != ks.f25139k0) {
             if (i7 == ks.K1) {
                 Bundle f10 = p5.c.f(6, "chatMode");
                 f10.putString("business_link", ((TL_account.TL_businessChatLink) objArr[0]).link);
@@ -415,8 +415,8 @@ public final class v extends b51 implements fs {
                 return;
             }
         }
-        d6 d6Var = this.f33530a;
-        if (d6Var != null && (z41Var = d6Var.f34607g3) != null) {
+        c6 c6Var = this.f33530a;
+        if (c6Var != null && (z41Var = c6Var.f34607g3) != null) {
             z41Var.O(true);
         }
     }
@@ -433,10 +433,10 @@ public final class v extends b51 implements fs {
 
     @Override
     public final boolean onBackPressed(boolean z10) {
-        org.telegram.ui.ActionBar.u1 u1Var = f18499e;
+        org.telegram.ui.ActionBar.u1 u1Var = f18496e;
         if (u1Var != null && u1Var.isShowing()) {
             if (z10) {
-                f18499e.dismiss();
+                f18496e.dismiss();
                 return false;
             }
             return false;
@@ -449,7 +449,7 @@ public final class v extends b51 implements fs {
         getNotificationCenter().c(this, ks.J1);
         getNotificationCenter().c(this, ks.K1);
         getNotificationCenter().c(this, ks.L1);
-        getNotificationCenter().c(this, ks.f25141k0);
+        getNotificationCenter().c(this, ks.f25139k0);
         y d = y.d(this.currentAccount);
         if (!d.d) {
             d.e(true, true);
@@ -465,7 +465,7 @@ public final class v extends b51 implements fs {
         getNotificationCenter().n(this, ks.J1);
         getNotificationCenter().n(this, ks.K1);
         getNotificationCenter().n(this, ks.L1);
-        getNotificationCenter().n(this, ks.f25141k0);
+        getNotificationCenter().n(this, ks.f25139k0);
         gc.e();
         super.onFragmentDestroy();
     }

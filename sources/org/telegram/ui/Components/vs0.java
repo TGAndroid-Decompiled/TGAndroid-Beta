@@ -68,10 +68,10 @@ public final class vs0 {
             iArr[i7] = Math.max(fjVar.e1(), iArr[i7]);
             this.f41420k = Math.min(fjVar.e1(), this.f41420k);
         }
-        if (!this.v && org.telegram.messenger.fj.L4(fjVar.f23968k)) {
+        if (!this.v && org.telegram.messenger.fj.L4(fjVar.f23965k)) {
             this.v = true;
         }
-        if (!this.f41431w && org.telegram.messenger.fj.S3(fjVar.f23968k)) {
+        if (!this.f41431w && org.telegram.messenger.fj.S3(fjVar.f23965k)) {
             this.f41431w = true;
         }
         return true;
@@ -130,7 +130,7 @@ public final class vs0 {
         if (fjVar != null) {
             sparseArrayArr[i7].remove(i10);
             sparseArrayArr[i7].put(i11, fjVar);
-            fjVar.f23968k.f28426id = i11;
+            fjVar.f23965k.f28424id = i11;
             int[] iArr = this.f41419j;
             iArr[i7] = Math.min(i11, iArr[i7]);
         }
